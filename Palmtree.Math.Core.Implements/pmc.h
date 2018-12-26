@@ -23,42 +23,53 @@
  */
 
 /* 
- * File:   dllmain.cpp
+ * File:   pmc.h
  * Author: Lunor Kisasage
  *
- * Created on 2018/12/26, 16:50
+ * Created on 2018/12/26, 17:03
  */
 
-#include <windows.h>
+#ifndef PMC_H
+#define PMC_H
 
-using namespace std;
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-/*
- * DLLのエントリポイント
- */
+// <editor-fold defaultstate="collapsed" desc="マクロの定義">
 
-extern "C" BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpvReserved)
+#define __PMC_CALL  __stdcall
+#define PMC_OK      (0)
+#define PMC_ERROR   (-1)
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc="型の定義">
+
+typedef struct __tag_PMC_ENTRY_POINTS
 {
-	switch (dwReason)
-	{
-	
-	case DLL_PROCESS_ATTACH: // DLLがプロセスのアドレス空間にマッピングされた。
-		break;
-	
-	case DLL_THREAD_ATTACH: // スレッドが作成されようとしている。
-		break;
-	
-	case DLL_THREAD_DETACH: // スレッドが破棄されようとしている。
-		break;
-	
-	case DLL_PROCESS_DETACH: // DLLのマッピングが解除されようとしている。
-		break;
+    void* (* __PMC_CALL PMC_From_I)(__int32);
+    void* (* __PMC_CALL PMC_From_L)(__int64);
+    int (* __PMC_CALL PMC_To_X_I)(void*, __int32*);
+    int (* __PMC_CALL PMC_To_X_L)(void*, __int64*);
+    void* (* __PMC_CALL PMC_Add_XI)(void*, __int32);
+    void* (* __PMC_CALL PMC_Add_XL)(void*, __int64);
+    void* (* __PMC_CALL PMC_Add_XX)(void*, void*);
+} PMC_ENTRY_POINTS;
+    
+    
+// </editor-fold>
 
-	}
+    
+// <editor-fold defaultstate="collapsed" desc="宣言">
 
-	return (TRUE);
+extern PMC_ENTRY_POINTS* PMC_Initialize();
+
+// </editor-fold>
+
+#ifdef __cplusplus
 }
+#endif
 
-/*
- * END OF FILE
- */
+#endif /* PMC_H */
+

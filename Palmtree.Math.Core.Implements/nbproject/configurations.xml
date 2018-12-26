@@ -2,9 +2,11 @@
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="SourceFiles" displayName="ソース・ファイル" projectFiles="true">
-      <itemPath>dllmain.cpp</itemPath>
+      <itemPath>dllmain.c</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles" displayName="ヘッダー・ファイル" projectFiles="true">
+      <itemPath>pmc.h</itemPath>
+      <itemPath>pmc_internal.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles" displayName="リソース・ファイル" projectFiles="true">
     </logicalFolder>
@@ -46,7 +48,11 @@
           <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@1</commandLine>
         </linkerTool>
       </compileType>
-      <item path="dllmain.cpp" ex="false" tool="1" flavor2="0">
+      <item path="dllmain.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="x64_Release" type="2" platformSpecific="true">
@@ -81,7 +87,11 @@
           <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@1</commandLine>
         </linkerTool>
       </compileType>
-      <item path="dllmain.cpp" ex="false" tool="1" flavor2="0">
+      <item path="dllmain.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="x86_Debug" type="2" platformSpecific="true">
@@ -108,7 +118,11 @@
           <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@1</commandLine>
         </linkerTool>
       </compileType>
-      <item path="dllmain.cpp" ex="false" tool="1" flavor2="0">
+      <item path="dllmain.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="x86_Release" type="2" platformSpecific="true">
@@ -143,7 +157,11 @@
           <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@1</commandLine>
         </linkerTool>
       </compileType>
-      <item path="dllmain.cpp" ex="false" tool="1" flavor2="0">
+      <item path="dllmain.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

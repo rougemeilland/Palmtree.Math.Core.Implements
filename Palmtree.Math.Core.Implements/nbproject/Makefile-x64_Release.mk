@@ -60,12 +60,12 @@ LDLIBSOPTIONS=-lkernel32 -luser32
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libPalmtree.Math.Core.Implements.${CND_DLIB_EXT}: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libPalmtree.Math.Core.Implements.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -mwindows -nostdlib -Wl,-e_DllMain@1 -shared
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libPalmtree.Math.Core.Implements.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -mwindows -nostdlib -Wl,-e_DllMain@1 -shared
 
-${OBJECTDIR}/dllmain.o: dllmain.cpp nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/dllmain.o: dllmain.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Werror  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dllmain.o dllmain.cpp
+	$(COMPILE.c) -O2 -Werror  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dllmain.o dllmain.c
 
 # Subprojects
 .build-subprojects:
