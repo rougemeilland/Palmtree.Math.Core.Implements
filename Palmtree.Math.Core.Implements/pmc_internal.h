@@ -31,7 +31,7 @@
 
 #include <stdlib.h>
 #ifdef __GNUC__
-#include <x86intrin.h>
+#include <intrin.h>
 #endif
 
 #ifndef __PMC_INTERNAL_H
@@ -49,6 +49,7 @@ typedef unsigned __int64 __UNIT_TYPE;
 #error unknown platform
 #endif
 
+#define __UNIT_TYPE_BYTE_COUNT (sizeof(__UNIT_TYPE))
 #define __UNIT_TYPE_BIT_COUNT (sizeof(__UNIT_TYPE) * 8)
 
 typedef struct _tag_PROCESSOR_FEATURES
@@ -59,30 +60,11 @@ typedef struct _tag_PROCESSOR_FEATURES
     unsigned PROCESSOR_FEATURE_BMI2 : 1;
 } PROCESSOR_FEATURES;
 
-// 多倍長整数の実体を表すバイト列を格納するための構造体。
-// 構造体のバイト数は sizeof(struct __tag_UNIT_BLOCK) + sizeof(__UNIT_TYPE) * ARRAY_COUNT として計算する。
-typedef struct __tag_UNIT_BLOCK
-{
-    // 空き領域管理のために使用される。
-    // 次の空き領域を示す __tag_UNIT_BLOCK 構造体へのポインタ。
-    struct __tag_UNIT_BLOCK* P_NEXT;
-
-    // 空き領域管理のために使用される。
-    // 前の空き領域を示す __tag_UNIT_BLOCK 構造体へのポインタ。
-    struct __tag_UNIT_BLOCK* P_PREV;
-    
-    size_t ARRAY_COUNT; // UNIT_ARRAY配列のうちデータを格納できる要素の数
-
-    __UNIT_TYPE UNIT_ARRAY[0];
-} UNIT_BLOCK;
-
-// 多倍長整数を表す構造体。
 typedef struct __tag_UNIT_BUFFER
 {
-    // UNIT_ARRAYが示す領域において有効なデータが格納されている要素の数
-    // UNIT_COUNT <= ARRAY_COUNT-1 でなければならない
-    size_t UNIT_COUNT;
-    size_t BIT_COUNT;               // データの有効部分の合計ビット数
+    
+    size_t UNIT_WORD_COUNT;         // BLOCKが示す領域において有効なデータが格納されている要素の数
+    size_t UNIT_BIT_COUNT;          // データの有効部分の合計ビット数
     int HASH_CODE;                  // データのハッシュコード。IS_HASH_CALCULATED が TRUEである場合のみ意味を持つ。
     unsigned IS_ZERO : 1;           // データが 0 なら TRUE
     unsigned IS_ONE : 1;            // データが 1 なら TRUE
@@ -93,18 +75,46 @@ typedef struct __tag_UNIT_BUFFER
     // 多倍長整数の内部データが格納されている領域へのポインタ
     // このポインタが指す領域には少なくともUNIT_COUNT+1個の__UNIT_TYPEを格納するのに十分な大きさがなければならない。
     // UNIT_ARRAY[UNIT_COUNT]の要素はデータの正当性チェックのために使用される。
-    struct __tag_UNIT_BLOCK* BLOCK;
+    __UNIT_TYPE* BLOCK;
 } UNIT_BUFFER;
 
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="宣言">
 
-extern UNIT_BUFFER* AllocateBitArray(size_t bit_count);????
-extern void DeallocateBuffer(UNIT_BUFFER* buffer);????
-extern PMN_STATUS_CODE CheckInputBuffer(UNIT_BUFFER* buffer);????
-extern PMN_STATUS_CODE NormalizeBuffer(UNIT_BUFFER* buffer);????
+HANDLE hLocalHeap;
 
+
+// 多倍長整数をバイト列として格納するためのメモリ領域を獲得する。
+// 引数には格納可能な多倍長整数の合計ビット数が渡される。
+// 実際に獲得されるメモリ領域は「引数で渡されたワード数+2」のワード数となる。
+// 最初のワードには獲得時に引数で渡されたワード数が格納される。
+// 最後のワードには格納されている内容の正当性確認のための値が格納される。
+// 2番目のワードへのポインタは呼び出し元に通知され利用される。
+extern __UNIT_TYPE* AllocateBlockByBits(size_t);
+
+// AllocateBlock によって獲得されたメモリ領域が解放される。
+extern void DeallocateBlock(__UNIT_TYPE*);
+
+// 内容の正当性確認のための値が更新される。
+extern void CommitBlock(__UNIT_TYPE*);
+
+// メモリ内容が正当かどうかが比較される。正当であれば復帰値として0が通知され、正当ではないのなら0以外が通知される。
+extern PMC_STATUS_CODE CheckBlock(__UNIT_TYPE*);
+
+// 統計カウンタ DIV32 をインクリメントする。
+extern void IncrementDIV32Counter(void);
+
+// 統計カウンタ DIV64 をインクリメントする。
+extern void IncrementDIV64Counter(void);
+
+// 統計カウンタ MULTI32 をインクリメントする。
+extern void IncrementMULTI32Counter(void);
+
+// 統計カウンタ MULTI64 をインクリメントする。
+extern void IncrementMULTI64Counter(void);
+
+// 以下、演算関数毎の初期化処理。
 extern int Initialize_Add(PROCESSOR_FEATURES* feature);
 /*
 extern int Initialize_DivRem(PROCESSOR_FEATURES *feature);
@@ -116,6 +126,17 @@ extern int Initialize_Set(PROCESSOR_FEATURES* feature);
 extern int Initialize_Subtract(PROCESSOR_FEATURES* feature); 
 */
 
+// エントリポイントに登録される関数群
+extern void __PMC_CALL PMC_TraceStatistics(int);
+extern void __PMC_CALL PMC_GetStatisticsInfo(PMC_STATISTICS_INFO*);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_From_I(__int32, HANDLE*);
+extern PMC_STATUS_CODE __PMC_CALL PMC_From_L(__int64, HANDLE*);
+extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE, __int32*);
+extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE, __int64*);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE, __int32, HANDLE*);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XL(HANDLE, __int64, HANDLE*);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XX(HANDLE, HANDLE, HANDLE*);
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="インライン関数の定義">
@@ -435,10 +456,12 @@ __inline static int _LZCNT32(unsigned __int32 value)
     return (_lzcnt_u32(value));
 }
 
+#ifdef _M_X64
 __inline static int _LZCNT64(unsigned __int64 value)
 {
     return (_lzcnt_u64(value));
 }
+#endif
 
 __inline static int _LZCNT_UNIT(__UNIT_TYPE value)
 {

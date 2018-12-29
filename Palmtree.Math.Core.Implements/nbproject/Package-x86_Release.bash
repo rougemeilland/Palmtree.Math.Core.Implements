@@ -13,8 +13,8 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=dll
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libPalmtree.Math.Core.Implements.${CND_DLIB_EXT}
-OUTPUT_BASENAME=libPalmtree.Math.Core.Implements.${CND_DLIB_EXT}
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT}
+OUTPUT_BASENAME=Palmtree.Math.Core.Implements.${CND_DLIB_EXT}
 PACKAGE_TOP_DIR=libPalmtree.Math.Core.Implements.dll/
 
 # Functions

@@ -2,7 +2,14 @@
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="SourceFiles" displayName="ソース・ファイル" projectFiles="true">
+      <itemPath>debug.c</itemPath>
       <itemPath>dllmain.c</itemPath>
+      <itemPath>memory.c</itemPath>
+      <itemPath>pmc_add.c</itemPath>
+      <itemPath>pmc_from.c</itemPath>
+      <itemPath>pmc_initialize.c</itemPath>
+      <itemPath>pmc_statistics.c</itemPath>
+      <itemPath>pmc_to.c</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles" displayName="ヘッダー・ファイル" projectFiles="true">
       <itemPath>pmc.h</itemPath>
@@ -34,13 +41,20 @@
       <compileType>
         <cTool>
           <commandLine>-save-temps=obj</commandLine>
+          <preprocessorList>
+            <Elem>_M_IX64</Elem>
+          </preprocessorList>
           <warningLevel>3</warningLevel>
         </cTool>
         <ccTool>
           <commandLine>-save-temps=obj</commandLine>
+          <preprocessorList>
+            <Elem>_M_IX64</Elem>
+          </preprocessorList>
           <warningLevel>3</warningLevel>
         </ccTool>
         <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT}</output>
           <linkerLibItems>
             <linkerOptionItem>-lkernel32</linkerOptionItem>
             <linkerOptionItem>-luser32</linkerOptionItem>
@@ -48,11 +62,25 @@
           <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@1</commandLine>
         </linkerTool>
       </compileType>
+      <item path="debug.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="dllmain.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="memory.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="pmc_add.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_initialize.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pmc_statistics.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
     <conf name="x64_Release" type="2" platformSpecific="true">
@@ -66,11 +94,17 @@
         <cTool>
           <developmentMode>5</developmentMode>
           <commandLine>-save-temps=obj</commandLine>
+          <preprocessorList>
+            <Elem>_M_IX64</Elem>
+          </preprocessorList>
           <warningLevel>3</warningLevel>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <commandLine>-save-temps=obj</commandLine>
+          <preprocessorList>
+            <Elem>_M_IX64</Elem>
+          </preprocessorList>
           <warningLevel>3</warningLevel>
         </ccTool>
         <fortranCompilerTool>
@@ -80,6 +114,7 @@
           <developmentMode>5</developmentMode>
         </asmTool>
         <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT}</output>
           <linkerLibItems>
             <linkerOptionItem>-lkernel32</linkerOptionItem>
             <linkerOptionItem>-luser32</linkerOptionItem>
@@ -87,11 +122,25 @@
           <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@1</commandLine>
         </linkerTool>
       </compileType>
+      <item path="debug.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="dllmain.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="memory.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="pmc_add.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_initialize.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pmc_statistics.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
     <conf name="x86_Debug" type="2" platformSpecific="true">
@@ -104,13 +153,20 @@
       <compileType>
         <cTool>
           <commandLine>-save-temps=obj</commandLine>
+          <preprocessorList>
+            <Elem>_M_IX86</Elem>
+          </preprocessorList>
           <warningLevel>3</warningLevel>
         </cTool>
         <ccTool>
           <commandLine>-save-temps=obj</commandLine>
+          <preprocessorList>
+            <Elem>_M_IX86</Elem>
+          </preprocessorList>
           <warningLevel>3</warningLevel>
         </ccTool>
         <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT}</output>
           <linkerLibItems>
             <linkerOptionItem>-lkernel32</linkerOptionItem>
             <linkerOptionItem>-luser32</linkerOptionItem>
@@ -118,11 +174,25 @@
           <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@1</commandLine>
         </linkerTool>
       </compileType>
+      <item path="debug.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="dllmain.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="memory.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="pmc_add.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_initialize.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pmc_statistics.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
     <conf name="x86_Release" type="2" platformSpecific="true">
@@ -136,11 +206,17 @@
         <cTool>
           <developmentMode>5</developmentMode>
           <commandLine>-save-temps=obj</commandLine>
+          <preprocessorList>
+            <Elem>_M_IX86</Elem>
+          </preprocessorList>
           <warningLevel>3</warningLevel>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <commandLine>-save-temps=obj</commandLine>
+          <preprocessorList>
+            <Elem>_M_IX86</Elem>
+          </preprocessorList>
           <warningLevel>3</warningLevel>
         </ccTool>
         <fortranCompilerTool>
@@ -150,6 +226,7 @@
           <developmentMode>5</developmentMode>
         </asmTool>
         <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT}</output>
           <linkerLibItems>
             <linkerOptionItem>-lkernel32</linkerOptionItem>
             <linkerOptionItem>-luser32</linkerOptionItem>
@@ -157,11 +234,25 @@
           <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@1</commandLine>
         </linkerTool>
       </compileType>
+      <item path="debug.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="dllmain.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="memory.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="pmc_add.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_initialize.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pmc_statistics.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
   </confs>

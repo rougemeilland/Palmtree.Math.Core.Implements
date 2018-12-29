@@ -1,9 +1,9 @@
-# 1 "dllmain.cpp"
+# 1 "pmc_statistics.c"
 # 1 "Z:\\Sources\\Lunor\\Repos\\Palmtree.Math.Core.Implements\\Palmtree.Math.Core.Implements//"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "dllmain.cpp"
-# 32 "dllmain.cpp"
+# 1 "pmc_statistics.c"
+# 32 "pmc_statistics.c"
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 1 3
 # 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 1 3
@@ -15,17 +15,6 @@
              
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h" 1 3
-# 44 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h" 3
-
-# 44 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h" 3
-extern "C++" {
-template <bool __test, typename __dsttype>
-  struct __if_array;
-template <typename __dsttype>
-  struct __if_array <true, __dsttype> {
-    typedef __dsttype __type;
-};
-}
 # 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 2 3
 # 282 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/vadefs.h" 1 3
@@ -42,16 +31,10 @@ template <typename __dsttype>
 
 
 #pragma pack(push,_CRT_PACKING)
-
-
-
-extern "C" {
-
-
-
-
-
-  typedef __builtin_va_list __gnuc_va_list;
+# 24 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/vadefs.h" 3
+  
+# 24 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/vadefs.h" 3
+ typedef __builtin_va_list __gnuc_va_list;
 
 
 
@@ -59,15 +42,9 @@ extern "C" {
 
 
   typedef __gnuc_va_list va_list;
-# 99 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/vadefs.h" 3
-}
-
-
-
+# 103 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/vadefs.h" 3
 #pragma pack(pop)
 # 283 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 2 3
-# 541 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 3
-extern "C" {
 # 552 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 3
 void __attribute__((__cdecl__)) __debugbreak(void);
 extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void __attribute__((__cdecl__)) __debugbreak(void)
@@ -79,9 +56,6 @@ extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void __attri
 
 
 const char *__mingw_get_crt_info (void);
-
-
-}
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sdkddkver.h" 1 3
 # 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
@@ -114,7 +88,15 @@ __extension__ typedef long long intptr_t;
 __extension__ typedef unsigned long long uintptr_t;
 # 88 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h" 3
 __extension__ typedef long long ptrdiff_t;
-# 106 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h" 3
+# 98 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h" 3
+typedef unsigned short wchar_t;
+
+
+
+
+
+
+
 typedef unsigned short wint_t;
 typedef unsigned short wctype_t;
 
@@ -196,7 +178,7 @@ typedef struct threadlocaleinfostruct {
 #pragma pack(push,_CRT_PACKING)
 
 
-extern "C" {
+
 
 
   struct _EXCEPTION_POINTERS;
@@ -235,10 +217,7 @@ extern "C" {
 
 
   typedef int (*PEXCEPTION_HANDLER)(struct _EXCEPTION_RECORD*, void*, struct _CONTEXT*, void*);
-# 125 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/excpt.h" 3
-}
-
-
+# 128 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/excpt.h" 3
 #pragma pack(pop)
 # 66 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stdarg.h" 1 3 4
@@ -270,25 +249,11 @@ extern "C" {
 # 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/specstrings.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sal.h" 1 3
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/specstrings.h" 2 3
-
-
-
-
-
-extern "C" {
-# 333 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/specstrings.h" 3
-}
-
-
+# 336 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/specstrings.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/driverspecs.h" 1 3
 # 337 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/specstrings.h" 2 3
 # 7 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/minwindef.h" 2 3
-# 19 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/minwindef.h" 3
-extern "C" {
-
-
-
-
+# 24 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/minwindef.h" 3
   typedef unsigned long ULONG;
   typedef ULONG *PULONG;
   typedef unsigned short USHORT;
@@ -339,14 +304,12 @@ typedef WINBOOL *LPBOOL;
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 2 3
 
 
-extern "C" {
+
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 1 3
 # 16 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ctype.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ctype.h" 3
-extern "C" {
 # 43 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ctype.h" 3
   extern unsigned short ** __imp__pctype;
 # 59 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ctype.h" 3
@@ -454,8 +417,6 @@ int __attribute__((__cdecl__)) iswblank(wint_t _C);
 
 
 __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) ___mb_cur_max_func(void);
-# 286 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ctype.h" 3
-}
 # 17 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 2 3
 
 
@@ -463,11 +424,6 @@ __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) ___mb_cur_max_fun
 # 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/apiset.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 1 3
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/apiset.h" 2 3
-
-
-extern "C" {
-# 105 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/apiset.h" 3
-}
 # 20 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 2 3
 
 
@@ -479,8 +435,6 @@ extern "C" {
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1 3
 # 65 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
        
-# 561 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
-extern "C" {
 # 595 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
 void __faststorefence(void);
 
@@ -1086,8 +1040,6 @@ void __movsd(unsigned long *Dest, unsigned long const *Source, size_t Count);
 
 extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
 void __movsd(unsigned long *Destination, unsigned long const *Source, size_t Count) { __asm__ __volatile__ ( "rep movs" "d" : "=D" (Destination), "=S" (Source), "=c" (Count) : "0" (Destination), "1" (Source), "2" (Count) : "memory"); }
-# 1948 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
-}
 # 1960 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
        
 # 28 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 2 3
@@ -1105,10 +1057,7 @@ void __movsd(unsigned long *Destination, unsigned long const *Source, size_t Cou
 
 
 __extension__ typedef unsigned long long POINTER_64_INT;
-# 26 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/basetsd.h" 3
-extern "C" {
-
-
+# 29 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/basetsd.h" 3
   typedef signed char INT8,*PINT8;
   typedef signed short INT16,*PINT16;
   typedef signed int INT32,*PINT32;
@@ -1170,9 +1119,6 @@ extern "C" {
   __extension__ typedef unsigned long long DWORD64,*PDWORD64;
   __extension__ typedef ULONG_PTR KAFFINITY;
   __extension__ typedef KAFFINITY *PKAFFINITY;
-
-
-}
 # 151 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 2 3
 # 257 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
   typedef void *PVOID;
@@ -1353,8 +1299,6 @@ typedef enum {
 
   typedef ULONGLONG DWORDLONG;
   typedef DWORDLONG *PDWORDLONG;
-# 556 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
-  extern "C" {
 # 566 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
     unsigned char __attribute__((__cdecl__)) _rotl8(unsigned char Value,unsigned char Shift);
     unsigned short __attribute__((__cdecl__)) _rotl16(unsigned short Value,unsigned char Shift);
@@ -1383,9 +1327,6 @@ typedef enum {
     __extension__ unsigned long long __attribute__((__cdecl__)) _rotr64(unsigned long long Value,int Shift);
        
        
-
-
-  }
 # 605 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
   typedef BYTE BOOLEAN;
 
@@ -1428,13 +1369,6 @@ typedef struct _GUID {
   unsigned short Data3;
   unsigned char Data4[8];
 } GUID;
-
-
-
-
-extern "C++" {
-__extension__ template<typename T> const GUID &__mingw_uuidof();
-}
 # 72 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 3
 typedef GUID *LPGUID;
 
@@ -1466,8 +1400,6 @@ typedef GUID FMTID;
 typedef FMTID *LPFMTID;
 # 149 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/string.h" 1 3
-# 21 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/string.h" 3
-extern "C" {
 # 45 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/string.h" 3
   __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _memccpy(void *_Dst,const void *_Src,int _Val,size_t _MaxCount);
   void *__attribute__((__cdecl__)) memchr(const void *_Buf ,int _Val,size_t _MaxCount);
@@ -1611,17 +1543,14 @@ extern "C" {
 
 
 
-}
+
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h" 1 3
 # 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/string.h" 1 3
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h" 2 3
-# 23 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h" 3
-extern "C" {
-
-
+# 26 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h" 3
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _strset_s(char *_Dst,size_t _DstSize,int _Value);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _strerror_s(char *_Buf,size_t _SizeInBytes,const char *_ErrMsg);
   __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) strerror_s(char *_Buf,size_t _SizeInBytes,int _ErrNum);
@@ -1634,15 +1563,15 @@ extern "C" {
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) strncat_s(char *_Dst,size_t _DstSizeInChars,const char *_Src,size_t _MaxCount);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _strncat_s_l(char *_Dst,size_t _DstSizeInChars,const char *_Src,size_t _MaxCount,_locale_t _Locale);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) strcpy_s(char *_Dst, rsize_t _SizeInBytes, const char *_Src);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) strcpy_s(char (&_Dest)[__size], const char * _Source) { return strcpy_s(_Dest,__size,_Source); } }
+ 
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) strncpy_s(char *_Dst, size_t _DstSizeInChars, const char *_Src, size_t _MaxCount);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) strncpy_s(char (&_Dest)[__size], const char * _Source, size_t _MaxCount) { return strncpy_s(_Dest,__size,_Source,_MaxCount); } }
+ 
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _strncpy_s_l(char *_Dst, size_t _DstSizeInChars, const char *_Src, size_t _MaxCount, _locale_t _Locale);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _strncpy_s_l(char (&_Dest)[__size], const char * _Source, size_t _MaxCount, _locale_t _Locale) { return _strncpy_s_l(_Dest,__size,_Source,_MaxCount,_Locale); } };
+  ;
   __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) strtok_s(char *_Str,const char *_Delim,char **_Context);
   __attribute__ ((__dllimport__)) char *__attribute__((__cdecl__)) _strtok_s_l(char *_Str,const char *_Delim,char **_Context,_locale_t _Locale);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) strcat_s(char *_Dst, rsize_t _SizeInBytes, const char * _Src);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) strcat_s(char (&_Dest)[__size], const char * _Source) { return strcat_s(_Dest,__size,_Source); } }
+ 
 
   __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) memmove_s(void *_dest,size_t _numberOfElements,const void *_src,size_t _count);
 
@@ -1658,41 +1587,25 @@ extern "C" {
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wcsupr_s_l(wchar_t *_Str,size_t _Size,_locale_t _Locale);
 
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) wcscpy_s(wchar_t *_Dst, rsize_t _SizeInWords, const wchar_t *_Src);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) wcscpy_s(wchar_t (&_Dest)[__size], const wchar_t * _Source) { return wcscpy_s(_Dest,__size,_Source); } }
+ 
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) wcscat_s(wchar_t * _Dst, rsize_t _SizeInWords, const wchar_t *_Src);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) wcscat_s(wchar_t (&_Dest)[__size], const wchar_t * _Source) { return wcscat_s(_Dest,__size,_Source); } }
+ 
 
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) wcsncat_s(wchar_t *_Dst,size_t _DstSizeInChars,const wchar_t *_Src,size_t _MaxCount);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wcsncat_s_l(wchar_t *_Dst,size_t _DstSizeInChars,const wchar_t *_Src,size_t _MaxCount,_locale_t _Locale);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) wcsncpy_s(wchar_t *_Dst, size_t _DstSizeInChars, const wchar_t *_Src, size_t _MaxCount);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) wcsncpy_s(wchar_t (&_Dest)[__size], const wchar_t * _Source, size_t _MaxCount) { return wcsncpy_s(_Dest,__size,_Source,_MaxCount); } };
+  ;
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wcsncpy_s_l(wchar_t *_Dst, size_t _DstSizeInChars, const wchar_t *_Src, size_t _MaxCount, _locale_t _Locale);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _wcsncpy_s_l(wchar_t (&_Dest)[__size], const wchar_t * _Source, size_t _MaxCount, _locale_t _Locale) { return _wcsncpy_s_l(_Dest,__size,_Source,_MaxCount,_Locale); } };
+  ;
   __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wcstok_s_l(wchar_t *_Str,const wchar_t *_Delim,wchar_t **_Context,_locale_t _Locale);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wcsset_s_l(wchar_t *_Str,size_t _SizeInChars,unsigned int _Val,_locale_t _Locale);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wcsnset_s_l(wchar_t *_Str,size_t _SizeInChars,unsigned int _Val, size_t _Count,_locale_t _Locale);
 
-  inline __attribute__((__always_inline__)) size_t __attribute__((__cdecl__)) wcsnlen_s(const wchar_t * _src, size_t _count) {
+  extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) size_t __attribute__((__cdecl__)) wcsnlen_s(const wchar_t * _src, size_t _count) {
     return _src ? wcsnlen(_src, _count) : 0;
   }
-
-
-
-}
 # 191 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/string.h" 2 3
 # 150 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 2 3
-
-
-__inline int InlineIsEqualGUID (const GUID & rguid1, const GUID & rguid2) {
-  return ((&rguid1.Data1)[0] == (&rguid2.Data1)[0] && (&rguid1.Data1)[1] == (&rguid2.Data1)[1] && (&rguid1.Data1)[2] == (&rguid2.Data1)[2] && (&rguid1.Data1)[3] == (&rguid2.Data1)[3]);
-}
-
-__inline int IsEqualGUID (const GUID & rguid1, const GUID & rguid2) {
-  return !memcmp (&rguid1,&rguid2, sizeof (GUID));
-}
-# 175 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 3
-__inline bool operator== (const GUID & guidOne, const GUID & guidOther) { return !!IsEqualGUID (guidOne, guidOther); }
-__inline bool operator!= (const GUID & guidOne, const GUID & guidOther) { return ! (guidOne == guidOther); }
 # 636 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 2 3
 
 
@@ -1773,16 +1686,7 @@ __inline bool operator!= (const GUID & guidOne, const GUID & guidOther) { return
  DWORD JumpTarget;
       } ScopeRecord[1];
     } SCOPE_TABLE_AMD64,*PSCOPE_TABLE_AMD64;
-
-
-
-
-
-
-  extern "C" {
-# 1552 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
-extern "C" {
-
+# 1554 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/x86intrin.h" 1 3 4
 # 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/x86intrin.h" 3 4
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/ia32intrin.h" 1 3 4
@@ -2930,44 +2834,8 @@ _mm_set1_pi8 (char __b)
 # 34 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/xmmintrin.h" 3 4
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/mm_malloc.h" 1 3 4
 # 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/mm_malloc.h" 3 4
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdlib.h" 1 3 4
-# 36 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdlib.h" 3 4
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 1 3 4
-# 39 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 3 4
-       
-# 40 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 3
-
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h" 1 3
-# 236 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h" 3
-namespace std
-{
-  typedef long long unsigned int size_t;
-  typedef long long int ptrdiff_t;
-
-
-  typedef decltype(nullptr) nullptr_t;
-
-}
-# 258 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h" 3
-namespace std
-{
-  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
-}
-namespace __gnu_cxx
-{
-  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
-}
-# 508 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h" 3
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h" 1 3
-# 509 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h" 2 3
-
-
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h" 1 3
-# 512 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h" 2 3
-# 42 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 2 3
-# 75 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 3
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 1 3
-# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 1 3 4
+# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed/limits.h" 1 3 4
 # 34 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed/limits.h" 3 4
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed/syslimits.h" 1 3 4
@@ -2983,15 +2851,12 @@ namespace __gnu_cxx
 # 195 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed/limits.h" 2 3 4
 # 8 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed/syslimits.h" 2 3 4
 # 35 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed/limits.h" 2 3 4
-# 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 2 3
-# 25 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 2 3 4
+# 25 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
 #pragma pack(push,_CRT_PACKING)
-
-
-extern "C" {
-# 49 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 49 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   typedef int (__attribute__((__cdecl__)) *_onexit_t)(void);
-# 59 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 59 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   typedef struct _div_t {
     int quot;
     int rem;
@@ -3036,7 +2901,7 @@ extern "C" {
     unsigned char ld12[12];
   } _LDBL12;
 #pragma pack()
-# 142 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 142 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   typedef void (__attribute__((__cdecl__)) *_purecall_handler)(void);
 
   __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _set_purecall_handler(_purecall_handler _Handler);
@@ -3057,7 +2922,7 @@ extern "C" {
 
   errno_t __attribute__((__cdecl__)) _set_doserrno(unsigned long _Value);
   errno_t __attribute__((__cdecl__)) _get_doserrno(unsigned long *_Value);
-# 172 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 172 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   extern __attribute__((dllimport)) char *_sys_errlist[1];
   extern __attribute__((dllimport)) int _sys_nerr;
 
@@ -3067,12 +2932,12 @@ extern "C" {
 
   __attribute__ ((__dllimport__)) char ***__attribute__((__cdecl__)) __p___argv(void);
   __attribute__ ((__dllimport__)) int *__attribute__((__cdecl__)) __p__fmode(void);
-# 190 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 190 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   errno_t __attribute__((__cdecl__)) _get_pgmptr(char **_Value);
   errno_t __attribute__((__cdecl__)) _get_wpgmptr(wchar_t **_Value);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_fmode(int _Mode);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_fmode(int *_PMode);
-# 281 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 281 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   extern int * __imp___argc;
 
 
@@ -3139,19 +3004,7 @@ extern "C" {
   errno_t __attribute__((__cdecl__)) _get_winver(unsigned int *_Value);
   errno_t __attribute__((__cdecl__)) _get_winmajor(unsigned int *_Value);
   errno_t __attribute__((__cdecl__)) _get_winminor(unsigned int *_Value);
-
-
-
-
-  extern "C++" {
-    template <typename _CountofType,size_t _SizeOfArray> char (*__countof_helper( _CountofType (&_Array)[_SizeOfArray]))[_SizeOfArray];
-
-  }
-
-
-
-
-
+# 360 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) exit(int _Code) __attribute__ ((__noreturn__));
   void __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) _exit(int _Code) __attribute__ ((__noreturn__));
 
@@ -3231,25 +3084,9 @@ extern "C" {
   int __attribute__((__cdecl__)) rand(void);
   __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_error_mode(int _Mode);
   void __attribute__((__cdecl__)) srand(unsigned int _Seed);
-# 449 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
-inline __attribute__((__cdecl__))
-double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtod(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
-{
-  double __attribute__((__cdecl__)) __mingw_strtod (const char * __restrict__, char ** __restrict__);
-  return __mingw_strtod( _Str, _EndPtr);
-}
-
-inline __attribute__((__cdecl__))
-float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char * __restrict__ _Str,char ** __restrict__ _EndPtr)
-{
-  float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
-  return __mingw_strtof( _Str, _EndPtr);
-}
-
-
-
-
-
+# 465 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
+  double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtod(const char * __restrict__ _Str,char ** __restrict__ _EndPtr);
+  float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char * __restrict__ nptr, char ** __restrict__ endptr);
 
   long double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtold(const char * __restrict__ , char ** __restrict__ );
 
@@ -3289,7 +3126,7 @@ float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char
   void *__attribute__((__cdecl__)) malloc(size_t _Size);
   void *__attribute__((__cdecl__)) realloc(void *_Memory,size_t _NewSize);
   __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _recalloc(void *_Memory,size_t _Count,size_t _Size);
-# 517 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 517 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_offset_malloc(size_t _Size,size_t _Alignment,size_t _Offset);
   __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_realloc(void *_Memory,size_t _Size,size_t _Alignment);
   __attribute__ ((__dllimport__)) void *__attribute__((__cdecl__)) _aligned_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment);
@@ -3307,20 +3144,9 @@ float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char
   double __attribute__((__cdecl__)) __mingw_wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr);
   float __attribute__((__cdecl__)) __mingw_wcstof(const wchar_t * __restrict__ nptr, wchar_t ** __restrict__ endptr);
   long double __attribute__((__cdecl__)) __mingw_wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
-
-
-  inline __attribute__((__cdecl__))
-  double __attribute__((__cdecl__)) wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
-    return __mingw_wcstod(_Str,_EndPtr);
-  }
-  inline __attribute__((__cdecl__))
-  float __attribute__((__cdecl__)) wcstof(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr){
-    return __mingw_wcstof(_Str,_EndPtr);
-  }
-
-
-
-
+# 546 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
+  double __attribute__((__cdecl__)) wcstod(const wchar_t * __restrict__ _Str,wchar_t ** __restrict__ _EndPtr);
+  float __attribute__((__cdecl__)) wcstof(const wchar_t * __restrict__ nptr, wchar_t ** __restrict__ endptr);
 
 
   long double __attribute__((__cdecl__)) wcstold(const wchar_t * __restrict__, wchar_t ** __restrict__);
@@ -3367,7 +3193,7 @@ float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char
   __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl_l(_CRT_DOUBLE *_Result,char *_Str,_locale_t _Locale);
   __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl_l(_LDOUBLE *_Result,char *_Str,_locale_t _Locale);
   __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt_l(_CRT_FLOAT *_Result,char *_Str,_locale_t _Locale);
-# 616 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 616 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _makepath(char *_Path,const char *_Drive,const char *_Dir,const char *_Filename,const char *_Ext);
   _onexit_t __attribute__((__cdecl__)) _onexit(_onexit_t _Func);
 
@@ -3412,7 +3238,7 @@ float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char
 
   __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _seterrormode(int _Mode) __attribute__ ((__deprecated__));
   __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _sleep(unsigned long _Duration) __attribute__ ((__deprecated__));
-# 680 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
+# 680 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
   char *__attribute__((__cdecl__)) ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign) ;
   char *__attribute__((__cdecl__)) fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign) ;
   char *__attribute__((__cdecl__)) gcvt(double _Val,int _NumOfDigits,char *_DstBuf) ;
@@ -3453,29 +3279,23 @@ float __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtof(const char
   __extension__ char *__attribute__((__cdecl__)) ulltoa (unsigned long long , char *, int);
   __extension__ wchar_t *__attribute__((__cdecl__)) lltow (long long, wchar_t *, int);
   __extension__ wchar_t *__attribute__((__cdecl__)) ulltow (unsigned long long, wchar_t *, int);
-# 735 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3
-}
-
-
+# 738 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 3 4
 #pragma pack(pop)
 
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h" 1 3
-# 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h" 3
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdlib.h" 1 3
-# 30 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdlib.h" 3
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 1 3
-# 31 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdlib.h" 2 3
-# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h" 2 3
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h" 1 3 4
+# 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h" 3 4
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 1 3 4
+# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h" 2 3 4
 
 
 
 
-extern "C" {
+
 
 
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _dupenv_s(char **_PBuffer,size_t *_PBufferSizeInBytes,const char *_VarName);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _itoa_s(int _Value,char *_DstBuf,size_t _Size,int _Radix);
-  extern "C++" { template <size_t __size> inline errno_t __attribute__((__cdecl__)) _itoa_s(int _Value, char (&_Dest)[__size], int _Radix) { return _itoa_s(_Value, _Dest, __size, _Radix); } }
+ 
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _i64toa_s(long long _Val,char *_DstBuf,size_t _Size,int _Radix);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ui64toa_s(unsigned long long _Val,char *_DstBuf,size_t _Size,int _Radix);
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _ltoa_s(long _Val,char *_DstBuf,size_t _Size,int _Radix);
@@ -3506,7 +3326,7 @@ extern "C" {
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _searchenv_s(const char *_Filename,const char *_EnvVar,char *_ResultPath,size_t _SizeInBytes);
 
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _splitpath_s(const char *_FullPath,char *_Drive,size_t _DriveSize,char *_Dir,size_t _DirSize,char *_Filename,size_t _FilenameSize,char *_Ext,size_t _ExtSize);
-  extern "C++" { template <size_t __drive_size, size_t __dir_size, size_t __name_size, size_t __ext_size> inline errno_t __attribute__((__cdecl__)) _splitpath_s(const char *_Dest, char (&__drive)[__drive_size], char (&__dir)[__dir_size], char (&__name)[__name_size], char (&__ext)[__ext_size]) { return _splitpath_s(_Dest, __drive, __drive_size, __dir, __dir_size, __name, __name_size, __ext, __ext_size); } }
+ 
 
 
 
@@ -3515,27 +3335,18 @@ extern "C" {
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wsearchenv_s(const wchar_t *_Filename,const wchar_t *_EnvVar,wchar_t *_ResultPath,size_t _SizeInWords);
 
   __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _wsplitpath_s(const wchar_t *_FullPath,wchar_t *_Drive,size_t _DriveSizeInWords,wchar_t *_Dir,size_t _DirSizeInWords,wchar_t *_Filename,size_t _FilenameSizeInWords,wchar_t *_Ext,size_t _ExtSizeInWords);
-  extern "C++" { template <size_t __drive_size, size_t __dir_size, size_t __name_size, size_t __ext_size> inline errno_t __attribute__((__cdecl__)) _wsplitpath_s(const wchar_t *_Dest, wchar_t (&__drive)[__drive_size], wchar_t (&__dir)[__dir_size], wchar_t (&__name)[__name_size], wchar_t (&__ext)[__ext_size]) { return _wsplitpath_s(_Dest, __drive, __drive_size, __dir, __dir_size, __name, __name_size, __ext, __ext_size); } }
+ 
 
 
 
 
 
   __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) qsort_s(void *_Base,size_t _NumOfElements,size_t _SizeOfElements,int (__attribute__((__cdecl__)) *_PtFuncCompare)(void *,const void *,const void *),void *_Context);
-
-
-
-
-
-}
-# 741 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 2 3
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 1 3
-# 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3
+# 741 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 2 3 4
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 1 3 4
+# 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3 4
 #pragma pack(push,_CRT_PACKING)
-
-
-extern "C" {
-# 46 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3
+# 46 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3 4
   typedef struct _heapinfo {
     int *_pentry;
     size_t _size;
@@ -3544,7 +3355,7 @@ extern "C" {
 
 
   extern unsigned int _amblksiz;
-# 103 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3
+# 103 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3 4
 void * __mingw_aligned_malloc (size_t _Size, size_t _Alignment);
 void __mingw_aligned_free (void *_Memory);
 void * __mingw_aligned_offset_realloc (void *_Memory, size_t _Size, size_t _Alignment, size_t _Offset);
@@ -3574,7 +3385,7 @@ void * __mingw_aligned_realloc (void *_Memory, size_t _Size, size_t _Offset);
   __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _heapwalk(_HEAPINFO *_EntryInfo);
   __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _heapused(size_t *_Used,size_t *_Commit);
   __attribute__ ((__dllimport__)) intptr_t __attribute__((__cdecl__)) _get_heap_handle(void);
-# 144 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3
+# 144 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3 4
   static __inline void *_MarkAllocaS(void *_Ptr,unsigned int _Marker) {
     if(_Ptr) {
       *((unsigned int*)_Ptr) = _Marker;
@@ -3582,7 +3393,7 @@ void * __mingw_aligned_realloc (void *_Memory, size_t _Size, size_t _Offset);
     }
     return _Ptr;
   }
-# 163 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3
+# 163 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3 4
   static __inline void __attribute__((__cdecl__)) _freea(void *_Memory) {
     unsigned int _Marker;
     if(_Memory) {
@@ -3598,230 +3409,11 @@ void * __mingw_aligned_realloc (void *_Memory, size_t _Size, size_t _Offset);
 
     }
   }
-# 206 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3
-}
-
-
+# 209 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/malloc.h" 3 4
 #pragma pack(pop)
-# 742 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 2 3
-# 76 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 2 3
-
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_abs.h" 1 3
-# 33 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_abs.h" 3
-       
-# 34 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_abs.h" 3
-# 46 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_abs.h" 3
-extern "C++"
-{
-namespace std
-{
-
-
-  using ::abs;
-
-
-  inline long
-  abs(long __i) { return __builtin_labs(__i); }
-
-
-
-  inline long long
-  abs(long long __x) { return __builtin_llabs (__x); }
-
-
-
-
-
-
-
-  inline constexpr double
-  abs(double __x)
-  { return __builtin_fabs(__x); }
-
-  inline constexpr float
-  abs(float __x)
-  { return __builtin_fabsf(__x); }
-
-  inline constexpr long double
-  abs(long double __x)
-  { return __builtin_fabsl(__x); }
-
-
-
-  inline constexpr __int128
-  abs(__int128 __x) { return __x >= 0 ? __x : -__x; }
-# 100 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/std_abs.h" 3
-  inline constexpr
-  __float128
-  abs(__float128 __x)
-  { return __x < 0 ? -__x : __x; }
-
-
-
-}
-}
-# 78 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 2 3
-# 121 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 3
-extern "C++"
-{
-namespace std
-{
-
-
-  using ::div_t;
-  using ::ldiv_t;
-
-  using ::abort;
-
-
-
-  using ::atexit;
-
-
-
-
-
-  using ::atof;
-  using ::atoi;
-  using ::atol;
-  using ::bsearch;
-  using ::calloc;
-  using ::div;
-  using ::exit;
-  using ::free;
-  using ::getenv;
-  using ::labs;
-  using ::ldiv;
-  using ::malloc;
-
-  using ::mblen;
-  using ::mbstowcs;
-  using ::mbtowc;
-
-  using ::qsort;
-
-
-
-
-
-  using ::rand;
-  using ::realloc;
-  using ::srand;
-  using ::strtod;
-  using ::strtol;
-  using ::strtoul;
-  using ::system;
-
-  using ::wcstombs;
-  using ::wctomb;
-
-
-
-  inline ldiv_t
-  div(long __i, long __j) { return ldiv(__i, __j); }
-
-
-
-
-}
-# 195 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 3
-namespace __gnu_cxx
-{
-
-
-
-  using ::lldiv_t;
-
-
-
-
-
-  using ::_Exit;
-
-
-
-  using ::llabs;
-
-  inline lldiv_t
-  div(long long __n, long long __d)
-  { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }
-
-  using ::lldiv;
-# 227 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstdlib" 3
-  using ::atoll;
-  using ::strtoll;
-  using ::strtoull;
-
-  using ::strtof;
-  using ::strtold;
-
-
-}
-
-namespace std
-{
-
-  using ::__gnu_cxx::lldiv_t;
-
-  using ::__gnu_cxx::_Exit;
-
-  using ::__gnu_cxx::llabs;
-  using ::__gnu_cxx::div;
-  using ::__gnu_cxx::lldiv;
-
-  using ::__gnu_cxx::atoll;
-  using ::__gnu_cxx::strtof;
-  using ::__gnu_cxx::strtoll;
-  using ::__gnu_cxx::strtoull;
-  using ::__gnu_cxx::strtold;
-}
-
-
-
-}
-# 37 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdlib.h" 2 3 4
-
-using std::abort;
-using std::atexit;
-using std::exit;
-# 51 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdlib.h" 3 4
-using std::div_t;
-using std::ldiv_t;
-
-using std::abs;
-using std::atof;
-using std::atoi;
-using std::atol;
-using std::bsearch;
-using std::calloc;
-using std::div;
-using std::free;
-using std::getenv;
-using std::labs;
-using std::ldiv;
-using std::malloc;
-
-using std::mblen;
-using std::mbstowcs;
-using std::mbtowc;
-
-using std::qsort;
-using std::rand;
-using std::realloc;
-using std::srand;
-using std::strtod;
-using std::strtol;
-using std::strtoul;
-using std::system;
-
-using std::wcstombs;
-using std::wctomb;
+# 742 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdlib.h" 2 3 4
 # 28 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/mm_malloc.h" 2 3 4
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/errno.h" 1 3 4
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/errno.h" 3 4
-extern "C" {
-# 239 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/errno.h" 3 4
-}
 # 29 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/mm_malloc.h" 2 3 4
 
 static __inline__ void *
@@ -3880,12 +3472,7 @@ enum _mm_hint
   _MM_HINT_T2 = 1,
   _MM_HINT_NTA = 0
 };
-# 68 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/xmmintrin.h" 3 4
-extern "C" {
-
-
-
-
+# 73 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/xmmintrin.h" 3 4
 typedef float __m128 __attribute__ ((__vector_size__ (16), __may_alias__));
 
 
@@ -4940,11 +4527,7 @@ _mm_sfence (void)
 {
   __builtin_ia32_sfence ();
 }
-# 1256 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/xmmintrin.h" 3 4
-}
-
-
-
+# 1260 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/xmmintrin.h" 3 4
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/emmintrin.h" 1 3 4
 # 31 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/emmintrin.h" 3 4
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/xmmintrin.h" 1 3 4
@@ -41096,8 +40679,6 @@ _wrpkru (unsigned int __key)
 #pragma GCC pop_options
 # 103 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/x86intrin.h" 2 3 4
 # 1555 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 2 3
-
-}
 # 1582 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
     unsigned int __getcallerseflags(void);
 
@@ -41124,8 +40705,6 @@ _wrpkru (unsigned int __key)
 
     LONG64 MultiplyExtract128(LONG64 Multiplier,LONG64 Multiplicand,BYTE Shift);
     DWORD64 UnsignedMultiplyExtract128(DWORD64 Multiplier,DWORD64 Multiplicand,BYTE Shift);
-# 1648 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
-  }
 # 1678 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
   typedef struct _XMM_SAVE_AREA32 {
     WORD ControlWord;
@@ -42641,128 +42220,128 @@ _wrpkru (unsigned int __key)
       } GenericReparseBuffer;
     } REPARSE_GUID_DATA_BUFFER,*PREPARSE_GUID_DATA_BUFFER;
 # 5033 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
-    extern "C" const GUID GUID_MAX_POWER_SAVINGS;
-    extern "C" const GUID GUID_MIN_POWER_SAVINGS;
-    extern "C" const GUID GUID_TYPICAL_POWER_SAVINGS;
-    extern "C" const GUID NO_SUBGROUP_GUID;
-    extern "C" const GUID ALL_POWERSCHEMES_GUID;
-    extern "C" const GUID GUID_POWERSCHEME_PERSONALITY;
-    extern "C" const GUID GUID_ACTIVE_POWERSCHEME;
-    extern "C" const GUID GUID_IDLE_RESILIENCY_SUBGROUP;
-    extern "C" const GUID GUID_IDLE_RESILIENCY_PERIOD;
-    extern "C" const GUID GUID_DISK_COALESCING_POWERDOWN_TIMEOUT;
-    extern "C" const GUID GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT;
-    extern "C" const GUID GUID_VIDEO_SUBGROUP;
-    extern "C" const GUID GUID_VIDEO_POWERDOWN_TIMEOUT;
-    extern "C" const GUID GUID_VIDEO_ANNOYANCE_TIMEOUT;
-    extern "C" const GUID GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE;
-    extern "C" const GUID GUID_VIDEO_DIM_TIMEOUT;
-    extern "C" const GUID GUID_VIDEO_ADAPTIVE_POWERDOWN;
-    extern "C" const GUID GUID_MONITOR_POWER_ON;
-    extern "C" const GUID GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS;
-    extern "C" const GUID GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS;
-    extern "C" const GUID GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS;
-    extern "C" const GUID GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS;
-    extern "C" const GUID GUID_CONSOLE_DISPLAY_STATE;
-    extern "C" const GUID GUID_ALLOW_DISPLAY_REQUIRED;
-    extern "C" const GUID GUID_VIDEO_CONSOLE_LOCK_TIMEOUT;
-    extern "C" const GUID GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP;
-    extern "C" const GUID GUID_NON_ADAPTIVE_INPUT_TIMEOUT;
-    extern "C" const GUID GUID_DISK_SUBGROUP;
-    extern "C" const GUID GUID_DISK_POWERDOWN_TIMEOUT;
-    extern "C" const GUID GUID_DISK_IDLE_TIMEOUT;
-    extern "C" const GUID GUID_DISK_BURST_IGNORE_THRESHOLD;
-    extern "C" const GUID GUID_DISK_ADAPTIVE_POWERDOWN;
-    extern "C" const GUID GUID_SLEEP_SUBGROUP;
-    extern "C" const GUID GUID_SLEEP_IDLE_THRESHOLD;
-    extern "C" const GUID GUID_STANDBY_TIMEOUT;
-    extern "C" const GUID GUID_UNATTEND_SLEEP_TIMEOUT;
-    extern "C" const GUID GUID_HIBERNATE_TIMEOUT;
-    extern "C" const GUID GUID_HIBERNATE_FASTS4_POLICY;
-    extern "C" const GUID GUID_CRITICAL_POWER_TRANSITION;
-    extern "C" const GUID GUID_SYSTEM_AWAYMODE;
-    extern "C" const GUID GUID_ALLOW_AWAYMODE;
-    extern "C" const GUID GUID_ALLOW_STANDBY_STATES;
-    extern "C" const GUID GUID_ALLOW_RTC_WAKE;
-    extern "C" const GUID GUID_ALLOW_SYSTEM_REQUIRED;
-    extern "C" const GUID GUID_SYSTEM_BUTTON_SUBGROUP;
-    extern "C" const GUID GUID_POWERBUTTON_ACTION;
-    extern "C" const GUID GUID_SLEEPBUTTON_ACTION;
-    extern "C" const GUID GUID_USERINTERFACEBUTTON_ACTION;
-    extern "C" const GUID GUID_LIDCLOSE_ACTION;
-    extern "C" const GUID GUID_LIDOPEN_POWERSTATE;
-    extern "C" const GUID GUID_BATTERY_SUBGROUP;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_ACTION_0;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_LEVEL_0;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_FLAGS_0;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_ACTION_1;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_LEVEL_1;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_FLAGS_1;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_ACTION_2;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_LEVEL_2;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_FLAGS_2;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_ACTION_3;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_LEVEL_3;
-    extern "C" const GUID GUID_BATTERY_DISCHARGE_FLAGS_3;
-    extern "C" const GUID GUID_PROCESSOR_SETTINGS_SUBGROUP;
-    extern "C" const GUID GUID_PROCESSOR_THROTTLE_POLICY;
-    extern "C" const GUID GUID_PROCESSOR_THROTTLE_MAXIMUM;
-    extern "C" const GUID GUID_PROCESSOR_THROTTLE_MINIMUM;
-    extern "C" const GUID GUID_PROCESSOR_ALLOW_THROTTLING;
-    extern "C" const GUID GUID_PROCESSOR_IDLESTATE_POLICY;
-    extern "C" const GUID GUID_PROCESSOR_PERFSTATE_POLICY;
-    extern "C" const GUID GUID_PROCESSOR_PERF_INCREASE_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_PERF_DECREASE_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_PERF_INCREASE_POLICY;
-    extern "C" const GUID GUID_PROCESSOR_PERF_DECREASE_POLICY;
-    extern "C" const GUID GUID_PROCESSOR_PERF_INCREASE_TIME;
-    extern "C" const GUID GUID_PROCESSOR_PERF_DECREASE_TIME;
-    extern "C" const GUID GUID_PROCESSOR_PERF_TIME_CHECK;
-    extern "C" const GUID GUID_PROCESSOR_PERF_BOOST_POLICY;
-    extern "C" const GUID GUID_PROCESSOR_PERF_BOOST_MODE;
-    extern "C" const GUID GUID_PROCESSOR_IDLE_ALLOW_SCALING;
-    extern "C" const GUID GUID_PROCESSOR_IDLE_DISABLE;
-    extern "C" const GUID GUID_PROCESSOR_IDLE_STATE_MAXIMUM;
-    extern "C" const GUID GUID_PROCESSOR_IDLE_TIME_CHECK;
-    extern "C" const GUID GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_MAX_CORES;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_MIN_CORES;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING;
-    extern "C" const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_PARKING_CORE_OVERRIDE;
-    extern "C" const GUID GUID_PROCESSOR_PARKING_PERF_STATE;
-    extern "C" const GUID GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD;
-    extern "C" const GUID GUID_PROCESSOR_PERF_HISTORY;
-    extern "C" const GUID GUID_PROCESSOR_PERF_LATENCY_HINT;
-    extern "C" const GUID GUID_PROCESSOR_DISTRIBUTE_UTILITY;
-    extern "C" const GUID GUID_SYSTEM_COOLING_POLICY;
-    extern "C" const GUID GUID_LOCK_CONSOLE_ON_WAKE;
-    extern "C" const GUID GUID_DEVICE_IDLE_POLICY;
-    extern "C" const GUID GUID_ACDC_POWER_SOURCE;
-    extern "C" const GUID GUID_LIDSWITCH_STATE_CHANGE;
-    extern "C" const GUID GUID_BATTERY_PERCENTAGE_REMAINING;
-    extern "C" const GUID GUID_GLOBAL_USER_PRESENCE;
-    extern "C" const GUID GUID_SESSION_DISPLAY_STATUS;
-    extern "C" const GUID GUID_SESSION_USER_PRESENCE;
-    extern "C" const GUID GUID_IDLE_BACKGROUND_TASK;
-    extern "C" const GUID GUID_BACKGROUND_TASK_NOTIFICATION;
-    extern "C" const GUID GUID_APPLAUNCH_BUTTON;
-    extern "C" const GUID GUID_PCIEXPRESS_SETTINGS_SUBGROUP;
-    extern "C" const GUID GUID_PCIEXPRESS_ASPM_POLICY;
-    extern "C" const GUID GUID_ENABLE_SWITCH_FORCED_SHUTDOWN;
+    extern const GUID GUID_MAX_POWER_SAVINGS;
+    extern const GUID GUID_MIN_POWER_SAVINGS;
+    extern const GUID GUID_TYPICAL_POWER_SAVINGS;
+    extern const GUID NO_SUBGROUP_GUID;
+    extern const GUID ALL_POWERSCHEMES_GUID;
+    extern const GUID GUID_POWERSCHEME_PERSONALITY;
+    extern const GUID GUID_ACTIVE_POWERSCHEME;
+    extern const GUID GUID_IDLE_RESILIENCY_SUBGROUP;
+    extern const GUID GUID_IDLE_RESILIENCY_PERIOD;
+    extern const GUID GUID_DISK_COALESCING_POWERDOWN_TIMEOUT;
+    extern const GUID GUID_EXECUTION_REQUIRED_REQUEST_TIMEOUT;
+    extern const GUID GUID_VIDEO_SUBGROUP;
+    extern const GUID GUID_VIDEO_POWERDOWN_TIMEOUT;
+    extern const GUID GUID_VIDEO_ANNOYANCE_TIMEOUT;
+    extern const GUID GUID_VIDEO_ADAPTIVE_PERCENT_INCREASE;
+    extern const GUID GUID_VIDEO_DIM_TIMEOUT;
+    extern const GUID GUID_VIDEO_ADAPTIVE_POWERDOWN;
+    extern const GUID GUID_MONITOR_POWER_ON;
+    extern const GUID GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS;
+    extern const GUID GUID_DEVICE_POWER_POLICY_VIDEO_DIM_BRIGHTNESS;
+    extern const GUID GUID_VIDEO_CURRENT_MONITOR_BRIGHTNESS;
+    extern const GUID GUID_VIDEO_ADAPTIVE_DISPLAY_BRIGHTNESS;
+    extern const GUID GUID_CONSOLE_DISPLAY_STATE;
+    extern const GUID GUID_ALLOW_DISPLAY_REQUIRED;
+    extern const GUID GUID_VIDEO_CONSOLE_LOCK_TIMEOUT;
+    extern const GUID GUID_ADAPTIVE_POWER_BEHAVIOR_SUBGROUP;
+    extern const GUID GUID_NON_ADAPTIVE_INPUT_TIMEOUT;
+    extern const GUID GUID_DISK_SUBGROUP;
+    extern const GUID GUID_DISK_POWERDOWN_TIMEOUT;
+    extern const GUID GUID_DISK_IDLE_TIMEOUT;
+    extern const GUID GUID_DISK_BURST_IGNORE_THRESHOLD;
+    extern const GUID GUID_DISK_ADAPTIVE_POWERDOWN;
+    extern const GUID GUID_SLEEP_SUBGROUP;
+    extern const GUID GUID_SLEEP_IDLE_THRESHOLD;
+    extern const GUID GUID_STANDBY_TIMEOUT;
+    extern const GUID GUID_UNATTEND_SLEEP_TIMEOUT;
+    extern const GUID GUID_HIBERNATE_TIMEOUT;
+    extern const GUID GUID_HIBERNATE_FASTS4_POLICY;
+    extern const GUID GUID_CRITICAL_POWER_TRANSITION;
+    extern const GUID GUID_SYSTEM_AWAYMODE;
+    extern const GUID GUID_ALLOW_AWAYMODE;
+    extern const GUID GUID_ALLOW_STANDBY_STATES;
+    extern const GUID GUID_ALLOW_RTC_WAKE;
+    extern const GUID GUID_ALLOW_SYSTEM_REQUIRED;
+    extern const GUID GUID_SYSTEM_BUTTON_SUBGROUP;
+    extern const GUID GUID_POWERBUTTON_ACTION;
+    extern const GUID GUID_SLEEPBUTTON_ACTION;
+    extern const GUID GUID_USERINTERFACEBUTTON_ACTION;
+    extern const GUID GUID_LIDCLOSE_ACTION;
+    extern const GUID GUID_LIDOPEN_POWERSTATE;
+    extern const GUID GUID_BATTERY_SUBGROUP;
+    extern const GUID GUID_BATTERY_DISCHARGE_ACTION_0;
+    extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_0;
+    extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_0;
+    extern const GUID GUID_BATTERY_DISCHARGE_ACTION_1;
+    extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_1;
+    extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_1;
+    extern const GUID GUID_BATTERY_DISCHARGE_ACTION_2;
+    extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_2;
+    extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_2;
+    extern const GUID GUID_BATTERY_DISCHARGE_ACTION_3;
+    extern const GUID GUID_BATTERY_DISCHARGE_LEVEL_3;
+    extern const GUID GUID_BATTERY_DISCHARGE_FLAGS_3;
+    extern const GUID GUID_PROCESSOR_SETTINGS_SUBGROUP;
+    extern const GUID GUID_PROCESSOR_THROTTLE_POLICY;
+    extern const GUID GUID_PROCESSOR_THROTTLE_MAXIMUM;
+    extern const GUID GUID_PROCESSOR_THROTTLE_MINIMUM;
+    extern const GUID GUID_PROCESSOR_ALLOW_THROTTLING;
+    extern const GUID GUID_PROCESSOR_IDLESTATE_POLICY;
+    extern const GUID GUID_PROCESSOR_PERFSTATE_POLICY;
+    extern const GUID GUID_PROCESSOR_PERF_INCREASE_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_PERF_DECREASE_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_PERF_INCREASE_POLICY;
+    extern const GUID GUID_PROCESSOR_PERF_DECREASE_POLICY;
+    extern const GUID GUID_PROCESSOR_PERF_INCREASE_TIME;
+    extern const GUID GUID_PROCESSOR_PERF_DECREASE_TIME;
+    extern const GUID GUID_PROCESSOR_PERF_TIME_CHECK;
+    extern const GUID GUID_PROCESSOR_PERF_BOOST_POLICY;
+    extern const GUID GUID_PROCESSOR_PERF_BOOST_MODE;
+    extern const GUID GUID_PROCESSOR_IDLE_ALLOW_SCALING;
+    extern const GUID GUID_PROCESSOR_IDLE_DISABLE;
+    extern const GUID GUID_PROCESSOR_IDLE_STATE_MAXIMUM;
+    extern const GUID GUID_PROCESSOR_IDLE_TIME_CHECK;
+    extern const GUID GUID_PROCESSOR_IDLE_DEMOTE_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_IDLE_PROMOTE_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_POLICY;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_POLICY;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_MAX_CORES;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_MIN_CORES;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_INCREASE_TIME;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_DECREASE_TIME;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_DECREASE_FACTOR;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_HISTORY_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_AFFINITY_WEIGHTING;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_DECREASE_FACTOR;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_HISTORY_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_WEIGHTING;
+    extern const GUID GUID_PROCESSOR_CORE_PARKING_OVER_UTILIZATION_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_PARKING_CORE_OVERRIDE;
+    extern const GUID GUID_PROCESSOR_PARKING_PERF_STATE;
+    extern const GUID GUID_PROCESSOR_PARKING_CONCURRENCY_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_PARKING_HEADROOM_THRESHOLD;
+    extern const GUID GUID_PROCESSOR_PERF_HISTORY;
+    extern const GUID GUID_PROCESSOR_PERF_LATENCY_HINT;
+    extern const GUID GUID_PROCESSOR_DISTRIBUTE_UTILITY;
+    extern const GUID GUID_SYSTEM_COOLING_POLICY;
+    extern const GUID GUID_LOCK_CONSOLE_ON_WAKE;
+    extern const GUID GUID_DEVICE_IDLE_POLICY;
+    extern const GUID GUID_ACDC_POWER_SOURCE;
+    extern const GUID GUID_LIDSWITCH_STATE_CHANGE;
+    extern const GUID GUID_BATTERY_PERCENTAGE_REMAINING;
+    extern const GUID GUID_GLOBAL_USER_PRESENCE;
+    extern const GUID GUID_SESSION_DISPLAY_STATUS;
+    extern const GUID GUID_SESSION_USER_PRESENCE;
+    extern const GUID GUID_IDLE_BACKGROUND_TASK;
+    extern const GUID GUID_BACKGROUND_TASK_NOTIFICATION;
+    extern const GUID GUID_APPLAUNCH_BUTTON;
+    extern const GUID GUID_PCIEXPRESS_SETTINGS_SUBGROUP;
+    extern const GUID GUID_PCIEXPRESS_ASPM_POLICY;
+    extern const GUID GUID_ENABLE_SWITCH_FORCED_SHUTDOWN;
 
   typedef enum _SYSTEM_POWER_STATE {
     PowerSystemUnspecified = 0,PowerSystemWorking = 1,PowerSystemSleeping1 = 2,PowerSystemSleeping2 = 3,PowerSystemSleeping3 = 4,PowerSystemHibernate = 5,PowerSystemShutdown = 6,PowerSystemMaximum = 7
@@ -43201,16 +42780,16 @@ _wrpkru (unsigned int __key)
       DWORD64 Processors;
     } PPM_THERMAL_POLICY_EVENT,*PPPM_THERMAL_POLICY_EVENT;
 
-    extern "C" const GUID PPM_PERFSTATE_CHANGE_GUID;
-    extern "C" const GUID PPM_PERFSTATE_DOMAIN_CHANGE_GUID;
-    extern "C" const GUID PPM_IDLESTATE_CHANGE_GUID;
-    extern "C" const GUID PPM_PERFSTATES_DATA_GUID;
-    extern "C" const GUID PPM_IDLESTATES_DATA_GUID;
-    extern "C" const GUID PPM_IDLE_ACCOUNTING_GUID;
-    extern "C" const GUID PPM_IDLE_ACCOUNTING_EX_GUID;
-    extern "C" const GUID PPM_THERMALCONSTRAINT_GUID;
-    extern "C" const GUID PPM_PERFMON_PERFSTATE_GUID;
-    extern "C" const GUID PPM_THERMAL_POLICY_CHANGE_GUID;
+    extern const GUID PPM_PERFSTATE_CHANGE_GUID;
+    extern const GUID PPM_PERFSTATE_DOMAIN_CHANGE_GUID;
+    extern const GUID PPM_IDLESTATE_CHANGE_GUID;
+    extern const GUID PPM_PERFSTATES_DATA_GUID;
+    extern const GUID PPM_IDLESTATES_DATA_GUID;
+    extern const GUID PPM_IDLE_ACCOUNTING_GUID;
+    extern const GUID PPM_IDLE_ACCOUNTING_EX_GUID;
+    extern const GUID PPM_THERMALCONSTRAINT_GUID;
+    extern const GUID PPM_PERFMON_PERFSTATE_GUID;
+    extern const GUID PPM_THERMAL_POLICY_CHANGE_GUID;
 
     typedef struct {
       POWER_ACTION Action;
@@ -44984,13 +44563,13 @@ typedef DWORD ( *PRTL_RUN_ONCE_INIT_FN)(PRTL_RUN_ONCE, PVOID, PVOID *);
   typedef struct _TP_IO TP_IO,*PTP_IO;
 
 
-    inline __attribute__((__always_inline__)) void TpInitializeCallbackEnviron (PTP_CALLBACK_ENVIRON cbe) {
-      cbe->Pool = 0LL;
-      cbe->CleanupGroup = 0LL;
-      cbe->CleanupGroupCancelCallback = 0LL;
-      cbe->RaceDll = 0LL;
-      cbe->ActivationContext = 0LL;
-      cbe->FinalizationCallback = 0LL;
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpInitializeCallbackEnviron (PTP_CALLBACK_ENVIRON cbe) {
+      cbe->Pool = ((void *)0);
+      cbe->CleanupGroup = ((void *)0);
+      cbe->CleanupGroupCancelCallback = ((void *)0);
+      cbe->RaceDll = ((void *)0);
+      cbe->ActivationContext = ((void *)0);
+      cbe->FinalizationCallback = ((void *)0);
       cbe->u.Flags = 0;
 
       cbe->Version = 1;
@@ -45000,41 +44579,35 @@ typedef DWORD ( *PRTL_RUN_ONCE_INIT_FN)(PRTL_RUN_ONCE, PVOID, PVOID *);
 
 
     }
-    inline __attribute__((__always_inline__)) void TpSetCallbackThreadpool (PTP_CALLBACK_ENVIRON cbe, PTP_POOL pool) { cbe->Pool = pool; }
-    inline __attribute__((__always_inline__)) void TpSetCallbackCleanupGroup (PTP_CALLBACK_ENVIRON cbe, PTP_CLEANUP_GROUP cleanup_group, PTP_CLEANUP_GROUP_CANCEL_CALLBACK cleanup_group_cb) {
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpSetCallbackThreadpool (PTP_CALLBACK_ENVIRON cbe, PTP_POOL pool) { cbe->Pool = pool; }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpSetCallbackCleanupGroup (PTP_CALLBACK_ENVIRON cbe, PTP_CLEANUP_GROUP cleanup_group, PTP_CLEANUP_GROUP_CANCEL_CALLBACK cleanup_group_cb) {
       cbe->CleanupGroup = cleanup_group;
       cbe->CleanupGroupCancelCallback = cleanup_group_cb;
     }
-    inline __attribute__((__always_inline__)) void TpSetCallbackActivationContext (PTP_CALLBACK_ENVIRON cbe, struct _ACTIVATION_CONTEXT *actx) { cbe->ActivationContext = actx; }
-    inline __attribute__((__always_inline__)) void TpSetCallbackNoActivationContext (PTP_CALLBACK_ENVIRON cbe) { cbe->ActivationContext = (struct _ACTIVATION_CONTEXT *) (LONG_PTR) -1; }
-    inline __attribute__((__always_inline__)) void TpSetCallbackLongFunction (PTP_CALLBACK_ENVIRON cbe) { cbe->u.s.LongFunction = 1; }
-    inline __attribute__((__always_inline__)) void TpSetCallbackRaceWithDll (PTP_CALLBACK_ENVIRON cbe, PVOID h) { cbe->RaceDll = h; }
-    inline __attribute__((__always_inline__)) void TpSetCallbackFinalizationCallback (PTP_CALLBACK_ENVIRON cbe, PTP_SIMPLE_CALLBACK fini_cb) { cbe->FinalizationCallback = fini_cb; }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpSetCallbackActivationContext (PTP_CALLBACK_ENVIRON cbe, struct _ACTIVATION_CONTEXT *actx) { cbe->ActivationContext = actx; }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpSetCallbackNoActivationContext (PTP_CALLBACK_ENVIRON cbe) { cbe->ActivationContext = (struct _ACTIVATION_CONTEXT *) (LONG_PTR) -1; }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpSetCallbackLongFunction (PTP_CALLBACK_ENVIRON cbe) { cbe->u.s.LongFunction = 1; }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpSetCallbackRaceWithDll (PTP_CALLBACK_ENVIRON cbe, PVOID h) { cbe->RaceDll = h; }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpSetCallbackFinalizationCallback (PTP_CALLBACK_ENVIRON cbe, PTP_SIMPLE_CALLBACK fini_cb) { cbe->FinalizationCallback = fini_cb; }
 
 
 
-    inline __attribute__((__always_inline__)) void TpSetCallbackPersistent (PTP_CALLBACK_ENVIRON cbe) { cbe->u.s.Persistent = 1; }
-    inline __attribute__((__always_inline__)) void TpDestroyCallbackEnviron (PTP_CALLBACK_ENVIRON cbe) { {(cbe) = (cbe);}; }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpSetCallbackPersistent (PTP_CALLBACK_ENVIRON cbe) { cbe->u.s.Persistent = 1; }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void TpDestroyCallbackEnviron (PTP_CALLBACK_ENVIRON cbe) { {(cbe) = (cbe);}; }
 
 
 
     struct _TEB *NtCurrentTeb(void);
     PVOID GetCurrentFiber(void);
     PVOID GetFiberData(void);
-    inline __attribute__((__always_inline__)) struct _TEB *NtCurrentTeb(void) { return (struct _TEB *)__readgsqword(((LONG) __builtin_offsetof(NT_TIB, Self))); }
-    inline __attribute__((__always_inline__)) PVOID GetCurrentFiber(void) { return(PVOID)__readgsqword(((LONG) __builtin_offsetof(NT_TIB, FiberData))); }
-    inline __attribute__((__always_inline__)) PVOID GetFiberData(void) {
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) struct _TEB *NtCurrentTeb(void) { return (struct _TEB *)__readgsqword(((LONG) __builtin_offsetof(NT_TIB, Self))); }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) PVOID GetCurrentFiber(void) { return(PVOID)__readgsqword(((LONG) __builtin_offsetof(NT_TIB, FiberData))); }
+    extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) PVOID GetFiberData(void) {
       return *(PVOID *)GetCurrentFiber();
     }
-# 8736 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
-    extern "C" {
-
-
+# 8739 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ktmtypes.h" 1 3
-# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ktmtypes.h" 3
-extern "C" {
-
-
+# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ktmtypes.h" 3
   typedef GUID CRM_PROTOCOL_ID,*PCRM_PROTOCOL_ID;
 # 38 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ktmtypes.h" 3
   typedef ULONG NOTIFICATION_MASK;
@@ -45107,9 +44680,6 @@ extern "C" {
     ULONG Unused1;
     ULONG Unused2;
   } KCRM_PROTOCOL_BLOB,*PKCRM_PROTOCOL_BLOB,* PRKCRM_PROTOCOL_BLOB;
-
-
-}
 # 8740 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 2 3
 # 8791 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
       typedef enum _TRANSACTION_OUTCOME {
@@ -45253,9 +44823,6 @@ extern "C" {
  DWORD ObjectIdCount;
  GUID ObjectIds[1];
       } KTMOBJECT_CURSOR,*PKTMOBJECT_CURSOR;
-
-
-    }
 # 8968 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
 typedef struct _WOW64_FLOATING_SAVE_AREA {
   DWORD ControlWord;
@@ -45344,8 +44911,6 @@ typedef struct _WOW64_LDT_ENTRY {
       DWORD Selector;
       WOW64_LDT_ENTRY Descriptor;
     } WOW64_DESCRIPTOR_TABLE_ENTRY,*PWOW64_DESCRIPTOR_TABLE_ENTRY;
-# 9068 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnt.h" 3
-}
 # 164 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/minwindef.h" 2 3
 
 
@@ -45390,14 +44955,7 @@ typedef struct _WOW64_LDT_ENTRY {
     DWORD dwLowDateTime;
     DWORD dwHighDateTime;
   } FILETIME,*PFILETIME,*LPFILETIME;
-
-
-
-}
 # 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windef.h" 2 3
-
-
-extern "C" {
 # 25 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windef.h" 3
 struct HWND__ { int unused; }; typedef struct HWND__ *HWND;
 struct HHOOK__ { int unused; }; typedef struct HHOOK__ *HHOOK;
@@ -45477,8 +45035,6 @@ typedef struct tagPOINTS {
   SHORT x;
   SHORT y;
 } POINTS,*PPOINTS,*LPPOINTS;
-# 144 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windef.h" 3
-}
 # 70 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 1 3
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 3
@@ -45487,18 +45043,7 @@ typedef struct tagPOINTS {
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/minwinbase.h" 1 3
-
-
-
-
-extern "C" {
-
-
-
-
-
-
-
+# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/minwinbase.h" 3
   typedef struct _SECURITY_ATTRIBUTES {
     DWORD nLength;
     LPVOID lpSecurityDescriptor;
@@ -45718,37 +45263,21 @@ extern "C" {
 
 
   typedef PCONTEXT LPCONTEXT;
-# 331 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/minwinbase.h" 3
-}
 # 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/bemapiset.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/bemapiset.h" 3
-extern "C" {
-
-
-
-
+# 19 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/bemapiset.h" 3
   typedef struct _CONTRACT_DESCRIPTION CONTRACT_DESCRIPTION;
   typedef struct _BEM_REFERENCE BEM_REFERENCE;
   typedef void ( *BEM_FREE_INTERFACE_CALLBACK) (void *interfaceInstance);
 
-  HRESULT BemCreateReference (const GUID & iid, void *interfaceInstance, BEM_FREE_INTERFACE_CALLBACK freeCallback, BEM_REFERENCE **reference);
-  HRESULT BemCreateContractFrom (LPCWSTR dllPath, const GUID & extensionId, const CONTRACT_DESCRIPTION *contractDescription, void *hostContract, void **contract);
+  HRESULT BemCreateReference (const GUID *const iid, void *interfaceInstance, BEM_FREE_INTERFACE_CALLBACK freeCallback, BEM_REFERENCE **reference);
+  HRESULT BemCreateContractFrom (LPCWSTR dllPath, const GUID *const extensionId, const CONTRACT_DESCRIPTION *contractDescription, void *hostContract, void **contract);
   HRESULT BemCopyReference (BEM_REFERENCE *reference, BEM_REFERENCE **copiedReference);
   void BemFreeReference (BEM_REFERENCE *reference);
   void BemFreeContract (void *contract);
-
-
-
-
-}
 # 15 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/debugapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/debugapi.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/debugapi.h" 3
   __attribute__((dllimport)) WINBOOL IsDebuggerPresent (void);
   __attribute__((dllimport)) void OutputDebugStringA (LPCSTR lpOutputString);
   __attribute__((dllimport)) void OutputDebugStringW (LPCWSTR lpOutputString);
@@ -45763,17 +45292,9 @@ extern "C" {
   __attribute__((dllimport)) WINBOOL DebugActiveProcess (DWORD dwProcessId);
   __attribute__((dllimport)) WINBOOL DebugActiveProcessStop (DWORD dwProcessId);
   __attribute__((dllimport)) WINBOOL CheckRemoteDebuggerPresent (HANDLE hProcess, PBOOL pbDebuggerPresent);
-
-
-
-}
 # 16 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/errhandlingapi.h" 1 3
-# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/errhandlingapi.h" 3
-extern "C" {
-
-
-
+# 17 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/errhandlingapi.h" 3
 typedef LONG ( *PTOP_LEVEL_EXCEPTION_FILTER) (struct _EXCEPTION_POINTERS *ExceptionInfo);
 typedef PTOP_LEVEL_EXCEPTION_FILTER LPTOP_LEVEL_EXCEPTION_FILTER;
     __attribute__((dllimport)) UINT SetErrorMode (UINT uMode);
@@ -45789,20 +45310,10 @@ typedef PTOP_LEVEL_EXCEPTION_FILTER LPTOP_LEVEL_EXCEPTION_FILTER;
   __attribute__((dllimport)) void RaiseException (DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ULONG_PTR *lpArguments);
   __attribute__((dllimport)) DWORD GetLastError (void);
   __attribute__((dllimport)) void SetLastError (DWORD dwErrCode);
-
-
-
-}
 # 17 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/fibersapi.h" 1 3
-# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/fibersapi.h" 3
-extern "C" {
-# 36 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/fibersapi.h" 3
-}
 # 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/fileapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/fileapi.h" 3
-extern "C" {
 # 30 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/fileapi.h" 3
 __attribute__((dllimport)) HANDLE CreateFileW (LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 
@@ -45907,17 +45418,9 @@ __attribute__((dllimport)) DWORD SetFilePointer (HANDLE hFile, LONG lDistanceToM
   __attribute__((dllimport)) WINBOOL SetFilePointerEx (HANDLE hFile, LARGE_INTEGER liDistanceToMove, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod);
   __attribute__((dllimport)) WINBOOL UnlockFileEx (HANDLE hFile, DWORD dwReserved, DWORD nNumberOfBytesToUnlockLow, DWORD nNumberOfBytesToUnlockHigh, LPOVERLAPPED lpOverlapped);
   __attribute__((dllimport)) WINBOOL WriteFile (HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);
-# 198 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/fileapi.h" 3
-}
 # 19 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/handleapi.h" 1 3
-# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/handleapi.h" 3
-extern "C" {
-
-
-
-
-
+# 19 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/handleapi.h" 3
   __attribute__((dllimport)) WINBOOL CloseHandle (HANDLE hObject);
   __attribute__((dllimport)) WINBOOL DuplicateHandle (HANDLE hSourceProcessHandle, HANDLE hSourceHandle, HANDLE hTargetProcessHandle, LPHANDLE lpTargetHandle, DWORD dwDesiredAccess, WINBOOL bInheritHandle, DWORD dwOptions);
 
@@ -45925,17 +45428,9 @@ extern "C" {
 
   __attribute__((dllimport)) WINBOOL GetHandleInformation (HANDLE hObject, LPDWORD lpdwFlags);
   __attribute__((dllimport)) WINBOOL SetHandleInformation (HANDLE hObject, DWORD dwMask, DWORD dwFlags);
-
-
-
-}
 # 20 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/heapapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/heapapi.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/heapapi.h" 3
   typedef struct _HEAP_SUMMARY {
     DWORD cb;
     SIZE_T cbAllocated;
@@ -45965,17 +45460,9 @@ extern "C" {
   __attribute__((dllimport)) WINBOOL HeapFree (HANDLE hHeap, DWORD dwFlags, LPVOID lpMem);
   __attribute__((dllimport)) SIZE_T HeapSize (HANDLE hHeap, DWORD dwFlags, LPCVOID lpMem);
   __attribute__((dllimport)) HANDLE GetProcessHeap (void);
-
-
-
-}
 # 21 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ioapiset.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ioapiset.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ioapiset.h" 3
   __attribute__((dllimport)) WINBOOL GetOverlappedResult (HANDLE hFile, LPOVERLAPPED lpOverlapped, LPDWORD lpNumberOfBytesTransferred, WINBOOL bWait);
   __attribute__((dllimport)) HANDLE CreateIoCompletionPort (HANDLE FileHandle, HANDLE ExistingCompletionPort, ULONG_PTR CompletionKey, DWORD NumberOfConcurrentThreads);
   __attribute__((dllimport)) WINBOOL GetQueuedCompletionStatus (HANDLE CompletionPort, LPDWORD lpNumberOfBytesTransferred, PULONG_PTR lpCompletionKey, LPOVERLAPPED *lpOverlapped, DWORD dwMilliseconds);
@@ -45984,44 +45471,21 @@ extern "C" {
   __attribute__((dllimport)) WINBOOL CancelIo (HANDLE hFile);
 # 32 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ioapiset.h" 3
   __attribute__((dllimport)) WINBOOL GetOverlappedResultEx (HANDLE hFile, LPOVERLAPPED lpOverlapped, LPDWORD lpNumberOfBytesTransferred, DWORD dwMilliseconds, WINBOOL bAlertable);
-
-
-
-}
 # 22 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/interlockedapi.h" 1 3
-# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/interlockedapi.h" 3
-extern "C" {
-
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/interlockedapi.h" 3
   __attribute__((dllimport)) void InitializeSListHead (PSLIST_HEADER ListHead);
   __attribute__((dllimport)) PSLIST_ENTRY InterlockedPopEntrySList (PSLIST_HEADER ListHead);
   __attribute__((dllimport)) PSLIST_ENTRY InterlockedPushEntrySList (PSLIST_HEADER ListHead, PSLIST_ENTRY ListEntry);
   __attribute__((dllimport)) PSLIST_ENTRY InterlockedFlushSList (PSLIST_HEADER ListHead);
   __attribute__((dllimport)) USHORT QueryDepthSList (PSLIST_HEADER ListHead);
-# 33 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/interlockedapi.h" 3
-}
 # 23 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/jobapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/jobapi.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/jobapi.h" 3
   __attribute__((dllimport)) WINBOOL IsProcessInJob (HANDLE ProcessHandle, HANDLE JobHandle, PBOOL Result);
-
-
-
-}
 # 24 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/libloaderapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/libloaderapi.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/libloaderapi.h" 3
   typedef struct tagENUMUILANG {
     ULONG NumOfEnumUILang;
     ULONG SizeOfEnumUIBuffer;
@@ -46068,15 +45532,9 @@ extern "C" {
   __attribute__((dllimport)) FARPROC GetProcAddress (HMODULE hModule, LPCSTR lpProcName);
   __attribute__((dllimport)) DWORD GetModuleFileNameA (HMODULE hModule, LPSTR lpFilename, DWORD nSize);
   __attribute__((dllimport)) DWORD GetModuleFileNameW (HMODULE hModule, LPWSTR lpFilename, DWORD nSize);
-# 147 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/libloaderapi.h" 3
-}
 # 25 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/memoryapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/memoryapi.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/memoryapi.h" 3
   typedef enum _MEMORY_RESOURCE_NOTIFICATION_TYPE {
     LowMemoryResourceNotification,
     HighMemoryResourceNotification
@@ -46119,15 +45577,9 @@ extern "C" {
   __attribute__((dllimport)) WINBOOL QueryMemoryResourceNotification (HANDLE ResourceNotificationHandle, PBOOL ResourceState);
   __attribute__((dllimport)) WINBOOL GetSystemFileCacheSize (PSIZE_T lpMinimumFileCacheSize, PSIZE_T lpMaximumFileCacheSize, PDWORD lpFlags);
   __attribute__((dllimport)) WINBOOL SetSystemFileCacheSize (SIZE_T MinimumFileCacheSize, SIZE_T MaximumFileCacheSize, DWORD Flags);
-# 120 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/memoryapi.h" 3
-}
 # 26 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/namedpipeapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/namedpipeapi.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/namedpipeapi.h" 3
   __attribute__((dllimport)) WINBOOL ImpersonateNamedPipeClient (HANDLE hNamedPipe);
   __attribute__((dllimport)) WINBOOL CreatePipe (PHANDLE hReadPipe, PHANDLE hWritePipe, LPSECURITY_ATTRIBUTES lpPipeAttributes, DWORD nSize);
   __attribute__((dllimport)) WINBOOL ConnectNamedPipe (HANDLE hNamedPipe, LPOVERLAPPED lpOverlapped);
@@ -46137,17 +45589,9 @@ extern "C" {
   __attribute__((dllimport)) WINBOOL TransactNamedPipe (HANDLE hNamedPipe, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesRead, LPOVERLAPPED lpOverlapped);
   __attribute__((dllimport)) HANDLE CreateNamedPipeW (LPCWSTR lpName, DWORD dwOpenMode, DWORD dwPipeMode, DWORD nMaxInstances, DWORD nOutBufferSize, DWORD nInBufferSize, DWORD nDefaultTimeOut, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
   __attribute__((dllimport)) WINBOOL WaitNamedPipeW (LPCWSTR lpNamedPipeName, DWORD nTimeOut);
-# 39 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/namedpipeapi.h" 3
-}
 # 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/namespaceapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/namespaceapi.h" 3
-extern "C" {
-
-
-
-
-
+# 20 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/namespaceapi.h" 3
   __attribute__((dllimport)) HANDLE CreatePrivateNamespaceW (LPSECURITY_ATTRIBUTES lpPrivateNamespaceAttributes, LPVOID lpBoundaryDescriptor, LPCWSTR lpAliasPrefix);
   __attribute__((dllimport)) HANDLE OpenPrivateNamespaceW (LPVOID lpBoundaryDescriptor, LPCWSTR lpAliasPrefix);
 
@@ -46162,17 +45606,9 @@ extern "C" {
 
   __attribute__((dllimport)) WINBOOL AddSIDToBoundaryDescriptor (HANDLE *BoundaryDescriptor, PSID RequiredSid);
   __attribute__((dllimport)) void DeleteBoundaryDescriptor (HANDLE BoundaryDescriptor);
-
-
-
-}
 # 28 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processenv.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processenv.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processenv.h" 3
   __attribute__((dllimport)) LPCH GetEnvironmentStrings (void);
   __attribute__((dllimport)) LPWCH GetEnvironmentStringsW (void);
   __attribute__((dllimport)) WINBOOL SetEnvironmentStringsW (LPWCH NewEnvironment);
@@ -46200,12 +45636,8 @@ extern "C" {
   __attribute__((dllimport)) DWORD SearchPathA (LPCSTR lpPath, LPCSTR lpFileName, LPCSTR lpExtension, DWORD nBufferLength, LPSTR lpBuffer, LPSTR *lpFilePart);
   __attribute__((dllimport)) WINBOOL NeedCurrentDirectoryForExePathA (LPCSTR ExeName);
   __attribute__((dllimport)) WINBOOL NeedCurrentDirectoryForExePathW (LPCWSTR ExeName);
-# 66 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processenv.h" 3
-}
 # 29 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processthreadsapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processthreadsapi.h" 3
-extern "C" {
 # 24 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processthreadsapi.h" 3
 __attribute__((dllimport)) WINBOOL TerminateProcess (HANDLE hProcess, UINT uExitCode);
 
@@ -46332,56 +45764,20 @@ __attribute__((dllimport)) WINBOOL TerminateProcess (HANDLE hProcess, UINT uExit
   __attribute__((dllimport)) LPVOID TlsGetValue (DWORD dwTlsIndex);
   __attribute__((dllimport)) WINBOOL TlsSetValue (DWORD dwTlsIndex, LPVOID lpTlsValue);
   __attribute__((dllimport)) WINBOOL TlsFree (DWORD dwTlsIndex);
-
-
-
-
-
-
-
-}
 # 30 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processtopologyapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processtopologyapi.h" 3
-extern "C" {
-# 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/processtopologyapi.h" 3
-}
 # 31 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/profileapi.h" 1 3
-# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/profileapi.h" 3
-extern "C" {
-
-
+# 16 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/profileapi.h" 3
   __attribute__((dllimport)) WINBOOL QueryPerformanceCounter (LARGE_INTEGER *lpPerformanceCount);
   __attribute__((dllimport)) WINBOOL QueryPerformanceFrequency (LARGE_INTEGER *lpFrequency);
-
-
-}
 # 32 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/realtimeapiset.h" 1 3
-# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/realtimeapiset.h" 3
-extern "C" {
-# 35 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/realtimeapiset.h" 3
-}
 # 33 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/securityappcontainer.h" 1 3
-# 15 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/securityappcontainer.h" 3
-extern "C" {
-
-
-
-
-
-
-
-}
 # 34 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/securitybaseapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/securitybaseapi.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/securitybaseapi.h" 3
   __attribute__((dllimport)) WINBOOL AccessCheck (PSECURITY_DESCRIPTOR pSecurityDescriptor, HANDLE ClientToken, DWORD DesiredAccess, PGENERIC_MAPPING GenericMapping, PPRIVILEGE_SET PrivilegeSet, LPDWORD PrivilegeSetLength, LPDWORD GrantedAccess, LPBOOL AccessStatus);
   __attribute__((dllimport)) WINBOOL AccessCheckAndAuditAlarmW (LPCWSTR SubsystemName, LPVOID HandleId, LPWSTR ObjectTypeName, LPWSTR ObjectName, PSECURITY_DESCRIPTOR SecurityDescriptor, DWORD DesiredAccess, PGENERIC_MAPPING GenericMapping, WINBOOL ObjectCreation, LPDWORD GrantedAccess, LPBOOL AccessStatus, LPBOOL pfGenerateOnClose);
 
@@ -46529,18 +45925,8 @@ extern "C" {
   __attribute__((dllimport)) DWORD SetSecurityDescriptorRMControl (PSECURITY_DESCRIPTOR SecurityDescriptor, PUCHAR RMControl);
   __attribute__((dllimport)) WINBOOL SetSecurityDescriptorSacl (PSECURITY_DESCRIPTOR pSecurityDescriptor, WINBOOL bSaclPresent, PACL pSacl, WINBOOL bSaclDefaulted);
   __attribute__((dllimport)) WINBOOL SetTokenInformation (HANDLE TokenHandle, TOKEN_INFORMATION_CLASS TokenInformationClass, LPVOID TokenInformation, DWORD TokenInformationLength);
-
-
-
-
-
-
-
-}
 # 35 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/synchapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/synchapi.h" 3
-extern "C" {
 # 34 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/synchapi.h" 3
   typedef RTL_SRWLOCK SRWLOCK, *PSRWLOCK;
 
@@ -46596,15 +45982,9 @@ extern "C" {
   WINBOOL DeleteSynchronizationBarrier (LPSYNCHRONIZATION_BARRIER lpBarrier);
   __attribute__((dllimport)) void Sleep (DWORD dwMilliseconds);
   __attribute__((dllimport)) DWORD SignalObjectAndWait (HANDLE hObjectToSignal, HANDLE hObjectToWaitOn, DWORD dwMilliseconds, WINBOOL bAlertable);
-# 150 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/synchapi.h" 3
-}
 # 36 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sysinfoapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sysinfoapi.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sysinfoapi.h" 3
   typedef struct _SYSTEM_INFO {
     __extension__ union {
       DWORD dwOemId;
@@ -46682,41 +46062,17 @@ extern "C" {
   __attribute__((dllimport)) void GetSystemTimePreciseAsFileTime (LPFILETIME lpSystemTimeAsFileTime);
   __attribute__((dllimport)) UINT EnumSystemFirmwareTables (DWORD FirmwareTableProviderSignature, PVOID pFirmwareTableEnumBuffer, DWORD BufferSize);
   __attribute__((dllimport)) UINT GetSystemFirmwareTable (DWORD FirmwareTableProviderSignature, DWORD FirmwareTableID, PVOID pFirmwareTableBuffer, DWORD BufferSize);
-# 117 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sysinfoapi.h" 3
-}
 # 37 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/systemtopologyapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/systemtopologyapi.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/systemtopologyapi.h" 3
   __attribute__((dllimport)) WINBOOL GetNumaHighestNodeNumber (PULONG HighestNodeNumber);
-
-
-
-
-
-
-
-}
 # 38 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/threadpoolapiset.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/threadpoolapiset.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/threadpoolapiset.h" 3
   typedef void ( *PTP_WIN32_IO_CALLBACK) (PTP_CALLBACK_INSTANCE Instance, PVOID Context, PVOID Overlapped, ULONG IoResult, ULONG_PTR NumberOfBytesTransferred, PTP_IO Io);
-# 62 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/threadpoolapiset.h" 3
-}
 # 39 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/threadpoollegacyapiset.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/threadpoollegacyapiset.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/threadpoollegacyapiset.h" 3
   __attribute__((dllimport)) WINBOOL CreateTimerQueueTimer (PHANDLE phNewTimer, HANDLE TimerQueue, WAITORTIMERCALLBACK Callback, PVOID Parameter, DWORD DueTime, DWORD Period, ULONG Flags);
   __attribute__((dllimport)) WINBOOL DeleteTimerQueueTimer (HANDLE TimerQueue, HANDLE Timer, HANDLE CompletionEvent);
 
@@ -46727,17 +46083,9 @@ extern "C" {
   __attribute__((dllimport)) HANDLE CreateTimerQueue (void);
   __attribute__((dllimport)) WINBOOL ChangeTimerQueueTimer (HANDLE TimerQueue, HANDLE Timer, ULONG DueTime, ULONG Period);
   __attribute__((dllimport)) WINBOOL DeleteTimerQueueEx (HANDLE TimerQueue, HANDLE CompletionEvent);
-
-
-
-}
 # 40 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/utilapiset.h" 1 3
-# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/utilapiset.h" 3
-extern "C" {
-
-
-
+# 17 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/utilapiset.h" 3
   __attribute__((dllimport)) PVOID EncodePointer (PVOID Ptr);
   __attribute__((dllimport)) PVOID DecodePointer (PVOID Ptr);
 
@@ -46746,24 +46094,12 @@ extern "C" {
   __attribute__((dllimport)) PVOID EncodeSystemPointer (PVOID Ptr);
   __attribute__((dllimport)) PVOID DecodeSystemPointer (PVOID Ptr);
   __attribute__((dllimport)) WINBOOL Beep (DWORD dwFreq, DWORD dwDuration);
-
-
-
-}
 # 41 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wow64apiset.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wow64apiset.h" 3
-extern "C" {
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wow64apiset.h" 3
   __attribute__((dllimport)) WINBOOL Wow64DisableWow64FsRedirection (PVOID *OldValue);
   __attribute__((dllimport)) WINBOOL Wow64RevertWow64FsRedirection (PVOID OlValue);
   __attribute__((dllimport)) WINBOOL IsWow64Process (HANDLE hProcess, PBOOL Wow64Process);
-
-
-
-}
 # 42 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 
 
@@ -46775,17 +46111,9 @@ extern "C" {
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1 3
 # 65 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
        
-# 561 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
-extern "C" {
-# 1948 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
-}
 # 1960 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
        
 # 50 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
-
-
-
-extern "C" {
 # 160 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 3
   typedef void ( *PFIBER_START_ROUTINE) (LPVOID lpFiberParameter);
   typedef PFIBER_START_ROUTINE LPFIBER_START_ROUTINE;
@@ -47456,14 +46784,7 @@ extern "C" {
 # 3635 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winerror.h" 2 3
 # 2381 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/timezoneapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/timezoneapi.h" 3
-extern "C" {
-
-
-
-
-
-
+# 21 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/timezoneapi.h" 3
   typedef struct _TIME_ZONE_INFORMATION {
     LONG Bias;
     WCHAR StandardName[32];
@@ -47493,13 +46814,6 @@ extern "C" {
   __attribute__((dllimport)) DWORD GetTimeZoneInformation (LPTIME_ZONE_INFORMATION lpTimeZoneInformation);
 # 64 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/timezoneapi.h" 3
   __attribute__((dllimport)) WINBOOL SetTimeZoneInformation (const TIME_ZONE_INFORMATION *lpTimeZoneInformation);
-
-
-
-
-
-
-}
 # 2382 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 2 3
 # 2406 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 3
   typedef struct _SYSTEM_POWER_STATUS {
@@ -47671,135 +46985,8 @@ extern "C" {
 
 
   __attribute__((dllimport)) WINBOOL SetXStateFeaturesMask (PCONTEXT Context, DWORD64 FeatureMask);
-# 2922 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 3
-}
-# 2933 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winbase.h" 3
-extern "C++" {
-
-
-
-  inline __attribute__((__always_inline__)) unsigned _InterlockedIncrement (unsigned volatile *Addend) {
-    return (unsigned) _InterlockedIncrement ((volatile long *) Addend);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long _InterlockedIncrement (unsigned long volatile *Addend) {
-
-    return (unsigned long) _InterlockedIncrement ((volatile long *) Addend);
-
-
-
-  }
-
-
-  inline __attribute__((__always_inline__)) unsigned long long _InterlockedIncrement (unsigned long long volatile *Addend) {
-    return (unsigned long long) _InterlockedIncrement64 ((volatile long long *) Addend);
-  }
-
-
-  inline __attribute__((__always_inline__)) unsigned _InterlockedDecrement (unsigned volatile *Addend) {
-    return (unsigned) _InterlockedDecrement ((volatile long *) Addend);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long _InterlockedDecrement (unsigned long volatile *Addend) {
-
-    return (unsigned long) _InterlockedDecrement ((volatile long *) Addend);
-
-
-
-  }
-
-
-  inline __attribute__((__always_inline__)) unsigned long long _InterlockedDecrement (unsigned long long volatile *Addend) {
-    return (unsigned long long) _InterlockedDecrement64 ((volatile long long *) Addend);
-  }
-
-
-  inline __attribute__((__always_inline__)) unsigned _InterlockedExchange (unsigned volatile *Target, unsigned Value) {
-    return (unsigned) _InterlockedExchange ((volatile long *) Target,(long) Value);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long _InterlockedExchange (unsigned long volatile *Target, unsigned long Value) {
-
-    return (unsigned long) _InterlockedExchange ((volatile long *) Target,(long) Value);
-
-
-
-  }
-
-
-  inline __attribute__((__always_inline__)) unsigned long long _InterlockedExchange (unsigned long long volatile *Target, unsigned long long Value) {
-    return (unsigned long long) _InterlockedExchange64 ((volatile long long *) Target,(long long) Value);
-  }
-
-
-  inline __attribute__((__always_inline__)) unsigned _InterlockedExchangeAdd (unsigned volatile *Addend, unsigned Value) {
-    return (unsigned) _InterlockedExchangeAdd ((volatile long *) Addend,(long) Value);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned InterlockedExchangeSubtract (unsigned volatile *Addend, unsigned Value) {
-    return (unsigned) _InterlockedExchangeAdd ((volatile long *) Addend,- (long) Value);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long _InterlockedExchangeAdd (unsigned long volatile *Addend, unsigned long Value) {
-
-    return (unsigned long) _InterlockedExchangeAdd ((volatile long *) Addend,(long) Value);
-
-
-
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long InterlockedExchangeSubtract (unsigned long volatile *Addend, unsigned long Value) {
-
-    return (unsigned long) _InterlockedExchangeAdd ((volatile long *) Addend,- (long) Value);
-
-
-
-  }
-
-
-  inline __attribute__((__always_inline__)) unsigned long long _InterlockedExchangeAdd (unsigned long long volatile *Addend, unsigned long long Value) {
-    return (unsigned long long) _InterlockedExchangeAdd64 ((volatile long long *) Addend,(long long) Value);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long long InterlockedExchangeSubtract (unsigned long long volatile *Addend, unsigned long long Value) {
-    return (unsigned long long) _InterlockedExchangeAdd64 ((volatile long long *) Addend,- (long long) Value);
-  }
-
-
-  inline __attribute__((__always_inline__)) unsigned _InterlockedCompareExchange (unsigned volatile *Destination, unsigned Exchange, unsigned Comperand) {
-    return (unsigned) _InterlockedCompareExchange ((volatile long *) Destination,(long) Exchange,(long) Comperand);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long _InterlockedCompareExchange (unsigned long volatile *Destination, unsigned long Exchange, unsigned long Comperand) {
-
-    return (unsigned long) _InterlockedCompareExchange ((volatile long *) Destination,(long) Exchange,(long) Comperand);
-
-
-
-  }
-
-
-  inline __attribute__((__always_inline__)) unsigned long long _InterlockedCompareExchange (unsigned long long volatile *Destination, unsigned long long Exchange, unsigned long long Comperand) {
-    return (unsigned long long) _InterlockedCompareExchange64 ((volatile long long *) Destination,(long long) Exchange,(long long) Comperand);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long long _InterlockedAnd (unsigned long long volatile *Destination, unsigned long long Value) {
-    return (unsigned long long) _InterlockedAnd64 ((volatile long long *) Destination,(long long) Value);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long long _InterlockedOr (unsigned long long volatile *Destination, unsigned long long Value) {
-    return (unsigned long long) _InterlockedOr64 ((volatile long long *) Destination,(long long) Value);
-  }
-
-  inline __attribute__((__always_inline__)) unsigned long long _InterlockedXor (unsigned long long volatile *Destination, unsigned long long Value) {
-    return (unsigned long long) _InterlockedXor64 ((volatile long long *) Destination,(long long) Value);
-  }
-
-}
 # 71 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wingdi.h" 1 3
-# 25 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wingdi.h" 3
-extern "C" {
 # 224 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wingdi.h" 3
   typedef struct _DRAWPATRECT {
     POINT ptPosition;
@@ -50184,22 +49371,9 @@ extern "C" {
 
 
   __attribute__((dllimport)) DWORD wglSwapMultipleBuffers(UINT,const WGLSWAP *);
-
-
-
-
-
-}
 # 72 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 1 3
-# 15 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 3
-extern "C" {
-
-
-
-
-
-
+# 22 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 1 3
 # 23 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stdarg.h" 1 3 4
@@ -50207,10 +49381,6 @@ extern "C" {
 # 2 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stdarg.h" 2 3 4
 # 24 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 1 3
-# 29 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 3
-extern "C++" {
-__extension__ template<typename T> const GUID &__mingw_uuidof();
-}
 # 25 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 2 3
 
 
@@ -50361,14 +49531,14 @@ __extension__ template<typename T> const GUID &__mingw_uuidof();
   } MOUSEHOOKSTRUCT,*LPMOUSEHOOKSTRUCT,*PMOUSEHOOKSTRUCT;
 
 
-  typedef struct tagMOUSEHOOKSTRUCTEX : public tagMOUSEHOOKSTRUCT {
+
+
+
+
+  typedef struct tagMOUSEHOOKSTRUCTEX {
+    MOUSEHOOKSTRUCT __unnamed;
     DWORD mouseData;
   } MOUSEHOOKSTRUCTEX,*LPMOUSEHOOKSTRUCTEX,*PMOUSEHOOKSTRUCTEX;
-
-
-
-
-
 
 
   typedef struct tagHARDWAREHOOKSTRUCT {
@@ -51911,10 +51081,6 @@ __extension__ template<typename T> const GUID &__mingw_uuidof();
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/tvout.h" 1 3
 # 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/tvout.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 1 3
-# 29 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 3
-extern "C++" {
-__extension__ template<typename T> const GUID &__mingw_uuidof();
-}
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/tvout.h" 2 3
 
 typedef struct _VIDEOPARAMETERS {
@@ -52042,18 +51208,31 @@ typedef struct _VIDEOPARAMETERS {
     RECT rcWork;
     DWORD dwFlags;
   } MONITORINFO,*LPMONITORINFO;
-# 5576 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 3
-  typedef struct tagMONITORINFOEXA : public tagMONITORINFO {
+# 5587 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 3
+  typedef struct tagMONITORINFOEXA {
+    __extension__ struct {
+      DWORD cbSize;
+      RECT rcMonitor;
+      RECT rcWork;
+      DWORD dwFlags;
+    };
     CHAR szDevice[32];
   } MONITORINFOEXA,*LPMONITORINFOEXA;
 
-  typedef struct tagMONITORINFOEXW : public tagMONITORINFO {
+  typedef struct tagMONITORINFOEXW {
+    __extension__ struct {
+      DWORD cbSize;
+      RECT rcMonitor;
+      RECT rcWork;
+      DWORD dwFlags;
+    };
     WCHAR szDevice[32];
   } MONITORINFOEXW,*LPMONITORINFOEXW;
 
   typedef MONITORINFOEXA MONITORINFOEX;
   typedef LPMONITORINFOEXA LPMONITORINFOEX;
-# 5611 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 3
+
+
   typedef WINBOOL ( *MONITORENUMPROC)(HMONITOR,HDC,LPRECT,LPARAM);
 
   __attribute__((dllimport)) void SetDebugErrorLevel (DWORD dwLevel);
@@ -52328,21 +51507,11 @@ typedef struct _VIDEOPARAMETERS {
   __attribute__((dllimport)) WINBOOL ShutdownBlockReasonCreate (HWND hWnd, LPCWSTR pwszReason);
   __attribute__((dllimport)) WINBOOL ShutdownBlockReasonQuery (HWND hWnd, LPWSTR pwszBuff, DWORD *pcchBuff);
   __attribute__((dllimport)) WINBOOL ShutdownBlockReasonDestroy (HWND hWnd);
-# 6528 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h" 3
-}
 # 73 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnls.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnls.h" 3
-extern "C" {
-
-
-
+# 16 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnls.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/datetimeapi.h" 1 3
-# 15 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/datetimeapi.h" 3
-extern "C" {
-
-
-
+# 19 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/datetimeapi.h" 3
   __attribute__((dllimport)) int GetTimeFormatEx (LPCWSTR lpLocaleName, DWORD dwFlags, const SYSTEMTIME *lpTime, LPCWSTR lpFormat, LPWSTR lpTimeStr, int cchTime);
   __attribute__((dllimport)) int GetDateFormatEx (LPCWSTR lpLocaleName, DWORD dwFlags, const SYSTEMTIME *lpDate, LPCWSTR lpFormat, LPWSTR lpDateStr, int cchDate, LPCWSTR lpCalendar);
 
@@ -52352,14 +51521,6 @@ extern "C" {
   __attribute__((dllimport)) int GetDateFormatW (LCID Locale, DWORD dwFlags, const SYSTEMTIME *lpDate, LPCWSTR lpFormat, LPWSTR lpDateStr, int cchDate);
   __attribute__((dllimport)) int GetTimeFormatA (LCID Locale, DWORD dwFlags, const SYSTEMTIME *lpTime, LPCSTR lpFormat, LPSTR lpTimeStr, int cchTime);
   __attribute__((dllimport)) int GetTimeFormatW (LCID Locale, DWORD dwFlags, const SYSTEMTIME *lpTime, LPCWSTR lpFormat, LPWSTR lpTimeStr, int cchTime);
-
-
-
-
-
-
-
-}
 # 17 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnls.h" 2 3
 # 644 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnls.h" 3
   typedef DWORD LGRPID;
@@ -52532,7 +51693,7 @@ extern "C" {
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stringapiset.h" 2 3
 
 
-extern "C" {
+
 
 
 
@@ -52544,10 +51705,6 @@ extern "C" {
   __attribute__((dllimport)) WINBOOL GetStringTypeW (DWORD dwInfoType, LPCWCH lpSrcStr, int cchSrc, LPWORD lpCharType);
   __attribute__((dllimport)) int MultiByteToWideChar (UINT CodePage, DWORD dwFlags, LPCCH lpMultiByteStr, int cbMultiByte, LPWSTR lpWideCharStr, int cchWideChar);
   __attribute__((dllimport)) int WideCharToMultiByte (UINT CodePage, DWORD dwFlags, LPCWCH lpWideCharStr, int cchWideChar, LPSTR lpMultiByteStr, int cbMultiByte, LPCCH lpDefaultChar, LPBOOL lpUsedDefaultChar);
-
-
-
-}
 # 887 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnls.h" 2 3
 # 901 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnls.h" 3
   __attribute__((dllimport)) WINBOOL IsValidCodePage (UINT CodePage);
@@ -52624,14 +51781,9 @@ extern "C" {
 # 1049 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnls.h" 3
   __attribute__((dllimport)) WINBOOL EnumSystemCodePagesA (CODEPAGE_ENUMPROCA lpCodePageEnumProc, DWORD dwFlags);
   __attribute__((dllimport)) WINBOOL EnumSystemCodePagesW (CODEPAGE_ENUMPROCW lpCodePageEnumProc, DWORD dwFlags);
-# 1100 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnls.h" 3
-}
 # 74 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincon.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincon.h" 3
-extern "C" {
-
-
+# 17 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincon.h" 3
   typedef struct _COORD {
     SHORT X;
     SHORT Y;
@@ -52886,17 +52038,11 @@ __attribute__((dllimport)) WINBOOL SetCurrentConsoleFontEx(
   WINBOOL bMaximumWindow,
   PCONSOLE_FONT_INFOEX lpConsoleCurrentFontEx
 );
-# 383 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincon.h" 3
-}
 # 75 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winver.h" 1 3
 # 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winver.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 1 3
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winver.h" 2 3
-
-
-
-extern "C" {
 # 113 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winver.h" 3
   typedef struct tagVS_FIXEDFILEINFO
   {
@@ -52927,14 +52073,8 @@ extern "C" {
   DWORD VerLanguageNameW(DWORD wLang,LPWSTR szLang,DWORD nSize);
   WINBOOL VerQueryValueA(LPCVOID pBlock,LPCSTR lpSubBlock,LPVOID *lplpBuffer,PUINT puLen);
   WINBOOL VerQueryValueW(LPCVOID pBlock,LPCWSTR lpSubBlock,LPVOID *lplpBuffer,PUINT puLen);
-
-
-
-}
 # 76 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winreg.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winreg.h" 3
-extern "C" {
 # 34 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winreg.h" 3
   typedef ACCESS_MASK REGSAM;
   typedef LONG LSTATUS;
@@ -53069,14 +52209,9 @@ extern "C" {
   __attribute__((dllimport)) LONG RegSaveKeyExA(HKEY hKey,LPCSTR lpFile,LPSECURITY_ATTRIBUTES lpSecurityAttributes,DWORD Flags);
   __attribute__((dllimport)) LONG RegSaveKeyExW(HKEY hKey,LPCWSTR lpFile,LPSECURITY_ATTRIBUTES lpSecurityAttributes,DWORD Flags);
   __attribute__((dllimport)) LONG Wow64Win32ApiEntry (DWORD dwFuncNumber,DWORD dwFlag,DWORD dwRes);
-# 412 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winreg.h" 3
-}
 # 77 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnetwk.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnetwk.h" 3
-extern "C" {
-
-
+# 17 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnetwk.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wnnc.h" 1 3
 # 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnetwk.h" 2 3
 # 53 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnetwk.h" 3
@@ -53281,9 +52416,6 @@ extern "C" {
 # 350 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winnetwk.h" 3
   DWORD MultinetGetConnectionPerformanceA(LPNETRESOURCEA lpNetResource,LPNETCONNECTINFOSTRUCT lpNetConnectInfoStruct);
   DWORD MultinetGetConnectionPerformanceW(LPNETRESOURCEW lpNetResource,LPNETCONNECTINFOSTRUCT lpNetConnectInfoStruct);
-
-
-}
 # 78 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/virtdisk.h" 1 3
 # 79 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
@@ -53292,8 +52424,6 @@ extern "C" {
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/cderr.h" 1 3
 # 82 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/dde.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/dde.h" 3
-extern "C" {
 # 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/dde.h" 3
   typedef struct {
     unsigned short bAppReturnCode:8,reserved:6,fBusy:1,fAck:1;
@@ -53334,15 +52464,9 @@ extern "C" {
   WINBOOL UnpackDDElParam(UINT msg,LPARAM lParam,PUINT_PTR puiLo,PUINT_PTR puiHi);
   WINBOOL FreeDDElParam(UINT msg,LPARAM lParam);
   LPARAM ReuseDDElParam(LPARAM lParam,UINT msgIn,UINT msgOut,UINT_PTR uiLo,UINT_PTR uiHi);
-
-
-}
 # 83 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ddeml.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ddeml.h" 3
-extern "C" {
-
-
+# 15 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ddeml.h" 3
   struct HCONVLIST__ { int unused; }; typedef struct HCONVLIST__ *HCONVLIST;
   struct HCONV__ { int unused; }; typedef struct HCONV__ *HCONV;
   struct HSZ__ { int unused; }; typedef struct HSZ__ *HSZ;
@@ -53524,8 +52648,6 @@ extern "C" {
     HCONV hConvClient;
     HCONV hConvServer;
   } MONCONVSTRUCT,*PMONCONVSTRUCT;
-# 367 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ddeml.h" 3
-}
 # 84 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/dlgs.h" 1 3
 # 194 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/dlgs.h" 3
@@ -53537,8 +52659,6 @@ typedef struct tagCRGB {
 } CRGB;
 # 85 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/lzexpand.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/lzexpand.h" 3
-extern "C" {
 # 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/lzexpand.h" 3
   INT LZStart(void);
   void LZDone(void);
@@ -53552,9 +52672,6 @@ extern "C" {
   LONG LZSeek(INT,LONG,INT);
   INT LZRead(INT,LPSTR,INT);
   void LZClose(INT);
-
-
-}
 # 86 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/mmsystem.h" 1 3
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/mmsystem.h" 3
@@ -53567,9 +52684,6 @@ extern "C" {
 
 #pragma pack(push,1)
 # 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/mmsystem.h" 2 3
-
-
-extern "C" {
 # 28 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/mmsystem.h" 3
   typedef UINT MMVERSION;
   typedef UINT MMRESULT;
@@ -55084,10 +54198,7 @@ extern "C" {
   typedef MCI_OVLY_LOAD_PARMSA MCI_OVLY_LOAD_PARMS;
   typedef PMCI_OVLY_LOAD_PARMSA PMCI_OVLY_LOAD_PARMS;
   typedef LPMCI_OVLY_LOAD_PARMSA LPMCI_OVLY_LOAD_PARMS;
-# 2633 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/mmsystem.h" 3
-}
-
-
+# 2636 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/mmsystem.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/poppack.h" 1 3
 
 
@@ -55099,13 +54210,7 @@ extern "C" {
 # 2637 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/mmsystem.h" 2 3
 # 87 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/nb30.h" 1 3
-# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/nb30.h" 3
-extern "C" {
-
-
-
-
-
+# 16 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/nb30.h" 3
   typedef struct _NCB {
     UCHAR ncb_command;
     UCHAR ncb_retcode;
@@ -55208,11 +54313,6 @@ extern "C" {
   } ACTION_HEADER,*PACTION_HEADER;
 # 209 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/nb30.h" 3
   UCHAR Netbios(PNCB pncb);
-
-
-
-
-}
 # 88 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpc.h" 1 3
 
@@ -55233,15 +54333,7 @@ extern "C" {
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 1 3
 # 17 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpc.h" 2 3
-
-
-
-
-
-
-extern "C" {
-
-
+# 26 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpc.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/basetsd.h" 1 3
 
 
@@ -55265,8 +54357,6 @@ extern "C" {
   typedef long RPC_STATUS;
 # 82 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpc.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcdce.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcdce.h" 3
-extern "C" {
 # 33 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcdce.h" 3
   typedef unsigned char *RPC_CSTR;
   typedef unsigned short *RPC_WSTR;
@@ -55276,10 +54366,6 @@ extern "C" {
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 1 3
-# 29 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 3
-extern "C++" {
-__extension__ template<typename T> const GUID &__mingw_uuidof();
-}
 # 41 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcdce.h" 2 3
 
 
@@ -55617,10 +54703,7 @@ __extension__ template<typename T> const GUID &__mingw_uuidof();
   __attribute__((dllimport)) RPC_STATUS RpcMgmtSetAuthorizationFn(RPC_MGMT_AUTHORIZATION_FN AuthorizationFn);
 # 623 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcdce.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcdcep.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcdcep.h" 3
-extern "C" {
-
-
+# 15 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcdcep.h" 3
   typedef struct _RPC_VERSION {
     unsigned short MajorVersion;
     unsigned short MinorVersion;
@@ -55827,13 +54910,7 @@ extern "C" {
   __attribute__((dllimport)) RPC_STATUS I_RpcProxyNewConnection(unsigned long ConnectionType,unsigned short *ServerAddress,unsigned short *ServerPort,unsigned short *MinConnTimeout,void *ConnectionParameter,RDR_CALLOUT_STATE *CallOutState,I_RpcProxyCallbackInterface *ProxyCallbackInterface);
   __attribute__((dllimport)) RPC_STATUS I_RpcReplyToClientWithStatus(void *ConnectionParameter,RPC_STATUS RpcStatus);
   __attribute__((dllimport)) void I_RpcRecordCalloutFailure(RPC_STATUS RpcStatus,RDR_CALLOUT_STATE *CallOutState,unsigned short *DllName);
-
-
-}
 # 624 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcdce.h" 2 3
-
-
-}
 # 83 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpc.h" 2 3
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcnsi.h" 1 3
@@ -55912,14 +54989,7 @@ __attribute__((dllimport)) RPC_STATUS RpcNsBindingSelect(RPC_BINDING_VECTOR *Bin
 
 #pragma pack(push,8)
 # 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcasync.h" 2 3
-
-
-
-extern "C" {
-
-
-
-
+# 20 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcasync.h" 3
   typedef enum _RPC_NOTIFICATION_TYPES {
     RpcNotificationTypeNone,RpcNotificationTypeEvent,RpcNotificationTypeApc,RpcNotificationTypeIoc,RpcNotificationTypeHwnd,
     RpcNotificationTypeCallback
@@ -56145,11 +55215,7 @@ RPC_STATUS RpcServerUnsubscribeForNotification(
   RPC_NOTIFICATIONS Notification,
   unsigned long *NotificationsQueued
 );
-# 327 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcasync.h" 3
-}
-
-
-
+# 331 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcasync.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/poppack.h" 1 3
 
 
@@ -56172,38 +55238,30 @@ RPC_STATUS RpcServerUnsubscribeForNotification(
 
 #pragma pack(pop)
 # 109 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpc.h" 2 3
-
-
-
-}
 # 89 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 1 3
-# 56 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
-extern "C" {
-
-
-
+# 60 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
   struct HDROP__ { int unused; }; typedef struct HDROP__ *HDROP;
 # 70 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
-  extern "C" __attribute__((dllimport)) UINT DragQueryFileA (HDROP hDrop, UINT iFile, LPSTR lpszFile, UINT cch);
-  extern "C" __attribute__((dllimport)) UINT DragQueryFileW (HDROP hDrop, UINT iFile, LPWSTR lpszFile, UINT cch);
-  extern "C" __attribute__((dllimport)) WINBOOL DragQueryPoint (HDROP hDrop, POINT *ppt);
-  extern "C" __attribute__((dllimport)) void DragFinish (HDROP hDrop);
-  extern "C" __attribute__((dllimport)) void DragAcceptFiles (HWND hWnd, WINBOOL fAccept);
-  extern "C" __attribute__((dllimport)) HINSTANCE ShellExecuteA (HWND hwnd, LPCSTR lpOperation, LPCSTR lpFile, LPCSTR lpParameters, LPCSTR lpDirectory, INT nShowCmd);
-  extern "C" __attribute__((dllimport)) HINSTANCE ShellExecuteW (HWND hwnd, LPCWSTR lpOperation, LPCWSTR lpFile, LPCWSTR lpParameters, LPCWSTR lpDirectory, INT nShowCmd);
-  extern "C" __attribute__((dllimport)) HINSTANCE FindExecutableA (LPCSTR lpFile, LPCSTR lpDirectory, LPSTR lpResult);
-  extern "C" __attribute__((dllimport)) HINSTANCE FindExecutableW (LPCWSTR lpFile, LPCWSTR lpDirectory, LPWSTR lpResult);
-  extern "C" __attribute__((dllimport)) LPWSTR * CommandLineToArgvW (LPCWSTR lpCmdLine, int *pNumArgs);
-  extern "C" __attribute__((dllimport)) INT ShellAboutA (HWND hWnd, LPCSTR szApp, LPCSTR szOtherStuff, HICON hIcon);
-  extern "C" __attribute__((dllimport)) INT ShellAboutW (HWND hWnd, LPCWSTR szApp, LPCWSTR szOtherStuff, HICON hIcon);
-  extern "C" __attribute__((dllimport)) HICON DuplicateIcon (HINSTANCE hInst, HICON hIcon);
-  extern "C" __attribute__((dllimport)) HICON ExtractAssociatedIconA (HINSTANCE hInst, LPSTR pszIconPath, WORD *piIcon);
-  extern "C" __attribute__((dllimport)) HICON ExtractAssociatedIconW (HINSTANCE hInst, LPWSTR pszIconPath, WORD *piIcon);
-  extern "C" __attribute__((dllimport)) HICON ExtractAssociatedIconExA (HINSTANCE hInst, LPSTR pszIconPath, WORD *piIconIndex, WORD *piIconId);
-  extern "C" __attribute__((dllimport)) HICON ExtractAssociatedIconExW (HINSTANCE hInst, LPWSTR pszIconPath, WORD *piIconIndex, WORD *piIconId);
-  extern "C" __attribute__((dllimport)) HICON ExtractIconA (HINSTANCE hInst, LPCSTR pszExeFileName, UINT nIconIndex);
-  extern "C" __attribute__((dllimport)) HICON ExtractIconW (HINSTANCE hInst, LPCWSTR pszExeFileName, UINT nIconIndex);
+  __attribute__((dllimport)) UINT DragQueryFileA (HDROP hDrop, UINT iFile, LPSTR lpszFile, UINT cch);
+  __attribute__((dllimport)) UINT DragQueryFileW (HDROP hDrop, UINT iFile, LPWSTR lpszFile, UINT cch);
+  __attribute__((dllimport)) WINBOOL DragQueryPoint (HDROP hDrop, POINT *ppt);
+  __attribute__((dllimport)) void DragFinish (HDROP hDrop);
+  __attribute__((dllimport)) void DragAcceptFiles (HWND hWnd, WINBOOL fAccept);
+  __attribute__((dllimport)) HINSTANCE ShellExecuteA (HWND hwnd, LPCSTR lpOperation, LPCSTR lpFile, LPCSTR lpParameters, LPCSTR lpDirectory, INT nShowCmd);
+  __attribute__((dllimport)) HINSTANCE ShellExecuteW (HWND hwnd, LPCWSTR lpOperation, LPCWSTR lpFile, LPCWSTR lpParameters, LPCWSTR lpDirectory, INT nShowCmd);
+  __attribute__((dllimport)) HINSTANCE FindExecutableA (LPCSTR lpFile, LPCSTR lpDirectory, LPSTR lpResult);
+  __attribute__((dllimport)) HINSTANCE FindExecutableW (LPCWSTR lpFile, LPCWSTR lpDirectory, LPWSTR lpResult);
+  __attribute__((dllimport)) LPWSTR * CommandLineToArgvW (LPCWSTR lpCmdLine, int *pNumArgs);
+  __attribute__((dllimport)) INT ShellAboutA (HWND hWnd, LPCSTR szApp, LPCSTR szOtherStuff, HICON hIcon);
+  __attribute__((dllimport)) INT ShellAboutW (HWND hWnd, LPCWSTR szApp, LPCWSTR szOtherStuff, HICON hIcon);
+  __attribute__((dllimport)) HICON DuplicateIcon (HINSTANCE hInst, HICON hIcon);
+  __attribute__((dllimport)) HICON ExtractAssociatedIconA (HINSTANCE hInst, LPSTR pszIconPath, WORD *piIcon);
+  __attribute__((dllimport)) HICON ExtractAssociatedIconW (HINSTANCE hInst, LPWSTR pszIconPath, WORD *piIcon);
+  __attribute__((dllimport)) HICON ExtractAssociatedIconExA (HINSTANCE hInst, LPSTR pszIconPath, WORD *piIconIndex, WORD *piIconId);
+  __attribute__((dllimport)) HICON ExtractAssociatedIconExW (HINSTANCE hInst, LPWSTR pszIconPath, WORD *piIconIndex, WORD *piIconId);
+  __attribute__((dllimport)) HICON ExtractIconA (HINSTANCE hInst, LPCSTR pszExeFileName, UINT nIconIndex);
+  __attribute__((dllimport)) HICON ExtractIconW (HINSTANCE hInst, LPCWSTR pszExeFileName, UINT nIconIndex);
 
   typedef struct _DRAGINFOA {
     UINT uSize;
@@ -56233,11 +55291,11 @@ extern "C" {
     LPARAM lParam;
   } APPBARDATA,*PAPPBARDATA;
 
-  extern "C" __attribute__((dllimport)) UINT_PTR SHAppBarMessage (DWORD dwMessage, PAPPBARDATA pData);
-  extern "C" __attribute__((dllimport)) DWORD DoEnvironmentSubstA (LPSTR pszSrc, UINT cchSrc);
-  extern "C" __attribute__((dllimport)) DWORD DoEnvironmentSubstW (LPWSTR pszSrc, UINT cchSrc);
-  extern "C" __attribute__((dllimport)) UINT ExtractIconExA (LPCSTR lpszFile, int nIconIndex, HICON *phiconLarge, HICON *phiconSmall, UINT nIcons);
-  extern "C" __attribute__((dllimport)) UINT ExtractIconExW (LPCWSTR lpszFile, int nIconIndex, HICON *phiconLarge, HICON *phiconSmall, UINT nIcons);
+  __attribute__((dllimport)) UINT_PTR SHAppBarMessage (DWORD dwMessage, PAPPBARDATA pData);
+  __attribute__((dllimport)) DWORD DoEnvironmentSubstA (LPSTR pszSrc, UINT cchSrc);
+  __attribute__((dllimport)) DWORD DoEnvironmentSubstW (LPWSTR pszSrc, UINT cchSrc);
+  __attribute__((dllimport)) UINT ExtractIconExA (LPCSTR lpszFile, int nIconIndex, HICON *phiconLarge, HICON *phiconSmall, UINT nIcons);
+  __attribute__((dllimport)) UINT ExtractIconExW (LPCWSTR lpszFile, int nIconIndex, HICON *phiconLarge, HICON *phiconSmall, UINT nIcons);
 # 183 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
   typedef WORD FILEOP_FLAGS;
 
@@ -56274,12 +55332,12 @@ extern "C" {
   typedef SHFILEOPSTRUCTA SHFILEOPSTRUCT;
   typedef LPSHFILEOPSTRUCTA LPSHFILEOPSTRUCT;
 
-  extern "C" __attribute__((dllimport)) int SHFileOperationA (LPSHFILEOPSTRUCTA lpFileOp);
-  extern "C" __attribute__((dllimport)) int SHFileOperationW (LPSHFILEOPSTRUCTW lpFileOp);
+  __attribute__((dllimport)) int SHFileOperationA (LPSHFILEOPSTRUCTA lpFileOp);
+  __attribute__((dllimport)) int SHFileOperationW (LPSHFILEOPSTRUCTW lpFileOp);
 
 
 
-  extern "C" __attribute__((dllimport)) void SHFreeNameMappings (HANDLE hNameMappings);
+  __attribute__((dllimport)) void SHFreeNameMappings (HANDLE hNameMappings);
 
   typedef struct _SHNAMEMAPPINGA {
     LPSTR pszOldPath;
@@ -56344,8 +55402,8 @@ extern "C" {
   typedef SHELLEXECUTEINFOA SHELLEXECUTEINFO;
   typedef LPSHELLEXECUTEINFOA LPSHELLEXECUTEINFO;
 
-  extern "C" __attribute__((dllimport)) WINBOOL ShellExecuteExA (SHELLEXECUTEINFOA *pExecInfo);
-  extern "C" __attribute__((dllimport)) WINBOOL ShellExecuteExW (SHELLEXECUTEINFOW *pExecInfo);
+  __attribute__((dllimport)) WINBOOL ShellExecuteExA (SHELLEXECUTEINFOA *pExecInfo);
+  __attribute__((dllimport)) WINBOOL ShellExecuteExW (SHELLEXECUTEINFOW *pExecInfo);
 
 
 
@@ -56365,7 +55423,7 @@ extern "C" {
     LPPROCESS_INFORMATION lpProcessInformation;
   } SHCREATEPROCESSINFOW,*PSHCREATEPROCESSINFOW;
 
-  extern "C" __attribute__((dllimport)) WINBOOL SHCreateProcessAsUserW (PSHCREATEPROCESSINFOW pscpi);
+  __attribute__((dllimport)) WINBOOL SHCreateProcessAsUserW (PSHCREATEPROCESSINFOW pscpi);
 # 399 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
   typedef struct _SHQUERYRBINFO {
     DWORD cbSize;
@@ -56377,13 +55435,13 @@ extern "C" {
 
 
 
-  extern "C" __attribute__((dllimport)) HRESULT SHQueryRecycleBinA (LPCSTR pszRootPath, LPSHQUERYRBINFO pSHQueryRBInfo);
-  extern "C" __attribute__((dllimport)) HRESULT SHQueryRecycleBinW (LPCWSTR pszRootPath, LPSHQUERYRBINFO pSHQueryRBInfo);
+  __attribute__((dllimport)) HRESULT SHQueryRecycleBinA (LPCSTR pszRootPath, LPSHQUERYRBINFO pSHQueryRBInfo);
+  __attribute__((dllimport)) HRESULT SHQueryRecycleBinW (LPCWSTR pszRootPath, LPSHQUERYRBINFO pSHQueryRBInfo);
 
 
 
-  extern "C" __attribute__((dllimport)) HRESULT SHEmptyRecycleBinA (HWND hwnd, LPCSTR pszRootPath, DWORD dwFlags);
-  extern "C" __attribute__((dllimport)) HRESULT SHEmptyRecycleBinW (HWND hwnd, LPCWSTR pszRootPath, DWORD dwFlags);
+  __attribute__((dllimport)) HRESULT SHEmptyRecycleBinA (HWND hwnd, LPCSTR pszRootPath, DWORD dwFlags);
+  __attribute__((dllimport)) HRESULT SHEmptyRecycleBinW (HWND hwnd, LPCWSTR pszRootPath, DWORD dwFlags);
 # 443 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
   typedef struct _NOTIFYICONDATAA {
     DWORD cbSize;
@@ -56441,8 +55499,8 @@ extern "C" {
     GUID guidItem;
   } NOTIFYICONIDENTIFIER,*PNOTIFYICONIDENTIFIER;
 
-  extern "C" __attribute__((dllimport)) WINBOOL Shell_NotifyIconA (DWORD dwMessage, PNOTIFYICONDATAA lpData);
-  extern "C" __attribute__((dllimport)) WINBOOL Shell_NotifyIconW (DWORD dwMessage, PNOTIFYICONDATAW lpData);
+  __attribute__((dllimport)) WINBOOL Shell_NotifyIconA (DWORD dwMessage, PNOTIFYICONDATAA lpData);
+  __attribute__((dllimport)) WINBOOL Shell_NotifyIconW (DWORD dwMessage, PNOTIFYICONDATAW lpData);
 # 576 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
   typedef struct _SHFILEINFOA {
     HICON hIcon;
@@ -56462,64 +55520,58 @@ extern "C" {
 
   typedef SHFILEINFOA SHFILEINFO;
 # 616 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
-  extern "C" __attribute__((dllimport)) DWORD_PTR SHGetFileInfoA (LPCSTR pszPath, DWORD dwFileAttributes, SHFILEINFOA *psfi, UINT cbFileInfo, UINT uFlags);
-  extern "C" __attribute__((dllimport)) DWORD_PTR SHGetFileInfoW (LPCWSTR pszPath, DWORD dwFileAttributes, SHFILEINFOW *psfi, UINT cbFileInfo, UINT uFlags);
+  __attribute__((dllimport)) DWORD_PTR SHGetFileInfoA (LPCSTR pszPath, DWORD dwFileAttributes, SHFILEINFOA *psfi, UINT cbFileInfo, UINT uFlags);
+  __attribute__((dllimport)) DWORD_PTR SHGetFileInfoW (LPCWSTR pszPath, DWORD dwFileAttributes, SHFILEINFOW *psfi, UINT cbFileInfo, UINT uFlags);
 # 745 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
-  extern "C" __attribute__((dllimport)) WINBOOL SHGetDiskFreeSpaceExA (LPCSTR pszDirectoryName, ULARGE_INTEGER *pulFreeBytesAvailableToCaller, ULARGE_INTEGER *pulTotalNumberOfBytes, ULARGE_INTEGER *pulTotalNumberOfFreeBytes);
-  extern "C" __attribute__((dllimport)) WINBOOL SHGetDiskFreeSpaceExW (LPCWSTR pszDirectoryName, ULARGE_INTEGER *pulFreeBytesAvailableToCaller, ULARGE_INTEGER *pulTotalNumberOfBytes, ULARGE_INTEGER *pulTotalNumberOfFreeBytes);
-  extern "C" __attribute__((dllimport)) WINBOOL SHGetNewLinkInfoA (LPCSTR pszLinkTo, LPCSTR pszDir, LPSTR pszName, WINBOOL *pfMustCopy, UINT uFlags);
-  extern "C" __attribute__((dllimport)) WINBOOL SHGetNewLinkInfoW (LPCWSTR pszLinkTo, LPCWSTR pszDir, LPWSTR pszName, WINBOOL *pfMustCopy, UINT uFlags);
+  __attribute__((dllimport)) WINBOOL SHGetDiskFreeSpaceExA (LPCSTR pszDirectoryName, ULARGE_INTEGER *pulFreeBytesAvailableToCaller, ULARGE_INTEGER *pulTotalNumberOfBytes, ULARGE_INTEGER *pulTotalNumberOfFreeBytes);
+  __attribute__((dllimport)) WINBOOL SHGetDiskFreeSpaceExW (LPCWSTR pszDirectoryName, ULARGE_INTEGER *pulFreeBytesAvailableToCaller, ULARGE_INTEGER *pulTotalNumberOfBytes, ULARGE_INTEGER *pulTotalNumberOfFreeBytes);
+  __attribute__((dllimport)) WINBOOL SHGetNewLinkInfoA (LPCSTR pszLinkTo, LPCSTR pszDir, LPSTR pszName, WINBOOL *pfMustCopy, UINT uFlags);
+  __attribute__((dllimport)) WINBOOL SHGetNewLinkInfoW (LPCWSTR pszLinkTo, LPCWSTR pszDir, LPWSTR pszName, WINBOOL *pfMustCopy, UINT uFlags);
 # 773 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
-  extern "C" __attribute__((dllimport)) WINBOOL SHInvokePrinterCommandA (HWND hwnd, UINT uAction, LPCSTR lpBuf1, LPCSTR lpBuf2, WINBOOL fModal);
-  extern "C" __attribute__((dllimport)) WINBOOL SHInvokePrinterCommandW (HWND hwnd, UINT uAction, LPCWSTR lpBuf1, LPCWSTR lpBuf2, WINBOOL fModal);
+  __attribute__((dllimport)) WINBOOL SHInvokePrinterCommandA (HWND hwnd, UINT uAction, LPCSTR lpBuf1, LPCSTR lpBuf2, WINBOOL fModal);
+  __attribute__((dllimport)) WINBOOL SHInvokePrinterCommandW (HWND hwnd, UINT uAction, LPCWSTR lpBuf1, LPCWSTR lpBuf2, WINBOOL fModal);
 # 800 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
-  extern "C" __attribute__((dllimport)) HRESULT SHLoadNonloadedIconOverlayIdentifiers (void);
-  extern "C" __attribute__((dllimport)) HRESULT SHIsFileAvailableOffline (PCWSTR pwszPath, DWORD *pdwStatus);
+  __attribute__((dllimport)) HRESULT SHLoadNonloadedIconOverlayIdentifiers (void);
+  __attribute__((dllimport)) HRESULT SHIsFileAvailableOffline (PCWSTR pwszPath, DWORD *pdwStatus);
 
 
 
 
 
-  extern "C" __attribute__((dllimport)) HRESULT SHSetLocalizedName (PCWSTR pszPath, PCWSTR pszResModule, int idsRes);
+  __attribute__((dllimport)) HRESULT SHSetLocalizedName (PCWSTR pszPath, PCWSTR pszResModule, int idsRes);
 # 820 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
-  extern "C" __attribute__((dllimport)) int __attribute__((__cdecl__)) ShellMessageBoxA (HINSTANCE hAppInst, HWND hWnd, LPCSTR lpcText, LPCSTR lpcTitle, UINT fuStyle,...);
-  extern "C" __attribute__((dllimport)) int __attribute__((__cdecl__)) ShellMessageBoxW (HINSTANCE hAppInst, HWND hWnd, LPCWSTR lpcText, LPCWSTR lpcTitle, UINT fuStyle,...);
+  extern __attribute__((dllimport)) int __attribute__((__cdecl__)) ShellMessageBoxA (HINSTANCE hAppInst, HWND hWnd, LPCSTR lpcText, LPCSTR lpcTitle, UINT fuStyle,...);
+  extern __attribute__((dllimport)) int __attribute__((__cdecl__)) ShellMessageBoxW (HINSTANCE hAppInst, HWND hWnd, LPCWSTR lpcText, LPCWSTR lpcTitle, UINT fuStyle,...);
 
 
 
-  extern "C" __attribute__((dllimport)) WINBOOL IsLFNDriveA (LPCSTR pszPath);
-  extern "C" __attribute__((dllimport)) WINBOOL IsLFNDriveW (LPCWSTR pszPath);
-
-
-
-
-  extern "C" HRESULT SHEnumerateUnreadMailAccountsA (HKEY hKeyUser, DWORD dwIndex, LPSTR pszMailAddress, int cchMailAddress);
-  extern "C" HRESULT SHEnumerateUnreadMailAccountsW (HKEY hKeyUser, DWORD dwIndex, LPWSTR pszMailAddress, int cchMailAddress);
-  extern "C" HRESULT SHGetUnreadMailCountA (HKEY hKeyUser, LPCSTR pszMailAddress, DWORD *pdwCount, FILETIME *pFileTime, LPSTR pszShellExecuteCommand, int cchShellExecuteCommand);
-  extern "C" HRESULT SHGetUnreadMailCountW (HKEY hKeyUser, LPCWSTR pszMailAddress, DWORD *pdwCount, FILETIME *pFileTime, LPWSTR pszShellExecuteCommand, int cchShellExecuteCommand);
-  extern "C" HRESULT SHSetUnreadMailCountA (LPCSTR pszMailAddress, DWORD dwCount, LPCSTR pszShellExecuteCommand);
-  extern "C" HRESULT SHSetUnreadMailCountW (LPCWSTR pszMailAddress, DWORD dwCount, LPCWSTR pszShellExecuteCommand);
+  __attribute__((dllimport)) WINBOOL IsLFNDriveA (LPCSTR pszPath);
+  __attribute__((dllimport)) WINBOOL IsLFNDriveW (LPCWSTR pszPath);
 
 
 
 
+  extern HRESULT SHEnumerateUnreadMailAccountsA (HKEY hKeyUser, DWORD dwIndex, LPSTR pszMailAddress, int cchMailAddress);
+  extern HRESULT SHEnumerateUnreadMailAccountsW (HKEY hKeyUser, DWORD dwIndex, LPWSTR pszMailAddress, int cchMailAddress);
+  extern HRESULT SHGetUnreadMailCountA (HKEY hKeyUser, LPCSTR pszMailAddress, DWORD *pdwCount, FILETIME *pFileTime, LPSTR pszShellExecuteCommand, int cchShellExecuteCommand);
+  extern HRESULT SHGetUnreadMailCountW (HKEY hKeyUser, LPCWSTR pszMailAddress, DWORD *pdwCount, FILETIME *pFileTime, LPWSTR pszShellExecuteCommand, int cchShellExecuteCommand);
+  extern HRESULT SHSetUnreadMailCountA (LPCSTR pszMailAddress, DWORD dwCount, LPCSTR pszShellExecuteCommand);
+  extern HRESULT SHSetUnreadMailCountW (LPCWSTR pszMailAddress, DWORD dwCount, LPCWSTR pszShellExecuteCommand);
 
 
 
-  extern "C" WINBOOL SHTestTokenMembership (HANDLE hToken, ULONG ulRID);
 
 
 
-  extern "C" __attribute__((dllimport)) HRESULT SHGetImageList (int iImageList, const IID & riid, void **ppvObj);
+
+  extern WINBOOL SHTestTokenMembership (HANDLE hToken, ULONG ulRID);
+
+
+
+  __attribute__((dllimport)) HRESULT SHGetImageList (int iImageList, const IID *const riid, void **ppvObj);
 # 861 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/shellapi.h" 3
   typedef HRESULT ( *PFNCANSHAREFOLDERW) (PCWSTR pszPath);
   typedef HRESULT ( *PFNSHOWSHAREFOLDERUIW) (HWND hwndParent, PCWSTR pszPath);
-
-
-
-
-
-}
 # 90 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winperf.h" 1 3
 # 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winperf.h" 3
@@ -56690,13 +55742,10 @@ typedef struct fd_set
 } fd_set;
 
 
-extern "C" {
+
 
 
 int __WSAFDIsSet(SOCKET,fd_set *);
-
-
-}
 # 104 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/_fd_types.h" 3
 typedef struct fd_set FD_SET;
 typedef struct fd_set *PFD_SET;
@@ -56828,9 +55877,6 @@ typedef struct _TRANSMIT_FILE_BUFFERS {
  DWORD TailLength;
 } TRANSMIT_FILE_BUFFERS, *PTRANSMIT_FILE_BUFFERS, *LPTRANSMIT_FILE_BUFFERS;
 # 41 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsock.h" 2 3
-
-
-extern "C" {
 # 274 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsock.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/_wsa_errnos.h" 1 3
 # 275 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsock.h" 2 3
@@ -56902,8 +55948,6 @@ extern "C" {
   WINBOOL TransmitFile(SOCKET hSocket,HANDLE hFile,DWORD nNumberOfBytesToWrite,DWORD nNumberOfBytesPerSend,LPOVERLAPPED lpOverlapped,LPTRANSMIT_FILE_BUFFERS lpTransmitBuffers,DWORD dwReserved);
   WINBOOL AcceptEx(SOCKET sListenSocket,SOCKET sAcceptSocket,PVOID lpOutputBuffer,DWORD dwReceiveDataLength,DWORD dwLocalAddressLength,DWORD dwRemoteAddressLength,LPDWORD lpdwBytesReceived,LPOVERLAPPED lpOverlapped);
   void GetAcceptExSockaddrs(PVOID lpOutputBuffer,DWORD dwReceiveDataLength,DWORD dwLocalAddressLength,DWORD dwRemoteAddressLength,struct sockaddr **LocalSockaddr,LPINT LocalSockaddrLength,struct sockaddr **RemoteSockaddr,LPINT RemoteSockaddrLength);
-# 353 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsock.h" 3
-}
 # 93 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 
 
@@ -56913,15 +55957,7 @@ extern "C" {
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 2 3
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 1 3
-# 29 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 3
-extern "C++" {
-__extension__ template<typename T> const GUID &__mingw_uuidof();
-}
 # 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 2 3
-
-
-
-extern "C" {
 # 182 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 3
   typedef unsigned int ALG_ID;
 # 238 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 3
@@ -57112,8 +56148,6 @@ extern "C" {
   typedef ULONG_PTR HCRYPTPROV_LEGACY;
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/bcrypt.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/bcrypt.h" 3
-extern "C" {
 # 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/bcrypt.h" 3
   typedef LONG NTSTATUS,*PNTSTATUS;
 # 142 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/bcrypt.h" 3
@@ -57412,14 +56446,10 @@ typedef PVOID BCRYPT_HANDLE;
   NTSTATUS BCryptSetContextFunctionProperty (ULONG dwTable, LPCWSTR pszContext, ULONG dwInterface, LPCWSTR pszFunction, LPCWSTR pszProperty, ULONG cbValue, PUCHAR pbValue);
   NTSTATUS BCryptQueryContextFunctionProperty (ULONG dwTable, LPCWSTR pszContext, ULONG dwInterface, LPCWSTR pszFunction, LPCWSTR pszProperty, ULONG *pcbValue, PUCHAR *ppbValue);
   NTSTATUS BCryptRegisterConfigChangeNotify (HANDLE *phEvent);
-# 614 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/bcrypt.h" 3
-}
 # 767 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 2 3
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ncrypt.h" 1 3
-# 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ncrypt.h" 3
-extern "C" {
 # 23 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ncrypt.h" 3
   typedef LONG SECURITY_STATUS;
 
@@ -57508,13 +56538,6 @@ typedef struct __NCRYPT_UI_POLICY {
   SECURITY_STATUS NCryptNotifyChangeKey (NCRYPT_PROV_HANDLE hProvider, HANDLE *phEvent, DWORD dwFlags);
   SECURITY_STATUS NCryptSecretAgreement (NCRYPT_KEY_HANDLE hPrivKey, NCRYPT_KEY_HANDLE hPubKey, NCRYPT_SECRET_HANDLE *phAgreedSecret, DWORD dwFlags);
   SECURITY_STATUS NCryptDeriveKey (NCRYPT_SECRET_HANDLE hSharedSecret, LPCWSTR pwszKDF, NCryptBufferDesc *pParameterList, PBYTE pbDerivedKey, DWORD cbDerivedKey, DWORD *pcbResult, ULONG dwFlags);
-
-
-
-
-
-
-}
 # 770 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 2 3
 
   typedef struct _CRYPT_BIT_BLOB {
@@ -59888,14 +58911,8 @@ __attribute__((dllimport)) HCERTSTORE CertOpenStore (LPCSTR lpszStoreProvider, D
   __attribute__((dllimport)) WINBOOL PFXExportCertStore (HCERTSTORE hStore, CRYPT_DATA_BLOB *pPFX, LPCWSTR szPassword, DWORD dwFlags);
 # 5259 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 3
   __attribute__((dllimport)) WINBOOL CertRetrieveLogoOrBiometricInfo (PCCERT_CONTEXT pCertContext, LPCSTR lpszLogoOrBiometricType, DWORD dwRetrievalFlags, DWORD dwTimeout, DWORD dwFlags, void *pvReserved, BYTE **ppbData, DWORD *pcbData, LPWSTR *ppwszMimeType);
-# 5439 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 3
-}
-
-
-
+# 5443 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/dpapi.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/dpapi.h" 3
-extern "C" {
 # 65 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/dpapi.h" 3
   typedef struct _CRYPTPROTECT_PROMPTSTRUCT {
     DWORD cbSize;
@@ -59909,23 +58926,10 @@ extern "C" {
 # 93 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/dpapi.h" 3
 __attribute__((dllimport)) WINBOOL CryptProtectMemory (LPVOID pDataIn, DWORD cbDataIn, DWORD dwFlags);
 __attribute__((dllimport)) WINBOOL CryptUnprotectMemory (LPVOID pDataIn, DWORD cbDataIn, DWORD dwFlags);
-
-
-
-
-}
 # 5444 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wincrypt.h" 2 3
 # 96 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winefs.h" 1 3
-# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winefs.h" 3
-extern "C" {
-
-
-
-
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winefs.h" 3
   typedef struct _CERTIFICATE_BLOB {
     DWORD dwCertEncodingType;
     DWORD cbData;
@@ -59982,9 +58986,6 @@ extern "C" {
   __attribute__((dllimport)) void FreeEncryptionCertificateHashList(PENCRYPTION_CERTIFICATE_HASH_LIST pHashes);
   __attribute__((dllimport)) WINBOOL EncryptionDisable(LPCWSTR DirPath,WINBOOL Disable);
   __attribute__((dllimport)) DWORD DuplicateEncryptionInfoFile(LPCWSTR SrcFileName,LPCWSTR DstFileName,DWORD dwCreationDistribution,DWORD dwAttributes,const LPSECURITY_ATTRIBUTES lpSecurityAttributes);
-
-
-}
 # 97 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winscard.h" 1 3
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winscard.h" 3
@@ -60026,10 +59027,7 @@ extern "C" {
 # 6 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/basetsd.h" 2 3
 # 21 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcndr.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcnsip.h" 1 3
-# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcnsip.h" 3
-extern "C" {
-
-
+# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcnsip.h" 3
   typedef struct {
     RPC_NS_HANDLE LookupContext;
     RPC_BINDING_HANDLE ProposedHandle;
@@ -60043,15 +59041,9 @@ extern "C" {
   __attribute__((dllimport)) RPC_STATUS I_NsServerBindSearch(void);
   __attribute__((dllimport)) RPC_STATUS I_NsClientBindSearch(void);
   __attribute__((dllimport)) void I_NsClientBindDone(void);
-
-
-}
 # 22 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcndr.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcsal.h" 1 3
 # 23 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcndr.h" 2 3
-
-
-extern "C" {
 # 63 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/rpcndr.h" 3
   typedef unsigned char byte;
   typedef byte cs_byte;
@@ -60648,7 +59640,7 @@ typedef unsigned long error_status_t;
   void RpcUserFree(handle_t AsyncHandle,void *pBuffer);
 
 
-}
+
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/poppack.h" 1 3
@@ -60739,18 +59731,6 @@ typedef unsigned long error_status_t;
 
 #pragma pack(push,8)
 # 32 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 2 3
-# 75 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 3
-struct IUnknown;
-
-extern "C++" {
-  template<typename T> void **IID_PPV_ARGS_Helper (T **pp) {
-    static_cast<IUnknown *> (*pp);
-    return reinterpret_cast<void **> (pp);
-  }
-}
-# 129 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 3
-# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/stdlib.h" 1 3
-# 130 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 2 3
 # 138 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 3
 typedef enum tagREGCLS {
   REGCLS_SINGLEUSE = 0,
@@ -60802,14 +59782,7 @@ typedef enum tagCOINITBASE {
 # 6 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/basetsd.h" 2 3
 # 23 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypesbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 1 3
-# 29 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 3
-extern "C++" {
-__extension__ template<typename T> const GUID &__mingw_uuidof();
-}
 # 24 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypesbase.h" 2 3
-
-
-extern "C" {
 # 41 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypesbase.h" 3
 extern RPC_IF_HANDLE IWinTypesBase_v0_1_c_ifspec;
 extern RPC_IF_HANDLE IWinTypesBase_v0_1_s_ifspec;
@@ -60974,8 +59947,6 @@ typedef struct tagBLOB {
     BYTE *pBlobData;
 } BLOB;
 typedef struct tagBLOB *LPBLOB;
-# 420 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypesbase.h" 3
-}
 # 154 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 1 3
 
@@ -61044,69 +60015,103 @@ typedef struct IClassFactory IClassFactory;
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ole2.h" 1 3
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypesbase.h" 2 3
 # 38 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 2 3
-
-
-extern "C" {
 # 58 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
 typedef IUnknown *LPUNKNOWN;
-
-
-extern "C" const IID IID_IUnknown;
-
-extern "C++" {
-  struct
-  IUnknown {
-  public:
+# 87 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
+extern const GUID IID_IUnknown;
+# 110 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
+typedef struct IUnknownVtbl {
    
-    virtual HRESULT QueryInterface(const IID & riid, void **ppvObject) = 0;
-    virtual ULONG AddRef(void) = 0;
-    virtual ULONG Release(void) = 0;
 
-    template<class Q>
-    HRESULT QueryInterface(Q **pp) {
-      return QueryInterface(__mingw_uuidof<__typeof(Q)>(), (void **)pp);
-    }
+
+    HRESULT ( *QueryInterface)(
+        IUnknown* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IUnknown* This);
+
+    ULONG ( *Release)(
+        IUnknown* This);
+
    
-  };
-}
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IUnknown>() { static const IID __uuid_inst = {0x00000000,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IUnknown*>() { return __mingw_uuidof<IUnknown>(); } }
-HRESULT IUnknown_QueryInterface_Proxy(IUnknown *This, const IID & riid, void **ppvObject);
-void IUnknown_QueryInterface_Stub(IRpcStubBuffer *This, IRpcChannelBuffer *_pRpcChannelBuffer, PRPC_MESSAGE _pRpcMessage, DWORD *_pdwStubPhase);
-ULONG IUnknown_AddRef_Proxy(IUnknown *This);
-void IUnknown_AddRef_Stub(IRpcStubBuffer *This, IRpcChannelBuffer *_pRpcChannelBuffer, PRPC_MESSAGE _pRpcMessage, DWORD *_pdwStubPhase);
-ULONG IUnknown_Release_Proxy(IUnknown *This);
-void IUnknown_Release_Stub(IRpcStubBuffer *This, IRpcChannelBuffer *_pRpcChannelBuffer, PRPC_MESSAGE _pRpcMessage, DWORD *_pdwStubPhase);
-# 189 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
-extern "C" const GUID IID_AsyncIUnknown;
-
-struct
-AsyncIUnknown : public IUnknown
-{
-    virtual HRESULT Begin_QueryInterface(
-        const IID & riid) = 0;
-
-    virtual HRESULT Finish_QueryInterface(
-        void **ppvObject) = 0;
-
-    virtual HRESULT Begin_AddRef(
-        ) = 0;
-
-    virtual ULONG Finish_AddRef(
-        ) = 0;
-
-    virtual HRESULT Begin_Release(
-        ) = 0;
-
-    virtual ULONG Finish_Release(
-        ) = 0;
-
+} IUnknownVtbl;
+struct IUnknown {
+    IUnknownVtbl* lpVtbl;
 };
+# 153 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
+HRESULT IUnknown_QueryInterface_Proxy(
+    IUnknown* This,
+    const IID *const riid,
+    void **ppvObject);
+void IUnknown_QueryInterface_Stub(
+    IRpcStubBuffer* This,
+    IRpcChannelBuffer* pRpcChannelBuffer,
+    PRPC_MESSAGE pRpcMessage,
+    DWORD* pdwStubPhase);
+ULONG IUnknown_AddRef_Proxy(
+    IUnknown* This);
+void IUnknown_AddRef_Stub(
+    IRpcStubBuffer* This,
+    IRpcChannelBuffer* pRpcChannelBuffer,
+    PRPC_MESSAGE pRpcMessage,
+    DWORD* pdwStubPhase);
+ULONG IUnknown_Release_Proxy(
+    IUnknown* This);
+void IUnknown_Release_Stub(
+    IRpcStubBuffer* This,
+    IRpcChannelBuffer* pRpcChannelBuffer,
+    PRPC_MESSAGE pRpcMessage,
+    DWORD* pdwStubPhase);
+# 189 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
+extern const GUID IID_AsyncIUnknown;
+# 217 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
+typedef struct AsyncIUnknownVtbl {
+   
 
-extern "C++" { template<> inline const GUID &__mingw_uuidof<AsyncIUnknown>() { static const IID __uuid_inst = {0x000e0000,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<AsyncIUnknown*>() { return __mingw_uuidof<AsyncIUnknown>(); } }
+
+    HRESULT ( *QueryInterface)(
+        AsyncIUnknown* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        AsyncIUnknown* This);
+
+    ULONG ( *Release)(
+        AsyncIUnknown* This);
+
+
+    HRESULT ( *Begin_QueryInterface)(
+        AsyncIUnknown* This,
+        const IID *const riid);
+
+    HRESULT ( *Finish_QueryInterface)(
+        AsyncIUnknown* This,
+        void **ppvObject);
+
+    HRESULT ( *Begin_AddRef)(
+        AsyncIUnknown* This);
+
+    ULONG ( *Finish_AddRef)(
+        AsyncIUnknown* This);
+
+    HRESULT ( *Begin_Release)(
+        AsyncIUnknown* This);
+
+    ULONG ( *Finish_Release)(
+        AsyncIUnknown* This);
+
+   
+} AsyncIUnknownVtbl;
+struct AsyncIUnknown {
+    AsyncIUnknownVtbl* lpVtbl;
+};
 # 307 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
 HRESULT AsyncIUnknown_Begin_QueryInterface_Proxy(
     AsyncIUnknown* This,
-    const IID & riid);
+    const IID *const riid);
 void AsyncIUnknown_Begin_QueryInterface_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -61151,26 +60156,43 @@ void AsyncIUnknown_Finish_Release_Stub(
 # 363 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
 typedef IClassFactory *LPCLASSFACTORY;
 
-extern "C" const GUID IID_IClassFactory;
+extern const GUID IID_IClassFactory;
+# 383 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
+typedef struct IClassFactoryVtbl {
+   
 
-struct
-IClassFactory : public IUnknown
-{
-    virtual HRESULT CreateInstance(
+
+    HRESULT ( *QueryInterface)(
+        IClassFactory* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IClassFactory* This);
+
+    ULONG ( *Release)(
+        IClassFactory* This);
+
+
+    HRESULT ( *CreateInstance)(
+        IClassFactory* This,
         IUnknown *pUnkOuter,
-        const IID & riid,
-        void **ppvObject) = 0;
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT LockServer(
-        WINBOOL fLock) = 0;
+    HRESULT ( *LockServer)(
+        IClassFactory* This,
+        WINBOOL fLock);
 
+   
+} IClassFactoryVtbl;
+struct IClassFactory {
+    IClassFactoryVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IClassFactory>() { static const IID __uuid_inst = {0x00000001,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IClassFactory*>() { return __mingw_uuidof<IClassFactory>(); } }
 # 447 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
 HRESULT IClassFactory_RemoteCreateInstance_Proxy(
     IClassFactory* This,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObject);
 void IClassFactory_RemoteCreateInstance_Stub(
     IRpcStubBuffer* This,
@@ -61188,11 +60210,11 @@ void IClassFactory_RemoteLockServer_Stub(
 HRESULT IClassFactory_CreateInstance_Proxy(
     IClassFactory* This,
     IUnknown *pUnkOuter,
-    const IID & riid,
+    const IID *const riid,
     void **ppvObject);
 HRESULT IClassFactory_CreateInstance_Stub(
     IClassFactory* This,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObject);
 HRESULT IClassFactory_LockServer_Proxy(
     IClassFactory* This,
@@ -61200,8 +60222,6 @@ HRESULT IClassFactory_LockServer_Proxy(
 HRESULT IClassFactory_LockServer_Stub(
     IClassFactory* This,
     WINBOOL fLock);
-# 489 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwnbase.h" 3
-}
 # 155 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 1 3
 
@@ -61541,9 +60561,6 @@ typedef struct IMarshalingStream IMarshalingStream;
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ole2.h" 1 3
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypesbase.h" 2 3
 # 284 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 2 3
-
-
-extern "C" {
 # 352 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef struct _COSERVERINFO {
     DWORD dwReserved1;
@@ -61559,53 +60576,74 @@ typedef struct _COSERVERINFO {
 
 
 typedef IMarshal *LPMARSHAL;
-extern "C" const GUID IID_IMarshal;
+extern const GUID IID_IMarshal;
+# 411 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IMarshalVtbl {
+   
 
-struct
-IMarshal : public IUnknown
-{
-    virtual HRESULT GetUnmarshalClass(
-        const IID & riid,
+
+    HRESULT ( *QueryInterface)(
+        IMarshal* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IMarshal* This);
+
+    ULONG ( *Release)(
+        IMarshal* This);
+
+
+    HRESULT ( *GetUnmarshalClass)(
+        IMarshal* This,
+        const IID *const riid,
         void *pv,
         DWORD dwDestContext,
         void *pvDestContext,
         DWORD mshlflags,
-        CLSID *pCid) = 0;
+        CLSID *pCid);
 
-    virtual HRESULT GetMarshalSizeMax(
-        const IID & riid,
+    HRESULT ( *GetMarshalSizeMax)(
+        IMarshal* This,
+        const IID *const riid,
         void *pv,
         DWORD dwDestContext,
         void *pvDestContext,
         DWORD mshlflags,
-        DWORD *pSize) = 0;
+        DWORD *pSize);
 
-    virtual HRESULT MarshalInterface(
+    HRESULT ( *MarshalInterface)(
+        IMarshal* This,
         IStream *pStm,
-        const IID & riid,
+        const IID *const riid,
         void *pv,
         DWORD dwDestContext,
         void *pvDestContext,
-        DWORD mshlflags) = 0;
+        DWORD mshlflags);
 
-    virtual HRESULT UnmarshalInterface(
+    HRESULT ( *UnmarshalInterface)(
+        IMarshal* This,
         IStream *pStm,
-        const IID & riid,
-        void **ppv) = 0;
+        const IID *const riid,
+        void **ppv);
 
-    virtual HRESULT ReleaseMarshalData(
-        IStream *pStm) = 0;
+    HRESULT ( *ReleaseMarshalData)(
+        IMarshal* This,
+        IStream *pStm);
 
-    virtual HRESULT DisconnectObject(
-        DWORD dwReserved) = 0;
+    HRESULT ( *DisconnectObject)(
+        IMarshal* This,
+        DWORD dwReserved);
 
+   
+} IMarshalVtbl;
+struct IMarshal {
+    IMarshalVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IMarshal>() { static const IID __uuid_inst = {0x00000003,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IMarshal*>() { return __mingw_uuidof<IMarshal>(); } }
 # 522 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IMarshal_GetUnmarshalClass_Proxy(
     IMarshal* This,
-    const IID & riid,
+    const IID *const riid,
     void *pv,
     DWORD dwDestContext,
     void *pvDestContext,
@@ -61618,7 +60656,7 @@ void IMarshal_GetUnmarshalClass_Stub(
     DWORD* pdwStubPhase);
 HRESULT IMarshal_GetMarshalSizeMax_Proxy(
     IMarshal* This,
-    const IID & riid,
+    const IID *const riid,
     void *pv,
     DWORD dwDestContext,
     void *pvDestContext,
@@ -61632,7 +60670,7 @@ void IMarshal_GetMarshalSizeMax_Stub(
 HRESULT IMarshal_MarshalInterface_Proxy(
     IMarshal* This,
     IStream *pStm,
-    const IID & riid,
+    const IID *const riid,
     void *pv,
     DWORD dwDestContext,
     void *pvDestContext,
@@ -61645,7 +60683,7 @@ void IMarshal_MarshalInterface_Stub(
 HRESULT IMarshal_UnmarshalInterface_Proxy(
     IMarshal* This,
     IStream *pStm,
-    const IID & riid,
+    const IID *const riid,
     void **ppv);
 void IMarshal_UnmarshalInterface_Stub(
     IRpcStubBuffer* This,
@@ -61669,40 +60707,84 @@ void IMarshal_DisconnectObject_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 597 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_INoMarshal;
+extern const GUID IID_INoMarshal;
+# 607 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct INoMarshalVtbl {
+   
 
-struct
-INoMarshal : public IUnknown
-{
+
+    HRESULT ( *QueryInterface)(
+        INoMarshal* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        INoMarshal* This);
+
+    ULONG ( *Release)(
+        INoMarshal* This);
+
+   
+} INoMarshalVtbl;
+struct INoMarshal {
+    INoMarshalVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<INoMarshal>() { static const IID __uuid_inst = {0xecc8691b,0xc1db,0x4dc0, {0x85,0x5e,0x65,0xf6,0xc5,0x51,0xaf,0x49}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<INoMarshal*>() { return __mingw_uuidof<INoMarshal>(); } }
 # 660 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IAgileObject;
+extern const GUID IID_IAgileObject;
+# 670 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IAgileObjectVtbl {
+   
 
-struct
-IAgileObject : public IUnknown
-{
+
+    HRESULT ( *QueryInterface)(
+        IAgileObject* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IAgileObject* This);
+
+    ULONG ( *Release)(
+        IAgileObject* This);
+
+   
+} IAgileObjectVtbl;
+struct IAgileObject {
+    IAgileObjectVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAgileObject>() { static const IID __uuid_inst = {0x94ea2b94,0xe9cc,0x49e0, {0xc0,0xff,0xee,0x64,0xca,0x8f,0x5b,0x90}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAgileObject*>() { return __mingw_uuidof<IAgileObject>(); } }
 # 722 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IAgileReference;
+extern const GUID IID_IAgileReference;
+# 736 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IAgileReferenceVtbl {
+   
 
-struct
-IAgileReference : public IUnknown
-{
-    virtual HRESULT Resolve(
-        const IID & riid,
-        void **ppv) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IAgileReference* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IAgileReference* This);
+
+    ULONG ( *Release)(
+        IAgileReference* This);
+
+
+    HRESULT ( *Resolve)(
+        IAgileReference* This,
+        const IID *const riid,
+        void **ppv);
+
+   
+} IAgileReferenceVtbl;
+struct IAgileReference {
+    IAgileReferenceVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAgileReference>() { static const IID __uuid_inst = {0xc03f6a43,0x65a4,0x9818, {0x98,0x7e,0xe0,0xb8,0x10,0xd2,0xa6,0xf2}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAgileReference*>() { return __mingw_uuidof<IAgileReference>(); } }
 # 791 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IAgileReference_Resolve_Proxy(
     IAgileReference* This,
-    const IID & riid,
+    const IID *const riid,
     void **ppv);
 void IAgileReference_Resolve_Stub(
     IRpcStubBuffer* This,
@@ -61711,44 +60793,120 @@ void IAgileReference_Resolve_Stub(
     DWORD* pdwStubPhase);
 # 812 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef IMarshal2 *LPMARSHAL2;
-extern "C" const GUID IID_IMarshal2;
+extern const GUID IID_IMarshal2;
+# 823 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IMarshal2Vtbl {
+   
 
-struct
-IMarshal2 : public IMarshal
-{
+
+    HRESULT ( *QueryInterface)(
+        IMarshal2* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IMarshal2* This);
+
+    ULONG ( *Release)(
+        IMarshal2* This);
+
+
+    HRESULT ( *GetUnmarshalClass)(
+        IMarshal2* This,
+        const IID *const riid,
+        void *pv,
+        DWORD dwDestContext,
+        void *pvDestContext,
+        DWORD mshlflags,
+        CLSID *pCid);
+
+    HRESULT ( *GetMarshalSizeMax)(
+        IMarshal2* This,
+        const IID *const riid,
+        void *pv,
+        DWORD dwDestContext,
+        void *pvDestContext,
+        DWORD mshlflags,
+        DWORD *pSize);
+
+    HRESULT ( *MarshalInterface)(
+        IMarshal2* This,
+        IStream *pStm,
+        const IID *const riid,
+        void *pv,
+        DWORD dwDestContext,
+        void *pvDestContext,
+        DWORD mshlflags);
+
+    HRESULT ( *UnmarshalInterface)(
+        IMarshal2* This,
+        IStream *pStm,
+        const IID *const riid,
+        void **ppv);
+
+    HRESULT ( *ReleaseMarshalData)(
+        IMarshal2* This,
+        IStream *pStm);
+
+    HRESULT ( *DisconnectObject)(
+        IMarshal2* This,
+        DWORD dwReserved);
+
+   
+} IMarshal2Vtbl;
+struct IMarshal2 {
+    IMarshal2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IMarshal2>() { static const IID __uuid_inst = {0x000001cf,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IMarshal2*>() { return __mingw_uuidof<IMarshal2>(); } }
 # 944 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef IMalloc *LPMALLOC;
 
-extern "C" const GUID IID_IMalloc;
+extern const GUID IID_IMalloc;
+# 975 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IMallocVtbl {
+   
 
-struct
-IMalloc : public IUnknown
-{
-    virtual void * Alloc(
-        SIZE_T cb) = 0;
 
-    virtual void * Realloc(
+    HRESULT ( *QueryInterface)(
+        IMalloc* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IMalloc* This);
+
+    ULONG ( *Release)(
+        IMalloc* This);
+
+
+    void * ( *Alloc)(
+        IMalloc* This,
+        SIZE_T cb);
+
+    void * ( *Realloc)(
+        IMalloc* This,
         void *pv,
-        SIZE_T cb) = 0;
+        SIZE_T cb);
 
-    virtual void Free(
-        void *pv) = 0;
+    void ( *Free)(
+        IMalloc* This,
+        void *pv);
 
-    virtual SIZE_T GetSize(
-        void *pv) = 0;
+    SIZE_T ( *GetSize)(
+        IMalloc* This,
+        void *pv);
 
-    virtual int DidAlloc(
-        void *pv) = 0;
+    int ( *DidAlloc)(
+        IMalloc* This,
+        void *pv);
 
-    virtual void HeapMinimize(
-        ) = 0;
+    void ( *HeapMinimize)(
+        IMalloc* This);
 
+   
+} IMallocVtbl;
+struct IMalloc {
+    IMallocVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IMalloc>() { static const IID __uuid_inst = {0x00000002,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IMalloc*>() { return __mingw_uuidof<IMalloc>(); } }
 # 1069 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 void * IMalloc_Alloc_Proxy(
     IMalloc* This,
@@ -61801,19 +60959,35 @@ void IMalloc_HeapMinimize_Stub(
 # 1127 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef IStdMarshalInfo *LPSTDMARSHALINFO;
 
-extern "C" const GUID IID_IStdMarshalInfo;
+extern const GUID IID_IStdMarshalInfo;
+# 1144 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IStdMarshalInfoVtbl {
+   
 
-struct
-IStdMarshalInfo : public IUnknown
-{
-    virtual HRESULT GetClassForHandler(
+
+    HRESULT ( *QueryInterface)(
+        IStdMarshalInfo* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IStdMarshalInfo* This);
+
+    ULONG ( *Release)(
+        IStdMarshalInfo* This);
+
+
+    HRESULT ( *GetClassForHandler)(
+        IStdMarshalInfo* This,
         DWORD dwDestContext,
         void *pvDestContext,
-        CLSID *pClsid) = 0;
+        CLSID *pClsid);
 
+   
+} IStdMarshalInfoVtbl;
+struct IStdMarshalInfo {
+    IStdMarshalInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IStdMarshalInfo>() { static const IID __uuid_inst = {0x00000018,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IStdMarshalInfo*>() { return __mingw_uuidof<IStdMarshalInfo>(); } }
 # 1200 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IStdMarshalInfo_GetClassForHandler_Proxy(
     IStdMarshalInfo* This,
@@ -61834,23 +61008,40 @@ typedef enum tagEXTCONN {
     EXTCONN_CALLABLE = 0x4
 } EXTCONN;
 
-extern "C" const GUID IID_IExternalConnection;
+extern const GUID IID_IExternalConnection;
+# 1247 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IExternalConnectionVtbl {
+   
 
-struct
-IExternalConnection : public IUnknown
-{
-    virtual DWORD AddConnection(
+
+    HRESULT ( *QueryInterface)(
+        IExternalConnection* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IExternalConnection* This);
+
+    ULONG ( *Release)(
+        IExternalConnection* This);
+
+
+    DWORD ( *AddConnection)(
+        IExternalConnection* This,
         DWORD extconn,
-        DWORD reserved) = 0;
+        DWORD reserved);
 
-    virtual DWORD ReleaseConnection(
+    DWORD ( *ReleaseConnection)(
+        IExternalConnection* This,
         DWORD extconn,
         DWORD reserved,
-        WINBOOL fLastReleaseCloses) = 0;
+        WINBOOL fLastReleaseCloses);
 
+   
+} IExternalConnectionVtbl;
+struct IExternalConnection {
+    IExternalConnectionVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IExternalConnection>() { static const IID __uuid_inst = {0x00000019,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IExternalConnection*>() { return __mingw_uuidof<IExternalConnection>(); } }
 # 1312 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 DWORD IExternalConnection_AddConnection_Proxy(
     IExternalConnection* This,
@@ -61891,18 +61082,34 @@ typedef struct tagMULTI_QI {
 
 
 
-extern "C" const GUID IID_IMultiQI;
+extern const GUID IID_IMultiQI;
+# 1365 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IMultiQIVtbl {
+   
 
-struct
-IMultiQI : public IUnknown
-{
-    virtual HRESULT QueryMultipleInterfaces(
+
+    HRESULT ( *QueryInterface)(
+        IMultiQI* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IMultiQI* This);
+
+    ULONG ( *Release)(
+        IMultiQI* This);
+
+
+    HRESULT ( *QueryMultipleInterfaces)(
+        IMultiQI* This,
         ULONG cMQIs,
-        MULTI_QI *pMQIs) = 0;
+        MULTI_QI *pMQIs);
 
+   
+} IMultiQIVtbl;
+struct IMultiQI {
+    IMultiQIVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IMultiQI>() { static const IID __uuid_inst = {0x00000020,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IMultiQI*>() { return __mingw_uuidof<IMultiQI>(); } }
 # 1420 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IMultiQI_QueryMultipleInterfaces_Proxy(
     IMultiQI* This,
@@ -61914,21 +61121,38 @@ void IMultiQI_QueryMultipleInterfaces_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 1438 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_AsyncIMultiQI;
+extern const GUID IID_AsyncIMultiQI;
+# 1455 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct AsyncIMultiQIVtbl {
+   
 
-struct
-AsyncIMultiQI : public IUnknown
-{
-    virtual void Begin_QueryMultipleInterfaces(
+
+    HRESULT ( *QueryInterface)(
+        AsyncIMultiQI* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        AsyncIMultiQI* This);
+
+    ULONG ( *Release)(
+        AsyncIMultiQI* This);
+
+
+    void ( *Begin_QueryMultipleInterfaces)(
+        AsyncIMultiQI* This,
         ULONG cMQIs,
-        MULTI_QI *pMQIs) = 0;
+        MULTI_QI *pMQIs);
 
-    virtual HRESULT Finish_QueryMultipleInterfaces(
-        MULTI_QI *pMQIs) = 0;
+    HRESULT ( *Finish_QueryMultipleInterfaces)(
+        AsyncIMultiQI* This,
+        MULTI_QI *pMQIs);
 
+   
+} AsyncIMultiQIVtbl;
+struct AsyncIMultiQI {
+    AsyncIMultiQIVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<AsyncIMultiQI>() { static const IID __uuid_inst = {0x000e0020,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<AsyncIMultiQI*>() { return __mingw_uuidof<AsyncIMultiQI>(); } }
 # 1518 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT AsyncIMultiQI_Begin_QueryMultipleInterfaces_Proxy(
     IMultiQI* This,
@@ -61949,22 +61173,38 @@ void AsyncIMultiQI_Finish_QueryMultipleInterfaces_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 1548 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IInternalUnknown;
+extern const GUID IID_IInternalUnknown;
+# 1562 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IInternalUnknownVtbl {
+   
 
-struct
-IInternalUnknown : public IUnknown
-{
-    virtual HRESULT QueryInternalInterface(
-        const IID & riid,
-        void **ppv) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IInternalUnknown* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternalUnknown* This);
+
+    ULONG ( *Release)(
+        IInternalUnknown* This);
+
+
+    HRESULT ( *QueryInternalInterface)(
+        IInternalUnknown* This,
+        const IID *const riid,
+        void **ppv);
+
+   
+} IInternalUnknownVtbl;
+struct IInternalUnknown {
+    IInternalUnknownVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternalUnknown>() { static const IID __uuid_inst = {0x00000021,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternalUnknown*>() { return __mingw_uuidof<IInternalUnknown>(); } }
 # 1617 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IInternalUnknown_QueryInternalInterface_Proxy(
     IInternalUnknown* This,
-    const IID & riid,
+    const IID *const riid,
     void **ppv);
 void IInternalUnknown_QueryInternalInterface_Stub(
     IRpcStubBuffer* This,
@@ -61974,28 +61214,46 @@ void IInternalUnknown_QueryInternalInterface_Stub(
 # 1638 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef IEnumUnknown *LPENUMUNKNOWN;
 
-extern "C" const GUID IID_IEnumUnknown;
+extern const GUID IID_IEnumUnknown;
+# 1664 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IEnumUnknownVtbl {
+   
 
-struct
-IEnumUnknown : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumUnknown* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumUnknown* This);
+
+    ULONG ( *Release)(
+        IEnumUnknown* This);
+
+
+    HRESULT ( *Next)(
+        IEnumUnknown* This,
         ULONG celt,
         IUnknown **rgelt,
-        ULONG *pceltFetched) = 0;
+        ULONG *pceltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumUnknown* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumUnknown* This);
 
-    virtual HRESULT Clone(
-        IEnumUnknown **ppenum) = 0;
+    HRESULT ( *Clone)(
+        IEnumUnknown* This,
+        IEnumUnknown **ppenum);
 
+   
+} IEnumUnknownVtbl;
+struct IEnumUnknown {
+    IEnumUnknownVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumUnknown>() { static const IID __uuid_inst = {0x00000100,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumUnknown*>() { return __mingw_uuidof<IEnumUnknown>(); } }
 # 1743 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IEnumUnknown_RemoteNext_Proxy(
     IEnumUnknown* This,
@@ -62043,28 +61301,46 @@ HRESULT IEnumUnknown_Next_Stub(
 # 1796 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef IEnumString *LPENUMSTRING;
 
-extern "C" const GUID IID_IEnumString;
+extern const GUID IID_IEnumString;
+# 1822 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IEnumStringVtbl {
+   
 
-struct
-IEnumString : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumString* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumString* This);
+
+    ULONG ( *Release)(
+        IEnumString* This);
+
+
+    HRESULT ( *Next)(
+        IEnumString* This,
         ULONG celt,
         LPOLESTR *rgelt,
-        ULONG *pceltFetched) = 0;
+        ULONG *pceltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumString* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumString* This);
 
-    virtual HRESULT Clone(
-        IEnumString **ppenum) = 0;
+    HRESULT ( *Clone)(
+        IEnumString* This,
+        IEnumString **ppenum);
 
+   
+} IEnumStringVtbl;
+struct IEnumString {
+    IEnumStringVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumString>() { static const IID __uuid_inst = {0x00000101,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumString*>() { return __mingw_uuidof<IEnumString>(); } }
 # 1901 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IEnumString_RemoteNext_Proxy(
     IEnumString* This,
@@ -62110,24 +61386,41 @@ HRESULT IEnumString_Next_Stub(
     LPOLESTR *rgelt,
     ULONG *pceltFetched);
 # 1954 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_ISequentialStream;
+extern const GUID IID_ISequentialStream;
+# 1974 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct ISequentialStreamVtbl {
+   
 
-struct
-ISequentialStream : public IUnknown
-{
-    virtual HRESULT Read(
+
+    HRESULT ( *QueryInterface)(
+        ISequentialStream* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ISequentialStream* This);
+
+    ULONG ( *Release)(
+        ISequentialStream* This);
+
+
+    HRESULT ( *Read)(
+        ISequentialStream* This,
         void *pv,
         ULONG cb,
-        ULONG *pcbRead) = 0;
+        ULONG *pcbRead);
 
-    virtual HRESULT Write(
+    HRESULT ( *Write)(
+        ISequentialStream* This,
         const void *pv,
         ULONG cb,
-        ULONG *pcbWritten) = 0;
+        ULONG *pcbWritten);
 
+   
+} ISequentialStreamVtbl;
+struct ISequentialStream {
+    ISequentialStreamVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISequentialStream>() { static const IID __uuid_inst = {0x0c733a30,0x2a1c,0x11ce, {0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISequentialStream*>() { return __mingw_uuidof<ISequentialStream>(); } }
 # 2040 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT ISequentialStream_RemoteRead_Proxy(
     ISequentialStream* This,
@@ -62205,51 +61498,87 @@ typedef enum tagLOCKTYPE {
     LOCK_ONLYONCE = 4
 } LOCKTYPE;
 
-extern "C" const GUID IID_IStream;
+extern const GUID IID_IStream;
+# 2172 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IStreamVtbl {
+   
 
-struct
-IStream : public ISequentialStream
-{
-    virtual HRESULT Seek(
+
+    HRESULT ( *QueryInterface)(
+        IStream* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IStream* This);
+
+    ULONG ( *Release)(
+        IStream* This);
+
+
+    HRESULT ( *Read)(
+        IStream* This,
+        void *pv,
+        ULONG cb,
+        ULONG *pcbRead);
+
+    HRESULT ( *Write)(
+        IStream* This,
+        const void *pv,
+        ULONG cb,
+        ULONG *pcbWritten);
+
+
+    HRESULT ( *Seek)(
+        IStream* This,
         LARGE_INTEGER dlibMove,
         DWORD dwOrigin,
-        ULARGE_INTEGER *plibNewPosition) = 0;
+        ULARGE_INTEGER *plibNewPosition);
 
-    virtual HRESULT SetSize(
-        ULARGE_INTEGER libNewSize) = 0;
+    HRESULT ( *SetSize)(
+        IStream* This,
+        ULARGE_INTEGER libNewSize);
 
-    virtual HRESULT CopyTo(
+    HRESULT ( *CopyTo)(
+        IStream* This,
         IStream *pstm,
         ULARGE_INTEGER cb,
         ULARGE_INTEGER *pcbRead,
-        ULARGE_INTEGER *pcbWritten) = 0;
+        ULARGE_INTEGER *pcbWritten);
 
-    virtual HRESULT Commit(
-        DWORD grfCommitFlags) = 0;
+    HRESULT ( *Commit)(
+        IStream* This,
+        DWORD grfCommitFlags);
 
-    virtual HRESULT Revert(
-        ) = 0;
+    HRESULT ( *Revert)(
+        IStream* This);
 
-    virtual HRESULT LockRegion(
+    HRESULT ( *LockRegion)(
+        IStream* This,
         ULARGE_INTEGER libOffset,
         ULARGE_INTEGER cb,
-        DWORD dwLockType) = 0;
+        DWORD dwLockType);
 
-    virtual HRESULT UnlockRegion(
+    HRESULT ( *UnlockRegion)(
+        IStream* This,
         ULARGE_INTEGER libOffset,
         ULARGE_INTEGER cb,
-        DWORD dwLockType) = 0;
+        DWORD dwLockType);
 
-    virtual HRESULT Stat(
+    HRESULT ( *Stat)(
+        IStream* This,
         STATSTG *pstatstg,
-        DWORD grfStatFlag) = 0;
+        DWORD grfStatFlag);
 
-    virtual HRESULT Clone(
-        IStream **ppstm) = 0;
+    HRESULT ( *Clone)(
+        IStream* This,
+        IStream **ppstm);
 
+   
+} IStreamVtbl;
+struct IStream {
+    IStreamVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IStream>() { static const IID __uuid_inst = {0x0000000c,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IStream*>() { return __mingw_uuidof<IStream>(); } }
 # 2322 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IStream_RemoteSeek_Proxy(
     IStream* This,
@@ -62369,37 +61698,56 @@ typedef struct tagRPCOLEMESSAGE {
 
 typedef RPCOLEMESSAGE *PRPCOLEMESSAGE;
 
-extern "C" const GUID IID_IRpcChannelBuffer;
+extern const GUID IID_IRpcChannelBuffer;
+# 2477 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IRpcChannelBufferVtbl {
+   
 
-struct
-IRpcChannelBuffer : public IUnknown
-{
-    virtual HRESULT GetBuffer(
+
+    HRESULT ( *QueryInterface)(
+        IRpcChannelBuffer* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IRpcChannelBuffer* This);
+
+    ULONG ( *Release)(
+        IRpcChannelBuffer* This);
+
+
+    HRESULT ( *GetBuffer)(
+        IRpcChannelBuffer* This,
         RPCOLEMESSAGE *pMessage,
-        const IID & riid) = 0;
+        const IID *const riid);
 
-    virtual HRESULT SendReceive(
+    HRESULT ( *SendReceive)(
+        IRpcChannelBuffer* This,
         RPCOLEMESSAGE *pMessage,
-        ULONG *pStatus) = 0;
+        ULONG *pStatus);
 
-    virtual HRESULT FreeBuffer(
-        RPCOLEMESSAGE *pMessage) = 0;
+    HRESULT ( *FreeBuffer)(
+        IRpcChannelBuffer* This,
+        RPCOLEMESSAGE *pMessage);
 
-    virtual HRESULT GetDestCtx(
+    HRESULT ( *GetDestCtx)(
+        IRpcChannelBuffer* This,
         DWORD *pdwDestContext,
-        void **ppvDestContext) = 0;
+        void **ppvDestContext);
 
-    virtual HRESULT IsConnected(
-        ) = 0;
+    HRESULT ( *IsConnected)(
+        IRpcChannelBuffer* This);
 
+   
+} IRpcChannelBufferVtbl;
+struct IRpcChannelBuffer {
+    IRpcChannelBufferVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRpcChannelBuffer>() { static const IID __uuid_inst = {0xd5f56b60,0x593b,0x101a, {0xb5,0x69,0x08,0x00,0x2b,0x2d,0xbf,0x7a}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRpcChannelBuffer*>() { return __mingw_uuidof<IRpcChannelBuffer>(); } }
 # 2565 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IRpcChannelBuffer_GetBuffer_Proxy(
     IRpcChannelBuffer* This,
     RPCOLEMESSAGE *pMessage,
-    const IID & riid);
+    const IID *const riid);
 void IRpcChannelBuffer_GetBuffer_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -62439,17 +61787,56 @@ void IRpcChannelBuffer_IsConnected_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 2619 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IRpcChannelBuffer2;
+extern const GUID IID_IRpcChannelBuffer2;
+# 2632 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IRpcChannelBuffer2Vtbl {
+   
 
-struct
-IRpcChannelBuffer2 : public IRpcChannelBuffer
-{
-    virtual HRESULT GetProtocolVersion(
-        DWORD *pdwVersion) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IRpcChannelBuffer2* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IRpcChannelBuffer2* This);
+
+    ULONG ( *Release)(
+        IRpcChannelBuffer2* This);
+
+
+    HRESULT ( *GetBuffer)(
+        IRpcChannelBuffer2* This,
+        RPCOLEMESSAGE *pMessage,
+        const IID *const riid);
+
+    HRESULT ( *SendReceive)(
+        IRpcChannelBuffer2* This,
+        RPCOLEMESSAGE *pMessage,
+        ULONG *pStatus);
+
+    HRESULT ( *FreeBuffer)(
+        IRpcChannelBuffer2* This,
+        RPCOLEMESSAGE *pMessage);
+
+    HRESULT ( *GetDestCtx)(
+        IRpcChannelBuffer2* This,
+        DWORD *pdwDestContext,
+        void **ppvDestContext);
+
+    HRESULT ( *IsConnected)(
+        IRpcChannelBuffer2* This);
+
+
+    HRESULT ( *GetProtocolVersion)(
+        IRpcChannelBuffer2* This,
+        DWORD *pdwVersion);
+
+   
+} IRpcChannelBuffer2Vtbl;
+struct IRpcChannelBuffer2 {
+    IRpcChannelBuffer2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRpcChannelBuffer2>() { static const IID __uuid_inst = {0x594f31d0,0x7f19,0x11d0, {0xb1,0x94,0x00,0xa0,0xc9,0x0d,0xc8,0xbf}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRpcChannelBuffer2*>() { return __mingw_uuidof<IRpcChannelBuffer2>(); } }
 # 2731 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IRpcChannelBuffer2_GetProtocolVersion_Proxy(
     IRpcChannelBuffer2* This,
@@ -62460,28 +61847,74 @@ void IRpcChannelBuffer2_GetProtocolVersion_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 2749 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IAsyncRpcChannelBuffer;
+extern const GUID IID_IAsyncRpcChannelBuffer;
+# 2773 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IAsyncRpcChannelBufferVtbl {
+   
 
-struct
-IAsyncRpcChannelBuffer : public IRpcChannelBuffer2
-{
-    virtual HRESULT Send(
+
+    HRESULT ( *QueryInterface)(
+        IAsyncRpcChannelBuffer* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IAsyncRpcChannelBuffer* This);
+
+    ULONG ( *Release)(
+        IAsyncRpcChannelBuffer* This);
+
+
+    HRESULT ( *GetBuffer)(
+        IAsyncRpcChannelBuffer* This,
+        RPCOLEMESSAGE *pMessage,
+        const IID *const riid);
+
+    HRESULT ( *SendReceive)(
+        IAsyncRpcChannelBuffer* This,
+        RPCOLEMESSAGE *pMessage,
+        ULONG *pStatus);
+
+    HRESULT ( *FreeBuffer)(
+        IAsyncRpcChannelBuffer* This,
+        RPCOLEMESSAGE *pMessage);
+
+    HRESULT ( *GetDestCtx)(
+        IAsyncRpcChannelBuffer* This,
+        DWORD *pdwDestContext,
+        void **ppvDestContext);
+
+    HRESULT ( *IsConnected)(
+        IAsyncRpcChannelBuffer* This);
+
+
+    HRESULT ( *GetProtocolVersion)(
+        IAsyncRpcChannelBuffer* This,
+        DWORD *pdwVersion);
+
+
+    HRESULT ( *Send)(
+        IAsyncRpcChannelBuffer* This,
         RPCOLEMESSAGE *pMsg,
         ISynchronize *pSync,
-        ULONG *pulStatus) = 0;
+        ULONG *pulStatus);
 
-    virtual HRESULT Receive(
+    HRESULT ( *Receive)(
+        IAsyncRpcChannelBuffer* This,
         RPCOLEMESSAGE *pMsg,
-        ULONG *pulStatus) = 0;
+        ULONG *pulStatus);
 
-    virtual HRESULT GetDestCtxEx(
+    HRESULT ( *GetDestCtxEx)(
+        IAsyncRpcChannelBuffer* This,
         RPCOLEMESSAGE *pMsg,
         DWORD *pdwDestContext,
-        void **ppvDestContext) = 0;
+        void **ppvDestContext);
 
+   
+} IAsyncRpcChannelBufferVtbl;
+struct IAsyncRpcChannelBuffer {
+    IAsyncRpcChannelBufferVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAsyncRpcChannelBuffer>() { static const IID __uuid_inst = {0xa5029fb6,0x3c34,0x11d1, {0x9c,0x99,0x00,0xc0,0x4f,0xb9,0x98,0xaa}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAsyncRpcChannelBuffer*>() { return __mingw_uuidof<IAsyncRpcChannelBuffer>(); } }
 # 2904 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IAsyncRpcChannelBuffer_Send_Proxy(
     IAsyncRpcChannelBuffer* This,
@@ -62513,44 +61946,94 @@ void IAsyncRpcChannelBuffer_GetDestCtxEx_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 2943 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IRpcChannelBuffer3;
+extern const GUID IID_IRpcChannelBuffer3;
+# 2983 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IRpcChannelBuffer3Vtbl {
+   
 
-struct
-IRpcChannelBuffer3 : public IRpcChannelBuffer2
-{
-    virtual HRESULT Send(
+
+    HRESULT ( *QueryInterface)(
+        IRpcChannelBuffer3* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IRpcChannelBuffer3* This);
+
+    ULONG ( *Release)(
+        IRpcChannelBuffer3* This);
+
+
+    HRESULT ( *GetBuffer)(
+        IRpcChannelBuffer3* This,
+        RPCOLEMESSAGE *pMessage,
+        const IID *const riid);
+
+    HRESULT ( *SendReceive)(
+        IRpcChannelBuffer3* This,
+        RPCOLEMESSAGE *pMessage,
+        ULONG *pStatus);
+
+    HRESULT ( *FreeBuffer)(
+        IRpcChannelBuffer3* This,
+        RPCOLEMESSAGE *pMessage);
+
+    HRESULT ( *GetDestCtx)(
+        IRpcChannelBuffer3* This,
+        DWORD *pdwDestContext,
+        void **ppvDestContext);
+
+    HRESULT ( *IsConnected)(
+        IRpcChannelBuffer3* This);
+
+
+    HRESULT ( *GetProtocolVersion)(
+        IRpcChannelBuffer3* This,
+        DWORD *pdwVersion);
+
+
+    HRESULT ( *Send)(
+        IRpcChannelBuffer3* This,
         RPCOLEMESSAGE *pMsg,
-        ULONG *pulStatus) = 0;
+        ULONG *pulStatus);
 
-    virtual HRESULT Receive(
+    HRESULT ( *Receive)(
+        IRpcChannelBuffer3* This,
         RPCOLEMESSAGE *pMsg,
         ULONG ulSize,
-        ULONG *pulStatus) = 0;
+        ULONG *pulStatus);
 
-    virtual HRESULT Cancel(
-        RPCOLEMESSAGE *pMsg) = 0;
+    HRESULT ( *Cancel)(
+        IRpcChannelBuffer3* This,
+        RPCOLEMESSAGE *pMsg);
 
-    virtual HRESULT GetCallContext(
+    HRESULT ( *GetCallContext)(
+        IRpcChannelBuffer3* This,
         RPCOLEMESSAGE *pMsg,
-        const IID & riid,
-        void **pInterface) = 0;
+        const IID *const riid,
+        void **pInterface);
 
-    virtual HRESULT GetDestCtxEx(
+    HRESULT ( *GetDestCtxEx)(
+        IRpcChannelBuffer3* This,
         RPCOLEMESSAGE *pMsg,
         DWORD *pdwDestContext,
-        void **ppvDestContext) = 0;
+        void **ppvDestContext);
 
-    virtual HRESULT GetState(
+    HRESULT ( *GetState)(
+        IRpcChannelBuffer3* This,
         RPCOLEMESSAGE *pMsg,
-        DWORD *pState) = 0;
+        DWORD *pState);
 
-    virtual HRESULT RegisterAsync(
+    HRESULT ( *RegisterAsync)(
+        IRpcChannelBuffer3* This,
         RPCOLEMESSAGE *pMsg,
-        IAsyncManager *pAsyncMgr) = 0;
+        IAsyncManager *pAsyncMgr);
 
+   
+} IRpcChannelBuffer3Vtbl;
+struct IRpcChannelBuffer3 {
+    IRpcChannelBuffer3Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRpcChannelBuffer3>() { static const IID __uuid_inst = {0x25b15600,0x0115,0x11d0, {0xbf,0x0d,0x00,0xaa,0x00,0xb8,0xdf,0xd2}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRpcChannelBuffer3*>() { return __mingw_uuidof<IRpcChannelBuffer3>(); } }
 # 3150 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IRpcChannelBuffer3_Send_Proxy(
     IRpcChannelBuffer3* This,
@@ -62582,7 +62065,7 @@ void IRpcChannelBuffer3_Cancel_Stub(
 HRESULT IRpcChannelBuffer3_GetCallContext_Proxy(
     IRpcChannelBuffer3* This,
     RPCOLEMESSAGE *pMsg,
-    const IID & riid,
+    const IID *const riid,
     void **pInterface);
 void IRpcChannelBuffer3_GetCallContext_Stub(
     IRpcStubBuffer* This,
@@ -62618,17 +62101,33 @@ void IRpcChannelBuffer3_RegisterAsync_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 3225 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IRpcSyntaxNegotiate;
+extern const GUID IID_IRpcSyntaxNegotiate;
+# 3238 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IRpcSyntaxNegotiateVtbl {
+   
 
-struct
-IRpcSyntaxNegotiate : public IUnknown
-{
-    virtual HRESULT NegotiateSyntax(
-        RPCOLEMESSAGE *pMsg) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IRpcSyntaxNegotiate* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IRpcSyntaxNegotiate* This);
+
+    ULONG ( *Release)(
+        IRpcSyntaxNegotiate* This);
+
+
+    HRESULT ( *NegotiateSyntax)(
+        IRpcSyntaxNegotiate* This,
+        RPCOLEMESSAGE *pMsg);
+
+   
+} IRpcSyntaxNegotiateVtbl;
+struct IRpcSyntaxNegotiate {
+    IRpcSyntaxNegotiateVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRpcSyntaxNegotiate>() { static const IID __uuid_inst = {0x58a08519,0x24c8,0x4935, {0xb4,0x82,0x3f,0xd8,0x23,0x33,0x3a,0x4f}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRpcSyntaxNegotiate*>() { return __mingw_uuidof<IRpcSyntaxNegotiate>(); } }
 # 3292 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IRpcSyntaxNegotiate_NegotiateSyntax_Proxy(
     IRpcSyntaxNegotiate* This,
@@ -62639,20 +62138,36 @@ void IRpcSyntaxNegotiate_NegotiateSyntax_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 3310 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IRpcProxyBuffer;
+extern const GUID IID_IRpcProxyBuffer;
+# 3326 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IRpcProxyBufferVtbl {
+   
 
-struct
-IRpcProxyBuffer : public IUnknown
-{
-    virtual HRESULT Connect(
-        IRpcChannelBuffer *pRpcChannelBuffer) = 0;
 
-    virtual void Disconnect(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IRpcProxyBuffer* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IRpcProxyBuffer* This);
+
+    ULONG ( *Release)(
+        IRpcProxyBuffer* This);
+
+
+    HRESULT ( *Connect)(
+        IRpcProxyBuffer* This,
+        IRpcChannelBuffer *pRpcChannelBuffer);
+
+    void ( *Disconnect)(
+        IRpcProxyBuffer* This);
+
+   
+} IRpcProxyBufferVtbl;
+struct IRpcProxyBuffer {
+    IRpcProxyBufferVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRpcProxyBuffer>() { static const IID __uuid_inst = {0xd5f56a34,0x593b,0x101a, {0xb5,0x69,0x08,0x00,0x2b,0x2d,0xbf,0x7a}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRpcProxyBuffer*>() { return __mingw_uuidof<IRpcProxyBuffer>(); } }
 # 3387 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IRpcProxyBuffer_Connect_Proxy(
     IRpcProxyBuffer* This,
@@ -62670,36 +62185,56 @@ void IRpcProxyBuffer_Disconnect_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 3414 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IRpcStubBuffer;
+extern const GUID IID_IRpcStubBuffer;
+# 3446 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IRpcStubBufferVtbl {
+   
 
-struct
-IRpcStubBuffer : public IUnknown
-{
-    virtual HRESULT Connect(
-        IUnknown *pUnkServer) = 0;
 
-    virtual void Disconnect(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IRpcStubBuffer* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT Invoke(
+    ULONG ( *AddRef)(
+        IRpcStubBuffer* This);
+
+    ULONG ( *Release)(
+        IRpcStubBuffer* This);
+
+
+    HRESULT ( *Connect)(
+        IRpcStubBuffer* This,
+        IUnknown *pUnkServer);
+
+    void ( *Disconnect)(
+        IRpcStubBuffer* This);
+
+    HRESULT ( *Invoke)(
+        IRpcStubBuffer* This,
         RPCOLEMESSAGE *_prpcmsg,
-        IRpcChannelBuffer *_pRpcChannelBuffer) = 0;
+        IRpcChannelBuffer *_pRpcChannelBuffer);
 
-    virtual IRpcStubBuffer * IsIIDSupported(
-        const IID & riid) = 0;
+    IRpcStubBuffer * ( *IsIIDSupported)(
+        IRpcStubBuffer* This,
+        const IID *const riid);
 
-    virtual ULONG CountRefs(
-        ) = 0;
+    ULONG ( *CountRefs)(
+        IRpcStubBuffer* This);
 
-    virtual HRESULT DebugServerQueryInterface(
-        void **ppv) = 0;
+    HRESULT ( *DebugServerQueryInterface)(
+        IRpcStubBuffer* This,
+        void **ppv);
 
-    virtual void DebugServerRelease(
-        void *pv) = 0;
+    void ( *DebugServerRelease)(
+        IRpcStubBuffer* This,
+        void *pv);
 
+   
+} IRpcStubBufferVtbl;
+struct IRpcStubBuffer {
+    IRpcStubBufferVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRpcStubBuffer>() { static const IID __uuid_inst = {0xd5f56afc,0x593b,0x101a, {0xb5,0x69,0x08,0x00,0x2b,0x2d,0xbf,0x7a}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRpcStubBuffer*>() { return __mingw_uuidof<IRpcStubBuffer>(); } }
 # 3547 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IRpcStubBuffer_Connect_Proxy(
     IRpcStubBuffer* This,
@@ -62727,7 +62262,7 @@ void IRpcStubBuffer_Invoke_Stub(
     DWORD* pdwStubPhase);
 IRpcStubBuffer * IRpcStubBuffer_IsIIDSupported_Proxy(
     IRpcStubBuffer* This,
-    const IID & riid);
+    const IID *const riid);
 void IRpcStubBuffer_IsIIDSupported_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -62757,30 +62292,47 @@ void IRpcStubBuffer_DebugServerRelease_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 3612 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IPSFactoryBuffer;
+extern const GUID IID_IPSFactoryBuffer;
+# 3633 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IPSFactoryBufferVtbl {
+   
 
-struct
-IPSFactoryBuffer : public IUnknown
-{
-    virtual HRESULT CreateProxy(
+
+    HRESULT ( *QueryInterface)(
+        IPSFactoryBuffer* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IPSFactoryBuffer* This);
+
+    ULONG ( *Release)(
+        IPSFactoryBuffer* This);
+
+
+    HRESULT ( *CreateProxy)(
+        IPSFactoryBuffer* This,
         IUnknown *pUnkOuter,
-        const IID & riid,
+        const IID *const riid,
         IRpcProxyBuffer **ppProxy,
-        void **ppv) = 0;
+        void **ppv);
 
-    virtual HRESULT CreateStub(
-        const IID & riid,
+    HRESULT ( *CreateStub)(
+        IPSFactoryBuffer* This,
+        const IID *const riid,
         IUnknown *pUnkServer,
-        IRpcStubBuffer **ppStub) = 0;
+        IRpcStubBuffer **ppStub);
 
+   
+} IPSFactoryBufferVtbl;
+struct IPSFactoryBuffer {
+    IPSFactoryBufferVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPSFactoryBuffer>() { static const IID __uuid_inst = {0xd5f569d0,0x593b,0x101a, {0xb5,0x69,0x08,0x00,0x2b,0x2d,0xbf,0x7a}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPSFactoryBuffer*>() { return __mingw_uuidof<IPSFactoryBuffer>(); } }
 # 3700 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IPSFactoryBuffer_CreateProxy_Proxy(
     IPSFactoryBuffer* This,
     IUnknown *pUnkOuter,
-    const IID & riid,
+    const IID *const riid,
     IRpcProxyBuffer **ppProxy,
     void **ppv);
 void IPSFactoryBuffer_CreateProxy_Stub(
@@ -62790,7 +62342,7 @@ void IPSFactoryBuffer_CreateProxy_Stub(
     DWORD* pdwStubPhase);
 HRESULT IPSFactoryBuffer_CreateStub_Proxy(
     IPSFactoryBuffer* This,
-    const IID & riid,
+    const IID *const riid,
     IUnknown *pUnkServer,
     IRpcStubBuffer **ppStub);
 void IPSFactoryBuffer_CreateStub_Stub(
@@ -62820,58 +62372,79 @@ typedef struct SChannelHookCallInfo {
 
 
 
-extern "C" const GUID IID_IChannelHook;
+extern const GUID IID_IChannelHook;
+# 3792 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IChannelHookVtbl {
+   
 
-struct
-IChannelHook : public IUnknown
-{
-    virtual void ClientGetSize(
-        const GUID & uExtent,
-        const IID & riid,
-        ULONG *pDataSize) = 0;
 
-    virtual void ClientFillBuffer(
-        const GUID & uExtent,
-        const IID & riid,
+    HRESULT ( *QueryInterface)(
+        IChannelHook* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IChannelHook* This);
+
+    ULONG ( *Release)(
+        IChannelHook* This);
+
+
+    void ( *ClientGetSize)(
+        IChannelHook* This,
+        const GUID *const uExtent,
+        const IID *const riid,
+        ULONG *pDataSize);
+
+    void ( *ClientFillBuffer)(
+        IChannelHook* This,
+        const GUID *const uExtent,
+        const IID *const riid,
         ULONG *pDataSize,
-        void *pDataBuffer) = 0;
+        void *pDataBuffer);
 
-    virtual void ClientNotify(
-        const GUID & uExtent,
-        const IID & riid,
+    void ( *ClientNotify)(
+        IChannelHook* This,
+        const GUID *const uExtent,
+        const IID *const riid,
         ULONG cbDataSize,
         void *pDataBuffer,
         DWORD lDataRep,
-        HRESULT hrFault) = 0;
+        HRESULT hrFault);
 
-    virtual void ServerNotify(
-        const GUID & uExtent,
-        const IID & riid,
+    void ( *ServerNotify)(
+        IChannelHook* This,
+        const GUID *const uExtent,
+        const IID *const riid,
         ULONG cbDataSize,
         void *pDataBuffer,
-        DWORD lDataRep) = 0;
+        DWORD lDataRep);
 
-    virtual void ServerGetSize(
-        const GUID & uExtent,
-        const IID & riid,
+    void ( *ServerGetSize)(
+        IChannelHook* This,
+        const GUID *const uExtent,
+        const IID *const riid,
         HRESULT hrFault,
-        ULONG *pDataSize) = 0;
+        ULONG *pDataSize);
 
-    virtual void ServerFillBuffer(
-        const GUID & uExtent,
-        const IID & riid,
+    void ( *ServerFillBuffer)(
+        IChannelHook* This,
+        const GUID *const uExtent,
+        const IID *const riid,
         ULONG *pDataSize,
         void *pDataBuffer,
-        HRESULT hrFault) = 0;
+        HRESULT hrFault);
 
+   
+} IChannelHookVtbl;
+struct IChannelHook {
+    IChannelHookVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IChannelHook>() { static const IID __uuid_inst = {0x1008c4a0,0x7613,0x11cf, {0x9a,0xf1,0x00,0x20,0xaf,0x6e,0x72,0xf4}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IChannelHook*>() { return __mingw_uuidof<IChannelHook>(); } }
 # 3907 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 void IChannelHook_ClientGetSize_Proxy(
     IChannelHook* This,
-    const GUID & uExtent,
-    const IID & riid,
+    const GUID *const uExtent,
+    const IID *const riid,
     ULONG *pDataSize);
 void IChannelHook_ClientGetSize_Stub(
     IRpcStubBuffer* This,
@@ -62880,8 +62453,8 @@ void IChannelHook_ClientGetSize_Stub(
     DWORD* pdwStubPhase);
 void IChannelHook_ClientFillBuffer_Proxy(
     IChannelHook* This,
-    const GUID & uExtent,
-    const IID & riid,
+    const GUID *const uExtent,
+    const IID *const riid,
     ULONG *pDataSize,
     void *pDataBuffer);
 void IChannelHook_ClientFillBuffer_Stub(
@@ -62891,8 +62464,8 @@ void IChannelHook_ClientFillBuffer_Stub(
     DWORD* pdwStubPhase);
 void IChannelHook_ClientNotify_Proxy(
     IChannelHook* This,
-    const GUID & uExtent,
-    const IID & riid,
+    const GUID *const uExtent,
+    const IID *const riid,
     ULONG cbDataSize,
     void *pDataBuffer,
     DWORD lDataRep,
@@ -62904,8 +62477,8 @@ void IChannelHook_ClientNotify_Stub(
     DWORD* pdwStubPhase);
 void IChannelHook_ServerNotify_Proxy(
     IChannelHook* This,
-    const GUID & uExtent,
-    const IID & riid,
+    const GUID *const uExtent,
+    const IID *const riid,
     ULONG cbDataSize,
     void *pDataBuffer,
     DWORD lDataRep);
@@ -62916,8 +62489,8 @@ void IChannelHook_ServerNotify_Stub(
     DWORD* pdwStubPhase);
 void IChannelHook_ServerGetSize_Proxy(
     IChannelHook* This,
-    const GUID & uExtent,
-    const IID & riid,
+    const GUID *const uExtent,
+    const IID *const riid,
     HRESULT hrFault,
     ULONG *pDataSize);
 void IChannelHook_ServerGetSize_Stub(
@@ -62927,8 +62500,8 @@ void IChannelHook_ServerGetSize_Stub(
     DWORD* pdwStubPhase);
 void IChannelHook_ServerFillBuffer_Proxy(
     IChannelHook* This,
-    const GUID & uExtent,
-    const IID & riid,
+    const GUID *const uExtent,
+    const IID *const riid,
     ULONG *pDataSize,
     void *pDataBuffer,
     HRESULT hrFault);
@@ -62983,12 +62556,26 @@ typedef struct tagSOLE_AUTHENTICATION_LIST {
 } SOLE_AUTHENTICATION_LIST;
 typedef struct tagSOLE_AUTHENTICATION_LIST *PSOLE_AUTHENTICATION_LIST;
 
-extern "C" const GUID IID_IClientSecurity;
+extern const GUID IID_IClientSecurity;
+# 4069 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IClientSecurityVtbl {
+   
 
-struct
-IClientSecurity : public IUnknown
-{
-    virtual HRESULT QueryBlanket(
+
+    HRESULT ( *QueryInterface)(
+        IClientSecurity* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IClientSecurity* This);
+
+    ULONG ( *Release)(
+        IClientSecurity* This);
+
+
+    HRESULT ( *QueryBlanket)(
+        IClientSecurity* This,
         IUnknown *pProxy,
         DWORD *pAuthnSvc,
         DWORD *pAuthzSvc,
@@ -62996,9 +62583,10 @@ IClientSecurity : public IUnknown
         DWORD *pAuthnLevel,
         DWORD *pImpLevel,
         void **pAuthInfo,
-        DWORD *pCapabilites) = 0;
+        DWORD *pCapabilites);
 
-    virtual HRESULT SetBlanket(
+    HRESULT ( *SetBlanket)(
+        IClientSecurity* This,
         IUnknown *pProxy,
         DWORD dwAuthnSvc,
         DWORD dwAuthzSvc,
@@ -63006,15 +62594,18 @@ IClientSecurity : public IUnknown
         DWORD dwAuthnLevel,
         DWORD dwImpLevel,
         void *pAuthInfo,
-        DWORD dwCapabilities) = 0;
+        DWORD dwCapabilities);
 
-    virtual HRESULT CopyProxy(
+    HRESULT ( *CopyProxy)(
+        IClientSecurity* This,
         IUnknown *pProxy,
-        IUnknown **ppCopy) = 0;
+        IUnknown **ppCopy);
 
+   
+} IClientSecurityVtbl;
+struct IClientSecurity {
+    IClientSecurityVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IClientSecurity>() { static const IID __uuid_inst = {0x0000013d,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IClientSecurity*>() { return __mingw_uuidof<IClientSecurity>(); } }
 # 4154 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IClientSecurity_QueryBlanket_Proxy(
     IClientSecurity* This,
@@ -63056,32 +62647,48 @@ void IClientSecurity_CopyProxy_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 4205 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IServerSecurity;
+extern const GUID IID_IServerSecurity;
+# 4233 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IServerSecurityVtbl {
+   
 
-struct
-IServerSecurity : public IUnknown
-{
-    virtual HRESULT QueryBlanket(
+
+    HRESULT ( *QueryInterface)(
+        IServerSecurity* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IServerSecurity* This);
+
+    ULONG ( *Release)(
+        IServerSecurity* This);
+
+
+    HRESULT ( *QueryBlanket)(
+        IServerSecurity* This,
         DWORD *pAuthnSvc,
         DWORD *pAuthzSvc,
         OLECHAR **pServerPrincName,
         DWORD *pAuthnLevel,
         DWORD *pImpLevel,
         void **pPrivs,
-        DWORD *pCapabilities) = 0;
+        DWORD *pCapabilities);
 
-    virtual HRESULT ImpersonateClient(
-        ) = 0;
+    HRESULT ( *ImpersonateClient)(
+        IServerSecurity* This);
 
-    virtual HRESULT RevertToSelf(
-        ) = 0;
+    HRESULT ( *RevertToSelf)(
+        IServerSecurity* This);
 
-    virtual WINBOOL IsImpersonating(
-        ) = 0;
+    WINBOOL ( *IsImpersonating)(
+        IServerSecurity* This);
 
+   
+} IServerSecurityVtbl;
+struct IServerSecurity {
+    IServerSecurityVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IServerSecurity>() { static const IID __uuid_inst = {0x0000013e,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IServerSecurity*>() { return __mingw_uuidof<IServerSecurity>(); } }
 # 4314 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IServerSecurity_QueryBlanket_Proxy(
     IServerSecurity* This,
@@ -63140,24 +62747,41 @@ typedef enum tagRPCOPT_SERVER_LOCALITY_VALUES {
 
 
 
-extern "C" const GUID IID_IRpcOptions;
+extern const GUID IID_IRpcOptions;
+# 4391 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IRpcOptionsVtbl {
+   
 
-struct
-IRpcOptions : public IUnknown
-{
-    virtual HRESULT Set(
+
+    HRESULT ( *QueryInterface)(
+        IRpcOptions* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IRpcOptions* This);
+
+    ULONG ( *Release)(
+        IRpcOptions* This);
+
+
+    HRESULT ( *Set)(
+        IRpcOptions* This,
         IUnknown *pPrx,
         RPCOPT_PROPERTIES dwProperty,
-        ULONG_PTR dwValue) = 0;
+        ULONG_PTR dwValue);
 
-    virtual HRESULT Query(
+    HRESULT ( *Query)(
+        IRpcOptions* This,
         IUnknown *pPrx,
         RPCOPT_PROPERTIES dwProperty,
-        ULONG_PTR *pdwValue) = 0;
+        ULONG_PTR *pdwValue);
 
+   
+} IRpcOptionsVtbl;
+struct IRpcOptions {
+    IRpcOptionsVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRpcOptions>() { static const IID __uuid_inst = {0x00000144,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRpcOptions*>() { return __mingw_uuidof<IRpcOptions>(); } }
 # 4457 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IRpcOptions_Set_Proxy(
     IRpcOptions* This,
@@ -63228,22 +62852,39 @@ typedef enum tagGLOBALOPT_UNMARSHALING_POLICY_VALUES {
 
 
 
-extern "C" const GUID IID_IGlobalOptions;
+extern const GUID IID_IGlobalOptions;
+# 4544 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IGlobalOptionsVtbl {
+   
 
-struct
-IGlobalOptions : public IUnknown
-{
-    virtual HRESULT Set(
+
+    HRESULT ( *QueryInterface)(
+        IGlobalOptions* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IGlobalOptions* This);
+
+    ULONG ( *Release)(
+        IGlobalOptions* This);
+
+
+    HRESULT ( *Set)(
+        IGlobalOptions* This,
         GLOBALOPT_PROPERTIES dwProperty,
-        ULONG_PTR dwValue) = 0;
+        ULONG_PTR dwValue);
 
-    virtual HRESULT Query(
+    HRESULT ( *Query)(
+        IGlobalOptions* This,
         GLOBALOPT_PROPERTIES dwProperty,
-        ULONG_PTR *pdwValue) = 0;
+        ULONG_PTR *pdwValue);
 
+   
+} IGlobalOptionsVtbl;
+struct IGlobalOptions {
+    IGlobalOptionsVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IGlobalOptions>() { static const IID __uuid_inst = {0x0000015b,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IGlobalOptions*>() { return __mingw_uuidof<IGlobalOptions>(); } }
 # 4608 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IGlobalOptions_Set_Proxy(
     IGlobalOptions* This,
@@ -63266,24 +62907,40 @@ void IGlobalOptions_Query_Stub(
 # 4639 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef ISurrogate *LPSURROGATE;
 
-extern "C" const GUID IID_ISurrogate;
+extern const GUID IID_ISurrogate;
+# 4657 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct ISurrogateVtbl {
+   
 
-struct
-ISurrogate : public IUnknown
-{
-    virtual HRESULT LoadDllServer(
-        const IID & Clsid) = 0;
 
-    virtual HRESULT FreeSurrogate(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        ISurrogate* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        ISurrogate* This);
+
+    ULONG ( *Release)(
+        ISurrogate* This);
+
+
+    HRESULT ( *LoadDllServer)(
+        ISurrogate* This,
+        const IID *const Clsid);
+
+    HRESULT ( *FreeSurrogate)(
+        ISurrogate* This);
+
+   
+} ISurrogateVtbl;
+struct ISurrogate {
+    ISurrogateVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISurrogate>() { static const IID __uuid_inst = {0x00000022,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISurrogate*>() { return __mingw_uuidof<ISurrogate>(); } }
 # 4718 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT ISurrogate_LoadDllServer_Proxy(
     ISurrogate* This,
-    const IID & Clsid);
+    const IID *const Clsid);
 void ISurrogate_LoadDllServer_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -63299,32 +62956,50 @@ void ISurrogate_FreeSurrogate_Stub(
 # 4743 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef IGlobalInterfaceTable *LPGLOBALINTERFACETABLE;
 
-extern "C" const GUID IID_IGlobalInterfaceTable;
+extern const GUID IID_IGlobalInterfaceTable;
+# 4768 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IGlobalInterfaceTableVtbl {
+   
 
-struct
-IGlobalInterfaceTable : public IUnknown
-{
-    virtual HRESULT RegisterInterfaceInGlobal(
+
+    HRESULT ( *QueryInterface)(
+        IGlobalInterfaceTable* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IGlobalInterfaceTable* This);
+
+    ULONG ( *Release)(
+        IGlobalInterfaceTable* This);
+
+
+    HRESULT ( *RegisterInterfaceInGlobal)(
+        IGlobalInterfaceTable* This,
         IUnknown *pUnk,
-        const IID & riid,
-        DWORD *pdwCookie) = 0;
+        const IID *const riid,
+        DWORD *pdwCookie);
 
-    virtual HRESULT RevokeInterfaceFromGlobal(
-        DWORD dwCookie) = 0;
+    HRESULT ( *RevokeInterfaceFromGlobal)(
+        IGlobalInterfaceTable* This,
+        DWORD dwCookie);
 
-    virtual HRESULT GetInterfaceFromGlobal(
+    HRESULT ( *GetInterfaceFromGlobal)(
+        IGlobalInterfaceTable* This,
         DWORD dwCookie,
-        const IID & riid,
-        void **ppv) = 0;
+        const IID *const riid,
+        void **ppv);
 
+   
+} IGlobalInterfaceTableVtbl;
+struct IGlobalInterfaceTable {
+    IGlobalInterfaceTableVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IGlobalInterfaceTable>() { static const IID __uuid_inst = {0x00000146,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IGlobalInterfaceTable*>() { return __mingw_uuidof<IGlobalInterfaceTable>(); } }
 # 4842 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IGlobalInterfaceTable_RegisterInterfaceInGlobal_Proxy(
     IGlobalInterfaceTable* This,
     IUnknown *pUnk,
-    const IID & riid,
+    const IID *const riid,
     DWORD *pdwCookie);
 void IGlobalInterfaceTable_RegisterInterfaceInGlobal_Stub(
     IRpcStubBuffer* This,
@@ -63342,7 +63017,7 @@ void IGlobalInterfaceTable_RevokeInterfaceFromGlobal_Stub(
 HRESULT IGlobalInterfaceTable_GetInterfaceFromGlobal_Proxy(
     IGlobalInterfaceTable* This,
     DWORD dwCookie,
-    const IID & riid,
+    const IID *const riid,
     void **ppv);
 void IGlobalInterfaceTable_GetInterfaceFromGlobal_Stub(
     IRpcStubBuffer* This,
@@ -63350,24 +63025,40 @@ void IGlobalInterfaceTable_GetInterfaceFromGlobal_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 4882 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_ISynchronize;
+extern const GUID IID_ISynchronize;
+# 4902 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct ISynchronizeVtbl {
+   
 
-struct
-ISynchronize : public IUnknown
-{
-    virtual HRESULT Wait(
+
+    HRESULT ( *QueryInterface)(
+        ISynchronize* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ISynchronize* This);
+
+    ULONG ( *Release)(
+        ISynchronize* This);
+
+
+    HRESULT ( *Wait)(
+        ISynchronize* This,
         DWORD dwFlags,
-        DWORD dwMilliseconds) = 0;
+        DWORD dwMilliseconds);
 
-    virtual HRESULT Signal(
-        ) = 0;
+    HRESULT ( *Signal)(
+        ISynchronize* This);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        ISynchronize* This);
 
+   
+} ISynchronizeVtbl;
+struct ISynchronize {
+    ISynchronizeVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISynchronize>() { static const IID __uuid_inst = {0x00000030,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISynchronize*>() { return __mingw_uuidof<ISynchronize>(); } }
 # 4971 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT ISynchronize_Wait_Proxy(
     ISynchronize* This,
@@ -63393,17 +63084,33 @@ void ISynchronize_Reset_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5004 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_ISynchronizeHandle;
+extern const GUID IID_ISynchronizeHandle;
+# 5017 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct ISynchronizeHandleVtbl {
+   
 
-struct
-ISynchronizeHandle : public IUnknown
-{
-    virtual HRESULT GetHandle(
-        HANDLE *ph) = 0;
 
+    HRESULT ( *QueryInterface)(
+        ISynchronizeHandle* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ISynchronizeHandle* This);
+
+    ULONG ( *Release)(
+        ISynchronizeHandle* This);
+
+
+    HRESULT ( *GetHandle)(
+        ISynchronizeHandle* This,
+        HANDLE *ph);
+
+   
+} ISynchronizeHandleVtbl;
+struct ISynchronizeHandle {
+    ISynchronizeHandleVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISynchronizeHandle>() { static const IID __uuid_inst = {0x00000031,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISynchronizeHandle*>() { return __mingw_uuidof<ISynchronizeHandle>(); } }
 # 5071 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT ISynchronizeHandle_GetHandle_Proxy(
     ISynchronizeHandle* This,
@@ -63414,17 +63121,38 @@ void ISynchronizeHandle_GetHandle_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5089 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_ISynchronizeEvent;
+extern const GUID IID_ISynchronizeEvent;
+# 5102 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct ISynchronizeEventVtbl {
+   
 
-struct
-ISynchronizeEvent : public ISynchronizeHandle
-{
-    virtual HRESULT SetEventHandle(
-        HANDLE *ph) = 0;
 
+    HRESULT ( *QueryInterface)(
+        ISynchronizeEvent* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ISynchronizeEvent* This);
+
+    ULONG ( *Release)(
+        ISynchronizeEvent* This);
+
+
+    HRESULT ( *GetHandle)(
+        ISynchronizeEvent* This,
+        HANDLE *ph);
+
+
+    HRESULT ( *SetEventHandle)(
+        ISynchronizeEvent* This,
+        HANDLE *ph);
+
+   
+} ISynchronizeEventVtbl;
+struct ISynchronizeEvent {
+    ISynchronizeEventVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISynchronizeEvent>() { static const IID __uuid_inst = {0x00000032,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISynchronizeEvent*>() { return __mingw_uuidof<ISynchronizeEvent>(); } }
 # 5167 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT ISynchronizeEvent_SetEventHandle_Proxy(
     ISynchronizeEvent* This,
@@ -63435,22 +63163,39 @@ void ISynchronizeEvent_SetEventHandle_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5185 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_ISynchronizeContainer;
+extern const GUID IID_ISynchronizeContainer;
+# 5203 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct ISynchronizeContainerVtbl {
+   
 
-struct
-ISynchronizeContainer : public IUnknown
-{
-    virtual HRESULT AddSynchronize(
-        ISynchronize *pSync) = 0;
 
-    virtual HRESULT WaitMultiple(
+    HRESULT ( *QueryInterface)(
+        ISynchronizeContainer* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ISynchronizeContainer* This);
+
+    ULONG ( *Release)(
+        ISynchronizeContainer* This);
+
+
+    HRESULT ( *AddSynchronize)(
+        ISynchronizeContainer* This,
+        ISynchronize *pSync);
+
+    HRESULT ( *WaitMultiple)(
+        ISynchronizeContainer* This,
         DWORD dwFlags,
         DWORD dwTimeOut,
-        ISynchronize **ppSync) = 0;
+        ISynchronize **ppSync);
 
+   
+} ISynchronizeContainerVtbl;
+struct ISynchronizeContainer {
+    ISynchronizeContainerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISynchronizeContainer>() { static const IID __uuid_inst = {0x00000033,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISynchronizeContainer*>() { return __mingw_uuidof<ISynchronizeContainer>(); } }
 # 5267 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT ISynchronizeContainer_AddSynchronize_Proxy(
     ISynchronizeContainer* This,
@@ -63471,17 +63216,44 @@ void ISynchronizeContainer_WaitMultiple_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5295 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_ISynchronizeMutex;
+extern const GUID IID_ISynchronizeMutex;
+# 5308 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct ISynchronizeMutexVtbl {
+   
 
-struct
-ISynchronizeMutex : public ISynchronize
-{
-    virtual HRESULT ReleaseMutex(
-        ) = 0;
 
+    HRESULT ( *QueryInterface)(
+        ISynchronizeMutex* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ISynchronizeMutex* This);
+
+    ULONG ( *Release)(
+        ISynchronizeMutex* This);
+
+
+    HRESULT ( *Wait)(
+        ISynchronizeMutex* This,
+        DWORD dwFlags,
+        DWORD dwMilliseconds);
+
+    HRESULT ( *Signal)(
+        ISynchronizeMutex* This);
+
+    HRESULT ( *Reset)(
+        ISynchronizeMutex* This);
+
+
+    HRESULT ( *ReleaseMutex)(
+        ISynchronizeMutex* This);
+
+   
+} ISynchronizeMutexVtbl;
+struct ISynchronizeMutex {
+    ISynchronizeMutexVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISynchronizeMutex>() { static const IID __uuid_inst = {0x00000025,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISynchronizeMutex*>() { return __mingw_uuidof<ISynchronizeMutex>(); } }
 # 5387 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT ISynchronizeMutex_ReleaseMutex_Proxy(
     ISynchronizeMutex* This);
@@ -63493,20 +63265,36 @@ void ISynchronizeMutex_ReleaseMutex_Stub(
 # 5404 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef ICancelMethodCalls *LPCANCELMETHODCALLS;
 
-extern "C" const GUID IID_ICancelMethodCalls;
+extern const GUID IID_ICancelMethodCalls;
+# 5422 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct ICancelMethodCallsVtbl {
+   
 
-struct
-ICancelMethodCalls : public IUnknown
-{
-    virtual HRESULT Cancel(
-        ULONG ulSeconds) = 0;
 
-    virtual HRESULT TestCancel(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        ICancelMethodCalls* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        ICancelMethodCalls* This);
+
+    ULONG ( *Release)(
+        ICancelMethodCalls* This);
+
+
+    HRESULT ( *Cancel)(
+        ICancelMethodCalls* This,
+        ULONG ulSeconds);
+
+    HRESULT ( *TestCancel)(
+        ICancelMethodCalls* This);
+
+   
+} ICancelMethodCallsVtbl;
+struct ICancelMethodCalls {
+    ICancelMethodCallsVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ICancelMethodCalls>() { static const IID __uuid_inst = {0x00000029,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ICancelMethodCalls*>() { return __mingw_uuidof<ICancelMethodCalls>(); } }
 # 5483 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT ICancelMethodCalls_Cancel_Proxy(
     ICancelMethodCalls* This,
@@ -63530,24 +63318,42 @@ typedef enum tagDCOM_CALL_STATE {
     DCOM_CALL_CANCELED = 0x2
 } DCOM_CALL_STATE;
 
-extern "C" const GUID IID_IAsyncManager;
+extern const GUID IID_IAsyncManager;
+# 5534 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IAsyncManagerVtbl {
+   
 
-struct
-IAsyncManager : public IUnknown
-{
-    virtual HRESULT CompleteCall(
-        HRESULT Result) = 0;
 
-    virtual HRESULT GetCallContext(
-        const IID & riid,
-        void **pInterface) = 0;
+    HRESULT ( *QueryInterface)(
+        IAsyncManager* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT GetState(
-        ULONG *pulStateFlags) = 0;
+    ULONG ( *AddRef)(
+        IAsyncManager* This);
 
+    ULONG ( *Release)(
+        IAsyncManager* This);
+
+
+    HRESULT ( *CompleteCall)(
+        IAsyncManager* This,
+        HRESULT Result);
+
+    HRESULT ( *GetCallContext)(
+        IAsyncManager* This,
+        const IID *const riid,
+        void **pInterface);
+
+    HRESULT ( *GetState)(
+        IAsyncManager* This,
+        ULONG *pulStateFlags);
+
+   
+} IAsyncManagerVtbl;
+struct IAsyncManager {
+    IAsyncManagerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAsyncManager>() { static const IID __uuid_inst = {0x0000002a,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAsyncManager*>() { return __mingw_uuidof<IAsyncManager>(); } }
 # 5605 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IAsyncManager_CompleteCall_Proxy(
     IAsyncManager* This,
@@ -63559,7 +63365,7 @@ void IAsyncManager_CompleteCall_Stub(
     DWORD* pdwStubPhase);
 HRESULT IAsyncManager_GetCallContext_Proxy(
     IAsyncManager* This,
-    const IID & riid,
+    const IID *const riid,
     void **pInterface);
 void IAsyncManager_GetCallContext_Stub(
     IRpcStubBuffer* This,
@@ -63575,26 +63381,42 @@ void IAsyncManager_GetState_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5640 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_ICallFactory;
+extern const GUID IID_ICallFactory;
+# 5656 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct ICallFactoryVtbl {
+   
 
-struct
-ICallFactory : public IUnknown
-{
-    virtual HRESULT CreateCall(
-        const IID & riid,
+
+    HRESULT ( *QueryInterface)(
+        ICallFactory* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ICallFactory* This);
+
+    ULONG ( *Release)(
+        ICallFactory* This);
+
+
+    HRESULT ( *CreateCall)(
+        ICallFactory* This,
+        const IID *const riid,
         IUnknown *pCtrlUnk,
-        const IID & riid2,
-        IUnknown **ppv) = 0;
+        const IID *const riid2,
+        IUnknown **ppv);
 
+   
+} ICallFactoryVtbl;
+struct ICallFactory {
+    ICallFactoryVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ICallFactory>() { static const IID __uuid_inst = {0x1c733a30,0x2a1c,0x11ce, {0xad,0xe5,0x00,0xaa,0x00,0x44,0x77,0x3d}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ICallFactory*>() { return __mingw_uuidof<ICallFactory>(); } }
 # 5713 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT ICallFactory_CreateCall_Proxy(
     ICallFactory* This,
-    const IID & riid,
+    const IID *const riid,
     IUnknown *pCtrlUnk,
-    const IID & riid2,
+    const IID *const riid2,
     IUnknown **ppv);
 void ICallFactory_CreateCall_Stub(
     IRpcStubBuffer* This,
@@ -63602,21 +63424,38 @@ void ICallFactory_CreateCall_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5734 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IRpcHelper;
+extern const GUID IID_IRpcHelper;
+# 5751 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IRpcHelperVtbl {
+   
 
-struct
-IRpcHelper : public IUnknown
-{
-    virtual HRESULT GetDCOMProtocolVersion(
-        DWORD *pComVersion) = 0;
 
-    virtual HRESULT GetIIDFromOBJREF(
+    HRESULT ( *QueryInterface)(
+        IRpcHelper* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IRpcHelper* This);
+
+    ULONG ( *Release)(
+        IRpcHelper* This);
+
+
+    HRESULT ( *GetDCOMProtocolVersion)(
+        IRpcHelper* This,
+        DWORD *pComVersion);
+
+    HRESULT ( *GetIIDFromOBJREF)(
+        IRpcHelper* This,
         void *pObjRef,
-        IID **piid) = 0;
+        IID **piid);
 
+   
+} IRpcHelperVtbl;
+struct IRpcHelper {
+    IRpcHelperVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRpcHelper>() { static const IID __uuid_inst = {0x00000149,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRpcHelper*>() { return __mingw_uuidof<IRpcHelper>(); } }
 # 5814 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IRpcHelper_GetDCOMProtocolVersion_Proxy(
     IRpcHelper* This,
@@ -63636,19 +63475,35 @@ void IRpcHelper_GetIIDFromOBJREF_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5841 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IReleaseMarshalBuffers;
+extern const GUID IID_IReleaseMarshalBuffers;
+# 5856 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IReleaseMarshalBuffersVtbl {
+   
 
-struct
-IReleaseMarshalBuffers : public IUnknown
-{
-    virtual HRESULT ReleaseMarshalBuffer(
+
+    HRESULT ( *QueryInterface)(
+        IReleaseMarshalBuffers* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IReleaseMarshalBuffers* This);
+
+    ULONG ( *Release)(
+        IReleaseMarshalBuffers* This);
+
+
+    HRESULT ( *ReleaseMarshalBuffer)(
+        IReleaseMarshalBuffers* This,
         RPCOLEMESSAGE *pMsg,
         DWORD dwFlags,
-        IUnknown *pChnl) = 0;
+        IUnknown *pChnl);
 
+   
+} IReleaseMarshalBuffersVtbl;
+struct IReleaseMarshalBuffers {
+    IReleaseMarshalBuffersVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IReleaseMarshalBuffers>() { static const IID __uuid_inst = {0xeb0cb9e8,0x7996,0x11d2, {0x87,0x2e,0x00,0x00,0xf8,0x08,0x08,0x59}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IReleaseMarshalBuffers*>() { return __mingw_uuidof<IReleaseMarshalBuffers>(); } }
 # 5912 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IReleaseMarshalBuffers_ReleaseMarshalBuffer_Proxy(
     IReleaseMarshalBuffers* This,
@@ -63661,21 +63516,38 @@ void IReleaseMarshalBuffers_ReleaseMarshalBuffer_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5932 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IWaitMultiple;
+extern const GUID IID_IWaitMultiple;
+# 5949 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IWaitMultipleVtbl {
+   
 
-struct
-IWaitMultiple : public IUnknown
-{
-    virtual HRESULT WaitMultiple(
+
+    HRESULT ( *QueryInterface)(
+        IWaitMultiple* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IWaitMultiple* This);
+
+    ULONG ( *Release)(
+        IWaitMultiple* This);
+
+
+    HRESULT ( *WaitMultiple)(
+        IWaitMultiple* This,
         DWORD timeout,
-        ISynchronize **pSync) = 0;
+        ISynchronize **pSync);
 
-    virtual HRESULT AddSynchronize(
-        ISynchronize *pSync) = 0;
+    HRESULT ( *AddSynchronize)(
+        IWaitMultiple* This,
+        ISynchronize *pSync);
 
+   
+} IWaitMultipleVtbl;
+struct IWaitMultiple {
+    IWaitMultipleVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IWaitMultiple>() { static const IID __uuid_inst = {0x0000002b,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IWaitMultiple*>() { return __mingw_uuidof<IWaitMultiple>(); } }
 # 6012 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IWaitMultiple_WaitMultiple_Proxy(
     IWaitMultiple* This,
@@ -63696,20 +63568,35 @@ void IWaitMultiple_AddSynchronize_Stub(
     DWORD* pdwStubPhase);
 # 6039 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef IAddrTrackingControl *LPADDRTRACKINGCONTROL;
-extern "C" const GUID IID_IAddrTrackingControl;
+extern const GUID IID_IAddrTrackingControl;
+# 6056 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IAddrTrackingControlVtbl {
+   
 
-struct
-IAddrTrackingControl : public IUnknown
-{
-    virtual HRESULT EnableCOMDynamicAddrTracking(
-        ) = 0;
 
-    virtual HRESULT DisableCOMDynamicAddrTracking(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IAddrTrackingControl* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IAddrTrackingControl* This);
+
+    ULONG ( *Release)(
+        IAddrTrackingControl* This);
+
+
+    HRESULT ( *EnableCOMDynamicAddrTracking)(
+        IAddrTrackingControl* This);
+
+    HRESULT ( *DisableCOMDynamicAddrTracking)(
+        IAddrTrackingControl* This);
+
+   
+} IAddrTrackingControlVtbl;
+struct IAddrTrackingControl {
+    IAddrTrackingControlVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAddrTrackingControl>() { static const IID __uuid_inst = {0x00000147,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAddrTrackingControl*>() { return __mingw_uuidof<IAddrTrackingControl>(); } }
 # 6116 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IAddrTrackingControl_EnableCOMDynamicAddrTracking_Proxy(
     IAddrTrackingControl* This);
@@ -63727,25 +63614,42 @@ void IAddrTrackingControl_DisableCOMDynamicAddrTracking_Stub(
     DWORD* pdwStubPhase);
 # 6140 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef IAddrExclusionControl *LPADDREXCLUSIONCONTROL;
-extern "C" const GUID IID_IAddrExclusionControl;
+extern const GUID IID_IAddrExclusionControl;
+# 6158 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IAddrExclusionControlVtbl {
+   
 
-struct
-IAddrExclusionControl : public IUnknown
-{
-    virtual HRESULT GetCurrentAddrExclusionList(
-        const IID & riid,
-        void **ppEnumerator) = 0;
 
-    virtual HRESULT UpdateAddrExclusionList(
-        IUnknown *pEnumerator) = 0;
+    HRESULT ( *QueryInterface)(
+        IAddrExclusionControl* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IAddrExclusionControl* This);
+
+    ULONG ( *Release)(
+        IAddrExclusionControl* This);
+
+
+    HRESULT ( *GetCurrentAddrExclusionList)(
+        IAddrExclusionControl* This,
+        const IID *const riid,
+        void **ppEnumerator);
+
+    HRESULT ( *UpdateAddrExclusionList)(
+        IAddrExclusionControl* This,
+        IUnknown *pEnumerator);
+
+   
+} IAddrExclusionControlVtbl;
+struct IAddrExclusionControl {
+    IAddrExclusionControlVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAddrExclusionControl>() { static const IID __uuid_inst = {0x00000148,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAddrExclusionControl*>() { return __mingw_uuidof<IAddrExclusionControl>(); } }
 # 6221 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IAddrExclusionControl_GetCurrentAddrExclusionList_Proxy(
     IAddrExclusionControl* This,
-    const IID & riid,
+    const IID *const riid,
     void **ppEnumerator);
 void IAddrExclusionControl_GetCurrentAddrExclusionList_Stub(
     IRpcStubBuffer* This,
@@ -63761,23 +63665,40 @@ void IAddrExclusionControl_UpdateAddrExclusionList_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 6248 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IPipeByte;
+extern const GUID IID_IPipeByte;
+# 6267 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IPipeByteVtbl {
+   
 
-struct
-IPipeByte : public IUnknown
-{
-    virtual HRESULT Pull(
+
+    HRESULT ( *QueryInterface)(
+        IPipeByte* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IPipeByte* This);
+
+    ULONG ( *Release)(
+        IPipeByte* This);
+
+
+    HRESULT ( *Pull)(
+        IPipeByte* This,
         BYTE *buf,
         ULONG cRequest,
-        ULONG *pcReturned) = 0;
+        ULONG *pcReturned);
 
-    virtual HRESULT Push(
+    HRESULT ( *Push)(
+        IPipeByte* This,
         BYTE *buf,
-        ULONG cSent) = 0;
+        ULONG cSent);
 
+   
+} IPipeByteVtbl;
+struct IPipeByte {
+    IPipeByteVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPipeByte>() { static const IID __uuid_inst = {0xdb2f3aca,0x2f86,0x11d1, {0x8e,0x04,0x00,0xc0,0x4f,0xb9,0x98,0x9a}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPipeByte*>() { return __mingw_uuidof<IPipeByte>(); } }
 # 6332 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IPipeByte_Pull_Proxy(
     IPipeByte* This,
@@ -63799,23 +63720,40 @@ void IPipeByte_Push_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 6361 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IPipeLong;
+extern const GUID IID_IPipeLong;
+# 6380 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IPipeLongVtbl {
+   
 
-struct
-IPipeLong : public IUnknown
-{
-    virtual HRESULT Pull(
+
+    HRESULT ( *QueryInterface)(
+        IPipeLong* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IPipeLong* This);
+
+    ULONG ( *Release)(
+        IPipeLong* This);
+
+
+    HRESULT ( *Pull)(
+        IPipeLong* This,
         LONG *buf,
         ULONG cRequest,
-        ULONG *pcReturned) = 0;
+        ULONG *pcReturned);
 
-    virtual HRESULT Push(
+    HRESULT ( *Push)(
+        IPipeLong* This,
         LONG *buf,
-        ULONG cSent) = 0;
+        ULONG cSent);
 
+   
+} IPipeLongVtbl;
+struct IPipeLong {
+    IPipeLongVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPipeLong>() { static const IID __uuid_inst = {0xdb2f3acc,0x2f86,0x11d1, {0x8e,0x04,0x00,0xc0,0x4f,0xb9,0x98,0x9a}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPipeLong*>() { return __mingw_uuidof<IPipeLong>(); } }
 # 6445 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IPipeLong_Pull_Proxy(
     IPipeLong* This,
@@ -63837,23 +63775,40 @@ void IPipeLong_Push_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 6474 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IPipeDouble;
+extern const GUID IID_IPipeDouble;
+# 6493 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IPipeDoubleVtbl {
+   
 
-struct
-IPipeDouble : public IUnknown
-{
-    virtual HRESULT Pull(
+
+    HRESULT ( *QueryInterface)(
+        IPipeDouble* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IPipeDouble* This);
+
+    ULONG ( *Release)(
+        IPipeDouble* This);
+
+
+    HRESULT ( *Pull)(
+        IPipeDouble* This,
         DOUBLE *buf,
         ULONG cRequest,
-        ULONG *pcReturned) = 0;
+        ULONG *pcReturned);
 
-    virtual HRESULT Push(
+    HRESULT ( *Push)(
+        IPipeDouble* This,
         DOUBLE *buf,
-        ULONG cSent) = 0;
+        ULONG cSent);
 
+   
+} IPipeDoubleVtbl;
+struct IPipeDouble {
+    IPipeDoubleVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPipeDouble>() { static const IID __uuid_inst = {0xdb2f3ace,0x2f86,0x11d1, {0x8e,0x04,0x00,0xc0,0x4f,0xb9,0x98,0x9a}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPipeDouble*>() { return __mingw_uuidof<IPipeDouble>(); } }
 # 6558 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IPipeDouble_Pull_Proxy(
     IPipeDouble* This,
@@ -63908,26 +63863,45 @@ typedef DWORD APARTMENTID;
 
 
 
-extern "C" const GUID IID_IComThreadingInfo;
+extern const GUID IID_IComThreadingInfo;
+# 6970 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IComThreadingInfoVtbl {
+   
 
-struct
-IComThreadingInfo : public IUnknown
-{
-    virtual HRESULT GetCurrentApartmentType(
-        APTTYPE *pAptType) = 0;
 
-    virtual HRESULT GetCurrentThreadType(
-        THDTYPE *pThreadType) = 0;
+    HRESULT ( *QueryInterface)(
+        IComThreadingInfo* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT GetCurrentLogicalThreadId(
-        GUID *pguidLogicalThreadId) = 0;
+    ULONG ( *AddRef)(
+        IComThreadingInfo* This);
 
-    virtual HRESULT SetCurrentLogicalThreadId(
-        const GUID & rguid) = 0;
+    ULONG ( *Release)(
+        IComThreadingInfo* This);
 
+
+    HRESULT ( *GetCurrentApartmentType)(
+        IComThreadingInfo* This,
+        APTTYPE *pAptType);
+
+    HRESULT ( *GetCurrentThreadType)(
+        IComThreadingInfo* This,
+        THDTYPE *pThreadType);
+
+    HRESULT ( *GetCurrentLogicalThreadId)(
+        IComThreadingInfo* This,
+        GUID *pguidLogicalThreadId);
+
+    HRESULT ( *SetCurrentLogicalThreadId)(
+        IComThreadingInfo* This,
+        const GUID *const rguid);
+
+   
+} IComThreadingInfoVtbl;
+struct IComThreadingInfo {
+    IComThreadingInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IComThreadingInfo>() { static const IID __uuid_inst = {0x000001ce,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IComThreadingInfo*>() { return __mingw_uuidof<IComThreadingInfo>(); } }
 # 7048 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IComThreadingInfo_GetCurrentApartmentType_Proxy(
     IComThreadingInfo* This,
@@ -63955,24 +63929,40 @@ void IComThreadingInfo_GetCurrentLogicalThreadId_Stub(
     DWORD* pdwStubPhase);
 HRESULT IComThreadingInfo_SetCurrentLogicalThreadId_Proxy(
     IComThreadingInfo* This,
-    const GUID & rguid);
+    const GUID *const rguid);
 void IComThreadingInfo_SetCurrentLogicalThreadId_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 7090 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IProcessInitControl;
+extern const GUID IID_IProcessInitControl;
+# 7103 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IProcessInitControlVtbl {
+   
 
-struct
-IProcessInitControl : public IUnknown
-{
-    virtual HRESULT ResetInitializerTimeout(
-        DWORD dwSecondsRemaining) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IProcessInitControl* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IProcessInitControl* This);
+
+    ULONG ( *Release)(
+        IProcessInitControl* This);
+
+
+    HRESULT ( *ResetInitializerTimeout)(
+        IProcessInitControl* This,
+        DWORD dwSecondsRemaining);
+
+   
+} IProcessInitControlVtbl;
+struct IProcessInitControl {
+    IProcessInitControlVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IProcessInitControl>() { static const IID __uuid_inst = {0x72380d55,0x8d2b,0x43a3, {0x85,0x13,0x2b,0x6e,0xf3,0x14,0x34,0xe9}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IProcessInitControl*>() { return __mingw_uuidof<IProcessInitControl>(); } }
 # 7157 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IProcessInitControl_ResetInitializerTimeout_Proxy(
     IProcessInitControl* This,
@@ -63983,14 +63973,28 @@ void IProcessInitControl_ResetInitializerTimeout_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 7175 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-extern "C" const GUID IID_IFastRundown;
+extern const GUID IID_IFastRundown;
+# 7185 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IFastRundownVtbl {
+   
 
-struct
-IFastRundown : public IUnknown
-{
+
+    HRESULT ( *QueryInterface)(
+        IFastRundown* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IFastRundown* This);
+
+    ULONG ( *Release)(
+        IFastRundown* This);
+
+   
+} IFastRundownVtbl;
+struct IFastRundown {
+    IFastRundownVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IFastRundown>() { static const IID __uuid_inst = {0x00000040,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IFastRundown*>() { return __mingw_uuidof<IFastRundown>(); } }
 # 7232 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 typedef enum CO_MARSHALING_CONTEXT_ATTRIBUTES {
     CO_MARSHALING_SOURCE_IS_APP_CONTAINER = 0
@@ -64002,18 +64006,93 @@ typedef enum CO_MARSHALING_CONTEXT_ATTRIBUTES {
 
 
 
-extern "C" const GUID IID_IMarshalingStream;
+extern const GUID IID_IMarshalingStream;
+# 7256 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
+typedef struct IMarshalingStreamVtbl {
+   
 
-struct
-IMarshalingStream : public IStream
-{
-    virtual HRESULT GetMarshalingContextAttribute(
+
+    HRESULT ( *QueryInterface)(
+        IMarshalingStream* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IMarshalingStream* This);
+
+    ULONG ( *Release)(
+        IMarshalingStream* This);
+
+
+    HRESULT ( *Read)(
+        IMarshalingStream* This,
+        void *pv,
+        ULONG cb,
+        ULONG *pcbRead);
+
+    HRESULT ( *Write)(
+        IMarshalingStream* This,
+        const void *pv,
+        ULONG cb,
+        ULONG *pcbWritten);
+
+
+    HRESULT ( *Seek)(
+        IMarshalingStream* This,
+        LARGE_INTEGER dlibMove,
+        DWORD dwOrigin,
+        ULARGE_INTEGER *plibNewPosition);
+
+    HRESULT ( *SetSize)(
+        IMarshalingStream* This,
+        ULARGE_INTEGER libNewSize);
+
+    HRESULT ( *CopyTo)(
+        IMarshalingStream* This,
+        IStream *pstm,
+        ULARGE_INTEGER cb,
+        ULARGE_INTEGER *pcbRead,
+        ULARGE_INTEGER *pcbWritten);
+
+    HRESULT ( *Commit)(
+        IMarshalingStream* This,
+        DWORD grfCommitFlags);
+
+    HRESULT ( *Revert)(
+        IMarshalingStream* This);
+
+    HRESULT ( *LockRegion)(
+        IMarshalingStream* This,
+        ULARGE_INTEGER libOffset,
+        ULARGE_INTEGER cb,
+        DWORD dwLockType);
+
+    HRESULT ( *UnlockRegion)(
+        IMarshalingStream* This,
+        ULARGE_INTEGER libOffset,
+        ULARGE_INTEGER cb,
+        DWORD dwLockType);
+
+    HRESULT ( *Stat)(
+        IMarshalingStream* This,
+        STATSTG *pstatstg,
+        DWORD grfStatFlag);
+
+    HRESULT ( *Clone)(
+        IMarshalingStream* This,
+        IStream **ppstm);
+
+
+    HRESULT ( *GetMarshalingContextAttribute)(
+        IMarshalingStream* This,
         CO_MARSHALING_CONTEXT_ATTRIBUTES attribute,
-        ULONG_PTR *pAttributeValue) = 0;
+        ULONG_PTR *pAttributeValue);
 
+   
+} IMarshalingStreamVtbl;
+struct IMarshalingStream {
+    IMarshalingStreamVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IMarshalingStream>() { static const IID __uuid_inst = {0xd8f2f5e6,0x6102,0x4863, {0x9f,0x26,0x38,0x9a,0x46,0x76,0xef,0xde}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IMarshalingStream*>() { return __mingw_uuidof<IMarshalingStream>(); } }
 # 7418 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
 HRESULT IMarshalingStream_GetMarshalingContextAttribute_Proxy(
     IMarshalingStream* This,
@@ -64030,23 +64109,14 @@ void IMarshalingStream_GetMarshalingContextAttribute_Stub(
 
 
 
-extern "C" const GUID IID_ICallbackWithNoReentrancyToApplicationSTA;
-# 7443 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidlbase.h" 3
-}
+extern const GUID IID_ICallbackWithNoReentrancyToApplicationSTA;
 # 156 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 1 3
-# 29 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/guiddef.h" 3
-extern "C++" {
-__extension__ template<typename T> const GUID &__mingw_uuidof();
-}
 # 157 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 2 3
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/cguid.h" 1 3
-# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/cguid.h" 3
-extern "C" {
-
-
+# 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/cguid.h" 3
   extern const IID GUID_NULL;
   extern const IID CATID_MARSHALER;
   extern const IID IID_IRpcChannel;
@@ -64127,32 +64197,29 @@ extern "C" {
   extern const CLSID CLSID_Picture_EnhMetafile;
   extern const CLSID CLSID_Picture_Dib;
   extern const GUID GUID_TRISTATE;
-
-
-}
 # 160 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 2 3
 # 173 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 3
-extern "C" __attribute__((dllimport)) HRESULT CreateStreamOnHGlobal (HGLOBAL hGlobal, WINBOOL fDeleteOnRelease, LPSTREAM *ppstm);
-extern "C" __attribute__((dllimport)) HRESULT GetHGlobalFromStream (LPSTREAM pstm, HGLOBAL *phglobal);
-extern "C" __attribute__((dllimport)) void CoUninitialize (void);
-extern "C" __attribute__((dllimport)) HRESULT CoInitializeEx (LPVOID pvReserved, DWORD dwCoInit);
-extern "C" __attribute__((dllimport)) HRESULT CoGetCurrentLogicalThreadId (GUID *pguid);
-extern "C" __attribute__((dllimport)) HRESULT CoGetContextToken (ULONG_PTR *pToken);
+extern __attribute__((dllimport)) HRESULT CreateStreamOnHGlobal (HGLOBAL hGlobal, WINBOOL fDeleteOnRelease, LPSTREAM *ppstm);
+extern __attribute__((dllimport)) HRESULT GetHGlobalFromStream (LPSTREAM pstm, HGLOBAL *phglobal);
+extern __attribute__((dllimport)) void CoUninitialize (void);
+extern __attribute__((dllimport)) HRESULT CoInitializeEx (LPVOID pvReserved, DWORD dwCoInit);
+extern __attribute__((dllimport)) HRESULT CoGetCurrentLogicalThreadId (GUID *pguid);
+extern __attribute__((dllimport)) HRESULT CoGetContextToken (ULONG_PTR *pToken);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT CoGetObjectContext (const IID & riid, LPVOID *ppv);
-extern "C" __attribute__((dllimport)) HRESULT CoRegisterClassObject (const IID & rclsid, LPUNKNOWN pUnk, DWORD dwClsContext, DWORD flags, LPDWORD lpdwRegister);
-extern "C" __attribute__((dllimport)) HRESULT CoRevokeClassObject (DWORD dwRegister);
-extern "C" __attribute__((dllimport)) HRESULT CoResumeClassObjects (void);
-extern "C" __attribute__((dllimport)) HRESULT CoSuspendClassObjects (void);
+extern __attribute__((dllimport)) HRESULT CoGetObjectContext (const IID *const riid, LPVOID *ppv);
+extern __attribute__((dllimport)) HRESULT CoRegisterClassObject (const IID *const rclsid, LPUNKNOWN pUnk, DWORD dwClsContext, DWORD flags, LPDWORD lpdwRegister);
+extern __attribute__((dllimport)) HRESULT CoRevokeClassObject (DWORD dwRegister);
+extern __attribute__((dllimport)) HRESULT CoResumeClassObjects (void);
+extern __attribute__((dllimport)) HRESULT CoSuspendClassObjects (void);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT CoGetMalloc (DWORD dwMemContext, LPMALLOC *ppMalloc);
-extern "C" __attribute__((dllimport)) DWORD CoGetCurrentProcess (void);
-extern "C" __attribute__((dllimport)) HRESULT CoGetCallerTID (LPDWORD lpdwTID);
-extern "C" __attribute__((dllimport)) HRESULT CoGetDefaultContext (APTTYPE aptType, const IID & riid, void **ppv);
+extern __attribute__((dllimport)) HRESULT CoGetMalloc (DWORD dwMemContext, LPMALLOC *ppMalloc);
+extern __attribute__((dllimport)) DWORD CoGetCurrentProcess (void);
+extern __attribute__((dllimport)) HRESULT CoGetCallerTID (LPDWORD lpdwTID);
+extern __attribute__((dllimport)) HRESULT CoGetDefaultContext (APTTYPE aptType, const IID *const riid, void **ppv);
 
 
 
@@ -64160,16 +64227,16 @@ extern "C" __attribute__((dllimport)) HRESULT CoGetDefaultContext (APTTYPE aptTy
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT CoGetClassObject (const IID & rclsid, DWORD dwClsContext, LPVOID pvReserved, const IID & riid, LPVOID *ppv);
-extern "C" __attribute__((dllimport)) ULONG CoAddRefServerProcess (void);
-extern "C" __attribute__((dllimport)) ULONG CoReleaseServerProcess (void);
-extern "C" __attribute__((dllimport)) HRESULT CoGetPSClsid (const IID & riid, CLSID *pClsid);
-extern "C" __attribute__((dllimport)) HRESULT CoRegisterPSClsid (const IID & riid, const IID & rclsid);
-extern "C" __attribute__((dllimport)) HRESULT CoRegisterSurrogate (LPSURROGATE pSurrogate);
-extern "C" __attribute__((dllimport)) HRESULT CoMarshalHresult (LPSTREAM pstm, HRESULT hresult);
-extern "C" __attribute__((dllimport)) HRESULT CoUnmarshalHresult (LPSTREAM pstm, HRESULT *phresult);
-extern "C" __attribute__((dllimport)) HRESULT CoLockObjectExternal (LPUNKNOWN pUnk, WINBOOL fLock, WINBOOL fLastUnlockReleases);
-extern "C" __attribute__((dllimport)) HRESULT CoGetStdMarshalEx (LPUNKNOWN pUnkOuter, DWORD smexflags, LPUNKNOWN *ppUnkInner);
+extern __attribute__((dllimport)) HRESULT CoGetClassObject (const IID *const rclsid, DWORD dwClsContext, LPVOID pvReserved, const IID *const riid, LPVOID *ppv);
+extern __attribute__((dllimport)) ULONG CoAddRefServerProcess (void);
+extern __attribute__((dllimport)) ULONG CoReleaseServerProcess (void);
+extern __attribute__((dllimport)) HRESULT CoGetPSClsid (const IID *const riid, CLSID *pClsid);
+extern __attribute__((dllimport)) HRESULT CoRegisterPSClsid (const IID *const riid, const IID *const rclsid);
+extern __attribute__((dllimport)) HRESULT CoRegisterSurrogate (LPSURROGATE pSurrogate);
+extern __attribute__((dllimport)) HRESULT CoMarshalHresult (LPSTREAM pstm, HRESULT hresult);
+extern __attribute__((dllimport)) HRESULT CoUnmarshalHresult (LPSTREAM pstm, HRESULT *phresult);
+extern __attribute__((dllimport)) HRESULT CoLockObjectExternal (LPUNKNOWN pUnk, WINBOOL fLock, WINBOOL fLastUnlockReleases);
+extern __attribute__((dllimport)) HRESULT CoGetStdMarshalEx (LPUNKNOWN pUnkOuter, DWORD smexflags, LPUNKNOWN *ppUnkInner);
 
 
 
@@ -64178,19 +64245,19 @@ typedef enum tagSTDMSHLFLAGS {
   SMEXF_HANDLER = 0x02
 } STDMSHLFLAGS;
 
-extern "C" __attribute__((dllimport)) HRESULT CoGetMarshalSizeMax (ULONG *pulSize, const IID & riid, LPUNKNOWN pUnk, DWORD dwDestContext, LPVOID pvDestContext, DWORD mshlflags);
-extern "C" __attribute__((dllimport)) HRESULT CoMarshalInterface (LPSTREAM pStm, const IID & riid, LPUNKNOWN pUnk, DWORD dwDestContext, LPVOID pvDestContext, DWORD mshlflags);
-extern "C" __attribute__((dllimport)) HRESULT CoUnmarshalInterface (LPSTREAM pStm, const IID & riid, LPVOID *ppv);
-extern "C" __attribute__((dllimport)) HRESULT CoReleaseMarshalData (LPSTREAM pStm);
-extern "C" __attribute__((dllimport)) HRESULT CoDisconnectObject (LPUNKNOWN pUnk, DWORD dwReserved);
-extern "C" __attribute__((dllimport)) HRESULT CoGetStandardMarshal (const IID & riid, LPUNKNOWN pUnk, DWORD dwDestContext, LPVOID pvDestContext, DWORD mshlflags, LPMARSHAL *ppMarshal);
-extern "C" __attribute__((dllimport)) HRESULT CoMarshalInterThreadInterfaceInStream (const IID & riid, LPUNKNOWN pUnk, LPSTREAM *ppStm);
-extern "C" __attribute__((dllimport)) HRESULT CoGetInterfaceAndReleaseStream (LPSTREAM pStm, const IID & iid, LPVOID *ppv);
-extern "C" __attribute__((dllimport)) HRESULT CoCreateFreeThreadedMarshaler (LPUNKNOWN punkOuter, LPUNKNOWN *ppunkMarshal);
-extern "C" __attribute__((dllimport)) void CoFreeUnusedLibraries (void);
-extern "C" __attribute__((dllimport)) void CoFreeUnusedLibrariesEx (DWORD dwUnloadDelay, DWORD dwReserved);
-extern "C" __attribute__((dllimport)) HRESULT CoInitializeSecurity (PSECURITY_DESCRIPTOR pSecDesc, LONG cAuthSvc, SOLE_AUTHENTICATION_SERVICE *asAuthSvc, void *pReserved1, DWORD dwAuthnLevel, DWORD dwImpLevel, void *pAuthList, DWORD dwCapabilities, void *pReserved3);
-extern "C" __attribute__((dllimport)) HRESULT CoSwitchCallContext (IUnknown *pNewObject, IUnknown **ppOldObject);
+extern __attribute__((dllimport)) HRESULT CoGetMarshalSizeMax (ULONG *pulSize, const IID *const riid, LPUNKNOWN pUnk, DWORD dwDestContext, LPVOID pvDestContext, DWORD mshlflags);
+extern __attribute__((dllimport)) HRESULT CoMarshalInterface (LPSTREAM pStm, const IID *const riid, LPUNKNOWN pUnk, DWORD dwDestContext, LPVOID pvDestContext, DWORD mshlflags);
+extern __attribute__((dllimport)) HRESULT CoUnmarshalInterface (LPSTREAM pStm, const IID *const riid, LPVOID *ppv);
+extern __attribute__((dllimport)) HRESULT CoReleaseMarshalData (LPSTREAM pStm);
+extern __attribute__((dllimport)) HRESULT CoDisconnectObject (LPUNKNOWN pUnk, DWORD dwReserved);
+extern __attribute__((dllimport)) HRESULT CoGetStandardMarshal (const IID *const riid, LPUNKNOWN pUnk, DWORD dwDestContext, LPVOID pvDestContext, DWORD mshlflags, LPMARSHAL *ppMarshal);
+extern __attribute__((dllimport)) HRESULT CoMarshalInterThreadInterfaceInStream (const IID *const riid, LPUNKNOWN pUnk, LPSTREAM *ppStm);
+extern __attribute__((dllimport)) HRESULT CoGetInterfaceAndReleaseStream (LPSTREAM pStm, const IID *const iid, LPVOID *ppv);
+extern __attribute__((dllimport)) HRESULT CoCreateFreeThreadedMarshaler (LPUNKNOWN punkOuter, LPUNKNOWN *ppunkMarshal);
+extern __attribute__((dllimport)) void CoFreeUnusedLibraries (void);
+extern __attribute__((dllimport)) void CoFreeUnusedLibrariesEx (DWORD dwUnloadDelay, DWORD dwReserved);
+extern __attribute__((dllimport)) HRESULT CoInitializeSecurity (PSECURITY_DESCRIPTOR pSecDesc, LONG cAuthSvc, SOLE_AUTHENTICATION_SERVICE *asAuthSvc, void *pReserved1, DWORD dwAuthnLevel, DWORD dwImpLevel, void *pAuthList, DWORD dwCapabilities, void *pReserved3);
+extern __attribute__((dllimport)) HRESULT CoSwitchCallContext (IUnknown *pNewObject, IUnknown **ppOldObject);
 
 
 
@@ -64198,59 +64265,59 @@ extern "C" __attribute__((dllimport)) HRESULT CoSwitchCallContext (IUnknown *pNe
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT CoCreateInstanceFromApp (const IID & Clsid, IUnknown *punkOuter, DWORD dwClsCtx, PVOID reserved, DWORD dwCount, MULTI_QI *pResults);
+extern __attribute__((dllimport)) HRESULT CoCreateInstanceFromApp (const IID *const Clsid, IUnknown *punkOuter, DWORD dwClsCtx, PVOID reserved, DWORD dwCount, MULTI_QI *pResults);
 
 
 
 
-extern "C" __attribute__((dllimport)) WINBOOL CoIsHandlerConnected (LPUNKNOWN pUnk);
+extern __attribute__((dllimport)) WINBOOL CoIsHandlerConnected (LPUNKNOWN pUnk);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT CoGetCallContext (const IID & riid, void **ppInterface);
-extern "C" __attribute__((dllimport)) HRESULT CoQueryProxyBlanket (IUnknown *pProxy, DWORD *pwAuthnSvc, DWORD *pAuthzSvc, LPOLESTR *pServerPrincName, DWORD *pAuthnLevel, DWORD *pImpLevel, RPC_AUTH_IDENTITY_HANDLE *pAuthInfo, DWORD *pCapabilites);
-extern "C" __attribute__((dllimport)) HRESULT CoSetProxyBlanket (IUnknown *pProxy, DWORD dwAuthnSvc, DWORD dwAuthzSvc, OLECHAR *pServerPrincName, DWORD dwAuthnLevel, DWORD dwImpLevel, RPC_AUTH_IDENTITY_HANDLE pAuthInfo, DWORD dwCapabilities);
-extern "C" __attribute__((dllimport)) HRESULT CoCopyProxy (IUnknown *pProxy, IUnknown **ppCopy);
-extern "C" __attribute__((dllimport)) HRESULT CoQueryClientBlanket (DWORD *pAuthnSvc, DWORD *pAuthzSvc, LPOLESTR *pServerPrincName, DWORD *pAuthnLevel, DWORD *pImpLevel, RPC_AUTHZ_HANDLE *pPrivs, DWORD *pCapabilities);
-extern "C" __attribute__((dllimport)) HRESULT CoImpersonateClient (void);
-extern "C" __attribute__((dllimport)) HRESULT CoRevertToSelf (void);
-extern "C" __attribute__((dllimport)) HRESULT CoQueryAuthenticationServices (DWORD *pcAuthSvc, SOLE_AUTHENTICATION_SERVICE **asAuthSvc);
-extern "C" __attribute__((dllimport)) HRESULT CoCreateInstance (const IID & rclsid, LPUNKNOWN pUnkOuter, DWORD dwClsContext, const IID & riid, LPVOID *ppv);
-extern "C" __attribute__((dllimport)) HRESULT CoCreateInstanceEx (const IID & Clsid, IUnknown *punkOuter, DWORD dwClsCtx, COSERVERINFO *pServerInfo, DWORD dwCount, MULTI_QI *pResults);
+extern __attribute__((dllimport)) HRESULT CoGetCallContext (const IID *const riid, void **ppInterface);
+extern __attribute__((dllimport)) HRESULT CoQueryProxyBlanket (IUnknown *pProxy, DWORD *pwAuthnSvc, DWORD *pAuthzSvc, LPOLESTR *pServerPrincName, DWORD *pAuthnLevel, DWORD *pImpLevel, RPC_AUTH_IDENTITY_HANDLE *pAuthInfo, DWORD *pCapabilites);
+extern __attribute__((dllimport)) HRESULT CoSetProxyBlanket (IUnknown *pProxy, DWORD dwAuthnSvc, DWORD dwAuthzSvc, OLECHAR *pServerPrincName, DWORD dwAuthnLevel, DWORD dwImpLevel, RPC_AUTH_IDENTITY_HANDLE pAuthInfo, DWORD dwCapabilities);
+extern __attribute__((dllimport)) HRESULT CoCopyProxy (IUnknown *pProxy, IUnknown **ppCopy);
+extern __attribute__((dllimport)) HRESULT CoQueryClientBlanket (DWORD *pAuthnSvc, DWORD *pAuthzSvc, LPOLESTR *pServerPrincName, DWORD *pAuthnLevel, DWORD *pImpLevel, RPC_AUTHZ_HANDLE *pPrivs, DWORD *pCapabilities);
+extern __attribute__((dllimport)) HRESULT CoImpersonateClient (void);
+extern __attribute__((dllimport)) HRESULT CoRevertToSelf (void);
+extern __attribute__((dllimport)) HRESULT CoQueryAuthenticationServices (DWORD *pcAuthSvc, SOLE_AUTHENTICATION_SERVICE **asAuthSvc);
+extern __attribute__((dllimport)) HRESULT CoCreateInstance (const IID *const rclsid, LPUNKNOWN pUnkOuter, DWORD dwClsContext, const IID *const riid, LPVOID *ppv);
+extern __attribute__((dllimport)) HRESULT CoCreateInstanceEx (const IID *const Clsid, IUnknown *punkOuter, DWORD dwClsCtx, COSERVERINFO *pServerInfo, DWORD dwCount, MULTI_QI *pResults);
 # 282 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 3
-extern "C" __attribute__((dllimport)) HRESULT CoGetCancelObject (DWORD dwThreadId, const IID & iid, void **ppUnk);
-extern "C" __attribute__((dllimport)) HRESULT CoSetCancelObject (IUnknown *pUnk);
-extern "C" __attribute__((dllimport)) HRESULT CoCancelCall (DWORD dwThreadId, ULONG ulTimeout);
-extern "C" __attribute__((dllimport)) HRESULT CoTestCancel (void);
-extern "C" __attribute__((dllimport)) HRESULT CoEnableCallCancellation (LPVOID pReserved);
-extern "C" __attribute__((dllimport)) HRESULT CoDisableCallCancellation (LPVOID pReserved);
+extern __attribute__((dllimport)) HRESULT CoGetCancelObject (DWORD dwThreadId, const IID *const iid, void **ppUnk);
+extern __attribute__((dllimport)) HRESULT CoSetCancelObject (IUnknown *pUnk);
+extern __attribute__((dllimport)) HRESULT CoCancelCall (DWORD dwThreadId, ULONG ulTimeout);
+extern __attribute__((dllimport)) HRESULT CoTestCancel (void);
+extern __attribute__((dllimport)) HRESULT CoEnableCallCancellation (LPVOID pReserved);
+extern __attribute__((dllimport)) HRESULT CoDisableCallCancellation (LPVOID pReserved);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT StringFromCLSID (const IID & rclsid, LPOLESTR *lplpsz);
-extern "C" __attribute__((dllimport)) HRESULT CLSIDFromString (LPCOLESTR lpsz, LPCLSID pclsid);
-extern "C" __attribute__((dllimport)) HRESULT StringFromIID (const IID & rclsid, LPOLESTR *lplpsz);
-extern "C" __attribute__((dllimport)) HRESULT IIDFromString (LPCOLESTR lpsz, LPIID lpiid);
+extern __attribute__((dllimport)) HRESULT StringFromCLSID (const IID *const rclsid, LPOLESTR *lplpsz);
+extern __attribute__((dllimport)) HRESULT CLSIDFromString (LPCOLESTR lpsz, LPCLSID pclsid);
+extern __attribute__((dllimport)) HRESULT StringFromIID (const IID *const rclsid, LPOLESTR *lplpsz);
+extern __attribute__((dllimport)) HRESULT IIDFromString (LPCOLESTR lpsz, LPIID lpiid);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT ProgIDFromCLSID (const IID & clsid, LPOLESTR *lplpszProgID);
-extern "C" __attribute__((dllimport)) HRESULT CLSIDFromProgID (LPCOLESTR lpszProgID, LPCLSID lpclsid);
+extern __attribute__((dllimport)) HRESULT ProgIDFromCLSID (const IID *const clsid, LPOLESTR *lplpszProgID);
+extern __attribute__((dllimport)) HRESULT CLSIDFromProgID (LPCOLESTR lpszProgID, LPCLSID lpclsid);
 
 
 
-extern "C" __attribute__((dllimport)) int StringFromGUID2 (const GUID & rguid, LPOLESTR lpsz, int cchMax);
-extern "C" __attribute__((dllimport)) HRESULT CoCreateGuid (GUID *pguid);
+extern __attribute__((dllimport)) int StringFromGUID2 (const GUID *const rguid, LPOLESTR lpsz, int cchMax);
+extern __attribute__((dllimport)) HRESULT CoCreateGuid (GUID *pguid);
 
 typedef struct tagPROPVARIANT PROPVARIANT;
 
-extern "C" __attribute__((dllimport)) HRESULT PropVariantCopy (PROPVARIANT *pvarDest, const PROPVARIANT *pvarSrc);
-extern "C" __attribute__((dllimport)) HRESULT PropVariantClear (PROPVARIANT *pvar);
-extern "C" __attribute__((dllimport)) HRESULT FreePropVariantArray (ULONG cVariants, PROPVARIANT *rgvars);
+extern __attribute__((dllimport)) HRESULT PropVariantCopy (PROPVARIANT *pvarDest, const PROPVARIANT *pvarSrc);
+extern __attribute__((dllimport)) HRESULT PropVariantClear (PROPVARIANT *pvar);
+extern __attribute__((dllimport)) HRESULT FreePropVariantArray (ULONG cVariants, PROPVARIANT *rgvars);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT CoWaitForMultipleHandles (DWORD dwFlags, DWORD dwTimeout, ULONG cHandles, LPHANDLE pHandles, LPDWORD lpdwindex);
+extern __attribute__((dllimport)) HRESULT CoWaitForMultipleHandles (DWORD dwFlags, DWORD dwTimeout, ULONG cHandles, LPHANDLE pHandles, LPDWORD lpdwindex);
 
 
 
@@ -64267,19 +64334,19 @@ typedef enum tagCOWAIT_FLAGS {
 
 } COWAIT_FLAGS;
 # 351 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/combaseapi.h" 3
-extern "C" __attribute__((dllimport)) HRESULT CoGetTreatAsClass (const IID & clsidOld, LPCLSID pClsidNew);
-extern "C" __attribute__((dllimport)) HRESULT CoInvalidateRemoteMachineBindings (LPOLESTR pszMachineName);
+extern __attribute__((dllimport)) HRESULT CoGetTreatAsClass (const IID *const clsidOld, LPCLSID pClsidNew);
+extern __attribute__((dllimport)) HRESULT CoInvalidateRemoteMachineBindings (LPOLESTR pszMachineName);
 
 
 
-typedef HRESULT ( *LPFNGETCLASSOBJECT) (const IID &, const IID &, LPVOID *);
+typedef HRESULT ( *LPFNGETCLASSOBJECT) (const IID *const, const IID *const, LPVOID *);
 typedef HRESULT ( *LPFNCANUNLOADNOW) (void);
 
-extern "C" HRESULT DllGetClassObject (const IID & rclsid, const IID & riid, LPVOID *ppv);
-extern "C" HRESULT DllCanUnloadNow (void);
-extern "C" __attribute__((dllimport)) LPVOID CoTaskMemAlloc (SIZE_T cb);
-extern "C" __attribute__((dllimport)) LPVOID CoTaskMemRealloc (LPVOID pv, SIZE_T cb);
-extern "C" __attribute__((dllimport)) void CoTaskMemFree (LPVOID pv);
+extern HRESULT DllGetClassObject (const IID *const rclsid, const IID *const riid, LPVOID *ppv);
+extern HRESULT DllCanUnloadNow (void);
+extern __attribute__((dllimport)) LPVOID CoTaskMemAlloc (SIZE_T cb);
+extern __attribute__((dllimport)) LPVOID CoTaskMemRealloc (LPVOID pv, SIZE_T cb);
+extern __attribute__((dllimport)) void CoTaskMemFree (LPVOID pv);
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/poppack.h" 1 3
@@ -64606,9 +64673,6 @@ typedef struct IApartmentShutdown IApartmentShutdown;
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ole2.h" 1 3
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypesbase.h" 2 3
 # 23 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypes.h" 2 3
-
-
-extern "C" {
 # 40 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypes.h" 3
 extern RPC_IF_HANDLE IWinTypes_v0_1_c_ifspec;
 extern RPC_IF_HANDLE IWinTypes_v0_1_s_ifspec;
@@ -64971,19 +65035,7 @@ typedef struct __WIDL_wtypes_generated_name_00000001 {
         } ByObjectId;
     } tagged_union;
 } uCLSSPEC;
-
-
-
-
-
-
-}
 # 38 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwn.h" 2 3
-
-
-extern "C" {
-# 493 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/unknwn.h" 3
-}
 # 478 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypes.h" 1 3
 
@@ -65011,65 +65063,87 @@ extern "C" {
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ole2.h" 1 3
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/wtypes.h" 2 3
 # 479 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 2 3
-
-
-extern "C" {
 # 7612 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IMallocSpy *LPMALLOCSPY;
-extern "C" const GUID IID_IMallocSpy;
+extern const GUID IID_IMallocSpy;
+# 7669 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IMallocSpyVtbl {
+   
 
-struct
-IMallocSpy : public IUnknown
-{
-    virtual SIZE_T PreAlloc(
-        SIZE_T cbRequest) = 0;
 
-    virtual void * PostAlloc(
-        void *pActual) = 0;
+    HRESULT ( *QueryInterface)(
+        IMallocSpy* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual void * PreFree(
+    ULONG ( *AddRef)(
+        IMallocSpy* This);
+
+    ULONG ( *Release)(
+        IMallocSpy* This);
+
+
+    SIZE_T ( *PreAlloc)(
+        IMallocSpy* This,
+        SIZE_T cbRequest);
+
+    void * ( *PostAlloc)(
+        IMallocSpy* This,
+        void *pActual);
+
+    void * ( *PreFree)(
+        IMallocSpy* This,
         void *pRequest,
-        WINBOOL fSpyed) = 0;
+        WINBOOL fSpyed);
 
-    virtual void PostFree(
-        WINBOOL fSpyed) = 0;
+    void ( *PostFree)(
+        IMallocSpy* This,
+        WINBOOL fSpyed);
 
-    virtual SIZE_T PreRealloc(
+    SIZE_T ( *PreRealloc)(
+        IMallocSpy* This,
         void *pRequest,
         SIZE_T cbRequest,
         void **ppNewRequest,
-        WINBOOL fSpyed) = 0;
+        WINBOOL fSpyed);
 
-    virtual void * PostRealloc(
+    void * ( *PostRealloc)(
+        IMallocSpy* This,
         void *pActual,
-        WINBOOL fSpyed) = 0;
+        WINBOOL fSpyed);
 
-    virtual void * PreGetSize(
+    void * ( *PreGetSize)(
+        IMallocSpy* This,
         void *pRequest,
-        WINBOOL fSpyed) = 0;
+        WINBOOL fSpyed);
 
-    virtual SIZE_T PostGetSize(
+    SIZE_T ( *PostGetSize)(
+        IMallocSpy* This,
         SIZE_T cbActual,
-        WINBOOL fSpyed) = 0;
+        WINBOOL fSpyed);
 
-    virtual void * PreDidAlloc(
+    void * ( *PreDidAlloc)(
+        IMallocSpy* This,
         void *pRequest,
-        WINBOOL fSpyed) = 0;
+        WINBOOL fSpyed);
 
-    virtual int PostDidAlloc(
+    int ( *PostDidAlloc)(
+        IMallocSpy* This,
         void *pRequest,
         WINBOOL fSpyed,
-        int fActual) = 0;
+        int fActual);
 
-    virtual void PreHeapMinimize(
-        ) = 0;
+    void ( *PreHeapMinimize)(
+        IMallocSpy* This);
 
-    virtual void PostHeapMinimize(
-        ) = 0;
+    void ( *PostHeapMinimize)(
+        IMallocSpy* This);
 
+   
+} IMallocSpyVtbl;
+struct IMallocSpy {
+    IMallocSpyVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IMallocSpy>() { static const IID __uuid_inst = {0x0000001d,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IMallocSpy*>() { return __mingw_uuidof<IMallocSpy>(); } }
 # 7819 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 SIZE_T IMallocSpy_PreAlloc_Proxy(
     IMallocSpy* This,
@@ -65178,69 +65252,113 @@ void IMallocSpy_PostHeapMinimize_Stub(
 # 7934 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IBindCtx *LPBC;
 typedef IBindCtx *LPBINDCTX;
-
+# 7944 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef struct tagBIND_OPTS {
-  DWORD cbStruct;
-  DWORD grfFlags;
-  DWORD grfMode;
-  DWORD dwTickCountDeadline;
-} BIND_OPTS, *LPBIND_OPTS;
-# 7953 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-typedef struct tagBIND_OPTS2 : tagBIND_OPTS {
-DWORD dwTrackFlags;
-DWORD dwClassContext;
-LCID locale;
-COSERVERINFO * pServerInfo;
-} BIND_OPTS2, * LPBIND_OPTS2;
-# 7973 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-typedef struct tagBIND_OPTS3 : tagBIND_OPTS2 {
-HWND hwnd;
-} BIND_OPTS3, * LPBIND_OPTS3;
-# 7990 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+    DWORD cbStruct;
+    DWORD grfFlags;
+    DWORD grfMode;
+    DWORD dwTickCountDeadline;
+} BIND_OPTS;
+typedef struct tagBIND_OPTS *LPBIND_OPTS;
+# 7960 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct tagBIND_OPTS2 {
+    DWORD cbStruct;
+    DWORD grfFlags;
+    DWORD grfMode;
+    DWORD dwTickCountDeadline;
+    DWORD dwTrackFlags;
+    DWORD dwClassContext;
+    LCID locale;
+    COSERVERINFO *pServerInfo;
+} BIND_OPTS2;
+typedef struct tagBIND_OPTS2 *LPBIND_OPTS2;
+
+
+
+
+
+
+typedef struct tagBIND_OPTS3 {
+    DWORD cbStruct;
+    DWORD grfFlags;
+    DWORD grfMode;
+    DWORD dwTickCountDeadline;
+    DWORD dwTrackFlags;
+    DWORD dwClassContext;
+    LCID locale;
+    COSERVERINFO *pServerInfo;
+    HWND hwnd;
+} BIND_OPTS3;
+typedef struct tagBIND_OPTS3 *LPBIND_OPTS3;
+
 typedef enum tagBIND_FLAGS {
     BIND_MAYBOTHERUSER = 1,
     BIND_JUSTTESTEXISTENCE = 2
 } BIND_FLAGS;
-extern "C" const GUID IID_IBindCtx;
+extern const GUID IID_IBindCtx;
+# 8036 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IBindCtxVtbl {
+   
 
-struct
-IBindCtx : public IUnknown
-{
-    virtual HRESULT RegisterObjectBound(
-        IUnknown *punk) = 0;
 
-    virtual HRESULT RevokeObjectBound(
-        IUnknown *punk) = 0;
+    HRESULT ( *QueryInterface)(
+        IBindCtx* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT ReleaseBoundObjects(
-        ) = 0;
+    ULONG ( *AddRef)(
+        IBindCtx* This);
 
-    virtual HRESULT SetBindOptions(
-        BIND_OPTS *pbindopts) = 0;
+    ULONG ( *Release)(
+        IBindCtx* This);
 
-    virtual HRESULT GetBindOptions(
-        BIND_OPTS *pbindopts) = 0;
 
-    virtual HRESULT GetRunningObjectTable(
-        IRunningObjectTable **pprot) = 0;
+    HRESULT ( *RegisterObjectBound)(
+        IBindCtx* This,
+        IUnknown *punk);
 
-    virtual HRESULT RegisterObjectParam(
+    HRESULT ( *RevokeObjectBound)(
+        IBindCtx* This,
+        IUnknown *punk);
+
+    HRESULT ( *ReleaseBoundObjects)(
+        IBindCtx* This);
+
+    HRESULT ( *SetBindOptions)(
+        IBindCtx* This,
+        BIND_OPTS *pbindopts);
+
+    HRESULT ( *GetBindOptions)(
+        IBindCtx* This,
+        BIND_OPTS *pbindopts);
+
+    HRESULT ( *GetRunningObjectTable)(
+        IBindCtx* This,
+        IRunningObjectTable **pprot);
+
+    HRESULT ( *RegisterObjectParam)(
+        IBindCtx* This,
         LPOLESTR pszKey,
-        IUnknown *punk) = 0;
+        IUnknown *punk);
 
-    virtual HRESULT GetObjectParam(
+    HRESULT ( *GetObjectParam)(
+        IBindCtx* This,
         LPOLESTR pszKey,
-        IUnknown **ppunk) = 0;
+        IUnknown **ppunk);
 
-    virtual HRESULT EnumObjectParam(
-        IEnumString **ppenum) = 0;
+    HRESULT ( *EnumObjectParam)(
+        IBindCtx* This,
+        IEnumString **ppenum);
 
-    virtual HRESULT RevokeObjectParam(
-        LPOLESTR pszKey) = 0;
+    HRESULT ( *RevokeObjectParam)(
+        IBindCtx* This,
+        LPOLESTR pszKey);
 
+   
+} IBindCtxVtbl;
+struct IBindCtx {
+    IBindCtxVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IBindCtx>() { static const IID __uuid_inst = {0x0000000e,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IBindCtx*>() { return __mingw_uuidof<IBindCtx>(); } }
 # 8163 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IBindCtx_RegisterObjectBound_Proxy(
     IBindCtx* This,
@@ -65337,28 +65455,46 @@ HRESULT IBindCtx_GetBindOptions_Stub(
     BIND_OPTS2 *pbindopts);
 # 8265 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IEnumMoniker *LPENUMMONIKER;
-extern "C" const GUID IID_IEnumMoniker;
+extern const GUID IID_IEnumMoniker;
+# 8290 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IEnumMonikerVtbl {
+   
 
-struct
-IEnumMoniker : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumMoniker* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumMoniker* This);
+
+    ULONG ( *Release)(
+        IEnumMoniker* This);
+
+
+    HRESULT ( *Next)(
+        IEnumMoniker* This,
         ULONG celt,
         IMoniker **rgelt,
-        ULONG *pceltFetched) = 0;
+        ULONG *pceltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumMoniker* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumMoniker* This);
 
-    virtual HRESULT Clone(
-        IEnumMoniker **ppenum) = 0;
+    HRESULT ( *Clone)(
+        IEnumMoniker* This,
+        IEnumMoniker **ppenum);
 
+   
+} IEnumMonikerVtbl;
+struct IEnumMoniker {
+    IEnumMonikerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumMoniker>() { static const IID __uuid_inst = {0x00000102,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumMoniker*>() { return __mingw_uuidof<IEnumMoniker>(); } }
 # 8369 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IEnumMoniker_RemoteNext_Proxy(
     IEnumMoniker* This,
@@ -65405,30 +65541,49 @@ HRESULT IEnumMoniker_Next_Stub(
     ULONG *pceltFetched);
 # 8423 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IRunnableObject *LPRUNNABLEOBJECT;
-extern "C" const GUID IID_IRunnableObject;
+extern const GUID IID_IRunnableObject;
+# 8450 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IRunnableObjectVtbl {
+   
 
-struct
-IRunnableObject : public IUnknown
-{
-    virtual HRESULT GetRunningClass(
-        LPCLSID lpClsid) = 0;
 
-    virtual HRESULT Run(
-        LPBINDCTX pbc) = 0;
+    HRESULT ( *QueryInterface)(
+        IRunnableObject* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual WINBOOL IsRunning(
-        ) = 0;
+    ULONG ( *AddRef)(
+        IRunnableObject* This);
 
-    virtual HRESULT LockRunning(
+    ULONG ( *Release)(
+        IRunnableObject* This);
+
+
+    HRESULT ( *GetRunningClass)(
+        IRunnableObject* This,
+        LPCLSID lpClsid);
+
+    HRESULT ( *Run)(
+        IRunnableObject* This,
+        LPBINDCTX pbc);
+
+    WINBOOL ( *IsRunning)(
+        IRunnableObject* This);
+
+    HRESULT ( *LockRunning)(
+        IRunnableObject* This,
         WINBOOL fLock,
-        WINBOOL fLastUnlockCloses) = 0;
+        WINBOOL fLastUnlockCloses);
 
-    virtual HRESULT SetContainedObject(
-        WINBOOL fContained) = 0;
+    HRESULT ( *SetContainedObject)(
+        IRunnableObject* This,
+        WINBOOL fContained);
 
+   
+} IRunnableObjectVtbl;
+struct IRunnableObject {
+    IRunnableObjectVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRunnableObject>() { static const IID __uuid_inst = {0x00000126,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRunnableObject*>() { return __mingw_uuidof<IRunnableObject>(); } }
 # 8536 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IRunnableObject_GetRunningClass_Proxy(
     IRunnableObject* This,
@@ -65476,41 +65631,63 @@ HRESULT IRunnableObject_IsRunning_Stub(
     IRunnableObject* This);
 # 8589 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IRunningObjectTable *LPRUNNINGOBJECTTABLE;
-extern "C" const GUID IID_IRunningObjectTable;
+extern const GUID IID_IRunningObjectTable;
+# 8627 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IRunningObjectTableVtbl {
+   
 
-struct
-IRunningObjectTable : public IUnknown
-{
-    virtual HRESULT Register(
+
+    HRESULT ( *QueryInterface)(
+        IRunningObjectTable* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IRunningObjectTable* This);
+
+    ULONG ( *Release)(
+        IRunningObjectTable* This);
+
+
+    HRESULT ( *Register)(
+        IRunningObjectTable* This,
         DWORD grfFlags,
         IUnknown *punkObject,
         IMoniker *pmkObjectName,
-        DWORD *pdwRegister) = 0;
+        DWORD *pdwRegister);
 
-    virtual HRESULT Revoke(
-        DWORD dwRegister) = 0;
+    HRESULT ( *Revoke)(
+        IRunningObjectTable* This,
+        DWORD dwRegister);
 
-    virtual HRESULT IsRunning(
-        IMoniker *pmkObjectName) = 0;
+    HRESULT ( *IsRunning)(
+        IRunningObjectTable* This,
+        IMoniker *pmkObjectName);
 
-    virtual HRESULT GetObjectA(
+    HRESULT ( *GetObjectA)(
+        IRunningObjectTable* This,
         IMoniker *pmkObjectName,
-        IUnknown **ppunkObject) = 0;
+        IUnknown **ppunkObject);
 
-    virtual HRESULT NoteChangeTime(
+    HRESULT ( *NoteChangeTime)(
+        IRunningObjectTable* This,
         DWORD dwRegister,
-        FILETIME *pfiletime) = 0;
+        FILETIME *pfiletime);
 
-    virtual HRESULT GetTimeOfLastChange(
+    HRESULT ( *GetTimeOfLastChange)(
+        IRunningObjectTable* This,
         IMoniker *pmkObjectName,
-        FILETIME *pfiletime) = 0;
+        FILETIME *pfiletime);
 
-    virtual HRESULT EnumRunning(
-        IEnumMoniker **ppenumMoniker) = 0;
+    HRESULT ( *EnumRunning)(
+        IRunningObjectTable* This,
+        IEnumMoniker **ppenumMoniker);
 
+   
+} IRunningObjectTableVtbl;
+struct IRunningObjectTable {
+    IRunningObjectTableVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRunningObjectTable>() { static const IID __uuid_inst = {0x00000010,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRunningObjectTable*>() { return __mingw_uuidof<IRunningObjectTable>(); } }
 # 8735 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IRunningObjectTable_Register_Proxy(
     IRunningObjectTable* This,
@@ -65576,17 +65753,33 @@ void IRunningObjectTable_EnumRunning_Stub(
     DWORD* pdwStubPhase);
 # 8808 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IPersist *LPPERSIST;
-extern "C" const GUID IID_IPersist;
+extern const GUID IID_IPersist;
+# 8822 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IPersistVtbl {
+   
 
-struct
-IPersist : public IUnknown
-{
-    virtual HRESULT GetClassID(
-        CLSID *pClassID) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IPersist* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IPersist* This);
+
+    ULONG ( *Release)(
+        IPersist* This);
+
+
+    HRESULT ( *GetClassID)(
+        IPersist* This,
+        CLSID *pClassID);
+
+   
+} IPersistVtbl;
+struct IPersist {
+    IPersistVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPersist>() { static const IID __uuid_inst = {0x0000010c,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPersist*>() { return __mingw_uuidof<IPersist>(); } }
 # 8876 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IPersist_GetClassID_Proxy(
     IPersist* This,
@@ -65598,27 +65791,50 @@ void IPersist_GetClassID_Stub(
     DWORD* pdwStubPhase);
 # 8893 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IPersistStream *LPPERSISTSTREAM;
-extern "C" const GUID IID_IPersistStream;
+extern const GUID IID_IPersistStream;
+# 8917 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IPersistStreamVtbl {
+   
 
-struct
-IPersistStream : public IPersist
-{
-    virtual HRESULT IsDirty(
-        ) = 0;
 
-    virtual HRESULT Load(
-        IStream *pStm) = 0;
+    HRESULT ( *QueryInterface)(
+        IPersistStream* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT Save(
+    ULONG ( *AddRef)(
+        IPersistStream* This);
+
+    ULONG ( *Release)(
+        IPersistStream* This);
+
+
+    HRESULT ( *GetClassID)(
+        IPersistStream* This,
+        CLSID *pClassID);
+
+
+    HRESULT ( *IsDirty)(
+        IPersistStream* This);
+
+    HRESULT ( *Load)(
+        IPersistStream* This,
+        IStream *pStm);
+
+    HRESULT ( *Save)(
+        IPersistStream* This,
         IStream *pStm,
-        WINBOOL fClearDirty) = 0;
+        WINBOOL fClearDirty);
 
-    virtual HRESULT GetSizeMax(
-        ULARGE_INTEGER *pcbSize) = 0;
+    HRESULT ( *GetSizeMax)(
+        IPersistStream* This,
+        ULARGE_INTEGER *pcbSize);
 
+   
+} IPersistStreamVtbl;
+struct IPersistStream {
+    IPersistStreamVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPersistStream>() { static const IID __uuid_inst = {0x00000109,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPersistStream*>() { return __mingw_uuidof<IPersistStream>(); } }
 # 9006 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IPersistStream_IsDirty_Proxy(
     IPersistStream* This);
@@ -65672,89 +65888,141 @@ typedef enum tagMKREDUCE {
     MKRREDUCE_THROUGHUSER = 1 << 16,
     MKRREDUCE_ALL = 0
 } MKRREDUCE;
-extern "C" const GUID IID_IMoniker;
+extern const GUID IID_IMoniker;
+# 9145 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IMonikerVtbl {
+   
 
-struct
-IMoniker : public IPersistStream
-{
-    virtual HRESULT BindToObject(
+
+    HRESULT ( *QueryInterface)(
+        IMoniker* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IMoniker* This);
+
+    ULONG ( *Release)(
+        IMoniker* This);
+
+
+    HRESULT ( *GetClassID)(
+        IMoniker* This,
+        CLSID *pClassID);
+
+
+    HRESULT ( *IsDirty)(
+        IMoniker* This);
+
+    HRESULT ( *Load)(
+        IMoniker* This,
+        IStream *pStm);
+
+    HRESULT ( *Save)(
+        IMoniker* This,
+        IStream *pStm,
+        WINBOOL fClearDirty);
+
+    HRESULT ( *GetSizeMax)(
+        IMoniker* This,
+        ULARGE_INTEGER *pcbSize);
+
+
+    HRESULT ( *BindToObject)(
+        IMoniker* This,
         IBindCtx *pbc,
         IMoniker *pmkToLeft,
-        const IID & riidResult,
-        void **ppvResult) = 0;
+        const IID *const riidResult,
+        void **ppvResult);
 
-    virtual HRESULT BindToStorage(
+    HRESULT ( *BindToStorage)(
+        IMoniker* This,
         IBindCtx *pbc,
         IMoniker *pmkToLeft,
-        const IID & riid,
-        void **ppvObj) = 0;
+        const IID *const riid,
+        void **ppvObj);
 
-    virtual HRESULT Reduce(
+    HRESULT ( *Reduce)(
+        IMoniker* This,
         IBindCtx *pbc,
         DWORD dwReduceHowFar,
         IMoniker **ppmkToLeft,
-        IMoniker **ppmkReduced) = 0;
+        IMoniker **ppmkReduced);
 
-    virtual HRESULT ComposeWith(
+    HRESULT ( *ComposeWith)(
+        IMoniker* This,
         IMoniker *pmkRight,
         WINBOOL fOnlyIfNotGeneric,
-        IMoniker **ppmkComposite) = 0;
+        IMoniker **ppmkComposite);
 
-    virtual HRESULT Enum(
+    HRESULT ( *Enum)(
+        IMoniker* This,
         WINBOOL fForward,
-        IEnumMoniker **ppenumMoniker) = 0;
+        IEnumMoniker **ppenumMoniker);
 
-    virtual HRESULT IsEqual(
-        IMoniker *pmkOtherMoniker) = 0;
+    HRESULT ( *IsEqual)(
+        IMoniker* This,
+        IMoniker *pmkOtherMoniker);
 
-    virtual HRESULT Hash(
-        DWORD *pdwHash) = 0;
+    HRESULT ( *Hash)(
+        IMoniker* This,
+        DWORD *pdwHash);
 
-    virtual HRESULT IsRunning(
+    HRESULT ( *IsRunning)(
+        IMoniker* This,
         IBindCtx *pbc,
         IMoniker *pmkToLeft,
-        IMoniker *pmkNewlyRunning) = 0;
+        IMoniker *pmkNewlyRunning);
 
-    virtual HRESULT GetTimeOfLastChange(
+    HRESULT ( *GetTimeOfLastChange)(
+        IMoniker* This,
         IBindCtx *pbc,
         IMoniker *pmkToLeft,
-        FILETIME *pFileTime) = 0;
+        FILETIME *pFileTime);
 
-    virtual HRESULT Inverse(
-        IMoniker **ppmk) = 0;
+    HRESULT ( *Inverse)(
+        IMoniker* This,
+        IMoniker **ppmk);
 
-    virtual HRESULT CommonPrefixWith(
+    HRESULT ( *CommonPrefixWith)(
+        IMoniker* This,
         IMoniker *pmkOther,
-        IMoniker **ppmkPrefix) = 0;
+        IMoniker **ppmkPrefix);
 
-    virtual HRESULT RelativePathTo(
+    HRESULT ( *RelativePathTo)(
+        IMoniker* This,
         IMoniker *pmkOther,
-        IMoniker **ppmkRelPath) = 0;
+        IMoniker **ppmkRelPath);
 
-    virtual HRESULT GetDisplayName(
+    HRESULT ( *GetDisplayName)(
+        IMoniker* This,
         IBindCtx *pbc,
         IMoniker *pmkToLeft,
-        LPOLESTR *ppszDisplayName) = 0;
+        LPOLESTR *ppszDisplayName);
 
-    virtual HRESULT ParseDisplayName(
+    HRESULT ( *ParseDisplayName)(
+        IMoniker* This,
         IBindCtx *pbc,
         IMoniker *pmkToLeft,
         LPOLESTR pszDisplayName,
         ULONG *pchEaten,
-        IMoniker **ppmkOut) = 0;
+        IMoniker **ppmkOut);
 
-    virtual HRESULT IsSystemMoniker(
-        DWORD *pdwMksys) = 0;
+    HRESULT ( *IsSystemMoniker)(
+        IMoniker* This,
+        DWORD *pdwMksys);
 
+   
+} IMonikerVtbl;
+struct IMoniker {
+    IMonikerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IMoniker>() { static const IID __uuid_inst = {0x0000000f,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IMoniker*>() { return __mingw_uuidof<IMoniker>(); } }
 # 9381 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IMoniker_RemoteBindToObject_Proxy(
     IMoniker* This,
     IBindCtx *pbc,
     IMoniker *pmkToLeft,
-    const IID & riidResult,
+    const IID *const riidResult,
     IUnknown **ppvResult);
 void IMoniker_RemoteBindToObject_Stub(
     IRpcStubBuffer* This,
@@ -65765,7 +66033,7 @@ HRESULT IMoniker_RemoteBindToStorage_Proxy(
     IMoniker* This,
     IBindCtx *pbc,
     IMoniker *pmkToLeft,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObj);
 void IMoniker_RemoteBindToStorage_Stub(
     IRpcStubBuffer* This,
@@ -65898,40 +66166,56 @@ HRESULT IMoniker_BindToObject_Proxy(
     IMoniker* This,
     IBindCtx *pbc,
     IMoniker *pmkToLeft,
-    const IID & riidResult,
+    const IID *const riidResult,
     void **ppvResult);
 HRESULT IMoniker_BindToObject_Stub(
     IMoniker* This,
     IBindCtx *pbc,
     IMoniker *pmkToLeft,
-    const IID & riidResult,
+    const IID *const riidResult,
     IUnknown **ppvResult);
 HRESULT IMoniker_BindToStorage_Proxy(
     IMoniker* This,
     IBindCtx *pbc,
     IMoniker *pmkToLeft,
-    const IID & riid,
+    const IID *const riid,
     void **ppvObj);
 HRESULT IMoniker_BindToStorage_Stub(
     IMoniker* This,
     IBindCtx *pbc,
     IMoniker *pmkToLeft,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObj);
 # 9560 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IROTData;
+extern const GUID IID_IROTData;
+# 9575 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IROTDataVtbl {
+   
 
-struct
-IROTData : public IUnknown
-{
-    virtual HRESULT GetComparisonData(
+
+    HRESULT ( *QueryInterface)(
+        IROTData* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IROTData* This);
+
+    ULONG ( *Release)(
+        IROTData* This);
+
+
+    HRESULT ( *GetComparisonData)(
+        IROTData* This,
         byte *pbData,
         ULONG cbMax,
-        ULONG *pcbData) = 0;
+        ULONG *pcbData);
 
+   
+} IROTDataVtbl;
+struct IROTData {
+    IROTDataVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IROTData>() { static const IID __uuid_inst = {0xf29f6bc0,0x5021,0x11ce, {0xaa,0x15,0x00,0x00,0x69,0x01,0x29,0x3f}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IROTData*>() { return __mingw_uuidof<IROTData>(); } }
 # 9631 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IROTData_GetComparisonData_Proxy(
     IROTData* This,
@@ -65945,28 +66229,46 @@ void IROTData_GetComparisonData_Stub(
     DWORD* pdwStubPhase);
 # 9652 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IEnumSTATSTG *LPENUMSTATSTG;
-extern "C" const GUID IID_IEnumSTATSTG;
+extern const GUID IID_IEnumSTATSTG;
+# 9677 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IEnumSTATSTGVtbl {
+   
 
-struct
-IEnumSTATSTG : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumSTATSTG* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumSTATSTG* This);
+
+    ULONG ( *Release)(
+        IEnumSTATSTG* This);
+
+
+    HRESULT ( *Next)(
+        IEnumSTATSTG* This,
         ULONG celt,
         STATSTG *rgelt,
-        ULONG *pceltFetched) = 0;
+        ULONG *pceltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumSTATSTG* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumSTATSTG* This);
 
-    virtual HRESULT Clone(
-        IEnumSTATSTG **ppenum) = 0;
+    HRESULT ( *Clone)(
+        IEnumSTATSTG* This,
+        IEnumSTATSTG **ppenum);
 
+   
+} IEnumSTATSTGVtbl;
+struct IEnumSTATSTG {
+    IEnumSTATSTGVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumSTATSTG>() { static const IID __uuid_inst = {0x0000000d,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumSTATSTG*>() { return __mingw_uuidof<IEnumSTATSTG>(); } }
 # 9756 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IEnumSTATSTG_RemoteNext_Proxy(
     IEnumSTATSTG* This,
@@ -66020,91 +66322,120 @@ typedef struct tagRemSNB {
 } RemSNB;
 typedef RemSNB *wireSNB;
 typedef LPOLESTR *SNB;
-extern "C" const GUID IID_IStorage;
+extern const GUID IID_IStorage;
+# 9903 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IStorageVtbl {
+   
 
-struct
-IStorage : public IUnknown
-{
-    virtual HRESULT CreateStream(
+
+    HRESULT ( *QueryInterface)(
+        IStorage* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IStorage* This);
+
+    ULONG ( *Release)(
+        IStorage* This);
+
+
+    HRESULT ( *CreateStream)(
+        IStorage* This,
         const OLECHAR *pwcsName,
         DWORD grfMode,
         DWORD reserved1,
         DWORD reserved2,
-        IStream **ppstm) = 0;
+        IStream **ppstm);
 
-    virtual HRESULT OpenStream(
+    HRESULT ( *OpenStream)(
+        IStorage* This,
         const OLECHAR *pwcsName,
         void *reserved1,
         DWORD grfMode,
         DWORD reserved2,
-        IStream **ppstm) = 0;
+        IStream **ppstm);
 
-    virtual HRESULT CreateStorage(
+    HRESULT ( *CreateStorage)(
+        IStorage* This,
         const OLECHAR *pwcsName,
         DWORD grfMode,
         DWORD reserved1,
         DWORD reserved2,
-        IStorage **ppstg) = 0;
+        IStorage **ppstg);
 
-    virtual HRESULT OpenStorage(
+    HRESULT ( *OpenStorage)(
+        IStorage* This,
         const OLECHAR *pwcsName,
         IStorage *pstgPriority,
         DWORD grfMode,
         SNB snbExclude,
         DWORD reserved,
-        IStorage **ppstg) = 0;
+        IStorage **ppstg);
 
-    virtual HRESULT CopyTo(
+    HRESULT ( *CopyTo)(
+        IStorage* This,
         DWORD ciidExclude,
         const IID *rgiidExclude,
         SNB snbExclude,
-        IStorage *pstgDest) = 0;
+        IStorage *pstgDest);
 
-    virtual HRESULT MoveElementTo(
+    HRESULT ( *MoveElementTo)(
+        IStorage* This,
         const OLECHAR *pwcsName,
         IStorage *pstgDest,
         const OLECHAR *pwcsNewName,
-        DWORD grfFlags) = 0;
+        DWORD grfFlags);
 
-    virtual HRESULT Commit(
-        DWORD grfCommitFlags) = 0;
+    HRESULT ( *Commit)(
+        IStorage* This,
+        DWORD grfCommitFlags);
 
-    virtual HRESULT Revert(
-        ) = 0;
+    HRESULT ( *Revert)(
+        IStorage* This);
 
-    virtual HRESULT EnumElements(
+    HRESULT ( *EnumElements)(
+        IStorage* This,
         DWORD reserved1,
         void *reserved2,
         DWORD reserved3,
-        IEnumSTATSTG **ppenum) = 0;
+        IEnumSTATSTG **ppenum);
 
-    virtual HRESULT DestroyElement(
-        const OLECHAR *pwcsName) = 0;
+    HRESULT ( *DestroyElement)(
+        IStorage* This,
+        const OLECHAR *pwcsName);
 
-    virtual HRESULT RenameElement(
+    HRESULT ( *RenameElement)(
+        IStorage* This,
         const OLECHAR *pwcsOldName,
-        const OLECHAR *pwcsNewName) = 0;
+        const OLECHAR *pwcsNewName);
 
-    virtual HRESULT SetElementTimes(
+    HRESULT ( *SetElementTimes)(
+        IStorage* This,
         const OLECHAR *pwcsName,
         const FILETIME *pctime,
         const FILETIME *patime,
-        const FILETIME *pmtime) = 0;
+        const FILETIME *pmtime);
 
-    virtual HRESULT SetClass(
-        const IID & clsid) = 0;
+    HRESULT ( *SetClass)(
+        IStorage* This,
+        const IID *const clsid);
 
-    virtual HRESULT SetStateBits(
+    HRESULT ( *SetStateBits)(
+        IStorage* This,
         DWORD grfStateBits,
-        DWORD grfMask) = 0;
+        DWORD grfMask);
 
-    virtual HRESULT Stat(
+    HRESULT ( *Stat)(
+        IStorage* This,
         STATSTG *pstatstg,
-        DWORD grfStatFlag) = 0;
+        DWORD grfStatFlag);
 
+   
+} IStorageVtbl;
+struct IStorage {
+    IStorageVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IStorage>() { static const IID __uuid_inst = {0x0000000b,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IStorage*>() { return __mingw_uuidof<IStorage>(); } }
 # 10100 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IStorage_CreateStream_Proxy(
     IStorage* This,
@@ -66235,7 +66566,7 @@ void IStorage_SetElementTimes_Stub(
     DWORD* pdwStubPhase);
 HRESULT IStorage_SetClass_Proxy(
     IStorage* This,
-    const IID & clsid);
+    const IID *const clsid);
 void IStorage_SetClass_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -66301,31 +66632,55 @@ HRESULT IStorage_EnumElements_Stub(
     IEnumSTATSTG **ppenum);
 # 10304 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IPersistFile *LPPERSISTFILE;
-extern "C" const GUID IID_IPersistFile;
+extern const GUID IID_IPersistFile;
+# 10332 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IPersistFileVtbl {
+   
 
-struct
-IPersistFile : public IPersist
-{
-    virtual HRESULT IsDirty(
-        ) = 0;
 
-    virtual HRESULT Load(
+    HRESULT ( *QueryInterface)(
+        IPersistFile* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IPersistFile* This);
+
+    ULONG ( *Release)(
+        IPersistFile* This);
+
+
+    HRESULT ( *GetClassID)(
+        IPersistFile* This,
+        CLSID *pClassID);
+
+
+    HRESULT ( *IsDirty)(
+        IPersistFile* This);
+
+    HRESULT ( *Load)(
+        IPersistFile* This,
         LPCOLESTR pszFileName,
-        DWORD dwMode) = 0;
+        DWORD dwMode);
 
-    virtual HRESULT Save(
+    HRESULT ( *Save)(
+        IPersistFile* This,
         LPCOLESTR pszFileName,
-        WINBOOL fRemember) = 0;
+        WINBOOL fRemember);
 
-    virtual HRESULT SaveCompleted(
-        LPCOLESTR pszFileName) = 0;
+    HRESULT ( *SaveCompleted)(
+        IPersistFile* This,
+        LPCOLESTR pszFileName);
 
-    virtual HRESULT GetCurFile(
-        LPOLESTR *ppszFileName) = 0;
+    HRESULT ( *GetCurFile)(
+        IPersistFile* This,
+        LPOLESTR *ppszFileName);
 
+   
+} IPersistFileVtbl;
+struct IPersistFile {
+    IPersistFileVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPersistFile>() { static const IID __uuid_inst = {0x0000010b,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPersistFile*>() { return __mingw_uuidof<IPersistFile>(); } }
 # 10430 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IPersistFile_IsDirty_Proxy(
     IPersistFile* This);
@@ -66370,33 +66725,57 @@ void IPersistFile_GetCurFile_Stub(
     DWORD* pdwStubPhase);
 # 10480 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IPersistStorage *LPPERSISTSTORAGE;
-extern "C" const GUID IID_IPersistStorage;
+extern const GUID IID_IPersistStorage;
+# 10510 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IPersistStorageVtbl {
+   
 
-struct
-IPersistStorage : public IPersist
-{
-    virtual HRESULT IsDirty(
-        ) = 0;
 
-    virtual HRESULT InitNew(
-        IStorage *pStg) = 0;
+    HRESULT ( *QueryInterface)(
+        IPersistStorage* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT Load(
-        IStorage *pStg) = 0;
+    ULONG ( *AddRef)(
+        IPersistStorage* This);
 
-    virtual HRESULT Save(
+    ULONG ( *Release)(
+        IPersistStorage* This);
+
+
+    HRESULT ( *GetClassID)(
+        IPersistStorage* This,
+        CLSID *pClassID);
+
+
+    HRESULT ( *IsDirty)(
+        IPersistStorage* This);
+
+    HRESULT ( *InitNew)(
+        IPersistStorage* This,
+        IStorage *pStg);
+
+    HRESULT ( *Load)(
+        IPersistStorage* This,
+        IStorage *pStg);
+
+    HRESULT ( *Save)(
+        IPersistStorage* This,
         IStorage *pStgSave,
-        WINBOOL fSameAsLoad) = 0;
+        WINBOOL fSameAsLoad);
 
-    virtual HRESULT SaveCompleted(
-        IStorage *pStgNew) = 0;
+    HRESULT ( *SaveCompleted)(
+        IPersistStorage* This,
+        IStorage *pStgNew);
 
-    virtual HRESULT HandsOffStorage(
-        ) = 0;
+    HRESULT ( *HandsOffStorage)(
+        IPersistStorage* This);
 
+   
+} IPersistStorageVtbl;
+struct IPersistStorage {
+    IPersistStorageVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPersistStorage>() { static const IID __uuid_inst = {0x0000010a,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPersistStorage*>() { return __mingw_uuidof<IPersistStorage>(); } }
 # 10614 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IPersistStorage_IsDirty_Proxy(
     IPersistStorage* This);
@@ -66447,46 +66826,67 @@ void IPersistStorage_HandsOffStorage_Stub(
     DWORD* pdwStubPhase);
 # 10672 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef ILockBytes *LPLOCKBYTES;
-extern "C" const GUID IID_ILockBytes;
+extern const GUID IID_ILockBytes;
+# 10715 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct ILockBytesVtbl {
+   
 
-struct
-ILockBytes : public IUnknown
-{
-    virtual HRESULT ReadAt(
+
+    HRESULT ( *QueryInterface)(
+        ILockBytes* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ILockBytes* This);
+
+    ULONG ( *Release)(
+        ILockBytes* This);
+
+
+    HRESULT ( *ReadAt)(
+        ILockBytes* This,
         ULARGE_INTEGER ulOffset,
         void *pv,
         ULONG cb,
-        ULONG *pcbRead) = 0;
+        ULONG *pcbRead);
 
-    virtual HRESULT WriteAt(
+    HRESULT ( *WriteAt)(
+        ILockBytes* This,
         ULARGE_INTEGER ulOffset,
         const void *pv,
         ULONG cb,
-        ULONG *pcbWritten) = 0;
+        ULONG *pcbWritten);
 
-    virtual HRESULT Flush(
-        ) = 0;
+    HRESULT ( *Flush)(
+        ILockBytes* This);
 
-    virtual HRESULT SetSize(
-        ULARGE_INTEGER cb) = 0;
+    HRESULT ( *SetSize)(
+        ILockBytes* This,
+        ULARGE_INTEGER cb);
 
-    virtual HRESULT LockRegion(
+    HRESULT ( *LockRegion)(
+        ILockBytes* This,
         ULARGE_INTEGER libOffset,
         ULARGE_INTEGER cb,
-        DWORD dwLockType) = 0;
+        DWORD dwLockType);
 
-    virtual HRESULT UnlockRegion(
+    HRESULT ( *UnlockRegion)(
+        ILockBytes* This,
         ULARGE_INTEGER libOffset,
         ULARGE_INTEGER cb,
-        DWORD dwLockType) = 0;
+        DWORD dwLockType);
 
-    virtual HRESULT Stat(
+    HRESULT ( *Stat)(
+        ILockBytes* This,
         STATSTG *pstatstg,
-        DWORD grfStatFlag) = 0;
+        DWORD grfStatFlag);
 
+   
+} ILockBytesVtbl;
+struct ILockBytes {
+    ILockBytesVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ILockBytes>() { static const IID __uuid_inst = {0x0000000a,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ILockBytes*>() { return __mingw_uuidof<ILockBytes>(); } }
 # 10827 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT ILockBytes_RemoteReadAt_Proxy(
     ILockBytes* This,
@@ -66597,28 +66997,46 @@ typedef struct tagFORMATETC {
     DWORD tymed;
 } FORMATETC;
 typedef struct tagFORMATETC *LPFORMATETC;
-extern "C" const GUID IID_IEnumFORMATETC;
+extern const GUID IID_IEnumFORMATETC;
+# 10968 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IEnumFORMATETCVtbl {
+   
 
-struct
-IEnumFORMATETC : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumFORMATETC* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumFORMATETC* This);
+
+    ULONG ( *Release)(
+        IEnumFORMATETC* This);
+
+
+    HRESULT ( *Next)(
+        IEnumFORMATETC* This,
         ULONG celt,
         FORMATETC *rgelt,
-        ULONG *pceltFetched) = 0;
+        ULONG *pceltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumFORMATETC* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumFORMATETC* This);
 
-    virtual HRESULT Clone(
-        IEnumFORMATETC **ppenum) = 0;
+    HRESULT ( *Clone)(
+        IEnumFORMATETC* This,
+        IEnumFORMATETC **ppenum);
 
+   
+} IEnumFORMATETCVtbl;
+struct IEnumFORMATETC {
+    IEnumFORMATETCVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumFORMATETC>() { static const IID __uuid_inst = {0x00000103,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumFORMATETC*>() { return __mingw_uuidof<IEnumFORMATETC>(); } }
 # 11047 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IEnumFORMATETC_RemoteNext_Proxy(
     IEnumFORMATETC* This,
@@ -66681,28 +67099,46 @@ typedef struct tagSTATDATA {
     DWORD dwConnection;
 } STATDATA;
 typedef STATDATA *LPSTATDATA;
-extern "C" const GUID IID_IEnumSTATDATA;
+extern const GUID IID_IEnumSTATDATA;
+# 11140 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IEnumSTATDATAVtbl {
+   
 
-struct
-IEnumSTATDATA : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumSTATDATA* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumSTATDATA* This);
+
+    ULONG ( *Release)(
+        IEnumSTATDATA* This);
+
+
+    HRESULT ( *Next)(
+        IEnumSTATDATA* This,
         ULONG celt,
         STATDATA *rgelt,
-        ULONG *pceltFetched) = 0;
+        ULONG *pceltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumSTATDATA* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumSTATDATA* This);
 
-    virtual HRESULT Clone(
-        IEnumSTATDATA **ppenum) = 0;
+    HRESULT ( *Clone)(
+        IEnumSTATDATA* This,
+        IEnumSTATDATA **ppenum);
 
+   
+} IEnumSTATDATAVtbl;
+struct IEnumSTATDATA {
+    IEnumSTATDATAVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumSTATDATA>() { static const IID __uuid_inst = {0x00000105,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumSTATDATA*>() { return __mingw_uuidof<IEnumSTATDATA>(); } }
 # 11219 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IEnumSTATDATA_RemoteNext_Proxy(
     IEnumSTATDATA* This,
@@ -66749,17 +67185,33 @@ HRESULT IEnumSTATDATA_Next_Stub(
     ULONG *pceltFetched);
 # 11271 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IRootStorage *LPROOTSTORAGE;
-extern "C" const GUID IID_IRootStorage;
+extern const GUID IID_IRootStorage;
+# 11285 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IRootStorageVtbl {
+   
 
-struct
-IRootStorage : public IUnknown
-{
-    virtual HRESULT SwitchToFile(
-        LPOLESTR pszFile) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IRootStorage* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IRootStorage* This);
+
+    ULONG ( *Release)(
+        IRootStorage* This);
+
+
+    HRESULT ( *SwitchToFile)(
+        IRootStorage* This,
+        LPOLESTR pszFile);
+
+   
+} IRootStorageVtbl;
+struct IRootStorage {
+    IRootStorageVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRootStorage>() { static const IID __uuid_inst = {0x00000012,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRootStorage*>() { return __mingw_uuidof<IRootStorage>(); } }
 # 11339 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IRootStorage_SwitchToFile_Proxy(
     IRootStorage* This,
@@ -66843,31 +67295,49 @@ typedef struct _FLAG_STGMEDIUM {
     LONG fPassOwnership;
     STGMEDIUM Stgmed;
 } FLAG_STGMEDIUM;
-extern "C" const GUID IID_IAdviseSink;
+extern const GUID IID_IAdviseSink;
+# 11470 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IAdviseSinkVtbl {
+   
 
-struct
-IAdviseSink : public IUnknown
-{
-    virtual void OnDataChange(
+
+    HRESULT ( *QueryInterface)(
+        IAdviseSink* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IAdviseSink* This);
+
+    ULONG ( *Release)(
+        IAdviseSink* This);
+
+
+    void ( *OnDataChange)(
+        IAdviseSink* This,
         FORMATETC *pFormatetc,
-        STGMEDIUM *pStgmed) = 0;
+        STGMEDIUM *pStgmed);
 
-    virtual void OnViewChange(
+    void ( *OnViewChange)(
+        IAdviseSink* This,
         DWORD dwAspect,
-        LONG lindex) = 0;
+        LONG lindex);
 
-    virtual void OnRename(
-        IMoniker *pmk) = 0;
+    void ( *OnRename)(
+        IAdviseSink* This,
+        IMoniker *pmk);
 
-    virtual void OnSave(
-        ) = 0;
+    void ( *OnSave)(
+        IAdviseSink* This);
 
-    virtual void OnClose(
-        ) = 0;
+    void ( *OnClose)(
+        IAdviseSink* This);
 
+   
+} IAdviseSinkVtbl;
+struct IAdviseSink {
+    IAdviseSinkVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAdviseSink>() { static const IID __uuid_inst = {0x0000010f,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAdviseSink*>() { return __mingw_uuidof<IAdviseSink>(); } }
 # 11556 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IAdviseSink_RemoteOnDataChange_Proxy(
     IAdviseSink* This,
@@ -66940,46 +67410,64 @@ void IAdviseSink_OnClose_Proxy(
 HRESULT IAdviseSink_OnClose_Stub(
     IAdviseSink* This);
 # 11635 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_AsyncIAdviseSink;
+extern const GUID IID_AsyncIAdviseSink;
+# 11677 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct AsyncIAdviseSinkVtbl {
+   
 
-struct
-AsyncIAdviseSink : public IUnknown
-{
-    virtual void Begin_OnDataChange(
+
+    HRESULT ( *QueryInterface)(
+        AsyncIAdviseSink* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        AsyncIAdviseSink* This);
+
+    ULONG ( *Release)(
+        AsyncIAdviseSink* This);
+
+
+    void ( *Begin_OnDataChange)(
+        AsyncIAdviseSink* This,
         FORMATETC *pFormatetc,
-        STGMEDIUM *pStgmed) = 0;
+        STGMEDIUM *pStgmed);
 
-    virtual void Finish_OnDataChange(
-        ) = 0;
+    void ( *Finish_OnDataChange)(
+        AsyncIAdviseSink* This);
 
-    virtual void Begin_OnViewChange(
+    void ( *Begin_OnViewChange)(
+        AsyncIAdviseSink* This,
         DWORD dwAspect,
-        LONG lindex) = 0;
+        LONG lindex);
 
-    virtual void Finish_OnViewChange(
-        ) = 0;
+    void ( *Finish_OnViewChange)(
+        AsyncIAdviseSink* This);
 
-    virtual void Begin_OnRename(
-        IMoniker *pmk) = 0;
+    void ( *Begin_OnRename)(
+        AsyncIAdviseSink* This,
+        IMoniker *pmk);
 
-    virtual void Finish_OnRename(
-        ) = 0;
+    void ( *Finish_OnRename)(
+        AsyncIAdviseSink* This);
 
-    virtual void Begin_OnSave(
-        ) = 0;
+    void ( *Begin_OnSave)(
+        AsyncIAdviseSink* This);
 
-    virtual void Finish_OnSave(
-        ) = 0;
+    void ( *Finish_OnSave)(
+        AsyncIAdviseSink* This);
 
-    virtual void Begin_OnClose(
-        ) = 0;
+    void ( *Begin_OnClose)(
+        AsyncIAdviseSink* This);
 
-    virtual void Finish_OnClose(
-        ) = 0;
+    void ( *Finish_OnClose)(
+        AsyncIAdviseSink* This);
 
+   
+} AsyncIAdviseSinkVtbl;
+struct AsyncIAdviseSink {
+    AsyncIAdviseSinkVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<AsyncIAdviseSink>() { static const IID __uuid_inst = {0x00000150,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<AsyncIAdviseSink*>() { return __mingw_uuidof<AsyncIAdviseSink>(); } }
 # 11798 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT AsyncIAdviseSink_Begin_RemoteOnDataChange_Proxy(
     IAdviseSink* This,
@@ -67118,17 +67606,54 @@ HRESULT AsyncIAdviseSink_Finish_OnClose_Stub(
     IAdviseSink* This);
 # 11944 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IAdviseSink2 *LPADVISESINK2;
-extern "C" const GUID IID_IAdviseSink2;
+extern const GUID IID_IAdviseSink2;
+# 11958 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IAdviseSink2Vtbl {
+   
 
-struct
-IAdviseSink2 : public IAdviseSink
-{
-    virtual void OnLinkSrcChange(
-        IMoniker *pmk) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IAdviseSink2* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IAdviseSink2* This);
+
+    ULONG ( *Release)(
+        IAdviseSink2* This);
+
+
+    void ( *OnDataChange)(
+        IAdviseSink2* This,
+        FORMATETC *pFormatetc,
+        STGMEDIUM *pStgmed);
+
+    void ( *OnViewChange)(
+        IAdviseSink2* This,
+        DWORD dwAspect,
+        LONG lindex);
+
+    void ( *OnRename)(
+        IAdviseSink2* This,
+        IMoniker *pmk);
+
+    void ( *OnSave)(
+        IAdviseSink2* This);
+
+    void ( *OnClose)(
+        IAdviseSink2* This);
+
+
+    void ( *OnLinkSrcChange)(
+        IAdviseSink2* This,
+        IMoniker *pmk);
+
+   
+} IAdviseSink2Vtbl;
+struct IAdviseSink2 {
+    IAdviseSink2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAdviseSink2>() { static const IID __uuid_inst = {0x00000125,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAdviseSink2*>() { return __mingw_uuidof<IAdviseSink2>(); } }
 # 12055 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IAdviseSink2_RemoteOnLinkSrcChange_Proxy(
     IAdviseSink2* This,
@@ -67145,20 +67670,72 @@ HRESULT IAdviseSink2_OnLinkSrcChange_Stub(
     IAdviseSink2* This,
     IMoniker *pmk);
 # 12078 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_AsyncIAdviseSink2;
+extern const GUID IID_AsyncIAdviseSink2;
+# 12094 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct AsyncIAdviseSink2Vtbl {
+   
 
-struct
-AsyncIAdviseSink2 : public IAdviseSink
-{
-    virtual void Begin_OnLinkSrcChange(
-        IMoniker *pmk) = 0;
 
-    virtual void Finish_OnLinkSrcChange(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        AsyncIAdviseSink2* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        AsyncIAdviseSink2* This);
+
+    ULONG ( *Release)(
+        AsyncIAdviseSink2* This);
+
+
+    void ( *Begin_OnDataChange)(
+        AsyncIAdviseSink2* This,
+        FORMATETC *pFormatetc,
+        STGMEDIUM *pStgmed);
+
+    void ( *Finish_OnDataChange)(
+        AsyncIAdviseSink2* This);
+
+    void ( *Begin_OnViewChange)(
+        AsyncIAdviseSink2* This,
+        DWORD dwAspect,
+        LONG lindex);
+
+    void ( *Finish_OnViewChange)(
+        AsyncIAdviseSink2* This);
+
+    void ( *Begin_OnRename)(
+        AsyncIAdviseSink2* This,
+        IMoniker *pmk);
+
+    void ( *Finish_OnRename)(
+        AsyncIAdviseSink2* This);
+
+    void ( *Begin_OnSave)(
+        AsyncIAdviseSink2* This);
+
+    void ( *Finish_OnSave)(
+        AsyncIAdviseSink2* This);
+
+    void ( *Begin_OnClose)(
+        AsyncIAdviseSink2* This);
+
+    void ( *Finish_OnClose)(
+        AsyncIAdviseSink2* This);
+
+
+    void ( *Begin_OnLinkSrcChange)(
+        AsyncIAdviseSink2* This,
+        IMoniker *pmk);
+
+    void ( *Finish_OnLinkSrcChange)(
+        AsyncIAdviseSink2* This);
+
+   
+} AsyncIAdviseSink2Vtbl;
+struct AsyncIAdviseSink2 {
+    AsyncIAdviseSink2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<AsyncIAdviseSink2>() { static const IID __uuid_inst = {0x00000151,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<AsyncIAdviseSink2*>() { return __mingw_uuidof<AsyncIAdviseSink2>(); } }
 # 12233 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT AsyncIAdviseSink2_Begin_RemoteOnLinkSrcChange_Proxy(
     IAdviseSink2* This,
@@ -67193,50 +67770,74 @@ typedef enum tagDATADIR {
     DATADIR_GET = 1,
     DATADIR_SET = 2
 } DATADIR;
-extern "C" const GUID IID_IDataObject;
+extern const GUID IID_IDataObject;
+# 12322 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IDataObjectVtbl {
+   
 
-struct
-IDataObject : public IUnknown
-{
-    virtual HRESULT GetData(
+
+    HRESULT ( *QueryInterface)(
+        IDataObject* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IDataObject* This);
+
+    ULONG ( *Release)(
+        IDataObject* This);
+
+
+    HRESULT ( *GetData)(
+        IDataObject* This,
         FORMATETC *pformatetcIn,
-        STGMEDIUM *pmedium) = 0;
+        STGMEDIUM *pmedium);
 
-    virtual HRESULT GetDataHere(
+    HRESULT ( *GetDataHere)(
+        IDataObject* This,
         FORMATETC *pformatetc,
-        STGMEDIUM *pmedium) = 0;
+        STGMEDIUM *pmedium);
 
-    virtual HRESULT QueryGetData(
-        FORMATETC *pformatetc) = 0;
+    HRESULT ( *QueryGetData)(
+        IDataObject* This,
+        FORMATETC *pformatetc);
 
-    virtual HRESULT GetCanonicalFormatEtc(
+    HRESULT ( *GetCanonicalFormatEtc)(
+        IDataObject* This,
         FORMATETC *pformatectIn,
-        FORMATETC *pformatetcOut) = 0;
+        FORMATETC *pformatetcOut);
 
-    virtual HRESULT SetData(
+    HRESULT ( *SetData)(
+        IDataObject* This,
         FORMATETC *pformatetc,
         STGMEDIUM *pmedium,
-        WINBOOL fRelease) = 0;
+        WINBOOL fRelease);
 
-    virtual HRESULT EnumFormatEtc(
+    HRESULT ( *EnumFormatEtc)(
+        IDataObject* This,
         DWORD dwDirection,
-        IEnumFORMATETC **ppenumFormatEtc) = 0;
+        IEnumFORMATETC **ppenumFormatEtc);
 
-    virtual HRESULT DAdvise(
+    HRESULT ( *DAdvise)(
+        IDataObject* This,
         FORMATETC *pformatetc,
         DWORD advf,
         IAdviseSink *pAdvSink,
-        DWORD *pdwConnection) = 0;
+        DWORD *pdwConnection);
 
-    virtual HRESULT DUnadvise(
-        DWORD dwConnection) = 0;
+    HRESULT ( *DUnadvise)(
+        IDataObject* This,
+        DWORD dwConnection);
 
-    virtual HRESULT EnumDAdvise(
-        IEnumSTATDATA **ppenumAdvise) = 0;
+    HRESULT ( *EnumDAdvise)(
+        IDataObject* This,
+        IEnumSTATDATA **ppenumAdvise);
 
+   
+} IDataObjectVtbl;
+struct IDataObject {
+    IDataObjectVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IDataObject>() { static const IID __uuid_inst = {0x0000010e,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IDataObject*>() { return __mingw_uuidof<IDataObject>(); } }
 # 12449 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IDataObject_RemoteGetData_Proxy(
     IDataObject* This,
@@ -67347,32 +67948,51 @@ HRESULT IDataObject_SetData_Stub(
     WINBOOL fRelease);
 # 12567 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IDataAdviseHolder *LPDATAADVISEHOLDER;
-extern "C" const GUID IID_IDataAdviseHolder;
+extern const GUID IID_IDataAdviseHolder;
+# 12596 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IDataAdviseHolderVtbl {
+   
 
-struct
-IDataAdviseHolder : public IUnknown
-{
-    virtual HRESULT Advise(
+
+    HRESULT ( *QueryInterface)(
+        IDataAdviseHolder* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IDataAdviseHolder* This);
+
+    ULONG ( *Release)(
+        IDataAdviseHolder* This);
+
+
+    HRESULT ( *Advise)(
+        IDataAdviseHolder* This,
         IDataObject *pDataObject,
         FORMATETC *pFetc,
         DWORD advf,
         IAdviseSink *pAdvise,
-        DWORD *pdwConnection) = 0;
+        DWORD *pdwConnection);
 
-    virtual HRESULT Unadvise(
-        DWORD dwConnection) = 0;
+    HRESULT ( *Unadvise)(
+        IDataAdviseHolder* This,
+        DWORD dwConnection);
 
-    virtual HRESULT EnumAdvise(
-        IEnumSTATDATA **ppenumAdvise) = 0;
+    HRESULT ( *EnumAdvise)(
+        IDataAdviseHolder* This,
+        IEnumSTATDATA **ppenumAdvise);
 
-    virtual HRESULT SendOnDataChange(
+    HRESULT ( *SendOnDataChange)(
+        IDataAdviseHolder* This,
         IDataObject *pDataObject,
         DWORD dwReserved,
-        DWORD advf) = 0;
+        DWORD advf);
 
+   
+} IDataAdviseHolderVtbl;
+struct IDataAdviseHolder {
+    IDataAdviseHolderVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IDataAdviseHolder>() { static const IID __uuid_inst = {0x00000110,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IDataAdviseHolder*>() { return __mingw_uuidof<IDataAdviseHolder>(); } }
 # 12680 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IDataAdviseHolder_Advise_Proxy(
     IDataAdviseHolder* This,
@@ -67441,30 +68061,48 @@ typedef struct tagINTERFACEINFO {
     WORD wMethod;
 } INTERFACEINFO;
 typedef struct tagINTERFACEINFO *LPINTERFACEINFO;
-extern "C" const GUID IID_IMessageFilter;
+extern const GUID IID_IMessageFilter;
+# 12781 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IMessageFilterVtbl {
+   
 
-struct
-IMessageFilter : public IUnknown
-{
-    virtual DWORD HandleInComingCall(
+
+    HRESULT ( *QueryInterface)(
+        IMessageFilter* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IMessageFilter* This);
+
+    ULONG ( *Release)(
+        IMessageFilter* This);
+
+
+    DWORD ( *HandleInComingCall)(
+        IMessageFilter* This,
         DWORD dwCallType,
         HTASK htaskCaller,
         DWORD dwTickCount,
-        LPINTERFACEINFO lpInterfaceInfo) = 0;
+        LPINTERFACEINFO lpInterfaceInfo);
 
-    virtual DWORD RetryRejectedCall(
+    DWORD ( *RetryRejectedCall)(
+        IMessageFilter* This,
         HTASK htaskCallee,
         DWORD dwTickCount,
-        DWORD dwRejectType) = 0;
+        DWORD dwRejectType);
 
-    virtual DWORD MessagePending(
+    DWORD ( *MessagePending)(
+        IMessageFilter* This,
         HTASK htaskCallee,
         DWORD dwTickCount,
-        DWORD dwPendingType) = 0;
+        DWORD dwPendingType);
 
+   
+} IMessageFilterVtbl;
+struct IMessageFilter {
+    IMessageFilterVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IMessageFilter>() { static const IID __uuid_inst = {0x00000016,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IMessageFilter*>() { return __mingw_uuidof<IMessageFilter>(); } }
 # 12858 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 DWORD IMessageFilter_HandleInComingCall_Proxy(
     IMessageFilter* This,
@@ -67523,28 +68161,44 @@ extern const FMTID FMTID_MediaFileSummaryInformation;
 
 
 
-extern "C" const GUID IID_IClassActivator;
+extern const GUID IID_IClassActivator;
+# 12932 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IClassActivatorVtbl {
+   
 
-struct
-IClassActivator : public IUnknown
-{
-    virtual HRESULT GetClassObject(
-        const IID & rclsid,
+
+    HRESULT ( *QueryInterface)(
+        IClassActivator* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IClassActivator* This);
+
+    ULONG ( *Release)(
+        IClassActivator* This);
+
+
+    HRESULT ( *GetClassObject)(
+        IClassActivator* This,
+        const IID *const rclsid,
         DWORD dwClassContext,
         LCID locale,
-        const IID & riid,
-        void **ppv) = 0;
+        const IID *const riid,
+        void **ppv);
 
+   
+} IClassActivatorVtbl;
+struct IClassActivator {
+    IClassActivatorVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IClassActivator>() { static const IID __uuid_inst = {0x00000140,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IClassActivator*>() { return __mingw_uuidof<IClassActivator>(); } }
 # 12990 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IClassActivator_GetClassObject_Proxy(
     IClassActivator* This,
-    const IID & rclsid,
+    const IID *const rclsid,
     DWORD dwClassContext,
     LCID locale,
-    const IID & riid,
+    const IID *const riid,
     void **ppv);
 void IClassActivator_GetClassObject_Stub(
     IRpcStubBuffer* This,
@@ -67552,31 +68206,50 @@ void IClassActivator_GetClassObject_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 13013 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IFillLockBytes;
+extern const GUID IID_IFillLockBytes;
+# 13040 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IFillLockBytesVtbl {
+   
 
-struct
-IFillLockBytes : public IUnknown
-{
-    virtual HRESULT FillAppend(
+
+    HRESULT ( *QueryInterface)(
+        IFillLockBytes* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IFillLockBytes* This);
+
+    ULONG ( *Release)(
+        IFillLockBytes* This);
+
+
+    HRESULT ( *FillAppend)(
+        IFillLockBytes* This,
         const void *pv,
         ULONG cb,
-        ULONG *pcbWritten) = 0;
+        ULONG *pcbWritten);
 
-    virtual HRESULT FillAt(
+    HRESULT ( *FillAt)(
+        IFillLockBytes* This,
         ULARGE_INTEGER ulOffset,
         const void *pv,
         ULONG cb,
-        ULONG *pcbWritten) = 0;
+        ULONG *pcbWritten);
 
-    virtual HRESULT SetFillSize(
-        ULARGE_INTEGER ulSize) = 0;
+    HRESULT ( *SetFillSize)(
+        IFillLockBytes* This,
+        ULARGE_INTEGER ulSize);
 
-    virtual HRESULT Terminate(
-        WINBOOL bCanceled) = 0;
+    HRESULT ( *Terminate)(
+        IFillLockBytes* This,
+        WINBOOL bCanceled);
 
+   
+} IFillLockBytesVtbl;
+struct IFillLockBytes {
+    IFillLockBytesVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IFillLockBytes>() { static const IID __uuid_inst = {0x99caf010,0x415e,0x11cf, {0x88,0x14,0x00,0xaa,0x00,0xb5,0x69,0xf5}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IFillLockBytes*>() { return __mingw_uuidof<IFillLockBytes>(); } }
 # 13123 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IFillLockBytes_RemoteFillAppend_Proxy(
     IFillLockBytes* This,
@@ -67638,20 +68311,36 @@ HRESULT IFillLockBytes_FillAt_Stub(
     ULONG cb,
     ULONG *pcbWritten);
 # 13193 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IProgressNotify;
+extern const GUID IID_IProgressNotify;
+# 13209 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IProgressNotifyVtbl {
+   
 
-struct
-IProgressNotify : public IUnknown
-{
-    virtual HRESULT OnProgress(
+
+    HRESULT ( *QueryInterface)(
+        IProgressNotify* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IProgressNotify* This);
+
+    ULONG ( *Release)(
+        IProgressNotify* This);
+
+
+    HRESULT ( *OnProgress)(
+        IProgressNotify* This,
         DWORD dwProgressCurrent,
         DWORD dwProgressMaximum,
         WINBOOL fAccurate,
-        WINBOOL fOwner) = 0;
+        WINBOOL fOwner);
 
+   
+} IProgressNotifyVtbl;
+struct IProgressNotify {
+    IProgressNotifyVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IProgressNotify>() { static const IID __uuid_inst = {0xa9d758a0,0x4617,0x11cf, {0x95,0xfc,0x00,0xaa,0x00,0x68,0x0d,0xb4}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IProgressNotify*>() { return __mingw_uuidof<IProgressNotify>(); } }
 # 13266 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IProgressNotify_OnProgress_Proxy(
     IProgressNotify* This,
@@ -67671,31 +68360,49 @@ typedef struct tagStorageLayout {
     LARGE_INTEGER cOffset;
     LARGE_INTEGER cBytes;
 } StorageLayout;
-extern "C" const GUID IID_ILayoutStorage;
+extern const GUID IID_ILayoutStorage;
+# 13321 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct ILayoutStorageVtbl {
+   
 
-struct
-ILayoutStorage : public IUnknown
-{
-    virtual HRESULT LayoutScript(
+
+    HRESULT ( *QueryInterface)(
+        ILayoutStorage* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ILayoutStorage* This);
+
+    ULONG ( *Release)(
+        ILayoutStorage* This);
+
+
+    HRESULT ( *LayoutScript)(
+        ILayoutStorage* This,
         StorageLayout *pStorageLayout,
         DWORD nEntries,
-        DWORD glfInterleavedFlag) = 0;
+        DWORD glfInterleavedFlag);
 
-    virtual HRESULT BeginMonitor(
-        ) = 0;
+    HRESULT ( *BeginMonitor)(
+        ILayoutStorage* This);
 
-    virtual HRESULT EndMonitor(
-        ) = 0;
+    HRESULT ( *EndMonitor)(
+        ILayoutStorage* This);
 
-    virtual HRESULT ReLayoutDocfile(
-        OLECHAR *pwcsNewDfName) = 0;
+    HRESULT ( *ReLayoutDocfile)(
+        ILayoutStorage* This,
+        OLECHAR *pwcsNewDfName);
 
-    virtual HRESULT ReLayoutDocfileOnILockBytes(
-        ILockBytes *pILockBytes) = 0;
+    HRESULT ( *ReLayoutDocfileOnILockBytes)(
+        ILayoutStorage* This,
+        ILockBytes *pILockBytes);
 
+   
+} ILayoutStorageVtbl;
+struct ILayoutStorage {
+    ILayoutStorageVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ILayoutStorage>() { static const IID __uuid_inst = {0x0e6d4d90,0x6738,0x11cf, {0x96,0x08,0x00,0xaa,0x00,0x68,0x0d,0xb4}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ILayoutStorage*>() { return __mingw_uuidof<ILayoutStorage>(); } }
 # 13407 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT ILayoutStorage_LayoutScript_Proxy(
     ILayoutStorage* This,
@@ -67738,20 +68445,36 @@ void ILayoutStorage_ReLayoutDocfileOnILockBytes_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 13458 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IBlockingLock;
+extern const GUID IID_IBlockingLock;
+# 13474 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IBlockingLockVtbl {
+   
 
-struct
-IBlockingLock : public IUnknown
-{
-    virtual HRESULT Lock(
-        DWORD dwTimeout) = 0;
 
-    virtual HRESULT Unlock(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IBlockingLock* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IBlockingLock* This);
+
+    ULONG ( *Release)(
+        IBlockingLock* This);
+
+
+    HRESULT ( *Lock)(
+        IBlockingLock* This,
+        DWORD dwTimeout);
+
+    HRESULT ( *Unlock)(
+        IBlockingLock* This);
+
+   
+} IBlockingLockVtbl;
+struct IBlockingLock {
+    IBlockingLockVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IBlockingLock>() { static const IID __uuid_inst = {0x30f3d47a,0x6447,0x11d1, {0x8e,0x3c,0x00,0xc0,0x4f,0xb9,0x38,0x6d}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IBlockingLock*>() { return __mingw_uuidof<IBlockingLock>(); } }
 # 13535 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IBlockingLock_Lock_Proxy(
     IBlockingLock* This,
@@ -67769,18 +68492,34 @@ void IBlockingLock_Unlock_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 13559 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_ITimeAndNoticeControl;
+extern const GUID IID_ITimeAndNoticeControl;
+# 13573 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct ITimeAndNoticeControlVtbl {
+   
 
-struct
-ITimeAndNoticeControl : public IUnknown
-{
-    virtual HRESULT SuppressChanges(
+
+    HRESULT ( *QueryInterface)(
+        ITimeAndNoticeControl* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ITimeAndNoticeControl* This);
+
+    ULONG ( *Release)(
+        ITimeAndNoticeControl* This);
+
+
+    HRESULT ( *SuppressChanges)(
+        ITimeAndNoticeControl* This,
         DWORD res1,
-        DWORD res2) = 0;
+        DWORD res2);
 
+   
+} ITimeAndNoticeControlVtbl;
+struct ITimeAndNoticeControl {
+    ITimeAndNoticeControlVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ITimeAndNoticeControl>() { static const IID __uuid_inst = {0xbc0bf6ae,0x8878,0x11d1, {0x83,0xe9,0x00,0xc0,0x4f,0xc2,0xc6,0xd4}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ITimeAndNoticeControl*>() { return __mingw_uuidof<ITimeAndNoticeControl>(); } }
 # 13628 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT ITimeAndNoticeControl_SuppressChanges_Proxy(
     ITimeAndNoticeControl* This,
@@ -67792,30 +68531,47 @@ void ITimeAndNoticeControl_SuppressChanges_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 13646 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IOplockStorage;
+extern const GUID IID_IOplockStorage;
+# 13672 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IOplockStorageVtbl {
+   
 
-struct
-IOplockStorage : public IUnknown
-{
-    virtual HRESULT CreateStorageEx(
+
+    HRESULT ( *QueryInterface)(
+        IOplockStorage* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IOplockStorage* This);
+
+    ULONG ( *Release)(
+        IOplockStorage* This);
+
+
+    HRESULT ( *CreateStorageEx)(
+        IOplockStorage* This,
         LPCWSTR pwcsName,
         DWORD grfMode,
         DWORD stgfmt,
         DWORD grfAttrs,
-        const IID & riid,
-        void **ppstgOpen) = 0;
+        const IID *const riid,
+        void **ppstgOpen);
 
-    virtual HRESULT OpenStorageEx(
+    HRESULT ( *OpenStorageEx)(
+        IOplockStorage* This,
         LPCWSTR pwcsName,
         DWORD grfMode,
         DWORD stgfmt,
         DWORD grfAttrs,
-        const IID & riid,
-        void **ppstgOpen) = 0;
+        const IID *const riid,
+        void **ppstgOpen);
 
+   
+} IOplockStorageVtbl;
+struct IOplockStorage {
+    IOplockStorageVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOplockStorage>() { static const IID __uuid_inst = {0x8d19c834,0x8879,0x11d1, {0x83,0xe9,0x00,0xc0,0x4f,0xc2,0xc6,0xd4}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOplockStorage*>() { return __mingw_uuidof<IOplockStorage>(); } }
 # 13744 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IOplockStorage_CreateStorageEx_Proxy(
     IOplockStorage* This,
@@ -67823,7 +68579,7 @@ HRESULT IOplockStorage_CreateStorageEx_Proxy(
     DWORD grfMode,
     DWORD stgfmt,
     DWORD grfAttrs,
-    const IID & riid,
+    const IID *const riid,
     void **ppstgOpen);
 void IOplockStorage_CreateStorageEx_Stub(
     IRpcStubBuffer* This,
@@ -67836,7 +68592,7 @@ HRESULT IOplockStorage_OpenStorageEx_Proxy(
     DWORD grfMode,
     DWORD stgfmt,
     DWORD grfAttrs,
-    const IID & riid,
+    const IID *const riid,
     void **ppstgOpen);
 void IOplockStorage_OpenStorageEx_Stub(
     IRpcStubBuffer* This,
@@ -67844,23 +68600,39 @@ void IOplockStorage_OpenStorageEx_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 13781 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IDirectWriterLock;
+extern const GUID IID_IDirectWriterLock;
+# 13800 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IDirectWriterLockVtbl {
+   
 
-struct
-IDirectWriterLock : public IUnknown
-{
-    virtual HRESULT WaitForWriteAccess(
-        DWORD dwTimeout) = 0;
 
-    virtual HRESULT ReleaseWriteAccess(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IDirectWriterLock* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT HaveWriteAccess(
-        ) = 0;
+    ULONG ( *AddRef)(
+        IDirectWriterLock* This);
 
+    ULONG ( *Release)(
+        IDirectWriterLock* This);
+
+
+    HRESULT ( *WaitForWriteAccess)(
+        IDirectWriterLock* This,
+        DWORD dwTimeout);
+
+    HRESULT ( *ReleaseWriteAccess)(
+        IDirectWriterLock* This);
+
+    HRESULT ( *HaveWriteAccess)(
+        IDirectWriterLock* This);
+
+   
+} IDirectWriterLockVtbl;
+struct IDirectWriterLock {
+    IDirectWriterLockVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IDirectWriterLock>() { static const IID __uuid_inst = {0x0e6d4d92,0x6738,0x11cf, {0x96,0x08,0x00,0xaa,0x00,0x68,0x0d,0xb4}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IDirectWriterLock*>() { return __mingw_uuidof<IDirectWriterLock>(); } }
 # 13868 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IDirectWriterLock_WaitForWriteAccess_Proxy(
     IDirectWriterLock* This,
@@ -67885,13 +68657,27 @@ void IDirectWriterLock_HaveWriteAccess_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 13901 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IUrlMon;
+extern const GUID IID_IUrlMon;
+# 13923 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IUrlMonVtbl {
+   
 
-struct
-IUrlMon : public IUnknown
-{
-    virtual HRESULT AsyncGetClassBits(
-        const IID & rclsid,
+
+    HRESULT ( *QueryInterface)(
+        IUrlMon* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IUrlMon* This);
+
+    ULONG ( *Release)(
+        IUrlMon* This);
+
+
+    HRESULT ( *AsyncGetClassBits)(
+        IUrlMon* This,
+        const IID *const rclsid,
         LPCWSTR pszTYPE,
         LPCWSTR pszExt,
         DWORD dwFileVersionMS,
@@ -67899,16 +68685,18 @@ IUrlMon : public IUnknown
         LPCWSTR pszCodeBase,
         IBindCtx *pbc,
         DWORD dwClassContext,
-        const IID & riid,
-        DWORD flags) = 0;
+        const IID *const riid,
+        DWORD flags);
 
+   
+} IUrlMonVtbl;
+struct IUrlMon {
+    IUrlMonVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IUrlMon>() { static const IID __uuid_inst = {0x00000026,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IUrlMon*>() { return __mingw_uuidof<IUrlMon>(); } }
 # 13986 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IUrlMon_AsyncGetClassBits_Proxy(
     IUrlMon* This,
-    const IID & rclsid,
+    const IID *const rclsid,
     LPCWSTR pszTYPE,
     LPCWSTR pszExt,
     DWORD dwFileVersionMS,
@@ -67916,7 +68704,7 @@ HRESULT IUrlMon_AsyncGetClassBits_Proxy(
     LPCWSTR pszCodeBase,
     IBindCtx *pbc,
     DWORD dwClassContext,
-    const IID & riid,
+    const IID *const riid,
     DWORD flags);
 void IUrlMon_AsyncGetClassBits_Stub(
     IRpcStubBuffer* This,
@@ -67924,17 +68712,33 @@ void IUrlMon_AsyncGetClassBits_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 14012 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IForegroundTransfer;
+extern const GUID IID_IForegroundTransfer;
+# 14025 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IForegroundTransferVtbl {
+   
 
-struct
-IForegroundTransfer : public IUnknown
-{
-    virtual HRESULT AllowForegroundTransfer(
-        void *lpvReserved) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IForegroundTransfer* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IForegroundTransfer* This);
+
+    ULONG ( *Release)(
+        IForegroundTransfer* This);
+
+
+    HRESULT ( *AllowForegroundTransfer)(
+        IForegroundTransfer* This,
+        void *lpvReserved);
+
+   
+} IForegroundTransferVtbl;
+struct IForegroundTransfer {
+    IForegroundTransferVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IForegroundTransfer>() { static const IID __uuid_inst = {0x00000145,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IForegroundTransfer*>() { return __mingw_uuidof<IForegroundTransfer>(); } }
 # 14079 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IForegroundTransfer_AllowForegroundTransfer_Proxy(
     IForegroundTransfer* This,
@@ -67945,25 +68749,42 @@ void IForegroundTransfer_AllowForegroundTransfer_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 14096 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IThumbnailExtractor;
+extern const GUID IID_IThumbnailExtractor;
+# 14117 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IThumbnailExtractorVtbl {
+   
 
-struct
-IThumbnailExtractor : public IUnknown
-{
-    virtual HRESULT ExtractThumbnail(
+
+    HRESULT ( *QueryInterface)(
+        IThumbnailExtractor* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IThumbnailExtractor* This);
+
+    ULONG ( *Release)(
+        IThumbnailExtractor* This);
+
+
+    HRESULT ( *ExtractThumbnail)(
+        IThumbnailExtractor* This,
         IStorage *pStg,
         ULONG ulLength,
         ULONG ulHeight,
         ULONG *pulOutputLength,
         ULONG *pulOutputHeight,
-        HBITMAP *phOutputBitmap) = 0;
+        HBITMAP *phOutputBitmap);
 
-    virtual HRESULT OnFileUpdated(
-        IStorage *pStg) = 0;
+    HRESULT ( *OnFileUpdated)(
+        IThumbnailExtractor* This,
+        IStorage *pStg);
 
+   
+} IThumbnailExtractorVtbl;
+struct IThumbnailExtractor {
+    IThumbnailExtractorVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IThumbnailExtractor>() { static const IID __uuid_inst = {0x969dc708,0x5c76,0x11d1, {0x8d,0x86,0x00,0x00,0xf8,0x04,0xb0,0x57}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IThumbnailExtractor*>() { return __mingw_uuidof<IThumbnailExtractor>(); } }
 # 14184 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IThumbnailExtractor_ExtractThumbnail_Proxy(
     IThumbnailExtractor* This,
@@ -67987,18 +68808,34 @@ void IThumbnailExtractor_OnFileUpdated_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 14214 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IDummyHICONIncluder;
+extern const GUID IID_IDummyHICONIncluder;
+# 14228 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IDummyHICONIncluderVtbl {
+   
 
-struct
-IDummyHICONIncluder : public IUnknown
-{
-    virtual HRESULT Dummy(
+
+    HRESULT ( *QueryInterface)(
+        IDummyHICONIncluder* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IDummyHICONIncluder* This);
+
+    ULONG ( *Release)(
+        IDummyHICONIncluder* This);
+
+
+    HRESULT ( *Dummy)(
+        IDummyHICONIncluder* This,
         HICON h1,
-        HDC h2) = 0;
+        HDC h2);
 
+   
+} IDummyHICONIncluderVtbl;
+struct IDummyHICONIncluder {
+    IDummyHICONIncluderVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IDummyHICONIncluder>() { static const IID __uuid_inst = {0x947990de,0xcc28,0x11d2, {0xa0,0xf7,0x00,0x80,0x5f,0x85,0x8f,0xb1}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IDummyHICONIncluder*>() { return __mingw_uuidof<IDummyHICONIncluder>(); } }
 # 14283 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IDummyHICONIncluder_Dummy_Proxy(
     IDummyHICONIncluder* This,
@@ -68026,20 +68863,35 @@ typedef enum tagShutdownType {
 
 
 
-extern "C" const GUID IID_IProcessLock;
+extern const GUID IID_IProcessLock;
+# 14325 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IProcessLockVtbl {
+   
 
-struct
-IProcessLock : public IUnknown
-{
-    virtual ULONG AddRefOnProcess(
-        ) = 0;
 
-    virtual ULONG ReleaseRefOnProcess(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IProcessLock* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IProcessLock* This);
+
+    ULONG ( *Release)(
+        IProcessLock* This);
+
+
+    ULONG ( *AddRefOnProcess)(
+        IProcessLock* This);
+
+    ULONG ( *ReleaseRefOnProcess)(
+        IProcessLock* This);
+
+   
+} IProcessLockVtbl;
+struct IProcessLock {
+    IProcessLockVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IProcessLock>() { static const IID __uuid_inst = {0x000001d5,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IProcessLock*>() { return __mingw_uuidof<IProcessLock>(); } }
 # 14385 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 ULONG IProcessLock_AddRefOnProcess_Proxy(
     IProcessLock* This);
@@ -68056,36 +68908,56 @@ void IProcessLock_ReleaseRefOnProcess_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 14408 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_ISurrogateService;
+extern const GUID IID_ISurrogateService;
+# 14436 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct ISurrogateServiceVtbl {
+   
 
-struct
-ISurrogateService : public IUnknown
-{
-    virtual HRESULT Init(
-        const GUID & rguidProcessID,
+
+    HRESULT ( *QueryInterface)(
+        ISurrogateService* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ISurrogateService* This);
+
+    ULONG ( *Release)(
+        ISurrogateService* This);
+
+
+    HRESULT ( *Init)(
+        ISurrogateService* This,
+        const GUID *const rguidProcessID,
         IProcessLock *pProcessLock,
-        WINBOOL *pfApplicationAware) = 0;
+        WINBOOL *pfApplicationAware);
 
-    virtual HRESULT ApplicationLaunch(
-        const GUID & rguidApplID,
-        ApplicationType appType) = 0;
+    HRESULT ( *ApplicationLaunch)(
+        ISurrogateService* This,
+        const GUID *const rguidApplID,
+        ApplicationType appType);
 
-    virtual HRESULT ApplicationFree(
-        const GUID & rguidApplID) = 0;
+    HRESULT ( *ApplicationFree)(
+        ISurrogateService* This,
+        const GUID *const rguidApplID);
 
-    virtual HRESULT CatalogRefresh(
-        ULONG ulReserved) = 0;
+    HRESULT ( *CatalogRefresh)(
+        ISurrogateService* This,
+        ULONG ulReserved);
 
-    virtual HRESULT ProcessShutdown(
-        ShutdownType shutdownType) = 0;
+    HRESULT ( *ProcessShutdown)(
+        ISurrogateService* This,
+        ShutdownType shutdownType);
 
+   
+} ISurrogateServiceVtbl;
+struct ISurrogateService {
+    ISurrogateServiceVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISurrogateService>() { static const IID __uuid_inst = {0x000001d4,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISurrogateService*>() { return __mingw_uuidof<ISurrogateService>(); } }
 # 14525 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT ISurrogateService_Init_Proxy(
     ISurrogateService* This,
-    const GUID & rguidProcessID,
+    const GUID *const rguidProcessID,
     IProcessLock *pProcessLock,
     WINBOOL *pfApplicationAware);
 void ISurrogateService_Init_Stub(
@@ -68095,7 +68967,7 @@ void ISurrogateService_Init_Stub(
     DWORD* pdwStubPhase);
 HRESULT ISurrogateService_ApplicationLaunch_Proxy(
     ISurrogateService* This,
-    const GUID & rguidApplID,
+    const GUID *const rguidApplID,
     ApplicationType appType);
 void ISurrogateService_ApplicationLaunch_Stub(
     IRpcStubBuffer* This,
@@ -68104,7 +68976,7 @@ void ISurrogateService_ApplicationLaunch_Stub(
     DWORD* pdwStubPhase);
 HRESULT ISurrogateService_ApplicationFree_Proxy(
     ISurrogateService* This,
-    const GUID & rguidApplID);
+    const GUID *const rguidApplID);
 void ISurrogateService_ApplicationFree_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -68128,29 +69000,48 @@ void ISurrogateService_ProcessShutdown_Stub(
     DWORD* pdwStubPhase);
 # 14577 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 typedef IInitializeSpy *LPINITIALIZESPY;
-extern "C" const GUID IID_IInitializeSpy;
+extern const GUID IID_IInitializeSpy;
+# 14603 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IInitializeSpyVtbl {
+   
 
-struct
-IInitializeSpy : public IUnknown
-{
-    virtual HRESULT PreInitialize(
+
+    HRESULT ( *QueryInterface)(
+        IInitializeSpy* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInitializeSpy* This);
+
+    ULONG ( *Release)(
+        IInitializeSpy* This);
+
+
+    HRESULT ( *PreInitialize)(
+        IInitializeSpy* This,
         DWORD dwCoInit,
-        DWORD dwCurThreadAptRefs) = 0;
+        DWORD dwCurThreadAptRefs);
 
-    virtual HRESULT PostInitialize(
+    HRESULT ( *PostInitialize)(
+        IInitializeSpy* This,
         HRESULT hrCoInit,
         DWORD dwCoInit,
-        DWORD dwNewThreadAptRefs) = 0;
+        DWORD dwNewThreadAptRefs);
 
-    virtual HRESULT PreUninitialize(
-        DWORD dwCurThreadAptRefs) = 0;
+    HRESULT ( *PreUninitialize)(
+        IInitializeSpy* This,
+        DWORD dwCurThreadAptRefs);
 
-    virtual HRESULT PostUninitialize(
-        DWORD dwNewThreadAptRefs) = 0;
+    HRESULT ( *PostUninitialize)(
+        IInitializeSpy* This,
+        DWORD dwNewThreadAptRefs);
 
+   
+} IInitializeSpyVtbl;
+struct IInitializeSpy {
+    IInitializeSpyVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInitializeSpy>() { static const IID __uuid_inst = {0x00000034,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInitializeSpy*>() { return __mingw_uuidof<IInitializeSpy>(); } }
 # 14684 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 HRESULT IInitializeSpy_PreInitialize_Proxy(
     IInitializeSpy* This,
@@ -68188,17 +69079,33 @@ void IInitializeSpy_PostUninitialize_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 14730 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
-extern "C" const GUID IID_IApartmentShutdown;
+extern const GUID IID_IApartmentShutdown;
+# 14743 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
+typedef struct IApartmentShutdownVtbl {
+   
 
-struct
-IApartmentShutdown : public IUnknown
-{
-    virtual void OnUninitialize(
-        UINT64 ui64ApartmentIdentifier) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IApartmentShutdown* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IApartmentShutdown* This);
+
+    ULONG ( *Release)(
+        IApartmentShutdown* This);
+
+
+    void ( *OnUninitialize)(
+        IApartmentShutdown* This,
+        UINT64 ui64ApartmentIdentifier);
+
+   
+} IApartmentShutdownVtbl;
+struct IApartmentShutdown {
+    IApartmentShutdownVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IApartmentShutdown>() { static const IID __uuid_inst = {0xa2f05a09,0x27a2,0x42b5, {0xbc,0x0e,0xac,0x16,0x3e,0xf4,0x9d,0x9b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IApartmentShutdown*>() { return __mingw_uuidof<IApartmentShutdown>(); } }
 # 14797 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 3
 void IApartmentShutdown_OnUninitialize_Proxy(
     IApartmentShutdown* This,
@@ -68246,20 +69153,15 @@ ULONG HDC_UserSize (ULONG *, ULONG, HDC *);
 unsigned char * HDC_UserMarshal (ULONG *, unsigned char *, HDC *);
 unsigned char * HDC_UserUnmarshal(ULONG *, unsigned char *, HDC *);
 void HDC_UserFree (ULONG *, HDC *);
-
-
-
-
-}
 # 67 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objbase.h" 2 3
 # 79 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objbase.h" 3
-extern "C" __attribute__((dllimport)) DWORD CoBuildVersion (void);
-extern "C" __attribute__((dllimport)) HRESULT CoInitialize (LPVOID pvReserved);
-extern "C" __attribute__((dllimport)) HRESULT CoRegisterMallocSpy (LPMALLOCSPY pMallocSpy);
-extern "C" __attribute__((dllimport)) HRESULT CoRevokeMallocSpy (void);
-extern "C" __attribute__((dllimport)) HRESULT CoCreateStandardMalloc (DWORD memctx, IMalloc **ppMalloc);
-extern "C" __attribute__((dllimport)) HRESULT CoRegisterInitializeSpy (LPINITIALIZESPY pSpy, ULARGE_INTEGER *puliCookie);
-extern "C" __attribute__((dllimport)) HRESULT CoRevokeInitializeSpy (ULARGE_INTEGER uliCookie);
+extern __attribute__((dllimport)) DWORD CoBuildVersion (void);
+extern __attribute__((dllimport)) HRESULT CoInitialize (LPVOID pvReserved);
+extern __attribute__((dllimport)) HRESULT CoRegisterMallocSpy (LPMALLOCSPY pMallocSpy);
+extern __attribute__((dllimport)) HRESULT CoRevokeMallocSpy (void);
+extern __attribute__((dllimport)) HRESULT CoCreateStandardMalloc (DWORD memctx, IMalloc **ppMalloc);
+extern __attribute__((dllimport)) HRESULT CoRegisterInitializeSpy (LPINITIALIZESPY pSpy, ULARGE_INTEGER *puliCookie);
+extern __attribute__((dllimport)) HRESULT CoRevokeInitializeSpy (ULARGE_INTEGER uliCookie);
 
 typedef enum tagCOMSD {
   SD_LAUNCHPERMISSIONS = 0,
@@ -68268,38 +69170,38 @@ typedef enum tagCOMSD {
   SD_ACCESSRESTRICTIONS = 3
 } COMSD;
 
-extern "C" __attribute__((dllimport)) HRESULT CoGetSystemSecurityPermissions (COMSD comSDType, PSECURITY_DESCRIPTOR *ppSD);
-extern "C" __attribute__((dllimport)) HINSTANCE CoLoadLibrary (LPOLESTR lpszLibName, WINBOOL bAutoFree);
-extern "C" __attribute__((dllimport)) void CoFreeLibrary (HINSTANCE hInst);
-extern "C" __attribute__((dllimport)) void CoFreeAllLibraries (void);
-extern "C" __attribute__((dllimport)) HRESULT CoGetInstanceFromFile (COSERVERINFO *pServerInfo, CLSID *pClsid, IUnknown *punkOuter, DWORD dwClsCtx, DWORD grfMode, OLECHAR *pwszName, DWORD dwCount, MULTI_QI *pResults);
-extern "C" __attribute__((dllimport)) HRESULT CoGetInstanceFromIStorage (COSERVERINFO *pServerInfo, CLSID *pClsid, IUnknown *punkOuter, DWORD dwClsCtx, struct IStorage *pstg, DWORD dwCount, MULTI_QI *pResults);
-extern "C" __attribute__((dllimport)) HRESULT CoAllowSetForegroundWindow (IUnknown *pUnk, LPVOID lpvReserved);
-extern "C" __attribute__((dllimport)) HRESULT DcomChannelSetHResult (LPVOID pvReserved, ULONG *pulReserved, HRESULT appsHR);
-extern "C" __attribute__((dllimport)) WINBOOL CoIsOle1Class (const IID & rclsid);
-extern "C" __attribute__((dllimport)) HRESULT CLSIDFromProgIDEx (LPCOLESTR lpszProgID, LPCLSID lpclsid);
-extern "C" __attribute__((dllimport)) WINBOOL CoFileTimeToDosDateTime (FILETIME *lpFileTime, LPWORD lpDosDate, LPWORD lpDosTime);
-extern "C" __attribute__((dllimport)) WINBOOL CoDosDateTimeToFileTime (WORD nDosDate, WORD nDosTime, FILETIME *lpFileTime);
-extern "C" __attribute__((dllimport)) HRESULT CoFileTimeNow (FILETIME *lpFileTime);
-extern "C" __attribute__((dllimport)) HRESULT CoRegisterMessageFilter (LPMESSAGEFILTER lpMessageFilter, LPMESSAGEFILTER *lplpMessageFilter);
-extern "C" __attribute__((dllimport)) HRESULT CoRegisterChannelHook (const GUID & ExtensionUuid, IChannelHook *pChannelHook);
-extern "C" __attribute__((dllimport)) HRESULT CoTreatAsClass (const IID & clsidOld, const IID & clsidNew);
-extern "C" __attribute__((dllimport)) HRESULT CreateDataAdviseHolder (LPDATAADVISEHOLDER *ppDAHolder);
-extern "C" __attribute__((dllimport)) HRESULT CreateDataCache (LPUNKNOWN pUnkOuter, const IID & rclsid, const IID & iid, LPVOID *ppv);
-extern "C" __attribute__((dllimport)) HRESULT StgOpenLayoutDocfile (OLECHAR const *pwcsDfName, DWORD grfMode, DWORD reserved, IStorage **ppstgOpen);
+extern __attribute__((dllimport)) HRESULT CoGetSystemSecurityPermissions (COMSD comSDType, PSECURITY_DESCRIPTOR *ppSD);
+extern __attribute__((dllimport)) HINSTANCE CoLoadLibrary (LPOLESTR lpszLibName, WINBOOL bAutoFree);
+extern __attribute__((dllimport)) void CoFreeLibrary (HINSTANCE hInst);
+extern __attribute__((dllimport)) void CoFreeAllLibraries (void);
+extern __attribute__((dllimport)) HRESULT CoGetInstanceFromFile (COSERVERINFO *pServerInfo, CLSID *pClsid, IUnknown *punkOuter, DWORD dwClsCtx, DWORD grfMode, OLECHAR *pwszName, DWORD dwCount, MULTI_QI *pResults);
+extern __attribute__((dllimport)) HRESULT CoGetInstanceFromIStorage (COSERVERINFO *pServerInfo, CLSID *pClsid, IUnknown *punkOuter, DWORD dwClsCtx, struct IStorage *pstg, DWORD dwCount, MULTI_QI *pResults);
+extern __attribute__((dllimport)) HRESULT CoAllowSetForegroundWindow (IUnknown *pUnk, LPVOID lpvReserved);
+extern __attribute__((dllimport)) HRESULT DcomChannelSetHResult (LPVOID pvReserved, ULONG *pulReserved, HRESULT appsHR);
+extern __attribute__((dllimport)) WINBOOL CoIsOle1Class (const IID *const rclsid);
+extern __attribute__((dllimport)) HRESULT CLSIDFromProgIDEx (LPCOLESTR lpszProgID, LPCLSID lpclsid);
+extern __attribute__((dllimport)) WINBOOL CoFileTimeToDosDateTime (FILETIME *lpFileTime, LPWORD lpDosDate, LPWORD lpDosTime);
+extern __attribute__((dllimport)) WINBOOL CoDosDateTimeToFileTime (WORD nDosDate, WORD nDosTime, FILETIME *lpFileTime);
+extern __attribute__((dllimport)) HRESULT CoFileTimeNow (FILETIME *lpFileTime);
+extern __attribute__((dllimport)) HRESULT CoRegisterMessageFilter (LPMESSAGEFILTER lpMessageFilter, LPMESSAGEFILTER *lplpMessageFilter);
+extern __attribute__((dllimport)) HRESULT CoRegisterChannelHook (const GUID *const ExtensionUuid, IChannelHook *pChannelHook);
+extern __attribute__((dllimport)) HRESULT CoTreatAsClass (const IID *const clsidOld, const IID *const clsidNew);
+extern __attribute__((dllimport)) HRESULT CreateDataAdviseHolder (LPDATAADVISEHOLDER *ppDAHolder);
+extern __attribute__((dllimport)) HRESULT CreateDataCache (LPUNKNOWN pUnkOuter, const IID *const rclsid, const IID *const iid, LPVOID *ppv);
+extern __attribute__((dllimport)) HRESULT StgOpenLayoutDocfile (OLECHAR const *pwcsDfName, DWORD grfMode, DWORD reserved, IStorage **ppstgOpen);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT StgCreateDocfile (const WCHAR *pwcsName, DWORD grfMode, DWORD reserved, IStorage **ppstgOpen);
-extern "C" __attribute__((dllimport)) HRESULT StgCreateDocfileOnILockBytes (ILockBytes *plkbyt, DWORD grfMode, DWORD reserved, IStorage **ppstgOpen);
-extern "C" __attribute__((dllimport)) HRESULT StgOpenStorage (const WCHAR *pwcsName, IStorage *pstgPriority, DWORD grfMode, SNB snbExclude, DWORD reserved, IStorage **ppstgOpen);
-extern "C" __attribute__((dllimport)) HRESULT StgOpenStorageOnILockBytes (ILockBytes *plkbyt, IStorage *pstgPriority, DWORD grfMode, SNB snbExclude, DWORD reserved, IStorage **ppstgOpen);
-extern "C" __attribute__((dllimport)) HRESULT StgIsStorageFile (const WCHAR *pwcsName);
-extern "C" __attribute__((dllimport)) HRESULT StgIsStorageILockBytes (ILockBytes *plkbyt);
-extern "C" __attribute__((dllimport)) HRESULT StgSetTimes (const WCHAR *lpszName, const FILETIME *pctime, const FILETIME *patime, const FILETIME *pmtime);
-extern "C" __attribute__((dllimport)) HRESULT StgOpenAsyncDocfileOnIFillLockBytes (IFillLockBytes *pflb, DWORD grfMode, DWORD asyncFlags, IStorage **ppstgOpen);
-extern "C" __attribute__((dllimport)) HRESULT StgGetIFillLockBytesOnILockBytes (ILockBytes *pilb, IFillLockBytes **ppflb);
-extern "C" __attribute__((dllimport)) HRESULT StgGetIFillLockBytesOnFile (OLECHAR const *pwcsName, IFillLockBytes **ppflb);
+extern __attribute__((dllimport)) HRESULT StgCreateDocfile (const WCHAR *pwcsName, DWORD grfMode, DWORD reserved, IStorage **ppstgOpen);
+extern __attribute__((dllimport)) HRESULT StgCreateDocfileOnILockBytes (ILockBytes *plkbyt, DWORD grfMode, DWORD reserved, IStorage **ppstgOpen);
+extern __attribute__((dllimport)) HRESULT StgOpenStorage (const WCHAR *pwcsName, IStorage *pstgPriority, DWORD grfMode, SNB snbExclude, DWORD reserved, IStorage **ppstgOpen);
+extern __attribute__((dllimport)) HRESULT StgOpenStorageOnILockBytes (ILockBytes *plkbyt, IStorage *pstgPriority, DWORD grfMode, SNB snbExclude, DWORD reserved, IStorage **ppstgOpen);
+extern __attribute__((dllimport)) HRESULT StgIsStorageFile (const WCHAR *pwcsName);
+extern __attribute__((dllimport)) HRESULT StgIsStorageILockBytes (ILockBytes *plkbyt);
+extern __attribute__((dllimport)) HRESULT StgSetTimes (const WCHAR *lpszName, const FILETIME *pctime, const FILETIME *patime, const FILETIME *pmtime);
+extern __attribute__((dllimport)) HRESULT StgOpenAsyncDocfileOnIFillLockBytes (IFillLockBytes *pflb, DWORD grfMode, DWORD asyncFlags, IStorage **ppstgOpen);
+extern __attribute__((dllimport)) HRESULT StgGetIFillLockBytesOnILockBytes (ILockBytes *pilb, IFillLockBytes **ppflb);
+extern __attribute__((dllimport)) HRESULT StgGetIFillLockBytesOnFile (OLECHAR const *pwcsName, IFillLockBytes **ppflb);
 
 
 
@@ -68314,27 +69216,27 @@ typedef struct tagSTGOPTIONS {
 } STGOPTIONS;
 
 
-extern "C" __attribute__((dllimport)) HRESULT StgCreateStorageEx (const WCHAR *pwcsName, DWORD grfMode, DWORD stgfmt, DWORD grfAttrs, STGOPTIONS *pStgOptions, PSECURITY_DESCRIPTOR pSecurityDescriptor, const IID & riid, void **ppObjectOpen);
-extern "C" __attribute__((dllimport)) HRESULT StgOpenStorageEx (const WCHAR *pwcsName, DWORD grfMode, DWORD stgfmt, DWORD grfAttrs, STGOPTIONS *pStgOptions, PSECURITY_DESCRIPTOR pSecurityDescriptor, const IID & riid, void **ppObjectOpen);
-extern "C" __attribute__((dllimport)) HRESULT BindMoniker (LPMONIKER pmk, DWORD grfOpt, const IID & iidResult, LPVOID *ppvResult);
-extern "C" __attribute__((dllimport)) HRESULT CoGetObject (LPCWSTR pszName, BIND_OPTS *pBindOptions, const IID & riid, void **ppv);
-extern "C" __attribute__((dllimport)) HRESULT MkParseDisplayName (LPBC pbc, LPCOLESTR szUserName, ULONG *pchEaten, LPMONIKER *ppmk);
-extern "C" __attribute__((dllimport)) HRESULT MonikerRelativePathTo (LPMONIKER pmkSrc, LPMONIKER pmkDest, LPMONIKER *ppmkRelPath, WINBOOL dwReserved);
-extern "C" __attribute__((dllimport)) HRESULT MonikerCommonPrefixWith (LPMONIKER pmkThis, LPMONIKER pmkOther, LPMONIKER *ppmkCommon);
-extern "C" __attribute__((dllimport)) HRESULT CreateBindCtx (DWORD reserved, LPBC *ppbc);
-extern "C" __attribute__((dllimport)) HRESULT CreateGenericComposite (LPMONIKER pmkFirst, LPMONIKER pmkRest, LPMONIKER *ppmkComposite);
-extern "C" __attribute__((dllimport)) HRESULT GetClassFile (LPCOLESTR szFilename, CLSID *pclsid);
-extern "C" __attribute__((dllimport)) HRESULT CreateClassMoniker (const IID & rclsid, LPMONIKER *ppmk);
-extern "C" __attribute__((dllimport)) HRESULT CreateFileMoniker (LPCOLESTR lpszPathName, LPMONIKER *ppmk);
-extern "C" __attribute__((dllimport)) HRESULT CreateItemMoniker (LPCOLESTR lpszDelim, LPCOLESTR lpszItem, LPMONIKER *ppmk);
-extern "C" __attribute__((dllimport)) HRESULT CreateAntiMoniker (LPMONIKER *ppmk);
-extern "C" __attribute__((dllimport)) HRESULT CreatePointerMoniker (LPUNKNOWN punk, LPMONIKER *ppmk);
-extern "C" __attribute__((dllimport)) HRESULT CreateObjrefMoniker (LPUNKNOWN punk, LPMONIKER *ppmk);
+extern __attribute__((dllimport)) HRESULT StgCreateStorageEx (const WCHAR *pwcsName, DWORD grfMode, DWORD stgfmt, DWORD grfAttrs, STGOPTIONS *pStgOptions, PSECURITY_DESCRIPTOR pSecurityDescriptor, const IID *const riid, void **ppObjectOpen);
+extern __attribute__((dllimport)) HRESULT StgOpenStorageEx (const WCHAR *pwcsName, DWORD grfMode, DWORD stgfmt, DWORD grfAttrs, STGOPTIONS *pStgOptions, PSECURITY_DESCRIPTOR pSecurityDescriptor, const IID *const riid, void **ppObjectOpen);
+extern __attribute__((dllimport)) HRESULT BindMoniker (LPMONIKER pmk, DWORD grfOpt, const IID *const iidResult, LPVOID *ppvResult);
+extern __attribute__((dllimport)) HRESULT CoGetObject (LPCWSTR pszName, BIND_OPTS *pBindOptions, const IID *const riid, void **ppv);
+extern __attribute__((dllimport)) HRESULT MkParseDisplayName (LPBC pbc, LPCOLESTR szUserName, ULONG *pchEaten, LPMONIKER *ppmk);
+extern __attribute__((dllimport)) HRESULT MonikerRelativePathTo (LPMONIKER pmkSrc, LPMONIKER pmkDest, LPMONIKER *ppmkRelPath, WINBOOL dwReserved);
+extern __attribute__((dllimport)) HRESULT MonikerCommonPrefixWith (LPMONIKER pmkThis, LPMONIKER pmkOther, LPMONIKER *ppmkCommon);
+extern __attribute__((dllimport)) HRESULT CreateBindCtx (DWORD reserved, LPBC *ppbc);
+extern __attribute__((dllimport)) HRESULT CreateGenericComposite (LPMONIKER pmkFirst, LPMONIKER pmkRest, LPMONIKER *ppmkComposite);
+extern __attribute__((dllimport)) HRESULT GetClassFile (LPCOLESTR szFilename, CLSID *pclsid);
+extern __attribute__((dllimport)) HRESULT CreateClassMoniker (const IID *const rclsid, LPMONIKER *ppmk);
+extern __attribute__((dllimport)) HRESULT CreateFileMoniker (LPCOLESTR lpszPathName, LPMONIKER *ppmk);
+extern __attribute__((dllimport)) HRESULT CreateItemMoniker (LPCOLESTR lpszDelim, LPCOLESTR lpszItem, LPMONIKER *ppmk);
+extern __attribute__((dllimport)) HRESULT CreateAntiMoniker (LPMONIKER *ppmk);
+extern __attribute__((dllimport)) HRESULT CreatePointerMoniker (LPUNKNOWN punk, LPMONIKER *ppmk);
+extern __attribute__((dllimport)) HRESULT CreateObjrefMoniker (LPUNKNOWN punk, LPMONIKER *ppmk);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT CoInstall (IBindCtx *pbc, DWORD dwFlags, uCLSSPEC *pClassSpec, QUERYCONTEXT *pQuery, LPWSTR pszCodeBase);
-extern "C" __attribute__((dllimport)) HRESULT GetRunningObjectTable (DWORD reserved, LPRUNNINGOBJECTTABLE *pprot);
+extern __attribute__((dllimport)) HRESULT CoInstall (IBindCtx *pbc, DWORD dwFlags, uCLSSPEC *pClassSpec, QUERYCONTEXT *pQuery, LPWSTR pszCodeBase);
+extern __attribute__((dllimport)) HRESULT GetRunningObjectTable (DWORD reserved, LPRUNNINGOBJECTTABLE *pprot);
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 1 3
@@ -68821,39 +69723,55 @@ typedef struct IEnumOLEVERB IEnumOLEVERB;
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ole2.h" 1 3
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 2 3
 # 138 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 2 3
-
-
-extern "C" {
 # 169 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IOleAdviseHolder *LPOLEADVISEHOLDER;
 
-extern "C" const GUID IID_IOleAdviseHolder;
+extern const GUID IID_IOleAdviseHolder;
+# 200 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleAdviseHolderVtbl {
+   
 
-struct
-IOleAdviseHolder : public IUnknown
-{
-    virtual HRESULT Advise(
+
+    HRESULT ( *QueryInterface)(
+        IOleAdviseHolder* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IOleAdviseHolder* This);
+
+    ULONG ( *Release)(
+        IOleAdviseHolder* This);
+
+
+    HRESULT ( *Advise)(
+        IOleAdviseHolder* This,
         IAdviseSink *pAdvise,
-        DWORD *pdwConnection) = 0;
+        DWORD *pdwConnection);
 
-    virtual HRESULT Unadvise(
-        DWORD dwConnection) = 0;
+    HRESULT ( *Unadvise)(
+        IOleAdviseHolder* This,
+        DWORD dwConnection);
 
-    virtual HRESULT EnumAdvise(
-        IEnumSTATDATA **ppenumAdvise) = 0;
+    HRESULT ( *EnumAdvise)(
+        IOleAdviseHolder* This,
+        IEnumSTATDATA **ppenumAdvise);
 
-    virtual HRESULT SendOnRename(
-        IMoniker *pmk) = 0;
+    HRESULT ( *SendOnRename)(
+        IOleAdviseHolder* This,
+        IMoniker *pmk);
 
-    virtual HRESULT SendOnSave(
-        ) = 0;
+    HRESULT ( *SendOnSave)(
+        IOleAdviseHolder* This);
 
-    virtual HRESULT SendOnClose(
-        ) = 0;
+    HRESULT ( *SendOnClose)(
+        IOleAdviseHolder* This);
 
+   
+} IOleAdviseHolderVtbl;
+struct IOleAdviseHolder {
+    IOleAdviseHolderVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleAdviseHolder>() { static const IID __uuid_inst = {0x00000111,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleAdviseHolder*>() { return __mingw_uuidof<IOleAdviseHolder>(); } }
 # 293 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleAdviseHolder_Advise_Proxy(
     IOleAdviseHolder* This,
@@ -68905,33 +69823,53 @@ void IOleAdviseHolder_SendOnClose_Stub(
 # 352 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IOleCache *LPOLECACHE;
 
-extern "C" const GUID IID_IOleCache;
+extern const GUID IID_IOleCache;
+# 383 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleCacheVtbl {
+   
 
-struct
-IOleCache : public IUnknown
-{
-    virtual HRESULT Cache(
+
+    HRESULT ( *QueryInterface)(
+        IOleCache* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IOleCache* This);
+
+    ULONG ( *Release)(
+        IOleCache* This);
+
+
+    HRESULT ( *Cache)(
+        IOleCache* This,
         FORMATETC *pformatetc,
         DWORD advf,
-        DWORD *pdwConnection) = 0;
+        DWORD *pdwConnection);
 
-    virtual HRESULT Uncache(
-        DWORD dwConnection) = 0;
+    HRESULT ( *Uncache)(
+        IOleCache* This,
+        DWORD dwConnection);
 
-    virtual HRESULT EnumCache(
-        IEnumSTATDATA **ppenumSTATDATA) = 0;
+    HRESULT ( *EnumCache)(
+        IOleCache* This,
+        IEnumSTATDATA **ppenumSTATDATA);
 
-    virtual HRESULT InitCache(
-        IDataObject *pDataObject) = 0;
+    HRESULT ( *InitCache)(
+        IOleCache* This,
+        IDataObject *pDataObject);
 
-    virtual HRESULT SetData(
+    HRESULT ( *SetData)(
+        IOleCache* This,
         FORMATETC *pformatetc,
         STGMEDIUM *pmedium,
-        WINBOOL fRelease) = 0;
+        WINBOOL fRelease);
 
+   
+} IOleCacheVtbl;
+struct IOleCache {
+    IOleCacheVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleCache>() { static const IID __uuid_inst = {0x0000011e,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleCache*>() { return __mingw_uuidof<IOleCache>(); } }
 # 473 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleCache_Cache_Proxy(
     IOleCache* This,
@@ -68985,22 +69923,64 @@ typedef enum tagDISCARDCACHE {
     DISCARDCACHE_NOSAVE = 1
 } DISCARDCACHE;
 
-extern "C" const GUID IID_IOleCache2;
+extern const GUID IID_IOleCache2;
+# 571 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleCache2Vtbl {
+   
 
-struct
-IOleCache2 : public IOleCache
-{
-    virtual HRESULT UpdateCache(
+
+    HRESULT ( *QueryInterface)(
+        IOleCache2* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IOleCache2* This);
+
+    ULONG ( *Release)(
+        IOleCache2* This);
+
+
+    HRESULT ( *Cache)(
+        IOleCache2* This,
+        FORMATETC *pformatetc,
+        DWORD advf,
+        DWORD *pdwConnection);
+
+    HRESULT ( *Uncache)(
+        IOleCache2* This,
+        DWORD dwConnection);
+
+    HRESULT ( *EnumCache)(
+        IOleCache2* This,
+        IEnumSTATDATA **ppenumSTATDATA);
+
+    HRESULT ( *InitCache)(
+        IOleCache2* This,
+        IDataObject *pDataObject);
+
+    HRESULT ( *SetData)(
+        IOleCache2* This,
+        FORMATETC *pformatetc,
+        STGMEDIUM *pmedium,
+        WINBOOL fRelease);
+
+
+    HRESULT ( *UpdateCache)(
+        IOleCache2* This,
         LPDATAOBJECT pDataObject,
         DWORD grfUpdf,
-        LPVOID pReserved) = 0;
+        LPVOID pReserved);
 
-    virtual HRESULT DiscardCache(
-        DWORD dwDiscardOptions) = 0;
+    HRESULT ( *DiscardCache)(
+        IOleCache2* This,
+        DWORD dwDiscardOptions);
 
+   
+} IOleCache2Vtbl;
+struct IOleCache2 {
+    IOleCache2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleCache2>() { static const IID __uuid_inst = {0x00000128,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleCache2*>() { return __mingw_uuidof<IOleCache2>(); } }
 # 682 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleCache2_RemoteUpdateCache_Proxy(
     IOleCache2* This,
@@ -69033,20 +70013,36 @@ HRESULT IOleCache2_UpdateCache_Stub(
 # 722 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IOleCacheControl *LPOLECACHECONTROL;
 
-extern "C" const GUID IID_IOleCacheControl;
+extern const GUID IID_IOleCacheControl;
+# 740 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleCacheControlVtbl {
+   
 
-struct
-IOleCacheControl : public IUnknown
-{
-    virtual HRESULT OnRun(
-        LPDATAOBJECT pDataObject) = 0;
 
-    virtual HRESULT OnStop(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IOleCacheControl* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IOleCacheControl* This);
+
+    ULONG ( *Release)(
+        IOleCacheControl* This);
+
+
+    HRESULT ( *OnRun)(
+        IOleCacheControl* This,
+        LPDATAOBJECT pDataObject);
+
+    HRESULT ( *OnStop)(
+        IOleCacheControl* This);
+
+   
+} IOleCacheControlVtbl;
+struct IOleCacheControl {
+    IOleCacheControlVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleCacheControl>() { static const IID __uuid_inst = {0x00000129,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleCacheControl*>() { return __mingw_uuidof<IOleCacheControl>(); } }
 # 801 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleCacheControl_OnRun_Proxy(
     IOleCacheControl* This,
@@ -69066,20 +70062,36 @@ void IOleCacheControl_OnStop_Stub(
 # 826 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IParseDisplayName *LPPARSEDISPLAYNAME;
 
-extern "C" const GUID IID_IParseDisplayName;
+extern const GUID IID_IParseDisplayName;
+# 844 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IParseDisplayNameVtbl {
+   
 
-struct
-IParseDisplayName : public IUnknown
-{
-    virtual HRESULT ParseDisplayName(
+
+    HRESULT ( *QueryInterface)(
+        IParseDisplayName* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IParseDisplayName* This);
+
+    ULONG ( *Release)(
+        IParseDisplayName* This);
+
+
+    HRESULT ( *ParseDisplayName)(
+        IParseDisplayName* This,
         IBindCtx *pbc,
         LPOLESTR pszDisplayName,
         ULONG *pchEaten,
-        IMoniker **ppmkOut) = 0;
+        IMoniker **ppmkOut);
 
+   
+} IParseDisplayNameVtbl;
+struct IParseDisplayName {
+    IParseDisplayNameVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IParseDisplayName>() { static const IID __uuid_inst = {0x0000011a,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IParseDisplayName*>() { return __mingw_uuidof<IParseDisplayName>(); } }
 # 901 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IParseDisplayName_ParseDisplayName_Proxy(
     IParseDisplayName* This,
@@ -69095,21 +70107,46 @@ void IParseDisplayName_ParseDisplayName_Stub(
 # 922 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IOleContainer *LPOLECONTAINER;
 
-extern "C" const GUID IID_IOleContainer;
+extern const GUID IID_IOleContainer;
+# 941 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleContainerVtbl {
+   
 
-struct
-IOleContainer : public IParseDisplayName
-{
-    virtual HRESULT EnumObjects(
+
+    HRESULT ( *QueryInterface)(
+        IOleContainer* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IOleContainer* This);
+
+    ULONG ( *Release)(
+        IOleContainer* This);
+
+
+    HRESULT ( *ParseDisplayName)(
+        IOleContainer* This,
+        IBindCtx *pbc,
+        LPOLESTR pszDisplayName,
+        ULONG *pchEaten,
+        IMoniker **ppmkOut);
+
+
+    HRESULT ( *EnumObjects)(
+        IOleContainer* This,
         DWORD grfFlags,
-        IEnumUnknown **ppenum) = 0;
+        IEnumUnknown **ppenum);
 
-    virtual HRESULT LockContainer(
-        WINBOOL fLock) = 0;
+    HRESULT ( *LockContainer)(
+        IOleContainer* This,
+        WINBOOL fLock);
 
+   
+} IOleContainerVtbl;
+struct IOleContainer {
+    IOleContainerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleContainer>() { static const IID __uuid_inst = {0x0000011b,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleContainer*>() { return __mingw_uuidof<IOleContainer>(); } }
 # 1018 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleContainer_EnumObjects_Proxy(
     IOleContainer* This,
@@ -69131,34 +70168,52 @@ void IOleContainer_LockContainer_Stub(
 # 1045 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IOleClientSite *LPOLECLIENTSITE;
 
-extern "C" const GUID IID_IOleClientSite;
+extern const GUID IID_IOleClientSite;
+# 1077 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleClientSiteVtbl {
+   
 
-struct
-IOleClientSite : public IUnknown
-{
-    virtual HRESULT SaveObject(
-        ) = 0;
 
-    virtual HRESULT GetMoniker(
+    HRESULT ( *QueryInterface)(
+        IOleClientSite* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IOleClientSite* This);
+
+    ULONG ( *Release)(
+        IOleClientSite* This);
+
+
+    HRESULT ( *SaveObject)(
+        IOleClientSite* This);
+
+    HRESULT ( *GetMoniker)(
+        IOleClientSite* This,
         DWORD dwAssign,
         DWORD dwWhichMoniker,
-        IMoniker **ppmk) = 0;
+        IMoniker **ppmk);
 
-    virtual HRESULT GetContainer(
-        IOleContainer **ppContainer) = 0;
+    HRESULT ( *GetContainer)(
+        IOleClientSite* This,
+        IOleContainer **ppContainer);
 
-    virtual HRESULT ShowObject(
-        ) = 0;
+    HRESULT ( *ShowObject)(
+        IOleClientSite* This);
 
-    virtual HRESULT OnShowWindow(
-        WINBOOL fShow) = 0;
+    HRESULT ( *OnShowWindow)(
+        IOleClientSite* This,
+        WINBOOL fShow);
 
-    virtual HRESULT RequestNewObjectLayout(
-        ) = 0;
+    HRESULT ( *RequestNewObjectLayout)(
+        IOleClientSite* This);
 
+   
+} IOleClientSiteVtbl;
+struct IOleClientSite {
+    IOleClientSiteVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleClientSite>() { static const IID __uuid_inst = {0x00000118,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleClientSite*>() { return __mingw_uuidof<IOleClientSite>(); } }
 # 1170 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleClientSite_SaveObject_Proxy(
     IOleClientSite* This);
@@ -69259,94 +70314,128 @@ typedef enum tagOLECLOSE {
     OLECLOSE_PROMPTSAVE = 2
 } OLECLOSE;
 
-extern "C" const GUID IID_IOleObject;
+extern const GUID IID_IOleObject;
+# 1368 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleObjectVtbl {
+   
 
-struct
-IOleObject : public IUnknown
-{
-    virtual HRESULT SetClientSite(
-        IOleClientSite *pClientSite) = 0;
 
-    virtual HRESULT GetClientSite(
-        IOleClientSite **ppClientSite) = 0;
+    HRESULT ( *QueryInterface)(
+        IOleObject* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT SetHostNames(
+    ULONG ( *AddRef)(
+        IOleObject* This);
+
+    ULONG ( *Release)(
+        IOleObject* This);
+
+
+    HRESULT ( *SetClientSite)(
+        IOleObject* This,
+        IOleClientSite *pClientSite);
+
+    HRESULT ( *GetClientSite)(
+        IOleObject* This,
+        IOleClientSite **ppClientSite);
+
+    HRESULT ( *SetHostNames)(
+        IOleObject* This,
         LPCOLESTR szContainerApp,
-        LPCOLESTR szContainerObj) = 0;
+        LPCOLESTR szContainerObj);
 
-    virtual HRESULT Close(
-        DWORD dwSaveOption) = 0;
+    HRESULT ( *Close)(
+        IOleObject* This,
+        DWORD dwSaveOption);
 
-    virtual HRESULT SetMoniker(
+    HRESULT ( *SetMoniker)(
+        IOleObject* This,
         DWORD dwWhichMoniker,
-        IMoniker *pmk) = 0;
+        IMoniker *pmk);
 
-    virtual HRESULT GetMoniker(
+    HRESULT ( *GetMoniker)(
+        IOleObject* This,
         DWORD dwAssign,
         DWORD dwWhichMoniker,
-        IMoniker **ppmk) = 0;
+        IMoniker **ppmk);
 
-    virtual HRESULT InitFromData(
+    HRESULT ( *InitFromData)(
+        IOleObject* This,
         IDataObject *pDataObject,
         WINBOOL fCreation,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT GetClipboardData(
+    HRESULT ( *GetClipboardData)(
+        IOleObject* This,
         DWORD dwReserved,
-        IDataObject **ppDataObject) = 0;
+        IDataObject **ppDataObject);
 
-    virtual HRESULT DoVerb(
+    HRESULT ( *DoVerb)(
+        IOleObject* This,
         LONG iVerb,
         LPMSG lpmsg,
         IOleClientSite *pActiveSite,
         LONG lindex,
         HWND hwndParent,
-        LPCRECT lprcPosRect) = 0;
+        LPCRECT lprcPosRect);
 
-    virtual HRESULT EnumVerbs(
-        IEnumOLEVERB **ppEnumOleVerb) = 0;
+    HRESULT ( *EnumVerbs)(
+        IOleObject* This,
+        IEnumOLEVERB **ppEnumOleVerb);
 
-    virtual HRESULT Update(
-        ) = 0;
+    HRESULT ( *Update)(
+        IOleObject* This);
 
-    virtual HRESULT IsUpToDate(
-        ) = 0;
+    HRESULT ( *IsUpToDate)(
+        IOleObject* This);
 
-    virtual HRESULT GetUserClassID(
-        CLSID *pClsid) = 0;
+    HRESULT ( *GetUserClassID)(
+        IOleObject* This,
+        CLSID *pClsid);
 
-    virtual HRESULT GetUserType(
+    HRESULT ( *GetUserType)(
+        IOleObject* This,
         DWORD dwFormOfType,
-        LPOLESTR *pszUserType) = 0;
+        LPOLESTR *pszUserType);
 
-    virtual HRESULT SetExtent(
+    HRESULT ( *SetExtent)(
+        IOleObject* This,
         DWORD dwDrawAspect,
-        SIZEL *psizel) = 0;
+        SIZEL *psizel);
 
-    virtual HRESULT GetExtent(
+    HRESULT ( *GetExtent)(
+        IOleObject* This,
         DWORD dwDrawAspect,
-        SIZEL *psizel) = 0;
+        SIZEL *psizel);
 
-    virtual HRESULT Advise(
+    HRESULT ( *Advise)(
+        IOleObject* This,
         IAdviseSink *pAdvSink,
-        DWORD *pdwConnection) = 0;
+        DWORD *pdwConnection);
 
-    virtual HRESULT Unadvise(
-        DWORD dwConnection) = 0;
+    HRESULT ( *Unadvise)(
+        IOleObject* This,
+        DWORD dwConnection);
 
-    virtual HRESULT EnumAdvise(
-        IEnumSTATDATA **ppenumAdvise) = 0;
+    HRESULT ( *EnumAdvise)(
+        IOleObject* This,
+        IEnumSTATDATA **ppenumAdvise);
 
-    virtual HRESULT GetMiscStatus(
+    HRESULT ( *GetMiscStatus)(
+        IOleObject* This,
         DWORD dwAspect,
-        DWORD *pdwStatus) = 0;
+        DWORD *pdwStatus);
 
-    virtual HRESULT SetColorScheme(
-        LOGPALETTE *pLogpal) = 0;
+    HRESULT ( *SetColorScheme)(
+        IOleObject* This,
+        LOGPALETTE *pLogpal);
 
+   
+} IOleObjectVtbl;
+struct IOleObject {
+    IOleObjectVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleObject>() { static const IID __uuid_inst = {0x00000112,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleObject*>() { return __mingw_uuidof<IOleObject>(); } }
 # 1597 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleObject_SetClientSite_Proxy(
     IOleObject* This,
@@ -69561,20 +70650,37 @@ typedef struct tagOBJECTDESCRIPTOR *LPLINKSRCDESCRIPTOR;
 # 1826 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IOleWindow *LPOLEWINDOW;
 
-extern "C" const GUID IID_IOleWindow;
+extern const GUID IID_IOleWindow;
+# 1844 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleWindowVtbl {
+   
 
-struct
-IOleWindow : public IUnknown
-{
-    virtual HRESULT GetWindow(
-        HWND *phwnd) = 0;
 
-    virtual HRESULT ContextSensitiveHelp(
-        WINBOOL fEnterMode) = 0;
+    HRESULT ( *QueryInterface)(
+        IOleWindow* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IOleWindow* This);
+
+    ULONG ( *Release)(
+        IOleWindow* This);
+
+
+    HRESULT ( *GetWindow)(
+        IOleWindow* This,
+        HWND *phwnd);
+
+    HRESULT ( *ContextSensitiveHelp)(
+        IOleWindow* This,
+        WINBOOL fEnterMode);
+
+   
+} IOleWindowVtbl;
+struct IOleWindow {
+    IOleWindowVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleWindow>() { static const IID __uuid_inst = {0x00000114,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleWindow*>() { return __mingw_uuidof<IOleWindow>(); } }
 # 1906 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleWindow_GetWindow_Proxy(
     IOleWindow* This,
@@ -69607,49 +70713,73 @@ typedef enum tagOLELINKBIND {
     OLELINKBIND_EVENIFCLASSDIFF = 1
 } OLELINKBIND;
 
-extern "C" const GUID IID_IOleLink;
+extern const GUID IID_IOleLink;
+# 1991 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleLinkVtbl {
+   
 
-struct
-IOleLink : public IUnknown
-{
-    virtual HRESULT SetUpdateOptions(
-        DWORD dwUpdateOpt) = 0;
 
-    virtual HRESULT GetUpdateOptions(
-        DWORD *pdwUpdateOpt) = 0;
+    HRESULT ( *QueryInterface)(
+        IOleLink* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT SetSourceMoniker(
+    ULONG ( *AddRef)(
+        IOleLink* This);
+
+    ULONG ( *Release)(
+        IOleLink* This);
+
+
+    HRESULT ( *SetUpdateOptions)(
+        IOleLink* This,
+        DWORD dwUpdateOpt);
+
+    HRESULT ( *GetUpdateOptions)(
+        IOleLink* This,
+        DWORD *pdwUpdateOpt);
+
+    HRESULT ( *SetSourceMoniker)(
+        IOleLink* This,
         IMoniker *pmk,
-        const IID & rclsid) = 0;
+        const IID *const rclsid);
 
-    virtual HRESULT GetSourceMoniker(
-        IMoniker **ppmk) = 0;
+    HRESULT ( *GetSourceMoniker)(
+        IOleLink* This,
+        IMoniker **ppmk);
 
-    virtual HRESULT SetSourceDisplayName(
-        LPCOLESTR pszStatusText) = 0;
+    HRESULT ( *SetSourceDisplayName)(
+        IOleLink* This,
+        LPCOLESTR pszStatusText);
 
-    virtual HRESULT GetSourceDisplayName(
-        LPOLESTR *ppszDisplayName) = 0;
+    HRESULT ( *GetSourceDisplayName)(
+        IOleLink* This,
+        LPOLESTR *ppszDisplayName);
 
-    virtual HRESULT BindToSource(
+    HRESULT ( *BindToSource)(
+        IOleLink* This,
         DWORD bindflags,
-        IBindCtx *pbc) = 0;
+        IBindCtx *pbc);
 
-    virtual HRESULT BindIfRunning(
-        ) = 0;
+    HRESULT ( *BindIfRunning)(
+        IOleLink* This);
 
-    virtual HRESULT GetBoundSource(
-        IUnknown **ppunk) = 0;
+    HRESULT ( *GetBoundSource)(
+        IOleLink* This,
+        IUnknown **ppunk);
 
-    virtual HRESULT UnbindSource(
-        ) = 0;
+    HRESULT ( *UnbindSource)(
+        IOleLink* This);
 
-    virtual HRESULT Update(
-        IBindCtx *pbc) = 0;
+    HRESULT ( *Update)(
+        IOleLink* This,
+        IBindCtx *pbc);
 
+   
+} IOleLinkVtbl;
+struct IOleLink {
+    IOleLinkVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleLink>() { static const IID __uuid_inst = {0x0000011d,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleLink*>() { return __mingw_uuidof<IOleLink>(); } }
 # 2125 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleLink_SetUpdateOptions_Proxy(
     IOleLink* This,
@@ -69670,7 +70800,7 @@ void IOleLink_GetUpdateOptions_Stub(
 HRESULT IOleLink_SetSourceMoniker_Proxy(
     IOleLink* This,
     IMoniker *pmk,
-    const IID & rclsid);
+    const IID *const rclsid);
 void IOleLink_SetSourceMoniker_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -69756,37 +70886,73 @@ typedef enum tagOLECONTF {
     OLECONTF_ONLYIFRUNNING = 16
 } OLECONTF;
 
-extern "C" const GUID IID_IOleItemContainer;
+extern const GUID IID_IOleItemContainer;
+# 2265 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleItemContainerVtbl {
+   
 
-struct
-IOleItemContainer : public IOleContainer
-{
-    virtual HRESULT GetObjectA(
+
+    HRESULT ( *QueryInterface)(
+        IOleItemContainer* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IOleItemContainer* This);
+
+    ULONG ( *Release)(
+        IOleItemContainer* This);
+
+
+    HRESULT ( *ParseDisplayName)(
+        IOleItemContainer* This,
+        IBindCtx *pbc,
+        LPOLESTR pszDisplayName,
+        ULONG *pchEaten,
+        IMoniker **ppmkOut);
+
+
+    HRESULT ( *EnumObjects)(
+        IOleItemContainer* This,
+        DWORD grfFlags,
+        IEnumUnknown **ppenum);
+
+    HRESULT ( *LockContainer)(
+        IOleItemContainer* This,
+        WINBOOL fLock);
+
+
+    HRESULT ( *GetObjectA)(
+        IOleItemContainer* This,
         LPOLESTR pszItem,
         DWORD dwSpeedNeeded,
         IBindCtx *pbc,
-        const IID & riid,
-        void **ppvObject) = 0;
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT GetObjectStorage(
+    HRESULT ( *GetObjectStorage)(
+        IOleItemContainer* This,
         LPOLESTR pszItem,
         IBindCtx *pbc,
-        const IID & riid,
-        void **ppvStorage) = 0;
+        const IID *const riid,
+        void **ppvStorage);
 
-    virtual HRESULT IsRunning(
-        LPOLESTR pszItem) = 0;
+    HRESULT ( *IsRunning)(
+        IOleItemContainer* This,
+        LPOLESTR pszItem);
 
+   
+} IOleItemContainerVtbl;
+struct IOleItemContainer {
+    IOleItemContainerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleItemContainer>() { static const IID __uuid_inst = {0x0000011c,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleItemContainer*>() { return __mingw_uuidof<IOleItemContainer>(); } }
 # 2376 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleItemContainer_GetObject_Proxy(
     IOleItemContainer* This,
     LPOLESTR pszItem,
     DWORD dwSpeedNeeded,
     IBindCtx *pbc,
-    const IID & riid,
+    const IID *const riid,
     void **ppvObject);
 void IOleItemContainer_GetObject_Stub(
     IRpcStubBuffer* This,
@@ -69797,7 +70963,7 @@ HRESULT IOleItemContainer_GetObjectStorage_Proxy(
     IOleItemContainer* This,
     LPOLESTR pszItem,
     IBindCtx *pbc,
-    const IID & riid,
+    const IID *const riid,
     void **ppvStorage);
 void IOleItemContainer_GetObjectStorage_Stub(
     IRpcStubBuffer* This,
@@ -69818,27 +70984,55 @@ typedef RECT BORDERWIDTHS;
 typedef LPRECT LPBORDERWIDTHS;
 typedef LPCRECT LPCBORDERWIDTHS;
 
-extern "C" const GUID IID_IOleInPlaceUIWindow;
+extern const GUID IID_IOleInPlaceUIWindow;
+# 2445 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleInPlaceUIWindowVtbl {
+   
 
-struct
-IOleInPlaceUIWindow : public IOleWindow
-{
-    virtual HRESULT GetBorder(
-        LPRECT lprectBorder) = 0;
 
-    virtual HRESULT RequestBorderSpace(
-        LPCBORDERWIDTHS pborderwidths) = 0;
+    HRESULT ( *QueryInterface)(
+        IOleInPlaceUIWindow* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT SetBorderSpace(
-        LPCBORDERWIDTHS pborderwidths) = 0;
+    ULONG ( *AddRef)(
+        IOleInPlaceUIWindow* This);
 
-    virtual HRESULT SetActiveObject(
+    ULONG ( *Release)(
+        IOleInPlaceUIWindow* This);
+
+
+    HRESULT ( *GetWindow)(
+        IOleInPlaceUIWindow* This,
+        HWND *phwnd);
+
+    HRESULT ( *ContextSensitiveHelp)(
+        IOleInPlaceUIWindow* This,
+        WINBOOL fEnterMode);
+
+
+    HRESULT ( *GetBorder)(
+        IOleInPlaceUIWindow* This,
+        LPRECT lprectBorder);
+
+    HRESULT ( *RequestBorderSpace)(
+        IOleInPlaceUIWindow* This,
+        LPCBORDERWIDTHS pborderwidths);
+
+    HRESULT ( *SetBorderSpace)(
+        IOleInPlaceUIWindow* This,
+        LPCBORDERWIDTHS pborderwidths);
+
+    HRESULT ( *SetActiveObject)(
+        IOleInPlaceUIWindow* This,
         IOleInPlaceActiveObject *pActiveObject,
-        LPCOLESTR pszObjName) = 0;
+        LPCOLESTR pszObjName);
 
+   
+} IOleInPlaceUIWindowVtbl;
+struct IOleInPlaceUIWindow {
+    IOleInPlaceUIWindowVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleInPlaceUIWindow>() { static const IID __uuid_inst = {0x00000115,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleInPlaceUIWindow*>() { return __mingw_uuidof<IOleInPlaceUIWindow>(); } }
 # 2543 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleInPlaceUIWindow_GetBorder_Proxy(
     IOleInPlaceUIWindow* This,
@@ -69876,31 +71070,60 @@ void IOleInPlaceUIWindow_SetActiveObject_Stub(
 # 2586 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IOleInPlaceActiveObject *LPOLEINPLACEACTIVEOBJECT;
 
-extern "C" const GUID IID_IOleInPlaceActiveObject;
+extern const GUID IID_IOleInPlaceActiveObject;
+# 2615 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleInPlaceActiveObjectVtbl {
+   
 
-struct
-IOleInPlaceActiveObject : public IOleWindow
-{
-    virtual HRESULT TranslateAcceleratorA(
-        LPMSG lpmsg) = 0;
 
-    virtual HRESULT OnFrameWindowActivate(
-        WINBOOL fActivate) = 0;
+    HRESULT ( *QueryInterface)(
+        IOleInPlaceActiveObject* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT OnDocWindowActivate(
-        WINBOOL fActivate) = 0;
+    ULONG ( *AddRef)(
+        IOleInPlaceActiveObject* This);
 
-    virtual HRESULT ResizeBorder(
+    ULONG ( *Release)(
+        IOleInPlaceActiveObject* This);
+
+
+    HRESULT ( *GetWindow)(
+        IOleInPlaceActiveObject* This,
+        HWND *phwnd);
+
+    HRESULT ( *ContextSensitiveHelp)(
+        IOleInPlaceActiveObject* This,
+        WINBOOL fEnterMode);
+
+
+    HRESULT ( *TranslateAcceleratorA)(
+        IOleInPlaceActiveObject* This,
+        LPMSG lpmsg);
+
+    HRESULT ( *OnFrameWindowActivate)(
+        IOleInPlaceActiveObject* This,
+        WINBOOL fActivate);
+
+    HRESULT ( *OnDocWindowActivate)(
+        IOleInPlaceActiveObject* This,
+        WINBOOL fActivate);
+
+    HRESULT ( *ResizeBorder)(
+        IOleInPlaceActiveObject* This,
         LPCRECT prcBorder,
         IOleInPlaceUIWindow *pUIWindow,
-        WINBOOL fFrameWindow) = 0;
+        WINBOOL fFrameWindow);
 
-    virtual HRESULT EnableModeless(
-        WINBOOL fEnable) = 0;
+    HRESULT ( *EnableModeless)(
+        IOleInPlaceActiveObject* This,
+        WINBOOL fEnable);
 
+   
+} IOleInPlaceActiveObjectVtbl;
+struct IOleInPlaceActiveObject {
+    IOleInPlaceActiveObjectVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleInPlaceActiveObject>() { static const IID __uuid_inst = {0x00000117,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleInPlaceActiveObject*>() { return __mingw_uuidof<IOleInPlaceActiveObject>(); } }
 # 2722 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleInPlaceActiveObject_RemoteTranslateAccelerator_Proxy(
     IOleInPlaceActiveObject* This);
@@ -69928,7 +71151,7 @@ void IOleInPlaceActiveObject_OnDocWindowActivate_Stub(
 HRESULT IOleInPlaceActiveObject_RemoteResizeBorder_Proxy(
     IOleInPlaceActiveObject* This,
     LPCRECT prcBorder,
-    const IID & riid,
+    const IID *const riid,
     IOleInPlaceUIWindow *pUIWindow,
     WINBOOL fFrameWindow);
 void IOleInPlaceActiveObject_RemoteResizeBorder_Stub(
@@ -69957,7 +71180,7 @@ HRESULT IOleInPlaceActiveObject_ResizeBorder_Proxy(
 HRESULT IOleInPlaceActiveObject_ResizeBorder_Stub(
     IOleInPlaceActiveObject* This,
     LPCRECT prcBorder,
-    const IID & riid,
+    const IID *const riid,
     IOleInPlaceUIWindow *pUIWindow,
     WINBOOL fFrameWindow);
 # 2790 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
@@ -69979,36 +71202,84 @@ typedef struct tagOleMenuGroupWidths *LPOLEMENUGROUPWIDTHS;
 
 typedef HGLOBAL HOLEMENU;
 
-extern "C" const GUID IID_IOleInPlaceFrame;
+extern const GUID IID_IOleInPlaceFrame;
+# 2840 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleInPlaceFrameVtbl {
+   
 
-struct
-IOleInPlaceFrame : public IOleInPlaceUIWindow
-{
-    virtual HRESULT InsertMenus(
+
+    HRESULT ( *QueryInterface)(
+        IOleInPlaceFrame* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IOleInPlaceFrame* This);
+
+    ULONG ( *Release)(
+        IOleInPlaceFrame* This);
+
+
+    HRESULT ( *GetWindow)(
+        IOleInPlaceFrame* This,
+        HWND *phwnd);
+
+    HRESULT ( *ContextSensitiveHelp)(
+        IOleInPlaceFrame* This,
+        WINBOOL fEnterMode);
+
+
+    HRESULT ( *GetBorder)(
+        IOleInPlaceFrame* This,
+        LPRECT lprectBorder);
+
+    HRESULT ( *RequestBorderSpace)(
+        IOleInPlaceFrame* This,
+        LPCBORDERWIDTHS pborderwidths);
+
+    HRESULT ( *SetBorderSpace)(
+        IOleInPlaceFrame* This,
+        LPCBORDERWIDTHS pborderwidths);
+
+    HRESULT ( *SetActiveObject)(
+        IOleInPlaceFrame* This,
+        IOleInPlaceActiveObject *pActiveObject,
+        LPCOLESTR pszObjName);
+
+
+    HRESULT ( *InsertMenus)(
+        IOleInPlaceFrame* This,
         HMENU hmenuShared,
-        LPOLEMENUGROUPWIDTHS lpMenuWidths) = 0;
+        LPOLEMENUGROUPWIDTHS lpMenuWidths);
 
-    virtual HRESULT SetMenu(
+    HRESULT ( *SetMenu)(
+        IOleInPlaceFrame* This,
         HMENU hmenuShared,
         HOLEMENU holemenu,
-        HWND hwndActiveObject) = 0;
+        HWND hwndActiveObject);
 
-    virtual HRESULT RemoveMenus(
-        HMENU hmenuShared) = 0;
+    HRESULT ( *RemoveMenus)(
+        IOleInPlaceFrame* This,
+        HMENU hmenuShared);
 
-    virtual HRESULT SetStatusText(
-        LPCOLESTR pszStatusText) = 0;
+    HRESULT ( *SetStatusText)(
+        IOleInPlaceFrame* This,
+        LPCOLESTR pszStatusText);
 
-    virtual HRESULT EnableModeless(
-        WINBOOL fEnable) = 0;
+    HRESULT ( *EnableModeless)(
+        IOleInPlaceFrame* This,
+        WINBOOL fEnable);
 
-    virtual HRESULT TranslateAcceleratorA(
+    HRESULT ( *TranslateAcceleratorA)(
+        IOleInPlaceFrame* This,
         LPMSG lpmsg,
-        WORD wID) = 0;
+        WORD wID);
 
+   
+} IOleInPlaceFrameVtbl;
+struct IOleInPlaceFrame {
+    IOleInPlaceFrameVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleInPlaceFrame>() { static const IID __uuid_inst = {0x00000116,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleInPlaceFrame*>() { return __mingw_uuidof<IOleInPlaceFrame>(); } }
 # 2993 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleInPlaceFrame_InsertMenus_Proxy(
     IOleInPlaceFrame* This,
@@ -70065,27 +71336,52 @@ void IOleInPlaceFrame_TranslateAccelerator_Stub(
 # 3055 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IOleInPlaceObject *LPOLEINPLACEOBJECT;
 
-extern "C" const GUID IID_IOleInPlaceObject;
+extern const GUID IID_IOleInPlaceObject;
+# 3080 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleInPlaceObjectVtbl {
+   
 
-struct
-IOleInPlaceObject : public IOleWindow
-{
-    virtual HRESULT InPlaceDeactivate(
-        ) = 0;
 
-    virtual HRESULT UIDeactivate(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IOleInPlaceObject* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT SetObjectRects(
+    ULONG ( *AddRef)(
+        IOleInPlaceObject* This);
+
+    ULONG ( *Release)(
+        IOleInPlaceObject* This);
+
+
+    HRESULT ( *GetWindow)(
+        IOleInPlaceObject* This,
+        HWND *phwnd);
+
+    HRESULT ( *ContextSensitiveHelp)(
+        IOleInPlaceObject* This,
+        WINBOOL fEnterMode);
+
+
+    HRESULT ( *InPlaceDeactivate)(
+        IOleInPlaceObject* This);
+
+    HRESULT ( *UIDeactivate)(
+        IOleInPlaceObject* This);
+
+    HRESULT ( *SetObjectRects)(
+        IOleInPlaceObject* This,
         LPCRECT lprcPosRect,
-        LPCRECT lprcClipRect) = 0;
+        LPCRECT lprcClipRect);
 
-    virtual HRESULT ReactivateAndUndo(
-        ) = 0;
+    HRESULT ( *ReactivateAndUndo)(
+        IOleInPlaceObject* This);
 
+   
+} IOleInPlaceObjectVtbl;
+struct IOleInPlaceObject {
+    IOleInPlaceObjectVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleInPlaceObject>() { static const IID __uuid_inst = {0x00000113,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleInPlaceObject*>() { return __mingw_uuidof<IOleInPlaceObject>(); } }
 # 3175 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleInPlaceObject_InPlaceDeactivate_Proxy(
     IOleInPlaceObject* This);
@@ -70120,48 +71416,76 @@ void IOleInPlaceObject_ReactivateAndUndo_Stub(
 # 3215 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IOleInPlaceSite *LPOLEINPLACESITE;
 
-extern "C" const GUID IID_IOleInPlaceSite;
+extern const GUID IID_IOleInPlaceSite;
+# 3261 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IOleInPlaceSiteVtbl {
+   
 
-struct
-IOleInPlaceSite : public IOleWindow
-{
-    virtual HRESULT CanInPlaceActivate(
-        ) = 0;
 
-    virtual HRESULT OnInPlaceActivate(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IOleInPlaceSite* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT OnUIActivate(
-        ) = 0;
+    ULONG ( *AddRef)(
+        IOleInPlaceSite* This);
 
-    virtual HRESULT GetWindowContext(
+    ULONG ( *Release)(
+        IOleInPlaceSite* This);
+
+
+    HRESULT ( *GetWindow)(
+        IOleInPlaceSite* This,
+        HWND *phwnd);
+
+    HRESULT ( *ContextSensitiveHelp)(
+        IOleInPlaceSite* This,
+        WINBOOL fEnterMode);
+
+
+    HRESULT ( *CanInPlaceActivate)(
+        IOleInPlaceSite* This);
+
+    HRESULT ( *OnInPlaceActivate)(
+        IOleInPlaceSite* This);
+
+    HRESULT ( *OnUIActivate)(
+        IOleInPlaceSite* This);
+
+    HRESULT ( *GetWindowContext)(
+        IOleInPlaceSite* This,
         IOleInPlaceFrame **ppFrame,
         IOleInPlaceUIWindow **ppDoc,
         LPRECT lprcPosRect,
         LPRECT lprcClipRect,
-        LPOLEINPLACEFRAMEINFO lpFrameInfo) = 0;
+        LPOLEINPLACEFRAMEINFO lpFrameInfo);
 
-    virtual HRESULT Scroll(
-        SIZE scrollExtant) = 0;
+    HRESULT ( *Scroll)(
+        IOleInPlaceSite* This,
+        SIZE scrollExtant);
 
-    virtual HRESULT OnUIDeactivate(
-        WINBOOL fUndoable) = 0;
+    HRESULT ( *OnUIDeactivate)(
+        IOleInPlaceSite* This,
+        WINBOOL fUndoable);
 
-    virtual HRESULT OnInPlaceDeactivate(
-        ) = 0;
+    HRESULT ( *OnInPlaceDeactivate)(
+        IOleInPlaceSite* This);
 
-    virtual HRESULT DiscardUndoState(
-        ) = 0;
+    HRESULT ( *DiscardUndoState)(
+        IOleInPlaceSite* This);
 
-    virtual HRESULT DeactivateAndUndo(
-        ) = 0;
+    HRESULT ( *DeactivateAndUndo)(
+        IOleInPlaceSite* This);
 
-    virtual HRESULT OnPosRectChange(
-        LPCRECT lprcPosRect) = 0;
+    HRESULT ( *OnPosRectChange)(
+        IOleInPlaceSite* This,
+        LPCRECT lprcPosRect);
 
+   
+} IOleInPlaceSiteVtbl;
+struct IOleInPlaceSite {
+    IOleInPlaceSiteVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IOleInPlaceSite>() { static const IID __uuid_inst = {0x00000119,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IOleInPlaceSite*>() { return __mingw_uuidof<IOleInPlaceSite>(); } }
 # 3404 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IOleInPlaceSite_CanInPlaceActivate_Proxy(
     IOleInPlaceSite* This);
@@ -70242,17 +71566,32 @@ void IOleInPlaceSite_OnPosRectChange_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 3492 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
-extern "C" const GUID IID_IContinue;
+extern const GUID IID_IContinue;
+# 3505 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IContinueVtbl {
+   
 
-struct
-IContinue : public IUnknown
-{
-    virtual HRESULT FContinue(
-        ) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IContinue* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IContinue* This);
+
+    ULONG ( *Release)(
+        IContinue* This);
+
+
+    HRESULT ( *FContinue)(
+        IContinue* This);
+
+   
+} IContinueVtbl;
+struct IContinue {
+    IContinueVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IContinue>() { static const IID __uuid_inst = {0x0000012a,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IContinue*>() { return __mingw_uuidof<IContinue>(); } }
 # 3558 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IContinue_FContinue_Proxy(
     IContinue* This);
@@ -70264,12 +71603,26 @@ void IContinue_FContinue_Stub(
 # 3575 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IViewObject *LPVIEWOBJECT;
 
-extern "C" const GUID IID_IViewObject;
+extern const GUID IID_IViewObject;
+# 3626 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IViewObjectVtbl {
+   
 
-struct
-IViewObject : public IUnknown
-{
-    virtual HRESULT Draw(
+
+    HRESULT ( *QueryInterface)(
+        IViewObject* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IViewObject* This);
+
+    ULONG ( *Release)(
+        IViewObject* This);
+
+
+    HRESULT ( *Draw)(
+        IViewObject* This,
         DWORD dwDrawAspect,
         LONG lindex,
         void *pvAspect,
@@ -70279,38 +71632,45 @@ IViewObject : public IUnknown
         LPCRECTL lprcBounds,
         LPCRECTL lprcWBounds,
         WINBOOL ( *pfnContinue)(ULONG_PTR dwContinue),
-        ULONG_PTR dwContinue) = 0;
+        ULONG_PTR dwContinue);
 
-    virtual HRESULT GetColorSet(
+    HRESULT ( *GetColorSet)(
+        IViewObject* This,
         DWORD dwDrawAspect,
         LONG lindex,
         void *pvAspect,
         DVTARGETDEVICE *ptd,
         HDC hicTargetDev,
-        LOGPALETTE **ppColorSet) = 0;
+        LOGPALETTE **ppColorSet);
 
-    virtual HRESULT Freeze(
+    HRESULT ( *Freeze)(
+        IViewObject* This,
         DWORD dwDrawAspect,
         LONG lindex,
         void *pvAspect,
-        DWORD *pdwFreeze) = 0;
+        DWORD *pdwFreeze);
 
-    virtual HRESULT Unfreeze(
-        DWORD dwFreeze) = 0;
+    HRESULT ( *Unfreeze)(
+        IViewObject* This,
+        DWORD dwFreeze);
 
-    virtual HRESULT SetAdvise(
+    HRESULT ( *SetAdvise)(
+        IViewObject* This,
         DWORD aspects,
         DWORD advf,
-        IAdviseSink *pAdvSink) = 0;
+        IAdviseSink *pAdvSink);
 
-    virtual HRESULT GetAdvise(
+    HRESULT ( *GetAdvise)(
+        IViewObject* This,
         DWORD *pAspects,
         DWORD *pAdvf,
-        IAdviseSink **ppAdvSink) = 0;
+        IAdviseSink **ppAdvSink);
 
+   
+} IViewObjectVtbl;
+struct IViewObject {
+    IViewObjectVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IViewObject>() { static const IID __uuid_inst = {0x0000010d,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IViewObject*>() { return __mingw_uuidof<IViewObject>(); } }
 # 3741 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IViewObject_RemoteDraw_Proxy(
     IViewObject* This,
@@ -70444,20 +71804,82 @@ HRESULT IViewObject_GetAdvise_Stub(
 # 3880 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IViewObject2 *LPVIEWOBJECT2;
 
-extern "C" const GUID IID_IViewObject2;
+extern const GUID IID_IViewObject2;
+# 3898 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IViewObject2Vtbl {
+   
 
-struct
-IViewObject2 : public IViewObject
-{
-    virtual HRESULT GetExtent(
+
+    HRESULT ( *QueryInterface)(
+        IViewObject2* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IViewObject2* This);
+
+    ULONG ( *Release)(
+        IViewObject2* This);
+
+
+    HRESULT ( *Draw)(
+        IViewObject2* This,
+        DWORD dwDrawAspect,
+        LONG lindex,
+        void *pvAspect,
+        DVTARGETDEVICE *ptd,
+        HDC hdcTargetDev,
+        HDC hdcDraw,
+        LPCRECTL lprcBounds,
+        LPCRECTL lprcWBounds,
+        WINBOOL ( *pfnContinue)(ULONG_PTR dwContinue),
+        ULONG_PTR dwContinue);
+
+    HRESULT ( *GetColorSet)(
+        IViewObject2* This,
+        DWORD dwDrawAspect,
+        LONG lindex,
+        void *pvAspect,
+        DVTARGETDEVICE *ptd,
+        HDC hicTargetDev,
+        LOGPALETTE **ppColorSet);
+
+    HRESULT ( *Freeze)(
+        IViewObject2* This,
+        DWORD dwDrawAspect,
+        LONG lindex,
+        void *pvAspect,
+        DWORD *pdwFreeze);
+
+    HRESULT ( *Unfreeze)(
+        IViewObject2* This,
+        DWORD dwFreeze);
+
+    HRESULT ( *SetAdvise)(
+        IViewObject2* This,
+        DWORD aspects,
+        DWORD advf,
+        IAdviseSink *pAdvSink);
+
+    HRESULT ( *GetAdvise)(
+        IViewObject2* This,
+        DWORD *pAspects,
+        DWORD *pAdvf,
+        IAdviseSink **ppAdvSink);
+
+
+    HRESULT ( *GetExtent)(
+        IViewObject2* This,
         DWORD dwDrawAspect,
         LONG lindex,
         DVTARGETDEVICE *ptd,
-        LPSIZEL lpsizel) = 0;
+        LPSIZEL lpsizel);
 
+   
+} IViewObject2Vtbl;
+struct IViewObject2 {
+    IViewObject2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IViewObject2>() { static const IID __uuid_inst = {0x00000127,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IViewObject2*>() { return __mingw_uuidof<IViewObject2>(); } }
 # 4027 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IViewObject2_GetExtent_Proxy(
     IViewObject2* This,
@@ -70473,21 +71895,38 @@ void IViewObject2_GetExtent_Stub(
 # 4048 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IDropSource *LPDROPSOURCE;
 
-extern "C" const GUID IID_IDropSource;
+extern const GUID IID_IDropSource;
+# 4067 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IDropSourceVtbl {
+   
 
-struct
-IDropSource : public IUnknown
-{
-    virtual HRESULT QueryContinueDrag(
+
+    HRESULT ( *QueryInterface)(
+        IDropSource* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IDropSource* This);
+
+    ULONG ( *Release)(
+        IDropSource* This);
+
+
+    HRESULT ( *QueryContinueDrag)(
+        IDropSource* This,
         WINBOOL fEscapePressed,
-        DWORD grfKeyState) = 0;
+        DWORD grfKeyState);
 
-    virtual HRESULT GiveFeedback(
-        DWORD dwEffect) = 0;
+    HRESULT ( *GiveFeedback)(
+        IDropSource* This,
+        DWORD dwEffect);
 
+   
+} IDropSourceVtbl;
+struct IDropSource {
+    IDropSourceVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IDropSource>() { static const IID __uuid_inst = {0x00000121,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IDropSource*>() { return __mingw_uuidof<IDropSource>(); } }
 # 4130 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IDropSource_QueryContinueDrag_Proxy(
     IDropSource* This,
@@ -70509,34 +71948,52 @@ void IDropSource_GiveFeedback_Stub(
 # 4157 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 typedef IDropTarget *LPDROPTARGET;
 # 4187 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
-extern "C" const GUID IID_IDropTarget;
+extern const GUID IID_IDropTarget;
+# 4217 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IDropTargetVtbl {
+   
 
-struct
-IDropTarget : public IUnknown
-{
-    virtual HRESULT DragEnter(
+
+    HRESULT ( *QueryInterface)(
+        IDropTarget* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IDropTarget* This);
+
+    ULONG ( *Release)(
+        IDropTarget* This);
+
+
+    HRESULT ( *DragEnter)(
+        IDropTarget* This,
         IDataObject *pDataObj,
         DWORD grfKeyState,
         POINTL pt,
-        DWORD *pdwEffect) = 0;
+        DWORD *pdwEffect);
 
-    virtual HRESULT DragOver(
+    HRESULT ( *DragOver)(
+        IDropTarget* This,
         DWORD grfKeyState,
         POINTL pt,
-        DWORD *pdwEffect) = 0;
+        DWORD *pdwEffect);
 
-    virtual HRESULT DragLeave(
-        ) = 0;
+    HRESULT ( *DragLeave)(
+        IDropTarget* This);
 
-    virtual HRESULT Drop(
+    HRESULT ( *Drop)(
+        IDropTarget* This,
         IDataObject *pDataObj,
         DWORD grfKeyState,
         POINTL pt,
-        DWORD *pdwEffect) = 0;
+        DWORD *pdwEffect);
 
+   
+} IDropTargetVtbl;
+struct IDropTarget {
+    IDropTargetVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IDropTarget>() { static const IID __uuid_inst = {0x00000122,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IDropTarget*>() { return __mingw_uuidof<IDropTarget>(); } }
 # 4302 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IDropTarget_DragEnter_Proxy(
     IDropTarget* This,
@@ -70578,20 +72035,36 @@ void IDropTarget_Drop_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 4351 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
-extern "C" const GUID IID_IDropSourceNotify;
+extern const GUID IID_IDropSourceNotify;
+# 4367 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IDropSourceNotifyVtbl {
+   
 
-struct
-IDropSourceNotify : public IUnknown
-{
-    virtual HRESULT DragEnterTarget(
-        HWND hwndTarget) = 0;
 
-    virtual HRESULT DragLeaveTarget(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IDropSourceNotify* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IDropSourceNotify* This);
+
+    ULONG ( *Release)(
+        IDropSourceNotify* This);
+
+
+    HRESULT ( *DragEnterTarget)(
+        IDropSourceNotify* This,
+        HWND hwndTarget);
+
+    HRESULT ( *DragLeaveTarget)(
+        IDropSourceNotify* This);
+
+   
+} IDropSourceNotifyVtbl;
+struct IDropSourceNotify {
+    IDropSourceNotifyVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IDropSourceNotify>() { static const IID __uuid_inst = {0x0000012b,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IDropSourceNotify*>() { return __mingw_uuidof<IDropSourceNotify>(); } }
 # 4428 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IDropSourceNotify_DragEnterTarget_Proxy(
     IDropSourceNotify* This,
@@ -70624,28 +72097,46 @@ typedef enum tagOLEVERBATTRIB {
     OLEVERBATTRIB_ONCONTAINERMENU = 2
 } OLEVERBATTRIB;
 
-extern "C" const GUID IID_IEnumOLEVERB;
+extern const GUID IID_IEnumOLEVERB;
+# 4494 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
+typedef struct IEnumOLEVERBVtbl {
+   
 
-struct
-IEnumOLEVERB : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumOLEVERB* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumOLEVERB* This);
+
+    ULONG ( *Release)(
+        IEnumOLEVERB* This);
+
+
+    HRESULT ( *Next)(
+        IEnumOLEVERB* This,
         ULONG celt,
         LPOLEVERB rgelt,
-        ULONG *pceltFetched) = 0;
+        ULONG *pceltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumOLEVERB* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumOLEVERB* This);
 
-    virtual HRESULT Clone(
-        IEnumOLEVERB **ppenum) = 0;
+    HRESULT ( *Clone)(
+        IEnumOLEVERB* This,
+        IEnumOLEVERB **ppenum);
 
+   
+} IEnumOLEVERBVtbl;
+struct IEnumOLEVERB {
+    IEnumOLEVERBVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumOLEVERB>() { static const IID __uuid_inst = {0x00000104,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumOLEVERB*>() { return __mingw_uuidof<IEnumOLEVERB>(); } }
 # 4573 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleidl.h" 3
 HRESULT IEnumOLEVERB_RemoteNext_Proxy(
     IEnumOLEVERB* This,
@@ -70724,11 +72215,6 @@ ULONG HDC_UserSize (ULONG *, ULONG, HDC *);
 unsigned char * HDC_UserMarshal (ULONG *, unsigned char *, HDC *);
 unsigned char * HDC_UserUnmarshal(ULONG *, unsigned char *, HDC *);
 void HDC_UserFree (ULONG *, HDC *);
-
-
-
-
-}
 # 289 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/servprov.h" 1 3
 
@@ -70787,32 +72273,59 @@ typedef struct IServiceProvider IServiceProvider;
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ole2.h" 1 3
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 2 3
 # 28 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/servprov.h" 2 3
-
-
-extern "C" {
 # 55 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/servprov.h" 3
 typedef IServiceProvider *LPSERVICEPROVIDER;
+# 77 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/servprov.h" 3
+extern const GUID IID_IServiceProvider;
+# 92 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/servprov.h" 3
+typedef struct IServiceProviderVtbl {
+   
 
-extern "C" const IID IID_IServiceProvider;
-extern "C++" {
-struct
-IServiceProvider : public IUnknown {
-public:
-virtual HRESULT QueryService(const GUID & guidService, const IID & riid, void **ppvObject) = 0;
 
-template <class Q>
-HRESULT QueryService(const GUID & guidService, Q **pp) {
-  return QueryService(guidService, __mingw_uuidof<__typeof(Q)>(), (void **)pp);
-}
+    HRESULT ( *QueryInterface)(
+        IServiceProvider* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IServiceProvider* This);
+
+    ULONG ( *Release)(
+        IServiceProvider* This);
+
+
+    HRESULT ( *QueryService)(
+        IServiceProvider* This,
+        const GUID *const guidService,
+        const IID *const riid,
+        void **ppvObject);
+
+   
+} IServiceProviderVtbl;
+struct IServiceProvider {
+    IServiceProviderVtbl* lpVtbl;
 };
-}
-
-HRESULT IServiceProvider_RemoteQueryService_Proxy(IServiceProvider *This, const GUID & guidService, const IID & riid, IUnknown **ppvObject);
-void IServiceProvider_RemoteQueryService_Stub(IRpcStubBuffer *This, IRpcChannelBuffer *_pRpcChannelBuffer, PRPC_MESSAGE _pRpcMessage, DWORD *_pdwStubPhase);
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IServiceProvider>() { static const IID __uuid_inst = {0x6d5140c1,0x7436,0x11ce, {0x80,0x34,0x00,0xaa,0x00,0x60,0x09,0xfa}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IServiceProvider*>() { return __mingw_uuidof<IServiceProvider>(); } }
-# 180 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/servprov.h" 3
-}
+# 148 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/servprov.h" 3
+HRESULT IServiceProvider_RemoteQueryService_Proxy(
+    IServiceProvider* This,
+    const GUID *const guidService,
+    const IID *const riid,
+    IUnknown **ppvObject);
+void IServiceProvider_RemoteQueryService_Stub(
+    IRpcStubBuffer* This,
+    IRpcChannelBuffer* pRpcChannelBuffer,
+    PRPC_MESSAGE pRpcMessage,
+    DWORD* pdwStubPhase);
+HRESULT IServiceProvider_QueryService_Proxy(
+    IServiceProvider* This,
+    const GUID *const guidService,
+    const IID *const riid,
+    void **ppvObject);
+HRESULT IServiceProvider_QueryService_Stub(
+    IServiceProvider* This,
+    const GUID *const guidService,
+    const IID *const riid,
+    IUnknown **ppvObject);
 # 290 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 1 3
 
@@ -71044,9 +72557,6 @@ typedef struct IPropertyBag IPropertyBag;
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ole2.h" 1 3
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objidl.h" 2 3
 # 123 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 2 3
-
-
-extern "C" {
 # 241 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 extern RPC_IF_HANDLE IOleAutomationTypes_v1_0_c_ifspec;
 extern RPC_IF_HANDLE IOleAutomationTypes_v1_0_s_ifspec;
@@ -71507,103 +73017,140 @@ typedef struct tagCUSTDATA *LPCUSTDATA;
 # 825 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef ICreateTypeInfo *LPCREATETYPEINFO;
 
-extern "C" const GUID IID_ICreateTypeInfo;
+extern const GUID IID_ICreateTypeInfo;
+# 922 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ICreateTypeInfoVtbl {
+   
 
-struct
-ICreateTypeInfo : public IUnknown
-{
-    virtual HRESULT SetGuid(
-        const GUID & guid) = 0;
 
-    virtual HRESULT SetTypeFlags(
-        UINT uTypeFlags) = 0;
+    HRESULT ( *QueryInterface)(
+        ICreateTypeInfo* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT SetDocString(
-        LPOLESTR pStrDoc) = 0;
+    ULONG ( *AddRef)(
+        ICreateTypeInfo* This);
 
-    virtual HRESULT SetHelpContext(
-        DWORD dwHelpContext) = 0;
+    ULONG ( *Release)(
+        ICreateTypeInfo* This);
 
-    virtual HRESULT SetVersion(
+
+    HRESULT ( *SetGuid)(
+        ICreateTypeInfo* This,
+        const GUID *const guid);
+
+    HRESULT ( *SetTypeFlags)(
+        ICreateTypeInfo* This,
+        UINT uTypeFlags);
+
+    HRESULT ( *SetDocString)(
+        ICreateTypeInfo* This,
+        LPOLESTR pStrDoc);
+
+    HRESULT ( *SetHelpContext)(
+        ICreateTypeInfo* This,
+        DWORD dwHelpContext);
+
+    HRESULT ( *SetVersion)(
+        ICreateTypeInfo* This,
         WORD wMajorVerNum,
-        WORD wMinorVerNum) = 0;
+        WORD wMinorVerNum);
 
-    virtual HRESULT AddRefTypeInfo(
+    HRESULT ( *AddRefTypeInfo)(
+        ICreateTypeInfo* This,
         ITypeInfo *pTInfo,
-        HREFTYPE *phRefType) = 0;
+        HREFTYPE *phRefType);
 
-    virtual HRESULT AddFuncDesc(
+    HRESULT ( *AddFuncDesc)(
+        ICreateTypeInfo* This,
         UINT index,
-        FUNCDESC *pFuncDesc) = 0;
+        FUNCDESC *pFuncDesc);
 
-    virtual HRESULT AddImplType(
+    HRESULT ( *AddImplType)(
+        ICreateTypeInfo* This,
         UINT index,
-        HREFTYPE hRefType) = 0;
+        HREFTYPE hRefType);
 
-    virtual HRESULT SetImplTypeFlags(
+    HRESULT ( *SetImplTypeFlags)(
+        ICreateTypeInfo* This,
         UINT index,
-        INT implTypeFlags) = 0;
+        INT implTypeFlags);
 
-    virtual HRESULT SetAlignment(
-        WORD cbAlignment) = 0;
+    HRESULT ( *SetAlignment)(
+        ICreateTypeInfo* This,
+        WORD cbAlignment);
 
-    virtual HRESULT SetSchema(
-        LPOLESTR pStrSchema) = 0;
+    HRESULT ( *SetSchema)(
+        ICreateTypeInfo* This,
+        LPOLESTR pStrSchema);
 
-    virtual HRESULT AddVarDesc(
+    HRESULT ( *AddVarDesc)(
+        ICreateTypeInfo* This,
         UINT index,
-        VARDESC *pVarDesc) = 0;
+        VARDESC *pVarDesc);
 
-    virtual HRESULT SetFuncAndParamNames(
+    HRESULT ( *SetFuncAndParamNames)(
+        ICreateTypeInfo* This,
         UINT index,
         LPOLESTR *rgszNames,
-        UINT cNames) = 0;
+        UINT cNames);
 
-    virtual HRESULT SetVarName(
+    HRESULT ( *SetVarName)(
+        ICreateTypeInfo* This,
         UINT index,
-        LPOLESTR szName) = 0;
+        LPOLESTR szName);
 
-    virtual HRESULT SetTypeDescAlias(
-        TYPEDESC *pTDescAlias) = 0;
+    HRESULT ( *SetTypeDescAlias)(
+        ICreateTypeInfo* This,
+        TYPEDESC *pTDescAlias);
 
-    virtual HRESULT DefineFuncAsDllEntry(
+    HRESULT ( *DefineFuncAsDllEntry)(
+        ICreateTypeInfo* This,
         UINT index,
         LPOLESTR szDllName,
-        LPOLESTR szProcName) = 0;
+        LPOLESTR szProcName);
 
-    virtual HRESULT SetFuncDocString(
+    HRESULT ( *SetFuncDocString)(
+        ICreateTypeInfo* This,
         UINT index,
-        LPOLESTR szDocString) = 0;
+        LPOLESTR szDocString);
 
-    virtual HRESULT SetVarDocString(
+    HRESULT ( *SetVarDocString)(
+        ICreateTypeInfo* This,
         UINT index,
-        LPOLESTR szDocString) = 0;
+        LPOLESTR szDocString);
 
-    virtual HRESULT SetFuncHelpContext(
+    HRESULT ( *SetFuncHelpContext)(
+        ICreateTypeInfo* This,
         UINT index,
-        DWORD dwHelpContext) = 0;
+        DWORD dwHelpContext);
 
-    virtual HRESULT SetVarHelpContext(
+    HRESULT ( *SetVarHelpContext)(
+        ICreateTypeInfo* This,
         UINT index,
-        DWORD dwHelpContext) = 0;
+        DWORD dwHelpContext);
 
-    virtual HRESULT SetMops(
+    HRESULT ( *SetMops)(
+        ICreateTypeInfo* This,
         UINT index,
-        BSTR bstrMops) = 0;
+        BSTR bstrMops);
 
-    virtual HRESULT SetTypeIdldesc(
-        IDLDESC *pIdlDesc) = 0;
+    HRESULT ( *SetTypeIdldesc)(
+        ICreateTypeInfo* This,
+        IDLDESC *pIdlDesc);
 
-    virtual HRESULT LayOut(
-        ) = 0;
+    HRESULT ( *LayOut)(
+        ICreateTypeInfo* This);
 
+   
+} ICreateTypeInfoVtbl;
+struct ICreateTypeInfo {
+    ICreateTypeInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ICreateTypeInfo>() { static const IID __uuid_inst = {0x00020405,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ICreateTypeInfo*>() { return __mingw_uuidof<ICreateTypeInfo>(); } }
 # 1167 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ICreateTypeInfo_SetGuid_Proxy(
     ICreateTypeInfo* This,
-    const GUID & guid);
+    const GUID *const guid);
 void ICreateTypeInfo_SetGuid_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -71803,72 +73350,209 @@ void ICreateTypeInfo_LayOut_Stub(
 # 1376 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef ICreateTypeInfo2 *LPCREATETYPEINFO2;
 
-extern "C" const GUID IID_ICreateTypeInfo2;
+extern const GUID IID_ICreateTypeInfo2;
+# 1446 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ICreateTypeInfo2Vtbl {
+   
 
-struct
-ICreateTypeInfo2 : public ICreateTypeInfo
-{
-    virtual HRESULT DeleteFuncDesc(
-        UINT index) = 0;
 
-    virtual HRESULT DeleteFuncDescByMemId(
-        MEMBERID memid,
-        INVOKEKIND invKind) = 0;
+    HRESULT ( *QueryInterface)(
+        ICreateTypeInfo2* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT DeleteVarDesc(
-        UINT index) = 0;
+    ULONG ( *AddRef)(
+        ICreateTypeInfo2* This);
 
-    virtual HRESULT DeleteVarDescByMemId(
-        MEMBERID memid) = 0;
+    ULONG ( *Release)(
+        ICreateTypeInfo2* This);
 
-    virtual HRESULT DeleteImplType(
-        UINT index) = 0;
 
-    virtual HRESULT SetCustData(
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+    HRESULT ( *SetGuid)(
+        ICreateTypeInfo2* This,
+        const GUID *const guid);
 
-    virtual HRESULT SetFuncCustData(
+    HRESULT ( *SetTypeFlags)(
+        ICreateTypeInfo2* This,
+        UINT uTypeFlags);
+
+    HRESULT ( *SetDocString)(
+        ICreateTypeInfo2* This,
+        LPOLESTR pStrDoc);
+
+    HRESULT ( *SetHelpContext)(
+        ICreateTypeInfo2* This,
+        DWORD dwHelpContext);
+
+    HRESULT ( *SetVersion)(
+        ICreateTypeInfo2* This,
+        WORD wMajorVerNum,
+        WORD wMinorVerNum);
+
+    HRESULT ( *AddRefTypeInfo)(
+        ICreateTypeInfo2* This,
+        ITypeInfo *pTInfo,
+        HREFTYPE *phRefType);
+
+    HRESULT ( *AddFuncDesc)(
+        ICreateTypeInfo2* This,
         UINT index,
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+        FUNCDESC *pFuncDesc);
 
-    virtual HRESULT SetParamCustData(
+    HRESULT ( *AddImplType)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        HREFTYPE hRefType);
+
+    HRESULT ( *SetImplTypeFlags)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        INT implTypeFlags);
+
+    HRESULT ( *SetAlignment)(
+        ICreateTypeInfo2* This,
+        WORD cbAlignment);
+
+    HRESULT ( *SetSchema)(
+        ICreateTypeInfo2* This,
+        LPOLESTR pStrSchema);
+
+    HRESULT ( *AddVarDesc)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        VARDESC *pVarDesc);
+
+    HRESULT ( *SetFuncAndParamNames)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        LPOLESTR *rgszNames,
+        UINT cNames);
+
+    HRESULT ( *SetVarName)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        LPOLESTR szName);
+
+    HRESULT ( *SetTypeDescAlias)(
+        ICreateTypeInfo2* This,
+        TYPEDESC *pTDescAlias);
+
+    HRESULT ( *DefineFuncAsDllEntry)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        LPOLESTR szDllName,
+        LPOLESTR szProcName);
+
+    HRESULT ( *SetFuncDocString)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        LPOLESTR szDocString);
+
+    HRESULT ( *SetVarDocString)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        LPOLESTR szDocString);
+
+    HRESULT ( *SetFuncHelpContext)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        DWORD dwHelpContext);
+
+    HRESULT ( *SetVarHelpContext)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        DWORD dwHelpContext);
+
+    HRESULT ( *SetMops)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        BSTR bstrMops);
+
+    HRESULT ( *SetTypeIdldesc)(
+        ICreateTypeInfo2* This,
+        IDLDESC *pIdlDesc);
+
+    HRESULT ( *LayOut)(
+        ICreateTypeInfo2* This);
+
+
+    HRESULT ( *DeleteFuncDesc)(
+        ICreateTypeInfo2* This,
+        UINT index);
+
+    HRESULT ( *DeleteFuncDescByMemId)(
+        ICreateTypeInfo2* This,
+        MEMBERID memid,
+        INVOKEKIND invKind);
+
+    HRESULT ( *DeleteVarDesc)(
+        ICreateTypeInfo2* This,
+        UINT index);
+
+    HRESULT ( *DeleteVarDescByMemId)(
+        ICreateTypeInfo2* This,
+        MEMBERID memid);
+
+    HRESULT ( *DeleteImplType)(
+        ICreateTypeInfo2* This,
+        UINT index);
+
+    HRESULT ( *SetCustData)(
+        ICreateTypeInfo2* This,
+        const GUID *const guid,
+        VARIANT *pVarVal);
+
+    HRESULT ( *SetFuncCustData)(
+        ICreateTypeInfo2* This,
+        UINT index,
+        const GUID *const guid,
+        VARIANT *pVarVal);
+
+    HRESULT ( *SetParamCustData)(
+        ICreateTypeInfo2* This,
         UINT indexFunc,
         UINT indexParam,
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+        const GUID *const guid,
+        VARIANT *pVarVal);
 
-    virtual HRESULT SetVarCustData(
+    HRESULT ( *SetVarCustData)(
+        ICreateTypeInfo2* This,
         UINT index,
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+        const GUID *const guid,
+        VARIANT *pVarVal);
 
-    virtual HRESULT SetImplTypeCustData(
+    HRESULT ( *SetImplTypeCustData)(
+        ICreateTypeInfo2* This,
         UINT index,
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+        const GUID *const guid,
+        VARIANT *pVarVal);
 
-    virtual HRESULT SetHelpStringContext(
-        ULONG dwHelpStringContext) = 0;
+    HRESULT ( *SetHelpStringContext)(
+        ICreateTypeInfo2* This,
+        ULONG dwHelpStringContext);
 
-    virtual HRESULT SetFuncHelpStringContext(
+    HRESULT ( *SetFuncHelpStringContext)(
+        ICreateTypeInfo2* This,
         UINT index,
-        ULONG dwHelpStringContext) = 0;
+        ULONG dwHelpStringContext);
 
-    virtual HRESULT SetVarHelpStringContext(
+    HRESULT ( *SetVarHelpStringContext)(
+        ICreateTypeInfo2* This,
         UINT index,
-        ULONG dwHelpStringContext) = 0;
+        ULONG dwHelpStringContext);
 
-    virtual HRESULT Invalidate(
-        ) = 0;
+    HRESULT ( *Invalidate)(
+        ICreateTypeInfo2* This);
 
-    virtual HRESULT SetName(
-        LPOLESTR szName) = 0;
+    HRESULT ( *SetName)(
+        ICreateTypeInfo2* This,
+        LPOLESTR szName);
 
+   
+} ICreateTypeInfo2Vtbl;
+struct ICreateTypeInfo2 {
+    ICreateTypeInfo2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ICreateTypeInfo2>() { static const IID __uuid_inst = {0x0002040e,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ICreateTypeInfo2*>() { return __mingw_uuidof<ICreateTypeInfo2>(); } }
 # 1826 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ICreateTypeInfo2_DeleteFuncDesc_Proxy(
     ICreateTypeInfo2* This,
@@ -71913,7 +73597,7 @@ void ICreateTypeInfo2_DeleteImplType_Stub(
     DWORD* pdwStubPhase);
 HRESULT ICreateTypeInfo2_SetCustData_Proxy(
     ICreateTypeInfo2* This,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ICreateTypeInfo2_SetCustData_Stub(
     IRpcStubBuffer* This,
@@ -71923,7 +73607,7 @@ void ICreateTypeInfo2_SetCustData_Stub(
 HRESULT ICreateTypeInfo2_SetFuncCustData_Proxy(
     ICreateTypeInfo2* This,
     UINT index,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ICreateTypeInfo2_SetFuncCustData_Stub(
     IRpcStubBuffer* This,
@@ -71934,7 +73618,7 @@ HRESULT ICreateTypeInfo2_SetParamCustData_Proxy(
     ICreateTypeInfo2* This,
     UINT indexFunc,
     UINT indexParam,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ICreateTypeInfo2_SetParamCustData_Stub(
     IRpcStubBuffer* This,
@@ -71944,7 +73628,7 @@ void ICreateTypeInfo2_SetParamCustData_Stub(
 HRESULT ICreateTypeInfo2_SetVarCustData_Proxy(
     ICreateTypeInfo2* This,
     UINT index,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ICreateTypeInfo2_SetVarCustData_Stub(
     IRpcStubBuffer* This,
@@ -71954,7 +73638,7 @@ void ICreateTypeInfo2_SetVarCustData_Stub(
 HRESULT ICreateTypeInfo2_SetImplTypeCustData_Proxy(
     ICreateTypeInfo2* This,
     UINT index,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ICreateTypeInfo2_SetImplTypeCustData_Stub(
     IRpcStubBuffer* This,
@@ -72005,47 +73689,71 @@ void ICreateTypeInfo2_SetName_Stub(
 # 1968 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef ICreateTypeLib *LPCREATETYPELIB;
 
-extern "C" const GUID IID_ICreateTypeLib;
+extern const GUID IID_ICreateTypeLib;
+# 2013 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ICreateTypeLibVtbl {
+   
 
-struct
-ICreateTypeLib : public IUnknown
-{
-    virtual HRESULT CreateTypeInfo(
+
+    HRESULT ( *QueryInterface)(
+        ICreateTypeLib* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ICreateTypeLib* This);
+
+    ULONG ( *Release)(
+        ICreateTypeLib* This);
+
+
+    HRESULT ( *CreateTypeInfo)(
+        ICreateTypeLib* This,
         LPOLESTR szName,
         TYPEKIND tkind,
-        ICreateTypeInfo **ppCTInfo) = 0;
+        ICreateTypeInfo **ppCTInfo);
 
-    virtual HRESULT SetName(
-        LPOLESTR szName) = 0;
+    HRESULT ( *SetName)(
+        ICreateTypeLib* This,
+        LPOLESTR szName);
 
-    virtual HRESULT SetVersion(
+    HRESULT ( *SetVersion)(
+        ICreateTypeLib* This,
         WORD wMajorVerNum,
-        WORD wMinorVerNum) = 0;
+        WORD wMinorVerNum);
 
-    virtual HRESULT SetGuid(
-        const GUID & guid) = 0;
+    HRESULT ( *SetGuid)(
+        ICreateTypeLib* This,
+        const GUID *const guid);
 
-    virtual HRESULT SetDocString(
-        LPOLESTR szDoc) = 0;
+    HRESULT ( *SetDocString)(
+        ICreateTypeLib* This,
+        LPOLESTR szDoc);
 
-    virtual HRESULT SetHelpFileName(
-        LPOLESTR szHelpFileName) = 0;
+    HRESULT ( *SetHelpFileName)(
+        ICreateTypeLib* This,
+        LPOLESTR szHelpFileName);
 
-    virtual HRESULT SetHelpContext(
-        DWORD dwHelpContext) = 0;
+    HRESULT ( *SetHelpContext)(
+        ICreateTypeLib* This,
+        DWORD dwHelpContext);
 
-    virtual HRESULT SetLcid(
-        LCID lcid) = 0;
+    HRESULT ( *SetLcid)(
+        ICreateTypeLib* This,
+        LCID lcid);
 
-    virtual HRESULT SetLibFlags(
-        UINT uLibFlags) = 0;
+    HRESULT ( *SetLibFlags)(
+        ICreateTypeLib* This,
+        UINT uLibFlags);
 
-    virtual HRESULT SaveAllChanges(
-        ) = 0;
+    HRESULT ( *SaveAllChanges)(
+        ICreateTypeLib* This);
 
+   
+} ICreateTypeLibVtbl;
+struct ICreateTypeLib {
+    ICreateTypeLibVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ICreateTypeLib>() { static const IID __uuid_inst = {0x00020406,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ICreateTypeLib*>() { return __mingw_uuidof<ICreateTypeLib>(); } }
 # 2141 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ICreateTypeLib_CreateTypeInfo_Proxy(
     ICreateTypeLib* This,
@@ -72076,7 +73784,7 @@ void ICreateTypeLib_SetVersion_Stub(
     DWORD* pdwStubPhase);
 HRESULT ICreateTypeLib_SetGuid_Proxy(
     ICreateTypeLib* This,
-    const GUID & guid);
+    const GUID *const guid);
 void ICreateTypeLib_SetGuid_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -72131,27 +73839,89 @@ void ICreateTypeLib_SaveAllChanges_Stub(
     DWORD* pdwStubPhase);
 # 2233 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef ICreateTypeLib2 *LPCREATETYPELIB2;
-extern "C" const GUID IID_ICreateTypeLib2;
+extern const GUID IID_ICreateTypeLib2;
+# 2257 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ICreateTypeLib2Vtbl {
+   
 
-struct
-ICreateTypeLib2 : public ICreateTypeLib
-{
-    virtual HRESULT DeleteTypeInfo(
-        LPOLESTR szName) = 0;
 
-    virtual HRESULT SetCustData(
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+    HRESULT ( *QueryInterface)(
+        ICreateTypeLib2* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT SetHelpStringContext(
-        ULONG dwHelpStringContext) = 0;
+    ULONG ( *AddRef)(
+        ICreateTypeLib2* This);
 
-    virtual HRESULT SetHelpStringDll(
-        LPOLESTR szFileName) = 0;
+    ULONG ( *Release)(
+        ICreateTypeLib2* This);
 
+
+    HRESULT ( *CreateTypeInfo)(
+        ICreateTypeLib2* This,
+        LPOLESTR szName,
+        TYPEKIND tkind,
+        ICreateTypeInfo **ppCTInfo);
+
+    HRESULT ( *SetName)(
+        ICreateTypeLib2* This,
+        LPOLESTR szName);
+
+    HRESULT ( *SetVersion)(
+        ICreateTypeLib2* This,
+        WORD wMajorVerNum,
+        WORD wMinorVerNum);
+
+    HRESULT ( *SetGuid)(
+        ICreateTypeLib2* This,
+        const GUID *const guid);
+
+    HRESULT ( *SetDocString)(
+        ICreateTypeLib2* This,
+        LPOLESTR szDoc);
+
+    HRESULT ( *SetHelpFileName)(
+        ICreateTypeLib2* This,
+        LPOLESTR szHelpFileName);
+
+    HRESULT ( *SetHelpContext)(
+        ICreateTypeLib2* This,
+        DWORD dwHelpContext);
+
+    HRESULT ( *SetLcid)(
+        ICreateTypeLib2* This,
+        LCID lcid);
+
+    HRESULT ( *SetLibFlags)(
+        ICreateTypeLib2* This,
+        UINT uLibFlags);
+
+    HRESULT ( *SaveAllChanges)(
+        ICreateTypeLib2* This);
+
+
+    HRESULT ( *DeleteTypeInfo)(
+        ICreateTypeLib2* This,
+        LPOLESTR szName);
+
+    HRESULT ( *SetCustData)(
+        ICreateTypeLib2* This,
+        const GUID *const guid,
+        VARIANT *pVarVal);
+
+    HRESULT ( *SetHelpStringContext)(
+        ICreateTypeLib2* This,
+        ULONG dwHelpStringContext);
+
+    HRESULT ( *SetHelpStringDll)(
+        ICreateTypeLib2* This,
+        LPOLESTR szFileName);
+
+   
+} ICreateTypeLib2Vtbl;
+struct ICreateTypeLib2 {
+    ICreateTypeLib2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ICreateTypeLib2>() { static const IID __uuid_inst = {0x0002040f,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ICreateTypeLib2*>() { return __mingw_uuidof<ICreateTypeLib2>(); } }
 # 2421 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ICreateTypeLib2_DeleteTypeInfo_Proxy(
     ICreateTypeLib2* This,
@@ -72163,7 +73933,7 @@ void ICreateTypeLib2_DeleteTypeInfo_Stub(
     DWORD* pdwStubPhase);
 HRESULT ICreateTypeLib2_SetCustData_Proxy(
     ICreateTypeLib2* This,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ICreateTypeLib2_SetCustData_Stub(
     IRpcStubBuffer* This,
@@ -72189,39 +73959,58 @@ void ICreateTypeLib2_SetHelpStringDll_Stub(
 # 2466 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef IDispatch *LPDISPATCH;
 # 2486 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
-extern "C" const GUID IID_IDispatch;
+extern const GUID IID_IDispatch;
+# 2521 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct IDispatchVtbl {
+   
 
-struct
-IDispatch : public IUnknown
-{
-    virtual HRESULT GetTypeInfoCount(
-        UINT *pctinfo) = 0;
 
-    virtual HRESULT GetTypeInfo(
+    HRESULT ( *QueryInterface)(
+        IDispatch* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IDispatch* This);
+
+    ULONG ( *Release)(
+        IDispatch* This);
+
+
+    HRESULT ( *GetTypeInfoCount)(
+        IDispatch* This,
+        UINT *pctinfo);
+
+    HRESULT ( *GetTypeInfo)(
+        IDispatch* This,
         UINT iTInfo,
         LCID lcid,
-        ITypeInfo **ppTInfo) = 0;
+        ITypeInfo **ppTInfo);
 
-    virtual HRESULT GetIDsOfNames(
-        const IID & riid,
+    HRESULT ( *GetIDsOfNames)(
+        IDispatch* This,
+        const IID *const riid,
         LPOLESTR *rgszNames,
         UINT cNames,
         LCID lcid,
-        DISPID *rgDispId) = 0;
+        DISPID *rgDispId);
 
-    virtual HRESULT Invoke(
+    HRESULT ( *Invoke)(
+        IDispatch* This,
         DISPID dispIdMember,
-        const IID & riid,
+        const IID *const riid,
         LCID lcid,
         WORD wFlags,
         DISPPARAMS *pDispParams,
         VARIANT *pVarResult,
         EXCEPINFO *pExcepInfo,
-        UINT *puArgErr) = 0;
+        UINT *puArgErr);
 
+   
+} IDispatchVtbl;
+struct IDispatch {
+    IDispatchVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IDispatch>() { static const IID __uuid_inst = {0x00020400,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IDispatch*>() { return __mingw_uuidof<IDispatch>(); } }
 # 2612 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT IDispatch_GetTypeInfoCount_Proxy(
     IDispatch* This,
@@ -72243,7 +74032,7 @@ void IDispatch_GetTypeInfo_Stub(
     DWORD* pdwStubPhase);
 HRESULT IDispatch_GetIDsOfNames_Proxy(
     IDispatch* This,
-    const IID & riid,
+    const IID *const riid,
     LPOLESTR *rgszNames,
     UINT cNames,
     LCID lcid,
@@ -72256,7 +74045,7 @@ void IDispatch_GetIDsOfNames_Stub(
 HRESULT IDispatch_RemoteInvoke_Proxy(
     IDispatch* This,
     DISPID dispIdMember,
-    const IID & riid,
+    const IID *const riid,
     LCID lcid,
     DWORD dwFlags,
     DISPPARAMS *pDispParams,
@@ -72274,7 +74063,7 @@ void IDispatch_RemoteInvoke_Stub(
 HRESULT IDispatch_Invoke_Proxy(
     IDispatch* This,
     DISPID dispIdMember,
-    const IID & riid,
+    const IID *const riid,
     LCID lcid,
     WORD wFlags,
     DISPPARAMS *pDispParams,
@@ -72284,7 +74073,7 @@ HRESULT IDispatch_Invoke_Proxy(
 HRESULT IDispatch_Invoke_Stub(
     IDispatch* This,
     DISPID dispIdMember,
-    const IID & riid,
+    const IID *const riid,
     LCID lcid,
     DWORD dwFlags,
     DISPPARAMS *pDispParams,
@@ -72297,28 +74086,46 @@ HRESULT IDispatch_Invoke_Stub(
 # 2693 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef IEnumVARIANT *LPENUMVARIANT;
 
-extern "C" const GUID IID_IEnumVARIANT;
+extern const GUID IID_IEnumVARIANT;
+# 2719 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct IEnumVARIANTVtbl {
+   
 
-struct
-IEnumVARIANT : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumVARIANT* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumVARIANT* This);
+
+    ULONG ( *Release)(
+        IEnumVARIANT* This);
+
+
+    HRESULT ( *Next)(
+        IEnumVARIANT* This,
         ULONG celt,
         VARIANT *rgVar,
-        ULONG *pCeltFetched) = 0;
+        ULONG *pCeltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumVARIANT* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumVARIANT* This);
 
-    virtual HRESULT Clone(
-        IEnumVARIANT **ppEnum) = 0;
+    HRESULT ( *Clone)(
+        IEnumVARIANT* This,
+        IEnumVARIANT **ppEnum);
 
+   
+} IEnumVARIANTVtbl;
+struct IEnumVARIANT {
+    IEnumVARIANTVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumVARIANT>() { static const IID __uuid_inst = {0x00020404,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumVARIANT*>() { return __mingw_uuidof<IEnumVARIANT>(); } }
 # 2798 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT IEnumVARIANT_RemoteNext_Proxy(
     IEnumVARIANT* This,
@@ -72382,28 +74189,45 @@ typedef union tagBINDPTR {
 } BINDPTR;
 typedef union tagBINDPTR *LPBINDPTR;
 
-extern "C" const GUID IID_ITypeComp;
+extern const GUID IID_ITypeComp;
+# 2893 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ITypeCompVtbl {
+   
 
-struct
-ITypeComp : public IUnknown
-{
-    virtual HRESULT Bind(
+
+    HRESULT ( *QueryInterface)(
+        ITypeComp* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ITypeComp* This);
+
+    ULONG ( *Release)(
+        ITypeComp* This);
+
+
+    HRESULT ( *Bind)(
+        ITypeComp* This,
         LPOLESTR szName,
         ULONG lHashVal,
         WORD wFlags,
         ITypeInfo **ppTInfo,
         DESCKIND *pDescKind,
-        BINDPTR *pBindPtr) = 0;
+        BINDPTR *pBindPtr);
 
-    virtual HRESULT BindType(
+    HRESULT ( *BindType)(
+        ITypeComp* This,
         LPOLESTR szName,
         ULONG lHashVal,
         ITypeInfo **ppTInfo,
-        ITypeComp **ppTComp) = 0;
+        ITypeComp **ppTComp);
 
+   
+} ITypeCompVtbl;
+struct ITypeComp {
+    ITypeCompVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ITypeComp>() { static const IID __uuid_inst = {0x00020403,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ITypeComp*>() { return __mingw_uuidof<ITypeComp>(); } }
 # 2963 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ITypeComp_RemoteBind_Proxy(
     ITypeComp* This,
@@ -72464,101 +74288,135 @@ HRESULT ITypeComp_BindType_Stub(
 # 3031 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef ITypeInfo *LPTYPEINFO;
 
-extern "C" const GUID IID_ITypeInfo;
+extern const GUID IID_ITypeInfo;
+# 3130 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ITypeInfoVtbl {
+   
 
-struct
-ITypeInfo : public IUnknown
-{
-    virtual HRESULT GetTypeAttr(
-        TYPEATTR **ppTypeAttr) = 0;
 
-    virtual HRESULT GetTypeComp(
-        ITypeComp **ppTComp) = 0;
+    HRESULT ( *QueryInterface)(
+        ITypeInfo* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT GetFuncDesc(
+    ULONG ( *AddRef)(
+        ITypeInfo* This);
+
+    ULONG ( *Release)(
+        ITypeInfo* This);
+
+
+    HRESULT ( *GetTypeAttr)(
+        ITypeInfo* This,
+        TYPEATTR **ppTypeAttr);
+
+    HRESULT ( *GetTypeComp)(
+        ITypeInfo* This,
+        ITypeComp **ppTComp);
+
+    HRESULT ( *GetFuncDesc)(
+        ITypeInfo* This,
         UINT index,
-        FUNCDESC **ppFuncDesc) = 0;
+        FUNCDESC **ppFuncDesc);
 
-    virtual HRESULT GetVarDesc(
+    HRESULT ( *GetVarDesc)(
+        ITypeInfo* This,
         UINT index,
-        VARDESC **ppVarDesc) = 0;
+        VARDESC **ppVarDesc);
 
-    virtual HRESULT GetNames(
+    HRESULT ( *GetNames)(
+        ITypeInfo* This,
         MEMBERID memid,
         BSTR *rgBstrNames,
         UINT cMaxNames,
-        UINT *pcNames) = 0;
+        UINT *pcNames);
 
-    virtual HRESULT GetRefTypeOfImplType(
+    HRESULT ( *GetRefTypeOfImplType)(
+        ITypeInfo* This,
         UINT index,
-        HREFTYPE *pRefType) = 0;
+        HREFTYPE *pRefType);
 
-    virtual HRESULT GetImplTypeFlags(
+    HRESULT ( *GetImplTypeFlags)(
+        ITypeInfo* This,
         UINT index,
-        INT *pImplTypeFlags) = 0;
+        INT *pImplTypeFlags);
 
-    virtual HRESULT GetIDsOfNames(
+    HRESULT ( *GetIDsOfNames)(
+        ITypeInfo* This,
         LPOLESTR *rgszNames,
         UINT cNames,
-        MEMBERID *pMemId) = 0;
+        MEMBERID *pMemId);
 
-    virtual HRESULT Invoke(
+    HRESULT ( *Invoke)(
+        ITypeInfo* This,
         PVOID pvInstance,
         MEMBERID memid,
         WORD wFlags,
         DISPPARAMS *pDispParams,
         VARIANT *pVarResult,
         EXCEPINFO *pExcepInfo,
-        UINT *puArgErr) = 0;
+        UINT *puArgErr);
 
-    virtual HRESULT GetDocumentation(
+    HRESULT ( *GetDocumentation)(
+        ITypeInfo* This,
         MEMBERID memid,
         BSTR *pBstrName,
         BSTR *pBstrDocString,
         DWORD *pdwHelpContext,
-        BSTR *pBstrHelpFile) = 0;
+        BSTR *pBstrHelpFile);
 
-    virtual HRESULT GetDllEntry(
+    HRESULT ( *GetDllEntry)(
+        ITypeInfo* This,
         MEMBERID memid,
         INVOKEKIND invKind,
         BSTR *pBstrDllName,
         BSTR *pBstrName,
-        WORD *pwOrdinal) = 0;
+        WORD *pwOrdinal);
 
-    virtual HRESULT GetRefTypeInfo(
+    HRESULT ( *GetRefTypeInfo)(
+        ITypeInfo* This,
         HREFTYPE hRefType,
-        ITypeInfo **ppTInfo) = 0;
+        ITypeInfo **ppTInfo);
 
-    virtual HRESULT AddressOfMember(
+    HRESULT ( *AddressOfMember)(
+        ITypeInfo* This,
         MEMBERID memid,
         INVOKEKIND invKind,
-        PVOID *ppv) = 0;
+        PVOID *ppv);
 
-    virtual HRESULT CreateInstance(
+    HRESULT ( *CreateInstance)(
+        ITypeInfo* This,
         IUnknown *pUnkOuter,
-        const IID & riid,
-        PVOID *ppvObj) = 0;
+        const IID *const riid,
+        PVOID *ppvObj);
 
-    virtual HRESULT GetMops(
+    HRESULT ( *GetMops)(
+        ITypeInfo* This,
         MEMBERID memid,
-        BSTR *pBstrMops) = 0;
+        BSTR *pBstrMops);
 
-    virtual HRESULT GetContainingTypeLib(
+    HRESULT ( *GetContainingTypeLib)(
+        ITypeInfo* This,
         ITypeLib **ppTLib,
-        UINT *pIndex) = 0;
+        UINT *pIndex);
 
-    virtual void ReleaseTypeAttr(
-        TYPEATTR *pTypeAttr) = 0;
+    void ( *ReleaseTypeAttr)(
+        ITypeInfo* This,
+        TYPEATTR *pTypeAttr);
 
-    virtual void ReleaseFuncDesc(
-        FUNCDESC *pFuncDesc) = 0;
+    void ( *ReleaseFuncDesc)(
+        ITypeInfo* This,
+        FUNCDESC *pFuncDesc);
 
-    virtual void ReleaseVarDesc(
-        VARDESC *pVarDesc) = 0;
+    void ( *ReleaseVarDesc)(
+        ITypeInfo* This,
+        VARDESC *pVarDesc);
 
+   
+} ITypeInfoVtbl;
+struct ITypeInfo {
+    ITypeInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ITypeInfo>() { static const IID __uuid_inst = {0x00020401,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ITypeInfo*>() { return __mingw_uuidof<ITypeInfo>(); } }
 # 3358 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ITypeInfo_RemoteGetTypeAttr_Proxy(
     ITypeInfo* This,
@@ -72684,7 +74542,7 @@ void ITypeInfo_LocalAddressOfMember_Stub(
     DWORD* pdwStubPhase);
 HRESULT ITypeInfo_RemoteCreateInstance_Proxy(
     ITypeInfo* This,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObj);
 void ITypeInfo_RemoteCreateInstance_Stub(
     IRpcStubBuffer* This,
@@ -72825,11 +74683,11 @@ HRESULT ITypeInfo_AddressOfMember_Stub(
 HRESULT ITypeInfo_CreateInstance_Proxy(
     ITypeInfo* This,
     IUnknown *pUnkOuter,
-    const IID & riid,
+    const IID *const riid,
     PVOID *ppvObj);
 HRESULT ITypeInfo_CreateInstance_Stub(
     ITypeInfo* This,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObj);
 HRESULT ITypeInfo_GetContainingTypeLib_Proxy(
     ITypeInfo* This,
@@ -72857,81 +74715,218 @@ HRESULT ITypeInfo_ReleaseVarDesc_Stub(
 # 3662 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef ITypeInfo2 *LPTYPEINFO2;
 
-extern "C" const GUID IID_ITypeInfo2;
+extern const GUID IID_ITypeInfo2;
+# 3741 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ITypeInfo2Vtbl {
+   
 
-struct
-ITypeInfo2 : public ITypeInfo
-{
-    virtual HRESULT GetTypeKind(
-        TYPEKIND *pTypeKind) = 0;
 
-    virtual HRESULT GetTypeFlags(
-        ULONG *pTypeFlags) = 0;
+    HRESULT ( *QueryInterface)(
+        ITypeInfo2* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT GetFuncIndexOfMemId(
+    ULONG ( *AddRef)(
+        ITypeInfo2* This);
+
+    ULONG ( *Release)(
+        ITypeInfo2* This);
+
+
+    HRESULT ( *GetTypeAttr)(
+        ITypeInfo2* This,
+        TYPEATTR **ppTypeAttr);
+
+    HRESULT ( *GetTypeComp)(
+        ITypeInfo2* This,
+        ITypeComp **ppTComp);
+
+    HRESULT ( *GetFuncDesc)(
+        ITypeInfo2* This,
+        UINT index,
+        FUNCDESC **ppFuncDesc);
+
+    HRESULT ( *GetVarDesc)(
+        ITypeInfo2* This,
+        UINT index,
+        VARDESC **ppVarDesc);
+
+    HRESULT ( *GetNames)(
+        ITypeInfo2* This,
+        MEMBERID memid,
+        BSTR *rgBstrNames,
+        UINT cMaxNames,
+        UINT *pcNames);
+
+    HRESULT ( *GetRefTypeOfImplType)(
+        ITypeInfo2* This,
+        UINT index,
+        HREFTYPE *pRefType);
+
+    HRESULT ( *GetImplTypeFlags)(
+        ITypeInfo2* This,
+        UINT index,
+        INT *pImplTypeFlags);
+
+    HRESULT ( *GetIDsOfNames)(
+        ITypeInfo2* This,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        MEMBERID *pMemId);
+
+    HRESULT ( *Invoke)(
+        ITypeInfo2* This,
+        PVOID pvInstance,
+        MEMBERID memid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+
+    HRESULT ( *GetDocumentation)(
+        ITypeInfo2* This,
+        MEMBERID memid,
+        BSTR *pBstrName,
+        BSTR *pBstrDocString,
+        DWORD *pdwHelpContext,
+        BSTR *pBstrHelpFile);
+
+    HRESULT ( *GetDllEntry)(
+        ITypeInfo2* This,
         MEMBERID memid,
         INVOKEKIND invKind,
-        UINT *pFuncIndex) = 0;
+        BSTR *pBstrDllName,
+        BSTR *pBstrName,
+        WORD *pwOrdinal);
 
-    virtual HRESULT GetVarIndexOfMemId(
+    HRESULT ( *GetRefTypeInfo)(
+        ITypeInfo2* This,
+        HREFTYPE hRefType,
+        ITypeInfo **ppTInfo);
+
+    HRESULT ( *AddressOfMember)(
+        ITypeInfo2* This,
         MEMBERID memid,
-        UINT *pVarIndex) = 0;
+        INVOKEKIND invKind,
+        PVOID *ppv);
 
-    virtual HRESULT GetCustData(
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+    HRESULT ( *CreateInstance)(
+        ITypeInfo2* This,
+        IUnknown *pUnkOuter,
+        const IID *const riid,
+        PVOID *ppvObj);
 
-    virtual HRESULT GetFuncCustData(
+    HRESULT ( *GetMops)(
+        ITypeInfo2* This,
+        MEMBERID memid,
+        BSTR *pBstrMops);
+
+    HRESULT ( *GetContainingTypeLib)(
+        ITypeInfo2* This,
+        ITypeLib **ppTLib,
+        UINT *pIndex);
+
+    void ( *ReleaseTypeAttr)(
+        ITypeInfo2* This,
+        TYPEATTR *pTypeAttr);
+
+    void ( *ReleaseFuncDesc)(
+        ITypeInfo2* This,
+        FUNCDESC *pFuncDesc);
+
+    void ( *ReleaseVarDesc)(
+        ITypeInfo2* This,
+        VARDESC *pVarDesc);
+
+
+    HRESULT ( *GetTypeKind)(
+        ITypeInfo2* This,
+        TYPEKIND *pTypeKind);
+
+    HRESULT ( *GetTypeFlags)(
+        ITypeInfo2* This,
+        ULONG *pTypeFlags);
+
+    HRESULT ( *GetFuncIndexOfMemId)(
+        ITypeInfo2* This,
+        MEMBERID memid,
+        INVOKEKIND invKind,
+        UINT *pFuncIndex);
+
+    HRESULT ( *GetVarIndexOfMemId)(
+        ITypeInfo2* This,
+        MEMBERID memid,
+        UINT *pVarIndex);
+
+    HRESULT ( *GetCustData)(
+        ITypeInfo2* This,
+        const GUID *const guid,
+        VARIANT *pVarVal);
+
+    HRESULT ( *GetFuncCustData)(
+        ITypeInfo2* This,
         UINT index,
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+        const GUID *const guid,
+        VARIANT *pVarVal);
 
-    virtual HRESULT GetParamCustData(
+    HRESULT ( *GetParamCustData)(
+        ITypeInfo2* This,
         UINT indexFunc,
         UINT indexParam,
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+        const GUID *const guid,
+        VARIANT *pVarVal);
 
-    virtual HRESULT GetVarCustData(
+    HRESULT ( *GetVarCustData)(
+        ITypeInfo2* This,
         UINT index,
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+        const GUID *const guid,
+        VARIANT *pVarVal);
 
-    virtual HRESULT GetImplTypeCustData(
+    HRESULT ( *GetImplTypeCustData)(
+        ITypeInfo2* This,
         UINT index,
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
+        const GUID *const guid,
+        VARIANT *pVarVal);
 
-    virtual HRESULT GetDocumentation2(
+    HRESULT ( *GetDocumentation2)(
+        ITypeInfo2* This,
         MEMBERID memid,
         LCID lcid,
         BSTR *pbstrHelpString,
         DWORD *pdwHelpStringContext,
-        BSTR *pbstrHelpStringDll) = 0;
+        BSTR *pbstrHelpStringDll);
 
-    virtual HRESULT GetAllCustData(
-        CUSTDATA *pCustData) = 0;
+    HRESULT ( *GetAllCustData)(
+        ITypeInfo2* This,
+        CUSTDATA *pCustData);
 
-    virtual HRESULT GetAllFuncCustData(
+    HRESULT ( *GetAllFuncCustData)(
+        ITypeInfo2* This,
         UINT index,
-        CUSTDATA *pCustData) = 0;
+        CUSTDATA *pCustData);
 
-    virtual HRESULT GetAllParamCustData(
+    HRESULT ( *GetAllParamCustData)(
+        ITypeInfo2* This,
         UINT indexFunc,
         UINT indexParam,
-        CUSTDATA *pCustData) = 0;
+        CUSTDATA *pCustData);
 
-    virtual HRESULT GetAllVarCustData(
+    HRESULT ( *GetAllVarCustData)(
+        ITypeInfo2* This,
         UINT index,
-        CUSTDATA *pCustData) = 0;
+        CUSTDATA *pCustData);
 
-    virtual HRESULT GetAllImplTypeCustData(
+    HRESULT ( *GetAllImplTypeCustData)(
+        ITypeInfo2* This,
         UINT index,
-        CUSTDATA *pCustData) = 0;
+        CUSTDATA *pCustData);
 
+   
+} ITypeInfo2Vtbl;
+struct ITypeInfo2 {
+    ITypeInfo2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ITypeInfo2>() { static const IID __uuid_inst = {0x00020412,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ITypeInfo2*>() { return __mingw_uuidof<ITypeInfo2>(); } }
 # 4114 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ITypeInfo2_GetTypeKind_Proxy(
     ITypeInfo2* This,
@@ -72970,7 +74965,7 @@ void ITypeInfo2_GetVarIndexOfMemId_Stub(
     DWORD* pdwStubPhase);
 HRESULT ITypeInfo2_GetCustData_Proxy(
     ITypeInfo2* This,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ITypeInfo2_GetCustData_Stub(
     IRpcStubBuffer* This,
@@ -72980,7 +74975,7 @@ void ITypeInfo2_GetCustData_Stub(
 HRESULT ITypeInfo2_GetFuncCustData_Proxy(
     ITypeInfo2* This,
     UINT index,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ITypeInfo2_GetFuncCustData_Stub(
     IRpcStubBuffer* This,
@@ -72991,7 +74986,7 @@ HRESULT ITypeInfo2_GetParamCustData_Proxy(
     ITypeInfo2* This,
     UINT indexFunc,
     UINT indexParam,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ITypeInfo2_GetParamCustData_Stub(
     IRpcStubBuffer* This,
@@ -73001,7 +74996,7 @@ void ITypeInfo2_GetParamCustData_Stub(
 HRESULT ITypeInfo2_GetVarCustData_Proxy(
     ITypeInfo2* This,
     UINT index,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ITypeInfo2_GetVarCustData_Stub(
     IRpcStubBuffer* This,
@@ -73011,7 +75006,7 @@ void ITypeInfo2_GetVarCustData_Stub(
 HRESULT ITypeInfo2_GetImplTypeCustData_Proxy(
     ITypeInfo2* This,
     UINT index,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ITypeInfo2_GetImplTypeCustData_Stub(
     IRpcStubBuffer* This,
@@ -73118,57 +75113,81 @@ typedef struct tagTLIBATTR {
 } TLIBATTR;
 typedef struct tagTLIBATTR *LPTLIBATTR;
 
-extern "C" const GUID IID_ITypeLib;
+extern const GUID IID_ITypeLib;
+# 4363 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ITypeLibVtbl {
+   
 
-struct
-ITypeLib : public IUnknown
-{
-    virtual UINT GetTypeInfoCount(
-        ) = 0;
 
-    virtual HRESULT GetTypeInfo(
+    HRESULT ( *QueryInterface)(
+        ITypeLib* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ITypeLib* This);
+
+    ULONG ( *Release)(
+        ITypeLib* This);
+
+
+    UINT ( *GetTypeInfoCount)(
+        ITypeLib* This);
+
+    HRESULT ( *GetTypeInfo)(
+        ITypeLib* This,
         UINT index,
-        ITypeInfo **ppTInfo) = 0;
+        ITypeInfo **ppTInfo);
 
-    virtual HRESULT GetTypeInfoType(
+    HRESULT ( *GetTypeInfoType)(
+        ITypeLib* This,
         UINT index,
-        TYPEKIND *pTKind) = 0;
+        TYPEKIND *pTKind);
 
-    virtual HRESULT GetTypeInfoOfGuid(
-        const GUID & guid,
-        ITypeInfo **ppTinfo) = 0;
+    HRESULT ( *GetTypeInfoOfGuid)(
+        ITypeLib* This,
+        const GUID *const guid,
+        ITypeInfo **ppTinfo);
 
-    virtual HRESULT GetLibAttr(
-        TLIBATTR **ppTLibAttr) = 0;
+    HRESULT ( *GetLibAttr)(
+        ITypeLib* This,
+        TLIBATTR **ppTLibAttr);
 
-    virtual HRESULT GetTypeComp(
-        ITypeComp **ppTComp) = 0;
+    HRESULT ( *GetTypeComp)(
+        ITypeLib* This,
+        ITypeComp **ppTComp);
 
-    virtual HRESULT GetDocumentation(
+    HRESULT ( *GetDocumentation)(
+        ITypeLib* This,
         INT index,
         BSTR *pBstrName,
         BSTR *pBstrDocString,
         DWORD *pdwHelpContext,
-        BSTR *pBstrHelpFile) = 0;
+        BSTR *pBstrHelpFile);
 
-    virtual HRESULT IsName(
+    HRESULT ( *IsName)(
+        ITypeLib* This,
         LPOLESTR szNameBuf,
         ULONG lHashVal,
-        WINBOOL *pfName) = 0;
+        WINBOOL *pfName);
 
-    virtual HRESULT FindName(
+    HRESULT ( *FindName)(
+        ITypeLib* This,
         LPOLESTR szNameBuf,
         ULONG lHashVal,
         ITypeInfo **ppTInfo,
         MEMBERID *rgMemId,
-        USHORT *pcFound) = 0;
+        USHORT *pcFound);
 
-    virtual void ReleaseTLibAttr(
-        TLIBATTR *pTLibAttr) = 0;
+    void ( *ReleaseTLibAttr)(
+        ITypeLib* This,
+        TLIBATTR *pTLibAttr);
 
+   
+} ITypeLibVtbl;
+struct ITypeLib {
+    ITypeLibVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ITypeLib>() { static const IID __uuid_inst = {0x00020402,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ITypeLib*>() { return __mingw_uuidof<ITypeLib>(); } }
 # 4501 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ITypeLib_RemoteGetTypeInfoCount_Proxy(
     ITypeLib* This,
@@ -73198,7 +75217,7 @@ void ITypeLib_GetTypeInfoType_Stub(
     DWORD* pdwStubPhase);
 HRESULT ITypeLib_GetTypeInfoOfGuid_Proxy(
     ITypeLib* This,
-    const GUID & guid,
+    const GUID *const guid,
     ITypeInfo **ppTinfo);
 void ITypeLib_GetTypeInfoOfGuid_Stub(
     IRpcStubBuffer* This,
@@ -73327,36 +75346,108 @@ HRESULT ITypeLib_ReleaseTLibAttr_Stub(
 # 4667 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef ITypeLib2 *LPTYPELIB2;
 
-extern "C" const GUID IID_ITypeLib2;
+extern const GUID IID_ITypeLib2;
+# 4697 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ITypeLib2Vtbl {
+   
 
-struct
-ITypeLib2 : public ITypeLib
-{
-    virtual HRESULT GetCustData(
-        const GUID & guid,
-        VARIANT *pVarVal) = 0;
 
-    virtual HRESULT GetLibStatistics(
+    HRESULT ( *QueryInterface)(
+        ITypeLib2* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ITypeLib2* This);
+
+    ULONG ( *Release)(
+        ITypeLib2* This);
+
+
+    UINT ( *GetTypeInfoCount)(
+        ITypeLib2* This);
+
+    HRESULT ( *GetTypeInfo)(
+        ITypeLib2* This,
+        UINT index,
+        ITypeInfo **ppTInfo);
+
+    HRESULT ( *GetTypeInfoType)(
+        ITypeLib2* This,
+        UINT index,
+        TYPEKIND *pTKind);
+
+    HRESULT ( *GetTypeInfoOfGuid)(
+        ITypeLib2* This,
+        const GUID *const guid,
+        ITypeInfo **ppTinfo);
+
+    HRESULT ( *GetLibAttr)(
+        ITypeLib2* This,
+        TLIBATTR **ppTLibAttr);
+
+    HRESULT ( *GetTypeComp)(
+        ITypeLib2* This,
+        ITypeComp **ppTComp);
+
+    HRESULT ( *GetDocumentation)(
+        ITypeLib2* This,
+        INT index,
+        BSTR *pBstrName,
+        BSTR *pBstrDocString,
+        DWORD *pdwHelpContext,
+        BSTR *pBstrHelpFile);
+
+    HRESULT ( *IsName)(
+        ITypeLib2* This,
+        LPOLESTR szNameBuf,
+        ULONG lHashVal,
+        WINBOOL *pfName);
+
+    HRESULT ( *FindName)(
+        ITypeLib2* This,
+        LPOLESTR szNameBuf,
+        ULONG lHashVal,
+        ITypeInfo **ppTInfo,
+        MEMBERID *rgMemId,
+        USHORT *pcFound);
+
+    void ( *ReleaseTLibAttr)(
+        ITypeLib2* This,
+        TLIBATTR *pTLibAttr);
+
+
+    HRESULT ( *GetCustData)(
+        ITypeLib2* This,
+        const GUID *const guid,
+        VARIANT *pVarVal);
+
+    HRESULT ( *GetLibStatistics)(
+        ITypeLib2* This,
         ULONG *pcUniqueNames,
-        ULONG *pcchUniqueNames) = 0;
+        ULONG *pcchUniqueNames);
 
-    virtual HRESULT GetDocumentation2(
+    HRESULT ( *GetDocumentation2)(
+        ITypeLib2* This,
         INT index,
         LCID lcid,
         BSTR *pbstrHelpString,
         DWORD *pdwHelpStringContext,
-        BSTR *pbstrHelpStringDll) = 0;
+        BSTR *pbstrHelpStringDll);
 
-    virtual HRESULT GetAllCustData(
-        CUSTDATA *pCustData) = 0;
+    HRESULT ( *GetAllCustData)(
+        ITypeLib2* This,
+        CUSTDATA *pCustData);
 
+   
+} ITypeLib2Vtbl;
+struct ITypeLib2 {
+    ITypeLib2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ITypeLib2>() { static const IID __uuid_inst = {0x00020411,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ITypeLib2*>() { return __mingw_uuidof<ITypeLib2>(); } }
 # 4876 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ITypeLib2_GetCustData_Proxy(
     ITypeLib2* This,
-    const GUID & guid,
+    const GUID *const guid,
     VARIANT *pVarVal);
 void ITypeLib2_GetCustData_Stub(
     IRpcStubBuffer* This,
@@ -73430,25 +75521,42 @@ typedef enum tagCHANGEKIND {
     CHANGEKIND_MAX = 7
 } CHANGEKIND;
 
-extern "C" const GUID IID_ITypeChangeEvents;
+extern const GUID IID_ITypeChangeEvents;
+# 4982 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ITypeChangeEventsVtbl {
+   
 
-struct
-ITypeChangeEvents : public IUnknown
-{
-    virtual HRESULT RequestTypeChange(
+
+    HRESULT ( *QueryInterface)(
+        ITypeChangeEvents* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ITypeChangeEvents* This);
+
+    ULONG ( *Release)(
+        ITypeChangeEvents* This);
+
+
+    HRESULT ( *RequestTypeChange)(
+        ITypeChangeEvents* This,
         CHANGEKIND changeKind,
         ITypeInfo *pTInfoBefore,
         LPOLESTR pStrName,
-        INT *pfCancel) = 0;
+        INT *pfCancel);
 
-    virtual HRESULT AfterTypeChange(
+    HRESULT ( *AfterTypeChange)(
+        ITypeChangeEvents* This,
         CHANGEKIND changeKind,
         ITypeInfo *pTInfoAfter,
-        LPOLESTR pStrName) = 0;
+        LPOLESTR pStrName);
 
+   
+} ITypeChangeEventsVtbl;
+struct ITypeChangeEvents {
+    ITypeChangeEventsVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ITypeChangeEvents>() { static const IID __uuid_inst = {0x00020410,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ITypeChangeEvents*>() { return __mingw_uuidof<ITypeChangeEvents>(); } }
 # 5049 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ITypeChangeEvents_RequestTypeChange_Proxy(
     ITypeChangeEvents* This,
@@ -73474,29 +75582,49 @@ void ITypeChangeEvents_AfterTypeChange_Stub(
 # 5080 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef IErrorInfo *LPERRORINFO;
 
-extern "C" const GUID IID_IErrorInfo;
+extern const GUID IID_IErrorInfo;
+# 5107 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct IErrorInfoVtbl {
+   
 
-struct
-IErrorInfo : public IUnknown
-{
-    virtual HRESULT GetGUID(
-        GUID *pGUID) = 0;
 
-    virtual HRESULT GetSource(
-        BSTR *pBstrSource) = 0;
+    HRESULT ( *QueryInterface)(
+        IErrorInfo* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT GetDescription(
-        BSTR *pBstrDescription) = 0;
+    ULONG ( *AddRef)(
+        IErrorInfo* This);
 
-    virtual HRESULT GetHelpFile(
-        BSTR *pBstrHelpFile) = 0;
+    ULONG ( *Release)(
+        IErrorInfo* This);
 
-    virtual HRESULT GetHelpContext(
-        DWORD *pdwHelpContext) = 0;
 
+    HRESULT ( *GetGUID)(
+        IErrorInfo* This,
+        GUID *pGUID);
+
+    HRESULT ( *GetSource)(
+        IErrorInfo* This,
+        BSTR *pBstrSource);
+
+    HRESULT ( *GetDescription)(
+        IErrorInfo* This,
+        BSTR *pBstrDescription);
+
+    HRESULT ( *GetHelpFile)(
+        IErrorInfo* This,
+        BSTR *pBstrHelpFile);
+
+    HRESULT ( *GetHelpContext)(
+        IErrorInfo* This,
+        DWORD *pdwHelpContext);
+
+   
+} IErrorInfoVtbl;
+struct IErrorInfo {
+    IErrorInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IErrorInfo>() { static const IID __uuid_inst = {0x1cf2b120,0x547d,0x101b, {0x8e,0x65,0x08,0x00,0x2b,0x2b,0xd1,0x19}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IErrorInfo*>() { return __mingw_uuidof<IErrorInfo>(); } }
 # 5193 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT IErrorInfo_GetGUID_Proxy(
     IErrorInfo* This,
@@ -73541,33 +75669,53 @@ void IErrorInfo_GetHelpContext_Stub(
 # 5243 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef ICreateErrorInfo *LPCREATEERRORINFO;
 
-extern "C" const GUID IID_ICreateErrorInfo;
+extern const GUID IID_ICreateErrorInfo;
+# 5270 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ICreateErrorInfoVtbl {
+   
 
-struct
-ICreateErrorInfo : public IUnknown
-{
-    virtual HRESULT SetGUID(
-        const GUID & rguid) = 0;
 
-    virtual HRESULT SetSource(
-        LPOLESTR szSource) = 0;
+    HRESULT ( *QueryInterface)(
+        ICreateErrorInfo* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT SetDescription(
-        LPOLESTR szDescription) = 0;
+    ULONG ( *AddRef)(
+        ICreateErrorInfo* This);
 
-    virtual HRESULT SetHelpFile(
-        LPOLESTR szHelpFile) = 0;
+    ULONG ( *Release)(
+        ICreateErrorInfo* This);
 
-    virtual HRESULT SetHelpContext(
-        DWORD dwHelpContext) = 0;
 
+    HRESULT ( *SetGUID)(
+        ICreateErrorInfo* This,
+        const GUID *const rguid);
+
+    HRESULT ( *SetSource)(
+        ICreateErrorInfo* This,
+        LPOLESTR szSource);
+
+    HRESULT ( *SetDescription)(
+        ICreateErrorInfo* This,
+        LPOLESTR szDescription);
+
+    HRESULT ( *SetHelpFile)(
+        ICreateErrorInfo* This,
+        LPOLESTR szHelpFile);
+
+    HRESULT ( *SetHelpContext)(
+        ICreateErrorInfo* This,
+        DWORD dwHelpContext);
+
+   
+} ICreateErrorInfoVtbl;
+struct ICreateErrorInfo {
+    ICreateErrorInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ICreateErrorInfo>() { static const IID __uuid_inst = {0x22f03340,0x547d,0x101b, {0x8e,0x65,0x08,0x00,0x2b,0x2b,0xd1,0x19}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ICreateErrorInfo*>() { return __mingw_uuidof<ICreateErrorInfo>(); } }
 # 5356 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ICreateErrorInfo_SetGUID_Proxy(
     ICreateErrorInfo* This,
-    const GUID & rguid);
+    const GUID *const rguid);
 void ICreateErrorInfo_SetGUID_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -73608,45 +75756,77 @@ void ICreateErrorInfo_SetHelpContext_Stub(
 # 5406 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef ISupportErrorInfo *LPSUPPORTERRORINFO;
 
-extern "C" const GUID IID_ISupportErrorInfo;
+extern const GUID IID_ISupportErrorInfo;
+# 5421 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ISupportErrorInfoVtbl {
+   
 
-struct
-ISupportErrorInfo : public IUnknown
-{
-    virtual HRESULT InterfaceSupportsErrorInfo(
-        const IID & riid) = 0;
 
+    HRESULT ( *QueryInterface)(
+        ISupportErrorInfo* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ISupportErrorInfo* This);
+
+    ULONG ( *Release)(
+        ISupportErrorInfo* This);
+
+
+    HRESULT ( *InterfaceSupportsErrorInfo)(
+        ISupportErrorInfo* This,
+        const IID *const riid);
+
+   
+} ISupportErrorInfoVtbl;
+struct ISupportErrorInfo {
+    ISupportErrorInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISupportErrorInfo>() { static const IID __uuid_inst = {0xdf0b3d60,0x548f,0x101b, {0x8e,0x65,0x08,0x00,0x2b,0x2b,0xd1,0x19}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISupportErrorInfo*>() { return __mingw_uuidof<ISupportErrorInfo>(); } }
 # 5475 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ISupportErrorInfo_InterfaceSupportsErrorInfo_Proxy(
     ISupportErrorInfo* This,
-    const IID & riid);
+    const IID *const riid);
 void ISupportErrorInfo_InterfaceSupportsErrorInfo_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5493 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
-extern "C" const GUID IID_ITypeFactory;
+extern const GUID IID_ITypeFactory;
+# 5508 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ITypeFactoryVtbl {
+   
 
-struct
-ITypeFactory : public IUnknown
-{
-    virtual HRESULT CreateFromTypeInfo(
+
+    HRESULT ( *QueryInterface)(
+        ITypeFactory* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ITypeFactory* This);
+
+    ULONG ( *Release)(
+        ITypeFactory* This);
+
+
+    HRESULT ( *CreateFromTypeInfo)(
+        ITypeFactory* This,
         ITypeInfo *pTypeInfo,
-        const IID & riid,
-        IUnknown **ppv) = 0;
+        const IID *const riid,
+        IUnknown **ppv);
 
+   
+} ITypeFactoryVtbl;
+struct ITypeFactory {
+    ITypeFactoryVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ITypeFactory>() { static const IID __uuid_inst = {0x0000002e,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ITypeFactory*>() { return __mingw_uuidof<ITypeFactory>(); } }
 # 5564 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ITypeFactory_CreateFromTypeInfo_Proxy(
     ITypeFactory* This,
     ITypeInfo *pTypeInfo,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppv);
 void ITypeFactory_CreateFromTypeInfo_Stub(
     IRpcStubBuffer* This,
@@ -73654,38 +75834,57 @@ void ITypeFactory_CreateFromTypeInfo_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 5584 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
-extern "C" const GUID IID_ITypeMarshal;
+extern const GUID IID_ITypeMarshal;
+# 5618 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct ITypeMarshalVtbl {
+   
 
-struct
-ITypeMarshal : public IUnknown
-{
-    virtual HRESULT Size(
+
+    HRESULT ( *QueryInterface)(
+        ITypeMarshal* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ITypeMarshal* This);
+
+    ULONG ( *Release)(
+        ITypeMarshal* This);
+
+
+    HRESULT ( *Size)(
+        ITypeMarshal* This,
         PVOID pvType,
         DWORD dwDestContext,
         PVOID pvDestContext,
-        ULONG *pSize) = 0;
+        ULONG *pSize);
 
-    virtual HRESULT Marshal(
+    HRESULT ( *Marshal)(
+        ITypeMarshal* This,
         PVOID pvType,
         DWORD dwDestContext,
         PVOID pvDestContext,
         ULONG cbBufferLength,
         BYTE *pBuffer,
-        ULONG *pcbWritten) = 0;
+        ULONG *pcbWritten);
 
-    virtual HRESULT Unmarshal(
+    HRESULT ( *Unmarshal)(
+        ITypeMarshal* This,
         PVOID pvType,
         DWORD dwFlags,
         ULONG cbBufferLength,
         BYTE *pBuffer,
-        ULONG *pcbRead) = 0;
+        ULONG *pcbRead);
 
-    virtual HRESULT Free(
-        PVOID pvType) = 0;
+    HRESULT ( *Free)(
+        ITypeMarshal* This,
+        PVOID pvType);
 
+   
+} ITypeMarshalVtbl;
+struct ITypeMarshal {
+    ITypeMarshalVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ITypeMarshal>() { static const IID __uuid_inst = {0x0000002d,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ITypeMarshal*>() { return __mingw_uuidof<ITypeMarshal>(); } }
 # 5708 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT ITypeMarshal_Size_Proxy(
     ITypeMarshal* This,
@@ -73734,76 +75933,106 @@ void ITypeMarshal_Free_Stub(
 # 5762 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef IRecordInfo *LPRECORDINFO;
 
-extern "C" const GUID IID_IRecordInfo;
+extern const GUID IID_IRecordInfo;
+# 5836 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct IRecordInfoVtbl {
+   
 
-struct
-IRecordInfo : public IUnknown
-{
-    virtual HRESULT RecordInit(
-        PVOID pvNew) = 0;
 
-    virtual HRESULT RecordClear(
-        PVOID pvExisting) = 0;
+    HRESULT ( *QueryInterface)(
+        IRecordInfo* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT RecordCopy(
+    ULONG ( *AddRef)(
+        IRecordInfo* This);
+
+    ULONG ( *Release)(
+        IRecordInfo* This);
+
+
+    HRESULT ( *RecordInit)(
+        IRecordInfo* This,
+        PVOID pvNew);
+
+    HRESULT ( *RecordClear)(
+        IRecordInfo* This,
+        PVOID pvExisting);
+
+    HRESULT ( *RecordCopy)(
+        IRecordInfo* This,
         PVOID pvExisting,
-        PVOID pvNew) = 0;
+        PVOID pvNew);
 
-    virtual HRESULT GetGuid(
-        GUID *pguid) = 0;
+    HRESULT ( *GetGuid)(
+        IRecordInfo* This,
+        GUID *pguid);
 
-    virtual HRESULT GetName(
-        BSTR *pbstrName) = 0;
+    HRESULT ( *GetName)(
+        IRecordInfo* This,
+        BSTR *pbstrName);
 
-    virtual HRESULT GetSize(
-        ULONG *pcbSize) = 0;
+    HRESULT ( *GetSize)(
+        IRecordInfo* This,
+        ULONG *pcbSize);
 
-    virtual HRESULT GetTypeInfo(
-        ITypeInfo **ppTypeInfo) = 0;
+    HRESULT ( *GetTypeInfo)(
+        IRecordInfo* This,
+        ITypeInfo **ppTypeInfo);
 
-    virtual HRESULT GetField(
+    HRESULT ( *GetField)(
+        IRecordInfo* This,
         PVOID pvData,
         LPCOLESTR szFieldName,
-        VARIANT *pvarField) = 0;
+        VARIANT *pvarField);
 
-    virtual HRESULT GetFieldNoCopy(
+    HRESULT ( *GetFieldNoCopy)(
+        IRecordInfo* This,
         PVOID pvData,
         LPCOLESTR szFieldName,
         VARIANT *pvarField,
-        PVOID *ppvDataCArray) = 0;
+        PVOID *ppvDataCArray);
 
-    virtual HRESULT PutField(
+    HRESULT ( *PutField)(
+        IRecordInfo* This,
         ULONG wFlags,
         PVOID pvData,
         LPCOLESTR szFieldName,
-        VARIANT *pvarField) = 0;
+        VARIANT *pvarField);
 
-    virtual HRESULT PutFieldNoCopy(
+    HRESULT ( *PutFieldNoCopy)(
+        IRecordInfo* This,
         ULONG wFlags,
         PVOID pvData,
         LPCOLESTR szFieldName,
-        VARIANT *pvarField) = 0;
+        VARIANT *pvarField);
 
-    virtual HRESULT GetFieldNames(
+    HRESULT ( *GetFieldNames)(
+        IRecordInfo* This,
         ULONG *pcNames,
-        BSTR *rgBstrNames) = 0;
+        BSTR *rgBstrNames);
 
-    virtual WINBOOL IsMatchingType(
-        IRecordInfo *pRecordInfo) = 0;
+    WINBOOL ( *IsMatchingType)(
+        IRecordInfo* This,
+        IRecordInfo *pRecordInfo);
 
-    virtual PVOID RecordCreate(
-        ) = 0;
+    PVOID ( *RecordCreate)(
+        IRecordInfo* This);
 
-    virtual HRESULT RecordCreateCopy(
+    HRESULT ( *RecordCreateCopy)(
+        IRecordInfo* This,
         PVOID pvSource,
-        PVOID *ppvDest) = 0;
+        PVOID *ppvDest);
 
-    virtual HRESULT RecordDestroy(
-        PVOID pvRecord) = 0;
+    HRESULT ( *RecordDestroy)(
+        IRecordInfo* This,
+        PVOID pvRecord);
 
+   
+} IRecordInfoVtbl;
+struct IRecordInfo {
+    IRecordInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IRecordInfo>() { static const IID __uuid_inst = {0x0000002f,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IRecordInfo*>() { return __mingw_uuidof<IRecordInfo>(); } }
 # 6023 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT IRecordInfo_RecordInit_Proxy(
     IRecordInfo* This,
@@ -73949,18 +76178,34 @@ void IRecordInfo_RecordDestroy_Stub(
 # 6174 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef IErrorLog *LPERRORLOG;
 
-extern "C" const GUID IID_IErrorLog;
+extern const GUID IID_IErrorLog;
+# 6190 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct IErrorLogVtbl {
+   
 
-struct
-IErrorLog : public IUnknown
-{
-    virtual HRESULT AddError(
+
+    HRESULT ( *QueryInterface)(
+        IErrorLog* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IErrorLog* This);
+
+    ULONG ( *Release)(
+        IErrorLog* This);
+
+
+    HRESULT ( *AddError)(
+        IErrorLog* This,
         LPCOLESTR pszPropName,
-        EXCEPINFO *pExcepInfo) = 0;
+        EXCEPINFO *pExcepInfo);
 
+   
+} IErrorLogVtbl;
+struct IErrorLog {
+    IErrorLogVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IErrorLog>() { static const IID __uuid_inst = {0x3127ca40,0x446e,0x11ce, {0x81,0x35,0x00,0xaa,0x00,0x4b,0xb8,0x51}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IErrorLog*>() { return __mingw_uuidof<IErrorLog>(); } }
 # 6245 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT IErrorLog_AddError_Proxy(
     IErrorLog* This,
@@ -73974,23 +76219,40 @@ void IErrorLog_AddError_Stub(
 # 6264 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 typedef IPropertyBag *LPPROPERTYBAG;
 
-extern "C" const GUID IID_IPropertyBag;
+extern const GUID IID_IPropertyBag;
+# 6285 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
+typedef struct IPropertyBagVtbl {
+   
 
-struct
-IPropertyBag : public IUnknown
-{
-    virtual HRESULT Read(
+
+    HRESULT ( *QueryInterface)(
+        IPropertyBag* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IPropertyBag* This);
+
+    ULONG ( *Release)(
+        IPropertyBag* This);
+
+
+    HRESULT ( *Read)(
+        IPropertyBag* This,
         LPCOLESTR pszPropName,
         VARIANT *pVar,
-        IErrorLog *pErrorLog) = 0;
+        IErrorLog *pErrorLog);
 
-    virtual HRESULT Write(
+    HRESULT ( *Write)(
+        IPropertyBag* This,
         LPCOLESTR pszPropName,
-        VARIANT *pVar) = 0;
+        VARIANT *pVar);
 
+   
+} IPropertyBagVtbl;
+struct IPropertyBag {
+    IPropertyBagVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPropertyBag>() { static const IID __uuid_inst = {0x55272a00,0x42cb,0x11ce, {0x81,0x35,0x00,0xaa,0x00,0x4b,0xb8,0x51}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPropertyBag*>() { return __mingw_uuidof<IPropertyBag>(); } }
 # 6350 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 3
 HRESULT IPropertyBag_RemoteRead_Proxy(
     IPropertyBag* This,
@@ -74043,15 +76305,10 @@ ULONG CLEANLOCALSTORAGE_UserSize (ULONG *, ULONG, CLEANLOCALSTORAGE *);
 unsigned char * CLEANLOCALSTORAGE_UserMarshal (ULONG *, unsigned char *, CLEANLOCALSTORAGE *);
 unsigned char * CLEANLOCALSTORAGE_UserUnmarshal(ULONG *, unsigned char *, CLEANLOCALSTORAGE *);
 void CLEANLOCALSTORAGE_UserFree (ULONG *, CLEANLOCALSTORAGE *);
-
-
-
-
-}
 # 25 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 2 3
 
 
-extern "C" {
+
 
 
        
@@ -74159,11 +76416,11 @@ typedef struct XMLDOMDocumentEvents XMLDOMDocumentEvents;
 
 
 
-typedef class DOMDocument DOMDocument;
-# 144 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
-typedef class DOMFreeThreadedDocument DOMFreeThreadedDocument;
 
 
+typedef struct DOMDocument DOMDocument;
+# 146 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+typedef struct DOMFreeThreadedDocument DOMFreeThreadedDocument;
 
 
 
@@ -74175,9 +76432,9 @@ typedef struct IXMLHttpRequest IXMLHttpRequest;
 
 
 
-typedef class XMLHTTPRequest XMLHTTPRequest;
 
 
+typedef struct XMLHTTPRequest XMLHTTPRequest;
 
 
 
@@ -74189,9 +76446,9 @@ typedef struct IXMLDSOControl IXMLDSOControl;
 
 
 
-typedef class XMLDSOControl XMLDSOControl;
 
 
+typedef struct XMLDSOControl XMLDSOControl;
 
 
 
@@ -74228,15 +76485,8 @@ typedef struct IXMLAttribute IXMLAttribute;
 
 
 typedef struct IXMLError IXMLError;
-
-
-
-
-
-
-typedef class XMLDocument XMLDocument;
-
-
+# 219 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+typedef struct XMLDocument XMLDocument;
 
 
 
@@ -74269,15 +76519,31 @@ typedef class XMLDocument XMLDocument;
     XMLELEMTYPE_DTD,XMLELEMTYPE_PI,XMLELEMTYPE_OTHER
   } XMLELEM_TYPE;
 
-  extern "C" const IID LIBID_MSXML;
+  extern const IID LIBID_MSXML;
 
 
 
-  extern "C" const IID IID_IXMLDOMImplementation;
+  extern const IID IID_IXMLDOMImplementation;
 
-  struct IXMLDOMImplementation : public IDispatch {
-  public:
-    virtual HRESULT hasFeature(BSTR feature,BSTR version,VARIANT_BOOL *hasFeature) = 0;
+
+
+
+
+
+  typedef struct IXMLDOMImplementationVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMImplementation *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMImplementation *This);
+      ULONG ( *Release)(IXMLDOMImplementation *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMImplementation *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMImplementation *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMImplementation *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMImplementation *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *hasFeature)(IXMLDOMImplementation *This,BSTR feature,BSTR version,VARIANT_BOOL *hasFeature);
+   
+  } IXMLDOMImplementationVtbl;
+  struct IXMLDOMImplementation {
+    struct IXMLDOMImplementationVtbl *lpVtbl;
   };
 # 289 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMImplementation_hasFeature_Proxy(IXMLDOMImplementation *This,BSTR feature,BSTR version,VARIANT_BOOL *hasFeature);
@@ -74286,46 +76552,57 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMNode;
-
-  struct IXMLDOMNode : public IDispatch {
-  public:
-    virtual HRESULT get_nodeName(BSTR *name) = 0;
-    virtual HRESULT get_nodeValue(VARIANT *value) = 0;
-    virtual HRESULT put_nodeValue(VARIANT value) = 0;
-    virtual HRESULT get_nodeType(DOMNodeType *type) = 0;
-    virtual HRESULT get_parentNode(IXMLDOMNode **parent) = 0;
-    virtual HRESULT get_childNodes(IXMLDOMNodeList **childList) = 0;
-    virtual HRESULT get_firstChild(IXMLDOMNode **firstChild) = 0;
-    virtual HRESULT get_lastChild(IXMLDOMNode **lastChild) = 0;
-    virtual HRESULT get_previousSibling(IXMLDOMNode **previousSibling) = 0;
-    virtual HRESULT get_nextSibling(IXMLDOMNode **nextSibling) = 0;
-    virtual HRESULT get_attributes(IXMLDOMNamedNodeMap **attributeMap) = 0;
-    virtual HRESULT insertBefore(IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild) = 0;
-    virtual HRESULT replaceChild(IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild) = 0;
-    virtual HRESULT removeChild(IXMLDOMNode *childNode,IXMLDOMNode **oldChild) = 0;
-    virtual HRESULT appendChild(IXMLDOMNode *newChild,IXMLDOMNode **outNewChild) = 0;
-    virtual HRESULT hasChildNodes(VARIANT_BOOL *hasChild) = 0;
-    virtual HRESULT get_ownerDocument(IXMLDOMDocument **DOMDocument) = 0;
-    virtual HRESULT cloneNode(VARIANT_BOOL deep,IXMLDOMNode **cloneRoot) = 0;
-    virtual HRESULT get_nodeTypeString(BSTR *nodeType) = 0;
-    virtual HRESULT get_text(BSTR *text) = 0;
-    virtual HRESULT put_text(BSTR text) = 0;
-    virtual HRESULT get_specified(VARIANT_BOOL *isSpecified) = 0;
-    virtual HRESULT get_definition(IXMLDOMNode **definitionNode) = 0;
-    virtual HRESULT get_nodeTypedValue(VARIANT *typedValue) = 0;
-    virtual HRESULT put_nodeTypedValue(VARIANT typedValue) = 0;
-    virtual HRESULT get_dataType(VARIANT *dataTypeName) = 0;
-    virtual HRESULT put_dataType(BSTR dataTypeName) = 0;
-    virtual HRESULT get_xml(BSTR *xmlString) = 0;
-    virtual HRESULT transformNode(IXMLDOMNode *stylesheet,BSTR *xmlString) = 0;
-    virtual HRESULT selectNodes(BSTR queryString,IXMLDOMNodeList **resultList) = 0;
-    virtual HRESULT selectSingleNode(BSTR queryString,IXMLDOMNode **resultNode) = 0;
-    virtual HRESULT get_parsed(VARIANT_BOOL *isParsed) = 0;
-    virtual HRESULT get_namespaceURI(BSTR *namespaceURI) = 0;
-    virtual HRESULT get_prefix(BSTR *prefixString) = 0;
-    virtual HRESULT get_baseName(BSTR *nameString) = 0;
-    virtual HRESULT transformNodeToObject(IXMLDOMNode *stylesheet,VARIANT outputObject) = 0;
+  extern const IID IID_IXMLDOMNode;
+# 337 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMNodeVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMNode *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMNode *This);
+      ULONG ( *Release)(IXMLDOMNode *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMNode *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMNode *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMNode *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMNode *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMNode *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMNode *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMNode *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMNode *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMNode *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMNode *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMNode *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMNode *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMNode *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMNode *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMNode *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMNode *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMNode *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMNode *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMNode *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMNode *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMNode *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMNode *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMNode *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMNode *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMNode *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMNode *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMNode *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMNode *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMNode *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMNode *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMNode *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMNode *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMNode *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMNode *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMNode *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMNode *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMNode *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMNode *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMNode *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMNode *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+   
+  } IXMLDOMNodeVtbl;
+  struct IXMLDOMNode {
+    struct IXMLDOMNodeVtbl *lpVtbl;
   };
 # 433 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMNode_get_nodeName_Proxy(IXMLDOMNode *This,BSTR *name);
@@ -74404,48 +76681,146 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMDocumentFragment;
+  extern const IID IID_IXMLDOMDocumentFragment;
 
-  struct IXMLDOMDocumentFragment : public IXMLDOMNode {
+
+
+
+  typedef struct IXMLDOMDocumentFragmentVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMDocumentFragment *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMDocumentFragment *This);
+      ULONG ( *Release)(IXMLDOMDocumentFragment *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMDocumentFragment *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMDocumentFragment *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMDocumentFragment *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMDocumentFragment *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMDocumentFragment *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMDocumentFragment *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMDocumentFragment *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMDocumentFragment *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMDocumentFragment *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMDocumentFragment *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMDocumentFragment *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMDocumentFragment *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMDocumentFragment *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMDocumentFragment *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMDocumentFragment *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMDocumentFragment *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMDocumentFragment *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMDocumentFragment *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMDocumentFragment *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMDocumentFragment *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMDocumentFragment *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMDocumentFragment *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMDocumentFragment *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMDocumentFragment *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMDocumentFragment *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMDocumentFragment *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMDocumentFragment *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMDocumentFragment *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMDocumentFragment *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMDocumentFragment *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMDocumentFragment *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMDocumentFragment *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMDocumentFragment *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMDocumentFragment *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMDocumentFragment *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+   
+  } IXMLDOMDocumentFragmentVtbl;
+  struct IXMLDOMDocumentFragment {
+    struct IXMLDOMDocumentFragmentVtbl *lpVtbl;
   };
 # 614 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
-  extern "C" const IID IID_IXMLDOMDocument;
-
-  struct IXMLDOMDocument : public IXMLDOMNode {
-  public:
-    virtual HRESULT get_doctype(IXMLDOMDocumentType **documentType) = 0;
-    virtual HRESULT get_implementation(IXMLDOMImplementation **impl) = 0;
-    virtual HRESULT get_documentElement(IXMLDOMElement **DOMElement) = 0;
-    virtual HRESULT putref_documentElement(IXMLDOMElement *DOMElement) = 0;
-    virtual HRESULT createElement(BSTR tagName,IXMLDOMElement **element) = 0;
-    virtual HRESULT createDocumentFragment(IXMLDOMDocumentFragment **docFrag) = 0;
-    virtual HRESULT createTextNode(BSTR data,IXMLDOMText **text) = 0;
-    virtual HRESULT createComment(BSTR data,IXMLDOMComment **comment) = 0;
-    virtual HRESULT createCDATASection(BSTR data,IXMLDOMCDATASection **cdata) = 0;
-    virtual HRESULT createProcessingInstruction(BSTR target,BSTR data,IXMLDOMProcessingInstruction **pi) = 0;
-    virtual HRESULT createAttribute(BSTR name,IXMLDOMAttribute **attribute) = 0;
-    virtual HRESULT createEntityReference(BSTR name,IXMLDOMEntityReference **entityRef) = 0;
-    virtual HRESULT getElementsByTagName(BSTR tagName,IXMLDOMNodeList **resultList) = 0;
-    virtual HRESULT createNode(VARIANT Type,BSTR name,BSTR namespaceURI,IXMLDOMNode **node) = 0;
-    virtual HRESULT nodeFromID(BSTR idString,IXMLDOMNode **node) = 0;
-    virtual HRESULT load(VARIANT xmlSource,VARIANT_BOOL *isSuccessful) = 0;
-    virtual HRESULT get_readyState(LONG *value) = 0;
-    virtual HRESULT get_parseError(IXMLDOMParseError **errorObj) = 0;
-    virtual HRESULT get_url(BSTR *urlString) = 0;
-    virtual HRESULT get_async(VARIANT_BOOL *isAsync) = 0;
-    virtual HRESULT put_async(VARIANT_BOOL isAsync) = 0;
-    virtual HRESULT abort(void) = 0;
-    virtual HRESULT loadXML(BSTR bstrXML,VARIANT_BOOL *isSuccessful) = 0;
-    virtual HRESULT save(VARIANT destination) = 0;
-    virtual HRESULT get_validateOnParse(VARIANT_BOOL *isValidating) = 0;
-    virtual HRESULT put_validateOnParse(VARIANT_BOOL isValidating) = 0;
-    virtual HRESULT get_resolveExternals(VARIANT_BOOL *isResolving) = 0;
-    virtual HRESULT put_resolveExternals(VARIANT_BOOL isResolving) = 0;
-    virtual HRESULT get_preserveWhiteSpace(VARIANT_BOOL *isPreserving) = 0;
-    virtual HRESULT put_preserveWhiteSpace(VARIANT_BOOL isPreserving) = 0;
-    virtual HRESULT put_onreadystatechange(VARIANT readystatechangeSink) = 0;
-    virtual HRESULT put_ondataavailable(VARIANT ondataavailableSink) = 0;
-    virtual HRESULT put_ontransformnode(VARIANT ontransformnodeSink) = 0;
+  extern const IID IID_IXMLDOMDocument;
+# 653 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMDocumentVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMDocument *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMDocument *This);
+      ULONG ( *Release)(IXMLDOMDocument *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMDocument *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMDocument *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMDocument *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMDocument *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMDocument *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMDocument *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMDocument *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMDocument *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMDocument *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMDocument *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMDocument *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMDocument *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMDocument *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMDocument *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMDocument *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMDocument *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMDocument *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMDocument *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMDocument *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMDocument *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMDocument *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMDocument *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMDocument *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMDocument *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMDocument *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMDocument *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMDocument *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMDocument *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMDocument *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMDocument *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMDocument *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMDocument *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMDocument *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMDocument *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMDocument *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMDocument *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMDocument *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMDocument *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMDocument *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMDocument *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_doctype)(IXMLDOMDocument *This,IXMLDOMDocumentType **documentType);
+      HRESULT ( *get_implementation)(IXMLDOMDocument *This,IXMLDOMImplementation **impl);
+      HRESULT ( *get_documentElement)(IXMLDOMDocument *This,IXMLDOMElement **DOMElement);
+      HRESULT ( *putref_documentElement)(IXMLDOMDocument *This,IXMLDOMElement *DOMElement);
+      HRESULT ( *createElement)(IXMLDOMDocument *This,BSTR tagName,IXMLDOMElement **element);
+      HRESULT ( *createDocumentFragment)(IXMLDOMDocument *This,IXMLDOMDocumentFragment **docFrag);
+      HRESULT ( *createTextNode)(IXMLDOMDocument *This,BSTR data,IXMLDOMText **text);
+      HRESULT ( *createComment)(IXMLDOMDocument *This,BSTR data,IXMLDOMComment **comment);
+      HRESULT ( *createCDATASection)(IXMLDOMDocument *This,BSTR data,IXMLDOMCDATASection **cdata);
+      HRESULT ( *createProcessingInstruction)(IXMLDOMDocument *This,BSTR target,BSTR data,IXMLDOMProcessingInstruction **pi);
+      HRESULT ( *createAttribute)(IXMLDOMDocument *This,BSTR name,IXMLDOMAttribute **attribute);
+      HRESULT ( *createEntityReference)(IXMLDOMDocument *This,BSTR name,IXMLDOMEntityReference **entityRef);
+      HRESULT ( *getElementsByTagName)(IXMLDOMDocument *This,BSTR tagName,IXMLDOMNodeList **resultList);
+      HRESULT ( *createNode)(IXMLDOMDocument *This,VARIANT Type,BSTR name,BSTR namespaceURI,IXMLDOMNode **node);
+      HRESULT ( *nodeFromID)(IXMLDOMDocument *This,BSTR idString,IXMLDOMNode **node);
+      HRESULT ( *load)(IXMLDOMDocument *This,VARIANT xmlSource,VARIANT_BOOL *isSuccessful);
+      HRESULT ( *get_readyState)(IXMLDOMDocument *This,LONG *value);
+      HRESULT ( *get_parseError)(IXMLDOMDocument *This,IXMLDOMParseError **errorObj);
+      HRESULT ( *get_url)(IXMLDOMDocument *This,BSTR *urlString);
+      HRESULT ( *get_async)(IXMLDOMDocument *This,VARIANT_BOOL *isAsync);
+      HRESULT ( *put_async)(IXMLDOMDocument *This,VARIANT_BOOL isAsync);
+      HRESULT ( *abort)(IXMLDOMDocument *This);
+      HRESULT ( *loadXML)(IXMLDOMDocument *This,BSTR bstrXML,VARIANT_BOOL *isSuccessful);
+      HRESULT ( *save)(IXMLDOMDocument *This,VARIANT destination);
+      HRESULT ( *get_validateOnParse)(IXMLDOMDocument *This,VARIANT_BOOL *isValidating);
+      HRESULT ( *put_validateOnParse)(IXMLDOMDocument *This,VARIANT_BOOL isValidating);
+      HRESULT ( *get_resolveExternals)(IXMLDOMDocument *This,VARIANT_BOOL *isResolving);
+      HRESULT ( *put_resolveExternals)(IXMLDOMDocument *This,VARIANT_BOOL isResolving);
+      HRESULT ( *get_preserveWhiteSpace)(IXMLDOMDocument *This,VARIANT_BOOL *isPreserving);
+      HRESULT ( *put_preserveWhiteSpace)(IXMLDOMDocument *This,VARIANT_BOOL isPreserving);
+      HRESULT ( *put_onreadystatechange)(IXMLDOMDocument *This,VARIANT readystatechangeSink);
+      HRESULT ( *put_ondataavailable)(IXMLDOMDocument *This,VARIANT ondataavailableSink);
+      HRESULT ( *put_ontransformnode)(IXMLDOMDocument *This,VARIANT ontransformnodeSink);
+   
+  } IXMLDOMDocumentVtbl;
+  struct IXMLDOMDocument {
+    struct IXMLDOMDocumentVtbl *lpVtbl;
   };
 # 815 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMDocument_get_doctype_Proxy(IXMLDOMDocument *This,IXMLDOMDocumentType **documentType);
@@ -74518,15 +76893,26 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMNodeList;
-
-  struct IXMLDOMNodeList : public IDispatch {
-  public:
-    virtual HRESULT get_item(LONG index,IXMLDOMNode **listItem) = 0;
-    virtual HRESULT get_length(LONG *listLength) = 0;
-    virtual HRESULT nextNode(IXMLDOMNode **nextItem) = 0;
-    virtual HRESULT reset(void) = 0;
-    virtual HRESULT get__newEnum(IUnknown **ppUnk) = 0;
+  extern const IID IID_IXMLDOMNodeList;
+# 896 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMNodeListVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMNodeList *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMNodeList *This);
+      ULONG ( *Release)(IXMLDOMNodeList *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMNodeList *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMNodeList *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMNodeList *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMNodeList *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_item)(IXMLDOMNodeList *This,LONG index,IXMLDOMNode **listItem);
+      HRESULT ( *get_length)(IXMLDOMNodeList *This,LONG *listLength);
+      HRESULT ( *nextNode)(IXMLDOMNodeList *This,IXMLDOMNode **nextItem);
+      HRESULT ( *reset)(IXMLDOMNodeList *This);
+      HRESULT ( *get__newEnum)(IXMLDOMNodeList *This,IUnknown **ppUnk);
+   
+  } IXMLDOMNodeListVtbl;
+  struct IXMLDOMNodeList {
+    struct IXMLDOMNodeListVtbl *lpVtbl;
   };
 # 930 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMNodeList_get_item_Proxy(IXMLDOMNodeList *This,LONG index,IXMLDOMNode **listItem);
@@ -74543,20 +76929,31 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMNamedNodeMap;
-
-  struct IXMLDOMNamedNodeMap : public IDispatch {
-  public:
-    virtual HRESULT getNamedItem(BSTR name,IXMLDOMNode **namedItem) = 0;
-    virtual HRESULT setNamedItem(IXMLDOMNode *newItem,IXMLDOMNode **nameItem) = 0;
-    virtual HRESULT removeNamedItem(BSTR name,IXMLDOMNode **namedItem) = 0;
-    virtual HRESULT get_item(LONG index,IXMLDOMNode **listItem) = 0;
-    virtual HRESULT get_length(LONG *listLength) = 0;
-    virtual HRESULT getQualifiedItem(BSTR baseName,BSTR namespaceURI,IXMLDOMNode **qualifiedItem) = 0;
-    virtual HRESULT removeQualifiedItem(BSTR baseName,BSTR namespaceURI,IXMLDOMNode **qualifiedItem) = 0;
-    virtual HRESULT nextNode(IXMLDOMNode **nextItem) = 0;
-    virtual HRESULT reset(void) = 0;
-    virtual HRESULT get__newEnum(IUnknown **ppUnk) = 0;
+  extern const IID IID_IXMLDOMNamedNodeMap;
+# 960 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMNamedNodeMapVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMNamedNodeMap *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMNamedNodeMap *This);
+      ULONG ( *Release)(IXMLDOMNamedNodeMap *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMNamedNodeMap *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMNamedNodeMap *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMNamedNodeMap *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMNamedNodeMap *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *getNamedItem)(IXMLDOMNamedNodeMap *This,BSTR name,IXMLDOMNode **namedItem);
+      HRESULT ( *setNamedItem)(IXMLDOMNamedNodeMap *This,IXMLDOMNode *newItem,IXMLDOMNode **nameItem);
+      HRESULT ( *removeNamedItem)(IXMLDOMNamedNodeMap *This,BSTR name,IXMLDOMNode **namedItem);
+      HRESULT ( *get_item)(IXMLDOMNamedNodeMap *This,LONG index,IXMLDOMNode **listItem);
+      HRESULT ( *get_length)(IXMLDOMNamedNodeMap *This,LONG *listLength);
+      HRESULT ( *getQualifiedItem)(IXMLDOMNamedNodeMap *This,BSTR baseName,BSTR namespaceURI,IXMLDOMNode **qualifiedItem);
+      HRESULT ( *removeQualifiedItem)(IXMLDOMNamedNodeMap *This,BSTR baseName,BSTR namespaceURI,IXMLDOMNode **qualifiedItem);
+      HRESULT ( *nextNode)(IXMLDOMNamedNodeMap *This,IXMLDOMNode **nextItem);
+      HRESULT ( *reset)(IXMLDOMNamedNodeMap *This);
+      HRESULT ( *get__newEnum)(IXMLDOMNamedNodeMap *This,IUnknown **ppUnk);
+   
+  } IXMLDOMNamedNodeMapVtbl;
+  struct IXMLDOMNamedNodeMap {
+    struct IXMLDOMNamedNodeMapVtbl *lpVtbl;
   };
 # 1004 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMNamedNodeMap_getNamedItem_Proxy(IXMLDOMNamedNodeMap *This,BSTR name,IXMLDOMNode **namedItem);
@@ -74583,18 +76980,65 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMCharacterData;
-
-  struct IXMLDOMCharacterData : public IXMLDOMNode {
-  public:
-    virtual HRESULT get_data(BSTR *data) = 0;
-    virtual HRESULT put_data(BSTR data) = 0;
-    virtual HRESULT get_length(LONG *dataLength) = 0;
-    virtual HRESULT substringData(LONG offset,LONG count,BSTR *data) = 0;
-    virtual HRESULT appendData(BSTR data) = 0;
-    virtual HRESULT insertData(LONG offset,BSTR data) = 0;
-    virtual HRESULT deleteData(LONG offset,LONG count) = 0;
-    virtual HRESULT replaceData(LONG offset,LONG count,BSTR data) = 0;
+  extern const IID IID_IXMLDOMCharacterData;
+# 1042 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMCharacterDataVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMCharacterData *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMCharacterData *This);
+      ULONG ( *Release)(IXMLDOMCharacterData *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMCharacterData *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMCharacterData *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMCharacterData *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMCharacterData *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMCharacterData *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMCharacterData *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMCharacterData *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMCharacterData *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMCharacterData *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMCharacterData *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMCharacterData *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMCharacterData *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMCharacterData *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMCharacterData *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMCharacterData *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMCharacterData *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMCharacterData *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMCharacterData *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMCharacterData *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMCharacterData *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMCharacterData *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMCharacterData *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMCharacterData *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMCharacterData *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMCharacterData *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMCharacterData *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMCharacterData *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMCharacterData *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMCharacterData *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMCharacterData *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMCharacterData *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMCharacterData *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMCharacterData *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMCharacterData *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMCharacterData *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMCharacterData *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMCharacterData *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMCharacterData *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMCharacterData *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMCharacterData *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_data)(IXMLDOMCharacterData *This,BSTR *data);
+      HRESULT ( *put_data)(IXMLDOMCharacterData *This,BSTR data);
+      HRESULT ( *get_length)(IXMLDOMCharacterData *This,LONG *dataLength);
+      HRESULT ( *substringData)(IXMLDOMCharacterData *This,LONG offset,LONG count,BSTR *data);
+      HRESULT ( *appendData)(IXMLDOMCharacterData *This,BSTR data);
+      HRESULT ( *insertData)(IXMLDOMCharacterData *This,LONG offset,BSTR data);
+      HRESULT ( *deleteData)(IXMLDOMCharacterData *This,LONG offset,LONG count);
+      HRESULT ( *replaceData)(IXMLDOMCharacterData *This,LONG offset,LONG count,BSTR data);
+   
+  } IXMLDOMCharacterDataVtbl;
+  struct IXMLDOMCharacterData {
+    struct IXMLDOMCharacterDataVtbl *lpVtbl;
   };
 # 1154 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMCharacterData_get_data_Proxy(IXMLDOMCharacterData *This,BSTR *data);
@@ -74617,13 +77061,60 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMAttribute;
-
-  struct IXMLDOMAttribute : public IXMLDOMNode {
-  public:
-    virtual HRESULT get_name(BSTR *attributeName) = 0;
-    virtual HRESULT get_value(VARIANT *attributeValue) = 0;
-    virtual HRESULT put_value(VARIANT attributeValue) = 0;
+  extern const IID IID_IXMLDOMAttribute;
+# 1183 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMAttributeVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMAttribute *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMAttribute *This);
+      ULONG ( *Release)(IXMLDOMAttribute *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMAttribute *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMAttribute *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMAttribute *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMAttribute *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMAttribute *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMAttribute *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMAttribute *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMAttribute *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMAttribute *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMAttribute *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMAttribute *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMAttribute *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMAttribute *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMAttribute *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMAttribute *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMAttribute *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMAttribute *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMAttribute *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMAttribute *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMAttribute *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMAttribute *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMAttribute *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMAttribute *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMAttribute *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMAttribute *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMAttribute *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMAttribute *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMAttribute *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMAttribute *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMAttribute *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMAttribute *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMAttribute *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMAttribute *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMAttribute *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMAttribute *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMAttribute *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMAttribute *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMAttribute *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMAttribute *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMAttribute *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_name)(IXMLDOMAttribute *This,BSTR *attributeName);
+      HRESULT ( *get_value)(IXMLDOMAttribute *This,VARIANT *attributeValue);
+      HRESULT ( *put_value)(IXMLDOMAttribute *This,VARIANT attributeValue);
+   
+  } IXMLDOMAttributeVtbl;
+  struct IXMLDOMAttribute {
+    struct IXMLDOMAttributeVtbl *lpVtbl;
   };
 # 1285 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMAttribute_get_name_Proxy(IXMLDOMAttribute *This,BSTR *attributeName);
@@ -74636,19 +77127,66 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMElement;
-
-  struct IXMLDOMElement : public IXMLDOMNode {
-  public:
-    virtual HRESULT get_tagName(BSTR *tagName) = 0;
-    virtual HRESULT getAttribute(BSTR name,VARIANT *value) = 0;
-    virtual HRESULT setAttribute(BSTR name,VARIANT value) = 0;
-    virtual HRESULT removeAttribute(BSTR name) = 0;
-    virtual HRESULT getAttributeNode(BSTR name,IXMLDOMAttribute **attributeNode) = 0;
-    virtual HRESULT setAttributeNode(IXMLDOMAttribute *DOMAttribute,IXMLDOMAttribute **attributeNode) = 0;
-    virtual HRESULT removeAttributeNode(IXMLDOMAttribute *DOMAttribute,IXMLDOMAttribute **attributeNode) = 0;
-    virtual HRESULT getElementsByTagName(BSTR tagName,IXMLDOMNodeList **resultList) = 0;
-    virtual HRESULT normalize(void) = 0;
+  extern const IID IID_IXMLDOMElement;
+# 1310 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMElementVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMElement *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMElement *This);
+      ULONG ( *Release)(IXMLDOMElement *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMElement *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMElement *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMElement *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMElement *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMElement *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMElement *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMElement *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMElement *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMElement *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMElement *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMElement *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMElement *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMElement *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMElement *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMElement *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMElement *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMElement *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMElement *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMElement *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMElement *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMElement *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMElement *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMElement *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMElement *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMElement *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMElement *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMElement *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMElement *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMElement *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMElement *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMElement *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMElement *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMElement *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMElement *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMElement *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMElement *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMElement *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMElement *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMElement *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMElement *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_tagName)(IXMLDOMElement *This,BSTR *tagName);
+      HRESULT ( *getAttribute)(IXMLDOMElement *This,BSTR name,VARIANT *value);
+      HRESULT ( *setAttribute)(IXMLDOMElement *This,BSTR name,VARIANT value);
+      HRESULT ( *removeAttribute)(IXMLDOMElement *This,BSTR name);
+      HRESULT ( *getAttributeNode)(IXMLDOMElement *This,BSTR name,IXMLDOMAttribute **attributeNode);
+      HRESULT ( *setAttributeNode)(IXMLDOMElement *This,IXMLDOMAttribute *DOMAttribute,IXMLDOMAttribute **attributeNode);
+      HRESULT ( *removeAttributeNode)(IXMLDOMElement *This,IXMLDOMAttribute *DOMAttribute,IXMLDOMAttribute **attributeNode);
+      HRESULT ( *getElementsByTagName)(IXMLDOMElement *This,BSTR tagName,IXMLDOMNodeList **resultList);
+      HRESULT ( *normalize)(IXMLDOMElement *This);
+   
+  } IXMLDOMElementVtbl;
+  struct IXMLDOMElement {
+    struct IXMLDOMElementVtbl *lpVtbl;
   };
 # 1424 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMElement_get_tagName_Proxy(IXMLDOMElement *This,BSTR *tagName);
@@ -74673,11 +77211,71 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMText;
+  extern const IID IID_IXMLDOMText;
 
-  struct IXMLDOMText : public IXMLDOMCharacterData {
-  public:
-    virtual HRESULT splitText(LONG offset,IXMLDOMText **rightHandTextNode) = 0;
+
+
+
+
+
+  typedef struct IXMLDOMTextVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMText *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMText *This);
+      ULONG ( *Release)(IXMLDOMText *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMText *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMText *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMText *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMText *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMText *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMText *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMText *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMText *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMText *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMText *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMText *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMText *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMText *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMText *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMText *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMText *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMText *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMText *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMText *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMText *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMText *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMText *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMText *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMText *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMText *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMText *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMText *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMText *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMText *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMText *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMText *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMText *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMText *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMText *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMText *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMText *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMText *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMText *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMText *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMText *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_data)(IXMLDOMText *This,BSTR *data);
+      HRESULT ( *put_data)(IXMLDOMText *This,BSTR data);
+      HRESULT ( *get_length)(IXMLDOMText *This,LONG *dataLength);
+      HRESULT ( *substringData)(IXMLDOMText *This,LONG offset,LONG count,BSTR *data);
+      HRESULT ( *appendData)(IXMLDOMText *This,BSTR data);
+      HRESULT ( *insertData)(IXMLDOMText *This,LONG offset,BSTR data);
+      HRESULT ( *deleteData)(IXMLDOMText *This,LONG offset,LONG count);
+      HRESULT ( *replaceData)(IXMLDOMText *This,LONG offset,LONG count,BSTR data);
+      HRESULT ( *splitText)(IXMLDOMText *This,LONG offset,IXMLDOMText **rightHandTextNode);
+   
+  } IXMLDOMTextVtbl;
+  struct IXMLDOMText {
+    struct IXMLDOMTextVtbl *lpVtbl;
   };
 # 1567 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMText_splitText_Proxy(IXMLDOMText *This,LONG offset,IXMLDOMText **rightHandTextNode);
@@ -74686,18 +77284,124 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMComment;
+  extern const IID IID_IXMLDOMComment;
 
-  struct IXMLDOMComment : public IXMLDOMCharacterData {
+
+
+
+  typedef struct IXMLDOMCommentVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMComment *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMComment *This);
+      ULONG ( *Release)(IXMLDOMComment *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMComment *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMComment *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMComment *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMComment *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMComment *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMComment *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMComment *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMComment *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMComment *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMComment *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMComment *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMComment *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMComment *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMComment *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMComment *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMComment *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMComment *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMComment *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMComment *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMComment *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMComment *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMComment *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMComment *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMComment *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMComment *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMComment *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMComment *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMComment *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMComment *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMComment *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMComment *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMComment *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMComment *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMComment *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMComment *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMComment *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMComment *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMComment *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMComment *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMComment *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_data)(IXMLDOMComment *This,BSTR *data);
+      HRESULT ( *put_data)(IXMLDOMComment *This,BSTR data);
+      HRESULT ( *get_length)(IXMLDOMComment *This,LONG *dataLength);
+      HRESULT ( *substringData)(IXMLDOMComment *This,LONG offset,LONG count,BSTR *data);
+      HRESULT ( *appendData)(IXMLDOMComment *This,BSTR data);
+      HRESULT ( *insertData)(IXMLDOMComment *This,LONG offset,BSTR data);
+      HRESULT ( *deleteData)(IXMLDOMComment *This,LONG offset,LONG count);
+      HRESULT ( *replaceData)(IXMLDOMComment *This,LONG offset,LONG count,BSTR data);
+   
+  } IXMLDOMCommentVtbl;
+  struct IXMLDOMComment {
+    struct IXMLDOMCommentVtbl *lpVtbl;
   };
 # 1694 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
-  extern "C" const IID IID_IXMLDOMProcessingInstruction;
-
-  struct IXMLDOMProcessingInstruction : public IXMLDOMNode {
-  public:
-    virtual HRESULT get_target(BSTR *name) = 0;
-    virtual HRESULT get_data(BSTR *value) = 0;
-    virtual HRESULT put_data(BSTR value) = 0;
+  extern const IID IID_IXMLDOMProcessingInstruction;
+# 1703 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMProcessingInstructionVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMProcessingInstruction *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMProcessingInstruction *This);
+      ULONG ( *Release)(IXMLDOMProcessingInstruction *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMProcessingInstruction *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMProcessingInstruction *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMProcessingInstruction *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMProcessingInstruction *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMProcessingInstruction *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMProcessingInstruction *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMProcessingInstruction *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMProcessingInstruction *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMProcessingInstruction *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMProcessingInstruction *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMProcessingInstruction *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMProcessingInstruction *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMProcessingInstruction *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMProcessingInstruction *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMProcessingInstruction *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMProcessingInstruction *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMProcessingInstruction *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMProcessingInstruction *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMProcessingInstruction *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMProcessingInstruction *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMProcessingInstruction *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMProcessingInstruction *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMProcessingInstruction *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMProcessingInstruction *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMProcessingInstruction *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMProcessingInstruction *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMProcessingInstruction *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMProcessingInstruction *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_target)(IXMLDOMProcessingInstruction *This,BSTR *name);
+      HRESULT ( *get_data)(IXMLDOMProcessingInstruction *This,BSTR *value);
+      HRESULT ( *put_data)(IXMLDOMProcessingInstruction *This,BSTR value);
+   
+  } IXMLDOMProcessingInstructionVtbl;
+  struct IXMLDOMProcessingInstruction {
+    struct IXMLDOMProcessingInstructionVtbl *lpVtbl;
   };
 # 1805 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMProcessingInstruction_get_target_Proxy(IXMLDOMProcessingInstruction *This,BSTR *name);
@@ -74710,18 +77414,125 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMCDATASection;
+  extern const IID IID_IXMLDOMCDATASection;
 
-  struct IXMLDOMCDATASection : public IXMLDOMText {
+
+
+
+  typedef struct IXMLDOMCDATASectionVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMCDATASection *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMCDATASection *This);
+      ULONG ( *Release)(IXMLDOMCDATASection *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMCDATASection *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMCDATASection *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMCDATASection *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMCDATASection *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMCDATASection *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMCDATASection *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMCDATASection *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMCDATASection *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMCDATASection *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMCDATASection *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMCDATASection *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMCDATASection *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMCDATASection *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMCDATASection *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMCDATASection *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMCDATASection *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMCDATASection *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMCDATASection *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMCDATASection *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMCDATASection *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMCDATASection *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMCDATASection *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMCDATASection *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMCDATASection *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMCDATASection *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMCDATASection *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMCDATASection *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMCDATASection *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMCDATASection *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMCDATASection *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMCDATASection *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMCDATASection *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMCDATASection *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMCDATASection *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMCDATASection *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMCDATASection *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMCDATASection *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMCDATASection *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMCDATASection *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMCDATASection *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_data)(IXMLDOMCDATASection *This,BSTR *data);
+      HRESULT ( *put_data)(IXMLDOMCDATASection *This,BSTR data);
+      HRESULT ( *get_length)(IXMLDOMCDATASection *This,LONG *dataLength);
+      HRESULT ( *substringData)(IXMLDOMCDATASection *This,LONG offset,LONG count,BSTR *data);
+      HRESULT ( *appendData)(IXMLDOMCDATASection *This,BSTR data);
+      HRESULT ( *insertData)(IXMLDOMCDATASection *This,LONG offset,BSTR data);
+      HRESULT ( *deleteData)(IXMLDOMCDATASection *This,LONG offset,LONG count);
+      HRESULT ( *replaceData)(IXMLDOMCDATASection *This,LONG offset,LONG count,BSTR data);
+      HRESULT ( *splitText)(IXMLDOMCDATASection *This,LONG offset,IXMLDOMText **rightHandTextNode);
+   
+  } IXMLDOMCDATASectionVtbl;
+  struct IXMLDOMCDATASection {
+    struct IXMLDOMCDATASectionVtbl *lpVtbl;
   };
 # 1938 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
-  extern "C" const IID IID_IXMLDOMDocumentType;
-
-  struct IXMLDOMDocumentType : public IXMLDOMNode {
-  public:
-    virtual HRESULT get_name(BSTR *rootName) = 0;
-    virtual HRESULT get_entities(IXMLDOMNamedNodeMap **entityMap) = 0;
-    virtual HRESULT get_notations(IXMLDOMNamedNodeMap **notationMap) = 0;
+  extern const IID IID_IXMLDOMDocumentType;
+# 1947 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMDocumentTypeVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMDocumentType *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMDocumentType *This);
+      ULONG ( *Release)(IXMLDOMDocumentType *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMDocumentType *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMDocumentType *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMDocumentType *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMDocumentType *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMDocumentType *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMDocumentType *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMDocumentType *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMDocumentType *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMDocumentType *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMDocumentType *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMDocumentType *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMDocumentType *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMDocumentType *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMDocumentType *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMDocumentType *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMDocumentType *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMDocumentType *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMDocumentType *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMDocumentType *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMDocumentType *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMDocumentType *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMDocumentType *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMDocumentType *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMDocumentType *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMDocumentType *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMDocumentType *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMDocumentType *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMDocumentType *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMDocumentType *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMDocumentType *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMDocumentType *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMDocumentType *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMDocumentType *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMDocumentType *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMDocumentType *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMDocumentType *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMDocumentType *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMDocumentType *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMDocumentType *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMDocumentType *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_name)(IXMLDOMDocumentType *This,BSTR *rootName);
+      HRESULT ( *get_entities)(IXMLDOMDocumentType *This,IXMLDOMNamedNodeMap **entityMap);
+      HRESULT ( *get_notations)(IXMLDOMDocumentType *This,IXMLDOMNamedNodeMap **notationMap);
+   
+  } IXMLDOMDocumentTypeVtbl;
+  struct IXMLDOMDocumentType {
+    struct IXMLDOMDocumentTypeVtbl *lpVtbl;
   };
 # 2049 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMDocumentType_get_name_Proxy(IXMLDOMDocumentType *This,BSTR *rootName);
@@ -74734,12 +77545,65 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMNotation;
+  extern const IID IID_IXMLDOMNotation;
 
-  struct IXMLDOMNotation : public IXMLDOMNode {
-  public:
-    virtual HRESULT get_publicId(VARIANT *publicID) = 0;
-    virtual HRESULT get_systemId(VARIANT *systemID) = 0;
+
+
+
+
+
+
+  typedef struct IXMLDOMNotationVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMNotation *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMNotation *This);
+      ULONG ( *Release)(IXMLDOMNotation *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMNotation *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMNotation *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMNotation *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMNotation *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMNotation *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMNotation *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMNotation *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMNotation *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMNotation *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMNotation *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMNotation *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMNotation *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMNotation *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMNotation *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMNotation *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMNotation *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMNotation *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMNotation *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMNotation *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMNotation *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMNotation *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMNotation *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMNotation *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMNotation *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMNotation *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMNotation *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMNotation *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMNotation *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMNotation *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMNotation *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMNotation *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMNotation *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMNotation *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMNotation *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMNotation *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMNotation *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMNotation *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMNotation *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMNotation *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMNotation *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_publicId)(IXMLDOMNotation *This,VARIANT *publicID);
+      HRESULT ( *get_systemId)(IXMLDOMNotation *This,VARIANT *systemID);
+   
+  } IXMLDOMNotationVtbl;
+  struct IXMLDOMNotation {
+    struct IXMLDOMNotationVtbl *lpVtbl;
   };
 # 2167 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMNotation_get_publicId_Proxy(IXMLDOMNotation *This,VARIANT *publicID);
@@ -74750,13 +77614,60 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMEntity;
-
-  struct IXMLDOMEntity : public IXMLDOMNode {
-  public:
-    virtual HRESULT get_publicId(VARIANT *publicID) = 0;
-    virtual HRESULT get_systemId(VARIANT *systemID) = 0;
-    virtual HRESULT get_notationName(BSTR *name) = 0;
+  extern const IID IID_IXMLDOMEntity;
+# 2184 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMEntityVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMEntity *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMEntity *This);
+      ULONG ( *Release)(IXMLDOMEntity *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMEntity *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMEntity *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMEntity *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMEntity *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMEntity *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMEntity *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMEntity *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMEntity *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMEntity *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMEntity *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMEntity *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMEntity *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMEntity *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMEntity *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMEntity *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMEntity *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMEntity *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMEntity *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMEntity *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMEntity *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMEntity *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMEntity *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMEntity *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMEntity *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMEntity *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMEntity *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMEntity *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMEntity *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMEntity *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMEntity *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMEntity *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMEntity *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMEntity *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMEntity *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMEntity *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMEntity *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMEntity *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMEntity *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMEntity *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMEntity *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *get_publicId)(IXMLDOMEntity *This,VARIANT *publicID);
+      HRESULT ( *get_systemId)(IXMLDOMEntity *This,VARIANT *systemID);
+      HRESULT ( *get_notationName)(IXMLDOMEntity *This,BSTR *name);
+   
+  } IXMLDOMEntityVtbl;
+  struct IXMLDOMEntity {
+    struct IXMLDOMEntityVtbl *lpVtbl;
   };
 # 2286 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMEntity_get_publicId_Proxy(IXMLDOMEntity *This,VARIANT *publicID);
@@ -74769,22 +77680,84 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDOMEntityReference;
+  extern const IID IID_IXMLDOMEntityReference;
 
-  struct IXMLDOMEntityReference : public IXMLDOMNode {
+
+
+
+  typedef struct IXMLDOMEntityReferenceVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMEntityReference *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMEntityReference *This);
+      ULONG ( *Release)(IXMLDOMEntityReference *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMEntityReference *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMEntityReference *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMEntityReference *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMEntityReference *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXMLDOMEntityReference *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXMLDOMEntityReference *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXMLDOMEntityReference *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXMLDOMEntityReference *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXMLDOMEntityReference *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXMLDOMEntityReference *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXMLDOMEntityReference *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXMLDOMEntityReference *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXMLDOMEntityReference *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXMLDOMEntityReference *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXMLDOMEntityReference *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXMLDOMEntityReference *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXMLDOMEntityReference *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXMLDOMEntityReference *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXMLDOMEntityReference *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXMLDOMEntityReference *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXMLDOMEntityReference *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXMLDOMEntityReference *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXMLDOMEntityReference *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXMLDOMEntityReference *This,BSTR *text);
+      HRESULT ( *put_text)(IXMLDOMEntityReference *This,BSTR text);
+      HRESULT ( *get_specified)(IXMLDOMEntityReference *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXMLDOMEntityReference *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXMLDOMEntityReference *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXMLDOMEntityReference *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXMLDOMEntityReference *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXMLDOMEntityReference *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXMLDOMEntityReference *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXMLDOMEntityReference *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXMLDOMEntityReference *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXMLDOMEntityReference *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXMLDOMEntityReference *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXMLDOMEntityReference *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXMLDOMEntityReference *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXMLDOMEntityReference *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXMLDOMEntityReference *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+   
+  } IXMLDOMEntityReferenceVtbl;
+  struct IXMLDOMEntityReference {
+    struct IXMLDOMEntityReferenceVtbl *lpVtbl;
   };
 # 2401 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
-  extern "C" const IID IID_IXMLDOMParseError;
-
-  struct IXMLDOMParseError : public IDispatch {
-  public:
-    virtual HRESULT get_errorCode(LONG *errorCode) = 0;
-    virtual HRESULT get_url(BSTR *urlString) = 0;
-    virtual HRESULT get_reason(BSTR *reasonString) = 0;
-    virtual HRESULT get_srcText(BSTR *sourceString) = 0;
-    virtual HRESULT get_line(LONG *lineNumber) = 0;
-    virtual HRESULT get_linepos(LONG *linePosition) = 0;
-    virtual HRESULT get_filepos(LONG *filePosition) = 0;
+  extern const IID IID_IXMLDOMParseError;
+# 2414 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDOMParseErrorVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDOMParseError *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDOMParseError *This);
+      ULONG ( *Release)(IXMLDOMParseError *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDOMParseError *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDOMParseError *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDOMParseError *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDOMParseError *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_errorCode)(IXMLDOMParseError *This,LONG *errorCode);
+      HRESULT ( *get_url)(IXMLDOMParseError *This,BSTR *urlString);
+      HRESULT ( *get_reason)(IXMLDOMParseError *This,BSTR *reasonString);
+      HRESULT ( *get_srcText)(IXMLDOMParseError *This,BSTR *sourceString);
+      HRESULT ( *get_line)(IXMLDOMParseError *This,LONG *lineNumber);
+      HRESULT ( *get_linepos)(IXMLDOMParseError *This,LONG *linePosition);
+      HRESULT ( *get_filepos)(IXMLDOMParseError *This,LONG *filePosition);
+   
+  } IXMLDOMParseErrorVtbl;
+  struct IXMLDOMParseError {
+    struct IXMLDOMParseErrorVtbl *lpVtbl;
   };
 # 2452 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDOMParseError_get_errorCode_Proxy(IXMLDOMParseError *This,LONG *errorCode);
@@ -74805,19 +77778,66 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXTLRuntime;
-
-  struct IXTLRuntime : public IXMLDOMNode {
-  public:
-    virtual HRESULT uniqueID(IXMLDOMNode *pNode,LONG *pID) = 0;
-    virtual HRESULT depth(IXMLDOMNode *pNode,LONG *pDepth) = 0;
-    virtual HRESULT childNumber(IXMLDOMNode *pNode,LONG *pNumber) = 0;
-    virtual HRESULT ancestorChildNumber(BSTR bstrNodeName,IXMLDOMNode *pNode,LONG *pNumber) = 0;
-    virtual HRESULT absoluteChildNumber(IXMLDOMNode *pNode,LONG *pNumber) = 0;
-    virtual HRESULT formatIndex(LONG lIndex,BSTR bstrFormat,BSTR *pbstrFormattedString) = 0;
-    virtual HRESULT formatNumber(double dblNumber,BSTR bstrFormat,BSTR *pbstrFormattedString) = 0;
-    virtual HRESULT formatDate(VARIANT varDate,BSTR bstrFormat,VARIANT varDestLocale,BSTR *pbstrFormattedString) = 0;
-    virtual HRESULT formatTime(VARIANT varTime,BSTR bstrFormat,VARIANT varDestLocale,BSTR *pbstrFormattedString) = 0;
+  extern const IID IID_IXTLRuntime;
+# 2485 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXTLRuntimeVtbl {
+   
+      HRESULT ( *QueryInterface)(IXTLRuntime *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXTLRuntime *This);
+      ULONG ( *Release)(IXTLRuntime *This);
+      HRESULT ( *GetTypeInfoCount)(IXTLRuntime *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXTLRuntime *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXTLRuntime *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXTLRuntime *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_nodeName)(IXTLRuntime *This,BSTR *name);
+      HRESULT ( *get_nodeValue)(IXTLRuntime *This,VARIANT *value);
+      HRESULT ( *put_nodeValue)(IXTLRuntime *This,VARIANT value);
+      HRESULT ( *get_nodeType)(IXTLRuntime *This,DOMNodeType *type);
+      HRESULT ( *get_parentNode)(IXTLRuntime *This,IXMLDOMNode **parent);
+      HRESULT ( *get_childNodes)(IXTLRuntime *This,IXMLDOMNodeList **childList);
+      HRESULT ( *get_firstChild)(IXTLRuntime *This,IXMLDOMNode **firstChild);
+      HRESULT ( *get_lastChild)(IXTLRuntime *This,IXMLDOMNode **lastChild);
+      HRESULT ( *get_previousSibling)(IXTLRuntime *This,IXMLDOMNode **previousSibling);
+      HRESULT ( *get_nextSibling)(IXTLRuntime *This,IXMLDOMNode **nextSibling);
+      HRESULT ( *get_attributes)(IXTLRuntime *This,IXMLDOMNamedNodeMap **attributeMap);
+      HRESULT ( *insertBefore)(IXTLRuntime *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *replaceChild)(IXTLRuntime *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
+      HRESULT ( *removeChild)(IXTLRuntime *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
+      HRESULT ( *appendChild)(IXTLRuntime *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
+      HRESULT ( *hasChildNodes)(IXTLRuntime *This,VARIANT_BOOL *hasChild);
+      HRESULT ( *get_ownerDocument)(IXTLRuntime *This,IXMLDOMDocument **DOMDocument);
+      HRESULT ( *cloneNode)(IXTLRuntime *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
+      HRESULT ( *get_nodeTypeString)(IXTLRuntime *This,BSTR *nodeType);
+      HRESULT ( *get_text)(IXTLRuntime *This,BSTR *text);
+      HRESULT ( *put_text)(IXTLRuntime *This,BSTR text);
+      HRESULT ( *get_specified)(IXTLRuntime *This,VARIANT_BOOL *isSpecified);
+      HRESULT ( *get_definition)(IXTLRuntime *This,IXMLDOMNode **definitionNode);
+      HRESULT ( *get_nodeTypedValue)(IXTLRuntime *This,VARIANT *typedValue);
+      HRESULT ( *put_nodeTypedValue)(IXTLRuntime *This,VARIANT typedValue);
+      HRESULT ( *get_dataType)(IXTLRuntime *This,VARIANT *dataTypeName);
+      HRESULT ( *put_dataType)(IXTLRuntime *This,BSTR dataTypeName);
+      HRESULT ( *get_xml)(IXTLRuntime *This,BSTR *xmlString);
+      HRESULT ( *transformNode)(IXTLRuntime *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
+      HRESULT ( *selectNodes)(IXTLRuntime *This,BSTR queryString,IXMLDOMNodeList **resultList);
+      HRESULT ( *selectSingleNode)(IXTLRuntime *This,BSTR queryString,IXMLDOMNode **resultNode);
+      HRESULT ( *get_parsed)(IXTLRuntime *This,VARIANT_BOOL *isParsed);
+      HRESULT ( *get_namespaceURI)(IXTLRuntime *This,BSTR *namespaceURI);
+      HRESULT ( *get_prefix)(IXTLRuntime *This,BSTR *prefixString);
+      HRESULT ( *get_baseName)(IXTLRuntime *This,BSTR *nameString);
+      HRESULT ( *transformNodeToObject)(IXTLRuntime *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
+      HRESULT ( *uniqueID)(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pID);
+      HRESULT ( *depth)(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pDepth);
+      HRESULT ( *childNumber)(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pNumber);
+      HRESULT ( *ancestorChildNumber)(IXTLRuntime *This,BSTR bstrNodeName,IXMLDOMNode *pNode,LONG *pNumber);
+      HRESULT ( *absoluteChildNumber)(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pNumber);
+      HRESULT ( *formatIndex)(IXTLRuntime *This,LONG lIndex,BSTR bstrFormat,BSTR *pbstrFormattedString);
+      HRESULT ( *formatNumber)(IXTLRuntime *This,double dblNumber,BSTR bstrFormat,BSTR *pbstrFormattedString);
+      HRESULT ( *formatDate)(IXTLRuntime *This,VARIANT varDate,BSTR bstrFormat,VARIANT varDestLocale,BSTR *pbstrFormattedString);
+      HRESULT ( *formatTime)(IXTLRuntime *This,VARIANT varTime,BSTR bstrFormat,VARIANT varDestLocale,BSTR *pbstrFormattedString);
+   
+  } IXTLRuntimeVtbl;
+  struct IXTLRuntime {
+    struct IXTLRuntimeVtbl *lpVtbl;
   };
 # 2599 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXTLRuntime_uniqueID_Proxy(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pID);
@@ -74842,40 +77862,66 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID DIID_XMLDOMDocumentEvents;
+  extern const IID DIID_XMLDOMDocumentEvents;
 
-  struct XMLDOMDocumentEvents : public IDispatch {
+
+
+
+  typedef struct XMLDOMDocumentEventsVtbl {
+   
+      HRESULT ( *QueryInterface)(XMLDOMDocumentEvents *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(XMLDOMDocumentEvents *This);
+      ULONG ( *Release)(XMLDOMDocumentEvents *This);
+      HRESULT ( *GetTypeInfoCount)(XMLDOMDocumentEvents *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(XMLDOMDocumentEvents *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(XMLDOMDocumentEvents *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(XMLDOMDocumentEvents *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+   
+  } XMLDOMDocumentEventsVtbl;
+  struct XMLDOMDocumentEvents {
+    struct XMLDOMDocumentEventsVtbl *lpVtbl;
   };
 # 2652 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
-  extern "C" const CLSID CLSID_DOMDocument;
+  extern const CLSID CLSID_DOMDocument;
 
-  class DOMDocument;
 
-  extern "C" const CLSID CLSID_DOMFreeThreadedDocument;
 
-  class DOMFreeThreadedDocument;
+  extern const CLSID CLSID_DOMFreeThreadedDocument;
 
 
 
 
-  extern "C" const IID IID_IXMLHttpRequest;
 
-  struct IXMLHttpRequest : public IDispatch {
-  public:
-    virtual HRESULT open(BSTR bstrMethod,BSTR bstrUrl,VARIANT varAsync,VARIANT bstrUser,VARIANT bstrPassword) = 0;
-    virtual HRESULT setRequestHeader(BSTR bstrHeader,BSTR bstrValue) = 0;
-    virtual HRESULT getResponseHeader(BSTR bstrHeader,BSTR *pbstrValue) = 0;
-    virtual HRESULT getAllResponseHeaders(BSTR *pbstrHeaders) = 0;
-    virtual HRESULT send(VARIANT varBody) = 0;
-    virtual HRESULT abort(void) = 0;
-    virtual HRESULT get_status(LONG *plStatus) = 0;
-    virtual HRESULT get_statusText(BSTR *pbstrStatus) = 0;
-    virtual HRESULT get_responseXML(IDispatch **ppBody) = 0;
-    virtual HRESULT get_responseText(BSTR *pbstrBody) = 0;
-    virtual HRESULT get_responseBody(VARIANT *pvarBody) = 0;
-    virtual HRESULT get_responseStream(VARIANT *pvarBody) = 0;
-    virtual HRESULT get_readyState(LONG *plState) = 0;
-    virtual HRESULT put_onreadystatechange(IDispatch *pReadyStateSink) = 0;
+
+  extern const IID IID_IXMLHttpRequest;
+# 2683 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLHttpRequestVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLHttpRequest *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLHttpRequest *This);
+      ULONG ( *Release)(IXMLHttpRequest *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLHttpRequest *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLHttpRequest *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLHttpRequest *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLHttpRequest *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *open)(IXMLHttpRequest *This,BSTR bstrMethod,BSTR bstrUrl,VARIANT varAsync,VARIANT bstrUser,VARIANT bstrPassword);
+      HRESULT ( *setRequestHeader)(IXMLHttpRequest *This,BSTR bstrHeader,BSTR bstrValue);
+      HRESULT ( *getResponseHeader)(IXMLHttpRequest *This,BSTR bstrHeader,BSTR *pbstrValue);
+      HRESULT ( *getAllResponseHeaders)(IXMLHttpRequest *This,BSTR *pbstrHeaders);
+      HRESULT ( *send)(IXMLHttpRequest *This,VARIANT varBody);
+      HRESULT ( *abort)(IXMLHttpRequest *This);
+      HRESULT ( *get_status)(IXMLHttpRequest *This,LONG *plStatus);
+      HRESULT ( *get_statusText)(IXMLHttpRequest *This,BSTR *pbstrStatus);
+      HRESULT ( *get_responseXML)(IXMLHttpRequest *This,IDispatch **ppBody);
+      HRESULT ( *get_responseText)(IXMLHttpRequest *This,BSTR *pbstrBody);
+      HRESULT ( *get_responseBody)(IXMLHttpRequest *This,VARIANT *pvarBody);
+      HRESULT ( *get_responseStream)(IXMLHttpRequest *This,VARIANT *pvarBody);
+      HRESULT ( *get_readyState)(IXMLHttpRequest *This,LONG *plState);
+      HRESULT ( *put_onreadystatechange)(IXMLHttpRequest *This,IDispatch *pReadyStateSink);
+   
+  } IXMLHttpRequestVtbl;
+  struct IXMLHttpRequest {
+    struct IXMLHttpRequestVtbl *lpVtbl;
   };
 # 2735 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLHttpRequest_open_Proxy(IXMLHttpRequest *This,BSTR bstrMethod,BSTR bstrUrl,VARIANT varAsync,VARIANT bstrUser,VARIANT bstrPassword);
@@ -74908,22 +77954,33 @@ typedef class XMLDocument XMLDocument;
   void IXMLHttpRequest_put_onreadystatechange_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
 
 
-  extern "C" const CLSID CLSID_XMLHTTPRequest;
-
-  class XMLHTTPRequest;
+  extern const CLSID CLSID_XMLHTTPRequest;
 
 
 
 
-  extern "C" const IID IID_IXMLDSOControl;
 
-  struct IXMLDSOControl : public IDispatch {
-  public:
-    virtual HRESULT get_XMLDocument(IXMLDOMDocument **ppDoc) = 0;
-    virtual HRESULT put_XMLDocument(IXMLDOMDocument *ppDoc) = 0;
-    virtual HRESULT get_JavaDSOCompatible(WINBOOL *fJavaDSOCompatible) = 0;
-    virtual HRESULT put_JavaDSOCompatible(WINBOOL fJavaDSOCompatible) = 0;
-    virtual HRESULT get_readyState(LONG *state) = 0;
+
+  extern const IID IID_IXMLDSOControl;
+# 2783 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDSOControlVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDSOControl *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDSOControl *This);
+      ULONG ( *Release)(IXMLDSOControl *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDSOControl *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDSOControl *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDSOControl *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDSOControl *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_XMLDocument)(IXMLDSOControl *This,IXMLDOMDocument **ppDoc);
+      HRESULT ( *put_XMLDocument)(IXMLDSOControl *This,IXMLDOMDocument *ppDoc);
+      HRESULT ( *get_JavaDSOCompatible)(IXMLDSOControl *This,WINBOOL *fJavaDSOCompatible);
+      HRESULT ( *put_JavaDSOCompatible)(IXMLDSOControl *This,WINBOOL fJavaDSOCompatible);
+      HRESULT ( *get_readyState)(IXMLDSOControl *This,LONG *state);
+   
+  } IXMLDSOControlVtbl;
+  struct IXMLDSOControl {
+    struct IXMLDSOControlVtbl *lpVtbl;
   };
 # 2817 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDSOControl_get_XMLDocument_Proxy(IXMLDSOControl *This,IXMLDOMDocument **ppDoc);
@@ -74938,21 +77995,32 @@ typedef class XMLDocument XMLDocument;
   void IXMLDSOControl_get_readyState_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
 
 
-  extern "C" const CLSID CLSID_XMLDSOControl;
-
-  class XMLDSOControl;
+  extern const CLSID CLSID_XMLDSOControl;
 
 
 
 
-  extern "C" const IID IID_IXMLElementCollection;
 
-  struct IXMLElementCollection : public IDispatch {
-  public:
-    virtual HRESULT put_length(LONG v) = 0;
-    virtual HRESULT get_length(LONG *p) = 0;
-    virtual HRESULT get__newEnum(IUnknown **ppUnk) = 0;
-    virtual HRESULT item(VARIANT var1,VARIANT var2,IDispatch **ppDisp) = 0;
+
+  extern const IID IID_IXMLElementCollection;
+# 2846 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLElementCollectionVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLElementCollection *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLElementCollection *This);
+      ULONG ( *Release)(IXMLElementCollection *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLElementCollection *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLElementCollection *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLElementCollection *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLElementCollection *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *put_length)(IXMLElementCollection *This,LONG v);
+      HRESULT ( *get_length)(IXMLElementCollection *This,LONG *p);
+      HRESULT ( *get__newEnum)(IXMLElementCollection *This,IUnknown **ppUnk);
+      HRESULT ( *item)(IXMLElementCollection *This,VARIANT var1,VARIANT var2,IDispatch **ppDisp);
+   
+  } IXMLElementCollectionVtbl;
+  struct IXMLElementCollection {
+    struct IXMLElementCollectionVtbl *lpVtbl;
   };
 # 2878 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLElementCollection_put_length_Proxy(IXMLElementCollection *This,LONG v);
@@ -74967,24 +78035,35 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDocument;
-
-  struct IXMLDocument : public IDispatch {
-  public:
-    virtual HRESULT get_root(IXMLElement **p) = 0;
-    virtual HRESULT get_fileSize(BSTR *p) = 0;
-    virtual HRESULT get_fileModifiedDate(BSTR *p) = 0;
-    virtual HRESULT get_fileUpdatedDate(BSTR *p) = 0;
-    virtual HRESULT get_URL(BSTR *p) = 0;
-    virtual HRESULT put_URL(BSTR p) = 0;
-    virtual HRESULT get_mimeType(BSTR *p) = 0;
-    virtual HRESULT get_readyState(LONG *pl) = 0;
-    virtual HRESULT get_charset(BSTR *p) = 0;
-    virtual HRESULT put_charset(BSTR p) = 0;
-    virtual HRESULT get_version(BSTR *p) = 0;
-    virtual HRESULT get_doctype(BSTR *p) = 0;
-    virtual HRESULT get_dtdURL(BSTR *p) = 0;
-    virtual HRESULT createElement(VARIANT vType,VARIANT var1,IXMLElement **ppElem) = 0;
+  extern const IID IID_IXMLDocument;
+# 2910 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDocumentVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDocument *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDocument *This);
+      ULONG ( *Release)(IXMLDocument *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDocument *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDocument *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDocument *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDocument *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_root)(IXMLDocument *This,IXMLElement **p);
+      HRESULT ( *get_fileSize)(IXMLDocument *This,BSTR *p);
+      HRESULT ( *get_fileModifiedDate)(IXMLDocument *This,BSTR *p);
+      HRESULT ( *get_fileUpdatedDate)(IXMLDocument *This,BSTR *p);
+      HRESULT ( *get_URL)(IXMLDocument *This,BSTR *p);
+      HRESULT ( *put_URL)(IXMLDocument *This,BSTR p);
+      HRESULT ( *get_mimeType)(IXMLDocument *This,BSTR *p);
+      HRESULT ( *get_readyState)(IXMLDocument *This,LONG *pl);
+      HRESULT ( *get_charset)(IXMLDocument *This,BSTR *p);
+      HRESULT ( *put_charset)(IXMLDocument *This,BSTR p);
+      HRESULT ( *get_version)(IXMLDocument *This,BSTR *p);
+      HRESULT ( *get_doctype)(IXMLDocument *This,BSTR *p);
+      HRESULT ( *get_dtdURL)(IXMLDocument *This,BSTR *p);
+      HRESULT ( *createElement)(IXMLDocument *This,VARIANT vType,VARIANT var1,IXMLElement **ppElem);
+   
+  } IXMLDocumentVtbl;
+  struct IXMLDocument {
+    struct IXMLDocumentVtbl *lpVtbl;
   };
 # 2962 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDocument_get_root_Proxy(IXMLDocument *This,IXMLElement **p);
@@ -75019,26 +78098,37 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLDocument2;
-
-  struct IXMLDocument2 : public IDispatch {
-  public:
-    virtual HRESULT get_root(IXMLElement2 **p) = 0;
-    virtual HRESULT get_fileSize(BSTR *p) = 0;
-    virtual HRESULT get_fileModifiedDate(BSTR *p) = 0;
-    virtual HRESULT get_fileUpdatedDate(BSTR *p) = 0;
-    virtual HRESULT get_URL(BSTR *p) = 0;
-    virtual HRESULT put_URL(BSTR p) = 0;
-    virtual HRESULT get_mimeType(BSTR *p) = 0;
-    virtual HRESULT get_readyState(LONG *pl) = 0;
-    virtual HRESULT get_charset(BSTR *p) = 0;
-    virtual HRESULT put_charset(BSTR p) = 0;
-    virtual HRESULT get_version(BSTR *p) = 0;
-    virtual HRESULT get_doctype(BSTR *p) = 0;
-    virtual HRESULT get_dtdURL(BSTR *p) = 0;
-    virtual HRESULT createElement(VARIANT vType,VARIANT var1,IXMLElement2 **ppElem) = 0;
-    virtual HRESULT get_async(VARIANT_BOOL *pf) = 0;
-    virtual HRESULT put_async(VARIANT_BOOL f) = 0;
+  extern const IID IID_IXMLDocument2;
+# 3016 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLDocument2Vtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLDocument2 *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLDocument2 *This);
+      ULONG ( *Release)(IXMLDocument2 *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLDocument2 *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLDocument2 *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLDocument2 *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLDocument2 *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_root)(IXMLDocument2 *This,IXMLElement2 **p);
+      HRESULT ( *get_fileSize)(IXMLDocument2 *This,BSTR *p);
+      HRESULT ( *get_fileModifiedDate)(IXMLDocument2 *This,BSTR *p);
+      HRESULT ( *get_fileUpdatedDate)(IXMLDocument2 *This,BSTR *p);
+      HRESULT ( *get_URL)(IXMLDocument2 *This,BSTR *p);
+      HRESULT ( *put_URL)(IXMLDocument2 *This,BSTR p);
+      HRESULT ( *get_mimeType)(IXMLDocument2 *This,BSTR *p);
+      HRESULT ( *get_readyState)(IXMLDocument2 *This,LONG *pl);
+      HRESULT ( *get_charset)(IXMLDocument2 *This,BSTR *p);
+      HRESULT ( *put_charset)(IXMLDocument2 *This,BSTR p);
+      HRESULT ( *get_version)(IXMLDocument2 *This,BSTR *p);
+      HRESULT ( *get_doctype)(IXMLDocument2 *This,BSTR *p);
+      HRESULT ( *get_dtdURL)(IXMLDocument2 *This,BSTR *p);
+      HRESULT ( *createElement)(IXMLDocument2 *This,VARIANT vType,VARIANT var1,IXMLElement2 **ppElem);
+      HRESULT ( *get_async)(IXMLDocument2 *This,VARIANT_BOOL *pf);
+      HRESULT ( *put_async)(IXMLDocument2 *This,VARIANT_BOOL f);
+   
+  } IXMLDocument2Vtbl;
+  struct IXMLDocument2 {
+    struct IXMLDocument2Vtbl *lpVtbl;
   };
 # 3072 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLDocument2_get_root_Proxy(IXMLDocument2 *This,IXMLElement2 **p);
@@ -75077,22 +78167,33 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLElement;
-
-  struct IXMLElement : public IDispatch {
-  public:
-    virtual HRESULT get_tagName(BSTR *p) = 0;
-    virtual HRESULT put_tagName(BSTR p) = 0;
-    virtual HRESULT get_parent(IXMLElement **ppParent) = 0;
-    virtual HRESULT setAttribute(BSTR strPropertyName,VARIANT PropertyValue) = 0;
-    virtual HRESULT getAttribute(BSTR strPropertyName,VARIANT *PropertyValue) = 0;
-    virtual HRESULT removeAttribute(BSTR strPropertyName) = 0;
-    virtual HRESULT get_children(IXMLElementCollection **pp) = 0;
-    virtual HRESULT get_type(LONG *plType) = 0;
-    virtual HRESULT get_text(BSTR *p) = 0;
-    virtual HRESULT put_text(BSTR p) = 0;
-    virtual HRESULT addChild(IXMLElement *pChildElem,LONG lIndex,LONG lReserved) = 0;
-    virtual HRESULT removeChild(IXMLElement *pChildElem) = 0;
+  extern const IID IID_IXMLElement;
+# 3126 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLElementVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLElement *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLElement *This);
+      ULONG ( *Release)(IXMLElement *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLElement *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLElement *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLElement *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLElement *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_tagName)(IXMLElement *This,BSTR *p);
+      HRESULT ( *put_tagName)(IXMLElement *This,BSTR p);
+      HRESULT ( *get_parent)(IXMLElement *This,IXMLElement **ppParent);
+      HRESULT ( *setAttribute)(IXMLElement *This,BSTR strPropertyName,VARIANT PropertyValue);
+      HRESULT ( *getAttribute)(IXMLElement *This,BSTR strPropertyName,VARIANT *PropertyValue);
+      HRESULT ( *removeAttribute)(IXMLElement *This,BSTR strPropertyName);
+      HRESULT ( *get_children)(IXMLElement *This,IXMLElementCollection **pp);
+      HRESULT ( *get_type)(IXMLElement *This,LONG *plType);
+      HRESULT ( *get_text)(IXMLElement *This,BSTR *p);
+      HRESULT ( *put_text)(IXMLElement *This,BSTR p);
+      HRESULT ( *addChild)(IXMLElement *This,IXMLElement *pChildElem,LONG lIndex,LONG lReserved);
+      HRESULT ( *removeChild)(IXMLElement *This,IXMLElement *pChildElem);
+   
+  } IXMLElementVtbl;
+  struct IXMLElement {
+    struct IXMLElementVtbl *lpVtbl;
   };
 # 3174 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLElement_get_tagName_Proxy(IXMLElement *This,BSTR *p);
@@ -75123,23 +78224,34 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLElement2;
-
-  struct IXMLElement2 : public IDispatch {
-  public:
-    virtual HRESULT get_tagName(BSTR *p) = 0;
-    virtual HRESULT put_tagName(BSTR p) = 0;
-    virtual HRESULT get_parent(IXMLElement2 **ppParent) = 0;
-    virtual HRESULT setAttribute(BSTR strPropertyName,VARIANT PropertyValue) = 0;
-    virtual HRESULT getAttribute(BSTR strPropertyName,VARIANT *PropertyValue) = 0;
-    virtual HRESULT removeAttribute(BSTR strPropertyName) = 0;
-    virtual HRESULT get_children(IXMLElementCollection **pp) = 0;
-    virtual HRESULT get_type(LONG *plType) = 0;
-    virtual HRESULT get_text(BSTR *p) = 0;
-    virtual HRESULT put_text(BSTR p) = 0;
-    virtual HRESULT addChild(IXMLElement2 *pChildElem,LONG lIndex,LONG lReserved) = 0;
-    virtual HRESULT removeChild(IXMLElement2 *pChildElem) = 0;
-    virtual HRESULT get_attributes(IXMLElementCollection **pp) = 0;
+  extern const IID IID_IXMLElement2;
+# 3221 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+  typedef struct IXMLElement2Vtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLElement2 *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLElement2 *This);
+      ULONG ( *Release)(IXMLElement2 *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLElement2 *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLElement2 *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLElement2 *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLElement2 *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_tagName)(IXMLElement2 *This,BSTR *p);
+      HRESULT ( *put_tagName)(IXMLElement2 *This,BSTR p);
+      HRESULT ( *get_parent)(IXMLElement2 *This,IXMLElement2 **ppParent);
+      HRESULT ( *setAttribute)(IXMLElement2 *This,BSTR strPropertyName,VARIANT PropertyValue);
+      HRESULT ( *getAttribute)(IXMLElement2 *This,BSTR strPropertyName,VARIANT *PropertyValue);
+      HRESULT ( *removeAttribute)(IXMLElement2 *This,BSTR strPropertyName);
+      HRESULT ( *get_children)(IXMLElement2 *This,IXMLElementCollection **pp);
+      HRESULT ( *get_type)(IXMLElement2 *This,LONG *plType);
+      HRESULT ( *get_text)(IXMLElement2 *This,BSTR *p);
+      HRESULT ( *put_text)(IXMLElement2 *This,BSTR p);
+      HRESULT ( *addChild)(IXMLElement2 *This,IXMLElement2 *pChildElem,LONG lIndex,LONG lReserved);
+      HRESULT ( *removeChild)(IXMLElement2 *This,IXMLElement2 *pChildElem);
+      HRESULT ( *get_attributes)(IXMLElement2 *This,IXMLElementCollection **pp);
+   
+  } IXMLElement2Vtbl;
+  struct IXMLElement2 {
+    struct IXMLElement2Vtbl *lpVtbl;
   };
 # 3271 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLElement2_get_tagName_Proxy(IXMLElement2 *This,BSTR *p);
@@ -75172,12 +78284,29 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLAttribute;
+  extern const IID IID_IXMLAttribute;
 
-  struct IXMLAttribute : public IDispatch {
-  public:
-    virtual HRESULT get_name(BSTR *n) = 0;
-    virtual HRESULT get_value(BSTR *v) = 0;
+
+
+
+
+
+
+  typedef struct IXMLAttributeVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLAttribute *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLAttribute *This);
+      ULONG ( *Release)(IXMLAttribute *This);
+      HRESULT ( *GetTypeInfoCount)(IXMLAttribute *This,UINT *pctinfo);
+      HRESULT ( *GetTypeInfo)(IXMLAttribute *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
+      HRESULT ( *GetIDsOfNames)(IXMLAttribute *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
+      HRESULT ( *Invoke)(IXMLAttribute *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
+      HRESULT ( *get_name)(IXMLAttribute *This,BSTR *n);
+      HRESULT ( *get_value)(IXMLAttribute *This,BSTR *v);
+   
+  } IXMLAttributeVtbl;
+  struct IXMLAttribute {
+    struct IXMLAttributeVtbl *lpVtbl;
   };
 # 3337 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
   HRESULT IXMLAttribute_get_name_Proxy(IXMLAttribute *This,BSTR *n);
@@ -75188,138 +78317,166 @@ typedef class XMLDocument XMLDocument;
 
 
 
-  extern "C" const IID IID_IXMLError;
+  extern const IID IID_IXMLError;
 
-  struct IXMLError : public IUnknown {
-  public:
-    virtual HRESULT GetErrorInfo(XML_ERROR *pErrorReturn) = 0;
+
+
+
+
+
+  typedef struct IXMLErrorVtbl {
+   
+      HRESULT ( *QueryInterface)(IXMLError *This,const IID *const riid,void **ppvObject);
+      ULONG ( *AddRef)(IXMLError *This);
+      ULONG ( *Release)(IXMLError *This);
+      HRESULT ( *GetErrorInfo)(IXMLError *This,XML_ERROR *pErrorReturn);
+   
+  } IXMLErrorVtbl;
+  struct IXMLError {
+    struct IXMLErrorVtbl *lpVtbl;
   };
-# 3370 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/msxml.h" 3
+
+
+
+
+
+
+
   HRESULT IXMLError_GetErrorInfo_Proxy(IXMLError *This,XML_ERROR *pErrorReturn);
   void IXMLError_GetErrorInfo_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
 
 
-  extern "C" const CLSID CLSID_XMLDocument;
+  extern const CLSID CLSID_XMLDocument;
 
-  class XMLDocument;
+
 
 
        
-
-
-
-
-
-
-}
 # 291 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 2 3
-
-
-extern "C" {
 # 333 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef struct IBindStatusCallbackMsg IBindStatusCallbackMsg;
 # 382 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" const IID CLSID_SBS_StdURLMoniker;
-extern "C" const IID CLSID_SBS_HttpProtocol;
-extern "C" const IID CLSID_SBS_FtpProtocol;
-extern "C" const IID CLSID_SBS_GopherProtocol;
-extern "C" const IID CLSID_SBS_HttpSProtocol;
-extern "C" const IID CLSID_SBS_FileProtocol;
-extern "C" const IID CLSID_SBS_MkProtocol;
-extern "C" const IID CLSID_SBS_UrlMkBindCtx;
-extern "C" const IID CLSID_SBS_SoftDistExt;
-extern "C" const IID CLSID_SBS_CdlProtocol;
-extern "C" const IID CLSID_SBS_ClassInstallFilter;
-extern "C" const IID CLSID_SBS_InternetSecurityManager;
-extern "C" const IID CLSID_SBS_InternetZoneManager;
+extern const IID CLSID_SBS_StdURLMoniker;
+extern const IID CLSID_SBS_HttpProtocol;
+extern const IID CLSID_SBS_FtpProtocol;
+extern const IID CLSID_SBS_GopherProtocol;
+extern const IID CLSID_SBS_HttpSProtocol;
+extern const IID CLSID_SBS_FileProtocol;
+extern const IID CLSID_SBS_MkProtocol;
+extern const IID CLSID_SBS_UrlMkBindCtx;
+extern const IID CLSID_SBS_SoftDistExt;
+extern const IID CLSID_SBS_CdlProtocol;
+extern const IID CLSID_SBS_ClassInstallFilter;
+extern const IID CLSID_SBS_InternetSecurityManager;
+extern const IID CLSID_SBS_InternetZoneManager;
 # 403 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" const IID IID_IAsyncMoniker;
-extern "C" const IID CLSID_StdURLMoniker;
-extern "C" const IID CLSID_HttpProtocol;
-extern "C" const IID CLSID_FtpProtocol;
-extern "C" const IID CLSID_GopherProtocol;
-extern "C" const IID CLSID_HttpSProtocol;
-extern "C" const IID CLSID_FileProtocol;
-extern "C" const IID CLSID_MkProtocol;
-extern "C" const IID CLSID_StdURLProtocol;
-extern "C" const IID CLSID_UrlMkBindCtx;
-extern "C" const IID CLSID_CdlProtocol;
-extern "C" const IID CLSID_ClassInstallFilter;
-extern "C" const IID IID_IAsyncBindCtx;
+extern const IID IID_IAsyncMoniker;
+extern const IID CLSID_StdURLMoniker;
+extern const IID CLSID_HttpProtocol;
+extern const IID CLSID_FtpProtocol;
+extern const IID CLSID_GopherProtocol;
+extern const IID CLSID_HttpSProtocol;
+extern const IID CLSID_FileProtocol;
+extern const IID CLSID_MkProtocol;
+extern const IID CLSID_StdURLProtocol;
+extern const IID CLSID_UrlMkBindCtx;
+extern const IID CLSID_CdlProtocol;
+extern const IID CLSID_ClassInstallFilter;
+extern const IID IID_IAsyncBindCtx;
 # 425 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" HRESULT CreateURLMoniker(LPMONIKER pMkCtx, LPCWSTR szURL, LPMONIKER *ppmk);
-extern "C" HRESULT CreateURLMonikerEx(LPMONIKER pMkCtx, LPCWSTR szURL, LPMONIKER *ppmk, DWORD dwFlags);
-extern "C" HRESULT GetClassURL(LPCWSTR szURL, CLSID *pClsID);
-extern "C" HRESULT CreateAsyncBindCtx(DWORD reserved, IBindStatusCallback *pBSCb, IEnumFORMATETC *pEFetc, IBindCtx **ppBC);
+extern HRESULT CreateURLMoniker(LPMONIKER pMkCtx, LPCWSTR szURL, LPMONIKER *ppmk);
+extern HRESULT CreateURLMonikerEx(LPMONIKER pMkCtx, LPCWSTR szURL, LPMONIKER *ppmk, DWORD dwFlags);
+extern HRESULT GetClassURL(LPCWSTR szURL, CLSID *pClsID);
+extern HRESULT CreateAsyncBindCtx(DWORD reserved, IBindStatusCallback *pBSCb, IEnumFORMATETC *pEFetc, IBindCtx **ppBC);
 
 
 
-extern "C" HRESULT CreateAsyncBindCtxEx(IBindCtx *pbc, DWORD dwOptions, IBindStatusCallback *pBSCb, IEnumFORMATETC *pEnum, IBindCtx **ppBC, DWORD reserved);
-extern "C" HRESULT MkParseDisplayNameEx(IBindCtx *pbc, LPCWSTR szDisplayName, ULONG *pchEaten, LPMONIKER *ppmk);
-extern "C" HRESULT RegisterBindStatusCallback(LPBC pBC, IBindStatusCallback *pBSCb, IBindStatusCallback **ppBSCBPrev, DWORD dwReserved);
-extern "C" HRESULT RevokeBindStatusCallback(LPBC pBC, IBindStatusCallback *pBSCb);
-extern "C" HRESULT GetClassFileOrMime(LPBC pBC, LPCWSTR szFilename, LPVOID pBuffer, DWORD cbSize, LPCWSTR szMime, DWORD dwReserved, CLSID *pclsid);
-extern "C" HRESULT IsValidURL(LPBC pBC, LPCWSTR szURL, DWORD dwReserved);
-extern "C" HRESULT CoGetClassObjectFromURL(const IID & rCLASSID, LPCWSTR szCODE, DWORD dwFileVersionMS, DWORD dwFileVersionLS, LPCWSTR szTYPE, LPBINDCTX pBindCtx, DWORD dwClsContext, LPVOID pvReserved, const IID & riid, LPVOID *ppv);
-extern "C" HRESULT IEInstallScope(LPDWORD pdwScope);
-extern "C" HRESULT FaultInIEFeature(HWND hWnd, uCLSSPEC *pClassSpec, QUERYCONTEXT *pQuery, DWORD dwFlags);
-extern "C" HRESULT GetComponentIDFromCLSSPEC(uCLSSPEC *pClassspec, LPSTR *ppszComponentID);
+extern HRESULT CreateAsyncBindCtxEx(IBindCtx *pbc, DWORD dwOptions, IBindStatusCallback *pBSCb, IEnumFORMATETC *pEnum, IBindCtx **ppBC, DWORD reserved);
+extern HRESULT MkParseDisplayNameEx(IBindCtx *pbc, LPCWSTR szDisplayName, ULONG *pchEaten, LPMONIKER *ppmk);
+extern HRESULT RegisterBindStatusCallback(LPBC pBC, IBindStatusCallback *pBSCb, IBindStatusCallback **ppBSCBPrev, DWORD dwReserved);
+extern HRESULT RevokeBindStatusCallback(LPBC pBC, IBindStatusCallback *pBSCb);
+extern HRESULT GetClassFileOrMime(LPBC pBC, LPCWSTR szFilename, LPVOID pBuffer, DWORD cbSize, LPCWSTR szMime, DWORD dwReserved, CLSID *pclsid);
+extern HRESULT IsValidURL(LPBC pBC, LPCWSTR szURL, DWORD dwReserved);
+extern HRESULT CoGetClassObjectFromURL(const IID *const rCLASSID, LPCWSTR szCODE, DWORD dwFileVersionMS, DWORD dwFileVersionLS, LPCWSTR szTYPE, LPBINDCTX pBindCtx, DWORD dwClsContext, LPVOID pvReserved, const IID *const riid, LPVOID *ppv);
+extern HRESULT IEInstallScope(LPDWORD pdwScope);
+extern HRESULT FaultInIEFeature(HWND hWnd, uCLSSPEC *pClassSpec, QUERYCONTEXT *pQuery, DWORD dwFlags);
+extern HRESULT GetComponentIDFromCLSSPEC(uCLSSPEC *pClassspec, LPSTR *ppszComponentID);
 
 
 
 
 
-extern "C" HRESULT IsAsyncMoniker(IMoniker *pmk);
-extern "C" HRESULT CreateURLBinding(LPCWSTR lpszUrl, IBindCtx *pbc, IBinding **ppBdg);
-extern "C" HRESULT RegisterMediaTypes(UINT ctypes, const LPCSTR *rgszTypes, CLIPFORMAT *rgcfTypes);
-extern "C" HRESULT FindMediaType(LPCSTR rgszTypes, CLIPFORMAT *rgcfTypes);
-extern "C" HRESULT CreateFormatEnumerator(UINT cfmtetc, FORMATETC *rgfmtetc, IEnumFORMATETC **ppenumfmtetc);
-extern "C" HRESULT RegisterFormatEnumerator(LPBC pBC, IEnumFORMATETC *pEFetc, DWORD reserved);
-extern "C" HRESULT RevokeFormatEnumerator(LPBC pBC, IEnumFORMATETC *pEFetc);
-extern "C" HRESULT RegisterMediaTypeClass(LPBC pBC,UINT ctypes, const LPCSTR *rgszTypes, CLSID *rgclsID, DWORD reserved);
-extern "C" HRESULT FindMediaTypeClass(LPBC pBC, LPCSTR szType, CLSID *pclsID, DWORD reserved);
-extern "C" HRESULT UrlMkSetSessionOption(DWORD dwOption, LPVOID pBuffer, DWORD dwBufferLength, DWORD dwReserved);
-extern "C" HRESULT UrlMkGetSessionOption(DWORD dwOption, LPVOID pBuffer, DWORD dwBufferLength, DWORD *pdwBufferLengthOut, DWORD dwReserved);
-extern "C" HRESULT FindMimeFromData(LPBC pBC, LPCWSTR pwzUrl, LPVOID pBuffer, DWORD cbSize, LPCWSTR pwzMimeProposed, DWORD dwMimeFlags, LPWSTR *ppwzMimeOut, DWORD dwReserved);
+extern HRESULT IsAsyncMoniker(IMoniker *pmk);
+extern HRESULT CreateURLBinding(LPCWSTR lpszUrl, IBindCtx *pbc, IBinding **ppBdg);
+extern HRESULT RegisterMediaTypes(UINT ctypes, const LPCSTR *rgszTypes, CLIPFORMAT *rgcfTypes);
+extern HRESULT FindMediaType(LPCSTR rgszTypes, CLIPFORMAT *rgcfTypes);
+extern HRESULT CreateFormatEnumerator(UINT cfmtetc, FORMATETC *rgfmtetc, IEnumFORMATETC **ppenumfmtetc);
+extern HRESULT RegisterFormatEnumerator(LPBC pBC, IEnumFORMATETC *pEFetc, DWORD reserved);
+extern HRESULT RevokeFormatEnumerator(LPBC pBC, IEnumFORMATETC *pEFetc);
+extern HRESULT RegisterMediaTypeClass(LPBC pBC,UINT ctypes, const LPCSTR *rgszTypes, CLSID *rgclsID, DWORD reserved);
+extern HRESULT FindMediaTypeClass(LPBC pBC, LPCSTR szType, CLSID *pclsID, DWORD reserved);
+extern HRESULT UrlMkSetSessionOption(DWORD dwOption, LPVOID pBuffer, DWORD dwBufferLength, DWORD dwReserved);
+extern HRESULT UrlMkGetSessionOption(DWORD dwOption, LPVOID pBuffer, DWORD dwBufferLength, DWORD *pdwBufferLengthOut, DWORD dwReserved);
+extern HRESULT FindMimeFromData(LPBC pBC, LPCWSTR pwzUrl, LPVOID pBuffer, DWORD cbSize, LPCWSTR pwzMimeProposed, DWORD dwMimeFlags, LPWSTR *ppwzMimeOut, DWORD dwReserved);
 # 472 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" HRESULT ObtainUserAgentString(DWORD dwOption, LPSTR pszUAOut, DWORD *cbSize);
-extern "C" HRESULT CompareSecurityIds(BYTE *pbSecurityId1, DWORD dwLen1, BYTE *pbSecurityId2, DWORD dwLen2, DWORD dwReserved);
-extern "C" HRESULT CompatFlagsFromClsid(CLSID *pclsid, LPDWORD pdwCompatFlags, LPDWORD pdwMiscStatusFlags);
+extern HRESULT ObtainUserAgentString(DWORD dwOption, LPSTR pszUAOut, DWORD *cbSize);
+extern HRESULT CompareSecurityIds(BYTE *pbSecurityId1, DWORD dwLen1, BYTE *pbSecurityId2, DWORD dwLen2, DWORD dwReserved);
+extern HRESULT CompatFlagsFromClsid(CLSID *pclsid, LPDWORD pdwCompatFlags, LPDWORD pdwMiscStatusFlags);
 # 590 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IPersistMoniker *LPPERSISTMONIKER;
 
-extern "C" const GUID IID_IPersistMoniker;
+extern const GUID IID_IPersistMoniker;
+# 626 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IPersistMonikerVtbl {
+   
 
-struct
-IPersistMoniker : public IUnknown
-{
-    virtual HRESULT GetClassID(
-        CLSID *pClassID) = 0;
 
-    virtual HRESULT IsDirty(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IPersistMoniker* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT Load(
+    ULONG ( *AddRef)(
+        IPersistMoniker* This);
+
+    ULONG ( *Release)(
+        IPersistMoniker* This);
+
+
+    HRESULT ( *GetClassID)(
+        IPersistMoniker* This,
+        CLSID *pClassID);
+
+    HRESULT ( *IsDirty)(
+        IPersistMoniker* This);
+
+    HRESULT ( *Load)(
+        IPersistMoniker* This,
         WINBOOL fFullyAvailable,
         IMoniker *pimkName,
         LPBC pibc,
-        DWORD grfMode) = 0;
+        DWORD grfMode);
 
-    virtual HRESULT Save(
+    HRESULT ( *Save)(
+        IPersistMoniker* This,
         IMoniker *pimkName,
         LPBC pbc,
-        WINBOOL fRemember) = 0;
+        WINBOOL fRemember);
 
-    virtual HRESULT SaveCompleted(
+    HRESULT ( *SaveCompleted)(
+        IPersistMoniker* This,
         IMoniker *pimkName,
-        LPBC pibc) = 0;
+        LPBC pibc);
 
-    virtual HRESULT GetCurMoniker(
-        IMoniker **ppimkName) = 0;
+    HRESULT ( *GetCurMoniker)(
+        IPersistMoniker* This,
+        IMoniker **ppimkName);
 
+   
+} IPersistMonikerVtbl;
+struct IPersistMoniker {
+    IPersistMonikerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPersistMoniker>() { static const IID __uuid_inst = {0x79eac9c9,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPersistMoniker*>() { return __mingw_uuidof<IPersistMoniker>(); } }
 # 725 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IPersistMoniker_GetClassID_Proxy(
     IPersistMoniker* This,
@@ -75385,18 +78542,34 @@ typedef enum __WIDL_urlmon_generated_name_00000002 {
     POPUPLEVELPROP = 0x4
 } MONIKERPROPERTY;
 
-extern "C" const GUID IID_IMonikerProp;
+extern const GUID IID_IMonikerProp;
+# 815 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IMonikerPropVtbl {
+   
 
-struct
-IMonikerProp : public IUnknown
-{
-    virtual HRESULT PutProperty(
+
+    HRESULT ( *QueryInterface)(
+        IMonikerProp* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IMonikerProp* This);
+
+    ULONG ( *Release)(
+        IMonikerProp* This);
+
+
+    HRESULT ( *PutProperty)(
+        IMonikerProp* This,
         MONIKERPROPERTY mkp,
-        LPCWSTR val) = 0;
+        LPCWSTR val);
 
+   
+} IMonikerPropVtbl;
+struct IMonikerProp {
+    IMonikerPropVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IMonikerProp>() { static const IID __uuid_inst = {0xa5ca5f7f,0x1847,0x4d87, {0x9c,0x5b,0x91,0x85,0x09,0xf7,0x51,0x1d}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IMonikerProp*>() { return __mingw_uuidof<IMonikerProp>(); } }
 # 870 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IMonikerProp_PutProperty_Proxy(
     IMonikerProp* This,
@@ -75410,19 +78583,35 @@ void IMonikerProp_PutProperty_Stub(
 # 893 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IBindProtocol *LPBINDPROTOCOL;
 
-extern "C" const GUID IID_IBindProtocol;
+extern const GUID IID_IBindProtocol;
+# 910 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IBindProtocolVtbl {
+   
 
-struct
-IBindProtocol : public IUnknown
-{
-    virtual HRESULT CreateBinding(
+
+    HRESULT ( *QueryInterface)(
+        IBindProtocol* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IBindProtocol* This);
+
+    ULONG ( *Release)(
+        IBindProtocol* This);
+
+
+    HRESULT ( *CreateBinding)(
+        IBindProtocol* This,
         LPCWSTR szUrl,
         IBindCtx *pbc,
-        IBinding **ppb) = 0;
+        IBinding **ppb);
 
+   
+} IBindProtocolVtbl;
+struct IBindProtocol {
+    IBindProtocolVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IBindProtocol>() { static const IID __uuid_inst = {0x79eac9cd,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IBindProtocol*>() { return __mingw_uuidof<IBindProtocol>(); } }
 # 966 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IBindProtocol_CreateBinding_Proxy(
     IBindProtocol* This,
@@ -75437,35 +78626,53 @@ void IBindProtocol_CreateBinding_Stub(
 # 990 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IBinding *LPBINDING;
 
-extern "C" const GUID IID_IBinding;
+extern const GUID IID_IBinding;
+# 1023 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IBindingVtbl {
+   
 
-struct
-IBinding : public IUnknown
-{
-    virtual HRESULT Abort(
-        ) = 0;
 
-    virtual HRESULT Suspend(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IBinding* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT Resume(
-        ) = 0;
+    ULONG ( *AddRef)(
+        IBinding* This);
 
-    virtual HRESULT SetPriority(
-        LONG nPriority) = 0;
+    ULONG ( *Release)(
+        IBinding* This);
 
-    virtual HRESULT GetPriority(
-        LONG *pnPriority) = 0;
 
-    virtual HRESULT GetBindResult(
+    HRESULT ( *Abort)(
+        IBinding* This);
+
+    HRESULT ( *Suspend)(
+        IBinding* This);
+
+    HRESULT ( *Resume)(
+        IBinding* This);
+
+    HRESULT ( *SetPriority)(
+        IBinding* This,
+        LONG nPriority);
+
+    HRESULT ( *GetPriority)(
+        IBinding* This,
+        LONG *pnPriority);
+
+    HRESULT ( *GetBindResult)(
+        IBinding* This,
         CLSID *pclsidProtocol,
         DWORD *pdwResult,
         LPOLESTR *pszResult,
-        DWORD *pdwReserved) = 0;
+        DWORD *pdwReserved);
 
+   
+} IBindingVtbl;
+struct IBinding {
+    IBindingVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IBinding>() { static const IID __uuid_inst = {0x79eac9c0,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IBinding*>() { return __mingw_uuidof<IBinding>(); } }
 # 1117 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IBinding_Abort_Proxy(
     IBinding* This);
@@ -75732,48 +78939,71 @@ typedef enum tagBINDSTATUS {
     BINDSTATUS_LAST_PRIVATE = BINDSTATUS_RESERVED_9
 } BINDSTATUS;
 
-extern "C" const GUID IID_IBindStatusCallback;
+extern const GUID IID_IBindStatusCallback;
+# 1441 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IBindStatusCallbackVtbl {
+   
 
-struct
-IBindStatusCallback : public IUnknown
-{
-    virtual HRESULT OnStartBinding(
+
+    HRESULT ( *QueryInterface)(
+        IBindStatusCallback* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IBindStatusCallback* This);
+
+    ULONG ( *Release)(
+        IBindStatusCallback* This);
+
+
+    HRESULT ( *OnStartBinding)(
+        IBindStatusCallback* This,
         DWORD dwReserved,
-        IBinding *pib) = 0;
+        IBinding *pib);
 
-    virtual HRESULT GetPriority(
-        LONG *pnPriority) = 0;
+    HRESULT ( *GetPriority)(
+        IBindStatusCallback* This,
+        LONG *pnPriority);
 
-    virtual HRESULT OnLowResource(
-        DWORD reserved) = 0;
+    HRESULT ( *OnLowResource)(
+        IBindStatusCallback* This,
+        DWORD reserved);
 
-    virtual HRESULT OnProgress(
+    HRESULT ( *OnProgress)(
+        IBindStatusCallback* This,
         ULONG ulProgress,
         ULONG ulProgressMax,
         ULONG ulStatusCode,
-        LPCWSTR szStatusText) = 0;
+        LPCWSTR szStatusText);
 
-    virtual HRESULT OnStopBinding(
+    HRESULT ( *OnStopBinding)(
+        IBindStatusCallback* This,
         HRESULT hresult,
-        LPCWSTR szError) = 0;
+        LPCWSTR szError);
 
-    virtual HRESULT GetBindInfo(
+    HRESULT ( *GetBindInfo)(
+        IBindStatusCallback* This,
         DWORD *grfBINDF,
-        BINDINFO *pbindinfo) = 0;
+        BINDINFO *pbindinfo);
 
-    virtual HRESULT OnDataAvailable(
+    HRESULT ( *OnDataAvailable)(
+        IBindStatusCallback* This,
         DWORD grfBSCF,
         DWORD dwSize,
         FORMATETC *pformatetc,
-        STGMEDIUM *pstgmed) = 0;
+        STGMEDIUM *pstgmed);
 
-    virtual HRESULT OnObjectAvailable(
-        const IID & riid,
-        IUnknown *punk) = 0;
+    HRESULT ( *OnObjectAvailable)(
+        IBindStatusCallback* This,
+        const IID *const riid,
+        IUnknown *punk);
 
+   
+} IBindStatusCallbackVtbl;
+struct IBindStatusCallback {
+    IBindStatusCallbackVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IBindStatusCallback>() { static const IID __uuid_inst = {0x79eac9c1,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IBindStatusCallback*>() { return __mingw_uuidof<IBindStatusCallback>(); } }
 # 1561 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IBindStatusCallback_OnStartBinding_Proxy(
     IBindStatusCallback* This,
@@ -75843,7 +79073,7 @@ void IBindStatusCallback_RemoteOnDataAvailable_Stub(
     DWORD* pdwStubPhase);
 HRESULT IBindStatusCallback_OnObjectAvailable_Proxy(
     IBindStatusCallback* This,
-    const IID & riid,
+    const IID *const riid,
     IUnknown *punk);
 void IBindStatusCallback_OnObjectAvailable_Stub(
     IRpcStubBuffer* This,
@@ -75900,20 +79130,79 @@ typedef enum __WIDL_urlmon_generated_name_00000009 {
     BINDF2_RESERVED_1 = 0x80000000
 } BINDF2;
 
-extern "C" const GUID IID_IBindStatusCallbackEx;
+extern const GUID IID_IBindStatusCallbackEx;
+# 1717 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IBindStatusCallbackExVtbl {
+   
 
-struct
-IBindStatusCallbackEx : public IBindStatusCallback
-{
-    virtual HRESULT GetBindInfoEx(
+
+    HRESULT ( *QueryInterface)(
+        IBindStatusCallbackEx* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IBindStatusCallbackEx* This);
+
+    ULONG ( *Release)(
+        IBindStatusCallbackEx* This);
+
+
+    HRESULT ( *OnStartBinding)(
+        IBindStatusCallbackEx* This,
+        DWORD dwReserved,
+        IBinding *pib);
+
+    HRESULT ( *GetPriority)(
+        IBindStatusCallbackEx* This,
+        LONG *pnPriority);
+
+    HRESULT ( *OnLowResource)(
+        IBindStatusCallbackEx* This,
+        DWORD reserved);
+
+    HRESULT ( *OnProgress)(
+        IBindStatusCallbackEx* This,
+        ULONG ulProgress,
+        ULONG ulProgressMax,
+        ULONG ulStatusCode,
+        LPCWSTR szStatusText);
+
+    HRESULT ( *OnStopBinding)(
+        IBindStatusCallbackEx* This,
+        HRESULT hresult,
+        LPCWSTR szError);
+
+    HRESULT ( *GetBindInfo)(
+        IBindStatusCallbackEx* This,
+        DWORD *grfBINDF,
+        BINDINFO *pbindinfo);
+
+    HRESULT ( *OnDataAvailable)(
+        IBindStatusCallbackEx* This,
+        DWORD grfBSCF,
+        DWORD dwSize,
+        FORMATETC *pformatetc,
+        STGMEDIUM *pstgmed);
+
+    HRESULT ( *OnObjectAvailable)(
+        IBindStatusCallbackEx* This,
+        const IID *const riid,
+        IUnknown *punk);
+
+
+    HRESULT ( *GetBindInfoEx)(
+        IBindStatusCallbackEx* This,
         DWORD *grfBINDF,
         BINDINFO *pbindinfo,
         DWORD *grfBINDF2,
-        DWORD *pdwReserved) = 0;
+        DWORD *pdwReserved);
 
+   
+} IBindStatusCallbackExVtbl;
+struct IBindStatusCallbackEx {
+    IBindStatusCallbackExVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IBindStatusCallbackEx>() { static const IID __uuid_inst = {0xaaa74ef9,0x8ee7,0x4659, {0x88,0xd9,0xf8,0xc5,0x04,0xda,0x73,0xcc}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IBindStatusCallbackEx*>() { return __mingw_uuidof<IBindStatusCallbackEx>(); } }
 # 1851 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IBindStatusCallbackEx_RemoteGetBindInfoEx_Proxy(
     IBindStatusCallbackEx* This,
@@ -75943,19 +79232,35 @@ HRESULT IBindStatusCallbackEx_GetBindInfoEx_Stub(
 # 1890 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IAuthenticate *LPAUTHENTICATION;
 
-extern "C" const GUID IID_IAuthenticate;
+extern const GUID IID_IAuthenticate;
+# 1907 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IAuthenticateVtbl {
+   
 
-struct
-IAuthenticate : public IUnknown
-{
-    virtual HRESULT Authenticate(
+
+    HRESULT ( *QueryInterface)(
+        IAuthenticate* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IAuthenticate* This);
+
+    ULONG ( *Release)(
+        IAuthenticate* This);
+
+
+    HRESULT ( *Authenticate)(
+        IAuthenticate* This,
         HWND *phwnd,
         LPWSTR *pszUsername,
-        LPWSTR *pszPassword) = 0;
+        LPWSTR *pszPassword);
 
+   
+} IAuthenticateVtbl;
+struct IAuthenticate {
+    IAuthenticateVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAuthenticate>() { static const IID __uuid_inst = {0x79eac9d0,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAuthenticate*>() { return __mingw_uuidof<IAuthenticate>(); } }
 # 1963 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IAuthenticate_Authenticate_Proxy(
     IAuthenticate* This,
@@ -75981,20 +79286,43 @@ typedef struct _tagAUTHENTICATEINFO {
     DWORD dwReserved;
 } AUTHENTICATEINFO;
 
-extern "C" const GUID IID_IAuthenticateEx;
+extern const GUID IID_IAuthenticateEx;
+# 2016 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IAuthenticateExVtbl {
+   
 
-struct
-IAuthenticateEx : public IAuthenticate
-{
-    virtual HRESULT AuthenticateEx(
+
+    HRESULT ( *QueryInterface)(
+        IAuthenticateEx* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IAuthenticateEx* This);
+
+    ULONG ( *Release)(
+        IAuthenticateEx* This);
+
+
+    HRESULT ( *Authenticate)(
+        IAuthenticateEx* This,
+        HWND *phwnd,
+        LPWSTR *pszUsername,
+        LPWSTR *pszPassword);
+
+
+    HRESULT ( *AuthenticateEx)(
+        IAuthenticateEx* This,
         HWND *phwnd,
         LPWSTR *pszUsername,
         LPWSTR *pszPassword,
-        AUTHENTICATEINFO *pauthinfo) = 0;
+        AUTHENTICATEINFO *pauthinfo);
 
+   
+} IAuthenticateExVtbl;
+struct IAuthenticateEx {
+    IAuthenticateExVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IAuthenticateEx>() { static const IID __uuid_inst = {0x2ad1edaf,0xd83d,0x48b5, {0x9a,0xdf,0x03,0xdb,0xe1,0x9f,0x53,0xbd}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IAuthenticateEx*>() { return __mingw_uuidof<IAuthenticateEx>(); } }
 # 2086 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IAuthenticateEx_AuthenticateEx_Proxy(
     IAuthenticateEx* This,
@@ -76010,26 +79338,43 @@ void IAuthenticateEx_AuthenticateEx_Stub(
 # 2111 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IHttpNegotiate *LPHTTPNEGOTIATE;
 
-extern "C" const GUID IID_IHttpNegotiate;
+extern const GUID IID_IHttpNegotiate;
+# 2135 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IHttpNegotiateVtbl {
+   
 
-struct
-IHttpNegotiate : public IUnknown
-{
-    virtual HRESULT BeginningTransaction(
+
+    HRESULT ( *QueryInterface)(
+        IHttpNegotiate* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IHttpNegotiate* This);
+
+    ULONG ( *Release)(
+        IHttpNegotiate* This);
+
+
+    HRESULT ( *BeginningTransaction)(
+        IHttpNegotiate* This,
         LPCWSTR szURL,
         LPCWSTR szHeaders,
         DWORD dwReserved,
-        LPWSTR *pszAdditionalHeaders) = 0;
+        LPWSTR *pszAdditionalHeaders);
 
-    virtual HRESULT OnResponse(
+    HRESULT ( *OnResponse)(
+        IHttpNegotiate* This,
         DWORD dwResponseCode,
         LPCWSTR szResponseHeaders,
         LPCWSTR szRequestHeaders,
-        LPWSTR *pszAdditionalRequestHeaders) = 0;
+        LPWSTR *pszAdditionalRequestHeaders);
 
+   
+} IHttpNegotiateVtbl;
+struct IHttpNegotiate {
+    IHttpNegotiateVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IHttpNegotiate>() { static const IID __uuid_inst = {0x79eac9d2,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IHttpNegotiate*>() { return __mingw_uuidof<IHttpNegotiate>(); } }
 # 2203 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IHttpNegotiate_BeginningTransaction_Proxy(
     IHttpNegotiate* This,
@@ -76056,19 +79401,50 @@ void IHttpNegotiate_OnResponse_Stub(
 # 2239 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IHttpNegotiate2 *LPHTTPNEGOTIATE2;
 
-extern "C" const GUID IID_IHttpNegotiate2;
+extern const GUID IID_IHttpNegotiate2;
+# 2256 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IHttpNegotiate2Vtbl {
+   
 
-struct
-IHttpNegotiate2 : public IHttpNegotiate
-{
-    virtual HRESULT GetRootSecurityId(
+
+    HRESULT ( *QueryInterface)(
+        IHttpNegotiate2* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IHttpNegotiate2* This);
+
+    ULONG ( *Release)(
+        IHttpNegotiate2* This);
+
+
+    HRESULT ( *BeginningTransaction)(
+        IHttpNegotiate2* This,
+        LPCWSTR szURL,
+        LPCWSTR szHeaders,
+        DWORD dwReserved,
+        LPWSTR *pszAdditionalHeaders);
+
+    HRESULT ( *OnResponse)(
+        IHttpNegotiate2* This,
+        DWORD dwResponseCode,
+        LPCWSTR szResponseHeaders,
+        LPCWSTR szRequestHeaders,
+        LPWSTR *pszAdditionalRequestHeaders);
+
+
+    HRESULT ( *GetRootSecurityId)(
+        IHttpNegotiate2* This,
         BYTE *pbSecurityId,
         DWORD *pcbSecurityId,
-        DWORD_PTR dwReserved) = 0;
+        DWORD_PTR dwReserved);
 
+   
+} IHttpNegotiate2Vtbl;
+struct IHttpNegotiate2 {
+    IHttpNegotiate2Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IHttpNegotiate2>() { static const IID __uuid_inst = {0x4f9f9fcb,0xe0f4,0x48eb, {0xb7,0xab,0xfa,0x2e,0xa9,0x36,0x5c,0xb4}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IHttpNegotiate2*>() { return __mingw_uuidof<IHttpNegotiate2>(); } }
 # 2337 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IHttpNegotiate2_GetRootSecurityId_Proxy(
     IHttpNegotiate2* This,
@@ -76083,18 +79459,56 @@ void IHttpNegotiate2_GetRootSecurityId_Stub(
 # 2361 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IHttpNegotiate3 *LPHTTPNEGOTIATE3;
 
-extern "C" const GUID IID_IHttpNegotiate3;
+extern const GUID IID_IHttpNegotiate3;
+# 2377 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IHttpNegotiate3Vtbl {
+   
 
-struct
-IHttpNegotiate3 : public IHttpNegotiate2
-{
-    virtual HRESULT GetSerializedClientCertContext(
+
+    HRESULT ( *QueryInterface)(
+        IHttpNegotiate3* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IHttpNegotiate3* This);
+
+    ULONG ( *Release)(
+        IHttpNegotiate3* This);
+
+
+    HRESULT ( *BeginningTransaction)(
+        IHttpNegotiate3* This,
+        LPCWSTR szURL,
+        LPCWSTR szHeaders,
+        DWORD dwReserved,
+        LPWSTR *pszAdditionalHeaders);
+
+    HRESULT ( *OnResponse)(
+        IHttpNegotiate3* This,
+        DWORD dwResponseCode,
+        LPCWSTR szResponseHeaders,
+        LPCWSTR szRequestHeaders,
+        LPWSTR *pszAdditionalRequestHeaders);
+
+
+    HRESULT ( *GetRootSecurityId)(
+        IHttpNegotiate3* This,
+        BYTE *pbSecurityId,
+        DWORD *pcbSecurityId,
+        DWORD_PTR dwReserved);
+
+
+    HRESULT ( *GetSerializedClientCertContext)(
+        IHttpNegotiate3* This,
         BYTE **ppbCert,
-        DWORD *pcbCert) = 0;
+        DWORD *pcbCert);
 
+   
+} IHttpNegotiate3Vtbl;
+struct IHttpNegotiate3 {
+    IHttpNegotiate3Vtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IHttpNegotiate3>() { static const IID __uuid_inst = {0x57b6c80a,0x34c2,0x4602, {0xbc,0x26,0x66,0xa0,0x2f,0xc5,0x71,0x53}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IHttpNegotiate3*>() { return __mingw_uuidof<IHttpNegotiate3>(); } }
 # 2470 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IHttpNegotiate3_GetSerializedClientCertContext_Proxy(
     IHttpNegotiate3* This,
@@ -76108,21 +79522,38 @@ void IHttpNegotiate3_GetSerializedClientCertContext_Stub(
 # 2493 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IWinInetFileStream *LPWININETFILESTREAM;
 
-extern "C" const GUID IID_IWinInetFileStream;
+extern const GUID IID_IWinInetFileStream;
+# 2512 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IWinInetFileStreamVtbl {
+   
 
-struct
-IWinInetFileStream : public IUnknown
-{
-    virtual HRESULT SetHandleForUnlock(
+
+    HRESULT ( *QueryInterface)(
+        IWinInetFileStream* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IWinInetFileStream* This);
+
+    ULONG ( *Release)(
+        IWinInetFileStream* This);
+
+
+    HRESULT ( *SetHandleForUnlock)(
+        IWinInetFileStream* This,
         DWORD_PTR hWinInetLockHandle,
-        DWORD_PTR dwReserved) = 0;
+        DWORD_PTR dwReserved);
 
-    virtual HRESULT SetDeleteFile(
-        DWORD_PTR dwReserved) = 0;
+    HRESULT ( *SetDeleteFile)(
+        IWinInetFileStream* This,
+        DWORD_PTR dwReserved);
 
+   
+} IWinInetFileStreamVtbl;
+struct IWinInetFileStream {
+    IWinInetFileStreamVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IWinInetFileStream>() { static const IID __uuid_inst = {0xf134c4b7,0xb1f8,0x4e75, {0xb8,0x86,0x74,0xb9,0x09,0x43,0xbe,0xcb}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IWinInetFileStream*>() { return __mingw_uuidof<IWinInetFileStream>(); } }
 # 2575 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IWinInetFileStream_SetHandleForUnlock_Proxy(
     IWinInetFileStream* This,
@@ -76144,22 +79575,38 @@ void IWinInetFileStream_SetDeleteFile_Stub(
 # 2606 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IWindowForBindingUI *LPWINDOWFORBINDINGUI;
 
-extern "C" const GUID IID_IWindowForBindingUI;
+extern const GUID IID_IWindowForBindingUI;
+# 2622 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IWindowForBindingUIVtbl {
+   
 
-struct
-IWindowForBindingUI : public IUnknown
-{
-    virtual HRESULT GetWindow(
-        const GUID & rguidReason,
-        HWND *phwnd) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IWindowForBindingUI* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IWindowForBindingUI* This);
+
+    ULONG ( *Release)(
+        IWindowForBindingUI* This);
+
+
+    HRESULT ( *GetWindow)(
+        IWindowForBindingUI* This,
+        const GUID *const rguidReason,
+        HWND *phwnd);
+
+   
+} IWindowForBindingUIVtbl;
+struct IWindowForBindingUI {
+    IWindowForBindingUIVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IWindowForBindingUI>() { static const IID __uuid_inst = {0x79eac9d5,0xbafa,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IWindowForBindingUI*>() { return __mingw_uuidof<IWindowForBindingUI>(); } }
 # 2677 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IWindowForBindingUI_GetWindow_Proxy(
     IWindowForBindingUI* This,
-    const GUID & rguidReason,
+    const GUID *const rguidReason,
     HWND *phwnd);
 void IWindowForBindingUI_GetWindow_Stub(
     IRpcStubBuffer* This,
@@ -76182,20 +79629,42 @@ typedef enum __WIDL_urlmon_generated_name_0000000B {
     CIP_NEED_REBOOT_UI_PERMISSION = 9
 } CIP_STATUS;
 
-extern "C" const GUID IID_ICodeInstall;
+extern const GUID IID_ICodeInstall;
+# 2731 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct ICodeInstallVtbl {
+   
 
-struct
-ICodeInstall : public IWindowForBindingUI
-{
-    virtual HRESULT OnCodeInstallProblem(
+
+    HRESULT ( *QueryInterface)(
+        ICodeInstall* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ICodeInstall* This);
+
+    ULONG ( *Release)(
+        ICodeInstall* This);
+
+
+    HRESULT ( *GetWindow)(
+        ICodeInstall* This,
+        const GUID *const rguidReason,
+        HWND *phwnd);
+
+
+    HRESULT ( *OnCodeInstallProblem)(
+        ICodeInstall* This,
         ULONG ulStatusCode,
         LPCWSTR szDestination,
         LPCWSTR szSource,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
+   
+} ICodeInstallVtbl;
+struct ICodeInstall {
+    ICodeInstallVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ICodeInstall>() { static const IID __uuid_inst = {0x79eac9d1,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ICodeInstall*>() { return __mingw_uuidof<ICodeInstall>(); } }
 # 2800 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT ICodeInstall_OnCodeInstallProblem_Proxy(
     ICodeInstall* This,
@@ -76210,19 +79679,35 @@ void ICodeInstall_OnCodeInstallProblem_Stub(
     DWORD* pdwStubPhase);
 # 4260 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IWinInetInfo *LPWININETINFO;
-extern "C" const GUID IID_IWinInetInfo;
+extern const GUID IID_IWinInetInfo;
+# 4276 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IWinInetInfoVtbl {
+   
 
-struct
-IWinInetInfo : public IUnknown
-{
-    virtual HRESULT QueryOption(
+
+    HRESULT ( *QueryInterface)(
+        IWinInetInfo* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IWinInetInfo* This);
+
+    ULONG ( *Release)(
+        IWinInetInfo* This);
+
+
+    HRESULT ( *QueryOption)(
+        IWinInetInfo* This,
         DWORD dwOption,
         LPVOID pBuffer,
-        DWORD *pcbBuf) = 0;
+        DWORD *pcbBuf);
 
+   
+} IWinInetInfoVtbl;
+struct IWinInetInfo {
+    IWinInetInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IWinInetInfo>() { static const IID __uuid_inst = {0x79eac9d6,0xbafa,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IWinInetInfo*>() { return __mingw_uuidof<IWinInetInfo>(); } }
 # 4332 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IWinInetInfo_RemoteQueryOption_Proxy(
     IWinInetInfo* This,
@@ -76247,17 +79732,39 @@ HRESULT IWinInetInfo_QueryOption_Stub(
 # 4368 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IHttpSecurity *LPHTTPSECURITY;
 
-extern "C" const GUID IID_IHttpSecurity;
+extern const GUID IID_IHttpSecurity;
+# 4383 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IHttpSecurityVtbl {
+   
 
-struct
-IHttpSecurity : public IWindowForBindingUI
-{
-    virtual HRESULT OnSecurityProblem(
-        DWORD dwProblem) = 0;
 
+    HRESULT ( *QueryInterface)(
+        IHttpSecurity* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IHttpSecurity* This);
+
+    ULONG ( *Release)(
+        IHttpSecurity* This);
+
+
+    HRESULT ( *GetWindow)(
+        IHttpSecurity* This,
+        const GUID *const rguidReason,
+        HWND *phwnd);
+
+
+    HRESULT ( *OnSecurityProblem)(
+        IHttpSecurity* This,
+        DWORD dwProblem);
+
+   
+} IHttpSecurityVtbl;
+struct IHttpSecurity {
+    IHttpSecurityVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IHttpSecurity>() { static const IID __uuid_inst = {0x79eac9d7,0xbafa,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IHttpSecurity*>() { return __mingw_uuidof<IHttpSecurity>(); } }
 # 4449 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IHttpSecurity_OnSecurityProblem_Proxy(
     IHttpSecurity* This,
@@ -76270,21 +79777,44 @@ void IHttpSecurity_OnSecurityProblem_Stub(
 # 4471 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IWinInetHttpInfo *LPWININETHTTPINFO;
 
-extern "C" const GUID IID_IWinInetHttpInfo;
+extern const GUID IID_IWinInetHttpInfo;
+# 4490 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IWinInetHttpInfoVtbl {
+   
 
-struct
-IWinInetHttpInfo : public IWinInetInfo
-{
-    virtual HRESULT QueryInfo(
+
+    HRESULT ( *QueryInterface)(
+        IWinInetHttpInfo* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IWinInetHttpInfo* This);
+
+    ULONG ( *Release)(
+        IWinInetHttpInfo* This);
+
+
+    HRESULT ( *QueryOption)(
+        IWinInetHttpInfo* This,
+        DWORD dwOption,
+        LPVOID pBuffer,
+        DWORD *pcbBuf);
+
+
+    HRESULT ( *QueryInfo)(
+        IWinInetHttpInfo* This,
         DWORD dwOption,
         LPVOID pBuffer,
         DWORD *pcbBuf,
         DWORD *pdwFlags,
-        DWORD *pdwReserved) = 0;
+        DWORD *pdwReserved);
 
+   
+} IWinInetHttpInfoVtbl;
+struct IWinInetHttpInfo {
+    IWinInetHttpInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IWinInetHttpInfo>() { static const IID __uuid_inst = {0x79eac9d8,0xbafa,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IWinInetHttpInfo*>() { return __mingw_uuidof<IWinInetHttpInfo>(); } }
 # 4561 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IWinInetHttpInfo_RemoteQueryInfo_Proxy(
     IWinInetHttpInfo* This,
@@ -76313,19 +79843,35 @@ HRESULT IWinInetHttpInfo_QueryInfo_Stub(
     DWORD *pdwFlags,
     DWORD *pdwReserved);
 # 4600 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" const GUID IID_IWinInetHttpTimeouts;
+extern const GUID IID_IWinInetHttpTimeouts;
+# 4615 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IWinInetHttpTimeoutsVtbl {
+   
 
-struct
-IWinInetHttpTimeouts : public IUnknown
-{
-    virtual HRESULT GetRequestTimeouts(
+
+    HRESULT ( *QueryInterface)(
+        IWinInetHttpTimeouts* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IWinInetHttpTimeouts* This);
+
+    ULONG ( *Release)(
+        IWinInetHttpTimeouts* This);
+
+
+    HRESULT ( *GetRequestTimeouts)(
+        IWinInetHttpTimeouts* This,
         DWORD *pdwConnectTimeout,
         DWORD *pdwSendTimeout,
-        DWORD *pdwReceiveTimeout) = 0;
+        DWORD *pdwReceiveTimeout);
 
+   
+} IWinInetHttpTimeoutsVtbl;
+struct IWinInetHttpTimeouts {
+    IWinInetHttpTimeoutsVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IWinInetHttpTimeouts>() { static const IID __uuid_inst = {0xf286fa56,0xc1fd,0x4270, {0x8e,0x67,0xb3,0xeb,0x79,0x0a,0x81,0xe8}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IWinInetHttpTimeouts*>() { return __mingw_uuidof<IWinInetHttpTimeouts>(); } }
 # 4671 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IWinInetHttpTimeouts_GetRequestTimeouts_Proxy(
     IWinInetHttpTimeouts* This,
@@ -76338,7 +79884,7 @@ void IWinInetHttpTimeouts_GetRequestTimeouts_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 4917 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" const GUID SID_BindHost;
+extern const GUID SID_BindHost;
 
 
 
@@ -76348,34 +79894,52 @@ extern "C" const GUID SID_BindHost;
 
 typedef IBindHost *LPBINDHOST;
 
-extern "C" const GUID IID_IBindHost;
+extern const GUID IID_IBindHost;
+# 4957 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IBindHostVtbl {
+   
 
-struct
-IBindHost : public IUnknown
-{
-    virtual HRESULT CreateMoniker(
+
+    HRESULT ( *QueryInterface)(
+        IBindHost* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IBindHost* This);
+
+    ULONG ( *Release)(
+        IBindHost* This);
+
+
+    HRESULT ( *CreateMoniker)(
+        IBindHost* This,
         LPOLESTR szName,
         IBindCtx *pBC,
         IMoniker **ppmk,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT MonikerBindToStorage(
+    HRESULT ( *MonikerBindToStorage)(
+        IBindHost* This,
         IMoniker *pMk,
         IBindCtx *pBC,
         IBindStatusCallback *pBSC,
-        const IID & riid,
-        void **ppvObj) = 0;
+        const IID *const riid,
+        void **ppvObj);
 
-    virtual HRESULT MonikerBindToObject(
+    HRESULT ( *MonikerBindToObject)(
+        IBindHost* This,
         IMoniker *pMk,
         IBindCtx *pBC,
         IBindStatusCallback *pBSC,
-        const IID & riid,
-        void **ppvObj) = 0;
+        const IID *const riid,
+        void **ppvObj);
 
+   
+} IBindHostVtbl;
+struct IBindHost {
+    IBindHostVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IBindHost>() { static const IID __uuid_inst = {0xfc4801a1,0x2ba9,0x11cf, {0xa2,0x29,0x00,0xaa,0x00,0x3d,0x73,0x52}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IBindHost*>() { return __mingw_uuidof<IBindHost>(); } }
 # 5038 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IBindHost_CreateMoniker_Proxy(
     IBindHost* This,
@@ -76393,7 +79957,7 @@ HRESULT IBindHost_RemoteMonikerBindToStorage_Proxy(
     IMoniker *pMk,
     IBindCtx *pBC,
     IBindStatusCallback *pBSC,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObj);
 void IBindHost_RemoteMonikerBindToStorage_Stub(
     IRpcStubBuffer* This,
@@ -76405,7 +79969,7 @@ HRESULT IBindHost_RemoteMonikerBindToObject_Proxy(
     IMoniker *pMk,
     IBindCtx *pBC,
     IBindStatusCallback *pBSC,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObj);
 void IBindHost_RemoteMonikerBindToObject_Stub(
     IRpcStubBuffer* This,
@@ -76417,43 +79981,43 @@ HRESULT IBindHost_MonikerBindToStorage_Proxy(
     IMoniker *pMk,
     IBindCtx *pBC,
     IBindStatusCallback *pBSC,
-    const IID & riid,
+    const IID *const riid,
     void **ppvObj);
 HRESULT IBindHost_MonikerBindToStorage_Stub(
     IBindHost* This,
     IMoniker *pMk,
     IBindCtx *pBC,
     IBindStatusCallback *pBSC,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObj);
 HRESULT IBindHost_MonikerBindToObject_Proxy(
     IBindHost* This,
     IMoniker *pMk,
     IBindCtx *pBC,
     IBindStatusCallback *pBSC,
-    const IID & riid,
+    const IID *const riid,
     void **ppvObj);
 HRESULT IBindHost_MonikerBindToObject_Stub(
     IBindHost* This,
     IMoniker *pMk,
     IBindCtx *pBC,
     IBindStatusCallback *pBSC,
-    const IID & riid,
+    const IID *const riid,
     IUnknown **ppvObj);
 # 5110 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 struct IBindStatusCallback;
-extern "C" HRESULT HlinkSimpleNavigateToString(LPCWSTR szTarget, LPCWSTR szLocation, LPCWSTR szTargetFrameName, IUnknown *pUnk, IBindCtx *pbc, IBindStatusCallback *, DWORD grfHLNF, DWORD dwReserved);
-extern "C" HRESULT HlinkSimpleNavigateToMoniker(IMoniker *pmkTarget, LPCWSTR szLocation, LPCWSTR szTargetFrameName, IUnknown *pUnk, IBindCtx *pbc, IBindStatusCallback *, DWORD grfHLNF, DWORD dwReserved);
-extern "C" HRESULT URLOpenStreamA(LPUNKNOWN,LPCSTR,DWORD,LPBINDSTATUSCALLBACK);
-extern "C" HRESULT URLOpenStreamW(LPUNKNOWN,LPCWSTR,DWORD,LPBINDSTATUSCALLBACK);
-extern "C" HRESULT URLOpenPullStreamA(LPUNKNOWN,LPCSTR,DWORD,LPBINDSTATUSCALLBACK);
-extern "C" HRESULT URLOpenPullStreamW(LPUNKNOWN,LPCWSTR,DWORD,LPBINDSTATUSCALLBACK);
-extern "C" HRESULT URLDownloadToFileA(LPUNKNOWN,LPCSTR,LPCSTR,DWORD,LPBINDSTATUSCALLBACK);
-extern "C" HRESULT URLDownloadToFileW(LPUNKNOWN,LPCWSTR,LPCWSTR,DWORD,LPBINDSTATUSCALLBACK);
-extern "C" HRESULT URLDownloadToCacheFileA(LPUNKNOWN, LPCSTR, LPSTR, DWORD, DWORD, LPBINDSTATUSCALLBACK);
-extern "C" HRESULT URLDownloadToCacheFileW(LPUNKNOWN, LPCWSTR, LPWSTR, DWORD, DWORD, LPBINDSTATUSCALLBACK);
-extern "C" HRESULT URLOpenBlockingStreamA(LPUNKNOWN,LPCSTR,LPSTREAM*,DWORD,LPBINDSTATUSCALLBACK);
-extern "C" HRESULT URLOpenBlockingStreamW(LPUNKNOWN,LPCWSTR,LPSTREAM*,DWORD,LPBINDSTATUSCALLBACK);
+extern HRESULT HlinkSimpleNavigateToString(LPCWSTR szTarget, LPCWSTR szLocation, LPCWSTR szTargetFrameName, IUnknown *pUnk, IBindCtx *pbc, IBindStatusCallback *, DWORD grfHLNF, DWORD dwReserved);
+extern HRESULT HlinkSimpleNavigateToMoniker(IMoniker *pmkTarget, LPCWSTR szLocation, LPCWSTR szTargetFrameName, IUnknown *pUnk, IBindCtx *pbc, IBindStatusCallback *, DWORD grfHLNF, DWORD dwReserved);
+extern HRESULT URLOpenStreamA(LPUNKNOWN,LPCSTR,DWORD,LPBINDSTATUSCALLBACK);
+extern HRESULT URLOpenStreamW(LPUNKNOWN,LPCWSTR,DWORD,LPBINDSTATUSCALLBACK);
+extern HRESULT URLOpenPullStreamA(LPUNKNOWN,LPCSTR,DWORD,LPBINDSTATUSCALLBACK);
+extern HRESULT URLOpenPullStreamW(LPUNKNOWN,LPCWSTR,DWORD,LPBINDSTATUSCALLBACK);
+extern HRESULT URLDownloadToFileA(LPUNKNOWN,LPCSTR,LPCSTR,DWORD,LPBINDSTATUSCALLBACK);
+extern HRESULT URLDownloadToFileW(LPUNKNOWN,LPCWSTR,LPCWSTR,DWORD,LPBINDSTATUSCALLBACK);
+extern HRESULT URLDownloadToCacheFileA(LPUNKNOWN, LPCSTR, LPSTR, DWORD, DWORD, LPBINDSTATUSCALLBACK);
+extern HRESULT URLDownloadToCacheFileW(LPUNKNOWN, LPCWSTR, LPWSTR, DWORD, DWORD, LPBINDSTATUSCALLBACK);
+extern HRESULT URLOpenBlockingStreamA(LPUNKNOWN,LPCSTR,LPSTREAM*,DWORD,LPBINDSTATUSCALLBACK);
+extern HRESULT URLOpenBlockingStreamW(LPUNKNOWN,LPCWSTR,LPSTREAM*,DWORD,LPBINDSTATUSCALLBACK);
 
 
 
@@ -76461,20 +80025,34 @@ extern "C" HRESULT URLOpenBlockingStreamW(LPUNKNOWN,LPCWSTR,LPSTREAM*,DWORD,LPBI
 
 
 
-extern "C" HRESULT HlinkGoBack(IUnknown *pUnk);
-extern "C" HRESULT HlinkGoForward(IUnknown *pUnk);
-extern "C" HRESULT HlinkNavigateString(IUnknown *pUnk, LPCWSTR szTarget);
-extern "C" HRESULT HlinkNavigateMoniker(IUnknown *pUnk, IMoniker *pmkTarget);
+extern HRESULT HlinkGoBack(IUnknown *pUnk);
+extern HRESULT HlinkGoForward(IUnknown *pUnk);
+extern HRESULT HlinkNavigateString(IUnknown *pUnk, LPCWSTR szTarget);
+extern HRESULT HlinkNavigateMoniker(IUnknown *pUnk, IMoniker *pmkTarget);
 # 5196 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IInternet *LPIINTERNET;
-extern "C" const GUID IID_IInternet;
+extern const GUID IID_IInternet;
+# 5207 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetVtbl {
+   
 
-struct
-IInternet : public IUnknown
-{
+
+    HRESULT ( *QueryInterface)(
+        IInternet* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternet* This);
+
+    ULONG ( *Release)(
+        IInternet* This);
+
+   
+} IInternetVtbl;
+struct IInternet {
+    IInternetVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternet>() { static const IID __uuid_inst = {0x79eac9e0,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternet*>() { return __mingw_uuidof<IInternet>(); } }
 # 5264 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IInternetBindInfo *LPIINTERNETBINDINFO;
 
@@ -76504,24 +80082,41 @@ typedef enum tagBINDSTRING {
     BINDSTRING_PROXY_PASSWORD = 23
 } BINDSTRING;
 
-extern "C" const GUID IID_IInternetBindInfo;
+extern const GUID IID_IInternetBindInfo;
+# 5312 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetBindInfoVtbl {
+   
 
-struct
-IInternetBindInfo : public IUnknown
-{
-    virtual HRESULT GetBindInfo(
+
+    HRESULT ( *QueryInterface)(
+        IInternetBindInfo* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternetBindInfo* This);
+
+    ULONG ( *Release)(
+        IInternetBindInfo* This);
+
+
+    HRESULT ( *GetBindInfo)(
+        IInternetBindInfo* This,
         DWORD *grfBINDF,
-        BINDINFO *pbindinfo) = 0;
+        BINDINFO *pbindinfo);
 
-    virtual HRESULT GetBindString(
+    HRESULT ( *GetBindString)(
+        IInternetBindInfo* This,
         ULONG ulStringType,
         LPOLESTR *ppwzStr,
         ULONG cEl,
-        ULONG *pcElFetched) = 0;
+        ULONG *pcElFetched);
 
+   
+} IInternetBindInfoVtbl;
+struct IInternetBindInfo {
+    IInternetBindInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetBindInfo>() { static const IID __uuid_inst = {0x79eac9e1,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetBindInfo*>() { return __mingw_uuidof<IInternetBindInfo>(); } }
 # 5378 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetBindInfo_GetBindInfo_Proxy(
     IInternetBindInfo* This,
@@ -76546,20 +80141,49 @@ void IInternetBindInfo_GetBindString_Stub(
 # 5412 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IInternetBindInfoEx *LPIINTERNETBINDINFOEX;
 
-extern "C" const GUID IID_IInternetBindInfoEx;
+extern const GUID IID_IInternetBindInfoEx;
+# 5430 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetBindInfoExVtbl {
+   
 
-struct
-IInternetBindInfoEx : public IInternetBindInfo
-{
-    virtual HRESULT GetBindInfoEx(
+
+    HRESULT ( *QueryInterface)(
+        IInternetBindInfoEx* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternetBindInfoEx* This);
+
+    ULONG ( *Release)(
+        IInternetBindInfoEx* This);
+
+
+    HRESULT ( *GetBindInfo)(
+        IInternetBindInfoEx* This,
+        DWORD *grfBINDF,
+        BINDINFO *pbindinfo);
+
+    HRESULT ( *GetBindString)(
+        IInternetBindInfoEx* This,
+        ULONG ulStringType,
+        LPOLESTR *ppwzStr,
+        ULONG cEl,
+        ULONG *pcElFetched);
+
+
+    HRESULT ( *GetBindInfoEx)(
+        IInternetBindInfoEx* This,
         DWORD *grfBINDF,
         BINDINFO *pbindinfo,
         DWORD *grfBINDF2,
-        DWORD *pdwReserved) = 0;
+        DWORD *pdwReserved);
 
+   
+} IInternetBindInfoExVtbl;
+struct IInternetBindInfoEx {
+    IInternetBindInfoExVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetBindInfoEx>() { static const IID __uuid_inst = {0xa3e015b7,0xa82c,0x4dcd, {0xa1,0x50,0x56,0x9a,0xee,0xed,0x36,0xab}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetBindInfoEx*>() { return __mingw_uuidof<IInternetBindInfoEx>(); } }
 # 5510 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetBindInfoEx_GetBindInfoEx_Proxy(
     IInternetBindInfoEx* This,
@@ -76605,37 +80229,56 @@ typedef struct _tagStartParam {
     IUnknown *pItf;
 } StartParam;
 
-extern "C" const GUID IID_IInternetProtocolRoot;
+extern const GUID IID_IInternetProtocolRoot;
+# 5600 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetProtocolRootVtbl {
+   
 
-struct
-IInternetProtocolRoot : public IUnknown
-{
-    virtual HRESULT Start(
+
+    HRESULT ( *QueryInterface)(
+        IInternetProtocolRoot* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternetProtocolRoot* This);
+
+    ULONG ( *Release)(
+        IInternetProtocolRoot* This);
+
+
+    HRESULT ( *Start)(
+        IInternetProtocolRoot* This,
         LPCWSTR szUrl,
         IInternetProtocolSink *pOIProtSink,
         IInternetBindInfo *pOIBindInfo,
         DWORD grfPI,
-        HANDLE_PTR dwReserved) = 0;
+        HANDLE_PTR dwReserved);
 
-    virtual HRESULT Continue(
-        PROTOCOLDATA *pProtocolData) = 0;
+    HRESULT ( *Continue)(
+        IInternetProtocolRoot* This,
+        PROTOCOLDATA *pProtocolData);
 
-    virtual HRESULT Abort(
+    HRESULT ( *Abort)(
+        IInternetProtocolRoot* This,
         HRESULT hrReason,
-        DWORD dwOptions) = 0;
+        DWORD dwOptions);
 
-    virtual HRESULT Terminate(
-        DWORD dwOptions) = 0;
+    HRESULT ( *Terminate)(
+        IInternetProtocolRoot* This,
+        DWORD dwOptions);
 
-    virtual HRESULT Suspend(
-        ) = 0;
+    HRESULT ( *Suspend)(
+        IInternetProtocolRoot* This);
 
-    virtual HRESULT Resume(
-        ) = 0;
+    HRESULT ( *Resume)(
+        IInternetProtocolRoot* This);
 
+   
+} IInternetProtocolRootVtbl;
+struct IInternetProtocolRoot {
+    IInternetProtocolRootVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetProtocolRoot>() { static const IID __uuid_inst = {0x79eac9e3,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetProtocolRoot*>() { return __mingw_uuidof<IInternetProtocolRoot>(); } }
 # 5697 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetProtocolRoot_Start_Proxy(
     IInternetProtocolRoot* This,
@@ -76691,30 +80334,76 @@ void IInternetProtocolRoot_Resume_Stub(
 # 5762 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IInternetProtocol *LPIINTERNETPROTOCOL;
 
-extern "C" const GUID IID_IInternetProtocol;
+extern const GUID IID_IInternetProtocol;
+# 5790 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetProtocolVtbl {
+   
 
-struct
-IInternetProtocol : public IInternetProtocolRoot
-{
-    virtual HRESULT Read(
+
+    HRESULT ( *QueryInterface)(
+        IInternetProtocol* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternetProtocol* This);
+
+    ULONG ( *Release)(
+        IInternetProtocol* This);
+
+
+    HRESULT ( *Start)(
+        IInternetProtocol* This,
+        LPCWSTR szUrl,
+        IInternetProtocolSink *pOIProtSink,
+        IInternetBindInfo *pOIBindInfo,
+        DWORD grfPI,
+        HANDLE_PTR dwReserved);
+
+    HRESULT ( *Continue)(
+        IInternetProtocol* This,
+        PROTOCOLDATA *pProtocolData);
+
+    HRESULT ( *Abort)(
+        IInternetProtocol* This,
+        HRESULT hrReason,
+        DWORD dwOptions);
+
+    HRESULT ( *Terminate)(
+        IInternetProtocol* This,
+        DWORD dwOptions);
+
+    HRESULT ( *Suspend)(
+        IInternetProtocol* This);
+
+    HRESULT ( *Resume)(
+        IInternetProtocol* This);
+
+
+    HRESULT ( *Read)(
+        IInternetProtocol* This,
         void *pv,
         ULONG cb,
-        ULONG *pcbRead) = 0;
+        ULONG *pcbRead);
 
-    virtual HRESULT Seek(
+    HRESULT ( *Seek)(
+        IInternetProtocol* This,
         LARGE_INTEGER dlibMove,
         DWORD dwOrigin,
-        ULARGE_INTEGER *plibNewPosition) = 0;
+        ULARGE_INTEGER *plibNewPosition);
 
-    virtual HRESULT LockRequest(
-        DWORD dwOptions) = 0;
+    HRESULT ( *LockRequest)(
+        IInternetProtocol* This,
+        DWORD dwOptions);
 
-    virtual HRESULT UnlockRequest(
-        ) = 0;
+    HRESULT ( *UnlockRequest)(
+        IInternetProtocol* This);
 
+   
+} IInternetProtocolVtbl;
+struct IInternetProtocol {
+    IInternetProtocolVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetProtocol>() { static const IID __uuid_inst = {0x79eac9e4,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetProtocol*>() { return __mingw_uuidof<IInternetProtocol>(); } }
 # 5925 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetProtocol_Read_Proxy(
     IInternetProtocol* This,
@@ -76754,31 +80443,50 @@ void IInternetProtocol_UnlockRequest_Stub(
 # 6168 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IInternetProtocolSink *LPIINTERNETPROTOCOLSINK;
 
-extern "C" const GUID IID_IInternetProtocolSink;
+extern const GUID IID_IInternetProtocolSink;
+# 6197 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetProtocolSinkVtbl {
+   
 
-struct
-IInternetProtocolSink : public IUnknown
-{
-    virtual HRESULT Switch(
-        PROTOCOLDATA *pProtocolData) = 0;
 
-    virtual HRESULT ReportProgress(
+    HRESULT ( *QueryInterface)(
+        IInternetProtocolSink* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternetProtocolSink* This);
+
+    ULONG ( *Release)(
+        IInternetProtocolSink* This);
+
+
+    HRESULT ( *Switch)(
+        IInternetProtocolSink* This,
+        PROTOCOLDATA *pProtocolData);
+
+    HRESULT ( *ReportProgress)(
+        IInternetProtocolSink* This,
         ULONG ulStatusCode,
-        LPCWSTR szStatusText) = 0;
+        LPCWSTR szStatusText);
 
-    virtual HRESULT ReportData(
+    HRESULT ( *ReportData)(
+        IInternetProtocolSink* This,
         DWORD grfBSCF,
         ULONG ulProgress,
-        ULONG ulProgressMax) = 0;
+        ULONG ulProgressMax);
 
-    virtual HRESULT ReportResult(
+    HRESULT ( *ReportResult)(
+        IInternetProtocolSink* This,
         HRESULT hrResult,
         DWORD dwError,
-        LPCWSTR szResult) = 0;
+        LPCWSTR szResult);
 
+   
+} IInternetProtocolSinkVtbl;
+struct IInternetProtocolSink {
+    IInternetProtocolSinkVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetProtocolSink>() { static const IID __uuid_inst = {0x79eac9e5,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetProtocolSink*>() { return __mingw_uuidof<IInternetProtocolSink>(); } }
 # 6280 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetProtocolSink_Switch_Proxy(
     IInternetProtocolSink* This,
@@ -76820,23 +80528,39 @@ void IInternetProtocolSink_ReportResult_Stub(
 # 6331 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IInternetProtocolSinkStackable *LPIINTERNETPROTOCOLSINKStackable;
 
-extern "C" const GUID IID_IInternetProtocolSinkStackable;
+extern const GUID IID_IInternetProtocolSinkStackable;
+# 6352 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetProtocolSinkStackableVtbl {
+   
 
-struct
-IInternetProtocolSinkStackable : public IUnknown
-{
-    virtual HRESULT SwitchSink(
-        IInternetProtocolSink *pOIProtSink) = 0;
 
-    virtual HRESULT CommitSwitch(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IInternetProtocolSinkStackable* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT RollbackSwitch(
-        ) = 0;
+    ULONG ( *AddRef)(
+        IInternetProtocolSinkStackable* This);
 
+    ULONG ( *Release)(
+        IInternetProtocolSinkStackable* This);
+
+
+    HRESULT ( *SwitchSink)(
+        IInternetProtocolSinkStackable* This,
+        IInternetProtocolSink *pOIProtSink);
+
+    HRESULT ( *CommitSwitch)(
+        IInternetProtocolSinkStackable* This);
+
+    HRESULT ( *RollbackSwitch)(
+        IInternetProtocolSinkStackable* This);
+
+   
+} IInternetProtocolSinkStackableVtbl;
+struct IInternetProtocolSinkStackable {
+    IInternetProtocolSinkStackableVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetProtocolSinkStackable>() { static const IID __uuid_inst = {0x79eac9f0,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetProtocolSinkStackable*>() { return __mingw_uuidof<IInternetProtocolSinkStackable>(); } }
 # 6420 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetProtocolSinkStackable_SwitchSink_Proxy(
     IInternetProtocolSinkStackable* This,
@@ -76868,60 +80592,82 @@ typedef enum _tagOIBDG_FLAGS {
     OIBDG_DATAONLY = 0x1000
 } OIBDG_FLAGS;
 
-extern "C" const GUID IID_IInternetSession;
+extern const GUID IID_IInternetSession;
+# 6514 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetSessionVtbl {
+   
 
-struct
-IInternetSession : public IUnknown
-{
-    virtual HRESULT RegisterNameSpace(
+
+    HRESULT ( *QueryInterface)(
+        IInternetSession* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternetSession* This);
+
+    ULONG ( *Release)(
+        IInternetSession* This);
+
+
+    HRESULT ( *RegisterNameSpace)(
+        IInternetSession* This,
         IClassFactory *pCF,
-        const IID & rclsid,
+        const IID *const rclsid,
         LPCWSTR pwzProtocol,
         ULONG cPatterns,
         const LPCWSTR *ppwzPatterns,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT UnregisterNameSpace(
+    HRESULT ( *UnregisterNameSpace)(
+        IInternetSession* This,
         IClassFactory *pCF,
-        LPCWSTR pszProtocol) = 0;
+        LPCWSTR pszProtocol);
 
-    virtual HRESULT RegisterMimeFilter(
+    HRESULT ( *RegisterMimeFilter)(
+        IInternetSession* This,
         IClassFactory *pCF,
-        const IID & rclsid,
-        LPCWSTR pwzType) = 0;
+        const IID *const rclsid,
+        LPCWSTR pwzType);
 
-    virtual HRESULT UnregisterMimeFilter(
+    HRESULT ( *UnregisterMimeFilter)(
+        IInternetSession* This,
         IClassFactory *pCF,
-        LPCWSTR pwzType) = 0;
+        LPCWSTR pwzType);
 
-    virtual HRESULT CreateBinding(
+    HRESULT ( *CreateBinding)(
+        IInternetSession* This,
         LPBC pBC,
         LPCWSTR szUrl,
         IUnknown *pUnkOuter,
         IUnknown **ppUnk,
         IInternetProtocol **ppOInetProt,
-        DWORD dwOption) = 0;
+        DWORD dwOption);
 
-    virtual HRESULT SetSessionOption(
+    HRESULT ( *SetSessionOption)(
+        IInternetSession* This,
         DWORD dwOption,
         LPVOID pBuffer,
         DWORD dwBufferLength,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT GetSessionOption(
+    HRESULT ( *GetSessionOption)(
+        IInternetSession* This,
         DWORD dwOption,
         LPVOID pBuffer,
         DWORD *pdwBufferLength,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
+   
+} IInternetSessionVtbl;
+struct IInternetSession {
+    IInternetSessionVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetSession>() { static const IID __uuid_inst = {0x79eac9e7,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetSession*>() { return __mingw_uuidof<IInternetSession>(); } }
 # 6636 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetSession_RegisterNameSpace_Proxy(
     IInternetSession* This,
     IClassFactory *pCF,
-    const IID & rclsid,
+    const IID *const rclsid,
     LPCWSTR pwzProtocol,
     ULONG cPatterns,
     const LPCWSTR *ppwzPatterns,
@@ -76943,7 +80689,7 @@ void IInternetSession_UnregisterNameSpace_Stub(
 HRESULT IInternetSession_RegisterMimeFilter_Proxy(
     IInternetSession* This,
     IClassFactory *pCF,
-    const IID & rclsid,
+    const IID *const rclsid,
     LPCWSTR pwzType);
 void IInternetSession_RegisterMimeFilter_Stub(
     IRpcStubBuffer* This,
@@ -76997,20 +80743,35 @@ void IInternetSession_GetSessionOption_Stub(
 # 6726 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IInternetThreadSwitch *LPIINTERNETTHREADSWITCH;
 
-extern "C" const GUID IID_IInternetThreadSwitch;
+extern const GUID IID_IInternetThreadSwitch;
+# 6744 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetThreadSwitchVtbl {
+   
 
-struct
-IInternetThreadSwitch : public IUnknown
-{
-    virtual HRESULT Prepare(
-        ) = 0;
 
-    virtual HRESULT Continue(
-        ) = 0;
+    HRESULT ( *QueryInterface)(
+        IInternetThreadSwitch* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IInternetThreadSwitch* This);
+
+    ULONG ( *Release)(
+        IInternetThreadSwitch* This);
+
+
+    HRESULT ( *Prepare)(
+        IInternetThreadSwitch* This);
+
+    HRESULT ( *Continue)(
+        IInternetThreadSwitch* This);
+
+   
+} IInternetThreadSwitchVtbl;
+struct IInternetThreadSwitch {
+    IInternetThreadSwitchVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetThreadSwitch>() { static const IID __uuid_inst = {0x79eac9e8,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetThreadSwitch*>() { return __mingw_uuidof<IInternetThreadSwitch>(); } }
 # 6804 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetThreadSwitch_Prepare_Proxy(
     IInternetThreadSwitch* This);
@@ -77029,20 +80790,37 @@ void IInternetThreadSwitch_Continue_Stub(
 # 6832 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IInternetPriority *LPIINTERNETPRIORITY;
 
-extern "C" const GUID IID_IInternetPriority;
+extern const GUID IID_IInternetPriority;
+# 6850 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetPriorityVtbl {
+   
 
-struct
-IInternetPriority : public IUnknown
-{
-    virtual HRESULT SetPriority(
-        LONG nPriority) = 0;
 
-    virtual HRESULT GetPriority(
-        LONG *pnPriority) = 0;
+    HRESULT ( *QueryInterface)(
+        IInternetPriority* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IInternetPriority* This);
+
+    ULONG ( *Release)(
+        IInternetPriority* This);
+
+
+    HRESULT ( *SetPriority)(
+        IInternetPriority* This,
+        LONG nPriority);
+
+    HRESULT ( *GetPriority)(
+        IInternetPriority* This,
+        LONG *pnPriority);
+
+   
+} IInternetPriorityVtbl;
+struct IInternetPriority {
+    IInternetPriorityVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetPriority>() { static const IID __uuid_inst = {0x79eac9eb,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetPriority*>() { return __mingw_uuidof<IInternetPriority>(); } }
 # 6912 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetPriority_SetPriority_Proxy(
     IInternetPriority* This,
@@ -77109,46 +80887,65 @@ typedef enum _tagQUERYOPTION {
     QUERY_IS_CACHED_AND_USABLE_OFFLINE = 16
 } QUERYOPTION;
 
-extern "C" const GUID IID_IInternetProtocolInfo;
+extern const GUID IID_IInternetProtocolInfo;
+# 7032 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetProtocolInfoVtbl {
+   
 
-struct
-IInternetProtocolInfo : public IUnknown
-{
-    virtual HRESULT ParseUrl(
+
+    HRESULT ( *QueryInterface)(
+        IInternetProtocolInfo* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternetProtocolInfo* This);
+
+    ULONG ( *Release)(
+        IInternetProtocolInfo* This);
+
+
+    HRESULT ( *ParseUrl)(
+        IInternetProtocolInfo* This,
         LPCWSTR pwzUrl,
         PARSEACTION ParseAction,
         DWORD dwParseFlags,
         LPWSTR pwzResult,
         DWORD cchResult,
         DWORD *pcchResult,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT CombineUrl(
+    HRESULT ( *CombineUrl)(
+        IInternetProtocolInfo* This,
         LPCWSTR pwzBaseUrl,
         LPCWSTR pwzRelativeUrl,
         DWORD dwCombineFlags,
         LPWSTR pwzResult,
         DWORD cchResult,
         DWORD *pcchResult,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT CompareUrl(
+    HRESULT ( *CompareUrl)(
+        IInternetProtocolInfo* This,
         LPCWSTR pwzUrl1,
         LPCWSTR pwzUrl2,
-        DWORD dwCompareFlags) = 0;
+        DWORD dwCompareFlags);
 
-    virtual HRESULT QueryInfo(
+    HRESULT ( *QueryInfo)(
+        IInternetProtocolInfo* This,
         LPCWSTR pwzUrl,
         QUERYOPTION OueryOption,
         DWORD dwQueryFlags,
         LPVOID pBuffer,
         DWORD cbBuffer,
         DWORD *pcbBuf,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
+   
+} IInternetProtocolInfoVtbl;
+struct IInternetProtocolInfo {
+    IInternetProtocolInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetProtocolInfo>() { static const IID __uuid_inst = {0x79eac9ec,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetProtocolInfo*>() { return __mingw_uuidof<IInternetProtocolInfo>(); } }
 # 7130 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetProtocolInfo_ParseUrl_Proxy(
     IInternetProtocolInfo* This,
@@ -77203,46 +81000,63 @@ void IInternetProtocolInfo_QueryInfo_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 7240 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" HRESULT CoInternetParseUrl(LPCWSTR pwzUrl, PARSEACTION ParseAction, DWORD dwFlags, LPWSTR pszResult, DWORD cchResult, DWORD *pcchResult, DWORD dwReserved);
+extern HRESULT CoInternetParseUrl(LPCWSTR pwzUrl, PARSEACTION ParseAction, DWORD dwFlags, LPWSTR pszResult, DWORD cchResult, DWORD *pcchResult, DWORD dwReserved);
 
 
 
-extern "C" HRESULT CoInternetCombineUrl(LPCWSTR pwzBaseUrl, LPCWSTR pwzRelativeUrl, DWORD dwCombineFlags, LPWSTR pszResult, DWORD cchResult, DWORD *pcchResult, DWORD dwReserved);
+extern HRESULT CoInternetCombineUrl(LPCWSTR pwzBaseUrl, LPCWSTR pwzRelativeUrl, DWORD dwCombineFlags, LPWSTR pszResult, DWORD cchResult, DWORD *pcchResult, DWORD dwReserved);
 
 
 
 
-extern "C" HRESULT CoInternetCompareUrl(LPCWSTR pwzUrl1, LPCWSTR pwzUrl2, DWORD dwFlags);
-extern "C" HRESULT CoInternetGetProtocolFlags(LPCWSTR pwzUrl, DWORD *pdwFlags, DWORD dwReserved);
-extern "C" HRESULT CoInternetQueryInfo(LPCWSTR pwzUrl, QUERYOPTION QueryOptions, DWORD dwQueryFlags, LPVOID pvBuffer, DWORD cbBuffer, DWORD *pcbBuffer, DWORD dwReserved);
-extern "C" HRESULT CoInternetGetSession(DWORD dwSessionMode, IInternetSession **ppIInternetSession, DWORD dwReserved);
-extern "C" HRESULT CoInternetGetSecurityUrl(LPCWSTR pwszUrl, LPWSTR *ppwszSecUrl, PSUACTION psuAction, DWORD dwReserved);
-extern "C" HRESULT AsyncInstallDistributionUnit(LPCWSTR szDistUnit, LPCWSTR szTYPE, LPCWSTR szExt, DWORD dwFileVersionMS, DWORD dwFileVersionLS, LPCWSTR szURL,IBindCtx *pbc, LPVOID pvReserved,DWORD flags);
+extern HRESULT CoInternetCompareUrl(LPCWSTR pwzUrl1, LPCWSTR pwzUrl2, DWORD dwFlags);
+extern HRESULT CoInternetGetProtocolFlags(LPCWSTR pwzUrl, DWORD *pdwFlags, DWORD dwReserved);
+extern HRESULT CoInternetQueryInfo(LPCWSTR pwzUrl, QUERYOPTION QueryOptions, DWORD dwQueryFlags, LPVOID pvBuffer, DWORD cbBuffer, DWORD *pcbBuffer, DWORD dwReserved);
+extern HRESULT CoInternetGetSession(DWORD dwSessionMode, IInternetSession **ppIInternetSession, DWORD dwReserved);
+extern HRESULT CoInternetGetSecurityUrl(LPCWSTR pwszUrl, LPWSTR *ppwszSecUrl, PSUACTION psuAction, DWORD dwReserved);
+extern HRESULT AsyncInstallDistributionUnit(LPCWSTR szDistUnit, LPCWSTR szTYPE, LPCWSTR szExt, DWORD dwFileVersionMS, DWORD dwFileVersionLS, LPCWSTR szURL,IBindCtx *pbc, LPVOID pvReserved,DWORD flags);
 # 7320 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" HRESULT CopyStgMedium(const STGMEDIUM *pcstgmedSrc, STGMEDIUM *pstgmedDest);
-extern "C" HRESULT CopyBindInfo(const BINDINFO *pcbiSrc, BINDINFO *pbiDest);
-extern "C" void ReleaseBindInfo(BINDINFO *pbindinfo);
+extern HRESULT CopyStgMedium(const STGMEDIUM *pcstgmedSrc, STGMEDIUM *pstgmedDest);
+extern HRESULT CopyBindInfo(const BINDINFO *pcbiSrc, BINDINFO *pbiDest);
+extern void ReleaseBindInfo(BINDINFO *pbindinfo);
 # 7343 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" HRESULT CoInternetCreateSecurityManager(IServiceProvider *pSP, IInternetSecurityManager **ppSM, DWORD dwReserved);
-extern "C" HRESULT CoInternetCreateZoneManager(IServiceProvider *pSP, IInternetZoneManager **ppZM, DWORD dwReserved);
+extern HRESULT CoInternetCreateSecurityManager(IServiceProvider *pSP, IInternetSecurityManager **ppSM, DWORD dwReserved);
+extern HRESULT CoInternetCreateZoneManager(IServiceProvider *pSP, IInternetZoneManager **ppZM, DWORD dwReserved);
 
-extern "C" const IID CLSID_InternetSecurityManager;
-extern "C" const IID CLSID_InternetZoneManager;
+extern const IID CLSID_InternetSecurityManager;
+extern const IID CLSID_InternetZoneManager;
 # 7371 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" const GUID IID_IInternetSecurityMgrSite;
+extern const GUID IID_IInternetSecurityMgrSite;
+# 7387 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetSecurityMgrSiteVtbl {
+   
 
-struct
-IInternetSecurityMgrSite : public IUnknown
-{
-    virtual HRESULT GetWindow(
-        HWND *phwnd) = 0;
 
-    virtual HRESULT EnableModeless(
-        WINBOOL fEnable) = 0;
+    HRESULT ( *QueryInterface)(
+        IInternetSecurityMgrSite* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        IInternetSecurityMgrSite* This);
+
+    ULONG ( *Release)(
+        IInternetSecurityMgrSite* This);
+
+
+    HRESULT ( *GetWindow)(
+        IInternetSecurityMgrSite* This,
+        HWND *phwnd);
+
+    HRESULT ( *EnableModeless)(
+        IInternetSecurityMgrSite* This,
+        WINBOOL fEnable);
+
+   
+} IInternetSecurityMgrSiteVtbl;
+struct IInternetSecurityMgrSite {
+    IInternetSecurityMgrSiteVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetSecurityMgrSite>() { static const IID __uuid_inst = {0x79eac9ed,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetSecurityMgrSite*>() { return __mingw_uuidof<IInternetSecurityMgrSite>(); } }
 # 7449 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetSecurityMgrSite_GetWindow_Proxy(
     IInternetSecurityMgrSite* This,
@@ -77295,29 +81109,47 @@ typedef enum __WIDL_urlmon_generated_name_00000010 {
     SZM_DELETE = 0x1
 } SZM_FLAGS;
 
-extern "C" const GUID IID_IInternetSecurityManager;
+extern const GUID IID_IInternetSecurityManager;
+# 7585 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetSecurityManagerVtbl {
+   
 
-struct
-IInternetSecurityManager : public IUnknown
-{
-    virtual HRESULT SetSecuritySite(
-        IInternetSecurityMgrSite *pSite) = 0;
 
-    virtual HRESULT GetSecuritySite(
-        IInternetSecurityMgrSite **ppSite) = 0;
+    HRESULT ( *QueryInterface)(
+        IInternetSecurityManager* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT MapUrlToZone(
+    ULONG ( *AddRef)(
+        IInternetSecurityManager* This);
+
+    ULONG ( *Release)(
+        IInternetSecurityManager* This);
+
+
+    HRESULT ( *SetSecuritySite)(
+        IInternetSecurityManager* This,
+        IInternetSecurityMgrSite *pSite);
+
+    HRESULT ( *GetSecuritySite)(
+        IInternetSecurityManager* This,
+        IInternetSecurityMgrSite **ppSite);
+
+    HRESULT ( *MapUrlToZone)(
+        IInternetSecurityManager* This,
         LPCWSTR pwszUrl,
         DWORD *pdwZone,
-        DWORD dwFlags) = 0;
+        DWORD dwFlags);
 
-    virtual HRESULT GetSecurityId(
+    HRESULT ( *GetSecurityId)(
+        IInternetSecurityManager* This,
         LPCWSTR pwszUrl,
         BYTE *pbSecurityId,
         DWORD *pcbSecurityId,
-        DWORD_PTR dwReserved) = 0;
+        DWORD_PTR dwReserved);
 
-    virtual HRESULT ProcessUrlAction(
+    HRESULT ( *ProcessUrlAction)(
+        IInternetSecurityManager* This,
         LPCWSTR pwszUrl,
         DWORD dwAction,
         BYTE *pPolicy,
@@ -77325,30 +81157,35 @@ IInternetSecurityManager : public IUnknown
         BYTE *pContext,
         DWORD cbContext,
         DWORD dwFlags,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT QueryCustomPolicy(
+    HRESULT ( *QueryCustomPolicy)(
+        IInternetSecurityManager* This,
         LPCWSTR pwszUrl,
-        const GUID & guidKey,
+        const GUID *const guidKey,
         BYTE **ppPolicy,
         DWORD *pcbPolicy,
         BYTE *pContext,
         DWORD cbContext,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT SetZoneMapping(
+    HRESULT ( *SetZoneMapping)(
+        IInternetSecurityManager* This,
         DWORD dwZone,
         LPCWSTR lpszPattern,
-        DWORD dwFlags) = 0;
+        DWORD dwFlags);
 
-    virtual HRESULT GetZoneMappings(
+    HRESULT ( *GetZoneMappings)(
+        IInternetSecurityManager* This,
         DWORD dwZone,
         IEnumString **ppenumString,
-        DWORD dwFlags) = 0;
+        DWORD dwFlags);
 
+   
+} IInternetSecurityManagerVtbl;
+struct IInternetSecurityManager {
+    IInternetSecurityManagerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetSecurityManager>() { static const IID __uuid_inst = {0x79eac9ee,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetSecurityManager*>() { return __mingw_uuidof<IInternetSecurityManager>(); } }
 # 7717 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetSecurityManager_SetSecuritySite_Proxy(
     IInternetSecurityManager* This,
@@ -77405,7 +81242,7 @@ void IInternetSecurityManager_ProcessUrlAction_Stub(
 HRESULT IInternetSecurityManager_QueryCustomPolicy_Proxy(
     IInternetSecurityManager* This,
     LPCWSTR pwszUrl,
-    const GUID & guidKey,
+    const GUID *const guidKey,
     BYTE **ppPolicy,
     DWORD *pcbPolicy,
     BYTE *pContext,
@@ -77437,36 +81274,54 @@ void IInternetSecurityManager_GetZoneMappings_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 8463 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" const GUID IID_IInternetHostSecurityManager;
+extern const GUID IID_IInternetHostSecurityManager;
+# 8495 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetHostSecurityManagerVtbl {
+   
 
-struct
-IInternetHostSecurityManager : public IUnknown
-{
-    virtual HRESULT GetSecurityId(
+
+    HRESULT ( *QueryInterface)(
+        IInternetHostSecurityManager* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IInternetHostSecurityManager* This);
+
+    ULONG ( *Release)(
+        IInternetHostSecurityManager* This);
+
+
+    HRESULT ( *GetSecurityId)(
+        IInternetHostSecurityManager* This,
         BYTE *pbSecurityId,
         DWORD *pcbSecurityId,
-        DWORD_PTR dwReserved) = 0;
+        DWORD_PTR dwReserved);
 
-    virtual HRESULT ProcessUrlAction(
+    HRESULT ( *ProcessUrlAction)(
+        IInternetHostSecurityManager* This,
         DWORD dwAction,
         BYTE *pPolicy,
         DWORD cbPolicy,
         BYTE *pContext,
         DWORD cbContext,
         DWORD dwFlags,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT QueryCustomPolicy(
-        const GUID & guidKey,
+    HRESULT ( *QueryCustomPolicy)(
+        IInternetHostSecurityManager* This,
+        const GUID *const guidKey,
         BYTE **ppPolicy,
         DWORD *pcbPolicy,
         BYTE *pContext,
         DWORD cbContext,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
+   
+} IInternetHostSecurityManagerVtbl;
+struct IInternetHostSecurityManager {
+    IInternetHostSecurityManagerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetHostSecurityManager>() { static const IID __uuid_inst = {0x3af280b6,0xcb3f,0x11d0, {0x89,0x1e,0x00,0xc0,0x4f,0xb6,0xbf,0xc4}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetHostSecurityManager*>() { return __mingw_uuidof<IInternetHostSecurityManager>(); } }
 # 8578 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetHostSecurityManager_GetSecurityId_Proxy(
     IInternetHostSecurityManager* This,
@@ -77494,7 +81349,7 @@ void IInternetHostSecurityManager_ProcessUrlAction_Stub(
     DWORD* pdwStubPhase);
 HRESULT IInternetHostSecurityManager_QueryCustomPolicy_Proxy(
     IInternetHostSecurityManager* This,
-    const GUID & guidKey,
+    const GUID *const guidKey,
     BYTE **ppPolicy,
     DWORD *pcbPolicy,
     BYTE *pContext,
@@ -77574,81 +81429,108 @@ typedef enum _URLZONEREG {
     URLZONEREG_HKCU = 2
 } URLZONEREG;
 
-extern "C" const GUID IID_IInternetZoneManager;
+extern const GUID IID_IInternetZoneManager;
+# 8977 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IInternetZoneManagerVtbl {
+   
 
-struct
-IInternetZoneManager : public IUnknown
-{
-    virtual HRESULT GetZoneAttributes(
-        DWORD dwZone,
-        ZONEATTRIBUTES *pZoneAttributes) = 0;
 
-    virtual HRESULT SetZoneAttributes(
-        DWORD dwZone,
-        ZONEATTRIBUTES *pZoneAttributes) = 0;
+    HRESULT ( *QueryInterface)(
+        IInternetZoneManager* This,
+        const IID *const riid,
+        void **ppvObject);
 
-    virtual HRESULT GetZoneCustomPolicy(
+    ULONG ( *AddRef)(
+        IInternetZoneManager* This);
+
+    ULONG ( *Release)(
+        IInternetZoneManager* This);
+
+
+    HRESULT ( *GetZoneAttributes)(
+        IInternetZoneManager* This,
         DWORD dwZone,
-        const GUID & guidKey,
+        ZONEATTRIBUTES *pZoneAttributes);
+
+    HRESULT ( *SetZoneAttributes)(
+        IInternetZoneManager* This,
+        DWORD dwZone,
+        ZONEATTRIBUTES *pZoneAttributes);
+
+    HRESULT ( *GetZoneCustomPolicy)(
+        IInternetZoneManager* This,
+        DWORD dwZone,
+        const GUID *const guidKey,
         BYTE **ppPolicy,
         DWORD *pcbPolicy,
-        URLZONEREG urlZoneReg) = 0;
+        URLZONEREG urlZoneReg);
 
-    virtual HRESULT SetZoneCustomPolicy(
+    HRESULT ( *SetZoneCustomPolicy)(
+        IInternetZoneManager* This,
         DWORD dwZone,
-        const GUID & guidKey,
+        const GUID *const guidKey,
         BYTE *pPolicy,
         DWORD cbPolicy,
-        URLZONEREG urlZoneReg) = 0;
+        URLZONEREG urlZoneReg);
 
-    virtual HRESULT GetZoneActionPolicy(
-        DWORD dwZone,
-        DWORD dwAction,
-        BYTE *pPolicy,
-        DWORD cbPolicy,
-        URLZONEREG urlZoneReg) = 0;
-
-    virtual HRESULT SetZoneActionPolicy(
+    HRESULT ( *GetZoneActionPolicy)(
+        IInternetZoneManager* This,
         DWORD dwZone,
         DWORD dwAction,
         BYTE *pPolicy,
         DWORD cbPolicy,
-        URLZONEREG urlZoneReg) = 0;
+        URLZONEREG urlZoneReg);
 
-    virtual HRESULT PromptAction(
+    HRESULT ( *SetZoneActionPolicy)(
+        IInternetZoneManager* This,
+        DWORD dwZone,
+        DWORD dwAction,
+        BYTE *pPolicy,
+        DWORD cbPolicy,
+        URLZONEREG urlZoneReg);
+
+    HRESULT ( *PromptAction)(
+        IInternetZoneManager* This,
         DWORD dwAction,
         HWND hwndParent,
         LPCWSTR pwszUrl,
         LPCWSTR pwszText,
-        DWORD dwPromptFlags) = 0;
+        DWORD dwPromptFlags);
 
-    virtual HRESULT LogAction(
+    HRESULT ( *LogAction)(
+        IInternetZoneManager* This,
         DWORD dwAction,
         LPCWSTR pwszUrl,
         LPCWSTR pwszText,
-        DWORD dwLogFlags) = 0;
+        DWORD dwLogFlags);
 
-    virtual HRESULT CreateZoneEnumerator(
+    HRESULT ( *CreateZoneEnumerator)(
+        IInternetZoneManager* This,
         DWORD *pdwEnum,
         DWORD *pdwCount,
-        DWORD dwFlags) = 0;
+        DWORD dwFlags);
 
-    virtual HRESULT GetZoneAt(
+    HRESULT ( *GetZoneAt)(
+        IInternetZoneManager* This,
         DWORD dwEnum,
         DWORD dwIndex,
-        DWORD *pdwZone) = 0;
+        DWORD *pdwZone);
 
-    virtual HRESULT DestroyZoneEnumerator(
-        DWORD dwEnum) = 0;
+    HRESULT ( *DestroyZoneEnumerator)(
+        IInternetZoneManager* This,
+        DWORD dwEnum);
 
-    virtual HRESULT CopyTemplatePoliciesToZone(
+    HRESULT ( *CopyTemplatePoliciesToZone)(
+        IInternetZoneManager* This,
         DWORD dwTemplate,
         DWORD dwZone,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
+   
+} IInternetZoneManagerVtbl;
+struct IInternetZoneManager {
+    IInternetZoneManagerVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IInternetZoneManager>() { static const IID __uuid_inst = {0x79eac9ef,0xbaf9,0x11ce, {0x8c,0x82,0x00,0xaa,0x00,0x4b,0xa9,0x0b}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IInternetZoneManager*>() { return __mingw_uuidof<IInternetZoneManager>(); } }
 # 9150 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IInternetZoneManager_GetZoneAttributes_Proxy(
     IInternetZoneManager* This,
@@ -77671,7 +81553,7 @@ void IInternetZoneManager_SetZoneAttributes_Stub(
 HRESULT IInternetZoneManager_GetZoneCustomPolicy_Proxy(
     IInternetZoneManager* This,
     DWORD dwZone,
-    const GUID & guidKey,
+    const GUID *const guidKey,
     BYTE **ppPolicy,
     DWORD *pcbPolicy,
     URLZONEREG urlZoneReg);
@@ -77683,7 +81565,7 @@ void IInternetZoneManager_GetZoneCustomPolicy_Stub(
 HRESULT IInternetZoneManager_SetZoneCustomPolicy_Proxy(
     IInternetZoneManager* This,
     DWORD dwZone,
-    const GUID & guidKey,
+    const GUID *const guidKey,
     BYTE *pPolicy,
     DWORD cbPolicy,
     URLZONEREG urlZoneReg);
@@ -77778,7 +81660,7 @@ void IInternetZoneManager_CopyTemplatePoliciesToZone_Stub(
     PRPC_MESSAGE pRpcMessage,
     DWORD* pdwStubPhase);
 # 9884 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
-extern "C" const IID CLSID_SoftDistExt;
+extern const IID CLSID_SoftDistExt;
 # 9899 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef struct _tagCODEBASEHOLD {
     ULONG cbSize;
@@ -77813,33 +81695,52 @@ typedef struct _tagSOFTDISTINFO *LPSOFTDISTINFO;
 
 
 
-extern "C" const GUID IID_ISoftDistExt;
+extern const GUID IID_ISoftDistExt;
+# 9961 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct ISoftDistExtVtbl {
+   
 
-struct
-ISoftDistExt : public IUnknown
-{
-    virtual HRESULT ProcessSoftDist(
+
+    HRESULT ( *QueryInterface)(
+        ISoftDistExt* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        ISoftDistExt* This);
+
+    ULONG ( *Release)(
+        ISoftDistExt* This);
+
+
+    HRESULT ( *ProcessSoftDist)(
+        ISoftDistExt* This,
         LPCWSTR szCDFURL,
         IXMLElement *pSoftDistElement,
-        LPSOFTDISTINFO lpsdi) = 0;
+        LPSOFTDISTINFO lpsdi);
 
-    virtual HRESULT GetFirstCodeBase(
+    HRESULT ( *GetFirstCodeBase)(
+        ISoftDistExt* This,
         LPWSTR *szCodeBase,
-        LPDWORD dwMaxSize) = 0;
+        LPDWORD dwMaxSize);
 
-    virtual HRESULT GetNextCodeBase(
+    HRESULT ( *GetNextCodeBase)(
+        ISoftDistExt* This,
         LPWSTR *szCodeBase,
-        LPDWORD dwMaxSize) = 0;
+        LPDWORD dwMaxSize);
 
-    virtual HRESULT AsyncInstallDistributionUnit(
+    HRESULT ( *AsyncInstallDistributionUnit)(
+        ISoftDistExt* This,
         IBindCtx *pbc,
         LPVOID pvReserved,
         DWORD flags,
-        LPCODEBASEHOLD lpcbh) = 0;
+        LPCODEBASEHOLD lpcbh);
 
+   
+} ISoftDistExtVtbl;
+struct ISoftDistExt {
+    ISoftDistExtVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ISoftDistExt>() { static const IID __uuid_inst = {0xb15b8dc1,0xc7e1,0x11d0, {0x86,0x80,0x00,0xaa,0x00,0xbd,0xcb,0x71}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ISoftDistExt*>() { return __mingw_uuidof<ISoftDistExt>(); } }
 # 10046 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT ISoftDistExt_ProcessSoftDist_Proxy(
     ISoftDistExt* This,
@@ -77884,25 +81785,42 @@ void ISoftDistExt_AsyncInstallDistributionUnit_Stub(
 
 
 
-extern "C" HRESULT GetSoftwareUpdateInfo(LPCWSTR szDistUnit, LPSOFTDISTINFO psdi);
-extern "C" HRESULT SetSoftwareUpdateAdvertisementState(LPCWSTR szDistUnit, DWORD dwAdState, DWORD dwAdvertisedVersionMS, DWORD dwAdvertisedVersionLS);
+extern HRESULT GetSoftwareUpdateInfo(LPCWSTR szDistUnit, LPSOFTDISTINFO psdi);
+extern HRESULT SetSoftwareUpdateAdvertisementState(LPCWSTR szDistUnit, DWORD dwAdState, DWORD dwAdvertisedVersionMS, DWORD dwAdvertisedVersionLS);
 # 10102 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef ICatalogFileInfo *LPCATALOGFILEINFO;
 
-extern "C" const GUID IID_ICatalogFileInfo;
+extern const GUID IID_ICatalogFileInfo;
+# 10120 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct ICatalogFileInfoVtbl {
+   
 
-struct
-ICatalogFileInfo : public IUnknown
-{
-    virtual HRESULT GetCatalogFile(
-        LPSTR *ppszCatalogFile) = 0;
 
-    virtual HRESULT GetJavaTrust(
-        void **ppJavaTrust) = 0;
+    HRESULT ( *QueryInterface)(
+        ICatalogFileInfo* This,
+        const IID *const riid,
+        void **ppvObject);
 
+    ULONG ( *AddRef)(
+        ICatalogFileInfo* This);
+
+    ULONG ( *Release)(
+        ICatalogFileInfo* This);
+
+
+    HRESULT ( *GetCatalogFile)(
+        ICatalogFileInfo* This,
+        LPSTR *ppszCatalogFile);
+
+    HRESULT ( *GetJavaTrust)(
+        ICatalogFileInfo* This,
+        void **ppJavaTrust);
+
+   
+} ICatalogFileInfoVtbl;
+struct ICatalogFileInfo {
+    ICatalogFileInfoVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<ICatalogFileInfo>() { static const IID __uuid_inst = {0x711c7600,0x6b48,0x11d1, {0xb4,0x03,0x00,0xaa,0x00,0xb9,0x2a,0xf1}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<ICatalogFileInfo*>() { return __mingw_uuidof<ICatalogFileInfo>(); } }
 # 10182 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT ICatalogFileInfo_GetCatalogFile_Proxy(
     ICatalogFileInfo* This,
@@ -77923,12 +81841,26 @@ void ICatalogFileInfo_GetJavaTrust_Stub(
 # 10212 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IDataFilter *LPDATAFILTER;
 
-extern "C" const GUID IID_IDataFilter;
+extern const GUID IID_IDataFilter;
+# 10249 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IDataFilterVtbl {
+   
 
-struct
-IDataFilter : public IUnknown
-{
-    virtual HRESULT DoEncode(
+
+    HRESULT ( *QueryInterface)(
+        IDataFilter* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IDataFilter* This);
+
+    ULONG ( *Release)(
+        IDataFilter* This);
+
+
+    HRESULT ( *DoEncode)(
+        IDataFilter* This,
         DWORD dwFlags,
         LONG lInBufferSize,
         BYTE *pbInBuffer,
@@ -77937,9 +81869,10 @@ IDataFilter : public IUnknown
         LONG lInBytesAvailable,
         LONG *plInBytesRead,
         LONG *plOutBytesWritten,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT DoDecode(
+    HRESULT ( *DoDecode)(
+        IDataFilter* This,
         DWORD dwFlags,
         LONG lInBufferSize,
         BYTE *pbInBuffer,
@@ -77948,14 +81881,17 @@ IDataFilter : public IUnknown
         LONG lInBytesAvailable,
         LONG *plInBytesRead,
         LONG *plOutBytesWritten,
-        DWORD dwReserved) = 0;
+        DWORD dwReserved);
 
-    virtual HRESULT SetEncodingLevel(
-        DWORD dwEncLevel) = 0;
+    HRESULT ( *SetEncodingLevel)(
+        IDataFilter* This,
+        DWORD dwEncLevel);
 
+   
+} IDataFilterVtbl;
+struct IDataFilter {
+    IDataFilterVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IDataFilter>() { static const IID __uuid_inst = {0x69d14c80,0xc18e,0x11d0, {0xa9,0xce,0x00,0x60,0x97,0x94,0x23,0x11}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IDataFilter*>() { return __mingw_uuidof<IDataFilter>(); } }
 # 10335 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IDataFilter_DoEncode_Proxy(
     IDataFilter* This,
@@ -78021,25 +81957,42 @@ typedef struct _tagDATAINFO {
     ULONG ulProcessorSpeed;
 } DATAINFO;
 
-extern "C" const GUID IID_IEncodingFilterFactory;
+extern const GUID IID_IEncodingFilterFactory;
+# 10427 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IEncodingFilterFactoryVtbl {
+   
 
-struct
-IEncodingFilterFactory : public IUnknown
-{
-    virtual HRESULT FindBestFilter(
+
+    HRESULT ( *QueryInterface)(
+        IEncodingFilterFactory* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEncodingFilterFactory* This);
+
+    ULONG ( *Release)(
+        IEncodingFilterFactory* This);
+
+
+    HRESULT ( *FindBestFilter)(
+        IEncodingFilterFactory* This,
         LPCWSTR pwzCodeIn,
         LPCWSTR pwzCodeOut,
         DATAINFO info,
-        IDataFilter **ppDF) = 0;
+        IDataFilter **ppDF);
 
-    virtual HRESULT GetDefaultFilter(
+    HRESULT ( *GetDefaultFilter)(
+        IEncodingFilterFactory* This,
         LPCWSTR pwzCodeIn,
         LPCWSTR pwzCodeOut,
-        IDataFilter **ppDF) = 0;
+        IDataFilter **ppDF);
 
+   
+} IEncodingFilterFactoryVtbl;
+struct IEncodingFilterFactory {
+    IEncodingFilterFactoryVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEncodingFilterFactory>() { static const IID __uuid_inst = {0x70bdde00,0xc18e,0x11d0, {0xa9,0xce,0x00,0x60,0x97,0x94,0x23,0x11}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEncodingFilterFactory*>() { return __mingw_uuidof<IEncodingFilterFactory>(); } }
 # 10494 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IEncodingFilterFactory_FindBestFilter_Proxy(
     IEncodingFilterFactory* This,
@@ -78087,22 +82040,38 @@ struct CONFIRMSAFETY {
 };
 
 
-extern "C" const GUID GUID_CUSTOM_CONFIRMOBJECTSAFETY;
+extern const GUID GUID_CUSTOM_CONFIRMOBJECTSAFETY;
 # 10559 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IWrappedProtocol *LPIWRAPPEDPROTOCOL;
 
-extern "C" const GUID IID_IWrappedProtocol;
+extern const GUID IID_IWrappedProtocol;
+# 10575 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IWrappedProtocolVtbl {
+   
 
-struct
-IWrappedProtocol : public IUnknown
-{
-    virtual HRESULT GetWrapperCode(
+
+    HRESULT ( *QueryInterface)(
+        IWrappedProtocol* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IWrappedProtocol* This);
+
+    ULONG ( *Release)(
+        IWrappedProtocol* This);
+
+
+    HRESULT ( *GetWrapperCode)(
+        IWrappedProtocol* This,
         LONG *pnCode,
-        DWORD_PTR dwReserved) = 0;
+        DWORD_PTR dwReserved);
 
+   
+} IWrappedProtocolVtbl;
+struct IWrappedProtocol {
+    IWrappedProtocolVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IWrappedProtocol>() { static const IID __uuid_inst = {0x53c84785,0x8425,0x4dc5, {0x97,0x1b,0xe5,0x8d,0x9c,0x19,0xf9,0xb6}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IWrappedProtocol*>() { return __mingw_uuidof<IWrappedProtocol>(); } }
 # 10630 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IWrappedProtocol_GetWrapperCode_Proxy(
     IWrappedProtocol* This,
@@ -78122,18 +82091,34 @@ typedef enum __WIDL_urlmon_generated_name_00000012 {
     BINDHANDLETYPES_COUNT = 0x2
 } BINDHANDLETYPES;
 
-extern "C" const GUID IID_IGetBindHandle;
+extern const GUID IID_IGetBindHandle;
+# 10675 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IGetBindHandleVtbl {
+   
 
-struct
-IGetBindHandle : public IUnknown
-{
-    virtual HRESULT GetBindHandle(
+
+    HRESULT ( *QueryInterface)(
+        IGetBindHandle* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IGetBindHandle* This);
+
+    ULONG ( *Release)(
+        IGetBindHandle* This);
+
+
+    HRESULT ( *GetBindHandle)(
+        IGetBindHandle* This,
         BINDHANDLETYPES enumRequestedHandle,
-        HANDLE *pRetHandle) = 0;
+        HANDLE *pRetHandle);
 
+   
+} IGetBindHandleVtbl;
+struct IGetBindHandle {
+    IGetBindHandleVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IGetBindHandle>() { static const IID __uuid_inst = {0xaf0ff408,0x129d,0x4b20, {0x91,0xf0,0x02,0xbd,0x23,0xd8,0x83,0x52}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IGetBindHandle*>() { return __mingw_uuidof<IGetBindHandle>(); } }
 # 10730 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IGetBindHandle_GetBindHandle_Proxy(
     IGetBindHandle* This,
@@ -78153,18 +82138,34 @@ typedef struct _tagPROTOCOL_ARGUMENT *LPPROTOCOL_ARGUMENT;
 # 10763 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 typedef IBindCallbackRedirect *LPBINDCALLBACKREDIRECT;
 
-extern "C" const GUID IID_IBindCallbackRedirect;
+extern const GUID IID_IBindCallbackRedirect;
+# 10779 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
+typedef struct IBindCallbackRedirectVtbl {
+   
 
-struct
-IBindCallbackRedirect : public IUnknown
-{
-    virtual HRESULT Redirect(
+
+    HRESULT ( *QueryInterface)(
+        IBindCallbackRedirect* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IBindCallbackRedirect* This);
+
+    ULONG ( *Release)(
+        IBindCallbackRedirect* This);
+
+
+    HRESULT ( *Redirect)(
+        IBindCallbackRedirect* This,
         LPCWSTR lpcUrl,
-        VARIANT_BOOL *vbCancel) = 0;
+        VARIANT_BOOL *vbCancel);
 
+   
+} IBindCallbackRedirectVtbl;
+struct IBindCallbackRedirect {
+    IBindCallbackRedirectVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IBindCallbackRedirect>() { static const IID __uuid_inst = {0x11c81bc2,0x121e,0x4ed5, {0xb9,0xc4,0xb4,0x30,0xbd,0x54,0xf2,0xc0}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IBindCallbackRedirect*>() { return __mingw_uuidof<IBindCallbackRedirect>(); } }
 # 10834 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/urlmon.h" 3
 HRESULT IBindCallbackRedirect_Redirect_Proxy(
     IBindCallbackRedirect* This,
@@ -78192,11 +82193,6 @@ ULONG BSTR_UserSize (ULONG *, ULONG, BSTR *);
 unsigned char * BSTR_UserMarshal (ULONG *, unsigned char *, BSTR *);
 unsigned char * BSTR_UserUnmarshal(ULONG *, unsigned char *, BSTR *);
 void BSTR_UserFree (ULONG *, BSTR *);
-
-
-
-
-}
 # 164 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objbase.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 1 3
 
@@ -78322,9 +82318,6 @@ typedef struct IEnumSTATPROPSETSTG IEnumSTATPROPSETSTG;
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ole2.h" 1 3
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 2 3
 # 45 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 2 3
-
-
-extern "C" {
 # 75 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
 typedef struct tagVersionedStream {
     GUID guidVersion;
@@ -78578,63 +82571,89 @@ typedef struct tagSTATPROPSETSTG {
 
 
 
-extern "C" const GUID IID_IPropertyStorage;
+extern const GUID IID_IPropertyStorage;
+# 498 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
+typedef struct IPropertyStorageVtbl {
+   
 
-struct
-IPropertyStorage : public IUnknown
-{
-    virtual HRESULT ReadMultiple(
+
+    HRESULT ( *QueryInterface)(
+        IPropertyStorage* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IPropertyStorage* This);
+
+    ULONG ( *Release)(
+        IPropertyStorage* This);
+
+
+    HRESULT ( *ReadMultiple)(
+        IPropertyStorage* This,
         ULONG cpspec,
         const PROPSPEC rgpspec[],
-        PROPVARIANT rgpropvar[]) = 0;
+        PROPVARIANT rgpropvar[]);
 
-    virtual HRESULT WriteMultiple(
+    HRESULT ( *WriteMultiple)(
+        IPropertyStorage* This,
         ULONG cpspec,
         const PROPSPEC rgpspec[],
         const PROPVARIANT rgpropvar[],
-        PROPID propidNameFirst) = 0;
+        PROPID propidNameFirst);
 
-    virtual HRESULT DeleteMultiple(
+    HRESULT ( *DeleteMultiple)(
+        IPropertyStorage* This,
         ULONG cpspec,
-        const PROPSPEC rgpspec[]) = 0;
+        const PROPSPEC rgpspec[]);
 
-    virtual HRESULT ReadPropertyNames(
+    HRESULT ( *ReadPropertyNames)(
+        IPropertyStorage* This,
         ULONG cpropid,
         const PROPID rgpropid[],
-        LPOLESTR rglpwstrName[]) = 0;
+        LPOLESTR rglpwstrName[]);
 
-    virtual HRESULT WritePropertyNames(
+    HRESULT ( *WritePropertyNames)(
+        IPropertyStorage* This,
         ULONG cpropid,
         const PROPID rgpropid[],
-        const LPOLESTR rglpwstrName[]) = 0;
+        const LPOLESTR rglpwstrName[]);
 
-    virtual HRESULT DeletePropertyNames(
+    HRESULT ( *DeletePropertyNames)(
+        IPropertyStorage* This,
         ULONG cpropid,
-        const PROPID rgpropid[]) = 0;
+        const PROPID rgpropid[]);
 
-    virtual HRESULT Commit(
-        DWORD grfCommitFlags) = 0;
+    HRESULT ( *Commit)(
+        IPropertyStorage* This,
+        DWORD grfCommitFlags);
 
-    virtual HRESULT Revert(
-        ) = 0;
+    HRESULT ( *Revert)(
+        IPropertyStorage* This);
 
-    virtual HRESULT Enum(
-        IEnumSTATPROPSTG **ppenum) = 0;
+    HRESULT ( *Enum)(
+        IPropertyStorage* This,
+        IEnumSTATPROPSTG **ppenum);
 
-    virtual HRESULT SetTimes(
+    HRESULT ( *SetTimes)(
+        IPropertyStorage* This,
         const FILETIME *pctime,
         const FILETIME *patime,
-        const FILETIME *pmtime) = 0;
+        const FILETIME *pmtime);
 
-    virtual HRESULT SetClass(
-        const IID & clsid) = 0;
+    HRESULT ( *SetClass)(
+        IPropertyStorage* This,
+        const IID *const clsid);
 
-    virtual HRESULT Stat(
-        STATPROPSETSTG *pstatpsstg) = 0;
+    HRESULT ( *Stat)(
+        IPropertyStorage* This,
+        STATPROPSETSTG *pstatpsstg);
 
+   
+} IPropertyStorageVtbl;
+struct IPropertyStorage {
+    IPropertyStorageVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPropertyStorage>() { static const IID __uuid_inst = {0x00000138,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPropertyStorage*>() { return __mingw_uuidof<IPropertyStorage>(); } }
 # 652 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
 HRESULT IPropertyStorage_ReadMultiple_Proxy(
     IPropertyStorage* This,
@@ -78730,7 +82749,7 @@ void IPropertyStorage_SetTimes_Stub(
     DWORD* pdwStubPhase);
 HRESULT IPropertyStorage_SetClass_Proxy(
     IPropertyStorage* This,
-    const IID & clsid);
+    const IID *const clsid);
 void IPropertyStorage_SetClass_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -78747,36 +82766,55 @@ void IPropertyStorage_Stat_Stub(
 # 770 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
 typedef IPropertySetStorage *LPPROPERTYSETSTORAGE;
 
-extern "C" const GUID IID_IPropertySetStorage;
+extern const GUID IID_IPropertySetStorage;
+# 800 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
+typedef struct IPropertySetStorageVtbl {
+   
 
-struct
-IPropertySetStorage : public IUnknown
-{
-    virtual HRESULT Create(
-        const IID & rfmtid,
+
+    HRESULT ( *QueryInterface)(
+        IPropertySetStorage* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IPropertySetStorage* This);
+
+    ULONG ( *Release)(
+        IPropertySetStorage* This);
+
+
+    HRESULT ( *Create)(
+        IPropertySetStorage* This,
+        const IID *const rfmtid,
         const CLSID *pclsid,
         DWORD grfFlags,
         DWORD grfMode,
-        IPropertyStorage **ppprstg) = 0;
+        IPropertyStorage **ppprstg);
 
-    virtual HRESULT Open(
-        const IID & rfmtid,
+    HRESULT ( *Open)(
+        IPropertySetStorage* This,
+        const IID *const rfmtid,
         DWORD grfMode,
-        IPropertyStorage **ppprstg) = 0;
+        IPropertyStorage **ppprstg);
 
-    virtual HRESULT Delete(
-        const IID & rfmtid) = 0;
+    HRESULT ( *Delete)(
+        IPropertySetStorage* This,
+        const IID *const rfmtid);
 
-    virtual HRESULT Enum(
-        IEnumSTATPROPSETSTG **ppenum) = 0;
+    HRESULT ( *Enum)(
+        IPropertySetStorage* This,
+        IEnumSTATPROPSETSTG **ppenum);
 
+   
+} IPropertySetStorageVtbl;
+struct IPropertySetStorage {
+    IPropertySetStorageVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IPropertySetStorage>() { static const IID __uuid_inst = {0x0000013a,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IPropertySetStorage*>() { return __mingw_uuidof<IPropertySetStorage>(); } }
 # 884 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
 HRESULT IPropertySetStorage_Create_Proxy(
     IPropertySetStorage* This,
-    const IID & rfmtid,
+    const IID *const rfmtid,
     const CLSID *pclsid,
     DWORD grfFlags,
     DWORD grfMode,
@@ -78788,7 +82826,7 @@ void IPropertySetStorage_Create_Stub(
     DWORD* pdwStubPhase);
 HRESULT IPropertySetStorage_Open_Proxy(
     IPropertySetStorage* This,
-    const IID & rfmtid,
+    const IID *const rfmtid,
     DWORD grfMode,
     IPropertyStorage **ppprstg);
 void IPropertySetStorage_Open_Stub(
@@ -78798,7 +82836,7 @@ void IPropertySetStorage_Open_Stub(
     DWORD* pdwStubPhase);
 HRESULT IPropertySetStorage_Delete_Proxy(
     IPropertySetStorage* This,
-    const IID & rfmtid);
+    const IID *const rfmtid);
 void IPropertySetStorage_Delete_Stub(
     IRpcStubBuffer* This,
     IRpcChannelBuffer* pRpcChannelBuffer,
@@ -78815,28 +82853,46 @@ void IPropertySetStorage_Enum_Stub(
 # 932 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
 typedef IEnumSTATPROPSTG *LPENUMSTATPROPSTG;
 
-extern "C" const GUID IID_IEnumSTATPROPSTG;
+extern const GUID IID_IEnumSTATPROPSTG;
+# 958 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
+typedef struct IEnumSTATPROPSTGVtbl {
+   
 
-struct
-IEnumSTATPROPSTG : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumSTATPROPSTG* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumSTATPROPSTG* This);
+
+    ULONG ( *Release)(
+        IEnumSTATPROPSTG* This);
+
+
+    HRESULT ( *Next)(
+        IEnumSTATPROPSTG* This,
         ULONG celt,
         STATPROPSTG *rgelt,
-        ULONG *pceltFetched) = 0;
+        ULONG *pceltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumSTATPROPSTG* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumSTATPROPSTG* This);
 
-    virtual HRESULT Clone(
-        IEnumSTATPROPSTG **ppenum) = 0;
+    HRESULT ( *Clone)(
+        IEnumSTATPROPSTG* This,
+        IEnumSTATPROPSTG **ppenum);
 
+   
+} IEnumSTATPROPSTGVtbl;
+struct IEnumSTATPROPSTG {
+    IEnumSTATPROPSTGVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumSTATPROPSTG>() { static const IID __uuid_inst = {0x00000139,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumSTATPROPSTG*>() { return __mingw_uuidof<IEnumSTATPROPSTG>(); } }
 # 1037 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
 HRESULT IEnumSTATPROPSTG_RemoteNext_Proxy(
     IEnumSTATPROPSTG* This,
@@ -78884,28 +82940,46 @@ HRESULT IEnumSTATPROPSTG_Next_Stub(
 # 1090 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
 typedef IEnumSTATPROPSETSTG *LPENUMSTATPROPSETSTG;
 
-extern "C" const GUID IID_IEnumSTATPROPSETSTG;
+extern const GUID IID_IEnumSTATPROPSETSTG;
+# 1116 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
+typedef struct IEnumSTATPROPSETSTGVtbl {
+   
 
-struct
-IEnumSTATPROPSETSTG : public IUnknown
-{
-    virtual HRESULT Next(
+
+    HRESULT ( *QueryInterface)(
+        IEnumSTATPROPSETSTG* This,
+        const IID *const riid,
+        void **ppvObject);
+
+    ULONG ( *AddRef)(
+        IEnumSTATPROPSETSTG* This);
+
+    ULONG ( *Release)(
+        IEnumSTATPROPSETSTG* This);
+
+
+    HRESULT ( *Next)(
+        IEnumSTATPROPSETSTG* This,
         ULONG celt,
         STATPROPSETSTG *rgelt,
-        ULONG *pceltFetched) = 0;
+        ULONG *pceltFetched);
 
-    virtual HRESULT Skip(
-        ULONG celt) = 0;
+    HRESULT ( *Skip)(
+        IEnumSTATPROPSETSTG* This,
+        ULONG celt);
 
-    virtual HRESULT Reset(
-        ) = 0;
+    HRESULT ( *Reset)(
+        IEnumSTATPROPSETSTG* This);
 
-    virtual HRESULT Clone(
-        IEnumSTATPROPSETSTG **ppenum) = 0;
+    HRESULT ( *Clone)(
+        IEnumSTATPROPSETSTG* This,
+        IEnumSTATPROPSETSTG **ppenum);
 
+   
+} IEnumSTATPROPSETSTGVtbl;
+struct IEnumSTATPROPSETSTG {
+    IEnumSTATPROPSETSTGVtbl* lpVtbl;
 };
-
-extern "C++" { template<> inline const GUID &__mingw_uuidof<IEnumSTATPROPSETSTG>() { static const IID __uuid_inst = {0x0000013b,0x0000,0x0000, {0xc0,0x00,0x00,0x00,0x00,0x00,0x00,0x46}}; return __uuid_inst; } template<> inline const GUID &__mingw_uuidof<IEnumSTATPROPSETSTG*>() { return __mingw_uuidof<IEnumSTATPROPSETSTG>(); } }
 # 1195 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
 HRESULT IEnumSTATPROPSETSTG_RemoteNext_Proxy(
     IEnumSTATPROPSETSTG* This,
@@ -78956,26 +83030,18 @@ HRESULT IEnumSTATPROPSETSTG_Next_Stub(
 
 typedef IPropertyStorage *LPPROPERTYSTORAGE;
 
-  extern "C" __attribute__((dllimport)) HRESULT PropVariantCopy(PROPVARIANT *pvarDest,const PROPVARIANT *pvarSrc);
-  extern "C" __attribute__((dllimport)) HRESULT PropVariantClear(PROPVARIANT *pvar);
-  extern "C" __attribute__((dllimport)) HRESULT FreePropVariantArray(ULONG cVariants, PROPVARIANT *rgvars);
+  extern __attribute__((dllimport)) HRESULT PropVariantCopy(PROPVARIANT *pvarDest,const PROPVARIANT *pvarSrc);
+  extern __attribute__((dllimport)) HRESULT PropVariantClear(PROPVARIANT *pvar);
+  extern __attribute__((dllimport)) HRESULT FreePropVariantArray(ULONG cVariants, PROPVARIANT *rgvars);
+# 1256 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
+  extern __attribute__((dllimport)) HRESULT StgCreatePropStg(IUnknown *pUnk, const IID *const fmtid, const CLSID *pclsid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage **ppPropStg);
+  extern __attribute__((dllimport)) HRESULT StgOpenPropStg(IUnknown *pUnk, const IID *const fmtid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage **ppPropStg);
+  extern __attribute__((dllimport)) HRESULT StgCreatePropSetStg(IStorage *pStorage, DWORD dwReserved, IPropertySetStorage **ppPropSetStg);
 
 
 
-inline void PropVariantInit (PROPVARIANT *pvar) { memset (pvar, 0, sizeof (PROPVARIANT)); }
-
-
-
-
-
-  extern "C" __attribute__((dllimport)) HRESULT StgCreatePropStg(IUnknown *pUnk, const IID & fmtid, const CLSID *pclsid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage **ppPropStg);
-  extern "C" __attribute__((dllimport)) HRESULT StgOpenPropStg(IUnknown *pUnk, const IID & fmtid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage **ppPropStg);
-  extern "C" __attribute__((dllimport)) HRESULT StgCreatePropSetStg(IStorage *pStorage, DWORD dwReserved, IPropertySetStorage **ppPropSetStg);
-
-
-
-  extern "C" __attribute__((dllimport)) HRESULT FmtIdToPropStgName(const FMTID *pfmtid, LPOLESTR oszName);
-  extern "C" __attribute__((dllimport)) HRESULT PropStgNameToFmtId(const LPOLESTR oszName, FMTID *pfmtid);
+  extern __attribute__((dllimport)) HRESULT FmtIdToPropStgName(const FMTID *pfmtid, LPOLESTR oszName);
+  extern __attribute__((dllimport)) HRESULT PropStgNameToFmtId(const LPOLESTR oszName, FMTID *pfmtid);
 
 
 
@@ -78988,17 +83054,8 @@ typedef struct tagSERIALIZEDPROPERTYVALUE {
 
 
 
-extern "C" SERIALIZEDPROPERTYVALUE * StgConvertVariantToProperty(const PROPVARIANT *pvar, USHORT CodePage, SERIALIZEDPROPERTYVALUE *pprop, ULONG *pcb, PROPID pid, BOOLEAN fReserved, ULONG *pcIndirect);
-
-
-class PMemoryAllocator;
-
-extern "C" BOOLEAN StgConvertPropertyToVariant(const SERIALIZEDPROPERTYVALUE *pprop, USHORT CodePage, PROPVARIANT *pvar, PMemoryAllocator *pma);
-
-
-
-
-
+extern SERIALIZEDPROPERTYVALUE * StgConvertVariantToProperty(const PROPVARIANT *pvar, USHORT CodePage, SERIALIZEDPROPERTYVALUE *pprop, ULONG *pcb, PROPID pid, BOOLEAN fReserved, ULONG *pcIndirect);
+# 1287 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/propidl.h" 3
 ULONG BSTR_UserSize (ULONG *, ULONG, BSTR *);
 unsigned char * BSTR_UserMarshal (ULONG *, unsigned char *, BSTR *);
 unsigned char * BSTR_UserUnmarshal(ULONG *, unsigned char *, BSTR *);
@@ -79007,15 +83064,10 @@ ULONG LPSAFEARRAY_UserSize (ULONG *, ULONG, LPSAFEARRAY *);
 unsigned char * LPSAFEARRAY_UserMarshal (ULONG *, unsigned char *, LPSAFEARRAY *);
 unsigned char * LPSAFEARRAY_UserUnmarshal(ULONG *, unsigned char *, LPSAFEARRAY *);
 void LPSAFEARRAY_UserFree (ULONG *, LPSAFEARRAY *);
-
-
-
-
-}
 # 165 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/objbase.h" 2 3
 
 
-extern "C" __attribute__((dllimport)) HRESULT CreateStdProgressIndicator (HWND hwndParent, LPCOLESTR pszTitle, IBindStatusCallback *pIbscCaller, IBindStatusCallback **ppIbsc);
+extern __attribute__((dllimport)) HRESULT CreateStdProgressIndicator (HWND hwndParent, LPCOLESTR pszTitle, IBindStatusCallback *pIbscCaller, IBindStatusCallback **ppIbsc);
 
 
 
@@ -79041,7 +83093,7 @@ extern "C" __attribute__((dllimport)) HRESULT CreateStdProgressIndicator (HWND h
 #pragma pack(push,8)
 # 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 2 3
 # 21 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 3
-extern "C" const IID IID_StdOle;
+extern const IID IID_StdOle;
 # 41 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 1 3
 
@@ -79070,291 +83122,291 @@ extern "C" const IID IID_StdOle;
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oaidl.h" 2 3
 # 42 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 2 3
 
-extern "C" __attribute__((dllimport)) BSTR SysAllocString(const OLECHAR *);
-extern "C" __attribute__((dllimport)) INT SysReAllocString(BSTR *,const OLECHAR *);
-extern "C" __attribute__((dllimport)) BSTR SysAllocStringLen(const OLECHAR *,UINT);
-extern "C" __attribute__((dllimport)) INT SysReAllocStringLen(BSTR *,const OLECHAR *,UINT);
-extern "C" __attribute__((dllimport)) void SysFreeString(BSTR);
-extern "C" __attribute__((dllimport)) UINT SysStringLen(BSTR);
-extern "C" __attribute__((dllimport)) UINT SysStringByteLen(BSTR bstr);
-extern "C" __attribute__((dllimport)) BSTR SysAllocStringByteLen(LPCSTR psz,UINT len);
-extern "C" __attribute__((dllimport)) INT DosDateTimeToVariantTime(USHORT wDosDate,USHORT wDosTime,DOUBLE *pvtime);
-extern "C" __attribute__((dllimport)) INT VariantTimeToDosDateTime(DOUBLE vtime,USHORT *pwDosDate,USHORT *pwDosTime);
-extern "C" __attribute__((dllimport)) INT SystemTimeToVariantTime(LPSYSTEMTIME lpSystemTime,DOUBLE *pvtime);
-extern "C" __attribute__((dllimport)) INT VariantTimeToSystemTime(DOUBLE vtime,LPSYSTEMTIME lpSystemTime);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayAllocDescriptor(UINT cDims,SAFEARRAY **ppsaOut);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayAllocDescriptorEx(VARTYPE vt,UINT cDims,SAFEARRAY **ppsaOut);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayAllocData(SAFEARRAY *psa);
-extern "C" __attribute__((dllimport)) SAFEARRAY * SafeArrayCreate(VARTYPE vt,UINT cDims,SAFEARRAYBOUND *rgsabound);
-extern "C" __attribute__((dllimport)) SAFEARRAY * SafeArrayCreateEx(VARTYPE vt,UINT cDims,SAFEARRAYBOUND *rgsabound,PVOID pvExtra);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayCopyData(SAFEARRAY *psaSource,SAFEARRAY *psaTarget);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayDestroyDescriptor(SAFEARRAY *psa);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayDestroyData(SAFEARRAY *psa);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayDestroy(SAFEARRAY *psa);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayRedim(SAFEARRAY *psa,SAFEARRAYBOUND *psaboundNew);
-extern "C" __attribute__((dllimport)) UINT SafeArrayGetDim(SAFEARRAY *psa);
-extern "C" __attribute__((dllimport)) UINT SafeArrayGetElemsize(SAFEARRAY *psa);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayGetUBound(SAFEARRAY *psa,UINT nDim,LONG *plUbound);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayGetLBound(SAFEARRAY *psa,UINT nDim,LONG *plLbound);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayLock(SAFEARRAY *psa);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayUnlock(SAFEARRAY *psa);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayAccessData(SAFEARRAY *psa,void **ppvData);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayUnaccessData(SAFEARRAY *psa);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayGetElement(SAFEARRAY *psa,LONG *rgIndices,void *pv);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayPutElement(SAFEARRAY *psa,LONG *rgIndices,void *pv);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayCopy(SAFEARRAY *psa,SAFEARRAY **ppsaOut);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayPtrOfIndex(SAFEARRAY *psa,LONG *rgIndices,void **ppvData);
-extern "C" __attribute__((dllimport)) HRESULT SafeArraySetRecordInfo(SAFEARRAY *psa,IRecordInfo *prinfo);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayGetRecordInfo(SAFEARRAY *psa,IRecordInfo **prinfo);
-extern "C" __attribute__((dllimport)) HRESULT SafeArraySetIID(SAFEARRAY *psa,const GUID & guid);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayGetIID(SAFEARRAY *psa,GUID *pguid);
-extern "C" __attribute__((dllimport)) HRESULT SafeArrayGetVartype(SAFEARRAY *psa,VARTYPE *pvt);
-extern "C" __attribute__((dllimport)) SAFEARRAY * SafeArrayCreateVector(VARTYPE vt,LONG lLbound,ULONG cElements);
-extern "C" __attribute__((dllimport)) SAFEARRAY * SafeArrayCreateVectorEx(VARTYPE vt,LONG lLbound,ULONG cElements,PVOID pvExtra);
-extern "C" __attribute__((dllimport)) void VariantInit(VARIANTARG *pvarg);
-extern "C" __attribute__((dllimport)) HRESULT VariantClear(VARIANTARG *pvarg);
-extern "C" __attribute__((dllimport)) HRESULT VariantCopy(VARIANTARG *pvargDest,VARIANTARG *pvargSrc);
-extern "C" __attribute__((dllimport)) HRESULT VariantCopyInd(VARIANT *pvarDest,VARIANTARG *pvargSrc);
-extern "C" __attribute__((dllimport)) HRESULT VariantChangeType(VARIANTARG *pvargDest,VARIANTARG *pvarSrc,USHORT wFlags,VARTYPE vt);
-extern "C" __attribute__((dllimport)) HRESULT VariantChangeTypeEx(VARIANTARG *pvargDest,VARIANTARG *pvarSrc,LCID lcid,USHORT wFlags,VARTYPE vt);
+extern __attribute__((dllimport)) BSTR SysAllocString(const OLECHAR *);
+extern __attribute__((dllimport)) INT SysReAllocString(BSTR *,const OLECHAR *);
+extern __attribute__((dllimport)) BSTR SysAllocStringLen(const OLECHAR *,UINT);
+extern __attribute__((dllimport)) INT SysReAllocStringLen(BSTR *,const OLECHAR *,UINT);
+extern __attribute__((dllimport)) void SysFreeString(BSTR);
+extern __attribute__((dllimport)) UINT SysStringLen(BSTR);
+extern __attribute__((dllimport)) UINT SysStringByteLen(BSTR bstr);
+extern __attribute__((dllimport)) BSTR SysAllocStringByteLen(LPCSTR psz,UINT len);
+extern __attribute__((dllimport)) INT DosDateTimeToVariantTime(USHORT wDosDate,USHORT wDosTime,DOUBLE *pvtime);
+extern __attribute__((dllimport)) INT VariantTimeToDosDateTime(DOUBLE vtime,USHORT *pwDosDate,USHORT *pwDosTime);
+extern __attribute__((dllimport)) INT SystemTimeToVariantTime(LPSYSTEMTIME lpSystemTime,DOUBLE *pvtime);
+extern __attribute__((dllimport)) INT VariantTimeToSystemTime(DOUBLE vtime,LPSYSTEMTIME lpSystemTime);
+extern __attribute__((dllimport)) HRESULT SafeArrayAllocDescriptor(UINT cDims,SAFEARRAY **ppsaOut);
+extern __attribute__((dllimport)) HRESULT SafeArrayAllocDescriptorEx(VARTYPE vt,UINT cDims,SAFEARRAY **ppsaOut);
+extern __attribute__((dllimport)) HRESULT SafeArrayAllocData(SAFEARRAY *psa);
+extern __attribute__((dllimport)) SAFEARRAY * SafeArrayCreate(VARTYPE vt,UINT cDims,SAFEARRAYBOUND *rgsabound);
+extern __attribute__((dllimport)) SAFEARRAY * SafeArrayCreateEx(VARTYPE vt,UINT cDims,SAFEARRAYBOUND *rgsabound,PVOID pvExtra);
+extern __attribute__((dllimport)) HRESULT SafeArrayCopyData(SAFEARRAY *psaSource,SAFEARRAY *psaTarget);
+extern __attribute__((dllimport)) HRESULT SafeArrayDestroyDescriptor(SAFEARRAY *psa);
+extern __attribute__((dllimport)) HRESULT SafeArrayDestroyData(SAFEARRAY *psa);
+extern __attribute__((dllimport)) HRESULT SafeArrayDestroy(SAFEARRAY *psa);
+extern __attribute__((dllimport)) HRESULT SafeArrayRedim(SAFEARRAY *psa,SAFEARRAYBOUND *psaboundNew);
+extern __attribute__((dllimport)) UINT SafeArrayGetDim(SAFEARRAY *psa);
+extern __attribute__((dllimport)) UINT SafeArrayGetElemsize(SAFEARRAY *psa);
+extern __attribute__((dllimport)) HRESULT SafeArrayGetUBound(SAFEARRAY *psa,UINT nDim,LONG *plUbound);
+extern __attribute__((dllimport)) HRESULT SafeArrayGetLBound(SAFEARRAY *psa,UINT nDim,LONG *plLbound);
+extern __attribute__((dllimport)) HRESULT SafeArrayLock(SAFEARRAY *psa);
+extern __attribute__((dllimport)) HRESULT SafeArrayUnlock(SAFEARRAY *psa);
+extern __attribute__((dllimport)) HRESULT SafeArrayAccessData(SAFEARRAY *psa,void **ppvData);
+extern __attribute__((dllimport)) HRESULT SafeArrayUnaccessData(SAFEARRAY *psa);
+extern __attribute__((dllimport)) HRESULT SafeArrayGetElement(SAFEARRAY *psa,LONG *rgIndices,void *pv);
+extern __attribute__((dllimport)) HRESULT SafeArrayPutElement(SAFEARRAY *psa,LONG *rgIndices,void *pv);
+extern __attribute__((dllimport)) HRESULT SafeArrayCopy(SAFEARRAY *psa,SAFEARRAY **ppsaOut);
+extern __attribute__((dllimport)) HRESULT SafeArrayPtrOfIndex(SAFEARRAY *psa,LONG *rgIndices,void **ppvData);
+extern __attribute__((dllimport)) HRESULT SafeArraySetRecordInfo(SAFEARRAY *psa,IRecordInfo *prinfo);
+extern __attribute__((dllimport)) HRESULT SafeArrayGetRecordInfo(SAFEARRAY *psa,IRecordInfo **prinfo);
+extern __attribute__((dllimport)) HRESULT SafeArraySetIID(SAFEARRAY *psa,const GUID *const guid);
+extern __attribute__((dllimport)) HRESULT SafeArrayGetIID(SAFEARRAY *psa,GUID *pguid);
+extern __attribute__((dllimport)) HRESULT SafeArrayGetVartype(SAFEARRAY *psa,VARTYPE *pvt);
+extern __attribute__((dllimport)) SAFEARRAY * SafeArrayCreateVector(VARTYPE vt,LONG lLbound,ULONG cElements);
+extern __attribute__((dllimport)) SAFEARRAY * SafeArrayCreateVectorEx(VARTYPE vt,LONG lLbound,ULONG cElements,PVOID pvExtra);
+extern __attribute__((dllimport)) void VariantInit(VARIANTARG *pvarg);
+extern __attribute__((dllimport)) HRESULT VariantClear(VARIANTARG *pvarg);
+extern __attribute__((dllimport)) HRESULT VariantCopy(VARIANTARG *pvargDest,VARIANTARG *pvargSrc);
+extern __attribute__((dllimport)) HRESULT VariantCopyInd(VARIANT *pvarDest,VARIANTARG *pvargSrc);
+extern __attribute__((dllimport)) HRESULT VariantChangeType(VARIANTARG *pvargDest,VARIANTARG *pvarSrc,USHORT wFlags,VARTYPE vt);
+extern __attribute__((dllimport)) HRESULT VariantChangeTypeEx(VARIANTARG *pvargDest,VARIANTARG *pvarSrc,LCID lcid,USHORT wFlags,VARTYPE vt);
 # 100 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 3
-extern "C" __attribute__((dllimport)) HRESULT VectorFromBstr (BSTR bstr,SAFEARRAY **ppsa);
-extern "C" __attribute__((dllimport)) HRESULT BstrFromVector (SAFEARRAY *psa,BSTR *pbstr);
+extern __attribute__((dllimport)) HRESULT VectorFromBstr (BSTR bstr,SAFEARRAY **ppsa);
+extern __attribute__((dllimport)) HRESULT BstrFromVector (SAFEARRAY *psa,BSTR *pbstr);
 # 121 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 3
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromI2(SHORT sIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromI4(LONG lIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromI8(LONG64 i64In,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromR4(FLOAT fltIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromR8(DOUBLE dblIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromCy(CY cyIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromDate(DATE dateIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromDisp(IDispatch *pdispIn,LCID lcid,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromBool(VARIANT_BOOL boolIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromI1(CHAR cIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromUI2(USHORT uiIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromUI4(ULONG ulIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromUI8(ULONG64 ui64In,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI1FromDec(DECIMAL *pdecIn,BYTE *pbOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromUI1(BYTE bIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromI4(LONG lIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromI8(LONG64 i64In,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromR4(FLOAT fltIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromR8(DOUBLE dblIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromCy(CY cyIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromDate(DATE dateIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromDisp(IDispatch *pdispIn,LCID lcid,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromBool(VARIANT_BOOL boolIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromI1(CHAR cIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromUI2(USHORT uiIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromUI4(ULONG ulIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromUI8(ULONG64 ui64In,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI2FromDec(DECIMAL *pdecIn,SHORT *psOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromUI1(BYTE bIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromI2(SHORT sIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromI8(LONG64 i64In,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromR4(FLOAT fltIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromR8(DOUBLE dblIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromCy(CY cyIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromDate(DATE dateIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromDisp(IDispatch *pdispIn,LCID lcid,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromBool(VARIANT_BOOL boolIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromI1(CHAR cIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromUI2(USHORT uiIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromUI4(ULONG ulIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromUI8(ULONG64 ui64In,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromDec(DECIMAL *pdecIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromInt(INT intIn,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromUI1(BYTE bIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromI2(SHORT sIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromI4(LONG lIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromR4(FLOAT fltIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromR8(DOUBLE dblIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromCy(CY cyIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromDate(DATE dateIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromStr(OLECHAR *strIn,LCID lcid,unsigned long dwFlags,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromDisp(IDispatch *pdispIn,LCID lcid,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromBool(VARIANT_BOOL boolIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromI1(CHAR cIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromUI2(USHORT uiIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromUI4(ULONG ulIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromUI8(ULONG64 ui64In,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromDec(DECIMAL *pdecIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarI8FromInt(INT intIn,LONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromUI1(BYTE bIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromI2(SHORT sIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromI4(LONG lIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromI8(LONG64 i64In,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromR8(DOUBLE dblIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromCy(CY cyIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromDate(DATE dateIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromDisp(IDispatch *pdispIn,LCID lcid,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromBool(VARIANT_BOOL boolIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromI1(CHAR cIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromUI2(USHORT uiIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromUI4(ULONG ulIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromUI8(ULONG64 ui64In,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR4FromDec(DECIMAL *pdecIn,FLOAT *pfltOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromUI1(BYTE bIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromI2(SHORT sIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromI4(LONG lIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromI8(LONG64 i64In,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromR4(FLOAT fltIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromCy(CY cyIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromDate(DATE dateIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromDisp(IDispatch *pdispIn,LCID lcid,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromBool(VARIANT_BOOL boolIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromI1(CHAR cIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromUI2(USHORT uiIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromUI4(ULONG ulIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromUI8(ULONG64 ui64In,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarR8FromDec(DECIMAL *pdecIn,DOUBLE *pdblOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromUI1(BYTE bIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromI2(SHORT sIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromI4(LONG lIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromI8(LONG64 i64In,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromR4(FLOAT fltIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromR8(DOUBLE dblIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromCy(CY cyIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromDisp(IDispatch *pdispIn,LCID lcid,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromBool(VARIANT_BOOL boolIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromI1(CHAR cIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromUI2(USHORT uiIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromUI4(ULONG ulIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromUI8(ULONG64 ui64In,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromDec(DECIMAL *pdecIn,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromUI1(BYTE bIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromI2(SHORT sIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromI4(LONG lIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromI8(LONG64 i64In,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromR4(FLOAT fltIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromR8(DOUBLE dblIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromDate(DATE dateIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromDisp(IDispatch *pdispIn,LCID lcid,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromBool(VARIANT_BOOL boolIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromI1(CHAR cIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromUI2(USHORT uiIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromUI4(ULONG ulIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromUI8(ULONG64 ui64In,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarCyFromDec(DECIMAL *pdecIn,CY *pcyOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromUI1(BYTE bVal,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromI2(SHORT iVal,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromI4(LONG lIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromI8(LONG64 i64In,LCID lcid,unsigned long dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromR4(FLOAT fltIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromR8(DOUBLE dblIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromCy(CY cyIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromDate(DATE dateIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromDisp(IDispatch *pdispIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromBool(VARIANT_BOOL boolIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromI1(CHAR cIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromUI2(USHORT uiIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromUI4(ULONG ulIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromUI8(ULONG64 ui64In,LCID lcid,unsigned long dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBstrFromDec(DECIMAL *pdecIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromUI1(BYTE bIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromI2(SHORT sIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromI4(LONG lIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromI8(LONG64 i64In,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromR4(FLOAT fltIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromR8(DOUBLE dblIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromDate(DATE dateIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromCy(CY cyIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromDisp(IDispatch *pdispIn,LCID lcid,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromI1(CHAR cIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromUI2(USHORT uiIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromUI4(ULONG ulIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromUI8(ULONG64 i64In,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarBoolFromDec(DECIMAL *pdecIn,VARIANT_BOOL *pboolOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromUI1(BYTE bIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromI2(SHORT uiIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromI4(LONG lIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromI8(LONG64 i64In,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromR4(FLOAT fltIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromR8(DOUBLE dblIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromDate(DATE dateIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromCy(CY cyIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromDisp(IDispatch *pdispIn,LCID lcid,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromBool(VARIANT_BOOL boolIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromUI2(USHORT uiIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromUI4(ULONG ulIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromUI8(ULONG64 i64In,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI1FromDec(DECIMAL *pdecIn,CHAR *pcOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromUI1(BYTE bIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromI2(SHORT uiIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromI4(LONG lIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromI8(LONG64 i64In,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromR4(FLOAT fltIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromR8(DOUBLE dblIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromDate(DATE dateIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromCy(CY cyIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromDisp(IDispatch *pdispIn,LCID lcid,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromBool(VARIANT_BOOL boolIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromI1(CHAR cIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromUI4(ULONG ulIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromUI8(ULONG64 i64In,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI2FromDec(DECIMAL *pdecIn,USHORT *puiOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromUI1(BYTE bIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromI2(SHORT uiIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromI4(LONG lIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromI8(LONG64 i64In,ULONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromR4(FLOAT fltIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromR8(DOUBLE dblIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromDate(DATE dateIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromCy(CY cyIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromDisp(IDispatch *pdispIn,LCID lcid,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromBool(VARIANT_BOOL boolIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromI1(CHAR cIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromUI2(USHORT uiIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromUI8(ULONG64 ui64In,ULONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI4FromDec(DECIMAL *pdecIn,ULONG *pulOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromUI1(BYTE bIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromI2(SHORT sIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromI4(LONG lIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromI8(LONG64 ui64In,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromR4(FLOAT fltIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromR8(DOUBLE dblIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromCy(CY cyIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromDate(DATE dateIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromStr(OLECHAR *strIn,LCID lcid,unsigned long dwFlags,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromDisp(IDispatch *pdispIn,LCID lcid,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromBool(VARIANT_BOOL boolIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromI1(CHAR cIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromUI2(USHORT uiIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromUI4(ULONG ulIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromDec(DECIMAL *pdecIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarUI8FromInt(INT intIn,ULONG64 *pi64Out);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromUI1(BYTE bIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromI2(SHORT uiIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromI4(LONG lIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromI8(LONG64 i64In,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromR4(FLOAT fltIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromR8(DOUBLE dblIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromDate(DATE dateIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromCy(CY cyIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromDisp(IDispatch *pdispIn,LCID lcid,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromBool(VARIANT_BOOL boolIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromI1(CHAR cIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromUI2(USHORT uiIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromUI4(ULONG ulIn,DECIMAL *pdecOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDecFromUI8(ULONG64 ui64In,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromI2(SHORT sIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromI4(LONG lIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromI8(LONG64 i64In,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromR4(FLOAT fltIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromR8(DOUBLE dblIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromCy(CY cyIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromDate(DATE dateIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromDisp(IDispatch *pdispIn,LCID lcid,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromBool(VARIANT_BOOL boolIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromI1(CHAR cIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromUI2(USHORT uiIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromUI4(ULONG ulIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromUI8(ULONG64 ui64In,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarUI1FromDec(DECIMAL *pdecIn,BYTE *pbOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromUI1(BYTE bIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromI4(LONG lIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromI8(LONG64 i64In,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromR4(FLOAT fltIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromR8(DOUBLE dblIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromCy(CY cyIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromDate(DATE dateIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromDisp(IDispatch *pdispIn,LCID lcid,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromBool(VARIANT_BOOL boolIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromI1(CHAR cIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromUI2(USHORT uiIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromUI4(ULONG ulIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromUI8(ULONG64 ui64In,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI2FromDec(DECIMAL *pdecIn,SHORT *psOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromUI1(BYTE bIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromI2(SHORT sIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromI8(LONG64 i64In,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromR4(FLOAT fltIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromR8(DOUBLE dblIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromCy(CY cyIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromDate(DATE dateIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromDisp(IDispatch *pdispIn,LCID lcid,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromBool(VARIANT_BOOL boolIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromI1(CHAR cIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromUI2(USHORT uiIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromUI4(ULONG ulIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromUI8(ULONG64 ui64In,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromDec(DECIMAL *pdecIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromInt(INT intIn,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI8FromUI1(BYTE bIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromI2(SHORT sIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromI4(LONG lIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromR4(FLOAT fltIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromR8(DOUBLE dblIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromCy(CY cyIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromDate(DATE dateIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromStr(OLECHAR *strIn,LCID lcid,unsigned long dwFlags,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromDisp(IDispatch *pdispIn,LCID lcid,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromBool(VARIANT_BOOL boolIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromI1(CHAR cIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromUI2(USHORT uiIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromUI4(ULONG ulIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromUI8(ULONG64 ui64In,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromDec(DECIMAL *pdecIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarI8FromInt(INT intIn,LONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarR4FromUI1(BYTE bIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromI2(SHORT sIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromI4(LONG lIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromI8(LONG64 i64In,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromR8(DOUBLE dblIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromCy(CY cyIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromDate(DATE dateIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromDisp(IDispatch *pdispIn,LCID lcid,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromBool(VARIANT_BOOL boolIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromI1(CHAR cIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromUI2(USHORT uiIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromUI4(ULONG ulIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromUI8(ULONG64 ui64In,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR4FromDec(DECIMAL *pdecIn,FLOAT *pfltOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromUI1(BYTE bIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromI2(SHORT sIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromI4(LONG lIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromI8(LONG64 i64In,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromR4(FLOAT fltIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromCy(CY cyIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromDate(DATE dateIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromDisp(IDispatch *pdispIn,LCID lcid,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromBool(VARIANT_BOOL boolIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromI1(CHAR cIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromUI2(USHORT uiIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromUI4(ULONG ulIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromUI8(ULONG64 ui64In,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarR8FromDec(DECIMAL *pdecIn,DOUBLE *pdblOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromUI1(BYTE bIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromI2(SHORT sIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromI4(LONG lIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromI8(LONG64 i64In,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromR4(FLOAT fltIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromR8(DOUBLE dblIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromCy(CY cyIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromDisp(IDispatch *pdispIn,LCID lcid,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromBool(VARIANT_BOOL boolIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromI1(CHAR cIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromUI2(USHORT uiIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromUI4(ULONG ulIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromUI8(ULONG64 ui64In,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromDec(DECIMAL *pdecIn,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromUI1(BYTE bIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromI2(SHORT sIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromI4(LONG lIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromI8(LONG64 i64In,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromR4(FLOAT fltIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromR8(DOUBLE dblIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromDate(DATE dateIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromDisp(IDispatch *pdispIn,LCID lcid,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromBool(VARIANT_BOOL boolIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromI1(CHAR cIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromUI2(USHORT uiIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromUI4(ULONG ulIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromUI8(ULONG64 ui64In,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarCyFromDec(DECIMAL *pdecIn,CY *pcyOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromUI1(BYTE bVal,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromI2(SHORT iVal,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromI4(LONG lIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromI8(LONG64 i64In,LCID lcid,unsigned long dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromR4(FLOAT fltIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromR8(DOUBLE dblIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromCy(CY cyIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromDate(DATE dateIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromDisp(IDispatch *pdispIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromBool(VARIANT_BOOL boolIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromI1(CHAR cIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromUI2(USHORT uiIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromUI4(ULONG ulIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromUI8(ULONG64 ui64In,LCID lcid,unsigned long dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBstrFromDec(DECIMAL *pdecIn,LCID lcid,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromUI1(BYTE bIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromI2(SHORT sIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromI4(LONG lIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromI8(LONG64 i64In,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromR4(FLOAT fltIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromR8(DOUBLE dblIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromDate(DATE dateIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromCy(CY cyIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromDisp(IDispatch *pdispIn,LCID lcid,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromI1(CHAR cIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromUI2(USHORT uiIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromUI4(ULONG ulIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromUI8(ULONG64 i64In,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarBoolFromDec(DECIMAL *pdecIn,VARIANT_BOOL *pboolOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromUI1(BYTE bIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromI2(SHORT uiIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromI4(LONG lIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromI8(LONG64 i64In,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromR4(FLOAT fltIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromR8(DOUBLE dblIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromDate(DATE dateIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromCy(CY cyIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromDisp(IDispatch *pdispIn,LCID lcid,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromBool(VARIANT_BOOL boolIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromUI2(USHORT uiIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromUI4(ULONG ulIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromUI8(ULONG64 i64In,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarI1FromDec(DECIMAL *pdecIn,CHAR *pcOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromUI1(BYTE bIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromI2(SHORT uiIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromI4(LONG lIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromI8(LONG64 i64In,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromR4(FLOAT fltIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromR8(DOUBLE dblIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromDate(DATE dateIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromCy(CY cyIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromDisp(IDispatch *pdispIn,LCID lcid,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromBool(VARIANT_BOOL boolIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromI1(CHAR cIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromUI4(ULONG ulIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromUI8(ULONG64 i64In,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI2FromDec(DECIMAL *pdecIn,USHORT *puiOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromUI1(BYTE bIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromI2(SHORT uiIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromI4(LONG lIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromI8(LONG64 i64In,ULONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromR4(FLOAT fltIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromR8(DOUBLE dblIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromDate(DATE dateIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromCy(CY cyIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromDisp(IDispatch *pdispIn,LCID lcid,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromBool(VARIANT_BOOL boolIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromI1(CHAR cIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromUI2(USHORT uiIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromUI8(ULONG64 ui64In,ULONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarUI4FromDec(DECIMAL *pdecIn,ULONG *pulOut);
+extern __attribute__((dllimport)) HRESULT VarUI8FromUI1(BYTE bIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromI2(SHORT sIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromI4(LONG lIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromI8(LONG64 ui64In,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromR4(FLOAT fltIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromR8(DOUBLE dblIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromCy(CY cyIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromDate(DATE dateIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromStr(OLECHAR *strIn,LCID lcid,unsigned long dwFlags,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromDisp(IDispatch *pdispIn,LCID lcid,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromBool(VARIANT_BOOL boolIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromI1(CHAR cIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromUI2(USHORT uiIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromUI4(ULONG ulIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromDec(DECIMAL *pdecIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarUI8FromInt(INT intIn,ULONG64 *pi64Out);
+extern __attribute__((dllimport)) HRESULT VarDecFromUI1(BYTE bIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromI2(SHORT uiIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromI4(LONG lIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromI8(LONG64 i64In,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromR4(FLOAT fltIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromR8(DOUBLE dblIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromDate(DATE dateIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromCy(CY cyIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromDisp(IDispatch *pdispIn,LCID lcid,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromBool(VARIANT_BOOL boolIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromI1(CHAR cIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromUI2(USHORT uiIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromUI4(ULONG ulIn,DECIMAL *pdecOut);
+extern __attribute__((dllimport)) HRESULT VarDecFromUI8(ULONG64 ui64In,DECIMAL *pdecOut);
 
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromI8(LONG64 i64In,LONG *plOut);
-extern "C" __attribute__((dllimport)) HRESULT VarI4FromUI8(ULONG64 ui64In,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromI8(LONG64 i64In,LONG *plOut);
+extern __attribute__((dllimport)) HRESULT VarI4FromUI8(ULONG64 ui64In,LONG *plOut);
 # 422 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 3
 typedef struct {
   INT cDig;
@@ -79365,82 +83417,82 @@ typedef struct {
   INT nPwr10;
 } NUMPARSE;
 # 462 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 3
-extern "C" __attribute__((dllimport)) HRESULT VarParseNumFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,NUMPARSE *pnumprs,BYTE *rgbDig);
-extern "C" __attribute__((dllimport)) HRESULT VarNumFromParseNum(NUMPARSE *pnumprs,BYTE *rgbDig,ULONG dwVtBits,VARIANT *pvar);
-extern "C" HRESULT VarAdd(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarAnd(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarCat(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarDiv(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarEqv(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarIdiv(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarImp(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarMod(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarMul(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarOr(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarPow(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarSub(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarXor(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
-extern "C" HRESULT VarAbs(LPVARIANT pvarIn,LPVARIANT pvarResult);
-extern "C" HRESULT VarFix(LPVARIANT pvarIn,LPVARIANT pvarResult);
-extern "C" HRESULT VarInt(LPVARIANT pvarIn,LPVARIANT pvarResult);
-extern "C" HRESULT VarNeg(LPVARIANT pvarIn,LPVARIANT pvarResult);
-extern "C" HRESULT VarNot(LPVARIANT pvarIn,LPVARIANT pvarResult);
-extern "C" HRESULT VarRound(LPVARIANT pvarIn,int cDecimals,LPVARIANT pvarResult);
-extern "C" HRESULT VarCmp(LPVARIANT pvarLeft,LPVARIANT pvarRight,LCID lcid,ULONG dwFlags);
+extern __attribute__((dllimport)) HRESULT VarParseNumFromStr(OLECHAR *strIn,LCID lcid,ULONG dwFlags,NUMPARSE *pnumprs,BYTE *rgbDig);
+extern __attribute__((dllimport)) HRESULT VarNumFromParseNum(NUMPARSE *pnumprs,BYTE *rgbDig,ULONG dwVtBits,VARIANT *pvar);
+extern HRESULT VarAdd(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarAnd(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarCat(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarDiv(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarEqv(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarIdiv(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarImp(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarMod(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarMul(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarOr(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarPow(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarSub(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarXor(LPVARIANT pvarLeft,LPVARIANT pvarRight,LPVARIANT pvarResult);
+extern HRESULT VarAbs(LPVARIANT pvarIn,LPVARIANT pvarResult);
+extern HRESULT VarFix(LPVARIANT pvarIn,LPVARIANT pvarResult);
+extern HRESULT VarInt(LPVARIANT pvarIn,LPVARIANT pvarResult);
+extern HRESULT VarNeg(LPVARIANT pvarIn,LPVARIANT pvarResult);
+extern HRESULT VarNot(LPVARIANT pvarIn,LPVARIANT pvarResult);
+extern HRESULT VarRound(LPVARIANT pvarIn,int cDecimals,LPVARIANT pvarResult);
+extern HRESULT VarCmp(LPVARIANT pvarLeft,LPVARIANT pvarRight,LCID lcid,ULONG dwFlags);
 
 
-extern "C++" {
-  static __inline HRESULT VarCmp(LPVARIANT pvarLeft,LPVARIANT pvarRight,LCID lcid) { return VarCmp(pvarLeft,pvarRight,lcid,0); }
-}
 
 
-extern "C" HRESULT VarDecAdd(LPDECIMAL pdecLeft,LPDECIMAL pdecRight,LPDECIMAL pdecResult);
-extern "C" HRESULT VarDecDiv(LPDECIMAL pdecLeft,LPDECIMAL pdecRight,LPDECIMAL pdecResult);
-extern "C" HRESULT VarDecMul(LPDECIMAL pdecLeft,LPDECIMAL pdecRight,LPDECIMAL pdecResult);
-extern "C" HRESULT VarDecSub(LPDECIMAL pdecLeft,LPDECIMAL pdecRight,LPDECIMAL pdecResult);
-extern "C" HRESULT VarDecAbs(LPDECIMAL pdecIn,LPDECIMAL pdecResult);
-extern "C" HRESULT VarDecFix(LPDECIMAL pdecIn,LPDECIMAL pdecResult);
-extern "C" HRESULT VarDecInt(LPDECIMAL pdecIn,LPDECIMAL pdecResult);
-extern "C" HRESULT VarDecNeg(LPDECIMAL pdecIn,LPDECIMAL pdecResult);
-extern "C" HRESULT VarDecRound(LPDECIMAL pdecIn,int cDecimals,LPDECIMAL pdecResult);
-extern "C" HRESULT VarDecCmp(LPDECIMAL pdecLeft,LPDECIMAL pdecRight);
-extern "C" HRESULT VarDecCmpR8(LPDECIMAL pdecLeft,double dblRight);
-extern "C" HRESULT VarCyAdd(CY cyLeft,CY cyRight,LPCY pcyResult);
-extern "C" HRESULT VarCyMul(CY cyLeft,CY cyRight,LPCY pcyResult);
-extern "C" HRESULT VarCyMulI4(CY cyLeft,long lRight,LPCY pcyResult);
-extern "C" HRESULT VarCyMulI8(CY cyLeft,LONG64 lRight,LPCY pcyResult);
-extern "C" HRESULT VarCySub(CY cyLeft,CY cyRight,LPCY pcyResult);
-extern "C" HRESULT VarCyAbs(CY cyIn,LPCY pcyResult);
-extern "C" HRESULT VarCyFix(CY cyIn,LPCY pcyResult);
-extern "C" HRESULT VarCyInt(CY cyIn,LPCY pcyResult);
-extern "C" HRESULT VarCyNeg(CY cyIn,LPCY pcyResult);
-extern "C" HRESULT VarCyRound(CY cyIn,int cDecimals,LPCY pcyResult);
-extern "C" HRESULT VarCyCmp(CY cyLeft,CY cyRight);
-extern "C" HRESULT VarCyCmpR8(CY cyLeft,double dblRight);
-extern "C" HRESULT VarBstrCat(BSTR bstrLeft,BSTR bstrRight,LPBSTR pbstrResult);
-extern "C" HRESULT VarBstrCmp(BSTR bstrLeft,BSTR bstrRight,LCID lcid,ULONG dwFlags);
-extern "C" HRESULT VarR8Pow(double dblLeft,double dblRight,double *pdblResult);
-extern "C" HRESULT VarR4CmpR8(float fltLeft,double dblRight);
-extern "C" HRESULT VarR8Round(double dblIn,int cDecimals,double *pdblResult);
+
+
+
+extern HRESULT VarDecAdd(LPDECIMAL pdecLeft,LPDECIMAL pdecRight,LPDECIMAL pdecResult);
+extern HRESULT VarDecDiv(LPDECIMAL pdecLeft,LPDECIMAL pdecRight,LPDECIMAL pdecResult);
+extern HRESULT VarDecMul(LPDECIMAL pdecLeft,LPDECIMAL pdecRight,LPDECIMAL pdecResult);
+extern HRESULT VarDecSub(LPDECIMAL pdecLeft,LPDECIMAL pdecRight,LPDECIMAL pdecResult);
+extern HRESULT VarDecAbs(LPDECIMAL pdecIn,LPDECIMAL pdecResult);
+extern HRESULT VarDecFix(LPDECIMAL pdecIn,LPDECIMAL pdecResult);
+extern HRESULT VarDecInt(LPDECIMAL pdecIn,LPDECIMAL pdecResult);
+extern HRESULT VarDecNeg(LPDECIMAL pdecIn,LPDECIMAL pdecResult);
+extern HRESULT VarDecRound(LPDECIMAL pdecIn,int cDecimals,LPDECIMAL pdecResult);
+extern HRESULT VarDecCmp(LPDECIMAL pdecLeft,LPDECIMAL pdecRight);
+extern HRESULT VarDecCmpR8(LPDECIMAL pdecLeft,double dblRight);
+extern HRESULT VarCyAdd(CY cyLeft,CY cyRight,LPCY pcyResult);
+extern HRESULT VarCyMul(CY cyLeft,CY cyRight,LPCY pcyResult);
+extern HRESULT VarCyMulI4(CY cyLeft,long lRight,LPCY pcyResult);
+extern HRESULT VarCyMulI8(CY cyLeft,LONG64 lRight,LPCY pcyResult);
+extern HRESULT VarCySub(CY cyLeft,CY cyRight,LPCY pcyResult);
+extern HRESULT VarCyAbs(CY cyIn,LPCY pcyResult);
+extern HRESULT VarCyFix(CY cyIn,LPCY pcyResult);
+extern HRESULT VarCyInt(CY cyIn,LPCY pcyResult);
+extern HRESULT VarCyNeg(CY cyIn,LPCY pcyResult);
+extern HRESULT VarCyRound(CY cyIn,int cDecimals,LPCY pcyResult);
+extern HRESULT VarCyCmp(CY cyLeft,CY cyRight);
+extern HRESULT VarCyCmpR8(CY cyLeft,double dblRight);
+extern HRESULT VarBstrCat(BSTR bstrLeft,BSTR bstrRight,LPBSTR pbstrResult);
+extern HRESULT VarBstrCmp(BSTR bstrLeft,BSTR bstrRight,LCID lcid,ULONG dwFlags);
+extern HRESULT VarR8Pow(double dblLeft,double dblRight,double *pdblResult);
+extern HRESULT VarR4CmpR8(float fltLeft,double dblRight);
+extern HRESULT VarR8Round(double dblIn,int cDecimals,double *pdblResult);
 # 527 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 3
 typedef struct {
   SYSTEMTIME st;
   USHORT wDayOfYear;
 } UDATE;
 
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromUdate(UDATE *pudateIn,ULONG dwFlags,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarDateFromUdateEx(UDATE *pudateIn,LCID lcid,ULONG dwFlags,DATE *pdateOut);
-extern "C" __attribute__((dllimport)) HRESULT VarUdateFromDate(DATE dateIn,ULONG dwFlags,UDATE *pudateOut);
-extern "C" __attribute__((dllimport)) HRESULT GetAltMonthNames(LCID lcid,LPOLESTR **prgp);
-extern "C" __attribute__((dllimport)) HRESULT VarFormat(LPVARIANT pvarIn,LPOLESTR pstrFormat,int iFirstDay,int iFirstWeek,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarFormatDateTime(LPVARIANT pvarIn,int iNamedFormat,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarFormatNumber(LPVARIANT pvarIn,int iNumDig,int iIncLead,int iUseParens,int iGroup,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarFormatPercent(LPVARIANT pvarIn,int iNumDig,int iIncLead,int iUseParens,int iGroup,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarFormatCurrency(LPVARIANT pvarIn,int iNumDig,int iIncLead,int iUseParens,int iGroup,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarWeekdayName(int iWeekday,int fAbbrev,int iFirstDay,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarMonthName(int iMonth,int fAbbrev,ULONG dwFlags,BSTR *pbstrOut);
-extern "C" __attribute__((dllimport)) HRESULT VarFormatFromTokens(LPVARIANT pvarIn,LPOLESTR pstrFormat,LPBYTE pbTokCur,ULONG dwFlags,BSTR *pbstrOut,LCID lcid);
-extern "C" __attribute__((dllimport)) HRESULT VarTokenizeFormatString(LPOLESTR pstrFormat,LPBYTE rgbTok,int cbTok,int iFirstDay,int iFirstWeek,LCID lcid,int *pcbActual);
+extern __attribute__((dllimport)) HRESULT VarDateFromUdate(UDATE *pudateIn,ULONG dwFlags,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarDateFromUdateEx(UDATE *pudateIn,LCID lcid,ULONG dwFlags,DATE *pdateOut);
+extern __attribute__((dllimport)) HRESULT VarUdateFromDate(DATE dateIn,ULONG dwFlags,UDATE *pudateOut);
+extern __attribute__((dllimport)) HRESULT GetAltMonthNames(LCID lcid,LPOLESTR **prgp);
+extern __attribute__((dllimport)) HRESULT VarFormat(LPVARIANT pvarIn,LPOLESTR pstrFormat,int iFirstDay,int iFirstWeek,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarFormatDateTime(LPVARIANT pvarIn,int iNamedFormat,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarFormatNumber(LPVARIANT pvarIn,int iNumDig,int iIncLead,int iUseParens,int iGroup,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarFormatPercent(LPVARIANT pvarIn,int iNumDig,int iIncLead,int iUseParens,int iGroup,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarFormatCurrency(LPVARIANT pvarIn,int iNumDig,int iIncLead,int iUseParens,int iGroup,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarWeekdayName(int iWeekday,int fAbbrev,int iFirstDay,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarMonthName(int iMonth,int fAbbrev,ULONG dwFlags,BSTR *pbstrOut);
+extern __attribute__((dllimport)) HRESULT VarFormatFromTokens(LPVARIANT pvarIn,LPOLESTR pstrFormat,LPBYTE pbTokCur,ULONG dwFlags,BSTR *pbstrOut,LCID lcid);
+extern __attribute__((dllimport)) HRESULT VarTokenizeFormatString(LPOLESTR pstrFormat,LPBYTE rgbTok,int cbTok,int iFirstDay,int iFirstWeek,LCID lcid,int *pcbActual);
 
 
 
@@ -79466,14 +83518,14 @@ typedef ICreateTypeLib *LPCREATETYPELIB;
 typedef ICreateTypeInfo *LPCREATETYPEINFO;
 
 
-extern "C" __attribute__((dllimport)) ULONG LHashValOfNameSysA(SYSKIND syskind,LCID lcid,LPCSTR szName);
-extern "C" __attribute__((dllimport)) ULONG LHashValOfNameSys(SYSKIND syskind,LCID lcid,const OLECHAR *szName);
+extern __attribute__((dllimport)) ULONG LHashValOfNameSysA(SYSKIND syskind,LCID lcid,LPCSTR szName);
+extern __attribute__((dllimport)) ULONG LHashValOfNameSys(SYSKIND syskind,LCID lcid,const OLECHAR *szName);
 
 
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT LoadTypeLib(const OLECHAR *szFile,ITypeLib **pptlib);
+extern __attribute__((dllimport)) HRESULT LoadTypeLib(const OLECHAR *szFile,ITypeLib **pptlib);
 
 typedef enum tagREGKIND {
   REGKIND_DEFAULT,REGKIND_REGISTER,REGKIND_NONE
@@ -79483,13 +83535,13 @@ typedef enum tagREGKIND {
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT LoadTypeLibEx(LPCOLESTR szFile,REGKIND regkind,ITypeLib **pptlib);
-extern "C" __attribute__((dllimport)) HRESULT LoadRegTypeLib(const GUID & rguid,WORD wVerMajor,WORD wVerMinor,LCID lcid,ITypeLib **pptlib);
-extern "C" __attribute__((dllimport)) HRESULT QueryPathOfRegTypeLib(const GUID & guid,USHORT wMaj,USHORT wMin,LCID lcid,LPBSTR lpbstrPathName);
-extern "C" __attribute__((dllimport)) HRESULT RegisterTypeLib(ITypeLib *ptlib,OLECHAR *szFullPath,OLECHAR *szHelpDir);
-extern "C" __attribute__((dllimport)) HRESULT UnRegisterTypeLib(const GUID & libID,WORD wVerMajor,WORD wVerMinor,LCID lcid,SYSKIND syskind);
-extern "C" __attribute__((dllimport)) HRESULT CreateTypeLib(SYSKIND syskind,const OLECHAR *szFile,ICreateTypeLib **ppctlib);
-extern "C" __attribute__((dllimport)) HRESULT CreateTypeLib2(SYSKIND syskind,LPCOLESTR szFile,ICreateTypeLib2 **ppctlib);
+extern __attribute__((dllimport)) HRESULT LoadTypeLibEx(LPCOLESTR szFile,REGKIND regkind,ITypeLib **pptlib);
+extern __attribute__((dllimport)) HRESULT LoadRegTypeLib(const GUID *const rguid,WORD wVerMajor,WORD wVerMinor,LCID lcid,ITypeLib **pptlib);
+extern __attribute__((dllimport)) HRESULT QueryPathOfRegTypeLib(const GUID *const guid,USHORT wMaj,USHORT wMin,LCID lcid,LPBSTR lpbstrPathName);
+extern __attribute__((dllimport)) HRESULT RegisterTypeLib(ITypeLib *ptlib,OLECHAR *szFullPath,OLECHAR *szHelpDir);
+extern __attribute__((dllimport)) HRESULT UnRegisterTypeLib(const GUID *const libID,WORD wVerMajor,WORD wVerMinor,LCID lcid,SYSKIND syskind);
+extern __attribute__((dllimport)) HRESULT CreateTypeLib(SYSKIND syskind,const OLECHAR *szFile,ICreateTypeLib **ppctlib);
+extern __attribute__((dllimport)) HRESULT CreateTypeLib2(SYSKIND syskind,LPCOLESTR szFile,ICreateTypeLib2 **ppctlib);
 
 
 
@@ -79517,26 +83569,26 @@ typedef struct tagINTERFACEDATA {
   UINT cMembers;
 } INTERFACEDATA,*LPINTERFACEDATA;
 
-extern "C" __attribute__((dllimport)) HRESULT DispGetParam(DISPPARAMS *pdispparams,UINT position,VARTYPE vtTarg,VARIANT *pvarResult,UINT *puArgErr);
-extern "C" __attribute__((dllimport)) HRESULT DispGetIDsOfNames(ITypeInfo *ptinfo,OLECHAR **rgszNames,UINT cNames,DISPID *rgdispid);
-extern "C" __attribute__((dllimport)) HRESULT DispInvoke(void *_this,ITypeInfo *ptinfo,DISPID dispidMember,WORD wFlags,DISPPARAMS *pparams,VARIANT *pvarResult,EXCEPINFO *pexcepinfo,UINT *puArgErr);
-extern "C" __attribute__((dllimport)) HRESULT CreateDispTypeInfo(INTERFACEDATA *pidata,LCID lcid,ITypeInfo **pptinfo);
-extern "C" __attribute__((dllimport)) HRESULT CreateStdDispatch(IUnknown *punkOuter,void *pvThis,ITypeInfo *ptinfo,IUnknown **ppunkStdDisp);
-extern "C" __attribute__((dllimport)) HRESULT DispCallFunc(void *pvInstance,ULONG_PTR oVft,CALLCONV cc,VARTYPE vtReturn,UINT cActuals,VARTYPE *prgvt,VARIANTARG **prgpvarg,VARIANT *pvargResult);
+extern __attribute__((dllimport)) HRESULT DispGetParam(DISPPARAMS *pdispparams,UINT position,VARTYPE vtTarg,VARIANT *pvarResult,UINT *puArgErr);
+extern __attribute__((dllimport)) HRESULT DispGetIDsOfNames(ITypeInfo *ptinfo,OLECHAR **rgszNames,UINT cNames,DISPID *rgdispid);
+extern __attribute__((dllimport)) HRESULT DispInvoke(void *_this,ITypeInfo *ptinfo,DISPID dispidMember,WORD wFlags,DISPPARAMS *pparams,VARIANT *pvarResult,EXCEPINFO *pexcepinfo,UINT *puArgErr);
+extern __attribute__((dllimport)) HRESULT CreateDispTypeInfo(INTERFACEDATA *pidata,LCID lcid,ITypeInfo **pptinfo);
+extern __attribute__((dllimport)) HRESULT CreateStdDispatch(IUnknown *punkOuter,void *pvThis,ITypeInfo *ptinfo,IUnknown **ppunkStdDisp);
+extern __attribute__((dllimport)) HRESULT DispCallFunc(void *pvInstance,ULONG_PTR oVft,CALLCONV cc,VARTYPE vtReturn,UINT cActuals,VARTYPE *prgvt,VARIANTARG **prgpvarg,VARIANT *pvargResult);
 
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT RegisterActiveObject(IUnknown *punk,const IID & rclsid,DWORD dwFlags,DWORD *pdwRegister);
-extern "C" __attribute__((dllimport)) HRESULT RevokeActiveObject(DWORD dwRegister,void *pvReserved);
-extern "C" __attribute__((dllimport)) HRESULT GetActiveObject(const IID & rclsid,void *pvReserved,IUnknown **ppunk);
-extern "C" __attribute__((dllimport)) HRESULT SetErrorInfo(ULONG dwReserved,IErrorInfo *perrinfo);
-extern "C" __attribute__((dllimport)) HRESULT GetErrorInfo(ULONG dwReserved,IErrorInfo **pperrinfo);
-extern "C" __attribute__((dllimport)) HRESULT CreateErrorInfo(ICreateErrorInfo **pperrinfo);
-extern "C" __attribute__((dllimport)) HRESULT GetRecordInfoFromTypeInfo(ITypeInfo *pTypeInfo,IRecordInfo **ppRecInfo);
-extern "C" __attribute__((dllimport)) HRESULT GetRecordInfoFromGuids(const GUID & rGuidTypeLib,ULONG uVerMajor,ULONG uVerMinor,LCID lcid,const GUID & rGuidTypeInfo,IRecordInfo **ppRecInfo);
-extern "C" __attribute__((dllimport)) ULONG OaBuildVersion(void);
-extern "C" __attribute__((dllimport)) void ClearCustData(LPCUSTDATA pCustData);
+extern __attribute__((dllimport)) HRESULT RegisterActiveObject(IUnknown *punk,const IID *const rclsid,DWORD dwFlags,DWORD *pdwRegister);
+extern __attribute__((dllimport)) HRESULT RevokeActiveObject(DWORD dwRegister,void *pvReserved);
+extern __attribute__((dllimport)) HRESULT GetActiveObject(const IID *const rclsid,void *pvReserved,IUnknown **ppunk);
+extern __attribute__((dllimport)) HRESULT SetErrorInfo(ULONG dwReserved,IErrorInfo *perrinfo);
+extern __attribute__((dllimport)) HRESULT GetErrorInfo(ULONG dwReserved,IErrorInfo **pperrinfo);
+extern __attribute__((dllimport)) HRESULT CreateErrorInfo(ICreateErrorInfo **pperrinfo);
+extern __attribute__((dllimport)) HRESULT GetRecordInfoFromTypeInfo(ITypeInfo *pTypeInfo,IRecordInfo **ppRecInfo);
+extern __attribute__((dllimport)) HRESULT GetRecordInfoFromGuids(const GUID *const rGuidTypeLib,ULONG uVerMajor,ULONG uVerMinor,LCID lcid,const GUID *const rGuidTypeInfo,IRecordInfo **ppRecInfo);
+extern __attribute__((dllimport)) ULONG OaBuildVersion(void);
+extern __attribute__((dllimport)) void ClearCustData(LPCUSTDATA pCustData);
 # 730 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/oleauto.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/poppack.h" 1 3
 
@@ -79577,73 +83629,73 @@ extern "C" __attribute__((dllimport)) void ClearCustData(LPCUSTDATA pCustData);
 # 39 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/ole2.h" 2 3
 
 
-extern "C" __attribute__((dllimport)) DWORD OleBuildVersion (void);
+extern __attribute__((dllimport)) DWORD OleBuildVersion (void);
 
-extern "C" __attribute__((dllimport)) HRESULT CreateDataAdviseHolder (LPDATAADVISEHOLDER *ppDAHolder);
-
-
-
-
-extern "C" __attribute__((dllimport)) HRESULT ReadClassStg (LPSTORAGE pStg, CLSID *pclsid);
-extern "C" __attribute__((dllimport)) HRESULT WriteClassStg (LPSTORAGE pStg, const IID & rclsid);
-extern "C" __attribute__((dllimport)) HRESULT ReadClassStm (LPSTREAM pStm, CLSID *pclsid);
-extern "C" __attribute__((dllimport)) HRESULT WriteClassStm (LPSTREAM pStm, const IID & rclsid);
+extern __attribute__((dllimport)) HRESULT CreateDataAdviseHolder (LPDATAADVISEHOLDER *ppDAHolder);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT WriteFmtUserTypeStg (LPSTORAGE pstg, CLIPFORMAT cf, LPOLESTR lpszUserType);
-extern "C" __attribute__((dllimport)) HRESULT ReadFmtUserTypeStg (LPSTORAGE pstg, CLIPFORMAT *pcf, LPOLESTR *lplpszUserType);
-extern "C" __attribute__((dllimport)) HRESULT OleInitialize (LPVOID pvReserved);
-extern "C" __attribute__((dllimport)) void OleUninitialize (void);
-extern "C" __attribute__((dllimport)) HRESULT OleQueryLinkFromData (LPDATAOBJECT pSrcDataObject);
-extern "C" __attribute__((dllimport)) HRESULT OleQueryCreateFromData (LPDATAOBJECT pSrcDataObject);
-extern "C" __attribute__((dllimport)) HRESULT OleCreate (const IID & rclsid, const IID & riid, DWORD renderopt, LPFORMATETC pFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateEx (const IID & rclsid, const IID & riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateFromData (LPDATAOBJECT pSrcDataObj, const IID & riid, DWORD renderopt, LPFORMATETC pFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateFromDataEx (LPDATAOBJECT pSrcDataObj, const IID & riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateLinkFromData (LPDATAOBJECT pSrcDataObj, const IID & riid, DWORD renderopt, LPFORMATETC pFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateLinkFromDataEx (LPDATAOBJECT pSrcDataObj, const IID & riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateStaticFromData (LPDATAOBJECT pSrcDataObj, const IID & iid, DWORD renderopt, LPFORMATETC pFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateLink (LPMONIKER pmkLinkSrc, const IID & riid, DWORD renderopt, LPFORMATETC lpFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateLinkEx (LPMONIKER pmkLinkSrc, const IID & riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateLinkToFile (LPCOLESTR lpszFileName, const IID & riid, DWORD renderopt, LPFORMATETC lpFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateLinkToFileEx (LPCOLESTR lpszFileName, const IID & riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateFromFile (const IID & rclsid, LPCOLESTR lpszFileName, const IID & riid, DWORD renderopt, LPFORMATETC lpFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateFromFileEx (const IID & rclsid, LPCOLESTR lpszFileName, const IID & riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleLoad (LPSTORAGE pStg, const IID & riid, LPOLECLIENTSITE pClientSite, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleSave (LPPERSISTSTORAGE pPS, LPSTORAGE pStg, WINBOOL fSameAsLoad);
-extern "C" __attribute__((dllimport)) HRESULT OleLoadFromStream (LPSTREAM pStm, const IID & iidInterface, LPVOID *ppvObj);
-extern "C" __attribute__((dllimport)) HRESULT OleSaveToStream (LPPERSISTSTREAM pPStm, LPSTREAM pStm);
-extern "C" __attribute__((dllimport)) HRESULT OleSetContainedObject (LPUNKNOWN pUnknown, WINBOOL fContained);
-extern "C" __attribute__((dllimport)) HRESULT OleNoteObjectVisible (LPUNKNOWN pUnknown, WINBOOL fVisible);
-extern "C" __attribute__((dllimport)) HRESULT RegisterDragDrop (HWND hwnd, LPDROPTARGET pDropTarget);
-extern "C" __attribute__((dllimport)) HRESULT RevokeDragDrop (HWND hwnd);
-extern "C" __attribute__((dllimport)) HRESULT DoDragDrop (LPDATAOBJECT pDataObj, LPDROPSOURCE pDropSource, DWORD dwOKEffects, LPDWORD pdwEffect);
-extern "C" __attribute__((dllimport)) HRESULT OleSetClipboard (LPDATAOBJECT pDataObj);
-extern "C" __attribute__((dllimport)) HRESULT OleGetClipboard (LPDATAOBJECT *ppDataObj);
-extern "C" __attribute__((dllimport)) HRESULT OleFlushClipboard (void);
-extern "C" __attribute__((dllimport)) HRESULT OleIsCurrentClipboard (LPDATAOBJECT pDataObj);
-extern "C" __attribute__((dllimport)) HOLEMENU OleCreateMenuDescriptor (HMENU hmenuCombined, LPOLEMENUGROUPWIDTHS lpMenuWidths);
-extern "C" __attribute__((dllimport)) HRESULT OleSetMenuDescriptor (HOLEMENU holemenu, HWND hwndFrame, HWND hwndActiveObject, LPOLEINPLACEFRAME lpFrame, LPOLEINPLACEACTIVEOBJECT lpActiveObj);
-extern "C" __attribute__((dllimport)) HRESULT OleDestroyMenuDescriptor (HOLEMENU holemenu);
-extern "C" __attribute__((dllimport)) HRESULT OleTranslateAccelerator (LPOLEINPLACEFRAME lpFrame, LPOLEINPLACEFRAMEINFO lpFrameInfo, LPMSG lpmsg);
-extern "C" __attribute__((dllimport)) HANDLE OleDuplicateData (HANDLE hSrc, CLIPFORMAT cfFormat, UINT uiFlags);
-extern "C" __attribute__((dllimport)) HRESULT OleDraw (LPUNKNOWN pUnknown, DWORD dwAspect, HDC hdcDraw, LPCRECT lprcBounds);
-extern "C" __attribute__((dllimport)) HRESULT OleRun (LPUNKNOWN pUnknown);
-extern "C" __attribute__((dllimport)) WINBOOL OleIsRunning (LPOLEOBJECT pObject);
-extern "C" __attribute__((dllimport)) HRESULT OleLockRunning (LPUNKNOWN pUnknown, WINBOOL fLock, WINBOOL fLastUnlockCloses);
-extern "C" __attribute__((dllimport)) void ReleaseStgMedium (LPSTGMEDIUM);
-extern "C" __attribute__((dllimport)) HRESULT CreateOleAdviseHolder (LPOLEADVISEHOLDER *ppOAHolder);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateDefaultHandler (const IID & clsid, LPUNKNOWN pUnkOuter, const IID & riid, LPVOID *lplpObj);
-extern "C" __attribute__((dllimport)) HRESULT OleCreateEmbeddingHelper (const IID & clsid, LPUNKNOWN pUnkOuter, DWORD flags, LPCLASSFACTORY pCF, const IID & riid, LPVOID *lplpObj);
-extern "C" __attribute__((dllimport)) WINBOOL IsAccelerator (HACCEL hAccel, int cAccelEntries, LPMSG lpMsg, WORD *lpwCmd);
-extern "C" __attribute__((dllimport)) HGLOBAL OleGetIconOfFile (LPOLESTR lpszPath, WINBOOL fUseFileAsLabel);
-extern "C" __attribute__((dllimport)) HGLOBAL OleGetIconOfClass (const IID & rclsid, LPOLESTR lpszLabel, WINBOOL fUseTypeAsLabel);
-extern "C" __attribute__((dllimport)) HGLOBAL OleMetafilePictFromIconAndLabel (HICON hIcon, LPOLESTR lpszLabel, LPOLESTR lpszSourceFile, UINT iIconIndex);
-extern "C" __attribute__((dllimport)) HRESULT OleRegGetUserType (const IID & clsid, DWORD dwFormOfType, LPOLESTR *pszUserType);
-extern "C" __attribute__((dllimport)) HRESULT OleRegGetMiscStatus (const IID & clsid, DWORD dwAspect, DWORD *pdwStatus);
-extern "C" __attribute__((dllimport)) HRESULT OleRegEnumFormatEtc (const IID & clsid, DWORD dwDirection, LPENUMFORMATETC *ppenum);
-extern "C" __attribute__((dllimport)) HRESULT OleRegEnumVerbs (const IID & clsid, LPENUMOLEVERB *ppenum);
+
+extern __attribute__((dllimport)) HRESULT ReadClassStg (LPSTORAGE pStg, CLSID *pclsid);
+extern __attribute__((dllimport)) HRESULT WriteClassStg (LPSTORAGE pStg, const IID *const rclsid);
+extern __attribute__((dllimport)) HRESULT ReadClassStm (LPSTREAM pStm, CLSID *pclsid);
+extern __attribute__((dllimport)) HRESULT WriteClassStm (LPSTREAM pStm, const IID *const rclsid);
+
+
+
+extern __attribute__((dllimport)) HRESULT WriteFmtUserTypeStg (LPSTORAGE pstg, CLIPFORMAT cf, LPOLESTR lpszUserType);
+extern __attribute__((dllimport)) HRESULT ReadFmtUserTypeStg (LPSTORAGE pstg, CLIPFORMAT *pcf, LPOLESTR *lplpszUserType);
+extern __attribute__((dllimport)) HRESULT OleInitialize (LPVOID pvReserved);
+extern __attribute__((dllimport)) void OleUninitialize (void);
+extern __attribute__((dllimport)) HRESULT OleQueryLinkFromData (LPDATAOBJECT pSrcDataObject);
+extern __attribute__((dllimport)) HRESULT OleQueryCreateFromData (LPDATAOBJECT pSrcDataObject);
+extern __attribute__((dllimport)) HRESULT OleCreate (const IID *const rclsid, const IID *const riid, DWORD renderopt, LPFORMATETC pFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateEx (const IID *const rclsid, const IID *const riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateFromData (LPDATAOBJECT pSrcDataObj, const IID *const riid, DWORD renderopt, LPFORMATETC pFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateFromDataEx (LPDATAOBJECT pSrcDataObj, const IID *const riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateLinkFromData (LPDATAOBJECT pSrcDataObj, const IID *const riid, DWORD renderopt, LPFORMATETC pFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateLinkFromDataEx (LPDATAOBJECT pSrcDataObj, const IID *const riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateStaticFromData (LPDATAOBJECT pSrcDataObj, const IID *const iid, DWORD renderopt, LPFORMATETC pFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateLink (LPMONIKER pmkLinkSrc, const IID *const riid, DWORD renderopt, LPFORMATETC lpFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateLinkEx (LPMONIKER pmkLinkSrc, const IID *const riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateLinkToFile (LPCOLESTR lpszFileName, const IID *const riid, DWORD renderopt, LPFORMATETC lpFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateLinkToFileEx (LPCOLESTR lpszFileName, const IID *const riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateFromFile (const IID *const rclsid, LPCOLESTR lpszFileName, const IID *const riid, DWORD renderopt, LPFORMATETC lpFormatEtc, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleCreateFromFileEx (const IID *const rclsid, LPCOLESTR lpszFileName, const IID *const riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleLoad (LPSTORAGE pStg, const IID *const riid, LPOLECLIENTSITE pClientSite, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleSave (LPPERSISTSTORAGE pPS, LPSTORAGE pStg, WINBOOL fSameAsLoad);
+extern __attribute__((dllimport)) HRESULT OleLoadFromStream (LPSTREAM pStm, const IID *const iidInterface, LPVOID *ppvObj);
+extern __attribute__((dllimport)) HRESULT OleSaveToStream (LPPERSISTSTREAM pPStm, LPSTREAM pStm);
+extern __attribute__((dllimport)) HRESULT OleSetContainedObject (LPUNKNOWN pUnknown, WINBOOL fContained);
+extern __attribute__((dllimport)) HRESULT OleNoteObjectVisible (LPUNKNOWN pUnknown, WINBOOL fVisible);
+extern __attribute__((dllimport)) HRESULT RegisterDragDrop (HWND hwnd, LPDROPTARGET pDropTarget);
+extern __attribute__((dllimport)) HRESULT RevokeDragDrop (HWND hwnd);
+extern __attribute__((dllimport)) HRESULT DoDragDrop (LPDATAOBJECT pDataObj, LPDROPSOURCE pDropSource, DWORD dwOKEffects, LPDWORD pdwEffect);
+extern __attribute__((dllimport)) HRESULT OleSetClipboard (LPDATAOBJECT pDataObj);
+extern __attribute__((dllimport)) HRESULT OleGetClipboard (LPDATAOBJECT *ppDataObj);
+extern __attribute__((dllimport)) HRESULT OleFlushClipboard (void);
+extern __attribute__((dllimport)) HRESULT OleIsCurrentClipboard (LPDATAOBJECT pDataObj);
+extern __attribute__((dllimport)) HOLEMENU OleCreateMenuDescriptor (HMENU hmenuCombined, LPOLEMENUGROUPWIDTHS lpMenuWidths);
+extern __attribute__((dllimport)) HRESULT OleSetMenuDescriptor (HOLEMENU holemenu, HWND hwndFrame, HWND hwndActiveObject, LPOLEINPLACEFRAME lpFrame, LPOLEINPLACEACTIVEOBJECT lpActiveObj);
+extern __attribute__((dllimport)) HRESULT OleDestroyMenuDescriptor (HOLEMENU holemenu);
+extern __attribute__((dllimport)) HRESULT OleTranslateAccelerator (LPOLEINPLACEFRAME lpFrame, LPOLEINPLACEFRAMEINFO lpFrameInfo, LPMSG lpmsg);
+extern __attribute__((dllimport)) HANDLE OleDuplicateData (HANDLE hSrc, CLIPFORMAT cfFormat, UINT uiFlags);
+extern __attribute__((dllimport)) HRESULT OleDraw (LPUNKNOWN pUnknown, DWORD dwAspect, HDC hdcDraw, LPCRECT lprcBounds);
+extern __attribute__((dllimport)) HRESULT OleRun (LPUNKNOWN pUnknown);
+extern __attribute__((dllimport)) WINBOOL OleIsRunning (LPOLEOBJECT pObject);
+extern __attribute__((dllimport)) HRESULT OleLockRunning (LPUNKNOWN pUnknown, WINBOOL fLock, WINBOOL fLastUnlockCloses);
+extern __attribute__((dllimport)) void ReleaseStgMedium (LPSTGMEDIUM);
+extern __attribute__((dllimport)) HRESULT CreateOleAdviseHolder (LPOLEADVISEHOLDER *ppOAHolder);
+extern __attribute__((dllimport)) HRESULT OleCreateDefaultHandler (const IID *const clsid, LPUNKNOWN pUnkOuter, const IID *const riid, LPVOID *lplpObj);
+extern __attribute__((dllimport)) HRESULT OleCreateEmbeddingHelper (const IID *const clsid, LPUNKNOWN pUnkOuter, DWORD flags, LPCLASSFACTORY pCF, const IID *const riid, LPVOID *lplpObj);
+extern __attribute__((dllimport)) WINBOOL IsAccelerator (HACCEL hAccel, int cAccelEntries, LPMSG lpMsg, WORD *lpwCmd);
+extern __attribute__((dllimport)) HGLOBAL OleGetIconOfFile (LPOLESTR lpszPath, WINBOOL fUseFileAsLabel);
+extern __attribute__((dllimport)) HGLOBAL OleGetIconOfClass (const IID *const rclsid, LPOLESTR lpszLabel, WINBOOL fUseTypeAsLabel);
+extern __attribute__((dllimport)) HGLOBAL OleMetafilePictFromIconAndLabel (HICON hIcon, LPOLESTR lpszLabel, LPOLESTR lpszSourceFile, UINT iIconIndex);
+extern __attribute__((dllimport)) HRESULT OleRegGetUserType (const IID *const clsid, DWORD dwFormOfType, LPOLESTR *pszUserType);
+extern __attribute__((dllimport)) HRESULT OleRegGetMiscStatus (const IID *const clsid, DWORD dwAspect, DWORD *pdwStatus);
+extern __attribute__((dllimport)) HRESULT OleRegEnumFormatEtc (const IID *const clsid, DWORD dwDirection, LPENUMFORMATETC *ppenum);
+extern __attribute__((dllimport)) HRESULT OleRegEnumVerbs (const IID *const clsid, LPENUMOLEVERB *ppenum);
 
 typedef struct _OLESTREAM *LPOLESTREAM;
 
@@ -79657,29 +83709,29 @@ typedef struct _OLESTREAM {
   LPOLESTREAMVTBL lpstbl;
 } OLESTREAM;
 
-extern "C" __attribute__((dllimport)) HRESULT OleConvertOLESTREAMToIStorage (LPOLESTREAM lpolestream, LPSTORAGE pstg, const DVTARGETDEVICE *ptd);
-extern "C" __attribute__((dllimport)) HRESULT OleConvertIStorageToOLESTREAM (LPSTORAGE pstg, LPOLESTREAM lpolestream);
+extern __attribute__((dllimport)) HRESULT OleConvertOLESTREAMToIStorage (LPOLESTREAM lpolestream, LPSTORAGE pstg, const DVTARGETDEVICE *ptd);
+extern __attribute__((dllimport)) HRESULT OleConvertIStorageToOLESTREAM (LPSTORAGE pstg, LPOLESTREAM lpolestream);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT GetHGlobalFromILockBytes (LPLOCKBYTES plkbyt, HGLOBAL *phglobal);
-extern "C" __attribute__((dllimport)) HRESULT CreateILockBytesOnHGlobal (HGLOBAL hGlobal, WINBOOL fDeleteOnRelease, LPLOCKBYTES *pplkbyt);
+extern __attribute__((dllimport)) HRESULT GetHGlobalFromILockBytes (LPLOCKBYTES plkbyt, HGLOBAL *phglobal);
+extern __attribute__((dllimport)) HRESULT CreateILockBytesOnHGlobal (HGLOBAL hGlobal, WINBOOL fDeleteOnRelease, LPLOCKBYTES *pplkbyt);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT OleDoAutoConvert (LPSTORAGE pStg, LPCLSID pClsidNew);
-extern "C" __attribute__((dllimport)) HRESULT OleGetAutoConvert (const IID & clsidOld, LPCLSID pClsidNew);
-extern "C" __attribute__((dllimport)) HRESULT OleSetAutoConvert (const IID & clsidOld, const IID & clsidNew);
+extern __attribute__((dllimport)) HRESULT OleDoAutoConvert (LPSTORAGE pStg, LPCLSID pClsidNew);
+extern __attribute__((dllimport)) HRESULT OleGetAutoConvert (const IID *const clsidOld, LPCLSID pClsidNew);
+extern __attribute__((dllimport)) HRESULT OleSetAutoConvert (const IID *const clsidOld, const IID *const clsidNew);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT GetConvertStg (LPSTORAGE pStg);
+extern __attribute__((dllimport)) HRESULT GetConvertStg (LPSTORAGE pStg);
 
 
 
-extern "C" __attribute__((dllimport)) HRESULT SetConvertStg (LPSTORAGE pStg, WINBOOL fConvert);
-extern "C" __attribute__((dllimport)) HRESULT OleConvertIStorageToOLESTREAMEx (LPSTORAGE pstg, CLIPFORMAT cfFormat, LONG lWidth, LONG lHeight, DWORD dwSize, LPSTGMEDIUM pmedium, LPOLESTREAM polestm);
-extern "C" __attribute__((dllimport)) HRESULT OleConvertOLESTREAMToIStorageEx (LPOLESTREAM polestm, LPSTORAGE pstg, CLIPFORMAT *pcfFormat, LONG *plwWidth, LONG *plHeight, DWORD *pdwSize, LPSTGMEDIUM pmedium);
+extern __attribute__((dllimport)) HRESULT SetConvertStg (LPSTORAGE pStg, WINBOOL fConvert);
+extern __attribute__((dllimport)) HRESULT OleConvertIStorageToOLESTREAMEx (LPSTORAGE pstg, CLIPFORMAT cfFormat, LONG lWidth, LONG lHeight, DWORD dwSize, LPSTGMEDIUM pmedium, LPOLESTREAM polestm);
+extern __attribute__((dllimport)) HRESULT OleConvertOLESTREAMToIStorageEx (LPOLESTREAM polestm, LPSTORAGE pstg, CLIPFORMAT *pcfFormat, LONG *plwWidth, LONG *plHeight, DWORD *pdwSize, LPSTGMEDIUM pmedium);
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/poppack.h" 1 3
@@ -79695,20 +83747,18 @@ extern "C" __attribute__((dllimport)) HRESULT OleConvertOLESTREAMToIStorageEx (L
 # 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winscard.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winioctl.h" 1 3
 # 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winioctl.h" 3
-extern "C" const GUID GUID_DEVINTERFACE_DISK;
-extern "C" const GUID GUID_DEVINTERFACE_CDROM;
-extern "C" const GUID GUID_DEVINTERFACE_PARTITION;
-extern "C" const GUID GUID_DEVINTERFACE_TAPE;
-extern "C" const GUID GUID_DEVINTERFACE_WRITEONCEDISK;
-extern "C" const GUID GUID_DEVINTERFACE_VOLUME;
-extern "C" const GUID GUID_DEVINTERFACE_MEDIUMCHANGER;
-extern "C" const GUID GUID_DEVINTERFACE_FLOPPY;
-extern "C" const GUID GUID_DEVINTERFACE_CDCHANGER;
-extern "C" const GUID GUID_DEVINTERFACE_STORAGEPORT;
-extern "C" const GUID GUID_DEVINTERFACE_COMPORT;
-extern "C" const GUID GUID_DEVINTERFACE_SERENUM_BUS_ENUMERATOR;
-# 133 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winioctl.h" 3
-extern "C" {
+extern const GUID GUID_DEVINTERFACE_DISK;
+extern const GUID GUID_DEVINTERFACE_CDROM;
+extern const GUID GUID_DEVINTERFACE_PARTITION;
+extern const GUID GUID_DEVINTERFACE_TAPE;
+extern const GUID GUID_DEVINTERFACE_WRITEONCEDISK;
+extern const GUID GUID_DEVINTERFACE_VOLUME;
+extern const GUID GUID_DEVINTERFACE_MEDIUMCHANGER;
+extern const GUID GUID_DEVINTERFACE_FLOPPY;
+extern const GUID GUID_DEVINTERFACE_CDCHANGER;
+extern const GUID GUID_DEVINTERFACE_STORAGEPORT;
+extern const GUID GUID_DEVINTERFACE_COMPORT;
+extern const GUID GUID_DEVINTERFACE_SERENUM_BUS_ENUMERATOR;
 # 168 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winioctl.h" 3
 typedef struct _STORAGE_READ_CAPACITY {
   ULONG Version;
@@ -79898,9 +83948,6 @@ typedef struct _STORAGE_READ_CAPACITY {
     DWORD PredictFailure;
     BYTE VendorSpecific[512];
   } STORAGE_PREDICT_FAILURE,*PSTORAGE_PREDICT_FAILURE;
-
-
-}
 # 499 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winioctl.h" 3
 typedef enum _MEDIA_TYPE {
   Unknown,F5_1Pt2_512,F3_1Pt44_512,F3_2Pt88_512,F3_20Pt8_512,F3_720_512,F5_360_512,F5_320_512,F5_320_1024,F5_180_512,F5_160_512,
@@ -80995,8 +85042,6 @@ typedef struct _VOLUME_DISK_EXTENTS {
 } VOLUME_DISK_EXTENTS,*PVOLUME_DISK_EXTENTS;
 # 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winscard.h" 2 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsmcrd.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsmcrd.h" 3
-extern "C" {
 # 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsmcrd.h" 3
   typedef WORD UWORD;
 # 161 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsmcrd.h" 3
@@ -81026,19 +85071,8 @@ extern "C" {
     SCARD_IO_REQUEST ioRequest;
   } SCARD_T1_REQUEST;
   typedef SCARD_T1_REQUEST *PSCARD_T1_REQUEST,*LPSCARD_T1_REQUEST;
-# 202 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsmcrd.h" 3
-}
 # 13 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winscard.h" 2 3
-
-
-
-
-
-extern "C" {
-
-
-
-
+# 23 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winscard.h" 3
   typedef const BYTE *LPCBYTE;
 # 37 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winscard.h" 3
   __attribute__((dllimport)) extern const SCARD_IO_REQUEST g_rgSCardT0Pci,g_rgSCardT1Pci,g_rgSCardRawPci;
@@ -81303,8 +85337,6 @@ extern "C" {
   extern LONG GetOpenCardNameA(LPOPENCARDNAMEA);
   extern LONG GetOpenCardNameW(LPOPENCARDNAMEW);
   extern LONG SCardDlgExtendedError(void);
-# 437 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winscard.h" 3
-}
 # 98 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 
 
@@ -81323,12 +85355,6 @@ extern "C" {
 
 #pragma pack(push,8)
 # 31 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/prsht.h" 2 3
-
-
-
-
-
-extern "C" {
 # 49 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/prsht.h" 3
   struct _PSP;
   struct _PROPSHEETPAGEA;
@@ -81490,10 +85516,7 @@ extern "C" {
     NMHDR hdr;
     LPARAM lParam;
   } PSHNOTIFY,*LPPSHNOTIFY;
-# 481 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/prsht.h" 3
-}
-
-
+# 484 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/prsht.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/poppack.h" 1 3
 
 
@@ -81507,7 +85530,7 @@ extern "C" {
 
 
 
-extern "C" {
+
 
 
   typedef struct _PRINTER_INFO_1A {
@@ -82445,8 +86468,6 @@ extern "C" {
   WINBOOL DeletePrintProvidorW(LPWSTR pName,LPWSTR pEnvironment,LPWSTR pPrintProvidorName);
   WINBOOL IsValidDevmodeA (PDEVMODEA pDevmode,size_t DevmodeSize);
   WINBOOL IsValidDevmodeW (PDEVMODEW pDevmode,size_t DevmodeSize);
-# 1673 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winspool.h" 3
-}
 # 103 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 
 
@@ -82456,10 +86477,8 @@ extern "C" {
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/commdlg.h" 1 3
 # 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/commdlg.h" 3
-extern "C" const GUID IID_IPrintDialogCallback;
-extern "C" const GUID IID_IPrintDialogServices;
-# 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/commdlg.h" 3
-extern "C" {
+extern const GUID IID_IPrintDialogCallback;
+extern const GUID IID_IPrintDialogServices;
 # 46 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/commdlg.h" 3
   typedef UINT_PTR ( *LPOFNHOOKPROC) (HWND,UINT,WPARAM,LPARAM);
 
@@ -82798,28 +86817,28 @@ extern "C" {
 
 
 
-  struct IPrintDialogCallback : public IUnknown {
+  typedef struct IPrintDialogCallback { struct IPrintDialogCallbackVtbl *lpVtbl; } IPrintDialogCallback; typedef struct IPrintDialogCallbackVtbl IPrintDialogCallbackVtbl; struct IPrintDialogCallbackVtbl {
 
+    HRESULT ( *QueryInterface) (IPrintDialogCallback *This, const IID *const riid,LPVOID *ppvObj) ;
+    ULONG ( *AddRef) (IPrintDialogCallback *This) ;
+    ULONG ( *Release) (IPrintDialogCallback *This) ;
 
-
-
-
-    virtual __attribute__((nothrow)) HRESULT InitDone (void) = 0;
-    virtual __attribute__((nothrow)) HRESULT SelectionChange (void) = 0;
-    virtual __attribute__((nothrow)) HRESULT HandleMessage ( HWND hDlg,UINT uMsg,WPARAM wParam,LPARAM lParam,LRESULT *pResult) = 0;
+    HRESULT ( *InitDone) (IPrintDialogCallback *This) ;
+    HRESULT ( *SelectionChange) (IPrintDialogCallback *This) ;
+    HRESULT ( *HandleMessage) (IPrintDialogCallback *This, HWND hDlg,UINT uMsg,WPARAM wParam,LPARAM lParam,LRESULT *pResult) ;
   };
 
 
 
-  struct IPrintDialogServices : public IUnknown {
+  typedef struct IPrintDialogServices { struct IPrintDialogServicesVtbl *lpVtbl; } IPrintDialogServices; typedef struct IPrintDialogServicesVtbl IPrintDialogServicesVtbl; struct IPrintDialogServicesVtbl {
 
+    HRESULT ( *QueryInterface) (IPrintDialogServices *This, const IID *const riid,LPVOID *ppvObj) ;
+    ULONG ( *AddRef) (IPrintDialogServices *This) ;
+    ULONG ( *Release) (IPrintDialogServices *This) ;
 
-
-
-
-    virtual __attribute__((nothrow)) HRESULT GetCurrentDevMode ( LPDEVMODE pDevMode,UINT *pcbSize) = 0;
-    virtual __attribute__((nothrow)) HRESULT GetCurrentPrinterName ( LPTSTR pPrinterName,UINT *pcchSize) = 0;
-    virtual __attribute__((nothrow)) HRESULT GetCurrentPortName ( LPTSTR pPortName,UINT *pcchSize) = 0;
+    HRESULT ( *GetCurrentDevMode) (IPrintDialogServices *This, LPDEVMODE pDevMode,UINT *pcbSize) ;
+    HRESULT ( *GetCurrentPrinterName) (IPrintDialogServices *This, LPTSTR pPrinterName,UINT *pcchSize) ;
+    HRESULT ( *GetCurrentPortName) (IPrintDialogServices *This, LPTSTR pPortName,UINT *pcchSize) ;
   };
 
   typedef struct tagPRINTPAGERANGE {
@@ -82934,8 +86953,6 @@ extern "C" {
 
   __attribute__((dllimport)) WINBOOL PageSetupDlgA(LPPAGESETUPDLGA);
   __attribute__((dllimport)) WINBOOL PageSetupDlgW(LPPAGESETUPDLGW);
-# 782 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/commdlg.h" 3
-}
 # 109 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 
 
@@ -82943,8 +86960,6 @@ extern "C" {
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stralign.h" 1 3
-# 14 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stralign.h" 3
-extern "C" {
 # 49 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stralign.h" 3
   LPUWSTR uaw_CharUpperW(LPUWSTR String);
   int uaw_lstrcmpW(PCUWSTR String1,PCUWSTR String2);
@@ -82981,21 +86996,11 @@ extern "C" {
   size_t ua_wcslen(PCUWSTR String);
 # 150 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stralign.h" 3
   int ua_wcsicmp(LPCUWSTR String1,LPCUWSTR String2);
-# 202 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stralign.h" 3
-}
-
-
+# 205 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stralign.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stralign_s.h" 1 3
 # 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stralign_s.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stralign.h" 1 3
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stralign_s.h" 2 3
-
-
-
-
-extern "C" {
-# 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/sec_api/stralign_s.h" 3
-}
 # 206 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stralign.h" 2 3
 # 115 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 
@@ -83009,11 +87014,6 @@ extern "C" {
 # 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsvc.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/_mingw.h" 1 3
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsvc.h" 2 3
-
-
-
-
-extern "C" {
 # 95 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsvc.h" 3
   typedef struct _SERVICE_DESCRIPTIONA {
     LPSTR lpDescription;
@@ -83229,8 +87229,6 @@ extern "C" {
   __attribute__((dllimport)) WINBOOL StartServiceA(SC_HANDLE hService,DWORD dwNumServiceArgs,LPCSTR *lpServiceArgVectors);
   __attribute__((dllimport)) WINBOOL StartServiceW(SC_HANDLE hService,DWORD dwNumServiceArgs,LPCWSTR *lpServiceArgVectors);
   __attribute__((dllimport)) WINBOOL UnlockServiceDatabase(SC_LOCK ScLock);
-# 476 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winsvc.h" 3
-}
 # 123 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 
 
@@ -83279,13 +87277,7 @@ typedef struct _MODEMSETTINGS {
 
 
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/imm.h" 1 3
-# 12 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/imm.h" 3
-extern "C" {
-
-
-
-
-
+# 18 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/imm.h" 3
   struct HIMC__ { int unused; }; typedef struct HIMC__ *HIMC;
   struct HIMCC__ { int unused; }; typedef struct HIMCC__ *HIMCC;
 
@@ -83476,57 +87468,2214 @@ extern "C" {
   DWORD ImmGetImeMenuItemsA(HIMC,DWORD,DWORD,LPIMEMENUITEMINFOA,LPIMEMENUITEMINFOA,DWORD);
   DWORD ImmGetImeMenuItemsW(HIMC,DWORD,DWORD,LPIMEMENUITEMINFOW,LPIMEMENUITEMINFOW,DWORD);
   WINBOOL ImmDisableTextFrameService(DWORD idThread);
-# 509 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/imm.h" 3
-}
 # 131 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
-# 33 "dllmain.cpp" 2
+# 33 "pmc_statistics.c" 2
+# 1 "pmc_internal.h" 1
+# 34 "pmc_internal.h"
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 1 3
+# 38 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/setjmp.h" 1 3
+# 11 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/setjmp.h" 3
+#pragma pack(push,_CRT_PACKING)
+# 112 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/setjmp.h" 3
+  typedef __attribute__ ((__aligned__ (16))) struct _SETJMP_FLOAT128 {
+    __extension__ unsigned long long Part[2];
+  } SETJMP_FLOAT128;
 
 
-# 34 "dllmain.cpp"
-using namespace std;
+  typedef SETJMP_FLOAT128 _JBTYPE;
+
+  typedef struct _JUMP_BUFFER {
+    __extension__ unsigned long long Frame;
+    __extension__ unsigned long long Rbx;
+    __extension__ unsigned long long Rsp;
+    __extension__ unsigned long long Rbp;
+    __extension__ unsigned long long Rsi;
+    __extension__ unsigned long long Rdi;
+    __extension__ unsigned long long R12;
+    __extension__ unsigned long long R13;
+    __extension__ unsigned long long R14;
+    __extension__ unsigned long long R15;
+    __extension__ unsigned long long Rip;
+    __extension__ unsigned long long Spare;
+    SETJMP_FLOAT128 Xmm6;
+    SETJMP_FLOAT128 Xmm7;
+    SETJMP_FLOAT128 Xmm8;
+    SETJMP_FLOAT128 Xmm9;
+    SETJMP_FLOAT128 Xmm10;
+    SETJMP_FLOAT128 Xmm11;
+    SETJMP_FLOAT128 Xmm12;
+    SETJMP_FLOAT128 Xmm13;
+    SETJMP_FLOAT128 Xmm14;
+    SETJMP_FLOAT128 Xmm15;
+  } _JUMP_BUFFER;
+# 199 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/setjmp.h" 3
+  typedef _JBTYPE jmp_buf[16];
+
+
+
+void * __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) mingw_getsp (void);
+# 227 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/setjmp.h" 3
+  int __attribute__((__cdecl__)) __attribute__ ((__nothrow__,__returns_twice__)) _setjmp(jmp_buf _Buf, void *_Ctx);
+  int __attribute__((__cdecl__)) __attribute__ ((__nothrow__,__returns_twice__)) _setjmp3(jmp_buf _Buf, void *_Ctx);
+# 255 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/setjmp.h" 3
+  __attribute__ ((__noreturn__)) __attribute__ ((__nothrow__)) void __attribute__((__cdecl__)) ms_longjmp(jmp_buf _Buf,int _Value) ;
+  __attribute__ ((__noreturn__)) __attribute__ ((__nothrow__)) void __attribute__((__cdecl__)) longjmp(jmp_buf _Buf,int _Value);
 
 
 
 
 
-extern "C" BOOL DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpvReserved)
+#pragma pack(pop)
+# 39 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 2 3
+
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stddef.h" 1 3 4
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stddef.h" 1 3 4
+# 24 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stddef.h" 3 4
+  __attribute__ ((__dllimport__)) extern unsigned long __attribute__((__cdecl__)) __threadid(void);
+
+  __attribute__ ((__dllimport__)) extern uintptr_t __attribute__((__cdecl__)) __threadhandle(void);
+# 423 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+} max_align_t;
+# 2 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stddef.h" 2 3 4
+# 41 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 2 3
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1 3
+# 65 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
+       
+# 569 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
+unsigned long _lrotl(unsigned long __X, int __C);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long _lrotl(unsigned long __X, int __C)
 {
- switch (dwReason)
+  return (__X << __C) | (__X >> ((sizeof(long) * 8) - __C));
+}
+
+
+
+
+
+unsigned long _lrotr(unsigned long __X, int __C);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long _lrotr(unsigned long __X, int __C)
+{
+  return (__X >> __C) | (__X << ((sizeof(long) * 8) - __C));
+}
+# 868 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
+__extension__ unsigned long long __readcr0(void);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long __readcr0(void) { unsigned long long value; __asm__ __volatile__ ("mov {%%cr" "0" ", %[value] | %[value], %%cr" "0" "}" : [value] "=q" (value)); return value; }
+
+
+
+
+
+__extension__ unsigned long long __readcr2(void);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long __readcr2(void) { unsigned long long value; __asm__ __volatile__ ("mov {%%cr" "2" ", %[value] | %[value], %%cr" "2" "}" : [value] "=q" (value)); return value; }
+
+
+
+
+
+__extension__ unsigned long long __readcr3(void);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long __readcr3(void) { unsigned long long value; __asm__ __volatile__ ("mov {%%cr" "3" ", %[value] | %[value], %%cr" "3" "}" : [value] "=q" (value)); return value; }
+
+
+
+
+
+__extension__ unsigned long long __readcr4(void);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long __readcr4(void) { unsigned long long value; __asm__ __volatile__ ("mov {%%cr" "4" ", %[value] | %[value], %%cr" "4" "}" : [value] "=q" (value)); return value; }
+
+
+
+
+
+__extension__ unsigned long long __readcr8(void);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long __readcr8(void) { unsigned long long value; __asm__ __volatile__ ("mov {%%cr" "8" ", %[value] | %[value], %%cr" "8" "}" : [value] "=q" (value)); return value; }
+
+
+
+
+
+__extension__ void __writecr0(unsigned long long);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __writecr0(unsigned long long Data) { __asm__ __volatile__ ("mov {%[Data], %%cr" "0" "|%%cr" "0" ", %[Data]}" : : [Data] "q" (Data) : "memory"); }
+
+
+
+
+
+__extension__ void __writecr3(unsigned long long);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __writecr3(unsigned long long Data) { __asm__ __volatile__ ("mov {%[Data], %%cr" "3" "|%%cr" "3" ", %[Data]}" : : [Data] "q" (Data) : "memory"); }
+
+
+
+
+
+__extension__ void __writecr4(unsigned long long);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __writecr4(unsigned long long Data) { __asm__ __volatile__ ("mov {%[Data], %%cr" "4" "|%%cr" "4" ", %[Data]}" : : [Data] "q" (Data) : "memory"); }
+
+
+
+
+
+__extension__ void __writecr8(unsigned long long);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __writecr8(unsigned long long Data) { __asm__ __volatile__ ("mov {%[Data], %%cr" "8" "|%%cr" "8" ", %[Data]}" : : [Data] "q" (Data) : "memory"); }
+# 958 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
+unsigned long long _umul128(unsigned long long, unsigned long long, unsigned long long *);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long _umul128(unsigned long long a, unsigned long long b, unsigned long long *hi)
+{
+   __extension__ union { unsigned __int128 v; unsigned long long sv[2]; } var;
+   var.v = a;
+   var.v *= b;
+   if (hi) *hi = var.sv[1];
+   return var.sv[0];
+}
+
+
+
+
+
+long long _mul128(long long, long long, long long *);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+long long _mul128(long long a, long long b, long long *hi)
+{
+   __extension__ union { __int128 v; long long sv[2]; } var;
+   var.v = a;
+   var.v *= b;
+   if (hi) *hi = var.sv[1];
+   return var.sv[0];
+}
+
+
+
+
+
+unsigned long long __shiftleft128(unsigned long long LowPart, unsigned long long HighPart, unsigned char Shift);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long __shiftleft128 (unsigned long long LowPart, unsigned long long HighPart, unsigned char Shift)
+{
+   unsigned long long ret;
+
+   __asm__ ("shld {%[Shift],%[LowPart],%[HighPart]|%[HighPart], %[LowPart], %[Shift]}"
+      : [ret] "=r" (ret)
+      : [LowPart] "r" (LowPart), [HighPart] "0" (HighPart), [Shift] "Jc" (Shift)
+      : "cc");
+
+   return ret;
+}
+
+
+
+
+
+unsigned long long __shiftright128 (unsigned long long LowPart, unsigned long long HighPart, unsigned char Shift);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long __shiftright128 (unsigned long long LowPart, unsigned long long HighPart, unsigned char Shift)
+{
+   unsigned long long ret;
+
+   __asm__ ("shrd {%[Shift],%[HighPart],%[LowPart]|%[LowPart], %[HighPart], %[Shift]}"
+      : [ret] "=r" (ret)
+      : [LowPart] "0" (LowPart), [HighPart] "r" (HighPart), [Shift] "Jc" (Shift)
+      : "cc");
+
+   return ret;
+}
+# 1221 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
+unsigned short __popcnt16(unsigned short);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned short __popcnt16(unsigned short value)
+{
+    return __builtin_popcount(value);
+}
+
+
+
+
+
+unsigned int __popcnt(unsigned int);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned int __popcnt(unsigned int value)
+{
+    return __builtin_popcount(value);
+}
+
+
+
+
+
+unsigned long long __popcnt64(unsigned long long);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long __popcnt64(unsigned long long value)
+{
+    return __builtin_popcountll(value);
+}
+# 1577 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
+unsigned char __inbyte(unsigned short Port);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned char __inbyte(unsigned short Port) { unsigned char value; __asm__ __volatile__ ("in{" "b" " %w[port],%[value]| %[value],%w[port]}" : [value] "=a" (value) : [port] "Nd" (Port)); return value; }
+
+
+
+
+
+unsigned short __inword(unsigned short Port);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned short __inword(unsigned short Port) { unsigned short value; __asm__ __volatile__ ("in{" "w" " %w[port],%[value]| %[value],%w[port]}" : [value] "=a" (value) : [port] "Nd" (Port)); return value; }
+
+
+
+
+
+unsigned long __indword(unsigned short Port);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long __indword(unsigned short Port) { unsigned long value; __asm__ __volatile__ ("in{" "l" " %w[port],%[value]| %[value],%w[port]}" : [value] "=a" (value) : [port] "Nd" (Port)); return value; }
+
+
+
+
+
+void __outbyte(unsigned short Port, unsigned char Data);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __outbyte(unsigned short Port, unsigned char Data) { __asm__ __volatile__ ("out{" "b" " %[data],%w[port]| %w[port],%[data]}" : : [data] "a" (Data), [port] "Nd" (Port)); }
+
+
+
+
+
+void __outword(unsigned short Port, unsigned short Data);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __outword(unsigned short Port, unsigned short Data) { __asm__ __volatile__ ("out{" "w" " %[data],%w[port]| %w[port],%[data]}" : : [data] "a" (Data), [port] "Nd" (Port)); }
+
+
+
+
+
+void __outdword(unsigned short Port, unsigned long Data);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __outdword(unsigned short Port, unsigned long Data) { __asm__ __volatile__ ("out{" "l" " %[data],%w[port]| %w[port],%[data]}" : : [data] "a" (Data), [port] "Nd" (Port)); }
+
+
+
+
+
+void __inbytestring(unsigned short Port, unsigned char *Buffer, unsigned long Count);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __inbytestring(unsigned short Port, unsigned char *Buffer, unsigned long Count) { __asm__ __volatile__ ("cld ; rep ins{" "b" "|" "b" "}" : "=D" (Buffer), "=c" (Count) : "d"(Port), "0"(Buffer), "1" (Count) : "memory"); }
+
+
+
+
+
+void __inwordstring(unsigned short Port, unsigned short *Buffer, unsigned long Count);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __inwordstring(unsigned short Port, unsigned short *Buffer, unsigned long Count) { __asm__ __volatile__ ("cld ; rep ins{" "w" "|" "w" "}" : "=D" (Buffer), "=c" (Count) : "d"(Port), "0"(Buffer), "1" (Count) : "memory"); }
+
+
+
+
+
+void __indwordstring(unsigned short Port, unsigned long *Buffer, unsigned long Count);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __indwordstring(unsigned short Port, unsigned long *Buffer, unsigned long Count) { __asm__ __volatile__ ("cld ; rep ins{" "l" "|" "d" "}" : "=D" (Buffer), "=c" (Count) : "d"(Port), "0"(Buffer), "1" (Count) : "memory"); }
+
+
+
+
+
+void __outbytestring(unsigned short Port, unsigned char *Buffer, unsigned long Count);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __outbytestring(unsigned short Port, unsigned char *Buffer, unsigned long Count) { __asm__ __volatile__ ("cld ; rep outs{" "b" "|" "b" "}" : "=S" (Buffer), "=c" (Count) : "d"(Port), "0"(Buffer), "1" (Count) : "memory"); }
+
+
+
+
+
+void __outwordstring(unsigned short Port, unsigned short *Buffer, unsigned long Count);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __outwordstring(unsigned short Port, unsigned short *Buffer, unsigned long Count) { __asm__ __volatile__ ("cld ; rep outs{" "w" "|" "w" "}" : "=S" (Buffer), "=c" (Count) : "d"(Port), "0"(Buffer), "1" (Count) : "memory"); }
+
+
+
+
+
+void __outdwordstring(unsigned short Port, unsigned long *Buffer, unsigned long Count);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __outdwordstring(unsigned short Port, unsigned long *Buffer, unsigned long Count) { __asm__ __volatile__ ("cld ; rep outs{" "l" "|" "d" "}" : "=S" (Buffer), "=c" (Count) : "d"(Port), "0"(Buffer), "1" (Count) : "memory"); }
+
+
+
+
+
+void __cpuid(int CPUInfo[4], int InfoType);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __cpuid(int CPUInfo[4], int InfoType) {
+   __asm__ __volatile__ (
+      "cpuid"
+      : "=a" (CPUInfo [0]), "=b" (CPUInfo [1]), "=c" (CPUInfo [2]), "=d" (CPUInfo [3])
+      : "a" (InfoType));
+}
+
+
+
+
+
+void __cpuidex(int CPUInfo[4], int, int);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __cpuidex(int CPUInfo[4], int function_id, int subfunction_id) {
+   __asm__ __volatile__ (
+      "cpuid"
+      : "=a" (CPUInfo [0]), "=b" (CPUInfo [1]), "=c" (CPUInfo [2]), "=d" (CPUInfo [3])
+      : "a" (function_id), "c" (subfunction_id));
+}
+
+
+
+
+
+__extension__ unsigned long long __readmsr(unsigned long);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+unsigned long long __readmsr(unsigned long msr)
+{
+
+   unsigned long long val1, val2;
+
+
+
+
+   __asm__ __volatile__(
+      "rdmsr"
+      : "=a" (val1), "=d" (val2)
+      : "c" (msr));
+
+   return ((unsigned long long) val1) | (((unsigned long long)val2) << 32);
+}
+
+
+
+
+
+__extension__ void __writemsr(unsigned long, unsigned long long);
+
+extern __inline__ __attribute__((__always_inline__,__gnu_inline__))
+void __writemsr(unsigned long msr, unsigned long long Value)
+{
+   unsigned long val1 = Value, val2 = Value >> 32;
+   __asm__ __volatile__ (
+      "wrmsr"
+      :
+      : "c" (msr), "a" (val1), "d" (val2));
+}
+# 1960 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 3
+       
+# 42 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 2 3
+# 59 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+  extern unsigned int __builtin_ia32_crc32qi (unsigned int, unsigned char);
+  extern unsigned int __builtin_ia32_crc32hi (unsigned int, unsigned short);
+  extern unsigned int __builtin_ia32_crc32si (unsigned int, unsigned int);
+# 259 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+    int __attribute__((__cdecl__)) abs(int);
+    double ceil(double);
+    long __attribute__((__cdecl__)) labs(long);
+   
+    int __attribute__((__cdecl__)) memcmp(const void *,const void *,size_t);
+    void *__attribute__((__cdecl__)) memcpy(void * __restrict__ ,const void * __restrict__ ,size_t);
+    void *__attribute__((__cdecl__)) memset(void *,int,size_t);
+    char *__attribute__((__cdecl__)) strcat(char *,const char *);
+    int __attribute__((__cdecl__)) strcmp(const char *,const char *);
+    char *__attribute__((__cdecl__)) strcpy(char * __restrict__ ,const char * __restrict__ );
+    size_t __attribute__((__cdecl__)) strlen(const char *);
+   
+   
+    wchar_t *__attribute__((__cdecl__)) wcscat(wchar_t * __restrict__ ,const wchar_t * __restrict__ );
+    int __attribute__((__cdecl__)) wcscmp(const wchar_t *,const wchar_t *);
+    wchar_t *__attribute__((__cdecl__)) wcscpy(wchar_t * __restrict__ ,const wchar_t * __restrict__ );
+    size_t __attribute__((__cdecl__)) wcslen(const wchar_t *);
+
+
+ 
+
+
+
+
+
+
+   
+   
+    unsigned short __attribute__((__cdecl__)) _byteswap_ushort(unsigned short value);
+    unsigned long __attribute__((__cdecl__)) _byteswap_ulong(unsigned long value);
+    __extension__ unsigned long long __attribute__((__cdecl__)) _byteswap_uint64(unsigned long long value);
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    void __attribute__((__cdecl__)) __debugbreak(void);
+    void __attribute__((__cdecl__)) _disable(void);
+   
+   
+    __extension__ long long __emul(int,int);
+    __extension__ unsigned long long __emulu(unsigned int,unsigned int);
+    void __attribute__((__cdecl__)) _enable(void);
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+   
+   
+   
+   
+   
+   
+
+
+   
+   
+   
+   
+   
+
+   
+   
+
+
+   
+   
+   
+   
+   
+   
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    __extension__ long long _InterlockedCompare64Exchange128(long long volatile *Destination,long long ExchangeHigh,long long ExchangeLow,long long Comparand);
+    __extension__ long long _InterlockedCompare64Exchange128_acq(long long volatile *Destination,long long ExchangeHigh,long long ExchangeLow,long long Comparand);
+    __extension__ long long _InterlockedCompare64Exchange128_rel(long long volatile *Destination,long long ExchangeHigh,long long ExchangeLow,long long Comparand);
+   
+   
+   
+
+
+
+   
+   
+   
+   
+   
+   
+
+
+    char _InterlockedOr8(char volatile *,char);
+    short _InterlockedOr16(short volatile *,short);
+
+   
+   
+   
+   
+   
+   
+   
+   
+
+    char _InterlockedXor8(char volatile *,char);
+    short _InterlockedXor16(short volatile *,short);
+
+   
+   
+   
+   
+   
+   
+   
+   
+
+    char _InterlockedAnd8(char volatile *,char);
+    short _InterlockedAnd16(short volatile *,short);
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    int __attribute__((__cdecl__)) _inp(unsigned short);
+    int __attribute__((__cdecl__)) inp(unsigned short);
+    unsigned long __attribute__((__cdecl__)) _inpd(unsigned short);
+    unsigned long __attribute__((__cdecl__)) inpd(unsigned short);
+    unsigned short __attribute__((__cdecl__)) _inpw(unsigned short);
+    unsigned short __attribute__((__cdecl__)) inpw(unsigned short);
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
+
+    __extension__ unsigned long long __ll_lshift(unsigned long long,int);
+    __extension__ long long __ll_rshift(long long,int);
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    int __attribute__((__cdecl__)) _outp(unsigned short,int);
+    int __attribute__((__cdecl__)) outp(unsigned short,int);
+    unsigned long __attribute__((__cdecl__)) _outpd(unsigned short,unsigned long);
+    unsigned long __attribute__((__cdecl__)) outpd(unsigned short,unsigned long);
+    unsigned short __attribute__((__cdecl__)) _outpw(unsigned short,unsigned short);
+    unsigned short __attribute__((__cdecl__)) outpw(unsigned short,unsigned short);
+   
+   
+   
+   
+   
+   
+   
+   
+
+   
+    void *_ReturnAddress(void);
+   
+   
+   
+       
+
+    unsigned int __attribute__((__cdecl__)) _rotl(unsigned int,int);
+       
+       
+
+    unsigned int __attribute__((__cdecl__)) _rotr(unsigned int,int);
+       
+
+
+    __extension__ unsigned long long __attribute__((__cdecl__)) _rotl64(unsigned long long,int);
+    __extension__ unsigned long long __attribute__((__cdecl__)) _rotr64(unsigned long long,int);
+
+
+   
+   
+
+
+    int __attribute__((__cdecl__)) __attribute__ ((__nothrow__,__returns_twice__)) _setjmp(jmp_buf,void *);
+   
+    int __attribute__((__cdecl__)) __attribute__ ((__nothrow__,__returns_twice__)) _setjmpex(jmp_buf,void *);
+
+
+
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    char *__attribute__((__cdecl__)) _strset(char *,int);
+    char *__attribute__((__cdecl__)) strset(char *,int);
+   
+   
+   
+   
+   
+   
+   
+    __extension__ unsigned long long __ull_rshift(unsigned long long,int);
+   
+   
+   
+   
+   
+   
+   
+   
+
+   
+    void *_AddressOfReturnAddress(void);
+   
+   
+# 783 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+   
+   
+   
+   
+   
+# 1028 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+    __extension__ long long __mulh(long long,long long);
+    __extension__ unsigned long long __umulh(unsigned long long,unsigned long long);
+# 1048 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+    void __wbinvd(void);
+    void __invlpg(void*);
+# 1079 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+    unsigned int __getcallerseflags();
+# 1092 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+    __extension__ void _mm_stream_si64x(long long *,long long);
+# 1117 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+    void __cpuid(int a[4],int b);
+    __extension__ unsigned long long __readpmc(unsigned long a);
+    unsigned long __segmentlimit(unsigned long a);
+# 1130 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
+    __extension__ long long __attribute__((__cdecl__)) _abs64(long long);
+
+
+
+
+
+    __attribute__ ((__dllimport__)) wchar_t *__attribute__((__cdecl__)) _wcsset(wchar_t *,wchar_t);
+
+
+
+
+
+
+    unsigned char _rotr8(unsigned char value,unsigned char shift);
+    unsigned short _rotr16(unsigned short value,unsigned char shift);
+    unsigned char _rotl8(unsigned char value,unsigned char shift);
+    unsigned short _rotl16(unsigned short value,unsigned char shift);
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    void __nvreg_save_fence(void);
+    void __nvreg_restore_fence(void);
+
+    short _InterlockedCompareExchange16_np(short volatile *Destination,short Exchange,short Comparand);
+    long _InterlockedCompareExchange_np (long *,long,long);
+    __extension__ long long _InterlockedCompareExchange64_np(long long *,long long,long long);
+    void *_InterlockedCompareExchangePointer_np (void **,void *,void *);
+    __extension__ long long _InterlockedCompare64Exchange128_np(long long *Destination,long long ExchangeHigh,long long ExchangeLow,long long Comparand);
+    __extension__ long long _InterlockedCompare64Exchange128_acq_np(long long *Destination,long long ExchangeHigh,long long ExchangeLow,long long Comparand);
+    __extension__ long long _InterlockedCompare64Exchange128_rel_np(long long *Destination,long long ExchangeHigh,long long ExchangeLow,long long Comparand);
+    long _InterlockedAnd_np(long *,long);
+    char _InterlockedAnd8_np(char *,char);
+    short _InterlockedAnd16_np(short *,short);
+    __extension__ long long _InterlockedAnd64_np(long long *,long long);
+    long _InterlockedOr_np(long *,long);
+    char _InterlockedOr8_np(char *,char);
+    short _InterlockedOr16_np(short *,short);
+    __extension__ long long _InterlockedOr64_np(long long *,long long);
+    long _InterlockedXor_np(long *,long);
+    char _InterlockedXor8_np(char *,char);
+    short _InterlockedXor16_np(short *,short);
+    __extension__ long long _InterlockedXor64_np(long long *,long long);
+# 35 "pmc_internal.h" 2
+
+
+
+
+
+# 1 "pmc.h" 1
+# 58 "pmc.h"
+
+# 58 "pmc.h"
+typedef 
+# 58 "pmc.h" 3
+       int 
+# 58 "pmc.h"
+               PMC_STATUS_CODE;
+
+typedef struct __tag_PMC_STATISTICS_INFO
+{
+    long COUNT_MULTI64;
+    long COUNT_MULTI32;
+    long COUNT_DIV64;
+    long COUNT_DIV32;
+} PMC_STATISTICS_INFO;
+
+typedef struct __tag_PMC_ENTRY_POINTS
+{
+
+    unsigned PROCESSOR_FEATURE_POPCNT : 1;
+    unsigned PROCESSOR_FEATURE_ADX : 1;
+    unsigned PROCESSOR_FEATURE_LZCNT : 1;
+    unsigned PROCESSOR_FEATURE_BMI2 : 1;
+
+
+    void (* PMC_TraceStatistics)(int);
+    void (* PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO*);
+
+
+    PMC_STATUS_CODE (* PMC_From_I)(
+# 81 "pmc.h" 3
+                                             int
+# 81 "pmc.h"
+                                                    , HANDLE*);
+    PMC_STATUS_CODE (* PMC_From_L)(
+# 82 "pmc.h" 3
+                                             long long
+# 82 "pmc.h"
+                                                    , HANDLE*);
+
+
+    PMC_STATUS_CODE (* PMC_To_X_I)(HANDLE, 
+# 85 "pmc.h" 3
+                                                     int
+# 85 "pmc.h"
+                                                            *);
+    PMC_STATUS_CODE (* PMC_To_X_L)(HANDLE, 
+# 86 "pmc.h" 3
+                                                     long long
+# 86 "pmc.h"
+                                                            *);
+    PMC_STATUS_CODE (* PMC_Add_XI)(HANDLE, 
+# 87 "pmc.h" 3
+                                                     int
+# 87 "pmc.h"
+                                                            , HANDLE*);
+    PMC_STATUS_CODE (* PMC_Add_XL)(HANDLE, 
+# 88 "pmc.h" 3
+                                                     long long
+# 88 "pmc.h"
+                                                            , HANDLE*);
+    PMC_STATUS_CODE (* PMC_Add_XX)(HANDLE, HANDLE, HANDLE*);
+} PMC_ENTRY_POINTS;
+
+
+
+
+
+__attribute__((dllexport)) PMC_ENTRY_POINTS* PMC_Initialize();
+# 41 "pmc_internal.h" 2
+
+
+
+
+
+
+typedef unsigned 
+# 47 "pmc_internal.h" 3
+                long long 
+# 47 "pmc_internal.h"
+                        __UNIT_TYPE;
+
+
+
+
+
+
+
+typedef struct _tag_PROCESSOR_FEATURES
+{
+    unsigned PROCESSOR_FEATURE_POPCNT : 1;
+    unsigned PROCESSOR_FEATURE_ADX : 1;
+    unsigned PROCESSOR_FEATURE_LZCNT : 1;
+    unsigned PROCESSOR_FEATURE_BMI2 : 1;
+} PROCESSOR_FEATURES;
+
+typedef struct __tag_UNIT_BUFFER
+{
+
+    size_t UNIT_WORD_COUNT;
+    size_t UNIT_BIT_COUNT;
+    int HASH_CODE;
+    unsigned IS_ZERO : 1;
+    unsigned IS_ONE : 1;
+    unsigned IS_EVEN : 1;
+    unsigned IS_POWER_OF_TWO : 1;
+    unsigned IS_HASH_CALCULATED : 1;
+
+
+
+
+    __UNIT_TYPE* BLOCK;
+} UNIT_BUFFER;
+
+
+
+
+
+HANDLE hLocalHeap;
+# 94 "pmc_internal.h"
+extern __UNIT_TYPE* AllocateBlockByBits(size_t);
+
+
+extern void DeallocateBlock(__UNIT_TYPE*);
+
+
+extern void CommitBlock(__UNIT_TYPE*);
+
+
+extern PMC_STATUS_CODE CheckBlock(__UNIT_TYPE*);
+
+
+extern void IncrementDIV32Counter(void);
+
+
+extern void IncrementDIV64Counter(void);
+
+
+extern void IncrementMULTI32Counter(void);
+
+
+extern void IncrementMULTI64Counter(void);
+
+
+extern int Initialize_Add(PROCESSOR_FEATURES* feature);
+# 130 "pmc_internal.h"
+extern void PMC_TraceStatistics(int);
+extern void PMC_GetStatisticsInfo(PMC_STATISTICS_INFO*);
+
+extern PMC_STATUS_CODE PMC_From_I(
+# 133 "pmc_internal.h" 3
+                                            int
+# 133 "pmc_internal.h"
+                                                   , HANDLE*);
+extern PMC_STATUS_CODE PMC_From_L(
+# 134 "pmc_internal.h" 3
+                                            long long
+# 134 "pmc_internal.h"
+                                                   , HANDLE*);
+extern PMC_STATUS_CODE PMC_To_X_I(HANDLE, 
+# 135 "pmc_internal.h" 3
+                                                    int
+# 135 "pmc_internal.h"
+                                                           *);
+extern PMC_STATUS_CODE PMC_To_X_L(HANDLE, 
+# 136 "pmc_internal.h" 3
+                                                    long long
+# 136 "pmc_internal.h"
+                                                           *);
+extern PMC_STATUS_CODE PMC_Add_XI(HANDLE, 
+# 137 "pmc_internal.h" 3
+                                                    int
+# 137 "pmc_internal.h"
+                                                           , HANDLE*);
+extern PMC_STATUS_CODE PMC_Add_XL(HANDLE, 
+# 138 "pmc_internal.h" 3
+                                                    long long
+# 138 "pmc_internal.h"
+                                                           , HANDLE*);
+extern PMC_STATUS_CODE PMC_Add_XX(HANDLE, HANDLE, HANDLE*);
+
+
+
+
+__inline static unsigned 
+# 144 "pmc_internal.h" 3
+                        long long 
+# 144 "pmc_internal.h"
+                                _FROMWORDTODWORD(unsigned 
+# 144 "pmc_internal.h" 3
+                                                          int 
+# 144 "pmc_internal.h"
+                                                                  value_high, unsigned 
+# 144 "pmc_internal.h" 3
+                                                                                       int 
+# 144 "pmc_internal.h"
+                                                                                               value_low)
+{
+    return (((unsigned 
+# 146 "pmc_internal.h" 3
+                      long long
+# 146 "pmc_internal.h"
+                             )value_high << 32) | value_low);
+}
+
+__inline static unsigned 
+# 149 "pmc_internal.h" 3
+                        int 
+# 149 "pmc_internal.h"
+                                _FROMDWORDTOWORD(unsigned 
+# 149 "pmc_internal.h" 3
+                                                          long long 
+# 149 "pmc_internal.h"
+                                                                  value, unsigned 
+# 149 "pmc_internal.h" 3
+                                                                                  int 
+# 149 "pmc_internal.h"
+                                                                                          *result_high)
+{
+    *result_high = (unsigned 
+# 151 "pmc_internal.h" 3
+                            int
+# 151 "pmc_internal.h"
+                                   )(value >> 32);
+    return ((unsigned 
+# 152 "pmc_internal.h" 3
+                     int
+# 152 "pmc_internal.h"
+                            )value);
+}
+
+__inline static __UNIT_TYPE _MAKE_MASK_UNIT(int bits)
+{
+    switch (bits)
+    {
+    case 0:
+        return (0x0);
+    case 1:
+        return (0x1);
+    case 2:
+        return (0x3);
+    case 3:
+        return (0x7);
+    case 4:
+        return (0xf);
+    case 5:
+        return (0x1f);
+    case 6:
+        return (0x3f);
+    case 7:
+        return (0x7f);
+    case 8:
+        return (0xff);
+    case 9:
+        return (0x1ff);
+    case 10:
+        return (0x3ff);
+    case 11:
+        return (0x7ff);
+    case 12:
+        return (0xfff);
+    case 13:
+        return (0x1fff);
+    case 14:
+        return (0x3fff);
+    case 15:
+        return (0x7fff);
+    case 16:
+        return (0xffff);
+    case 17:
+        return (0x1ffff);
+    case 18:
+        return (0x3ffff);
+    case 19:
+        return (0x7ffff);
+    case 20:
+        return (0xfffff);
+    case 21:
+        return (0x1fffff);
+    case 22:
+        return (0x3fffff);
+    case 23:
+        return (0x7fffff);
+    case 24:
+        return (0xffffff);
+    case 25:
+        return (0x1ffffff);
+    case 26:
+        return (0x3ffffff);
+    case 27:
+        return (0x7ffffff);
+    case 28:
+        return (0xfffffff);
+    case 29:
+        return (0x1fffffff);
+    case 30:
+        return (0x3fffffff);
+    case 31:
+        return (0x7fffffff);
+    case 32:
+        return (0xffffffff);
+
+    case 33:
+        return (0x1ffffffff);
+    case 34:
+        return (0x3ffffffff);
+    case 35:
+        return (0x7ffffffff);
+    case 36:
+        return (0xfffffffff);
+    case 37:
+        return (0x1fffffffff);
+    case 38:
+        return (0x3fffffffff);
+    case 39:
+        return (0x7fffffffff);
+    case 40:
+        return (0xffffffffff);
+    case 41:
+        return (0x1ffffffffff);
+    case 42:
+        return (0x3ffffffffff);
+    case 43:
+        return (0x7ffffffffff);
+    case 44:
+        return (0xfffffffffff);
+    case 45:
+        return (0x1fffffffffff);
+    case 46:
+        return (0x3fffffffffff);
+    case 47:
+        return (0x7fffffffffff);
+    case 48:
+        return (0xffffffffffff);
+    case 49:
+        return (0x1ffffffffffff);
+    case 50:
+        return (0x3ffffffffffff);
+    case 51:
+        return (0x7ffffffffffff);
+    case 52:
+        return (0xfffffffffffff);
+    case 53:
+        return (0x1fffffffffffff);
+    case 54:
+        return (0x3fffffffffffff);
+    case 55:
+        return (0x7fffffffffffff);
+    case 56:
+        return (0xffffffffffffff);
+    case 57:
+        return (0x1ffffffffffffff);
+    case 58:
+        return (0x3ffffffffffffff);
+    case 59:
+        return (0x7ffffffffffffff);
+    case 60:
+        return (0xfffffffffffffff);
+    case 61:
+        return (0x1fffffffffffffff);
+    case 62:
+        return (0x3fffffffffffffff);
+    case 63:
+        return (0x7fffffffffffffff);
+    case 64:
+        return (0xffffffffffffffff);
+
+
+    default:
+        return ((__UNIT_TYPE)-1);
+    }
+}
+
+__inline static size_t DIVIDE_CEILING(size_t u, size_t v)
+{
+    return ((u + v - 1) / v);
+}
+
+__inline static unsigned 
+# 302 "pmc_internal.h" 3
+                        int 
+# 302 "pmc_internal.h"
+                                DIVIDE_CEILING32(unsigned 
+# 302 "pmc_internal.h" 3
+                                                          int 
+# 302 "pmc_internal.h"
+                                                                  u, unsigned 
+# 302 "pmc_internal.h" 3
+                                                                              int 
+# 302 "pmc_internal.h"
+                                                                                      v)
+{
+    return ((u + v - 1) / v);
+}
+
+__inline static unsigned 
+# 307 "pmc_internal.h" 3
+                        long long 
+# 307 "pmc_internal.h"
+                                DIVIDE_CEILING64(unsigned 
+# 307 "pmc_internal.h" 3
+                                                          long long 
+# 307 "pmc_internal.h"
+                                                                  u, unsigned 
+# 307 "pmc_internal.h" 3
+                                                                              long long 
+# 307 "pmc_internal.h"
+                                                                                      v)
+{
+    return ((u + v - 1) / v);
+}
+
+__inline static size_t MAXIMUM(size_t x, size_t y)
+{
+    return (x >= y ? x : y);
+}
+
+__inline static unsigned 
+# 317 "pmc_internal.h" 3
+                        int 
+# 317 "pmc_internal.h"
+                                MAXIMUM32(unsigned 
+# 317 "pmc_internal.h" 3
+                                                   int 
+# 317 "pmc_internal.h"
+                                                           x, unsigned 
+# 317 "pmc_internal.h" 3
+                                                                       int 
+# 317 "pmc_internal.h"
+                                                                               y)
+{
+    return (x >= y ? x : y);
+}
+
+__inline static unsigned 
+# 322 "pmc_internal.h" 3
+                        long long 
+# 322 "pmc_internal.h"
+                                MAXIMUM64(unsigned 
+# 322 "pmc_internal.h" 3
+                                                   long long 
+# 322 "pmc_internal.h"
+                                                           x, unsigned 
+# 322 "pmc_internal.h" 3
+                                                                       long long 
+# 322 "pmc_internal.h"
+                                                                               y)
+{
+    return (x >= y ? x : y);
+}
+
+__inline static char _ADD_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+{
+
+
+
+    return (_addcarry_u64(carry, u, v, w));
+
+
+
+}
+
+__inline static char _SUBTRACT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+{
+
+
+
+    return (_subborrow_u64(borrow, u, v, w));
+
+
+
+}
+
+__inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_high)
+{
+# 362 "pmc_internal.h"
+    return (_umul128(u, v, w_high));
+
+
+
+}
+
+__inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
+{
+# 381 "pmc_internal.h"
+    __UNIT_TYPE q;
+
+
+
+    __asm__("divq %3": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+
+
+
+    return (q);
+
+
+
+}
+
+__inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE *q)
+{
+# 411 "pmc_internal.h"
+    __asm__("divq %3": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
+
+
+
+    return (r);
+
+
+
+}
+
+__inline static void _MEMCPY_UNIT(__UNIT_TYPE* dst, __UNIT_TYPE* src, size_t count)
+{
+
+
+
+    __movsq(dst, src, count);
+
+
+
+}
+
+__inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, size_t count)
+{
+
+
+
+    return (
+# 437 "pmc_internal.h" 3
+           __rolq
+# 437 "pmc_internal.h"
+                  (x, count));
+
+
+
+}
+
+__inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, size_t count)
+{
+
+
+
+    return (
+# 448 "pmc_internal.h" 3
+           __rorq
+# 448 "pmc_internal.h"
+                  (x, count));
+
+
+
+}
+
+__inline static int _LZCNT32(unsigned 
+# 454 "pmc_internal.h" 3
+                                     int 
+# 454 "pmc_internal.h"
+                                             value)
+{
+    return (_lzcnt_u32(value));
+}
+
+
+__inline static int _LZCNT64(unsigned 
+# 460 "pmc_internal.h" 3
+                                     long long 
+# 460 "pmc_internal.h"
+                                             value)
+{
+    return (_lzcnt_u64(value));
+}
+
+
+__inline static int _LZCNT_UNIT(__UNIT_TYPE value)
+{
+
+
+
+    return (_LZCNT64(value));
+
+
+
+}
+
+__inline static int _POPCNT_UNIT(__UNIT_TYPE value)
+{
+
+
+
+    return (__popcnt64(value));
+
+
+
+}
+
+__inline static int _LZCNT32_ALT(unsigned 
+# 488 "pmc_internal.h" 3
+                                         int 
+# 488 "pmc_internal.h"
+                                                 value)
+{
+    if (value & 0xffff0000)
+    {
+        if (value & 0xff000000)
+        {
+            if (value & 0xf0000000)
+            {
+                if (value & 0xc0000000)
+                {
+                    if (value & 0x80000000)
+                        return (0);
+                    else
+                        return (1);
+                }
+                else
+                {
+                    if (value & 0x20000000)
+                        return (2);
+                    else
+                        return (3);
+                }
+            }
+            else
+            {
+                if (value & 0xc000000)
+                {
+                    if (value & 0x8000000)
+                        return (4);
+                    else
+                        return (5);
+                }
+                else
+                {
+                    if (value & 0x2000000)
+                        return (6);
+                    else
+                        return (7);
+                }
+            }
+        }
+        else
+        {
+            if (value & 0xf00000)
+            {
+                if (value & 0xc00000)
+                {
+                    if (value & 0x800000)
+                        return (8);
+                    else
+                        return (9);
+                }
+                else
+                {
+                    if (value & 0x200000)
+                        return (10);
+                    else
+                        return (11);
+                }
+            }
+            else
+            {
+                if (value & 0xc0000)
+                {
+                    if (value & 0x80000)
+                        return (12);
+                    else
+                        return (13);
+                }
+                else
+                {
+                    if (value & 0x20000)
+                        return (14);
+                    else
+                        return (15);
+                }
+            }
+        }
+    }
+    else
+    {
+        if (value & 0xff00)
+        {
+            if (value & 0xf000)
+            {
+                if (value & 0xc000)
+                {
+                    if (value & 0x8000)
+                        return (16);
+                    else
+                        return (17);
+                }
+                else
+                {
+                    if (value & 0x2000)
+                        return (18);
+                    else
+                        return (19);
+                }
+            }
+            else
+            {
+                if (value & 0xc00)
+                {
+                    if (value & 0x800)
+                        return (20);
+                    else
+                        return (21);
+                }
+                else
+                {
+                    if (value & 0x200)
+                        return (22);
+                    else
+                        return (23);
+                }
+            }
+        }
+        else
+        {
+            if (value & 0xf0)
+            {
+                if (value & 0xc0)
+                {
+                    if (value & 0x80)
+                        return (24);
+                    else
+                        return (25);
+                }
+                else
+                {
+                    if (value & 0x20)
+                        return (26);
+                    else
+                        return (27);
+                }
+            }
+            else
+            {
+                if (value & 0xc)
+                {
+                    if (value & 0x8)
+                        return (28);
+                    else
+                        return (29);
+                }
+                else
+                {
+                    if (value & 0x2)
+                        return (30);
+                    else
+                        return (31);
+                }
+            }
+        }
+    }
+}
+
+__inline static int _LZCNT64_ALT(unsigned 
+# 646 "pmc_internal.h" 3
+                                         long long 
+# 646 "pmc_internal.h"
+                                                 value)
+{
+    if (value & 0xffffffff00000000)
+    {
+        if (value & 0xffff000000000000)
+        {
+            if (value & 0xff00000000000000)
+            {
+                if (value & 0xf000000000000000)
+                {
+                    if (value & 0xc000000000000000)
+                    {
+                        if (value & 0x8000000000000000)
+                            return (0);
+                        else
+                            return (1);
+                    }
+                    else
+                    {
+                        if (value & 0x2000000000000000)
+                            return (2);
+                        else
+                            return (3);
+                    }
+                }
+                else
+                {
+                    if (value & 0xc00000000000000)
+                    {
+                        if (value & 0x800000000000000)
+                            return (4);
+                        else
+                            return (5);
+                    }
+                    else
+                    {
+                        if (value & 0x200000000000000)
+                            return (6);
+                        else
+                            return (7);
+                    }
+                }
+            }
+            else
+            {
+                if (value & 0xf0000000000000)
+                {
+                    if (value & 0xc0000000000000)
+                    {
+                        if (value & 0x80000000000000)
+                            return (8);
+                        else
+                            return (9);
+                    }
+                    else
+                    {
+                        if (value & 0x20000000000000)
+                            return (10);
+                        else
+                            return (11);
+                    }
+                }
+                else
+                {
+                    if (value & 0xc000000000000)
+                    {
+                        if (value & 0x8000000000000)
+                            return (12);
+                        else
+                            return (13);
+                    }
+                    else
+                    {
+                        if (value & 0x2000000000000)
+                            return (14);
+                        else
+                            return (15);
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (value & 0xff0000000000)
+            {
+                if (value & 0xf00000000000)
+                {
+                    if (value & 0xc00000000000)
+                    {
+                        if (value & 0x800000000000)
+                            return (16);
+                        else
+                            return (17);
+                    }
+                    else
+                    {
+                        if (value & 0x200000000000)
+                            return (18);
+                        else
+                            return (19);
+                    }
+                }
+                else
+                {
+                    if (value & 0xc0000000000)
+                    {
+                        if (value & 0x80000000000)
+                            return (20);
+                        else
+                            return (21);
+                    }
+                    else
+                    {
+                        if (value & 0x20000000000)
+                            return (22);
+                        else
+                            return (23);
+                    }
+                }
+            }
+            else
+            {
+                if (value & 0xf000000000)
+                {
+                    if (value & 0xc000000000)
+                    {
+                        if (value & 0x8000000000)
+                            return (24);
+                        else
+                            return (25);
+                    }
+                    else
+                    {
+                        if (value & 0x2000000000)
+                            return (26);
+                        else
+                            return (27);
+                    }
+                }
+                else
+                {
+                    if (value & 0xc00000000)
+                    {
+                        if (value & 0x800000000)
+                            return (28);
+                        else
+                            return (29);
+                    }
+                    else
+                    {
+                        if (value & 0x200000000)
+                            return (30);
+                        else
+                            return (31);
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        if (value & 0xffff0000)
+        {
+            if (value & 0xff000000)
+            {
+                if (value & 0xf0000000)
+                {
+                    if (value & 0xc0000000)
+                    {
+                        if (value & 0x80000000)
+                            return (32);
+                        else
+                            return (33);
+                    }
+                    else
+                    {
+                        if (value & 0x20000000)
+                            return (34);
+                        else
+                            return (35);
+                    }
+                }
+                else
+                {
+                    if (value & 0xc000000)
+                    {
+                        if (value & 0x8000000)
+                            return (36);
+                        else
+                            return (37);
+                    }
+                    else
+                    {
+                        if (value & 0x2000000)
+                            return (38);
+                        else
+                            return (39);
+                    }
+                }
+            }
+            else
+            {
+                if (value & 0xf00000)
+                {
+                    if (value & 0xc00000)
+                    {
+                        if (value & 0x800000)
+                            return (40);
+                        else
+                            return (41);
+                    }
+                    else
+                    {
+                        if (value & 0x200000)
+                            return (42);
+                        else
+                            return (43);
+                    }
+                }
+                else
+                {
+                    if (value & 0xc0000)
+                    {
+                        if (value & 0x80000)
+                            return (44);
+                        else
+                            return (45);
+                    }
+                    else
+                    {
+                        if (value & 0x20000)
+                            return (46);
+                        else
+                            return (47);
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (value & 0xff00)
+            {
+                if (value & 0xf000)
+                {
+                    if (value & 0xc000)
+                    {
+                        if (value & 0x8000)
+                            return (48);
+                        else
+                            return (49);
+                    }
+                    else
+                    {
+                        if (value & 0x2000)
+                            return (50);
+                        else
+                            return (51);
+                    }
+                }
+                else
+                {
+                    if (value & 0xc00)
+                    {
+                        if (value & 0x800)
+                            return (52);
+                        else
+                            return (53);
+                    }
+                    else
+                    {
+                        if (value & 0x200)
+                            return (54);
+                        else
+                            return (55);
+                    }
+                }
+            }
+            else
+            {
+                if (value & 0xf0)
+                {
+                    if (value & 0xc0)
+                    {
+                        if (value & 0x80)
+                            return (56);
+                        else
+                            return (57);
+                    }
+                    else
+                    {
+                        if (value & 0x20)
+                            return (58);
+                        else
+                            return (59);
+                    }
+                }
+                else
+                {
+                    if (value & 0xc)
+                    {
+                        if (value & 0x8)
+                            return (60);
+                        else
+                            return (61);
+                    }
+                    else
+                    {
+                        if (value & 0x2)
+                            return (62);
+                        else
+                            return (63);
+                    }
+                }
+            }
+        }
+    }
+}
+
+__inline static int _LZCNT_UNIT_ALT(__UNIT_TYPE value)
+{
+
+
+
+    return (_LZCNT64_ALT(value));
+
+
+
+}
+
+__inline static int _POPCNT_UNIT_ALT(__UNIT_TYPE value)
+{
+    size_t bit_count = 0;
+
+
+    bit_count += value & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+
+
+
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+
+
+
+
+
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+
+
+
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+    bit_count += (value >>= 1) & 1;
+
+
+    return (bit_count);
+}
+# 34 "pmc_statistics.c" 2
+
+
+static PMC_STATISTICS_INFO statistics_info;
+static int trace_enabled = 0;
+
+
+void PMC_TraceStatistics(int on)
+{
+ if (on)
  {
-
- case 
-# 45 "dllmain.cpp" 3
-     1
-# 45 "dllmain.cpp"
-                       :
-  break;
-
- case 
-# 48 "dllmain.cpp" 3
-     2
-# 48 "dllmain.cpp"
-                      :
-  break;
-
- case 
-# 51 "dllmain.cpp" 3
-     3
-# 51 "dllmain.cpp"
-                      :
-  break;
-
- case 
-# 54 "dllmain.cpp" 3
-     0
-# 54 "dllmain.cpp"
-                       :
-  break;
-
+  statistics_info.COUNT_DIV32 = 0;
+  statistics_info.COUNT_DIV64 = 0;
+  statistics_info.COUNT_MULTI32 = 0;
+  statistics_info.COUNT_MULTI64 = 0;
  }
+ if (trace_enabled)
+ {
+  if (!on)
+   trace_enabled = 0;
+ }
+ else
+ {
+  if (on)
+   trace_enabled = 0;
+ }
+}
 
- return (
-# 59 "dllmain.cpp" 3
-        1
-# 59 "dllmain.cpp"
-            );
+
+void PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* buffer)
+{
+ buffer->COUNT_DIV32 = statistics_info.COUNT_DIV32;
+ buffer->COUNT_DIV64 = statistics_info.COUNT_DIV64;
+ buffer->COUNT_MULTI32 = statistics_info.COUNT_MULTI32;
+ buffer->COUNT_MULTI64 = statistics_info.COUNT_MULTI64;
+}
+
+
+void IncrementDIV32Counter(void)
+{
+ _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+}
+
+
+void IncrementDIV64Counter(void)
+{
+ _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+}
+
+
+void IncrementMULTI32Counter(void)
+{
+ _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+}
+
+
+void IncrementMULTI64Counter(void)
+{
+ _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
 }

@@ -39,31 +39,61 @@ extern "C" {
 // <editor-fold defaultstate="collapsed" desc="マクロの定義">
 
 #define __PMC_CALL  __stdcall
-#define PMC_OK      (0)
-#define PMC_ERROR   (-1)
+#ifdef  __PMC_INTERNAL_H
+#define PMC_EXPORT __declspec(dllexport)
+#else
+#define PMC_EXPORT
+#endif
 
+#define PMC_STATUS_OK (0)
+#define PMC_STATUS_ARGUMENT_ERROR (-1)
+#define PMC_STATUS_NOT_ENOUGH_MEMORY (-2)
+#define PMC_STATUS_BAD_BUFFER (-3)
+#define PMC_STATUS_INTERNAL_ERROR (-4)
+    
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="型の定義">
 
+typedef __int32 PMC_STATUS_CODE;
+
+typedef struct __tag_PMC_STATISTICS_INFO
+{
+    long COUNT_MULTI64;                  // 32bit * 32bit => 64bitの乗算の回数
+    long COUNT_MULTI32;                  // 16bit * 16bit => 32bitの乗算の回数
+    long COUNT_DIV64;                    // 64bit / 32bit => 32bitの除算の回数
+    long COUNT_DIV32;                    // 32bit / 16bit => 16bitの除算の回数
+} PMC_STATISTICS_INFO;
+    
 typedef struct __tag_PMC_ENTRY_POINTS
 {
-    void* (* __PMC_CALL PMC_From_I)(__int32);
-    void* (* __PMC_CALL PMC_From_L)(__int64);
-    int (* __PMC_CALL PMC_To_X_I)(void*, __int32*);
-    int (* __PMC_CALL PMC_To_X_L)(void*, __int64*);
-    void* (* __PMC_CALL PMC_Add_XI)(void*, __int32);
-    void* (* __PMC_CALL PMC_Add_XL)(void*, __int64);
-    void* (* __PMC_CALL PMC_Add_XX)(void*, void*);
+    // 実行中のプロセッサの実装命令に関する情報
+    unsigned PROCESSOR_FEATURE_POPCNT : 1;  // 実行中のプロセッサの情報。POPCNTをサポートしているなら1、そうではないのなら0。
+    unsigned PROCESSOR_FEATURE_ADX : 1;     // 実行中のプロセッサの情報。ADXをサポートしているなら1、そうではないのなら0。
+    unsigned PROCESSOR_FEATURE_LZCNT : 1;   // 実行中のプロセッサの情報。LZCNTをサポートしているなら1、そうではないのなら0。
+    unsigned PROCESSOR_FEATURE_BMI2 : 1;    // 実行中のプロセッサの情報。BMI2をサポートしているなら1、そうではないのなら0。
+
+    // 統計情報関連
+    void (* __PMC_CALL PMC_TraceStatistics)(int);   // 統計情報の採取のON/OFFを切り替える。引数が0なら統計情報の採取を停止、1なら統計情報をリセットした上で採取の開始、それ以外なら無視される。
+    void (* __PMC_CALL PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO*);// 与えられた領域に現在まで採取されている統計情報を複写する。
+
+    // 初期化
+    PMC_STATUS_CODE (* __PMC_CALL PMC_From_I)(__int32, HANDLE*);
+    PMC_STATUS_CODE (* __PMC_CALL PMC_From_L)(__int64, HANDLE*);
+
+    // 演算子
+    PMC_STATUS_CODE (* __PMC_CALL PMC_To_X_I)(HANDLE, __int32*);
+    PMC_STATUS_CODE (* __PMC_CALL PMC_To_X_L)(HANDLE, __int64*);
+    PMC_STATUS_CODE (* __PMC_CALL PMC_Add_XI)(HANDLE, __int32, HANDLE*);
+    PMC_STATUS_CODE (* __PMC_CALL PMC_Add_XL)(HANDLE, __int64, HANDLE*);
+    PMC_STATUS_CODE (* __PMC_CALL PMC_Add_XX)(HANDLE, HANDLE, HANDLE*);
 } PMC_ENTRY_POINTS;
     
-    
 // </editor-fold>
-
     
 // <editor-fold defaultstate="collapsed" desc="宣言">
 
-extern PMC_ENTRY_POINTS* PMC_Initialize();
+PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize();
 
 // </editor-fold>
 
