@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palmtree.Math.Core.Implements", "Palmtree.Math.Core.Implements\Palmtree.Math.Core.Implements.vcxproj", "{2B4D6366-1DD5-4E4D-920B-8FDDDF1AAAB9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palmtree.idb", "Palmtree.idb\Palmtree.idb.vcxproj", "{8A66F70A-1518-47CC-85D3-AB9236160C6A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palmtree.idebug", "Palmtree.idebug\Palmtree.idebug.vcxproj", "{8A66F70A-1518-47CC-85D3-AB9236160C6A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2B4D6366-1DD5-4E4D-920B-8FDDDF1AAAB9} = {2B4D6366-1DD5-4E4D-920B-8FDDDF1AAAB9}
 	EndProjectSection
