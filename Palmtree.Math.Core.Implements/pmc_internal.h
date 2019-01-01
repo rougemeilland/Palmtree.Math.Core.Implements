@@ -1,4 +1,4 @@
-/*
+﻿/*
  * The MIT License
  *
  * Copyright 2018 Palmtree Software.
@@ -114,7 +114,7 @@ extern void IncrementMULTI32Counter(void);
 // 統計カウンタ MULTI64 をインクリメントする。
 extern void IncrementMULTI64Counter(void);
 
-// 以下、演算関数毎の初期化処理。
+// 加算処理の実装の初期化処理を行う。正常復帰なら0を返す。
 extern int Initialize_Add(PROCESSOR_FEATURES* feature);
 /*
 extern int Initialize_DivRem(PROCESSOR_FEATURES *feature);
@@ -364,7 +364,6 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 #error unknown platform
 #endif
 }
-
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
 #ifdef _MSC_VER
@@ -373,7 +372,7 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
     *r = (unsigned __int32)(t % v);
     return ((unsigned __int32)(t / v));
 #elif defined(_M_X64)
-#error not supported platform
+//#error not supported platform. VC++では64bit/32bitの除算はサポートされていない。
 #else
 #error unknown platform
 #endif
@@ -400,7 +399,7 @@ __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __
     *q = (unsigned __int32)(t / v);
     return ((unsigned __int32)(t % v));
 #elif defined(_M_X64)
-#error not supported platform
+    //#error not supported platform. VC++では64bit/32bitの除算はサポートされていない。
 #else
 #error unknown platform
 #endif
@@ -429,7 +428,7 @@ __inline static void _MEMCPY_UNIT(__UNIT_TYPE* dst, __UNIT_TYPE* src, size_t cou
 #endif
 }
 
-__inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, size_t count)
+__inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 {
 #ifdef _M_IX86
     return (_rotl(x, count));
@@ -440,7 +439,7 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, size_t count)
 #endif
 }
 
-__inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, size_t count)
+__inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 {
 #ifdef _M_IX86
     return (_rotr(x, count));
@@ -459,7 +458,7 @@ __inline static int _LZCNT32(unsigned __int32 value)
 #ifdef _M_X64
 __inline static int _LZCNT64(unsigned __int64 value)
 {
-    return (_lzcnt_u64(value));
+    return ((int)_lzcnt_u64(value));
 }
 #endif
 
@@ -479,7 +478,7 @@ __inline static int _POPCNT_UNIT(__UNIT_TYPE value)
 #ifdef _M_IX86
     return (__popcnt(value));
 #elif defined(_M_X64)
-    return (__popcnt64(value));
+    return ((int)__popcnt64(value));
 #else
 #error unknown platform
 #endif
@@ -974,7 +973,7 @@ __inline static int _LZCNT_UNIT_ALT(__UNIT_TYPE value)
 
 __inline static int _POPCNT_UNIT_ALT(__UNIT_TYPE value)
 {
-    size_t bit_count = 0;
+    int bit_count = 0;
 
 // <editor-fold defaultstate="collapsed" desc="bit 0-15">
     bit_count += value & 1;

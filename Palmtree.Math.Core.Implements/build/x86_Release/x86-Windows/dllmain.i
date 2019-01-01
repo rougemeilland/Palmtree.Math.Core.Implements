@@ -101217,85 +101217,83 @@ BOOL __attribute__((__stdcall__)) DllMain(HINSTANCE hinstDLL, DWORD dwReason, LP
               1
 # 46 "dllmain.c"
                   ;
- hLocalHeap = 
-# 47 "dllmain.c" 3 4
-             ((void *)0)
-# 47 "dllmain.c"
-                 ;
  switch (dwReason)
  {
-
- case 
-# 51 "dllmain.c" 3
-     1
+        case 
+# 49 "dllmain.c" 3
+            1
+# 49 "dllmain.c"
+                              :
+            hLocalHeap = HeapCreate(0, 0x1000, 0);
+            if (hLocalHeap == 
+# 51 "dllmain.c" 3 4
+                             ((void *)0)
 # 51 "dllmain.c"
-                       :
-  hLocalHeap = HeapCreate(0, 1, 0);
-  if (hLocalHeap == 
-# 53 "dllmain.c" 3 4
-                   ((void *)0)
-# 53 "dllmain.c"
-                       )
-   result = 
-# 54 "dllmain.c" 3
-           0
-# 54 "dllmain.c"
-                ;
-  if (!result)
-  {
+                                 )
+                result = 
+# 52 "dllmain.c" 3
+                        0
+# 52 "dllmain.c"
+                             ;
+            if (!result)
+            {
 
-   if (hLocalHeap != 
-# 58 "dllmain.c" 3 4
-                    ((void *)0)
-# 58 "dllmain.c"
-                        )
-   {
-    HeapDestroy(hLocalHeap);
-    hLocalHeap = 
-# 61 "dllmain.c" 3 4
-                ((void *)0)
-# 61 "dllmain.c"
-                    ;
-   }
+                if (hLocalHeap != 
+# 56 "dllmain.c" 3 4
+                                 ((void *)0)
+# 56 "dllmain.c"
+                                     )
+                {
+                    HeapDestroy(hLocalHeap);
+                    hLocalHeap = 
+# 59 "dllmain.c" 3 4
+                                ((void *)0)
+# 59 "dllmain.c"
+                                    ;
+                }
+            }
+            break;
 
-  }
-  break;
+        case 
+# 64 "dllmain.c" 3
+            2
+# 64 "dllmain.c"
+                             :
+            break;
 
- case 
+        case 
 # 67 "dllmain.c" 3
-     2
+            3
 # 67 "dllmain.c"
-                      :
-  break;
+                             :
+            break;
 
- case 
+        case 
 # 70 "dllmain.c" 3
-     3
+            0
 # 70 "dllmain.c"
-                      :
-  break;
-
- case 
-# 73 "dllmain.c" 3
-     0
-# 73 "dllmain.c"
-                       :
-  if (hLocalHeap != 
+                              :
+            if (hLocalHeap != 
+# 71 "dllmain.c" 3 4
+                             ((void *)0)
+# 71 "dllmain.c"
+                                 )
+            {
+                HeapDestroy(hLocalHeap);
+                hLocalHeap = 
 # 74 "dllmain.c" 3 4
-                   ((void *)0)
+                            ((void *)0)
 # 74 "dllmain.c"
-                       )
-  {
-   HeapDestroy(hLocalHeap);
-   hLocalHeap = 
-# 77 "dllmain.c" 3 4
-               ((void *)0)
-# 77 "dllmain.c"
-                   ;
-  }
-  break;
-
+                                ;
+            }
+            break;
+        default:
+            result = 
+# 78 "dllmain.c" 3
+                    0
+# 78 "dllmain.c"
+                         ;
+            break;
  }
-
  return (result);
 }

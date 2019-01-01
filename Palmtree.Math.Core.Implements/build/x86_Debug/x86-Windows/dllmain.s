@@ -17,87 +17,94 @@ LFB4206:
 	subl	$40, %esp
 	.loc 1 46 7
 	movl	$1, -12(%ebp)
-	.loc 1 47 13
-	movl	$0, _hLocalHeap
 	cmpl	$1, 12(%ebp)
 	je	L2
 	cmpl	$0, 12(%ebp)
 	je	L3
 	cmpl	$2, 12(%ebp)
-	je	L11
+	je	L13
 	cmpl	$3, 12(%ebp)
-	.loc 1 71 3
-	jmp	L6
+	je	L14
+	jmp	L12
 L2:
-	.loc 1 52 16
+	.loc 1 50 26
 	movl	$0, 8(%esp)
-	movl	$1, 4(%esp)
+	movl	$4096, 4(%esp)
 	movl	$0, (%esp)
 	movl	__imp__HeapCreate@12, %eax
 	call	*%eax
 LVL0:
 	subl	$12, %esp
-	.loc 1 52 14
+	.loc 1 50 24
 	movl	%eax, _hLocalHeap
-	.loc 1 53 18
+	.loc 1 51 28
 	movl	_hLocalHeap, %eax
-	.loc 1 53 6
+	.loc 1 51 16
 	testl	%eax, %eax
 	jne	L7
-	.loc 1 54 11
+	.loc 1 52 24
 	movl	$0, -12(%ebp)
 L7:
-	.loc 1 55 6
+	.loc 1 53 16
 	cmpl	$0, -12(%ebp)
-	jne	L12
-	.loc 1 58 19
+	jne	L15
+	.loc 1 56 32
 	movl	_hLocalHeap, %eax
-	.loc 1 58 7
+	.loc 1 56 20
 	testl	%eax, %eax
-	je	L12
-	.loc 1 60 5
+	je	L15
+	.loc 1 58 21
 	movl	_hLocalHeap, %eax
 	movl	%eax, (%esp)
 	movl	__imp__HeapDestroy@4, %eax
 	call	*%eax
 LVL1:
 	subl	$4, %esp
-	.loc 1 61 16
+	.loc 1 59 32
 	movl	$0, _hLocalHeap
-	.loc 1 65 3
-	jmp	L12
+	.loc 1 62 13
+	jmp	L15
 L3:
-	.loc 1 74 18
+	.loc 1 71 28
 	movl	_hLocalHeap, %eax
-	.loc 1 74 6
+	.loc 1 71 16
 	testl	%eax, %eax
-	je	L13
-	.loc 1 76 4
+	je	L16
+	.loc 1 73 17
 	movl	_hLocalHeap, %eax
 	movl	%eax, (%esp)
 	movl	__imp__HeapDestroy@4, %eax
 	call	*%eax
 LVL2:
 	subl	$4, %esp
-	.loc 1 77 15
+	.loc 1 74 28
 	movl	$0, _hLocalHeap
-	.loc 1 79 3
-	jmp	L13
-L11:
-	.loc 1 68 3
-	nop
-	jmp	L6
+	.loc 1 76 13
+	jmp	L16
 L12:
-	.loc 1 65 3
-	nop
-	jmp	L6
+	.loc 1 78 20
+	movl	$0, -12(%ebp)
+	.loc 1 79 13
+	jmp	L9
 L13:
-	.loc 1 79 3
+	.loc 1 65 13
 	nop
-L6:
-	.loc 1 83 9
+	jmp	L9
+L14:
+	.loc 1 68 13
+	nop
+	jmp	L9
+L15:
+	.loc 1 62 13
+	nop
+	jmp	L9
+L16:
+	.loc 1 76 13
+	nop
+L9:
+	.loc 1 81 9
 	movl	-12(%ebp), %eax
-	.loc 1 84 1
+	.loc 1 82 1
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4

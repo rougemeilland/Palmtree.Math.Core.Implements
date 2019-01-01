@@ -93,22 +93,22 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize()
         feature.PROCESSOR_FEATURE_LZCNT = (cpu_id_buffer[2] & CPU_FEATURE_FLAG_LZCNT) != 0;
     }
 
-    if (!Initialize_Add(&feature))
+    if (Initialize_Add(&feature))
         return (NULL);
 	/*
-    if (!Initialize_DivRem(&feature))
+    if (Initialize_DivRem(&feature))
         return (NULL);
-    if (!Initialize_Get(&feature))
+    if (Initialize_Get(&feature))
         return (NULL);
-    if (!Initialize_Memory(&feature))
+    if (Initialize_Memory(&feature))
         return (NULL);
-    if (!Initialize_Multiply(&feature))
+    if (Initialize_Multiply(&feature))
         return (NULL);
-    if (!Initialize_Properties(&feature))
+    if (Initialize_Properties(&feature))
         return (NULL);
-    if (!Initialize_Set(&feature))
+    if (Initialize_Set(&feature))
         return (NULL);
-    if (!Initialize_Subtract(&feature))
+    if (Initialize_Subtract(&feature))
         return (NULL);
     */
 	entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;

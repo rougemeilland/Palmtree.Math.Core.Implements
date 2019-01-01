@@ -9,10 +9,11 @@
         <group>
             <file>file:/Z:/Sources/Lunor/Repos/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/memory.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc.h</file>
-            <file>file:/Z:/Sources/Lunor/Repos/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/initialize.c</file>
-            <file>file:/Z:/Sources/Lunor/Repos/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/statistics.c</file>
+            <file>file:/Z:/Sources/Lunor/Repos/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_initialize.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_internal.h</file>
+            <file>file:/Z:/Sources/Lunor/Repos/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/debug.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/dllmain.c</file>
+            <file>file:/Z:/Sources/Lunor/Repos/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_debug.h</file>
         </group>
     </open-files>
 </project-private>

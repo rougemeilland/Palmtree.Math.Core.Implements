@@ -3,6 +3,18 @@
 .Ltext0:
 	.cfi_sections	.debug_frame
 	.comm	hLocalHeap, 8, 3
+	.section .rdata,"dr"
+.LC0:
+	.ascii "DEBUG\0"
+.LC1:
+	.ascii "P1\0"
+.LC2:
+	.ascii "P3\0"
+.LC3:
+	.ascii "P4\0"
+.LC4:
+	.ascii "P2\0"
+	.text
 	.globl	DllMain
 	.def	DllMain;	.scl	2;	.type	32;	.endef
 	.seh_proc	DllMain
@@ -24,96 +36,131 @@ DllMain:
 	movq	%rcx, 16(%rbp)
 	movl	%edx, 24(%rbp)
 	movq	%r8, 32(%rbp)
-	.loc 1 46 7
+	.loc 1 46 4
+	movl	$64, %r9d
+	leaq	.LC0(%rip), %r8
+	leaq	.LC1(%rip), %rdx
+	movl	$0, %ecx
+	movq	__imp_MessageBoxA(%rip), %rax
+	call	*%rax
+.LVL0:
+	.loc 1 47 7
 	movl	$1, -4(%rbp)
-	.loc 1 47 13
-	leaq	hLocalHeap(%rip), %rax
-	movq	$0, (%rax)
 	cmpl	$1, 24(%rbp)
 	je	.L2
 	cmpl	$0, 24(%rbp)
 	je	.L3
 	cmpl	$2, 24(%rbp)
-	je	.L11
+	je	.L13
 	cmpl	$3, 24(%rbp)
-	.loc 1 71 3
-	jmp	.L6
+	je	.L14
+	jmp	.L12
 .L2:
-	.loc 1 52 16
+	.loc 1 51 12
+	movl	$64, %r9d
+	leaq	.LC0(%rip), %r8
+	leaq	.LC2(%rip), %rdx
+	movl	$0, %ecx
+	movq	__imp_MessageBoxA(%rip), %rax
+	call	*%rax
+.LVL1:
+	.loc 1 52 26
 	movl	$0, %r8d
-	movl	$1, %edx
+	movl	$4096, %edx
 	movl	$0, %ecx
 	movq	__imp_HeapCreate(%rip), %rax
 	call	*%rax
-.LVL0:
+.LVL2:
 	movq	%rax, %rdx
-	.loc 1 52 14
+	.loc 1 52 24
 	leaq	hLocalHeap(%rip), %rax
 	movq	%rdx, (%rax)
-	.loc 1 53 18
+	.loc 1 53 28
 	leaq	hLocalHeap(%rip), %rax
 	movq	(%rax), %rax
-	.loc 1 53 6
+	.loc 1 53 16
 	testq	%rax, %rax
 	jne	.L7
-	.loc 1 54 11
+	.loc 1 54 24
 	movl	$0, -4(%rbp)
 .L7:
-	.loc 1 55 6
+	.loc 1 55 16
 	cmpl	$0, -4(%rbp)
-	jne	.L12
-	.loc 1 58 19
+	jne	.L8
+	.loc 1 58 32
 	leaq	hLocalHeap(%rip), %rax
 	movq	(%rax), %rax
-	.loc 1 58 7
+	.loc 1 58 20
 	testq	%rax, %rax
-	je	.L12
-	.loc 1 60 5
+	je	.L8
+	.loc 1 60 21
 	leaq	hLocalHeap(%rip), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rcx
 	movq	__imp_HeapDestroy(%rip), %rax
 	call	*%rax
-.LVL1:
-	.loc 1 61 16
+.LVL3:
+	.loc 1 61 32
 	leaq	hLocalHeap(%rip), %rax
 	movq	$0, (%rax)
-	.loc 1 65 3
-	jmp	.L12
+.L8:
+	.loc 1 64 12
+	movl	$64, %r9d
+	leaq	.LC0(%rip), %r8
+	leaq	.LC3(%rip), %rdx
+	movl	$0, %ecx
+	movq	__imp_MessageBoxA(%rip), %rax
+	call	*%rax
+.LVL4:
+	.loc 1 65 13
+	jmp	.L9
 .L3:
-	.loc 1 74 18
+	.loc 1 74 28
 	leaq	hLocalHeap(%rip), %rax
 	movq	(%rax), %rax
-	.loc 1 74 6
+	.loc 1 74 16
 	testq	%rax, %rax
-	je	.L13
-	.loc 1 76 4
+	je	.L15
+	.loc 1 76 17
 	leaq	hLocalHeap(%rip), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rcx
 	movq	__imp_HeapDestroy(%rip), %rax
 	call	*%rax
-.LVL2:
-	.loc 1 77 15
+.LVL5:
+	.loc 1 77 28
 	leaq	hLocalHeap(%rip), %rax
 	movq	$0, (%rax)
-	.loc 1 79 3
-	jmp	.L13
-.L11:
-	.loc 1 68 3
-	nop
-	jmp	.L6
+	.loc 1 79 13
+	jmp	.L15
 .L12:
-	.loc 1 65 3
-	nop
-	jmp	.L6
+	.loc 1 81 20
+	movl	$0, -4(%rbp)
+	.loc 1 82 13
+	jmp	.L9
 .L13:
-	.loc 1 79 3
+	.loc 1 68 13
 	nop
-.L6:
-	.loc 1 83 9
+	jmp	.L9
+.L14:
+	.loc 1 71 13
+	nop
+	jmp	.L9
+.L15:
+	.loc 1 79 13
+	nop
+.L9:
+	.loc 1 84 4
+	movl	$64, %r9d
+	leaq	.LC0(%rip), %r8
+	leaq	.LC4(%rip), %rdx
+	movl	$0, %ecx
+	movq	__imp_MessageBoxA(%rip), %rax
+	call	*%rax
+.LVL6:
+	.loc 1 85 9
 	movl	-4(%rbp), %eax
-	.loc 1 84 1
+	.loc 1 86 1
 	addq	$48, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -151,10 +198,11 @@ DllMain:
 	.file 27 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winscard.h"
 	.file 28 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/commdlg.h"
 	.file 29 "pmc_internal.h"
-	.file 30 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/heapapi.h"
+	.file 30 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h"
+	.file 31 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/heapapi.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
-	.long	0x4d3a
+	.long	0x4d7b
 	.word	0x4
 	.secrel32	.Ldebug_abbrev0
 	.byte	0x8
@@ -4146,7 +4194,7 @@ DllMain:
 	.quad	.LFE4332-.LFB4332
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4d25
+	.long	0x4d59
 	.uleb128 0x1e
 	.ascii "hinstDLL\0"
 	.byte	0x1
@@ -4177,7 +4225,7 @@ DllMain:
 	.uleb128 0x1f
 	.ascii "result\0"
 	.byte	0x1
-	.byte	0x2e
+	.byte	0x2f
 	.byte	0x7
 	.long	0x5bd
 	.uleb128 0x2
@@ -4185,24 +4233,42 @@ DllMain:
 	.sleb128 -20
 	.uleb128 0x20
 	.quad	.LVL0
-	.long	0x4d25
+	.long	0x4d59
 	.uleb128 0x20
 	.quad	.LVL1
-	.long	0x4d31
+	.long	0x4d59
 	.uleb128 0x20
 	.quad	.LVL2
-	.long	0x4d31
+	.long	0x4d66
+	.uleb128 0x20
+	.quad	.LVL3
+	.long	0x4d72
+	.uleb128 0x20
+	.quad	.LVL4
+	.long	0x4d59
+	.uleb128 0x20
+	.quad	.LVL5
+	.long	0x4d72
+	.uleb128 0x20
+	.quad	.LVL6
+	.long	0x4d59
 	.byte	0
 	.uleb128 0x21
 	.secrel32	.LASF1
 	.secrel32	.LASF1
 	.byte	0x1e
+	.word	0xdee
+	.byte	0x22
+	.uleb128 0x22
+	.secrel32	.LASF2
+	.secrel32	.LASF2
+	.byte	0x1f
 	.byte	0x1c
 	.byte	0x25
-	.uleb128 0x21
-	.secrel32	.LASF2
-	.secrel32	.LASF2
-	.byte	0x1e
+	.uleb128 0x22
+	.secrel32	.LASF3
+	.secrel32	.LASF3
+	.byte	0x1f
 	.byte	0x1d
 	.byte	0x26
 	.byte	0
@@ -4676,6 +4742,25 @@ DllMain:
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x39
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0x22
+	.uleb128 0x2e
+	.byte	0
+	.uleb128 0x3f
+	.uleb128 0x19
+	.uleb128 0x3c
+	.uleb128 0x19
+	.uleb128 0x6e
+	.uleb128 0xe
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
 	.uleb128 0xb
 	.uleb128 0x39
 	.uleb128 0xb
@@ -4699,8 +4784,10 @@ DllMain:
 	.section	.debug_str,"dr"
 .LASF0:
 	.ascii "refcount\0"
-.LASF1:
-	.ascii "HeapCreate\0"
 .LASF2:
+	.ascii "HeapCreate\0"
+.LASF1:
+	.ascii "MessageBoxA\0"
+.LASF3:
 	.ascii "HeapDestroy\0"
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"

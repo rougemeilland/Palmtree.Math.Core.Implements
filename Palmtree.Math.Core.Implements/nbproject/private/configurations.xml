@@ -17,8 +17,6 @@
         </gdb_signals>
         <gdb_options>
           <DebugOptions>
-            <option name="debug_command"
-                    value="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/palmtree.math.core.implements.test.exe"/>
           </DebugOptions>
         </gdb_options>
         <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
@@ -29,13 +27,17 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Debug\x64-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Debug\x64-Windows\palmtree.math.core.implements.test.exe</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
+        <console-type>2</console-type>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
+          <variable name="DLL_FILE_NAME" value="Palmtree.Math.Core.Implements.dll"/>
+          <variable name="DLL_FUNC_NAME" value="DoDebug"/>
         </environment>
       </runprofile>
     </conf>
@@ -52,8 +54,6 @@
         </gdb_interceptlist>
         <gdb_options>
           <DebugOptions>
-            <option name="debug_command"
-                    value="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/palmtree.math.core.implements.test.exe"/>
           </DebugOptions>
         </gdb_options>
         <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
@@ -64,13 +64,17 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Release\x64-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Release\x64-Windows\palmtree.math.core.implements.test.exe</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
+        <console-type>2</console-type>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
+          <variable name="DLL_FILE_NAME" value="Palmtree.Math.Core.Implements.dll"/>
+          <variable name="DLL_FUNC_NAME" value="DoDebug"/>
         </environment>
       </runprofile>
     </conf>
@@ -87,8 +91,6 @@
         </gdb_interceptlist>
         <gdb_options>
           <DebugOptions>
-            <option name="debug_command"
-                    value="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/palmtree.math.core.implements.test.exe"/>
           </DebugOptions>
         </gdb_options>
         <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
@@ -99,13 +101,17 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x86_Debug\x86-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x86_Debug\x86-Windows\palmtree.math.core.implements.test.exe</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
+        <console-type>2</console-type>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
+          <variable name="DLL_FILE_NAME" value="Palmtree.Math.Core.Implements.dll"/>
+          <variable name="DLL_FUNC_NAME" value="DoDebug"/>
         </environment>
       </runprofile>
     </conf>
@@ -122,8 +128,6 @@
         </gdb_interceptlist>
         <gdb_options>
           <DebugOptions>
-            <option name="debug_command"
-                    value="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/palmtree.math.core.implements.test.exe"/>
           </DebugOptions>
         </gdb_options>
         <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
@@ -134,13 +138,17 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x86_Release\x86-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x86_Release\x86-Windows\palmtree.math.core.implements.test.exe</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
+        <console-type>2</console-type>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
+          <variable name="DLL_FILE_NAME" value="Palmtree.Math.Core.Implements.dll"/>
+          <variable name="DLL_FUNC_NAME" value="DoDebug"/>
         </environment>
       </runprofile>
     </conf>

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * The MIT License
  *
  * Copyright 2018 Palmtree Software.
@@ -74,19 +74,19 @@ typedef struct __tag_PMC_ENTRY_POINTS
     unsigned PROCESSOR_FEATURE_BMI2 : 1;    // 実行中のプロセッサの情報。BMI2をサポートしているなら1、そうではないのなら0。
 
     // 統計情報関連
-    void (* __PMC_CALL PMC_TraceStatistics)(int);   // 統計情報の採取のON/OFFを切り替える。引数が0なら統計情報の採取を停止、1なら統計情報をリセットした上で採取の開始、それ以外なら無視される。
-    void (* __PMC_CALL PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO*);// 与えられた領域に現在まで採取されている統計情報を複写する。
+    void (__PMC_CALL * PMC_TraceStatistics)(int);   // 統計情報の採取のON/OFFを切り替える。引数が0なら統計情報の採取を停止、1なら統計情報をリセットした上で採取の開始、それ以外なら無視される。
+    void (__PMC_CALL * PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO*);// 与えられた領域に現在まで採取されている統計情報を複写する。
 
     // 初期化
-    PMC_STATUS_CODE (* __PMC_CALL PMC_From_I)(__int32, HANDLE*);
-    PMC_STATUS_CODE (* __PMC_CALL PMC_From_L)(__int64, HANDLE*);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_From_I)(__int32, HANDLE*);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_From_L)(__int64, HANDLE*);
 
     // 演算子
-    PMC_STATUS_CODE (* __PMC_CALL PMC_To_X_I)(HANDLE, __int32*);
-    PMC_STATUS_CODE (* __PMC_CALL PMC_To_X_L)(HANDLE, __int64*);
-    PMC_STATUS_CODE (* __PMC_CALL PMC_Add_XI)(HANDLE, __int32, HANDLE*);
-    PMC_STATUS_CODE (* __PMC_CALL PMC_Add_XL)(HANDLE, __int64, HANDLE*);
-    PMC_STATUS_CODE (* __PMC_CALL PMC_Add_XX)(HANDLE, HANDLE, HANDLE*);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_I)(HANDLE, __int32*);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_L)(HANDLE, __int64*);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XI)(HANDLE, __int32, HANDLE*);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XL)(HANDLE, __int64, HANDLE*);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XX)(HANDLE, HANDLE, HANDLE*);
 } PMC_ENTRY_POINTS;
     
 // </editor-fold>

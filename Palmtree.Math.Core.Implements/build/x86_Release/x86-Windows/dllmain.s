@@ -6,21 +6,34 @@
 _DllMain@12:
 LFB5454:
 	.cfi_startproc
-	subl	$28, %esp
+	pushl	%ebx
+	.cfi_def_cfa_offset 8
+	.cfi_offset 3, -8
+	subl	$24, %esp
 	.cfi_def_cfa_offset 32
-	movl	$1, %eax
-	movl	$0, _hLocalHeap
-	cmpl	$1, 36(%esp)
-	je	L7
-	addl	$28, %esp
+	movl	36(%esp), %eax
+	cmpl	$1, %eax
+	je	L2
+	testl	%eax, %eax
+	je	L3
+	xorl	%ebx, %ebx
+	cmpl	$4, %eax
+	setb	%bl
+L1:
+	addl	$24, %esp
 	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	movl	%ebx, %eax
+	popl	%ebx
+	.cfi_restore 3
 	.cfi_def_cfa_offset 4
 	ret	$12
 	.p2align 4,,10
-L7:
+L2:
 	.cfi_restore_state
 	movl	$0, 8(%esp)
-	movl	$1, 4(%esp)
+	xorl	%ebx, %ebx
+	movl	$4096, 4(%esp)
 	movl	$0, (%esp)
 	call	*__imp__HeapCreate@12
 	.cfi_def_cfa_offset 20
@@ -28,10 +41,34 @@ L7:
 	.cfi_def_cfa_offset 32
 	testl	%eax, %eax
 	movl	%eax, _hLocalHeap
-	setne	%al
-	addl	$28, %esp
+	setne	%bl
+	addl	$24, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	movl	%ebx, %eax
+	popl	%ebx
+	.cfi_restore 3
 	.cfi_def_cfa_offset 4
-	movzbl	%al, %eax
+	ret	$12
+	.p2align 4,,10
+L3:
+	.cfi_restore_state
+	movl	_hLocalHeap, %eax
+	movl	$1, %ebx
+	testl	%eax, %eax
+	je	L1
+	movl	%eax, (%esp)
+	call	*__imp__HeapDestroy@4
+	.cfi_def_cfa_offset 28
+	movl	%ebx, %eax
+	movl	$0, _hLocalHeap
+	subl	$4, %esp
+	.cfi_def_cfa_offset 32
+	addl	$24, %esp
+	.cfi_def_cfa_offset 8
+	popl	%ebx
+	.cfi_restore 3
+	.cfi_def_cfa_offset 4
 	ret	$12
 	.cfi_endproc
 LFE5454:

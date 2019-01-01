@@ -89631,90 +89631,156 @@ HANDLE hLocalHeap;
 
 BOOL DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpvReserved)
 {
- BOOL result = 
+    
 # 46 "dllmain.c" 3
-              1
+   MessageBoxA
 # 46 "dllmain.c"
-                  ;
- hLocalHeap = 
-# 47 "dllmain.c" 3 4
-             ((void *)0)
+             (
+# 46 "dllmain.c" 3 4
+              ((void *)0)
+# 46 "dllmain.c"
+                  , "P1", "DEBUG", 
+# 46 "dllmain.c" 3
+                                   0x00000000l
+# 46 "dllmain.c"
+                                        |
+# 46 "dllmain.c" 3
+                                         0x00000040l
+# 46 "dllmain.c"
+                                                           );
+ BOOL result = 
+# 47 "dllmain.c" 3
+              1
 # 47 "dllmain.c"
-                 ;
+                  ;
  switch (dwReason)
  {
-
- case 
+        case 
+# 50 "dllmain.c" 3
+            1
+# 50 "dllmain.c"
+                              :
+            
 # 51 "dllmain.c" 3
-     1
+           MessageBoxA
 # 51 "dllmain.c"
-                       :
-  hLocalHeap = HeapCreate(0, 1, 0);
-  if (hLocalHeap == 
+                     (
+# 51 "dllmain.c" 3 4
+                      ((void *)0)
+# 51 "dllmain.c"
+                          , "P3", "DEBUG", 
+# 51 "dllmain.c" 3
+                                           0x00000000l
+# 51 "dllmain.c"
+                                                |
+# 51 "dllmain.c" 3
+                                                 0x00000040l
+# 51 "dllmain.c"
+                                                                   );
+            hLocalHeap = HeapCreate(0, 0x1000, 0);
+            if (hLocalHeap == 
 # 53 "dllmain.c" 3 4
-                   ((void *)0)
+                             ((void *)0)
 # 53 "dllmain.c"
-                       )
-   result = 
+                                 )
+                result = 
 # 54 "dllmain.c" 3
-           0
+                        0
 # 54 "dllmain.c"
-                ;
-  if (!result)
-  {
+                             ;
+            if (!result)
+            {
 
-   if (hLocalHeap != 
+                if (hLocalHeap != 
 # 58 "dllmain.c" 3 4
-                    ((void *)0)
+                                 ((void *)0)
 # 58 "dllmain.c"
-                        )
-   {
-    HeapDestroy(hLocalHeap);
-    hLocalHeap = 
+                                     )
+                {
+                    HeapDestroy(hLocalHeap);
+                    hLocalHeap = 
 # 61 "dllmain.c" 3 4
-                ((void *)0)
+                                ((void *)0)
 # 61 "dllmain.c"
-                    ;
-   }
+                                    ;
+                }
+            }
+            
+# 64 "dllmain.c" 3
+           MessageBoxA
+# 64 "dllmain.c"
+                     (
+# 64 "dllmain.c" 3 4
+                      ((void *)0)
+# 64 "dllmain.c"
+                          , "P4", "DEBUG", 
+# 64 "dllmain.c" 3
+                                           0x00000000l
+# 64 "dllmain.c"
+                                                |
+# 64 "dllmain.c" 3
+                                                 0x00000040l
+# 64 "dllmain.c"
+                                                                   );
+            break;
 
-  }
-  break;
-
- case 
+        case 
 # 67 "dllmain.c" 3
-     2
+            2
 # 67 "dllmain.c"
-                      :
-  break;
+                             :
+            break;
 
- case 
+        case 
 # 70 "dllmain.c" 3
-     3
+            3
 # 70 "dllmain.c"
-                      :
-  break;
+                             :
+            break;
 
- case 
+        case 
 # 73 "dllmain.c" 3
-     0
+            0
 # 73 "dllmain.c"
-                       :
-  if (hLocalHeap != 
+                              :
+            if (hLocalHeap != 
 # 74 "dllmain.c" 3 4
-                   ((void *)0)
+                             ((void *)0)
 # 74 "dllmain.c"
-                       )
-  {
-   HeapDestroy(hLocalHeap);
-   hLocalHeap = 
+                                 )
+            {
+                HeapDestroy(hLocalHeap);
+                hLocalHeap = 
 # 77 "dllmain.c" 3 4
-               ((void *)0)
+                            ((void *)0)
 # 77 "dllmain.c"
-                   ;
-  }
-  break;
-
+                                ;
+            }
+            break;
+        default:
+            result = 
+# 81 "dllmain.c" 3
+                    0
+# 81 "dllmain.c"
+                         ;
+            break;
  }
-
+    
+# 84 "dllmain.c" 3
+   MessageBoxA
+# 84 "dllmain.c"
+             (
+# 84 "dllmain.c" 3 4
+              ((void *)0)
+# 84 "dllmain.c"
+                  , "P2", "DEBUG", 
+# 84 "dllmain.c" 3
+                                   0x00000000l
+# 84 "dllmain.c"
+                                        |
+# 84 "dllmain.c" 3
+                                         0x00000040l
+# 84 "dllmain.c"
+                                                           );
  return (result);
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * The MIT License
  *
  * Copyright 2018 Palmtree Software.
@@ -52,6 +52,7 @@ static __UNIT_TYPE RotateLeft1(__UNIT_TYPE x) {
     __UNIT_TYPE z;
     unsigned char c = _addcarry_u64(0, x, x, &y);
     _addcarry_u64(c, y, 0, &z);
+    return (z);
 }
 #else
 #error unknown platform

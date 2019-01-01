@@ -1,7 +1,7 @@
-/*
+﻿/*
  * The MIT License
  *
- * Copyright 2018 Palmtree Software.
+ * Copyright 2019 Palmtree Software.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,33 +23,35 @@
  */
 
 /* 
- * File:   debug.c
+ * File:   pmc_debug.h
  * Author: Lunor Kisasage
- * 
- * Created on 2018/12/29, 10:35
+ *
+ * Created on 2019/01/01, 18:26
  */
 
+#ifndef PMC_DEBUG_H
+#define PMC_DEBUG_H
 
-#include <windows.h>
-#include "pmc_internal.h"
-#include "pmc_debug.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-__declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
+// <editor-fold defaultstate="collapsed" desc="型の定義">
+
+typedef struct __tag_PMC_DEBUG_ENVIRONMENT
 {
-     PMC_ENTRY_POINTS* ep = PMC_Initialize();
-     if (ep == NULL)
-     {
-         env->log("PMC_Initialize failed");
-         return;
-     }
-     env->log("PMC_Initialize: ADX=%d, BMI2=%d, LZCNT=%d, POPCNT=%d",
-              ep->PROCESSOR_FEATURE_ADX,
-              ep->PROCESSOR_FEATURE_BMI2,
-              ep->PROCESSOR_FEATURE_LZCNT,
-              ep->PROCESSOR_FEATURE_POPCNT);
-     return;
-}
+    int (_cdecl * log)(const char*, ...);
+} PMC_DEBUG_ENVIRONMENT;
+    
+// </editor-fold>
 
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* PMC_DEBUG_H */
 
 /*
  * END OF FILE

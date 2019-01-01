@@ -102773,8 +102773,30 @@ __inline static int _POPCNT_UNIT_ALT(__UNIT_TYPE value)
     return (bit_count);
 }
 # 35 "debug.c" 2
-
-__attribute__((dllexport)) void DoDebug(void)
+# 1 "pmc_debug.h" 1
+# 41 "pmc_debug.h"
+typedef struct __tag_PMC_DEBUG_ENVIRONMENT
 {
+    int (* __attribute__((__cdecl__)) log)(const char*, ...);
+} PMC_DEBUG_ENVIRONMENT;
+# 36 "debug.c" 2
 
+__attribute__((dllexport)) void DoDebug(PMC_DEBUG_ENVIRONMENT *env)
+{
+     PMC_ENTRY_POINTS* ep = PMC_Initialize();
+     if (ep == 
+# 40 "debug.c" 3 4
+              ((void *)0)
+# 40 "debug.c"
+                  )
+     {
+         env->log("PMC_Initialize failed");
+         return;
+     }
+     env->log("PMC_Initialize: ADX=%d, BMI2=%d, LZCNT=%d, POPCNT=%d",
+              ep->PROCESSOR_FEATURE_ADX,
+              ep->PROCESSOR_FEATURE_BMI2,
+              ep->PROCESSOR_FEATURE_LZCNT,
+              ep->PROCESSOR_FEATURE_POPCNT);
+     return;
 }
