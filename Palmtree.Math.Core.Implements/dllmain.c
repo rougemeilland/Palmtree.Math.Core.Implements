@@ -34,9 +34,6 @@
 #include "pmc_internal.h"
 
 
-HANDLE hLocalHeap;
-
-
 /*
  * DLLのエントリポイント
  */
@@ -47,24 +44,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpvReserved)
 	switch (dwReason)
 	{
         case DLL_PROCESS_ATTACH: // DLLがプロセスのアドレス空間にマッピングされた。
-            hLocalHeap = HeapCreate(0, 0x1000, 0);
-            if (hLocalHeap == NULL)
+            if (!AllocateHeapArea())
                 result = FALSE;
-
-            // 追加の初期化処理があれば実行する。
-
-            if (!result)
-            {
-                // エラーの場合は獲得した資源を解放する。
-
-                // 追加の初期化処理で獲得された資源を解放する。
-
-                if (hLocalHeap != NULL)
-                {
-                    HeapDestroy(hLocalHeap);
-                    hLocalHeap = NULL;
-                }
-            }
             break;
 
         case DLL_THREAD_ATTACH: // スレッドが作成されようとしている。
@@ -74,11 +55,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpvReserved)
             break;
 
         case DLL_PROCESS_DETACH: // DLLのマッピングが解除されようとしている。
-            if (hLocalHeap != NULL)
-            {
-                HeapDestroy(hLocalHeap);
-                hLocalHeap = NULL;
-            }
+            DeallocateHeapArea();
             break;
         default:
             result = FALSE;

@@ -39,12 +39,12 @@ int Initialize_Add(PROCESSOR_FEATURES* feature)
     return (0);
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE x, __int32 y, HANDLE* o)
+PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE x, unsigned __int32 y, HANDLE* o)
 {
     return (PMC_STATUS_INTERNAL_ERROR);
 }   
 
-PMC_STATUS_CODE __PMC_CALL PMC_Add_XL(HANDLE x, __int64 y, HANDLE* o)
+PMC_STATUS_CODE __PMC_CALL PMC_Add_XL(HANDLE x, unsigned __int64 y, HANDLE* o)
 {
     return (PMC_STATUS_INTERNAL_ERROR);
 }   

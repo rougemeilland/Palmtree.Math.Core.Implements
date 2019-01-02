@@ -34,15 +34,94 @@
 #include "pmc_internal.h"
 
 
-PMC_STATUS_CODE __PMC_CALL PMC_From_I(__int32 x, HANDLE* o)
+PMC_STATUS_CODE __PMC_CALL PMC_From_I(unsigned __int32 x, HANDLE* o)
 {
-    return (PMC_STATUS_INTERNAL_ERROR);
-}   
+    if (sizeof(__UNIT_TYPE) < sizeof(x))
+        return (PMC_STATUS_INTERNAL_ERROR);
+    if (x == 0)
+    {
+        *o = &number_zero;
+        return (PMC_STATUS_OK);
+    }
+    if (x == 1)
+    {
+        *o = &number_one;
+        return (PMC_STATUS_OK);
+    }
+    PMC_STATUS_CODE result;
+    NUMBER_HEADER* p;
+    result = AllocateNumber(&p, sizeof(x) * 8 - _LZCNT_ALT_32(x));
+    if (result != PMC_STATUS_OK)
+        return (result);
+    p->BLOCK[0] = x;
+    CommitNumber(p);
+    *o = p;
+    return (PMC_STATUS_OK);
+}
 
-PMC_STATUS_CODE __PMC_CALL PMC_From_L(__int64 x, HANDLE* o)
+PMC_STATUS_CODE __PMC_CALL PMC_From_L(unsigned __int64 x, HANDLE* o)
 {
-    return (PMC_STATUS_INTERNAL_ERROR);
-}   
+    NUMBER_HEADER* p;
+    if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
+    {
+        // 32bit未満のCPUには未対応
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (x == 0)
+    {
+        *o = &number_zero;
+        return (PMC_STATUS_OK);
+    }
+    if (x == 1)
+    {
+        *o = &number_one;
+        return (PMC_STATUS_OK);
+    }
+    if (sizeof(__UNIT_TYPE) * 2 == sizeof(x))
+    {
+        // 32bitCPUの場合
+
+        unsigned __int32 hi_word;
+        unsigned __int32 lo_word;
+        lo_word = _FROMDWORDTOWORD(x, &hi_word);
+        if (hi_word == 0)
+        {
+            // x が 1 ワードで表現できる場合
+
+            PMC_STATUS_CODE result = AllocateNumber(&p, sizeof(lo_word) * 8 - _LZCNT_ALT_32(lo_word));
+            if (result != PMC_STATUS_OK)
+                return (result);
+            p->BLOCK[0] = lo_word;
+        }
+        else
+        {
+            // x が 2 ワードでしか表現できない場合
+
+            PMC_STATUS_CODE result = AllocateNumber(&p, sizeof(x) * 8 - _LZCNT_ALT_32(hi_word));
+            if (result != PMC_STATUS_OK)
+                return (result);
+            p->BLOCK[0] = lo_word;
+            p->BLOCK[1] = hi_word;
+        }
+    }
+    else
+    {
+        // 64bitCPU の場合
+
+        PMC_STATUS_CODE result = AllocateNumber(&p, sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x));
+        if (result != PMC_STATUS_OK)
+            return (result);
+        p->BLOCK[0] = (__UNIT_TYPE)x;
+    }
+    CommitNumber(p);
+    *o = p;
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature)
+{
+    return (PMC_STATUS_OK);
+}
 
 /*
  * END OF FILE

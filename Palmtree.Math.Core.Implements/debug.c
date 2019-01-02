@@ -34,20 +34,74 @@
 #include "pmc_internal.h"
 #include "pmc_debug.h"
 
+
+#ifdef _M_IX86
+#define	CHECK_CODE_INIT	(0x01020304)
+
+static __UNIT_TYPE RotateLeft1(__UNIT_TYPE x)
+{
+    __UNIT_TYPE y;
+    __UNIT_TYPE z;
+    unsigned char c = _addcarry_u32(0, x, x, &y);
+    _addcarry_u32(c, y, 0, &z);
+    return (z);
+}
+#elif defined(_M_X64)
+#define CHECK_CODE_INIT (0x8102030405060708)
+static __UNIT_TYPE RotateLeft1(__UNIT_TYPE x) {
+    __UNIT_TYPE y;
+    __UNIT_TYPE z;
+    unsigned char c = _addcarry_u64(0, x, x, &y);
+    _addcarry_u64(c, y, 0, &z);
+    return (z);
+}
+#else
+#error unknown platform
+#endif
+
+
 __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
 {
-     PMC_ENTRY_POINTS* ep = PMC_Initialize();
-     if (ep == NULL)
-     {
+    PMC_CONFIGURATION_INFO conf;
+    conf.MEMORY_VERIFICATION_ENABLED = FALSE;
+    PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
+    if (ep == NULL)
+    {
          env->log("PMC_Initialize failed");
          return;
-     }
-     env->log("PMC_Initialize: ADX=%d, BMI2=%d, LZCNT=%d, POPCNT=%d",
-              ep->PROCESSOR_FEATURE_ADX,
-              ep->PROCESSOR_FEATURE_BMI2,
-              ep->PROCESSOR_FEATURE_LZCNT,
-              ep->PROCESSOR_FEATURE_POPCNT);
-     return;
+    }
+    env->log("PMC_Initialize: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
+             ep->PROCESSOR_FEATURE_POPCNT,
+             ep->PROCESSOR_FEATURE_ADX,
+             ep->PROCESSOR_FEATURE_BMI1,
+             ep->PROCESSOR_FEATURE_BMI2,
+             ep->PROCESSOR_FEATURE_ABM);
+    __UNIT_TYPE x = RotateLeft1(CHECK_CODE_INIT);
+
+    PMC_STATUS_CODE result;
+    HANDLE x1;
+    HANDLE x2;
+    HANDLE x3;
+    HANDLE x4;
+    HANDLE x5;
+    HANDLE x6;
+    HANDLE x7;
+    result = ep->PMC_From_I(0, &x1);
+    result = ep->PMC_From_I(1, &x2);
+    result = ep->PMC_From_I(10, &x3);
+    result = ep->PMC_From_L(0, &x4);
+    result = ep->PMC_From_L(1, &x5);
+    result = ep->PMC_From_L(10, &x6);
+    result = ep->PMC_From_L(0x0000000100000000UL, &x7);
+
+    ep->PMC_Dispose(x7);
+    ep->PMC_Dispose(x6);
+    ep->PMC_Dispose(x5);
+    ep->PMC_Dispose(x4);
+    ep->PMC_Dispose(x3);
+    ep->PMC_Dispose(x2);
+    ep->PMC_Dispose(x1);
+    return;
 }
 
 

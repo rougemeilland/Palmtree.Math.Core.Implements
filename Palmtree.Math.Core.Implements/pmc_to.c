@@ -34,12 +34,12 @@
 #include "pmc_internal.h"
 
 
-PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE x, __int32* y)
+PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE x, unsigned __int32* y)
 {
     return (PMC_STATUS_INTERNAL_ERROR);
 }   
 
-PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE x, __int64* y)
+PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE x, unsigned __int64* y)
 {
     return (PMC_STATUS_INTERNAL_ERROR);
 }   
