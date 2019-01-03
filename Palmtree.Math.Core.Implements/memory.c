@@ -194,6 +194,11 @@ static __UNIT_TYPE CommitBlock(__UNIT_TYPE* buffer)
 // メモリ内容が正当かどうかが比較される。正当であれば復帰値として0が通知され、正当ではないのなら0以外が通知される。
 static PMC_STATUS_CODE CheckBlock(__UNIT_TYPE* buffer, __UNIT_TYPE* code)
 {
+    if (buffer == NULL)
+    {
+        *code = 0;
+        return (PMC_STATUS_OK);
+    }
 	--buffer;
 	__UNIT_TYPE words = buffer[0];
 	__UNIT_TYPE code_desired = buffer[words + 1];
@@ -232,7 +237,7 @@ static void CleanUpNumber(NUMBER_HEADER* p)
 {
     if (p->BLOCK != NULL)
     {
-        HeapFree(hLocalHeap, 0, p->BLOCK);
+        DeallocateBlock(p->BLOCK);
         p->BLOCK = NULL;
     }
 }
@@ -335,9 +340,14 @@ void CommitNumber(NUMBER_HEADER* p)
 PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p)
 {
     __UNIT_TYPE code;
-    PMC_STATUS_CODE result = CheckBlock(p->BLOCK, &code);
-    if (result != PMC_STATUS_OK)
-        return (result);
+    if (p->IS_ZERO)
+        code = 0;
+    else
+    {
+        PMC_STATUS_CODE result = CheckBlock(p->BLOCK, &code);
+        if (result != PMC_STATUS_OK)
+            return (result);
+    }
     if (code != p->HASH_CODE)
         return (PMC_STATUS_BAD_BUFFER);
     return (PMC_STATUS_OK);

@@ -383,27 +383,27 @@ __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 __inline static unsigned __int32 _LZCNT_ALT_32(unsigned __int32 x)
 {
     if (x == 0)
-        return (__UNIT_TYPE_BIT_COUNT);
+        return (sizeof(x) * 8);
     unsigned __int32 pos;
     _BitScanReverse(&pos, x);
-    return (__UNIT_TYPE_BIT_COUNT - 1 - pos);
+    return (sizeof(x) * 8 - 1 - pos);
 }
 
 #ifdef _M_X64
 __inline static unsigned __int64 _LZCNT_ALT_64(unsigned __int64 x)
 {
     if (x == 0)
-        return (__UNIT_TYPE_BIT_COUNT);
+        return (sizeof(x) * 8);
     unsigned __int32 pos;
     _BitScanReverse64(&pos, x);
-    return (__UNIT_TYPE_BIT_COUNT - 1 - pos);
+    return (sizeof(x) * 8 - 1 - pos);
 }
 #endif
 
 __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
-        return (__UNIT_TYPE_BIT_COUNT);
+        return (sizeof(x) * 8);
     unsigned __int32 pos;
 #ifdef _M_IX86
     _BitScanReverse(&pos, x);
@@ -412,7 +412,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 #else
 #error unknown platform
 #endif
-    return (__UNIT_TYPE_BIT_COUNT - 1 - pos);
+    return (sizeof(x) * 8 - 1 - pos);
 }
 
 __inline static __UNIT_TYPE _TZCNT_UNIT(__UNIT_TYPE x)
@@ -440,7 +440,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
 __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
-        return (__UNIT_TYPE_BIT_COUNT);
+        return (sizeof(x) * 8);
     unsigned __int32 pos;
 #ifdef _M_IX86
     _BitScanForward(&pos, x);

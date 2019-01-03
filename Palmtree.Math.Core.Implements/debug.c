@@ -76,7 +76,10 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
              ep->PROCESSOR_FEATURE_BMI1,
              ep->PROCESSOR_FEATURE_BMI2,
              ep->PROCESSOR_FEATURE_ABM);
-    __UNIT_TYPE x = RotateLeft1(CHECK_CODE_INIT);
+
+    env->log("_LZCNT_ALT_32(0) => %d\n", _LZCNT_ALT_32(0));
+    env->log("_LZCNT_ALT_32(1) => %d\n", _LZCNT_ALT_32(1));
+    env->log("_LZCNT_ALT_32(10) => %d\n", _LZCNT_ALT_32(10));
 
     PMC_STATUS_CODE result;
     HANDLE x1;
@@ -94,6 +97,39 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
     result = ep->PMC_From_L(10, &x6);
     result = ep->PMC_From_L(0x0000000100000000UL, &x7);
 
+    unsigned __int32 i;
+    unsigned __int64 l;
+
+    result = ep->PMC_To_X_I(x1, &i);
+    env->log("1. %s\n", result == PMC_STATUS_OK && i == 0 ? "Ok" : "Error");
+    result = ep->PMC_To_X_I(x2, &i);
+    env->log("2. %s\n", result == PMC_STATUS_OK && i == 1 ? "Ok" : "Error");
+    result = ep->PMC_To_X_I(x3, &i);
+    env->log("3. %s\n", result == PMC_STATUS_OK && i == 10 ? "Ok" : "Error");
+    result = ep->PMC_To_X_I(x4, &i);
+    env->log("4. %s\n", result == PMC_STATUS_OK && i == 0 ? "Ok" : "Error");
+    result = ep->PMC_To_X_I(x5, &i);
+    env->log("5. %s\n", result == PMC_STATUS_OK && i == 1 ? "Ok" : "Error");
+    result = ep->PMC_To_X_I(x6, &i);
+    env->log("6. %s\n", result == PMC_STATUS_OK && i == 10 ? "Ok" : "Error");
+    result = ep->PMC_To_X_I(x7, &i);
+    env->log("7. %s\n", result == PMC_STATUS_ARGUMENT_ERROR ? "Ok" : "Error");
+
+    result = ep->PMC_To_X_L(x1, &l);
+    env->log("8. %s\n", result == PMC_STATUS_OK && l == 0 ? "Ok" : "Error");
+    result = ep->PMC_To_X_L(x2, &l);
+    env->log("9. %s\n", result == PMC_STATUS_OK && l == 1 ? "Ok" : "Error");
+    result = ep->PMC_To_X_L(x3, &l);
+    env->log("10. %s\n", result == PMC_STATUS_OK && l == 10 ? "Ok" : "Error");
+    result = ep->PMC_To_X_L(x4, &l);
+    env->log("11. %s\n", result == PMC_STATUS_OK && l == 0 ? "Ok" : "Error");
+    result = ep->PMC_To_X_L(x5, &l);
+    env->log("12. %s\n", result == PMC_STATUS_OK && l == 1 ? "Ok" : "Error");
+    result = ep->PMC_To_X_L(x6, &l);
+    env->log("13. %s\n", result == PMC_STATUS_OK && l == 10 ? "Ok" : "Error");
+    result = ep->PMC_To_X_L(x7, &l);
+    env->log("14. %s\n", result == PMC_STATUS_OK && l == 0x0000000100000000 ? "Ok" : "Error");
+
     ep->PMC_Dispose(x7);
     ep->PMC_Dispose(x6);
     ep->PMC_Dispose(x5);
@@ -101,6 +137,8 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
     ep->PMC_Dispose(x3);
     ep->PMC_Dispose(x2);
     ep->PMC_Dispose(x1);
+
+
     return;
 }
 

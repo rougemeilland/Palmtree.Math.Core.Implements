@@ -34,15 +34,61 @@
 #include "pmc_internal.h"
 
 
-PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE x, unsigned __int32* y)
+PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, unsigned __int32* o)
 {
-    return (PMC_STATUS_INTERNAL_ERROR);
+    if (sizeof(__UNIT_TYPE) < sizeof(*o))
+    {
+        // 32bit未満のCPUは未対応
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+        return (result);
+    if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (np->IS_ZERO)
+    {
+        *o = 0;
+        return (PMC_STATUS_OK);
+    }
+    *o = (unsigned __int32)np->BLOCK[0];
+    return (PMC_STATUS_OK);
 }   
 
-PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE x, unsigned __int64* y)
+PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, unsigned __int64* o)
 {
-    return (PMC_STATUS_INTERNAL_ERROR);
-}   
+    if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
+    {
+        // 32bit未満のCPUは未対応
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+        return (result);
+    if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (np->IS_ZERO)
+    {
+        *o = 0;
+        return (PMC_STATUS_OK);
+    }
+    if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT)
+    {
+        // 値が 1 ワードで表現できる場合
+        *o = np->BLOCK[0];
+        return (PMC_STATUS_OK);
+    }
+    else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
+    {
+        // 値が 2 ワードで表現できる場合
+        *o = _FROMWORDTODWORD((unsigned __int32)np->BLOCK[1], (unsigned __int32)np->BLOCK[0]);
+        return (PMC_STATUS_OK);
+    }
+    else
+        return (PMC_STATUS_ARGUMENT_ERROR);
+}
 
 /*
  * END OF FILE
