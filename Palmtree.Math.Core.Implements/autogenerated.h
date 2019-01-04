@@ -40,6 +40,1189 @@ extern "C" {
 #include "pmc_internal.h"
 
 
+
+__inline static char _ADD_32WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+    _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+    _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+    _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+    _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+    _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+    _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+    _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+    _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
+    _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
+    _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
+    _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
+    _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
+    _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
+    _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
+    _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
+    _ADD_UNIT(c, xp[16], yp[16], &zp[16]);
+    _ADD_UNIT(c, xp[17], yp[17], &zp[17]);
+    _ADD_UNIT(c, xp[18], yp[18], &zp[18]);
+    _ADD_UNIT(c, xp[19], yp[19], &zp[19]);
+    _ADD_UNIT(c, xp[20], yp[20], &zp[20]);
+    _ADD_UNIT(c, xp[21], yp[21], &zp[21]);
+    _ADD_UNIT(c, xp[22], yp[22], &zp[22]);
+    _ADD_UNIT(c, xp[23], yp[23], &zp[23]);
+    _ADD_UNIT(c, xp[24], yp[24], &zp[24]);
+    _ADD_UNIT(c, xp[25], yp[25], &zp[25]);
+    _ADD_UNIT(c, xp[26], yp[26], &zp[26]);
+    _ADD_UNIT(c, xp[27], yp[27], &zp[27]);
+    _ADD_UNIT(c, xp[28], yp[28], &zp[28]);
+    _ADD_UNIT(c, xp[29], yp[29], &zp[29]);
+    _ADD_UNIT(c, xp[30], yp[30], &zp[30]);
+    _ADD_UNIT(c, xp[31], yp[31], &zp[31]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adcl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adcl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "adcl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "adcl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "adcl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "adcl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
+        "movl\t32(%1), %%ecx\n\t"
+        "adcl\t32(%2), %%ecx\n\t"
+        "movl\t%%ecx, 32(%3)\n\t"
+        "movl\t36(%1), %%ecx\n\t"
+        "adcl\t36(%2), %%ecx\n\t"
+        "movl\t%%ecx, 36(%3)\n\t"
+        "movl\t40(%1), %%ecx\n\t"
+        "adcl\t40(%2), %%ecx\n\t"
+        "movl\t%%ecx, 40(%3)\n\t"
+        "movl\t44(%1), %%ecx\n\t"
+        "adcl\t44(%2), %%ecx\n\t"
+        "movl\t%%ecx, 44(%3)\n\t"
+        "movl\t48(%1), %%ecx\n\t"
+        "adcl\t48(%2), %%ecx\n\t"
+        "movl\t%%ecx, 48(%3)\n\t"
+        "movl\t52(%1), %%ecx\n\t"
+        "adcl\t52(%2), %%ecx\n\t"
+        "movl\t%%ecx, 52(%3)\n\t"
+        "movl\t56(%1), %%ecx\n\t"
+        "adcl\t56(%2), %%ecx\n\t"
+        "movl\t%%ecx, 56(%3)\n\t"
+        "movl\t60(%1), %%ecx\n\t"
+        "adcl\t60(%2), %%ecx\n\t"
+        "movl\t%%ecx, 60(%3)\n\t"
+        "movl\t64(%1), %%ecx\n\t"
+        "adcl\t64(%2), %%ecx\n\t"
+        "movl\t%%ecx, 64(%3)\n\t"
+        "movl\t68(%1), %%ecx\n\t"
+        "adcl\t68(%2), %%ecx\n\t"
+        "movl\t%%ecx, 68(%3)\n\t"
+        "movl\t72(%1), %%ecx\n\t"
+        "adcl\t72(%2), %%ecx\n\t"
+        "movl\t%%ecx, 72(%3)\n\t"
+        "movl\t76(%1), %%ecx\n\t"
+        "adcl\t76(%2), %%ecx\n\t"
+        "movl\t%%ecx, 76(%3)\n\t"
+        "movl\t80(%1), %%ecx\n\t"
+        "adcl\t80(%2), %%ecx\n\t"
+        "movl\t%%ecx, 80(%3)\n\t"
+        "movl\t84(%1), %%ecx\n\t"
+        "adcl\t84(%2), %%ecx\n\t"
+        "movl\t%%ecx, 84(%3)\n\t"
+        "movl\t88(%1), %%ecx\n\t"
+        "adcl\t88(%2), %%ecx\n\t"
+        "movl\t%%ecx, 88(%3)\n\t"
+        "movl\t92(%1), %%ecx\n\t"
+        "adcl\t92(%2), %%ecx\n\t"
+        "movl\t%%ecx, 92(%3)\n\t"
+        "movl\t96(%1), %%ecx\n\t"
+        "adcl\t96(%2), %%ecx\n\t"
+        "movl\t%%ecx, 96(%3)\n\t"
+        "movl\t100(%1), %%ecx\n\t"
+        "adcl\t100(%2), %%ecx\n\t"
+        "movl\t%%ecx, 100(%3)\n\t"
+        "movl\t104(%1), %%ecx\n\t"
+        "adcl\t104(%2), %%ecx\n\t"
+        "movl\t%%ecx, 104(%3)\n\t"
+        "movl\t108(%1), %%ecx\n\t"
+        "adcl\t108(%2), %%ecx\n\t"
+        "movl\t%%ecx, 108(%3)\n\t"
+        "movl\t112(%1), %%ecx\n\t"
+        "adcl\t112(%2), %%ecx\n\t"
+        "movl\t%%ecx, 112(%3)\n\t"
+        "movl\t116(%1), %%ecx\n\t"
+        "adcl\t116(%2), %%ecx\n\t"
+        "movl\t%%ecx, 116(%3)\n\t"
+        "movl\t120(%1), %%ecx\n\t"
+        "adcl\t120(%2), %%ecx\n\t"
+        "movl\t%%ecx, 120(%3)\n\t"
+        "movl\t124(%1), %%ecx\n\t"
+        "adcl\t124(%2), %%ecx\n\t"
+        "movl\t%%ecx, 124(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adcq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adcq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "movq\t32(%1), %%rcx\n\t"
+        "adcq\t32(%2), %%rcx\n\t"
+        "movq\t%%rcx, 32(%3)\n\t"
+        "movq\t40(%1), %%rcx\n\t"
+        "adcq\t40(%2), %%rcx\n\t"
+        "movq\t%%rcx, 40(%3)\n\t"
+        "movq\t48(%1), %%rcx\n\t"
+        "adcq\t48(%2), %%rcx\n\t"
+        "movq\t%%rcx, 48(%3)\n\t"
+        "movq\t56(%1), %%rcx\n\t"
+        "adcq\t56(%2), %%rcx\n\t"
+        "movq\t%%rcx, 56(%3)\n\t"
+        "movq\t64(%1), %%rcx\n\t"
+        "adcq\t64(%2), %%rcx\n\t"
+        "movq\t%%rcx, 64(%3)\n\t"
+        "movq\t72(%1), %%rcx\n\t"
+        "adcq\t72(%2), %%rcx\n\t"
+        "movq\t%%rcx, 72(%3)\n\t"
+        "movq\t80(%1), %%rcx\n\t"
+        "adcq\t80(%2), %%rcx\n\t"
+        "movq\t%%rcx, 80(%3)\n\t"
+        "movq\t88(%1), %%rcx\n\t"
+        "adcq\t88(%2), %%rcx\n\t"
+        "movq\t%%rcx, 88(%3)\n\t"
+        "movq\t96(%1), %%rcx\n\t"
+        "adcq\t96(%2), %%rcx\n\t"
+        "movq\t%%rcx, 96(%3)\n\t"
+        "movq\t104(%1), %%rcx\n\t"
+        "adcq\t104(%2), %%rcx\n\t"
+        "movq\t%%rcx, 104(%3)\n\t"
+        "movq\t112(%1), %%rcx\n\t"
+        "adcq\t112(%2), %%rcx\n\t"
+        "movq\t%%rcx, 112(%3)\n\t"
+        "movq\t120(%1), %%rcx\n\t"
+        "adcq\t120(%2), %%rcx\n\t"
+        "movq\t%%rcx, 120(%3)\n\t"
+        "movq\t128(%1), %%rcx\n\t"
+        "adcq\t128(%2), %%rcx\n\t"
+        "movq\t%%rcx, 128(%3)\n\t"
+        "movq\t136(%1), %%rcx\n\t"
+        "adcq\t136(%2), %%rcx\n\t"
+        "movq\t%%rcx, 136(%3)\n\t"
+        "movq\t144(%1), %%rcx\n\t"
+        "adcq\t144(%2), %%rcx\n\t"
+        "movq\t%%rcx, 144(%3)\n\t"
+        "movq\t152(%1), %%rcx\n\t"
+        "adcq\t152(%2), %%rcx\n\t"
+        "movq\t%%rcx, 152(%3)\n\t"
+        "movq\t160(%1), %%rcx\n\t"
+        "adcq\t160(%2), %%rcx\n\t"
+        "movq\t%%rcx, 160(%3)\n\t"
+        "movq\t168(%1), %%rcx\n\t"
+        "adcq\t168(%2), %%rcx\n\t"
+        "movq\t%%rcx, 168(%3)\n\t"
+        "movq\t176(%1), %%rcx\n\t"
+        "adcq\t176(%2), %%rcx\n\t"
+        "movq\t%%rcx, 176(%3)\n\t"
+        "movq\t184(%1), %%rcx\n\t"
+        "adcq\t184(%2), %%rcx\n\t"
+        "movq\t%%rcx, 184(%3)\n\t"
+        "movq\t192(%1), %%rcx\n\t"
+        "adcq\t192(%2), %%rcx\n\t"
+        "movq\t%%rcx, 192(%3)\n\t"
+        "movq\t200(%1), %%rcx\n\t"
+        "adcq\t200(%2), %%rcx\n\t"
+        "movq\t%%rcx, 200(%3)\n\t"
+        "movq\t208(%1), %%rcx\n\t"
+        "adcq\t208(%2), %%rcx\n\t"
+        "movq\t%%rcx, 208(%3)\n\t"
+        "movq\t216(%1), %%rcx\n\t"
+        "adcq\t216(%2), %%rcx\n\t"
+        "movq\t%%rcx, 216(%3)\n\t"
+        "movq\t224(%1), %%rcx\n\t"
+        "adcq\t224(%2), %%rcx\n\t"
+        "movq\t%%rcx, 224(%3)\n\t"
+        "movq\t232(%1), %%rcx\n\t"
+        "adcq\t232(%2), %%rcx\n\t"
+        "movq\t%%rcx, 232(%3)\n\t"
+        "movq\t240(%1), %%rcx\n\t"
+        "adcq\t240(%2), %%rcx\n\t"
+        "movq\t%%rcx, 240(%3)\n\t"
+        "movq\t248(%1), %%rcx\n\t"
+        "adcq\t248(%2), %%rcx\n\t"
+        "movq\t%%rcx, 248(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_32WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+    _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+    _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+    _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+    _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+    _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+    _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+    _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+    _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
+    _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
+    _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
+    _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
+    _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
+    _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
+    _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
+    _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
+    _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
+    _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
+    _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
+    _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
+    _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
+    _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
+    _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
+    _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adcxl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adcxl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "adcxl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "adcxl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "adcxl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "adcxl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
+        "movl\t32(%1), %%ecx\n\t"
+        "adcxl\t32(%2), %%ecx\n\t"
+        "movl\t%%ecx, 32(%3)\n\t"
+        "movl\t36(%1), %%ecx\n\t"
+        "adcxl\t36(%2), %%ecx\n\t"
+        "movl\t%%ecx, 36(%3)\n\t"
+        "movl\t40(%1), %%ecx\n\t"
+        "adcxl\t40(%2), %%ecx\n\t"
+        "movl\t%%ecx, 40(%3)\n\t"
+        "movl\t44(%1), %%ecx\n\t"
+        "adcxl\t44(%2), %%ecx\n\t"
+        "movl\t%%ecx, 44(%3)\n\t"
+        "movl\t48(%1), %%ecx\n\t"
+        "adcxl\t48(%2), %%ecx\n\t"
+        "movl\t%%ecx, 48(%3)\n\t"
+        "movl\t52(%1), %%ecx\n\t"
+        "adcxl\t52(%2), %%ecx\n\t"
+        "movl\t%%ecx, 52(%3)\n\t"
+        "movl\t56(%1), %%ecx\n\t"
+        "adcxl\t56(%2), %%ecx\n\t"
+        "movl\t%%ecx, 56(%3)\n\t"
+        "movl\t60(%1), %%ecx\n\t"
+        "adcxl\t60(%2), %%ecx\n\t"
+        "movl\t%%ecx, 60(%3)\n\t"
+        "movl\t64(%1), %%ecx\n\t"
+        "adcxl\t64(%2), %%ecx\n\t"
+        "movl\t%%ecx, 64(%3)\n\t"
+        "movl\t68(%1), %%ecx\n\t"
+        "adcxl\t68(%2), %%ecx\n\t"
+        "movl\t%%ecx, 68(%3)\n\t"
+        "movl\t72(%1), %%ecx\n\t"
+        "adcxl\t72(%2), %%ecx\n\t"
+        "movl\t%%ecx, 72(%3)\n\t"
+        "movl\t76(%1), %%ecx\n\t"
+        "adcxl\t76(%2), %%ecx\n\t"
+        "movl\t%%ecx, 76(%3)\n\t"
+        "movl\t80(%1), %%ecx\n\t"
+        "adcxl\t80(%2), %%ecx\n\t"
+        "movl\t%%ecx, 80(%3)\n\t"
+        "movl\t84(%1), %%ecx\n\t"
+        "adcxl\t84(%2), %%ecx\n\t"
+        "movl\t%%ecx, 84(%3)\n\t"
+        "movl\t88(%1), %%ecx\n\t"
+        "adcxl\t88(%2), %%ecx\n\t"
+        "movl\t%%ecx, 88(%3)\n\t"
+        "movl\t92(%1), %%ecx\n\t"
+        "adcxl\t92(%2), %%ecx\n\t"
+        "movl\t%%ecx, 92(%3)\n\t"
+        "movl\t96(%1), %%ecx\n\t"
+        "adcxl\t96(%2), %%ecx\n\t"
+        "movl\t%%ecx, 96(%3)\n\t"
+        "movl\t100(%1), %%ecx\n\t"
+        "adcxl\t100(%2), %%ecx\n\t"
+        "movl\t%%ecx, 100(%3)\n\t"
+        "movl\t104(%1), %%ecx\n\t"
+        "adcxl\t104(%2), %%ecx\n\t"
+        "movl\t%%ecx, 104(%3)\n\t"
+        "movl\t108(%1), %%ecx\n\t"
+        "adcxl\t108(%2), %%ecx\n\t"
+        "movl\t%%ecx, 108(%3)\n\t"
+        "movl\t112(%1), %%ecx\n\t"
+        "adcxl\t112(%2), %%ecx\n\t"
+        "movl\t%%ecx, 112(%3)\n\t"
+        "movl\t116(%1), %%ecx\n\t"
+        "adcxl\t116(%2), %%ecx\n\t"
+        "movl\t%%ecx, 116(%3)\n\t"
+        "movl\t120(%1), %%ecx\n\t"
+        "adcxl\t120(%2), %%ecx\n\t"
+        "movl\t%%ecx, 120(%3)\n\t"
+        "movl\t124(%1), %%ecx\n\t"
+        "adcxl\t124(%2), %%ecx\n\t"
+        "movl\t%%ecx, 124(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adcxq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adcxq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "movq\t32(%1), %%rcx\n\t"
+        "adcxq\t32(%2), %%rcx\n\t"
+        "movq\t%%rcx, 32(%3)\n\t"
+        "movq\t40(%1), %%rcx\n\t"
+        "adcxq\t40(%2), %%rcx\n\t"
+        "movq\t%%rcx, 40(%3)\n\t"
+        "movq\t48(%1), %%rcx\n\t"
+        "adcxq\t48(%2), %%rcx\n\t"
+        "movq\t%%rcx, 48(%3)\n\t"
+        "movq\t56(%1), %%rcx\n\t"
+        "adcxq\t56(%2), %%rcx\n\t"
+        "movq\t%%rcx, 56(%3)\n\t"
+        "movq\t64(%1), %%rcx\n\t"
+        "adcxq\t64(%2), %%rcx\n\t"
+        "movq\t%%rcx, 64(%3)\n\t"
+        "movq\t72(%1), %%rcx\n\t"
+        "adcxq\t72(%2), %%rcx\n\t"
+        "movq\t%%rcx, 72(%3)\n\t"
+        "movq\t80(%1), %%rcx\n\t"
+        "adcxq\t80(%2), %%rcx\n\t"
+        "movq\t%%rcx, 80(%3)\n\t"
+        "movq\t88(%1), %%rcx\n\t"
+        "adcxq\t88(%2), %%rcx\n\t"
+        "movq\t%%rcx, 88(%3)\n\t"
+        "movq\t96(%1), %%rcx\n\t"
+        "adcxq\t96(%2), %%rcx\n\t"
+        "movq\t%%rcx, 96(%3)\n\t"
+        "movq\t104(%1), %%rcx\n\t"
+        "adcxq\t104(%2), %%rcx\n\t"
+        "movq\t%%rcx, 104(%3)\n\t"
+        "movq\t112(%1), %%rcx\n\t"
+        "adcxq\t112(%2), %%rcx\n\t"
+        "movq\t%%rcx, 112(%3)\n\t"
+        "movq\t120(%1), %%rcx\n\t"
+        "adcxq\t120(%2), %%rcx\n\t"
+        "movq\t%%rcx, 120(%3)\n\t"
+        "movq\t128(%1), %%rcx\n\t"
+        "adcxq\t128(%2), %%rcx\n\t"
+        "movq\t%%rcx, 128(%3)\n\t"
+        "movq\t136(%1), %%rcx\n\t"
+        "adcxq\t136(%2), %%rcx\n\t"
+        "movq\t%%rcx, 136(%3)\n\t"
+        "movq\t144(%1), %%rcx\n\t"
+        "adcxq\t144(%2), %%rcx\n\t"
+        "movq\t%%rcx, 144(%3)\n\t"
+        "movq\t152(%1), %%rcx\n\t"
+        "adcxq\t152(%2), %%rcx\n\t"
+        "movq\t%%rcx, 152(%3)\n\t"
+        "movq\t160(%1), %%rcx\n\t"
+        "adcxq\t160(%2), %%rcx\n\t"
+        "movq\t%%rcx, 160(%3)\n\t"
+        "movq\t168(%1), %%rcx\n\t"
+        "adcxq\t168(%2), %%rcx\n\t"
+        "movq\t%%rcx, 168(%3)\n\t"
+        "movq\t176(%1), %%rcx\n\t"
+        "adcxq\t176(%2), %%rcx\n\t"
+        "movq\t%%rcx, 176(%3)\n\t"
+        "movq\t184(%1), %%rcx\n\t"
+        "adcxq\t184(%2), %%rcx\n\t"
+        "movq\t%%rcx, 184(%3)\n\t"
+        "movq\t192(%1), %%rcx\n\t"
+        "adcxq\t192(%2), %%rcx\n\t"
+        "movq\t%%rcx, 192(%3)\n\t"
+        "movq\t200(%1), %%rcx\n\t"
+        "adcxq\t200(%2), %%rcx\n\t"
+        "movq\t%%rcx, 200(%3)\n\t"
+        "movq\t208(%1), %%rcx\n\t"
+        "adcxq\t208(%2), %%rcx\n\t"
+        "movq\t%%rcx, 208(%3)\n\t"
+        "movq\t216(%1), %%rcx\n\t"
+        "adcxq\t216(%2), %%rcx\n\t"
+        "movq\t%%rcx, 216(%3)\n\t"
+        "movq\t224(%1), %%rcx\n\t"
+        "adcxq\t224(%2), %%rcx\n\t"
+        "movq\t%%rcx, 224(%3)\n\t"
+        "movq\t232(%1), %%rcx\n\t"
+        "adcxq\t232(%2), %%rcx\n\t"
+        "movq\t%%rcx, 232(%3)\n\t"
+        "movq\t240(%1), %%rcx\n\t"
+        "adcxq\t240(%2), %%rcx\n\t"
+        "movq\t%%rcx, 240(%3)\n\t"
+        "movq\t248(%1), %%rcx\n\t"
+        "adcxq\t248(%2), %%rcx\n\t"
+        "movq\t%%rcx, 248(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_32WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+    _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+    _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+    _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+    _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+    _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+    _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+    _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+    _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
+    _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
+    _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
+    _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
+    _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
+    _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
+    _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
+    _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
+    _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
+    _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
+    _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
+    _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
+    _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
+    _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
+    _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
+    _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adoxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adoxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adoxl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adoxl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "adoxl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "adoxl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "adoxl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "adoxl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
+        "movl\t32(%1), %%ecx\n\t"
+        "adoxl\t32(%2), %%ecx\n\t"
+        "movl\t%%ecx, 32(%3)\n\t"
+        "movl\t36(%1), %%ecx\n\t"
+        "adoxl\t36(%2), %%ecx\n\t"
+        "movl\t%%ecx, 36(%3)\n\t"
+        "movl\t40(%1), %%ecx\n\t"
+        "adoxl\t40(%2), %%ecx\n\t"
+        "movl\t%%ecx, 40(%3)\n\t"
+        "movl\t44(%1), %%ecx\n\t"
+        "adoxl\t44(%2), %%ecx\n\t"
+        "movl\t%%ecx, 44(%3)\n\t"
+        "movl\t48(%1), %%ecx\n\t"
+        "adoxl\t48(%2), %%ecx\n\t"
+        "movl\t%%ecx, 48(%3)\n\t"
+        "movl\t52(%1), %%ecx\n\t"
+        "adoxl\t52(%2), %%ecx\n\t"
+        "movl\t%%ecx, 52(%3)\n\t"
+        "movl\t56(%1), %%ecx\n\t"
+        "adoxl\t56(%2), %%ecx\n\t"
+        "movl\t%%ecx, 56(%3)\n\t"
+        "movl\t60(%1), %%ecx\n\t"
+        "adoxl\t60(%2), %%ecx\n\t"
+        "movl\t%%ecx, 60(%3)\n\t"
+        "movl\t64(%1), %%ecx\n\t"
+        "adoxl\t64(%2), %%ecx\n\t"
+        "movl\t%%ecx, 64(%3)\n\t"
+        "movl\t68(%1), %%ecx\n\t"
+        "adoxl\t68(%2), %%ecx\n\t"
+        "movl\t%%ecx, 68(%3)\n\t"
+        "movl\t72(%1), %%ecx\n\t"
+        "adoxl\t72(%2), %%ecx\n\t"
+        "movl\t%%ecx, 72(%3)\n\t"
+        "movl\t76(%1), %%ecx\n\t"
+        "adoxl\t76(%2), %%ecx\n\t"
+        "movl\t%%ecx, 76(%3)\n\t"
+        "movl\t80(%1), %%ecx\n\t"
+        "adoxl\t80(%2), %%ecx\n\t"
+        "movl\t%%ecx, 80(%3)\n\t"
+        "movl\t84(%1), %%ecx\n\t"
+        "adoxl\t84(%2), %%ecx\n\t"
+        "movl\t%%ecx, 84(%3)\n\t"
+        "movl\t88(%1), %%ecx\n\t"
+        "adoxl\t88(%2), %%ecx\n\t"
+        "movl\t%%ecx, 88(%3)\n\t"
+        "movl\t92(%1), %%ecx\n\t"
+        "adoxl\t92(%2), %%ecx\n\t"
+        "movl\t%%ecx, 92(%3)\n\t"
+        "movl\t96(%1), %%ecx\n\t"
+        "adoxl\t96(%2), %%ecx\n\t"
+        "movl\t%%ecx, 96(%3)\n\t"
+        "movl\t100(%1), %%ecx\n\t"
+        "adoxl\t100(%2), %%ecx\n\t"
+        "movl\t%%ecx, 100(%3)\n\t"
+        "movl\t104(%1), %%ecx\n\t"
+        "adoxl\t104(%2), %%ecx\n\t"
+        "movl\t%%ecx, 104(%3)\n\t"
+        "movl\t108(%1), %%ecx\n\t"
+        "adoxl\t108(%2), %%ecx\n\t"
+        "movl\t%%ecx, 108(%3)\n\t"
+        "movl\t112(%1), %%ecx\n\t"
+        "adoxl\t112(%2), %%ecx\n\t"
+        "movl\t%%ecx, 112(%3)\n\t"
+        "movl\t116(%1), %%ecx\n\t"
+        "adoxl\t116(%2), %%ecx\n\t"
+        "movl\t%%ecx, 116(%3)\n\t"
+        "movl\t120(%1), %%ecx\n\t"
+        "adoxl\t120(%2), %%ecx\n\t"
+        "movl\t%%ecx, 120(%3)\n\t"
+        "movl\t124(%1), %%ecx\n\t"
+        "adoxl\t124(%2), %%ecx\n\t"
+        "movl\t%%ecx, 124(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adoxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adoxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adoxq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adoxq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "movq\t32(%1), %%rcx\n\t"
+        "adoxq\t32(%2), %%rcx\n\t"
+        "movq\t%%rcx, 32(%3)\n\t"
+        "movq\t40(%1), %%rcx\n\t"
+        "adoxq\t40(%2), %%rcx\n\t"
+        "movq\t%%rcx, 40(%3)\n\t"
+        "movq\t48(%1), %%rcx\n\t"
+        "adoxq\t48(%2), %%rcx\n\t"
+        "movq\t%%rcx, 48(%3)\n\t"
+        "movq\t56(%1), %%rcx\n\t"
+        "adoxq\t56(%2), %%rcx\n\t"
+        "movq\t%%rcx, 56(%3)\n\t"
+        "movq\t64(%1), %%rcx\n\t"
+        "adoxq\t64(%2), %%rcx\n\t"
+        "movq\t%%rcx, 64(%3)\n\t"
+        "movq\t72(%1), %%rcx\n\t"
+        "adoxq\t72(%2), %%rcx\n\t"
+        "movq\t%%rcx, 72(%3)\n\t"
+        "movq\t80(%1), %%rcx\n\t"
+        "adoxq\t80(%2), %%rcx\n\t"
+        "movq\t%%rcx, 80(%3)\n\t"
+        "movq\t88(%1), %%rcx\n\t"
+        "adoxq\t88(%2), %%rcx\n\t"
+        "movq\t%%rcx, 88(%3)\n\t"
+        "movq\t96(%1), %%rcx\n\t"
+        "adoxq\t96(%2), %%rcx\n\t"
+        "movq\t%%rcx, 96(%3)\n\t"
+        "movq\t104(%1), %%rcx\n\t"
+        "adoxq\t104(%2), %%rcx\n\t"
+        "movq\t%%rcx, 104(%3)\n\t"
+        "movq\t112(%1), %%rcx\n\t"
+        "adoxq\t112(%2), %%rcx\n\t"
+        "movq\t%%rcx, 112(%3)\n\t"
+        "movq\t120(%1), %%rcx\n\t"
+        "adoxq\t120(%2), %%rcx\n\t"
+        "movq\t%%rcx, 120(%3)\n\t"
+        "movq\t128(%1), %%rcx\n\t"
+        "adoxq\t128(%2), %%rcx\n\t"
+        "movq\t%%rcx, 128(%3)\n\t"
+        "movq\t136(%1), %%rcx\n\t"
+        "adoxq\t136(%2), %%rcx\n\t"
+        "movq\t%%rcx, 136(%3)\n\t"
+        "movq\t144(%1), %%rcx\n\t"
+        "adoxq\t144(%2), %%rcx\n\t"
+        "movq\t%%rcx, 144(%3)\n\t"
+        "movq\t152(%1), %%rcx\n\t"
+        "adoxq\t152(%2), %%rcx\n\t"
+        "movq\t%%rcx, 152(%3)\n\t"
+        "movq\t160(%1), %%rcx\n\t"
+        "adoxq\t160(%2), %%rcx\n\t"
+        "movq\t%%rcx, 160(%3)\n\t"
+        "movq\t168(%1), %%rcx\n\t"
+        "adoxq\t168(%2), %%rcx\n\t"
+        "movq\t%%rcx, 168(%3)\n\t"
+        "movq\t176(%1), %%rcx\n\t"
+        "adoxq\t176(%2), %%rcx\n\t"
+        "movq\t%%rcx, 176(%3)\n\t"
+        "movq\t184(%1), %%rcx\n\t"
+        "adoxq\t184(%2), %%rcx\n\t"
+        "movq\t%%rcx, 184(%3)\n\t"
+        "movq\t192(%1), %%rcx\n\t"
+        "adoxq\t192(%2), %%rcx\n\t"
+        "movq\t%%rcx, 192(%3)\n\t"
+        "movq\t200(%1), %%rcx\n\t"
+        "adoxq\t200(%2), %%rcx\n\t"
+        "movq\t%%rcx, 200(%3)\n\t"
+        "movq\t208(%1), %%rcx\n\t"
+        "adoxq\t208(%2), %%rcx\n\t"
+        "movq\t%%rcx, 208(%3)\n\t"
+        "movq\t216(%1), %%rcx\n\t"
+        "adoxq\t216(%2), %%rcx\n\t"
+        "movq\t%%rcx, 216(%3)\n\t"
+        "movq\t224(%1), %%rcx\n\t"
+        "adoxq\t224(%2), %%rcx\n\t"
+        "movq\t%%rcx, 224(%3)\n\t"
+        "movq\t232(%1), %%rcx\n\t"
+        "adoxq\t232(%2), %%rcx\n\t"
+        "movq\t%%rcx, 232(%3)\n\t"
+        "movq\t240(%1), %%rcx\n\t"
+        "adoxq\t240(%2), %%rcx\n\t"
+        "movq\t%%rcx, 240(%3)\n\t"
+        "movq\t248(%1), %%rcx\n\t"
+        "adoxq\t248(%2), %%rcx\n\t"
+        "movq\t%%rcx, 248(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_16WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+    _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+    _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+    _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+    _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+    _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+    _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+    _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+    _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
+    _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
+    _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
+    _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
+    _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
+    _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
+    _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
+    _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adcl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adcl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "adcl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "adcl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "adcl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "adcl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
+        "movl\t32(%1), %%ecx\n\t"
+        "adcl\t32(%2), %%ecx\n\t"
+        "movl\t%%ecx, 32(%3)\n\t"
+        "movl\t36(%1), %%ecx\n\t"
+        "adcl\t36(%2), %%ecx\n\t"
+        "movl\t%%ecx, 36(%3)\n\t"
+        "movl\t40(%1), %%ecx\n\t"
+        "adcl\t40(%2), %%ecx\n\t"
+        "movl\t%%ecx, 40(%3)\n\t"
+        "movl\t44(%1), %%ecx\n\t"
+        "adcl\t44(%2), %%ecx\n\t"
+        "movl\t%%ecx, 44(%3)\n\t"
+        "movl\t48(%1), %%ecx\n\t"
+        "adcl\t48(%2), %%ecx\n\t"
+        "movl\t%%ecx, 48(%3)\n\t"
+        "movl\t52(%1), %%ecx\n\t"
+        "adcl\t52(%2), %%ecx\n\t"
+        "movl\t%%ecx, 52(%3)\n\t"
+        "movl\t56(%1), %%ecx\n\t"
+        "adcl\t56(%2), %%ecx\n\t"
+        "movl\t%%ecx, 56(%3)\n\t"
+        "movl\t60(%1), %%ecx\n\t"
+        "adcl\t60(%2), %%ecx\n\t"
+        "movl\t%%ecx, 60(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adcq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adcq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "movq\t32(%1), %%rcx\n\t"
+        "adcq\t32(%2), %%rcx\n\t"
+        "movq\t%%rcx, 32(%3)\n\t"
+        "movq\t40(%1), %%rcx\n\t"
+        "adcq\t40(%2), %%rcx\n\t"
+        "movq\t%%rcx, 40(%3)\n\t"
+        "movq\t48(%1), %%rcx\n\t"
+        "adcq\t48(%2), %%rcx\n\t"
+        "movq\t%%rcx, 48(%3)\n\t"
+        "movq\t56(%1), %%rcx\n\t"
+        "adcq\t56(%2), %%rcx\n\t"
+        "movq\t%%rcx, 56(%3)\n\t"
+        "movq\t64(%1), %%rcx\n\t"
+        "adcq\t64(%2), %%rcx\n\t"
+        "movq\t%%rcx, 64(%3)\n\t"
+        "movq\t72(%1), %%rcx\n\t"
+        "adcq\t72(%2), %%rcx\n\t"
+        "movq\t%%rcx, 72(%3)\n\t"
+        "movq\t80(%1), %%rcx\n\t"
+        "adcq\t80(%2), %%rcx\n\t"
+        "movq\t%%rcx, 80(%3)\n\t"
+        "movq\t88(%1), %%rcx\n\t"
+        "adcq\t88(%2), %%rcx\n\t"
+        "movq\t%%rcx, 88(%3)\n\t"
+        "movq\t96(%1), %%rcx\n\t"
+        "adcq\t96(%2), %%rcx\n\t"
+        "movq\t%%rcx, 96(%3)\n\t"
+        "movq\t104(%1), %%rcx\n\t"
+        "adcq\t104(%2), %%rcx\n\t"
+        "movq\t%%rcx, 104(%3)\n\t"
+        "movq\t112(%1), %%rcx\n\t"
+        "adcq\t112(%2), %%rcx\n\t"
+        "movq\t%%rcx, 112(%3)\n\t"
+        "movq\t120(%1), %%rcx\n\t"
+        "adcq\t120(%2), %%rcx\n\t"
+        "movq\t%%rcx, 120(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_16WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+    _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+    _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+    _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+    _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+    _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+    _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+    _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adcxl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adcxl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "adcxl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "adcxl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "adcxl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "adcxl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
+        "movl\t32(%1), %%ecx\n\t"
+        "adcxl\t32(%2), %%ecx\n\t"
+        "movl\t%%ecx, 32(%3)\n\t"
+        "movl\t36(%1), %%ecx\n\t"
+        "adcxl\t36(%2), %%ecx\n\t"
+        "movl\t%%ecx, 36(%3)\n\t"
+        "movl\t40(%1), %%ecx\n\t"
+        "adcxl\t40(%2), %%ecx\n\t"
+        "movl\t%%ecx, 40(%3)\n\t"
+        "movl\t44(%1), %%ecx\n\t"
+        "adcxl\t44(%2), %%ecx\n\t"
+        "movl\t%%ecx, 44(%3)\n\t"
+        "movl\t48(%1), %%ecx\n\t"
+        "adcxl\t48(%2), %%ecx\n\t"
+        "movl\t%%ecx, 48(%3)\n\t"
+        "movl\t52(%1), %%ecx\n\t"
+        "adcxl\t52(%2), %%ecx\n\t"
+        "movl\t%%ecx, 52(%3)\n\t"
+        "movl\t56(%1), %%ecx\n\t"
+        "adcxl\t56(%2), %%ecx\n\t"
+        "movl\t%%ecx, 56(%3)\n\t"
+        "movl\t60(%1), %%ecx\n\t"
+        "adcxl\t60(%2), %%ecx\n\t"
+        "movl\t%%ecx, 60(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adcxq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adcxq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "movq\t32(%1), %%rcx\n\t"
+        "adcxq\t32(%2), %%rcx\n\t"
+        "movq\t%%rcx, 32(%3)\n\t"
+        "movq\t40(%1), %%rcx\n\t"
+        "adcxq\t40(%2), %%rcx\n\t"
+        "movq\t%%rcx, 40(%3)\n\t"
+        "movq\t48(%1), %%rcx\n\t"
+        "adcxq\t48(%2), %%rcx\n\t"
+        "movq\t%%rcx, 48(%3)\n\t"
+        "movq\t56(%1), %%rcx\n\t"
+        "adcxq\t56(%2), %%rcx\n\t"
+        "movq\t%%rcx, 56(%3)\n\t"
+        "movq\t64(%1), %%rcx\n\t"
+        "adcxq\t64(%2), %%rcx\n\t"
+        "movq\t%%rcx, 64(%3)\n\t"
+        "movq\t72(%1), %%rcx\n\t"
+        "adcxq\t72(%2), %%rcx\n\t"
+        "movq\t%%rcx, 72(%3)\n\t"
+        "movq\t80(%1), %%rcx\n\t"
+        "adcxq\t80(%2), %%rcx\n\t"
+        "movq\t%%rcx, 80(%3)\n\t"
+        "movq\t88(%1), %%rcx\n\t"
+        "adcxq\t88(%2), %%rcx\n\t"
+        "movq\t%%rcx, 88(%3)\n\t"
+        "movq\t96(%1), %%rcx\n\t"
+        "adcxq\t96(%2), %%rcx\n\t"
+        "movq\t%%rcx, 96(%3)\n\t"
+        "movq\t104(%1), %%rcx\n\t"
+        "adcxq\t104(%2), %%rcx\n\t"
+        "movq\t%%rcx, 104(%3)\n\t"
+        "movq\t112(%1), %%rcx\n\t"
+        "adcxq\t112(%2), %%rcx\n\t"
+        "movq\t%%rcx, 112(%3)\n\t"
+        "movq\t120(%1), %%rcx\n\t"
+        "adcxq\t120(%2), %%rcx\n\t"
+        "movq\t%%rcx, 120(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_16WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+    _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+    _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+    _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+    _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+    _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+    _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+    _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adoxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adoxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adoxl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adoxl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "adoxl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "adoxl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "adoxl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "adoxl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
+        "movl\t32(%1), %%ecx\n\t"
+        "adoxl\t32(%2), %%ecx\n\t"
+        "movl\t%%ecx, 32(%3)\n\t"
+        "movl\t36(%1), %%ecx\n\t"
+        "adoxl\t36(%2), %%ecx\n\t"
+        "movl\t%%ecx, 36(%3)\n\t"
+        "movl\t40(%1), %%ecx\n\t"
+        "adoxl\t40(%2), %%ecx\n\t"
+        "movl\t%%ecx, 40(%3)\n\t"
+        "movl\t44(%1), %%ecx\n\t"
+        "adoxl\t44(%2), %%ecx\n\t"
+        "movl\t%%ecx, 44(%3)\n\t"
+        "movl\t48(%1), %%ecx\n\t"
+        "adoxl\t48(%2), %%ecx\n\t"
+        "movl\t%%ecx, 48(%3)\n\t"
+        "movl\t52(%1), %%ecx\n\t"
+        "adoxl\t52(%2), %%ecx\n\t"
+        "movl\t%%ecx, 52(%3)\n\t"
+        "movl\t56(%1), %%ecx\n\t"
+        "adoxl\t56(%2), %%ecx\n\t"
+        "movl\t%%ecx, 56(%3)\n\t"
+        "movl\t60(%1), %%ecx\n\t"
+        "adoxl\t60(%2), %%ecx\n\t"
+        "movl\t%%ecx, 60(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adoxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adoxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adoxq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adoxq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "movq\t32(%1), %%rcx\n\t"
+        "adoxq\t32(%2), %%rcx\n\t"
+        "movq\t%%rcx, 32(%3)\n\t"
+        "movq\t40(%1), %%rcx\n\t"
+        "adoxq\t40(%2), %%rcx\n\t"
+        "movq\t%%rcx, 40(%3)\n\t"
+        "movq\t48(%1), %%rcx\n\t"
+        "adoxq\t48(%2), %%rcx\n\t"
+        "movq\t%%rcx, 48(%3)\n\t"
+        "movq\t56(%1), %%rcx\n\t"
+        "adoxq\t56(%2), %%rcx\n\t"
+        "movq\t%%rcx, 56(%3)\n\t"
+        "movq\t64(%1), %%rcx\n\t"
+        "adoxq\t64(%2), %%rcx\n\t"
+        "movq\t%%rcx, 64(%3)\n\t"
+        "movq\t72(%1), %%rcx\n\t"
+        "adoxq\t72(%2), %%rcx\n\t"
+        "movq\t%%rcx, 72(%3)\n\t"
+        "movq\t80(%1), %%rcx\n\t"
+        "adoxq\t80(%2), %%rcx\n\t"
+        "movq\t%%rcx, 80(%3)\n\t"
+        "movq\t88(%1), %%rcx\n\t"
+        "adoxq\t88(%2), %%rcx\n\t"
+        "movq\t%%rcx, 88(%3)\n\t"
+        "movq\t96(%1), %%rcx\n\t"
+        "adoxq\t96(%2), %%rcx\n\t"
+        "movq\t%%rcx, 96(%3)\n\t"
+        "movq\t104(%1), %%rcx\n\t"
+        "adoxq\t104(%2), %%rcx\n\t"
+        "movq\t%%rcx, 104(%3)\n\t"
+        "movq\t112(%1), %%rcx\n\t"
+        "adoxq\t112(%2), %%rcx\n\t"
+        "movq\t%%rcx, 112(%3)\n\t"
+        "movq\t120(%1), %%rcx\n\t"
+        "adoxq\t120(%2), %%rcx\n\t"
+        "movq\t%%rcx, 120(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
 __inline static char _ADD_8WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
@@ -55,66 +1238,66 @@ __inline static char _ADD_8WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, _
 #ifdef _M_IX86
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
-        "movl\t%9, %%ecx\n\t"
-        "adcl\t%10, %%ecx\n\t"
-        "movl\t%%ecx, %1\n\t"
-        "movl\t%11, %%ecx\n\t"
-        "adcl\t%12, %%ecx\n\t"
-        "movl\t%%ecx, %2\n\t"
-        "movl\t%13, %%ecx\n\t"
-        "adcl\t%14, %%ecx\n\t"
-        "movl\t%%ecx, %3\n\t"
-        "movl\t%15, %%ecx\n\t"
-        "adcl\t%16, %%ecx\n\t"
-        "movl\t%%ecx, %4\n\t"
-        "movl\t%17, %%ecx\n\t"
-        "adcl\t%18, %%ecx\n\t"
-        "movl\t%%ecx, %5\n\t"
-        "movl\t%19, %%ecx\n\t"
-        "adcl\t%20, %%ecx\n\t"
-        "movl\t%%ecx, %6\n\t"
-        "movl\t%21, %%ecx\n\t"
-        "adcl\t%22, %%ecx\n\t"
-        "movl\t%%ecx, %7\n\t"
-        "movl\t%23, %%ecx\n\t"
-        "adcl\t%24, %%ecx\n\t"
-        "movl\t%%ecx, %8\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adcl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adcl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "adcl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "adcl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "adcl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "adcl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
         "setc\t%0"
-        : "+r"(c), "=g"(zp[0]), "=g"(zp[1]), "=g"(zp[2]), "=g"(zp[3]), "=g"(zp[4]), "=g"(zp[5]), "=g"(zp[6]), "=g"(zp[7])
-        : "g"(xp[0]), "rm"(yp[0]), "g"(xp[1]), "rm"(yp[1]), "g"(xp[2]), "rm"(yp[2]), "g"(xp[3]), "rm"(yp[3]), "g"(xp[4]), "rm"(yp[4]), "g"(xp[5]), "rm"(yp[5]), "g"(xp[6]), "rm"(yp[6]), "g"(xp[7]), "rm"(yp[7])
-        : "cc", "%ecx"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
 );
 #elif defined(_M_IX64)
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
-        "movq\t%9, %%rcx\n\t"
-        "adcq\t%10, %%rcx\n\t"
-        "movq\t%%rcx, %1\n\t"
-        "movq\t%11, %%rcx\n\t"
-        "adcq\t%12, %%rcx\n\t"
-        "movq\t%%rcx, %2\n\t"
-        "movq\t%13, %%rcx\n\t"
-        "adcq\t%14, %%rcx\n\t"
-        "movq\t%%rcx, %3\n\t"
-        "movq\t%15, %%rcx\n\t"
-        "adcq\t%16, %%rcx\n\t"
-        "movq\t%%rcx, %4\n\t"
-        "movq\t%17, %%rcx\n\t"
-        "adcq\t%18, %%rcx\n\t"
-        "movq\t%%rcx, %5\n\t"
-        "movq\t%19, %%rcx\n\t"
-        "adcq\t%20, %%rcx\n\t"
-        "movq\t%%rcx, %6\n\t"
-        "movq\t%21, %%rcx\n\t"
-        "adcq\t%22, %%rcx\n\t"
-        "movq\t%%rcx, %7\n\t"
-        "movq\t%23, %%rcx\n\t"
-        "adcq\t%24, %%rcx\n\t"
-        "movq\t%%rcx, %8\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adcq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adcq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "movq\t32(%1), %%rcx\n\t"
+        "adcq\t32(%2), %%rcx\n\t"
+        "movq\t%%rcx, 32(%3)\n\t"
+        "movq\t40(%1), %%rcx\n\t"
+        "adcq\t40(%2), %%rcx\n\t"
+        "movq\t%%rcx, 40(%3)\n\t"
+        "movq\t48(%1), %%rcx\n\t"
+        "adcq\t48(%2), %%rcx\n\t"
+        "movq\t%%rcx, 48(%3)\n\t"
+        "movq\t56(%1), %%rcx\n\t"
+        "adcq\t56(%2), %%rcx\n\t"
+        "movq\t%%rcx, 56(%3)\n\t"
         "setc\t%0"
-        : "+r"(c), "=g"(zp[0]), "=g"(zp[1]), "=g"(zp[2]), "=g"(zp[3]), "=g"(zp[4]), "=g"(zp[5]), "=g"(zp[6]), "=g"(zp[7])
-        : "g"(xp[0]), "rm"(yp[0]), "g"(xp[1]), "rm"(yp[1]), "g"(xp[2]), "rm"(yp[2]), "g"(xp[3]), "rm"(yp[3]), "g"(xp[4]), "rm"(yp[4]), "g"(xp[5]), "rm"(yp[5]), "g"(xp[6]), "rm"(yp[6]), "g"(xp[7]), "rm"(yp[7])
-        : "cc", "%rcx"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
 );
 #else
 #error unknown platform
@@ -140,66 +1323,66 @@ __inline static char _ADD_8WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
 #ifdef _M_IX86
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
-        "movl\t%9, %%ecx\n\t"
-        "adcxl\t%10, %%ecx\n\t"
-        "movl\t%%ecx, %1\n\t"
-        "movl\t%11, %%ecx\n\t"
-        "adcxl\t%12, %%ecx\n\t"
-        "movl\t%%ecx, %2\n\t"
-        "movl\t%13, %%ecx\n\t"
-        "adcxl\t%14, %%ecx\n\t"
-        "movl\t%%ecx, %3\n\t"
-        "movl\t%15, %%ecx\n\t"
-        "adcxl\t%16, %%ecx\n\t"
-        "movl\t%%ecx, %4\n\t"
-        "movl\t%17, %%ecx\n\t"
-        "adcxl\t%18, %%ecx\n\t"
-        "movl\t%%ecx, %5\n\t"
-        "movl\t%19, %%ecx\n\t"
-        "adcxl\t%20, %%ecx\n\t"
-        "movl\t%%ecx, %6\n\t"
-        "movl\t%21, %%ecx\n\t"
-        "adcxl\t%22, %%ecx\n\t"
-        "movl\t%%ecx, %7\n\t"
-        "movl\t%23, %%ecx\n\t"
-        "adcxl\t%24, %%ecx\n\t"
-        "movl\t%%ecx, %8\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adcxl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adcxl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "adcxl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "adcxl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "adcxl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "adcxl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
         "setc\t%0"
-        : "+r"(c), "=g"(zp[0]), "=g"(zp[1]), "=g"(zp[2]), "=g"(zp[3]), "=g"(zp[4]), "=g"(zp[5]), "=g"(zp[6]), "=g"(zp[7])
-        : "g"(xp[0]), "rm"(yp[0]), "g"(xp[1]), "rm"(yp[1]), "g"(xp[2]), "rm"(yp[2]), "g"(xp[3]), "rm"(yp[3]), "g"(xp[4]), "rm"(yp[4]), "g"(xp[5]), "rm"(yp[5]), "g"(xp[6]), "rm"(yp[6]), "g"(xp[7]), "rm"(yp[7])
-        : "cc", "%ecx"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
 );
 #elif defined(_M_IX64)
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
-        "movq\t%9, %%rcx\n\t"
-        "adcxq\t%10, %%rcx\n\t"
-        "movq\t%%rcx, %1\n\t"
-        "movq\t%11, %%rcx\n\t"
-        "adcxq\t%12, %%rcx\n\t"
-        "movq\t%%rcx, %2\n\t"
-        "movq\t%13, %%rcx\n\t"
-        "adcxq\t%14, %%rcx\n\t"
-        "movq\t%%rcx, %3\n\t"
-        "movq\t%15, %%rcx\n\t"
-        "adcxq\t%16, %%rcx\n\t"
-        "movq\t%%rcx, %4\n\t"
-        "movq\t%17, %%rcx\n\t"
-        "adcxq\t%18, %%rcx\n\t"
-        "movq\t%%rcx, %5\n\t"
-        "movq\t%19, %%rcx\n\t"
-        "adcxq\t%20, %%rcx\n\t"
-        "movq\t%%rcx, %6\n\t"
-        "movq\t%21, %%rcx\n\t"
-        "adcxq\t%22, %%rcx\n\t"
-        "movq\t%%rcx, %7\n\t"
-        "movq\t%23, %%rcx\n\t"
-        "adcxq\t%24, %%rcx\n\t"
-        "movq\t%%rcx, %8\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adcxq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adcxq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "movq\t32(%1), %%rcx\n\t"
+        "adcxq\t32(%2), %%rcx\n\t"
+        "movq\t%%rcx, 32(%3)\n\t"
+        "movq\t40(%1), %%rcx\n\t"
+        "adcxq\t40(%2), %%rcx\n\t"
+        "movq\t%%rcx, 40(%3)\n\t"
+        "movq\t48(%1), %%rcx\n\t"
+        "adcxq\t48(%2), %%rcx\n\t"
+        "movq\t%%rcx, 48(%3)\n\t"
+        "movq\t56(%1), %%rcx\n\t"
+        "adcxq\t56(%2), %%rcx\n\t"
+        "movq\t%%rcx, 56(%3)\n\t"
         "setc\t%0"
-        : "+r"(c), "=g"(zp[0]), "=g"(zp[1]), "=g"(zp[2]), "=g"(zp[3]), "=g"(zp[4]), "=g"(zp[5]), "=g"(zp[6]), "=g"(zp[7])
-        : "g"(xp[0]), "rm"(yp[0]), "g"(xp[1]), "rm"(yp[1]), "g"(xp[2]), "rm"(yp[2]), "g"(xp[3]), "rm"(yp[3]), "g"(xp[4]), "rm"(yp[4]), "g"(xp[5]), "rm"(yp[5]), "g"(xp[6]), "rm"(yp[6]), "g"(xp[7]), "rm"(yp[7])
-        : "cc", "%rcx"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
 );
 #else
 #error unknown platform
@@ -225,66 +1408,66 @@ __inline static char _ADD_8WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
 #ifdef _M_IX86
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
-        "movl\t%9, %%ecx\n\t"
-        "adoxl\t%10, %%ecx\n\t"
-        "movl\t%%ecx, %1\n\t"
-        "movl\t%11, %%ecx\n\t"
-        "adoxl\t%12, %%ecx\n\t"
-        "movl\t%%ecx, %2\n\t"
-        "movl\t%13, %%ecx\n\t"
-        "adoxl\t%14, %%ecx\n\t"
-        "movl\t%%ecx, %3\n\t"
-        "movl\t%15, %%ecx\n\t"
-        "adoxl\t%16, %%ecx\n\t"
-        "movl\t%%ecx, %4\n\t"
-        "movl\t%17, %%ecx\n\t"
-        "adoxl\t%18, %%ecx\n\t"
-        "movl\t%%ecx, %5\n\t"
-        "movl\t%19, %%ecx\n\t"
-        "adoxl\t%20, %%ecx\n\t"
-        "movl\t%%ecx, %6\n\t"
-        "movl\t%21, %%ecx\n\t"
-        "adoxl\t%22, %%ecx\n\t"
-        "movl\t%%ecx, %7\n\t"
-        "movl\t%23, %%ecx\n\t"
-        "adoxl\t%24, %%ecx\n\t"
-        "movl\t%%ecx, %8\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adoxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adoxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adoxl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adoxl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "adoxl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "adoxl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "adoxl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "adoxl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
         "setc\t%0"
-        : "+r"(c), "=g"(zp[0]), "=g"(zp[1]), "=g"(zp[2]), "=g"(zp[3]), "=g"(zp[4]), "=g"(zp[5]), "=g"(zp[6]), "=g"(zp[7])
-        : "g"(xp[0]), "rm"(yp[0]), "g"(xp[1]), "rm"(yp[1]), "g"(xp[2]), "rm"(yp[2]), "g"(xp[3]), "rm"(yp[3]), "g"(xp[4]), "rm"(yp[4]), "g"(xp[5]), "rm"(yp[5]), "g"(xp[6]), "rm"(yp[6]), "g"(xp[7]), "rm"(yp[7])
-        : "cc", "%ecx"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
 );
 #elif defined(_M_IX64)
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
-        "movq\t%9, %%rcx\n\t"
-        "adoxq\t%10, %%rcx\n\t"
-        "movq\t%%rcx, %1\n\t"
-        "movq\t%11, %%rcx\n\t"
-        "adoxq\t%12, %%rcx\n\t"
-        "movq\t%%rcx, %2\n\t"
-        "movq\t%13, %%rcx\n\t"
-        "adoxq\t%14, %%rcx\n\t"
-        "movq\t%%rcx, %3\n\t"
-        "movq\t%15, %%rcx\n\t"
-        "adoxq\t%16, %%rcx\n\t"
-        "movq\t%%rcx, %4\n\t"
-        "movq\t%17, %%rcx\n\t"
-        "adoxq\t%18, %%rcx\n\t"
-        "movq\t%%rcx, %5\n\t"
-        "movq\t%19, %%rcx\n\t"
-        "adoxq\t%20, %%rcx\n\t"
-        "movq\t%%rcx, %6\n\t"
-        "movq\t%21, %%rcx\n\t"
-        "adoxq\t%22, %%rcx\n\t"
-        "movq\t%%rcx, %7\n\t"
-        "movq\t%23, %%rcx\n\t"
-        "adoxq\t%24, %%rcx\n\t"
-        "movq\t%%rcx, %8\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adoxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adoxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adoxq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adoxq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "movq\t32(%1), %%rcx\n\t"
+        "adoxq\t32(%2), %%rcx\n\t"
+        "movq\t%%rcx, 32(%3)\n\t"
+        "movq\t40(%1), %%rcx\n\t"
+        "adoxq\t40(%2), %%rcx\n\t"
+        "movq\t%%rcx, 40(%3)\n\t"
+        "movq\t48(%1), %%rcx\n\t"
+        "adoxq\t48(%2), %%rcx\n\t"
+        "movq\t%%rcx, 48(%3)\n\t"
+        "movq\t56(%1), %%rcx\n\t"
+        "adoxq\t56(%2), %%rcx\n\t"
+        "movq\t%%rcx, 56(%3)\n\t"
         "setc\t%0"
-        : "+r"(c), "=g"(zp[0]), "=g"(zp[1]), "=g"(zp[2]), "=g"(zp[3]), "=g"(zp[4]), "=g"(zp[5]), "=g"(zp[6]), "=g"(zp[7])
-        : "g"(xp[0]), "rm"(yp[0]), "g"(xp[1]), "rm"(yp[1]), "g"(xp[2]), "rm"(yp[2]), "g"(xp[3]), "rm"(yp[3]), "g"(xp[4]), "rm"(yp[4]), "g"(xp[5]), "rm"(yp[5]), "g"(xp[6]), "rm"(yp[6]), "g"(xp[7]), "rm"(yp[7])
-        : "cc", "%rcx"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
 );
 #else
 #error unknown platform

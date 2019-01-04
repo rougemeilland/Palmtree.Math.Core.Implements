@@ -169,19 +169,42 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
     // y のワード数分だけ加算を行う
     __UNIT_TYPE count = y_count;
 
-    // gcc の asm 文の制限(オペランドは30まで)により、連続加算は8ワードまでしかできない模様。ちくせぅ。
-
-    __UNIT_TYPE count2 = count >> 3;
+    // まず 32 ワードずつ加算をする。
+    __UNIT_TYPE count2 = count >> 5;
     while (count2 != 0)
+    {
+        c = _ADD_32WORDS_ADC(c, xp, yp, zp);
+        xp += 32;
+        yp += 32;
+        zp += 32;
+        count -= 32;
+        --count2;
+    }
+    // この時点で未処理の桁は 32 ワード未満のはず
+
+    // 未処理の桁が 16 ワード以上あるなら 16 ワードずつ加算を行う。
+    if (count % 0x10)
+    {
+        c = _ADD_16WORDS_ADC(c, xp, yp, zp);
+        xp += 16;
+        yp += 16;
+        zp += 16;
+        count -= 16;
+    }
+    // この時点で未処理の桁は 16 ワード未満のはず
+
+    // 未処理の桁が 8 ワード以上あるなら 8 ワードずつ加算を行う。
+    if (count % 0x8)
     {
         c = _ADD_8WORDS_ADC(c, xp, yp, zp);
         xp += 8;
         yp += 8;
         zp += 8;
-        --count2;
         count -= 8;
     }
+    // この時点で未処理の桁は 8 ワード未満のはず
 
+    // 残りの桁は 1 ワードずつ加算をする。
     while (count != 0)
     {
         c = _ADD_UNIT(c, *xp++, *yp++, zp++);
@@ -212,19 +235,42 @@ static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NU
     // y のワード数分だけ加算を行う
     __UNIT_TYPE count = y_count;
 
-    // gcc の asm 文の制限(オペランドは30まで)により、連続加算は8ワードまでしかできない模様。ちくせぅ。
-
-    __UNIT_TYPE count2 = count >> 3;
+    // まず 32 ワードずつ加算をする。
+    __UNIT_TYPE count2 = count >> 5;
     while (count2 != 0)
+    {
+        c = _ADD_32WORDS_ADCX(c, xp, yp, zp);
+        xp += 32;
+        yp += 32;
+        zp += 32;
+        count -= 32;
+        --count2;
+    }
+    // この時点で未処理の桁は 32 ワード未満のはず
+
+    // 未処理の桁が 16 ワード以上あるなら 16 ワードずつ加算を行う。
+    if (count % 0x10)
+    {
+        c = _ADD_16WORDS_ADCX(c, xp, yp, zp);
+        xp += 16;
+        yp += 16;
+        zp += 16;
+        count -= 16;
+    }
+    // この時点で未処理の桁は 16 ワード未満のはず
+
+    // 未処理の桁が 8 ワード以上あるなら 8 ワードずつ加算を行う。
+    if (count % 0x8)
     {
         c = _ADD_8WORDS_ADCX(c, xp, yp, zp);
         xp += 8;
         yp += 8;
         zp += 8;
-        --count2;
         count -= 8;
     }
+    // この時点で未処理の桁は 8 ワード未満のはず
 
+    // 残りの桁は 1 ワードずつ加算をする。
     while (count != 0)
     {
         c = _ADDX_UNIT(c, *xp++, *yp++, zp++);
