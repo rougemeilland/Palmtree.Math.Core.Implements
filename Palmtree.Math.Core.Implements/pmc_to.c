@@ -34,7 +34,7 @@
 #include "pmc_internal.h"
 
 
-PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, unsigned __int32* o)
+PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, _UINT32_T* o)
 {
     if (sizeof(__UNIT_TYPE) < sizeof(*o))
     {
@@ -48,15 +48,13 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, unsigned __int32* o)
     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
         return (PMC_STATUS_ARGUMENT_ERROR);
     if (np->IS_ZERO)
-    {
         *o = 0;
-        return (PMC_STATUS_OK);
-    }
-    *o = (unsigned __int32)np->BLOCK[0];
+    else
+        *o = (_UINT32_T)np->BLOCK[0];
     return (PMC_STATUS_OK);
 }   
 
-PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, unsigned __int64* o)
+PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o)
 {
     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
     {
@@ -83,11 +81,39 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, unsigned __int64* o)
     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
     {
         // 値が 2 ワードで表現できる場合
-        *o = _FROMWORDTODWORD((unsigned __int32)np->BLOCK[1], (unsigned __int32)np->BLOCK[0]);
+        *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
         return (PMC_STATUS_OK);
     }
     else
         return (PMC_STATUS_ARGUMENT_ERROR);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count)
+{
+    if (buffer == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+        return (result);
+    if (np->UNIT_BIT_COUNT > sizeof(*buffer) * 8 * buffer_size)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (np->IS_ZERO)
+    {
+        buffer[0] = 0;
+        *count = 1;
+    }
+    else
+    {
+        _COPY_MEMORY_BYTE(buffer, np->BLOCK, _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8));
+        *count = _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8);
+    }
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature)
+{
+    return (PMC_STATUS_OK);
 }
 
 /*

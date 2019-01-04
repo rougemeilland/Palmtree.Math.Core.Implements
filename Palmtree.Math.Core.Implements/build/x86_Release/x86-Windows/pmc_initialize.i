@@ -100120,16 +100120,75 @@ _wrpkru (unsigned int __key)
 # 34 "pmc_initialize.c" 2
 
 # 1 "pmc_internal.h" 1
-# 40 "pmc_internal.h"
+# 39 "pmc_internal.h"
 # 1 "pmc.h" 1
-# 58 "pmc.h"
+# 36 "pmc.h"
+# 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/stdint.h" 1 3 4
+# 9 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/stdint.h" 3 4
+# 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/stdint.h" 1 3 4
+# 32 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/stdint.h" 3 4
+# 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/stddef.h" 1 3 4
+# 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/stddef.h" 1 3 4
+# 2 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/stddef.h" 2 3 4
+# 33 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/stdint.h" 2 3 4
 
-# 58 "pmc.h"
-typedef 
-# 58 "pmc.h" 3
-       int 
-# 58 "pmc.h"
-               PMC_STATUS_CODE;
+
+typedef signed char int8_t;
+typedef unsigned char uint8_t;
+typedef short int16_t;
+typedef unsigned short uint16_t;
+typedef int int32_t;
+typedef unsigned uint32_t;
+__extension__ typedef long long int64_t;
+__extension__ typedef unsigned long long uint64_t;
+
+
+typedef signed char int_least8_t;
+typedef unsigned char uint_least8_t;
+typedef short int_least16_t;
+typedef unsigned short uint_least16_t;
+typedef int int_least32_t;
+typedef unsigned uint_least32_t;
+__extension__ typedef long long int_least64_t;
+__extension__ typedef unsigned long long uint_least64_t;
+
+
+
+
+
+typedef signed char int_fast8_t;
+typedef unsigned char uint_fast8_t;
+typedef short int_fast16_t;
+typedef unsigned short uint_fast16_t;
+typedef int int_fast32_t;
+typedef unsigned int uint_fast32_t;
+__extension__ typedef long long int_fast64_t;
+__extension__ typedef unsigned long long uint_fast64_t;
+
+
+__extension__ typedef long long intmax_t;
+__extension__ typedef unsigned long long uintmax_t;
+# 10 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/stdint.h" 2 3 4
+# 37 "pmc.h" 2
+# 69 "pmc.h"
+
+# 69 "pmc.h"
+typedef int32_t _INT32_T;
+typedef int64_t _INT64_T;
+typedef uint8_t _BYTE_T;
+typedef uint32_t _UINT32_T;
+typedef uint64_t _UINT64_T;
+
+
+
+
+typedef struct __tag_PMC_CONFIGURATION_INFO
+{
+    unsigned MEMORY_VERIFICATION_ENABLED : 1;
+} PMC_CONFIGURATION_INFO;
+
+
+typedef int PMC_STATUS_CODE;
 
 typedef struct __tag_PMC_STATISTICS_INFO
 {
@@ -100144,107 +100203,120 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
     unsigned PROCESSOR_FEATURE_POPCNT : 1;
     unsigned PROCESSOR_FEATURE_ADX : 1;
-    unsigned PROCESSOR_FEATURE_LZCNT : 1;
+    unsigned PROCESSOR_FEATURE_BMI1 : 1;
     unsigned PROCESSOR_FEATURE_BMI2 : 1;
+    unsigned PROCESSOR_FEATURE_ABM : 1;
 
 
-    void (* __attribute__((__stdcall__)) PMC_TraceStatistics)(int);
-    void (* __attribute__((__stdcall__)) PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO*);
+    void (__attribute__((__stdcall__)) * PMC_TraceStatistics)(int enabled);
+    void (__attribute__((__stdcall__)) * PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO* statistics_info);
 
 
-    PMC_STATUS_CODE (* __attribute__((__stdcall__)) PMC_From_I)(
-# 81 "pmc.h" 3
-                                             int
-# 81 "pmc.h"
-                                                    , HANDLE*);
-    PMC_STATUS_CODE (* __attribute__((__stdcall__)) PMC_From_L)(
-# 82 "pmc.h" 3
-                                             long long
-# 82 "pmc.h"
-                                                    , HANDLE*);
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_From_I)(_UINT32_T x, HANDLE* pp);
 
 
-    PMC_STATUS_CODE (* __attribute__((__stdcall__)) PMC_To_X_I)(HANDLE, 
-# 85 "pmc.h" 3
-                                                     int
-# 85 "pmc.h"
-                                                            *);
-    PMC_STATUS_CODE (* __attribute__((__stdcall__)) PMC_To_X_L)(HANDLE, 
-# 86 "pmc.h" 3
-                                                     long long
-# 86 "pmc.h"
-                                                            *);
-    PMC_STATUS_CODE (* __attribute__((__stdcall__)) PMC_Add_XI)(HANDLE, 
-# 87 "pmc.h" 3
-                                                     int
-# 87 "pmc.h"
-                                                            , HANDLE*);
-    PMC_STATUS_CODE (* __attribute__((__stdcall__)) PMC_Add_XL)(HANDLE, 
-# 88 "pmc.h" 3
-                                                     long long
-# 88 "pmc.h"
-                                                            , HANDLE*);
-    PMC_STATUS_CODE (* __attribute__((__stdcall__)) PMC_Add_XX)(HANDLE, HANDLE, HANDLE*);
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_From_L)(_UINT64_T x, HANDLE* pp);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_From_B)(unsigned char* buffer, size_t count, HANDLE* pp);
+
+
+    void (__attribute__((__stdcall__)) * PMC_Dispose)(HANDLE p);
+
+
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_XI)(HANDLE p, _UINT32_T x, HANDLE* o);
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_XL)(HANDLE p, _UINT64_T x, HANDLE* o);
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_XX)(HANDLE p1, HANDLE p2, HANDLE* o);
 } PMC_ENTRY_POINTS;
 
 
 
 
 
-__attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_Initialize();
-# 41 "pmc_internal.h" 2
+__attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_Initialize(PMC_CONFIGURATION_INFO*);
+# 40 "pmc_internal.h" 2
 
 
 
 
-typedef unsigned 
-# 45 "pmc_internal.h" 3
-                int 
-# 45 "pmc_internal.h"
-                        __UNIT_TYPE;
-# 55 "pmc_internal.h"
+typedef _UINT32_T __UNIT_TYPE;
+# 56 "pmc_internal.h"
 typedef struct _tag_PROCESSOR_FEATURES
 {
+
     unsigned PROCESSOR_FEATURE_POPCNT : 1;
+
+
     unsigned PROCESSOR_FEATURE_ADX : 1;
-    unsigned PROCESSOR_FEATURE_LZCNT : 1;
+
+
+    unsigned PROCESSOR_FEATURE_BMI1 : 1;
+
+
     unsigned PROCESSOR_FEATURE_BMI2 : 1;
+
+
+    unsigned PROCESSOR_FEATURE_ABM : 1;
 } PROCESSOR_FEATURES;
 
-typedef struct __tag_UNIT_BUFFER
+typedef struct __tag_NUMBER_HEADER
 {
-
     size_t UNIT_WORD_COUNT;
     size_t UNIT_BIT_COUNT;
-    int HASH_CODE;
+    __UNIT_TYPE HASH_CODE;
+    unsigned IS_STATIC : 1;
     unsigned IS_ZERO : 1;
     unsigned IS_ONE : 1;
     unsigned IS_EVEN : 1;
     unsigned IS_POWER_OF_TWO : 1;
-    unsigned IS_HASH_CALCULATED : 1;
 
+    size_t BLOCK_COUNT;
 
 
 
     __UNIT_TYPE* BLOCK;
-} UNIT_BUFFER;
+} NUMBER_HEADER;
 
 
 
 
 
-HANDLE hLocalHeap;
-# 94 "pmc_internal.h"
-extern __UNIT_TYPE* AllocateBlockByBits(size_t);
+
+extern PMC_CONFIGURATION_INFO configuration_info;
 
 
-extern void DeallocateBlock(__UNIT_TYPE*);
+extern NUMBER_HEADER number_zero;
 
 
-extern void CommitBlock(__UNIT_TYPE*);
+extern BOOL AllocateHeapArea(void);
 
 
-extern PMC_STATUS_CODE CheckBlock(__UNIT_TYPE*);
+extern void DeallocateHeapArea(void);
+
+
+extern PMC_STATUS_CODE AttatchNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_length);
+
+
+extern PMC_STATUS_CODE AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_length);
+
+
+extern void DetatchNumber(NUMBER_HEADER* p);
+
+
+extern void DeallocateNumber(NUMBER_HEADER* p);
+
+
+extern void CommitNumber(NUMBER_HEADER* p);
+
+
+extern PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p);
+
+
+extern PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* p, NUMBER_HEADER** op);
 
 
 extern void IncrementDIV32Counter(void);
@@ -100259,243 +100331,127 @@ extern void IncrementMULTI32Counter(void);
 extern void IncrementMULTI64Counter(void);
 
 
-extern int Initialize_Add(PROCESSOR_FEATURES* feature);
-# 130 "pmc_internal.h"
-extern void __attribute__((__stdcall__)) PMC_TraceStatistics(int);
-extern void __attribute__((__stdcall__)) PMC_GetStatisticsInfo(PMC_STATISTICS_INFO*);
+extern PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_From_I(
-# 133 "pmc_internal.h" 3
-                                            int
-# 133 "pmc_internal.h"
-                                                   , HANDLE*);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_From_L(
-# 134 "pmc_internal.h" 3
-                                            long long
-# 134 "pmc_internal.h"
-                                                   , HANDLE*);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_I(HANDLE, 
-# 135 "pmc_internal.h" 3
-                                                    int
-# 135 "pmc_internal.h"
-                                                           *);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_L(HANDLE, 
-# 136 "pmc_internal.h" 3
-                                                    long long
-# 136 "pmc_internal.h"
-                                                           *);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_XI(HANDLE, 
-# 137 "pmc_internal.h" 3
-                                                    int
-# 137 "pmc_internal.h"
-                                                           , HANDLE*);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_XL(HANDLE, 
-# 138 "pmc_internal.h" 3
-                                                    long long
-# 138 "pmc_internal.h"
-                                                           , HANDLE*);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_XX(HANDLE, HANDLE, HANDLE*);
+
+extern PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o);
+
+
+extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
+
+
+extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
+
+
+extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
+
+
+extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
+# 169 "pmc_internal.h"
+extern void __attribute__((__stdcall__)) PMC_TraceStatistics(int enabled);
+extern void __attribute__((__stdcall__)) PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
+
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_From_I(_UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_From_L(_UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_From_B(unsigned char* buffer, size_t count, HANDLE* o);
+
+extern void __attribute__((__stdcall__)) PMC_Dispose(HANDLE p);
+
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_I(HANDLE p, _UINT32_T* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_L(HANDLE p, _UINT64_T* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_XI(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_XL(HANDLE p, _UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_XX(HANDLE p1, HANDLE p2, HANDLE* o);
 
 
 
 
-__inline static unsigned 
-# 144 "pmc_internal.h" 3
-                        long long 
-# 144 "pmc_internal.h"
-                                _FROMWORDTODWORD(unsigned 
-# 144 "pmc_internal.h" 3
-                                                          int 
-# 144 "pmc_internal.h"
-                                                                  value_high, unsigned 
-# 144 "pmc_internal.h" 3
-                                                                                       int 
-# 144 "pmc_internal.h"
-                                                                                               value_low)
+__inline static int _EQUALS_MEMORY(unsigned char* buffer1, size_t count1, unsigned char* buffer2, size_t count2)
 {
-    return (((unsigned 
-# 146 "pmc_internal.h" 3
-                      long long
-# 146 "pmc_internal.h"
-                             )value_high << 32) | value_low);
+    if (count1 != count2)
+        return (-1);
+    while (count1 > 0)
+    {
+        if (*buffer1 != *buffer2)
+            return (-1);
+        ++buffer1;
+        ++buffer2;
+        --count1;
+    }
+    return (0);
 }
 
-__inline static unsigned 
-# 149 "pmc_internal.h" 3
-                        int 
-# 149 "pmc_internal.h"
-                                _FROMDWORDTOWORD(unsigned 
-# 149 "pmc_internal.h" 3
-                                                          long long 
-# 149 "pmc_internal.h"
-                                                                  value, unsigned 
-# 149 "pmc_internal.h" 3
-                                                                                  int 
-# 149 "pmc_internal.h"
-                                                                                          *result_high)
+__inline static void _COPY_MEMORY_BYTE(void* d, const void* s, size_t count)
 {
-    *result_high = (unsigned 
-# 151 "pmc_internal.h" 3
-                            int
-# 151 "pmc_internal.h"
-                                   )(value >> 32);
-    return ((unsigned 
-# 152 "pmc_internal.h" 3
-                     int
-# 152 "pmc_internal.h"
-                            )value);
+    __movsb(d, s, count);
+}
+
+__inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T count)
+{
+    __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+}
+# 221 "pmc_internal.h"
+__inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
+{
+
+    __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+
+
+
+
+
+}
+
+__inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
+{
+    __stosb(d, 0, count);
+}
+
+__inline static void _ZERO_MEMORY_32(_UINT32_T* d, _UINT32_T count)
+{
+    __stosd((unsigned long*)d, 0, (unsigned long)count);
+}
+# 249 "pmc_internal.h"
+__inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
+{
+
+    __stosd((unsigned long*)d, 0, (unsigned long)count);
+
+
+
+
+
+}
+
+__inline static _UINT64_T _FROMWORDTODWORD(_UINT32_T value_high, _UINT32_T value_low)
+{
+    return (((_UINT64_T)value_high << 32) | value_low);
+}
+
+__inline static _UINT32_T _FROMDWORDTOWORD(_UINT64_T value, _UINT32_T *result_high)
+{
+    *result_high = (_UINT32_T)(value >> 32);
+    return ((_UINT32_T)value);
 }
 
 __inline static __UNIT_TYPE _MAKE_MASK_UNIT(int bits)
 {
-    switch (bits)
-    {
-    case 0:
-        return (0x0);
-    case 1:
-        return (0x1);
-    case 2:
-        return (0x3);
-    case 3:
-        return (0x7);
-    case 4:
-        return (0xf);
-    case 5:
-        return (0x1f);
-    case 6:
-        return (0x3f);
-    case 7:
-        return (0x7f);
-    case 8:
-        return (0xff);
-    case 9:
-        return (0x1ff);
-    case 10:
-        return (0x3ff);
-    case 11:
-        return (0x7ff);
-    case 12:
-        return (0xfff);
-    case 13:
-        return (0x1fff);
-    case 14:
-        return (0x3fff);
-    case 15:
-        return (0x7fff);
-    case 16:
-        return (0xffff);
-    case 17:
-        return (0x1ffff);
-    case 18:
-        return (0x3ffff);
-    case 19:
-        return (0x7ffff);
-    case 20:
-        return (0xfffff);
-    case 21:
-        return (0x1fffff);
-    case 22:
-        return (0x3fffff);
-    case 23:
-        return (0x7fffff);
-    case 24:
-        return (0xffffff);
-    case 25:
-        return (0x1ffffff);
-    case 26:
-        return (0x3ffffff);
-    case 27:
-        return (0x7ffffff);
-    case 28:
-        return (0xfffffff);
-    case 29:
-        return (0x1fffffff);
-    case 30:
-        return (0x3fffffff);
-    case 31:
-        return (0x7fffffff);
-    case 32:
-        return (0xffffffff);
-# 292 "pmc_internal.h"
-    default:
-        return ((__UNIT_TYPE)-1);
-    }
+    return ((1 << bits) - 1);
 }
 
-__inline static size_t DIVIDE_CEILING(size_t u, size_t v)
+__inline static __UNIT_TYPE _DIVIDE_CEILING_UNIT(__UNIT_TYPE u, __UNIT_TYPE v)
 {
     return ((u + v - 1) / v);
 }
 
-__inline static unsigned 
-# 302 "pmc_internal.h" 3
-                        int 
-# 302 "pmc_internal.h"
-                                DIVIDE_CEILING32(unsigned 
-# 302 "pmc_internal.h" 3
-                                                          int 
-# 302 "pmc_internal.h"
-                                                                  u, unsigned 
-# 302 "pmc_internal.h" 3
-                                                                              int 
-# 302 "pmc_internal.h"
-                                                                                      v)
+__inline static size_t _DIVIDE_CEILING_SIZE(size_t u, size_t v)
 {
     return ((u + v - 1) / v);
 }
 
-__inline static unsigned 
-# 307 "pmc_internal.h" 3
-                        long long 
-# 307 "pmc_internal.h"
-                                DIVIDE_CEILING64(unsigned 
-# 307 "pmc_internal.h" 3
-                                                          long long 
-# 307 "pmc_internal.h"
-                                                                  u, unsigned 
-# 307 "pmc_internal.h" 3
-                                                                              long long 
-# 307 "pmc_internal.h"
-                                                                                      v)
-{
-    return ((u + v - 1) / v);
-}
-
-__inline static size_t MAXIMUM(size_t x, size_t y)
-{
-    return (x >= y ? x : y);
-}
-
-__inline static unsigned 
-# 317 "pmc_internal.h" 3
-                        int 
-# 317 "pmc_internal.h"
-                                MAXIMUM32(unsigned 
-# 317 "pmc_internal.h" 3
-                                                   int 
-# 317 "pmc_internal.h"
-                                                           x, unsigned 
-# 317 "pmc_internal.h" 3
-                                                                       int 
-# 317 "pmc_internal.h"
-                                                                               y)
-{
-    return (x >= y ? x : y);
-}
-
-__inline static unsigned 
-# 322 "pmc_internal.h" 3
-                        long long 
-# 322 "pmc_internal.h"
-                                MAXIMUM64(unsigned 
-# 322 "pmc_internal.h" 3
-                                                   long long 
-# 322 "pmc_internal.h"
-                                                           x, unsigned 
-# 322 "pmc_internal.h" 3
-                                                                       long long 
-# 322 "pmc_internal.h"
-                                                                               y)
+__inline static __UNIT_TYPE _MAXIMUM_UNIT(__UNIT_TYPE x, __UNIT_TYPE y)
 {
     return (x >= y ? x : y);
 }
@@ -100504,6 +100460,17 @@ __inline static char _ADD_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 {
 
     return (_addcarry_u32(carry, u, v, w));
+
+
+
+
+
+}
+
+__inline static char _ADDX_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+{
+
+    return (_addcarryx_u32(carry, u, v, w));
 
 
 
@@ -100528,19 +100495,14 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 
 
-    unsigned 
-# 355 "pmc_internal.h" 3
-            int 
-# 355 "pmc_internal.h"
-                    w_low;
+    _UINT32_T w_low;
     __asm__("mull %3": "=a"(w_low), "=d"(*w_high) : "0"(u), "rm"(v));
     return (w_low);
-# 366 "pmc_internal.h"
+# 341 "pmc_internal.h"
 }
-
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
-# 381 "pmc_internal.h"
+# 355 "pmc_internal.h"
     __UNIT_TYPE q;
 
     __asm__("divl %3": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -100557,7 +100519,7 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
 
 __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE *q)
 {
-# 409 "pmc_internal.h"
+# 383 "pmc_internal.h"
     __asm__("divl %3": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
 
 
@@ -100581,21 +100543,21 @@ __inline static void _MEMCPY_UNIT(__UNIT_TYPE* dst, __UNIT_TYPE* src, size_t cou
 
 }
 
-__inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, size_t count)
+__inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 435 "pmc_internal.h" 3
+# 409 "pmc_internal.h" 3
            __rold((
-# 435 "pmc_internal.h"
+# 409 "pmc_internal.h"
            x
-# 435 "pmc_internal.h" 3
+# 409 "pmc_internal.h" 3
            ), (
-# 435 "pmc_internal.h"
+# 409 "pmc_internal.h"
            count
-# 435 "pmc_internal.h" 3
+# 409 "pmc_internal.h" 3
            ))
-# 435 "pmc_internal.h"
+# 409 "pmc_internal.h"
                           );
 
 
@@ -100604,21 +100566,21 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, size_t count)
 
 }
 
-__inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, size_t count)
+__inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 446 "pmc_internal.h" 3
+# 420 "pmc_internal.h" 3
            __rord((
-# 446 "pmc_internal.h"
+# 420 "pmc_internal.h"
            x
-# 446 "pmc_internal.h" 3
+# 420 "pmc_internal.h" 3
            ), (
-# 446 "pmc_internal.h"
+# 420 "pmc_internal.h"
            count
-# 446 "pmc_internal.h" 3
+# 420 "pmc_internal.h" 3
            ))
-# 446 "pmc_internal.h"
+# 420 "pmc_internal.h"
                           );
 
 
@@ -100627,27 +100589,7 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, size_t count)
 
 }
 
-__inline static int _LZCNT32(unsigned 
-# 454 "pmc_internal.h" 3
-                                     int 
-# 454 "pmc_internal.h"
-                                             value)
-{
-    return (_lzcnt_u32(value));
-}
-# 466 "pmc_internal.h"
-__inline static int _LZCNT_UNIT(__UNIT_TYPE value)
-{
-
-    return (_LZCNT32(value));
-
-
-
-
-
-}
-
-__inline static int _POPCNT_UNIT(__UNIT_TYPE value)
+__inline static __UNIT_TYPE _POPCNT_UNIT(__UNIT_TYPE value)
 {
 
     return (__popcnt(value));
@@ -100658,494 +100600,27 @@ __inline static int _POPCNT_UNIT(__UNIT_TYPE value)
 
 }
 
-__inline static int _LZCNT32_ALT(unsigned 
-# 488 "pmc_internal.h" 3
-                                         int 
-# 488 "pmc_internal.h"
-                                                 value)
+__inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
 {
-    if (value & 0xffff0000)
-    {
-        if (value & 0xff000000)
-        {
-            if (value & 0xf0000000)
-            {
-                if (value & 0xc0000000)
-                {
-                    if (value & 0x80000000)
-                        return (0);
-                    else
-                        return (1);
-                }
-                else
-                {
-                    if (value & 0x20000000)
-                        return (2);
-                    else
-                        return (3);
-                }
-            }
-            else
-            {
-                if (value & 0xc000000)
-                {
-                    if (value & 0x8000000)
-                        return (4);
-                    else
-                        return (5);
-                }
-                else
-                {
-                    if (value & 0x2000000)
-                        return (6);
-                    else
-                        return (7);
-                }
-            }
-        }
-        else
-        {
-            if (value & 0xf00000)
-            {
-                if (value & 0xc00000)
-                {
-                    if (value & 0x800000)
-                        return (8);
-                    else
-                        return (9);
-                }
-                else
-                {
-                    if (value & 0x200000)
-                        return (10);
-                    else
-                        return (11);
-                }
-            }
-            else
-            {
-                if (value & 0xc0000)
-                {
-                    if (value & 0x80000)
-                        return (12);
-                    else
-                        return (13);
-                }
-                else
-                {
-                    if (value & 0x20000)
-                        return (14);
-                    else
-                        return (15);
-                }
-            }
-        }
-    }
-    else
-    {
-        if (value & 0xff00)
-        {
-            if (value & 0xf000)
-            {
-                if (value & 0xc000)
-                {
-                    if (value & 0x8000)
-                        return (16);
-                    else
-                        return (17);
-                }
-                else
-                {
-                    if (value & 0x2000)
-                        return (18);
-                    else
-                        return (19);
-                }
-            }
-            else
-            {
-                if (value & 0xc00)
-                {
-                    if (value & 0x800)
-                        return (20);
-                    else
-                        return (21);
-                }
-                else
-                {
-                    if (value & 0x200)
-                        return (22);
-                    else
-                        return (23);
-                }
-            }
-        }
-        else
-        {
-            if (value & 0xf0)
-            {
-                if (value & 0xc0)
-                {
-                    if (value & 0x80)
-                        return (24);
-                    else
-                        return (25);
-                }
-                else
-                {
-                    if (value & 0x20)
-                        return (26);
-                    else
-                        return (27);
-                }
-            }
-            else
-            {
-                if (value & 0xc)
-                {
-                    if (value & 0x8)
-                        return (28);
-                    else
-                        return (29);
-                }
-                else
-                {
-                    if (value & 0x2)
-                        return (30);
-                    else
-                        return (31);
-                }
-            }
-        }
-    }
+
+    x = (x & 0x55555555) + ((x >> 1) & 0x55555555);
+    x = (x & 0x33333333) + ((x >> 2) & 0x33333333);
+    x = (x & 0x0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f);
+    x = (x & 0x00ff00ff) + ((x >> 8) & 0x00ff00ff);
+    x = (x & 0x0000ffff) + ((x >> 16) & 0x0000ffff);
+# 457 "pmc_internal.h"
+    return(x);
 }
 
-__inline static int _LZCNT64_ALT(unsigned 
-# 646 "pmc_internal.h" 3
-                                         long long 
-# 646 "pmc_internal.h"
-                                                 value)
+__inline static _UINT32_T _LZCNT_32(_UINT32_T value)
 {
-    if (value & 0xffffffff00000000)
-    {
-        if (value & 0xffff000000000000)
-        {
-            if (value & 0xff00000000000000)
-            {
-                if (value & 0xf000000000000000)
-                {
-                    if (value & 0xc000000000000000)
-                    {
-                        if (value & 0x8000000000000000)
-                            return (0);
-                        else
-                            return (1);
-                    }
-                    else
-                    {
-                        if (value & 0x2000000000000000)
-                            return (2);
-                        else
-                            return (3);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc00000000000000)
-                    {
-                        if (value & 0x800000000000000)
-                            return (4);
-                        else
-                            return (5);
-                    }
-                    else
-                    {
-                        if (value & 0x200000000000000)
-                            return (6);
-                        else
-                            return (7);
-                    }
-                }
-            }
-            else
-            {
-                if (value & 0xf0000000000000)
-                {
-                    if (value & 0xc0000000000000)
-                    {
-                        if (value & 0x80000000000000)
-                            return (8);
-                        else
-                            return (9);
-                    }
-                    else
-                    {
-                        if (value & 0x20000000000000)
-                            return (10);
-                        else
-                            return (11);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc000000000000)
-                    {
-                        if (value & 0x8000000000000)
-                            return (12);
-                        else
-                            return (13);
-                    }
-                    else
-                    {
-                        if (value & 0x2000000000000)
-                            return (14);
-                        else
-                            return (15);
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (value & 0xff0000000000)
-            {
-                if (value & 0xf00000000000)
-                {
-                    if (value & 0xc00000000000)
-                    {
-                        if (value & 0x800000000000)
-                            return (16);
-                        else
-                            return (17);
-                    }
-                    else
-                    {
-                        if (value & 0x200000000000)
-                            return (18);
-                        else
-                            return (19);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc0000000000)
-                    {
-                        if (value & 0x80000000000)
-                            return (20);
-                        else
-                            return (21);
-                    }
-                    else
-                    {
-                        if (value & 0x20000000000)
-                            return (22);
-                        else
-                            return (23);
-                    }
-                }
-            }
-            else
-            {
-                if (value & 0xf000000000)
-                {
-                    if (value & 0xc000000000)
-                    {
-                        if (value & 0x8000000000)
-                            return (24);
-                        else
-                            return (25);
-                    }
-                    else
-                    {
-                        if (value & 0x2000000000)
-                            return (26);
-                        else
-                            return (27);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc00000000)
-                    {
-                        if (value & 0x800000000)
-                            return (28);
-                        else
-                            return (29);
-                    }
-                    else
-                    {
-                        if (value & 0x200000000)
-                            return (30);
-                        else
-                            return (31);
-                    }
-                }
-            }
-        }
-    }
-    else
-    {
-        if (value & 0xffff0000)
-        {
-            if (value & 0xff000000)
-            {
-                if (value & 0xf0000000)
-                {
-                    if (value & 0xc0000000)
-                    {
-                        if (value & 0x80000000)
-                            return (32);
-                        else
-                            return (33);
-                    }
-                    else
-                    {
-                        if (value & 0x20000000)
-                            return (34);
-                        else
-                            return (35);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc000000)
-                    {
-                        if (value & 0x8000000)
-                            return (36);
-                        else
-                            return (37);
-                    }
-                    else
-                    {
-                        if (value & 0x2000000)
-                            return (38);
-                        else
-                            return (39);
-                    }
-                }
-            }
-            else
-            {
-                if (value & 0xf00000)
-                {
-                    if (value & 0xc00000)
-                    {
-                        if (value & 0x800000)
-                            return (40);
-                        else
-                            return (41);
-                    }
-                    else
-                    {
-                        if (value & 0x200000)
-                            return (42);
-                        else
-                            return (43);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc0000)
-                    {
-                        if (value & 0x80000)
-                            return (44);
-                        else
-                            return (45);
-                    }
-                    else
-                    {
-                        if (value & 0x20000)
-                            return (46);
-                        else
-                            return (47);
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (value & 0xff00)
-            {
-                if (value & 0xf000)
-                {
-                    if (value & 0xc000)
-                    {
-                        if (value & 0x8000)
-                            return (48);
-                        else
-                            return (49);
-                    }
-                    else
-                    {
-                        if (value & 0x2000)
-                            return (50);
-                        else
-                            return (51);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc00)
-                    {
-                        if (value & 0x800)
-                            return (52);
-                        else
-                            return (53);
-                    }
-                    else
-                    {
-                        if (value & 0x200)
-                            return (54);
-                        else
-                            return (55);
-                    }
-                }
-            }
-            else
-            {
-                if (value & 0xf0)
-                {
-                    if (value & 0xc0)
-                    {
-                        if (value & 0x80)
-                            return (56);
-                        else
-                            return (57);
-                    }
-                    else
-                    {
-                        if (value & 0x20)
-                            return (58);
-                        else
-                            return (59);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc)
-                    {
-                        if (value & 0x8)
-                            return (60);
-                        else
-                            return (61);
-                    }
-                    else
-                    {
-                        if (value & 0x2)
-                            return (62);
-                        else
-                            return (63);
-                    }
-                }
-            }
-        }
-    }
+    return (_lzcnt_u32(value));
 }
-
-__inline static int _LZCNT_UNIT_ALT(__UNIT_TYPE value)
+# 472 "pmc_internal.h"
+__inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
-    return (_LZCNT32_ALT(value));
+    return (_lzcnt_u32(value));
 
 
 
@@ -101153,62 +100628,100 @@ __inline static int _LZCNT_UNIT_ALT(__UNIT_TYPE value)
 
 }
 
-__inline static int _POPCNT_UNIT_ALT(__UNIT_TYPE value)
+__inline static unsigned char _LZCNT_ALT_8(unsigned char x)
 {
-    size_t bit_count = 0;
-
-
-    bit_count += value & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
+    if (x == 0)
+        return (sizeof(x) * 8);
+    _UINT32_T pos;
 
 
 
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-# 1057 "pmc_internal.h"
-    return (bit_count);
+    __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+
+
+
+    return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+}
+
+__inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
+{
+    if (x == 0)
+        return (sizeof(x) * 8);
+    _UINT32_T pos;
+
+
+
+    __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+
+
+
+    return (sizeof(x) * 8 - 1 - pos);
+}
+# 531 "pmc_internal.h"
+__inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
+{
+    if (x == 0)
+        return (sizeof(x) * 8);
+
+    _UINT32_T pos;
+
+
+
+    __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+# 557 "pmc_internal.h"
+    return (sizeof(x) * 8 - 1 - pos);
+}
+
+__inline static __UNIT_TYPE _TZCNT_UNIT(__UNIT_TYPE x)
+{
+
+    return (_tzcnt_u32(x));
+
+
+
+
+
+}
+
+__inline static __UNIT_TYPE _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
+{
+
+    return(__popcnt(~x & (x - 1)));
+
+
+
+
+
+}
+
+__inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
+{
+    if (x == 0)
+        return (sizeof(x) * 8);
+
+    _UINT32_T pos;
+
+
+
+    __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+# 608 "pmc_internal.h"
+    return (pos);
 }
 # 36 "pmc_initialize.c" 2
-# 53 "pmc_initialize.c"
+# 58 "pmc_initialize.c"
 static PMC_ENTRY_POINTS entry_points;
+PMC_CONFIGURATION_INFO configuration_info;
 
 
 
-__attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_Initialize()
+__attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_Initialize(PMC_CONFIGURATION_INFO* config)
 {
+    configuration_info = *config;
     PROCESSOR_FEATURES feature;
     feature.PROCESSOR_FEATURE_ADX = 
-# 60 "pmc_initialize.c" 3
+# 67 "pmc_initialize.c" 3
                                    0
-# 60 "pmc_initialize.c"
+# 67 "pmc_initialize.c"
                                         ;
     int cpu_id_buffer[4];
     __cpuid(cpu_id_buffer, 0);
@@ -101216,9 +100729,9 @@ __attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_In
     if (max_catagory < 1)
     {
         feature.PROCESSOR_FEATURE_POPCNT = 
-# 66 "pmc_initialize.c" 3
+# 73 "pmc_initialize.c" 3
                                           0
-# 66 "pmc_initialize.c"
+# 73 "pmc_initialize.c"
                                                ;
     }
     else
@@ -101230,55 +100743,77 @@ __attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_In
     if (max_catagory < 7)
     {
         feature.PROCESSOR_FEATURE_ADX = 
-# 76 "pmc_initialize.c" 3
+# 83 "pmc_initialize.c" 3
                                        0
-# 76 "pmc_initialize.c"
+# 83 "pmc_initialize.c"
                                             ;
-        feature.PROCESSOR_FEATURE_BMI2 = 
-# 77 "pmc_initialize.c" 3
+        feature.PROCESSOR_FEATURE_BMI1 = 
+# 84 "pmc_initialize.c" 3
                                         0
-# 77 "pmc_initialize.c"
+# 84 "pmc_initialize.c"
+                                             ;
+        feature.PROCESSOR_FEATURE_BMI2 = 
+# 85 "pmc_initialize.c" 3
+                                        0
+# 85 "pmc_initialize.c"
                                              ;
     }
     else
     {
         __cpuid(cpu_id_buffer, 7);
         feature.PROCESSOR_FEATURE_ADX = (cpu_id_buffer[1] & (1U << 19)) != 0;
+        feature.PROCESSOR_FEATURE_BMI1 = (cpu_id_buffer[1] & (1U << 3)) != 0;
         feature.PROCESSOR_FEATURE_BMI2 = (cpu_id_buffer[1] & (1U << 8)) != 0;
     }
 
     __cpuid(cpu_id_buffer, 0x80000000);
     int max_ex_category = cpu_id_buffer[0];
     if (max_ex_category < 0x80000001)
-        feature.PROCESSOR_FEATURE_LZCNT = 
-# 89 "pmc_initialize.c" 3
-                                         0
-# 89 "pmc_initialize.c"
-                                              ;
+        feature.PROCESSOR_FEATURE_ABM = 
+# 98 "pmc_initialize.c" 3
+                                       0
+# 98 "pmc_initialize.c"
+                                            ;
     else
     {
         __cpuid(cpu_id_buffer, 0x80000001);
-        feature.PROCESSOR_FEATURE_LZCNT = (cpu_id_buffer[2] & (1U << 5)) != 0;
+        feature.PROCESSOR_FEATURE_ABM = (cpu_id_buffer[2] & (1U << 5)) != 0;
     }
 
-    if (!Initialize_Add(&feature))
+    if (Initialize_Memory(&feature))
         return (
-# 97 "pmc_initialize.c" 3 4
+# 106 "pmc_initialize.c" 3 4
                ((void *)0)
-# 97 "pmc_initialize.c"
+# 106 "pmc_initialize.c"
                    );
-# 114 "pmc_initialize.c"
- entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;
- entry_points.PROCESSOR_FEATURE_BMI2 = feature.PROCESSOR_FEATURE_BMI2;
- entry_points.PROCESSOR_FEATURE_LZCNT = feature.PROCESSOR_FEATURE_LZCNT;
- entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
+    if (Initialize_From(&feature))
+        return (
+# 108 "pmc_initialize.c" 3 4
+               ((void *)0)
+# 108 "pmc_initialize.c"
+                   );
+    if (Initialize_To(&feature))
+        return (
+# 110 "pmc_initialize.c" 3 4
+               ((void *)0)
+# 110 "pmc_initialize.c"
+                   );
+# 129 "pmc_initialize.c"
+    entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
+    entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;
+ entry_points.PROCESSOR_FEATURE_BMI1 = feature.PROCESSOR_FEATURE_BMI1;
+    entry_points.PROCESSOR_FEATURE_BMI2 = feature.PROCESSOR_FEATURE_BMI2;
+    entry_points.PROCESSOR_FEATURE_ABM = feature.PROCESSOR_FEATURE_ABM;
  entry_points.PMC_TraceStatistics = PMC_TraceStatistics;
  entry_points.PMC_GetStatisticsInfo = PMC_GetStatisticsInfo;
  entry_points.PMC_From_I = PMC_From_I;
  entry_points.PMC_From_L = PMC_From_L;
- entry_points.PMC_To_X_I = PMC_To_X_I;
+    entry_points.PMC_From_B = PMC_From_B;
+    entry_points.PMC_Dispose = PMC_Dispose;
+    entry_points.PMC_To_X_I = PMC_To_X_I;
  entry_points.PMC_To_X_L = PMC_To_X_L;
- entry_points.PMC_Add_XI = PMC_Add_XI;
+    entry_points.PMC_To_X_B = PMC_To_X_B;
+    entry_points.PMC_Add_XI = PMC_Add_XI;
  entry_points.PMC_Add_XL = PMC_Add_XL;
  entry_points.PMC_Add_XX = PMC_Add_XX;
     return (&entry_points);

@@ -100624,7 +100624,7 @@ typedef struct _MODEMSETTINGS {
 # 131 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/windows.h" 2 3
 # 34 "pmc_from.c" 2
 # 1 "pmc_internal.h" 1
-# 34 "pmc_internal.h"
+# 37 "pmc_internal.h"
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 1 3
 # 38 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/intrin.h" 3
 # 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/setjmp.h" 1 3
@@ -101590,21 +101590,76 @@ void __writemsr(unsigned long msr, unsigned long long Value)
     char _InterlockedXor8_np(char *,char);
     short _InterlockedXor16_np(short *,short);
     __extension__ long long _InterlockedXor64_np(long long *,long long);
-# 35 "pmc_internal.h" 2
-
-
-
-
+# 38 "pmc_internal.h" 2
 
 # 1 "pmc.h" 1
-# 58 "pmc.h"
+# 36 "pmc.h"
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stdint.h" 1 3 4
+# 9 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stdint.h" 3 4
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdint.h" 1 3 4
+# 32 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdint.h" 3 4
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stddef.h" 1 3 4
+# 1 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stddef.h" 1 3 4
+# 2 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stddef.h" 2 3 4
+# 33 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdint.h" 2 3 4
 
-# 58 "pmc.h"
-typedef 
-# 58 "pmc.h" 3
-       int 
-# 58 "pmc.h"
-               PMC_STATUS_CODE;
+
+typedef signed char int8_t;
+typedef unsigned char uint8_t;
+typedef short int16_t;
+typedef unsigned short uint16_t;
+typedef int int32_t;
+typedef unsigned uint32_t;
+__extension__ typedef long long int64_t;
+__extension__ typedef unsigned long long uint64_t;
+
+
+typedef signed char int_least8_t;
+typedef unsigned char uint_least8_t;
+typedef short int_least16_t;
+typedef unsigned short uint_least16_t;
+typedef int int_least32_t;
+typedef unsigned uint_least32_t;
+__extension__ typedef long long int_least64_t;
+__extension__ typedef unsigned long long uint_least64_t;
+
+
+
+
+
+typedef signed char int_fast8_t;
+typedef unsigned char uint_fast8_t;
+typedef short int_fast16_t;
+typedef unsigned short uint_fast16_t;
+typedef int int_fast32_t;
+typedef unsigned int uint_fast32_t;
+__extension__ typedef long long int_fast64_t;
+__extension__ typedef unsigned long long uint_fast64_t;
+
+
+__extension__ typedef long long intmax_t;
+__extension__ typedef unsigned long long uintmax_t;
+# 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stdint.h" 2 3 4
+# 37 "pmc.h" 2
+# 69 "pmc.h"
+
+# 69 "pmc.h"
+typedef int32_t _INT32_T;
+typedef int64_t _INT64_T;
+typedef uint8_t _BYTE_T;
+typedef uint32_t _UINT32_T;
+typedef uint64_t _UINT64_T;
+
+
+
+
+typedef struct __tag_PMC_CONFIGURATION_INFO
+{
+    unsigned MEMORY_VERIFICATION_ENABLED : 1;
+} PMC_CONFIGURATION_INFO;
+
+
+typedef int PMC_STATUS_CODE;
 
 typedef struct __tag_PMC_STATISTICS_INFO
 {
@@ -101619,115 +101674,122 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
     unsigned PROCESSOR_FEATURE_POPCNT : 1;
     unsigned PROCESSOR_FEATURE_ADX : 1;
-    unsigned PROCESSOR_FEATURE_LZCNT : 1;
+    unsigned PROCESSOR_FEATURE_BMI1 : 1;
     unsigned PROCESSOR_FEATURE_BMI2 : 1;
+    unsigned PROCESSOR_FEATURE_ABM : 1;
 
 
-    void (* PMC_TraceStatistics)(int);
-    void (* PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO*);
+    void ( * PMC_TraceStatistics)(int enabled);
+    void ( * PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO* statistics_info);
 
 
-    PMC_STATUS_CODE (* PMC_From_I)(
-# 81 "pmc.h" 3
-                                             int
-# 81 "pmc.h"
-                                                    , HANDLE*);
-    PMC_STATUS_CODE (* PMC_From_L)(
-# 82 "pmc.h" 3
-                                             long long
-# 82 "pmc.h"
-                                                    , HANDLE*);
+    PMC_STATUS_CODE ( * PMC_From_I)(_UINT32_T x, HANDLE* pp);
 
 
-    PMC_STATUS_CODE (* PMC_To_X_I)(HANDLE, 
-# 85 "pmc.h" 3
-                                                     int
-# 85 "pmc.h"
-                                                            *);
-    PMC_STATUS_CODE (* PMC_To_X_L)(HANDLE, 
-# 86 "pmc.h" 3
-                                                     long long
-# 86 "pmc.h"
-                                                            *);
-    PMC_STATUS_CODE (* PMC_Add_XI)(HANDLE, 
-# 87 "pmc.h" 3
-                                                     int
-# 87 "pmc.h"
-                                                            , HANDLE*);
-    PMC_STATUS_CODE (* PMC_Add_XL)(HANDLE, 
-# 88 "pmc.h" 3
-                                                     long long
-# 88 "pmc.h"
-                                                            , HANDLE*);
-    PMC_STATUS_CODE (* PMC_Add_XX)(HANDLE, HANDLE, HANDLE*);
+    PMC_STATUS_CODE ( * PMC_From_L)(_UINT64_T x, HANDLE* pp);
+
+
+    PMC_STATUS_CODE( * PMC_From_B)(unsigned char* buffer, size_t count, HANDLE* pp);
+
+
+    void ( * PMC_Dispose)(HANDLE p);
+
+
+    PMC_STATUS_CODE ( * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
+    PMC_STATUS_CODE ( * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
+    PMC_STATUS_CODE ( * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+
+    PMC_STATUS_CODE ( * PMC_Add_XI)(HANDLE p, _UINT32_T x, HANDLE* o);
+    PMC_STATUS_CODE ( * PMC_Add_XL)(HANDLE p, _UINT64_T x, HANDLE* o);
+    PMC_STATUS_CODE ( * PMC_Add_XX)(HANDLE p1, HANDLE p2, HANDLE* o);
 } PMC_ENTRY_POINTS;
 
 
 
 
 
-__attribute__((dllexport)) PMC_ENTRY_POINTS* PMC_Initialize();
-# 41 "pmc_internal.h" 2
+__attribute__((dllexport)) PMC_ENTRY_POINTS* PMC_Initialize(PMC_CONFIGURATION_INFO*);
+# 40 "pmc_internal.h" 2
 
 
 
 
 
 
-typedef unsigned 
-# 47 "pmc_internal.h" 3
-                long long 
-# 47 "pmc_internal.h"
-                        __UNIT_TYPE;
-
-
-
-
-
-
-
+typedef _UINT64_T __UNIT_TYPE;
+# 56 "pmc_internal.h"
 typedef struct _tag_PROCESSOR_FEATURES
 {
+
     unsigned PROCESSOR_FEATURE_POPCNT : 1;
+
+
     unsigned PROCESSOR_FEATURE_ADX : 1;
-    unsigned PROCESSOR_FEATURE_LZCNT : 1;
+
+
+    unsigned PROCESSOR_FEATURE_BMI1 : 1;
+
+
     unsigned PROCESSOR_FEATURE_BMI2 : 1;
+
+
+    unsigned PROCESSOR_FEATURE_ABM : 1;
 } PROCESSOR_FEATURES;
 
-typedef struct __tag_UNIT_BUFFER
+typedef struct __tag_NUMBER_HEADER
 {
-
     size_t UNIT_WORD_COUNT;
     size_t UNIT_BIT_COUNT;
-    int HASH_CODE;
+    __UNIT_TYPE HASH_CODE;
+    unsigned IS_STATIC : 1;
     unsigned IS_ZERO : 1;
     unsigned IS_ONE : 1;
     unsigned IS_EVEN : 1;
     unsigned IS_POWER_OF_TWO : 1;
-    unsigned IS_HASH_CALCULATED : 1;
 
+    size_t BLOCK_COUNT;
 
 
 
     __UNIT_TYPE* BLOCK;
-} UNIT_BUFFER;
+} NUMBER_HEADER;
 
 
 
 
 
-HANDLE hLocalHeap;
-# 94 "pmc_internal.h"
-extern __UNIT_TYPE* AllocateBlockByBits(size_t);
+
+extern PMC_CONFIGURATION_INFO configuration_info;
 
 
-extern void DeallocateBlock(__UNIT_TYPE*);
+extern NUMBER_HEADER number_zero;
 
 
-extern void CommitBlock(__UNIT_TYPE*);
+extern BOOL AllocateHeapArea(void);
 
 
-extern PMC_STATUS_CODE CheckBlock(__UNIT_TYPE*);
+extern void DeallocateHeapArea(void);
+
+
+extern PMC_STATUS_CODE AttatchNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_length);
+
+
+extern PMC_STATUS_CODE AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_length);
+
+
+extern void DetatchNumber(NUMBER_HEADER* p);
+
+
+extern void DeallocateNumber(NUMBER_HEADER* p);
+
+
+extern void CommitNumber(NUMBER_HEADER* p);
+
+
+extern PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p);
+
+
+extern PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* p, NUMBER_HEADER** op);
 
 
 extern void IncrementDIV32Counter(void);
@@ -101742,309 +101804,141 @@ extern void IncrementMULTI32Counter(void);
 extern void IncrementMULTI64Counter(void);
 
 
-extern int Initialize_Add(PROCESSOR_FEATURES* feature);
-# 130 "pmc_internal.h"
-extern void PMC_TraceStatistics(int);
-extern void PMC_GetStatisticsInfo(PMC_STATISTICS_INFO*);
+extern PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o);
 
-extern PMC_STATUS_CODE PMC_From_I(
-# 133 "pmc_internal.h" 3
-                                            int
-# 133 "pmc_internal.h"
-                                                   , HANDLE*);
-extern PMC_STATUS_CODE PMC_From_L(
-# 134 "pmc_internal.h" 3
-                                            long long
-# 134 "pmc_internal.h"
-                                                   , HANDLE*);
-extern PMC_STATUS_CODE PMC_To_X_I(HANDLE, 
-# 135 "pmc_internal.h" 3
-                                                    int
-# 135 "pmc_internal.h"
-                                                           *);
-extern PMC_STATUS_CODE PMC_To_X_L(HANDLE, 
-# 136 "pmc_internal.h" 3
-                                                    long long
-# 136 "pmc_internal.h"
-                                                           *);
-extern PMC_STATUS_CODE PMC_Add_XI(HANDLE, 
-# 137 "pmc_internal.h" 3
-                                                    int
-# 137 "pmc_internal.h"
-                                                           , HANDLE*);
-extern PMC_STATUS_CODE PMC_Add_XL(HANDLE, 
-# 138 "pmc_internal.h" 3
-                                                    long long
-# 138 "pmc_internal.h"
-                                                           , HANDLE*);
-extern PMC_STATUS_CODE PMC_Add_XX(HANDLE, HANDLE, HANDLE*);
+
+extern PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o);
+
+
+extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
+
+
+extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
+
+
+extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
+
+
+extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
+# 169 "pmc_internal.h"
+extern void PMC_TraceStatistics(int enabled);
+extern void PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
+
+extern PMC_STATUS_CODE PMC_From_I(_UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE PMC_From_L(_UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE PMC_From_B(unsigned char* buffer, size_t count, HANDLE* o);
+
+extern void PMC_Dispose(HANDLE p);
+
+extern PMC_STATUS_CODE PMC_To_X_I(HANDLE p, _UINT32_T* o);
+extern PMC_STATUS_CODE PMC_To_X_L(HANDLE p, _UINT64_T* o);
+extern PMC_STATUS_CODE PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+
+extern PMC_STATUS_CODE PMC_Add_XI(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE PMC_Add_XL(HANDLE p, _UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE PMC_Add_XX(HANDLE p1, HANDLE p2, HANDLE* o);
 
 
 
 
-__inline static unsigned 
-# 144 "pmc_internal.h" 3
-                        long long 
-# 144 "pmc_internal.h"
-                                _FROMWORDTODWORD(unsigned 
-# 144 "pmc_internal.h" 3
-                                                          int 
-# 144 "pmc_internal.h"
-                                                                  value_high, unsigned 
-# 144 "pmc_internal.h" 3
-                                                                                       int 
-# 144 "pmc_internal.h"
-                                                                                               value_low)
+__inline static int _EQUALS_MEMORY(unsigned char* buffer1, size_t count1, unsigned char* buffer2, size_t count2)
 {
-    return (((unsigned 
-# 146 "pmc_internal.h" 3
-                      long long
-# 146 "pmc_internal.h"
-                             )value_high << 32) | value_low);
+    if (count1 != count2)
+        return (-1);
+    while (count1 > 0)
+    {
+        if (*buffer1 != *buffer2)
+            return (-1);
+        ++buffer1;
+        ++buffer2;
+        --count1;
+    }
+    return (0);
 }
 
-__inline static unsigned 
-# 149 "pmc_internal.h" 3
-                        int 
-# 149 "pmc_internal.h"
-                                _FROMDWORDTOWORD(unsigned 
-# 149 "pmc_internal.h" 3
-                                                          long long 
-# 149 "pmc_internal.h"
-                                                                  value, unsigned 
-# 149 "pmc_internal.h" 3
-                                                                                  int 
-# 149 "pmc_internal.h"
-                                                                                          *result_high)
+__inline static void _COPY_MEMORY_BYTE(void* d, const void* s, size_t count)
 {
-    *result_high = (unsigned 
-# 151 "pmc_internal.h" 3
-                            int
-# 151 "pmc_internal.h"
-                                   )(value >> 32);
-    return ((unsigned 
-# 152 "pmc_internal.h" 3
-                     int
-# 152 "pmc_internal.h"
-                            )value);
+    __movsb(d, s, count);
+}
+
+__inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T count)
+{
+    __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+}
+
+
+__inline static void _COPY_MEMORY_64(_UINT64_T* d, const _UINT64_T* s, _UINT64_T count)
+{
+    __movsq(d, s, count);
+}
+
+
+__inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
+{
+
+
+
+    __movsq(d, s, count);
+
+
+
+}
+
+__inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
+{
+    __stosb(d, 0, count);
+}
+
+__inline static void _ZERO_MEMORY_32(_UINT32_T* d, _UINT32_T count)
+{
+    __stosd((unsigned long*)d, 0, (unsigned long)count);
+}
+
+
+__inline static void _ZERO_MEMORY_64(_UINT64_T* d, _UINT64_T count)
+{
+    __stosq(d, 0, count);
+}
+
+
+__inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
+{
+
+
+
+    __stosq(d, 0, count);
+
+
+
+}
+
+__inline static _UINT64_T _FROMWORDTODWORD(_UINT32_T value_high, _UINT32_T value_low)
+{
+    return (((_UINT64_T)value_high << 32) | value_low);
+}
+
+__inline static _UINT32_T _FROMDWORDTOWORD(_UINT64_T value, _UINT32_T *result_high)
+{
+    *result_high = (_UINT32_T)(value >> 32);
+    return ((_UINT32_T)value);
 }
 
 __inline static __UNIT_TYPE _MAKE_MASK_UNIT(int bits)
 {
-    switch (bits)
-    {
-    case 0:
-        return (0x0);
-    case 1:
-        return (0x1);
-    case 2:
-        return (0x3);
-    case 3:
-        return (0x7);
-    case 4:
-        return (0xf);
-    case 5:
-        return (0x1f);
-    case 6:
-        return (0x3f);
-    case 7:
-        return (0x7f);
-    case 8:
-        return (0xff);
-    case 9:
-        return (0x1ff);
-    case 10:
-        return (0x3ff);
-    case 11:
-        return (0x7ff);
-    case 12:
-        return (0xfff);
-    case 13:
-        return (0x1fff);
-    case 14:
-        return (0x3fff);
-    case 15:
-        return (0x7fff);
-    case 16:
-        return (0xffff);
-    case 17:
-        return (0x1ffff);
-    case 18:
-        return (0x3ffff);
-    case 19:
-        return (0x7ffff);
-    case 20:
-        return (0xfffff);
-    case 21:
-        return (0x1fffff);
-    case 22:
-        return (0x3fffff);
-    case 23:
-        return (0x7fffff);
-    case 24:
-        return (0xffffff);
-    case 25:
-        return (0x1ffffff);
-    case 26:
-        return (0x3ffffff);
-    case 27:
-        return (0x7ffffff);
-    case 28:
-        return (0xfffffff);
-    case 29:
-        return (0x1fffffff);
-    case 30:
-        return (0x3fffffff);
-    case 31:
-        return (0x7fffffff);
-    case 32:
-        return (0xffffffff);
-
-    case 33:
-        return (0x1ffffffff);
-    case 34:
-        return (0x3ffffffff);
-    case 35:
-        return (0x7ffffffff);
-    case 36:
-        return (0xfffffffff);
-    case 37:
-        return (0x1fffffffff);
-    case 38:
-        return (0x3fffffffff);
-    case 39:
-        return (0x7fffffffff);
-    case 40:
-        return (0xffffffffff);
-    case 41:
-        return (0x1ffffffffff);
-    case 42:
-        return (0x3ffffffffff);
-    case 43:
-        return (0x7ffffffffff);
-    case 44:
-        return (0xfffffffffff);
-    case 45:
-        return (0x1fffffffffff);
-    case 46:
-        return (0x3fffffffffff);
-    case 47:
-        return (0x7fffffffffff);
-    case 48:
-        return (0xffffffffffff);
-    case 49:
-        return (0x1ffffffffffff);
-    case 50:
-        return (0x3ffffffffffff);
-    case 51:
-        return (0x7ffffffffffff);
-    case 52:
-        return (0xfffffffffffff);
-    case 53:
-        return (0x1fffffffffffff);
-    case 54:
-        return (0x3fffffffffffff);
-    case 55:
-        return (0x7fffffffffffff);
-    case 56:
-        return (0xffffffffffffff);
-    case 57:
-        return (0x1ffffffffffffff);
-    case 58:
-        return (0x3ffffffffffffff);
-    case 59:
-        return (0x7ffffffffffffff);
-    case 60:
-        return (0xfffffffffffffff);
-    case 61:
-        return (0x1fffffffffffffff);
-    case 62:
-        return (0x3fffffffffffffff);
-    case 63:
-        return (0x7fffffffffffffff);
-    case 64:
-        return (0xffffffffffffffff);
-
-
-    default:
-        return ((__UNIT_TYPE)-1);
-    }
+    return ((1 << bits) - 1);
 }
 
-__inline static size_t DIVIDE_CEILING(size_t u, size_t v)
+__inline static __UNIT_TYPE _DIVIDE_CEILING_UNIT(__UNIT_TYPE u, __UNIT_TYPE v)
 {
     return ((u + v - 1) / v);
 }
 
-__inline static unsigned 
-# 302 "pmc_internal.h" 3
-                        int 
-# 302 "pmc_internal.h"
-                                DIVIDE_CEILING32(unsigned 
-# 302 "pmc_internal.h" 3
-                                                          int 
-# 302 "pmc_internal.h"
-                                                                  u, unsigned 
-# 302 "pmc_internal.h" 3
-                                                                              int 
-# 302 "pmc_internal.h"
-                                                                                      v)
+__inline static size_t _DIVIDE_CEILING_SIZE(size_t u, size_t v)
 {
     return ((u + v - 1) / v);
 }
 
-__inline static unsigned 
-# 307 "pmc_internal.h" 3
-                        long long 
-# 307 "pmc_internal.h"
-                                DIVIDE_CEILING64(unsigned 
-# 307 "pmc_internal.h" 3
-                                                          long long 
-# 307 "pmc_internal.h"
-                                                                  u, unsigned 
-# 307 "pmc_internal.h" 3
-                                                                              long long 
-# 307 "pmc_internal.h"
-                                                                                      v)
-{
-    return ((u + v - 1) / v);
-}
-
-__inline static size_t MAXIMUM(size_t x, size_t y)
-{
-    return (x >= y ? x : y);
-}
-
-__inline static unsigned 
-# 317 "pmc_internal.h" 3
-                        int 
-# 317 "pmc_internal.h"
-                                MAXIMUM32(unsigned 
-# 317 "pmc_internal.h" 3
-                                                   int 
-# 317 "pmc_internal.h"
-                                                           x, unsigned 
-# 317 "pmc_internal.h" 3
-                                                                       int 
-# 317 "pmc_internal.h"
-                                                                               y)
-{
-    return (x >= y ? x : y);
-}
-
-__inline static unsigned 
-# 322 "pmc_internal.h" 3
-                        long long 
-# 322 "pmc_internal.h"
-                                MAXIMUM64(unsigned 
-# 322 "pmc_internal.h" 3
-                                                   long long 
-# 322 "pmc_internal.h"
-                                                           x, unsigned 
-# 322 "pmc_internal.h" 3
-                                                                       long long 
-# 322 "pmc_internal.h"
-                                                                               y)
+__inline static __UNIT_TYPE _MAXIMUM_UNIT(__UNIT_TYPE x, __UNIT_TYPE y)
 {
     return (x >= y ? x : y);
 }
@@ -102055,6 +101949,17 @@ __inline static char _ADD_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 
     return (_addcarry_u64(carry, u, v, w));
+
+
+
+}
+
+__inline static char _ADDX_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+{
+
+
+
+    return (_addcarryx_u64(carry, u, v, w));
 
 
 
@@ -102073,16 +101978,15 @@ __inline static char _SUBTRACT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, _
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_high)
 {
-# 362 "pmc_internal.h"
+# 337 "pmc_internal.h"
     return (_umul128(u, v, w_high));
 
 
 
 }
-
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
-# 381 "pmc_internal.h"
+# 355 "pmc_internal.h"
     __UNIT_TYPE q;
 
 
@@ -102099,7 +102003,7 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
 
 __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE *q)
 {
-# 411 "pmc_internal.h"
+# 385 "pmc_internal.h"
     __asm__("divq %3": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
 
 
@@ -102121,674 +102025,333 @@ __inline static void _MEMCPY_UNIT(__UNIT_TYPE* dst, __UNIT_TYPE* src, size_t cou
 
 }
 
-__inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, size_t count)
+__inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 {
 
 
 
     return (
-# 437 "pmc_internal.h" 3
+# 411 "pmc_internal.h" 3
            __rolq
-# 437 "pmc_internal.h"
+# 411 "pmc_internal.h"
                   (x, count));
 
 
 
 }
 
-__inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, size_t count)
+__inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 {
 
 
 
     return (
-# 448 "pmc_internal.h" 3
+# 422 "pmc_internal.h" 3
            __rorq
-# 448 "pmc_internal.h"
+# 422 "pmc_internal.h"
                   (x, count));
 
 
 
 }
 
-__inline static int _LZCNT32(unsigned 
-# 454 "pmc_internal.h" 3
-                                     int 
-# 454 "pmc_internal.h"
-                                             value)
+__inline static __UNIT_TYPE _POPCNT_UNIT(__UNIT_TYPE value)
+{
+
+
+
+    return ((int)__popcnt64(value));
+
+
+
+}
+
+__inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
+{
+
+
+
+
+
+
+
+    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);
+    x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333);
+    x = (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f0f0f0f0f);
+    x = (x & 0x00ff00ff00ff00ff) + ((x >> 8) & 0x00ff00ff00ff00ff);
+    x = (x & 0x0000ffff0000ffff) + ((x >> 16) & 0x0000ffff0000ffff);
+    x = (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);
+
+
+
+    return(x);
+}
+
+__inline static _UINT32_T _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
 
 
-__inline static int _LZCNT64(unsigned 
-# 460 "pmc_internal.h" 3
-                                     long long 
-# 460 "pmc_internal.h"
-                                             value)
+__inline static _UINT64_T _LZCNT_64(_UINT64_T value)
 {
     return (_lzcnt_u64(value));
 }
 
 
-__inline static int _LZCNT_UNIT(__UNIT_TYPE value)
+__inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
 
 
-    return (_LZCNT64(value));
+    return (_lzcnt_u64(value));
 
 
 
 }
 
-__inline static int _POPCNT_UNIT(__UNIT_TYPE value)
+__inline static unsigned char _LZCNT_ALT_8(unsigned char x)
+{
+    if (x == 0)
+        return (sizeof(x) * 8);
+    _UINT32_T pos;
+
+
+
+    __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+
+
+
+    return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+}
+
+__inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
+{
+    if (x == 0)
+        return (sizeof(x) * 8);
+    _UINT32_T pos;
+
+
+
+    __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+
+
+
+    return (sizeof(x) * 8 - 1 - pos);
+}
+
+
+__inline static _UINT64_T _LZCNT_ALT_64(_UINT64_T x)
+{
+    if (x == 0)
+        return (sizeof(x) * 8);
+
+
+
+
+    _UINT64_T pos;
+    __asm__( "bsrq %1, %0" : "=r"(pos) : "rm"(x) );
+
+
+
+    return (sizeof(x) * 8 - 1 - pos);
+}
+
+
+__inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
+{
+    if (x == 0)
+        return (sizeof(x) * 8);
+# 549 "pmc_internal.h"
+    _UINT64_T pos;
+    __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+
+
+
+
+
+
+    return (sizeof(x) * 8 - 1 - pos);
+}
+
+__inline static __UNIT_TYPE _TZCNT_UNIT(__UNIT_TYPE x)
 {
 
 
 
-    return (__popcnt64(value));
+    return (_tzcnt_u64(x));
 
 
 
 }
 
-__inline static int _LZCNT32_ALT(unsigned 
-# 488 "pmc_internal.h" 3
-                                         int 
-# 488 "pmc_internal.h"
-                                                 value)
-{
-    if (value & 0xffff0000)
-    {
-        if (value & 0xff000000)
-        {
-            if (value & 0xf0000000)
-            {
-                if (value & 0xc0000000)
-                {
-                    if (value & 0x80000000)
-                        return (0);
-                    else
-                        return (1);
-                }
-                else
-                {
-                    if (value & 0x20000000)
-                        return (2);
-                    else
-                        return (3);
-                }
-            }
-            else
-            {
-                if (value & 0xc000000)
-                {
-                    if (value & 0x8000000)
-                        return (4);
-                    else
-                        return (5);
-                }
-                else
-                {
-                    if (value & 0x2000000)
-                        return (6);
-                    else
-                        return (7);
-                }
-            }
-        }
-        else
-        {
-            if (value & 0xf00000)
-            {
-                if (value & 0xc00000)
-                {
-                    if (value & 0x800000)
-                        return (8);
-                    else
-                        return (9);
-                }
-                else
-                {
-                    if (value & 0x200000)
-                        return (10);
-                    else
-                        return (11);
-                }
-            }
-            else
-            {
-                if (value & 0xc0000)
-                {
-                    if (value & 0x80000)
-                        return (12);
-                    else
-                        return (13);
-                }
-                else
-                {
-                    if (value & 0x20000)
-                        return (14);
-                    else
-                        return (15);
-                }
-            }
-        }
-    }
-    else
-    {
-        if (value & 0xff00)
-        {
-            if (value & 0xf000)
-            {
-                if (value & 0xc000)
-                {
-                    if (value & 0x8000)
-                        return (16);
-                    else
-                        return (17);
-                }
-                else
-                {
-                    if (value & 0x2000)
-                        return (18);
-                    else
-                        return (19);
-                }
-            }
-            else
-            {
-                if (value & 0xc00)
-                {
-                    if (value & 0x800)
-                        return (20);
-                    else
-                        return (21);
-                }
-                else
-                {
-                    if (value & 0x200)
-                        return (22);
-                    else
-                        return (23);
-                }
-            }
-        }
-        else
-        {
-            if (value & 0xf0)
-            {
-                if (value & 0xc0)
-                {
-                    if (value & 0x80)
-                        return (24);
-                    else
-                        return (25);
-                }
-                else
-                {
-                    if (value & 0x20)
-                        return (26);
-                    else
-                        return (27);
-                }
-            }
-            else
-            {
-                if (value & 0xc)
-                {
-                    if (value & 0x8)
-                        return (28);
-                    else
-                        return (29);
-                }
-                else
-                {
-                    if (value & 0x2)
-                        return (30);
-                    else
-                        return (31);
-                }
-            }
-        }
-    }
-}
-
-__inline static int _LZCNT64_ALT(unsigned 
-# 646 "pmc_internal.h" 3
-                                         long long 
-# 646 "pmc_internal.h"
-                                                 value)
-{
-    if (value & 0xffffffff00000000)
-    {
-        if (value & 0xffff000000000000)
-        {
-            if (value & 0xff00000000000000)
-            {
-                if (value & 0xf000000000000000)
-                {
-                    if (value & 0xc000000000000000)
-                    {
-                        if (value & 0x8000000000000000)
-                            return (0);
-                        else
-                            return (1);
-                    }
-                    else
-                    {
-                        if (value & 0x2000000000000000)
-                            return (2);
-                        else
-                            return (3);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc00000000000000)
-                    {
-                        if (value & 0x800000000000000)
-                            return (4);
-                        else
-                            return (5);
-                    }
-                    else
-                    {
-                        if (value & 0x200000000000000)
-                            return (6);
-                        else
-                            return (7);
-                    }
-                }
-            }
-            else
-            {
-                if (value & 0xf0000000000000)
-                {
-                    if (value & 0xc0000000000000)
-                    {
-                        if (value & 0x80000000000000)
-                            return (8);
-                        else
-                            return (9);
-                    }
-                    else
-                    {
-                        if (value & 0x20000000000000)
-                            return (10);
-                        else
-                            return (11);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc000000000000)
-                    {
-                        if (value & 0x8000000000000)
-                            return (12);
-                        else
-                            return (13);
-                    }
-                    else
-                    {
-                        if (value & 0x2000000000000)
-                            return (14);
-                        else
-                            return (15);
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (value & 0xff0000000000)
-            {
-                if (value & 0xf00000000000)
-                {
-                    if (value & 0xc00000000000)
-                    {
-                        if (value & 0x800000000000)
-                            return (16);
-                        else
-                            return (17);
-                    }
-                    else
-                    {
-                        if (value & 0x200000000000)
-                            return (18);
-                        else
-                            return (19);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc0000000000)
-                    {
-                        if (value & 0x80000000000)
-                            return (20);
-                        else
-                            return (21);
-                    }
-                    else
-                    {
-                        if (value & 0x20000000000)
-                            return (22);
-                        else
-                            return (23);
-                    }
-                }
-            }
-            else
-            {
-                if (value & 0xf000000000)
-                {
-                    if (value & 0xc000000000)
-                    {
-                        if (value & 0x8000000000)
-                            return (24);
-                        else
-                            return (25);
-                    }
-                    else
-                    {
-                        if (value & 0x2000000000)
-                            return (26);
-                        else
-                            return (27);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc00000000)
-                    {
-                        if (value & 0x800000000)
-                            return (28);
-                        else
-                            return (29);
-                    }
-                    else
-                    {
-                        if (value & 0x200000000)
-                            return (30);
-                        else
-                            return (31);
-                    }
-                }
-            }
-        }
-    }
-    else
-    {
-        if (value & 0xffff0000)
-        {
-            if (value & 0xff000000)
-            {
-                if (value & 0xf0000000)
-                {
-                    if (value & 0xc0000000)
-                    {
-                        if (value & 0x80000000)
-                            return (32);
-                        else
-                            return (33);
-                    }
-                    else
-                    {
-                        if (value & 0x20000000)
-                            return (34);
-                        else
-                            return (35);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc000000)
-                    {
-                        if (value & 0x8000000)
-                            return (36);
-                        else
-                            return (37);
-                    }
-                    else
-                    {
-                        if (value & 0x2000000)
-                            return (38);
-                        else
-                            return (39);
-                    }
-                }
-            }
-            else
-            {
-                if (value & 0xf00000)
-                {
-                    if (value & 0xc00000)
-                    {
-                        if (value & 0x800000)
-                            return (40);
-                        else
-                            return (41);
-                    }
-                    else
-                    {
-                        if (value & 0x200000)
-                            return (42);
-                        else
-                            return (43);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc0000)
-                    {
-                        if (value & 0x80000)
-                            return (44);
-                        else
-                            return (45);
-                    }
-                    else
-                    {
-                        if (value & 0x20000)
-                            return (46);
-                        else
-                            return (47);
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (value & 0xff00)
-            {
-                if (value & 0xf000)
-                {
-                    if (value & 0xc000)
-                    {
-                        if (value & 0x8000)
-                            return (48);
-                        else
-                            return (49);
-                    }
-                    else
-                    {
-                        if (value & 0x2000)
-                            return (50);
-                        else
-                            return (51);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc00)
-                    {
-                        if (value & 0x800)
-                            return (52);
-                        else
-                            return (53);
-                    }
-                    else
-                    {
-                        if (value & 0x200)
-                            return (54);
-                        else
-                            return (55);
-                    }
-                }
-            }
-            else
-            {
-                if (value & 0xf0)
-                {
-                    if (value & 0xc0)
-                    {
-                        if (value & 0x80)
-                            return (56);
-                        else
-                            return (57);
-                    }
-                    else
-                    {
-                        if (value & 0x20)
-                            return (58);
-                        else
-                            return (59);
-                    }
-                }
-                else
-                {
-                    if (value & 0xc)
-                    {
-                        if (value & 0x8)
-                            return (60);
-                        else
-                            return (61);
-                    }
-                    else
-                    {
-                        if (value & 0x2)
-                            return (62);
-                        else
-                            return (63);
-                    }
-                }
-            }
-        }
-    }
-}
-
-__inline static int _LZCNT_UNIT_ALT(__UNIT_TYPE value)
+__inline static __UNIT_TYPE _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
 {
 
 
 
-    return (_LZCNT64_ALT(value));
+    return(__popcnt64(~x & (x - 1)));
 
 
 
 }
 
-__inline static int _POPCNT_UNIT_ALT(__UNIT_TYPE value)
+__inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
-    size_t bit_count = 0;
-
-
-    bit_count += value & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-
-
-
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
+    if (x == 0)
+        return (sizeof(x) * 8);
+# 600 "pmc_internal.h"
+    _UINT64_T pos;
+    __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
 
 
 
 
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
 
-
-
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-    bit_count += (value >>= 1) & 1;
-
-
-    return (bit_count);
+    return (pos);
 }
 # 35 "pmc_from.c" 2
 
-
-PMC_STATUS_CODE PMC_From_I(
-# 37 "pmc_from.c" 3
-                                     int 
-# 37 "pmc_from.c"
-                                             x, HANDLE* o)
+PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o)
 {
-    return ((-4));
+    PMC_STATUS_CODE result;
+    if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x))) != (0))
+        return (result);
+    (*o)->BLOCK[0] = x;
+    CommitNumber(*o);
+    return ((0));
 }
 
-PMC_STATUS_CODE PMC_From_L(
-# 42 "pmc_from.c" 3
-                                     long long 
-# 42 "pmc_from.c"
-                                             x, HANDLE* o)
+PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o)
 {
-    return ((-4));
+    PMC_STATUS_CODE result;
+    if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
+    {
+
+        return ((-4));
+    }
+    else if (sizeof(__UNIT_TYPE) < sizeof(x))
+    {
+
+
+        _UINT32_T x_hi;
+        _UINT32_T x_lo = _FROMDWORDTOWORD(x, &x_hi);
+        if (x_hi == 0)
+        {
+            __UNIT_TYPE x_bit_length = sizeof(x_lo) * 8 - _LZCNT_ALT_32(x_lo);
+            if ((result = AllocateNumber(o, x_bit_length)) != (0))
+                return (result);
+        }
+        else
+        {
+            __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_32(x_hi);
+            if ((result = AllocateNumber(o, x_bit_length)) != (0))
+                return (result);
+            (*o)->BLOCK[1] = x_hi;
+        }
+        (*o)->BLOCK[0] = x_lo;
+    }
+    else
+    {
+
+
+        __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x);
+        if ((result = AllocateNumber(o, x_bit_length)) != (0))
+            return (result);
+        (*o)->BLOCK[0] = (__UNIT_TYPE)x;
+    }
+    CommitNumber(*o);
+    return ((0));
+}
+
+PMC_STATUS_CODE PMC_From_I(_UINT32_T x, HANDLE* o)
+{
+    PMC_STATUS_CODE result;
+    if (sizeof(__UNIT_TYPE) < sizeof(x))
+        return ((-4));
+    if (x == 0)
+        *o = &number_zero;
+    else
+    {
+        NUMBER_HEADER* p;
+        if ((result = From_I_Imp(x, &p)) != (0))
+            return (result);
+        *o = p;
+    }
+
+
+
+
+    return ((0));
+}
+
+PMC_STATUS_CODE PMC_From_L(_UINT64_T x, HANDLE* o)
+{
+    NUMBER_HEADER* p;
+    PMC_STATUS_CODE result;
+    if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
+    {
+
+        return ((-4));
+    }
+    if (x == 0)
+        *o = &number_zero;
+    else
+    {
+        if ((result = From_L_Imp(x, &p)) != (0))
+            return (result);
+    }
+
+
+
+
+    return ((0));
+}
+
+static __UNIT_TYPE CountActualBitsFromBuffer(unsigned char* p, size_t count)
+{
+    p += count;
+    while (count > 0)
+    {
+        --p;
+        if (*p != 0)
+            return (count * 8 - _LZCNT_ALT_8(*p));
+        --count;
+    }
+    return (0);
+}
+
+
+PMC_STATUS_CODE PMC_From_B(unsigned char* buffer, size_t count, HANDLE* o)
+{
+    PMC_STATUS_CODE result;
+    if (buffer == 
+# 149 "pmc_from.c" 3 4
+                 ((void *)0)
+# 149 "pmc_from.c"
+                     )
+        return ((-1));
+    __UNIT_TYPE bit_count = CountActualBitsFromBuffer(buffer, count);
+    if (bit_count == 0)
+        *o = &number_zero;
+    else
+    {
+        NUMBER_HEADER* p;
+        if ((result = AllocateNumber(&p, bit_count)) != (0))
+            return (result);
+        _COPY_MEMORY_BYTE(p->BLOCK, buffer, _DIVIDE_CEILING_SIZE(bit_count, 8));
+        CommitNumber(p);
+        *o = p;
+    }
+
+
+
+
+    return ((0));
+}
+
+PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature)
+{
+    return ((0));
 }

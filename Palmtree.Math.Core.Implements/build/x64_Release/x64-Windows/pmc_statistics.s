@@ -77,5 +77,4 @@ IncrementMULTI64Counter:
 	.seh_endproc
 .lcomm trace_enabled,4,4
 .lcomm statistics_info,16,16
-	.comm	hLocalHeap, 8, 3
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"

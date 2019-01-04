@@ -48,7 +48,6 @@
 
 HANDLE hLocalHeap;
 NUMBER_HEADER number_zero;
-NUMBER_HEADER number_one;
 
 // </editor-fold>
 
@@ -154,7 +153,7 @@ static __UNIT_TYPE* AllocateBlock(size_t bits)
     // 最初のワードには獲得時に引数で渡されたワード数が格納される。
     // 最後のワードには格納されている内容の正当性確認のための値が格納される。
     // 2番目のワードへのポインタは呼び出し元に通知され利用される。
-    __UNIT_TYPE words1 = (bits + __UNIT_TYPE_BIT_COUNT - 1) / __UNIT_TYPE_BIT_COUNT;
+    __UNIT_TYPE words1 = _DIVIDE_CEILING_UNIT(bits, __UNIT_TYPE_BIT_COUNT);
 	__UNIT_TYPE words2 = words1 + 2;
 	__UNIT_TYPE bytes = words2 * __UNIT_TYPE_BYTE_COUNT;
 	__UNIT_TYPE* buffer = (__UNIT_TYPE*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, bytes);
@@ -214,10 +213,10 @@ static PMC_STATUS_CODE CheckBlock(__UNIT_TYPE* buffer, __UNIT_TYPE* code)
 
 static PMC_STATUS_CODE InitializeNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_count)
 {
-    ZeroMemory(p, sizeof(*p));
-    __UNIT_TYPE word_count = (bit_count + __UNIT_TYPE_BIT_COUNT - 1) / __UNIT_TYPE_BIT_COUNT;
+    _ZERO_MEMORY_BYTE(p, sizeof(*p));
+    __UNIT_TYPE word_count = _DIVIDE_CEILING_UNIT(bit_count, __UNIT_TYPE_BIT_COUNT);
     p->UNIT_BIT_COUNT = bit_count;
-    p->UNIT_WORD_COUNT = word_count;
+    p->BLOCK_COUNT = word_count;
     if (bit_count > 0)
     {
         __UNIT_TYPE* block = AllocateBlock(bit_count);
@@ -251,7 +250,7 @@ PMC_STATUS_CODE AttatchNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_count)
     return (PMC_STATUS_OK);
 }
 
-AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_count)
+PMC_STATUS_CODE AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_count)
 {
     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
     if (p == NULL)
@@ -313,7 +312,8 @@ void CommitNumber(NUMBER_HEADER* p)
 {
     __UNIT_TYPE code = CommitBlock(p->BLOCK);
     p->HASH_CODE = code;
-    p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->UNIT_WORD_COUNT);
+    p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT);
+    p->UNIT_WORD_COUNT = _DIVIDE_CEILING_UNIT(p->UNIT_BIT_COUNT, __UNIT_TYPE_BIT_COUNT);
     if (p->UNIT_BIT_COUNT <= 0)
     {
         p->IS_ZERO = TRUE;
@@ -353,6 +353,21 @@ PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p)
     return (PMC_STATUS_OK);
 }
 
+
+PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* x, NUMBER_HEADER** op)
+{
+    __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
+    PMC_STATUS_CODE result;
+    NUMBER_HEADER* o;
+    if ((result = AllocateNumber(&o, x_bit_count)) != PMC_STATUS_OK)
+        return (result);
+    _COPY_MEMORY_UNIT(o->BLOCK, x->BLOCK, _DIVIDE_CEILING_UNIT(x_bit_count, __UNIT_TYPE_BIT_COUNT));
+    CommitNumber(o);
+    *op = o;
+    return (PMC_STATUS_OK);
+}
+
+
 void __PMC_CALL PMC_Dispose(HANDLE p)
 {
     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
@@ -378,22 +393,8 @@ PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature)
         }
     }
 
-    BOOL number_one_ok = TRUE;
-    if (result == PMC_STATUS_OK)
-    {
-        result = AttatchNumber(&number_one, 1);
-        if (result == PMC_STATUS_OK)
-        {
-            number_one.BLOCK[0] = 1;
-            CommitNumber(&number_one);
-            number_one_ok = TRUE;
-        }
-    }
-
     if (result != PMC_STATUS_OK)
     {
-        if (number_one_ok)
-            DetatchNumber(&number_one);
         if (number_zero_ok)
             DetatchNumber(&number_zero);
     }

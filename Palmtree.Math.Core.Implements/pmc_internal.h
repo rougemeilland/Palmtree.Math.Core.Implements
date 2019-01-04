@@ -29,22 +29,21 @@
  * Created on 2018/12/26, 16:59
  */
 
+#ifndef __PMC_INTERNAL_H
+#define __PMC_INTERNAL_H
+
 #include <stdlib.h>
 #ifdef __GNUC__
 #include <intrin.h>
 #endif
-
-#ifndef __PMC_INTERNAL_H
-#define __PMC_INTERNAL_H
-
 #include "pmc.h"
 
 // <editor-fold defaultstate="collapsed" desc="型の定義">
 
 #ifdef _M_IX86
-typedef unsigned __int32 __UNIT_TYPE;
+typedef _UINT32_T __UNIT_TYPE;
 #elif defined(_M_X64)
-typedef unsigned __int64 __UNIT_TYPE;
+typedef _UINT64_T __UNIT_TYPE;
 #else
 #error unknown platform
 #endif
@@ -83,6 +82,7 @@ typedef struct __tag_NUMBER_HEADER
     unsigned IS_EVEN : 1;           // データが 偶数 なら TRUE
     unsigned IS_POWER_OF_TWO : 1;   // データが 2 のべき乗なら TRUE
 
+    size_t BLOCK_COUNT;             // BLOCKが示す領域に格納可能な最大の要素数
     // 多倍長整数の内部データが格納されている領域へのポインタ
     // このポインタが指す領域には少なくともUNIT_COUNT+1個の__UNIT_TYPEを格納するのに十分な大きさがなければならない。
     // UNIT_ARRAY[UNIT_COUNT]の要素はデータの正当性チェックのために使用される。
@@ -99,9 +99,6 @@ extern PMC_CONFIGURATION_INFO configuration_info;
 // 整数 0 のインスタンス
 extern NUMBER_HEADER number_zero;
 
-// 整数 1 のインスタンス
-extern NUMBER_HEADER number_one;
-
 // 内部ヒープメモリ領域を獲得する。
 extern BOOL AllocateHeapArea(void);
 
@@ -112,7 +109,7 @@ extern void DeallocateHeapArea(void);
 extern PMC_STATUS_CODE AttatchNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_length);
 
 // NUMBER_HEADER 構造体を動的に獲得して初期化します。
-extern AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_length);
+extern PMC_STATUS_CODE AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_length);
 
 // AttatchNumber で初期化された NUMBER_HEADER 構造体をクリーンアップします。
 extern void DetatchNumber(NUMBER_HEADER* p);
@@ -126,6 +123,9 @@ extern void CommitNumber(NUMBER_HEADER* p);
 // 与えられた NUMBER_HEADER 構造体へのポインタが正しい構造体を指しているかどうか検査します。(主としてメモリ破壊の観点で)
 extern PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p);
 
+// 与えられた NUMBER_HEADER 構造体を複製する。p が指す NUMBER_HEADER 構造体はゼロ値であってはならない。
+extern PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* p, NUMBER_HEADER** op);
+
 // 統計カウンタ DIV32 をインクリメントする。
 extern void IncrementDIV32Counter(void);
 
@@ -138,11 +138,20 @@ extern void IncrementMULTI32Counter(void);
 // 統計カウンタ MULTI64 をインクリメントする。
 extern void IncrementMULTI64Counter(void);
 
+// 32bit 整数 x から NUMBER_HEADER 構造体を構築し、そのポインタを o が指す領域に格納して返す。x はゼロであってはならない。
+extern PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o);
+
+// 64bit 整数 x から NUMBER_HEADER 構造体を構築し、そのポインタを o が指す領域に格納して返す。x はゼロであってはならない。
+extern PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o);
+
 // メモリ管理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
 
 // コンストラクタの実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
+
+// To演算子の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
 // 加算処理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
@@ -160,28 +169,103 @@ extern PMC_STATUS_CODE Initialize_Subtract(PROCESSOR_FEATURES* feature);
 extern void __PMC_CALL PMC_TraceStatistics(int enabled);
 extern void __PMC_CALL PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
-extern PMC_STATUS_CODE __PMC_CALL PMC_From_I(unsigned __int32 x, HANDLE* o);
-extern PMC_STATUS_CODE __PMC_CALL PMC_From_L(unsigned __int64 x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_From_I(_UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_From_L(_UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_From_B(unsigned char* buffer, size_t count, HANDLE* o);
+
 extern void __PMC_CALL PMC_Dispose(HANDLE p);
 
-extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, unsigned __int32* o);
-extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, unsigned __int64* o);
-extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE p, unsigned __int32 x, HANDLE* o);
-extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XL(HANDLE p, unsigned __int64 x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, _UINT32_T* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XL(HANDLE p, _UINT64_T x, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XX(HANDLE p1, HANDLE p2, HANDLE* o);
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="インライン関数の定義">
 
-__inline static unsigned __int64 _FROMWORDTODWORD(unsigned __int32 value_high, unsigned __int32 value_low)
+__inline static int _EQUALS_MEMORY(unsigned char* buffer1, size_t count1, unsigned char* buffer2, size_t count2)
 {
-    return (((unsigned __int64)value_high << 32) | value_low);
+    if (count1 != count2)
+        return (-1);
+    while (count1 > 0)
+    {
+        if (*buffer1 != *buffer2)
+            return (-1);
+        ++buffer1;
+        ++buffer2;
+        --count1;
+    }
+    return (0);
 }
 
-__inline static unsigned __int32 _FROMDWORDTOWORD(unsigned __int64 value, unsigned __int32 *result_high)
+__inline static void _COPY_MEMORY_BYTE(void* d, const void* s, size_t count)
 {
-    *result_high = (unsigned __int32)(value >> 32);
-    return ((unsigned __int32)value);
+    __movsb(d, s, count);
+}
+
+__inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T count)
+{
+    __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+}
+
+#ifdef _M_IX64
+__inline static void _COPY_MEMORY_64(_UINT64_T* d, const _UINT64_T* s, _UINT64_T count)
+{
+    __movsq(d, s, count);
+}
+#endif
+
+__inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
+{
+#ifdef _M_IX86
+    __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+#elif defined(_M_X64)
+    __movsq(d, s, count);
+#else
+#error unknown platform
+#endif
+}
+
+__inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
+{
+    __stosb(d, 0, count);
+}
+
+__inline static void _ZERO_MEMORY_32(_UINT32_T* d, _UINT32_T count)
+{
+    __stosd((unsigned long*)d, 0, (unsigned long)count);
+}
+
+#ifdef _M_IX64
+__inline static void _ZERO_MEMORY_64(_UINT64_T* d, _UINT64_T count)
+{
+    __stosq(d, 0, count);
+}
+#endif
+
+__inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
+{
+#ifdef _M_IX86
+    __stosd((unsigned long*)d, 0, (unsigned long)count);
+#elif defined(_M_X64)
+    __stosq(d, 0, count);
+#else
+#error unknown platform
+#endif
+}
+
+__inline static _UINT64_T _FROMWORDTODWORD(_UINT32_T value_high, _UINT32_T value_low)
+{
+    return (((_UINT64_T)value_high << 32) | value_low);
+}
+
+__inline static _UINT32_T _FROMDWORDTOWORD(_UINT64_T value, _UINT32_T *result_high)
+{
+    *result_high = (_UINT32_T)(value >> 32);
+    return ((_UINT32_T)value);
 }
 
 __inline static __UNIT_TYPE _MAKE_MASK_UNIT(int bits)
@@ -189,12 +273,17 @@ __inline static __UNIT_TYPE _MAKE_MASK_UNIT(int bits)
     return ((1 << bits) - 1);
 }
 
-__inline static size_t DIVIDE_CEILING_UNIT(size_t u, size_t v)
+__inline static __UNIT_TYPE _DIVIDE_CEILING_UNIT(__UNIT_TYPE u, __UNIT_TYPE v)
 {
     return ((u + v - 1) / v);
 }
 
-__inline static size_t MAXIMUM_UNIT(size_t x, size_t y)
+__inline static size_t _DIVIDE_CEILING_SIZE(size_t u, size_t v)
+{
+    return ((u + v - 1) / v);
+}
+
+__inline static __UNIT_TYPE _MAXIMUM_UNIT(__UNIT_TYPE x, __UNIT_TYPE y)
 {
     return (x >= y ? x : y);
 }
@@ -205,6 +294,17 @@ __inline static char _ADD_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
     return (_addcarry_u32(carry, u, v, w));
 #elif defined(_M_X64)
     return (_addcarry_u64(carry, u, v, w));
+#else
+#error unknown platform
+#endif
+}
+
+__inline static char _ADDX_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+{
+#ifdef _M_IX86
+    return (_addcarryx_u32(carry, u, v, w));
+#elif defined(_M_X64)
+    return (_addcarryx_u64(carry, u, v, w));
 #else
 #error unknown platform
 #endif
@@ -225,9 +325,9 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 {
 #ifdef _M_IX86
 #ifdef _MSC_VER
-    return (_FROMDWORDTOWORD((unsigned __int64)u * v, w_high));
+    return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_high));
 #elif defined(__GNUC__)
-    unsigned __int32 w_low;
+    _UINT32_T w_low;
     __asm__("mull %3": "=a"(w_low), "=d"(*w_high) : "0"(u), "rm"(v));
     return (w_low);
 #else
@@ -243,9 +343,9 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
 {
 #ifdef _MSC_VER
 #ifdef _M_IX86
-    unsigned __int64 t = _FROMWORDTODWORD(u_high, u_low);
-    *r = (unsigned __int32)(t % v);
-    return ((unsigned __int32)(t / v));
+    _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
+    *r = (_UINT32_T)(t % v);
+    return ((_UINT32_T)(t / v));
 #elif defined(_M_X64)
 //#error not supported platform. VC++では64bit/32bitの除算はサポートされていない。
 #else
@@ -270,9 +370,9 @@ __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __
 {
 #ifdef _MSC_VER
 #ifdef _M_IX86
-    unsigned __int64 t = _FROMWORDTODWORD(r, u);
-    *q = (unsigned __int32)(t / v);
-    return ((unsigned __int32)(t % v));
+    _UINT64_T t = _FROMWORDTODWORD(r, u);
+    *q = (_UINT32_T)(t / v);
+    return ((_UINT32_T)(t % v));
 #elif defined(_M_X64)
     //#error not supported platform. VC++では64bit/32bitの除算はサポートされていない。
 #else
@@ -357,13 +457,13 @@ __inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
     return(x);
 }
 
-__inline static unsigned __int32 _LZCNT_32(unsigned __int32 value)
+__inline static _UINT32_T _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
 
 #ifdef _M_X64
-__inline static unsigned __int64 _LZCNT_64(unsigned __int64 value)
+__inline static _UINT64_T _LZCNT_64(_UINT64_T value)
 {
     return (_lzcnt_u64(value));
 }
@@ -380,22 +480,50 @@ __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 #endif
 }
 
-__inline static unsigned __int32 _LZCNT_ALT_32(unsigned __int32 x)
+__inline static unsigned char _LZCNT_ALT_8(unsigned char x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-    unsigned __int32 pos;
+    _UINT32_T pos;
+#ifdef _MSC_VER
     _BitScanReverse(&pos, x);
+#elif defined(__GNUC__)
+    __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+#else
+#error unknown compiler
+#endif
+    return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+}
+
+__inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
+{
+    if (x == 0)
+        return (sizeof(x) * 8);
+    _UINT32_T pos;
+#ifdef _MSC_VER
+    _BitScanReverse(&pos, x);
+#elif defined(__GNUC__)
+    __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+#else
+#error unknown compiler
+#endif
     return (sizeof(x) * 8 - 1 - pos);
 }
 
 #ifdef _M_X64
-__inline static unsigned __int64 _LZCNT_ALT_64(unsigned __int64 x)
+__inline static _UINT64_T _LZCNT_ALT_64(_UINT64_T x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-    unsigned __int32 pos;
+#ifdef _MSC_VER
+    _UINT32_T pos;
     _BitScanReverse64(&pos, x);
+#elif defined(__GNUC__)
+    _UINT64_T pos;
+    __asm__( "bsrq %1, %0" : "=r"(pos) : "rm"(x) );
+#else
+#error unknown compiler
+#endif
     return (sizeof(x) * 8 - 1 - pos);
 }
 #endif
@@ -404,11 +532,25 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-    unsigned __int32 pos;
 #ifdef _M_IX86
+    _UINT32_T pos;
+#ifdef _MSC_VER
     _BitScanReverse(&pos, x);
+#elif defined(__GNUC__)
+    __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+#else
+#error unknown compiler
+#endif
 #elif defined(_M_X64)
+#ifdef _MSC_VER
+    _UINT32_T pos;
     _BitScanReverse64(&pos, x);
+#elif defined(__GNUC__)
+    _UINT64_T pos;
+    __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+#else
+#error unknown compiler
+#endif
 #else
 #error unknown platform
 #endif
@@ -441,11 +583,25 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-    unsigned __int32 pos;
 #ifdef _M_IX86
-    _BitScanForward(&pos, x);
+    _UINT32_T pos;
+#ifdef _MSC_VER
+    _BitScanReverse(&pos, x);
+#elif defined(__GNUC__)
+    __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+#else
+#error unknown compiler
+#endif
 #elif defined(_M_X64)
-    _BitScanForward64(&pos, x);
+#ifdef _MSC_VER
+    _UINT32_T pos;
+    _BitScanReverse64(&pos, x);
+#elif defined(__GNUC__)
+    _UINT64_T pos;
+    __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+#else
+#error unknown compiler
+#endif
 #else
 #error unknown platform
 #endif

@@ -32,6 +32,10 @@
 #ifndef PMC_H
 #define PMC_H
 
+#ifdef __GNUC__
+#include <stdint.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -55,13 +59,29 @@ extern "C" {
 
 // <editor-fold defaultstate="collapsed" desc="型の定義">
 
+#ifdef _MSC_VER
+typedef __int32 _INT32_T;
+typedef __int64 _INT64_T;
+typedef unsigned __int8 _BYTE_T;
+typedef unsigned __int32 _UINT32_T;
+typedef unsigned __int64 _UINT64_T;
+#elif defined(__GNUC__)
+typedef int32_t _INT32_T;
+typedef int64_t _INT64_T;
+typedef uint8_t _BYTE_T;
+typedef uint32_t _UINT32_T;
+typedef uint64_t _UINT64_T;
+#else
+#error unknown compiler
+#endif
+
 typedef struct __tag_PMC_CONFIGURATION_INFO
 {
     unsigned MEMORY_VERIFICATION_ENABLED : 1;
 } PMC_CONFIGURATION_INFO;
 
 
-typedef __int32 PMC_STATUS_CODE;
+typedef int PMC_STATUS_CODE;
 
 typedef struct __tag_PMC_STATISTICS_INFO
 {
@@ -85,19 +105,24 @@ typedef struct __tag_PMC_ENTRY_POINTS
     void (__PMC_CALL * PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO* statistics_info);// 与えられた領域に現在まで採取されている統計情報を複写する。
 
     // コンストラクタ(32bit整数により初期化)
-    PMC_STATUS_CODE (__PMC_CALL * PMC_From_I)(unsigned __int32 x, HANDLE* pp);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_From_I)(_UINT32_T x, HANDLE* pp);
 
     // コンストラクタ(64bit整数により初期化)
-    PMC_STATUS_CODE (__PMC_CALL * PMC_From_L)(unsigned __int64 x, HANDLE* pp);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_From_L)(_UINT64_T x, HANDLE* pp);
+
+    // コンストラクタ(バイト列により初期化)
+    PMC_STATUS_CODE(__PMC_CALL * PMC_From_B)(unsigned char* buffer, size_t count, HANDLE* pp);
 
     // デストラクタ
     void  (__PMC_CALL * PMC_Dispose)(HANDLE p);
 
-    // 演算子
-    PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_I)(HANDLE p, unsigned __int32* o);
-    PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_L)(HANDLE p, unsigned __int64* o);
-    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XI)(HANDLE p, unsigned __int32 x, HANDLE* o);
-    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XL)(HANDLE p, unsigned __int64 x, HANDLE* o);
+    // To演算子
+    PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+
+    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XI)(HANDLE p, _UINT32_T x, HANDLE* o);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XL)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XX)(HANDLE p1, HANDLE p2, HANDLE* o);
 } PMC_ENTRY_POINTS;
     

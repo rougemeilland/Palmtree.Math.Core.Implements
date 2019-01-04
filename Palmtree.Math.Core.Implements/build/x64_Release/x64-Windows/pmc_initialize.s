@@ -10,8 +10,10 @@ PMC_Initialize:
 	subq	$48, %rsp
 	.seh_stackalloc	48
 	.seh_endprologue
-	xorl	%eax, %eax
+	movl	(%rcx), %eax
 	movzbl	44(%rsp), %r8d
+	movl	%eax, configuration_info(%rip)
+	xorl	%eax, %eax
 /APP
  # 1689 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	cpuid
@@ -19,7 +21,7 @@ PMC_Initialize:
 /NO_APP
 	testl	%eax, %eax
 	movl	%eax, %r10d
-	jle	.L11
+	jle	.L12
 	movl	$7, %r9d
 	movl	%r9d, %eax
 /APP
@@ -49,7 +51,12 @@ PMC_Initialize:
 	addl	%eax, %eax
 	sall	$3, %r9d
 	orl	%eax, %r8d
-	andl	$-9, %r8d
+	movl	%ebx, %eax
+	shrl	$3, %eax
+	andl	$-13, %r8d
+	andl	$1, %eax
+	sall	$2, %eax
+	orl	%eax, %r8d
 	orl	%r9d, %r8d
 	movb	%r8b, 44(%rsp)
 .L5:
@@ -61,16 +68,25 @@ PMC_Initialize:
 /NO_APP
 	cmpl	$-2147483648, %eax
 	ja	.L6
-	andb	$-5, 44(%rsp)
-	leaq	44(%rsp), %rcx
-	call	Initialize_Add
+	andb	$-17, 44(%rsp)
+.L7:
+	leaq	44(%rsp), %rbx
+	movq	%rbx, %rcx
+	call	Initialize_Memory
 	testl	%eax, %eax
-	je	.L9
-.L12:
+	jne	.L10
+	movq	%rbx, %rcx
+	call	Initialize_From
+	testl	%eax, %eax
+	jne	.L10
+	movq	%rbx, %rcx
+	call	Initialize_To
+	testl	%eax, %eax
+	jne	.L10
 	movzbl	entry_points(%rip), %eax
 	movzbl	44(%rsp), %edx
-	andl	$-16, %eax
-	andl	$15, %edx
+	andl	$-32, %eax
+	andl	$31, %edx
 	orl	%edx, %eax
 	movb	%al, entry_points(%rip)
 	movq	.refptr.PMC_TraceStatistics(%rip), %rax
@@ -81,27 +97,39 @@ PMC_Initialize:
 	movq	%rax, 24+entry_points(%rip)
 	movq	.refptr.PMC_From_L(%rip), %rax
 	movq	%rax, 32+entry_points(%rip)
-	movq	.refptr.PMC_To_X_I(%rip), %rax
+	movq	.refptr.PMC_From_B(%rip), %rax
 	movq	%rax, 40+entry_points(%rip)
-	movq	.refptr.PMC_To_X_L(%rip), %rax
+	movq	.refptr.PMC_Dispose(%rip), %rax
 	movq	%rax, 48+entry_points(%rip)
-	movq	.refptr.PMC_Add_XI(%rip), %rax
+	movq	.refptr.PMC_To_X_I(%rip), %rax
 	movq	%rax, 56+entry_points(%rip)
-	movq	.refptr.PMC_Add_XL(%rip), %rax
+	movq	.refptr.PMC_To_X_L(%rip), %rax
 	movq	%rax, 64+entry_points(%rip)
-	movq	.refptr.PMC_Add_XX(%rip), %rax
+	movq	.refptr.PMC_To_X_B(%rip), %rax
 	movq	%rax, 72+entry_points(%rip)
+	movq	.refptr.PMC_Add_XI(%rip), %rax
+	movq	%rax, 80+entry_points(%rip)
+	movq	.refptr.PMC_Add_XL(%rip), %rax
+	movq	%rax, 88+entry_points(%rip)
+	movq	.refptr.PMC_Add_XX(%rip), %rax
+	movq	%rax, 96+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
 	addq	$48, %rsp
 	popq	%rbx
 	ret
 	.p2align 4,,10
-.L11:
+.L12:
 	andl	$-4, %r8d
 	movb	%r8b, 44(%rsp)
 .L3:
-	andb	$-11, 44(%rsp)
+	andb	$-15, 44(%rsp)
 	jmp	.L5
+	.p2align 4,,10
+.L10:
+	xorl	%eax, %eax
+	addq	$48, %rsp
+	popq	%rbx
+	ret
 	.p2align 4,,10
 .L6:
 	movl	$-2147483647, %eax
@@ -113,24 +141,18 @@ PMC_Initialize:
 	movzbl	44(%rsp), %eax
 	shrl	$5, %ecx
 	andl	$1, %ecx
-	sall	$2, %ecx
-	andl	$-5, %eax
+	sall	$4, %ecx
+	andl	$-17, %eax
 	orl	%eax, %ecx
 	movb	%cl, 44(%rsp)
-	leaq	44(%rsp), %rcx
-	call	Initialize_Add
-	testl	%eax, %eax
-	jne	.L12
-.L9:
-	xorl	%eax, %eax
-	addq	$48, %rsp
-	popq	%rbx
-	ret
+	jmp	.L7
 	.seh_endproc
-.lcomm entry_points,80,32
-	.comm	hLocalHeap, 8, 3
+	.comm	configuration_info, 4, 2
+.lcomm entry_points,104,32
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
-	.def	Initialize_Add;	.scl	2;	.type	32;	.endef
+	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
+	.def	Initialize_From;	.scl	2;	.type	32;	.endef
+	.def	Initialize_To;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize\""
 	.section	.rdata$.refptr.PMC_Add_XX, "dr"
@@ -148,6 +170,11 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_Add_XI:
 	.quad	PMC_Add_XI
+	.section	.rdata$.refptr.PMC_To_X_B, "dr"
+	.globl	.refptr.PMC_To_X_B
+	.linkonce	discard
+.refptr.PMC_To_X_B:
+	.quad	PMC_To_X_B
 	.section	.rdata$.refptr.PMC_To_X_L, "dr"
 	.globl	.refptr.PMC_To_X_L
 	.linkonce	discard
@@ -158,6 +185,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_To_X_I:
 	.quad	PMC_To_X_I
+	.section	.rdata$.refptr.PMC_Dispose, "dr"
+	.globl	.refptr.PMC_Dispose
+	.linkonce	discard
+.refptr.PMC_Dispose:
+	.quad	PMC_Dispose
+	.section	.rdata$.refptr.PMC_From_B, "dr"
+	.globl	.refptr.PMC_From_B
+	.linkonce	discard
+.refptr.PMC_From_B:
+	.quad	PMC_From_B
 	.section	.rdata$.refptr.PMC_From_L, "dr"
 	.globl	.refptr.PMC_From_L
 	.linkonce	discard

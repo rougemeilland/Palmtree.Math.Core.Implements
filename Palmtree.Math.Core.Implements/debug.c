@@ -89,6 +89,11 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
     HANDLE x5;
     HANDLE x6;
     HANDLE x7;
+    HANDLE x8;
+    HANDLE x9;
+    HANDLE x10;
+    HANDLE x11;
+    HANDLE x12;
     result = ep->PMC_From_I(0, &x1);
     result = ep->PMC_From_I(1, &x2);
     result = ep->PMC_From_I(10, &x3);
@@ -96,9 +101,19 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
     result = ep->PMC_From_L(1, &x5);
     result = ep->PMC_From_L(10, &x6);
     result = ep->PMC_From_L(0x0000000100000000UL, &x7);
+    unsigned char buffer8[] = { 0 };
+    unsigned char buffer9[] = { 1 };
+    unsigned char buffer10[] = { 10 };
+    unsigned char buffer11[] = { 0x00, 0x00, 0x00, 0x00, 0x01 };
+    unsigned char buffer12[] = { 0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc, 0xde, 0xf0, 0x12, 0x34, 0x56, 0x78 };
+    result = ep->PMC_From_B(buffer8, sizeof(buffer8), &x8);
+    result = ep->PMC_From_B(buffer9, sizeof(buffer9), &x9);
+    result = ep->PMC_From_B(buffer10, sizeof(buffer10), &x10);
+    result = ep->PMC_From_B(buffer11, sizeof(buffer11), &x11);
+    result = ep->PMC_From_B(buffer12, sizeof(buffer12), &x12);
 
-    unsigned __int32 i;
-    unsigned __int64 l;
+    _UINT32_T i;
+    _UINT64_T l;
 
     result = ep->PMC_To_X_I(x1, &i);
     env->log("1. %s\n", result == PMC_STATUS_OK && i == 0 ? "Ok" : "Error");
@@ -130,6 +145,24 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
     result = ep->PMC_To_X_L(x7, &l);
     env->log("14. %s\n", result == PMC_STATUS_OK && l == 0x0000000100000000 ? "Ok" : "Error");
 
+    unsigned char obuffer[256];
+    size_t count;
+    result = ep->PMC_To_X_B(x8, obuffer, sizeof(obuffer), &count);
+    env->log("15. %s\n", result == PMC_STATUS_OK && _EQUALS_MEMORY(obuffer, count, buffer8, sizeof(buffer8)) == 0 ? "Ok" : "Error");
+    result = ep->PMC_To_X_B(x9, obuffer, sizeof(obuffer), &count);
+    env->log("16. %s\n", result == PMC_STATUS_OK && _EQUALS_MEMORY(obuffer, count, buffer9, sizeof(buffer9)) == 0 ? "Ok" : "Error");
+    result = ep->PMC_To_X_B(x10, obuffer, sizeof(obuffer), &count);
+    env->log("17. %s\n", result == PMC_STATUS_OK && _EQUALS_MEMORY(obuffer, count, buffer10, sizeof(buffer10)) == 0 ? "Ok" : "Error");
+    result = ep->PMC_To_X_B(x11, obuffer, sizeof(obuffer), &count);
+    env->log("18. %s\n", result == PMC_STATUS_OK && _EQUALS_MEMORY(obuffer, count, buffer11, sizeof(buffer11)) == 0 ? "Ok" : "Error");
+    result = ep->PMC_To_X_B(x12, obuffer, sizeof(obuffer), &count);
+    env->log("19. %s\n", result == PMC_STATUS_OK && _EQUALS_MEMORY(obuffer, count, buffer12, sizeof(buffer12)) == 0 ? "Ok" : "Error");
+
+    ep->PMC_Dispose(x12);
+    ep->PMC_Dispose(x11);
+    ep->PMC_Dispose(x10);
+    ep->PMC_Dispose(x9);
+    ep->PMC_Dispose(x8);
     ep->PMC_Dispose(x7);
     ep->PMC_Dispose(x6);
     ep->PMC_Dispose(x5);

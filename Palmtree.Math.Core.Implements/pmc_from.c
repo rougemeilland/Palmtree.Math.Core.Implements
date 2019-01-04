@@ -33,88 +33,137 @@
 #include <windows.h>
 #include "pmc_internal.h"
 
-
-PMC_STATUS_CODE __PMC_CALL PMC_From_I(unsigned __int32 x, HANDLE* o)
+PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o)
 {
-    if (sizeof(__UNIT_TYPE) < sizeof(x))
-        return (PMC_STATUS_INTERNAL_ERROR);
-    if (x == 0)
-    {
-        *o = &number_zero;
-        return (PMC_STATUS_OK);
-    }
-    if (x == 1)
-    {
-        *o = &number_one;
-        return (PMC_STATUS_OK);
-    }
     PMC_STATUS_CODE result;
-    NUMBER_HEADER* p;
-    result = AllocateNumber(&p, sizeof(x) * 8 - _LZCNT_ALT_32(x));
-    if (result != PMC_STATUS_OK)
+    if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x))) != PMC_STATUS_OK)
         return (result);
-    p->BLOCK[0] = x;
-    CommitNumber(p);
-    *o = p;
+    (*o)->BLOCK[0] = x;
+    CommitNumber(*o);
     return (PMC_STATUS_OK);
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_From_L(unsigned __int64 x, HANDLE* o)
+PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o)
+{
+    PMC_STATUS_CODE result;
+    if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
+    {
+        // _UINT64_T を表現するのに 2 ワードでは不足する処理系には対応しない。
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    else if (sizeof(__UNIT_TYPE) < sizeof(x))
+    {
+        // _UINT64_T を表現するのに 1 ワードでは不足する(ちょうど 2 ワード必要とする)処理系の場合
+
+        _UINT32_T x_hi;
+        _UINT32_T x_lo = _FROMDWORDTOWORD(x, &x_hi);
+        if (x_hi == 0)
+        {
+            __UNIT_TYPE x_bit_length = sizeof(x_lo) * 8 - _LZCNT_ALT_32(x_lo);
+            if ((result = AllocateNumber(o, x_bit_length)) != PMC_STATUS_OK)
+                return (result);
+        }
+        else
+        {
+            __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_32(x_hi);
+            if ((result = AllocateNumber(o, x_bit_length)) != PMC_STATUS_OK)
+                return (result);
+            (*o)->BLOCK[1] = x_hi;
+        }
+        (*o)->BLOCK[0] = x_lo;
+    }
+    else
+    {
+        // _UINT64_T を表現するのに 1 ワードで十分である処理系の場合
+
+        __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x);
+        if ((result = AllocateNumber(o, x_bit_length)) != PMC_STATUS_OK)
+            return (result);
+        (*o)->BLOCK[0] = (__UNIT_TYPE)x;
+    }
+    CommitNumber(*o);
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_From_I(_UINT32_T x, HANDLE* o)
+{
+    PMC_STATUS_CODE result;
+    if (sizeof(__UNIT_TYPE) < sizeof(x))
+        return (PMC_STATUS_INTERNAL_ERROR);
+    if (x == 0)
+        *o = &number_zero;
+    else
+    {
+        NUMBER_HEADER* p;
+        if ((result = From_I_Imp(x, &p)) != PMC_STATUS_OK)
+            return (result);
+        *o = p;
+    }
+#ifdef _DEBUG
+    if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+        return (result);
+#endif
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_From_L(_UINT64_T x, HANDLE* o)
 {
     NUMBER_HEADER* p;
+    PMC_STATUS_CODE result;
     if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
     {
         // 32bit未満のCPUには未対応
         return (PMC_STATUS_INTERNAL_ERROR);
     }
     if (x == 0)
-    {
         *o = &number_zero;
-        return (PMC_STATUS_OK);
-    }
-    if (x == 1)
-    {
-        *o = &number_one;
-        return (PMC_STATUS_OK);
-    }
-    if (sizeof(__UNIT_TYPE) * 2 == sizeof(x))
-    {
-        // 32bitCPUの場合
-
-        unsigned __int32 hi_word;
-        unsigned __int32 lo_word;
-        lo_word = _FROMDWORDTOWORD(x, &hi_word);
-        if (hi_word == 0)
-        {
-            // x が 1 ワードで表現できる場合
-
-            PMC_STATUS_CODE result = AllocateNumber(&p, sizeof(lo_word) * 8 - _LZCNT_ALT_32(lo_word));
-            if (result != PMC_STATUS_OK)
-                return (result);
-            p->BLOCK[0] = lo_word;
-        }
-        else
-        {
-            // x が 2 ワードでしか表現できない場合
-
-            PMC_STATUS_CODE result = AllocateNumber(&p, sizeof(x) * 8 - _LZCNT_ALT_32(hi_word));
-            if (result != PMC_STATUS_OK)
-                return (result);
-            p->BLOCK[0] = lo_word;
-            p->BLOCK[1] = hi_word;
-        }
-    }
     else
     {
-        // 64bitCPU の場合
-
-        PMC_STATUS_CODE result = AllocateNumber(&p, sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x));
-        if (result != PMC_STATUS_OK)
+        if ((result = From_L_Imp(x, &p)) != PMC_STATUS_OK)
             return (result);
-        p->BLOCK[0] = (__UNIT_TYPE)x;
     }
-    CommitNumber(p);
-    *o = p;
+#ifdef _DEBUG
+    if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+        return (result);
+#endif
+    return (PMC_STATUS_OK);
+}
+
+static __UNIT_TYPE CountActualBitsFromBuffer(unsigned char* p, size_t count)
+{
+    p += count;
+    while (count > 0)
+    {
+        --p;
+        if (*p != 0)
+            return (count * 8 - _LZCNT_ALT_8(*p));
+        --count;
+    }
+    return (0);
+}
+
+
+PMC_STATUS_CODE __PMC_CALL PMC_From_B(unsigned char* buffer, size_t count, HANDLE* o)
+{
+    PMC_STATUS_CODE result;
+    if (buffer == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    __UNIT_TYPE bit_count = CountActualBitsFromBuffer(buffer, count);
+    if (bit_count == 0)
+        *o = &number_zero;
+    else
+    {
+        NUMBER_HEADER* p;
+        if ((result = AllocateNumber(&p, bit_count)) != PMC_STATUS_OK)
+            return (result);
+        _COPY_MEMORY_BYTE(p->BLOCK, buffer, _DIVIDE_CEILING_SIZE(bit_count, 8));
+        CommitNumber(p);
+        *o = p;
+    }
+#ifdef _DEBUG
+    if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+        return (result);
+#endif
     return (PMC_STATUS_OK);
 }
 

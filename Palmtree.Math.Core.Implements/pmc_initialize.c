@@ -106,6 +106,8 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
         return (NULL);
     if (Initialize_From(&feature))
         return (NULL);
+    if (Initialize_To(&feature))
+        return (NULL);
     /*
     if (Initialize_Add(&feature))
         return (NULL);
@@ -133,10 +135,12 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
 	entry_points.PMC_GetStatisticsInfo = PMC_GetStatisticsInfo;
 	entry_points.PMC_From_I = PMC_From_I;
 	entry_points.PMC_From_L = PMC_From_L;
+    entry_points.PMC_From_B = PMC_From_B;
     entry_points.PMC_Dispose = PMC_Dispose;
     entry_points.PMC_To_X_I = PMC_To_X_I;
 	entry_points.PMC_To_X_L = PMC_To_X_L;
-	entry_points.PMC_Add_XI = PMC_Add_XI;
+    entry_points.PMC_To_X_B = PMC_To_X_B;
+    entry_points.PMC_Add_XI = PMC_Add_XI;
 	entry_points.PMC_Add_XL = PMC_Add_XL;
 	entry_points.PMC_Add_XX = PMC_Add_XX;
     return (&entry_points);
