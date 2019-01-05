@@ -100170,12 +100170,26 @@ __extension__ typedef long long intmax_t;
 __extension__ typedef unsigned long long uintmax_t;
 # 10 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/stdint.h" 2 3 4
 # 37 "pmc.h" 2
+
+
+
+
+
+
+#pragma region ãƒžã‚¯ãƒ­ã®å®šç¾©
+# 56 "pmc.h"
+#pragma endregion
+
+
+#pragma region åž‹ã®å®šç¾©
 # 69 "pmc.h"
 
 # 69 "pmc.h"
+typedef int16_t _INT16_T;
 typedef int32_t _INT32_T;
 typedef int64_t _INT64_T;
 typedef uint8_t _BYTE_T;
+typedef uint16_t _UINT16_T;
 typedef uint32_t _UINT32_T;
 typedef uint64_t _UINT64_T;
 
@@ -100228,23 +100242,30 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
-    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_XI)(HANDLE p, _UINT32_T x, HANDLE* o);
-    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_XL)(HANDLE p, _UINT64_T x, HANDLE* o);
-    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_XX)(HANDLE p1, HANDLE p2, HANDLE* o);
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
+    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 } PMC_ENTRY_POINTS;
+#pragma endregion
 
 
-
-
-
+#pragma region å®£è¨€
 __attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_Initialize(PMC_CONFIGURATION_INFO*);
+#pragma endregion
 # 40 "pmc_internal.h" 2
 
 
+#pragma region ãƒžã‚¯ãƒ­ã®å®šç¾©
 
+
+#pragma endregion
+
+
+
+#pragma region åž‹ã®å®šç¾©
 
 typedef _UINT32_T __UNIT_TYPE;
-# 56 "pmc_internal.h"
+# 63 "pmc_internal.h"
 typedef struct _tag_PROCESSOR_FEATURES
 {
 
@@ -100281,10 +100302,10 @@ typedef struct __tag_NUMBER_HEADER
     __UNIT_TYPE* BLOCK;
 } NUMBER_HEADER;
 
+#pragma endregion
 
 
-
-
+#pragma region å®£è¨€
 
 extern PMC_CONFIGURATION_INFO configuration_info;
 
@@ -100347,7 +100368,7 @@ extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
 
 extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
-# 169 "pmc_internal.h"
+# 176 "pmc_internal.h"
 extern void __attribute__((__stdcall__)) PMC_TraceStatistics(int enabled);
 extern void __attribute__((__stdcall__)) PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
@@ -100361,28 +100382,13 @@ extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_I(HANDLE p, _UINT32
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_L(HANDLE p, _UINT64_T* o);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_XI(HANDLE p, _UINT32_T x, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_XL(HANDLE p, _UINT64_T x, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_XX(HANDLE p1, HANDLE p2, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+#pragma endregion
 
 
-
-
-__inline static int _EQUALS_MEMORY(unsigned char* buffer1, size_t count1, unsigned char* buffer2, size_t count2)
-{
-    if (count1 != count2)
-        return (-1);
-    while (count1 > 0)
-    {
-        if (*buffer1 != *buffer2)
-            return (-1);
-        ++buffer1;
-        ++buffer2;
-        --count1;
-    }
-    return (0);
-}
-
+#pragma region ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°ã®å®šç¾©
 __inline static void _COPY_MEMORY_BYTE(void* d, const void* s, size_t count)
 {
     __movsb(d, s, count);
@@ -100392,7 +100398,7 @@ __inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T
 {
     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 }
-# 221 "pmc_internal.h"
+# 213 "pmc_internal.h"
 __inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
 {
 
@@ -100409,11 +100415,16 @@ __inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
     __stosb(d, 0, count);
 }
 
-__inline static void _ZERO_MEMORY_32(_UINT32_T* d, _UINT32_T count)
+__inline static void _ZERO_MEMORY_16(_UINT16_T* d, size_t count)
 {
-    __stosd((unsigned long*)d, 0, (unsigned long)count);
+    __stosw(d, 0, count);
 }
-# 249 "pmc_internal.h"
+
+__inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
+{
+    __stosd((unsigned long*)d, 0, count);
+}
+# 246 "pmc_internal.h"
 __inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
 {
 
@@ -100498,11 +100509,11 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
     _UINT32_T w_low;
     __asm__("mull %3": "=a"(w_low), "=d"(*w_high) : "0"(u), "rm"(v));
     return (w_low);
-# 341 "pmc_internal.h"
+# 338 "pmc_internal.h"
 }
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
-# 355 "pmc_internal.h"
+# 352 "pmc_internal.h"
     __UNIT_TYPE q;
 
     __asm__("divl %3": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -100519,7 +100530,7 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
 
 __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE *q)
 {
-# 383 "pmc_internal.h"
+# 380 "pmc_internal.h"
     __asm__("divl %3": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
 
 
@@ -100547,17 +100558,17 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 409 "pmc_internal.h" 3
+# 406 "pmc_internal.h" 3
            __rold((
-# 409 "pmc_internal.h"
+# 406 "pmc_internal.h"
            x
-# 409 "pmc_internal.h" 3
+# 406 "pmc_internal.h" 3
            ), (
-# 409 "pmc_internal.h"
+# 406 "pmc_internal.h"
            count
-# 409 "pmc_internal.h" 3
+# 406 "pmc_internal.h" 3
            ))
-# 409 "pmc_internal.h"
+# 406 "pmc_internal.h"
                           );
 
 
@@ -100570,17 +100581,17 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 420 "pmc_internal.h" 3
+# 417 "pmc_internal.h" 3
            __rord((
-# 420 "pmc_internal.h"
+# 417 "pmc_internal.h"
            x
-# 420 "pmc_internal.h" 3
+# 417 "pmc_internal.h" 3
            ), (
-# 420 "pmc_internal.h"
+# 417 "pmc_internal.h"
            count
-# 420 "pmc_internal.h" 3
+# 417 "pmc_internal.h" 3
            ))
-# 420 "pmc_internal.h"
+# 417 "pmc_internal.h"
                           );
 
 
@@ -100608,7 +100619,7 @@ __inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
     x = (x & 0x0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f);
     x = (x & 0x00ff00ff) + ((x >> 8) & 0x00ff00ff);
     x = (x & 0x0000ffff) + ((x >> 16) & 0x0000ffff);
-# 457 "pmc_internal.h"
+# 454 "pmc_internal.h"
     return(x);
 }
 
@@ -100616,7 +100627,7 @@ __inline static _UINT32_T _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
-# 472 "pmc_internal.h"
+# 469 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
@@ -100657,7 +100668,7 @@ __inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
 
     return (sizeof(x) * 8 - 1 - pos);
 }
-# 531 "pmc_internal.h"
+# 528 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
@@ -100668,7 +100679,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 557 "pmc_internal.h"
+# 554 "pmc_internal.h"
     return (sizeof(x) * 8 - 1 - pos);
 }
 
@@ -100704,44 +100715,93 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 608 "pmc_internal.h"
+# 605 "pmc_internal.h"
     return (pos);
 }
+#pragma endregion
 # 35 "debug.c" 2
 # 1 "pmc_debug.h" 1
-# 41 "pmc_debug.h"
+# 40 "pmc_debug.h"
+#pragma region åž‹ã®å®šç¾©
 typedef struct __tag_PMC_DEBUG_ENVIRONMENT
 {
     int (__attribute__((__cdecl__)) * log)(const char*, ...);
 } PMC_DEBUG_ENVIRONMENT;
+#pragma endregion
+
+
+#pragma region å®£è¨€
+extern void TEST_Assert(PMC_DEBUG_ENVIRONMENT *env, const char* test_name, BOOL condition, const char* reason);
+
+extern void TEST_generic(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
+extern void TEST_op_From_To(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
+extern void TEST_op_Subtruct(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
+extern void TEST_op_Add(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
+#pragma endregion
+
+
+#pragma region ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°ã®å®šç¾©
+__inline static int _EQUALS_MEMORY(unsigned char* buffer1, size_t count1, unsigned char* buffer2, size_t count2)
+{
+    if (count1 != count2)
+        return (-1);
+    while (count1 > 0)
+    {
+        if (*buffer1 != *buffer2)
+            return (-1);
+        ++buffer1;
+        ++buffer2;
+        --count1;
+    }
+    return (0);
+}
+
+#pragma endregion
 # 36 "debug.c" 2
 
 
-
-
-
-static __UNIT_TYPE RotateLeft1(__UNIT_TYPE x)
+static void (*TEST_Functions[])(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep) =
 {
-    __UNIT_TYPE y;
-    __UNIT_TYPE z;
-    unsigned char c = _addcarry_u32(0, x, x, &y);
-    _addcarry_u32(c, y, 0, &z);
-    return (z);
+    TEST_generic,
+    TEST_op_From_To,
+    TEST_op_Add,
+    TEST_op_Subtruct,
+};
+
+int test_total_count = 0;
+int test_ok_count = 0;
+
+
+static void TEST_Start(PMC_DEBUG_ENVIRONMENT *env)
+{
+    test_total_count = 0;
+    test_ok_count = 0;
+    env->log("ƒeƒXƒgŠJŽn\n");
 }
-# 63 "debug.c"
+
+static void TEST_End(PMC_DEBUG_ENVIRONMENT *env)
+{
+    env->log("ƒeƒXƒgŠ®—¹B€–Ú”=%d, OK€–Ú”=%d, NG€–Ú”=%d, OK—¦=%d%%, NG—¦=%d%%\n",
+             test_total_count,
+             test_ok_count,
+             test_total_count - test_ok_count,
+             test_ok_count * 100 / test_total_count,
+             (test_total_count - test_ok_count) * 100 / test_total_count);
+}
+
 __attribute__((dllexport)) void __attribute__((__stdcall__)) DoDebug(PMC_DEBUG_ENVIRONMENT *env)
 {
     PMC_CONFIGURATION_INFO conf;
     conf.MEMORY_VERIFICATION_ENABLED = 
-# 66 "debug.c" 3
+# 70 "debug.c" 3
                                       0
-# 66 "debug.c"
+# 70 "debug.c"
                                            ;
     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
     if (ep == 
-# 68 "debug.c" 3 4
+# 72 "debug.c" 3 4
              ((void *)0)
-# 68 "debug.c"
+# 72 "debug.c"
                  )
     {
          env->log("PMC_Initialize failed");
@@ -100754,100 +100814,31 @@ __attribute__((dllexport)) void __attribute__((__stdcall__)) DoDebug(PMC_DEBUG_E
              ep->PROCESSOR_FEATURE_BMI2,
              ep->PROCESSOR_FEATURE_ABM);
 
-    env->log("_LZCNT_ALT_32(0) => %d\n", _LZCNT_ALT_32(0));
-    env->log("_LZCNT_ALT_32(1) => %d\n", _LZCNT_ALT_32(1));
-    env->log("_LZCNT_ALT_32(10) => %d\n", _LZCNT_ALT_32(10));
+    TEST_Start(env);
+    void(**tp)(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep) = TEST_Functions;
+    size_t t_count = (sizeof(TEST_Functions)/sizeof(*(TEST_Functions)));
 
-    PMC_STATUS_CODE result;
-    HANDLE x1;
-    HANDLE x2;
-    HANDLE x3;
-    HANDLE x4;
-    HANDLE x5;
-    HANDLE x6;
-    HANDLE x7;
-    HANDLE x8;
-    HANDLE x9;
-    HANDLE x10;
-    HANDLE x11;
-    HANDLE x12;
-    result = ep->PMC_From_I(0, &x1);
-    result = ep->PMC_From_I(1, &x2);
-    result = ep->PMC_From_I(10, &x3);
-    result = ep->PMC_From_L(0, &x4);
-    result = ep->PMC_From_L(1, &x5);
-    result = ep->PMC_From_L(10, &x6);
-    result = ep->PMC_From_L(0x0000000100000000UL, &x7);
-    unsigned char buffer8[] = { 0 };
-    unsigned char buffer9[] = { 1 };
-    unsigned char buffer10[] = { 10 };
-    unsigned char buffer11[] = { 0x00, 0x00, 0x00, 0x00, 0x01 };
-    unsigned char buffer12[] = { 0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc, 0xde, 0xf0, 0x12, 0x34, 0x56, 0x78 };
-    result = ep->PMC_From_B(buffer8, sizeof(buffer8), &x8);
-    result = ep->PMC_From_B(buffer9, sizeof(buffer9), &x9);
-    result = ep->PMC_From_B(buffer10, sizeof(buffer10), &x10);
-    result = ep->PMC_From_B(buffer11, sizeof(buffer11), &x11);
-    result = ep->PMC_From_B(buffer12, sizeof(buffer12), &x12);
+    while (t_count > 0)
+    {
+        (**tp)(env, ep);
+        --t_count;
+        ++tp;
+    }
 
-    _UINT32_T i;
-    _UINT64_T l;
-
-    result = ep->PMC_To_X_I(x1, &i);
-    env->log("1. %s\n", result == (0) && i == 0 ? "Ok" : "Error");
-    result = ep->PMC_To_X_I(x2, &i);
-    env->log("2. %s\n", result == (0) && i == 1 ? "Ok" : "Error");
-    result = ep->PMC_To_X_I(x3, &i);
-    env->log("3. %s\n", result == (0) && i == 10 ? "Ok" : "Error");
-    result = ep->PMC_To_X_I(x4, &i);
-    env->log("4. %s\n", result == (0) && i == 0 ? "Ok" : "Error");
-    result = ep->PMC_To_X_I(x5, &i);
-    env->log("5. %s\n", result == (0) && i == 1 ? "Ok" : "Error");
-    result = ep->PMC_To_X_I(x6, &i);
-    env->log("6. %s\n", result == (0) && i == 10 ? "Ok" : "Error");
-    result = ep->PMC_To_X_I(x7, &i);
-    env->log("7. %s\n", result == (-1) ? "Ok" : "Error");
-
-    result = ep->PMC_To_X_L(x1, &l);
-    env->log("8. %s\n", result == (0) && l == 0 ? "Ok" : "Error");
-    result = ep->PMC_To_X_L(x2, &l);
-    env->log("9. %s\n", result == (0) && l == 1 ? "Ok" : "Error");
-    result = ep->PMC_To_X_L(x3, &l);
-    env->log("10. %s\n", result == (0) && l == 10 ? "Ok" : "Error");
-    result = ep->PMC_To_X_L(x4, &l);
-    env->log("11. %s\n", result == (0) && l == 0 ? "Ok" : "Error");
-    result = ep->PMC_To_X_L(x5, &l);
-    env->log("12. %s\n", result == (0) && l == 1 ? "Ok" : "Error");
-    result = ep->PMC_To_X_L(x6, &l);
-    env->log("13. %s\n", result == (0) && l == 10 ? "Ok" : "Error");
-    result = ep->PMC_To_X_L(x7, &l);
-    env->log("14. %s\n", result == (0) && l == 0x0000000100000000 ? "Ok" : "Error");
-
-    unsigned char obuffer[256];
-    size_t count;
-    result = ep->PMC_To_X_B(x8, obuffer, sizeof(obuffer), &count);
-    env->log("15. %s\n", result == (0) && _EQUALS_MEMORY(obuffer, count, buffer8, sizeof(buffer8)) == 0 ? "Ok" : "Error");
-    result = ep->PMC_To_X_B(x9, obuffer, sizeof(obuffer), &count);
-    env->log("16. %s\n", result == (0) && _EQUALS_MEMORY(obuffer, count, buffer9, sizeof(buffer9)) == 0 ? "Ok" : "Error");
-    result = ep->PMC_To_X_B(x10, obuffer, sizeof(obuffer), &count);
-    env->log("17. %s\n", result == (0) && _EQUALS_MEMORY(obuffer, count, buffer10, sizeof(buffer10)) == 0 ? "Ok" : "Error");
-    result = ep->PMC_To_X_B(x11, obuffer, sizeof(obuffer), &count);
-    env->log("18. %s\n", result == (0) && _EQUALS_MEMORY(obuffer, count, buffer11, sizeof(buffer11)) == 0 ? "Ok" : "Error");
-    result = ep->PMC_To_X_B(x12, obuffer, sizeof(obuffer), &count);
-    env->log("19. %s\n", result == (0) && _EQUALS_MEMORY(obuffer, count, buffer12, sizeof(buffer12)) == 0 ? "Ok" : "Error");
-
-    ep->PMC_Dispose(x12);
-    ep->PMC_Dispose(x11);
-    ep->PMC_Dispose(x10);
-    ep->PMC_Dispose(x9);
-    ep->PMC_Dispose(x8);
-    ep->PMC_Dispose(x7);
-    ep->PMC_Dispose(x6);
-    ep->PMC_Dispose(x5);
-    ep->PMC_Dispose(x4);
-    ep->PMC_Dispose(x3);
-    ep->PMC_Dispose(x2);
-    ep->PMC_Dispose(x1);
+    TEST_End(env);
+}
 
 
-    return;
+void TEST_Assert(PMC_DEBUG_ENVIRONMENT *env, const char* test_name, BOOL condition, const char* reason)
+{
+    if (condition)
+    {
+        env->log("ƒeƒXƒg No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
+        ++test_ok_count;
+    }
+    else
+    {
+        env->log("ƒeƒXƒg No.%d: %s => %s (%s)\n", test_total_count + 1, test_name, "***NG***", reason);
+    }
+    ++test_total_count;
 }

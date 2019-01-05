@@ -35,6 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/TEST_generic.o \
+	${OBJECTDIR}/TEST_op_Add.o \
+	${OBJECTDIR}/TEST_op_From_To.o \
+	${OBJECTDIR}/TEST_op_Subtruct.o \
 	${OBJECTDIR}/debug.o \
 	${OBJECTDIR}/dllmain.o \
 	${OBJECTDIR}/memory.o \
@@ -68,6 +72,26 @@ LDLIBSOPTIONS=-lkernel32 -luser32
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT}: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -mwindows -nostdlib -Wl,-eDllMain -shared
+
+${OBJECTDIR}/TEST_generic.o: TEST_generic.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_generic.o TEST_generic.c
+
+${OBJECTDIR}/TEST_op_Add.o: TEST_op_Add.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Add.o TEST_op_Add.c
+
+${OBJECTDIR}/TEST_op_From_To.o: TEST_op_From_To.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_From_To.o TEST_op_From_To.c
+
+${OBJECTDIR}/TEST_op_Subtruct.o: TEST_op_Subtruct.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Subtruct.o TEST_op_Subtruct.c
 
 ${OBJECTDIR}/debug.o: debug.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

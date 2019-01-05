@@ -121,6 +121,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_From_L(_UINT64_T x, HANDLE* o)
     {
         if ((result = From_L_Imp(x, &p)) != PMC_STATUS_OK)
             return (result);
+        *o = p;
     }
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)

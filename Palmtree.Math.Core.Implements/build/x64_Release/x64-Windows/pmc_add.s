@@ -106,7 +106,7 @@ Add_X_X_using_ADC:
 	movq	%rcx, %rdx
 	movq	%rax, %rcx
 .L27:
-	movq	(%r8), %rax
+	movq	32(%r8), %rax
 	movq	40(%r8), %r9
 	movq	%r14, %r8
 	shrq	$5, %r8
@@ -241,9 +241,9 @@ Add_X_X_using_ADC:
 	addq	%rcx, %r13
 	addq	%rcx, %r9
 .L28:
-	testb	$15, %r10b
+	testb	$16, %r10b
 	jne	.L46
-	testb	$7, %r10b
+	testb	$8, %r10b
 	jne	.L47
 .L31:
 	testq	%r10, %r10
@@ -344,7 +344,7 @@ Add_X_X_using_ADC:
 	subq	$-128, %rdx
 	subq	$-128, %r13
 	subq	$-128, %r9
-	testb	$7, %r10b
+	testb	$8, %r10b
 	je	.L31
 .L47:
 	movq	%rdx, %r8
@@ -425,7 +425,7 @@ Add_X_X_using_ADCX:
 	movq	%rcx, %rdx
 	movq	%rax, %rcx
 .L49:
-	movq	(%r8), %rax
+	movq	32(%r8), %rax
 	movq	40(%r8), %r9
 	movq	%r14, %r8
 	shrq	$5, %r8
@@ -560,9 +560,9 @@ Add_X_X_using_ADCX:
 	addq	%rcx, %r13
 	addq	%rcx, %r9
 .L50:
-	testb	$15, %r10b
+	testb	$16, %r10b
 	jne	.L68
-	testb	$7, %r10b
+	testb	$8, %r10b
 	jne	.L69
 .L53:
 	testq	%r10, %r10
@@ -663,7 +663,7 @@ Add_X_X_using_ADCX:
 	subq	$-128, %rdx
 	subq	$-128, %r13
 	subq	$-128, %r9
-	testb	$7, %r10b
+	testb	$8, %r10b
 	je	.L53
 .L69:
 	movq	%rdx, %r8
@@ -711,10 +711,10 @@ Add_X_X_using_ADCX:
 	jmp	.L50
 	.seh_endproc
 	.p2align 4,,15
-	.globl	PMC_Add_XI
-	.def	PMC_Add_XI;	.scl	2;	.type	32;	.endef
-	.seh_proc	PMC_Add_XI
-PMC_Add_XI:
+	.globl	PMC_Add_X_I
+	.def	PMC_Add_X_I;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_Add_X_I
+PMC_Add_X_I:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -730,9 +730,9 @@ PMC_Add_XI:
 	movq	%rcx, %rbx
 	movl	%edx, %ebp
 	movq	%r8, %rdi
-	je	.L77
+	je	.L76
 	testq	%rcx, %rcx
-	je	.L77
+	je	.L76
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %esi
@@ -740,9 +740,8 @@ PMC_Add_XI:
 	testb	$2, 24(%rbx)
 	je	.L72
 	testl	%ebp, %ebp
-	jne	.L82
-.L74:
-	movq	56(%rsp), %rax
+	jne	.L73
+	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, (%rdi)
 .L70:
 	movl	%esi, %eax
@@ -755,11 +754,28 @@ PMC_Add_XI:
 	.p2align 4,,10
 .L72:
 	testl	%ebp, %ebp
-	je	.L83
+	jne	.L74
+	leaq	56(%rsp), %rdx
+	movq	%rbx, %rcx
+	call	DuplicateNumber
+	testl	%eax, %eax
+	jne	.L79
+.L75:
+	movq	56(%rsp), %rax
+	movq	%rax, (%rdi)
+	movl	%esi, %eax
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L74:
 	leaq	56(%rsp), %rcx
 	movl	$31, %eax
 /APP
- # 506 "pmc_internal.h" 1
+ # 503 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
@@ -772,11 +788,11 @@ PMC_Add_XI:
 	addq	$1, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L81
+	jne	.L79
 	movq	56(%rsp), %rcx
 	movq	40(%rbx), %rdx
 	movq	(%rbx), %r10
-	movq	(%rcx), %rax
+	movq	32(%rcx), %rax
 	addq	(%rdx), %rbp
 	movq	40(%rcx), %r8
 	setc	%cl
@@ -789,10 +805,69 @@ PMC_Add_XI:
 	leaq	-1(%r10), %r8
 	call	DoCarry
 	testl	%eax, %eax
-	je	.L84
-.L81:
+	je	.L80
+.L79:
 	movl	%eax, %esi
-.L85:
+	movl	%esi, %eax
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L73:
+	leaq	56(%rsp), %rdx
+	movl	%ebp, %ecx
+	call	From_I_Imp
+	testl	%eax, %eax
+	movl	%eax, %esi
+	je	.L75
+	jmp	.L70
+	.p2align 4,,10
+.L80:
+	movq	56(%rsp), %rcx
+	call	CommitNumber
+	jmp	.L75
+	.p2align 4,,10
+.L76:
+	movl	$-1, %esi
+	jmp	.L70
+	.seh_endproc
+	.p2align 4,,15
+	.globl	PMC_Add_X_L
+	.def	PMC_Add_X_L;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_Add_X_L
+PMC_Add_X_L:
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$72, %rsp
+	.seh_stackalloc	72
+	.seh_endprologue
+	testq	%r8, %r8
+	movq	%rcx, %rbx
+	movq	%rdx, %rbp
+	movq	%r8, %rdi
+	je	.L87
+	testq	%rcx, %rcx
+	je	.L87
+	call	CheckNumber
+	testl	%eax, %eax
+	movl	%eax, %esi
+	jne	.L81
+	testb	$2, 24(%rbx)
+	je	.L83
+	testq	%rbp, %rbp
+	jne	.L84
+	movq	.refptr.number_zero(%rip), %rax
+	movq	%rax, (%rdi)
+.L81:
 	movl	%esi, %eax
 	addq	$72, %rsp
 	popq	%rbx
@@ -802,221 +877,88 @@ PMC_Add_XI:
 	ret
 	.p2align 4,,10
 .L83:
+	testq	%rbp, %rbp
+	jne	.L85
 	leaq	56(%rsp), %rdx
 	movq	%rbx, %rcx
 	call	DuplicateNumber
 	testl	%eax, %eax
-	je	.L74
-	movl	%eax, %esi
-	jmp	.L85
-	.p2align 4,,10
-.L82:
-	leaq	56(%rsp), %rdx
-	movl	%ebp, %ecx
-	call	From_I_Imp
-	testl	%eax, %eax
-	je	.L74
-	movl	%eax, %esi
-	jmp	.L85
-	.p2align 4,,10
-.L84:
-	movq	56(%rsp), %rcx
-	call	CommitNumber
-	jmp	.L74
-	.p2align 4,,10
-.L77:
-	movl	$-1, %esi
-	jmp	.L70
-	.seh_endproc
-	.p2align 4,,15
-	.globl	PMC_Add_XL
-	.def	PMC_Add_XL;	.scl	2;	.type	32;	.endef
-	.seh_proc	PMC_Add_XL
-PMC_Add_XL:
-	pushq	%r12
-	.seh_pushreg	%r12
-	pushq	%rbp
-	.seh_pushreg	%rbp
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$64, %rsp
-	.seh_stackalloc	64
-	.seh_endprologue
-	testq	%r8, %r8
-	movq	%rcx, %rbx
-	movq	%rdx, %rdi
-	movq	%r8, %rbp
-	je	.L97
-	testq	%rcx, %rcx
-	je	.L97
-	call	CheckNumber
-	testl	%eax, %eax
-	movl	%eax, %esi
-	jne	.L86
-	testb	$2, 24(%rbx)
-	je	.L88
-	testq	%rdi, %rdi
-	jne	.L108
-.L90:
-	movq	56(%rsp), %rax
-	movq	%rax, 0(%rbp)
+	jne	.L90
 .L86:
+	movq	56(%rsp), %rax
+	movq	%rax, (%rdi)
 	movl	%esi, %eax
-	addq	$64, %rsp
+	addq	$72, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	popq	%rbp
-	popq	%r12
 	ret
 	.p2align 4,,10
-.L88:
-	testq	%rdi, %rdi
-	je	.L109
-	movq	%rdi, %r12
-	movq	8(%rbx), %rax
-	shrq	$32, %r12
-	testq	%r12, %r12
-	jne	.L93
-	movl	$31, %ecx
+.L85:
 /APP
- # 506 "pmc_internal.h" 1
-	bsrl %edi, %edx
+ # 547 "pmc_internal.h" 1
+	bsrq %rbp, %rdx
  # 0 "" 2
 /NO_APP
-	subl	%edx, %ecx
-	movl	$32, %edx
-	subq	%rcx, %rdx
 	leaq	56(%rsp), %rcx
-	cmpq	%rax, %rdx
-	cmovb	%rax, %rdx
+	addq	$1, %rdx
+	cmpq	%rdx, 8(%rbx)
+	cmovnb	8(%rbx), %rdx
 	addq	$1, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L103
+	jne	.L90
 	movq	56(%rsp), %rcx
 	movq	40(%rbx), %rdx
 	movq	(%rbx), %r10
-	movq	(%rcx), %rax
-	addq	(%rdx), %rdi
+	movq	32(%rcx), %rax
+	addq	(%rdx), %rbp
 	movq	40(%rcx), %r8
 	setc	%cl
 	subq	$1, %rax
 	addq	$8, %rdx
-	movq	%rdi, (%r8)
+	movq	%rbp, (%r8)
 	leaq	8(%r8), %r9
 	movsbl	%cl, %ecx
 	movq	%rax, 32(%rsp)
 	leaq	-1(%r10), %r8
 	call	DoCarry
 	testl	%eax, %eax
-	jne	.L103
-.L94:
-	movq	56(%rsp), %rcx
-	call	CommitNumber
-	jmp	.L90
-	.p2align 4,,10
-.L93:
-	movl	$31, %ecx
-/APP
- # 506 "pmc_internal.h" 1
-	bsrl %r12d, %edx
- # 0 "" 2
-/NO_APP
-	subl	%edx, %ecx
-	movl	$64, %edx
-	subq	%rcx, %rdx
-	leaq	56(%rsp), %rcx
-	cmpq	%rax, %rdx
-	cmovb	%rax, %rdx
-	addq	$1, %rdx
-	call	AllocateNumber
-	testl	%eax, %eax
-	je	.L110
-.L103:
+	je	.L91
+.L90:
 	movl	%eax, %esi
-.L111:
 	movl	%esi, %eax
-	addq	$64, %rsp
+	addq	$72, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	popq	%rbp
-	popq	%r12
 	ret
 	.p2align 4,,10
-.L108:
+.L84:
 	leaq	56(%rsp), %rdx
-	movq	%rdi, %rcx
+	movq	%rbp, %rcx
 	call	From_L_Imp
 	testl	%eax, %eax
-	je	.L90
 	movl	%eax, %esi
-	jmp	.L111
+	je	.L86
+	jmp	.L81
 	.p2align 4,,10
-.L109:
-	leaq	56(%rsp), %rdx
-	movq	%rbx, %rcx
-	call	DuplicateNumber
-	testl	%eax, %eax
-	je	.L90
-	movl	%eax, %esi
-	jmp	.L111
-	.p2align 4,,10
-.L110:
-	movq	(%rbx), %r10
-	movl	%edi, %edi
+.L91:
 	movq	56(%rsp), %rcx
-	movq	40(%rbx), %rdx
-	cmpq	$1, %r10
-	movq	40(%rcx), %r8
-	movq	(%rdx), %rax
-	ja	.L95
-	addq	%rax, %rdi
-	setc	%dl
-	xorl	%eax, %eax
-	movq	%rdi, (%r8)
-	addb	$-1, %dl
-	adcq	%rax, %r12
-	movq	%r12, 8(%r8)
-	jnc	.L94
-	movq	$1, 16(%r8)
-	jmp	.L94
-	.p2align 4,,10
-.L95:
-	addq	%rax, %rdi
-	movq	(%rcx), %r9
-	setc	%al
-	movq	%rdi, (%r8)
-	addb	$-1, %al
-	adcq	8(%rdx), %r12
-	leaq	-2(%r9), %rax
-	leaq	16(%r8), %r9
-	setc	%cl
-	movq	%r12, 8(%r8)
-	addq	$16, %rdx
-	movq	%rax, 32(%rsp)
-	leaq	-2(%r10), %r8
-	movsbl	%cl, %ecx
-	call	DoCarry
-	testl	%eax, %eax
-	je	.L94
-	movl	%eax, %esi
-	jmp	.L111
-	.p2align 4,,10
-.L97:
-	movl	$-1, %esi
+	call	CommitNumber
 	jmp	.L86
+	.p2align 4,,10
+.L87:
+	movl	$-1, %esi
+	jmp	.L81
 	.seh_endproc
 	.p2align 4,,15
-	.globl	PMC_Add_XX
-	.def	PMC_Add_XX;	.scl	2;	.type	32;	.endef
-	.seh_proc	PMC_Add_XX
-PMC_Add_XX:
+	.globl	PMC_Add_X_X
+	.def	PMC_Add_X_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_Add_X_X
+PMC_Add_X_X:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -1036,14 +978,14 @@ PMC_Add_XX:
 	movq	%r8, %rbp
 	sete	%al
 	orb	%al, %dl
-	jne	.L117
+	jne	.L97
 	testq	%rcx, %rcx
-	je	.L117
+	je	.L97
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %ebx
-	je	.L124
-.L112:
+	je	.L104
+.L92:
 	movl	%ebx, %eax
 	addq	$56, %rsp
 	popq	%rbx
@@ -1052,26 +994,26 @@ PMC_Add_XX:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L124:
+.L104:
 	movq	%rdi, %rcx
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %ebx
-	jne	.L112
+	jne	.L92
 	movzbl	24(%rdi), %eax
 	andl	$2, %eax
 	testb	$2, 24(%rsi)
-	jne	.L125
+	jne	.L105
 	testb	%al, %al
-	je	.L116
+	je	.L96
 	leaq	40(%rsp), %rdx
 	movq	%rsi, %rcx
 	call	DuplicateNumber
 	testl	%eax, %eax
-	jne	.L122
-.L123:
+	jne	.L102
+.L103:
 	movq	40(%rsp), %rdx
-.L115:
+.L95:
 	movl	%ebx, %eax
 	movq	%rdx, 0(%rbp)
 	addq	$56, %rsp
@@ -1081,21 +1023,21 @@ PMC_Add_XX:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L125:
+.L105:
 	testb	%al, %al
 	movq	.refptr.number_zero(%rip), %rdx
-	jne	.L115
+	jne	.L95
 	leaq	40(%rsp), %rdx
 	movq	%rdi, %rcx
 	call	DuplicateNumber
 	testl	%eax, %eax
-	je	.L123
+	je	.L103
 	.p2align 4,,10
-.L122:
+.L102:
 	movl	%eax, %ebx
-	jmp	.L112
+	jmp	.L92
 	.p2align 4,,10
-.L116:
+.L96:
 	movq	8(%rdi), %rdx
 	leaq	40(%rsp), %rcx
 	cmpq	%rdx, 8(%rsi)
@@ -1103,20 +1045,20 @@ PMC_Add_XX:
 	addq	$1, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L122
+	jne	.L102
 	movq	40(%rsp), %r8
 	movq	%rdi, %rdx
 	movq	%rsi, %rcx
 	call	*fp_Add_X_X_using_ADC(%rip)
 	testl	%eax, %eax
-	jne	.L122
+	jne	.L102
 	movq	40(%rsp), %rcx
 	call	CommitNumber
-	jmp	.L123
+	jmp	.L103
 	.p2align 4,,10
-.L117:
+.L97:
 	movl	$-1, %ebx
-	jmp	.L112
+	jmp	.L92
 	.seh_endproc
 	.p2align 4,,15
 	.globl	Initialize_Add
@@ -1135,8 +1077,8 @@ Initialize_Add:
 .lcomm fp_Add_X_X_using_ADC,8,8
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	CheckNumber;	.scl	2;	.type	32;	.endef
-	.def	AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	DuplicateNumber;	.scl	2;	.type	32;	.endef
+	.def	AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	From_I_Imp;	.scl	2;	.type	32;	.endef
 	.def	CommitNumber;	.scl	2;	.type	32;	.endef
 	.def	From_L_Imp;	.scl	2;	.type	32;	.endef

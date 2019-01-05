@@ -83,6 +83,10 @@ PMC_Initialize:
 	call	Initialize_To
 	testl	%eax, %eax
 	jne	.L10
+	movq	%rbx, %rcx
+	call	Initialize_Add
+	testl	%eax, %eax
+	jne	.L10
 	movzbl	entry_points(%rip), %eax
 	movzbl	44(%rsp), %edx
 	andl	$-32, %eax
@@ -107,11 +111,11 @@ PMC_Initialize:
 	movq	%rax, 64+entry_points(%rip)
 	movq	.refptr.PMC_To_X_B(%rip), %rax
 	movq	%rax, 72+entry_points(%rip)
-	movq	.refptr.PMC_Add_XI(%rip), %rax
+	movq	.refptr.PMC_Add_X_I(%rip), %rax
 	movq	%rax, 80+entry_points(%rip)
-	movq	.refptr.PMC_Add_XL(%rip), %rax
+	movq	.refptr.PMC_Add_X_L(%rip), %rax
 	movq	%rax, 88+entry_points(%rip)
-	movq	.refptr.PMC_Add_XX(%rip), %rax
+	movq	.refptr.PMC_Add_X_X(%rip), %rax
 	movq	%rax, 96+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
 	addq	$48, %rsp
@@ -153,23 +157,24 @@ PMC_Initialize:
 	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	Initialize_From;	.scl	2;	.type	32;	.endef
 	.def	Initialize_To;	.scl	2;	.type	32;	.endef
+	.def	Initialize_Add;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize\""
-	.section	.rdata$.refptr.PMC_Add_XX, "dr"
-	.globl	.refptr.PMC_Add_XX
+	.section	.rdata$.refptr.PMC_Add_X_X, "dr"
+	.globl	.refptr.PMC_Add_X_X
 	.linkonce	discard
-.refptr.PMC_Add_XX:
-	.quad	PMC_Add_XX
-	.section	.rdata$.refptr.PMC_Add_XL, "dr"
-	.globl	.refptr.PMC_Add_XL
+.refptr.PMC_Add_X_X:
+	.quad	PMC_Add_X_X
+	.section	.rdata$.refptr.PMC_Add_X_L, "dr"
+	.globl	.refptr.PMC_Add_X_L
 	.linkonce	discard
-.refptr.PMC_Add_XL:
-	.quad	PMC_Add_XL
-	.section	.rdata$.refptr.PMC_Add_XI, "dr"
-	.globl	.refptr.PMC_Add_XI
+.refptr.PMC_Add_X_L:
+	.quad	PMC_Add_X_L
+	.section	.rdata$.refptr.PMC_Add_X_I, "dr"
+	.globl	.refptr.PMC_Add_X_I
 	.linkonce	discard
-.refptr.PMC_Add_XI:
-	.quad	PMC_Add_XI
+.refptr.PMC_Add_X_I:
+	.quad	PMC_Add_X_I
 	.section	.rdata$.refptr.PMC_To_X_B, "dr"
 	.globl	.refptr.PMC_To_X_B
 	.linkonce	discard

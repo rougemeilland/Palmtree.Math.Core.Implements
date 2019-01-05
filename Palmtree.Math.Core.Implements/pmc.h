@@ -40,8 +40,7 @@
 extern "C" {
 #endif
 
-// <editor-fold defaultstate="collapsed" desc="マクロの定義">
-
+#pragma region マクロの定義
 #define __PMC_CALL  __stdcall
 #ifdef  __PMC_INTERNAL_H
 #define PMC_EXPORT __declspec(dllexport)
@@ -54,21 +53,24 @@ extern "C" {
 #define PMC_STATUS_NOT_ENOUGH_MEMORY (-2)
 #define PMC_STATUS_BAD_BUFFER (-3)
 #define PMC_STATUS_INTERNAL_ERROR (-4)
-    
-// </editor-fold>
+#pragma endregion
 
-// <editor-fold defaultstate="collapsed" desc="型の定義">
 
+#pragma region 型の定義
 #ifdef _MSC_VER
+typedef __int16 _INT16_T;
 typedef __int32 _INT32_T;
 typedef __int64 _INT64_T;
 typedef unsigned __int8 _BYTE_T;
+typedef unsigned __int16 _UINT16_T;
 typedef unsigned __int32 _UINT32_T;
 typedef unsigned __int64 _UINT64_T;
 #elif defined(__GNUC__)
+typedef int16_t _INT16_T;
 typedef int32_t _INT32_T;
 typedef int64_t _INT64_T;
 typedef uint8_t _BYTE_T;
+typedef uint16_t _UINT16_T;
 typedef uint32_t _UINT32_T;
 typedef uint64_t _UINT64_T;
 #else
@@ -121,18 +123,17 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
     PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
-    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XI)(HANDLE p, _UINT32_T x, HANDLE* o);
-    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XL)(HANDLE p, _UINT64_T x, HANDLE* o);
-    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_XX)(HANDLE p1, HANDLE p2, HANDLE* o);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
+    PMC_STATUS_CODE (__PMC_CALL * PMC_Add_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 } PMC_ENTRY_POINTS;
-    
-// </editor-fold>
-    
-// <editor-fold defaultstate="collapsed" desc="宣言">
+#pragma endregion
 
+
+#pragma region 宣言
 PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO*);
+#pragma endregion
 
-// </editor-fold>
 
 #ifdef __cplusplus
 }

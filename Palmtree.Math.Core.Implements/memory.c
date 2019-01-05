@@ -33,7 +33,7 @@
 #include "pmc_internal.h"
 
 
-// <editor-fold defaultstate="collapsed" desc="プラットフォーム固有の定義">
+#pragma region プラットフォーム固有の定義
 #ifdef _M_IX86
 #define	CHECK_CODE_INIT	(0x12345678)
 #elif defined(_M_X64)
@@ -41,18 +41,16 @@
 #else
 #error unknown platform
 #endif
-// </editor-fold>
+#pragma endregion
 
 
-// <editor-fold defaultstate="collapsed" desc="静的変数の定義">
-
+#pragma region 静的変数の定義
 HANDLE hLocalHeap;
 NUMBER_HEADER number_zero;
+#pragma endregion
 
-// </editor-fold>
 
-
-// <editor-fold defaultstate="collapsed" desc="インライン関数の定義">
+#pragma region インライン関数の定義
 static __UNIT_TYPE CalculateCheckCode(__UNIT_TYPE* p, __UNIT_TYPE words)
 {
 	__UNIT_TYPE code = CHECK_CODE_INIT;
@@ -143,7 +141,8 @@ static __UNIT_TYPE CalculateCheckCode(__UNIT_TYPE* p, __UNIT_TYPE words)
 		code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
 	return (code);
 }
-// </editor-fold>
+#pragma endregion
+
 
 // 多倍長整数をバイト列として格納するためのメモリ領域を獲得する。
 // 引数には格納可能な多倍長整数の合計ワード数が渡される。
@@ -211,9 +210,48 @@ static PMC_STATUS_CODE CheckBlock(__UNIT_TYPE* buffer, __UNIT_TYPE* code)
         return (PMC_STATUS_BAD_BUFFER);
 }
 
+__inline static void ClearNumberHeader(NUMBER_HEADER* p)
+{
+#ifdef _M_IX64
+    if (sizeof(*p) == sizeof(_UINT64_T) * 6)
+    {
+        _UINT64_T* __p = (_UINT64_T*)p;
+        __p[0] = 0;
+        __p[1] = 0;
+        __p[2] = 0;
+        __p[3] = 0;
+        __p[4] = 0;
+        __p[5] = 0;
+    }
+    else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
+        _ZERO_MEMORY_64((_UINT64_T*)p, sizeof(*p) / sizeof(_UINT64_T));
+    else
+    {
+#endif
+        if (sizeof(*p) == sizeof(_UINT32_T) * 6)
+        {
+            _UINT32_T* __p = (_UINT32_T*)p;
+            __p[0] = 0;
+            __p[1] = 0;
+            __p[2] = 0;
+            __p[3] = 0;
+            __p[4] = 0;
+            __p[5] = 0;
+        }
+        else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
+            _ZERO_MEMORY_32((_UINT32_T*)p, sizeof(*p) / sizeof(_UINT32_T));
+        else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
+            _ZERO_MEMORY_16((_UINT16_T*)p, sizeof(*p) / sizeof(_UINT16_T));
+        else
+            _ZERO_MEMORY_BYTE(p, sizeof(*p));
+#ifdef _M_IX64
+    }
+#endif
+}
+
 static PMC_STATUS_CODE InitializeNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_count)
 {
-    _ZERO_MEMORY_BYTE(p, sizeof(*p));
+    ClearNumberHeader(p);
     __UNIT_TYPE word_count = _DIVIDE_CEILING_UNIT(bit_count, __UNIT_TYPE_BIT_COUNT);
     p->UNIT_BIT_COUNT = bit_count;
     p->BLOCK_COUNT = word_count;

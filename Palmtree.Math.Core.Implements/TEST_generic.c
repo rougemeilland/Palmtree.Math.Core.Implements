@@ -23,62 +23,26 @@
  */
 
 /* 
- * File:   pmc_debug.h
+ * File:   TEST_generic.c
  * Author: Lunor Kisasage
- *
- * Created on 2019/01/01, 18:26
+ * 
+ * Created on 2019/01/05, 18:41
  */
 
-#ifndef PMC_DEBUG_H
-#define PMC_DEBUG_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <windows.h>
+#include "pmc_internal.h"
+#include "pmc_debug.h"
 
 
-#pragma region 型の定義
-typedef struct __tag_PMC_DEBUG_ENVIRONMENT
+void TEST_generic(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep)
 {
-    int (_cdecl * log)(const char*, ...);
-} PMC_DEBUG_ENVIRONMENT;
-#pragma endregion
-
-
-#pragma region 宣言
-extern void TEST_Assert(PMC_DEBUG_ENVIRONMENT *env, const char* test_name, BOOL condition, const char* reason);
-
-extern void TEST_generic(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
-extern void TEST_op_From_To(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
-extern void TEST_op_Subtruct(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
-extern void TEST_op_Add(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
-#pragma endregion
-
-
-#pragma region インライン関数の定義
-__inline static int _EQUALS_MEMORY(unsigned char* buffer1, size_t count1, unsigned char* buffer2, size_t count2)
-{
-    if (count1 != count2)
-        return (-1);
-    while (count1 > 0)
-    {
-        if (*buffer1 != *buffer2)
-            return (-1);
-        ++buffer1;
-        ++buffer2;
-        --count1;
-    }
-    return (0);
+    TEST_Assert(env, "_LZCNT_ALT_32 (1)", _LZCNT_ALT_32(0) == 32, "復帰値の誤り");
+    TEST_Assert(env, "_LZCNT_ALT_32 (2)", _LZCNT_ALT_32(1) == 31, "復帰値の誤り");
+    TEST_Assert(env, "_LZCNT_ALT_32 (3)", _LZCNT_ALT_32(0x00000400) == 21, "復帰値の誤り");
+    TEST_Assert(env, "_LZCNT_ALT_32 (4)", _LZCNT_ALT_32(0x40000000) == 1, "復帰値の誤り");
+    TEST_Assert(env, "_LZCNT_ALT_32 (4)", _LZCNT_ALT_32(0x80000000) == 0, "復帰値の誤り");
 }
 
-#pragma endregion
-
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* PMC_DEBUG_H */
 
 /*
  * END OF FILE

@@ -92,7 +92,7 @@ static PMC_STATUS_CODE DoCarry(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __U
 static PMC_STATUS_CODE Add_X_1W(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* z)
 {
     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->UNIT_WORD_COUNT;
+    __UNIT_TYPE z_count = z->BLOCK_COUNT;
     __UNIT_TYPE* xp = &x->BLOCK[0];
     __UNIT_TYPE* zp = &z->BLOCK[0];
     char c;
@@ -109,7 +109,7 @@ static PMC_STATUS_CODE Add_X_1W(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* 
 static PMC_STATUS_CODE Add_X_2W(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE y_lo, NUMBER_HEADER* z)
 {
     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->UNIT_WORD_COUNT;
+    __UNIT_TYPE z_count = z->BLOCK_COUNT;
     __UNIT_TYPE* xp = &x->BLOCK[0];
     __UNIT_TYPE* zp = &z->BLOCK[0];
     char c;
@@ -160,7 +160,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
     }
     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
     __UNIT_TYPE y_count = y->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->UNIT_WORD_COUNT;
+    __UNIT_TYPE z_count = z->BLOCK_COUNT;
     __UNIT_TYPE* xp = &x->BLOCK[0];
     __UNIT_TYPE* yp = &y->BLOCK[0];
     __UNIT_TYPE* zp = &z->BLOCK[0];
@@ -183,7 +183,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
     // この時点で未処理の桁は 32 ワード未満のはず
 
     // 未処理の桁が 16 ワード以上あるなら 16 ワードずつ加算を行う。
-    if (count % 0x10)
+    if (count & 0x10)
     {
         c = _ADD_16WORDS_ADC(c, xp, yp, zp);
         xp += 16;
@@ -194,7 +194,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
     // この時点で未処理の桁は 16 ワード未満のはず
 
     // 未処理の桁が 8 ワード以上あるなら 8 ワードずつ加算を行う。
-    if (count % 0x8)
+    if (count & 0x8)
     {
         c = _ADD_8WORDS_ADC(c, xp, yp, zp);
         xp += 8;
@@ -226,7 +226,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NU
     }
     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
     __UNIT_TYPE y_count = y->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->UNIT_WORD_COUNT;
+    __UNIT_TYPE z_count = z->BLOCK_COUNT;
     __UNIT_TYPE* xp = &x->BLOCK[0];
     __UNIT_TYPE* yp = &y->BLOCK[0];
     __UNIT_TYPE* zp = &z->BLOCK[0];
@@ -249,7 +249,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NU
     // この時点で未処理の桁は 32 ワード未満のはず
 
     // 未処理の桁が 16 ワード以上あるなら 16 ワードずつ加算を行う。
-    if (count % 0x10)
+    if (count & 0x10)
     {
         c = _ADD_16WORDS_ADCX(c, xp, yp, zp);
         xp += 16;
@@ -260,7 +260,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NU
     // この時点で未処理の桁は 16 ワード未満のはず
 
     // 未処理の桁が 8 ワード以上あるなら 8 ワードずつ加算を行う。
-    if (count % 0x8)
+    if (count & 0x8)
     {
         c = _ADD_8WORDS_ADCX(c, xp, yp, zp);
         xp += 8;
@@ -286,7 +286,7 @@ static PMC_STATUS_CODE Add_X_X(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER
     return ((*fp_Add_X_X_using_ADC)(x, y, z));
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
+PMC_STATUS_CODE __PMC_CALL PMC_Add_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
 {
     if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
     {
@@ -305,6 +305,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
     if (nx->IS_ZERO)
     {
         // x がゼロである場合
+
         if (y == 0)
         {
             // y がゼロである場合
@@ -314,23 +315,31 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
         }
         else
         {
-            // y がゼロではない場合、加算結果となる y の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+            // y がゼロではない場合
+
+            // 加算結果となる y の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
             if ((result = From_I_Imp(y, &nz)) != PMC_STATUS_OK)
                 return (result);
+            *o = nz;
         }
     }
     else
     {
         // x がゼロではない場合
+
         if (y == 0)
         {
-            // y がゼロである場合、加算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+            // y がゼロである場合
+
+            // 加算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
                 return (result);
         }
         else
         {
-            // x と y がともにゼロではない場合、x と y の和を計算する
+            // x と y がともにゼロではない場合
+
+            // x と y の和を計算する
             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
             __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y);
             __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
@@ -340,8 +349,8 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
                 return (result);
             CommitNumber(nz);
         }
+        *o = nz;
     }
-    *o = nz;
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
         return (result);
@@ -349,11 +358,11 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
     return (PMC_STATUS_OK);
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_Add_XL(HANDLE x, _UINT64_T y, HANDLE* o)
+PMC_STATUS_CODE __PMC_CALL PMC_Add_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
 {
     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(y) * 8)
     {
-        // _UINT32_T が 2 ワードで表現しきれない処理系には対応しない
+        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
         return (PMC_STATUS_INTERNAL_ERROR);
     }
     if (x == NULL)
@@ -367,50 +376,88 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_XL(HANDLE x, _UINT64_T y, HANDLE* o)
     NUMBER_HEADER* nz;
     if (nx->IS_ZERO)
     {
+        // x がゼロである場合
+
         if (y == 0)
+        {
+            // y がゼロである場合
+
+            // x と y がともにゼロであるので、加算結果のゼロを呼び出し元に返す。
             *o = &number_zero;
+        }
         else
         {
+            // y がゼロではない場合
+
+            // 加算結果となる y の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
             if ((result = From_L_Imp(y, &nz)) != PMC_STATUS_OK)
                 return (result);
+            *o = nz;
         }
     }
     else
     {
+        // x がゼロではない場合
+
         if (y == 0)
         {
+            // y がゼロである場合
+
+            // 加算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
                 return (result);
         }
         else
         {
-            __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
-            _UINT32_T y_hi;
-            _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
-            if (y_hi == 0)
+            // x と y がともにゼロではない場合
+
+            // x と y の和を計算する
+            if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
             {
-                // y の値が 32bit で表現可能な場合
-                __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
-                __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
-                if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
-                    return (result);
-                if ((result = Add_X_1W(nx, y_lo, nz)) != PMC_STATUS_OK)
-                    return (result);
+                // _UINT64_T が 1 ワードで表現しきれない場合
+
+                __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+                _UINT32_T y_hi;
+                _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
+                if (y_hi == 0)
+                {
+                    // y の値が 32bit で表現可能な場合
+                    __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
+                    __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
+                    if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+                        return (result);
+                    if ((result = Add_X_1W(nx, y_lo, nz)) != PMC_STATUS_OK)
+                        return (result);
+                }
+                else
+                {
+                    // y の値が 32bit では表現できない場合
+                    __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
+                    __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
+                    if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+                        return (result);
+                    if ((result = Add_X_2W(nx, y_hi, y_lo, nz)) != PMC_STATUS_OK)
+                        return (result);
+                }
+                CommitNumber(nz);
             }
             else
             {
-                // y の値が 32bit では表現できない場合
-                __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
+                // _UINT64_T が 1 ワードで表現できる場合
+
+                __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+                __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
                 __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
                 if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
                     return (result);
-                if ((result = Add_X_2W(nx, y_hi, y_lo, nz)) != PMC_STATUS_OK)
+                if ((result = Add_X_1W(nx, (__UNIT_TYPE)y, nz)) != PMC_STATUS_OK)
                     return (result);
+                CommitNumber(nz);
             }
-            CommitNumber(nz);
+
         }
+        *o = nz;
     }
-    *o = nz;
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
         return (result);
@@ -418,7 +465,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_XL(HANDLE x, _UINT64_T y, HANDLE* o)
     return (PMC_STATUS_OK);
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_Add_XX(HANDLE x, HANDLE y, HANDLE* o)
+PMC_STATUS_CODE __PMC_CALL PMC_Add_X_X(HANDLE x, HANDLE y, HANDLE* o)
 {
     if (x == NULL)
         return (PMC_STATUS_ARGUMENT_ERROR);

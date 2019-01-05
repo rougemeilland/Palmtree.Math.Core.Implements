@@ -94,6 +94,10 @@ L7:
 	call	_Initialize_To
 	testl	%eax, %eax
 	jne	L10
+	movl	%ebx, (%esp)
+	call	_Initialize_Add
+	testl	%eax, %eax
+	jne	L10
 	movzbl	_entry_points, %eax
 	movzbl	28(%esp), %edx
 	movl	$_PMC_TraceStatistics@4, _entry_points+4
@@ -110,9 +114,9 @@ L7:
 	movl	$_PMC_To_X_I@8, _entry_points+28
 	movl	$_PMC_To_X_L@8, _entry_points+32
 	movl	$_PMC_To_X_B@16, _entry_points+36
-	movl	$_PMC_Add_XI@12, _entry_points+40
-	movl	$_PMC_Add_XL@16, _entry_points+44
-	movl	$_PMC_Add_XX@12, _entry_points+48
+	movl	$_PMC_Add_X_I@12, _entry_points+40
+	movl	$_PMC_Add_X_L@16, _entry_points+44
+	movl	$_PMC_Add_X_X@12, _entry_points+48
 	addl	$60, %esp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -182,6 +186,7 @@ LFE5462:
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_To;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_Add;	.scl	2;	.type	32;	.endef
 	.def	_PMC_TraceStatistics@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
@@ -191,8 +196,8 @@ LFE5462:
 	.def	_PMC_To_X_I@8;	.scl	2;	.type	32;	.endef
 	.def	_PMC_To_X_L@8;	.scl	2;	.type	32;	.endef
 	.def	_PMC_To_X_B@16;	.scl	2;	.type	32;	.endef
-	.def	_PMC_Add_XI@12;	.scl	2;	.type	32;	.endef
-	.def	_PMC_Add_XL@16;	.scl	2;	.type	32;	.endef
-	.def	_PMC_Add_XX@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Add_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Add_X_L@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Add_X_X@12;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize@4\""

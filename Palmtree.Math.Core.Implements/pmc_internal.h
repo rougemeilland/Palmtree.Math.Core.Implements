@@ -38,8 +38,15 @@
 #endif
 #include "pmc.h"
 
-// <editor-fold defaultstate="collapsed" desc="型の定義">
 
+#pragma region マクロの定義
+#define countof(x)  (sizeof(x)/sizeof(*(x)))
+
+#pragma endregion
+
+
+
+#pragma region 型の定義
 #ifdef _M_IX86
 typedef _UINT32_T __UNIT_TYPE;
 #elif defined(_M_X64)
@@ -89,10 +96,10 @@ typedef struct __tag_NUMBER_HEADER
     __UNIT_TYPE* BLOCK;
 } NUMBER_HEADER;
 
-// </editor-fold>
+#pragma endregion
 
-// <editor-fold defaultstate="collapsed" desc="宣言">
 
+#pragma region 宣言
 // ライブラリのコンフィグレーション情報
 extern PMC_CONFIGURATION_INFO configuration_info;
 
@@ -179,28 +186,13 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, _UINT32_T* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
-extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XI(HANDLE p, _UINT32_T x, HANDLE* o);
-extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XL(HANDLE p, _UINT64_T x, HANDLE* o);
-extern PMC_STATUS_CODE __PMC_CALL PMC_Add_XX(HANDLE p1, HANDLE p2, HANDLE* o);
-// </editor-fold>
+extern PMC_STATUS_CODE __PMC_CALL PMC_Add_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Add_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Add_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+#pragma endregion
 
-// <editor-fold defaultstate="collapsed" desc="インライン関数の定義">
 
-__inline static int _EQUALS_MEMORY(unsigned char* buffer1, size_t count1, unsigned char* buffer2, size_t count2)
-{
-    if (count1 != count2)
-        return (-1);
-    while (count1 > 0)
-    {
-        if (*buffer1 != *buffer2)
-            return (-1);
-        ++buffer1;
-        ++buffer2;
-        --count1;
-    }
-    return (0);
-}
-
+#pragma region インライン関数の定義
 __inline static void _COPY_MEMORY_BYTE(void* d, const void* s, size_t count)
 {
     __movsb(d, s, count);
@@ -234,13 +226,18 @@ __inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
     __stosb(d, 0, count);
 }
 
-__inline static void _ZERO_MEMORY_32(_UINT32_T* d, _UINT32_T count)
+__inline static void _ZERO_MEMORY_16(_UINT16_T* d, size_t count)
 {
-    __stosd((unsigned long*)d, 0, (unsigned long)count);
+    __stosw(d, 0, count);
+}
+
+__inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
+{
+    __stosd((unsigned long*)d, 0, count);
 }
 
 #ifdef _M_IX64
-__inline static void _ZERO_MEMORY_64(_UINT64_T* d, _UINT64_T count)
+__inline static void _ZERO_MEMORY_64(_UINT64_T* d, size_t count)
 {
     __stosq(d, 0, count);
 }
@@ -607,7 +604,11 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 #endif
     return (pos);
 }
+#pragma endregion
 
-// </editor-fold>
 
 #endif /* __PMC_INTERNAL_H */
+
+/*
+ * END OF FILE
+ */

@@ -4236,20 +4236,20 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "_UINT64_T\0"
 	.byte	0x1f
-	.byte	0x49
+	.byte	0x4b
 	.byte	0x12
 	.long	0x4c29
 	.uleb128 0x13
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1f
-	.byte	0x4e
+	.byte	0x50
 	.byte	0x10
 	.long	0x4c9b
 	.uleb128 0x1d
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1f
-	.byte	0x50
+	.byte	0x52
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4260,41 +4260,41 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1f
-	.byte	0x51
+	.byte	0x53
 	.byte	0x3
 	.long	0x4c4c
 	.uleb128 0x13
 	.ascii "__tag_PMC_STATISTICS_INFO\0"
 	.byte	0x10
 	.byte	0x1f
-	.byte	0x56
+	.byte	0x58
 	.byte	0x10
 	.long	0x4d36
 	.uleb128 0x14
 	.ascii "COUNT_MULTI64\0"
 	.byte	0x1f
-	.byte	0x58
+	.byte	0x5a
 	.byte	0xa
 	.long	0x139
 	.byte	0
 	.uleb128 0x14
 	.ascii "COUNT_MULTI32\0"
 	.byte	0x1f
-	.byte	0x59
+	.byte	0x5b
 	.byte	0xa
 	.long	0x139
 	.byte	0x4
 	.uleb128 0x14
 	.ascii "COUNT_DIV64\0"
 	.byte	0x1f
-	.byte	0x5a
+	.byte	0x5c
 	.byte	0xa
 	.long	0x139
 	.byte	0x8
 	.uleb128 0x14
 	.ascii "COUNT_DIV32\0"
 	.byte	0x1f
-	.byte	0x5b
+	.byte	0x5d
 	.byte	0xa
 	.long	0x139
 	.byte	0xc
@@ -4302,7 +4302,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "PMC_STATISTICS_INFO\0"
 	.byte	0x1f
-	.byte	0x5c
+	.byte	0x5e
 	.byte	0x3
 	.long	0x4cba
 	.uleb128 0x7
@@ -4311,41 +4311,41 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x20
-	.byte	0x2e
+	.byte	0x35
 	.byte	0x13
 	.long	0x4c3a
 	.uleb128 0x13
 	.ascii "__tag_NUMBER_HEADER\0"
 	.byte	0x30
 	.byte	0x20
-	.byte	0x4a
+	.byte	0x51
 	.byte	0x10
 	.long	0x4e5f
 	.uleb128 0x14
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x20
-	.byte	0x4c
+	.byte	0x53
 	.byte	0xc
 	.long	0xcd
 	.byte	0
 	.uleb128 0x14
 	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x20
-	.byte	0x4d
+	.byte	0x54
 	.byte	0xc
 	.long	0xcd
 	.byte	0x8
 	.uleb128 0x14
 	.ascii "HASH_CODE\0"
 	.byte	0x20
-	.byte	0x4e
+	.byte	0x55
 	.byte	0x11
 	.long	0x4d58
 	.byte	0x10
 	.uleb128 0x1d
 	.ascii "IS_STATIC\0"
 	.byte	0x20
-	.byte	0x4f
+	.byte	0x56
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4355,7 +4355,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x1d
 	.ascii "IS_ZERO\0"
 	.byte	0x20
-	.byte	0x50
+	.byte	0x57
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4365,7 +4365,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x1d
 	.ascii "IS_ONE\0"
 	.byte	0x20
-	.byte	0x51
+	.byte	0x58
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4375,7 +4375,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x1d
 	.ascii "IS_EVEN\0"
 	.byte	0x20
-	.byte	0x52
+	.byte	0x59
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4385,7 +4385,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x1d
 	.ascii "IS_POWER_OF_TWO\0"
 	.byte	0x20
-	.byte	0x53
+	.byte	0x5a
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4395,14 +4395,14 @@ IncrementMULTI64Counter:
 	.uleb128 0x14
 	.ascii "BLOCK_COUNT\0"
 	.byte	0x20
-	.byte	0x55
+	.byte	0x5c
 	.byte	0xc
 	.long	0xcd
 	.byte	0x20
 	.uleb128 0x14
 	.ascii "BLOCK\0"
 	.byte	0x20
-	.byte	0x59
+	.byte	0x60
 	.byte	0x12
 	.long	0x4e5f
 	.byte	0x28
@@ -4413,19 +4413,19 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x20
-	.byte	0x5a
+	.byte	0x61
 	.byte	0x3
 	.long	0x4d6c
 	.uleb128 0x16
 	.ascii "configuration_info\0"
 	.byte	0x20
-	.byte	0x61
+	.byte	0x68
 	.byte	0x1f
 	.long	0x4c9b
 	.uleb128 0x16
 	.ascii "number_zero\0"
 	.byte	0x20
-	.byte	0x64
+	.byte	0x6b
 	.byte	0x16
 	.long	0x4e65
 	.uleb128 0x1e

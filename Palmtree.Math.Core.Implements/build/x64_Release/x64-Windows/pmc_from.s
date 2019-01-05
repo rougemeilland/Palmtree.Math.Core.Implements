@@ -19,7 +19,7 @@ From_I_Imp:
 	je	.L2
 	movl	$31, %eax
 /APP
- # 506 "pmc_internal.h" 1
+ # 503 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP
@@ -62,7 +62,7 @@ From_L_Imp:
 	movq	%rcx, %rbx
 	je	.L8
 /APP
- # 550 "pmc_internal.h" 1
+ # 547 "pmc_internal.h" 1
 	bsrq %rcx, %rdx
  # 0 "" 2
 /NO_APP
@@ -121,21 +121,31 @@ PMC_From_I:
 	.def	PMC_From_L;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_From_L
 PMC_From_L:
-	subq	$56, %rsp
-	.seh_stackalloc	56
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$48, %rsp
+	.seh_stackalloc	48
 	.seh_endprologue
 	testq	%rcx, %rcx
+	movq	%rdx, %rbx
 	jne	.L17
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, (%rdx)
 	xorl	%eax, %eax
-	addq	$56, %rsp
+.L16:
+	addq	$48, %rsp
+	popq	%rbx
 	ret
 	.p2align 4,,10
 .L17:
 	leaq	40(%rsp), %rdx
 	call	From_L_Imp
-	addq	$56, %rsp
+	testl	%eax, %eax
+	jne	.L16
+	movq	40(%rsp), %rdx
+	movq	%rdx, (%rbx)
+	addq	$48, %rsp
+	popq	%rbx
 	ret
 	.seh_endproc
 	.p2align 4,,15
@@ -189,7 +199,7 @@ PMC_From_B:
 	movl	$7, %ecx
 	salq	$3, %rdx
 /APP
- # 491 "pmc_internal.h" 1
+ # 488 "pmc_internal.h" 1
 	bsrl %eax, %eax
  # 0 "" 2
 /NO_APP

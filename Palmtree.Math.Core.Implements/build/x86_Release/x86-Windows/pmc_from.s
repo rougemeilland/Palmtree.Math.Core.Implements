@@ -20,7 +20,7 @@ LFB5462:
 	testl	%ebx, %ebx
 	je	L2
 /APP
- # 506 "pmc_internal.h" 1
+ # 503 "pmc_internal.h" 1
 	bsrl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -76,7 +76,7 @@ LFB5463:
 	testl	%esi, %esi
 	je	L11
 /APP
- # 506 "pmc_internal.h" 1
+ # 503 "pmc_internal.h" 1
 	bsrl %esi, %eax
  # 0 "" 2
 /NO_APP
@@ -112,7 +112,7 @@ L9:
 L10:
 	.cfi_restore_state
 /APP
- # 506 "pmc_internal.h" 1
+ # 503 "pmc_internal.h" 1
 	bsrl %edi, %eax
  # 0 "" 2
 /NO_APP
@@ -180,6 +180,7 @@ LFB5465:
 	movl	56(%esp), %eax
 	movl	$_number_zero, (%eax)
 	xorl	%eax, %eax
+L22:
 	addl	$44, %esp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 4
@@ -192,6 +193,11 @@ L23:
 	movl	%ecx, 8(%esp)
 	movl	%eax, 4(%esp)
 	call	_From_L_Imp
+	testl	%eax, %eax
+	jne	L22
+	movl	28(%esp), %edx
+	movl	56(%esp), %ecx
+	movl	%edx, (%ecx)
 	addl	$44, %esp
 	.cfi_def_cfa_offset 4
 	ret	$12
@@ -257,7 +263,7 @@ L29:
 	movl	$7, %ecx
 	sall	$3, %eax
 /APP
- # 491 "pmc_internal.h" 1
+ # 488 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP

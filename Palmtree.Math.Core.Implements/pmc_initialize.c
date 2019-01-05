@@ -1,4 +1,4 @@
-/*
+﻿/*
  * The MIT License
  *
  * Copyright 2018 Palmtree Software.
@@ -35,8 +35,7 @@
 #include "pmc_internal.h"
 
 
-// <editor-fold defaultstate="collapsed" desc="CPU命令を表すフラグの定義">
-
+#pragma region 実装されているCPU命令を表すフラグの定義
 // EAX=0x01
 #define CPU_FEATURE_FLAG_POPCNT (1U << 23)
 
@@ -51,13 +50,13 @@
 
 // EAX=0x80000001
 #define CPU_FEATURE_FLAG_ABM    (1U << 5)
+#pragma endregion
 
-//</editor-fold>
 
-// <editor-fold defaultstate="collapsed" desc="静的変数の定義">
+#pragma region 静的変数の定義
 static PMC_ENTRY_POINTS entry_points;
 PMC_CONFIGURATION_INFO configuration_info;
-//</editor-fold>
+#pragma endregion
 
 
 PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* config)
@@ -108,9 +107,9 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
         return (NULL);
     if (Initialize_To(&feature))
         return (NULL);
-    /*
     if (Initialize_Add(&feature))
         return (NULL);
+    /*
     if (Initialize_DivRem(&feature))
         return (NULL);
     if (Initialize_Get(&feature))
@@ -140,9 +139,9 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     entry_points.PMC_To_X_I = PMC_To_X_I;
 	entry_points.PMC_To_X_L = PMC_To_X_L;
     entry_points.PMC_To_X_B = PMC_To_X_B;
-    entry_points.PMC_Add_XI = PMC_Add_XI;
-	entry_points.PMC_Add_XL = PMC_Add_XL;
-	entry_points.PMC_Add_XX = PMC_Add_XX;
+    entry_points.PMC_Add_X_I = PMC_Add_X_I;
+	entry_points.PMC_Add_X_L = PMC_Add_X_L;
+	entry_points.PMC_Add_X_X = PMC_Add_X_X;
     return (&entry_points);
 }
 

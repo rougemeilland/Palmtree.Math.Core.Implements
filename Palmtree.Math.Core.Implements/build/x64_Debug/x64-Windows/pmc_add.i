@@ -88488,12 +88488,26 @@ __extension__ typedef long long intmax_t;
 __extension__ typedef unsigned long long uintmax_t;
 # 10 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stdint.h" 2 3 4
 # 37 "pmc.h" 2
+
+
+
+
+
+
+#pragma region マクロの定義
+# 56 "pmc.h"
+#pragma endregion
+
+
+#pragma region 型の定義
 # 69 "pmc.h"
 
 # 69 "pmc.h"
+typedef int16_t _INT16_T;
 typedef int32_t _INT32_T;
 typedef int64_t _INT64_T;
 typedef uint8_t _BYTE_T;
+typedef uint16_t _UINT16_T;
 typedef uint32_t _UINT32_T;
 typedef uint64_t _UINT64_T;
 
@@ -88546,25 +88560,32 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE ( * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
     PMC_STATUS_CODE ( * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
-    PMC_STATUS_CODE ( * PMC_Add_XI)(HANDLE p, _UINT32_T x, HANDLE* o);
-    PMC_STATUS_CODE ( * PMC_Add_XL)(HANDLE p, _UINT64_T x, HANDLE* o);
-    PMC_STATUS_CODE ( * PMC_Add_XX)(HANDLE p1, HANDLE p2, HANDLE* o);
+    PMC_STATUS_CODE ( * PMC_Add_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
+    PMC_STATUS_CODE ( * PMC_Add_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
+    PMC_STATUS_CODE ( * PMC_Add_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 } PMC_ENTRY_POINTS;
+#pragma endregion
 
 
-
-
-
+#pragma region 宣言
 __attribute__((dllexport)) PMC_ENTRY_POINTS* PMC_Initialize(PMC_CONFIGURATION_INFO*);
+#pragma endregion
 # 40 "pmc_internal.h" 2
 
 
+#pragma region マクロの定義
 
+
+#pragma endregion
+
+
+
+#pragma region 型の定義
 
 
 
 typedef _UINT64_T __UNIT_TYPE;
-# 56 "pmc_internal.h"
+# 63 "pmc_internal.h"
 typedef struct _tag_PROCESSOR_FEATURES
 {
 
@@ -88601,10 +88622,10 @@ typedef struct __tag_NUMBER_HEADER
     __UNIT_TYPE* BLOCK;
 } NUMBER_HEADER;
 
+#pragma endregion
 
 
-
-
+#pragma region 宣言
 
 extern PMC_CONFIGURATION_INFO configuration_info;
 
@@ -88667,7 +88688,7 @@ extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
 
 extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
-# 169 "pmc_internal.h"
+# 176 "pmc_internal.h"
 extern void PMC_TraceStatistics(int enabled);
 extern void PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
@@ -88681,28 +88702,13 @@ extern PMC_STATUS_CODE PMC_To_X_I(HANDLE p, _UINT32_T* o);
 extern PMC_STATUS_CODE PMC_To_X_L(HANDLE p, _UINT64_T* o);
 extern PMC_STATUS_CODE PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
-extern PMC_STATUS_CODE PMC_Add_XI(HANDLE p, _UINT32_T x, HANDLE* o);
-extern PMC_STATUS_CODE PMC_Add_XL(HANDLE p, _UINT64_T x, HANDLE* o);
-extern PMC_STATUS_CODE PMC_Add_XX(HANDLE p1, HANDLE p2, HANDLE* o);
+extern PMC_STATUS_CODE PMC_Add_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE PMC_Add_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE PMC_Add_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+#pragma endregion
 
 
-
-
-__inline static int _EQUALS_MEMORY(unsigned char* buffer1, size_t count1, unsigned char* buffer2, size_t count2)
-{
-    if (count1 != count2)
-        return (-1);
-    while (count1 > 0)
-    {
-        if (*buffer1 != *buffer2)
-            return (-1);
-        ++buffer1;
-        ++buffer2;
-        --count1;
-    }
-    return (0);
-}
-
+#pragma region インライン関数の定義
 __inline static void _COPY_MEMORY_BYTE(void* d, const void* s, size_t count)
 {
     __movsb(d, s, count);
@@ -88736,13 +88742,18 @@ __inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
     __stosb(d, 0, count);
 }
 
-__inline static void _ZERO_MEMORY_32(_UINT32_T* d, _UINT32_T count)
+__inline static void _ZERO_MEMORY_16(_UINT16_T* d, size_t count)
 {
-    __stosd((unsigned long*)d, 0, (unsigned long)count);
+    __stosw(d, 0, count);
+}
+
+__inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
+{
+    __stosd((unsigned long*)d, 0, count);
 }
 
 
-__inline static void _ZERO_MEMORY_64(_UINT64_T* d, _UINT64_T count)
+__inline static void _ZERO_MEMORY_64(_UINT64_T* d, size_t count)
 {
     __stosq(d, 0, count);
 }
@@ -88825,7 +88836,7 @@ __inline static char _SUBTRACT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, _
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_high)
 {
-# 337 "pmc_internal.h"
+# 334 "pmc_internal.h"
     return (_umul128(u, v, w_high));
 
 
@@ -88833,7 +88844,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 }
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
-# 355 "pmc_internal.h"
+# 352 "pmc_internal.h"
     __UNIT_TYPE q;
 
 
@@ -88850,7 +88861,7 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
 
 __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE *q)
 {
-# 385 "pmc_internal.h"
+# 382 "pmc_internal.h"
     __asm__("divq %3": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
 
 
@@ -88878,9 +88889,9 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 411 "pmc_internal.h" 3
+# 408 "pmc_internal.h" 3
            __rolq
-# 411 "pmc_internal.h"
+# 408 "pmc_internal.h"
                   (x, count));
 
 
@@ -88893,9 +88904,9 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 422 "pmc_internal.h" 3
+# 419 "pmc_internal.h" 3
            __rorq
-# 422 "pmc_internal.h"
+# 419 "pmc_internal.h"
                   (x, count));
 
 
@@ -89009,7 +89020,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 549 "pmc_internal.h"
+# 546 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89047,7 +89058,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 600 "pmc_internal.h"
+# 597 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89058,6 +89069,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 
     return (pos);
 }
+#pragma endregion
 # 35 "pmc_add.c" 2
 # 1 "autogenerated.h" 1
 # 44 "autogenerated.h"
@@ -89795,7 +89807,7 @@ static PMC_STATUS_CODE DoCarry(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __U
 static PMC_STATUS_CODE Add_X_1W(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* z)
 {
     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->UNIT_WORD_COUNT;
+    __UNIT_TYPE z_count = z->BLOCK_COUNT;
     __UNIT_TYPE* xp = &x->BLOCK[0];
     __UNIT_TYPE* zp = &z->BLOCK[0];
     char c;
@@ -89812,7 +89824,7 @@ static PMC_STATUS_CODE Add_X_1W(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* 
 static PMC_STATUS_CODE Add_X_2W(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE y_lo, NUMBER_HEADER* z)
 {
     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->UNIT_WORD_COUNT;
+    __UNIT_TYPE z_count = z->BLOCK_COUNT;
     __UNIT_TYPE* xp = &x->BLOCK[0];
     __UNIT_TYPE* zp = &z->BLOCK[0];
     char c;
@@ -89863,7 +89875,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
     }
     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
     __UNIT_TYPE y_count = y->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->UNIT_WORD_COUNT;
+    __UNIT_TYPE z_count = z->BLOCK_COUNT;
     __UNIT_TYPE* xp = &x->BLOCK[0];
     __UNIT_TYPE* yp = &y->BLOCK[0];
     __UNIT_TYPE* zp = &z->BLOCK[0];
@@ -89886,7 +89898,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
 
 
 
-    if (count % 0x10)
+    if (count & 0x10)
     {
         c = _ADD_16WORDS_ADC(c, xp, yp, zp);
         xp += 16;
@@ -89897,7 +89909,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
 
 
 
-    if (count % 0x8)
+    if (count & 0x8)
     {
         c = _ADD_8WORDS_ADC(c, xp, yp, zp);
         xp += 8;
@@ -89929,7 +89941,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NU
     }
     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
     __UNIT_TYPE y_count = y->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->UNIT_WORD_COUNT;
+    __UNIT_TYPE z_count = z->BLOCK_COUNT;
     __UNIT_TYPE* xp = &x->BLOCK[0];
     __UNIT_TYPE* yp = &y->BLOCK[0];
     __UNIT_TYPE* zp = &z->BLOCK[0];
@@ -89952,7 +89964,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NU
 
 
 
-    if (count % 0x10)
+    if (count & 0x10)
     {
         c = _ADD_16WORDS_ADCX(c, xp, yp, zp);
         xp += 16;
@@ -89963,7 +89975,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NU
 
 
 
-    if (count % 0x8)
+    if (count & 0x8)
     {
         c = _ADD_8WORDS_ADCX(c, xp, yp, zp);
         xp += 8;
@@ -89989,7 +90001,7 @@ static PMC_STATUS_CODE Add_X_X(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER
     return ((*fp_Add_X_X_using_ADC)(x, y, z));
 }
 
-PMC_STATUS_CODE PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
+PMC_STATUS_CODE PMC_Add_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
 {
     if ((sizeof(__UNIT_TYPE) * 8) < sizeof(y) * 8)
     {
@@ -90016,6 +90028,7 @@ PMC_STATUS_CODE PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
     if (nx->IS_ZERO)
     {
 
+
         if (y == 0)
         {
 
@@ -90026,21 +90039,29 @@ PMC_STATUS_CODE PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
         else
         {
 
+
+
             if ((result = From_I_Imp(y, &nz)) != (0))
                 return (result);
+            *o = nz;
         }
     }
     else
     {
 
+
         if (y == 0)
         {
+
+
 
             if ((result = DuplicateNumber(nx, &nz)) != (0))
                 return (result);
         }
         else
         {
+
+
 
             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
             __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y);
@@ -90051,8 +90072,8 @@ PMC_STATUS_CODE PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
                 return (result);
             CommitNumber(nz);
         }
+        *o = nz;
     }
-    *o = nz;
 
 
 
@@ -90060,7 +90081,7 @@ PMC_STATUS_CODE PMC_Add_XI(HANDLE x, _UINT32_T y, HANDLE* o)
     return ((0));
 }
 
-PMC_STATUS_CODE PMC_Add_XL(HANDLE x, _UINT64_T y, HANDLE* o)
+PMC_STATUS_CODE PMC_Add_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
 {
     if ((sizeof(__UNIT_TYPE) * 8) * 2 < sizeof(y) * 8)
     {
@@ -90068,15 +90089,15 @@ PMC_STATUS_CODE PMC_Add_XL(HANDLE x, _UINT64_T y, HANDLE* o)
         return ((-4));
     }
     if (x == 
-# 359 "pmc_add.c" 3 4
+# 368 "pmc_add.c" 3 4
             ((void *)0)
-# 359 "pmc_add.c"
+# 368 "pmc_add.c"
                 )
         return ((-1));
     if (o == 
-# 361 "pmc_add.c" 3 4
+# 370 "pmc_add.c" 3 4
             ((void *)0)
-# 361 "pmc_add.c"
+# 370 "pmc_add.c"
                 )
         return ((-1));
     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
@@ -90086,50 +90107,88 @@ PMC_STATUS_CODE PMC_Add_XL(HANDLE x, _UINT64_T y, HANDLE* o)
     NUMBER_HEADER* nz;
     if (nx->IS_ZERO)
     {
+
+
         if (y == 0)
+        {
+
+
+
             *o = &number_zero;
+        }
         else
         {
+
+
+
             if ((result = From_L_Imp(y, &nz)) != (0))
                 return (result);
+            *o = nz;
         }
     }
     else
     {
+
+
         if (y == 0)
         {
+
+
+
             if ((result = DuplicateNumber(nx, &nz)) != (0))
                 return (result);
         }
         else
         {
-            __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
-            _UINT32_T y_hi;
-            _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
-            if (y_hi == 0)
+
+
+
+            if ((sizeof(__UNIT_TYPE) * 8) < sizeof(y) * 8)
             {
 
-                __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
-                __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
-                if ((result = AllocateNumber(&nz, z_bit_count)) != (0))
-                    return (result);
-                if ((result = Add_X_1W(nx, y_lo, nz)) != (0))
-                    return (result);
+
+                __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+                _UINT32_T y_hi;
+                _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
+                if (y_hi == 0)
+                {
+
+                    __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
+                    __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
+                    if ((result = AllocateNumber(&nz, z_bit_count)) != (0))
+                        return (result);
+                    if ((result = Add_X_1W(nx, y_lo, nz)) != (0))
+                        return (result);
+                }
+                else
+                {
+
+                    __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
+                    __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
+                    if ((result = AllocateNumber(&nz, z_bit_count)) != (0))
+                        return (result);
+                    if ((result = Add_X_2W(nx, y_hi, y_lo, nz)) != (0))
+                        return (result);
+                }
+                CommitNumber(nz);
             }
             else
             {
 
-                __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
+
+                __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+                __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
                 __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
                 if ((result = AllocateNumber(&nz, z_bit_count)) != (0))
                     return (result);
-                if ((result = Add_X_2W(nx, y_hi, y_lo, nz)) != (0))
+                if ((result = Add_X_1W(nx, (__UNIT_TYPE)y, nz)) != (0))
                     return (result);
+                CommitNumber(nz);
             }
-            CommitNumber(nz);
+
         }
+        *o = nz;
     }
-    *o = nz;
 
 
 
@@ -90137,24 +90196,24 @@ PMC_STATUS_CODE PMC_Add_XL(HANDLE x, _UINT64_T y, HANDLE* o)
     return ((0));
 }
 
-PMC_STATUS_CODE PMC_Add_XX(HANDLE x, HANDLE y, HANDLE* o)
+PMC_STATUS_CODE PMC_Add_X_X(HANDLE x, HANDLE y, HANDLE* o)
 {
     if (x == 
-# 423 "pmc_add.c" 3 4
+# 470 "pmc_add.c" 3 4
             ((void *)0)
-# 423 "pmc_add.c"
+# 470 "pmc_add.c"
                 )
         return ((-1));
     if (y == 
-# 425 "pmc_add.c" 3 4
+# 472 "pmc_add.c" 3 4
             ((void *)0)
-# 425 "pmc_add.c"
+# 472 "pmc_add.c"
                 )
         return ((-1));
     if (o == 
-# 427 "pmc_add.c" 3 4
+# 474 "pmc_add.c" 3 4
             ((void *)0)
-# 427 "pmc_add.c"
+# 474 "pmc_add.c"
                 )
         return ((-1));
     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
