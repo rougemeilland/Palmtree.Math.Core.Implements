@@ -46,6 +46,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/pmc_from.o \
 	${OBJECTDIR}/pmc_initialize.o \
 	${OBJECTDIR}/pmc_statistics.o \
+	${OBJECTDIR}/pmc_subtruct.o \
 	${OBJECTDIR}/pmc_to.o
 
 
@@ -127,6 +128,11 @@ ${OBJECTDIR}/pmc_statistics.o: pmc_statistics.c nbproject/Makefile-${CND_CONF}.m
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_statistics.o pmc_statistics.c
+
+${OBJECTDIR}/pmc_subtruct.o: pmc_subtruct.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_subtruct.o pmc_subtruct.c
 
 ${OBJECTDIR}/pmc_to.o: pmc_to.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

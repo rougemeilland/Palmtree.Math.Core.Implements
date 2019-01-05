@@ -62,10 +62,12 @@ static void TEST_PMC_From_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
     unsigned char rbuffer[256];
     size_t rlength;
     PMC_STATUS_CODE result;
-    TEST_Assert(env, FormatTestLabel("PMC_From_I (%d.%d)", no, 1), (result = ep->PMC_From_I(v, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Iの復帰コードが期待通りではない(%d)", result));
+    PMC_STATUS_CODE x_result;
+    TEST_Assert(env, FormatTestLabel("PMC_From_I (%d.%d)", no, 1), (x_result = ep->PMC_From_I(v, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Iの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_From_I (%d.%d)", no, 2), (result = ep->PMC_To_X_B(x, rbuffer, sizeof(rbuffer), &rlength)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_From_I (%d.%d)", no, 3), _EQUALS_MEMORY(rbuffer, rlength, buf, buf_size) == 0, "データの内容が一致しない");
-    ep->PMC_Dispose(x);
+    if (x_result == PMC_STATUS_OK)
+        ep->PMC_Dispose(x);
 }
 
 static void TEST_PMC_From_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 v, unsigned char*buf, size_t buf_size)
@@ -74,10 +76,12 @@ static void TEST_PMC_From_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
     unsigned char rbuffer[256];
     size_t rlength;
     PMC_STATUS_CODE result;
-    TEST_Assert(env, FormatTestLabel("PMC_From_L (%d.%d)", no, 1), (result = ep->PMC_From_L(v, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Lの復帰コードが期待通りではない(%d)", result));
+    PMC_STATUS_CODE x_result;
+    TEST_Assert(env, FormatTestLabel("PMC_From_L (%d.%d)", no, 1), (x_result = ep->PMC_From_L(v, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Lの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_From_L (%d.%d)", no, 2), (result = ep->PMC_To_X_B(x, rbuffer, sizeof(rbuffer), &rlength)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_From_L (%d.%d)", no, 3), _EQUALS_MEMORY(rbuffer, rlength, buf, buf_size) == 0, "データの内容が一致しない");
-    ep->PMC_Dispose(x);
+    if (x_result == PMC_STATUS_OK)
+        ep->PMC_Dispose(x);
 }
 
 static void TEST_PMC_From_B(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size)
@@ -86,10 +90,12 @@ static void TEST_PMC_From_B(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
     unsigned char rbuffer[256];
     size_t rlength;
     PMC_STATUS_CODE result;
-    TEST_Assert(env, FormatTestLabel("PMC_From_B (%d.%d)", no, 1), (result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", result));
+    PMC_STATUS_CODE x_result;
+    TEST_Assert(env, FormatTestLabel("PMC_From_B (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_From_B (%d.%d)", no, 2), (result = ep->PMC_To_X_B(x, rbuffer, sizeof(rbuffer), &rlength)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_From_B (%d.%d)", no, 3), _EQUALS_MEMORY(rbuffer, rlength, buf, buf_size) == 0, "データの内容が一致しない");
-    ep->PMC_Dispose(x);
+    if (x_result == PMC_STATUS_OK)
+        ep->PMC_Dispose(x);
 }
 
 static void TEST_PMC_To_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int32 desired_rvalue)
@@ -97,11 +103,13 @@ static void TEST_PMC_To_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
     HANDLE x;
     unsigned __int32 rvalue;
     PMC_STATUS_CODE result;
-    TEST_Assert(env, FormatTestLabel("PMC_To_X_I (%d.%d)", no, 1), (result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", result));
+    PMC_STATUS_CODE x_result;
+    TEST_Assert(env, FormatTestLabel("PMC_To_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_To_X_I (%d.%d)", no, 2), (result = ep->PMC_To_X_I(x, &rvalue)) == desired_result_code, FormatTestMesssage("PMC_To_X_Iの復帰コードが期待通りではない(%d)", result));
     if (desired_result_code == PMC_STATUS_OK)
         TEST_Assert(env, FormatTestLabel("PMC_To_X_I (%d.%d)", no, 3), rvalue == desired_rvalue, "データの内容が一致しない");
-    ep->PMC_Dispose(x);
+    if (x_result == PMC_STATUS_OK)
+        ep->PMC_Dispose(x);
 }
 
 static void TEST_PMC_To_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int64 desired_rvalue)
@@ -109,11 +117,13 @@ static void TEST_PMC_To_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
     HANDLE x;
     unsigned __int64 rvalue;
     PMC_STATUS_CODE result;
-    TEST_Assert(env, FormatTestLabel("PMC_To_X_L (%d.%d)", no, 1), (result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", result));
+    PMC_STATUS_CODE x_result;
+    TEST_Assert(env, FormatTestLabel("PMC_To_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_To_X_L (%d.%d)", no, 2), (result = ep->PMC_To_X_L(x, &rvalue)) == desired_result_code, FormatTestMesssage("PMC_To_X_Iの復帰コードが期待通りではない(%d)", result));
     if (desired_result_code == PMC_STATUS_OK)
         TEST_Assert(env, FormatTestLabel("PMC_To_X_L (%d.%d)", no, 3), rvalue == desired_rvalue, "データの内容が一致しない");
-    ep->PMC_Dispose(x);
+    if (x_result == PMC_STATUS_OK)
+        ep->PMC_Dispose(x);
 }
 
 void TEST_op_From_To(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep)

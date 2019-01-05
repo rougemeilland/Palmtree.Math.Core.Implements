@@ -162,13 +162,16 @@ extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
 // 加算処理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
+
+// 減算処理の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
+
 /*
 extern PMC_STATUS_CODE Initialize_Get(PROCESSOR_FEATURES* feature);
 extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
 extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
 extern PMC_STATUS_CODE Initialize_Properties(PROCESSOR_FEATURES *feature);
 extern PMC_STATUS_CODE Initialize_Set(PROCESSOR_FEATURES* feature);
-extern PMC_STATUS_CODE Initialize_Subtract(PROCESSOR_FEATURES* feature); 
 */
 
 // エントリポイントに登録される関数群
@@ -189,6 +192,10 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_B(HANDLE p, unsigned char* buffer, si
 extern PMC_STATUS_CODE __PMC_CALL PMC_Add_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Add_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Add_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
 #pragma endregion
 
 
@@ -307,7 +314,7 @@ __inline static char _ADDX_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 #endif
 }
 
-__inline static char _SUBTRACT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+__inline static char _SUBTRUCT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
 {
 #ifdef _M_IX86
     return (_subborrow_u32(borrow, u, v, w));

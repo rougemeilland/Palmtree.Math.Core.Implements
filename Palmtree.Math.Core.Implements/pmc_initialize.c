@@ -109,6 +109,8 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
         return (NULL);
     if (Initialize_Add(&feature))
         return (NULL);
+    if (Initialize_Subtruct(&feature))
+        return (NULL);
     /*
     if (Initialize_DivRem(&feature))
         return (NULL);
@@ -121,8 +123,6 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     if (Initialize_Properties(&feature))
         return (NULL);
     if (Initialize_Set(&feature))
-        return (NULL);
-    if (Initialize_Subtract(&feature))
         return (NULL);
     */
     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
@@ -142,6 +142,9 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     entry_points.PMC_Add_X_I = PMC_Add_X_I;
 	entry_points.PMC_Add_X_L = PMC_Add_X_L;
 	entry_points.PMC_Add_X_X = PMC_Add_X_X;
+    entry_points.PMC_Subtruct_X_I = PMC_Subtruct_X_I;
+    entry_points.PMC_Subtruct_X_L = PMC_Subtruct_X_L;
+    entry_points.PMC_Subtruct_X_X = PMC_Subtruct_X_X;
     return (&entry_points);
 }
 

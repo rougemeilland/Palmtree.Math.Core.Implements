@@ -100,7 +100,7 @@ void TEST_Assert(PMC_DEBUG_ENVIRONMENT *env, const char* test_name, BOOL conditi
 {
     if (condition)
     {
-        env->log("テスト No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
+        //env->log("テスト No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
         ++test_ok_count;
     }
     else

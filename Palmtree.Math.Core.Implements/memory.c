@@ -55,91 +55,99 @@ static __UNIT_TYPE CalculateCheckCode(__UNIT_TYPE* p, __UNIT_TYPE words)
 {
 	__UNIT_TYPE code = CHECK_CODE_INIT;
 	
-	while (words > 32)
+    __UNIT_TYPE count = words >> 5;
+	while (count != 0)
 	{
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
+        code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[4];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[5];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[6];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[7];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[8];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[9];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[10];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[11];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[12];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[13];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[14];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[15];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[16];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[17];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[18];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[19];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[20];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[21];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[22];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[23];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[24];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[25];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[26];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[27];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[28];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[29];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[30];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[31];
+        p += 32;
+        --count;
     }
 
-	if (words >= 16)
+	if (words & 0x10)
 	{
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
+        code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[4];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[5];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[6];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[7];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[8];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[9];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[10];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[11];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[12];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[13];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[14];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[15];
+        p += 16;
     }
 
-	if (words >= 8)
-	{
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
+    if (words & 0x8)
+    {
+        code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[4];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[5];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[6];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[7];
+        p += 8;
     }
 
-	if (words >= 4)
-	{
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
+    if (words & 0x4)
+    {
+        code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+        p += 4;
     }
 
-	if (words >= 2)
-	{
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-        code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
+    if (words & 0x2)
+    {
+        code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+        code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+        p += 2;
     }
 
-	if (words != 0/*words >= 1*/)
-		code = _ROTATE_L_UNIT(code, 3) ^ (*p++ + words--);
-	return (code);
+    if (words & 0x1)
+        code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+    
+    return (code);
 }
 #pragma endregion
 
@@ -175,39 +183,39 @@ static void DeallocateBlock(__UNIT_TYPE* buffer)
 	}
 }
 
-
 // 内容の正当性確認のための値が更新される。
-static __UNIT_TYPE CommitBlock(__UNIT_TYPE* buffer)
+static void CommitBlock(__UNIT_TYPE* buffer)
 {
-    if (buffer == NULL)
-        return (0);
-    --buffer;
-    __UNIT_TYPE words = buffer[0];
-    __UNIT_TYPE code = CalculateCheckCode(&buffer[1], words);
-    buffer[words + 1] = code;
-    return (code);
+    if (buffer != NULL)
+    {
+        --buffer;
+        __UNIT_TYPE words = buffer[0];
+#ifdef _DEBUG
+        __UNIT_TYPE code = CalculateCheckCode(&buffer[1], words);
+#else
+        __UNIT_TYPE code = 0;
+#endif
+        buffer[words + 1] = code;
+    }
 }
 
-
 // メモリ内容が正当かどうかが比較される。正当であれば復帰値として0が通知され、正当ではないのなら0以外が通知される。
-static PMC_STATUS_CODE CheckBlock(__UNIT_TYPE* buffer, __UNIT_TYPE* code)
+static PMC_STATUS_CODE CheckBlock(__UNIT_TYPE* buffer)
 {
+#ifdef _DEBUG
     if (buffer == NULL)
-    {
-        *code = 0;
         return (PMC_STATUS_OK);
-    }
-	--buffer;
-	__UNIT_TYPE words = buffer[0];
-	__UNIT_TYPE code_desired = buffer[words + 1];
-	__UNIT_TYPE code_actual = CalculateCheckCode(&buffer[1], words);
+    --buffer;
+    __UNIT_TYPE words = buffer[0];
+    __UNIT_TYPE code_desired = buffer[words + 1];
+    __UNIT_TYPE code_actual = CalculateCheckCode(&buffer[1], words);
     if (code_actual == code_desired)
-    {
-        *code = code_desired;
         return (PMC_STATUS_OK);
-    }
     else
         return (PMC_STATUS_BAD_BUFFER);
+#else
+    return (PMC_STATUS_OK);
+#endif
 }
 
 __inline static void ClearNumberHeader(NUMBER_HEADER* p)
@@ -316,16 +324,25 @@ void DeallocateNumber(NUMBER_HEADER* p)
     HeapFree(hLocalHeap, 0, p->BLOCK);
 }
 
-static __UNIT_TYPE GetEffectiveBitLength(__UNIT_TYPE* p, __UNIT_TYPE word_count)
+static __UNIT_TYPE GetEffectiveBitLength(__UNIT_TYPE* p, __UNIT_TYPE word_count, __UNIT_TYPE* effective_word_count)
 {
+    if (p == NULL)
+    {
+        *effective_word_count = 0;
+        return (0);
+    }
     p += word_count;
-    while (word_count > 0)
+    while (word_count != 0)
     {
         --p;
         if (*p != 0)
+        {
+            *effective_word_count = word_count;
             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+        }
         --word_count;
     }
+    *effective_word_count = 0;
     return (0);
 }
 
@@ -348,12 +365,11 @@ static BOOL IsPowerOfTwo(__UNIT_TYPE* p, __UNIT_TYPE word_count)
 
 void CommitNumber(NUMBER_HEADER* p)
 {
-    __UNIT_TYPE code = CommitBlock(p->BLOCK);
-    p->HASH_CODE = code;
-    p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT);
-    p->UNIT_WORD_COUNT = _DIVIDE_CEILING_UNIT(p->UNIT_BIT_COUNT, __UNIT_TYPE_BIT_COUNT);
+    CommitBlock(p->BLOCK);
+    p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT, &p->UNIT_WORD_COUNT);
     if (p->UNIT_BIT_COUNT <= 0)
     {
+        p->HASH_CODE = 0;
         p->IS_ZERO = TRUE;
         p->IS_ONE = FALSE;
         p->IS_EVEN = TRUE;
@@ -361,6 +377,7 @@ void CommitNumber(NUMBER_HEADER* p)
     }
     else if (p->UNIT_BIT_COUNT == 1)
     {
+        p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
         p->IS_ZERO = FALSE;
         p->IS_ONE = p->BLOCK[0] == 1; // 無条件でTRUEでも大丈夫だが念のため。
         p->IS_EVEN = FALSE;
@@ -368,6 +385,7 @@ void CommitNumber(NUMBER_HEADER* p)
     }
     else
     {
+        p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
         p->IS_ZERO = FALSE;
         p->IS_ONE = FALSE;
         p->IS_EVEN = !(p->BLOCK[0] & 1);
@@ -377,17 +395,17 @@ void CommitNumber(NUMBER_HEADER* p)
 
 PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p)
 {
-    __UNIT_TYPE code;
-    if (p->IS_ZERO)
-        code = 0;
-    else
+#ifdef _DEBUG
+    if (!p->IS_ZERO)
     {
-        PMC_STATUS_CODE result = CheckBlock(p->BLOCK, &code);
-        if (result != PMC_STATUS_OK)
+        PMC_STATUS_CODE result;
+        if ((result = CheckBlock(p->BLOCK)) != PMC_STATUS_OK)
             return (result);
+        __UNIT_TYPE desired_hash_code = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+        if (desired_hash_code != p->HASH_CODE)
+            return (PMC_STATUS_BAD_BUFFER);
     }
-    if (code != p->HASH_CODE)
-        return (PMC_STATUS_BAD_BUFFER);
+#endif
     return (PMC_STATUS_OK);
 }
 

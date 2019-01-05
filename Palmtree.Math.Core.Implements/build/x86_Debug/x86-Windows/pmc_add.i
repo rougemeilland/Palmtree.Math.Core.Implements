@@ -87293,14 +87293,14 @@ __extension__ typedef unsigned long long uintmax_t;
 
 
 #pragma region マクロの定義
-# 56 "pmc.h"
+# 57 "pmc.h"
 #pragma endregion
 
 
 #pragma region 型の定義
-# 69 "pmc.h"
+# 70 "pmc.h"
 
-# 69 "pmc.h"
+# 70 "pmc.h"
 typedef int16_t _INT16_T;
 typedef int32_t _INT32_T;
 typedef int64_t _INT64_T;
@@ -87358,9 +87358,15 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
+
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -87484,7 +87490,10 @@ extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
 
 extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
-# 176 "pmc_internal.h"
+
+
+extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
+# 179 "pmc_internal.h"
 extern void __attribute__((__stdcall__)) PMC_TraceStatistics(int enabled);
 extern void __attribute__((__stdcall__)) PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
@@ -87501,6 +87510,10 @@ extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_B(HANDLE p, unsigne
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
 #pragma endregion
 
 
@@ -87514,7 +87527,7 @@ __inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T
 {
     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 }
-# 213 "pmc_internal.h"
+# 220 "pmc_internal.h"
 __inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
 {
 
@@ -87540,7 +87553,7 @@ __inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
 {
     __stosd((unsigned long*)d, 0, count);
 }
-# 246 "pmc_internal.h"
+# 253 "pmc_internal.h"
 __inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
 {
 
@@ -87605,7 +87618,7 @@ __inline static char _ADDX_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 
 }
 
-__inline static char _SUBTRACT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+__inline static char _SUBTRUCT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
 {
 
     return (_subborrow_u32(borrow, u, v, w));
@@ -87625,11 +87638,11 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
     _UINT32_T w_low;
     __asm__("mull %3": "=a"(w_low), "=d"(*w_high) : "0"(u), "rm"(v));
     return (w_low);
-# 338 "pmc_internal.h"
+# 345 "pmc_internal.h"
 }
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
-# 352 "pmc_internal.h"
+# 359 "pmc_internal.h"
     __UNIT_TYPE q;
 
     __asm__("divl %3": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -87646,7 +87659,7 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
 
 __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE *q)
 {
-# 380 "pmc_internal.h"
+# 387 "pmc_internal.h"
     __asm__("divl %3": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
 
 
@@ -87674,17 +87687,17 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 406 "pmc_internal.h" 3
+# 413 "pmc_internal.h" 3
            __rold((
-# 406 "pmc_internal.h"
+# 413 "pmc_internal.h"
            x
-# 406 "pmc_internal.h" 3
+# 413 "pmc_internal.h" 3
            ), (
-# 406 "pmc_internal.h"
+# 413 "pmc_internal.h"
            count
-# 406 "pmc_internal.h" 3
+# 413 "pmc_internal.h" 3
            ))
-# 406 "pmc_internal.h"
+# 413 "pmc_internal.h"
                           );
 
 
@@ -87697,17 +87710,17 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 417 "pmc_internal.h" 3
+# 424 "pmc_internal.h" 3
            __rord((
-# 417 "pmc_internal.h"
+# 424 "pmc_internal.h"
            x
-# 417 "pmc_internal.h" 3
+# 424 "pmc_internal.h" 3
            ), (
-# 417 "pmc_internal.h"
+# 424 "pmc_internal.h"
            count
-# 417 "pmc_internal.h" 3
+# 424 "pmc_internal.h" 3
            ))
-# 417 "pmc_internal.h"
+# 424 "pmc_internal.h"
                           );
 
 
@@ -87735,7 +87748,7 @@ __inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
     x = (x & 0x0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f);
     x = (x & 0x00ff00ff) + ((x >> 8) & 0x00ff00ff);
     x = (x & 0x0000ffff) + ((x >> 16) & 0x0000ffff);
-# 454 "pmc_internal.h"
+# 461 "pmc_internal.h"
     return(x);
 }
 
@@ -87743,7 +87756,7 @@ __inline static _UINT32_T _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
-# 469 "pmc_internal.h"
+# 476 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
@@ -87784,7 +87797,7 @@ __inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
 
     return (sizeof(x) * 8 - 1 - pos);
 }
-# 528 "pmc_internal.h"
+# 535 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
@@ -87795,7 +87808,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 554 "pmc_internal.h"
+# 561 "pmc_internal.h"
     return (sizeof(x) * 8 - 1 - pos);
 }
 
@@ -87831,7 +87844,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 605 "pmc_internal.h"
+# 612 "pmc_internal.h"
     return (pos);
 }
 #pragma endregion
@@ -88168,9 +88181,119 @@ __inline static char _ADD_32WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp,
     return (c);
 }
 
+__inline static char _SUBTRUCT_32WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+# 840 "autogenerated.h"
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "sbbl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "sbbl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "sbbl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "sbbl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "sbbl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "sbbl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "sbbl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "sbbl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
+        "movl\t32(%1), %%ecx\n\t"
+        "sbbl\t32(%2), %%ecx\n\t"
+        "movl\t%%ecx, 32(%3)\n\t"
+        "movl\t36(%1), %%ecx\n\t"
+        "sbbl\t36(%2), %%ecx\n\t"
+        "movl\t%%ecx, 36(%3)\n\t"
+        "movl\t40(%1), %%ecx\n\t"
+        "sbbl\t40(%2), %%ecx\n\t"
+        "movl\t%%ecx, 40(%3)\n\t"
+        "movl\t44(%1), %%ecx\n\t"
+        "sbbl\t44(%2), %%ecx\n\t"
+        "movl\t%%ecx, 44(%3)\n\t"
+        "movl\t48(%1), %%ecx\n\t"
+        "sbbl\t48(%2), %%ecx\n\t"
+        "movl\t%%ecx, 48(%3)\n\t"
+        "movl\t52(%1), %%ecx\n\t"
+        "sbbl\t52(%2), %%ecx\n\t"
+        "movl\t%%ecx, 52(%3)\n\t"
+        "movl\t56(%1), %%ecx\n\t"
+        "sbbl\t56(%2), %%ecx\n\t"
+        "movl\t%%ecx, 56(%3)\n\t"
+        "movl\t60(%1), %%ecx\n\t"
+        "sbbl\t60(%2), %%ecx\n\t"
+        "movl\t%%ecx, 60(%3)\n\t"
+        "movl\t64(%1), %%ecx\n\t"
+        "sbbl\t64(%2), %%ecx\n\t"
+        "movl\t%%ecx, 64(%3)\n\t"
+        "movl\t68(%1), %%ecx\n\t"
+        "sbbl\t68(%2), %%ecx\n\t"
+        "movl\t%%ecx, 68(%3)\n\t"
+        "movl\t72(%1), %%ecx\n\t"
+        "sbbl\t72(%2), %%ecx\n\t"
+        "movl\t%%ecx, 72(%3)\n\t"
+        "movl\t76(%1), %%ecx\n\t"
+        "sbbl\t76(%2), %%ecx\n\t"
+        "movl\t%%ecx, 76(%3)\n\t"
+        "movl\t80(%1), %%ecx\n\t"
+        "sbbl\t80(%2), %%ecx\n\t"
+        "movl\t%%ecx, 80(%3)\n\t"
+        "movl\t84(%1), %%ecx\n\t"
+        "sbbl\t84(%2), %%ecx\n\t"
+        "movl\t%%ecx, 84(%3)\n\t"
+        "movl\t88(%1), %%ecx\n\t"
+        "sbbl\t88(%2), %%ecx\n\t"
+        "movl\t%%ecx, 88(%3)\n\t"
+        "movl\t92(%1), %%ecx\n\t"
+        "sbbl\t92(%2), %%ecx\n\t"
+        "movl\t%%ecx, 92(%3)\n\t"
+        "movl\t96(%1), %%ecx\n\t"
+        "sbbl\t96(%2), %%ecx\n\t"
+        "movl\t%%ecx, 96(%3)\n\t"
+        "movl\t100(%1), %%ecx\n\t"
+        "sbbl\t100(%2), %%ecx\n\t"
+        "movl\t%%ecx, 100(%3)\n\t"
+        "movl\t104(%1), %%ecx\n\t"
+        "sbbl\t104(%2), %%ecx\n\t"
+        "movl\t%%ecx, 104(%3)\n\t"
+        "movl\t108(%1), %%ecx\n\t"
+        "sbbl\t108(%2), %%ecx\n\t"
+        "movl\t%%ecx, 108(%3)\n\t"
+        "movl\t112(%1), %%ecx\n\t"
+        "sbbl\t112(%2), %%ecx\n\t"
+        "movl\t%%ecx, 112(%3)\n\t"
+        "movl\t116(%1), %%ecx\n\t"
+        "sbbl\t116(%2), %%ecx\n\t"
+        "movl\t%%ecx, 116(%3)\n\t"
+        "movl\t120(%1), %%ecx\n\t"
+        "sbbl\t120(%2), %%ecx\n\t"
+        "movl\t%%ecx, 120(%3)\n\t"
+        "movl\t124(%1), %%ecx\n\t"
+        "sbbl\t124(%2), %%ecx\n\t"
+        "movl\t%%ecx, 124(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+# 1053 "autogenerated.h"
+    return (c);
+}
+
 __inline static char _ADD_16WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
-# 824 "autogenerated.h"
+# 1077 "autogenerated.h"
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
         "movl\t(%1), %%ecx\n\t"
@@ -88226,13 +88349,13 @@ __inline static char _ADD_16WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
         :
         : "cc", "memory", "%ecx"
 );
-# 941 "autogenerated.h"
+# 1194 "autogenerated.h"
     return (c);
 }
 
 __inline static char _ADD_16WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
-# 965 "autogenerated.h"
+# 1218 "autogenerated.h"
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
         "movl\t(%1), %%ecx\n\t"
@@ -88288,13 +88411,13 @@ __inline static char _ADD_16WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp,
         :
         : "cc", "memory", "%ecx"
 );
-# 1082 "autogenerated.h"
+# 1335 "autogenerated.h"
     return (c);
 }
 
 __inline static char _ADD_16WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
-# 1106 "autogenerated.h"
+# 1359 "autogenerated.h"
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
         "movl\t(%1), %%ecx\n\t"
@@ -88350,13 +88473,75 @@ __inline static char _ADD_16WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp,
         :
         : "cc", "memory", "%ecx"
 );
-# 1223 "autogenerated.h"
+# 1476 "autogenerated.h"
+    return (c);
+}
+
+__inline static char _SUBTRUCT_16WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+# 1500 "autogenerated.h"
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "sbbl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "sbbl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "sbbl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "sbbl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "sbbl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "sbbl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "sbbl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "sbbl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
+        "movl\t32(%1), %%ecx\n\t"
+        "sbbl\t32(%2), %%ecx\n\t"
+        "movl\t%%ecx, 32(%3)\n\t"
+        "movl\t36(%1), %%ecx\n\t"
+        "sbbl\t36(%2), %%ecx\n\t"
+        "movl\t%%ecx, 36(%3)\n\t"
+        "movl\t40(%1), %%ecx\n\t"
+        "sbbl\t40(%2), %%ecx\n\t"
+        "movl\t%%ecx, 40(%3)\n\t"
+        "movl\t44(%1), %%ecx\n\t"
+        "sbbl\t44(%2), %%ecx\n\t"
+        "movl\t%%ecx, 44(%3)\n\t"
+        "movl\t48(%1), %%ecx\n\t"
+        "sbbl\t48(%2), %%ecx\n\t"
+        "movl\t%%ecx, 48(%3)\n\t"
+        "movl\t52(%1), %%ecx\n\t"
+        "sbbl\t52(%2), %%ecx\n\t"
+        "movl\t%%ecx, 52(%3)\n\t"
+        "movl\t56(%1), %%ecx\n\t"
+        "sbbl\t56(%2), %%ecx\n\t"
+        "movl\t%%ecx, 56(%3)\n\t"
+        "movl\t60(%1), %%ecx\n\t"
+        "sbbl\t60(%2), %%ecx\n\t"
+        "movl\t%%ecx, 60(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+# 1617 "autogenerated.h"
     return (c);
 }
 
 __inline static char _ADD_8WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
-# 1239 "autogenerated.h"
+# 1633 "autogenerated.h"
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
         "movl\t(%1), %%ecx\n\t"
@@ -88388,13 +88573,13 @@ __inline static char _ADD_8WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, _
         :
         : "cc", "memory", "%ecx"
 );
-# 1308 "autogenerated.h"
+# 1702 "autogenerated.h"
     return (c);
 }
 
 __inline static char _ADD_8WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
-# 1324 "autogenerated.h"
+# 1718 "autogenerated.h"
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
         "movl\t(%1), %%ecx\n\t"
@@ -88426,13 +88611,13 @@ __inline static char _ADD_8WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
         :
         : "cc", "memory", "%ecx"
 );
-# 1393 "autogenerated.h"
+# 1787 "autogenerated.h"
     return (c);
 }
 
 __inline static char _ADD_8WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
-# 1409 "autogenerated.h"
+# 1803 "autogenerated.h"
     __asm__ volatile (
         "addb\t$-1, %0\n\t"
         "movl\t(%1), %%ecx\n\t"
@@ -88464,7 +88649,45 @@ __inline static char _ADD_8WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
         :
         : "cc", "memory", "%ecx"
 );
-# 1478 "autogenerated.h"
+# 1872 "autogenerated.h"
+    return (c);
+}
+
+__inline static char _SUBTRUCT_8WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+# 1888 "autogenerated.h"
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "sbbl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "sbbl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "sbbl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "sbbl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "movl\t16(%1), %%ecx\n\t"
+        "sbbl\t16(%2), %%ecx\n\t"
+        "movl\t%%ecx, 16(%3)\n\t"
+        "movl\t20(%1), %%ecx\n\t"
+        "sbbl\t20(%2), %%ecx\n\t"
+        "movl\t%%ecx, 20(%3)\n\t"
+        "movl\t24(%1), %%ecx\n\t"
+        "sbbl\t24(%2), %%ecx\n\t"
+        "movl\t%%ecx, 24(%3)\n\t"
+        "movl\t28(%1), %%ecx\n\t"
+        "sbbl\t28(%2), %%ecx\n\t"
+        "movl\t%%ecx, 28(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+# 1957 "autogenerated.h"
     return (c);
 }
 # 36 "pmc_add.c" 2
@@ -88472,7 +88695,7 @@ __inline static char _ADD_8WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
 static PMC_STATUS_CODE(*fp_Add_X_X_using_ADC)(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z);
 
 
-static PMC_STATUS_CODE DoCarry(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __UNIT_TYPE* op, __UNIT_TYPE o_count)
+static PMC_STATUS_CODE DoBorrow(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __UNIT_TYPE* op, __UNIT_TYPE o_count)
 {
 
     for (;;)
@@ -88538,7 +88761,7 @@ static PMC_STATUS_CODE Add_X_1W(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* 
     --z_count;
 
 
-    return (DoCarry(c, xp, x_count, zp, z_count));
+    return (DoBorrow(c, xp, x_count, zp, z_count));
 }
 
 static PMC_STATUS_CODE Add_X_2W(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE y_lo, NUMBER_HEADER* z)
@@ -88579,7 +88802,7 @@ static PMC_STATUS_CODE Add_X_2W(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE 
         z_count -= 2;
 
 
-        return (DoCarry(c, xp, x_count, zp, z_count));
+        return (DoBorrow(c, xp, x_count, zp, z_count));
     }
 }
 
@@ -88647,7 +88870,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
     }
 
 
-    return (DoCarry(c, xp, x_count - y_count, zp, z_count - y_count));
+    return (DoBorrow(c, xp, x_count - y_count, zp, z_count - y_count));
 }
 
 static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z)
@@ -88713,7 +88936,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NU
     }
 
 
-    return (DoCarry(c, xp, x_count - y_count, zp, z_count - y_count));
+    return (DoBorrow(c, xp, x_count - y_count, zp, z_count - y_count));
 }
 
 static PMC_STATUS_CODE Add_X_X(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z)
@@ -88789,11 +89012,17 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_I(HANDLE x, _UINT32_T y, 
             if ((result = AllocateNumber(&nz, z_bit_count)) != (0))
                 return (result);
             if ((result = Add_X_1W(nx, y, nz)) != (0))
+            {
+                DeallocateNumber(nz);
                 return (result);
+            }
             CommitNumber(nz);
         }
         *o = nz;
     }
+
+
+
 
 
 
@@ -88809,15 +89038,15 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE x, _UINT64_T y, 
         return ((-4));
     }
     if (x == 
-# 368 "pmc_add.c" 3 4
+# 374 "pmc_add.c" 3 4
             ((void *)0)
-# 368 "pmc_add.c"
+# 374 "pmc_add.c"
                 )
         return ((-1));
     if (o == 
-# 370 "pmc_add.c" 3 4
+# 376 "pmc_add.c" 3 4
             ((void *)0)
-# 370 "pmc_add.c"
+# 376 "pmc_add.c"
                 )
         return ((-1));
     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
@@ -88878,7 +89107,10 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE x, _UINT64_T y, 
                     if ((result = AllocateNumber(&nz, z_bit_count)) != (0))
                         return (result);
                     if ((result = Add_X_1W(nx, y_lo, nz)) != (0))
+                    {
+                        DeallocateNumber(nz);
                         return (result);
+                    }
                 }
                 else
                 {
@@ -88888,7 +89120,10 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE x, _UINT64_T y, 
                     if ((result = AllocateNumber(&nz, z_bit_count)) != (0))
                         return (result);
                     if ((result = Add_X_2W(nx, y_hi, y_lo, nz)) != (0))
+                    {
+                        DeallocateNumber(nz);
                         return (result);
+                    }
                 }
                 CommitNumber(nz);
             }
@@ -88902,7 +89137,10 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE x, _UINT64_T y, 
                 if ((result = AllocateNumber(&nz, z_bit_count)) != (0))
                     return (result);
                 if ((result = Add_X_1W(nx, (__UNIT_TYPE)y, nz)) != (0))
+                {
+                    DeallocateNumber(nz);
                     return (result);
+                }
                 CommitNumber(nz);
             }
 
@@ -88913,27 +89151,30 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE x, _UINT64_T y, 
 
 
 
+
+
+
     return ((0));
 }
 
 PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_X(HANDLE x, HANDLE y, HANDLE* o)
 {
     if (x == 
-# 470 "pmc_add.c" 3 4
+# 488 "pmc_add.c" 3 4
             ((void *)0)
-# 470 "pmc_add.c"
+# 488 "pmc_add.c"
                 )
         return ((-1));
     if (y == 
-# 472 "pmc_add.c" 3 4
+# 490 "pmc_add.c" 3 4
             ((void *)0)
-# 472 "pmc_add.c"
+# 490 "pmc_add.c"
                 )
         return ((-1));
     if (o == 
-# 474 "pmc_add.c" 3 4
+# 492 "pmc_add.c" 3 4
             ((void *)0)
-# 474 "pmc_add.c"
+# 492 "pmc_add.c"
                 )
         return ((-1));
     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
@@ -88969,11 +89210,17 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_X(HANDLE x, HANDLE y, HAN
             if ((result = AllocateNumber(&nz, z_bit_count)) != (0))
                 return (result);
             if ((result = Add_X_X(nx, ny, nz)) != (0))
+            {
+                DeallocateNumber(nz);
                 return (result);
+            }
             CommitNumber(nz);
         }
     }
     *o = nz;
+
+
+
 
 
 

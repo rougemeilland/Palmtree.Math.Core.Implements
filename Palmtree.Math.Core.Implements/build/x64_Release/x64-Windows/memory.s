@@ -5,335 +5,165 @@
 	.seh_proc	CalculateCheckCode
 CalculateCheckCode:
 	.seh_endprologue
-	cmpq	$32, %rdx
-	jbe	.L9
+	movq	%rdx, %r10
+	shrq	$5, %r10
+	testq	%r10, %r10
+	je	.L9
 	movabsq	$81985529216486895, %rax
-	movq	%rdx, %r8
-	movq	%rcx, %r9
+	movq	%r10, %r9
+	movq	%rcx, %r8
 	.p2align 4,,10
 .L3:
-	movq	(%r9), %r11
 	rolq	$3, %rax
-	movq	8(%r9), %r10
-	addq	%r8, %r11
-	xorq	%r11, %rax
-	leaq	-1(%r8,%r10), %r11
+	xorq	(%r8), %rax
 	rolq	$3, %rax
-	movq	32(%r9), %r10
-	xorq	%r11, %rax
+	xorq	8(%r8), %rax
 	rolq	$3, %rax
-	movq	%rax, %r11
-	movq	16(%r9), %rax
-	leaq	-2(%r8,%rax), %rax
-	xorq	%r11, %rax
+	xorq	16(%r8), %rax
 	rolq	$3, %rax
-	movq	%rax, %r11
-	movq	24(%r9), %rax
-	leaq	-3(%r8,%rax), %rax
-	xorq	%r11, %rax
-	leaq	-4(%r8,%r10), %r11
-	movq	40(%r9), %r10
+	xorq	24(%r8), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r11
-	movq	%r11, %rax
+	xorq	32(%r8), %rax
 	rolq	$3, %rax
-	leaq	-5(%r8,%r10), %r11
-	movq	64(%r9), %r10
-	xorq	%rax, %r11
-	movq	48(%r9), %rax
-	rolq	$3, %r11
-	leaq	-6(%r8,%rax), %rax
-	xorq	%r11, %rax
+	xorq	40(%r8), %rax
 	rolq	$3, %rax
-	movq	%rax, %r11
-	movq	56(%r9), %rax
-	leaq	-7(%r8,%rax), %rax
-	xorq	%r11, %rax
-	leaq	-8(%r8,%r10), %r11
-	movq	72(%r9), %r10
+	xorq	48(%r8), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r11
-	movq	%r11, %rax
+	xorq	56(%r8), %rax
 	rolq	$3, %rax
-	leaq	-9(%r8,%r10), %r11
-	movq	96(%r9), %r10
-	xorq	%rax, %r11
-	movq	80(%r9), %rax
-	rolq	$3, %r11
-	leaq	-10(%r8,%rax), %rax
-	xorq	%r11, %rax
+	xorq	64(%r8), %rax
 	rolq	$3, %rax
-	movq	%rax, %r11
-	movq	88(%r9), %rax
-	leaq	-11(%r8,%rax), %rax
-	xorq	%r11, %rax
-	leaq	-12(%r8,%r10), %r11
-	movq	104(%r9), %r10
+	xorq	72(%r8), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r11
-	movq	%r11, %rax
+	xorq	80(%r8), %rax
 	rolq	$3, %rax
-	leaq	-13(%r8,%r10), %r11
-	movq	128(%r9), %r10
-	xorq	%rax, %r11
-	movq	112(%r9), %rax
-	rolq	$3, %r11
-	leaq	-14(%r8,%rax), %rax
-	xorq	%r11, %rax
+	xorq	88(%r8), %rax
 	rolq	$3, %rax
-	movq	%rax, %r11
-	movq	120(%r9), %rax
-	leaq	-15(%r8,%rax), %rax
-	xorq	%r11, %rax
-	leaq	-16(%r8,%r10), %r11
-	movq	136(%r9), %r10
+	xorq	96(%r8), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r11
-	movq	%r11, %rax
+	xorq	104(%r8), %rax
 	rolq	$3, %rax
-	leaq	-17(%r8,%r10), %r11
-	movq	160(%r9), %r10
-	xorq	%rax, %r11
-	movq	144(%r9), %rax
-	rolq	$3, %r11
-	leaq	-18(%r8,%rax), %rax
-	xorq	%r11, %rax
+	xorq	112(%r8), %rax
 	rolq	$3, %rax
-	movq	%rax, %r11
-	movq	152(%r9), %rax
-	leaq	-19(%r8,%rax), %rax
-	xorq	%r11, %rax
-	leaq	-20(%r8,%r10), %r11
-	movq	168(%r9), %r10
+	xorq	120(%r8), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r11
-	movq	%r11, %rax
+	xorq	128(%r8), %rax
 	rolq	$3, %rax
-	leaq	-21(%r8,%r10), %r11
-	movq	192(%r9), %r10
-	xorq	%rax, %r11
-	movq	176(%r9), %rax
-	rolq	$3, %r11
-	leaq	-22(%r8,%rax), %rax
-	xorq	%r11, %rax
+	xorq	136(%r8), %rax
 	rolq	$3, %rax
-	movq	%rax, %r11
-	movq	184(%r9), %rax
-	leaq	-23(%r8,%rax), %rax
-	xorq	%r11, %rax
-	leaq	-24(%r8,%r10), %r11
-	movq	200(%r9), %r10
+	xorq	144(%r8), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r11
-	movq	%r11, %rax
+	xorq	152(%r8), %rax
 	rolq	$3, %rax
-	leaq	-25(%r8,%r10), %r11
-	movq	224(%r9), %r10
-	xorq	%rax, %r11
-	movq	208(%r9), %rax
-	rolq	$3, %r11
-	leaq	-26(%r8,%rax), %rax
-	xorq	%r11, %rax
+	xorq	160(%r8), %rax
 	rolq	$3, %rax
-	movq	%rax, %r11
-	movq	216(%r9), %rax
-	leaq	-27(%r8,%rax), %rax
-	xorq	%r11, %rax
-	leaq	-28(%r8,%r10), %r11
-	movq	232(%r9), %r10
+	xorq	168(%r8), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r11
-	movq	%r11, %rax
+	xorq	176(%r8), %rax
 	rolq	$3, %rax
-	leaq	-29(%r8,%r10), %r11
-	leaq	-31(%r8), %r10
-	xorq	%rax, %r11
-	movq	240(%r9), %rax
-	rolq	$3, %r11
-	leaq	-30(%r8,%rax), %rax
-	xorq	%r11, %rax
+	xorq	184(%r8), %rax
 	rolq	$3, %rax
-	addq	$256, %r9
-	subq	$32, %r8
-	movq	%rax, %r11
-	movq	-8(%r9), %rax
-	addq	%r10, %rax
-	xorq	%r11, %rax
-	cmpq	$32, %r8
-	ja	.L3
-	leaq	-33(%rdx), %r8
-	shrq	$5, %r8
-	leaq	1(%r8), %r9
-	negq	%r8
-	salq	$8, %r9
-	salq	$5, %r8
-	leaq	-32(%rdx,%r8), %rdx
-	addq	%r9, %rcx
+	xorq	192(%r8), %rax
+	rolq	$3, %rax
+	xorq	200(%r8), %rax
+	rolq	$3, %rax
+	xorq	208(%r8), %rax
+	rolq	$3, %rax
+	xorq	216(%r8), %rax
+	rolq	$3, %rax
+	xorq	224(%r8), %rax
+	rolq	$3, %rax
+	xorq	232(%r8), %rax
+	rolq	$3, %rax
+	xorq	240(%r8), %rax
+	rolq	$3, %rax
+	xorq	248(%r8), %rax
+	addq	$256, %r8
+	subq	$1, %r9
+	jne	.L3
+	salq	$8, %r10
+	addq	%r10, %rcx
 .L2:
-	cmpq	$15, %rdx
-	jbe	.L4
-	movq	(%rcx), %r9
+	testb	$16, %dl
+	je	.L4
 	rolq	$3, %rax
-	movq	8(%rcx), %r8
-	addq	%rdx, %r9
-	xorq	%r9, %rax
-	leaq	-1(%rdx,%r8), %r9
+	xorq	(%rcx), %rax
 	rolq	$3, %rax
-	movq	32(%rcx), %r8
-	xorq	%r9, %rax
+	xorq	8(%rcx), %rax
 	rolq	$3, %rax
-	movq	%rax, %r9
-	movq	16(%rcx), %rax
-	leaq	-2(%rdx,%rax), %rax
-	xorq	%r9, %rax
+	xorq	16(%rcx), %rax
 	rolq	$3, %rax
-	movq	%rax, %r9
-	movq	24(%rcx), %rax
-	leaq	-3(%rdx,%rax), %rax
-	xorq	%r9, %rax
-	leaq	-4(%rdx,%r8), %r9
-	movq	40(%rcx), %r8
+	xorq	24(%rcx), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r9
-	movq	%r9, %rax
+	xorq	32(%rcx), %rax
 	rolq	$3, %rax
-	leaq	-5(%rdx,%r8), %r9
-	movq	64(%rcx), %r8
-	xorq	%rax, %r9
-	movq	48(%rcx), %rax
-	rolq	$3, %r9
-	leaq	-6(%rdx,%rax), %rax
-	xorq	%r9, %rax
+	xorq	40(%rcx), %rax
 	rolq	$3, %rax
-	movq	%rax, %r9
-	movq	56(%rcx), %rax
-	leaq	-7(%rdx,%rax), %rax
-	xorq	%r9, %rax
-	leaq	-8(%rdx,%r8), %r9
-	movq	72(%rcx), %r8
+	xorq	48(%rcx), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r9
-	movq	%r9, %rax
+	xorq	56(%rcx), %rax
 	rolq	$3, %rax
-	leaq	-9(%rdx,%r8), %r9
-	movq	96(%rcx), %r8
-	xorq	%rax, %r9
-	movq	80(%rcx), %rax
-	rolq	$3, %r9
-	leaq	-10(%rdx,%rax), %rax
-	xorq	%r9, %rax
+	xorq	64(%rcx), %rax
 	rolq	$3, %rax
-	movq	%rax, %r9
-	movq	88(%rcx), %rax
-	leaq	-11(%rdx,%rax), %rax
-	xorq	%r9, %rax
-	leaq	-12(%rdx,%r8), %r9
-	movq	104(%rcx), %r8
+	xorq	72(%rcx), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r9
-	movq	%r9, %rax
+	xorq	80(%rcx), %rax
 	rolq	$3, %rax
-	leaq	-13(%rdx,%r8), %r9
-	leaq	-15(%rdx), %r8
-	xorq	%rax, %r9
-	movq	112(%rcx), %rax
-	rolq	$3, %r9
-	leaq	-14(%rdx,%rax), %rax
-	xorq	%r9, %rax
+	xorq	88(%rcx), %rax
 	rolq	$3, %rax
-	subq	$16, %rdx
+	xorq	96(%rcx), %rax
+	rolq	$3, %rax
+	xorq	104(%rcx), %rax
+	rolq	$3, %rax
+	xorq	112(%rcx), %rax
+	rolq	$3, %rax
+	xorq	120(%rcx), %rax
 	subq	$-128, %rcx
-	movq	%rax, %r9
-	movq	-8(%rcx), %rax
-	addq	%r8, %rax
-	xorq	%r9, %rax
 .L4:
-	cmpq	$7, %rdx
-	jbe	.L5
-	movq	(%rcx), %r9
+	testb	$8, %dl
+	je	.L5
 	rolq	$3, %rax
+	xorq	(%rcx), %rax
 	addq	$64, %rcx
-	movq	-56(%rcx), %r8
-	addq	%rdx, %r9
-	xorq	%r9, %rax
-	leaq	-1(%rdx,%r8), %r9
 	rolq	$3, %rax
-	movq	-32(%rcx), %r8
-	xorq	%r9, %rax
+	xorq	-56(%rcx), %rax
 	rolq	$3, %rax
-	movq	%rax, %r9
-	movq	-48(%rcx), %rax
-	leaq	-2(%rdx,%rax), %rax
-	xorq	%r9, %rax
+	xorq	-48(%rcx), %rax
 	rolq	$3, %rax
-	movq	%rax, %r9
-	movq	-40(%rcx), %rax
-	leaq	-3(%rdx,%rax), %rax
-	xorq	%r9, %rax
-	leaq	-4(%rdx,%r8), %r9
-	movq	-24(%rcx), %r8
+	xorq	-40(%rcx), %rax
 	rolq	$3, %rax
-	xorq	%rax, %r9
-	movq	%r9, %rax
+	xorq	-32(%rcx), %rax
 	rolq	$3, %rax
-	leaq	-5(%rdx,%r8), %r9
-	leaq	-7(%rdx), %r8
-	xorq	%rax, %r9
-	movq	-16(%rcx), %rax
-	rolq	$3, %r9
-	leaq	-6(%rdx,%rax), %rax
-	subq	$8, %rdx
-	xorq	%r9, %rax
+	xorq	-24(%rcx), %rax
 	rolq	$3, %rax
-	movq	%rax, %r9
-	movq	-8(%rcx), %rax
-	addq	%r8, %rax
-	xorq	%r9, %rax
+	xorq	-16(%rcx), %rax
+	rolq	$3, %rax
+	xorq	-8(%rcx), %rax
 .L5:
-	cmpq	$3, %rdx
-	jbe	.L6
-	movq	(%rcx), %r9
+	testb	$4, %dl
+	je	.L6
 	rolq	$3, %rax
+	xorq	(%rcx), %rax
 	addq	$32, %rcx
-	movq	-24(%rcx), %r8
-	addq	%rdx, %r9
-	xorq	%r9, %rax
-	leaq	-1(%rdx,%r8), %r9
 	rolq	$3, %rax
-	leaq	-3(%rdx), %r8
-	xorq	%r9, %rax
+	xorq	-24(%rcx), %rax
 	rolq	$3, %rax
-	movq	%rax, %r9
-	movq	-16(%rcx), %rax
-	leaq	-2(%rdx,%rax), %rax
-	subq	$4, %rdx
-	xorq	%r9, %rax
+	xorq	-16(%rcx), %rax
 	rolq	$3, %rax
-	movq	%rax, %r9
-	movq	-8(%rcx), %rax
-	addq	%r8, %rax
-	xorq	%r9, %rax
+	xorq	-8(%rcx), %rax
 .L6:
-	cmpq	$1, %rdx
-	jbe	.L7
-	movq	(%rcx), %r8
-	leaq	-1(%rdx), %r9
+	testb	$2, %dl
+	je	.L7
 	rolq	$3, %rax
+	xorq	(%rcx), %rax
 	addq	$16, %rcx
-	addq	%rdx, %r8
-	subq	$2, %rdx
-	xorq	%r8, %rax
 	rolq	$3, %rax
-	movq	%rax, %r8
-	movq	-8(%rcx), %rax
-	addq	%r9, %rax
-	xorq	%r8, %rax
+	xorq	-8(%rcx), %rax
 .L7:
-	testq	%rdx, %rdx
+	andl	$1, %edx
 	je	.L1
-	addq	(%rcx), %rdx
 	rolq	$3, %rax
-	xorq	%rdx, %rax
+	xorq	(%rcx), %rax
 .L1:
 	ret
 	.p2align 4,,10
@@ -345,53 +175,50 @@ CalculateCheckCode:
 	.def	AllocateBlock;	.scl	3;	.type	32;	.endef
 	.seh_proc	AllocateBlock
 AllocateBlock:
-	pushq	%rbp
-	.seh_pushreg	%rbp
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$40, %rsp
-	.seh_stackalloc	40
+	subq	$32, %rsp
+	.seh_stackalloc	32
 	.seh_endprologue
 	movl	$8, %edx
 	leaq	63(%rcx), %rbx
 	movq	hLocalHeap(%rip), %rcx
 	shrq	$6, %rbx
-	leaq	16(,%rbx,8), %rdi
-	movq	%rdi, %r8
+	leaq	16(,%rbx,8), %rsi
+	movq	%rsi, %r8
 	call	*__imp_HeapAlloc(%rip)
 	testq	%rax, %rax
-	movq	%rax, %rsi
-	je	.L18
+	movq	%rax, %r11
+	je	.L30
 	movq	.refptr.configuration_info(%rip), %rdx
 	movq	%rbx, (%rax)
-	leaq	8(%rax), %rbp
+	leaq	8(%rax), %rdi
 	xorl	%eax, %eax
 	testb	$1, (%rdx)
-	jne	.L21
-.L17:
-	movq	%rax, -8(%rsi,%rdi)
-.L15:
-	movq	%rbp, %rax
-	addq	$40, %rsp
+	jne	.L33
+.L29:
+	movq	%rax, -8(%r11,%rsi)
+.L27:
+	movq	%rdi, %rax
+	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
-	popq	%rbp
 	ret
 	.p2align 4,,10
-.L21:
+.L33:
 	movq	%rbx, %rdx
-	movq	%rbp, %rcx
+	movq	%rdi, %rcx
 	call	CalculateCheckCode
-	jmp	.L17
+	jmp	.L29
 	.p2align 4,,10
-.L18:
-	xorl	%ebp, %ebp
-	jmp	.L15
+.L30:
+	xorl	%edi, %edi
+	jmp	.L27
 	.seh_endproc
 	.p2align 4,,15
 	.def	DetatchNumber.part.2;	.scl	3;	.type	32;	.endef
@@ -405,13 +232,13 @@ DetatchNumber.part.2:
 	movq	40(%rcx), %r8
 	testq	%r8, %r8
 	movq	%rcx, %rbx
-	je	.L22
+	je	.L34
 	subq	$8, %r8
 	xorl	%edx, %edx
 	movq	hLocalHeap(%rip), %rcx
 	call	*__imp_HeapFree(%rip)
 	movq	$0, 40(%rbx)
-.L22:
+.L34:
 	addq	$32, %rsp
 	popq	%rbx
 	ret
@@ -432,13 +259,13 @@ DeallocateNumber.part.3:
 	testq	%r8, %r8
 	movq	%rcx, %rsi
 	movq	hLocalHeap(%rip), %rcx
-	je	.L28
+	je	.L40
 	subq	$8, %r8
 	xorl	%edx, %edx
 	call	*%rbx
 	movq	hLocalHeap(%rip), %rcx
 	movq	$0, 40(%rsi)
-.L28:
+.L40:
 	xorl	%r8d, %r8d
 	xorl	%edx, %edx
 	movq	%rbx, %rax
@@ -467,25 +294,25 @@ AttatchNumber:
 	movq	$0, 40(%rcx)
 	movq	%rdx, 8(%rcx)
 	movq	%rax, 32(%rcx)
-	jne	.L40
-.L35:
+	jne	.L52
+.L47:
 	orb	$1, 24(%rbx)
 	xorl	%eax, %eax
-.L32:
+.L44:
 	addq	$32, %rsp
 	popq	%rbx
 	ret
 	.p2align 4,,10
-.L40:
+.L52:
 	movq	%rdx, %rcx
 	call	AllocateBlock
 	testq	%rax, %rax
-	je	.L36
+	je	.L48
 	movq	%rax, 40(%rbx)
-	jmp	.L35
-.L36:
+	jmp	.L47
+.L48:
 	movl	$-2, %eax
-	jmp	.L32
+	jmp	.L44
 	.seh_endproc
 	.p2align 4,,15
 	.globl	AllocateNumber
@@ -509,7 +336,7 @@ AllocateNumber:
 	call	*__imp_HeapAlloc(%rip)
 	testq	%rax, %rax
 	movq	%rax, %rbx
-	je	.L45
+	je	.L57
 	movq	$0, (%rax)
 	movq	$0, 16(%rax)
 	movq	$0, 24(%rax)
@@ -519,29 +346,29 @@ AllocateNumber:
 	shrq	$6, %rax
 	testq	%rsi, %rsi
 	movq	%rax, 32(%rbx)
-	jne	.L53
-.L46:
+	jne	.L65
+.L58:
 	andb	$-2, 24(%rbx)
 	xorl	%eax, %eax
 	movq	%rbx, (%rdi)
-.L41:
+.L53:
 	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	ret
 	.p2align 4,,10
-.L53:
+.L65:
 	movq	%rsi, %rcx
 	call	AllocateBlock
 	testq	%rax, %rax
-	je	.L45
+	je	.L57
 	movq	%rax, 40(%rbx)
-	jmp	.L46
+	jmp	.L58
 	.p2align 4,,10
-.L45:
+.L57:
 	movl	$-2, %eax
-	jmp	.L41
+	jmp	.L53
 	.seh_endproc
 	.p2align 4,,15
 	.globl	DetatchNumber
@@ -550,12 +377,12 @@ AllocateNumber:
 DetatchNumber:
 	.seh_endprologue
 	testq	%rcx, %rcx
-	je	.L54
+	je	.L66
 	testb	$1, 24(%rcx)
-	je	.L54
+	je	.L66
 	jmp	DetatchNumber.part.2
 	.p2align 4,,10
-.L54:
+.L66:
 	ret
 	.seh_endproc
 	.p2align 4,,15
@@ -565,12 +392,12 @@ DetatchNumber:
 DeallocateNumber:
 	.seh_endprologue
 	testq	%rcx, %rcx
-	je	.L62
+	je	.L74
 	testb	$1, 24(%rcx)
-	jne	.L62
+	jne	.L74
 	jmp	DeallocateNumber.part.3
 	.p2align 4,,10
-.L62:
+.L74:
 	ret
 	.seh_endproc
 	.p2align 4,,15
@@ -587,175 +414,183 @@ CommitNumber:
 	subq	$32, %rsp
 	.seh_stackalloc	32
 	.seh_endprologue
-	xorl	%eax, %eax
 	movq	40(%rcx), %rbx
 	testq	%rbx, %rbx
-	movq	%rcx, %rsi
-	je	.L68
-	movq	-8(%rbx), %rdi
-	movq	%rbx, %rcx
-	movq	%rdi, %rdx
-	call	CalculateCheckCode
-	movq	%rax, (%rbx,%rdi,8)
-.L68:
-	movq	%rax, 16(%rsi)
-	movq	32(%rsi), %rax
-	leaq	(%rbx,%rax,8), %rdx
+	movq	%rcx, %rdi
+	je	.L80
+	movq	-8(%rbx), %rax
+	movq	$0, (%rbx,%rax,8)
+	movq	32(%rcx), %rax
+	leaq	(%rbx,%rax,8), %rcx
 	testq	%rax, %rax
-	je	.L69
-	movq	-8(%rdx), %rdx
-	testq	%rdx, %rdx
-	je	.L72
-	jmp	.L70
+	je	.L96
+	cmpq	$0, -8(%rcx)
+	leaq	-8(%rcx), %rdx
+	je	.L83
+	jmp	.L82
 	.p2align 4,,10
-.L75:
-	movq	-8(%rbx,%rax,8), %rdx
-	testq	%rdx, %rdx
-	jne	.L70
-.L72:
+.L84:
+	subq	$8, %rdx
+	cmpq	$0, (%rdx)
+	jne	.L82
+.L83:
 	subq	$1, %rax
-	jne	.L75
-.L69:
-	movq	$0, 8(%rsi)
-	movq	$0, (%rsi)
-.L73:
-	movzbl	24(%rsi), %eax
-	andl	$-31, %eax
-	orl	$10, %eax
-	movb	%al, 24(%rsi)
-	addq	$32, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	ret
-	.p2align 4,,10
-.L70:
-	salq	$6, %rax
+	jne	.L84
+.L81:
+	movq	$0, (%rdi)
+	movq	(%rdx), %rax
+	xorl	%r11d, %r11d
+	testq	%rax, %rax
+	je	.L103
+.L95:
+	movl	$63, %edx
 /APP
- # 547 "pmc_internal.h" 1
-	bsrq %rdx, %rdx
+ # 554 "pmc_internal.h" 1
+	bsrq %rax, %rax
  # 0 "" 2
 /NO_APP
-	leaq	-63(%rdx,%rax), %rdx
-	leaq	63(%rdx), %rax
-	movq	%rdx, 8(%rsi)
-	shrq	$6, %rax
-	testq	%rdx, %rdx
-	movq	%rax, (%rsi)
-	je	.L73
-	cmpq	$1, %rdx
+	subq	%rax, %rdx
+.L85:
+	subq	%rdx, %r11
+	movq	%r11, 8(%rdi)
+	je	.L93
+	movq	(%rdi), %rsi
+	movq	%rbx, %rcx
+	movq	%rsi, %rdx
+	call	CalculateCheckCode
+	cmpq	$1, %r11
+	movq	%rax, 16(%rdi)
+	je	.L104
+	movzbl	24(%rdi), %edx
+	movl	%edx, %eax
+	andl	$-15, %edx
+	andl	$-7, %eax
+	movb	%al, 24(%rdi)
+	movq	(%rbx), %rax
+	notq	%rax
+	andl	$1, %eax
+	sall	$3, %eax
+	orl	%edx, %eax
+	testq	%rsi, %rsi
+	movb	%al, 24(%rdi)
 	je	.L98
-	movzbl	24(%rsi), %ecx
-	movl	%ecx, %edx
-	andl	$-15, %ecx
-	andl	$-7, %edx
-	movb	%dl, 24(%rsi)
 	movq	(%rbx), %rdx
-	notq	%rdx
-	andl	$1, %edx
-	sall	$3, %edx
-	orl	%ecx, %edx
-	testq	%rax, %rax
-	movb	%dl, 24(%rsi)
-	jne	.L81
-	jmp	.L83
+	leaq	-1(%rsi), %rax
+	testq	%rdx, %rdx
+	je	.L91
+	jmp	.L90
 	.p2align 4,,10
-.L80:
+.L92:
+	movq	(%rbx), %rdx
+	subq	$1, %rax
+	testq	%rdx, %rdx
+	jne	.L90
+.L91:
 	addq	$8, %rbx
 	testq	%rax, %rax
-	je	.L83
-.L81:
-	movq	(%rbx), %rdx
-	subq	$1, %rax
-	testq	%rdx, %rdx
-	je	.L80
+	jne	.L92
+.L98:
 	xorl	%ecx, %ecx
-	testq	%rax, %rax
-	jne	.L78
-/APP
- # 598 "pmc_internal.h" 1
-	bsrq %rdx, %rcx
- # 0 "" 2
-/NO_APP
-	shrq	%cl, %rdx
-	cmpq	$1, %rdx
-	sete	%cl
-.L78:
-	movzbl	24(%rsi), %eax
+.L89:
+	movzbl	24(%rdi), %eax
 	sall	$4, %ecx
 	andl	$-17, %eax
 	orl	%ecx, %eax
-	movb	%al, 24(%rsi)
+	movb	%al, 24(%rdi)
 	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	ret
 	.p2align 4,,10
-.L98:
-	movzbl	24(%rsi), %eax
+.L80:
+	movq	$0, (%rcx)
+	movq	$0, 8(%rcx)
+.L93:
+	movzbl	24(%rdi), %eax
+	movq	$0, 16(%rdi)
+	andl	$-31, %eax
+	orl	$10, %eax
+	movb	%al, 24(%rdi)
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L82:
+	movq	%rax, (%rdi)
+	salq	$6, %rax
+	movq	%rax, %r11
+	movq	(%rdx), %rax
+	movl	$64, %edx
+	testq	%rax, %rax
+	jne	.L95
+	jmp	.L85
+	.p2align 4,,10
+.L104:
+	movzbl	24(%rdi), %eax
 	movl	%eax, %edx
 	andl	$-3, %edx
-	movb	%dl, 24(%rsi)
+	movb	%dl, 24(%rdi)
 	cmpq	$1, (%rbx)
 	sete	%dl
 	andl	$-31, %eax
 	sall	$2, %edx
 	orl	%edx, %eax
 	orl	$16, %eax
-	movb	%al, 24(%rsi)
+	movb	%al, 24(%rdi)
 	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	ret
 	.p2align 4,,10
-.L83:
+.L90:
 	xorl	%ecx, %ecx
-	jmp	.L78
+	testq	%rax, %rax
+	jne	.L89
+/APP
+ # 605 "pmc_internal.h" 1
+	bsrq %rdx, %rcx
+ # 0 "" 2
+/NO_APP
+	shrq	%cl, %rdx
+	cmpq	$1, %rdx
+	sete	%cl
+	jmp	.L89
+	.p2align 4,,10
+.L103:
+	xorl	%edx, %edx
+	movq	%rbx, %rcx
+	movq	$-64, 8(%rdi)
+	call	CalculateCheckCode
+	movzbl	24(%rdi), %edx
+	xorl	%ecx, %ecx
+	movq	%rax, 16(%rdi)
+	movl	%edx, %eax
+	andl	$-15, %edx
+	andl	$-7, %eax
+	movb	%al, 24(%rdi)
+	movq	(%rbx), %rax
+	notq	%rax
+	andl	$1, %eax
+	sall	$3, %eax
+	orl	%edx, %eax
+	movb	%al, 24(%rdi)
+	jmp	.L89
+.L96:
+	movq	%rcx, %rdx
+	jmp	.L81
 	.seh_endproc
 	.p2align 4,,15
 	.globl	CheckNumber
 	.def	CheckNumber;	.scl	2;	.type	32;	.endef
 	.seh_proc	CheckNumber
 CheckNumber:
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
 	.seh_endprologue
 	xorl	%eax, %eax
-	testb	$2, 24(%rcx)
-	movq	%rcx, %rbx
-	je	.L106
-.L100:
-	cmpq	%rax, 16(%rbx)
-	sete	%al
-	movzbl	%al, %eax
-	leal	-3(%rax,%rax,2), %eax
-.L99:
-	addq	$32, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
 	ret
-	.p2align 4,,10
-.L106:
-	movq	40(%rcx), %rsi
-	testq	%rsi, %rsi
-	je	.L100
-	movq	-8(%rsi), %rdi
-	movq	%rsi, %rcx
-	movq	%rdi, %rdx
-	call	CalculateCheckCode
-	cmpq	%rax, (%rsi,%rdi,8)
-	je	.L100
-	movl	$-3, %eax
-	jmp	.L99
 	.seh_endproc
 	.p2align 4,,15
 	.globl	DuplicateNumber
@@ -780,7 +615,7 @@ DuplicateNumber:
 	leaq	56(%rsp), %rcx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L107
+	jne	.L106
 	movq	56(%rsp), %rdx
 	leaq	63(%rbx), %rcx
 	movl	%eax, 44(%rsp)
@@ -797,7 +632,7 @@ DuplicateNumber:
 	movq	56(%rsp), %rdx
 	movl	44(%rsp), %eax
 	movq	%rdx, 0(%rbp)
-.L107:
+.L106:
 	addq	$72, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -810,27 +645,14 @@ DuplicateNumber:
 	.def	PMC_Dispose;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_Dispose
 PMC_Dispose:
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
 	.seh_endprologue
-	movq	%rcx, %rbx
-	call	CheckNumber
-	testq	%rbx, %rbx
-	je	.L109
-	testl	%eax, %eax
-	jne	.L109
-	testb	$1, 24(%rbx)
-	jne	.L109
-	movq	%rbx, %rcx
-	addq	$32, %rsp
-	popq	%rbx
+	testq	%rcx, %rcx
+	je	.L108
+	testb	$1, 24(%rcx)
+	jne	.L108
 	jmp	DeallocateNumber.part.3
 	.p2align 4,,10
-.L109:
-	addq	$32, %rsp
-	popq	%rbx
+.L108:
 	ret
 	.seh_endproc
 	.p2align 4,,15
@@ -882,10 +704,10 @@ DeallocateHeapArea:
 	.seh_endprologue
 	movq	hLocalHeap(%rip), %rcx
 	testq	%rcx, %rcx
-	je	.L113
+	je	.L115
 	call	*__imp_HeapDestroy(%rip)
 	movq	$0, hLocalHeap(%rip)
-.L113:
+.L115:
 	addq	$40, %rsp
 	ret
 	.seh_endproc

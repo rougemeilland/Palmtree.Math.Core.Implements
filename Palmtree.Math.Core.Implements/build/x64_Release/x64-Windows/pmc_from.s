@@ -19,7 +19,7 @@ From_I_Imp:
 	je	.L2
 	movl	$31, %eax
 /APP
- # 503 "pmc_internal.h" 1
+ # 510 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP
@@ -62,7 +62,7 @@ From_L_Imp:
 	movq	%rcx, %rbx
 	je	.L8
 /APP
- # 547 "pmc_internal.h" 1
+ # 554 "pmc_internal.h" 1
 	bsrq %rcx, %rdx
  # 0 "" 2
 /NO_APP
@@ -199,7 +199,7 @@ PMC_From_B:
 	movl	$7, %ecx
 	salq	$3, %rdx
 /APP
- # 488 "pmc_internal.h" 1
+ # 495 "pmc_internal.h" 1
 	bsrl %eax, %eax
  # 0 "" 2
 /NO_APP

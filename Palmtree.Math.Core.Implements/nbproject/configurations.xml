@@ -13,6 +13,7 @@
       <itemPath>pmc_from.c</itemPath>
       <itemPath>pmc_initialize.c</itemPath>
       <itemPath>pmc_statistics.c</itemPath>
+      <itemPath>pmc_subtruct.c</itemPath>
       <itemPath>pmc_to.c</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles" displayName="ヘッダー・ファイル" projectFiles="true">
@@ -98,6 +99,8 @@
       </item>
       <item path="pmc_statistics.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="pmc_subtruct.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
@@ -170,6 +173,8 @@
       </item>
       <item path="pmc_statistics.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="pmc_subtruct.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
@@ -233,6 +238,8 @@
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_statistics.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_subtruct.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -305,6 +312,8 @@
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_statistics.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_subtruct.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>

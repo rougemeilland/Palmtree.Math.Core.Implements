@@ -98,6 +98,10 @@ L7:
 	call	_Initialize_Add
 	testl	%eax, %eax
 	jne	L10
+	movl	%ebx, (%esp)
+	call	_Initialize_Subtruct
+	testl	%eax, %eax
+	jne	L10
 	movzbl	_entry_points, %eax
 	movzbl	28(%esp), %edx
 	movl	$_PMC_TraceStatistics@4, _entry_points+4
@@ -117,6 +121,9 @@ L7:
 	movl	$_PMC_Add_X_I@12, _entry_points+40
 	movl	$_PMC_Add_X_L@16, _entry_points+44
 	movl	$_PMC_Add_X_X@12, _entry_points+48
+	movl	$_PMC_Subtruct_X_I@12, _entry_points+52
+	movl	$_PMC_Subtruct_X_L@16, _entry_points+56
+	movl	$_PMC_Subtruct_X_X@12, _entry_points+60
 	addl	$60, %esp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -181,12 +188,13 @@ L6:
 	.cfi_endproc
 LFE5462:
 	.comm	_configuration_info, 4, 2
-.lcomm _entry_points,52,32
+.lcomm _entry_points,64,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_To;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Add;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_Subtruct;	.scl	2;	.type	32;	.endef
 	.def	_PMC_TraceStatistics@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
@@ -199,5 +207,8 @@ LFE5462:
 	.def	_PMC_Add_X_I@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Add_X_L@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Add_X_X@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Subtruct_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Subtruct_X_L@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Subtruct_X_X@12;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize@4\""
