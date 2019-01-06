@@ -346,8 +346,9 @@ static __UNIT_TYPE GetEffectiveBitLength(__UNIT_TYPE* p, __UNIT_TYPE word_count,
     return (0);
 }
 
-static BOOL IsPowerOfTwo(__UNIT_TYPE* p, __UNIT_TYPE word_count)
+static __UNIT_TYPE GetLeastZeroBitCount(__UNIT_TYPE* p, __UNIT_TYPE word_count)
 {
+    __UNIT_TYPE bit_count = 0;
     while (word_count > 0)
     {
         --word_count;
@@ -355,12 +356,13 @@ static BOOL IsPowerOfTwo(__UNIT_TYPE* p, __UNIT_TYPE word_count)
         {
             if (word_count > 0)
                 return (FALSE);
-            return ((*p >> _TZCNT_ALT_UNIT(*p)) == 1);
+            return (bit_count + _TZCNT_ALT_UNIT(*p));
         }
+        bit_count += 8;
         ++p;
     }
     // このルートには到達しないはず
-    return (FALSE);
+    return (0);
 }
 
 void CommitNumber(NUMBER_HEADER* p)
@@ -373,6 +375,7 @@ void CommitNumber(NUMBER_HEADER* p)
         p->IS_ZERO = TRUE;
         p->IS_ONE = FALSE;
         p->IS_EVEN = TRUE;
+        p->LEAST_ZERO_BITS_COUNT = 0;
         p->IS_POWER_OF_TWO = FALSE;
     }
     else if (p->UNIT_BIT_COUNT == 1)
@@ -381,6 +384,7 @@ void CommitNumber(NUMBER_HEADER* p)
         p->IS_ZERO = FALSE;
         p->IS_ONE = p->BLOCK[0] == 1; // 無条件でTRUEでも大丈夫だが念のため。
         p->IS_EVEN = FALSE;
+        p->LEAST_ZERO_BITS_COUNT = 0;
         p->IS_POWER_OF_TWO = TRUE;
     }
     else
@@ -389,7 +393,8 @@ void CommitNumber(NUMBER_HEADER* p)
         p->IS_ZERO = FALSE;
         p->IS_ONE = FALSE;
         p->IS_EVEN = !(p->BLOCK[0] & 1);
-        p->IS_POWER_OF_TWO = IsPowerOfTwo(p->BLOCK, p->UNIT_WORD_COUNT);
+        p->LEAST_ZERO_BITS_COUNT = GetLeastZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
+        p->IS_POWER_OF_TWO = p->LEAST_ZERO_BITS_COUNT + 1 == p->UNIT_BIT_COUNT;
     }
 }
 

@@ -13,6 +13,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -26,8 +28,10 @@
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Debug\x64-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.Math.Core.Implements\dist\x64_Debug\x64-Windows\Palmtree.idebug.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x64_Debug\Palmtree.idebug.exe</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Debug\x64-Windows\palmtree.math.core.implements.test.exe</runcommand>
+        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x64_Debug\Palmtree.idebug.exe</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>2</console-type>
@@ -63,8 +67,9 @@
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Release\x64-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x64_Release\Palmtree.idebug.exe</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Release\x64-Windows\palmtree.math.core.implements.test.exe</runcommand>
+        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x64_Release\Palmtree.idebug.exe</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>2</console-type>
@@ -87,6 +92,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -98,10 +105,12 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x86_Debug\x86-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.Math.Core.Implements\dist\x86_Debug\x86-Windows\Palmtree.idebug.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Debug\Palmtree.idebug.exe</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x86_Debug\x86-Windows\palmtree.math.core.implements.test.exe</runcommand>
+        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Debug\Palmtree.idebug.exe</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>2</console-type>
@@ -137,8 +146,10 @@
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x86_Release\x86-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Debug\Palmtree.idebug.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Release\Palmtree.idebug.exe</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x86_Release\x86-Windows\palmtree.math.core.implements.test.exe</runcommand>
+        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Release\Palmtree.idebug.exe</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>2</console-type>

@@ -37,7 +37,7 @@
 static PMC_STATUS_CODE(*fp_Add_X_X_using_ADC)(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z);
 
 
-static PMC_STATUS_CODE DoBorrow(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __UNIT_TYPE* op, __UNIT_TYPE o_count)
+static PMC_STATUS_CODE DoCarry(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __UNIT_TYPE* op, __UNIT_TYPE o_count)
 {
     // 繰り上がりを続く限り行う
     for (;;)
@@ -103,7 +103,7 @@ static PMC_STATUS_CODE Add_X_1W(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* 
     --z_count;
 
     // 残りの桁の繰上りを行い復帰する。
-    return (DoBorrow(c, xp, x_count, zp, z_count));
+    return (DoCarry(c, xp, x_count, zp, z_count));
 }
 
 static PMC_STATUS_CODE Add_X_2W(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE y_lo, NUMBER_HEADER* z)
@@ -144,7 +144,7 @@ static PMC_STATUS_CODE Add_X_2W(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE 
         z_count -= 2;
 
         // 残りの桁の繰り上がりを計算し、復帰する。
-        return (DoBorrow(c, xp, x_count, zp, z_count));
+        return (DoCarry(c, xp, x_count, zp, z_count));
     }
 }
 
@@ -166,53 +166,64 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
     __UNIT_TYPE* zp = &z->BLOCK[0];
     char c = 0;
 
-    // y のワード数分だけ加算を行う
-    __UNIT_TYPE count = y_count;
-
     // まず 32 ワードずつ加算をする。
-    __UNIT_TYPE count2 = count >> 5;
-    while (count2 != 0)
+    __UNIT_TYPE count = y_count >> 5;
+    while (count != 0);
     {
         c = _ADD_32WORDS_ADC(c, xp, yp, zp);
         xp += 32;
         yp += 32;
         zp += 32;
-        count -= 32;
-        --count2;
+        --count;
     }
     // この時点で未処理の桁は 32 ワード未満のはず
 
-    // 未処理の桁が 16 ワード以上あるなら 16 ワードずつ加算を行う。
-    if (count & 0x10)
+    // 未処理の桁が 16 ワード以上あるなら 16 ワード加算を行う。
+    if (y_count & 0x10)
     {
         c = _ADD_16WORDS_ADC(c, xp, yp, zp);
         xp += 16;
         yp += 16;
         zp += 16;
-        count -= 16;
     }
     // この時点で未処理の桁は 16 ワード未満のはず
 
-    // 未処理の桁が 8 ワード以上あるなら 8 ワードずつ加算を行う。
-    if (count & 0x8)
+    // 未処理の桁が 8 ワード以上あるなら 8 ワード加算を行う。
+    if (y_count & 0x8)
     {
         c = _ADD_8WORDS_ADC(c, xp, yp, zp);
         xp += 8;
         yp += 8;
         zp += 8;
-        count -= 8;
     }
     // この時点で未処理の桁は 8 ワード未満のはず
 
-    // 残りの桁は 1 ワードずつ加算をする。
-    while (count != 0)
+    // 未処理の桁が 4 ワード以上あるなら 4 ワード加算を行う。
+    if (y_count & 0x4)
     {
-        c = _ADD_UNIT(c, *xp++, *yp++, zp++);
-        --count;
+        c = _ADD_4WORDS_ADC(c, xp, yp, zp);
+        xp += 4;
+        yp += 4;
+        zp += 4;
     }
+    // この時点で未処理の桁は 4 ワード未満のはず
+
+    // 未処理の桁が 2 ワード以上あるなら 2 ワード加算を行う。
+    if (y_count & 0x2)
+    {
+        c = _ADD_2WORDS_ADC(c, xp, yp, zp);
+        xp += 2;
+        yp += 2;
+        zp += 2;
+    }
+    // この時点で未処理の桁は 2 ワード未満のはず
+
+    // 未処理の桁が 1 ワード以上あるなら 1 ワード加算を行う。
+    if (y_count & 0x1)
+        c = _ADD_UNIT(c, *xp++, *yp++, zp++);
 
     // 残りの桁の繰り上がりを計算し、復帰する。
-    return (DoBorrow(c, xp, x_count - y_count, zp, z_count - y_count));
+    return (DoCarry(c, xp, x_count - y_count, zp, z_count - y_count));
 }
 
 static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z)
@@ -232,53 +243,64 @@ static PMC_STATUS_CODE Add_X_X_using_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NU
     __UNIT_TYPE* zp = &z->BLOCK[0];
     char c = 0;
 
-    // y のワード数分だけ加算を行う
-    __UNIT_TYPE count = y_count;
-
     // まず 32 ワードずつ加算をする。
-    __UNIT_TYPE count2 = count >> 5;
-    while (count2 != 0)
+    __UNIT_TYPE count = y_count >> 5;
+    while (count != 0)
     {
         c = _ADD_32WORDS_ADCX(c, xp, yp, zp);
         xp += 32;
         yp += 32;
         zp += 32;
-        count -= 32;
-        --count2;
+        --count;
     }
     // この時点で未処理の桁は 32 ワード未満のはず
 
-    // 未処理の桁が 16 ワード以上あるなら 16 ワードずつ加算を行う。
-    if (count & 0x10)
+    // 未処理の桁が 16 ワード以上あるなら 16 ワード加算を行う。
+    if (y_count & 0x10)
     {
         c = _ADD_16WORDS_ADCX(c, xp, yp, zp);
         xp += 16;
         yp += 16;
         zp += 16;
-        count -= 16;
     }
     // この時点で未処理の桁は 16 ワード未満のはず
 
-    // 未処理の桁が 8 ワード以上あるなら 8 ワードずつ加算を行う。
-    if (count & 0x8)
+    // 未処理の桁が 8 ワード以上あるなら 8 ワード加算を行う。
+    if (y_count & 0x8)
     {
         c = _ADD_8WORDS_ADCX(c, xp, yp, zp);
         xp += 8;
         yp += 8;
         zp += 8;
-        count -= 8;
     }
     // この時点で未処理の桁は 8 ワード未満のはず
 
-    // 残りの桁は 1 ワードずつ加算をする。
-    while (count != 0)
+    // 未処理の桁が 4 ワード以上あるなら 4 ワード加算を行う。
+    if (y_count & 0x4)
     {
-        c = _ADDX_UNIT(c, *xp++, *yp++, zp++);
-        --count;
+        c = _ADD_4WORDS_ADCX(c, xp, yp, zp);
+        xp += 4;
+        yp += 4;
+        zp += 4;
     }
+    // この時点で未処理の桁は 4 ワード未満のはず
+
+    // 未処理の桁が 2 ワード以上あるなら 2 ワード加算を行う。
+    if (y_count & 0x2)
+    {
+        c = _ADD_2WORDS_ADCX(c, xp, yp, zp);
+        xp += 2;
+        yp += 2;
+        zp += 2;
+    }
+    // この時点で未処理の桁は 2 ワード未満のはず
+
+    // 未処理の桁が 1 ワード以上あるなら 1 ワード加算を行う。
+    if (y_count & 0x1)
+        c = _ADDX_UNIT(c, *xp++, *yp++, zp++);
 
     // 残りの桁の繰り上がりを計算し、復帰する。
-    return (DoBorrow(c, xp, x_count - y_count, zp, z_count - y_count));
+    return (DoCarry(c, xp, x_count - y_count, zp, z_count - y_count));
 }
 
 static PMC_STATUS_CODE Add_X_X(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z)

@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/TEST_generic.o \
 	${OBJECTDIR}/TEST_op_Add.o \
 	${OBJECTDIR}/TEST_op_From_To.o \
+	${OBJECTDIR}/TEST_op_Multiply.o \
 	${OBJECTDIR}/TEST_op_Subtruct.o \
 	${OBJECTDIR}/debug.o \
 	${OBJECTDIR}/dllmain.o \
@@ -45,6 +46,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/pmc_add.o \
 	${OBJECTDIR}/pmc_from.o \
 	${OBJECTDIR}/pmc_initialize.o \
+	${OBJECTDIR}/pmc_multiply.o \
 	${OBJECTDIR}/pmc_statistics.o \
 	${OBJECTDIR}/pmc_subtruct.o \
 	${OBJECTDIR}/pmc_to.o
@@ -72,7 +74,7 @@ LDLIBSOPTIONS=-lkernel32 -luser32
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT}: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -mwindows -nostdlib -Wl,-eDllMain -shared
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -mwindows -nostdlib -Wl,-e_DllMain@12 -shared
 
 ${OBJECTDIR}/TEST_generic.o: TEST_generic.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
@@ -88,6 +90,11 @@ ${OBJECTDIR}/TEST_op_From_To.o: TEST_op_From_To.c nbproject/Makefile-${CND_CONF}
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_From_To.o TEST_op_From_To.c
+
+${OBJECTDIR}/TEST_op_Multiply.o: TEST_op_Multiply.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Multiply.o TEST_op_Multiply.c
 
 ${OBJECTDIR}/TEST_op_Subtruct.o: TEST_op_Subtruct.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
@@ -123,6 +130,11 @@ ${OBJECTDIR}/pmc_initialize.o: pmc_initialize.c nbproject/Makefile-${CND_CONF}.m
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_initialize.o pmc_initialize.c
+
+${OBJECTDIR}/pmc_multiply.o: pmc_multiply.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_multiply.o pmc_multiply.c
 
 ${OBJECTDIR}/pmc_statistics.o: pmc_statistics.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

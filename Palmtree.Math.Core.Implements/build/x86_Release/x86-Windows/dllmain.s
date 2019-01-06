@@ -4,7 +4,7 @@
 	.globl	_DllMain@12
 	.def	_DllMain@12;	.scl	2;	.type	32;	.endef
 _DllMain@12:
-LFB5462:
+LFB5463:
 	.cfi_startproc
 	subl	$12, %esp
 	.cfi_def_cfa_offset 16
@@ -40,7 +40,7 @@ L3:
 	.cfi_def_cfa_offset 4
 	ret	$12
 	.cfi_endproc
-LFE5462:
+LFE5463:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_AllocateHeapArea;	.scl	2;	.type	32;	.endef
 	.def	_DeallocateHeapArea;	.scl	2;	.type	32;	.endef

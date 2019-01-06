@@ -4,7 +4,7 @@
 	.globl	_From_I_Imp
 	.def	_From_I_Imp;	.scl	2;	.type	32;	.endef
 _From_I_Imp:
-LFB5462:
+LFB5463:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -20,7 +20,7 @@ LFB5462:
 	testl	%ebx, %ebx
 	je	L2
 /APP
- # 510 "pmc_internal.h" 1
+ # 545 "pmc_internal.h" 1
 	bsrl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -33,7 +33,7 @@ L2:
 	jne	L1
 	movl	(%esi), %edx
 	movl	%eax, 28(%esp)
-	movl	20(%edx), %ecx
+	movl	24(%edx), %ecx
 	movl	%ebx, (%ecx)
 	movl	%edx, (%esp)
 	call	_CommitNumber
@@ -49,12 +49,12 @@ L1:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5462:
+LFE5463:
 	.p2align 4,,15
 	.globl	_From_L_Imp
 	.def	_From_L_Imp;	.scl	2;	.type	32;	.endef
 _From_L_Imp:
-LFB5463:
+LFB5464:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -76,7 +76,7 @@ LFB5463:
 	testl	%esi, %esi
 	je	L11
 /APP
- # 510 "pmc_internal.h" 1
+ # 545 "pmc_internal.h" 1
 	bsrl %esi, %eax
  # 0 "" 2
 /NO_APP
@@ -88,7 +88,7 @@ L11:
 	testl	%eax, %eax
 	jne	L9
 	movl	(%ebx), %eax
-	movl	20(%eax), %edx
+	movl	24(%eax), %edx
 L13:
 	movl	%esi, (%edx)
 	movl	%eax, (%esp)
@@ -112,7 +112,7 @@ L9:
 L10:
 	.cfi_restore_state
 /APP
- # 510 "pmc_internal.h" 1
+ # 545 "pmc_internal.h" 1
 	bsrl %edi, %eax
  # 0 "" 2
 /NO_APP
@@ -123,16 +123,16 @@ L10:
 	testl	%eax, %eax
 	jne	L9
 	movl	(%ebx), %eax
-	movl	20(%eax), %edx
+	movl	24(%eax), %edx
 	movl	%edi, 4(%edx)
 	jmp	L13
 	.cfi_endproc
-LFE5463:
+LFE5464:
 	.p2align 4,,15
 	.globl	_PMC_From_I@8
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
 _PMC_From_I@8:
-LFB5464:
+LFB5465:
 	.cfi_startproc
 	subl	$44, %esp
 	.cfi_def_cfa_offset 48
@@ -163,12 +163,12 @@ L18:
 	.cfi_def_cfa_offset 4
 	ret	$8
 	.cfi_endproc
-LFE5464:
+LFE5465:
 	.p2align 4,,15
 	.globl	_PMC_From_L@12
 	.def	_PMC_From_L@12;	.scl	2;	.type	32;	.endef
 _PMC_From_L@12:
-LFB5465:
+LFB5466:
 	.cfi_startproc
 	subl	$44, %esp
 	.cfi_def_cfa_offset 48
@@ -202,12 +202,12 @@ L23:
 	.cfi_def_cfa_offset 4
 	ret	$12
 	.cfi_endproc
-LFE5465:
+LFE5466:
 	.p2align 4,,15
 	.globl	_PMC_From_B@12
 	.def	_PMC_From_B@12;	.scl	2;	.type	32;	.endef
 _PMC_From_B@12:
-LFB5467:
+LFB5468:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -263,7 +263,7 @@ L29:
 	movl	$7, %ecx
 	sall	$3, %eax
 /APP
- # 495 "pmc_internal.h" 1
+ # 530 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -282,7 +282,7 @@ L29:
 	leal	7(%ebx), %ecx
 	movl	%eax, 28(%esp)
 	shrl	$3, %ecx
-	movl	20(%edx), %edi
+	movl	24(%edx), %edi
 /APP
  # 1755 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsb
@@ -313,17 +313,17 @@ L34:
 	movl	$-1, %eax
 	jmp	L26
 	.cfi_endproc
-LFE5467:
+LFE5468:
 	.p2align 4,,15
 	.globl	_Initialize_From
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
 _Initialize_From:
-LFB5468:
+LFB5469:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5468:
+LFE5469:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	_CommitNumber;	.scl	2;	.type	32;	.endef

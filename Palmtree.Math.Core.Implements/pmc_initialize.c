@@ -111,14 +111,12 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
         return (NULL);
     if (Initialize_Subtruct(&feature))
         return (NULL);
+    if (Initialize_Multiply(&feature))
+        return (NULL);
     /*
     if (Initialize_DivRem(&feature))
         return (NULL);
     if (Initialize_Get(&feature))
-        return (NULL);
-    if (Initialize_Memory(&feature))
-        return (NULL);
-    if (Initialize_Multiply(&feature))
         return (NULL);
     if (Initialize_Properties(&feature))
         return (NULL);
@@ -145,6 +143,9 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     entry_points.PMC_Subtruct_X_I = PMC_Subtruct_X_I;
     entry_points.PMC_Subtruct_X_L = PMC_Subtruct_X_L;
     entry_points.PMC_Subtruct_X_X = PMC_Subtruct_X_X;
+    entry_points.PMC_Multiply_X_I = PMC_Multiply_X_I;
+    entry_points.PMC_Multiply_X_L = PMC_Multiply_X_L;
+    entry_points.PMC_Multiply_X_X = PMC_Multiply_X_X;
     return (&entry_points);
 }
 

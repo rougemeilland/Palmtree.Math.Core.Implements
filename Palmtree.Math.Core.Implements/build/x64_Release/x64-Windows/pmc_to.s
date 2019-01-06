@@ -19,7 +19,7 @@ PMC_To_X_I:
 	jne	.L1
 	cmpq	$32, 8(%rbx)
 	ja	.L4
-	testb	$2, 24(%rbx)
+	testb	$2, 32(%rbx)
 	je	.L3
 	movl	$0, (%rsi)
 .L1:
@@ -29,7 +29,7 @@ PMC_To_X_I:
 	ret
 	.p2align 4,,10
 .L3:
-	movq	40(%rbx), %rdx
+	movq	48(%rbx), %rdx
 	movq	(%rdx), %rdx
 	movl	%edx, (%rsi)
 	addq	$40, %rsp
@@ -59,7 +59,7 @@ PMC_To_X_L:
 	jne	.L6
 	cmpq	$64, 8(%rbx)
 	ja	.L9
-	testb	$2, 24(%rbx)
+	testb	$2, 32(%rbx)
 	je	.L8
 	movq	$0, (%rsi)
 .L6:
@@ -69,7 +69,7 @@ PMC_To_X_L:
 	ret
 	.p2align 4,,10
 .L8:
-	movq	40(%rbx), %rdx
+	movq	48(%rbx), %rdx
 	movq	(%rdx), %rdx
 	movq	%rdx, (%rsi)
 	addq	$40, %rsp
@@ -109,7 +109,7 @@ PMC_To_X_B:
 	salq	$3, %rsi
 	cmpq	%rsi, %rcx
 	ja	.L13
-	testb	$2, 24(%rbp)
+	testb	$2, 32(%rbp)
 	je	.L14
 	movb	$0, (%rdi)
 	movq	$1, (%rbx)
@@ -123,7 +123,7 @@ PMC_To_X_B:
 	.p2align 4,,10
 .L14:
 	addq	$7, %rcx
-	movq	40(%rbp), %rsi
+	movq	48(%rbp), %rsi
 	shrq	$3, %rcx
 /APP
  # 1755 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1

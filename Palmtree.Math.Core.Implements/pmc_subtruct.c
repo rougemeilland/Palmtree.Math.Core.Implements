@@ -144,50 +144,61 @@ static PMC_STATUS_CODE Subtruct_X_X(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_H
     __UNIT_TYPE* zp = &z->BLOCK[0];
     char c = 0;
 
-    // y のワード数分だけ減算を行う
-    __UNIT_TYPE count = y_count;
-
     // まず 32 ワードずつ減算をする。
-    __UNIT_TYPE count2 = count >> 5;
-    while (count2 != 0)
+    __UNIT_TYPE count = y_count >> 5;
+    while (count != 0)
     {
         c= _SUBTRUCT_32WORDS_SBB(c, xp, yp, zp);
         xp += 32;
         yp += 32;
         zp += 32;
-        count -= 32;
-        --count2;
+        --count;
     }
     // この時点で未処理の桁は 32 ワード未満のはず
 
-    // 未処理の桁が 16 ワード以上あるなら 16 ワードずつ減算を行う。
-    if (count & 0x10)
+    // 未処理の桁が 16 ワード以上あるなら 16 ワード減算を行う。
+    if (y_count & 0x10)
     {
         c = _SUBTRUCT_16WORDS_SBB(c, xp, yp, zp);
         xp += 16;
         yp += 16;
         zp += 16;
-        count -= 16;
     }
     // この時点で未処理の桁は 16 ワード未満のはず
 
-    // 未処理の桁が 8 ワード以上あるなら 8 ワードずつ減算を行う。
-    if (count & 0x8)
+    // 未処理の桁が 8 ワード以上あるなら 8 ワード減算を行う。
+    if (y_count & 0x8)
     {
         c = _SUBTRUCT_8WORDS_SBB(c, xp, yp, zp);
         xp += 8;
         yp += 8;
         zp += 8;
-        count -= 8;
     }
     // この時点で未処理の桁は 8 ワード未満のはず
 
-    // 残りの桁は 1 ワードずつ減算をする。
-    while (count != 0)
+    // 未処理の桁が 4 ワード以上あるなら 4 ワード減算を行う。
+    if (y_count & 0x4)
     {
-        c = _SUBTRUCT_UNIT(c, *xp++, *yp++, zp++);
-        --count;
+        c = _SUBTRUCT_4WORDS_SBB(c, xp, yp, zp);
+        xp += 4;
+        yp += 4;
+        zp += 4;
     }
+    // この時点で未処理の桁は 4 ワード未満のはず
+
+    // 未処理の桁が 2 ワード以上あるなら 2 ワード減算を行う。
+    if (y_count & 0x2)
+    {
+        c = _SUBTRUCT_2WORDS_SBB(c, xp, yp, zp);
+        xp += 2;
+        yp += 2;
+        zp += 2;
+    }
+    // この時点で未処理の桁は 2 ワード未満のはず
+
+    // 未処理の桁が 1 ワード以上あるなら 1 ワード減算を行う。
+    if (y_count & 1)
+        c = _SUBTRUCT_UNIT(c, *xp++, *yp++, zp++);
 
     // 残りの桁の繰り上がりを計算し、復帰する。
     return (DoBorrow(c, xp, x_count - y_count, zp, z_count - y_count));

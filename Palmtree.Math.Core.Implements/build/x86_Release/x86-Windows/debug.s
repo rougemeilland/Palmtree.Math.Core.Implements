@@ -16,7 +16,7 @@ LC3:
 	.globl	_DoDebug@4
 	.def	_DoDebug@4;	.scl	2;	.type	32;	.endef
 _DoDebug@4:
-LFB5465:
+LFB5466:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -72,7 +72,7 @@ L4:
 	movl	%edi, (%esp)
 	call	*(%ebx)
 	addl	$4, %ebx
-	cmpl	$_TEST_Functions+16, %ebx
+	cmpl	$_TEST_Functions+20, %ebx
 	jne	L4
 	movl	_test_total_count, %ecx
 	movl	_test_ok_count, %ebx
@@ -122,69 +122,52 @@ L8:
 	.cfi_def_cfa_offset 4
 	ret	$4
 	.cfi_endproc
-LFE5465:
+LFE5466:
 	.section .rdata,"dr"
 LC4:
-	.ascii "Ok\0"
-LC5:
-	.ascii "\203e\203X\203g No.%d: %s => %s\12\0"
-LC6:
 	.ascii "***NG***\0"
-LC7:
+LC5:
 	.ascii "\203e\203X\203g No.%d: %s => %s (%s)\12\0"
 	.text
 	.p2align 4,,15
 	.globl	_TEST_Assert
 	.def	_TEST_Assert;	.scl	2;	.type	32;	.endef
 _TEST_Assert:
-LFB5466:
+LFB5467:
 	.cfi_startproc
-	pushl	%ebx
-	.cfi_def_cfa_offset 8
-	.cfi_offset 3, -8
-	subl	$40, %esp
+	subl	$44, %esp
 	.cfi_def_cfa_offset 48
-	movl	48(%esp), %eax
-	movl	56(%esp), %ebx
-	movl	52(%esp), %ecx
-	movl	(%eax), %edx
 	movl	_test_total_count, %eax
+	movl	56(%esp), %edx
 	addl	$1, %eax
-	testl	%ebx, %ebx
+	testl	%edx, %edx
 	je	L10
-	movl	$LC4, 12(%esp)
-	movl	%ecx, 8(%esp)
-	movl	%eax, 4(%esp)
-	movl	$LC5, (%esp)
-	call	*%edx
 	addl	$1, _test_ok_count
-	addl	$1, _test_total_count
-	addl	$40, %esp
+	movl	%eax, _test_total_count
+	addl	$44, %esp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	popl	%ebx
-	.cfi_restore 3
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
 L10:
 	.cfi_restore_state
-	movl	60(%esp), %ebx
-	movl	$LC6, 12(%esp)
-	movl	%ecx, 8(%esp)
-	movl	%ebx, 16(%esp)
+	movl	60(%esp), %edx
 	movl	%eax, 4(%esp)
-	movl	$LC7, (%esp)
-	call	*%edx
-	addl	$1, _test_total_count
-	addl	$40, %esp
-	.cfi_def_cfa_offset 8
-	popl	%ebx
-	.cfi_restore 3
+	movl	48(%esp), %eax
+	movl	$LC4, 12(%esp)
+	movl	%edx, 16(%esp)
+	movl	52(%esp), %edx
+	movl	$LC5, (%esp)
+	movl	%edx, 8(%esp)
+	call	*(%eax)
+	movl	_test_total_count, %eax
+	addl	$1, %eax
+	movl	%eax, _test_total_count
+	addl	$44, %esp
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5466:
+LFE5467:
 	.globl	_test_ok_count
 	.bss
 	.align 4
@@ -201,11 +184,13 @@ _TEST_Functions:
 	.long	_TEST_op_From_To
 	.long	_TEST_op_Add
 	.long	_TEST_op_Subtruct
+	.long	_TEST_op_Multiply
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_PMC_Initialize@4;	.scl	2;	.type	32;	.endef
 	.def	_TEST_generic;	.scl	2;	.type	32;	.endef
 	.def	_TEST_op_From_To;	.scl	2;	.type	32;	.endef
 	.def	_TEST_op_Add;	.scl	2;	.type	32;	.endef
 	.def	_TEST_op_Subtruct;	.scl	2;	.type	32;	.endef
+	.def	_TEST_op_Multiply;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"DoDebug@4\""

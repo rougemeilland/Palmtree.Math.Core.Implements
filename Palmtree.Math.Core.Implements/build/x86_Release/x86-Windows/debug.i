@@ -100251,6 +100251,11 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -100292,9 +100297,10 @@ typedef struct _tag_PROCESSOR_FEATURES
 
 typedef struct __tag_NUMBER_HEADER
 {
-    size_t UNIT_WORD_COUNT;
-    size_t UNIT_BIT_COUNT;
+    __UNIT_TYPE UNIT_WORD_COUNT;
+    __UNIT_TYPE UNIT_BIT_COUNT;
     __UNIT_TYPE HASH_CODE;
+    __UNIT_TYPE LEAST_ZERO_BITS_COUNT;
     unsigned IS_STATIC : 1;
     unsigned IS_ZERO : 1;
     unsigned IS_ONE : 1;
@@ -100377,7 +100383,10 @@ extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
 
 
 extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
-# 179 "pmc_internal.h"
+
+
+extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
+# 182 "pmc_internal.h"
 extern void __attribute__((__stdcall__)) PMC_TraceStatistics(int enabled);
 extern void __attribute__((__stdcall__)) PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
@@ -100398,6 +100407,10 @@ extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_X(HANDLE p1, HANDL
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
 #pragma endregion
 
 
@@ -100411,7 +100424,7 @@ __inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T
 {
     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 }
-# 220 "pmc_internal.h"
+# 227 "pmc_internal.h"
 __inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
 {
 
@@ -100437,7 +100450,7 @@ __inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
 {
     __stosd((unsigned long*)d, 0, count);
 }
-# 253 "pmc_internal.h"
+# 260 "pmc_internal.h"
 __inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
 {
 
@@ -100513,20 +100526,30 @@ __inline static char _SUBTRUCT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, _
 
 }
 
-__inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_high)
+__inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
 
 
 
 
-    _UINT32_T w_low;
-    __asm__("mull %3": "=a"(w_low), "=d"(*w_high) : "0"(u), "rm"(v));
-    return (w_low);
-# 345 "pmc_internal.h"
+    _UINT32_T w_lo;
+    __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
+    return (w_lo);
+# 352 "pmc_internal.h"
 }
+
+__inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
+{
+# 366 "pmc_internal.h"
+    _UINT32_T w_lo;
+    __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+    return (w_lo);
+# 379 "pmc_internal.h"
+}
+
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
-# 359 "pmc_internal.h"
+# 394 "pmc_internal.h"
     __UNIT_TYPE q;
 
     __asm__("divl %3": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -100543,7 +100566,7 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
 
 __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE *q)
 {
-# 387 "pmc_internal.h"
+# 422 "pmc_internal.h"
     __asm__("divl %3": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
 
 
@@ -100571,17 +100594,17 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 413 "pmc_internal.h" 3
+# 448 "pmc_internal.h" 3
            __rold((
-# 413 "pmc_internal.h"
+# 448 "pmc_internal.h"
            x
-# 413 "pmc_internal.h" 3
+# 448 "pmc_internal.h" 3
            ), (
-# 413 "pmc_internal.h"
+# 448 "pmc_internal.h"
            count
-# 413 "pmc_internal.h" 3
+# 448 "pmc_internal.h" 3
            ))
-# 413 "pmc_internal.h"
+# 448 "pmc_internal.h"
                           );
 
 
@@ -100594,17 +100617,17 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 424 "pmc_internal.h" 3
+# 459 "pmc_internal.h" 3
            __rord((
-# 424 "pmc_internal.h"
+# 459 "pmc_internal.h"
            x
-# 424 "pmc_internal.h" 3
+# 459 "pmc_internal.h" 3
            ), (
-# 424 "pmc_internal.h"
+# 459 "pmc_internal.h"
            count
-# 424 "pmc_internal.h" 3
+# 459 "pmc_internal.h" 3
            ))
-# 424 "pmc_internal.h"
+# 459 "pmc_internal.h"
                           );
 
 
@@ -100632,7 +100655,7 @@ __inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
     x = (x & 0x0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f);
     x = (x & 0x00ff00ff) + ((x >> 8) & 0x00ff00ff);
     x = (x & 0x0000ffff) + ((x >> 16) & 0x0000ffff);
-# 461 "pmc_internal.h"
+# 496 "pmc_internal.h"
     return(x);
 }
 
@@ -100640,7 +100663,7 @@ __inline static _UINT32_T _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
-# 476 "pmc_internal.h"
+# 511 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
@@ -100681,7 +100704,7 @@ __inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
 
     return (sizeof(x) * 8 - 1 - pos);
 }
-# 535 "pmc_internal.h"
+# 570 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
@@ -100692,7 +100715,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 561 "pmc_internal.h"
+# 596 "pmc_internal.h"
     return (sizeof(x) * 8 - 1 - pos);
 }
 
@@ -100728,7 +100751,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 612 "pmc_internal.h"
+# 647 "pmc_internal.h"
     return (pos);
 }
 #pragma endregion
@@ -100750,6 +100773,7 @@ extern void TEST_generic(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 extern void TEST_op_From_To(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 extern void TEST_op_Subtruct(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 extern void TEST_op_Add(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
+extern void TEST_op_Multiply(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 #pragma endregion
 
 
@@ -100779,6 +100803,7 @@ static void (*TEST_Functions[])(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep
     TEST_op_From_To,
     TEST_op_Add,
     TEST_op_Subtruct,
+    TEST_op_Multiply,
 };
 
 int test_total_count = 0;
@@ -100806,15 +100831,15 @@ __attribute__((dllexport)) void __attribute__((__stdcall__)) DoDebug(PMC_DEBUG_E
 {
     PMC_CONFIGURATION_INFO conf;
     conf.MEMORY_VERIFICATION_ENABLED = 
-# 70 "debug.c" 3
+# 71 "debug.c" 3
                                       0
-# 70 "debug.c"
+# 71 "debug.c"
                                            ;
     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
     if (ep == 
-# 72 "debug.c" 3 4
+# 73 "debug.c" 3 4
              ((void *)0)
-# 72 "debug.c"
+# 73 "debug.c"
                  )
     {
          env->log("PMC_Initialize failed");
@@ -100846,7 +100871,7 @@ void TEST_Assert(PMC_DEBUG_ENVIRONMENT *env, const char* test_name, BOOL conditi
 {
     if (condition)
     {
-        env->log("ƒeƒXƒg No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
+
         ++test_ok_count;
     }
     else

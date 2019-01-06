@@ -41,6 +41,7 @@ static void (*TEST_Functions[])(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep
     TEST_op_From_To,
     TEST_op_Add,
     TEST_op_Subtruct,
+    TEST_op_Multiply,
 };
 
 int test_total_count = 0;

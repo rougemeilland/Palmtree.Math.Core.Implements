@@ -80,14 +80,15 @@ typedef struct _tag_PROCESSOR_FEATURES
 
 typedef struct __tag_NUMBER_HEADER
 {
-    size_t UNIT_WORD_COUNT;         // BLOCKが示す領域において有効なデータが格納されている要素の数
-    size_t UNIT_BIT_COUNT;          // データの有効部分の合計ビット数
-    __UNIT_TYPE HASH_CODE;          // データのハッシュコード。
-    unsigned IS_STATIC : 1;         // 本構造体が静的に割り当てられていて開放不要ならばTRUE
-    unsigned IS_ZERO : 1;           // データが 0 なら TRUE
-    unsigned IS_ONE : 1;            // データが 1 なら TRUE
-    unsigned IS_EVEN : 1;           // データが 偶数 なら TRUE
-    unsigned IS_POWER_OF_TWO : 1;   // データが 2 のべき乗なら TRUE
+    __UNIT_TYPE UNIT_WORD_COUNT;        // BLOCKが示す領域において有効なデータが格納されている要素の数
+    __UNIT_TYPE UNIT_BIT_COUNT;         // データの有効部分の合計ビット数
+    __UNIT_TYPE HASH_CODE;              // データのハッシュコード。
+    __UNIT_TYPE LEAST_ZERO_BITS_COUNT;  // データの最下位の連続した 0 ビット数
+    unsigned IS_STATIC : 1;             // 本構造体が静的に割り当てられていて開放不要ならばTRUE
+    unsigned IS_ZERO : 1;               // データが 0 なら TRUE
+    unsigned IS_ONE : 1;                // データが 1 なら TRUE
+    unsigned IS_EVEN : 1;               // データが 偶数 なら TRUE
+    unsigned IS_POWER_OF_TWO : 1;       // データが 2 のべき乗なら TRUE
 
     size_t BLOCK_COUNT;             // BLOCKが示す領域に格納可能な最大の要素数
     // 多倍長整数の内部データが格納されている領域へのポインタ
@@ -166,10 +167,12 @@ extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
 // 減算処理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
 
+// 乗算処理の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
+
 /*
 extern PMC_STATUS_CODE Initialize_Get(PROCESSOR_FEATURES* feature);
 extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
-extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
 extern PMC_STATUS_CODE Initialize_Properties(PROCESSOR_FEATURES *feature);
 extern PMC_STATUS_CODE Initialize_Set(PROCESSOR_FEATURES* feature);
 */
@@ -196,6 +199,10 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_Add_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
 #pragma endregion
 
 
@@ -325,24 +332,52 @@ __inline static char _SUBTRUCT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, _
 #endif
 }
 
-__inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_high)
+__inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
 #ifdef _M_IX86
 #ifdef _MSC_VER
-    return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_high));
+    return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
 #elif defined(__GNUC__)
-    _UINT32_T w_low;
-    __asm__("mull %3": "=a"(w_low), "=d"(*w_high) : "0"(u), "rm"(v));
-    return (w_low);
+    _UINT32_T w_lo;
+    __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
+    return (w_lo);
 #else
 #error unknown compiler
 #endif
 #elif defined(_M_X64)
-    return (_umul128(u, v, w_high));
+    return (_umul128(u, v, w_hi));
 #else
 #error unknown platform
 #endif
 }
+
+__inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
+{
+#ifdef _MSC_VER
+#ifdef _M_IX86
+    return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
+#elif defined(_M_X64)
+    return (_mulx_u64(u, v, w_hi));
+#else
+#error unknown platform
+#endif
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    _UINT32_T w_lo;
+    __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+    return (w_lo);
+#elif defined(_M_X64)
+    _UINT64_T w_lo;
+    __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+    return (w_lo);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+}
+
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
 #ifdef _MSC_VER

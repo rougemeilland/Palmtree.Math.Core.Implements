@@ -29,16 +29,16 @@ DoDebug:
 	.seh_stackalloc	72
 	.seh_endprologue
 	andb	$-2, 60(%rsp)
-	movq	%rcx, %rsi
+	movq	%rcx, %rdi
 	leaq	60(%rsp), %rcx
 	call	PMC_Initialize
 	testq	%rax, %rax
-	movq	%rax, %rdi
+	movq	%rax, %rsi
 	je	.L7
 	movzbl	(%rax), %eax
 	leaq	TEST_Functions(%rip), %rbx
 	leaq	.LC1(%rip), %rcx
-	leaq	32(%rbx), %rbp
+	leaq	40(%rbx), %rbp
 	movl	%eax, %r9d
 	movl	%eax, %r8d
 	movl	%eax, %edx
@@ -49,20 +49,20 @@ DoDebug:
 	shrb	%r8b
 	andl	$1, %r9d
 	movl	%eax, 40(%rsp)
-	movzbl	(%rdi), %eax
+	movzbl	(%rsi), %eax
 	andl	$1, %r8d
 	shrb	$3, %al
 	andl	$1, %eax
 	movl	%eax, 32(%rsp)
-	call	*(%rsi)
-	movq	(%rsi), %rax
+	call	*(%rdi)
+	movq	(%rdi), %rax
 	leaq	.LC2(%rip), %rcx
 	movl	$0, test_total_count(%rip)
 	movl	$0, test_ok_count(%rip)
 	call	*%rax
 .L4:
-	movq	%rdi, %rdx
-	movq	%rsi, %rcx
+	movq	%rsi, %rdx
+	movq	%rdi, %rcx
 	call	*(%rbx)
 	addq	$8, %rbx
 	cmpq	%rbp, %rbx
@@ -81,7 +81,7 @@ DoDebug:
 	movl	%ecx, %edx
 	leaq	.LC3(%rip), %rcx
 	movl	%eax, 32(%rsp)
-	call	*(%rsi)
+	call	*(%rdi)
 	nop
 	addq	$72, %rsp
 	popq	%rbx
@@ -92,7 +92,7 @@ DoDebug:
 	.p2align 4,,10
 .L7:
 	leaq	.LC0(%rip), %rcx
-	call	*(%rsi)
+	call	*(%rdi)
 	nop
 	addq	$72, %rsp
 	popq	%rbx
@@ -103,12 +103,8 @@ DoDebug:
 	.seh_endproc
 	.section .rdata,"dr"
 .LC4:
-	.ascii "Ok\0"
-.LC5:
-	.ascii "\203e\203X\203g No.%d: %s => %s\12\0"
-.LC6:
 	.ascii "***NG***\0"
-.LC7:
+.LC5:
 	.ascii "\203e\203X\203g No.%d: %s => %s (%s)\12\0"
 	.text
 	.p2align 4,,15
@@ -120,28 +116,25 @@ TEST_Assert:
 	.seh_stackalloc	56
 	.seh_endprologue
 	movl	test_total_count(%rip), %eax
-	movq	(%rcx), %r10
 	addl	$1, %eax
 	testl	%r8d, %r8d
+	movq	%rcx, %r10
 	je	.L9
-	leaq	.LC4(%rip), %r9
-	movq	%rdx, %r8
-	movl	%eax, %edx
-	leaq	.LC5(%rip), %rcx
-	call	*%r10
 	addl	$1, test_ok_count(%rip)
-	addl	$1, test_total_count(%rip)
+	movl	%eax, test_total_count(%rip)
 	addq	$56, %rsp
 	ret
 	.p2align 4,,10
 .L9:
 	movq	%r9, 32(%rsp)
-	leaq	.LC7(%rip), %rcx
+	leaq	.LC5(%rip), %rcx
 	movq	%rdx, %r8
 	movl	%eax, %edx
-	leaq	.LC6(%rip), %r9
-	call	*%r10
-	addl	$1, test_total_count(%rip)
+	leaq	.LC4(%rip), %r9
+	call	*(%r10)
+	movl	test_total_count(%rip), %eax
+	addl	$1, %eax
+	movl	%eax, test_total_count(%rip)
 	addq	$56, %rsp
 	ret
 	.seh_endproc
@@ -161,11 +154,13 @@ TEST_Functions:
 	.quad	TEST_op_From_To
 	.quad	TEST_op_Add
 	.quad	TEST_op_Subtruct
+	.quad	TEST_op_Multiply
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	PMC_Initialize;	.scl	2;	.type	32;	.endef
 	.def	TEST_generic;	.scl	2;	.type	32;	.endef
 	.def	TEST_op_From_To;	.scl	2;	.type	32;	.endef
 	.def	TEST_op_Add;	.scl	2;	.type	32;	.endef
 	.def	TEST_op_Subtruct;	.scl	2;	.type	32;	.endef
+	.def	TEST_op_Multiply;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"DoDebug\""

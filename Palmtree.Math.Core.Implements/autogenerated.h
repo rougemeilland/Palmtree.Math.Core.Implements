@@ -44,38 +44,38 @@ extern "C" {
 __inline static char _ADD_32WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
-    _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
-    _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
-    _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
-    _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
-    _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
-    _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
-    _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
-    _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
-    _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
-    _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
-    _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
-    _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
-    _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
-    _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
-    _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
-    _ADD_UNIT(c, xp[16], yp[16], &zp[16]);
-    _ADD_UNIT(c, xp[17], yp[17], &zp[17]);
-    _ADD_UNIT(c, xp[18], yp[18], &zp[18]);
-    _ADD_UNIT(c, xp[19], yp[19], &zp[19]);
-    _ADD_UNIT(c, xp[20], yp[20], &zp[20]);
-    _ADD_UNIT(c, xp[21], yp[21], &zp[21]);
-    _ADD_UNIT(c, xp[22], yp[22], &zp[22]);
-    _ADD_UNIT(c, xp[23], yp[23], &zp[23]);
-    _ADD_UNIT(c, xp[24], yp[24], &zp[24]);
-    _ADD_UNIT(c, xp[25], yp[25], &zp[25]);
-    _ADD_UNIT(c, xp[26], yp[26], &zp[26]);
-    _ADD_UNIT(c, xp[27], yp[27], &zp[27]);
-    _ADD_UNIT(c, xp[28], yp[28], &zp[28]);
-    _ADD_UNIT(c, xp[29], yp[29], &zp[29]);
-    _ADD_UNIT(c, xp[30], yp[30], &zp[30]);
-    _ADD_UNIT(c, xp[31], yp[31], &zp[31]);
+    c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
+    c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
+    c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
+    c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
+    c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
+    c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
+    c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
+    c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
+    c = _ADD_UNIT(c, xp[16], yp[16], &zp[16]);
+    c = _ADD_UNIT(c, xp[17], yp[17], &zp[17]);
+    c = _ADD_UNIT(c, xp[18], yp[18], &zp[18]);
+    c = _ADD_UNIT(c, xp[19], yp[19], &zp[19]);
+    c = _ADD_UNIT(c, xp[20], yp[20], &zp[20]);
+    c = _ADD_UNIT(c, xp[21], yp[21], &zp[21]);
+    c = _ADD_UNIT(c, xp[22], yp[22], &zp[22]);
+    c = _ADD_UNIT(c, xp[23], yp[23], &zp[23]);
+    c = _ADD_UNIT(c, xp[24], yp[24], &zp[24]);
+    c = _ADD_UNIT(c, xp[25], yp[25], &zp[25]);
+    c = _ADD_UNIT(c, xp[26], yp[26], &zp[26]);
+    c = _ADD_UNIT(c, xp[27], yp[27], &zp[27]);
+    c = _ADD_UNIT(c, xp[28], yp[28], &zp[28]);
+    c = _ADD_UNIT(c, xp[29], yp[29], &zp[29]);
+    c = _ADD_UNIT(c, xp[30], yp[30], &zp[30]);
+    c = _ADD_UNIT(c, xp[31], yp[31], &zp[31]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -297,38 +297,38 @@ __inline static char _ADD_32WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
 __inline static char _ADD_32WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
-    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
-    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
-    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
-    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
-    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
-    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
-    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
-    _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
-    _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
-    _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
-    _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
-    _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
-    _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
-    _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
-    _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
-    _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
-    _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
-    _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
-    _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
-    _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
-    _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
-    _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
-    _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
-    _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
-    _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
-    _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
-    _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
-    _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
-    _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
-    _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
-    _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+    c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+    c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+    c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+    c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+    c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+    c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+    c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+    c = _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
+    c = _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
+    c = _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
+    c = _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
+    c = _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
+    c = _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
+    c = _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
+    c = _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
+    c = _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
+    c = _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
+    c = _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
+    c = _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
+    c = _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
+    c = _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
+    c = _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
+    c = _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -550,38 +550,38 @@ __inline static char _ADD_32WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp,
 __inline static char _ADD_32WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
-    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
-    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
-    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
-    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
-    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
-    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
-    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
-    _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
-    _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
-    _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
-    _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
-    _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
-    _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
-    _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
-    _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
-    _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
-    _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
-    _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
-    _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
-    _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
-    _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
-    _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
-    _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
-    _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
-    _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
-    _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
-    _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
-    _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
-    _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
-    _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
-    _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+    c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+    c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+    c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+    c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+    c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+    c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+    c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+    c = _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
+    c = _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
+    c = _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
+    c = _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
+    c = _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
+    c = _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
+    c = _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
+    c = _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
+    c = _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
+    c = _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
+    c = _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
+    c = _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
+    c = _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
+    c = _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
+    c = _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
+    c = _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -803,38 +803,38 @@ __inline static char _ADD_32WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp,
 __inline static char _SUBTRUCT_32WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
-    _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
-    _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
-    _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
-    _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
-    _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
-    _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
-    _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
-    _SUBTRUCT_UNIT(c, xp[8], yp[8], &zp[8]);
-    _SUBTRUCT_UNIT(c, xp[9], yp[9], &zp[9]);
-    _SUBTRUCT_UNIT(c, xp[10], yp[10], &zp[10]);
-    _SUBTRUCT_UNIT(c, xp[11], yp[11], &zp[11]);
-    _SUBTRUCT_UNIT(c, xp[12], yp[12], &zp[12]);
-    _SUBTRUCT_UNIT(c, xp[13], yp[13], &zp[13]);
-    _SUBTRUCT_UNIT(c, xp[14], yp[14], &zp[14]);
-    _SUBTRUCT_UNIT(c, xp[15], yp[15], &zp[15]);
-    _SUBTRUCT_UNIT(c, xp[16], yp[16], &zp[16]);
-    _SUBTRUCT_UNIT(c, xp[17], yp[17], &zp[17]);
-    _SUBTRUCT_UNIT(c, xp[18], yp[18], &zp[18]);
-    _SUBTRUCT_UNIT(c, xp[19], yp[19], &zp[19]);
-    _SUBTRUCT_UNIT(c, xp[20], yp[20], &zp[20]);
-    _SUBTRUCT_UNIT(c, xp[21], yp[21], &zp[21]);
-    _SUBTRUCT_UNIT(c, xp[22], yp[22], &zp[22]);
-    _SUBTRUCT_UNIT(c, xp[23], yp[23], &zp[23]);
-    _SUBTRUCT_UNIT(c, xp[24], yp[24], &zp[24]);
-    _SUBTRUCT_UNIT(c, xp[25], yp[25], &zp[25]);
-    _SUBTRUCT_UNIT(c, xp[26], yp[26], &zp[26]);
-    _SUBTRUCT_UNIT(c, xp[27], yp[27], &zp[27]);
-    _SUBTRUCT_UNIT(c, xp[28], yp[28], &zp[28]);
-    _SUBTRUCT_UNIT(c, xp[29], yp[29], &zp[29]);
-    _SUBTRUCT_UNIT(c, xp[30], yp[30], &zp[30]);
-    _SUBTRUCT_UNIT(c, xp[31], yp[31], &zp[31]);
+    c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _SUBTRUCT_UNIT(c, xp[8], yp[8], &zp[8]);
+    c = _SUBTRUCT_UNIT(c, xp[9], yp[9], &zp[9]);
+    c = _SUBTRUCT_UNIT(c, xp[10], yp[10], &zp[10]);
+    c = _SUBTRUCT_UNIT(c, xp[11], yp[11], &zp[11]);
+    c = _SUBTRUCT_UNIT(c, xp[12], yp[12], &zp[12]);
+    c = _SUBTRUCT_UNIT(c, xp[13], yp[13], &zp[13]);
+    c = _SUBTRUCT_UNIT(c, xp[14], yp[14], &zp[14]);
+    c = _SUBTRUCT_UNIT(c, xp[15], yp[15], &zp[15]);
+    c = _SUBTRUCT_UNIT(c, xp[16], yp[16], &zp[16]);
+    c = _SUBTRUCT_UNIT(c, xp[17], yp[17], &zp[17]);
+    c = _SUBTRUCT_UNIT(c, xp[18], yp[18], &zp[18]);
+    c = _SUBTRUCT_UNIT(c, xp[19], yp[19], &zp[19]);
+    c = _SUBTRUCT_UNIT(c, xp[20], yp[20], &zp[20]);
+    c = _SUBTRUCT_UNIT(c, xp[21], yp[21], &zp[21]);
+    c = _SUBTRUCT_UNIT(c, xp[22], yp[22], &zp[22]);
+    c = _SUBTRUCT_UNIT(c, xp[23], yp[23], &zp[23]);
+    c = _SUBTRUCT_UNIT(c, xp[24], yp[24], &zp[24]);
+    c = _SUBTRUCT_UNIT(c, xp[25], yp[25], &zp[25]);
+    c = _SUBTRUCT_UNIT(c, xp[26], yp[26], &zp[26]);
+    c = _SUBTRUCT_UNIT(c, xp[27], yp[27], &zp[27]);
+    c = _SUBTRUCT_UNIT(c, xp[28], yp[28], &zp[28]);
+    c = _SUBTRUCT_UNIT(c, xp[29], yp[29], &zp[29]);
+    c = _SUBTRUCT_UNIT(c, xp[30], yp[30], &zp[30]);
+    c = _SUBTRUCT_UNIT(c, xp[31], yp[31], &zp[31]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -1056,22 +1056,22 @@ __inline static char _SUBTRUCT_32WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE*
 __inline static char _ADD_16WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
-    _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
-    _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
-    _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
-    _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
-    _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
-    _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
-    _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
-    _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
-    _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
-    _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
-    _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
-    _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
-    _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
-    _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
-    _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
+    c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
+    c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
+    c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
+    c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
+    c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
+    c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
+    c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
+    c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -1197,22 +1197,22 @@ __inline static char _ADD_16WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
 __inline static char _ADD_16WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
-    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
-    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
-    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
-    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
-    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
-    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
-    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
-    _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
-    _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
-    _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
-    _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
-    _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
-    _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
-    _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
-    _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+    c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+    c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+    c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+    c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+    c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+    c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+    c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -1338,22 +1338,22 @@ __inline static char _ADD_16WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp,
 __inline static char _ADD_16WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
-    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
-    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
-    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
-    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
-    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
-    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
-    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
-    _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
-    _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
-    _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
-    _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
-    _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
-    _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
-    _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
-    _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+    c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+    c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+    c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+    c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+    c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+    c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+    c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -1479,22 +1479,22 @@ __inline static char _ADD_16WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp,
 __inline static char _SUBTRUCT_16WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
-    _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
-    _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
-    _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
-    _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
-    _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
-    _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
-    _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
-    _SUBTRUCT_UNIT(c, xp[8], yp[8], &zp[8]);
-    _SUBTRUCT_UNIT(c, xp[9], yp[9], &zp[9]);
-    _SUBTRUCT_UNIT(c, xp[10], yp[10], &zp[10]);
-    _SUBTRUCT_UNIT(c, xp[11], yp[11], &zp[11]);
-    _SUBTRUCT_UNIT(c, xp[12], yp[12], &zp[12]);
-    _SUBTRUCT_UNIT(c, xp[13], yp[13], &zp[13]);
-    _SUBTRUCT_UNIT(c, xp[14], yp[14], &zp[14]);
-    _SUBTRUCT_UNIT(c, xp[15], yp[15], &zp[15]);
+    c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _SUBTRUCT_UNIT(c, xp[8], yp[8], &zp[8]);
+    c = _SUBTRUCT_UNIT(c, xp[9], yp[9], &zp[9]);
+    c = _SUBTRUCT_UNIT(c, xp[10], yp[10], &zp[10]);
+    c = _SUBTRUCT_UNIT(c, xp[11], yp[11], &zp[11]);
+    c = _SUBTRUCT_UNIT(c, xp[12], yp[12], &zp[12]);
+    c = _SUBTRUCT_UNIT(c, xp[13], yp[13], &zp[13]);
+    c = _SUBTRUCT_UNIT(c, xp[14], yp[14], &zp[14]);
+    c = _SUBTRUCT_UNIT(c, xp[15], yp[15], &zp[15]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -1620,14 +1620,14 @@ __inline static char _SUBTRUCT_16WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE*
 __inline static char _ADD_8WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
-    _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
-    _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
-    _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
-    _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
-    _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
-    _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
-    _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -1705,14 +1705,14 @@ __inline static char _ADD_8WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, _
 __inline static char _ADD_8WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
-    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
-    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
-    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
-    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
-    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
-    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
-    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -1790,14 +1790,14 @@ __inline static char _ADD_8WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
 __inline static char _ADD_8WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
-    _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
-    _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
-    _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
-    _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
-    _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
-    _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
-    _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -1875,14 +1875,14 @@ __inline static char _ADD_8WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, 
 __inline static char _SUBTRUCT_8WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
 {
 #ifdef _MSC_VER
-    _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
-    _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
-    _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
-    _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
-    _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
-    _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
-    _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
-    _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
+    c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
+    c = _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
+    c = _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
+    c = _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
+    c = _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     __asm__ volatile (
@@ -1943,6 +1943,406 @@ __inline static char _SUBTRUCT_8WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* 
         "movq\t56(%1), %%rcx\n\t"
         "sbbq\t56(%2), %%rcx\n\t"
         "movq\t%%rcx, 56(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_4WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adcl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adcl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adcq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adcq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_4WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adcxl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adcxl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adcxq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adcxq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_4WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adoxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adoxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "adoxl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "adoxl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adoxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adoxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "adoxq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "adoxq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _SUBTRUCT_4WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+    c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
+    c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "sbbl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "sbbl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "movl\t8(%1), %%ecx\n\t"
+        "sbbl\t8(%2), %%ecx\n\t"
+        "movl\t%%ecx, 8(%3)\n\t"
+        "movl\t12(%1), %%ecx\n\t"
+        "sbbl\t12(%2), %%ecx\n\t"
+        "movl\t%%ecx, 12(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "sbbq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "sbbq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "movq\t16(%1), %%rcx\n\t"
+        "sbbq\t16(%2), %%rcx\n\t"
+        "movq\t%%rcx, 16(%3)\n\t"
+        "movq\t24(%1), %%rcx\n\t"
+        "sbbq\t24(%2), %%rcx\n\t"
+        "movq\t%%rcx, 24(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_2WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_2WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adcxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adcxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adcxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adcxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _ADD_2WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "adoxl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "adoxl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "adoxq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "adoxq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%rcx"
+);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+    return (c);
+}
+
+__inline static char _SUBTRUCT_2WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+{
+#ifdef _MSC_VER
+    c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+    c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movl\t(%1), %%ecx\n\t"
+        "sbbl\t(%2), %%ecx\n\t"
+        "movl\t%%ecx, (%3)\n\t"
+        "movl\t4(%1), %%ecx\n\t"
+        "sbbl\t4(%2), %%ecx\n\t"
+        "movl\t%%ecx, 4(%3)\n\t"
+        "setc\t%0"
+        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+        :
+        : "cc", "memory", "%ecx"
+);
+#elif defined(_M_IX64)
+    __asm__ volatile (
+        "addb\t$-1, %0\n\t"
+        "movq\t(%1), %%rcx\n\t"
+        "sbbq\t(%2), %%rcx\n\t"
+        "movq\t%%rcx, (%3)\n\t"
+        "movq\t8(%1), %%rcx\n\t"
+        "sbbq\t8(%2), %%rcx\n\t"
+        "movq\t%%rcx, 8(%3)\n\t"
         "setc\t%0"
         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
         :

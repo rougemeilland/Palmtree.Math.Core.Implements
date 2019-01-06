@@ -4,7 +4,7 @@
 	.globl	_PMC_To_X_I@8
 	.def	_PMC_To_X_I@8;	.scl	2;	.type	32;	.endef
 _PMC_To_X_I@8:
-LFB5462:
+LFB5463:
 	.cfi_startproc
 	pushl	%ebx
 	.cfi_def_cfa_offset 8
@@ -18,7 +18,7 @@ LFB5462:
 	jne	L1
 	cmpl	$32, 4(%ebx)
 	ja	L4
-	testb	$2, 12(%ebx)
+	testb	$2, 16(%ebx)
 	je	L3
 	movl	36(%esp), %ecx
 	movl	$0, (%ecx)
@@ -33,7 +33,7 @@ L1:
 	.p2align 4,,10
 L3:
 	.cfi_restore_state
-	movl	20(%ebx), %edx
+	movl	24(%ebx), %edx
 	movl	36(%esp), %ecx
 	movl	(%edx), %edx
 	movl	%edx, (%ecx)
@@ -49,12 +49,12 @@ L4:
 	movl	$-1, %eax
 	jmp	L1
 	.cfi_endproc
-LFE5462:
+LFE5463:
 	.p2align 4,,15
 	.globl	_PMC_To_X_L@8
 	.def	_PMC_To_X_L@8;	.scl	2;	.type	32;	.endef
 _PMC_To_X_L@8:
-LFB5463:
+LFB5464:
 	.cfi_startproc
 	pushl	%ebx
 	.cfi_def_cfa_offset 8
@@ -69,9 +69,9 @@ LFB5463:
 	movl	4(%ebx), %edx
 	cmpl	$64, %edx
 	ja	L11
-	testb	$2, 12(%ebx)
+	testb	$2, 16(%ebx)
 	jne	L13
-	movl	20(%ebx), %ecx
+	movl	24(%ebx), %ecx
 	cmpl	$32, %edx
 	ja	L10
 	movl	36(%esp), %edx
@@ -119,12 +119,12 @@ L11:
 	movl	$-1, %eax
 	jmp	L7
 	.cfi_endproc
-LFE5463:
+LFE5464:
 	.p2align 4,,15
 	.globl	_PMC_To_X_B@16
 	.def	_PMC_To_X_B@16;	.scl	2;	.type	32;	.endef
 _PMC_To_X_B@16:
-LFB5464:
+LFB5465:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -150,7 +150,7 @@ LFB5464:
 	leal	0(,%esi,8), %edx
 	cmpl	%edx, %ecx
 	ja	L17
-	testb	$2, 12(%ebx)
+	testb	$2, 16(%ebx)
 	je	L18
 	movl	44(%esp), %esi
 	movb	$0, (%edi)
@@ -173,7 +173,7 @@ L14:
 L18:
 	.cfi_restore_state
 	addl	$7, %ecx
-	movl	20(%ebx), %esi
+	movl	24(%ebx), %esi
 	shrl	$3, %ecx
 /APP
  # 1755 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
@@ -204,16 +204,16 @@ L17:
 	movl	$-1, %eax
 	jmp	L14
 	.cfi_endproc
-LFE5464:
+LFE5465:
 	.p2align 4,,15
 	.globl	_Initialize_To
 	.def	_Initialize_To;	.scl	2;	.type	32;	.endef
 _Initialize_To:
-LFB5465:
+LFB5466:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5465:
+LFE5466:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef

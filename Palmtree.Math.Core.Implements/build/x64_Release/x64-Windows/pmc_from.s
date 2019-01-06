@@ -19,7 +19,7 @@ From_I_Imp:
 	je	.L2
 	movl	$31, %eax
 /APP
- # 510 "pmc_internal.h" 1
+ # 545 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP
@@ -34,7 +34,7 @@ From_I_Imp:
 	movq	(%rsi), %rcx
 	movl	%eax, 44(%rsp)
 	movl	%ebx, %eax
-	movq	40(%rcx), %rdx
+	movq	48(%rcx), %rdx
 	movq	%rax, (%rdx)
 	call	CommitNumber
 	movl	44(%rsp), %eax
@@ -62,7 +62,7 @@ From_L_Imp:
 	movq	%rcx, %rbx
 	je	.L8
 /APP
- # 554 "pmc_internal.h" 1
+ # 589 "pmc_internal.h" 1
 	bsrq %rcx, %rdx
  # 0 "" 2
 /NO_APP
@@ -74,7 +74,7 @@ From_L_Imp:
 	jne	.L7
 	movq	(%rsi), %rcx
 	movl	%eax, 44(%rsp)
-	movq	40(%rcx), %rdx
+	movq	48(%rcx), %rdx
 	movq	%rbx, (%rdx)
 	call	CommitNumber
 	movl	44(%rsp), %eax
@@ -199,7 +199,7 @@ PMC_From_B:
 	movl	$7, %ecx
 	salq	$3, %rdx
 /APP
- # 495 "pmc_internal.h" 1
+ # 530 "pmc_internal.h" 1
 	bsrl %eax, %eax
  # 0 "" 2
 /NO_APP
@@ -217,7 +217,7 @@ PMC_From_B:
 	leaq	7(%rbx), %rcx
 	movl	%eax, 44(%rsp)
 	shrq	$3, %rcx
-	movq	40(%rdx), %rdi
+	movq	48(%rdx), %rdi
 /APP
  # 1755 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsb

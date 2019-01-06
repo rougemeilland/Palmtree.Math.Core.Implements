@@ -129,10 +129,15 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE (__PMC_CALL * PMC_Add_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE (__PMC_CALL * PMC_Add_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 
-    // Add演算子
+    // Subtruct演算子
     PMC_STATUS_CODE(__PMC_CALL * PMC_Subtruct_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_Subtruct_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_Subtruct_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
+
+    // Multiply演算子
+    PMC_STATUS_CODE(__PMC_CALL * PMC_Multiply_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_Multiply_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_Multiply_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 

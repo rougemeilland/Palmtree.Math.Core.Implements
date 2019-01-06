@@ -4,7 +4,7 @@ Ltext0:
 	.globl	_DllMain@12
 	.def	_DllMain@12;	.scl	2;	.type	32;	.endef
 _DllMain@12:
-LFB4214:
+LFB4215:
 	.file 1 "dllmain.c"
 	.loc 1 42 1
 	.cfi_startproc
@@ -65,7 +65,7 @@ L8:
 	.cfi_def_cfa 4, 4
 	ret	$12
 	.cfi_endproc
-LFE4214:
+LFE4215:
 Letext0:
 	.file 2 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/crtdefs.h"
 	.file 3 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/excpt.h"
@@ -98,7 +98,7 @@ Letext0:
 	.file 30 "pmc_internal.h"
 	.section	.debug_info,"dr"
 Ldebug_info0:
-	.long	0x4bf5
+	.long	0x4c14
 	.word	0x4
 	.secrel32	Ldebug_abbrev0
 	.byte	0x4
@@ -3936,24 +3936,24 @@ Ldebug_info0:
 	.long	0x49af
 	.uleb128 0x10
 	.ascii "__tag_NUMBER_HEADER\0"
-	.byte	0x18
+	.byte	0x1c
 	.byte	0x1e
 	.byte	0x51
 	.byte	0x10
-	.long	0x4b36
+	.long	0x4b55
 	.uleb128 0x11
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1e
 	.byte	0x53
-	.byte	0xc
-	.long	0xbe
+	.byte	0x11
+	.long	0x4a2f
 	.byte	0
 	.uleb128 0x11
 	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x1e
 	.byte	0x54
-	.byte	0xc
-	.long	0xbe
+	.byte	0x11
+	.long	0x4a2f
 	.byte	0x4
 	.uleb128 0x11
 	.ascii "HASH_CODE\0"
@@ -3962,70 +3962,77 @@ Ldebug_info0:
 	.byte	0x11
 	.long	0x4a2f
 	.byte	0x8
-	.uleb128 0x16
-	.ascii "IS_STATIC\0"
+	.uleb128 0x11
+	.ascii "LEAST_ZERO_BITS_COUNT\0"
 	.byte	0x1e
 	.byte	0x56
-	.byte	0xe
-	.long	0xcd
-	.byte	0x4
-	.byte	0x1
-	.byte	0x1f
+	.byte	0x11
+	.long	0x4a2f
 	.byte	0xc
 	.uleb128 0x16
-	.ascii "IS_ZERO\0"
+	.ascii "IS_STATIC\0"
 	.byte	0x1e
 	.byte	0x57
 	.byte	0xe
 	.long	0xcd
 	.byte	0x4
 	.byte	0x1
-	.byte	0x1e
-	.byte	0xc
+	.byte	0x1f
+	.byte	0x10
 	.uleb128 0x16
-	.ascii "IS_ONE\0"
+	.ascii "IS_ZERO\0"
 	.byte	0x1e
 	.byte	0x58
 	.byte	0xe
 	.long	0xcd
 	.byte	0x4
 	.byte	0x1
-	.byte	0x1d
-	.byte	0xc
+	.byte	0x1e
+	.byte	0x10
 	.uleb128 0x16
-	.ascii "IS_EVEN\0"
+	.ascii "IS_ONE\0"
 	.byte	0x1e
 	.byte	0x59
 	.byte	0xe
 	.long	0xcd
 	.byte	0x4
 	.byte	0x1
-	.byte	0x1c
-	.byte	0xc
+	.byte	0x1d
+	.byte	0x10
 	.uleb128 0x16
-	.ascii "IS_POWER_OF_TWO\0"
+	.ascii "IS_EVEN\0"
 	.byte	0x1e
 	.byte	0x5a
 	.byte	0xe
 	.long	0xcd
 	.byte	0x4
 	.byte	0x1
+	.byte	0x1c
+	.byte	0x10
+	.uleb128 0x16
+	.ascii "IS_POWER_OF_TWO\0"
+	.byte	0x1e
+	.byte	0x5b
+	.byte	0xe
+	.long	0xcd
+	.byte	0x4
+	.byte	0x1
 	.byte	0x1b
-	.byte	0xc
+	.byte	0x10
 	.uleb128 0x11
 	.ascii "BLOCK_COUNT\0"
 	.byte	0x1e
-	.byte	0x5c
+	.byte	0x5d
 	.byte	0xc
 	.long	0xbe
-	.byte	0x10
+	.byte	0x14
 	.uleb128 0x11
 	.ascii "BLOCK\0"
 	.byte	0x1e
-	.byte	0x60
+	.byte	0x61
 	.byte	0x12
-	.long	0x4b36
-	.byte	0x14
+	.long	0x4b55
+	.byte	0x18
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
@@ -4033,21 +4040,21 @@ Ldebug_info0:
 	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x1e
-	.byte	0x61
+	.byte	0x62
 	.byte	0x3
 	.long	0x4a43
 	.uleb128 0x13
 	.ascii "configuration_info\0"
 	.byte	0x1e
-	.byte	0x68
+	.byte	0x69
 	.byte	0x1f
 	.long	0x4a10
 	.uleb128 0x13
 	.ascii "number_zero\0"
 	.byte	0x1e
-	.byte	0x6b
+	.byte	0x6c
 	.byte	0x16
-	.long	0x4b3c
+	.long	0x4b5b
 	.uleb128 0x17
 	.ascii "DllMain\0"
 	.byte	0x1
@@ -4055,8 +4062,8 @@ Ldebug_info0:
 	.byte	0x23
 	.ascii "DllMain@12\0"
 	.long	0x5ac
-	.long	LFB4214
-	.long	LFE4214-LFB4214
+	.long	LFB4215
+	.long	LFE4215-LFB4215
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x18
