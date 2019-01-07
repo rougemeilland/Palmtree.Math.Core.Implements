@@ -69,7 +69,7 @@ DoCarry:
 	movq	%r9, %rcx
 	jmp	.L2
 .L11:
-	movl	$-4, %eax
+	movl	$-5, %eax
 	jmp	.L1
 	.seh_endproc
 	.p2align 4,,15
@@ -799,7 +799,7 @@ PMC_Add_X_I:
 	leaq	56(%rsp), %rcx
 	movl	$31, %eax
 /APP
- # 545 "pmc_internal.h" 1
+ # 553 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
@@ -924,7 +924,7 @@ PMC_Add_X_L:
 	testq	%rbp, %rbp
 	je	.L102
 /APP
- # 589 "pmc_internal.h" 1
+ # 597 "pmc_internal.h" 1
 	bsrq %rbp, %rdx
  # 0 "" 2
 /NO_APP

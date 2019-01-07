@@ -221,7 +221,7 @@ static PMC_STATUS_CODE CheckBlock(__UNIT_TYPE* buffer)
 __inline static void ClearNumberHeader(NUMBER_HEADER* p)
 {
 #ifdef _M_IX64
-    if (sizeof(*p) == sizeof(_UINT64_T) * 6)
+    if (sizeof(*p) == sizeof(_UINT64_T) * 7)
     {
         _UINT64_T* __p = (_UINT64_T*)p;
         __p[0] = 0;
@@ -230,13 +230,14 @@ __inline static void ClearNumberHeader(NUMBER_HEADER* p)
         __p[3] = 0;
         __p[4] = 0;
         __p[5] = 0;
+        __p[6] = 0;
     }
     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
         _ZERO_MEMORY_64((_UINT64_T*)p, sizeof(*p) / sizeof(_UINT64_T));
     else
     {
 #endif
-        if (sizeof(*p) == sizeof(_UINT32_T) * 6)
+        if (sizeof(*p) == sizeof(_UINT32_T) * 7)
         {
             _UINT32_T* __p = (_UINT32_T*)p;
             __p[0] = 0;
@@ -245,6 +246,7 @@ __inline static void ClearNumberHeader(NUMBER_HEADER* p)
             __p[3] = 0;
             __p[4] = 0;
             __p[5] = 0;
+            __p[6] = 0;
         }
         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
             _ZERO_MEMORY_32((_UINT32_T*)p, sizeof(*p) / sizeof(_UINT32_T));

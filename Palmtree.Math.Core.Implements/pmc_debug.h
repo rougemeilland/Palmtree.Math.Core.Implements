@@ -53,6 +53,7 @@ extern void TEST_op_From_To(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 extern void TEST_op_Subtruct(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 extern void TEST_op_Add(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 extern void TEST_op_Multiply(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
+extern void TEST_op_Shift(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 #pragma endregion
 
 

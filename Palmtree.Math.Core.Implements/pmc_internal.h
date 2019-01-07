@@ -170,9 +170,11 @@ extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
 // 乗算処理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
 
+// ビットシフト処理の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_Shift(PROCESSOR_FEATURES* feature);
+
 /*
-extern PMC_STATUS_CODE Initialize_Get(PROCESSOR_FEATURES* feature);
-extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
+extern PMC_STATUS_CODE Initialize_Get(PROCESSOR_FEATURES* feature);ure);
 extern PMC_STATUS_CODE Initialize_Properties(PROCESSOR_FEATURES *feature);
 extern PMC_STATUS_CODE Initialize_Set(PROCESSOR_FEATURES* feature);
 */
@@ -203,6 +205,12 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_X(HANDLE p1, HANDLE p2, HANDLE*
 extern PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_RightShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_RightShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_LeftShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
 #pragma endregion
 
 

@@ -3912,20 +3912,20 @@ DllMain:
 	.uleb128 0x3
 	.ascii "_UINT64_T\0"
 	.byte	0x1d
-	.byte	0x4c
+	.byte	0x4d
 	.byte	0x12
 	.long	0x49b3
 	.uleb128 0x12
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1d
-	.byte	0x51
+	.byte	0x52
 	.byte	0x10
 	.long	0x4a25
 	.uleb128 0x18
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1d
-	.byte	0x53
+	.byte	0x54
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -3936,7 +3936,7 @@ DllMain:
 	.uleb128 0x3
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1d
-	.byte	0x54
+	.byte	0x55
 	.byte	0x3
 	.long	0x49d6
 	.uleb128 0x3

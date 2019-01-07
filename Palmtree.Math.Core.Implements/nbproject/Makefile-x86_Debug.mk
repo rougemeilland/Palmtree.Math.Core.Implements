@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/TEST_op_Add.o \
 	${OBJECTDIR}/TEST_op_From_To.o \
 	${OBJECTDIR}/TEST_op_Multiply.o \
+	${OBJECTDIR}/TEST_op_Shift.o \
 	${OBJECTDIR}/TEST_op_Subtruct.o \
 	${OBJECTDIR}/debug.o \
 	${OBJECTDIR}/dllmain.o \
@@ -47,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/pmc_from.o \
 	${OBJECTDIR}/pmc_initialize.o \
 	${OBJECTDIR}/pmc_multiply.o \
+	${OBJECTDIR}/pmc_shift.o \
 	${OBJECTDIR}/pmc_statistics.o \
 	${OBJECTDIR}/pmc_subtruct.o \
 	${OBJECTDIR}/pmc_to.o
@@ -96,6 +98,11 @@ ${OBJECTDIR}/TEST_op_Multiply.o: TEST_op_Multiply.c nbproject/Makefile-${CND_CON
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Multiply.o TEST_op_Multiply.c
 
+${OBJECTDIR}/TEST_op_Shift.o: TEST_op_Shift.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Shift.o TEST_op_Shift.c
+
 ${OBJECTDIR}/TEST_op_Subtruct.o: TEST_op_Subtruct.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -135,6 +142,11 @@ ${OBJECTDIR}/pmc_multiply.o: pmc_multiply.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_multiply.o pmc_multiply.c
+
+${OBJECTDIR}/pmc_shift.o: pmc_shift.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_shift.o pmc_shift.c
 
 ${OBJECTDIR}/pmc_statistics.o: pmc_statistics.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

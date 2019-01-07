@@ -97,7 +97,7 @@ L9:
 	movl	%ebp, %edi
 	jmp	L2
 L11:
-	movl	$-4, %eax
+	movl	$-5, %eax
 	jmp	L1
 	.cfi_endproc
 LFE5483:
@@ -914,7 +914,7 @@ L86:
 	testl	%eax, %eax
 	je	L95
 /APP
- # 545 "pmc_internal.h" 1
+ # 553 "pmc_internal.h" 1
 	bsrl 84(%esp), %eax
  # 0 "" 2
 /NO_APP
@@ -1091,7 +1091,7 @@ L99:
 	testl	%esi, %esi
 	je	L104
 /APP
- # 545 "pmc_internal.h" 1
+ # 553 "pmc_internal.h" 1
 	bsrl %esi, %edx
  # 0 "" 2
 /NO_APP
@@ -1153,7 +1153,7 @@ L102:
 L103:
 	.cfi_restore_state
 /APP
- # 545 "pmc_internal.h" 1
+ # 553 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP

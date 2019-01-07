@@ -106,6 +106,10 @@ L7:
 	call	_Initialize_Multiply
 	testl	%eax, %eax
 	jne	L10
+	movl	%ebx, (%esp)
+	call	_Initialize_Shift
+	testl	%eax, %eax
+	jne	L10
 	movzbl	_entry_points, %eax
 	movzbl	28(%esp), %edx
 	movl	$_PMC_TraceStatistics@4, _entry_points+4
@@ -131,25 +135,13 @@ L7:
 	movl	$_PMC_Multiply_X_I@12, _entry_points+64
 	movl	$_PMC_Multiply_X_L@16, _entry_points+68
 	movl	$_PMC_Multiply_X_X@12, _entry_points+72
-	addl	$60, %esp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 20
-	popl	%ebx
-	.cfi_restore 3
-	.cfi_def_cfa_offset 16
-	popl	%esi
-	.cfi_restore 6
-	.cfi_def_cfa_offset 12
-	popl	%edi
-	.cfi_restore 7
-	.cfi_def_cfa_offset 8
-	popl	%ebp
-	.cfi_restore 5
-	.cfi_def_cfa_offset 4
-	ret	$4
+	movl	$_PMC_RightShift_X_I@12, _entry_points+76
+	movl	$_PMC_RightShift_X_L@16, _entry_points+80
+	movl	$_PMC_LeftShift_X_I@12, _entry_points+84
+	movl	$_PMC_LeftShift_X_L@16, _entry_points+88
+	jmp	L1
 	.p2align 4,,10
 L13:
-	.cfi_restore_state
 	movl	%edi, %ebx
 	andl	$-4, %ebx
 	movb	%bl, 28(%esp)
@@ -158,10 +150,11 @@ L3:
 	jmp	L5
 	.p2align 4,,10
 L10:
+	xorl	%eax, %eax
+L1:
 	addl	$60, %esp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
-	xorl	%eax, %eax
 	popl	%ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 16
@@ -195,7 +188,7 @@ L6:
 	.cfi_endproc
 LFE5463:
 	.comm	_configuration_info, 4, 2
-.lcomm _entry_points,76,32
+.lcomm _entry_points,92,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
@@ -203,6 +196,7 @@ LFE5463:
 	.def	_Initialize_Add;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Subtruct;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Multiply;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_Shift;	.scl	2;	.type	32;	.endef
 	.def	_PMC_TraceStatistics@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
@@ -221,5 +215,9 @@ LFE5463:
 	.def	_PMC_Multiply_X_I@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Multiply_X_L@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Multiply_X_X@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_RightShift_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_RightShift_X_L@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_LeftShift_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_LeftShift_X_L@16;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize@4\""

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * The MIT License
  *
  * Copyright 2018 Palmtree Software.
@@ -42,6 +42,7 @@ static void (*TEST_Functions[])(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep
     TEST_op_Add,
     TEST_op_Subtruct,
     TEST_op_Multiply,
+    TEST_op_Shift,
 };
 
 int test_total_count = 0;
@@ -52,12 +53,13 @@ static void TEST_Start(PMC_DEBUG_ENVIRONMENT *env)
 {
     test_total_count = 0;
     test_ok_count = 0;
-    env->log("ƒeƒXƒgŠJŽn\n");
+    env->log("ãƒ†ã‚¹ãƒˆé–‹å§‹\n");
+    env->log("start test\n");
 }
 
 static void TEST_End(PMC_DEBUG_ENVIRONMENT *env)
 {
-    env->log("ƒeƒXƒgŠ®—¹B€–Ú”=%d, OK€–Ú”=%d, NG€–Ú”=%d, OK—¦=%d%%, NG—¦=%d%%\n",
+    env->log("ãƒ†ã‚¹ãƒˆå®Œäº†ã€‚é …ç›®æ•°=%d, OKé …ç›®æ•°=%d, NGé …ç›®æ•°=%d, OKçŽ‡=%d%%, NGçŽ‡=%d%%\n",
              test_total_count,
              test_ok_count,
              test_total_count - test_ok_count,
@@ -101,12 +103,12 @@ void TEST_Assert(PMC_DEBUG_ENVIRONMENT *env, const char* test_name, BOOL conditi
 {
     if (condition)
     {
-        //env->log("ƒeƒXƒg No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
+        //env->log("ãƒ†ã‚¹ãƒˆ No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
         ++test_ok_count;
     }
     else
     {
-        env->log("ƒeƒXƒg No.%d: %s => %s (%s)\n", test_total_count + 1, test_name, "***NG***", reason);
+        env->log("ãƒ†ã‚¹ãƒˆ No.%d: %s => %s (%s)\n", test_total_count + 1, test_name, "***NG***", reason);
     }
     ++test_total_count;
 }

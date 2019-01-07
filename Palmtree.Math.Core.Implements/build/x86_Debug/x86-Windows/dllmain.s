@@ -3901,20 +3901,20 @@ Ldebug_info0:
 	.uleb128 0x3
 	.ascii "_UINT32_T\0"
 	.byte	0x1d
-	.byte	0x4b
+	.byte	0x4c
 	.byte	0x12
 	.long	0x499e
 	.uleb128 0x10
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1d
-	.byte	0x51
+	.byte	0x52
 	.byte	0x10
 	.long	0x4a10
 	.uleb128 0x16
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1d
-	.byte	0x53
+	.byte	0x54
 	.byte	0xe
 	.long	0xcd
 	.byte	0x4
@@ -3925,7 +3925,7 @@ Ldebug_info0:
 	.uleb128 0x3
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1d
-	.byte	0x54
+	.byte	0x55
 	.byte	0x3
 	.long	0x49c1
 	.uleb128 0x3

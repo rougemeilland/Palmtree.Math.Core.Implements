@@ -87293,14 +87293,14 @@ __extension__ typedef unsigned long long uintmax_t;
 
 
 #pragma region マクロの定義
-# 57 "pmc.h"
+# 58 "pmc.h"
 #pragma endregion
 
 
 #pragma region 型の定義
-# 70 "pmc.h"
+# 71 "pmc.h"
 
-# 70 "pmc.h"
+# 71 "pmc.h"
 typedef int16_t _INT16_T;
 typedef int32_t _INT32_T;
 typedef int64_t _INT64_T;
@@ -87372,6 +87372,15 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_RightShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_RightShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_LeftShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_LeftShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
+
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -87502,7 +87511,10 @@ extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
 
 
 extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
-# 182 "pmc_internal.h"
+
+
+extern PMC_STATUS_CODE Initialize_Shift(PROCESSOR_FEATURES* feature);
+# 184 "pmc_internal.h"
 extern void __attribute__((__stdcall__)) PMC_TraceStatistics(int enabled);
 extern void __attribute__((__stdcall__)) PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
@@ -87527,6 +87539,12 @@ extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_X(HANDLE p1, 
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_RightShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_RightShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
+
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_LeftShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
 #pragma endregion
 
 
@@ -87540,7 +87558,7 @@ __inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T
 {
     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 }
-# 227 "pmc_internal.h"
+# 235 "pmc_internal.h"
 __inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
 {
 
@@ -87566,7 +87584,7 @@ __inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
 {
     __stosd((unsigned long*)d, 0, count);
 }
-# 260 "pmc_internal.h"
+# 268 "pmc_internal.h"
 __inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
 {
 
@@ -87651,21 +87669,21 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
     _UINT32_T w_lo;
     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
     return (w_lo);
-# 352 "pmc_internal.h"
+# 360 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 366 "pmc_internal.h"
+# 374 "pmc_internal.h"
     _UINT32_T w_lo;
     __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
-# 379 "pmc_internal.h"
+# 387 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
-# 394 "pmc_internal.h"
+# 402 "pmc_internal.h"
     __UNIT_TYPE q;
 
     __asm__("divl %3": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -87682,7 +87700,7 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
 
 __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE *q)
 {
-# 422 "pmc_internal.h"
+# 430 "pmc_internal.h"
     __asm__("divl %3": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
 
 
@@ -87710,17 +87728,17 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 448 "pmc_internal.h" 3
+# 456 "pmc_internal.h" 3
            __rold((
-# 448 "pmc_internal.h"
+# 456 "pmc_internal.h"
            x
-# 448 "pmc_internal.h" 3
+# 456 "pmc_internal.h" 3
            ), (
-# 448 "pmc_internal.h"
+# 456 "pmc_internal.h"
            count
-# 448 "pmc_internal.h" 3
+# 456 "pmc_internal.h" 3
            ))
-# 448 "pmc_internal.h"
+# 456 "pmc_internal.h"
                           );
 
 
@@ -87733,17 +87751,17 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 459 "pmc_internal.h" 3
+# 467 "pmc_internal.h" 3
            __rord((
-# 459 "pmc_internal.h"
+# 467 "pmc_internal.h"
            x
-# 459 "pmc_internal.h" 3
+# 467 "pmc_internal.h" 3
            ), (
-# 459 "pmc_internal.h"
+# 467 "pmc_internal.h"
            count
-# 459 "pmc_internal.h" 3
+# 467 "pmc_internal.h" 3
            ))
-# 459 "pmc_internal.h"
+# 467 "pmc_internal.h"
                           );
 
 
@@ -87771,7 +87789,7 @@ __inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
     x = (x & 0x0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f);
     x = (x & 0x00ff00ff) + ((x >> 8) & 0x00ff00ff);
     x = (x & 0x0000ffff) + ((x >> 16) & 0x0000ffff);
-# 496 "pmc_internal.h"
+# 504 "pmc_internal.h"
     return(x);
 }
 
@@ -87779,7 +87797,7 @@ __inline static _UINT32_T _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
-# 511 "pmc_internal.h"
+# 519 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
@@ -87820,7 +87838,7 @@ __inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
 
     return (sizeof(x) * 8 - 1 - pos);
 }
-# 570 "pmc_internal.h"
+# 578 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
@@ -87831,7 +87849,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 596 "pmc_internal.h"
+# 604 "pmc_internal.h"
     return (sizeof(x) * 8 - 1 - pos);
 }
 
@@ -87867,7 +87885,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 647 "pmc_internal.h"
+# 655 "pmc_internal.h"
     return (pos);
 }
 #pragma endregion
@@ -87987,7 +88005,13 @@ __attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_In
                ((void *)0)
 # 115 "pmc_initialize.c"
                    );
-# 126 "pmc_initialize.c"
+    if (Initialize_Shift(&feature))
+        return (
+# 117 "pmc_initialize.c" 3 4
+               ((void *)0)
+# 117 "pmc_initialize.c"
+                   );
+# 128 "pmc_initialize.c"
     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
     entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;
  entry_points.PROCESSOR_FEATURE_BMI1 = feature.PROCESSOR_FEATURE_BMI1;
@@ -88011,5 +88035,9 @@ __attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_In
     entry_points.PMC_Multiply_X_I = PMC_Multiply_X_I;
     entry_points.PMC_Multiply_X_L = PMC_Multiply_X_L;
     entry_points.PMC_Multiply_X_X = PMC_Multiply_X_X;
+    entry_points.PMC_RightShift_X_I = PMC_RightShift_X_I;
+    entry_points.PMC_RightShift_X_L = PMC_RightShift_X_L;
+    entry_points.PMC_LeftShift_X_I = PMC_LeftShift_X_I;
+    entry_points.PMC_LeftShift_X_L = PMC_LeftShift_X_L;
     return (&entry_points);
 }

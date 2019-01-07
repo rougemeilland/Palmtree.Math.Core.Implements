@@ -88495,14 +88495,14 @@ __extension__ typedef unsigned long long uintmax_t;
 
 
 #pragma region マクロの定義
-# 57 "pmc.h"
+# 58 "pmc.h"
 #pragma endregion
 
 
 #pragma region 型の定義
-# 70 "pmc.h"
+# 71 "pmc.h"
 
-# 70 "pmc.h"
+# 71 "pmc.h"
 typedef int16_t _INT16_T;
 typedef int32_t _INT32_T;
 typedef int64_t _INT64_T;
@@ -88574,6 +88574,15 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE( * PMC_Multiply_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
     PMC_STATUS_CODE( * PMC_Multiply_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE( * PMC_Multiply_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
+
+
+    PMC_STATUS_CODE( * PMC_RightShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
+    PMC_STATUS_CODE( * PMC_RightShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
+
+
+    PMC_STATUS_CODE( * PMC_LeftShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
+    PMC_STATUS_CODE( * PMC_LeftShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
+
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -88706,7 +88715,10 @@ extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
 
 
 extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
-# 182 "pmc_internal.h"
+
+
+extern PMC_STATUS_CODE Initialize_Shift(PROCESSOR_FEATURES* feature);
+# 184 "pmc_internal.h"
 extern void PMC_TraceStatistics(int enabled);
 extern void PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
@@ -88731,6 +88743,12 @@ extern PMC_STATUS_CODE PMC_Subtruct_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
 extern PMC_STATUS_CODE PMC_Multiply_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
 extern PMC_STATUS_CODE PMC_Multiply_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
 extern PMC_STATUS_CODE PMC_Multiply_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+
+extern PMC_STATUS_CODE PMC_RightShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
+extern PMC_STATUS_CODE PMC_RightShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
+
+extern PMC_STATUS_CODE PMC_LeftShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
+extern PMC_STATUS_CODE PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
 #pragma endregion
 
 
@@ -88862,7 +88880,7 @@ __inline static char _SUBTRUCT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, _
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 348 "pmc_internal.h"
+# 356 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -88871,7 +88889,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 370 "pmc_internal.h"
+# 378 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -88885,7 +88903,7 @@ __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 
 __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, __UNIT_TYPE v, __UNIT_TYPE *r)
 {
-# 394 "pmc_internal.h"
+# 402 "pmc_internal.h"
     __UNIT_TYPE q;
 
 
@@ -88902,7 +88920,7 @@ __inline static __UNIT_TYPE _DIVREM_UNIT(__UNIT_TYPE u_high, __UNIT_TYPE u_low, 
 
 __inline static __UNIT_TYPE _DIVREM_SINGLE_UNIT(__UNIT_TYPE r, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE *q)
 {
-# 424 "pmc_internal.h"
+# 432 "pmc_internal.h"
     __asm__("divq %3": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
 
 
@@ -88930,9 +88948,9 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 450 "pmc_internal.h" 3
+# 458 "pmc_internal.h" 3
            __rolq
-# 450 "pmc_internal.h"
+# 458 "pmc_internal.h"
                   (x, count));
 
 
@@ -88945,9 +88963,9 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 461 "pmc_internal.h" 3
+# 469 "pmc_internal.h" 3
            __rorq
-# 461 "pmc_internal.h"
+# 469 "pmc_internal.h"
                   (x, count));
 
 
@@ -89061,7 +89079,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 588 "pmc_internal.h"
+# 596 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89099,7 +89117,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 639 "pmc_internal.h"
+# 647 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -90259,7 +90277,7 @@ static PMC_STATUS_CODE DoCarry(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __U
 
 
 
-                    return ((-4));
+                    return ((-5));
                 }
                 *op = 1;
             }
@@ -90518,7 +90536,7 @@ PMC_STATUS_CODE PMC_Add_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
     if ((sizeof(__UNIT_TYPE) * 8) < sizeof(y) * 8)
     {
 
-        return ((-4));
+        return ((-5));
     }
     if (x == 
 # 318 "pmc_add.c" 3 4
@@ -90604,7 +90622,7 @@ PMC_STATUS_CODE PMC_Add_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
     if ((sizeof(__UNIT_TYPE) * 8) * 2 < sizeof(y) * 8)
     {
 
-        return ((-4));
+        return ((-5));
     }
     if (x == 
 # 396 "pmc_add.c" 3 4

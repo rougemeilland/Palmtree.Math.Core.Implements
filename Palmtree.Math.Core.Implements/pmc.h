@@ -51,9 +51,10 @@ extern "C" {
 #define PMC_STATUS_OK (0)
 #define PMC_STATUS_ARGUMENT_ERROR (-1)
 #define PMC_STATUS_NOT_ENOUGH_MEMORY (-2)
-#define PMC_STATUS_BAD_BUFFER (-3)
-#define PMC_STATUS_INTERNAL_ERROR (-4)
-#define PMC_STATUS_INTERNAL_BORROW (-5)
+#define PMC_STATUS_NOT_SUPPORTED (-3)
+#define PMC_STATUS_BAD_BUFFER (-4)
+#define PMC_STATUS_INTERNAL_ERROR (-5)
+#define PMC_STATUS_INTERNAL_BORROW (-6)
 #pragma endregion
 
 
@@ -119,25 +120,34 @@ typedef struct __tag_PMC_ENTRY_POINTS
     // デストラクタ
     void  (__PMC_CALL * PMC_Dispose)(HANDLE p);
 
-    // To演算子
+    // To 演算子
     PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
     PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
     PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
-    // Add演算子
+    // Add 演算子
     PMC_STATUS_CODE (__PMC_CALL * PMC_Add_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
     PMC_STATUS_CODE (__PMC_CALL * PMC_Add_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE (__PMC_CALL * PMC_Add_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 
-    // Subtruct演算子
+    // Subtruct 演算子
     PMC_STATUS_CODE(__PMC_CALL * PMC_Subtruct_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_Subtruct_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_Subtruct_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 
-    // Multiply演算子
+    // Multiply 演算子
     PMC_STATUS_CODE(__PMC_CALL * PMC_Multiply_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_Multiply_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_Multiply_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
+
+    // RightShift 演算子
+    PMC_STATUS_CODE(__PMC_CALL * PMC_RightShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_RightShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
+
+    // RightShift 演算子
+    PMC_STATUS_CODE(__PMC_CALL * PMC_LeftShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_LeftShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
+
 } PMC_ENTRY_POINTS;
 #pragma endregion
 

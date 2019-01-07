@@ -95,6 +95,10 @@ PMC_Initialize:
 	call	Initialize_Multiply
 	testl	%eax, %eax
 	jne	.L10
+	movq	%rbx, %rcx
+	call	Initialize_Shift
+	testl	%eax, %eax
+	jne	.L10
 	movzbl	entry_points(%rip), %eax
 	movzbl	44(%rsp), %edx
 	andl	$-32, %eax
@@ -137,10 +141,16 @@ PMC_Initialize:
 	movq	%rax, 136+entry_points(%rip)
 	movq	.refptr.PMC_Multiply_X_X(%rip), %rax
 	movq	%rax, 144+entry_points(%rip)
+	movq	.refptr.PMC_RightShift_X_I(%rip), %rax
+	movq	%rax, 152+entry_points(%rip)
+	movq	.refptr.PMC_RightShift_X_L(%rip), %rax
+	movq	%rax, 160+entry_points(%rip)
+	movq	.refptr.PMC_LeftShift_X_I(%rip), %rax
+	movq	%rax, 168+entry_points(%rip)
+	movq	.refptr.PMC_LeftShift_X_L(%rip), %rax
+	movq	%rax, 176+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
-	addq	$48, %rsp
-	popq	%rbx
-	ret
+	jmp	.L1
 	.p2align 4,,10
 .L12:
 	andl	$-4, %r8d
@@ -151,6 +161,7 @@ PMC_Initialize:
 	.p2align 4,,10
 .L10:
 	xorl	%eax, %eax
+.L1:
 	addq	$48, %rsp
 	popq	%rbx
 	ret
@@ -172,7 +183,7 @@ PMC_Initialize:
 	jmp	.L7
 	.seh_endproc
 	.comm	configuration_info, 4, 2
-.lcomm entry_points,152,32
+.lcomm entry_points,184,32
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	Initialize_From;	.scl	2;	.type	32;	.endef
@@ -180,8 +191,29 @@ PMC_Initialize:
 	.def	Initialize_Add;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Subtruct;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Multiply;	.scl	2;	.type	32;	.endef
+	.def	Initialize_Shift;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize\""
+	.section	.rdata$.refptr.PMC_LeftShift_X_L, "dr"
+	.globl	.refptr.PMC_LeftShift_X_L
+	.linkonce	discard
+.refptr.PMC_LeftShift_X_L:
+	.quad	PMC_LeftShift_X_L
+	.section	.rdata$.refptr.PMC_LeftShift_X_I, "dr"
+	.globl	.refptr.PMC_LeftShift_X_I
+	.linkonce	discard
+.refptr.PMC_LeftShift_X_I:
+	.quad	PMC_LeftShift_X_I
+	.section	.rdata$.refptr.PMC_RightShift_X_L, "dr"
+	.globl	.refptr.PMC_RightShift_X_L
+	.linkonce	discard
+.refptr.PMC_RightShift_X_L:
+	.quad	PMC_RightShift_X_L
+	.section	.rdata$.refptr.PMC_RightShift_X_I, "dr"
+	.globl	.refptr.PMC_RightShift_X_I
+	.linkonce	discard
+.refptr.PMC_RightShift_X_I:
+	.quad	PMC_RightShift_X_I
 	.section	.rdata$.refptr.PMC_Multiply_X_X, "dr"
 	.globl	.refptr.PMC_Multiply_X_X
 	.linkonce	discard
