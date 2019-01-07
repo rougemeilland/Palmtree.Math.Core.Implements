@@ -9,6 +9,7 @@ _TEST_Functions:
 	.long	_TEST_op_Add
 	.long	_TEST_op_Subtruct
 	.long	_TEST_op_Multiply
+	.long	_TEST_op_Shift
 	.globl	_test_total_count
 	.bss
 	.align 4
@@ -20,13 +21,15 @@ _test_ok_count:
 	.space 4
 	.section .rdata,"dr"
 LC0:
-	.ascii "\203e\203X\203g\212J\216n\12\0"
+	.ascii "\343\203\206\343\202\271\343\203\210\351\226\213\345\247\213\12\0"
+LC1:
+	.ascii "start test\12\0"
 	.text
 	.def	_TEST_Start;	.scl	3;	.type	32;	.endef
 _TEST_Start:
 LFB4216:
 	.file 1 "debug.c"
-	.loc 1 52 1
+	.loc 1 53 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -34,18 +37,25 @@ LFB4216:
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
 	subl	$24, %esp
-	.loc 1 53 22
+	.loc 1 54 22
 	movl	$0, _test_total_count
-	.loc 1 54 19
+	.loc 1 55 19
 	movl	$0, _test_ok_count
-	.loc 1 55 8
+	.loc 1 56 8
 	movl	8(%ebp), %eax
 	movl	(%eax), %eax
-	.loc 1 55 5
+	.loc 1 56 5
 	movl	$LC0, (%esp)
 	call	*%eax
 LVL0:
-	.loc 1 56 1
+	.loc 1 57 8
+	movl	8(%ebp), %eax
+	movl	(%eax), %eax
+	.loc 1 57 5
+	movl	$LC1, (%esp)
+	call	*%eax
+LVL1:
+	.loc 1 58 1
 	nop
 	leave
 	.cfi_restore 5
@@ -55,13 +65,13 @@ LVL0:
 LFE4216:
 	.section .rdata,"dr"
 	.align 4
-LC1:
-	.ascii "\203e\203X\203g\212\256\227\271\201B\215\200\226\332\220\224=%d, OK\215\200\226\332\220\224=%d, NG\215\200\226\332\220\224=%d, OK\227\246=%d%%, NG\227\246=%d%%\12\0"
+LC2:
+	.ascii "\343\203\206\343\202\271\343\203\210\345\256\214\344\272\206\343\200\202\351\240\205\347\233\256\346\225\260=%d, OK\351\240\205\347\233\256\346\225\260=%d, NG\351\240\205\347\233\256\346\225\260=%d, OK\347\216\207=%d%%, NG\347\216\207=%d%%\12\0"
 	.text
 	.def	_TEST_End;	.scl	3;	.type	32;	.endef
 _TEST_End:
 LFB4217:
-	.loc 1 59 1
+	.loc 1 61 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -75,25 +85,25 @@ LFB4217:
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	.loc 1 60 8
+	.loc 1 62 8
 	movl	8(%ebp), %eax
 	movl	(%eax), %ecx
-	.loc 1 65 32
+	.loc 1 67 32
 	movl	_test_total_count, %edx
 	movl	_test_ok_count, %eax
 	subl	%eax, %edx
 	movl	%edx, %eax
-	.loc 1 65 49
+	.loc 1 67 49
 	imull	$100, %eax, %eax
-	.loc 1 60 5
+	.loc 1 62 5
 	movl	_test_total_count, %esi
 	cltd
 	idivl	%esi
 	movl	%eax, %edi
-	.loc 1 64 28
+	.loc 1 66 28
 	movl	_test_ok_count, %eax
 	imull	$100, %eax, %eax
-	.loc 1 60 5
+	.loc 1 62 5
 	movl	_test_total_count, %esi
 	cltd
 	idivl	%esi
@@ -109,10 +119,10 @@ LFB4217:
 	movl	%ebx, 12(%esp)
 	movl	%edx, 8(%esp)
 	movl	%eax, 4(%esp)
-	movl	$LC1, (%esp)
+	movl	$LC2, (%esp)
 	call	*%ecx
-LVL1:
-	.loc 1 66 1
+LVL2:
+	.loc 1 68 1
 	nop
 	addl	$44, %esp
 	popl	%ebx
@@ -128,17 +138,17 @@ LVL1:
 	.cfi_endproc
 LFE4217:
 	.section .rdata,"dr"
-LC2:
+LC3:
 	.ascii "PMC_Initialize failed\0"
 	.align 4
-LC3:
+LC4:
 	.ascii "PMC_Initialize: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\12\0"
 	.text
 	.globl	_DoDebug@4
 	.def	_DoDebug@4;	.scl	2;	.type	32;	.endef
 _DoDebug@4:
 LFB4218:
-	.loc 1 69 1
+	.loc 1 71 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -152,85 +162,85 @@ LFB4218:
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	.loc 1 71 38
+	.loc 1 73 38
 	movzbl	-40(%ebp), %eax
 	andl	$-2, %eax
 	movb	%al, -40(%ebp)
-	.loc 1 72 28
+	.loc 1 74 28
 	leal	-40(%ebp), %eax
 	movl	%eax, (%esp)
 	call	_PMC_Initialize@4
 	subl	$4, %esp
 	movl	%eax, -36(%ebp)
-	.loc 1 73 8
+	.loc 1 75 8
 	cmpl	$0, -36(%ebp)
 	jne	L4
-	.loc 1 75 13
+	.loc 1 77 13
 	movl	8(%ebp), %eax
 	movl	(%eax), %eax
-	.loc 1 75 10
-	movl	$LC2, (%esp)
+	.loc 1 77 10
+	movl	$LC3, (%esp)
 	call	*%eax
-LVL2:
+LVL3:
 	jmp	L3
 L4:
-	.loc 1 78 8
+	.loc 1 80 8
 	movl	8(%ebp), %eax
 	movl	(%eax), %edx
-	.loc 1 83 16
+	.loc 1 85 16
 	movl	-36(%ebp), %eax
 	movzbl	(%eax), %eax
 	shrb	$4, %al
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %edi
-	.loc 1 82 16
+	.loc 1 84 16
 	movl	-36(%ebp), %eax
 	movzbl	(%eax), %eax
 	shrb	$3, %al
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %esi
-	.loc 1 81 16
+	.loc 1 83 16
 	movl	-36(%ebp), %eax
 	movzbl	(%eax), %eax
 	shrb	$2, %al
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %ebx
-	.loc 1 80 16
+	.loc 1 82 16
 	movl	-36(%ebp), %eax
 	movzbl	(%eax), %eax
 	shrb	%al
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %ecx
-	.loc 1 79 16
+	.loc 1 81 16
 	movl	-36(%ebp), %eax
 	movzbl	(%eax), %eax
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %eax
 	movl	%edi, 20(%esp)
 	movl	%esi, 16(%esp)
 	movl	%ebx, 12(%esp)
 	movl	%ecx, 8(%esp)
 	movl	%eax, 4(%esp)
-	movl	$LC3, (%esp)
+	movl	$LC4, (%esp)
 	call	*%edx
-LVL3:
-	.loc 1 85 5
+LVL4:
+	.loc 1 87 5
 	movl	8(%ebp), %eax
 	movl	%eax, (%esp)
 	call	_TEST_Start
-	.loc 1 86 12
+	.loc 1 88 12
 	movl	$_TEST_Functions, -28(%ebp)
-	.loc 1 87 12
-	movl	$5, -32(%ebp)
-	.loc 1 89 11
+	.loc 1 89 12
+	movl	$6, -32(%ebp)
+	.loc 1 91 11
 	jmp	L6
 L7:
-	.loc 1 91 10
+	.loc 1 93 10
 	movl	-28(%ebp), %eax
 	movl	(%eax), %eax
 	movl	-36(%ebp), %edx
@@ -238,21 +248,21 @@ L7:
 	movl	8(%ebp), %edx
 	movl	%edx, (%esp)
 	call	*%eax
-LVL4:
-	.loc 1 92 9
+LVL5:
+	.loc 1 94 9
 	subl	$1, -32(%ebp)
-	.loc 1 93 9
+	.loc 1 95 9
 	addl	$4, -28(%ebp)
 L6:
-	.loc 1 89 11
+	.loc 1 91 11
 	cmpl	$0, -32(%ebp)
 	jne	L7
-	.loc 1 96 5
+	.loc 1 98 5
 	movl	8(%ebp), %eax
 	movl	%eax, (%esp)
 	call	_TEST_End
 L3:
-	.loc 1 97 1
+	.loc 1 99 1
 	leal	-12(%ebp), %esp
 	popl	%ebx
 	.cfi_restore 3
@@ -267,16 +277,17 @@ L3:
 	.cfi_endproc
 LFE4218:
 	.section .rdata,"dr"
-LC4:
-	.ascii "***NG***\0"
 LC5:
-	.ascii "\203e\203X\203g No.%d: %s => %s (%s)\12\0"
+	.ascii "***NG***\0"
+	.align 4
+LC6:
+	.ascii "\343\203\206\343\202\271\343\203\210 No.%d: %s => %s (%s)\12\0"
 	.text
 	.globl	_TEST_Assert
 	.def	_TEST_Assert;	.scl	2;	.type	32;	.endef
 _TEST_Assert:
 LFB4219:
-	.loc 1 101 1
+	.loc 1 103 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -284,36 +295,36 @@ LFB4219:
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
 	subl	$40, %esp
-	.loc 1 102 8
+	.loc 1 104 8
 	cmpl	$0, 16(%ebp)
 	je	L9
-	.loc 1 105 9
+	.loc 1 107 9
 	movl	_test_ok_count, %eax
 	addl	$1, %eax
 	movl	%eax, _test_ok_count
 	jmp	L10
 L9:
-	.loc 1 109 12
+	.loc 1 111 12
 	movl	8(%ebp), %eax
 	movl	(%eax), %eax
-	.loc 1 109 9
+	.loc 1 111 9
 	movl	_test_total_count, %edx
 	leal	1(%edx), %ecx
 	movl	20(%ebp), %edx
 	movl	%edx, 16(%esp)
-	movl	$LC4, 12(%esp)
+	movl	$LC5, 12(%esp)
 	movl	12(%ebp), %edx
 	movl	%edx, 8(%esp)
 	movl	%ecx, 4(%esp)
-	movl	$LC5, (%esp)
+	movl	$LC6, (%esp)
 	call	*%eax
-LVL5:
+LVL6:
 L10:
-	.loc 1 111 5
+	.loc 1 113 5
 	movl	_test_total_count, %eax
 	addl	$1, %eax
 	movl	%eax, _test_total_count
-	.loc 1 112 1
+	.loc 1 114 1
 	nop
 	leave
 	.cfi_restore 5
@@ -4939,7 +4950,7 @@ Ldebug_info0:
 	.long	0x53d4
 	.uleb128 0xd
 	.long	0xd0
-	.byte	0x4
+	.byte	0x5
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
@@ -4969,7 +4980,7 @@ Ldebug_info0:
 	.uleb128 0x1e
 	.ascii "test_total_count\0"
 	.byte	0x1
-	.byte	0x2f
+	.byte	0x30
 	.byte	0x5
 	.long	0xe0
 	.uleb128 0x5
@@ -4978,7 +4989,7 @@ Ldebug_info0:
 	.uleb128 0x1e
 	.ascii "test_ok_count\0"
 	.byte	0x1
-	.byte	0x30
+	.byte	0x31
 	.byte	0x5
 	.long	0xe0
 	.uleb128 0x5
@@ -4987,7 +4998,7 @@ Ldebug_info0:
 	.uleb128 0x1f
 	.ascii "TEST_Assert\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x6
 	.long	LFB4219
 	.long	LFE4219-LFB4219
@@ -4997,7 +5008,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "env\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x29
 	.long	0x53ea
 	.uleb128 0x2
@@ -5006,7 +5017,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "test_name\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x3a
 	.long	0x539a
 	.uleb128 0x2
@@ -5015,7 +5026,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "condition\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x4a
 	.long	0x5af
 	.uleb128 0x2
@@ -5024,7 +5035,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "reason\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x61
 	.long	0x539a
 	.uleb128 0x2
@@ -5034,7 +5045,7 @@ Ldebug_info0:
 	.uleb128 0x21
 	.ascii "DoDebug\0"
 	.byte	0x1
-	.byte	0x44
+	.byte	0x46
 	.byte	0x3e
 	.ascii "DoDebug@4\0"
 	.long	LFB4218
@@ -5045,7 +5056,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "env\0"
 	.byte	0x1
-	.byte	0x44
+	.byte	0x46
 	.byte	0x5d
 	.long	0x53ea
 	.uleb128 0x2
@@ -5054,7 +5065,7 @@ Ldebug_info0:
 	.uleb128 0x1d
 	.ascii "conf\0"
 	.byte	0x1
-	.byte	0x46
+	.byte	0x48
 	.byte	0x1c
 	.long	0x4cc9
 	.uleb128 0x2
@@ -5063,7 +5074,7 @@ Ldebug_info0:
 	.uleb128 0x1d
 	.ascii "ep\0"
 	.byte	0x1
-	.byte	0x48
+	.byte	0x4a
 	.byte	0x17
 	.long	0x53f0
 	.uleb128 0x2
@@ -5072,7 +5083,7 @@ Ldebug_info0:
 	.uleb128 0x1d
 	.ascii "tp\0"
 	.byte	0x1
-	.byte	0x56
+	.byte	0x58
 	.byte	0xc
 	.long	0x552b
 	.uleb128 0x2
@@ -5081,7 +5092,7 @@ Ldebug_info0:
 	.uleb128 0x1d
 	.ascii "t_count\0"
 	.byte	0x1
-	.byte	0x57
+	.byte	0x59
 	.byte	0xc
 	.long	0xc1
 	.uleb128 0x2
@@ -5094,7 +5105,7 @@ Ldebug_info0:
 	.uleb128 0x22
 	.ascii "TEST_End\0"
 	.byte	0x1
-	.byte	0x3a
+	.byte	0x3c
 	.byte	0xd
 	.long	LFB4217
 	.long	LFE4217-LFB4217
@@ -5104,7 +5115,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "env\0"
 	.byte	0x1
-	.byte	0x3a
+	.byte	0x3c
 	.byte	0x2d
 	.long	0x53ea
 	.uleb128 0x2
@@ -5114,7 +5125,7 @@ Ldebug_info0:
 	.uleb128 0x23
 	.ascii "TEST_Start\0"
 	.byte	0x1
-	.byte	0x33
+	.byte	0x34
 	.byte	0xd
 	.long	LFB4216
 	.long	LFE4216-LFB4216
@@ -5123,7 +5134,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "env\0"
 	.byte	0x1
-	.byte	0x33
+	.byte	0x34
 	.byte	0x2f
 	.long	0x53ea
 	.uleb128 0x2
@@ -5682,6 +5693,7 @@ LASF0:
 	.def	_TEST_op_Add;	.scl	2;	.type	32;	.endef
 	.def	_TEST_op_Subtruct;	.scl	2;	.type	32;	.endef
 	.def	_TEST_op_Multiply;	.scl	2;	.type	32;	.endef
+	.def	_TEST_op_Shift;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Initialize@4;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"DoDebug@4\""

@@ -10,6 +10,7 @@ TEST_Functions:
 	.quad	TEST_op_Add
 	.quad	TEST_op_Subtruct
 	.quad	TEST_op_Multiply
+	.quad	TEST_op_Shift
 	.globl	test_total_count
 	.bss
 	.align 4
@@ -21,14 +22,16 @@ test_ok_count:
 	.space 4
 	.section .rdata,"dr"
 .LC0:
-	.ascii "\203e\203X\203g\212J\216n\12\0"
+	.ascii "\343\203\206\343\202\271\343\203\210\351\226\213\345\247\213\12\0"
+.LC1:
+	.ascii "start test\12\0"
 	.text
 	.def	TEST_Start;	.scl	3;	.type	32;	.endef
 	.seh_proc	TEST_Start
 TEST_Start:
 .LFB4345:
 	.file 1 "debug.c"
-	.loc 1 52 1
+	.loc 1 53 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -41,18 +44,25 @@ TEST_Start:
 	.seh_stackalloc	32
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 1 53 22
+	.loc 1 54 22
 	movl	$0, test_total_count(%rip)
-	.loc 1 54 19
+	.loc 1 55 19
 	movl	$0, test_ok_count(%rip)
-	.loc 1 55 8
+	.loc 1 56 8
 	movq	16(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 55 5
+	.loc 1 56 5
 	leaq	.LC0(%rip), %rcx
 	call	*%rax
 .LVL0:
-	.loc 1 56 1
+	.loc 1 57 8
+	movq	16(%rbp), %rax
+	movq	(%rax), %rax
+	.loc 1 57 5
+	leaq	.LC1(%rip), %rcx
+	call	*%rax
+.LVL1:
+	.loc 1 58 1
 	nop
 	addq	$32, %rsp
 	popq	%rbp
@@ -64,14 +74,14 @@ TEST_Start:
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC1:
-	.ascii "\203e\203X\203g\212\256\227\271\201B\215\200\226\332\220\224=%d, OK\215\200\226\332\220\224=%d, NG\215\200\226\332\220\224=%d, OK\227\246=%d%%, NG\227\246=%d%%\12\0"
+.LC2:
+	.ascii "\343\203\206\343\202\271\343\203\210\345\256\214\344\272\206\343\200\202\351\240\205\347\233\256\346\225\260=%d, OK\351\240\205\347\233\256\346\225\260=%d, NG\351\240\205\347\233\256\346\225\260=%d, OK\347\216\207=%d%%, NG\347\216\207=%d%%\12\0"
 	.text
 	.def	TEST_End;	.scl	3;	.type	32;	.endef
 	.seh_proc	TEST_End
 TEST_End:
 .LFB4346:
-	.loc 1 59 1
+	.loc 1 61 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -84,25 +94,25 @@ TEST_End:
 	.seh_stackalloc	48
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 1 60 8
+	.loc 1 62 8
 	movq	16(%rbp), %rax
 	movq	(%rax), %r10
-	.loc 1 65 32
+	.loc 1 67 32
 	movl	test_total_count(%rip), %edx
 	movl	test_ok_count(%rip), %eax
 	subl	%eax, %edx
 	movl	%edx, %eax
-	.loc 1 65 49
+	.loc 1 67 49
 	imull	$100, %eax, %eax
-	.loc 1 60 5
+	.loc 1 62 5
 	movl	test_total_count(%rip), %ecx
 	cltd
 	idivl	%ecx
 	movl	%eax, %r9d
-	.loc 1 64 28
+	.loc 1 66 28
 	movl	test_ok_count(%rip), %eax
 	imull	$100, %eax, %eax
-	.loc 1 60 5
+	.loc 1 62 5
 	movl	test_total_count(%rip), %ecx
 	cltd
 	idivl	%ecx
@@ -118,10 +128,10 @@ TEST_End:
 	movl	%ecx, %r9d
 	movl	%edx, %r8d
 	movl	%eax, %edx
-	leaq	.LC1(%rip), %rcx
+	leaq	.LC2(%rip), %rcx
 	call	*%r10
-.LVL1:
-	.loc 1 66 1
+.LVL2:
+	.loc 1 68 1
 	nop
 	addq	$48, %rsp
 	popq	%rbp
@@ -132,10 +142,10 @@ TEST_End:
 .LFE4346:
 	.seh_endproc
 	.section .rdata,"dr"
-.LC2:
+.LC3:
 	.ascii "PMC_Initialize failed\0"
 	.align 8
-.LC3:
+.LC4:
 	.ascii "PMC_Initialize: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\12\0"
 	.text
 	.globl	DoDebug
@@ -143,7 +153,7 @@ TEST_End:
 	.seh_proc	DoDebug
 DoDebug:
 .LFB4347:
-	.loc 1 69 1
+	.loc 1 71 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -156,102 +166,102 @@ DoDebug:
 	.seh_stackalloc	80
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 1 71 38
+	.loc 1 73 38
 	movzbl	-28(%rbp), %eax
 	andl	$-2, %eax
 	movb	%al, -28(%rbp)
-	.loc 1 72 28
+	.loc 1 74 28
 	leaq	-28(%rbp), %rax
 	movq	%rax, %rcx
 	call	PMC_Initialize
 	movq	%rax, -24(%rbp)
-	.loc 1 73 8
+	.loc 1 75 8
 	cmpq	$0, -24(%rbp)
 	jne	.L4
-	.loc 1 75 13
+	.loc 1 77 13
 	movq	16(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 75 10
-	leaq	.LC2(%rip), %rcx
+	.loc 1 77 10
+	leaq	.LC3(%rip), %rcx
 	call	*%rax
-.LVL2:
+.LVL3:
 	jmp	.L3
 .L4:
-	.loc 1 78 8
+	.loc 1 80 8
 	movq	16(%rbp), %rax
 	movq	(%rax), %r10
-	.loc 1 83 16
+	.loc 1 85 16
 	movq	-24(%rbp), %rax
 	movzbl	(%rax), %eax
 	shrb	$4, %al
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %ecx
-	.loc 1 82 16
+	.loc 1 84 16
 	movq	-24(%rbp), %rax
 	movzbl	(%rax), %eax
 	shrb	$3, %al
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %edx
-	.loc 1 81 16
+	.loc 1 83 16
 	movq	-24(%rbp), %rax
 	movzbl	(%rax), %eax
 	shrb	$2, %al
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %r9d
-	.loc 1 80 16
+	.loc 1 82 16
 	movq	-24(%rbp), %rax
 	movzbl	(%rax), %eax
 	shrb	%al
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %r8d
-	.loc 1 79 16
+	.loc 1 81 16
 	movq	-24(%rbp), %rax
 	movzbl	(%rax), %eax
 	andl	$1, %eax
-	.loc 1 78 5
+	.loc 1 80 5
 	movzbl	%al, %eax
 	movl	%ecx, 40(%rsp)
 	movl	%edx, 32(%rsp)
 	movl	%eax, %edx
-	leaq	.LC3(%rip), %rcx
+	leaq	.LC4(%rip), %rcx
 	call	*%r10
-.LVL3:
-	.loc 1 85 5
+.LVL4:
+	.loc 1 87 5
 	movq	16(%rbp), %rcx
 	call	TEST_Start
-	.loc 1 86 12
+	.loc 1 88 12
 	leaq	TEST_Functions(%rip), %rax
 	movq	%rax, -8(%rbp)
-	.loc 1 87 12
-	movq	$5, -16(%rbp)
-	.loc 1 89 11
+	.loc 1 89 12
+	movq	$6, -16(%rbp)
+	.loc 1 91 11
 	jmp	.L6
 .L7:
-	.loc 1 91 10
+	.loc 1 93 10
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	movq	-24(%rbp), %rdx
 	movq	16(%rbp), %rcx
 	call	*%rax
-.LVL4:
-	.loc 1 92 9
+.LVL5:
+	.loc 1 94 9
 	subq	$1, -16(%rbp)
-	.loc 1 93 9
+	.loc 1 95 9
 	addq	$8, -8(%rbp)
 .L6:
-	.loc 1 89 11
+	.loc 1 91 11
 	cmpq	$0, -16(%rbp)
 	jne	.L7
-	.loc 1 96 5
+	.loc 1 98 5
 	movq	16(%rbp), %rcx
 	call	TEST_End
 	nop
 .L3:
-	.loc 1 97 1
+	.loc 1 99 1
 	addq	$80, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -261,17 +271,18 @@ DoDebug:
 .LFE4347:
 	.seh_endproc
 	.section .rdata,"dr"
-.LC4:
-	.ascii "***NG***\0"
 .LC5:
-	.ascii "\203e\203X\203g No.%d: %s => %s (%s)\12\0"
+	.ascii "***NG***\0"
+	.align 8
+.LC6:
+	.ascii "\343\203\206\343\202\271\343\203\210 No.%d: %s => %s (%s)\12\0"
 	.text
 	.globl	TEST_Assert
 	.def	TEST_Assert;	.scl	2;	.type	32;	.endef
 	.seh_proc	TEST_Assert
 TEST_Assert:
 .LFB4348:
-	.loc 1 101 1
+	.loc 1 103 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -287,34 +298,34 @@ TEST_Assert:
 	movq	%rdx, 24(%rbp)
 	movl	%r8d, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 1 102 8
+	.loc 1 104 8
 	cmpl	$0, 32(%rbp)
 	je	.L9
-	.loc 1 105 9
+	.loc 1 107 9
 	movl	test_ok_count(%rip), %eax
 	addl	$1, %eax
 	movl	%eax, test_ok_count(%rip)
 	jmp	.L10
 .L9:
-	.loc 1 109 12
+	.loc 1 111 12
 	movq	16(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 1 109 9
+	.loc 1 111 9
 	movl	test_total_count(%rip), %edx
 	addl	$1, %edx
 	movq	24(%rbp), %r8
 	movq	40(%rbp), %rcx
 	movq	%rcx, 32(%rsp)
-	leaq	.LC4(%rip), %r9
-	leaq	.LC5(%rip), %rcx
+	leaq	.LC5(%rip), %r9
+	leaq	.LC6(%rip), %rcx
 	call	*%rax
-.LVL5:
+.LVL6:
 .L10:
-	.loc 1 111 5
+	.loc 1 113 5
 	movl	test_total_count(%rip), %eax
 	addl	$1, %eax
 	movl	%eax, test_total_count(%rip)
-	.loc 1 112 1
+	.loc 1 114 1
 	nop
 	addq	$48, %rsp
 	popq	%rbp
@@ -4934,7 +4945,7 @@ TEST_Assert:
 	.long	0x53d8
 	.uleb128 0xf
 	.long	0xd8
-	.byte	0x4
+	.byte	0x5
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
@@ -4964,7 +4975,7 @@ TEST_Assert:
 	.uleb128 0x20
 	.ascii "test_total_count\0"
 	.byte	0x1
-	.byte	0x2f
+	.byte	0x30
 	.byte	0x5
 	.long	0x12e
 	.uleb128 0x9
@@ -4973,7 +4984,7 @@ TEST_Assert:
 	.uleb128 0x20
 	.ascii "test_ok_count\0"
 	.byte	0x1
-	.byte	0x30
+	.byte	0x31
 	.byte	0x5
 	.long	0x12e
 	.uleb128 0x9
@@ -4982,7 +4993,7 @@ TEST_Assert:
 	.uleb128 0x21
 	.ascii "TEST_Assert\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x6
 	.quad	.LFB4348
 	.quad	.LFE4348-.LFB4348
@@ -4992,7 +5003,7 @@ TEST_Assert:
 	.uleb128 0x22
 	.ascii "env\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x29
 	.long	0x53ee
 	.uleb128 0x2
@@ -5001,7 +5012,7 @@ TEST_Assert:
 	.uleb128 0x22
 	.ascii "test_name\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x3a
 	.long	0x539e
 	.uleb128 0x2
@@ -5010,7 +5021,7 @@ TEST_Assert:
 	.uleb128 0x22
 	.ascii "condition\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x4a
 	.long	0x5de
 	.uleb128 0x2
@@ -5019,7 +5030,7 @@ TEST_Assert:
 	.uleb128 0x22
 	.ascii "reason\0"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x66
 	.byte	0x61
 	.long	0x539e
 	.uleb128 0x2
@@ -5029,7 +5040,7 @@ TEST_Assert:
 	.uleb128 0x21
 	.ascii "DoDebug\0"
 	.byte	0x1
-	.byte	0x44
+	.byte	0x46
 	.byte	0x21
 	.quad	.LFB4347
 	.quad	.LFE4347-.LFB4347
@@ -5039,7 +5050,7 @@ TEST_Assert:
 	.uleb128 0x22
 	.ascii "env\0"
 	.byte	0x1
-	.byte	0x44
+	.byte	0x46
 	.byte	0x40
 	.long	0x53ee
 	.uleb128 0x2
@@ -5048,7 +5059,7 @@ TEST_Assert:
 	.uleb128 0x1f
 	.ascii "conf\0"
 	.byte	0x1
-	.byte	0x46
+	.byte	0x48
 	.byte	0x1c
 	.long	0x4cde
 	.uleb128 0x2
@@ -5057,7 +5068,7 @@ TEST_Assert:
 	.uleb128 0x1f
 	.ascii "ep\0"
 	.byte	0x1
-	.byte	0x48
+	.byte	0x4a
 	.byte	0x17
 	.long	0x53f4
 	.uleb128 0x2
@@ -5066,7 +5077,7 @@ TEST_Assert:
 	.uleb128 0x1f
 	.ascii "tp\0"
 	.byte	0x1
-	.byte	0x56
+	.byte	0x58
 	.byte	0xc
 	.long	0x5541
 	.uleb128 0x2
@@ -5075,7 +5086,7 @@ TEST_Assert:
 	.uleb128 0x1f
 	.ascii "t_count\0"
 	.byte	0x1
-	.byte	0x57
+	.byte	0x59
 	.byte	0xc
 	.long	0xc9
 	.uleb128 0x2
@@ -5088,7 +5099,7 @@ TEST_Assert:
 	.uleb128 0x23
 	.ascii "TEST_End\0"
 	.byte	0x1
-	.byte	0x3a
+	.byte	0x3c
 	.byte	0xd
 	.quad	.LFB4346
 	.quad	.LFE4346-.LFB4346
@@ -5098,7 +5109,7 @@ TEST_Assert:
 	.uleb128 0x22
 	.ascii "env\0"
 	.byte	0x1
-	.byte	0x3a
+	.byte	0x3c
 	.byte	0x2d
 	.long	0x53ee
 	.uleb128 0x2
@@ -5108,7 +5119,7 @@ TEST_Assert:
 	.uleb128 0x24
 	.ascii "TEST_Start\0"
 	.byte	0x1
-	.byte	0x33
+	.byte	0x34
 	.byte	0xd
 	.quad	.LFB4345
 	.quad	.LFE4345-.LFB4345
@@ -5117,7 +5128,7 @@ TEST_Assert:
 	.uleb128 0x22
 	.ascii "env\0"
 	.byte	0x1
-	.byte	0x33
+	.byte	0x34
 	.byte	0x2f
 	.long	0x53ee
 	.uleb128 0x2
@@ -5681,6 +5692,7 @@ TEST_Assert:
 	.def	TEST_op_Add;	.scl	2;	.type	32;	.endef
 	.def	TEST_op_Subtruct;	.scl	2;	.type	32;	.endef
 	.def	TEST_op_Multiply;	.scl	2;	.type	32;	.endef
+	.def	TEST_op_Shift;	.scl	2;	.type	32;	.endef
 	.def	PMC_Initialize;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"DoDebug\""

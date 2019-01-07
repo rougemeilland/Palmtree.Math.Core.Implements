@@ -7,10 +7,12 @@ LC0:
 LC1:
 	.ascii "PMC_Initialize: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\12\0"
 LC2:
-	.ascii "\203e\203X\203g\212J\216n\12\0"
-	.align 4
+	.ascii "\343\203\206\343\202\271\343\203\210\351\226\213\345\247\213\12\0"
 LC3:
-	.ascii "\203e\203X\203g\212\256\227\271\201B\215\200\226\332\220\224=%d, OK\215\200\226\332\220\224=%d, NG\215\200\226\332\220\224=%d, OK\227\246=%d%%, NG\227\246=%d%%\12\0"
+	.ascii "start test\12\0"
+	.align 4
+LC4:
+	.ascii "\343\203\206\343\202\271\343\203\210\345\256\214\344\272\206\343\200\202\351\240\205\347\233\256\346\225\260=%d, OK\351\240\205\347\233\256\346\225\260=%d, NG\351\240\205\347\233\256\346\225\260=%d, OK\347\216\207=%d%%, NG\347\216\207=%d%%\12\0"
 	.text
 	.p2align 4,,15
 	.globl	_DoDebug@4
@@ -62,21 +64,23 @@ LFB5466:
 	andl	$1, %eax
 	movl	%eax, 4(%esp)
 	call	*(%edi)
-	movl	(%edi), %eax
 	movl	$LC2, (%esp)
 	movl	$0, _test_total_count
 	movl	$0, _test_ok_count
-	call	*%eax
+	call	*(%edi)
+	movl	$LC3, (%esp)
+	call	*(%edi)
+	.p2align 4,,10
 L4:
 	movl	%esi, 4(%esp)
 	movl	%edi, (%esp)
 	call	*(%ebx)
 	addl	$4, %ebx
-	cmpl	$_TEST_Functions+20, %ebx
+	cmpl	$_TEST_Functions+24, %ebx
 	jne	L4
 	movl	_test_total_count, %ecx
 	movl	_test_ok_count, %ebx
-	movl	$LC3, (%esp)
+	movl	$LC4, (%esp)
 	movl	%ecx, %esi
 	movl	%ebx, 8(%esp)
 	subl	%ebx, %esi
@@ -124,10 +128,11 @@ L8:
 	.cfi_endproc
 LFE5466:
 	.section .rdata,"dr"
-LC4:
-	.ascii "***NG***\0"
 LC5:
-	.ascii "\203e\203X\203g No.%d: %s => %s (%s)\12\0"
+	.ascii "***NG***\0"
+	.align 4
+LC6:
+	.ascii "\343\203\206\343\202\271\343\203\210 No.%d: %s => %s (%s)\12\0"
 	.text
 	.p2align 4,,15
 	.globl	_TEST_Assert
@@ -154,10 +159,10 @@ L10:
 	movl	60(%esp), %edx
 	movl	%eax, 4(%esp)
 	movl	48(%esp), %eax
-	movl	$LC4, 12(%esp)
+	movl	$LC5, 12(%esp)
 	movl	%edx, 16(%esp)
 	movl	52(%esp), %edx
-	movl	$LC5, (%esp)
+	movl	$LC6, (%esp)
 	movl	%edx, 8(%esp)
 	call	*(%eax)
 	movl	_test_total_count, %eax
@@ -185,6 +190,7 @@ _TEST_Functions:
 	.long	_TEST_op_Add
 	.long	_TEST_op_Subtruct
 	.long	_TEST_op_Multiply
+	.long	_TEST_op_Shift
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_PMC_Initialize@4;	.scl	2;	.type	32;	.endef
 	.def	_TEST_generic;	.scl	2;	.type	32;	.endef
@@ -192,5 +198,6 @@ _TEST_Functions:
 	.def	_TEST_op_Add;	.scl	2;	.type	32;	.endef
 	.def	_TEST_op_Subtruct;	.scl	2;	.type	32;	.endef
 	.def	_TEST_op_Multiply;	.scl	2;	.type	32;	.endef
+	.def	_TEST_op_Shift;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"DoDebug@4\""
