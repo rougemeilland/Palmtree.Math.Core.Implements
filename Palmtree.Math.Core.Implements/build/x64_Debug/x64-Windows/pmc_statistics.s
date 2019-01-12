@@ -8,7 +8,7 @@
 	.def	PMC_TraceStatistics;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_TraceStatistics
 PMC_TraceStatistics:
-.LFB4344:
+.LFB4357:
 	.file 1 "pmc_statistics.c"
 	.loc 1 41 1
 	.cfi_startproc
@@ -59,13 +59,13 @@ PMC_TraceStatistics:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4344:
+.LFE4357:
 	.seh_endproc
 	.globl	PMC_GetStatisticsInfo
 	.def	PMC_GetStatisticsInfo;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_GetStatisticsInfo
 PMC_GetStatisticsInfo:
-.LFB4345:
+.LFB4358:
 	.loc 1 63 1
 	.cfi_startproc
 	pushq	%rbp
@@ -104,13 +104,13 @@ PMC_GetStatisticsInfo:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4345:
+.LFE4358:
 	.seh_endproc
 	.globl	IncrementDIV32Counter
 	.def	IncrementDIV32Counter;	.scl	2;	.type	32;	.endef
 	.seh_proc	IncrementDIV32Counter
 IncrementDIV32Counter:
-.LFB4346:
+.LFB4359:
 	.loc 1 72 1
 	.cfi_startproc
 	pushq	%rbp
@@ -142,13 +142,13 @@ IncrementDIV32Counter:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4346:
+.LFE4359:
 	.seh_endproc
 	.globl	IncrementDIV64Counter
 	.def	IncrementDIV64Counter;	.scl	2;	.type	32;	.endef
 	.seh_proc	IncrementDIV64Counter
 IncrementDIV64Counter:
-.LFB4347:
+.LFB4360:
 	.loc 1 78 1
 	.cfi_startproc
 	pushq	%rbp
@@ -179,13 +179,13 @@ IncrementDIV64Counter:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4347:
+.LFE4360:
 	.seh_endproc
 	.globl	IncrementMULTI32Counter
 	.def	IncrementMULTI32Counter;	.scl	2;	.type	32;	.endef
 	.seh_proc	IncrementMULTI32Counter
 IncrementMULTI32Counter:
-.LFB4348:
+.LFB4361:
 	.loc 1 84 1
 	.cfi_startproc
 	pushq	%rbp
@@ -216,13 +216,13 @@ IncrementMULTI32Counter:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4348:
+.LFE4361:
 	.seh_endproc
 	.globl	IncrementMULTI64Counter
 	.def	IncrementMULTI64Counter;	.scl	2;	.type	32;	.endef
 	.seh_proc	IncrementMULTI64Counter
 IncrementMULTI64Counter:
-.LFB4349:
+.LFB4362:
 	.loc 1 90 1
 	.cfi_startproc
 	pushq	%rbp
@@ -253,7 +253,7 @@ IncrementMULTI64Counter:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4349:
+.LFE4362:
 	.seh_endproc
 .Letext0:
 	.file 3 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h"
@@ -4236,20 +4236,20 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "_UINT64_T\0"
 	.byte	0x1f
-	.byte	0x4d
+	.byte	0x4f
 	.byte	0x12
 	.long	0x4c29
 	.uleb128 0x13
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1f
-	.byte	0x52
+	.byte	0x54
 	.byte	0x10
 	.long	0x4c9b
 	.uleb128 0x1d
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1f
-	.byte	0x54
+	.byte	0x56
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4260,41 +4260,41 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1f
-	.byte	0x55
+	.byte	0x57
 	.byte	0x3
 	.long	0x4c4c
 	.uleb128 0x13
 	.ascii "__tag_PMC_STATISTICS_INFO\0"
 	.byte	0x10
 	.byte	0x1f
-	.byte	0x5a
+	.byte	0x5c
 	.byte	0x10
 	.long	0x4d36
 	.uleb128 0x14
 	.ascii "COUNT_MULTI64\0"
 	.byte	0x1f
-	.byte	0x5c
+	.byte	0x5e
 	.byte	0xa
 	.long	0x139
 	.byte	0
 	.uleb128 0x14
 	.ascii "COUNT_MULTI32\0"
 	.byte	0x1f
-	.byte	0x5d
+	.byte	0x5f
 	.byte	0xa
 	.long	0x139
 	.byte	0x4
 	.uleb128 0x14
 	.ascii "COUNT_DIV64\0"
 	.byte	0x1f
-	.byte	0x5e
+	.byte	0x60
 	.byte	0xa
 	.long	0x139
 	.byte	0x8
 	.uleb128 0x14
 	.ascii "COUNT_DIV32\0"
 	.byte	0x1f
-	.byte	0x5f
+	.byte	0x61
 	.byte	0xa
 	.long	0x139
 	.byte	0xc
@@ -4302,7 +4302,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "PMC_STATISTICS_INFO\0"
 	.byte	0x1f
-	.byte	0x60
+	.byte	0x62
 	.byte	0x3
 	.long	0x4cba
 	.uleb128 0x7
@@ -4311,48 +4311,48 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x20
-	.byte	0x35
+	.byte	0x33
 	.byte	0x13
 	.long	0x4c3a
 	.uleb128 0x13
 	.ascii "__tag_NUMBER_HEADER\0"
 	.byte	0x38
 	.byte	0x20
-	.byte	0x51
+	.byte	0x57
 	.byte	0x10
 	.long	0x4e7e
 	.uleb128 0x14
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x20
-	.byte	0x53
+	.byte	0x59
 	.byte	0x11
 	.long	0x4d58
 	.byte	0
 	.uleb128 0x14
 	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x20
-	.byte	0x54
+	.byte	0x5a
 	.byte	0x11
 	.long	0x4d58
 	.byte	0x8
 	.uleb128 0x14
 	.ascii "HASH_CODE\0"
 	.byte	0x20
-	.byte	0x55
+	.byte	0x5b
 	.byte	0x11
 	.long	0x4d58
 	.byte	0x10
 	.uleb128 0x14
 	.ascii "LEAST_ZERO_BITS_COUNT\0"
 	.byte	0x20
-	.byte	0x56
+	.byte	0x5c
 	.byte	0x11
 	.long	0x4d58
 	.byte	0x18
 	.uleb128 0x1d
 	.ascii "IS_STATIC\0"
 	.byte	0x20
-	.byte	0x57
+	.byte	0x5d
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4362,7 +4362,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x1d
 	.ascii "IS_ZERO\0"
 	.byte	0x20
-	.byte	0x58
+	.byte	0x5e
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4372,7 +4372,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x1d
 	.ascii "IS_ONE\0"
 	.byte	0x20
-	.byte	0x59
+	.byte	0x5f
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4382,7 +4382,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x1d
 	.ascii "IS_EVEN\0"
 	.byte	0x20
-	.byte	0x5a
+	.byte	0x60
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4392,7 +4392,7 @@ IncrementMULTI64Counter:
 	.uleb128 0x1d
 	.ascii "IS_POWER_OF_TWO\0"
 	.byte	0x20
-	.byte	0x5b
+	.byte	0x61
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4402,14 +4402,14 @@ IncrementMULTI64Counter:
 	.uleb128 0x14
 	.ascii "BLOCK_COUNT\0"
 	.byte	0x20
-	.byte	0x5d
+	.byte	0x63
 	.byte	0xc
 	.long	0xcd
 	.byte	0x28
 	.uleb128 0x14
 	.ascii "BLOCK\0"
 	.byte	0x20
-	.byte	0x61
+	.byte	0x67
 	.byte	0x12
 	.long	0x4e7e
 	.byte	0x30
@@ -4420,19 +4420,19 @@ IncrementMULTI64Counter:
 	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x20
-	.byte	0x62
+	.byte	0x68
 	.byte	0x3
 	.long	0x4d6c
 	.uleb128 0x16
 	.ascii "configuration_info\0"
 	.byte	0x20
-	.byte	0x69
+	.byte	0x6f
 	.byte	0x1f
 	.long	0x4c9b
 	.uleb128 0x16
 	.ascii "number_zero\0"
 	.byte	0x20
-	.byte	0x6c
+	.byte	0x72
 	.byte	0x16
 	.long	0x4e84
 	.uleb128 0x1e
@@ -4458,8 +4458,8 @@ IncrementMULTI64Counter:
 	.byte	0x1
 	.byte	0x59
 	.byte	0x6
-	.quad	.LFB4349
-	.quad	.LFE4349-.LFB4349
+	.quad	.LFB4362
+	.quad	.LFE4362-.LFB4362
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4f5f
@@ -4482,8 +4482,8 @@ IncrementMULTI64Counter:
 	.byte	0x1
 	.byte	0x53
 	.byte	0x6
-	.quad	.LFB4348
-	.quad	.LFE4348-.LFB4348
+	.quad	.LFB4361
+	.quad	.LFE4361-.LFB4361
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4fb3
@@ -4506,8 +4506,8 @@ IncrementMULTI64Counter:
 	.byte	0x1
 	.byte	0x4d
 	.byte	0x6
-	.quad	.LFB4347
-	.quad	.LFE4347-.LFB4347
+	.quad	.LFB4360
+	.quad	.LFE4360-.LFB4360
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5005
@@ -4530,8 +4530,8 @@ IncrementMULTI64Counter:
 	.byte	0x1
 	.byte	0x47
 	.byte	0x6
-	.quad	.LFB4346
-	.quad	.LFE4346-.LFB4346
+	.quad	.LFB4359
+	.quad	.LFE4359-.LFB4359
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5057
@@ -4554,8 +4554,8 @@ IncrementMULTI64Counter:
 	.byte	0x1
 	.byte	0x3e
 	.byte	0x6
-	.quad	.LFB4345
-	.quad	.LFE4345-.LFB4345
+	.quad	.LFB4358
+	.quad	.LFE4358-.LFB4358
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x509a
@@ -4574,8 +4574,8 @@ IncrementMULTI64Counter:
 	.byte	0x1
 	.byte	0x28
 	.byte	0x6
-	.quad	.LFB4344
-	.quad	.LFE4344-.LFB4344
+	.quad	.LFB4357
+	.quad	.LFE4357-.LFB4357
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x50d7

@@ -42,6 +42,7 @@ static void (*TEST_Functions[])(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep
     TEST_op_Add,
     TEST_op_Subtruct,
     TEST_op_Multiply,
+    TEST_op_DivRem,
     TEST_op_Shift,
 };
 
@@ -54,7 +55,6 @@ static void TEST_Start(PMC_DEBUG_ENVIRONMENT *env)
     test_total_count = 0;
     test_ok_count = 0;
     env->log("テスト開始\n");
-    env->log("start test\n");
 }
 
 static void TEST_End(PMC_DEBUG_ENVIRONMENT *env)
@@ -67,23 +67,8 @@ static void TEST_End(PMC_DEBUG_ENVIRONMENT *env)
              (test_total_count - test_ok_count) * 100 / test_total_count);
 }
 
-__declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
+static void DoTest(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep)
 {
-    PMC_CONFIGURATION_INFO conf;
-    conf.MEMORY_VERIFICATION_ENABLED = FALSE;
-    PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
-    if (ep == NULL)
-    {
-         env->log("PMC_Initialize failed");
-         return;
-    }
-    env->log("PMC_Initialize: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
-             ep->PROCESSOR_FEATURE_POPCNT,
-             ep->PROCESSOR_FEATURE_ADX,
-             ep->PROCESSOR_FEATURE_BMI1,
-             ep->PROCESSOR_FEATURE_BMI2,
-             ep->PROCESSOR_FEATURE_ABM);
-
     TEST_Start(env);
     void(**tp)(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep) = TEST_Functions;
     size_t t_count = countof(TEST_Functions);
@@ -96,6 +81,46 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
     }
 
     TEST_End(env);
+}
+
+__declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
+{
+#ifdef _DEBUG
+    PMC_CONFIGURATION_INFO conf;
+    conf.MEMORY_VERIFICATION_ENABLED = FALSE;
+    PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
+    if (ep == NULL)
+    {
+         env->log("PMC_Initialize failed");
+         return;
+    }
+#ifdef _M_IX86
+    char* platform = "x86";
+#elif defined(_M_IX64)
+    char* platform = "x64";
+#else
+#error unknown platform
+#endif
+#ifdef _MSC_VER
+    char* compiler = "MSC";
+#elif defined(__GNUC__)
+    char* compiler = "GNUC";
+#else
+#error unknown platform
+#endif
+
+    env->log("PLATFORM: %s\n", platform);
+    env->log("COMPILER: %s\n", compiler);
+    env->log("CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
+             ep->PROCESSOR_FEATURE_POPCNT,
+             ep->PROCESSOR_FEATURE_ADX,
+             ep->PROCESSOR_FEATURE_BMI1,
+             ep->PROCESSOR_FEATURE_BMI2,
+             ep->PROCESSOR_FEATURE_ABM);
+
+    //CalculateCriticalDataOfDivision(env);
+    DoTest(env, ep);
+#endif
 }
 
 

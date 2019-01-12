@@ -162,12 +162,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CALC_divrem_critical.c" />
     <ClCompile Include="debug.c" />
     <ClCompile Include="dllmain.c" />
     <ClCompile Include="memory.c" />
-    <ClCompile Include="nbproject\private\cpp_standard_headers_indexer.cpp" />
-    <ClCompile Include="nbproject\private\c_standard_headers_indexer.c" />
     <ClCompile Include="pmc_add.c" />
+    <ClCompile Include="pmc_divrem.c" />
     <ClCompile Include="pmc_from.c" />
     <ClCompile Include="pmc_initialize.c" />
     <ClCompile Include="pmc_multiply.c" />
@@ -177,6 +177,7 @@
     <ClCompile Include="pmc_to.c" />
     <ClCompile Include="TEST_generic.c" />
     <ClCompile Include="TEST_op_Add.c" />
+    <ClCompile Include="TEST_op_DivRem.c" />
     <ClCompile Include="TEST_op_From_To.c" />
     <ClCompile Include="TEST_op_Multiply.c" />
     <ClCompile Include="TEST_op_Shift.c" />

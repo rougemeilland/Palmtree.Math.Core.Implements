@@ -19,7 +19,7 @@ From_I_Imp:
 	je	.L2
 	movl	$31, %eax
 /APP
- # 553 "pmc_internal.h" 1
+ # 775 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP
@@ -27,6 +27,7 @@ From_I_Imp:
 	movl	$32, %edx
 	subq	%rax, %rdx
 .L2:
+	xorl	%r8d, %r8d
 	movq	%rsi, %rcx
 	call	AllocateNumber
 	testl	%eax, %eax
@@ -62,12 +63,13 @@ From_L_Imp:
 	movq	%rcx, %rbx
 	je	.L8
 /APP
- # 597 "pmc_internal.h" 1
+ # 819 "pmc_internal.h" 1
 	bsrq %rcx, %rdx
  # 0 "" 2
 /NO_APP
 	addq	$1, %rdx
 .L8:
+	xorl	%r8d, %r8d
 	movq	%rsi, %rcx
 	call	AllocateNumber
 	testl	%eax, %eax
@@ -199,7 +201,7 @@ PMC_From_B:
 	movl	$7, %ecx
 	salq	$3, %rdx
 /APP
- # 538 "pmc_internal.h" 1
+ # 760 "pmc_internal.h" 1
 	bsrl %eax, %eax
  # 0 "" 2
 /NO_APP
@@ -209,6 +211,7 @@ PMC_From_B:
 	subq	%rax, %rbx
 	je	.L21
 	leaq	56(%rsp), %rcx
+	xorl	%r8d, %r8d
 	movq	%rbx, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax

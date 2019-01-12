@@ -35,8 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/CALC_divrem_critical.o \
 	${OBJECTDIR}/TEST_generic.o \
 	${OBJECTDIR}/TEST_op_Add.o \
+	${OBJECTDIR}/TEST_op_DivRem.o \
 	${OBJECTDIR}/TEST_op_From_To.o \
 	${OBJECTDIR}/TEST_op_Multiply.o \
 	${OBJECTDIR}/TEST_op_Shift.o \
@@ -45,6 +47,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/dllmain.o \
 	${OBJECTDIR}/memory.o \
 	${OBJECTDIR}/pmc_add.o \
+	${OBJECTDIR}/pmc_divrem.o \
 	${OBJECTDIR}/pmc_from.o \
 	${OBJECTDIR}/pmc_initialize.o \
 	${OBJECTDIR}/pmc_multiply.o \
@@ -78,90 +81,105 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_D
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -mwindows -nostdlib -Wl,-eDllMain -shared
 
+${OBJECTDIR}/CALC_divrem_critical.o: CALC_divrem_critical.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CALC_divrem_critical.o CALC_divrem_critical.c
+
 ${OBJECTDIR}/TEST_generic.o: TEST_generic.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_generic.o TEST_generic.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_generic.o TEST_generic.c
 
 ${OBJECTDIR}/TEST_op_Add.o: TEST_op_Add.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Add.o TEST_op_Add.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Add.o TEST_op_Add.c
+
+${OBJECTDIR}/TEST_op_DivRem.o: TEST_op_DivRem.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_DivRem.o TEST_op_DivRem.c
 
 ${OBJECTDIR}/TEST_op_From_To.o: TEST_op_From_To.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_From_To.o TEST_op_From_To.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_From_To.o TEST_op_From_To.c
 
 ${OBJECTDIR}/TEST_op_Multiply.o: TEST_op_Multiply.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Multiply.o TEST_op_Multiply.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Multiply.o TEST_op_Multiply.c
 
 ${OBJECTDIR}/TEST_op_Shift.o: TEST_op_Shift.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Shift.o TEST_op_Shift.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Shift.o TEST_op_Shift.c
 
 ${OBJECTDIR}/TEST_op_Subtruct.o: TEST_op_Subtruct.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Subtruct.o TEST_op_Subtruct.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Subtruct.o TEST_op_Subtruct.c
 
 ${OBJECTDIR}/debug.o: debug.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/debug.o debug.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/debug.o debug.c
 
 ${OBJECTDIR}/dllmain.o: dllmain.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dllmain.o dllmain.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/dllmain.o dllmain.c
 
 ${OBJECTDIR}/memory.o: memory.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/memory.o memory.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/memory.o memory.c
 
 ${OBJECTDIR}/pmc_add.o: pmc_add.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_add.o pmc_add.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_add.o pmc_add.c
+
+${OBJECTDIR}/pmc_divrem.o: pmc_divrem.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_divrem.o pmc_divrem.c
 
 ${OBJECTDIR}/pmc_from.o: pmc_from.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_from.o pmc_from.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_from.o pmc_from.c
 
 ${OBJECTDIR}/pmc_initialize.o: pmc_initialize.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_initialize.o pmc_initialize.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_initialize.o pmc_initialize.c
 
 ${OBJECTDIR}/pmc_multiply.o: pmc_multiply.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_multiply.o pmc_multiply.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_multiply.o pmc_multiply.c
 
 ${OBJECTDIR}/pmc_shift.o: pmc_shift.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_shift.o pmc_shift.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_shift.o pmc_shift.c
 
 ${OBJECTDIR}/pmc_statistics.o: pmc_statistics.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_statistics.o pmc_statistics.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_statistics.o pmc_statistics.c
 
 ${OBJECTDIR}/pmc_subtruct.o: pmc_subtruct.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_subtruct.o pmc_subtruct.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_subtruct.o pmc_subtruct.c
 
 ${OBJECTDIR}/pmc_to.o: pmc_to.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_to.o pmc_to.c
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_to.o pmc_to.c
 
 # Subprojects
 .build-subprojects:

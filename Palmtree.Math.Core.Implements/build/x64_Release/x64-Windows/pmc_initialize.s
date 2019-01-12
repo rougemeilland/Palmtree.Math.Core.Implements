@@ -99,6 +99,10 @@ PMC_Initialize:
 	call	Initialize_Shift
 	testl	%eax, %eax
 	jne	.L10
+	movq	%rbx, %rcx
+	call	Initialize_DivRem
+	testl	%eax, %eax
+	jne	.L10
 	movzbl	entry_points(%rip), %eax
 	movzbl	44(%rsp), %edx
 	andl	$-32, %eax
@@ -141,14 +145,20 @@ PMC_Initialize:
 	movq	%rax, 136+entry_points(%rip)
 	movq	.refptr.PMC_Multiply_X_X(%rip), %rax
 	movq	%rax, 144+entry_points(%rip)
-	movq	.refptr.PMC_RightShift_X_I(%rip), %rax
+	movq	.refptr.PMC_DivRem_X_I(%rip), %rax
 	movq	%rax, 152+entry_points(%rip)
-	movq	.refptr.PMC_RightShift_X_L(%rip), %rax
+	movq	.refptr.PMC_DivRem_X_L(%rip), %rax
 	movq	%rax, 160+entry_points(%rip)
-	movq	.refptr.PMC_LeftShift_X_I(%rip), %rax
+	movq	.refptr.PMC_DivRem_X_X(%rip), %rax
 	movq	%rax, 168+entry_points(%rip)
-	movq	.refptr.PMC_LeftShift_X_L(%rip), %rax
+	movq	.refptr.PMC_RightShift_X_I(%rip), %rax
+	movq	%rax, 192+entry_points(%rip)
+	movq	.refptr.PMC_RightShift_X_L(%rip), %rax
+	movq	%rax, 200+entry_points(%rip)
+	movq	.refptr.PMC_LeftShift_X_I(%rip), %rax
 	movq	%rax, 176+entry_points(%rip)
+	movq	.refptr.PMC_LeftShift_X_L(%rip), %rax
+	movq	%rax, 184+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
 	jmp	.L1
 	.p2align 4,,10
@@ -183,7 +193,7 @@ PMC_Initialize:
 	jmp	.L7
 	.seh_endproc
 	.comm	configuration_info, 4, 2
-.lcomm entry_points,184,32
+.lcomm entry_points,208,32
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	Initialize_From;	.scl	2;	.type	32;	.endef
@@ -192,6 +202,7 @@ PMC_Initialize:
 	.def	Initialize_Subtruct;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Multiply;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Shift;	.scl	2;	.type	32;	.endef
+	.def	Initialize_DivRem;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize\""
 	.section	.rdata$.refptr.PMC_LeftShift_X_L, "dr"
@@ -214,6 +225,21 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_RightShift_X_I:
 	.quad	PMC_RightShift_X_I
+	.section	.rdata$.refptr.PMC_DivRem_X_X, "dr"
+	.globl	.refptr.PMC_DivRem_X_X
+	.linkonce	discard
+.refptr.PMC_DivRem_X_X:
+	.quad	PMC_DivRem_X_X
+	.section	.rdata$.refptr.PMC_DivRem_X_L, "dr"
+	.globl	.refptr.PMC_DivRem_X_L
+	.linkonce	discard
+.refptr.PMC_DivRem_X_L:
+	.quad	PMC_DivRem_X_L
+	.section	.rdata$.refptr.PMC_DivRem_X_I, "dr"
+	.globl	.refptr.PMC_DivRem_X_I
+	.linkonce	discard
+.refptr.PMC_DivRem_X_I:
+	.quad	PMC_DivRem_X_I
 	.section	.rdata$.refptr.PMC_Multiply_X_X, "dr"
 	.globl	.refptr.PMC_Multiply_X_X
 	.linkonce	discard

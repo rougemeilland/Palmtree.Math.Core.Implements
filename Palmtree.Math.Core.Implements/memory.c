@@ -35,9 +35,11 @@
 
 #pragma region プラットフォーム固有の定義
 #ifdef _M_IX86
-#define	CHECK_CODE_INIT	(0x12345678)
+#define	CHECK_CODE_INIT     (0x84848484)
+#define	DEFAULT_MEMORY_DATA (0xcccccccc)
 #elif defined(_M_X64)
-#define CHECK_CODE_INIT (0x123456789abcdef)
+#define CHECK_CODE_INIT     (0x8484848484848484)
+#define	DEFAULT_MEMORY_DATA (0xcccccccccccccccc)
 #else
 #error unknown platform
 #endif
@@ -154,7 +156,7 @@ static __UNIT_TYPE CalculateCheckCode(__UNIT_TYPE* p, __UNIT_TYPE words)
 
 // 多倍長整数をバイト列として格納するためのメモリ領域を獲得する。
 // 引数には格納可能な多倍長整数の合計ワード数が渡される。
-static __UNIT_TYPE* AllocateBlock(size_t bits)
+__UNIT_TYPE* AllocateBlock(size_t bits, __UNIT_TYPE* allocated_block_words, __UNIT_TYPE* code)
 {
     // 実際に獲得されるメモリ領域は「引数で渡されたワード数+2」のワード数となる。
     // 最初のワードには獲得時に引数で渡されたワード数が格納される。
@@ -167,19 +169,51 @@ static __UNIT_TYPE* AllocateBlock(size_t bits)
 	if (buffer == NULL)
 		return (NULL);
 	buffer[0] = words1;
-	buffer[words1 + 1] = configuration_info.MEMORY_VERIFICATION_ENABLED ? CalculateCheckCode(&buffer[1], words1) : 0;
-	return (&buffer[1]);
+    *allocated_block_words = words1;
+#ifdef _DEBUG
+    // 乱数もどきを生成する。
+#ifdef _M_IX86
+    __UNIT_TYPE r = GetTickCount();
+#elif defined(_M_IX64)
+#ifdef _MSC_VER
+    __UNIT_TYPE r = GetTickCount64();
+#elif defined(__GNUC__)
+    _UINT32_T temp = GetTickCount();
+    __UNIT_TYPE r = _FROMWORDTODWORD(temp, temp);
+#else
+#error unknown compiler
+#endif
+#else
+#error unknown platform
+#endif
+    __UNIT_TYPE check_code = configuration_info.MEMORY_VERIFICATION_ENABLED ? CalculateCheckCode(&buffer[1], words1) : CHECK_CODE_INIT | r;
+#else
+    __UNIT_TYPE check_code = 0;
+#endif
+    buffer[words1 + 1] = check_code ^ (__UNIT_TYPE)&buffer[words1 + 1];
+    if (code != NULL)
+        *code = check_code;
+    return (&buffer[1]);
 }
 
 
 // AllocateBlock によって獲得されたメモリ領域が解放される。
-static void DeallocateBlock(__UNIT_TYPE* buffer)
+void DeallocateBlock(__UNIT_TYPE* buffer, __UNIT_TYPE buffer_words)
 {
 	if (buffer != NULL)
 	{
-		__UNIT_TYPE* p = buffer - 1;
-		HeapFree(hLocalHeap, 0, p);
-		return;
+        __UNIT_TYPE* p = buffer - 1;
+        if (*p != buffer_words)
+        {
+            // もし、buffer の指す内容が壊れていることが明らかならば、二重解放の恐れがあるので解放処理はしない。
+        }
+        else
+        {
+            // 使用済みのバッファを既定のデータで塗りつぶす。
+            _FILL_MEMORY_UNIT(p, DEFAULT_MEMORY_DATA, buffer_words + 2);
+            // バッファを解放する。
+            HeapFree(hLocalHeap, 0, p);
+        }
 	}
 }
 
@@ -209,6 +243,25 @@ static PMC_STATUS_CODE CheckBlock(__UNIT_TYPE* buffer)
     __UNIT_TYPE words = buffer[0];
     __UNIT_TYPE code_desired = buffer[words + 1];
     __UNIT_TYPE code_actual = CalculateCheckCode(&buffer[1], words);
+    if (code_actual == code_desired)
+        return (PMC_STATUS_OK);
+    else
+        return (PMC_STATUS_BAD_BUFFER);
+#else
+    return (PMC_STATUS_OK);
+#endif
+}
+
+// メモリ内容が正当かどうかが比較される。正当であれば復帰値として0が通知され、正当ではないのなら0以外が通知される。
+PMC_STATUS_CODE CheckBlockLight(__UNIT_TYPE* buffer, __UNIT_TYPE code)
+{
+#ifdef _DEBUG
+    if (buffer == NULL)
+        return (PMC_STATUS_OK);
+    --buffer;
+    __UNIT_TYPE words = buffer[0];
+    __UNIT_TYPE code_desired = buffer[words + 1] ^ (__UNIT_TYPE)&buffer[words + 1];
+    __UNIT_TYPE code_actual = code;
     if (code_actual == code_desired)
         return (PMC_STATUS_OK);
     else
@@ -259,22 +312,65 @@ __inline static void ClearNumberHeader(NUMBER_HEADER* p)
 #endif
 }
 
-static PMC_STATUS_CODE InitializeNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_count)
+__inline static void FillNumberHeader(NUMBER_HEADER* p)
+{
+#ifdef _M_IX64
+    if (sizeof(*p) == sizeof(_UINT64_T) * 7)
+    {
+        _UINT64_T* __p = (_UINT64_T*)p;
+        __p[0] = DEFAULT_MEMORY_DATA;
+        __p[1] = DEFAULT_MEMORY_DATA;
+        __p[2] = DEFAULT_MEMORY_DATA;
+        __p[3] = DEFAULT_MEMORY_DATA;
+        __p[4] = DEFAULT_MEMORY_DATA;
+        __p[5] = DEFAULT_MEMORY_DATA;
+        __p[6] = DEFAULT_MEMORY_DATA;
+    }
+    else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
+        _FILL_MEMORY_64((_UINT64_T*)p, DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT64_T));
+    else
+    {
+#endif
+        if (sizeof(*p) == sizeof(_UINT32_T) * 7)
+        {
+            _UINT32_T* __p = (_UINT32_T*)p;
+            __p[0] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+            __p[1] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+            __p[2] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+            __p[3] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+            __p[4] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+            __p[5] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+            __p[6] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+        }
+        else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
+            _FILL_MEMORY_32((_UINT32_T*)p, (_UINT32_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT32_T));
+        else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
+            _FILL_MEMORY_16((_UINT16_T*)p, (_UINT16_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT16_T));
+        else
+            _FILL_MEMORY_BYTE(p, (unsigned char)DEFAULT_MEMORY_DATA, sizeof(*p));
+#ifdef _M_IX64
+    }
+#endif
+}
+
+static PMC_STATUS_CODE InitializeNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_count, __UNIT_TYPE* light_check_code)
 {
     ClearNumberHeader(p);
-    __UNIT_TYPE word_count = _DIVIDE_CEILING_UNIT(bit_count, __UNIT_TYPE_BIT_COUNT);
-    p->UNIT_BIT_COUNT = bit_count;
-    p->BLOCK_COUNT = word_count;
     if (bit_count > 0)
     {
-        __UNIT_TYPE* block = AllocateBlock(bit_count);
+        __UNIT_TYPE word_count;
+        __UNIT_TYPE* block = AllocateBlock(bit_count, &word_count, light_check_code);
         if (block == NULL)
             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+        p->UNIT_BIT_COUNT = bit_count;
+        p->BLOCK_COUNT = word_count;
         p->BLOCK = block;
     }
     else
     {
         // bit_count に 0 が与えられるのは、数値がゼロの場合。
+        p->UNIT_BIT_COUNT = 0;
+        p->BLOCK_COUNT = 0;
         p->BLOCK = NULL;
     }
     return (PMC_STATUS_OK);
@@ -284,26 +380,26 @@ static void CleanUpNumber(NUMBER_HEADER* p)
 {
     if (p->BLOCK != NULL)
     {
-        DeallocateBlock(p->BLOCK);
+        DeallocateBlock(p->BLOCK, p->BLOCK_COUNT);
         p->BLOCK = NULL;
     }
 }
 
 PMC_STATUS_CODE AttatchNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_count)
 {
-    PMC_STATUS_CODE result = InitializeNumber(p, bit_count);
+    PMC_STATUS_CODE result = InitializeNumber(p, bit_count, NULL);
     if (result != PMC_STATUS_OK)
         return (result);
     p->IS_STATIC = TRUE;
     return (PMC_STATUS_OK);
 }
 
-PMC_STATUS_CODE AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_count)
+PMC_STATUS_CODE AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_count, __UNIT_TYPE* light_check_code)
 {
     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
     if (p == NULL)
         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-    PMC_STATUS_CODE result = InitializeNumber(p, bit_count);
+    PMC_STATUS_CODE result = InitializeNumber(p, bit_count, light_check_code);
     if (result != PMC_STATUS_OK)
         return (result);
     p->IS_STATIC = FALSE;
@@ -323,7 +419,8 @@ void DeallocateNumber(NUMBER_HEADER* p)
     if (p == NULL || p->IS_STATIC)
         return;
     CleanUpNumber(p);
-    HeapFree(hLocalHeap, 0, p->BLOCK);
+    FillNumberHeader(p);
+    HeapFree(hLocalHeap, 0, p);
 }
 
 static __UNIT_TYPE GetEffectiveBitLength(__UNIT_TYPE* p, __UNIT_TYPE word_count, __UNIT_TYPE* effective_word_count)
@@ -419,10 +516,15 @@ PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p)
 
 PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* x, NUMBER_HEADER** op)
 {
+    if (x->IS_STATIC)
+    {
+        *op = x;
+        return (PMC_STATUS_OK);
+    }
     __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
     PMC_STATUS_CODE result;
     NUMBER_HEADER* o;
-    if ((result = AllocateNumber(&o, x_bit_count)) != PMC_STATUS_OK)
+    if ((result = AllocateNumber(&o, x_bit_count, NULL)) != PMC_STATUS_OK)
         return (result);
     _COPY_MEMORY_UNIT(o->BLOCK, x->BLOCK, _DIVIDE_CEILING_UNIT(x_bit_count, __UNIT_TYPE_BIT_COUNT));
     CommitNumber(o);

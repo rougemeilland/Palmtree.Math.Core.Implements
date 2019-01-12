@@ -3,7 +3,7 @@
 	.p2align 4,,15
 	.def	_CalculateCheckCode;	.scl	3;	.type	32;	.endef
 _CalculateCheckCode:
-LFB5463:
+LFB5475:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -19,7 +19,7 @@ LFB5463:
 	je	L9
 	movl	%ebp, %esi
 	movl	%eax, %ebx
-	movl	$305419896, %ecx
+	movl	$-2071690108, %ecx
 	.p2align 4,,10
 L3:
 	roll	$3, %ecx
@@ -188,103 +188,152 @@ L1:
 	.p2align 4,,10
 L9:
 	.cfi_restore_state
-	movl	$305419896, %ecx
+	movl	$-2071690108, %ecx
 	jmp	L2
 	.cfi_endproc
-LFE5463:
+LFE5475:
 	.p2align 4,,15
-	.def	_AllocateBlock;	.scl	3;	.type	32;	.endef
+	.globl	_AllocateBlock
+	.def	_AllocateBlock;	.scl	2;	.type	32;	.endef
 _AllocateBlock:
-LFB5464:
+LFB5476:
 	.cfi_startproc
-	pushl	%ebp
-	.cfi_def_cfa_offset 8
-	.cfi_offset 5, -8
 	pushl	%edi
-	.cfi_def_cfa_offset 12
-	.cfi_offset 7, -12
+	.cfi_def_cfa_offset 8
+	.cfi_offset 7, -8
 	pushl	%esi
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
+	.cfi_def_cfa_offset 12
+	.cfi_offset 6, -12
 	pushl	%ebx
-	.cfi_def_cfa_offset 20
-	.cfi_offset 3, -20
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	subl	$16, %esp
+	.cfi_def_cfa_offset 32
+	movl	32(%esp), %eax
+	movl	40(%esp), %esi
+	movl	$8, 4(%esp)
 	leal	31(%eax), %ebx
+	movl	_hLocalHeap, %eax
 	shrl	$5, %ebx
 	leal	8(,%ebx,4), %edi
-	subl	$28, %esp
-	.cfi_def_cfa_offset 48
-	movl	_hLocalHeap, %eax
-	movl	%edi, 8(%esp)
-	movl	$8, 4(%esp)
 	movl	%eax, (%esp)
+	movl	%edi, 8(%esp)
 	call	*__imp__HeapAlloc@12
-	.cfi_def_cfa_offset 36
-	subl	$12, %esp
-	.cfi_def_cfa_offset 48
-	testl	%eax, %eax
-	je	L31
-	movl	%eax, %esi
-	movl	%ebx, (%eax)
-	leal	4(%eax), %ebp
-	xorl	%eax, %eax
-	testb	$1, _configuration_info
-	jne	L35
-L30:
-	movl	%eax, -4(%esi,%edi)
-L28:
-	addl	$28, %esp
-	.cfi_remember_state
 	.cfi_def_cfa_offset 20
-	movl	%ebp, %eax
+	subl	$12, %esp
+	.cfi_def_cfa_offset 32
+	testl	%eax, %eax
+	je	L28
+	movl	36(%esp), %edx
+	movl	%ebx, (%eax)
+	movl	%ebx, (%edx)
+	leal	-4(%eax,%edi), %edx
+	movl	%edx, (%edx)
+	testl	%esi, %esi
+	je	L30
+	movl	$0, (%esi)
+L30:
+	addl	$4, %eax
+L28:
+	addl	$16, %esp
+	.cfi_def_cfa_offset 16
 	popl	%ebx
 	.cfi_restore 3
-	.cfi_def_cfa_offset 16
+	.cfi_def_cfa_offset 12
 	popl	%esi
 	.cfi_restore 6
-	.cfi_def_cfa_offset 12
+	.cfi_def_cfa_offset 8
 	popl	%edi
 	.cfi_restore 7
+	.cfi_def_cfa_offset 4
+	ret
+	.cfi_endproc
+LFE5476:
+	.p2align 4,,15
+	.globl	_DeallocateBlock
+	.def	_DeallocateBlock;	.scl	2;	.type	32;	.endef
+_DeallocateBlock:
+LFB5477:
+	.cfi_startproc
+	pushl	%edi
 	.cfi_def_cfa_offset 8
-	popl	%ebp
-	.cfi_restore 5
+	.cfi_offset 7, -8
+	subl	$24, %esp
+	.cfi_def_cfa_offset 32
+	movl	32(%esp), %eax
+	testl	%eax, %eax
+	je	L38
+	movl	36(%esp), %edi
+	cmpl	%edi, -4(%eax)
+	je	L44
+L38:
+	addl	$24, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	popl	%edi
+	.cfi_restore 7
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
-L35:
+L44:
 	.cfi_restore_state
-	movl	%ebx, %edx
-	movl	%ebp, %eax
-	call	_CalculateCheckCode
-	jmp	L30
-	.p2align 4,,10
-L31:
-	xorl	%ebp, %ebp
-	jmp	L28
-	.cfi_endproc
-LFE5464:
-	.p2align 4,,15
-	.def	_DetatchNumber.part.2;	.scl	3;	.type	32;	.endef
-_DetatchNumber.part.2:
-LFB5486:
-	.cfi_startproc
-	movl	24(%eax), %edx
-	testl	%edx, %edx
-	je	L42
-	pushl	%ebx
-	.cfi_def_cfa_offset 8
-	.cfi_offset 3, -8
-	movl	%eax, %ebx
-	subl	$4, %edx
-	subl	$24, %esp
-	.cfi_def_cfa_offset 32
+	leal	-4(%eax), %edx
+	leal	2(%edi), %ecx
+	movl	$-858993460, %eax
+	movl	%edx, %edi
+/APP
+ # 1463 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep stosl
+ # 0 "" 2
+/NO_APP
 	movl	_hLocalHeap, %eax
 	movl	%edx, 8(%esp)
 	movl	$0, 4(%esp)
 	movl	%eax, (%esp)
 	call	*__imp__HeapFree@12
 	.cfi_def_cfa_offset 20
-	movl	$0, 24(%ebx)
+	subl	$12, %esp
+	.cfi_def_cfa_offset 32
+	addl	$24, %esp
+	.cfi_def_cfa_offset 8
+	popl	%edi
+	.cfi_restore 7
+	.cfi_def_cfa_offset 4
+	ret
+	.cfi_endproc
+LFE5477:
+	.p2align 4,,15
+	.def	_DeallocateNumber.part.3;	.scl	3;	.type	32;	.endef
+_DeallocateNumber.part.3:
+LFB5501:
+	.cfi_startproc
+	pushl	%ebx
+	.cfi_def_cfa_offset 8
+	.cfi_offset 3, -8
+	movl	%eax, %ebx
+	subl	$24, %esp
+	.cfi_def_cfa_offset 32
+	movl	24(%eax), %eax
+	testl	%eax, %eax
+	je	L46
+	movl	20(%ebx), %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	call	_DeallocateBlock
+L46:
+	movl	_hLocalHeap, %eax
+	movl	$-858993460, (%ebx)
+	movl	$-858993460, 4(%ebx)
+	movl	$-858993460, 8(%ebx)
+	movl	$-858993460, 12(%ebx)
+	movl	$-858993460, 16(%ebx)
+	movl	$-858993460, 20(%ebx)
+	movl	$-858993460, 24(%ebx)
+	movl	%ebx, 8(%esp)
+	movl	$0, 4(%esp)
+	movl	%eax, (%esp)
+	call	*__imp__HeapFree@12
+	.cfi_def_cfa_offset 20
 	subl	$12, %esp
 	.cfi_def_cfa_offset 32
 	addl	$24, %esp
@@ -293,214 +342,204 @@ LFB5486:
 	.cfi_restore 3
 	.cfi_def_cfa_offset 4
 	ret
-	.p2align 4,,10
-L42:
+	.cfi_endproc
+LFE5501:
+	.p2align 4,,15
+	.globl	_CheckBlockLight
+	.def	_CheckBlockLight;	.scl	2;	.type	32;	.endef
+_CheckBlockLight:
+LFB5480:
+	.cfi_startproc
+	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5486:
+LFE5480:
 	.p2align 4,,15
-	.def	_DeallocateNumber.part.3;	.scl	3;	.type	32;	.endef
-_DeallocateNumber.part.3:
-LFB5487:
+	.globl	_AttatchNumber
+	.def	_AttatchNumber;	.scl	2;	.type	32;	.endef
+_AttatchNumber:
+LFB5485:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
 	.cfi_offset 6, -8
-	movl	%eax, %esi
 	pushl	%ebx
 	.cfi_def_cfa_offset 12
 	.cfi_offset 3, -12
-	subl	$20, %esp
-	.cfi_def_cfa_offset 32
-	movl	24(%eax), %eax
-	movl	_hLocalHeap, %edx
-	movl	__imp__HeapFree@12, %ebx
-	testl	%eax, %eax
-	je	L46
-	subl	$4, %eax
-	movl	%edx, (%esp)
-	movl	%eax, 8(%esp)
-	movl	$0, 4(%esp)
-	call	*%ebx
-	.cfi_def_cfa_offset 20
-	movl	$0, 24(%esi)
-	movl	_hLocalHeap, %edx
-	subl	$12, %esp
-	.cfi_def_cfa_offset 32
-L46:
-	movl	$0, 8(%esp)
-	movl	$0, 4(%esp)
-	movl	%edx, (%esp)
-	call	*%ebx
-	.cfi_def_cfa_offset 20
-	subl	$12, %esp
-	.cfi_def_cfa_offset 32
-	addl	$20, %esp
+	subl	$36, %esp
+	.cfi_def_cfa_offset 48
+	movl	48(%esp), %ebx
+	movl	52(%esp), %esi
+	movl	$0, (%ebx)
+	movl	$0, 4(%ebx)
+	movl	$0, 8(%ebx)
+	movl	$0, 12(%ebx)
+	movl	$0, 16(%ebx)
+	movl	$0, 20(%ebx)
+	movl	$0, 24(%ebx)
+	testl	%esi, %esi
+	jne	L61
+L56:
+	orb	$1, 16(%ebx)
+	xorl	%eax, %eax
+L52:
+	addl	$36, %esp
+	.cfi_remember_state
 	.cfi_def_cfa_offset 12
 	popl	%ebx
 	.cfi_restore 3
 	.cfi_def_cfa_offset 8
 	popl	%esi
 	.cfi_restore 6
+	.cfi_def_cfa_offset 4
+	ret
+	.p2align 4,,10
+L61:
+	.cfi_restore_state
+	leal	28(%esp), %eax
+	movl	$0, 8(%esp)
+	movl	%eax, 4(%esp)
+	movl	%esi, (%esp)
+	call	_AllocateBlock
+	testl	%eax, %eax
+	je	L62
+	movl	28(%esp), %edx
+	movl	%esi, 4(%ebx)
+	movl	%eax, 24(%ebx)
+	movl	%edx, 20(%ebx)
+	jmp	L56
+L62:
+	movl	$-4, %eax
+	jmp	L52
+	.cfi_endproc
+LFE5485:
+	.p2align 4,,15
+	.globl	_AllocateNumber
+	.def	_AllocateNumber;	.scl	2;	.type	32;	.endef
+_AllocateNumber:
+LFB5486:
+	.cfi_startproc
+	pushl	%esi
+	.cfi_def_cfa_offset 8
+	.cfi_offset 6, -8
+	pushl	%ebx
+	.cfi_def_cfa_offset 12
+	.cfi_offset 3, -12
+	subl	$36, %esp
+	.cfi_def_cfa_offset 48
+	movl	_hLocalHeap, %eax
+	movl	52(%esp), %esi
+	movl	$28, 8(%esp)
+	movl	$8, 4(%esp)
+	movl	%eax, (%esp)
+	call	*__imp__HeapAlloc@12
+	.cfi_def_cfa_offset 36
+	subl	$12, %esp
+	.cfi_def_cfa_offset 48
+	testl	%eax, %eax
+	je	L68
+	movl	%eax, %ebx
+	movl	$0, (%eax)
+	movl	$0, 4(%eax)
+	movl	$0, 8(%eax)
+	movl	$0, 12(%eax)
+	movl	$0, 16(%eax)
+	movl	$0, 20(%eax)
+	movl	$0, 24(%eax)
+	testl	%esi, %esi
+	jne	L73
+L67:
+	movl	48(%esp), %eax
+	andb	$-2, 16(%ebx)
+	movl	%ebx, (%eax)
+	xorl	%eax, %eax
+L63:
+	addl	$36, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 12
+	popl	%ebx
+	.cfi_restore 3
+	.cfi_def_cfa_offset 8
+	popl	%esi
+	.cfi_restore 6
+	.cfi_def_cfa_offset 4
+	ret
+	.p2align 4,,10
+L73:
+	.cfi_restore_state
+	movl	56(%esp), %eax
+	movl	%esi, (%esp)
+	movl	%eax, 8(%esp)
+	leal	28(%esp), %eax
+	movl	%eax, 4(%esp)
+	call	_AllocateBlock
+	testl	%eax, %eax
+	je	L68
+	movl	28(%esp), %edx
+	movl	%esi, 4(%ebx)
+	movl	%eax, 24(%ebx)
+	movl	%edx, 20(%ebx)
+	jmp	L67
+L68:
+	movl	$-4, %eax
+	jmp	L63
+	.cfi_endproc
+LFE5486:
+	.p2align 4,,15
+	.globl	_DetatchNumber
+	.def	_DetatchNumber;	.scl	2;	.type	32;	.endef
+_DetatchNumber:
+LFB5487:
+	.cfi_startproc
+	pushl	%ebx
+	.cfi_def_cfa_offset 8
+	.cfi_offset 3, -8
+	subl	$24, %esp
+	.cfi_def_cfa_offset 32
+	movl	32(%esp), %ebx
+	testl	%ebx, %ebx
+	je	L74
+	testb	$1, 16(%ebx)
+	je	L74
+	movl	24(%ebx), %eax
+	testl	%eax, %eax
+	je	L74
+	movl	20(%ebx), %edx
+	movl	%eax, (%esp)
+	movl	%edx, 4(%esp)
+	call	_DeallocateBlock
+	movl	$0, 24(%ebx)
+L74:
+	addl	$24, %esp
+	.cfi_def_cfa_offset 8
+	popl	%ebx
+	.cfi_restore 3
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
 LFE5487:
 	.p2align 4,,15
-	.globl	_AttatchNumber
-	.def	_AttatchNumber;	.scl	2;	.type	32;	.endef
-_AttatchNumber:
-LFB5471:
-	.cfi_startproc
-	pushl	%ebx
-	.cfi_def_cfa_offset 8
-	.cfi_offset 3, -8
-	subl	$8, %esp
-	.cfi_def_cfa_offset 16
-	movl	20(%esp), %eax
-	movl	16(%esp), %ebx
-	leal	31(%eax), %edx
-	movl	$0, (%ebx)
-	shrl	$5, %edx
-	movl	$0, 8(%ebx)
-	movl	$0, 12(%ebx)
-	movl	$0, 16(%ebx)
-	movl	$0, 24(%ebx)
-	movl	%eax, 4(%ebx)
-	movl	%edx, 20(%ebx)
-	testl	%eax, %eax
-	jne	L60
-L54:
-	orb	$1, 16(%ebx)
-	xorl	%eax, %eax
-L51:
-	addl	$8, %esp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	popl	%ebx
-	.cfi_restore 3
-	.cfi_def_cfa_offset 4
-	ret
-	.p2align 4,,10
-L60:
-	.cfi_restore_state
-	call	_AllocateBlock
-	testl	%eax, %eax
-	je	L55
-	movl	%eax, 24(%ebx)
-	jmp	L54
-L55:
-	movl	$-2, %eax
-	jmp	L51
-	.cfi_endproc
-LFE5471:
-	.p2align 4,,15
-	.globl	_AllocateNumber
-	.def	_AllocateNumber;	.scl	2;	.type	32;	.endef
-_AllocateNumber:
-LFB5472:
-	.cfi_startproc
-	pushl	%esi
-	.cfi_def_cfa_offset 8
-	.cfi_offset 6, -8
-	pushl	%ebx
-	.cfi_def_cfa_offset 12
-	.cfi_offset 3, -12
-	subl	$20, %esp
-	.cfi_def_cfa_offset 32
-	movl	_hLocalHeap, %eax
-	movl	36(%esp), %esi
-	movl	$28, 8(%esp)
-	movl	$8, 4(%esp)
-	movl	%eax, (%esp)
-	call	*__imp__HeapAlloc@12
-	.cfi_def_cfa_offset 20
-	subl	$12, %esp
-	.cfi_def_cfa_offset 32
-	testl	%eax, %eax
-	je	L65
-	movl	%eax, %ebx
-	movl	$0, (%eax)
-	movl	$0, 8(%eax)
-	movl	$0, 12(%eax)
-	movl	$0, 16(%eax)
-	movl	$0, 24(%eax)
-	movl	%esi, 4(%eax)
-	leal	31(%esi), %eax
-	shrl	$5, %eax
-	movl	%eax, 20(%ebx)
-	testl	%esi, %esi
-	jne	L74
-L66:
-	movl	32(%esp), %eax
-	andb	$-2, 16(%ebx)
-	movl	%ebx, (%eax)
-	xorl	%eax, %eax
-L61:
-	addl	$20, %esp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 12
-	popl	%ebx
-	.cfi_restore 3
-	.cfi_def_cfa_offset 8
-	popl	%esi
-	.cfi_restore 6
-	.cfi_def_cfa_offset 4
-	ret
-	.p2align 4,,10
-L74:
-	.cfi_restore_state
-	movl	%esi, %eax
-	call	_AllocateBlock
-	testl	%eax, %eax
-	je	L65
-	movl	%eax, 24(%ebx)
-	jmp	L66
-	.p2align 4,,10
-L65:
-	movl	$-2, %eax
-	jmp	L61
-	.cfi_endproc
-LFE5472:
-	.p2align 4,,15
-	.globl	_DetatchNumber
-	.def	_DetatchNumber;	.scl	2;	.type	32;	.endef
-_DetatchNumber:
-LFB5473:
-	.cfi_startproc
-	movl	4(%esp), %eax
-	testl	%eax, %eax
-	je	L75
-	testb	$1, 16(%eax)
-	je	L75
-	jmp	_DetatchNumber.part.2
-	.p2align 4,,10
-L75:
-	ret
-	.cfi_endproc
-LFE5473:
-	.p2align 4,,15
 	.globl	_DeallocateNumber
 	.def	_DeallocateNumber;	.scl	2;	.type	32;	.endef
 _DeallocateNumber:
-LFB5474:
+LFB5488:
 	.cfi_startproc
 	movl	4(%esp), %eax
 	testl	%eax, %eax
-	je	L83
+	je	L86
 	testb	$1, 16(%eax)
-	jne	L83
+	jne	L86
 	jmp	_DeallocateNumber.part.3
 	.p2align 4,,10
-L83:
+L86:
 	ret
 	.cfi_endproc
-LFE5474:
+LFE5488:
 	.p2align 4,,15
 	.globl	_CommitNumber
 	.def	_CommitNumber;	.scl	2;	.type	32;	.endef
 _CommitNumber:
-LFB5477:
+LFB5491:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -517,31 +556,31 @@ LFB5477:
 	movl	20(%esp), %edi
 	movl	24(%edi), %esi
 	testl	%esi, %esi
-	je	L89
+	je	L92
 	movl	-4(%esi), %eax
 	movl	$0, (%esi,%eax,4)
 	movl	20(%edi), %ebx
 	leal	(%esi,%ebx,4), %edx
 	testl	%ebx, %ebx
-	je	L89
+	je	L92
 	movl	-4(%edx), %ecx
 	leal	-4(%edx), %eax
 	testl	%ecx, %ecx
-	je	L91
-	jmp	L90
+	je	L94
+	jmp	L93
 	.p2align 4,,10
-L95:
+L98:
 	subl	$4, %eax
 	movl	(%eax), %edx
 	testl	%edx, %edx
-	jne	L90
-L91:
+	jne	L93
+L94:
 	subl	$1, %ebx
-	jne	L95
-L89:
+	jne	L98
+L92:
 	movl	$0, (%edi)
 	movl	$0, 4(%edi)
-L93:
+L96:
 	movzbl	16(%edi), %eax
 	movl	$0, 8(%edi)
 	movl	$0, 12(%edi)
@@ -563,7 +602,7 @@ L93:
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
-L90:
+L93:
 	.cfi_restore_state
 	movl	%ebx, (%edi)
 	movl	(%eax), %edx
@@ -571,24 +610,24 @@ L90:
 	movl	$32, %eax
 	sall	$5, %ebp
 	testl	%edx, %edx
-	je	L92
+	je	L95
 	movl	$31, %eax
 /APP
- # 587 "pmc_internal.h" 1
+ # 809 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
 	subl	%edx, %eax
-L92:
+L95:
 	subl	%eax, %ebp
 	movl	%ebp, 4(%edi)
-	je	L93
+	je	L96
 	movl	%ebx, %edx
 	movl	%esi, %eax
 	call	_CalculateCheckCode
 	movl	%eax, 8(%edi)
 	cmpl	$1, %ebp
-	jne	L97
+	jne	L100
 	movzbl	16(%edi), %eax
 	movl	%eax, %edx
 	andl	$-3, %edx
@@ -616,7 +655,7 @@ L92:
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
-L97:
+L100:
 	.cfi_restore_state
 	movzbl	16(%edi), %edx
 	subl	$1, %ebx
@@ -632,21 +671,21 @@ L97:
 	movb	%al, 16(%edi)
 	movl	(%esi), %eax
 	testl	%eax, %eax
-	je	L99
-	jmp	L120
+	je	L102
+	jmp	L123
 	.p2align 4,,10
-L101:
+L104:
 	movl	(%esi), %edx
 	subl	$1, %ebx
 	testl	%edx, %edx
-	jne	L98
-L99:
+	jne	L101
+L102:
 	addl	$8, %eax
 	addl	$4, %esi
 	testl	%ebx, %ebx
-	jne	L101
+	jne	L104
 	movl	$1, %eax
-L100:
+L103:
 	cmpl	%ebp, %eax
 	movzbl	16(%edi), %eax
 	movl	%ebx, 12(%edi)
@@ -669,44 +708,44 @@ L100:
 	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret
-L120:
+L123:
 	.cfi_restore_state
 	movl	%eax, %edx
 	xorl	%eax, %eax
 	.p2align 4,,10
-L98:
+L101:
 	testl	%ebx, %ebx
-	jne	L104
+	jne	L107
 /APP
- # 638 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %ebx
  # 0 "" 2
 /NO_APP
 	addl	%eax, %ebx
 	leal	1(%ebx), %eax
-	jmp	L100
+	jmp	L103
 	.p2align 4,,10
-L104:
+L107:
 	movl	$1, %eax
 	xorl	%ebx, %ebx
-	jmp	L100
+	jmp	L103
 	.cfi_endproc
-LFE5477:
+LFE5491:
 	.p2align 4,,15
 	.globl	_CheckNumber
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef
 _CheckNumber:
-LFB5478:
+LFB5492:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5478:
+LFE5492:
 	.p2align 4,,15
 	.globl	_DuplicateNumber
 	.def	_DuplicateNumber;	.scl	2;	.type	32;	.endef
 _DuplicateNumber:
-LFB5479:
+LFB5493:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -720,13 +759,36 @@ LFB5479:
 	subl	$48, %esp
 	.cfi_def_cfa_offset 64
 	movl	64(%esp), %esi
-	leal	44(%esp), %eax
+	testb	$1, 16(%esi)
+	je	L126
+	movl	68(%esp), %eax
+	movl	%esi, (%eax)
+	xorl	%eax, %eax
+L125:
+	addl	$48, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 16
+	popl	%ebx
+	.cfi_restore 3
+	.cfi_def_cfa_offset 12
+	popl	%esi
+	.cfi_restore 6
+	.cfi_def_cfa_offset 8
+	popl	%edi
+	.cfi_restore 7
+	.cfi_def_cfa_offset 4
+	ret
+	.p2align 4,,10
+L126:
+	.cfi_restore_state
 	movl	4(%esi), %ebx
+	leal	44(%esp), %eax
+	movl	$0, 8(%esp)
 	movl	%eax, (%esp)
 	movl	%ebx, 4(%esp)
 	call	_AllocateNumber
 	testl	%eax, %eax
-	jne	L122
+	jne	L125
 	movl	44(%esp), %edx
 	leal	31(%ebx), %ecx
 	movl	24(%esi), %esi
@@ -741,11 +803,10 @@ LFB5479:
 	movl	44(%esp), %edx
 	movl	%edx, (%esp)
 	call	_CommitNumber
-	movl	68(%esp), %edx
-	movl	44(%esp), %ecx
+	movl	68(%esp), %eax
+	movl	44(%esp), %edx
+	movl	%edx, (%eax)
 	movl	28(%esp), %eax
-	movl	%ecx, (%edx)
-L122:
 	addl	$48, %esp
 	.cfi_def_cfa_offset 16
 	popl	%ebx
@@ -759,32 +820,32 @@ L122:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5479:
+LFE5493:
 	.p2align 4,,15
 	.globl	_PMC_Dispose@4
 	.def	_PMC_Dispose@4;	.scl	2;	.type	32;	.endef
 _PMC_Dispose@4:
-LFB5480:
+LFB5494:
 	.cfi_startproc
 	subl	$12, %esp
 	.cfi_def_cfa_offset 16
 	movl	16(%esp), %eax
 	testl	%eax, %eax
-	je	L125
+	je	L129
 	testb	$1, 16(%eax)
-	jne	L125
+	jne	L129
 	call	_DeallocateNumber.part.3
-L125:
+L129:
 	addl	$12, %esp
 	.cfi_def_cfa_offset 4
 	ret	$4
 	.cfi_endproc
-LFE5480:
+LFE5494:
 	.p2align 4,,15
 	.globl	_Initialize_Memory
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
 _Initialize_Memory:
-LFB5481:
+LFB5495:
 	.cfi_startproc
 	subl	$4, %esp
 	.cfi_def_cfa_offset 8
@@ -802,12 +863,12 @@ LFB5481:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5481:
+LFE5495:
 	.p2align 4,,15
 	.globl	_AllocateHeapArea
 	.def	_AllocateHeapArea;	.scl	2;	.type	32;	.endef
 _AllocateHeapArea:
-LFB5482:
+LFB5496:
 	.cfi_startproc
 	subl	$28, %esp
 	.cfi_def_cfa_offset 32
@@ -826,16 +887,16 @@ LFB5482:
 	movzbl	%al, %eax
 	ret
 	.cfi_endproc
-LFE5482:
+LFE5496:
 	.p2align 4,,15
 	.globl	_DeallocateHeapArea
 	.def	_DeallocateHeapArea;	.scl	2;	.type	32;	.endef
 _DeallocateHeapArea:
-LFB5483:
+LFB5497:
 	.cfi_startproc
 	movl	_hLocalHeap, %eax
 	testl	%eax, %eax
-	je	L141
+	je	L145
 	subl	$28, %esp
 	.cfi_def_cfa_offset 32
 	movl	%eax, (%esp)
@@ -848,10 +909,10 @@ LFB5483:
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
-L141:
+L145:
 	ret
 	.cfi_endproc
-LFE5483:
+LFE5497:
 	.comm	_number_zero, 28, 2
 	.comm	_hLocalHeap, 4, 2
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"

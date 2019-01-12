@@ -35,8 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/CALC_divrem_critical.o \
 	${OBJECTDIR}/TEST_generic.o \
 	${OBJECTDIR}/TEST_op_Add.o \
+	${OBJECTDIR}/TEST_op_DivRem.o \
 	${OBJECTDIR}/TEST_op_From_To.o \
 	${OBJECTDIR}/TEST_op_Multiply.o \
 	${OBJECTDIR}/TEST_op_Shift.o \
@@ -45,6 +47,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/dllmain.o \
 	${OBJECTDIR}/memory.o \
 	${OBJECTDIR}/pmc_add.o \
+	${OBJECTDIR}/pmc_divrem.o \
 	${OBJECTDIR}/pmc_from.o \
 	${OBJECTDIR}/pmc_initialize.o \
 	${OBJECTDIR}/pmc_multiply.o \
@@ -78,6 +81,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_D
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/Palmtree.Math.Core.Implements.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -mwindows -nostdlib -Wl,-eDllMain -shared
 
+${OBJECTDIR}/CALC_divrem_critical.o: CALC_divrem_critical.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CALC_divrem_critical.o CALC_divrem_critical.c
+
 ${OBJECTDIR}/TEST_generic.o: TEST_generic.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -87,6 +95,11 @@ ${OBJECTDIR}/TEST_op_Add.o: TEST_op_Add.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Add.o TEST_op_Add.c
+
+${OBJECTDIR}/TEST_op_DivRem.o: TEST_op_DivRem.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_DivRem.o TEST_op_DivRem.c
 
 ${OBJECTDIR}/TEST_op_From_To.o: TEST_op_From_To.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
@@ -127,6 +140,11 @@ ${OBJECTDIR}/pmc_add.o: pmc_add.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_add.o pmc_add.c
+
+${OBJECTDIR}/pmc_divrem.o: pmc_divrem.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_divrem.o pmc_divrem.c
 
 ${OBJECTDIR}/pmc_from.o: pmc_from.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

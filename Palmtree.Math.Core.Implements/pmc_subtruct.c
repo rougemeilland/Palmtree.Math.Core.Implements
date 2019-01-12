@@ -37,7 +37,7 @@
 
 static PMC_STATUS_CODE DoBorrow(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __UNIT_TYPE* op, __UNIT_TYPE o_count)
 {
-    // 繰り下がりを続く限り行う
+    // 桁借りを続く限り行う
     for (;;)
     {
         if (x_count <= 0)
@@ -46,7 +46,7 @@ static PMC_STATUS_CODE DoBorrow(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __
 
             if (c)
             {
-                // かつそれでも繰り下がりを行う必要がある場合
+                // かつそれでも桁借りを行う必要がある場合
 
                 // 減算結果が負になってしまったので呼び出し元に通知する。
                 return (PMC_STATUS_INTERNAL_BORROW);
@@ -60,7 +60,7 @@ static PMC_STATUS_CODE DoBorrow(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __
         {
             // xの最上位に達しておらず、かつボローが立っている場合
 
-            // 繰り下がりを継続する
+            // 桁借りを継続する
             c = _SUBTRUCT_UNIT(c, *xp++, 0, op++);
             --x_count;
             --o_count;
@@ -69,7 +69,7 @@ static PMC_STATUS_CODE DoBorrow(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __
         {
             // xの最上位に達しておらず、かつボローが立っていない場合
 
-            // 繰り下がりを中断し、xの残りのデータをzにそのまま複写し、正常復帰する。
+            // 桁借りを中断し、xの残りのデータをzにそのまま複写し、正常復帰する。
             while (x_count > 0)
             {
                 *op++ = *xp++;
@@ -236,7 +236,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
             // y がゼロではない場合
 
             // 演算結果は負となってしまうのでエラーを返す。
-            return (PMC_STATUS_ARGUMENT_ERROR);
+            return (PMC_STATUS_OUT_OF_RANGE);
         }
     }
     else
@@ -261,16 +261,19 @@ PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
             if (x_bit_count < y_bit_count)
             {
                 // 演算結果は負となってしまうのでエラーを返す。
-                return (PMC_STATUS_ARGUMENT_ERROR);
+                return (PMC_STATUS_OUT_OF_RANGE);
             }
             __UNIT_TYPE z_bit_count = x_bit_count;
-            if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+            __UNIT_TYPE nz_light_check_code;
+            if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                 return (result);
             if ((result = Subtruct_X_1W(nx, y, nz)) != PMC_STATUS_OK)
             {
                 DeallocateNumber(nz);
-                return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_ARGUMENT_ERROR : result);
+                return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OUT_OF_RANGE : result);
             }
+            if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                return (result);
             CommitNumber(nz);
             if (nz->IS_ZERO)
             {
@@ -322,7 +325,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
             // y がゼロではない場合
 
             // 演算結果は負となってしまうのでエラーを返す。
-            return (PMC_STATUS_ARGUMENT_ERROR);
+            return (PMC_STATUS_OUT_OF_RANGE);
         }
     }
     else
@@ -356,16 +359,19 @@ PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
                     if (x_bit_count < y_bit_count)
                     {
                         // 演算結果は負となってしまうのでエラーを返す。
-                        return (PMC_STATUS_ARGUMENT_ERROR);
+                        return (PMC_STATUS_OUT_OF_RANGE);
                     }
                     __UNIT_TYPE z_bit_count = x_bit_count;
-                    if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+                    __UNIT_TYPE nz_light_check_code;
+                    if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                         return (result);
                     if ((result = Subtruct_X_1W(nx, y_lo, nz)) != PMC_STATUS_OK)
                     {
                         DeallocateNumber(nz);
-                        return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_ARGUMENT_ERROR : result);
+                        return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OUT_OF_RANGE : result);
                     }
+                    if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                        return (result);
                 }
                 else
                 {
@@ -374,16 +380,19 @@ PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
                     if (x_bit_count < y_bit_count)
                     {
                         // 演算結果は負となってしまうのでエラーを返す。
-                        return (PMC_STATUS_ARGUMENT_ERROR);
+                        return (PMC_STATUS_OUT_OF_RANGE);
                     }
                     __UNIT_TYPE z_bit_count = x_bit_count;
-                    if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+                    __UNIT_TYPE nz_light_check_code;
+                    if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                         return (result);
                     if ((result = Subtruct_X_2W(nx, y_hi, y_lo, nz)) != PMC_STATUS_OK)
                     {
                         DeallocateNumber(nz);
-                        return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_ARGUMENT_ERROR : result);
+                        return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OUT_OF_RANGE : result);
                     }
+                    if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                        return (result);
                 }
             }
             else
@@ -395,16 +404,19 @@ PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
                 if (x_bit_count < y_bit_count)
                 {
                     // 演算結果は負となってしまうのでエラーを返す。
-                    return (PMC_STATUS_ARGUMENT_ERROR);
+                    return (PMC_STATUS_OUT_OF_RANGE);
                 }
                 __UNIT_TYPE z_bit_count = x_bit_count;
-                if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+                __UNIT_TYPE nz_light_check_code;
+                if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                     return (result);
                 if ((result = Subtruct_X_1W(nx, (__UNIT_TYPE)y, nz)) != PMC_STATUS_OK)
                 {
                     DeallocateNumber(nz);
-                    return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_ARGUMENT_ERROR : result);
+                    return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OUT_OF_RANGE : result);
                 }
+                if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                    return (result);
             }
             CommitNumber(nz);
             if (nz->IS_ZERO)
@@ -455,7 +467,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_X(HANDLE x, HANDLE y, HANDLE* o)
             // y がゼロではない場合
 
             // 演算結果は負となってしまうのでエラーを返す。
-            return (PMC_STATUS_ARGUMENT_ERROR);
+            return (PMC_STATUS_OUT_OF_RANGE);
         }
     }
     else
@@ -480,16 +492,19 @@ PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_X(HANDLE x, HANDLE y, HANDLE* o)
             if (x_bit_count < y_bit_count)
             {
                 // 演算結果は負となってしまうのでエラーを返す。
-                return (PMC_STATUS_ARGUMENT_ERROR);
+                return (PMC_STATUS_OUT_OF_RANGE);
             }
             __UNIT_TYPE z_bit_count = x_bit_count;
-            if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+            __UNIT_TYPE nz_light_check_code;
+            if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                 return (result);
             if ((result = Subtruct_X_X(nx, ny, nz)) != PMC_STATUS_OK)
             {
                 DeallocateNumber(nz);
-                return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_ARGUMENT_ERROR : result);
+                return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OUT_OF_RANGE : result);
             }
+            if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                return (result);
             CommitNumber(nz);
         }
         *o = nz;

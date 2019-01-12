@@ -4,7 +4,7 @@
 	.globl	_PMC_To_X_I@8
 	.def	_PMC_To_X_I@8;	.scl	2;	.type	32;	.endef
 _PMC_To_X_I@8:
-LFB5463:
+LFB5475:
 	.cfi_startproc
 	pushl	%ebx
 	.cfi_def_cfa_offset 8
@@ -49,12 +49,12 @@ L4:
 	movl	$-1, %eax
 	jmp	L1
 	.cfi_endproc
-LFE5463:
+LFE5475:
 	.p2align 4,,15
 	.globl	_PMC_To_X_L@8
 	.def	_PMC_To_X_L@8;	.scl	2;	.type	32;	.endef
 _PMC_To_X_L@8:
-LFB5464:
+LFB5476:
 	.cfi_startproc
 	pushl	%ebx
 	.cfi_def_cfa_offset 8
@@ -119,12 +119,12 @@ L11:
 	movl	$-1, %eax
 	jmp	L7
 	.cfi_endproc
-LFE5464:
+LFE5476:
 	.p2align 4,,15
 	.globl	_PMC_To_X_B@16
 	.def	_PMC_To_X_B@16;	.scl	2;	.type	32;	.endef
 _PMC_To_X_B@16:
-LFB5465:
+LFB5477:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -204,16 +204,16 @@ L17:
 	movl	$-1, %eax
 	jmp	L14
 	.cfi_endproc
-LFE5465:
+LFE5477:
 	.p2align 4,,15
 	.globl	_Initialize_To
 	.def	_Initialize_To;	.scl	2;	.type	32;	.endef
 _Initialize_To:
-LFB5466:
+LFB5478:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5466:
+LFE5478:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef

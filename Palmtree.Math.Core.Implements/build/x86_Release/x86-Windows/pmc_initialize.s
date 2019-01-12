@@ -4,7 +4,7 @@
 	.globl	_PMC_Initialize@4
 	.def	_PMC_Initialize@4;	.scl	2;	.type	32;	.endef
 _PMC_Initialize@4:
-LFB5463:
+LFB5475:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -110,6 +110,10 @@ L7:
 	call	_Initialize_Shift
 	testl	%eax, %eax
 	jne	L10
+	movl	%ebx, (%esp)
+	call	_Initialize_DivRem
+	testl	%eax, %eax
+	jne	L10
 	movzbl	_entry_points, %eax
 	movzbl	28(%esp), %edx
 	movl	$_PMC_TraceStatistics@4, _entry_points+4
@@ -135,10 +139,13 @@ L7:
 	movl	$_PMC_Multiply_X_I@12, _entry_points+64
 	movl	$_PMC_Multiply_X_L@16, _entry_points+68
 	movl	$_PMC_Multiply_X_X@12, _entry_points+72
-	movl	$_PMC_RightShift_X_I@12, _entry_points+76
-	movl	$_PMC_RightShift_X_L@16, _entry_points+80
-	movl	$_PMC_LeftShift_X_I@12, _entry_points+84
-	movl	$_PMC_LeftShift_X_L@16, _entry_points+88
+	movl	$_PMC_DivRem_X_I@16, _entry_points+76
+	movl	$_PMC_DivRem_X_L@20, _entry_points+80
+	movl	$_PMC_DivRem_X_X@16, _entry_points+84
+	movl	$_PMC_RightShift_X_I@12, _entry_points+96
+	movl	$_PMC_RightShift_X_L@16, _entry_points+100
+	movl	$_PMC_LeftShift_X_I@12, _entry_points+88
+	movl	$_PMC_LeftShift_X_L@16, _entry_points+92
 	jmp	L1
 	.p2align 4,,10
 L13:
@@ -186,9 +193,9 @@ L6:
 	movb	%cl, 28(%esp)
 	jmp	L7
 	.cfi_endproc
-LFE5463:
+LFE5475:
 	.comm	_configuration_info, 4, 2
-.lcomm _entry_points,92,32
+.lcomm _entry_points,104,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
@@ -197,6 +204,7 @@ LFE5463:
 	.def	_Initialize_Subtruct;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Multiply;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Shift;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_DivRem;	.scl	2;	.type	32;	.endef
 	.def	_PMC_TraceStatistics@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
@@ -215,6 +223,9 @@ LFE5463:
 	.def	_PMC_Multiply_X_I@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Multiply_X_L@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Multiply_X_X@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_DivRem_X_I@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_DivRem_X_L@20;	.scl	2;	.type	32;	.endef
+	.def	_PMC_DivRem_X_X@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_RightShift_X_I@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_RightShift_X_L@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_LeftShift_X_I@12;	.scl	2;	.type	32;	.endef

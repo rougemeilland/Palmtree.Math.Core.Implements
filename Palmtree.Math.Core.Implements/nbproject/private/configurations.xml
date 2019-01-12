@@ -13,6 +13,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -28,16 +30,17 @@
           <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Debug\x64-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.Math.Core.Implements\dist\x64_Debug\x64-Windows\Palmtree.idebug.exe</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x64_Debug\Palmtree.idebug.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.idebug\dist\x64_Debug\x64-Windows\palmtree.idebug</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x64_Debug\Palmtree.idebug.exe</runcommand>
+        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.idebug\dist\x64_Debug\x64-Windows\palmtree.idebug</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>2</console-type>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
-          <variable name="DLL_FILE_NAME" value="Palmtree.Math.Core.Implements.dll"/>
-          <variable name="DLL_FUNC_NAME" value="DoDebug"/>
+          <variable name="DLL_FILE_PATH"
+                    value="..\..\Palmtree.Math.Core.Implements\dist\x64_Debug\x64-Windows"/>
         </environment>
       </runprofile>
     </conf>
@@ -52,6 +55,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -66,16 +71,17 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x64_Release\x64-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x64_Release\Palmtree.idebug.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.idebug\dist\x64_Release\x64-Windows\palmtree.idebug</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x64_Release\Palmtree.idebug.exe</runcommand>
+        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.idebug\dist\x64_Release\x64-Windows\palmtree.idebug</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>2</console-type>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
-          <variable name="DLL_FILE_NAME" value="Palmtree.Math.Core.Implements.dll"/>
-          <variable name="DLL_FUNC_NAME" value="DoDebug"/>
+          <variable name="DLL_FILE_PATH"
+                    value="..\..\Palmtree.Math.Core.Implements\dist\x64_Release\x64-Windows"/>
         </environment>
       </runprofile>
     </conf>
@@ -90,6 +96,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -105,16 +113,17 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.Math.Core.Implements\dist\x86_Debug\x86-Windows\Palmtree.idebug.exe</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Debug\Palmtree.idebug.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.idebug\dist\x86_Debug\x86-Windows\palmtree.idebug</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Debug\Palmtree.idebug.exe</runcommand>
+        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.idebug\dist\x86_Debug\x86-Windows\palmtree.idebug</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>2</console-type>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
-          <variable name="DLL_FILE_NAME" value="Palmtree.Math.Core.Implements.dll"/>
-          <variable name="DLL_FUNC_NAME" value="DoDebug"/>
+          <variable name="DLL_FILE_PATH"
+                    value="..\..\Palmtree.Math.Core.Implements\dist\x86_Debug\x86-Windows"/>
         </environment>
       </runprofile>
     </conf>
@@ -144,16 +153,17 @@
           <runcommandpicklistitem>Z:\Documents\Lunor\NetBeansProjects\Palmtree.Math.Core.Implements.Test\dist\x86_Release\x86-Windows\palmtree.math.core.implements.test.exe</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Debug\Palmtree.idebug.exe</runcommandpicklistitem>
           <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Release\Palmtree.idebug.exe</runcommandpicklistitem>
+          <runcommandpicklistitem>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.idebug\dist\x86_Release\x86-Windows\palmtree.idebug</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\vs_dist\x86_Release\Palmtree.idebug.exe</runcommand>
+        <runcommand>Z:\Sources\Lunor\Repos\rougemeilland\Palmtree.Math.Core.Implements\Palmtree.idebug\dist\x86_Release\x86-Windows\palmtree.idebug</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>2</console-type>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
-          <variable name="DLL_FILE_NAME" value="Palmtree.Math.Core.Implements.dll"/>
-          <variable name="DLL_FUNC_NAME" value="DoDebug"/>
+          <variable name="DLL_FILE_PATH"
+                    value="..\..\Palmtree.Math.Core.Implements\dist\x86_Release\x86-Windows"/>
         </environment>
       </runprofile>
     </conf>

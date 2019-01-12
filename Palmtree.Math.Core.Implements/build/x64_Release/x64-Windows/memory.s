@@ -9,7 +9,7 @@ CalculateCheckCode:
 	shrq	$5, %r10
 	testq	%r10, %r10
 	je	.L9
-	movabsq	$81985529216486895, %rax
+	movabsq	$-8897841259083430780, %rax
 	movq	%r10, %r9
 	movq	%rcx, %r8
 	.p2align 4,,10
@@ -168,85 +168,18 @@ CalculateCheckCode:
 	ret
 	.p2align 4,,10
 .L9:
-	movabsq	$81985529216486895, %rax
+	movabsq	$-8897841259083430780, %rax
 	jmp	.L2
 	.seh_endproc
 	.p2align 4,,15
-	.def	AllocateBlock;	.scl	3;	.type	32;	.endef
+	.globl	AllocateBlock
+	.def	AllocateBlock;	.scl	2;	.type	32;	.endef
 	.seh_proc	AllocateBlock
 AllocateBlock:
+	pushq	%rbp
+	.seh_pushreg	%rbp
 	pushq	%rdi
 	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
-	.seh_endprologue
-	movl	$8, %edx
-	leaq	63(%rcx), %rbx
-	movq	hLocalHeap(%rip), %rcx
-	shrq	$6, %rbx
-	leaq	16(,%rbx,8), %rsi
-	movq	%rsi, %r8
-	call	*__imp_HeapAlloc(%rip)
-	testq	%rax, %rax
-	movq	%rax, %r11
-	je	.L30
-	movq	.refptr.configuration_info(%rip), %rdx
-	movq	%rbx, (%rax)
-	leaq	8(%rax), %rdi
-	xorl	%eax, %eax
-	testb	$1, (%rdx)
-	jne	.L33
-.L29:
-	movq	%rax, -8(%r11,%rsi)
-.L27:
-	movq	%rdi, %rax
-	addq	$32, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	ret
-	.p2align 4,,10
-.L33:
-	movq	%rbx, %rdx
-	movq	%rdi, %rcx
-	call	CalculateCheckCode
-	jmp	.L29
-	.p2align 4,,10
-.L30:
-	xorl	%edi, %edi
-	jmp	.L27
-	.seh_endproc
-	.p2align 4,,15
-	.def	DetatchNumber.part.2;	.scl	3;	.type	32;	.endef
-	.seh_proc	DetatchNumber.part.2
-DetatchNumber.part.2:
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
-	.seh_endprologue
-	movq	48(%rcx), %r8
-	testq	%r8, %r8
-	movq	%rcx, %rbx
-	je	.L34
-	subq	$8, %r8
-	xorl	%edx, %edx
-	movq	hLocalHeap(%rip), %rcx
-	call	*__imp_HeapFree(%rip)
-	movq	$0, 48(%rbx)
-.L34:
-	addq	$32, %rsp
-	popq	%rbx
-	ret
-	.seh_endproc
-	.p2align 4,,15
-	.def	DeallocateNumber.part.3;	.scl	3;	.type	32;	.endef
-	.seh_proc	DeallocateNumber.part.3
-DeallocateNumber.part.3:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -254,137 +187,240 @@ DeallocateNumber.part.3:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	movq	__imp_HeapFree(%rip), %rbx
-	movq	48(%rcx), %r8
-	testq	%r8, %r8
-	movq	%rcx, %rsi
+	leaq	63(%rcx), %rbx
+	movq	%rdx, %rbp
+	movq	%r8, %rdi
 	movq	hLocalHeap(%rip), %rcx
-	je	.L40
-	subq	$8, %r8
-	xorl	%edx, %edx
-	call	*%rbx
-	movq	hLocalHeap(%rip), %rcx
-	movq	$0, 48(%rsi)
-.L40:
-	xorl	%r8d, %r8d
-	xorl	%edx, %edx
-	movq	%rbx, %rax
+	shrq	$6, %rbx
+	movl	$8, %edx
+	leaq	16(,%rbx,8), %rsi
+	movq	%rsi, %r8
+	call	*__imp_HeapAlloc(%rip)
+	testq	%rax, %rax
+	je	.L27
+	leaq	-8(%rax,%rsi), %rdx
+	testq	%rdi, %rdi
+	movq	%rbx, (%rax)
+	movq	%rbx, 0(%rbp)
+	movq	%rdx, (%rdx)
+	je	.L29
+	movq	$0, (%rdi)
+.L29:
+	addq	$8, %rax
+.L27:
 	addq	$40, %rsp
 	popq	%rbx
 	popq	%rsi
-	rex.W jmp	*%rax
+	popq	%rdi
+	popq	%rbp
+	ret
+	.seh_endproc
+	.p2align 4,,15
+	.globl	DeallocateBlock
+	.def	DeallocateBlock;	.scl	2;	.type	32;	.endef
+	.seh_proc	DeallocateBlock
+DeallocateBlock:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	.seh_endprologue
+	testq	%rcx, %rcx
+	je	.L36
+	cmpq	%rdx, -8(%rcx)
+	je	.L41
+.L36:
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L41:
+	leaq	-8(%rcx), %r8
+	movabsq	$-3689348814741910324, %rax
+	leaq	2(%rdx), %rcx
+	movq	%r8, %rdi
+/APP
+ # 611 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep stosq
+ # 0 "" 2
+/NO_APP
+	movq	hLocalHeap(%rip), %rcx
+	xorl	%edx, %edx
+	popq	%rdi
+	rex.W jmp	*__imp_HeapFree(%rip)
+	.seh_endproc
+	.p2align 4,,15
+	.def	DeallocateNumber.part.3;	.scl	3;	.type	32;	.endef
+	.seh_proc	DeallocateNumber.part.3
+DeallocateNumber.part.3:
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	movq	%rcx, %rbx
+	movq	48(%rcx), %rcx
+	testq	%rcx, %rcx
+	je	.L43
+	movq	40(%rbx), %rdx
+	call	DeallocateBlock
+.L43:
+	movq	hLocalHeap(%rip), %rcx
+	movq	%rbx, %r8
+	xorl	%edx, %edx
+	movabsq	$-3689348814741910324, %rax
+	movq	%rax, (%rbx)
+	movq	%rax, 8(%rbx)
+	movq	%rax, 16(%rbx)
+	movq	%rax, 24(%rbx)
+	movq	%rax, 32(%rbx)
+	movq	%rax, 40(%rbx)
+	movq	%rax, 48(%rbx)
+	addq	$32, %rsp
+	popq	%rbx
+	rex.W jmp	*__imp_HeapFree(%rip)
+	.seh_endproc
+	.p2align 4,,15
+	.globl	CheckBlockLight
+	.def	CheckBlockLight;	.scl	2;	.type	32;	.endef
+	.seh_proc	CheckBlockLight
+CheckBlockLight:
+	.seh_endprologue
+	xorl	%eax, %eax
+	ret
 	.seh_endproc
 	.p2align 4,,15
 	.globl	AttatchNumber
 	.def	AttatchNumber;	.scl	2;	.type	32;	.endef
 	.seh_proc	AttatchNumber
 AttatchNumber:
+	pushq	%rsi
+	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
+	subq	$56, %rsp
+	.seh_stackalloc	56
 	.seh_endprologue
-	leaq	63(%rdx), %rax
-	movq	%rcx, %rbx
-	movq	$0, (%rcx)
-	shrq	$6, %rax
 	testq	%rdx, %rdx
+	movq	%rcx, %rbx
+	movq	%rdx, %rsi
+	movq	$0, (%rcx)
+	movq	$0, 8(%rcx)
 	movq	$0, 16(%rcx)
 	movq	$0, 24(%rcx)
 	movq	$0, 32(%rcx)
+	movq	$0, 40(%rcx)
 	movq	$0, 48(%rcx)
-	movq	%rdx, 8(%rcx)
-	movq	%rax, 40(%rcx)
-	jne	.L52
-.L47:
+	jne	.L56
+.L52:
 	orb	$1, 32(%rbx)
 	xorl	%eax, %eax
-.L44:
-	addq	$32, %rsp
+.L48:
+	addq	$56, %rsp
 	popq	%rbx
+	popq	%rsi
 	ret
 	.p2align 4,,10
-.L52:
-	movq	%rdx, %rcx
+.L56:
+	leaq	40(%rsp), %rdx
+	xorl	%r8d, %r8d
+	movq	%rsi, %rcx
 	call	AllocateBlock
 	testq	%rax, %rax
-	je	.L48
+	je	.L57
+	movq	40(%rsp), %rdx
+	movq	%rsi, 8(%rbx)
 	movq	%rax, 48(%rbx)
-	jmp	.L47
-.L48:
-	movl	$-2, %eax
-	jmp	.L44
+	movq	%rdx, 40(%rbx)
+	jmp	.L52
+.L57:
+	movl	$-4, %eax
+	jmp	.L48
 	.seh_endproc
 	.p2align 4,,15
 	.globl	AllocateNumber
 	.def	AllocateNumber;	.scl	2;	.type	32;	.endef
 	.seh_proc	AllocateNumber
 AllocateNumber:
+	pushq	%rbp
+	.seh_pushreg	%rbp
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
+	subq	$56, %rsp
+	.seh_stackalloc	56
 	.seh_endprologue
-	movl	$56, %r8d
 	movq	%rcx, %rdi
 	movq	%rdx, %rsi
+	movq	%r8, %rbp
 	movq	hLocalHeap(%rip), %rcx
+	movl	$56, %r8d
 	movl	$8, %edx
 	call	*__imp_HeapAlloc(%rip)
 	testq	%rax, %rax
 	movq	%rax, %rbx
-	je	.L57
+	je	.L63
+	testq	%rsi, %rsi
 	movq	$0, (%rax)
+	movq	$0, 8(%rax)
 	movq	$0, 16(%rax)
 	movq	$0, 24(%rax)
 	movq	$0, 32(%rax)
+	movq	$0, 40(%rax)
 	movq	$0, 48(%rax)
-	movq	%rsi, 8(%rax)
-	leaq	63(%rsi), %rax
-	shrq	$6, %rax
-	testq	%rsi, %rsi
-	movq	%rax, 40(%rbx)
-	jne	.L65
-.L58:
+	jne	.L67
+.L62:
 	andb	$-2, 32(%rbx)
 	xorl	%eax, %eax
 	movq	%rbx, (%rdi)
-.L53:
-	addq	$32, %rsp
+.L58:
+	addq	$56, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
+	popq	%rbp
 	ret
 	.p2align 4,,10
-.L65:
+.L67:
+	leaq	40(%rsp), %rdx
+	movq	%rbp, %r8
 	movq	%rsi, %rcx
 	call	AllocateBlock
 	testq	%rax, %rax
-	je	.L57
+	je	.L63
+	movq	40(%rsp), %rdx
+	movq	%rsi, 8(%rbx)
 	movq	%rax, 48(%rbx)
+	movq	%rdx, 40(%rbx)
+	jmp	.L62
+.L63:
+	movl	$-4, %eax
 	jmp	.L58
-	.p2align 4,,10
-.L57:
-	movl	$-2, %eax
-	jmp	.L53
 	.seh_endproc
 	.p2align 4,,15
 	.globl	DetatchNumber
 	.def	DetatchNumber;	.scl	2;	.type	32;	.endef
 	.seh_proc	DetatchNumber
 DetatchNumber:
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
 	.seh_endprologue
 	testq	%rcx, %rcx
-	je	.L66
+	movq	%rcx, %rbx
+	je	.L68
 	testb	$1, 32(%rcx)
-	je	.L66
-	jmp	DetatchNumber.part.2
-	.p2align 4,,10
-.L66:
+	je	.L68
+	movq	48(%rcx), %rcx
+	testq	%rcx, %rcx
+	je	.L68
+	movq	40(%rbx), %rdx
+	call	DeallocateBlock
+	movq	$0, 48(%rbx)
+.L68:
+	addq	$32, %rsp
+	popq	%rbx
 	ret
 	.seh_endproc
 	.p2align 4,,15
@@ -394,12 +430,12 @@ DetatchNumber:
 DeallocateNumber:
 	.seh_endprologue
 	testq	%rcx, %rcx
-	je	.L74
+	je	.L79
 	testb	$1, 32(%rcx)
-	jne	.L74
+	jne	.L79
 	jmp	DeallocateNumber.part.3
 	.p2align 4,,10
-.L74:
+.L79:
 	ret
 	.seh_endproc
 	.p2align 4,,15
@@ -419,29 +455,29 @@ CommitNumber:
 	movq	48(%rcx), %rsi
 	testq	%rsi, %rsi
 	movq	%rcx, %rbx
-	je	.L80
+	je	.L85
 	movq	-8(%rsi), %rax
 	movq	$0, (%rsi,%rax,8)
 	movq	40(%rcx), %r11
 	leaq	(%rsi,%r11,8), %rdx
 	testq	%r11, %r11
-	je	.L80
+	je	.L85
 	cmpq	$0, -8(%rdx)
 	leaq	-8(%rdx), %rax
-	je	.L82
-	jmp	.L81
+	je	.L87
+	jmp	.L86
 	.p2align 4,,10
-.L86:
+.L91:
 	subq	$8, %rax
 	cmpq	$0, (%rax)
-	jne	.L81
-.L82:
-	subq	$1, %r11
 	jne	.L86
-.L80:
+.L87:
+	subq	$1, %r11
+	jne	.L91
+.L85:
 	movq	$0, (%rbx)
 	movq	$0, 8(%rbx)
-.L84:
+.L89:
 	movzbl	32(%rbx), %eax
 	movq	$0, 16(%rbx)
 	movq	$0, 24(%rbx)
@@ -454,31 +490,31 @@ CommitNumber:
 	popq	%rdi
 	ret
 	.p2align 4,,10
-.L81:
+.L86:
 	movq	%r11, (%rbx)
 	movq	(%rax), %rdx
 	movq	%r11, %rdi
 	movl	$64, %eax
 	salq	$6, %rdi
 	testq	%rdx, %rdx
-	je	.L83
+	je	.L88
 	movl	$63, %eax
 /APP
- # 597 "pmc_internal.h" 1
+ # 819 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
 	subq	%rdx, %rax
-.L83:
+.L88:
 	subq	%rax, %rdi
 	movq	%rdi, 8(%rbx)
-	je	.L84
+	je	.L89
 	movq	%r11, %rdx
 	movq	%rsi, %rcx
 	call	CalculateCheckCode
 	cmpq	$1, %rdi
 	movq	%rax, 16(%rbx)
-	jne	.L88
+	jne	.L93
 	movzbl	32(%rbx), %eax
 	movl	%eax, %edx
 	andl	$-3, %edx
@@ -497,7 +533,7 @@ CommitNumber:
 	popq	%rdi
 	ret
 	.p2align 4,,10
-.L88:
+.L93:
 	movzbl	32(%rbx), %edx
 	subq	$1, %r11
 	movl	%edx, %eax
@@ -512,20 +548,20 @@ CommitNumber:
 	movb	%al, 32(%rbx)
 	movq	(%rsi), %rax
 	testq	%rax, %rax
-	je	.L90
-	jmp	.L110
+	je	.L95
+	jmp	.L115
 	.p2align 4,,10
-.L92:
+.L97:
 	movq	(%rsi,%rax), %rdx
 	subq	$1, %r11
 	testq	%rdx, %rdx
-	jne	.L89
-.L90:
+	jne	.L94
+.L95:
 	addq	$8, %rax
 	testq	%r11, %r11
-	jne	.L92
+	jne	.L97
 	movl	$1, %eax
-.L91:
+.L96:
 	cmpq	%rdi, %rax
 	movq	%r11, 24(%rbx)
 	sete	%al
@@ -540,26 +576,26 @@ CommitNumber:
 	popq	%rsi
 	popq	%rdi
 	ret
-.L110:
+.L115:
 	movq	%rax, %rdx
 	xorl	%eax, %eax
 	.p2align 4,,10
-.L89:
+.L94:
 	testq	%r11, %r11
-	jne	.L95
+	jne	.L100
 /APP
- # 648 "pmc_internal.h" 1
+ # 899 "pmc_internal.h" 1
 	bsrq %rdx, %r11
  # 0 "" 2
 /NO_APP
 	addq	%rax, %r11
 	leaq	1(%r11), %rax
-	jmp	.L91
+	jmp	.L96
 	.p2align 4,,10
-.L95:
+.L100:
 	movl	$1, %eax
 	xorl	%r11d, %r11d
-	jmp	.L91
+	jmp	.L96
 	.seh_endproc
 	.p2align 4,,15
 	.globl	CheckNumber
@@ -586,14 +622,28 @@ DuplicateNumber:
 	subq	$72, %rsp
 	.seh_stackalloc	72
 	.seh_endprologue
-	movq	8(%rcx), %rbx
+	testb	$1, 32(%rcx)
 	movq	%rcx, %rsi
 	movq	%rdx, %rbp
-	movq	%rbx, %rdx
+	je	.L118
+	movq	%rcx, 0(%rbp)
+	xorl	%eax, %eax
+.L117:
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L118:
+	movq	8(%rcx), %rbx
 	leaq	56(%rsp), %rcx
+	xorl	%r8d, %r8d
+	movq	%rbx, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L112
+	jne	.L117
 	movq	56(%rsp), %rdx
 	leaq	63(%rbx), %rcx
 	movl	%eax, 44(%rsp)
@@ -610,7 +660,6 @@ DuplicateNumber:
 	movq	56(%rsp), %rdx
 	movl	44(%rsp), %eax
 	movq	%rdx, 0(%rbp)
-.L112:
 	addq	$72, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -625,12 +674,12 @@ DuplicateNumber:
 PMC_Dispose:
 	.seh_endprologue
 	testq	%rcx, %rcx
-	je	.L114
+	je	.L120
 	testb	$1, 32(%rcx)
-	jne	.L114
+	jne	.L120
 	jmp	DeallocateNumber.part.3
 	.p2align 4,,10
-.L114:
+.L120:
 	ret
 	.seh_endproc
 	.p2align 4,,15
@@ -683,18 +732,13 @@ DeallocateHeapArea:
 	.seh_endprologue
 	movq	hLocalHeap(%rip), %rcx
 	testq	%rcx, %rcx
-	je	.L121
+	je	.L127
 	call	*__imp_HeapDestroy(%rip)
 	movq	$0, hLocalHeap(%rip)
-.L121:
+.L127:
 	addq	$40, %rsp
 	ret
 	.seh_endproc
 	.comm	number_zero, 56, 5
 	.comm	hLocalHeap, 8, 3
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
-	.section	.rdata$.refptr.configuration_info, "dr"
-	.globl	.refptr.configuration_info
-	.linkonce	discard
-.refptr.configuration_info:
-	.quad	configuration_info

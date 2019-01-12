@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="nbproject\private\c_standard_headers_indexer.c">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="nbproject\private\cpp_standard_headers_indexer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="memory.c">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -28,34 +22,43 @@
     <ClCompile Include="pmc_from.c">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="debug.c">
-      <Filter>ソース ファイル\テスト</Filter>
-    </ClCompile>
-    <ClCompile Include="TEST_op_Add.c">
-      <Filter>ソース ファイル\テスト</Filter>
-    </ClCompile>
-    <ClCompile Include="TEST_generic.c">
-      <Filter>ソース ファイル\テスト</Filter>
-    </ClCompile>
-    <ClCompile Include="TEST_op_From_To.c">
-      <Filter>ソース ファイル\テスト</Filter>
-    </ClCompile>
-    <ClCompile Include="TEST_op_Subtruct.c">
-      <Filter>ソース ファイル\テスト</Filter>
-    </ClCompile>
     <ClCompile Include="pmc_subtruct.c">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="pmc_multiply.c">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="TEST_op_Multiply.c">
-      <Filter>ソース ファイル\テスト</Filter>
-    </ClCompile>
     <ClCompile Include="pmc_shift.c">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="pmc_divrem.c">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="debug.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
+    <ClCompile Include="TEST_generic.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
+    <ClCompile Include="TEST_op_Add.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
+    <ClCompile Include="TEST_op_DivRem.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
+    <ClCompile Include="TEST_op_From_To.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
+    <ClCompile Include="TEST_op_Multiply.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
     <ClCompile Include="TEST_op_Shift.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
+    <ClCompile Include="TEST_op_Subtruct.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
+    <ClCompile Include="CALC_divrem_critical.c">
       <Filter>ソース ファイル\テスト</Filter>
     </ClCompile>
   </ItemGroup>

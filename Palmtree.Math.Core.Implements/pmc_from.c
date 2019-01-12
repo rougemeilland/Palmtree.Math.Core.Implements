@@ -36,7 +36,7 @@
 PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o)
 {
     PMC_STATUS_CODE result;
-    if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x))) != PMC_STATUS_OK)
+    if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x), NULL)) != PMC_STATUS_OK)
         return (result);
     (*o)->BLOCK[0] = x;
     CommitNumber(*o);
@@ -60,13 +60,13 @@ PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o)
         if (x_hi == 0)
         {
             __UNIT_TYPE x_bit_length = sizeof(x_lo) * 8 - _LZCNT_ALT_32(x_lo);
-            if ((result = AllocateNumber(o, x_bit_length)) != PMC_STATUS_OK)
+            if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
                 return (result);
         }
         else
         {
             __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_32(x_hi);
-            if ((result = AllocateNumber(o, x_bit_length)) != PMC_STATUS_OK)
+            if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
                 return (result);
             (*o)->BLOCK[1] = x_hi;
         }
@@ -77,7 +77,7 @@ PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o)
         // _UINT64_T を表現するのに 1 ワードで十分である処理系の場合
 
         __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x);
-        if ((result = AllocateNumber(o, x_bit_length)) != PMC_STATUS_OK)
+        if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
             return (result);
         (*o)->BLOCK[0] = (__UNIT_TYPE)x;
     }
@@ -155,7 +155,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_From_B(unsigned char* buffer, size_t count, HANDL
     else
     {
         NUMBER_HEADER* p;
-        if ((result = AllocateNumber(&p, bit_count)) != PMC_STATUS_OK)
+        if ((result = AllocateNumber(&p, bit_count, NULL)) != PMC_STATUS_OK)
             return (result);
         _COPY_MEMORY_BYTE(p->BLOCK, buffer, _DIVIDE_CEILING_SIZE(bit_count, 8));
         CommitNumber(p);

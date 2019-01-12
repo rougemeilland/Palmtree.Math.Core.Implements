@@ -50,11 +50,13 @@ extern "C" {
 
 #define PMC_STATUS_OK (0)
 #define PMC_STATUS_ARGUMENT_ERROR (-1)
-#define PMC_STATUS_NOT_ENOUGH_MEMORY (-2)
-#define PMC_STATUS_NOT_SUPPORTED (-3)
-#define PMC_STATUS_BAD_BUFFER (-4)
-#define PMC_STATUS_INTERNAL_ERROR (-5)
-#define PMC_STATUS_INTERNAL_BORROW (-6)
+#define PMC_STATUS_OUT_OF_RANGE (-2)
+#define PMC_STATUS_DIVISION_BY_ZERO (-3)
+#define PMC_STATUS_NOT_ENOUGH_MEMORY (-4)
+#define PMC_STATUS_NOT_SUPPORTED (-5)
+#define PMC_STATUS_BAD_BUFFER (-6)
+#define PMC_STATUS_INTERNAL_ERROR (-7)
+#define PMC_STATUS_INTERNAL_BORROW (-8)
 #pragma endregion
 
 
@@ -140,13 +142,18 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__PMC_CALL * PMC_Multiply_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_Multiply_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
 
-    // RightShift 演算子
-    PMC_STATUS_CODE(__PMC_CALL * PMC_RightShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
-    PMC_STATUS_CODE(__PMC_CALL * PMC_RightShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
+    // DivRem 演算子
+    PMC_STATUS_CODE(__PMC_CALL * PMC_DivRem_X_I)(HANDLE u, _UINT32_T v, HANDLE* q, _UINT32_T* r);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_DivRem_X_L)(HANDLE u, _UINT64_T v, HANDLE* q, _UINT64_T* r);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_DivRem_X_X)(HANDLE u, HANDLE v, HANDLE* q, HANDLE* r);
 
     // RightShift 演算子
     PMC_STATUS_CODE(__PMC_CALL * PMC_LeftShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_LeftShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
+
+    // RightShift 演算子
+    PMC_STATUS_CODE(__PMC_CALL * PMC_RightShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_RightShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
 
 } PMC_ENTRY_POINTS;
 #pragma endregion

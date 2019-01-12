@@ -6,7 +6,7 @@ Ltext0:
 	.globl	_PMC_TraceStatistics@4
 	.def	_PMC_TraceStatistics@4;	.scl	2;	.type	32;	.endef
 _PMC_TraceStatistics@4:
-LFB4215:
+LFB4227:
 	.file 1 "pmc_statistics.c"
 	.loc 1 41 1
 	.cfi_startproc
@@ -53,11 +53,11 @@ L6:
 	.cfi_def_cfa 4, 4
 	ret	$4
 	.cfi_endproc
-LFE4215:
+LFE4227:
 	.globl	_PMC_GetStatisticsInfo@4
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 _PMC_GetStatisticsInfo@4:
-LFB4216:
+LFB4228:
 	.loc 1 63 1
 	.cfi_startproc
 	pushl	%ebp
@@ -92,11 +92,11 @@ LFB4216:
 	.cfi_def_cfa 4, 4
 	ret	$4
 	.cfi_endproc
-LFE4216:
+LFE4228:
 	.globl	_IncrementDIV32Counter
 	.def	_IncrementDIV32Counter;	.scl	2;	.type	32;	.endef
 _IncrementDIV32Counter:
-LFB4217:
+LFB4229:
 	.loc 1 72 1
 	.cfi_startproc
 	pushl	%ebp
@@ -122,11 +122,11 @@ LBE10:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE4217:
+LFE4229:
 	.globl	_IncrementDIV64Counter
 	.def	_IncrementDIV64Counter;	.scl	2;	.type	32;	.endef
 _IncrementDIV64Counter:
-LFB4218:
+LFB4230:
 	.loc 1 78 1
 	.cfi_startproc
 	pushl	%ebp
@@ -151,11 +151,11 @@ LBE12:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE4218:
+LFE4230:
 	.globl	_IncrementMULTI32Counter
 	.def	_IncrementMULTI32Counter;	.scl	2;	.type	32;	.endef
 _IncrementMULTI32Counter:
-LFB4219:
+LFB4231:
 	.loc 1 84 1
 	.cfi_startproc
 	pushl	%ebp
@@ -180,11 +180,11 @@ LBE14:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE4219:
+LFE4231:
 	.globl	_IncrementMULTI64Counter
 	.def	_IncrementMULTI64Counter;	.scl	2;	.type	32;	.endef
 _IncrementMULTI64Counter:
-LFB4220:
+LFB4232:
 	.loc 1 90 1
 	.cfi_startproc
 	pushl	%ebp
@@ -209,7 +209,7 @@ LBE16:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE4220:
+LFE4232:
 Letext0:
 	.file 3 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/crtdefs.h"
 	.file 4 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/excpt.h"
@@ -4191,20 +4191,20 @@ Ldebug_info0:
 	.uleb128 0x3
 	.ascii "_UINT32_T\0"
 	.byte	0x1f
-	.byte	0x4c
+	.byte	0x4e
 	.byte	0x12
 	.long	0x4c14
 	.uleb128 0x11
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1f
-	.byte	0x52
+	.byte	0x54
 	.byte	0x10
 	.long	0x4c86
 	.uleb128 0x1b
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1f
-	.byte	0x54
+	.byte	0x56
 	.byte	0xe
 	.long	0xd4
 	.byte	0x4
@@ -4215,41 +4215,41 @@ Ldebug_info0:
 	.uleb128 0x3
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1f
-	.byte	0x55
+	.byte	0x57
 	.byte	0x3
 	.long	0x4c37
 	.uleb128 0x11
 	.ascii "__tag_PMC_STATISTICS_INFO\0"
 	.byte	0x10
 	.byte	0x1f
-	.byte	0x5a
+	.byte	0x5c
 	.byte	0x10
 	.long	0x4d21
 	.uleb128 0x12
 	.ascii "COUNT_MULTI64\0"
 	.byte	0x1f
-	.byte	0x5c
+	.byte	0x5e
 	.byte	0xa
 	.long	0x116
 	.byte	0
 	.uleb128 0x12
 	.ascii "COUNT_MULTI32\0"
 	.byte	0x1f
-	.byte	0x5d
+	.byte	0x5f
 	.byte	0xa
 	.long	0x116
 	.byte	0x4
 	.uleb128 0x12
 	.ascii "COUNT_DIV64\0"
 	.byte	0x1f
-	.byte	0x5e
+	.byte	0x60
 	.byte	0xa
 	.long	0x116
 	.byte	0x8
 	.uleb128 0x12
 	.ascii "COUNT_DIV32\0"
 	.byte	0x1f
-	.byte	0x5f
+	.byte	0x61
 	.byte	0xa
 	.long	0x116
 	.byte	0xc
@@ -4257,7 +4257,7 @@ Ldebug_info0:
 	.uleb128 0x3
 	.ascii "PMC_STATISTICS_INFO\0"
 	.byte	0x1f
-	.byte	0x60
+	.byte	0x62
 	.byte	0x3
 	.long	0x4ca5
 	.uleb128 0x7
@@ -4266,48 +4266,48 @@ Ldebug_info0:
 	.uleb128 0x3
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x20
-	.byte	0x33
+	.byte	0x31
 	.byte	0x13
 	.long	0x4c25
 	.uleb128 0x11
 	.ascii "__tag_NUMBER_HEADER\0"
 	.byte	0x1c
 	.byte	0x20
-	.byte	0x51
+	.byte	0x57
 	.byte	0x10
 	.long	0x4e69
 	.uleb128 0x12
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x20
-	.byte	0x53
+	.byte	0x59
 	.byte	0x11
 	.long	0x4d43
 	.byte	0
 	.uleb128 0x12
 	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x20
-	.byte	0x54
+	.byte	0x5a
 	.byte	0x11
 	.long	0x4d43
 	.byte	0x4
 	.uleb128 0x12
 	.ascii "HASH_CODE\0"
 	.byte	0x20
-	.byte	0x55
+	.byte	0x5b
 	.byte	0x11
 	.long	0x4d43
 	.byte	0x8
 	.uleb128 0x12
 	.ascii "LEAST_ZERO_BITS_COUNT\0"
 	.byte	0x20
-	.byte	0x56
+	.byte	0x5c
 	.byte	0x11
 	.long	0x4d43
 	.byte	0xc
 	.uleb128 0x1b
 	.ascii "IS_STATIC\0"
 	.byte	0x20
-	.byte	0x57
+	.byte	0x5d
 	.byte	0xe
 	.long	0xd4
 	.byte	0x4
@@ -4317,7 +4317,7 @@ Ldebug_info0:
 	.uleb128 0x1b
 	.ascii "IS_ZERO\0"
 	.byte	0x20
-	.byte	0x58
+	.byte	0x5e
 	.byte	0xe
 	.long	0xd4
 	.byte	0x4
@@ -4327,7 +4327,7 @@ Ldebug_info0:
 	.uleb128 0x1b
 	.ascii "IS_ONE\0"
 	.byte	0x20
-	.byte	0x59
+	.byte	0x5f
 	.byte	0xe
 	.long	0xd4
 	.byte	0x4
@@ -4337,7 +4337,7 @@ Ldebug_info0:
 	.uleb128 0x1b
 	.ascii "IS_EVEN\0"
 	.byte	0x20
-	.byte	0x5a
+	.byte	0x60
 	.byte	0xe
 	.long	0xd4
 	.byte	0x4
@@ -4347,7 +4347,7 @@ Ldebug_info0:
 	.uleb128 0x1b
 	.ascii "IS_POWER_OF_TWO\0"
 	.byte	0x20
-	.byte	0x5b
+	.byte	0x61
 	.byte	0xe
 	.long	0xd4
 	.byte	0x4
@@ -4357,14 +4357,14 @@ Ldebug_info0:
 	.uleb128 0x12
 	.ascii "BLOCK_COUNT\0"
 	.byte	0x20
-	.byte	0x5d
+	.byte	0x63
 	.byte	0xc
 	.long	0xc5
 	.byte	0x14
 	.uleb128 0x12
 	.ascii "BLOCK\0"
 	.byte	0x20
-	.byte	0x61
+	.byte	0x67
 	.byte	0x12
 	.long	0x4e69
 	.byte	0x18
@@ -4375,19 +4375,19 @@ Ldebug_info0:
 	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x20
-	.byte	0x62
+	.byte	0x68
 	.byte	0x3
 	.long	0x4d57
 	.uleb128 0x14
 	.ascii "configuration_info\0"
 	.byte	0x20
-	.byte	0x69
+	.byte	0x6f
 	.byte	0x1f
 	.long	0x4c86
 	.uleb128 0x14
 	.ascii "number_zero\0"
 	.byte	0x20
-	.byte	0x6c
+	.byte	0x72
 	.byte	0x16
 	.long	0x4e6f
 	.uleb128 0x1c
@@ -4413,8 +4413,8 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x59
 	.byte	0x6
-	.long	LFB4220
-	.long	LFE4220-LFB4220
+	.long	LFB4232
+	.long	LFE4232-LFB4232
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4f32
@@ -4437,8 +4437,8 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x53
 	.byte	0x6
-	.long	LFB4219
-	.long	LFE4219-LFB4219
+	.long	LFB4231
+	.long	LFE4231-LFB4231
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4f76
@@ -4461,8 +4461,8 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x4d
 	.byte	0x6
-	.long	LFB4218
-	.long	LFE4218-LFB4218
+	.long	LFB4230
+	.long	LFE4230-LFB4230
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4fb8
@@ -4485,8 +4485,8 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x47
 	.byte	0x6
-	.long	LFB4217
-	.long	LFE4217-LFB4217
+	.long	LFB4229
+	.long	LFE4229-LFB4229
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4ffa
@@ -4510,8 +4510,8 @@ Ldebug_info0:
 	.byte	0x3e
 	.byte	0x23
 	.ascii "PMC_GetStatisticsInfo@4\0"
-	.long	LFB4216
-	.long	LFE4216-LFB4216
+	.long	LFB4228
+	.long	LFE4228-LFB4228
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x504d
@@ -4531,8 +4531,8 @@ Ldebug_info0:
 	.byte	0x28
 	.byte	0x23
 	.ascii "PMC_TraceStatistics@4\0"
-	.long	LFB4215
-	.long	LFE4215-LFB4215
+	.long	LFB4227
+	.long	LFE4227-LFB4227
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5098

@@ -365,13 +365,16 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
             __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y);
             __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
-            if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+            __UNIT_TYPE nz_check_code;
+            if ((result = AllocateNumber(&nz, z_bit_count, &nz_check_code)) != PMC_STATUS_OK)
                 return (result);
             if ((result = Add_X_1W(nx, y, nz)) != PMC_STATUS_OK)
             {
                 DeallocateNumber(nz);
                 return (result);
             }
+            if ((result = CheckBlockLight(nz->BLOCK, nz_check_code)) != PMC_STATUS_OK)
+                return (result);
             CommitNumber(nz);
         }
         *o = nz;
@@ -452,26 +455,32 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
                     // y の値が 32bit で表現可能な場合
                     __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
                     __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
-                    if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+                    __UNIT_TYPE nz_light_check_code;
+                    if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                         return (result);
                     if ((result = Add_X_1W(nx, y_lo, nz)) != PMC_STATUS_OK)
                     {
                         DeallocateNumber(nz);
                         return (result);
                     }
+                    if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                        return (result);
                 }
                 else
                 {
                     // y の値が 32bit では表現できない場合
                     __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
                     __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
-                    if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+                    __UNIT_TYPE nz_light_check_code;
+                    if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                         return (result);
                     if ((result = Add_X_2W(nx, y_hi, y_lo, nz)) != PMC_STATUS_OK)
                     {
                         DeallocateNumber(nz);
                         return (result);
                     }
+                    if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                        return (result);
                 }
                 CommitNumber(nz);
             }
@@ -482,13 +491,16 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
                 __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
                 __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
-                if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+                __UNIT_TYPE nz_light_check_code;
+                if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                     return (result);
                 if ((result = Add_X_1W(nx, (__UNIT_TYPE)y, nz)) != PMC_STATUS_OK)
                 {
                     DeallocateNumber(nz);
                     return (result);
                 }
+                if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                    return (result);
                 CommitNumber(nz);
             }
 
@@ -543,13 +555,16 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_X_X(HANDLE x, HANDLE y, HANDLE* o)
             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
             __UNIT_TYPE y_bit_count = ny->UNIT_BIT_COUNT;
             __UNIT_TYPE z_bit_count = _MAXIMUM_UNIT(x_bit_count, y_bit_count) + 1;
-            if ((result = AllocateNumber(&nz, z_bit_count)) != PMC_STATUS_OK)
+            __UNIT_TYPE nz_light_check_code;
+            if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                 return (result);
             if ((result = Add_X_X(nx, ny, nz)) != PMC_STATUS_OK)
             {
                 DeallocateNumber(nz);
                 return (result);
             }
+            if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                return (result);
             CommitNumber(nz);
         }
     }
