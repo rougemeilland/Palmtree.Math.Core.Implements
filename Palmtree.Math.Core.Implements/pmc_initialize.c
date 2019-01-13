@@ -130,7 +130,6 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
 	entry_points.PROCESSOR_FEATURE_BMI1 = feature.PROCESSOR_FEATURE_BMI1;
     entry_points.PROCESSOR_FEATURE_BMI2 = feature.PROCESSOR_FEATURE_BMI2;
     entry_points.PROCESSOR_FEATURE_ABM = feature.PROCESSOR_FEATURE_ABM;
-	entry_points.PMC_TraceStatistics = PMC_TraceStatistics;
 	entry_points.PMC_GetStatisticsInfo = PMC_GetStatisticsInfo;
 	entry_points.PMC_From_I = PMC_From_I;
 	entry_points.PMC_From_L = PMC_From_L;

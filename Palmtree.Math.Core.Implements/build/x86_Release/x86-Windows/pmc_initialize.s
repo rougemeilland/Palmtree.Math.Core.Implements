@@ -4,7 +4,7 @@
 	.globl	_PMC_Initialize@4
 	.def	_PMC_Initialize@4;	.scl	2;	.type	32;	.endef
 _PMC_Initialize@4:
-LFB5475:
+LFB5484:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -116,36 +116,35 @@ L7:
 	jne	L10
 	movzbl	_entry_points, %eax
 	movzbl	28(%esp), %edx
-	movl	$_PMC_TraceStatistics@4, _entry_points+4
-	movl	$_PMC_GetStatisticsInfo@4, _entry_points+8
+	movl	$_PMC_GetStatisticsInfo@4, _entry_points+4
+	movl	$_PMC_From_I@8, _entry_points+8
 	andl	$-32, %eax
 	andl	$31, %edx
-	movl	$_PMC_From_I@8, _entry_points+12
-	movl	$_PMC_From_L@12, _entry_points+16
+	movl	$_PMC_From_L@12, _entry_points+12
+	movl	$_PMC_From_B@12, _entry_points+16
 	orl	%edx, %eax
 	movb	%al, _entry_points
 	movl	$_entry_points, %eax
-	movl	$_PMC_From_B@12, _entry_points+20
-	movl	$_PMC_Dispose@4, _entry_points+24
-	movl	$_PMC_To_X_I@8, _entry_points+28
-	movl	$_PMC_To_X_L@8, _entry_points+32
-	movl	$_PMC_To_X_B@16, _entry_points+36
-	movl	$_PMC_Add_X_I@12, _entry_points+40
-	movl	$_PMC_Add_X_L@16, _entry_points+44
-	movl	$_PMC_Add_X_X@12, _entry_points+48
-	movl	$_PMC_Subtruct_X_I@12, _entry_points+52
-	movl	$_PMC_Subtruct_X_L@16, _entry_points+56
-	movl	$_PMC_Subtruct_X_X@12, _entry_points+60
-	movl	$_PMC_Multiply_X_I@12, _entry_points+64
-	movl	$_PMC_Multiply_X_L@16, _entry_points+68
-	movl	$_PMC_Multiply_X_X@12, _entry_points+72
-	movl	$_PMC_DivRem_X_I@16, _entry_points+76
-	movl	$_PMC_DivRem_X_L@20, _entry_points+80
-	movl	$_PMC_DivRem_X_X@16, _entry_points+84
-	movl	$_PMC_RightShift_X_I@12, _entry_points+96
-	movl	$_PMC_RightShift_X_L@16, _entry_points+100
-	movl	$_PMC_LeftShift_X_I@12, _entry_points+88
-	movl	$_PMC_LeftShift_X_L@16, _entry_points+92
+	movl	$_PMC_Dispose@4, _entry_points+20
+	movl	$_PMC_To_X_I@8, _entry_points+24
+	movl	$_PMC_To_X_L@8, _entry_points+28
+	movl	$_PMC_To_X_B@16, _entry_points+32
+	movl	$_PMC_Add_X_I@12, _entry_points+36
+	movl	$_PMC_Add_X_L@16, _entry_points+40
+	movl	$_PMC_Add_X_X@12, _entry_points+44
+	movl	$_PMC_Subtruct_X_I@12, _entry_points+48
+	movl	$_PMC_Subtruct_X_L@16, _entry_points+52
+	movl	$_PMC_Subtruct_X_X@12, _entry_points+56
+	movl	$_PMC_Multiply_X_I@12, _entry_points+60
+	movl	$_PMC_Multiply_X_L@16, _entry_points+64
+	movl	$_PMC_Multiply_X_X@12, _entry_points+68
+	movl	$_PMC_DivRem_X_I@16, _entry_points+72
+	movl	$_PMC_DivRem_X_L@20, _entry_points+76
+	movl	$_PMC_DivRem_X_X@16, _entry_points+80
+	movl	$_PMC_RightShift_X_I@12, _entry_points+92
+	movl	$_PMC_RightShift_X_L@16, _entry_points+96
+	movl	$_PMC_LeftShift_X_I@12, _entry_points+84
+	movl	$_PMC_LeftShift_X_L@16, _entry_points+88
 	jmp	L1
 	.p2align 4,,10
 L13:
@@ -193,9 +192,9 @@ L6:
 	movb	%cl, 28(%esp)
 	jmp	L7
 	.cfi_endproc
-LFE5475:
+LFE5484:
 	.comm	_configuration_info, 4, 2
-.lcomm _entry_points,104,32
+.lcomm _entry_points,100,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
@@ -205,7 +204,6 @@ LFE5475:
 	.def	_Initialize_Multiply;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Shift;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_DivRem;	.scl	2;	.type	32;	.endef
-	.def	_PMC_TraceStatistics@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_L@12;	.scl	2;	.type	32;	.endef

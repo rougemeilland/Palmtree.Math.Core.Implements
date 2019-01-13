@@ -87,7 +87,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>DEBUG;_DEBUG;WIN32;_M_IX86;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;_DEBUG;WIN32;_M_IX86;ENABLED_PERFORMANCE_COUNTER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -108,7 +108,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>WIN32;_M_IX86;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_M_IX86;ENABLED_PERFORMANCE_COUNTER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -130,7 +130,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>DEBUG;_DEBUG;_M_IX64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;_DEBUG;_M_IX64;ENABLED_PERFORMANCE_COUNTER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
       <WarningLevel>Level3</WarningLevel>
@@ -147,7 +147,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>_M_IX64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_M_IX64;ENABLED_PERFORMANCE_COUNTER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
       <WarningLevel>Level3</WarningLevel>

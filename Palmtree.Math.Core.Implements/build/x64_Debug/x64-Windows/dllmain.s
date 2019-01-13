@@ -6,7 +6,7 @@
 	.def	DllMain;	.scl	2;	.type	32;	.endef
 	.seh_proc	DllMain
 DllMain:
-.LFB4357:
+.LFB4366:
 	.file 1 "dllmain.c"
 	.loc 1 42 1
 	.cfi_startproc
@@ -75,7 +75,7 @@ DllMain:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4357:
+.LFE4366:
 	.seh_endproc
 .Letext0:
 	.file 2 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h"
@@ -109,7 +109,7 @@ DllMain:
 	.file 30 "pmc_internal.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
-	.long	0x4c26
+	.long	0x4cd6
 	.word	0x4
 	.secrel32	.Ldebug_abbrev0
 	.byte	0x8
@@ -3939,6 +3939,48 @@ DllMain:
 	.byte	0x57
 	.byte	0x3
 	.long	0x49d6
+	.uleb128 0x12
+	.ascii "__tag_PMC_STATISTICS_INFO\0"
+	.byte	0x10
+	.byte	0x1d
+	.byte	0x5c
+	.byte	0x10
+	.long	0x4ac0
+	.uleb128 0x13
+	.ascii "COUNT_MULTI64\0"
+	.byte	0x1d
+	.byte	0x5e
+	.byte	0xa
+	.long	0x132
+	.byte	0
+	.uleb128 0x13
+	.ascii "COUNT_MULTI32\0"
+	.byte	0x1d
+	.byte	0x5f
+	.byte	0xa
+	.long	0x132
+	.byte	0x4
+	.uleb128 0x13
+	.ascii "COUNT_DIV64\0"
+	.byte	0x1d
+	.byte	0x60
+	.byte	0xa
+	.long	0x132
+	.byte	0x8
+	.uleb128 0x13
+	.ascii "COUNT_DIV32\0"
+	.byte	0x1d
+	.byte	0x61
+	.byte	0xa
+	.long	0x132
+	.byte	0xc
+	.byte	0
+	.uleb128 0x3
+	.ascii "PMC_STATISTICS_INFO\0"
+	.byte	0x1d
+	.byte	0x62
+	.byte	0x3
+	.long	0x4a44
 	.uleb128 0x3
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x1e
@@ -3951,34 +3993,34 @@ DllMain:
 	.byte	0x1e
 	.byte	0x57
 	.byte	0x10
-	.long	0x4b6a
+	.long	0x4c02
 	.uleb128 0x13
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1e
 	.byte	0x59
 	.byte	0x11
-	.long	0x4a44
+	.long	0x4adc
 	.byte	0
 	.uleb128 0x13
 	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x1e
 	.byte	0x5a
 	.byte	0x11
-	.long	0x4a44
+	.long	0x4adc
 	.byte	0x8
 	.uleb128 0x13
 	.ascii "HASH_CODE\0"
 	.byte	0x1e
 	.byte	0x5b
 	.byte	0x11
-	.long	0x4a44
+	.long	0x4adc
 	.byte	0x10
 	.uleb128 0x13
 	.ascii "LEAST_ZERO_BITS_COUNT\0"
 	.byte	0x1e
 	.byte	0x5c
 	.byte	0x11
-	.long	0x4a44
+	.long	0x4adc
 	.byte	0x18
 	.uleb128 0x18
 	.ascii "IS_STATIC\0"
@@ -4042,18 +4084,18 @@ DllMain:
 	.byte	0x1e
 	.byte	0x67
 	.byte	0x12
-	.long	0x4b6a
+	.long	0x4c02
 	.byte	0x30
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4a44
+	.long	0x4adc
 	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x1e
 	.byte	0x68
 	.byte	0x3
-	.long	0x4a58
+	.long	0x4af0
 	.uleb128 0x15
 	.ascii "configuration_info\0"
 	.byte	0x1e
@@ -4065,15 +4107,21 @@ DllMain:
 	.byte	0x1e
 	.byte	0x72
 	.byte	0x16
-	.long	0x4b70
+	.long	0x4c08
+	.uleb128 0x15
+	.ascii "statistics_info\0"
+	.byte	0x1e
+	.byte	0x75
+	.byte	0x1c
+	.long	0x4ac0
 	.uleb128 0x19
 	.ascii "DllMain\0"
 	.byte	0x1
 	.byte	0x29
 	.byte	0x6
 	.long	0x5db
-	.quad	.LFB4357
-	.quad	.LFE4357-.LFB4357
+	.quad	.LFB4366
+	.quad	.LFE4366-.LFB4366
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x1a

@@ -77,7 +77,7 @@ typedef struct _tag_PROCESSOR_FEATURES
     // このフラグで使用可能な命令: TZCNT
     unsigned PROCESSOR_FEATURE_BMI1 : 1;
 
-    // このフラグで使用可能な命令:
+    // このフラグで使用可能な命令: MULX
     unsigned PROCESSOR_FEATURE_BMI2 : 1;
 
     // このフラグで使用可能な命令: LZCNT
@@ -112,6 +112,9 @@ extern PMC_CONFIGURATION_INFO configuration_info;
 
 // 整数 0 のインスタンス
 extern NUMBER_HEADER number_zero;
+
+// パフォーマンスカウンタ
+extern PMC_STATISTICS_INFO statistics_info;
 
 // 内部ヒープメモリ領域を獲得する。
 extern BOOL AllocateHeapArea(void);
@@ -148,18 +151,6 @@ extern PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p);
 
 // 与えられた NUMBER_HEADER 構造体を複製する。p が指す NUMBER_HEADER 構造体はゼロ値であってはならない。
 extern PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* p, NUMBER_HEADER** op);
-
-// 統計カウンタ DIV32 をインクリメントする。
-extern void IncrementDIV32Counter(void);
-
-// 統計カウンタ DIV64 をインクリメントする。
-extern void IncrementDIV64Counter(void);
-
-// 統計カウンタ MULTI32 をインクリメントする。
-extern void IncrementMULTI32Counter(void);
-
-// 統計カウンタ MULTI64 をインクリメントする。
-extern void IncrementMULTI64Counter(void);
 
 // 32bit 整数 x から NUMBER_HEADER 構造体を構築し、そのポインタを o が指す領域に格納して返す。x はゼロであってはならない。
 extern PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o);
@@ -205,7 +196,6 @@ extern PMC_STATUS_CODE Initialize_Set(PROCESSOR_FEATURES* feature);
 
 // エントリポイントに登録される関数群
 
-extern void __PMC_CALL PMC_TraceStatistics(int enabled);
 extern void __PMC_CALL PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
 extern PMC_STATUS_CODE __PMC_CALL PMC_From_I(_UINT32_T x, HANDLE* o);
@@ -534,6 +524,27 @@ __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 #else
 #error unknown platform
 #endif
+#elif defined(__GNUC__)
+#ifdef _M_IX86
+    _UINT32_T w_lo;
+    __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+    return (w_lo);
+#elif defined(_M_X64)
+    _UINT64_T w_lo;
+    __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+    return (w_lo);
+#else
+#error unknown platform
+#endif
+#else
+#error unknown compiler
+#endif
+}
+
+__inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
+{
+#ifdef _MSC_VER
+    return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
 #elif defined(__GNUC__)
 #ifdef _M_IX86
     _UINT32_T w_lo;
@@ -904,6 +915,52 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 #error unknown platform
 #endif
     return (pos);
+}
+
+__inline static void IncrementDIV32Counter(void)
+{
+    _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+}
+
+
+__inline static void IncrementDIV64Counter(void)
+{
+    _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+}
+
+
+__inline static void IncrementMULTI32Counter(void)
+{
+    _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+}
+
+
+__inline static void IncrementMULTI64Counter(void)
+{
+    _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
+}
+
+__inline static void AddToDIV32Counter(_INT32_T value)
+{
+    _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+}
+
+
+__inline static void AddToDIV64Counter(_INT32_T value)
+{
+    _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
+}
+
+
+__inline static void AddToMULTI32Counter(_INT32_T value)
+{
+    _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+}
+
+
+__inline static void AddToMULTI64Counter(_INT32_T value)
+{
+    _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
 }
 #pragma endregion
 

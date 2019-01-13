@@ -56,6 +56,7 @@
         <cTool>
           <commandLine>-save-temps=obj</commandLine>
           <preprocessorList>
+            <Elem>ENABLED_PERFORMANCE_COUNTER</Elem>
             <Elem>_DEBUG</Elem>
             <Elem>_M_IX64</Elem>
           </preprocessorList>
@@ -64,6 +65,7 @@
         <ccTool>
           <commandLine>-save-temps=obj</commandLine>
           <preprocessorList>
+            <Elem>ENABLED_PERFORMANCE_COUNTER</Elem>
             <Elem>_M_IX64</Elem>
           </preprocessorList>
           <warningLevel>3</warningLevel>
@@ -138,6 +140,7 @@
           <developmentMode>5</developmentMode>
           <commandLine>-save-temps=obj</commandLine>
           <preprocessorList>
+            <Elem>ENABLED_PERFORMANCE_COUNTER</Elem>
             <Elem>_M_IX64</Elem>
           </preprocessorList>
           <warningLevel>3</warningLevel>
@@ -146,6 +149,7 @@
           <developmentMode>5</developmentMode>
           <commandLine>-save-temps=obj</commandLine>
           <preprocessorList>
+            <Elem>ENABLED_PERFORMANCE_COUNTER</Elem>
             <Elem>_M_IX64</Elem>
           </preprocessorList>
           <warningLevel>3</warningLevel>
@@ -225,6 +229,7 @@
         <cTool>
           <commandLine>-save-temps=obj</commandLine>
           <preprocessorList>
+            <Elem>ENABLED_PERFORMANCE_COUNTER</Elem>
             <Elem>_DEBUG</Elem>
             <Elem>_M_IX86</Elem>
           </preprocessorList>
@@ -233,6 +238,7 @@
         <ccTool>
           <commandLine>-save-temps=obj</commandLine>
           <preprocessorList>
+            <Elem>ENABLED_PERFORMANCE_COUNTER</Elem>
             <Elem>_M_IX86</Elem>
           </preprocessorList>
           <warningLevel>3</warningLevel>
@@ -307,14 +313,17 @@
           <developmentMode>5</developmentMode>
           <commandLine>-save-temps=obj</commandLine>
           <preprocessorList>
+            <Elem>ENABLED_PERFORMANCE_COUNTER</Elem>
             <Elem>_M_IX86</Elem>
           </preprocessorList>
+          <useLinkerLibraries>false</useLinkerLibraries>
           <warningLevel>3</warningLevel>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <commandLine>-save-temps=obj</commandLine>
           <preprocessorList>
+            <Elem>ENABLED_PERFORMANCE_COUNTER</Elem>
             <Elem>_M_IX86</Elem>
           </preprocessorList>
           <warningLevel>3</warningLevel>

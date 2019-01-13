@@ -4,11 +4,11 @@
 	.globl	_DoDebug@4
 	.def	_DoDebug@4;	.scl	2;	.type	32;	.endef
 _DoDebug@4:
-LFB5479:
+LFB5488:
 	.cfi_startproc
 	ret	$4
 	.cfi_endproc
-LFE5479:
+LFE5488:
 	.section .rdata,"dr"
 LC0:
 	.ascii "***NG***\0"
@@ -20,7 +20,7 @@ LC1:
 	.globl	_TEST_Assert
 	.def	_TEST_Assert;	.scl	2;	.type	32;	.endef
 _TEST_Assert:
-LFB5480:
+LFB5489:
 	.cfi_startproc
 	subl	$44, %esp
 	.cfi_def_cfa_offset 48
@@ -54,7 +54,7 @@ L4:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5480:
+LFE5489:
 	.globl	_test_ok_count
 	.bss
 	.align 4

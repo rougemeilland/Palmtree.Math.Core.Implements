@@ -109,56 +109,54 @@ PMC_Initialize:
 	andl	$31, %edx
 	orl	%edx, %eax
 	movb	%al, entry_points(%rip)
-	movq	.refptr.PMC_TraceStatistics(%rip), %rax
-	movq	%rax, 8+entry_points(%rip)
 	movq	.refptr.PMC_GetStatisticsInfo(%rip), %rax
-	movq	%rax, 16+entry_points(%rip)
+	movq	%rax, 8+entry_points(%rip)
 	movq	.refptr.PMC_From_I(%rip), %rax
-	movq	%rax, 24+entry_points(%rip)
+	movq	%rax, 16+entry_points(%rip)
 	movq	.refptr.PMC_From_L(%rip), %rax
-	movq	%rax, 32+entry_points(%rip)
+	movq	%rax, 24+entry_points(%rip)
 	movq	.refptr.PMC_From_B(%rip), %rax
-	movq	%rax, 40+entry_points(%rip)
+	movq	%rax, 32+entry_points(%rip)
 	movq	.refptr.PMC_Dispose(%rip), %rax
-	movq	%rax, 48+entry_points(%rip)
+	movq	%rax, 40+entry_points(%rip)
 	movq	.refptr.PMC_To_X_I(%rip), %rax
-	movq	%rax, 56+entry_points(%rip)
+	movq	%rax, 48+entry_points(%rip)
 	movq	.refptr.PMC_To_X_L(%rip), %rax
-	movq	%rax, 64+entry_points(%rip)
+	movq	%rax, 56+entry_points(%rip)
 	movq	.refptr.PMC_To_X_B(%rip), %rax
-	movq	%rax, 72+entry_points(%rip)
+	movq	%rax, 64+entry_points(%rip)
 	movq	.refptr.PMC_Add_X_I(%rip), %rax
-	movq	%rax, 80+entry_points(%rip)
+	movq	%rax, 72+entry_points(%rip)
 	movq	.refptr.PMC_Add_X_L(%rip), %rax
-	movq	%rax, 88+entry_points(%rip)
+	movq	%rax, 80+entry_points(%rip)
 	movq	.refptr.PMC_Add_X_X(%rip), %rax
-	movq	%rax, 96+entry_points(%rip)
+	movq	%rax, 88+entry_points(%rip)
 	movq	.refptr.PMC_Subtruct_X_I(%rip), %rax
-	movq	%rax, 104+entry_points(%rip)
+	movq	%rax, 96+entry_points(%rip)
 	movq	.refptr.PMC_Subtruct_X_L(%rip), %rax
-	movq	%rax, 112+entry_points(%rip)
+	movq	%rax, 104+entry_points(%rip)
 	movq	.refptr.PMC_Subtruct_X_X(%rip), %rax
-	movq	%rax, 120+entry_points(%rip)
+	movq	%rax, 112+entry_points(%rip)
 	movq	.refptr.PMC_Multiply_X_I(%rip), %rax
-	movq	%rax, 128+entry_points(%rip)
+	movq	%rax, 120+entry_points(%rip)
 	movq	.refptr.PMC_Multiply_X_L(%rip), %rax
-	movq	%rax, 136+entry_points(%rip)
+	movq	%rax, 128+entry_points(%rip)
 	movq	.refptr.PMC_Multiply_X_X(%rip), %rax
-	movq	%rax, 144+entry_points(%rip)
+	movq	%rax, 136+entry_points(%rip)
 	movq	.refptr.PMC_DivRem_X_I(%rip), %rax
-	movq	%rax, 152+entry_points(%rip)
+	movq	%rax, 144+entry_points(%rip)
 	movq	.refptr.PMC_DivRem_X_L(%rip), %rax
-	movq	%rax, 160+entry_points(%rip)
+	movq	%rax, 152+entry_points(%rip)
 	movq	.refptr.PMC_DivRem_X_X(%rip), %rax
-	movq	%rax, 168+entry_points(%rip)
+	movq	%rax, 160+entry_points(%rip)
 	movq	.refptr.PMC_RightShift_X_I(%rip), %rax
-	movq	%rax, 192+entry_points(%rip)
-	movq	.refptr.PMC_RightShift_X_L(%rip), %rax
-	movq	%rax, 200+entry_points(%rip)
-	movq	.refptr.PMC_LeftShift_X_I(%rip), %rax
-	movq	%rax, 176+entry_points(%rip)
-	movq	.refptr.PMC_LeftShift_X_L(%rip), %rax
 	movq	%rax, 184+entry_points(%rip)
+	movq	.refptr.PMC_RightShift_X_L(%rip), %rax
+	movq	%rax, 192+entry_points(%rip)
+	movq	.refptr.PMC_LeftShift_X_I(%rip), %rax
+	movq	%rax, 168+entry_points(%rip)
+	movq	.refptr.PMC_LeftShift_X_L(%rip), %rax
+	movq	%rax, 176+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
 	jmp	.L1
 	.p2align 4,,10
@@ -193,7 +191,7 @@ PMC_Initialize:
 	jmp	.L7
 	.seh_endproc
 	.comm	configuration_info, 4, 2
-.lcomm entry_points,208,32
+.lcomm entry_points,200,32
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	Initialize_From;	.scl	2;	.type	32;	.endef
@@ -325,8 +323,3 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_GetStatisticsInfo:
 	.quad	PMC_GetStatisticsInfo
-	.section	.rdata$.refptr.PMC_TraceStatistics, "dr"
-	.globl	.refptr.PMC_TraceStatistics
-	.linkonce	discard
-.refptr.PMC_TraceStatistics:
-	.quad	PMC_TraceStatistics

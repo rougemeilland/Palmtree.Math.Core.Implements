@@ -107,7 +107,6 @@ typedef struct __tag_PMC_ENTRY_POINTS
     unsigned PROCESSOR_FEATURE_ABM : 1;     // 実行中のプロセッサの実装命令を示すフラグ。ABMをサポートしているなら1、そうではないのなら0。
 
     // 統計情報関連
-    void (__PMC_CALL * PMC_TraceStatistics)(int enabled);   // 統計情報の採取のON/OFFを切り替える。引数が0なら統計情報の採取を停止、1なら統計情報をリセットした上で採取の開始、それ以外なら無視される。
     void (__PMC_CALL * PMC_GetStatisticsInfo)(PMC_STATISTICS_INFO* statistics_info);// 与えられた領域に現在まで採取されている統計情報を複写する。
 
     // コンストラクタ(32bit整数により初期化)

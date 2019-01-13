@@ -33,30 +33,7 @@
 #include "pmc_internal.h"
 
 
-static PMC_STATISTICS_INFO statistics_info;
-static int trace_enabled = 0;
-
-// 統計情報の採取のON/OFFを切り替える。引数が0なら統計情報の採取を停止、1なら統計情報をリセットした上で採取の開始、それ以外なら無視される。
-void __PMC_CALL PMC_TraceStatistics(int on)
-{
-	if (on)
-	{
-		statistics_info.COUNT_DIV32 = 0;
-		statistics_info.COUNT_DIV64 = 0;
-		statistics_info.COUNT_MULTI32 = 0;
-		statistics_info.COUNT_MULTI64 = 0;
-	}
-	if (trace_enabled)
-	{
-		if (!on)
-			trace_enabled = 0;
-	}
-	else
-	{
-		if (on)
-			trace_enabled = 0;
-	}
-}   
+PMC_STATISTICS_INFO statistics_info;
 
 // 与えられた領域に現在まで採取されている統計情報を複写する。
 void __PMC_CALL PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* buffer)
@@ -67,29 +44,6 @@ void __PMC_CALL PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* buffer)
 	buffer->COUNT_MULTI64 = statistics_info.COUNT_MULTI64;
 }
 
-
-void IncrementDIV32Counter(void)
-{
-	_InterlockedIncrement(&statistics_info.COUNT_DIV32);
-}
-
-
-void IncrementDIV64Counter(void)
-{
-	_InterlockedIncrement(&statistics_info.COUNT_DIV64);
-}
-
-
-void IncrementMULTI32Counter(void)
-{
-	_InterlockedIncrement(&statistics_info.COUNT_MULTI32);
-}
-
-
-void IncrementMULTI64Counter(void)
-{
-	_InterlockedIncrement(&statistics_info.COUNT_MULTI64);
-}
 
 /*
  * END OF FILE

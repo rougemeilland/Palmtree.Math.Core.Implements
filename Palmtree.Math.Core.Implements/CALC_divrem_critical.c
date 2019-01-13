@@ -60,7 +60,8 @@ __inline static __UNIT_TYPE_DIV AsumeQ_(__UNIT_TYPE_DIV u0, __UNIT_TYPE_DIV u1, 
     if (u0 == v1)
         return ((__UNIT_TYPE_DIV)-1);
     __UNIT_TYPE_DIV r;
-    return (_DIVREM_UNIT(u0, u1, v1, &r));
+    __UNIT_TYPE_DIV q = _DIVREM_UNIT(u0, u1, v1, &r);
+    return (q);
 }
 
 __inline static BOOL CheckQ_(__UNIT_TYPE_DIV q_, __UNIT_TYPE_DIV u0, __UNIT_TYPE_DIV u1, __UNIT_TYPE_DIV u2, __UNIT_TYPE_DIV v1, __UNIT_TYPE_DIV v2)
@@ -68,7 +69,6 @@ __inline static BOOL CheckQ_(__UNIT_TYPE_DIV q_, __UNIT_TYPE_DIV u0, __UNIT_TYPE
     const __UNIT_TYPE_DIV lh_hi = 0;
     __UNIT_TYPE_DIV lh_mi;
     __UNIT_TYPE_DIV lh_lo = _MULTIPLY_UNIT_DIV(v2, q_, &lh_mi);
-
     __UNIT_TYPE_DIV rh_hi;
     __UNIT_TYPE_DIV rh_mi = _MULTIPLY_UNIT_DIV(q_, v1, &rh_hi);
     __UNIT_TYPE_DIV rh_lo = u2;
