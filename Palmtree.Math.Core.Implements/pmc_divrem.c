@@ -1022,10 +1022,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_DivRem_X_I(HANDLE u, _UINT32_T v, HANDLE* q, _UIN
     *q = nq;
 #ifdef _DEBUG
     if ((result = CheckNumber(nq)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(nq);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }
@@ -1210,10 +1207,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_DivRem_X_L(HANDLE u, _UINT64_T v, HANDLE* q, _UIN
     *q = nq;
 #ifdef _DEBUG
     if ((result = CheckNumber(nq)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(nq);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }
@@ -1364,17 +1358,9 @@ PMC_STATUS_CODE __PMC_CALL PMC_DivRem_X_X(HANDLE u, HANDLE v, HANDLE* q, HANDLE*
     *r = nr;
 #ifdef _DEBUG
     if ((result = CheckNumber(*q)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(nq);
-        DeallocateNumber(nr);
         return (result);
-    }
     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(nq);
-        DeallocateNumber(nr);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }

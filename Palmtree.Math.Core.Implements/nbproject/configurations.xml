@@ -5,6 +5,7 @@
       <itemPath>CALC_divrem_critical.c</itemPath>
       <itemPath>TEST_generic.c</itemPath>
       <itemPath>TEST_op_Add.c</itemPath>
+      <itemPath>TEST_op_BitwiseAnd.c</itemPath>
       <itemPath>TEST_op_DivRem.c</itemPath>
       <itemPath>TEST_op_From_To.c</itemPath>
       <itemPath>TEST_op_Multiply.c</itemPath>
@@ -14,6 +15,7 @@
       <itemPath>dllmain.c</itemPath>
       <itemPath>memory.c</itemPath>
       <itemPath>pmc_add.c</itemPath>
+      <itemPath>pmc_bitwiseand.c</itemPath>
       <itemPath>pmc_divrem.c</itemPath>
       <itemPath>pmc_from.c</itemPath>
       <itemPath>pmc_initialize.c</itemPath>
@@ -85,6 +87,8 @@
       </item>
       <item path="TEST_op_Add.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_BitwiseAnd.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
@@ -106,6 +110,8 @@
       <item path="pmc.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_add.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_bitwiseand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_debug.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -175,6 +181,8 @@
       </item>
       <item path="TEST_op_Add.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_BitwiseAnd.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
@@ -196,6 +204,8 @@
       <item path="pmc.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_add.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_bitwiseand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_debug.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -258,6 +268,8 @@
       </item>
       <item path="TEST_op_Add.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_BitwiseAnd.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
@@ -279,6 +291,8 @@
       <item path="pmc.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_add.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_bitwiseand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_debug.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -349,6 +363,8 @@
       </item>
       <item path="TEST_op_Add.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_BitwiseAnd.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
@@ -370,6 +386,8 @@
       <item path="pmc.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_add.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_bitwiseand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_debug.h" ex="false" tool="3" flavor2="0">
       </item>

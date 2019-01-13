@@ -113,9 +113,11 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
         return (NULL);
     if (Initialize_Multiply(&feature))
         return (NULL);
+    if (Initialize_DivRem(&feature))
+        return (NULL);
     if (Initialize_Shift(&feature))
         return (NULL);
-    if (Initialize_DivRem(&feature))
+    if (Initialize_BitwiseAnd(&feature))
         return (NULL);
     /*
     if (Initialize_Get(&feature))
@@ -154,6 +156,9 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     entry_points.PMC_RightShift_X_L = PMC_RightShift_X_L;
     entry_points.PMC_LeftShift_X_I = PMC_LeftShift_X_I;
     entry_points.PMC_LeftShift_X_L = PMC_LeftShift_X_L;
+    entry_points.PMC_BitwiseAnd_X_I = PMC_BitwiseAnd_X_I;
+    entry_points.PMC_BitwiseAnd_X_L = PMC_BitwiseAnd_X_L;
+    entry_points.PMC_BitwiseAnd_X_X = PMC_BitwiseAnd_X_X;
     return (&entry_points);
 }
 

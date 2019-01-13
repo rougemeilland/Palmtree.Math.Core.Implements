@@ -611,10 +611,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_RightShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o)
     }
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(*o);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }
@@ -663,10 +660,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_RightShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o)
     }
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(*o);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }
@@ -710,10 +704,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_LeftShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o)
     }
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(*o);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }
@@ -757,10 +748,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o)
     }
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(*o);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }

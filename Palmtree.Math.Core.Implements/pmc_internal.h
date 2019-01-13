@@ -188,6 +188,9 @@ extern PMC_STATUS_CODE Initialize_DivRem(PROCESSOR_FEATURES* feature);
 // ビットシフト処理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Shift(PROCESSOR_FEATURES* feature);
 
+// ビットAND処理の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_BitwiseAnd(PROCESSOR_FEATURES* feature);
+
 /*
 extern PMC_STATUS_CODE Initialize_Get(PROCESSOR_FEATURES* feature);ure);
 extern PMC_STATUS_CODE Initialize_Properties(PROCESSOR_FEATURES *feature);
@@ -229,6 +232,10 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_RightShift_X_L(HANDLE p, _UINT64_T n, HAND
 
 extern PMC_STATUS_CODE __PMC_CALL PMC_LeftShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_I(HANDLE u, _UINT32_T v, _UINT32_T* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_L(HANDLE u, _UINT64_T v, _UINT64_T* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_X(HANDLE u, HANDLE v, HANDLE* w);
 #pragma endregion
 
 
@@ -390,6 +397,11 @@ __inline static size_t _DIVIDE_CEILING_SIZE(size_t u, size_t v)
 __inline static __UNIT_TYPE _MAXIMUM_UNIT(__UNIT_TYPE x, __UNIT_TYPE y)
 {
     return (x >= y ? x : y);
+}
+
+__inline static __UNIT_TYPE _MINIMUM_UNIT(__UNIT_TYPE x, __UNIT_TYPE y)
+{
+    return (x <= y ? x : y);
 }
 
 __inline static char _ADD_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)

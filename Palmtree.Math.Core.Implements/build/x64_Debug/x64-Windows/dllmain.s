@@ -6,7 +6,7 @@
 	.def	DllMain;	.scl	2;	.type	32;	.endef
 	.seh_proc	DllMain
 DllMain:
-.LFB4366:
+.LFB4367:
 	.file 1 "dllmain.c"
 	.loc 1 42 1
 	.cfi_startproc
@@ -75,7 +75,7 @@ DllMain:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4366:
+.LFE4367:
 	.seh_endproc
 .Letext0:
 	.file 2 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h"
@@ -4120,8 +4120,8 @@ DllMain:
 	.byte	0x29
 	.byte	0x6
 	.long	0x5db
-	.quad	.LFB4366
-	.quad	.LFE4366-.LFB4366
+	.quad	.LFB4367
+	.quad	.LFE4367-.LFB4367
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x1a

@@ -146,13 +146,18 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__PMC_CALL * PMC_DivRem_X_L)(HANDLE u, _UINT64_T v, HANDLE* q, _UINT64_T* r);
     PMC_STATUS_CODE(__PMC_CALL * PMC_DivRem_X_X)(HANDLE u, HANDLE v, HANDLE* q, HANDLE* r);
 
-    // RightShift 演算子
+    // LeftShift 演算子
     PMC_STATUS_CODE(__PMC_CALL * PMC_LeftShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_LeftShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
 
     // RightShift 演算子
     PMC_STATUS_CODE(__PMC_CALL * PMC_RightShift_X_I)(HANDLE p, _UINT32_T n, HANDLE* o);
     PMC_STATUS_CODE(__PMC_CALL * PMC_RightShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
+
+    // BitwiseAnd 演算子
+    PMC_STATUS_CODE(__PMC_CALL * PMC_BitwiseAnd_X_I)(HANDLE u, _UINT32_T v, _UINT32_T* w);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_BitwiseAnd_X_L)(HANDLE u, _UINT64_T v, _UINT64_T* w);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_BitwiseAnd_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 
 } PMC_ENTRY_POINTS;
 #pragma endregion

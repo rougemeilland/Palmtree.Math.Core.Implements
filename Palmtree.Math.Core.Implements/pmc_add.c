@@ -381,10 +381,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
     }
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(*o);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }
@@ -509,10 +506,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
     }
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(nz);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }
@@ -571,10 +565,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Add_X_X(HANDLE x, HANDLE y, HANDLE* o)
     *o = nz;
 #ifdef _DEBUG
     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-    {
-        DeallocateNumber(nz);
         return (result);
-    }
 #endif
     return (PMC_STATUS_OK);
 }

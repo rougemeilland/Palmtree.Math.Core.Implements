@@ -4,7 +4,7 @@
 	.globl	_From_I_Imp
 	.def	_From_I_Imp;	.scl	2;	.type	32;	.endef
 _From_I_Imp:
-LFB5484:
+LFB5485:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -20,7 +20,7 @@ LFB5484:
 	testl	%ebx, %ebx
 	je	L2
 /APP
- # 786 "pmc_internal.h" 1
+ # 798 "pmc_internal.h" 1
 	bsrl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -50,12 +50,12 @@ L1:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5484:
+LFE5485:
 	.p2align 4,,15
 	.globl	_From_L_Imp
 	.def	_From_L_Imp;	.scl	2;	.type	32;	.endef
 _From_L_Imp:
-LFB5485:
+LFB5486:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -77,7 +77,7 @@ LFB5485:
 	testl	%esi, %esi
 	je	L11
 /APP
- # 786 "pmc_internal.h" 1
+ # 798 "pmc_internal.h" 1
 	bsrl %esi, %eax
  # 0 "" 2
 /NO_APP
@@ -114,7 +114,7 @@ L9:
 L10:
 	.cfi_restore_state
 /APP
- # 786 "pmc_internal.h" 1
+ # 798 "pmc_internal.h" 1
 	bsrl %edi, %eax
  # 0 "" 2
 /NO_APP
@@ -130,12 +130,12 @@ L10:
 	movl	%edi, 4(%edx)
 	jmp	L13
 	.cfi_endproc
-LFE5485:
+LFE5486:
 	.p2align 4,,15
 	.globl	_PMC_From_I@8
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
 _PMC_From_I@8:
-LFB5486:
+LFB5487:
 	.cfi_startproc
 	subl	$44, %esp
 	.cfi_def_cfa_offset 48
@@ -166,12 +166,12 @@ L18:
 	.cfi_def_cfa_offset 4
 	ret	$8
 	.cfi_endproc
-LFE5486:
+LFE5487:
 	.p2align 4,,15
 	.globl	_PMC_From_L@12
 	.def	_PMC_From_L@12;	.scl	2;	.type	32;	.endef
 _PMC_From_L@12:
-LFB5487:
+LFB5488:
 	.cfi_startproc
 	subl	$44, %esp
 	.cfi_def_cfa_offset 48
@@ -205,12 +205,12 @@ L23:
 	.cfi_def_cfa_offset 4
 	ret	$12
 	.cfi_endproc
-LFE5487:
+LFE5488:
 	.p2align 4,,15
 	.globl	_PMC_From_B@12
 	.def	_PMC_From_B@12;	.scl	2;	.type	32;	.endef
 _PMC_From_B@12:
-LFB5489:
+LFB5490:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -266,7 +266,7 @@ L29:
 	movl	$7, %ecx
 	sall	$3, %eax
 /APP
- # 771 "pmc_internal.h" 1
+ # 783 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -317,17 +317,17 @@ L34:
 	movl	$-1, %eax
 	jmp	L26
 	.cfi_endproc
-LFE5489:
+LFE5490:
 	.p2align 4,,15
 	.globl	_Initialize_From
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
 _Initialize_From:
-LFB5490:
+LFB5491:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5490:
+LFE5491:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	_CommitNumber;	.scl	2;	.type	32;	.endef

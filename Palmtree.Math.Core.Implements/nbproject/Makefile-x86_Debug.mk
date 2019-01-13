@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/CALC_divrem_critical.o \
 	${OBJECTDIR}/TEST_generic.o \
 	${OBJECTDIR}/TEST_op_Add.o \
+	${OBJECTDIR}/TEST_op_BitwiseAnd.o \
 	${OBJECTDIR}/TEST_op_DivRem.o \
 	${OBJECTDIR}/TEST_op_From_To.o \
 	${OBJECTDIR}/TEST_op_Multiply.o \
@@ -47,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/dllmain.o \
 	${OBJECTDIR}/memory.o \
 	${OBJECTDIR}/pmc_add.o \
+	${OBJECTDIR}/pmc_bitwiseand.o \
 	${OBJECTDIR}/pmc_divrem.o \
 	${OBJECTDIR}/pmc_from.o \
 	${OBJECTDIR}/pmc_initialize.o \
@@ -96,6 +98,11 @@ ${OBJECTDIR}/TEST_op_Add.o: TEST_op_Add.c nbproject/Makefile-${CND_CONF}.mk
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX86 -DENABLED_PERFORMANCE_COUNTER  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Add.o TEST_op_Add.c
 
+${OBJECTDIR}/TEST_op_BitwiseAnd.o: TEST_op_BitwiseAnd.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX86 -DENABLED_PERFORMANCE_COUNTER  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_BitwiseAnd.o TEST_op_BitwiseAnd.c
+
 ${OBJECTDIR}/TEST_op_DivRem.o: TEST_op_DivRem.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -140,6 +147,11 @@ ${OBJECTDIR}/pmc_add.o: pmc_add.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX86 -DENABLED_PERFORMANCE_COUNTER  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_add.o pmc_add.c
+
+${OBJECTDIR}/pmc_bitwiseand.o: pmc_bitwiseand.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -D_DEBUG -D_M_IX86 -DENABLED_PERFORMANCE_COUNTER  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_bitwiseand.o pmc_bitwiseand.c
 
 ${OBJECTDIR}/pmc_divrem.o: pmc_divrem.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

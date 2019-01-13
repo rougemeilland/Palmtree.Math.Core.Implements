@@ -56,6 +56,7 @@ extern void TEST_op_Add(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 extern void TEST_op_Multiply(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 extern void TEST_op_DivRem(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 extern void TEST_op_Shift(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
+extern void TEST_op_BitwiseAnd(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep);
 
 extern void CalculateCriticalDataOfDivision(PMC_DEBUG_ENVIRONMENT *env);
 #pragma endregion

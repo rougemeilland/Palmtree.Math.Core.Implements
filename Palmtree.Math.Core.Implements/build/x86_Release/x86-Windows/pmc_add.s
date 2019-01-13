@@ -3,7 +3,7 @@
 	.p2align 4,,15
 	.def	_DoCarry;	.scl	3;	.type	32;	.endef
 _DoCarry:
-LFB5524:
+LFB5525:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -100,11 +100,11 @@ L11:
 	movl	$-7, %eax
 	jmp	L1
 	.cfi_endproc
-LFE5524:
+LFE5525:
 	.p2align 4,,15
 	.def	_Add_X_X_using_ADCX;	.scl	3;	.type	32;	.endef
 _Add_X_X_using_ADCX:
-LFB5528:
+LFB5529:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -489,11 +489,11 @@ L37:
 	xorl	%eax, %eax
 	jmp	L30
 	.cfi_endproc
-LFE5528:
+LFE5529:
 	.p2align 4,,15
 	.def	_Add_X_X_using_ADC;	.scl	3;	.type	32;	.endef
 _Add_X_X_using_ADC:
-LFB5527:
+LFB5528:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -851,12 +851,12 @@ L83:
 	addl	$32, 4(%esp)
 	jmp	L62
 	.cfi_endproc
-LFE5527:
+LFE5528:
 	.p2align 4,,15
 	.globl	_PMC_Add_X_I@12
 	.def	_PMC_Add_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_Add_X_I@12:
-LFB5530:
+LFB5531:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -915,7 +915,7 @@ L86:
 	je	L95
 	leal	44(%esp), %edx
 /APP
- # 786 "pmc_internal.h" 1
+ # 798 "pmc_internal.h" 1
 	bsrl 84(%esp), %eax
  # 0 "" 2
 /NO_APP
@@ -1039,12 +1039,12 @@ L92:
 	movl	$-1, %ebx
 	jmp	L84
 	.cfi_endproc
-LFE5530:
+LFE5531:
 	.p2align 4,,15
 	.globl	_PMC_Add_X_L@16
 	.def	_PMC_Add_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_Add_X_L@16:
-LFB5531:
+LFB5532:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -1109,7 +1109,7 @@ L101:
 	testl	%esi, %esi
 	je	L106
 /APP
- # 786 "pmc_internal.h" 1
+ # 798 "pmc_internal.h" 1
 	bsrl %esi, %edx
  # 0 "" 2
 /NO_APP
@@ -1160,7 +1160,7 @@ L113:
 	.p2align 4,,10
 L105:
 /APP
- # 786 "pmc_internal.h" 1
+ # 798 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
@@ -1303,12 +1303,12 @@ L114:
 	movl	$-1, %ebx
 	jmp	L99
 	.cfi_endproc
-LFE5531:
+LFE5532:
 	.p2align 4,,15
 	.globl	_PMC_Add_X_X@12
 	.def	_PMC_Add_X_X@12;	.scl	2;	.type	32;	.endef
 _PMC_Add_X_X@12:
-LFB5532:
+LFB5533:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -1462,12 +1462,12 @@ L139:
 	movl	$-1, %ebx
 	jmp	L131
 	.cfi_endproc
-LFE5532:
+LFE5533:
 	.p2align 4,,15
 	.globl	_Initialize_Add
 	.def	_Initialize_Add;	.scl	2;	.type	32;	.endef
 _Initialize_Add:
-LFB5533:
+LFB5534:
 	.cfi_startproc
 	movl	4(%esp), %eax
 	movl	$_Add_X_X_using_ADC, %edx
@@ -1478,7 +1478,7 @@ LFB5533:
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5533:
+LFE5534:
 .lcomm _fp_Add_X_X_using_ADC,4,4
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef

@@ -96,11 +96,15 @@ PMC_Initialize:
 	testl	%eax, %eax
 	jne	.L10
 	movq	%rbx, %rcx
+	call	Initialize_DivRem
+	testl	%eax, %eax
+	jne	.L10
+	movq	%rbx, %rcx
 	call	Initialize_Shift
 	testl	%eax, %eax
 	jne	.L10
 	movq	%rbx, %rcx
-	call	Initialize_DivRem
+	call	Initialize_BitwiseAnd
 	testl	%eax, %eax
 	jne	.L10
 	movzbl	entry_points(%rip), %eax
@@ -157,6 +161,12 @@ PMC_Initialize:
 	movq	%rax, 168+entry_points(%rip)
 	movq	.refptr.PMC_LeftShift_X_L(%rip), %rax
 	movq	%rax, 176+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseAnd_X_I(%rip), %rax
+	movq	%rax, 200+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseAnd_X_L(%rip), %rax
+	movq	%rax, 208+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseAnd_X_X(%rip), %rax
+	movq	%rax, 216+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
 	jmp	.L1
 	.p2align 4,,10
@@ -191,7 +201,7 @@ PMC_Initialize:
 	jmp	.L7
 	.seh_endproc
 	.comm	configuration_info, 4, 2
-.lcomm entry_points,200,32
+.lcomm entry_points,224,32
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	Initialize_From;	.scl	2;	.type	32;	.endef
@@ -199,10 +209,26 @@ PMC_Initialize:
 	.def	Initialize_Add;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Subtruct;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Multiply;	.scl	2;	.type	32;	.endef
-	.def	Initialize_Shift;	.scl	2;	.type	32;	.endef
 	.def	Initialize_DivRem;	.scl	2;	.type	32;	.endef
+	.def	Initialize_Shift;	.scl	2;	.type	32;	.endef
+	.def	Initialize_BitwiseAnd;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize\""
+	.section	.rdata$.refptr.PMC_BitwiseAnd_X_X, "dr"
+	.globl	.refptr.PMC_BitwiseAnd_X_X
+	.linkonce	discard
+.refptr.PMC_BitwiseAnd_X_X:
+	.quad	PMC_BitwiseAnd_X_X
+	.section	.rdata$.refptr.PMC_BitwiseAnd_X_L, "dr"
+	.globl	.refptr.PMC_BitwiseAnd_X_L
+	.linkonce	discard
+.refptr.PMC_BitwiseAnd_X_L:
+	.quad	PMC_BitwiseAnd_X_L
+	.section	.rdata$.refptr.PMC_BitwiseAnd_X_I, "dr"
+	.globl	.refptr.PMC_BitwiseAnd_X_I
+	.linkonce	discard
+.refptr.PMC_BitwiseAnd_X_I:
+	.quad	PMC_BitwiseAnd_X_I
 	.section	.rdata$.refptr.PMC_LeftShift_X_L, "dr"
 	.globl	.refptr.PMC_LeftShift_X_L
 	.linkonce	discard
