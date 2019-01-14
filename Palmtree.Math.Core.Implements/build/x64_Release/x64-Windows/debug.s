@@ -57,9 +57,9 @@ FormatTestLabel:
 	movl	%r8d, %r9d
 	movl	%edx, %r8d
 	movq	%rcx, %rdx
-	leaq	buffer.92208(%rip), %rcx
+	leaq	buffer.92312(%rip), %rcx
 	call	*__imp_wsprintfA(%rip)
-	leaq	buffer.92208(%rip), %rax
+	leaq	buffer.92312(%rip), %rax
 	addq	$40, %rsp
 	ret
 	.seh_endproc
@@ -73,14 +73,14 @@ FormatTestMesssage:
 	.seh_endprologue
 	movl	%edx, %r8d
 	movq	%rcx, %rdx
-	leaq	buffer.92213(%rip), %rcx
+	leaq	buffer.92317(%rip), %rcx
 	call	*__imp_wsprintfA(%rip)
-	leaq	buffer.92213(%rip), %rax
+	leaq	buffer.92317(%rip), %rax
 	addq	$40, %rsp
 	ret
 	.seh_endproc
-.lcomm buffer.92213,256,32
-.lcomm buffer.92208,256,32
+.lcomm buffer.92317,256,32
+.lcomm buffer.92312,256,32
 	.globl	test_ok_count
 	.bss
 	.align 4

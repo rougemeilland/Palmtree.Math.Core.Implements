@@ -53,6 +53,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestPatternBase.cs" />
     <Compile Include="TestTerm.cs" />
+    <Compile Include="TEST_PMC_Equals.cs" />
+    <Compile Include="TEST_PMC_Compare.cs" />
     <Compile Include="TEST_PMC_ExclusiveOr.cs" />
     <Compile Include="TEST_PMC_From.cs" />
     <Compile Include="TEST_PMC_RightShift.cs" />

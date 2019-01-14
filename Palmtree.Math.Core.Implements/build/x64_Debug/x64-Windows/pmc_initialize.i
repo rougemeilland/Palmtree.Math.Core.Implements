@@ -88601,6 +88601,16 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE( * PMC_ExclusiveOr_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
     PMC_STATUS_CODE( * PMC_ExclusiveOr_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
     PMC_STATUS_CODE( * PMC_ExclusiveOr_X_X)(HANDLE u, HANDLE v, HANDLE* w);
+
+
+    PMC_STATUS_CODE( * PMC_Compare_X_I)(HANDLE u, _UINT32_T v, _INT32_T* w);
+    PMC_STATUS_CODE( * PMC_Compare_X_L)(HANDLE u, _UINT64_T v, _INT32_T* w);
+    PMC_STATUS_CODE( * PMC_Compare_X_X)(HANDLE u, HANDLE v, _INT32_T* w);
+
+
+    PMC_STATUS_CODE( * PMC_Equals_X_I)(HANDLE u, _UINT32_T v, _INT32_T* w);
+    PMC_STATUS_CODE( * PMC_Equals_X_L)(HANDLE u, _UINT64_T v, _INT32_T* w);
+    PMC_STATUS_CODE( * PMC_Equals_X_X)(HANDLE u, HANDLE v, _INT32_T* w);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -88609,27 +88619,8 @@ typedef struct __tag_PMC_ENTRY_POINTS
 __attribute__((dllexport)) PMC_ENTRY_POINTS* PMC_Initialize(PMC_CONFIGURATION_INFO*);
 #pragma endregion
 # 40 "pmc_internal.h" 2
-
-
-#pragma region マクロの定義
-
-#pragma endregion
-
-
-#pragma region 型の定義
-
-
-
-typedef _UINT64_T __UNIT_TYPE;
-# 61 "pmc_internal.h"
-typedef __UNIT_TYPE __UNIT_TYPE_DIV;
-
-
-
-
-
-
-
+# 1 "pmc_cpuid.h" 1
+# 41 "pmc_cpuid.h"
 typedef struct _tag_PROCESSOR_FEATURES
 {
 
@@ -88647,6 +88638,27 @@ typedef struct _tag_PROCESSOR_FEATURES
 
     unsigned PROCESSOR_FEATURE_ABM : 1;
 } PROCESSOR_FEATURES;
+
+extern void GetCPUInfo(PROCESSOR_FEATURES* feature);
+# 41 "pmc_internal.h" 2
+
+
+#pragma region マクロの定義
+
+#pragma endregion
+
+
+#pragma region 型の定義
+
+
+
+typedef _UINT64_T __UNIT_TYPE;
+# 62 "pmc_internal.h"
+typedef __UNIT_TYPE __UNIT_TYPE_DIV;
+
+
+
+
 
 typedef struct __tag_NUMBER_HEADER
 {
@@ -88762,6 +88774,12 @@ extern PMC_STATUS_CODE Initialize_BitwiseOr(PROCESSOR_FEATURES* feature);
 extern PMC_STATUS_CODE Initialize_ExclusiveOr(PROCESSOR_FEATURES* feature);
 
 
+extern PMC_STATUS_CODE Initialize_Compare(PROCESSOR_FEATURES* feature);
+
+
+extern PMC_STATUS_CODE Initialize_Equals(PROCESSOR_FEATURES* feature);
+
+
 
 extern void PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
@@ -88808,6 +88826,14 @@ extern PMC_STATUS_CODE PMC_BitwiseOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
 extern PMC_STATUS_CODE PMC_ExclusiveOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
 extern PMC_STATUS_CODE PMC_ExclusiveOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
 extern PMC_STATUS_CODE PMC_ExclusiveOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
+
+extern PMC_STATUS_CODE PMC_Compare_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
+extern PMC_STATUS_CODE PMC_Compare_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
+extern PMC_STATUS_CODE PMC_Compare_X_X(HANDLE u, HANDLE v, _INT32_T* w);
+
+extern PMC_STATUS_CODE PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
+extern PMC_STATUS_CODE PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
+extern PMC_STATUS_CODE PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 #pragma endregion
 
 
@@ -89062,7 +89088,7 @@ __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_T
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 512 "pmc_internal.h"
+# 507 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89071,7 +89097,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 528 "pmc_internal.h"
+# 523 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89083,7 +89109,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYP
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 553 "pmc_internal.h"
+# 548 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89097,7 +89123,7 @@ __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 
 __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 574 "pmc_internal.h"
+# 569 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89112,7 +89138,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TY
 
 __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
 {
-# 612 "pmc_internal.h"
+# 607 "pmc_internal.h"
     __UNIT_TYPE q;
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -89133,7 +89159,7 @@ __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE
 
 __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
 {
-# 656 "pmc_internal.h"
+# 651 "pmc_internal.h"
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
@@ -89167,9 +89193,9 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 688 "pmc_internal.h" 3
+# 683 "pmc_internal.h" 3
            __rolq
-# 688 "pmc_internal.h"
+# 683 "pmc_internal.h"
                   (x, count));
 
 
@@ -89182,9 +89208,9 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 699 "pmc_internal.h" 3
+# 694 "pmc_internal.h" 3
            __rorq
-# 699 "pmc_internal.h"
+# 694 "pmc_internal.h"
                   (x, count));
 
 
@@ -89248,7 +89274,7 @@ __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 
 __inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
 {
-# 774 "pmc_internal.h"
+# 769 "pmc_internal.h"
     return (_lzcnt_u64(value));
 
 
@@ -89310,7 +89336,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 849 "pmc_internal.h"
+# 844 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89326,7 +89352,7 @@ __inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 878 "pmc_internal.h"
+# 873 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89364,7 +89390,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 929 "pmc_internal.h"
+# 924 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89425,10 +89451,6 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 # 36 "pmc_initialize.c" 2
 
 
-#pragma region 実装されているCPU命令を表すフラグの定義
-# 53 "pmc_initialize.c"
-#pragma endregion
-
 
 #pragma region 静的変数の定義
 static PMC_ENTRY_POINTS entry_points;
@@ -89440,133 +89462,85 @@ __attribute__((dllexport)) PMC_ENTRY_POINTS* PMC_Initialize(PMC_CONFIGURATION_IN
 {
     configuration_info = *config;
     PROCESSOR_FEATURES feature;
-    feature.PROCESSOR_FEATURE_ADX = 
-# 66 "pmc_initialize.c" 3
-                                   0
-# 66 "pmc_initialize.c"
-                                        ;
-    int cpu_id_buffer[4];
-    __cpuid(cpu_id_buffer, 0);
-    int max_catagory = cpu_id_buffer[0];
-    if (max_catagory < 1)
-    {
-        feature.PROCESSOR_FEATURE_POPCNT = 
-# 72 "pmc_initialize.c" 3
-                                          0
-# 72 "pmc_initialize.c"
-                                               ;
-    }
-    else
-    {
-        __cpuid(cpu_id_buffer, 7);
-        feature.PROCESSOR_FEATURE_POPCNT = (cpu_id_buffer[1] & (1U << 23)) != 0;
-    }
-
-    if (max_catagory < 7)
-    {
-        feature.PROCESSOR_FEATURE_ADX = 
-# 82 "pmc_initialize.c" 3
-                                       0
-# 82 "pmc_initialize.c"
-                                            ;
-        feature.PROCESSOR_FEATURE_BMI1 = 
-# 83 "pmc_initialize.c" 3
-                                        0
-# 83 "pmc_initialize.c"
-                                             ;
-        feature.PROCESSOR_FEATURE_BMI2 = 
-# 84 "pmc_initialize.c" 3
-                                        0
-# 84 "pmc_initialize.c"
-                                             ;
-    }
-    else
-    {
-        __cpuid(cpu_id_buffer, 7);
-        feature.PROCESSOR_FEATURE_ADX = (cpu_id_buffer[1] & (1U << 19)) != 0;
-        feature.PROCESSOR_FEATURE_BMI1 = (cpu_id_buffer[1] & (1U << 3)) != 0;
-        feature.PROCESSOR_FEATURE_BMI2 = (cpu_id_buffer[1] & (1U << 8)) != 0;
-    }
-
-    __cpuid(cpu_id_buffer, 0x80000000);
-    int max_ex_category = cpu_id_buffer[0];
-    if (max_ex_category < 0x80000001)
-        feature.PROCESSOR_FEATURE_ABM = 
-# 97 "pmc_initialize.c" 3
-                                       0
-# 97 "pmc_initialize.c"
-                                            ;
-    else
-    {
-        __cpuid(cpu_id_buffer, 0x80000001);
-        feature.PROCESSOR_FEATURE_ABM = (cpu_id_buffer[2] & (1U << 5)) != 0;
-    }
+    GetCPUInfo(&feature);
 
     if (Initialize_Memory(&feature))
         return (
-# 105 "pmc_initialize.c" 3 4
+# 52 "pmc_initialize.c" 3 4
                ((void *)0)
-# 105 "pmc_initialize.c"
+# 52 "pmc_initialize.c"
                    );
     if (Initialize_From(&feature))
         return (
-# 107 "pmc_initialize.c" 3 4
+# 54 "pmc_initialize.c" 3 4
                ((void *)0)
-# 107 "pmc_initialize.c"
+# 54 "pmc_initialize.c"
                    );
     if (Initialize_To(&feature))
         return (
-# 109 "pmc_initialize.c" 3 4
+# 56 "pmc_initialize.c" 3 4
                ((void *)0)
-# 109 "pmc_initialize.c"
+# 56 "pmc_initialize.c"
                    );
     if (Initialize_Add(&feature))
         return (
-# 111 "pmc_initialize.c" 3 4
+# 58 "pmc_initialize.c" 3 4
                ((void *)0)
-# 111 "pmc_initialize.c"
+# 58 "pmc_initialize.c"
                    );
     if (Initialize_Subtruct(&feature))
         return (
-# 113 "pmc_initialize.c" 3 4
+# 60 "pmc_initialize.c" 3 4
                ((void *)0)
-# 113 "pmc_initialize.c"
+# 60 "pmc_initialize.c"
                    );
     if (Initialize_Multiply(&feature))
         return (
-# 115 "pmc_initialize.c" 3 4
+# 62 "pmc_initialize.c" 3 4
                ((void *)0)
-# 115 "pmc_initialize.c"
+# 62 "pmc_initialize.c"
                    );
     if (Initialize_DivRem(&feature))
         return (
-# 117 "pmc_initialize.c" 3 4
+# 64 "pmc_initialize.c" 3 4
                ((void *)0)
-# 117 "pmc_initialize.c"
+# 64 "pmc_initialize.c"
                    );
     if (Initialize_Shift(&feature))
         return (
-# 119 "pmc_initialize.c" 3 4
+# 66 "pmc_initialize.c" 3 4
                ((void *)0)
-# 119 "pmc_initialize.c"
+# 66 "pmc_initialize.c"
                    );
     if (Initialize_BitwiseAnd(&feature))
         return (
-# 121 "pmc_initialize.c" 3 4
+# 68 "pmc_initialize.c" 3 4
                ((void *)0)
-# 121 "pmc_initialize.c"
+# 68 "pmc_initialize.c"
                    );
     if (Initialize_BitwiseOr(&feature))
         return (
-# 123 "pmc_initialize.c" 3 4
+# 70 "pmc_initialize.c" 3 4
                ((void *)0)
-# 123 "pmc_initialize.c"
+# 70 "pmc_initialize.c"
                    );
     if (Initialize_ExclusiveOr(&feature))
         return (
-# 125 "pmc_initialize.c" 3 4
+# 72 "pmc_initialize.c" 3 4
                ((void *)0)
-# 125 "pmc_initialize.c"
+# 72 "pmc_initialize.c"
+                   );
+    if (Initialize_Compare(&feature))
+        return (
+# 74 "pmc_initialize.c" 3 4
+               ((void *)0)
+# 74 "pmc_initialize.c"
+                   );
+    if (Initialize_Equals(&feature))
+        return (
+# 76 "pmc_initialize.c" 3 4
+               ((void *)0)
+# 76 "pmc_initialize.c"
                    );
 
     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
@@ -89607,5 +89581,11 @@ __attribute__((dllexport)) PMC_ENTRY_POINTS* PMC_Initialize(PMC_CONFIGURATION_IN
     entry_points.PMC_ExclusiveOr_X_I = PMC_ExclusiveOr_X_I;
     entry_points.PMC_ExclusiveOr_X_L = PMC_ExclusiveOr_X_L;
     entry_points.PMC_ExclusiveOr_X_X = PMC_ExclusiveOr_X_X;
+    entry_points.PMC_Compare_X_I = PMC_Compare_X_I;
+    entry_points.PMC_Compare_X_L = PMC_Compare_X_L;
+    entry_points.PMC_Compare_X_X = PMC_Compare_X_X;
+    entry_points.PMC_Equals_X_I = PMC_Equals_X_I;
+    entry_points.PMC_Equals_X_L = PMC_Equals_X_L;
+    entry_points.PMC_Equals_X_X = PMC_Equals_X_X;
     return (&entry_points);
 }

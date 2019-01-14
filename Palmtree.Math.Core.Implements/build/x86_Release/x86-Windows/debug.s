@@ -64,14 +64,14 @@ LFB5491:
 	subl	$28, %esp
 	.cfi_def_cfa_offset 32
 	movl	40(%esp), %eax
-	movl	$_buffer.90998, (%esp)
+	movl	$_buffer.91102, (%esp)
 	movl	%eax, 12(%esp)
 	movl	36(%esp), %eax
 	movl	%eax, 8(%esp)
 	movl	32(%esp), %eax
 	movl	%eax, 4(%esp)
 	call	*__imp__wsprintfA
-	movl	$_buffer.90998, %eax
+	movl	$_buffer.91102, %eax
 	addl	$28, %esp
 	.cfi_def_cfa_offset 4
 	ret
@@ -86,19 +86,19 @@ LFB5492:
 	subl	$28, %esp
 	.cfi_def_cfa_offset 32
 	movl	36(%esp), %eax
-	movl	$_buffer.91003, (%esp)
+	movl	$_buffer.91107, (%esp)
 	movl	%eax, 8(%esp)
 	movl	32(%esp), %eax
 	movl	%eax, 4(%esp)
 	call	*__imp__wsprintfA
-	movl	$_buffer.91003, %eax
+	movl	$_buffer.91107, %eax
 	addl	$28, %esp
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
 LFE5492:
-.lcomm _buffer.91003,256,32
-.lcomm _buffer.90998,256,32
+.lcomm _buffer.91107,256,32
+.lcomm _buffer.91102,256,32
 	.globl	_test_ok_count
 	.bss
 	.align 4

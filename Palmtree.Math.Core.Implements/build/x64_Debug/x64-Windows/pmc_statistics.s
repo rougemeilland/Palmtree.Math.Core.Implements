@@ -4107,48 +4107,48 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x3
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x1f
-	.byte	0x33
+	.byte	0x34
 	.byte	0x13
 	.long	0x4c35
 	.uleb128 0x12
 	.ascii "__tag_NUMBER_HEADER\0"
 	.byte	0x38
 	.byte	0x1f
-	.byte	0x57
+	.byte	0x44
 	.byte	0x10
 	.long	0x4e79
 	.uleb128 0x13
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1f
-	.byte	0x59
+	.byte	0x46
 	.byte	0x11
 	.long	0x4d53
 	.byte	0
 	.uleb128 0x13
 	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x1f
-	.byte	0x5a
+	.byte	0x47
 	.byte	0x11
 	.long	0x4d53
 	.byte	0x8
 	.uleb128 0x13
 	.ascii "HASH_CODE\0"
 	.byte	0x1f
-	.byte	0x5b
+	.byte	0x48
 	.byte	0x11
 	.long	0x4d53
 	.byte	0x10
 	.uleb128 0x13
 	.ascii "LEAST_ZERO_BITS_COUNT\0"
 	.byte	0x1f
-	.byte	0x5c
+	.byte	0x49
 	.byte	0x11
 	.long	0x4d53
 	.byte	0x18
 	.uleb128 0x1c
 	.ascii "IS_STATIC\0"
 	.byte	0x1f
-	.byte	0x5d
+	.byte	0x4a
 	.byte	0xe
 	.long	0x45a
 	.byte	0x4
@@ -4158,7 +4158,7 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x1c
 	.ascii "IS_ZERO\0"
 	.byte	0x1f
-	.byte	0x5e
+	.byte	0x4b
 	.byte	0xe
 	.long	0x45a
 	.byte	0x4
@@ -4168,7 +4168,7 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x1c
 	.ascii "IS_ONE\0"
 	.byte	0x1f
-	.byte	0x5f
+	.byte	0x4c
 	.byte	0xe
 	.long	0x45a
 	.byte	0x4
@@ -4178,7 +4178,7 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x1c
 	.ascii "IS_EVEN\0"
 	.byte	0x1f
-	.byte	0x60
+	.byte	0x4d
 	.byte	0xe
 	.long	0x45a
 	.byte	0x4
@@ -4188,7 +4188,7 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x1c
 	.ascii "IS_POWER_OF_TWO\0"
 	.byte	0x1f
-	.byte	0x61
+	.byte	0x4e
 	.byte	0xe
 	.long	0x45a
 	.byte	0x4
@@ -4198,14 +4198,14 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x13
 	.ascii "BLOCK_COUNT\0"
 	.byte	0x1f
-	.byte	0x63
+	.byte	0x50
 	.byte	0xc
 	.long	0xcd
 	.byte	0x28
 	.uleb128 0x13
 	.ascii "BLOCK\0"
 	.byte	0x1f
-	.byte	0x67
+	.byte	0x54
 	.byte	0x12
 	.long	0x4e79
 	.byte	0x30
@@ -4216,25 +4216,25 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x1f
-	.byte	0x68
+	.byte	0x55
 	.byte	0x3
 	.long	0x4d67
 	.uleb128 0x15
 	.ascii "configuration_info\0"
 	.byte	0x1f
-	.byte	0x6f
+	.byte	0x5c
 	.byte	0x1f
 	.long	0x4c96
 	.uleb128 0x15
 	.ascii "number_zero\0"
 	.byte	0x1f
-	.byte	0x72
+	.byte	0x5f
 	.byte	0x16
 	.long	0x4e7f
 	.uleb128 0x15
 	.ascii "statistics_info\0"
 	.byte	0x1f
-	.byte	0x75
+	.byte	0x62
 	.byte	0x1c
 	.long	0x4d31
 	.uleb128 0x1d

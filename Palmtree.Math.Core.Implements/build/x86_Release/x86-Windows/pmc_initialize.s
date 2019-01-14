@@ -6,126 +6,69 @@
 _PMC_Initialize@4:
 LFB5485:
 	.cfi_startproc
-	pushl	%ebp
-	.cfi_def_cfa_offset 8
-	.cfi_offset 5, -8
-	pushl	%edi
-	.cfi_def_cfa_offset 12
-	.cfi_offset 7, -12
-	pushl	%esi
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
 	pushl	%ebx
-	.cfi_def_cfa_offset 20
-	.cfi_offset 3, -20
-	subl	$60, %esp
-	.cfi_def_cfa_offset 80
-	movl	80(%esp), %eax
-	movzbl	28(%esp), %edi
-	movl	(%eax), %eax
-	movl	%eax, _configuration_info
-	xorl	%eax, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	testl	%eax, %eax
-	jle	L13
-	movl	$7, %ebp
-	movl	%eax, %esi
-	movl	%ebp, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	shrl	$23, %ebx
-	andl	$-4, %edi
-	andl	$1, %ebx
-	orl	%ebx, %edi
-	movl	%edi, %eax
-	movb	%al, 28(%esp)
-	cmpl	$6, %esi
-	jle	L3
-	movl	%ebp, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	movl	%ebx, %eax
-	shrl	$19, %eax
-	andl	$1, %eax
-	addl	%eax, %eax
-	orl	%eax, %edi
-	movl	%ebx, %eax
-	shrl	$8, %ebx
-	shrl	$3, %eax
-	andl	$-13, %edi
-	andl	$1, %ebx
-	andl	$1, %eax
-	sall	$3, %ebx
-	sall	$2, %eax
-	orl	%eax, %edi
-	orl	%edi, %ebx
-	movb	%bl, 28(%esp)
-L5:
-	movl	$-2147483648, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	cmpl	$-2147483648, %eax
-	ja	L6
-	andb	$-17, 28(%esp)
-L7:
+	.cfi_def_cfa_offset 8
+	.cfi_offset 3, -8
+	subl	$40, %esp
+	.cfi_def_cfa_offset 48
+	movl	48(%esp), %eax
 	leal	28(%esp), %ebx
+	movl	(%eax), %eax
+	movl	%ebx, (%esp)
+	movl	%eax, _configuration_info
+	call	_GetCPUInfo
 	movl	%ebx, (%esp)
 	call	_Initialize_Memory
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_From
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_To
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_Add
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_Subtruct
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_Multiply
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_DivRem
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_Shift
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_BitwiseAnd
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_BitwiseOr
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
 	movl	%ebx, (%esp)
 	call	_Initialize_ExclusiveOr
 	testl	%eax, %eax
-	jne	L10
+	jne	L4
+	movl	%ebx, (%esp)
+	call	_Initialize_Compare
+	testl	%eax, %eax
+	jne	L4
+	movl	%ebx, (%esp)
+	call	_Initialize_Equals
+	testl	%eax, %eax
+	jne	L4
 	movzbl	_entry_points, %eax
 	movzbl	28(%esp), %edx
 	movl	$_PMC_GetStatisticsInfo@4, _entry_points+4
@@ -166,57 +109,29 @@ L7:
 	movl	$_PMC_ExclusiveOr_X_I@12, _entry_points+124
 	movl	$_PMC_ExclusiveOr_X_L@16, _entry_points+128
 	movl	$_PMC_ExclusiveOr_X_X@12, _entry_points+132
+	movl	$_PMC_Compare_X_I@12, _entry_points+136
+	movl	$_PMC_Compare_X_L@16, _entry_points+140
+	movl	$_PMC_Compare_X_X@12, _entry_points+144
+	movl	$_PMC_Equals_X_I@12, _entry_points+148
+	movl	$_PMC_Equals_X_L@16, _entry_points+152
+	movl	$_PMC_Equals_X_X@12, _entry_points+156
 	jmp	L1
 	.p2align 4,,10
-L13:
-	movl	%edi, %ebx
-	andl	$-4, %ebx
-	movb	%bl, 28(%esp)
-L3:
-	andb	$-15, 28(%esp)
-	jmp	L5
-	.p2align 4,,10
-L10:
+L4:
 	xorl	%eax, %eax
 L1:
-	addl	$60, %esp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 20
+	addl	$40, %esp
+	.cfi_def_cfa_offset 8
 	popl	%ebx
 	.cfi_restore 3
-	.cfi_def_cfa_offset 16
-	popl	%esi
-	.cfi_restore 6
-	.cfi_def_cfa_offset 12
-	popl	%edi
-	.cfi_restore 7
-	.cfi_def_cfa_offset 8
-	popl	%ebp
-	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret	$4
-	.p2align 4,,10
-L6:
-	.cfi_restore_state
-	movl	$-2147483647, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	movzbl	28(%esp), %eax
-	shrl	$5, %ecx
-	andl	$1, %ecx
-	sall	$4, %ecx
-	andl	$-17, %eax
-	orl	%eax, %ecx
-	movb	%cl, 28(%esp)
-	jmp	L7
 	.cfi_endproc
 LFE5485:
 	.comm	_configuration_info, 4, 2
-.lcomm _entry_points,136,32
+.lcomm _entry_points,160,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
+	.def	_GetCPUInfo;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_To;	.scl	2;	.type	32;	.endef
@@ -228,6 +143,8 @@ LFE5485:
 	.def	_Initialize_BitwiseAnd;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_BitwiseOr;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_ExclusiveOr;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_Compare;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_Equals;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_L@12;	.scl	2;	.type	32;	.endef
@@ -261,5 +178,11 @@ LFE5485:
 	.def	_PMC_ExclusiveOr_X_I@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_ExclusiveOr_X_L@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_ExclusiveOr_X_X@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Compare_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Compare_X_L@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Compare_X_X@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Equals_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Equals_X_L@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_Equals_X_X@12;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize@4\""

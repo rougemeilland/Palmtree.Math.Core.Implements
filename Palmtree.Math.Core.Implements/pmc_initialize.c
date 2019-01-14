@@ -33,24 +33,7 @@
 #include <intrin.h>
 #include <immintrin.h>
 #include "pmc_internal.h"
-
-
-#pragma region 実装されているCPU命令を表すフラグの定義
-// CPUID の POPCNT フラグ。EAX=0x01
-#define CPU_FEATURE_FLAG_POPCNT (1U << 23)
-
-// CPUID の BMI1 フラグ。EAX=0x07
-#define CPU_FEATURE_FLAG_BMI1   (1U << 3)
-
-// CPUID の BMI2 フラグ。EAX=0x07
-#define CPU_FEATURE_FLAG_BMI2   (1U << 8)
-
-// CPUID の ADX フラグ。EAX=0x07
-#define CPU_FEATURE_FLAG_ADX    (1U << 19)
-
-// CPUID の ABM フラグ。EAX=0x80000001
-#define CPU_FEATURE_FLAG_ABM    (1U << 5)
-#pragma endregion
+#include "pmc_cpuid.h"
 
 
 #pragma region 静的変数の定義
@@ -63,43 +46,7 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
 {
     configuration_info = *config;
     PROCESSOR_FEATURES feature;
-    feature.PROCESSOR_FEATURE_ADX = FALSE;
-    int cpu_id_buffer[4];
-    __cpuid(cpu_id_buffer, 0);
-    int max_catagory = cpu_id_buffer[0];
-    if (max_catagory < 1)
-    {
-        feature.PROCESSOR_FEATURE_POPCNT = FALSE;
-    }
-    else
-    {
-        __cpuid(cpu_id_buffer, 7);
-        feature.PROCESSOR_FEATURE_POPCNT = (cpu_id_buffer[1] & CPU_FEATURE_FLAG_POPCNT) != 0;
-    }
-
-    if (max_catagory < 7)
-    {
-        feature.PROCESSOR_FEATURE_ADX = FALSE;
-        feature.PROCESSOR_FEATURE_BMI1 = FALSE;
-        feature.PROCESSOR_FEATURE_BMI2 = FALSE;
-    }
-    else
-    {
-        __cpuid(cpu_id_buffer, 7);
-        feature.PROCESSOR_FEATURE_ADX = (cpu_id_buffer[1] & CPU_FEATURE_FLAG_ADX) != 0;
-        feature.PROCESSOR_FEATURE_BMI1 = (cpu_id_buffer[1] & CPU_FEATURE_FLAG_BMI1) != 0;
-        feature.PROCESSOR_FEATURE_BMI2 = (cpu_id_buffer[1] & CPU_FEATURE_FLAG_BMI2) != 0;
-    }
-
-    __cpuid(cpu_id_buffer, 0x80000000);
-    int max_ex_category = cpu_id_buffer[0];
-    if (max_ex_category < 0x80000001)
-        feature.PROCESSOR_FEATURE_ABM = FALSE;
-    else
-    {
-        __cpuid(cpu_id_buffer, 0x80000001);
-        feature.PROCESSOR_FEATURE_ABM = (cpu_id_buffer[2] & CPU_FEATURE_FLAG_ABM) != 0;
-    }
+    GetCPUInfo(&feature);
 
     if (Initialize_Memory(&feature))
         return (NULL);
@@ -122,6 +69,10 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     if (Initialize_BitwiseOr(&feature))
         return (NULL);
     if (Initialize_ExclusiveOr(&feature))
+        return (NULL);
+    if (Initialize_Compare(&feature))
+        return (NULL);
+    if (Initialize_Equals(&feature))
         return (NULL);
 
     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
@@ -162,6 +113,12 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     entry_points.PMC_ExclusiveOr_X_I = PMC_ExclusiveOr_X_I;
     entry_points.PMC_ExclusiveOr_X_L = PMC_ExclusiveOr_X_L;
     entry_points.PMC_ExclusiveOr_X_X = PMC_ExclusiveOr_X_X;
+    entry_points.PMC_Compare_X_I = PMC_Compare_X_I;
+    entry_points.PMC_Compare_X_L = PMC_Compare_X_L;
+    entry_points.PMC_Compare_X_X = PMC_Compare_X_X;
+    entry_points.PMC_Equals_X_I = PMC_Equals_X_I;
+    entry_points.PMC_Equals_X_L = PMC_Equals_X_L;
+    entry_points.PMC_Equals_X_X = PMC_Equals_X_X;
     return (&entry_points);
 }
 

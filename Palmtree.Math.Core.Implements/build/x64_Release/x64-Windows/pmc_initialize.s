@@ -11,110 +11,62 @@ PMC_Initialize:
 	.seh_stackalloc	48
 	.seh_endprologue
 	movl	(%rcx), %eax
-	movzbl	44(%rsp), %r8d
-	movl	%eax, configuration_info(%rip)
-	xorl	%eax, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	testl	%eax, %eax
-	movl	%eax, %r10d
-	jle	.L12
-	movl	$7, %r9d
-	movl	%r9d, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	shrl	$23, %ebx
-	andl	$-4, %r8d
-	andl	$1, %ebx
-	orl	%ebx, %r8d
-	cmpl	$6, %r10d
-	movb	%r8b, 44(%rsp)
-	jle	.L3
-	movl	%r9d, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	movl	%ebx, %eax
-	movl	%ebx, %r9d
-	shrl	$19, %eax
-	shrl	$8, %r9d
-	andl	$1, %eax
-	andl	$1, %r9d
-	addl	%eax, %eax
-	sall	$3, %r9d
-	orl	%eax, %r8d
-	movl	%ebx, %eax
-	shrl	$3, %eax
-	andl	$-13, %r8d
-	andl	$1, %eax
-	sall	$2, %eax
-	orl	%eax, %r8d
-	orl	%r9d, %r8d
-	movb	%r8b, 44(%rsp)
-.L5:
-	movl	$-2147483648, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	cmpl	$-2147483648, %eax
-	ja	.L6
-	andb	$-17, 44(%rsp)
-.L7:
 	leaq	44(%rsp), %rbx
+	movl	%eax, configuration_info(%rip)
+	movq	%rbx, %rcx
+	call	GetCPUInfo
 	movq	%rbx, %rcx
 	call	Initialize_Memory
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_From
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_To
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_Add
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_Subtruct
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_Multiply
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_DivRem
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_Shift
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_BitwiseAnd
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_BitwiseOr
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
 	movq	%rbx, %rcx
 	call	Initialize_ExclusiveOr
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L4
+	movq	%rbx, %rcx
+	call	Initialize_Compare
+	testl	%eax, %eax
+	jne	.L4
+	movq	%rbx, %rcx
+	call	Initialize_Equals
+	testl	%eax, %eax
+	jne	.L4
 	movzbl	entry_points(%rip), %eax
 	movzbl	44(%rsp), %edx
 	andl	$-32, %eax
@@ -187,42 +139,32 @@ PMC_Initialize:
 	movq	%rax, 256+entry_points(%rip)
 	movq	.refptr.PMC_ExclusiveOr_X_X(%rip), %rax
 	movq	%rax, 264+entry_points(%rip)
+	movq	.refptr.PMC_Compare_X_I(%rip), %rax
+	movq	%rax, 272+entry_points(%rip)
+	movq	.refptr.PMC_Compare_X_L(%rip), %rax
+	movq	%rax, 280+entry_points(%rip)
+	movq	.refptr.PMC_Compare_X_X(%rip), %rax
+	movq	%rax, 288+entry_points(%rip)
+	movq	.refptr.PMC_Equals_X_I(%rip), %rax
+	movq	%rax, 296+entry_points(%rip)
+	movq	.refptr.PMC_Equals_X_L(%rip), %rax
+	movq	%rax, 304+entry_points(%rip)
+	movq	.refptr.PMC_Equals_X_X(%rip), %rax
+	movq	%rax, 312+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
 	jmp	.L1
 	.p2align 4,,10
-.L12:
-	andl	$-4, %r8d
-	movb	%r8b, 44(%rsp)
-.L3:
-	andb	$-15, 44(%rsp)
-	jmp	.L5
-	.p2align 4,,10
-.L10:
+.L4:
 	xorl	%eax, %eax
 .L1:
 	addq	$48, %rsp
 	popq	%rbx
 	ret
-	.p2align 4,,10
-.L6:
-	movl	$-2147483647, %eax
-/APP
- # 1689 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	cpuid
- # 0 "" 2
-/NO_APP
-	movzbl	44(%rsp), %eax
-	shrl	$5, %ecx
-	andl	$1, %ecx
-	sall	$4, %ecx
-	andl	$-17, %eax
-	orl	%eax, %ecx
-	movb	%cl, 44(%rsp)
-	jmp	.L7
 	.seh_endproc
 	.comm	configuration_info, 4, 2
-.lcomm entry_points,272,32
+.lcomm entry_points,320,32
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
+	.def	GetCPUInfo;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	Initialize_From;	.scl	2;	.type	32;	.endef
 	.def	Initialize_To;	.scl	2;	.type	32;	.endef
@@ -234,8 +176,40 @@ PMC_Initialize:
 	.def	Initialize_BitwiseAnd;	.scl	2;	.type	32;	.endef
 	.def	Initialize_BitwiseOr;	.scl	2;	.type	32;	.endef
 	.def	Initialize_ExclusiveOr;	.scl	2;	.type	32;	.endef
+	.def	Initialize_Compare;	.scl	2;	.type	32;	.endef
+	.def	Initialize_Equals;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize\""
+	.section	.rdata$.refptr.PMC_Equals_X_X, "dr"
+	.globl	.refptr.PMC_Equals_X_X
+	.linkonce	discard
+.refptr.PMC_Equals_X_X:
+	.quad	PMC_Equals_X_X
+	.section	.rdata$.refptr.PMC_Equals_X_L, "dr"
+	.globl	.refptr.PMC_Equals_X_L
+	.linkonce	discard
+.refptr.PMC_Equals_X_L:
+	.quad	PMC_Equals_X_L
+	.section	.rdata$.refptr.PMC_Equals_X_I, "dr"
+	.globl	.refptr.PMC_Equals_X_I
+	.linkonce	discard
+.refptr.PMC_Equals_X_I:
+	.quad	PMC_Equals_X_I
+	.section	.rdata$.refptr.PMC_Compare_X_X, "dr"
+	.globl	.refptr.PMC_Compare_X_X
+	.linkonce	discard
+.refptr.PMC_Compare_X_X:
+	.quad	PMC_Compare_X_X
+	.section	.rdata$.refptr.PMC_Compare_X_L, "dr"
+	.globl	.refptr.PMC_Compare_X_L
+	.linkonce	discard
+.refptr.PMC_Compare_X_L:
+	.quad	PMC_Compare_X_L
+	.section	.rdata$.refptr.PMC_Compare_X_I, "dr"
+	.globl	.refptr.PMC_Compare_X_I
+	.linkonce	discard
+.refptr.PMC_Compare_X_I:
+	.quad	PMC_Compare_X_I
 	.section	.rdata$.refptr.PMC_ExclusiveOr_X_X, "dr"
 	.globl	.refptr.PMC_ExclusiveOr_X_X
 	.linkonce	discard

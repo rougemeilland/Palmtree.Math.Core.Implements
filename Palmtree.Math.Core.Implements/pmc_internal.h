@@ -32,11 +32,12 @@
 #ifndef __PMC_INTERNAL_H
 #define __PMC_INTERNAL_H
 
-#include <stdlib.h>
+#include <windows.h>
 #ifdef __GNUC__
 #include <intrin.h>
 #endif
 #include "pmc.h"
+#include "pmc_cpuid.h"
 
 
 #pragma region マクロの定義
@@ -63,26 +64,6 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
 
 #define __UNIT_TYPE_BYTE_COUNT (sizeof(__UNIT_TYPE))
 #define __UNIT_TYPE_BIT_COUNT (sizeof(__UNIT_TYPE) * 8)
-
-// CPUIDによる機能の使用可否を識別する構造体。
-// 参照: https://www.wdic.org/w/SCI/cpuid%20(x86), https://en.wikipedia.org/wiki/Bit_Manipulation_Instruction_Sets
-typedef struct _tag_PROCESSOR_FEATURES
-{
-    // このフラグで使用可能な命令: POPCNT
-    unsigned PROCESSOR_FEATURE_POPCNT : 1;
-
-    // このフラグで使用可能な命令: ADX
-    unsigned PROCESSOR_FEATURE_ADX : 1;
-
-    // このフラグで使用可能な命令: TZCNT
-    unsigned PROCESSOR_FEATURE_BMI1 : 1;
-
-    // このフラグで使用可能な命令: MULX
-    unsigned PROCESSOR_FEATURE_BMI2 : 1;
-
-    // このフラグで使用可能な命令: LZCNT
-    unsigned PROCESSOR_FEATURE_ABM : 1;
-} PROCESSOR_FEATURES;
 
 typedef struct __tag_NUMBER_HEADER
 {
@@ -194,8 +175,14 @@ extern PMC_STATUS_CODE Initialize_BitwiseAnd(PROCESSOR_FEATURES* feature);
 // ビットOR処理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_BitwiseOr(PROCESSOR_FEATURES* feature);
 
-// ビットOR処理の実装の初期化処理を行う。
+// XOR処理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_ExclusiveOr(PROCESSOR_FEATURES* feature);
+
+// 比較処理の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_Compare(PROCESSOR_FEATURES* feature);
+
+// 等値処理の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_Equals(PROCESSOR_FEATURES* feature);
 
 // エントリポイントに登録される関数群
 
@@ -244,6 +231,14 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseOr_X_X(HANDLE u, HANDLE v, HANDLE* 
 extern PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_Compare_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Compare_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Compare_X_X(HANDLE u, HANDLE v, _INT32_T* w);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 #pragma endregion
 
 

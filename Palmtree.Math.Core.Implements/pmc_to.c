@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * The MIT License
  *
  * Copyright 2018 Palmtree Software.
@@ -38,7 +38,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, _UINT32_T* o)
 {
     if (sizeof(__UNIT_TYPE) < sizeof(*o))
     {
-        // 32bit–¢–ž‚ÌCPU‚Í–¢‘Î‰ž
+        // 32bitæœªæº€ã®CPUã¯æœªå¯¾å¿œ
         return (PMC_STATUS_INTERNAL_ERROR);
     }
     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
@@ -58,7 +58,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o)
 {
     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
     {
-        // 32bit–¢–ž‚ÌCPU‚Í–¢‘Î‰ž
+        // 32bitæœªæº€ã®CPUã¯æœªå¯¾å¿œ
         return (PMC_STATUS_INTERNAL_ERROR);
     }
     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
@@ -74,13 +74,13 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o)
     }
     if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT)
     {
-        // ’l‚ª 1 ƒ[ƒh‚Å•\Œ»‚Å‚«‚éê‡
+        // å€¤ãŒ 1 ãƒ¯ãƒ¼ãƒ‰ã§è¡¨ç¾ã§ãã‚‹å ´åˆ
         *o = np->BLOCK[0];
         return (PMC_STATUS_OK);
     }
     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
     {
-        // ’l‚ª 2 ƒ[ƒh‚Å•\Œ»‚Å‚«‚éê‡
+        // å€¤ãŒ 2 ãƒ¯ãƒ¼ãƒ‰ã§è¡¨ç¾ã§ãã‚‹å ´åˆ
         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
         return (PMC_STATUS_OK);
     }

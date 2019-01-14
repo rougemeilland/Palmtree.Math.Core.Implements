@@ -40,19 +40,24 @@ OBJECTFILES= \
 	${OBJECTDIR}/TEST_op_Add.o \
 	${OBJECTDIR}/TEST_op_BitwiseAnd.o \
 	${OBJECTDIR}/TEST_op_BitwiseOr.o \
+	${OBJECTDIR}/TEST_op_Compare.o \
 	${OBJECTDIR}/TEST_op_DivRem.o \
+	${OBJECTDIR}/TEST_op_Equals.o \
 	${OBJECTDIR}/TEST_op_ExclusiveOr.o \
 	${OBJECTDIR}/TEST_op_From_To.o \
 	${OBJECTDIR}/TEST_op_Multiply.o \
 	${OBJECTDIR}/TEST_op_Shift.o \
 	${OBJECTDIR}/TEST_op_Subtruct.o \
+	${OBJECTDIR}/cpuid.o \
 	${OBJECTDIR}/debug.o \
 	${OBJECTDIR}/dllmain.o \
 	${OBJECTDIR}/memory.o \
 	${OBJECTDIR}/pmc_add.o \
 	${OBJECTDIR}/pmc_bitwiseand.o \
 	${OBJECTDIR}/pmc_bitwiseor.o \
+	${OBJECTDIR}/pmc_compare.o \
 	${OBJECTDIR}/pmc_divrem.o \
+	${OBJECTDIR}/pmc_equals.o \
 	${OBJECTDIR}/pmc_exclusiveor.o \
 	${OBJECTDIR}/pmc_from.o \
 	${OBJECTDIR}/pmc_initialize.o \
@@ -112,10 +117,20 @@ ${OBJECTDIR}/TEST_op_BitwiseOr.o: TEST_op_BitwiseOr.c nbproject/Makefile-${CND_C
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_BitwiseOr.o TEST_op_BitwiseOr.c
 
+${OBJECTDIR}/TEST_op_Compare.o: TEST_op_Compare.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Compare.o TEST_op_Compare.c
+
 ${OBJECTDIR}/TEST_op_DivRem.o: TEST_op_DivRem.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_DivRem.o TEST_op_DivRem.c
+
+${OBJECTDIR}/TEST_op_Equals.o: TEST_op_Equals.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Equals.o TEST_op_Equals.c
 
 ${OBJECTDIR}/TEST_op_ExclusiveOr.o: TEST_op_ExclusiveOr.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
@@ -141,6 +156,11 @@ ${OBJECTDIR}/TEST_op_Subtruct.o: TEST_op_Subtruct.c nbproject/Makefile-${CND_CON
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Subtruct.o TEST_op_Subtruct.c
+
+${OBJECTDIR}/cpuid.o: cpuid.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cpuid.o cpuid.c
 
 ${OBJECTDIR}/debug.o: debug.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
@@ -172,10 +192,20 @@ ${OBJECTDIR}/pmc_bitwiseor.o: pmc_bitwiseor.c nbproject/Makefile-${CND_CONF}.mk
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_bitwiseor.o pmc_bitwiseor.c
 
+${OBJECTDIR}/pmc_compare.o: pmc_compare.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_compare.o pmc_compare.c
+
 ${OBJECTDIR}/pmc_divrem.o: pmc_divrem.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_divrem.o pmc_divrem.c
+
+${OBJECTDIR}/pmc_equals.o: pmc_equals.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_equals.o pmc_equals.c
 
 ${OBJECTDIR}/pmc_exclusiveor.o: pmc_exclusiveor.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

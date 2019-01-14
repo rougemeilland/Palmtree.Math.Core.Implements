@@ -7,7 +7,7 @@
 _MAXIMUM_UNIT:
 .LFB4328:
 	.file 1 "pmc_internal.h"
-	.loc 1 406 1
+	.loc 1 401 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -19,11 +19,11 @@ _MAXIMUM_UNIT:
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
 	movq	%rdx, 24(%rbp)
-	.loc 1 407 24
+	.loc 1 402 24
 	movq	24(%rbp), %rax
 	cmpq	%rax, 16(%rbp)
 	cmovnb	16(%rbp), %rax
-	.loc 1 408 1
+	.loc 1 403 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -35,7 +35,7 @@ _MAXIMUM_UNIT:
 	.seh_proc	_ADD_UNIT
 _ADD_UNIT:
 .LFB4330:
-	.loc 1 416 1
+	.loc 1 411 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -52,7 +52,7 @@ _ADD_UNIT:
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
 	movb	%al, 16(%rbp)
-	.loc 1 420 13
+	.loc 1 415 13
 	movzbl	16(%rbp), %eax
 	movzbl	%al, %eax
 	movb	%al, -1(%rbp)
@@ -77,9 +77,9 @@ _ADD_UNIT:
 	movq	%rax, (%rdx)
 .LBE7:
 .LBE6:
-	.loc 1 420 13
+	.loc 1 415 13
 	movl	%ecx, %eax
-	.loc 1 424 1
+	.loc 1 419 1
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -92,7 +92,7 @@ _ADD_UNIT:
 	.seh_proc	_ADDX_UNIT
 _ADDX_UNIT:
 .LFB4332:
-	.loc 1 444 1
+	.loc 1 439 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -109,7 +109,7 @@ _ADDX_UNIT:
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
 	movb	%al, 16(%rbp)
-	.loc 1 448 13
+	.loc 1 443 13
 	movzbl	16(%rbp), %eax
 	movzbl	%al, %eax
 	movb	%al, -1(%rbp)
@@ -133,9 +133,9 @@ _ADDX_UNIT:
 	movq	%rax, (%rdx)
 .LBE9:
 .LBE8:
-	.loc 1 448 13
+	.loc 1 443 13
 	movl	%ecx, %eax
-	.loc 1 452 1
+	.loc 1 447 1
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -148,7 +148,7 @@ _ADDX_UNIT:
 	.seh_proc	_LZCNT_ALT_32
 _LZCNT_ALT_32:
 .LFB4352:
-	.loc 1 799 1
+	.loc 1 794 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -161,25 +161,25 @@ _LZCNT_ALT_32:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movl	%ecx, 16(%rbp)
-	.loc 1 800 8
+	.loc 1 795 8
 	cmpl	$0, 16(%rbp)
 	jne	.L10
-	.loc 1 801 16
+	.loc 1 796 16
 	movl	$32, %eax
 	jmp	.L11
 .L10:
-	.loc 1 806 5
+	.loc 1 801 5
 /APP
- # 806 "pmc_internal.h" 1
+ # 801 "pmc_internal.h" 1
 	bsrl 16(%rbp), %eax
  # 0 "" 2
 /NO_APP
 	movl	%eax, -4(%rbp)
-	.loc 1 810 31
+	.loc 1 805 31
 	movl	$31, %eax
 	subl	-4(%rbp), %eax
 .L11:
-	.loc 1 811 1
+	.loc 1 806 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -192,7 +192,7 @@ _LZCNT_ALT_32:
 	.seh_proc	_LZCNT_ALT_UNIT
 _LZCNT_ALT_UNIT:
 .LFB4354:
-	.loc 1 832 1
+	.loc 1 827 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -205,25 +205,25 @@ _LZCNT_ALT_UNIT:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 1 833 8
+	.loc 1 828 8
 	cmpq	$0, 16(%rbp)
 	jne	.L13
-	.loc 1 834 16
+	.loc 1 829 16
 	movl	$64, %eax
 	jmp	.L14
 .L13:
-	.loc 1 850 5
+	.loc 1 845 5
 /APP
- # 850 "pmc_internal.h" 1
+ # 845 "pmc_internal.h" 1
 	bsrq 16(%rbp), %rax
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%rbp)
-	.loc 1 857 31
+	.loc 1 852 31
 	movl	$63, %eax
 	subq	-8(%rbp), %rax
 .L14:
-	.loc 1 858 1
+	.loc 1 853 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -1404,27 +1404,27 @@ Add_X_X_using_ADC:
 .LBB10:
 	.loc 4 157 24
 	movq	16(%rbp), %rax
-	movq	%rax, -40(%rbp)
+	movq	%rax, -48(%rbp)
 	.loc 4 158 11
 	movq	24(%rbp), %rax
 	movq	%rax, 16(%rbp)
 	.loc 4 159 11
-	movq	-40(%rbp), %rax
+	movq	-48(%rbp), %rax
 	movq	%rax, 24(%rbp)
 .L53:
 .LBE10:
 	.loc 4 161 17
 	movq	16(%rbp), %rax
 	movq	(%rax), %rax
-	movq	%rax, -48(%rbp)
+	movq	%rax, -56(%rbp)
 	.loc 4 162 17
 	movq	24(%rbp), %rax
 	movq	(%rax), %rax
-	movq	%rax, -56(%rbp)
+	movq	%rax, -64(%rbp)
 	.loc 4 163 17
 	movq	32(%rbp), %rax
 	movq	40(%rax), %rax
-	movq	%rax, -64(%rbp)
+	movq	%rax, -72(%rbp)
 	.loc 4 164 18
 	movq	16(%rbp), %rax
 	movq	48(%rax), %rax
@@ -1440,13 +1440,12 @@ Add_X_X_using_ADC:
 	.loc 4 167 10
 	movb	$0, -25(%rbp)
 	.loc 4 170 17
-	movq	-56(%rbp), %rax
+	movq	-64(%rbp), %rax
 	shrq	$5, %rax
-	movq	%rax, -72(%rbp)
-.L54:
-	.loc 4 171 11 discriminator 1
-	cmpq	$0, -72(%rbp)
-	jne	.L54
+	movq	%rax, -40(%rbp)
+	.loc 4 171 11
+	jmp	.L54
+.L55:
 	.loc 4 173 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1464,13 +1463,17 @@ Add_X_X_using_ADC:
 	.loc 4 176 12
 	addq	$256, -24(%rbp)
 	.loc 4 177 9
-	subq	$1, -72(%rbp)
+	subq	$1, -40(%rbp)
+.L54:
+	.loc 4 171 11
+	cmpq	$0, -40(%rbp)
+	jne	.L55
 	.loc 4 182 17
-	movq	-56(%rbp), %rax
+	movq	-64(%rbp), %rax
 	andl	$16, %eax
 	.loc 4 182 8
 	testq	%rax, %rax
-	je	.L55
+	je	.L56
 	.loc 4 184 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1487,13 +1490,13 @@ Add_X_X_using_ADC:
 	subq	$-128, -16(%rbp)
 	.loc 4 187 12
 	subq	$-128, -24(%rbp)
-.L55:
+.L56:
 	.loc 4 192 17
-	movq	-56(%rbp), %rax
+	movq	-64(%rbp), %rax
 	andl	$8, %eax
 	.loc 4 192 8
 	testq	%rax, %rax
-	je	.L56
+	je	.L57
 	.loc 4 194 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1510,13 +1513,13 @@ Add_X_X_using_ADC:
 	addq	$64, -16(%rbp)
 	.loc 4 197 12
 	addq	$64, -24(%rbp)
-.L56:
+.L57:
 	.loc 4 202 17
-	movq	-56(%rbp), %rax
+	movq	-64(%rbp), %rax
 	andl	$4, %eax
 	.loc 4 202 8
 	testq	%rax, %rax
-	je	.L57
+	je	.L58
 	.loc 4 204 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1533,13 +1536,13 @@ Add_X_X_using_ADC:
 	addq	$32, -16(%rbp)
 	.loc 4 207 12
 	addq	$32, -24(%rbp)
-.L57:
+.L58:
 	.loc 4 212 17
-	movq	-56(%rbp), %rax
+	movq	-64(%rbp), %rax
 	andl	$2, %eax
 	.loc 4 212 8
 	testq	%rax, %rax
-	je	.L58
+	je	.L59
 	.loc 4 214 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1556,13 +1559,13 @@ Add_X_X_using_ADC:
 	addq	$16, -16(%rbp)
 	.loc 4 217 12
 	addq	$16, -24(%rbp)
-.L58:
+.L59:
 	.loc 4 222 17
-	movq	-56(%rbp), %rax
+	movq	-64(%rbp), %rax
 	andl	$1, %eax
 	.loc 4 222 8
 	testq	%rax, %rax
-	je	.L59
+	je	.L60
 	.loc 4 223 13
 	movq	-24(%rbp), %rdx
 	leaq	8(%rdx), %rax
@@ -1585,13 +1588,13 @@ Add_X_X_using_ADC:
 	movl	%eax, %ecx
 	call	_ADD_UNIT
 	movb	%al, -25(%rbp)
-.L59:
+.L60:
 	.loc 4 226 13
-	movq	-64(%rbp), %rax
-	subq	-56(%rbp), %rax
+	movq	-72(%rbp), %rax
+	subq	-64(%rbp), %rax
 	movq	%rax, %rdx
-	movq	-48(%rbp), %rax
-	subq	-56(%rbp), %rax
+	movq	-56(%rbp), %rax
+	subq	-64(%rbp), %rax
 	movq	%rax, %r8
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r9
@@ -1636,7 +1639,7 @@ Add_X_X_using_ADCX:
 	movq	(%rax), %rax
 	.loc 4 232 8
 	cmpq	%rax, %rdx
-	jnb	.L62
+	jnb	.L63
 .LBB11:
 	.loc 4 234 24
 	movq	16(%rbp), %rax
@@ -1647,7 +1650,7 @@ Add_X_X_using_ADCX:
 	.loc 4 236 11
 	movq	-48(%rbp), %rax
 	movq	%rax, 24(%rbp)
-.L62:
+.L63:
 .LBE11:
 	.loc 4 238 17
 	movq	16(%rbp), %rax
@@ -1680,8 +1683,8 @@ Add_X_X_using_ADCX:
 	shrq	$5, %rax
 	movq	%rax, -40(%rbp)
 	.loc 4 248 11
-	jmp	.L63
-.L64:
+	jmp	.L64
+.L65:
 	.loc 4 250 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1700,16 +1703,16 @@ Add_X_X_using_ADCX:
 	addq	$256, -24(%rbp)
 	.loc 4 254 9
 	subq	$1, -40(%rbp)
-.L63:
+.L64:
 	.loc 4 248 11
 	cmpq	$0, -40(%rbp)
-	jne	.L64
+	jne	.L65
 	.loc 4 259 17
 	movq	-64(%rbp), %rax
 	andl	$16, %eax
 	.loc 4 259 8
 	testq	%rax, %rax
-	je	.L65
+	je	.L66
 	.loc 4 261 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1726,13 +1729,13 @@ Add_X_X_using_ADCX:
 	subq	$-128, -16(%rbp)
 	.loc 4 264 12
 	subq	$-128, -24(%rbp)
-.L65:
+.L66:
 	.loc 4 269 17
 	movq	-64(%rbp), %rax
 	andl	$8, %eax
 	.loc 4 269 8
 	testq	%rax, %rax
-	je	.L66
+	je	.L67
 	.loc 4 271 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1749,13 +1752,13 @@ Add_X_X_using_ADCX:
 	addq	$64, -16(%rbp)
 	.loc 4 274 12
 	addq	$64, -24(%rbp)
-.L66:
+.L67:
 	.loc 4 279 17
 	movq	-64(%rbp), %rax
 	andl	$4, %eax
 	.loc 4 279 8
 	testq	%rax, %rax
-	je	.L67
+	je	.L68
 	.loc 4 281 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1772,13 +1775,13 @@ Add_X_X_using_ADCX:
 	addq	$32, -16(%rbp)
 	.loc 4 284 12
 	addq	$32, -24(%rbp)
-.L67:
+.L68:
 	.loc 4 289 17
 	movq	-64(%rbp), %rax
 	andl	$2, %eax
 	.loc 4 289 8
 	testq	%rax, %rax
-	je	.L68
+	je	.L69
 	.loc 4 291 13
 	movsbl	-25(%rbp), %eax
 	movq	-24(%rbp), %r8
@@ -1795,13 +1798,13 @@ Add_X_X_using_ADCX:
 	addq	$16, -16(%rbp)
 	.loc 4 294 12
 	addq	$16, -24(%rbp)
-.L68:
+.L69:
 	.loc 4 299 17
 	movq	-64(%rbp), %rax
 	andl	$1, %eax
 	.loc 4 299 8
 	testq	%rax, %rax
-	je	.L69
+	je	.L70
 	.loc 4 300 13
 	movq	-24(%rbp), %rdx
 	leaq	8(%rdx), %rax
@@ -1824,7 +1827,7 @@ Add_X_X_using_ADCX:
 	movl	%eax, %ecx
 	call	_ADDX_UNIT
 	movb	%al, -25(%rbp)
-.L69:
+.L70:
 	.loc 4 303 13
 	movq	-72(%rbp), %rax
 	subq	-64(%rbp), %rax
@@ -1906,18 +1909,18 @@ PMC_Add_X_I:
 	movq	%r8, 32(%rbp)
 	.loc 4 318 8
 	cmpq	$0, 16(%rbp)
-	jne	.L74
+	jne	.L75
 	.loc 4 319 16
 	movl	$-1, %eax
-	jmp	.L90
-.L74:
+	jmp	.L91
+.L75:
 	.loc 4 320 8
 	cmpq	$0, 32(%rbp)
-	jne	.L76
+	jne	.L77
 	.loc 4 321 16
 	movl	$-1, %eax
-	jmp	.L90
-.L76:
+	jmp	.L91
+.L77:
 	.loc 4 322 20
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
@@ -1928,27 +1931,27 @@ PMC_Add_X_I:
 	movl	%eax, -12(%rbp)
 	.loc 4 324 8
 	cmpl	$0, -12(%rbp)
-	je	.L77
+	je	.L78
 	.loc 4 325 16
 	movl	-12(%rbp), %eax
-	jmp	.L90
-.L77:
+	jmp	.L91
+.L78:
 	.loc 4 327 9
 	movq	-8(%rbp), %rax
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
 	.loc 4 327 8
 	testb	%al, %al
-	je	.L78
+	je	.L79
 	.loc 4 331 12
 	cmpl	$0, 24(%rbp)
-	jne	.L79
+	jne	.L80
 	.loc 4 336 16
 	movq	32(%rbp), %rax
 	movq	.refptr.number_zero(%rip), %rdx
 	movq	%rdx, (%rax)
-	jmp	.L82
-.L79:
+	jmp	.L83
+.L80:
 	.loc 4 343 27
 	leaq	-48(%rbp), %rax
 	movl	24(%rbp), %ecx
@@ -1957,20 +1960,20 @@ PMC_Add_X_I:
 	movl	%eax, -12(%rbp)
 	.loc 4 343 16
 	cmpl	$0, -12(%rbp)
-	je	.L81
+	je	.L82
 	.loc 4 344 24
 	movl	-12(%rbp), %eax
-	jmp	.L90
-.L81:
+	jmp	.L91
+.L82:
 	.loc 4 345 16
 	movq	-48(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
-	jmp	.L82
-.L78:
+	jmp	.L83
+.L79:
 	.loc 4 352 12
 	cmpl	$0, 24(%rbp)
-	jne	.L83
+	jne	.L84
 	.loc 4 357 27
 	leaq	-48(%rbp), %rax
 	movq	-8(%rbp), %rcx
@@ -1979,11 +1982,11 @@ PMC_Add_X_I:
 	movl	%eax, -12(%rbp)
 	.loc 4 357 16
 	cmpl	$0, -12(%rbp)
-	je	.L84
+	je	.L85
 	.loc 4 358 24
 	movl	-12(%rbp), %eax
-	jmp	.L90
-.L83:
+	jmp	.L91
+.L84:
 .LBB12:
 	.loc 4 365 25
 	movq	-8(%rbp), %rax
@@ -2017,11 +2020,11 @@ PMC_Add_X_I:
 	movl	%eax, -12(%rbp)
 	.loc 4 369 16
 	cmpl	$0, -12(%rbp)
-	je	.L85
+	je	.L86
 	.loc 4 370 24
 	movl	-12(%rbp), %eax
-	jmp	.L90
-.L85:
+	jmp	.L91
+.L86:
 	.loc 4 371 27
 	movq	-48(%rbp), %rdx
 	movl	24(%rbp), %eax
@@ -2032,15 +2035,15 @@ PMC_Add_X_I:
 	movl	%eax, -12(%rbp)
 	.loc 4 371 16
 	cmpl	$0, -12(%rbp)
-	je	.L87
+	je	.L88
 	.loc 4 373 17
 	movq	-48(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
 	.loc 4 374 24
 	movl	-12(%rbp), %eax
-	jmp	.L90
-.L87:
+	jmp	.L91
+.L88:
 	.loc 4 376 27
 	movq	-56(%rbp), %rdx
 	.loc 4 376 45
@@ -2052,22 +2055,22 @@ PMC_Add_X_I:
 	movl	%eax, -12(%rbp)
 	.loc 4 376 16
 	cmpl	$0, -12(%rbp)
-	je	.L88
+	je	.L89
 	.loc 4 377 24
 	movl	-12(%rbp), %eax
-	jmp	.L90
-.L88:
+	jmp	.L91
+.L89:
 	.loc 4 378 13
 	movq	-48(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-.L84:
+.L85:
 .LBE12:
 	.loc 4 380 12
 	movq	-48(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
-.L82:
+.L83:
 	.loc 4 383 19
 	movq	32(%rbp), %rax
 	movq	(%rax), %rax
@@ -2076,14 +2079,14 @@ PMC_Add_X_I:
 	movl	%eax, -12(%rbp)
 	.loc 4 383 8
 	cmpl	$0, -12(%rbp)
-	je	.L89
+	je	.L90
 	.loc 4 384 16
 	movl	-12(%rbp), %eax
-	jmp	.L90
-.L89:
+	jmp	.L91
+.L90:
 	.loc 4 386 12
 	movl	$0, %eax
-.L90:
+.L91:
 	.loc 4 387 1 discriminator 1
 	addq	$96, %rsp
 	popq	%rbp
@@ -2115,18 +2118,18 @@ PMC_Add_X_L:
 	movq	%r8, 32(%rbp)
 	.loc 4 396 8
 	cmpq	$0, 16(%rbp)
-	jne	.L92
+	jne	.L93
 	.loc 4 397 16
 	movl	$-1, %eax
-	jmp	.L108
-.L92:
+	jmp	.L109
+.L93:
 	.loc 4 398 8
 	cmpq	$0, 32(%rbp)
-	jne	.L94
+	jne	.L95
 	.loc 4 399 16
 	movl	$-1, %eax
-	jmp	.L108
-.L94:
+	jmp	.L109
+.L95:
 	.loc 4 400 20
 	movq	16(%rbp), %rax
 	movq	%rax, -16(%rbp)
@@ -2137,27 +2140,27 @@ PMC_Add_X_L:
 	movl	%eax, -4(%rbp)
 	.loc 4 402 8
 	cmpl	$0, -4(%rbp)
-	je	.L95
+	je	.L96
 	.loc 4 403 16
 	movl	-4(%rbp), %eax
-	jmp	.L108
-.L95:
+	jmp	.L109
+.L96:
 	.loc 4 405 9
 	movq	-16(%rbp), %rax
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
 	.loc 4 405 8
 	testb	%al, %al
-	je	.L96
+	je	.L97
 	.loc 4 409 12
 	cmpq	$0, 24(%rbp)
-	jne	.L97
+	jne	.L98
 	.loc 4 414 16
 	movq	32(%rbp), %rax
 	movq	.refptr.number_zero(%rip), %rdx
 	movq	%rdx, (%rax)
-	jmp	.L100
-.L97:
+	jmp	.L101
+.L98:
 	.loc 4 421 27
 	leaq	-48(%rbp), %rax
 	movq	24(%rbp), %rcx
@@ -2166,20 +2169,20 @@ PMC_Add_X_L:
 	movl	%eax, -4(%rbp)
 	.loc 4 421 16
 	cmpl	$0, -4(%rbp)
-	je	.L99
+	je	.L100
 	.loc 4 422 24
 	movl	-4(%rbp), %eax
-	jmp	.L108
-.L99:
+	jmp	.L109
+.L100:
 	.loc 4 423 16
 	movq	-48(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
-	jmp	.L100
-.L96:
+	jmp	.L101
+.L97:
 	.loc 4 430 12
 	cmpq	$0, 24(%rbp)
-	jne	.L101
+	jne	.L102
 	.loc 4 435 27
 	leaq	-48(%rbp), %rax
 	movq	-16(%rbp), %rcx
@@ -2188,11 +2191,11 @@ PMC_Add_X_L:
 	movl	%eax, -4(%rbp)
 	.loc 4 435 16
 	cmpl	$0, -4(%rbp)
-	je	.L102
+	je	.L103
 	.loc 4 436 24
 	movl	-4(%rbp), %eax
-	jmp	.L108
-.L101:
+	jmp	.L109
+.L102:
 .LBB13:
 	.loc 4 488 29
 	movq	-16(%rbp), %rax
@@ -2225,11 +2228,11 @@ PMC_Add_X_L:
 	movl	%eax, -4(%rbp)
 	.loc 4 492 20
 	cmpl	$0, -4(%rbp)
-	je	.L103
+	je	.L104
 	.loc 4 493 28
 	movl	-4(%rbp), %eax
-	jmp	.L108
-.L103:
+	jmp	.L109
+.L104:
 	.loc 4 494 31
 	movq	-48(%rbp), %rcx
 	movq	24(%rbp), %rdx
@@ -2240,15 +2243,15 @@ PMC_Add_X_L:
 	movl	%eax, -4(%rbp)
 	.loc 4 494 20
 	cmpl	$0, -4(%rbp)
-	je	.L105
+	je	.L106
 	.loc 4 496 21
 	movq	-48(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
 	.loc 4 497 28
 	movl	-4(%rbp), %eax
-	jmp	.L108
-.L105:
+	jmp	.L109
+.L106:
 	.loc 4 499 31
 	movq	-80(%rbp), %rdx
 	.loc 4 499 49
@@ -2260,22 +2263,22 @@ PMC_Add_X_L:
 	movl	%eax, -4(%rbp)
 	.loc 4 499 20
 	cmpl	$0, -4(%rbp)
-	je	.L106
+	je	.L107
 	.loc 4 500 28
 	movl	-4(%rbp), %eax
-	jmp	.L108
-.L106:
+	jmp	.L109
+.L107:
 	.loc 4 501 17
 	movq	-48(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-.L102:
+.L103:
 .LBE13:
 	.loc 4 505 12
 	movq	-48(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
-.L100:
+.L101:
 	.loc 4 508 19
 	movq	32(%rbp), %rax
 	movq	(%rax), %rax
@@ -2284,14 +2287,14 @@ PMC_Add_X_L:
 	movl	%eax, -4(%rbp)
 	.loc 4 508 8
 	cmpl	$0, -4(%rbp)
-	je	.L107
+	je	.L108
 	.loc 4 509 16
 	movl	-4(%rbp), %eax
-	jmp	.L108
-.L107:
+	jmp	.L109
+.L108:
 	.loc 4 511 12
 	movl	$0, %eax
-.L108:
+.L109:
 	.loc 4 512 1 discriminator 5
 	addq	$112, %rsp
 	popq	%rbp
@@ -2323,25 +2326,25 @@ PMC_Add_X_X:
 	movq	%r8, 32(%rbp)
 	.loc 4 516 8
 	cmpq	$0, 16(%rbp)
-	jne	.L110
+	jne	.L111
 	.loc 4 517 16
 	movl	$-1, %eax
-	jmp	.L125
-.L110:
+	jmp	.L126
+.L111:
 	.loc 4 518 8
 	cmpq	$0, 24(%rbp)
-	jne	.L112
+	jne	.L113
 	.loc 4 519 16
 	movl	$-1, %eax
-	jmp	.L125
-.L112:
+	jmp	.L126
+.L113:
 	.loc 4 520 8
 	cmpq	$0, 32(%rbp)
-	jne	.L113
+	jne	.L114
 	.loc 4 521 16
 	movl	$-1, %eax
-	jmp	.L125
-.L113:
+	jmp	.L126
+.L114:
 	.loc 4 522 20
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
@@ -2355,11 +2358,11 @@ PMC_Add_X_X:
 	movl	%eax, -20(%rbp)
 	.loc 4 525 8
 	cmpl	$0, -20(%rbp)
-	je	.L114
+	je	.L115
 	.loc 4 526 16
 	movl	-20(%rbp), %eax
-	jmp	.L125
-.L114:
+	jmp	.L126
+.L115:
 	.loc 4 527 19
 	movq	-16(%rbp), %rax
 	movq	%rax, %rcx
@@ -2367,30 +2370,30 @@ PMC_Add_X_X:
 	movl	%eax, -20(%rbp)
 	.loc 4 527 8
 	cmpl	$0, -20(%rbp)
-	je	.L115
+	je	.L116
 	.loc 4 528 16
 	movl	-20(%rbp), %eax
-	jmp	.L125
-.L115:
+	jmp	.L126
+.L116:
 	.loc 4 530 9
 	movq	-8(%rbp), %rax
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
 	.loc 4 530 8
 	testb	%al, %al
-	je	.L116
+	je	.L117
 	.loc 4 532 13
 	movq	-16(%rbp), %rax
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
 	.loc 4 532 12
 	testb	%al, %al
-	je	.L117
+	je	.L118
 	.loc 4 533 16
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -56(%rbp)
-	jmp	.L118
-.L117:
+	jmp	.L119
+.L118:
 	.loc 4 536 27
 	leaq	-56(%rbp), %rax
 	movq	-16(%rbp), %rcx
@@ -2399,18 +2402,18 @@ PMC_Add_X_X:
 	movl	%eax, -20(%rbp)
 	.loc 4 536 16
 	cmpl	$0, -20(%rbp)
-	je	.L118
+	je	.L119
 	.loc 4 537 24
 	movl	-20(%rbp), %eax
-	jmp	.L125
-.L116:
+	jmp	.L126
+.L117:
 	.loc 4 542 13
 	movq	-16(%rbp), %rax
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
 	.loc 4 542 12
 	testb	%al, %al
-	je	.L119
+	je	.L120
 	.loc 4 544 27
 	leaq	-56(%rbp), %rax
 	movq	-8(%rbp), %rcx
@@ -2419,11 +2422,11 @@ PMC_Add_X_X:
 	movl	%eax, -20(%rbp)
 	.loc 4 544 16
 	cmpl	$0, -20(%rbp)
-	je	.L118
+	je	.L119
 	.loc 4 545 24
 	movl	-20(%rbp), %eax
-	jmp	.L125
-.L119:
+	jmp	.L126
+.L120:
 .LBB14:
 	.loc 4 549 25
 	movq	-8(%rbp), %rax
@@ -2451,11 +2454,11 @@ PMC_Add_X_X:
 	movl	%eax, -20(%rbp)
 	.loc 4 553 16
 	cmpl	$0, -20(%rbp)
-	je	.L120
+	je	.L121
 	.loc 4 554 24
 	movl	-20(%rbp), %eax
-	jmp	.L125
-.L120:
+	jmp	.L126
+.L121:
 	.loc 4 555 27
 	movq	-56(%rbp), %rcx
 	movq	-16(%rbp), %rdx
@@ -2466,15 +2469,15 @@ PMC_Add_X_X:
 	movl	%eax, -20(%rbp)
 	.loc 4 555 16
 	cmpl	$0, -20(%rbp)
-	je	.L122
+	je	.L123
 	.loc 4 557 17
 	movq	-56(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
 	.loc 4 558 24
 	movl	-20(%rbp), %eax
-	jmp	.L125
-.L122:
+	jmp	.L126
+.L123:
 	.loc 4 560 27
 	movq	-64(%rbp), %rdx
 	.loc 4 560 45
@@ -2486,16 +2489,16 @@ PMC_Add_X_X:
 	movl	%eax, -20(%rbp)
 	.loc 4 560 16
 	cmpl	$0, -20(%rbp)
-	je	.L123
+	je	.L124
 	.loc 4 561 24
 	movl	-20(%rbp), %eax
-	jmp	.L125
-.L123:
+	jmp	.L126
+.L124:
 	.loc 4 562 13
 	movq	-56(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-.L118:
+.L119:
 .LBE14:
 	.loc 4 565 8
 	movq	-56(%rbp), %rdx
@@ -2509,14 +2512,14 @@ PMC_Add_X_X:
 	movl	%eax, -20(%rbp)
 	.loc 4 567 8
 	cmpl	$0, -20(%rbp)
-	je	.L124
+	je	.L125
 	.loc 4 568 16
 	movl	-20(%rbp), %eax
-	jmp	.L125
-.L124:
+	jmp	.L126
+.L125:
 	.loc 4 570 12
 	movl	$0, %eax
-.L125:
+.L126:
 	.loc 4 571 1 discriminator 1
 	addq	$96, %rsp
 	popq	%rbp
@@ -2548,14 +2551,14 @@ Initialize_Add:
 	andl	$2, %eax
 	.loc 4 575 80
 	testb	%al, %al
-	je	.L127
+	je	.L128
 	.loc 4 575 80 is_stmt 0 discriminator 1
 	leaq	Add_X_X_using_ADCX(%rip), %rax
-	jmp	.L128
-.L127:
+	jmp	.L129
+.L128:
 	.loc 4 575 80 discriminator 2
 	leaq	Add_X_X_using_ADC(%rip), %rax
-.L128:
+.L129:
 	.loc 4 575 26 is_stmt 1 discriminator 4
 	movq	%rax, fp_Add_X_X_using_ADC(%rip)
 	.loc 4 576 12 discriminator 4
@@ -2598,6 +2601,7 @@ Initialize_Add:
 	.file 31 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/commdlg.h"
 	.file 32 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdint.h"
 	.file 33 "pmc.h"
+	.file 34 "pmc_cpuid.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
 	.long	0x5ea0
@@ -6645,23 +6649,17 @@ Initialize_Add:
 	.byte	0x63
 	.byte	0x3
 	.long	0x4d05
-	.uleb128 0x3
-	.ascii "__UNIT_TYPE\0"
-	.byte	0x1
-	.byte	0x33
-	.byte	0x13
-	.long	0x4c6d
 	.uleb128 0x12
 	.ascii "_tag_PROCESSOR_FEATURES\0"
 	.byte	0x4
-	.byte	0x1
-	.byte	0x45
+	.byte	0x22
+	.byte	0x29
 	.byte	0x10
-	.long	0x4e82
+	.long	0x4e6e
 	.uleb128 0x1c
 	.ascii "PROCESSOR_FEATURE_POPCNT\0"
-	.byte	0x1
-	.byte	0x48
+	.byte	0x22
+	.byte	0x2c
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6670,8 +6668,8 @@ Initialize_Add:
 	.byte	0
 	.uleb128 0x1c
 	.ascii "PROCESSOR_FEATURE_ADX\0"
-	.byte	0x1
-	.byte	0x4b
+	.byte	0x22
+	.byte	0x2f
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6680,8 +6678,8 @@ Initialize_Add:
 	.byte	0
 	.uleb128 0x1c
 	.ascii "PROCESSOR_FEATURE_BMI1\0"
-	.byte	0x1
-	.byte	0x4e
+	.byte	0x22
+	.byte	0x32
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6690,8 +6688,8 @@ Initialize_Add:
 	.byte	0
 	.uleb128 0x1c
 	.ascii "PROCESSOR_FEATURE_BMI2\0"
-	.byte	0x1
-	.byte	0x51
+	.byte	0x22
+	.byte	0x35
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6700,8 +6698,8 @@ Initialize_Add:
 	.byte	0
 	.uleb128 0x1c
 	.ascii "PROCESSOR_FEATURE_ABM\0"
-	.byte	0x1
-	.byte	0x54
+	.byte	0x22
+	.byte	0x38
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6711,49 +6709,55 @@ Initialize_Add:
 	.byte	0
 	.uleb128 0x3
 	.ascii "PROCESSOR_FEATURES\0"
-	.byte	0x1
-	.byte	0x55
+	.byte	0x22
+	.byte	0x39
 	.byte	0x3
-	.long	0x4db1
+	.long	0x4d9d
+	.uleb128 0x3
+	.ascii "__UNIT_TYPE\0"
+	.byte	0x1
+	.byte	0x34
+	.byte	0x13
+	.long	0x4c6d
 	.uleb128 0x12
 	.ascii "__tag_NUMBER_HEADER\0"
 	.byte	0x38
 	.byte	0x1
-	.byte	0x57
+	.byte	0x44
 	.byte	0x10
 	.long	0x4faf
 	.uleb128 0x13
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1
-	.byte	0x59
+	.byte	0x46
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.byte	0
 	.uleb128 0x13
 	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x1
-	.byte	0x5a
+	.byte	0x47
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.byte	0x8
 	.uleb128 0x13
 	.ascii "HASH_CODE\0"
 	.byte	0x1
-	.byte	0x5b
+	.byte	0x48
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.byte	0x10
 	.uleb128 0x13
 	.ascii "LEAST_ZERO_BITS_COUNT\0"
 	.byte	0x1
-	.byte	0x5c
+	.byte	0x49
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.byte	0x18
 	.uleb128 0x1c
 	.ascii "IS_STATIC\0"
 	.byte	0x1
-	.byte	0x5d
+	.byte	0x4a
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6763,7 +6767,7 @@ Initialize_Add:
 	.uleb128 0x1c
 	.ascii "IS_ZERO\0"
 	.byte	0x1
-	.byte	0x5e
+	.byte	0x4b
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6773,7 +6777,7 @@ Initialize_Add:
 	.uleb128 0x1c
 	.ascii "IS_ONE\0"
 	.byte	0x1
-	.byte	0x5f
+	.byte	0x4c
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6783,7 +6787,7 @@ Initialize_Add:
 	.uleb128 0x1c
 	.ascii "IS_EVEN\0"
 	.byte	0x1
-	.byte	0x60
+	.byte	0x4d
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6793,7 +6797,7 @@ Initialize_Add:
 	.uleb128 0x1c
 	.ascii "IS_POWER_OF_TWO\0"
 	.byte	0x1
-	.byte	0x61
+	.byte	0x4e
 	.byte	0xe
 	.long	0x453
 	.byte	0x4
@@ -6803,43 +6807,43 @@ Initialize_Add:
 	.uleb128 0x13
 	.ascii "BLOCK_COUNT\0"
 	.byte	0x1
-	.byte	0x63
+	.byte	0x50
 	.byte	0xc
 	.long	0xc6
 	.byte	0x28
 	.uleb128 0x13
 	.ascii "BLOCK\0"
 	.byte	0x1
-	.byte	0x67
+	.byte	0x54
 	.byte	0x12
 	.long	0x4faf
 	.byte	0x30
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x1
-	.byte	0x68
+	.byte	0x55
 	.byte	0x3
 	.long	0x4e9d
 	.uleb128 0x15
 	.ascii "configuration_info\0"
 	.byte	0x1
-	.byte	0x6f
+	.byte	0x5c
 	.byte	0x1f
 	.long	0x4cce
 	.uleb128 0x15
 	.ascii "number_zero\0"
 	.byte	0x1
-	.byte	0x72
+	.byte	0x5f
 	.byte	0x16
 	.long	0x4fb5
 	.uleb128 0x15
 	.ascii "statistics_info\0"
 	.byte	0x1
-	.byte	0x75
+	.byte	0x62
 	.byte	0x1c
 	.long	0x4d81
 	.uleb128 0x1d
@@ -6890,7 +6894,7 @@ Initialize_Add:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4e82
+	.long	0x4e6e
 	.uleb128 0x21
 	.ascii "PMC_Add_X_X\0"
 	.byte	0x4
@@ -6973,7 +6977,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x225
 	.byte	0x19
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
@@ -6982,7 +6986,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x226
 	.byte	0x19
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -6991,7 +6995,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x227
 	.byte	0x19
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
@@ -7000,7 +7004,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x228
 	.byte	0x19
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -80
@@ -7078,7 +7082,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x1bf
 	.byte	0x1d
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x27
 	.ascii "y_hi\0"
 	.byte	0x4
@@ -7098,19 +7102,19 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x1c5
 	.byte	0x21
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x26
 	.secrel32	.LASF4
 	.byte	0x4
 	.word	0x1c6
 	.byte	0x21
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x26
 	.secrel32	.LASF5
 	.byte	0x4
 	.word	0x1c7
 	.byte	0x21
-	.long	0x4d9d
+	.long	0x4e89
 	.byte	0
 	.uleb128 0x28
 	.uleb128 0x26
@@ -7118,19 +7122,19 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x1d5
 	.byte	0x21
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x26
 	.secrel32	.LASF4
 	.byte	0x4
 	.word	0x1d6
 	.byte	0x21
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x26
 	.secrel32	.LASF5
 	.byte	0x4
 	.word	0x1d7
 	.byte	0x21
-	.long	0x4d9d
+	.long	0x4e89
 	.byte	0
 	.byte	0
 	.uleb128 0x24
@@ -7141,7 +7145,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x1e8
 	.byte	0x1d
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -7150,7 +7154,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x1e9
 	.byte	0x1d
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
@@ -7159,7 +7163,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x1ea
 	.byte	0x1d
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -7168,7 +7172,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x1eb
 	.byte	0x1d
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -96
@@ -7247,7 +7251,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x16d
 	.byte	0x19
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -7256,7 +7260,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x16e
 	.byte	0x19
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
@@ -7265,7 +7269,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x16f
 	.byte	0x19
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -7274,7 +7278,7 @@ Initialize_Add:
 	.byte	0x4
 	.word	0x170
 	.byte	0x19
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -72
@@ -7362,7 +7366,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0xee
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -72
@@ -7371,7 +7375,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0xef
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -80
@@ -7380,7 +7384,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0xf0
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
@@ -7425,7 +7429,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0xf7
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -7486,28 +7490,28 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0xa1
 	.byte	0x11
-	.long	0x4d9d
-	.uleb128 0x2
+	.long	0x4e89
+	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -64
+	.sleb128 -72
 	.uleb128 0x1e
 	.ascii "y_count\0"
 	.byte	0x4
 	.byte	0xa2
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -72
+	.sleb128 -80
 	.uleb128 0x2c
 	.secrel32	.LASF7
 	.byte	0x4
 	.byte	0xa3
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -80
+	.sleb128 -88
 	.uleb128 0x1e
 	.ascii "xp\0"
 	.byte	0x4
@@ -7549,10 +7553,10 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0xaa
 	.byte	0x11
-	.long	0x4d9d
-	.uleb128 0x3
+	.long	0x4e89
+	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -88
+	.sleb128 -56
 	.uleb128 0x24
 	.quad	.LBB10
 	.quad	.LBE10-.LBB10
@@ -7564,7 +7568,7 @@ Initialize_Add:
 	.long	0x502b
 	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -56
+	.sleb128 -64
 	.byte	0
 	.byte	0
 	.uleb128 0x2a
@@ -7592,7 +7596,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0x6d
 	.byte	0x3f
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -7601,7 +7605,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0x6d
 	.byte	0x51
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -7619,7 +7623,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0x6f
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -7628,7 +7632,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0x70
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -7685,7 +7689,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0x5c
 	.byte	0x3f
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -7703,7 +7707,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0x5e
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -7712,7 +7716,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0x5f
 	.byte	0x11
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -7778,7 +7782,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0x28
 	.byte	0x45
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -7796,7 +7800,7 @@ Initialize_Add:
 	.byte	0x4
 	.byte	0x28
 	.byte	0x6b
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 32
@@ -8284,9 +8288,9 @@ Initialize_Add:
 	.uleb128 0x2e
 	.ascii "_LZCNT_ALT_UNIT\0"
 	.byte	0x1
-	.word	0x33f
+	.word	0x33a
 	.byte	0x1d
-	.long	0x4d9d
+	.long	0x4e89
 	.quad	.LFB4354
 	.quad	.LFE4354-.LFB4354
 	.uleb128 0x1
@@ -8295,16 +8299,16 @@ Initialize_Add:
 	.uleb128 0x20
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x33f
+	.word	0x33a
 	.byte	0x39
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x22
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x351
+	.word	0x34c
 	.byte	0xf
 	.long	0x4c6d
 	.uleb128 0x2
@@ -8314,7 +8318,7 @@ Initialize_Add:
 	.uleb128 0x2e
 	.ascii "_LZCNT_ALT_32\0"
 	.byte	0x1
-	.word	0x31e
+	.word	0x319
 	.byte	0x1b
 	.long	0x4c5b
 	.quad	.LFB4352
@@ -8325,7 +8329,7 @@ Initialize_Add:
 	.uleb128 0x20
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x31e
+	.word	0x319
 	.byte	0x33
 	.long	0x4c5b
 	.uleb128 0x2
@@ -8334,7 +8338,7 @@ Initialize_Add:
 	.uleb128 0x22
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x322
+	.word	0x31d
 	.byte	0xf
 	.long	0x4c5b
 	.uleb128 0x2
@@ -8344,7 +8348,7 @@ Initialize_Add:
 	.uleb128 0x2e
 	.ascii "_ADDX_UNIT\0"
 	.byte	0x1
-	.word	0x1bb
+	.word	0x1b6
 	.byte	0x16
 	.long	0xbe
 	.quad	.LFB4332
@@ -8355,7 +8359,7 @@ Initialize_Add:
 	.uleb128 0x20
 	.ascii "carry\0"
 	.byte	0x1
-	.word	0x1bb
+	.word	0x1b6
 	.byte	0x26
 	.long	0xbe
 	.uleb128 0x2
@@ -8364,25 +8368,25 @@ Initialize_Add:
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x1bb
+	.word	0x1b6
 	.byte	0x39
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x1bb
+	.word	0x1b6
 	.byte	0x48
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x20
 	.ascii "w\0"
 	.byte	0x1
-	.word	0x1bb
+	.word	0x1b6
 	.byte	0x58
 	.long	0x4faf
 	.uleb128 0x2
@@ -8393,7 +8397,7 @@ Initialize_Add:
 	.quad	.LBB8
 	.quad	.LBE8-.LBB8
 	.byte	0x1
-	.word	0x1c0
+	.word	0x1bb
 	.byte	0xd
 	.uleb128 0x31
 	.long	0x5e4d
@@ -8420,7 +8424,7 @@ Initialize_Add:
 	.uleb128 0x2e
 	.ascii "_ADD_UNIT\0"
 	.byte	0x1
-	.word	0x19f
+	.word	0x19a
 	.byte	0x16
 	.long	0xbe
 	.quad	.LFB4330
@@ -8431,7 +8435,7 @@ Initialize_Add:
 	.uleb128 0x20
 	.ascii "carry\0"
 	.byte	0x1
-	.word	0x19f
+	.word	0x19a
 	.byte	0x25
 	.long	0xbe
 	.uleb128 0x2
@@ -8440,25 +8444,25 @@ Initialize_Add:
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x19f
+	.word	0x19a
 	.byte	0x38
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x19f
+	.word	0x19a
 	.byte	0x47
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x20
 	.ascii "w\0"
 	.byte	0x1
-	.word	0x19f
+	.word	0x19a
 	.byte	0x57
 	.long	0x4faf
 	.uleb128 0x2
@@ -8469,7 +8473,7 @@ Initialize_Add:
 	.quad	.LBB6
 	.quad	.LBE6-.LBB6
 	.byte	0x1
-	.word	0x1a4
+	.word	0x19f
 	.byte	0xd
 	.uleb128 0x31
 	.long	0x5e96
@@ -8496,9 +8500,9 @@ Initialize_Add:
 	.uleb128 0x2e
 	.ascii "_MAXIMUM_UNIT\0"
 	.byte	0x1
-	.word	0x195
+	.word	0x190
 	.byte	0x1d
-	.long	0x4d9d
+	.long	0x4e89
 	.quad	.LFB4328
 	.quad	.LFE4328-.LFB4328
 	.uleb128 0x1
@@ -8507,18 +8511,18 @@ Initialize_Add:
 	.uleb128 0x20
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x195
+	.word	0x190
 	.byte	0x37
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x20
 	.ascii "y\0"
 	.byte	0x1
-	.word	0x195
+	.word	0x190
 	.byte	0x46
-	.long	0x4d9d
+	.long	0x4e89
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8

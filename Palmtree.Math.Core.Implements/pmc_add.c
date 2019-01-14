@@ -168,7 +168,7 @@ static PMC_STATUS_CODE Add_X_X_using_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUM
 
     // まず 32 ワードずつ加算をする。
     __UNIT_TYPE count = y_count >> 5;
-    while (count != 0);
+    while (count != 0)
     {
         c = _ADD_32WORDS_ADC(c, xp, yp, zp);
         xp += 32;
