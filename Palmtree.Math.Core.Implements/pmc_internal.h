@@ -194,11 +194,8 @@ extern PMC_STATUS_CODE Initialize_BitwiseAnd(PROCESSOR_FEATURES* feature);
 // ビットOR処理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_BitwiseOr(PROCESSOR_FEATURES* feature);
 
-/*
-extern PMC_STATUS_CODE Initialize_Get(PROCESSOR_FEATURES* feature);ure);
-extern PMC_STATUS_CODE Initialize_Properties(PROCESSOR_FEATURES *feature);
-extern PMC_STATUS_CODE Initialize_Set(PROCESSOR_FEATURES* feature);
-*/
+// ビットOR処理の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_ExclusiveOr(PROCESSOR_FEATURES* feature);
 
 // エントリポイントに登録される関数群
 
@@ -243,6 +240,10 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_X(HANDLE u, HANDLE v, HANDLE*
 extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
 #pragma endregion
 
 

@@ -36,19 +36,19 @@
 
 
 #pragma region 実装されているCPU命令を表すフラグの定義
-// EAX=0x01
+// CPUID の POPCNT フラグ。EAX=0x01
 #define CPU_FEATURE_FLAG_POPCNT (1U << 23)
 
-// EAX=0x07
+// CPUID の BMI1 フラグ。EAX=0x07
 #define CPU_FEATURE_FLAG_BMI1   (1U << 3)
 
-// EAX=0x07
+// CPUID の BMI2 フラグ。EAX=0x07
 #define CPU_FEATURE_FLAG_BMI2   (1U << 8)
 
-// EAX=0x07
+// CPUID の ADX フラグ。EAX=0x07
 #define CPU_FEATURE_FLAG_ADX    (1U << 19)
 
-// EAX=0x80000001
+// CPUID の ABM フラグ。EAX=0x80000001
 #define CPU_FEATURE_FLAG_ABM    (1U << 5)
 #pragma endregion
 
@@ -119,14 +119,11 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
         return (NULL);
     if (Initialize_BitwiseAnd(&feature))
         return (NULL);
-    /*
-    if (Initialize_Get(&feature))
+    if (Initialize_BitwiseOr(&feature))
         return (NULL);
-    if (Initialize_Properties(&feature))
+    if (Initialize_ExclusiveOr(&feature))
         return (NULL);
-    if (Initialize_Set(&feature))
-        return (NULL);
-    */
+
     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
     entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;
 	entry_points.PROCESSOR_FEATURE_BMI1 = feature.PROCESSOR_FEATURE_BMI1;
@@ -162,6 +159,9 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     entry_points.PMC_BitwiseOr_X_I = PMC_BitwiseOr_X_I;
     entry_points.PMC_BitwiseOr_X_L = PMC_BitwiseOr_X_L;
     entry_points.PMC_BitwiseOr_X_X = PMC_BitwiseOr_X_X;
+    entry_points.PMC_ExclusiveOr_X_I = PMC_ExclusiveOr_X_I;
+    entry_points.PMC_ExclusiveOr_X_L = PMC_ExclusiveOr_X_L;
+    entry_points.PMC_ExclusiveOr_X_X = PMC_ExclusiveOr_X_X;
     return (&entry_points);
 }
 

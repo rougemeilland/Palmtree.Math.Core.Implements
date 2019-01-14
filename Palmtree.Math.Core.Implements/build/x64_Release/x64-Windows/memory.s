@@ -500,7 +500,7 @@ CommitNumber:
 	je	.L88
 	movl	$63, %eax
 /APP
- # 849 "pmc_internal.h" 1
+ # 850 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
@@ -584,7 +584,7 @@ CommitNumber:
 	testq	%r11, %r11
 	jne	.L100
 /APP
- # 929 "pmc_internal.h" 1
+ # 930 "pmc_internal.h" 1
 	bsrq %rdx, %r11
  # 0 "" 2
 /NO_APP

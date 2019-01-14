@@ -8,6 +8,7 @@
       <itemPath>TEST_op_BitwiseAnd.c</itemPath>
       <itemPath>TEST_op_BitwiseOr.c</itemPath>
       <itemPath>TEST_op_DivRem.c</itemPath>
+      <itemPath>TEST_op_ExclusiveOr.c</itemPath>
       <itemPath>TEST_op_From_To.c</itemPath>
       <itemPath>TEST_op_Multiply.c</itemPath>
       <itemPath>TEST_op_Shift.c</itemPath>
@@ -19,6 +20,7 @@
       <itemPath>pmc_bitwiseand.c</itemPath>
       <itemPath>pmc_bitwiseor.c</itemPath>
       <itemPath>pmc_divrem.c</itemPath>
+      <itemPath>pmc_exclusiveor.c</itemPath>
       <itemPath>pmc_from.c</itemPath>
       <itemPath>pmc_initialize.c</itemPath>
       <itemPath>pmc_multiply.c</itemPath>
@@ -95,6 +97,8 @@
       </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_ExclusiveOr.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Multiply.c" ex="false" tool="0" flavor2="0">
@@ -122,6 +126,8 @@
       <item path="pmc_debug.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_divrem.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_exclusiveor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -193,6 +199,8 @@
       </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_ExclusiveOr.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Multiply.c" ex="false" tool="0" flavor2="0">
@@ -220,6 +228,8 @@
       <item path="pmc_debug.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_divrem.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_exclusiveor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -284,6 +294,8 @@
       </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_ExclusiveOr.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Multiply.c" ex="false" tool="0" flavor2="0">
@@ -311,6 +323,8 @@
       <item path="pmc_debug.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_divrem.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_exclusiveor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -383,6 +397,8 @@
       </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_ExclusiveOr.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Multiply.c" ex="false" tool="0" flavor2="0">
@@ -410,6 +426,8 @@
       <item path="pmc_debug.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_divrem.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_exclusiveor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
       </item>

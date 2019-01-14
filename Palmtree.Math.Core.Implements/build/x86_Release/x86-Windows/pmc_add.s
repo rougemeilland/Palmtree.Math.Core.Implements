@@ -915,7 +915,7 @@ L86:
 	je	L95
 	leal	44(%esp), %edx
 /APP
- # 805 "pmc_internal.h" 1
+ # 806 "pmc_internal.h" 1
 	bsrl 84(%esp), %eax
  # 0 "" 2
 /NO_APP
@@ -1109,7 +1109,7 @@ L101:
 	testl	%esi, %esi
 	je	L106
 /APP
- # 805 "pmc_internal.h" 1
+ # 806 "pmc_internal.h" 1
 	bsrl %esi, %edx
  # 0 "" 2
 /NO_APP
@@ -1160,7 +1160,7 @@ L113:
 	.p2align 4,,10
 L105:
 /APP
- # 805 "pmc_internal.h" 1
+ # 806 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP

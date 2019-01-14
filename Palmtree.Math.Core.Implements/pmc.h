@@ -164,6 +164,11 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__PMC_CALL * PMC_BitwiseOr_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
     PMC_STATUS_CODE(__PMC_CALL * PMC_BitwiseOr_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
     PMC_STATUS_CODE(__PMC_CALL * PMC_BitwiseOr_X_X)(HANDLE u, HANDLE v, HANDLE* w);
+
+    // ExclusiveOr 演算子
+    PMC_STATUS_CODE(__PMC_CALL * PMC_ExclusiveOr_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_ExclusiveOr_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_ExclusiveOr_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 

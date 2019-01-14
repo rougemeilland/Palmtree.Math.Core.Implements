@@ -118,6 +118,14 @@ L7:
 	call	_Initialize_BitwiseAnd
 	testl	%eax, %eax
 	jne	L10
+	movl	%ebx, (%esp)
+	call	_Initialize_BitwiseOr
+	testl	%eax, %eax
+	jne	L10
+	movl	%ebx, (%esp)
+	call	_Initialize_ExclusiveOr
+	testl	%eax, %eax
+	jne	L10
 	movzbl	_entry_points, %eax
 	movzbl	28(%esp), %edx
 	movl	$_PMC_GetStatisticsInfo@4, _entry_points+4
@@ -155,6 +163,9 @@ L7:
 	movl	$_PMC_BitwiseOr_X_I@12, _entry_points+112
 	movl	$_PMC_BitwiseOr_X_L@16, _entry_points+116
 	movl	$_PMC_BitwiseOr_X_X@12, _entry_points+120
+	movl	$_PMC_ExclusiveOr_X_I@12, _entry_points+124
+	movl	$_PMC_ExclusiveOr_X_L@16, _entry_points+128
+	movl	$_PMC_ExclusiveOr_X_X@12, _entry_points+132
 	jmp	L1
 	.p2align 4,,10
 L13:
@@ -204,7 +215,7 @@ L6:
 	.cfi_endproc
 LFE5485:
 	.comm	_configuration_info, 4, 2
-.lcomm _entry_points,124,32
+.lcomm _entry_points,136,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
@@ -215,6 +226,8 @@ LFE5485:
 	.def	_Initialize_DivRem;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Shift;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_BitwiseAnd;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_BitwiseOr;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_ExclusiveOr;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_L@12;	.scl	2;	.type	32;	.endef
@@ -245,5 +258,8 @@ LFE5485:
 	.def	_PMC_BitwiseOr_X_I@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_BitwiseOr_X_L@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_BitwiseOr_X_X@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_ExclusiveOr_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_ExclusiveOr_X_L@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_ExclusiveOr_X_X@12;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize@4\""

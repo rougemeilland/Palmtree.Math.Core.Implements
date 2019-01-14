@@ -7,7 +7,7 @@
 _COPY_MEMORY_UNIT:
 .LFB4310:
 	.file 1 "pmc_internal.h"
-	.loc 1 268 1
+	.loc 1 269 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -60,7 +60,7 @@ _COPY_MEMORY_UNIT:
 	movq	%rax, -24(%rbp)
 .LBE9:
 .LBE8:
-	.loc 1 276 1
+	.loc 1 277 1
 	nop
 	addq	$32, %rsp
 	popq	%rsi
@@ -78,7 +78,7 @@ _COPY_MEMORY_UNIT:
 	.seh_proc	_FILL_MEMORY_UNIT
 _FILL_MEMORY_UNIT:
 .LFB4322:
-	.loc 1 368 1
+	.loc 1 369 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -124,7 +124,7 @@ _FILL_MEMORY_UNIT:
 	movq	%rdx, -120(%rbp)
 .LBE11:
 .LBE10:
-	.loc 1 376 1
+	.loc 1 377 1
 	nop
 	addq	$40, %rsp
 	popq	%rdi
@@ -140,7 +140,7 @@ _FILL_MEMORY_UNIT:
 	.seh_proc	_FROMWORDTODWORD
 _FROMWORDTODWORD:
 .LFB4323:
-	.loc 1 379 1
+	.loc 1 380 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -152,15 +152,15 @@ _FROMWORDTODWORD:
 	.seh_endprologue
 	movl	%ecx, 16(%rbp)
 	movl	%edx, 24(%rbp)
-	.loc 1 380 14
+	.loc 1 381 14
 	movl	16(%rbp), %eax
-	.loc 1 380 36
+	.loc 1 381 36
 	salq	$32, %rax
 	movq	%rax, %rdx
-	.loc 1 380 43
+	.loc 1 381 43
 	movl	24(%rbp), %eax
 	orq	%rdx, %rax
-	.loc 1 381 1
+	.loc 1 382 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -172,7 +172,7 @@ _FROMWORDTODWORD:
 	.seh_proc	_DIVIDE_CEILING_UNIT
 _DIVIDE_CEILING_UNIT:
 .LFB4326:
-	.loc 1 395 1
+	.loc 1 396 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -184,16 +184,16 @@ _DIVIDE_CEILING_UNIT:
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
 	movq	%rdx, 24(%rbp)
-	.loc 1 396 16
+	.loc 1 397 16
 	movq	16(%rbp), %rdx
 	movq	24(%rbp), %rax
 	addq	%rdx, %rax
-	.loc 1 396 20
+	.loc 1 397 20
 	subq	$1, %rax
-	.loc 1 396 25
+	.loc 1 397 25
 	movl	$0, %edx
 	divq	24(%rbp)
-	.loc 1 397 1
+	.loc 1 398 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -205,7 +205,7 @@ _DIVIDE_CEILING_UNIT:
 	.seh_proc	_ROTATE_L_UNIT
 _ROTATE_L_UNIT:
 .LFB4343:
-	.loc 1 683 1
+	.loc 1 684 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -236,9 +236,9 @@ _ROTATE_L_UNIT:
 	movq	%rdx, %rax
 .LBE13:
 .LBE12:
-	.loc 1 687 12
+	.loc 1 688 12
 	nop
-	.loc 1 691 1
+	.loc 1 692 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -251,7 +251,7 @@ _ROTATE_L_UNIT:
 	.seh_proc	_LZCNT_ALT_UNIT
 _LZCNT_ALT_UNIT:
 .LFB4354:
-	.loc 1 831 1
+	.loc 1 832 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -264,25 +264,25 @@ _LZCNT_ALT_UNIT:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 1 832 8
+	.loc 1 833 8
 	cmpq	$0, 16(%rbp)
 	jne	.L11
-	.loc 1 833 16
+	.loc 1 834 16
 	movl	$64, %eax
 	jmp	.L12
 .L11:
-	.loc 1 849 5
+	.loc 1 850 5
 /APP
- # 849 "pmc_internal.h" 1
+ # 850 "pmc_internal.h" 1
 	bsrq 16(%rbp), %rax
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%rbp)
-	.loc 1 856 31
+	.loc 1 857 31
 	movl	$63, %eax
 	subq	-8(%rbp), %rax
 .L12:
-	.loc 1 857 1
+	.loc 1 858 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -295,7 +295,7 @@ _LZCNT_ALT_UNIT:
 	.seh_proc	_TZCNT_ALT_UNIT
 _TZCNT_ALT_UNIT:
 .LFB4358:
-	.loc 1 911 1
+	.loc 1 912 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -308,24 +308,24 @@ _TZCNT_ALT_UNIT:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 1 912 8
+	.loc 1 913 8
 	cmpq	$0, 16(%rbp)
 	jne	.L14
-	.loc 1 913 16
+	.loc 1 914 16
 	movl	$64, %eax
 	jmp	.L15
 .L14:
-	.loc 1 929 5
+	.loc 1 930 5
 /APP
- # 929 "pmc_internal.h" 1
+ # 930 "pmc_internal.h" 1
 	bsrq 16(%rbp), %rax
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%rbp)
-	.loc 1 936 12
+	.loc 1 937 12
 	movq	-8(%rbp), %rax
 .L15:
-	.loc 1 937 1
+	.loc 1 938 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -8121,7 +8121,7 @@ DeallocateHeapArea:
 	.uleb128 0x37
 	.ascii "_TZCNT_ALT_UNIT\0"
 	.byte	0x1
-	.word	0x38e
+	.word	0x38f
 	.byte	0x1d
 	.long	0x4dd7
 	.quad	.LFB4358
@@ -8132,7 +8132,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x38e
+	.word	0x38f
 	.byte	0x39
 	.long	0x4dd7
 	.uleb128 0x2
@@ -8141,7 +8141,7 @@ DeallocateHeapArea:
 	.uleb128 0x25
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x3a0
+	.word	0x3a1
 	.byte	0xf
 	.long	0x4c9b
 	.uleb128 0x2
@@ -8151,7 +8151,7 @@ DeallocateHeapArea:
 	.uleb128 0x37
 	.ascii "_LZCNT_ALT_UNIT\0"
 	.byte	0x1
-	.word	0x33e
+	.word	0x33f
 	.byte	0x1d
 	.long	0x4dd7
 	.quad	.LFB4354
@@ -8162,7 +8162,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x33e
+	.word	0x33f
 	.byte	0x39
 	.long	0x4dd7
 	.uleb128 0x2
@@ -8171,7 +8171,7 @@ DeallocateHeapArea:
 	.uleb128 0x25
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x350
+	.word	0x351
 	.byte	0xf
 	.long	0x4c9b
 	.uleb128 0x2
@@ -8181,7 +8181,7 @@ DeallocateHeapArea:
 	.uleb128 0x37
 	.ascii "_ROTATE_L_UNIT\0"
 	.byte	0x1
-	.word	0x2aa
+	.word	0x2ab
 	.byte	0x1d
 	.long	0x4dd7
 	.quad	.LFB4343
@@ -8192,7 +8192,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x2aa
+	.word	0x2ab
 	.byte	0x38
 	.long	0x4dd7
 	.uleb128 0x2
@@ -8201,7 +8201,7 @@ DeallocateHeapArea:
 	.uleb128 0x29
 	.secrel32	.LASF9
 	.byte	0x1
-	.word	0x2aa
+	.word	0x2ab
 	.byte	0x3f
 	.long	0x12f
 	.uleb128 0x2
@@ -8212,7 +8212,7 @@ DeallocateHeapArea:
 	.quad	.LBB12
 	.quad	.LBE12-.LBB12
 	.byte	0x1
-	.word	0x2af
+	.word	0x2b0
 	.byte	0xc
 	.uleb128 0x39
 	.long	0x5d28
@@ -8229,7 +8229,7 @@ DeallocateHeapArea:
 	.uleb128 0x37
 	.ascii "_DIVIDE_CEILING_UNIT\0"
 	.byte	0x1
-	.word	0x18a
+	.word	0x18b
 	.byte	0x1d
 	.long	0x4dd7
 	.quad	.LFB4326
@@ -8240,7 +8240,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x18a
+	.word	0x18b
 	.byte	0x3e
 	.long	0x4dd7
 	.uleb128 0x2
@@ -8249,7 +8249,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x18a
+	.word	0x18b
 	.byte	0x4d
 	.long	0x4dd7
 	.uleb128 0x2
@@ -8259,7 +8259,7 @@ DeallocateHeapArea:
 	.uleb128 0x37
 	.ascii "_FROMWORDTODWORD\0"
 	.byte	0x1
-	.word	0x17a
+	.word	0x17b
 	.byte	0x1b
 	.long	0x4c9b
 	.quad	.LFB4323
@@ -8270,7 +8270,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "value_high\0"
 	.byte	0x1
-	.word	0x17a
+	.word	0x17b
 	.byte	0x36
 	.long	0x4c89
 	.uleb128 0x2
@@ -8279,7 +8279,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "value_low\0"
 	.byte	0x1
-	.word	0x17a
+	.word	0x17b
 	.byte	0x4c
 	.long	0x4c89
 	.uleb128 0x2
@@ -8289,7 +8289,7 @@ DeallocateHeapArea:
 	.uleb128 0x2b
 	.ascii "_FILL_MEMORY_UNIT\0"
 	.byte	0x1
-	.word	0x16f
+	.word	0x170
 	.byte	0x16
 	.quad	.LFB4322
 	.quad	.LFE4322-.LFB4322
@@ -8299,7 +8299,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x16f
+	.word	0x170
 	.byte	0x35
 	.long	0x4fee
 	.uleb128 0x2
@@ -8308,7 +8308,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x16f
+	.word	0x170
 	.byte	0x44
 	.long	0x4dd7
 	.uleb128 0x2
@@ -8317,7 +8317,7 @@ DeallocateHeapArea:
 	.uleb128 0x29
 	.secrel32	.LASF9
 	.byte	0x1
-	.word	0x16f
+	.word	0x170
 	.byte	0x53
 	.long	0x4dd7
 	.uleb128 0x2
@@ -8328,7 +8328,7 @@ DeallocateHeapArea:
 	.quad	.LBB10
 	.quad	.LBE10-.LBB10
 	.byte	0x1
-	.word	0x174
+	.word	0x175
 	.byte	0x5
 	.uleb128 0x39
 	.long	0x5db0
@@ -8350,7 +8350,7 @@ DeallocateHeapArea:
 	.uleb128 0x2b
 	.ascii "_COPY_MEMORY_UNIT\0"
 	.byte	0x1
-	.word	0x10b
+	.word	0x10c
 	.byte	0x16
 	.quad	.LFB4310
 	.quad	.LFE4310-.LFB4310
@@ -8360,7 +8360,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x10b
+	.word	0x10c
 	.byte	0x35
 	.long	0x4fee
 	.uleb128 0x2
@@ -8369,7 +8369,7 @@ DeallocateHeapArea:
 	.uleb128 0x23
 	.ascii "s\0"
 	.byte	0x1
-	.word	0x10b
+	.word	0x10c
 	.byte	0x4b
 	.long	0x5d02
 	.uleb128 0x2
@@ -8378,7 +8378,7 @@ DeallocateHeapArea:
 	.uleb128 0x29
 	.secrel32	.LASF9
 	.byte	0x1
-	.word	0x10b
+	.word	0x10c
 	.byte	0x5a
 	.long	0x4dd7
 	.uleb128 0x2
@@ -8389,7 +8389,7 @@ DeallocateHeapArea:
 	.quad	.LBB8
 	.quad	.LBE8-.LBB8
 	.byte	0x1
-	.word	0x110
+	.word	0x111
 	.byte	0x5
 	.uleb128 0x39
 	.long	0x5d6c

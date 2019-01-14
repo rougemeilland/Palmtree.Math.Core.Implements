@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/TEST_op_BitwiseAnd.o \
 	${OBJECTDIR}/TEST_op_BitwiseOr.o \
 	${OBJECTDIR}/TEST_op_DivRem.o \
+	${OBJECTDIR}/TEST_op_ExclusiveOr.o \
 	${OBJECTDIR}/TEST_op_From_To.o \
 	${OBJECTDIR}/TEST_op_Multiply.o \
 	${OBJECTDIR}/TEST_op_Shift.o \
@@ -52,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/pmc_bitwiseand.o \
 	${OBJECTDIR}/pmc_bitwiseor.o \
 	${OBJECTDIR}/pmc_divrem.o \
+	${OBJECTDIR}/pmc_exclusiveor.o \
 	${OBJECTDIR}/pmc_from.o \
 	${OBJECTDIR}/pmc_initialize.o \
 	${OBJECTDIR}/pmc_multiply.o \
@@ -115,6 +117,11 @@ ${OBJECTDIR}/TEST_op_DivRem.o: TEST_op_DivRem.c nbproject/Makefile-${CND_CONF}.m
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_DivRem.o TEST_op_DivRem.c
 
+${OBJECTDIR}/TEST_op_ExclusiveOr.o: TEST_op_ExclusiveOr.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_ExclusiveOr.o TEST_op_ExclusiveOr.c
+
 ${OBJECTDIR}/TEST_op_From_To.o: TEST_op_From_To.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -169,6 +176,11 @@ ${OBJECTDIR}/pmc_divrem.o: pmc_divrem.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_divrem.o pmc_divrem.c
+
+${OBJECTDIR}/pmc_exclusiveor.o: pmc_exclusiveor.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_exclusiveor.o pmc_exclusiveor.c
 
 ${OBJECTDIR}/pmc_from.o: pmc_from.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
