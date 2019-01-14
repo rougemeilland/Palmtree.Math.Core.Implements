@@ -44,8 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BigIntegerExtensions.cs" />
+    <Compile Include="DirectoryInfoExtensions.cs" />
+    <Compile Include="InputTestData.cs" />
+    <Compile Include="ITestPattern.cs" />
+    <Compile Include="OutputTestData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestPatternBase.cs" />
+    <Compile Include="TestTerm.cs" />
+    <Compile Include="TEST_PMC_From.cs" />
+    <Compile Include="TEST_PMC_RightShift.cs" />
+    <Compile Include="TEST_PMC_LeftShift.cs" />
+    <Compile Include="TEST_PMC_Multiply.cs" />
+    <Compile Include="TEST_PMC_Add.cs" />
+    <Compile Include="TEST_PMC_BitwiseOr.cs" />
+    <Compile Include="TEST_PMC_BitwiseAnd.cs" />
+    <Compile Include="TEST_PMC_Subtruct.cs" />
+    <Compile Include="TEST_PMC_To.cs" />
+    <Compile Include="TEST_PMC_DivRem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

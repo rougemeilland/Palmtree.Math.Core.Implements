@@ -331,7 +331,7 @@ AttatchNumber:
 	movq	%rdx, 40(%rbx)
 	jmp	.L52
 .L57:
-	movl	$-4, %eax
+	movl	$-5, %eax
 	jmp	.L48
 	.seh_endproc
 	.p2align 4,,15
@@ -394,7 +394,7 @@ AllocateNumber:
 	movq	%rdx, 40(%rbx)
 	jmp	.L62
 .L63:
-	movl	$-4, %eax
+	movl	$-5, %eax
 	jmp	.L58
 	.seh_endproc
 	.p2align 4,,15
@@ -500,7 +500,7 @@ CommitNumber:
 	je	.L88
 	movl	$63, %eax
 /APP
- # 842 "pmc_internal.h" 1
+ # 849 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
@@ -584,7 +584,7 @@ CommitNumber:
 	testq	%r11, %r11
 	jne	.L100
 /APP
- # 922 "pmc_internal.h" 1
+ # 929 "pmc_internal.h" 1
 	bsrq %rdx, %r11
  # 0 "" 2
 /NO_APP

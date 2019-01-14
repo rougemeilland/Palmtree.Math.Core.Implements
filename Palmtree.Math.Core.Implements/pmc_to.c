@@ -46,7 +46,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, _UINT32_T* o)
     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
         return (result);
     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
-        return (PMC_STATUS_ARGUMENT_ERROR);
+        return (PMC_STATUS_OVERFLOW);
     if (np->IS_ZERO)
         *o = 0;
     else
@@ -66,7 +66,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o)
     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
         return (result);
     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
-        return (PMC_STATUS_ARGUMENT_ERROR);
+        return (PMC_STATUS_OVERFLOW);
     if (np->IS_ZERO)
     {
         *o = 0;
@@ -97,7 +97,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t bu
     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
         return (result);
     if (np->UNIT_BIT_COUNT > sizeof(*buffer) * 8 * buffer_size)
-        return (PMC_STATUS_ARGUMENT_ERROR);
+        return (PMC_STATUS_OVERFLOW);
     if (np->IS_ZERO)
     {
         buffer[0] = 0;

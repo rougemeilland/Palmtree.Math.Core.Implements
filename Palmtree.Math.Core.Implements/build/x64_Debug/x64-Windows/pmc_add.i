@@ -88495,14 +88495,14 @@ __extension__ typedef unsigned long long uintmax_t;
 
 
 #pragma region マクロの定義
-# 60 "pmc.h"
+# 61 "pmc.h"
 #pragma endregion
 
 
 #pragma region 型の定義
-# 73 "pmc.h"
+# 74 "pmc.h"
 
-# 73 "pmc.h"
+# 74 "pmc.h"
 typedef int16_t _INT16_T;
 typedef int32_t _INT32_T;
 typedef int64_t _INT64_T;
@@ -88592,6 +88592,10 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE( * PMC_BitwiseAnd_X_L)(HANDLE u, _UINT64_T v, _UINT64_T* w);
     PMC_STATUS_CODE( * PMC_BitwiseAnd_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 
+
+    PMC_STATUS_CODE( * PMC_BitwiseOr_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
+    PMC_STATUS_CODE( * PMC_BitwiseOr_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
+    PMC_STATUS_CODE( * PMC_BitwiseOr_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -88745,7 +88749,10 @@ extern PMC_STATUS_CODE Initialize_Shift(PROCESSOR_FEATURES* feature);
 
 
 extern PMC_STATUS_CODE Initialize_BitwiseAnd(PROCESSOR_FEATURES* feature);
-# 202 "pmc_internal.h"
+
+
+extern PMC_STATUS_CODE Initialize_BitwiseOr(PROCESSOR_FEATURES* feature);
+# 205 "pmc_internal.h"
 extern void PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
 extern PMC_STATUS_CODE PMC_From_I(_UINT32_T x, HANDLE* o);
@@ -88783,6 +88790,10 @@ extern PMC_STATUS_CODE PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
 extern PMC_STATUS_CODE PMC_BitwiseAnd_X_I(HANDLE u, _UINT32_T v, _UINT32_T* w);
 extern PMC_STATUS_CODE PMC_BitwiseAnd_X_L(HANDLE u, _UINT64_T v, _UINT64_T* w);
 extern PMC_STATUS_CODE PMC_BitwiseAnd_X_X(HANDLE u, HANDLE v, HANDLE* w);
+
+extern PMC_STATUS_CODE PMC_BitwiseOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+extern PMC_STATUS_CODE PMC_BitwiseOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+extern PMC_STATUS_CODE PMC_BitwiseOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
 #pragma endregion
 
 
@@ -89037,7 +89048,7 @@ __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_T
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 504 "pmc_internal.h"
+# 511 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89046,7 +89057,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 520 "pmc_internal.h"
+# 527 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89058,7 +89069,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYP
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 545 "pmc_internal.h"
+# 552 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89072,7 +89083,7 @@ __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 
 __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 566 "pmc_internal.h"
+# 573 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89087,7 +89098,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TY
 
 __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
 {
-# 604 "pmc_internal.h"
+# 611 "pmc_internal.h"
     __UNIT_TYPE q;
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -89108,7 +89119,7 @@ __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE
 
 __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
 {
-# 648 "pmc_internal.h"
+# 655 "pmc_internal.h"
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
@@ -89142,9 +89153,9 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 680 "pmc_internal.h" 3
+# 687 "pmc_internal.h" 3
            __rolq
-# 680 "pmc_internal.h"
+# 687 "pmc_internal.h"
                   (x, count));
 
 
@@ -89157,9 +89168,9 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 691 "pmc_internal.h" 3
+# 698 "pmc_internal.h" 3
            __rorq
-# 691 "pmc_internal.h"
+# 698 "pmc_internal.h"
                   (x, count));
 
 
@@ -89223,7 +89234,7 @@ __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 
 __inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
 {
-# 766 "pmc_internal.h"
+# 773 "pmc_internal.h"
     return (_lzcnt_u64(value));
 
 
@@ -89285,7 +89296,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 841 "pmc_internal.h"
+# 848 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89301,7 +89312,7 @@ __inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 870 "pmc_internal.h"
+# 877 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89339,7 +89350,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 921 "pmc_internal.h"
+# 928 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89398,11 +89409,11 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 }
 #pragma endregion
 # 35 "pmc_add.c" 2
-# 1 "autogenerated.h" 1
-# 44 "autogenerated.h"
+# 1 "autogenerated_inline_func.h" 1
+# 44 "autogenerated_inline_func.h"
     __inline static char _ADD_32WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 185 "autogenerated.h"
+# 185 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -89517,7 +89528,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_32WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 438 "autogenerated.h"
+# 438 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -89632,7 +89643,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_32WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 691 "autogenerated.h"
+# 691 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -89747,7 +89758,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_32WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 944 "autogenerated.h"
+# 944 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -89862,7 +89873,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_32WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 1197 "autogenerated.h"
+# 1197 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -89977,7 +89988,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_32WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 1450 "autogenerated.h"
+# 1450 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90092,7 +90103,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_32WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 1703 "autogenerated.h"
+# 1703 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90207,7 +90218,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_32WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 1956 "autogenerated.h"
+# 1956 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90322,7 +90333,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_16WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 2145 "autogenerated.h"
+# 2145 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90389,7 +90400,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_16WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 2286 "autogenerated.h"
+# 2286 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90456,7 +90467,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_16WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 2427 "autogenerated.h"
+# 2427 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90523,7 +90534,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_16WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 2568 "autogenerated.h"
+# 2568 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90590,7 +90601,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_16WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 2709 "autogenerated.h"
+# 2709 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90657,7 +90668,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_16WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 2850 "autogenerated.h"
+# 2850 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90724,7 +90735,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_16WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 2991 "autogenerated.h"
+# 2991 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90791,7 +90802,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_16WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 3132 "autogenerated.h"
+# 3132 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90858,7 +90869,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_8WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 3241 "autogenerated.h"
+# 3241 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90901,7 +90912,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_8WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 3326 "autogenerated.h"
+# 3326 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90944,7 +90955,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_8WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 3411 "autogenerated.h"
+# 3411 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -90987,7 +90998,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_8WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 3496 "autogenerated.h"
+# 3496 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91030,7 +91041,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_8WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 3581 "autogenerated.h"
+# 3581 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91073,7 +91084,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_8WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 3666 "autogenerated.h"
+# 3666 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91116,7 +91127,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_8WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 3751 "autogenerated.h"
+# 3751 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91159,7 +91170,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_8WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 3836 "autogenerated.h"
+# 3836 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91202,7 +91213,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_4WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 3905 "autogenerated.h"
+# 3905 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91233,7 +91244,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_4WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 3962 "autogenerated.h"
+# 3962 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91264,7 +91275,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_4WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 4019 "autogenerated.h"
+# 4019 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91295,7 +91306,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_4WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 4076 "autogenerated.h"
+# 4076 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91326,7 +91337,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_4WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 4133 "autogenerated.h"
+# 4133 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91357,7 +91368,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_4WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 4190 "autogenerated.h"
+# 4190 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91388,7 +91399,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_4WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 4247 "autogenerated.h"
+# 4247 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91419,7 +91430,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_4WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 4304 "autogenerated.h"
+# 4304 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91450,7 +91461,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_2WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 4353 "autogenerated.h"
+# 4353 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91475,7 +91486,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_2WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 4396 "autogenerated.h"
+# 4396 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91500,7 +91511,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_2WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 4439 "autogenerated.h"
+# 4439 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91525,7 +91536,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_2WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
     {
-# 4482 "autogenerated.h"
+# 4482 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91550,7 +91561,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_2WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 4525 "autogenerated.h"
+# 4525 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91575,7 +91586,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_2WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 4568 "autogenerated.h"
+# 4568 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91600,7 +91611,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _ADD_2WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 4611 "autogenerated.h"
+# 4611 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91625,7 +91636,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 
     __inline static char _SUBTRUCT_2WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
     {
-# 4654 "autogenerated.h"
+# 4654 "autogenerated_inline_func.h"
         __asm__ volatile (
             "addb\t$-1, %0\n\t"
             "movq\t(%1), %%rcx\n\t"
@@ -91669,7 +91680,7 @@ static PMC_STATUS_CODE DoCarry(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __U
 
 
 
-                    return ((-7));
+                    return ((-8));
                 }
                 *op = 1;
             }
@@ -91928,7 +91939,7 @@ PMC_STATUS_CODE PMC_Add_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
     if ((sizeof(__UNIT_TYPE) * 8) < sizeof(y) * 8)
     {
 
-        return ((-7));
+        return ((-8));
     }
     if (x == 
 # 318 "pmc_add.c" 3 4
@@ -92014,7 +92025,7 @@ PMC_STATUS_CODE PMC_Add_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
     if ((sizeof(__UNIT_TYPE) * 8) * 2 < sizeof(y) * 8)
     {
 
-        return ((-7));
+        return ((-8));
     }
     if (x == 
 # 396 "pmc_add.c" 3 4

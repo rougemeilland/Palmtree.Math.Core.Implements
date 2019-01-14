@@ -34,55 +34,7 @@
 #include "pmc_debug.h"
 
 
-static unsigned char buffer_1[] = { 0 };
-static unsigned char buffer_2[] = { 1 };
-static unsigned char buffer_3[] = { 0xff, 0xff, 0xff, 0xff };
-static unsigned char buffer_4[] = { 0x00, 0x00, 0x00, 0x00, 0x01 };
-static unsigned char buffer_5[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-static unsigned char buffer_6[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 };
-
-static unsigned char rbuffer_1_1[] = { 0 };
-
-static unsigned char rbuffer_2_1[] = { 1 };
-static unsigned char rbuffer_2_2[] = { 0 };
-
-static unsigned char rbuffer_3_1[] = { 0xff, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_3_2[] = { 0xfe, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_3_3[] = { 0 };
-
-static unsigned char rbuffer_4_1[] = { 0x00, 0x00, 0x00, 0x00, 0x01 };
-static unsigned char rbuffer_4_2[] = { 0xff, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_4_3[] = { 1 };
-static unsigned char rbuffer_4_4[] = { 0 };
-
-static unsigned char rbuffer_5_1[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_5_2[] = { 0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_5_3[] = { 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_5_4[] = { 0xff, 0xff, 0xff, 0xff, 0xfe, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_5_5[] = { 0 };
-
-static unsigned char rbuffer_6_1[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 };
-static unsigned char rbuffer_6_2[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_6_3[] = { 0x01, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_6_4[] = { 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff };
-static unsigned char rbuffer_6_5[] = { 1 };
-static unsigned char rbuffer_6_6[] = { 0 };
-
-static char* FormatTestLabel(const char* format, int n1, int n2)
-{
-    static char buffer[256];
-    wsprintf(buffer, format, n1, n2);
-    return buffer;
-}
-
-static char* FormatTestMesssage(const char* format, PMC_STATUS_CODE return_value)
-{
-    static char buffer[256];
-    wsprintf(buffer, format, return_value);
-    return buffer;
-}
-
-static void TEST_PMC_Subtruct_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size)
+void TEST_PMC_Subtruct_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size)
 {
     HANDLE x;
     HANDLE z;
@@ -104,7 +56,7 @@ static void TEST_PMC_Subtruct_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* 
         ep->PMC_Dispose(x);
 }
 
-static void TEST_PMC_Subtruct_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size)
+void TEST_PMC_Subtruct_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size)
 {
     HANDLE x;
     HANDLE z;
@@ -126,7 +78,7 @@ static void TEST_PMC_Subtruct_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* 
         ep->PMC_Dispose(x);
 }
 
-static void TEST_PMC_Subtruct_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size)
+void TEST_PMC_Subtruct_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size)
 {
     HANDLE x;
     HANDLE y;
@@ -151,91 +103,6 @@ static void TEST_PMC_Subtruct_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* 
         ep->PMC_Dispose(y);
     if (x_result == PMC_STATUS_OK)
         ep->PMC_Dispose(x);
-}
-
-void TEST_op_Subtruct(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep)
-{
-    TEST_PMC_Subtruct_X_I(env, ep, 1, buffer_1, sizeof(buffer_1), 0x00000000U, PMC_STATUS_OK, rbuffer_1_1, sizeof(rbuffer_1_1));
-    TEST_PMC_Subtruct_X_I(env, ep, 2, buffer_1, sizeof(buffer_1), 0x00000001U, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_I(env, ep, 3, buffer_1, sizeof(buffer_1), 0xffffffffU, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_I(env, ep, 4, buffer_2, sizeof(buffer_2), 0x00000000U, PMC_STATUS_OK, rbuffer_2_1, sizeof(rbuffer_2_1));
-    TEST_PMC_Subtruct_X_I(env, ep, 5, buffer_2, sizeof(buffer_2), 0x00000001U, PMC_STATUS_OK, rbuffer_2_2, sizeof(rbuffer_2_2));
-    TEST_PMC_Subtruct_X_I(env, ep, 6, buffer_2, sizeof(buffer_2), 0xffffffffU, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_I(env, ep, 7, buffer_3, sizeof(buffer_3), 0x00000000U, PMC_STATUS_OK, rbuffer_3_1, sizeof(rbuffer_3_1));
-    TEST_PMC_Subtruct_X_I(env, ep, 8, buffer_3, sizeof(buffer_3), 0x00000001U, PMC_STATUS_OK, rbuffer_3_2, sizeof(rbuffer_3_2));
-    TEST_PMC_Subtruct_X_I(env, ep, 9, buffer_3, sizeof(buffer_3), 0xffffffffU, PMC_STATUS_OK, rbuffer_3_3, sizeof(rbuffer_3_3));
-    TEST_PMC_Subtruct_X_I(env, ep, 10, buffer_4, sizeof(buffer_4), 0x00000000U, PMC_STATUS_OK, rbuffer_4_1, sizeof(rbuffer_4_1));
-    TEST_PMC_Subtruct_X_I(env, ep, 11, buffer_4, sizeof(buffer_4), 0x00000001U, PMC_STATUS_OK, rbuffer_4_2, sizeof(rbuffer_4_2));
-    TEST_PMC_Subtruct_X_I(env, ep, 12, buffer_4, sizeof(buffer_4), 0xffffffffU, PMC_STATUS_OK, rbuffer_4_3, sizeof(rbuffer_4_3));
-    TEST_PMC_Subtruct_X_I(env, ep, 13, buffer_5, sizeof(buffer_5), 0x00000000U, PMC_STATUS_OK, rbuffer_5_1, sizeof(rbuffer_5_1));
-    TEST_PMC_Subtruct_X_I(env, ep, 14, buffer_5, sizeof(buffer_5), 0x00000001U, PMC_STATUS_OK, rbuffer_5_2, sizeof(rbuffer_5_2));
-    TEST_PMC_Subtruct_X_I(env, ep, 15, buffer_5, sizeof(buffer_5), 0xffffffffU, PMC_STATUS_OK, rbuffer_5_3, sizeof(rbuffer_5_3));
-    TEST_PMC_Subtruct_X_I(env, ep, 16, buffer_6, sizeof(buffer_6), 0x00000000U, PMC_STATUS_OK, rbuffer_6_1, sizeof(rbuffer_6_1));
-    TEST_PMC_Subtruct_X_I(env, ep, 17, buffer_6, sizeof(buffer_6), 0x00000001U, PMC_STATUS_OK, rbuffer_6_2, sizeof(rbuffer_6_2));
-    TEST_PMC_Subtruct_X_I(env, ep, 18, buffer_6, sizeof(buffer_6), 0xffffffffU, PMC_STATUS_OK, rbuffer_6_3, sizeof(rbuffer_6_3));
-
-    TEST_PMC_Subtruct_X_L(env, ep, 1, buffer_1, sizeof(buffer_1), 0x0000000000000000UL, PMC_STATUS_OK, rbuffer_1_1, sizeof(rbuffer_1_1));
-    TEST_PMC_Subtruct_X_L(env, ep, 2, buffer_1, sizeof(buffer_1), 0x0000000000000001UL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 3, buffer_1, sizeof(buffer_1), 0x00000000ffffffffUL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 4, buffer_1, sizeof(buffer_1), 0x0000000100000000UL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 5, buffer_1, sizeof(buffer_1), 0xffffffffffffffffUL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 6, buffer_2, sizeof(buffer_2), 0x0000000000000000UL, PMC_STATUS_OK, rbuffer_2_1, sizeof(rbuffer_2_1));
-    TEST_PMC_Subtruct_X_L(env, ep, 7, buffer_2, sizeof(buffer_2), 0x0000000000000001UL, PMC_STATUS_OK, rbuffer_2_2, sizeof(rbuffer_2_2));
-    TEST_PMC_Subtruct_X_L(env, ep, 8, buffer_2, sizeof(buffer_2), 0x00000000ffffffffUL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 9, buffer_2, sizeof(buffer_2), 0x0000000100000000UL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 10, buffer_2, sizeof(buffer_2), 0xffffffffffffffffUL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 11, buffer_3, sizeof(buffer_3), 0x0000000000000000UL, PMC_STATUS_OK, rbuffer_3_1, sizeof(rbuffer_3_1));
-    TEST_PMC_Subtruct_X_L(env, ep, 12, buffer_3, sizeof(buffer_3), 0x0000000000000001UL, PMC_STATUS_OK, rbuffer_3_2, sizeof(rbuffer_3_2));
-    TEST_PMC_Subtruct_X_L(env, ep, 13, buffer_3, sizeof(buffer_3), 0x00000000ffffffffUL, PMC_STATUS_OK, rbuffer_3_3, sizeof(rbuffer_3_3));
-    TEST_PMC_Subtruct_X_L(env, ep, 14, buffer_3, sizeof(buffer_3), 0x0000000100000000UL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 15, buffer_3, sizeof(buffer_3), 0xffffffffffffffffUL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 16, buffer_4, sizeof(buffer_4), 0x0000000000000000UL, PMC_STATUS_OK, rbuffer_4_1, sizeof(rbuffer_4_1));
-    TEST_PMC_Subtruct_X_L(env, ep, 17, buffer_4, sizeof(buffer_4), 0x0000000000000001UL, PMC_STATUS_OK, rbuffer_4_2, sizeof(rbuffer_4_2));
-    TEST_PMC_Subtruct_X_L(env, ep, 18, buffer_4, sizeof(buffer_4), 0x00000000ffffffffUL, PMC_STATUS_OK, rbuffer_4_3, sizeof(rbuffer_4_3));
-    TEST_PMC_Subtruct_X_L(env, ep, 19, buffer_4, sizeof(buffer_4), 0x0000000100000000UL, PMC_STATUS_OK, rbuffer_4_4, sizeof(rbuffer_4_4));
-    TEST_PMC_Subtruct_X_L(env, ep, 20, buffer_4, sizeof(buffer_4), 0xffffffffffffffffUL, PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_L(env, ep, 21, buffer_5, sizeof(buffer_5), 0x0000000000000000UL, PMC_STATUS_OK, rbuffer_5_1, sizeof(rbuffer_5_1));
-    TEST_PMC_Subtruct_X_L(env, ep, 22, buffer_5, sizeof(buffer_5), 0x0000000000000001UL, PMC_STATUS_OK, rbuffer_5_2, sizeof(rbuffer_5_2));
-    TEST_PMC_Subtruct_X_L(env, ep, 23, buffer_5, sizeof(buffer_5), 0x00000000ffffffffUL, PMC_STATUS_OK, rbuffer_5_3, sizeof(rbuffer_5_3));
-    TEST_PMC_Subtruct_X_L(env, ep, 24, buffer_5, sizeof(buffer_5), 0x0000000100000000UL, PMC_STATUS_OK, rbuffer_5_4, sizeof(rbuffer_5_4));
-    TEST_PMC_Subtruct_X_L(env, ep, 25, buffer_5, sizeof(buffer_5), 0xffffffffffffffffUL, PMC_STATUS_OK, rbuffer_5_5, sizeof(rbuffer_5_5));
-
-    TEST_PMC_Subtruct_X_X(env, ep, 1, buffer_1, sizeof(buffer_1), buffer_1, sizeof(buffer_1), PMC_STATUS_OK, rbuffer_1_1, sizeof(rbuffer_1_1));
-    TEST_PMC_Subtruct_X_X(env, ep, 2, buffer_1, sizeof(buffer_1), buffer_2, sizeof(buffer_2), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 3, buffer_1, sizeof(buffer_1), buffer_3, sizeof(buffer_3), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 4, buffer_1, sizeof(buffer_1), buffer_4, sizeof(buffer_4), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 5, buffer_1, sizeof(buffer_1), buffer_5, sizeof(buffer_5), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 6, buffer_1, sizeof(buffer_1), buffer_6, sizeof(buffer_6), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 7, buffer_2, sizeof(buffer_2), buffer_1, sizeof(buffer_1), PMC_STATUS_OK, rbuffer_2_1, sizeof(rbuffer_2_1));
-    TEST_PMC_Subtruct_X_X(env, ep, 8, buffer_2, sizeof(buffer_2), buffer_2, sizeof(buffer_2), PMC_STATUS_OK, rbuffer_2_2, sizeof(rbuffer_2_2));
-    TEST_PMC_Subtruct_X_X(env, ep, 9, buffer_2, sizeof(buffer_2), buffer_3, sizeof(buffer_3), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 10, buffer_2, sizeof(buffer_2), buffer_4, sizeof(buffer_4), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 11, buffer_2, sizeof(buffer_2), buffer_5, sizeof(buffer_5), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 12, buffer_2, sizeof(buffer_2), buffer_6, sizeof(buffer_6), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 13, buffer_3, sizeof(buffer_3), buffer_1, sizeof(buffer_1), PMC_STATUS_OK, rbuffer_3_1, sizeof(rbuffer_3_1));
-    TEST_PMC_Subtruct_X_X(env, ep, 14, buffer_3, sizeof(buffer_3), buffer_2, sizeof(buffer_2), PMC_STATUS_OK, rbuffer_3_2, sizeof(rbuffer_3_2));
-    TEST_PMC_Subtruct_X_X(env, ep, 15, buffer_3, sizeof(buffer_3), buffer_3, sizeof(buffer_3), PMC_STATUS_OK, rbuffer_3_3, sizeof(rbuffer_3_3));
-    TEST_PMC_Subtruct_X_X(env, ep, 16, buffer_3, sizeof(buffer_3), buffer_4, sizeof(buffer_4), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 17, buffer_3, sizeof(buffer_3), buffer_5, sizeof(buffer_5), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 18, buffer_3, sizeof(buffer_3), buffer_6, sizeof(buffer_6), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 19, buffer_4, sizeof(buffer_4), buffer_1, sizeof(buffer_1), PMC_STATUS_OK, rbuffer_4_1, sizeof(rbuffer_4_1));
-    TEST_PMC_Subtruct_X_X(env, ep, 20, buffer_4, sizeof(buffer_4), buffer_2, sizeof(buffer_2), PMC_STATUS_OK, rbuffer_4_2, sizeof(rbuffer_4_2));
-    TEST_PMC_Subtruct_X_X(env, ep, 21, buffer_4, sizeof(buffer_4), buffer_3, sizeof(buffer_3), PMC_STATUS_OK, rbuffer_4_3, sizeof(rbuffer_4_3));
-    TEST_PMC_Subtruct_X_X(env, ep, 22, buffer_4, sizeof(buffer_4), buffer_4, sizeof(buffer_4), PMC_STATUS_OK, rbuffer_4_4, sizeof(rbuffer_4_4));
-    TEST_PMC_Subtruct_X_X(env, ep, 23, buffer_4, sizeof(buffer_4), buffer_5, sizeof(buffer_5), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 24, buffer_4, sizeof(buffer_4), buffer_6, sizeof(buffer_6), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 25, buffer_5, sizeof(buffer_5), buffer_1, sizeof(buffer_1), PMC_STATUS_OK, rbuffer_5_1, sizeof(rbuffer_5_1));
-    TEST_PMC_Subtruct_X_X(env, ep, 26, buffer_5, sizeof(buffer_5), buffer_2, sizeof(buffer_2), PMC_STATUS_OK, rbuffer_5_2, sizeof(rbuffer_5_2));
-    TEST_PMC_Subtruct_X_X(env, ep, 27, buffer_5, sizeof(buffer_5), buffer_3, sizeof(buffer_3), PMC_STATUS_OK, rbuffer_5_3, sizeof(rbuffer_5_3));
-    TEST_PMC_Subtruct_X_X(env, ep, 28, buffer_5, sizeof(buffer_5), buffer_4, sizeof(buffer_4), PMC_STATUS_OK, rbuffer_5_4, sizeof(rbuffer_5_4));
-    TEST_PMC_Subtruct_X_X(env, ep, 29, buffer_5, sizeof(buffer_5), buffer_5, sizeof(buffer_5), PMC_STATUS_OK, rbuffer_5_5, sizeof(rbuffer_5_5));
-    TEST_PMC_Subtruct_X_X(env, ep, 30, buffer_5, sizeof(buffer_5), buffer_6, sizeof(buffer_6), PMC_STATUS_OUT_OF_RANGE, NULL, 0);
-    TEST_PMC_Subtruct_X_X(env, ep, 31, buffer_6, sizeof(buffer_6), buffer_1, sizeof(buffer_1), PMC_STATUS_OK, rbuffer_6_1, sizeof(rbuffer_6_1));
-    TEST_PMC_Subtruct_X_X(env, ep, 32, buffer_6, sizeof(buffer_6), buffer_2, sizeof(buffer_2), PMC_STATUS_OK, rbuffer_6_2, sizeof(rbuffer_6_2));
-    TEST_PMC_Subtruct_X_X(env, ep, 33, buffer_6, sizeof(buffer_6), buffer_3, sizeof(buffer_3), PMC_STATUS_OK, rbuffer_6_3, sizeof(rbuffer_6_3));
-    TEST_PMC_Subtruct_X_X(env, ep, 34, buffer_6, sizeof(buffer_6), buffer_4, sizeof(buffer_4), PMC_STATUS_OK, rbuffer_6_4, sizeof(rbuffer_6_4));
-    TEST_PMC_Subtruct_X_X(env, ep, 35, buffer_6, sizeof(buffer_6), buffer_5, sizeof(buffer_5), PMC_STATUS_OK, rbuffer_6_5, sizeof(rbuffer_6_5));
-    TEST_PMC_Subtruct_X_X(env, ep, 36, buffer_6, sizeof(buffer_6), buffer_6, sizeof(buffer_6), PMC_STATUS_OK, rbuffer_6_6, sizeof(rbuffer_6_6));
 }
 
 

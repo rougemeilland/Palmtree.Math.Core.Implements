@@ -34,29 +34,7 @@
 #include "pmc_debug.h"
 
 
-static unsigned char buffer_1[] = { 0 };
-static unsigned char buffer_2[] = { 1 };
-static unsigned char buffer_3[] = { 10 };
-static unsigned char buffer_4[] = { 0xf0, 0xde, 0xbc, 0x9a };
-static unsigned char buffer_5[] = { 0x78, 0x56, 0x34, 0x12, 0x01 };
-static unsigned char buffer_6[] = { 0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a };
-static unsigned char buffer_7[] = { 0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a, 0x01 };
-
-static char* FormatTestLabel(const char* format, int n1, int n2)
-{
-    static char buffer[256];
-    wsprintf(buffer, format, n1, n2);
-    return buffer;
-}
-
-static char* FormatTestMesssage(const char* format, PMC_STATUS_CODE return_value)
-{
-    static char buffer[256];
-    wsprintf(buffer, format, return_value);
-    return buffer;
-}
-
-static void TEST_PMC_From_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 v, unsigned char*buf, size_t buf_size)
+void TEST_PMC_From_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 v, unsigned char*buf, size_t buf_size)
 {
     HANDLE x;
     unsigned char rbuffer[256];
@@ -70,7 +48,7 @@ static void TEST_PMC_From_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
         ep->PMC_Dispose(x);
 }
 
-static void TEST_PMC_From_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 v, unsigned char*buf, size_t buf_size)
+void TEST_PMC_From_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 v, unsigned char*buf, size_t buf_size)
 {
     HANDLE x;
     unsigned char rbuffer[256];
@@ -84,21 +62,7 @@ static void TEST_PMC_From_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
         ep->PMC_Dispose(x);
 }
 
-static void TEST_PMC_From_B(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size)
-{
-    HANDLE x;
-    unsigned char rbuffer[256];
-    size_t rlength;
-    PMC_STATUS_CODE result;
-    PMC_STATUS_CODE x_result;
-    TEST_Assert(env, FormatTestLabel("PMC_From_B (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
-    TEST_Assert(env, FormatTestLabel("PMC_From_B (%d.%d)", no, 2), (result = ep->PMC_To_X_B(x, rbuffer, sizeof(rbuffer), &rlength)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
-    TEST_Assert(env, FormatTestLabel("PMC_From_B (%d.%d)", no, 3), _EQUALS_MEMORY(rbuffer, rlength, buf, buf_size) == 0, "データの内容が一致しない");
-    if (x_result == PMC_STATUS_OK)
-        ep->PMC_Dispose(x);
-}
-
-static void TEST_PMC_To_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int32 desired_rvalue)
+void TEST_PMC_To_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int32 desired_rvalue)
 {
     HANDLE x;
     unsigned __int32 rvalue;
@@ -112,7 +76,7 @@ static void TEST_PMC_To_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
         ep->PMC_Dispose(x);
 }
 
-static void TEST_PMC_To_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int64 desired_rvalue)
+void TEST_PMC_To_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int64 desired_rvalue)
 {
     HANDLE x;
     unsigned __int64 rvalue;
@@ -124,39 +88,6 @@ static void TEST_PMC_To_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
         TEST_Assert(env, FormatTestLabel("PMC_To_X_L (%d.%d)", no, 3), rvalue == desired_rvalue, "データの内容が一致しない");
     if (x_result == PMC_STATUS_OK)
         ep->PMC_Dispose(x);
-}
-
-void TEST_op_From_To(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep)
-{
-    TEST_PMC_From_I(env, ep, 1, 0, buffer_1, sizeof(buffer_1));
-    TEST_PMC_From_I(env, ep, 2, 1, buffer_2, sizeof(buffer_2));
-    TEST_PMC_From_I(env, ep, 3, 10, buffer_3, sizeof(buffer_3));
-    TEST_PMC_From_I(env, ep, 4, 0x9abcdef0U, buffer_4, sizeof(buffer_4));
-    TEST_PMC_From_L(env, ep, 1, 0, buffer_1, sizeof(buffer_1));
-    TEST_PMC_From_L(env, ep, 2, 1, buffer_2, sizeof(buffer_2));
-    TEST_PMC_From_L(env, ep, 3, 10, buffer_3, sizeof(buffer_3));
-    TEST_PMC_From_L(env, ep, 4, 0x9abcdef012345678UL, buffer_6, sizeof(buffer_6));
-    TEST_PMC_From_B(env, ep, 1, buffer_1, sizeof(buffer_1));
-    TEST_PMC_From_B(env, ep, 2, buffer_2, sizeof(buffer_2));
-    TEST_PMC_From_B(env, ep, 3, buffer_3, sizeof(buffer_3));
-    TEST_PMC_From_B(env, ep, 4, buffer_4, sizeof(buffer_4));
-    TEST_PMC_From_B(env, ep, 5, buffer_5, sizeof(buffer_5));
-    TEST_PMC_From_B(env, ep, 6, buffer_6, sizeof(buffer_6));
-    TEST_PMC_From_B(env, ep, 7, buffer_7, sizeof(buffer_7));
-    TEST_PMC_To_X_I(env, ep, 1, buffer_1, sizeof(buffer_1), PMC_STATUS_OK, 0);
-    TEST_PMC_To_X_I(env, ep, 2, buffer_2, sizeof(buffer_2), PMC_STATUS_OK, 1);
-    TEST_PMC_To_X_I(env, ep, 3, buffer_3, sizeof(buffer_3), PMC_STATUS_OK, 10);
-    TEST_PMC_To_X_I(env, ep, 4, buffer_4, sizeof(buffer_4), PMC_STATUS_OK, 0x9abcdef0U);
-    TEST_PMC_To_X_I(env, ep, 5, buffer_5, sizeof(buffer_5), PMC_STATUS_ARGUMENT_ERROR, 0);
-    TEST_PMC_To_X_I(env, ep, 6, buffer_6, sizeof(buffer_6), PMC_STATUS_ARGUMENT_ERROR, 0);
-    TEST_PMC_To_X_I(env, ep, 7, buffer_7, sizeof(buffer_7), PMC_STATUS_ARGUMENT_ERROR, 0);
-    TEST_PMC_To_X_L(env, ep, 1, buffer_1, sizeof(buffer_1), PMC_STATUS_OK, 0);
-    TEST_PMC_To_X_L(env, ep, 2, buffer_2, sizeof(buffer_2), PMC_STATUS_OK, 1);
-    TEST_PMC_To_X_L(env, ep, 3, buffer_3, sizeof(buffer_3), PMC_STATUS_OK, 10);
-    TEST_PMC_To_X_L(env, ep, 4, buffer_4, sizeof(buffer_4), PMC_STATUS_OK, 0x9abcdef0UL);
-    TEST_PMC_To_X_L(env, ep, 5, buffer_5, sizeof(buffer_5), PMC_STATUS_OK, 0x0112345678UL);
-    TEST_PMC_To_X_L(env, ep, 6, buffer_6, sizeof(buffer_6), PMC_STATUS_OK, 0x9abcdef012345678UL);
-    TEST_PMC_To_X_L(env, ep, 7, buffer_7, sizeof(buffer_7), PMC_STATUS_ARGUMENT_ERROR, 0);
 }
 
 

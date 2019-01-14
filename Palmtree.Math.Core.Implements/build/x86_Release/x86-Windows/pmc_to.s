@@ -46,7 +46,7 @@ L3:
 	ret	$8
 L4:
 	.cfi_restore_state
-	movl	$-1, %eax
+	movl	$-2, %eax
 	jmp	L1
 	.cfi_endproc
 LFE5485:
@@ -116,7 +116,7 @@ L10:
 	ret	$8
 L11:
 	.cfi_restore_state
-	movl	$-1, %eax
+	movl	$-2, %eax
 	jmp	L7
 	.cfi_endproc
 LFE5486:
@@ -149,9 +149,9 @@ LFB5487:
 	movl	4(%ebx), %ecx
 	leal	0(,%esi,8), %edx
 	cmpl	%edx, %ecx
-	ja	L17
+	ja	L18
 	testb	$2, 16(%ebx)
-	je	L18
+	je	L16
 	movl	44(%esp), %esi
 	movb	$0, (%edi)
 	movl	$1, (%esi)
@@ -170,7 +170,7 @@ L14:
 	.cfi_def_cfa_offset 4
 	ret	$16
 	.p2align 4,,10
-L18:
+L16:
 	.cfi_restore_state
 	addl	$7, %ecx
 	movl	24(%ebx), %esi
@@ -198,10 +198,12 @@ L18:
 	.cfi_restore 7
 	.cfi_def_cfa_offset 4
 	ret	$16
-	.p2align 4,,10
 L17:
 	.cfi_restore_state
 	movl	$-1, %eax
+	jmp	L14
+L18:
+	movl	$-2, %eax
 	jmp	L14
 	.cfi_endproc
 LFE5487:

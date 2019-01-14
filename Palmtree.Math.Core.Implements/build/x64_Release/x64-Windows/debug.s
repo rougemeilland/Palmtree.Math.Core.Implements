@@ -46,6 +46,41 @@ TEST_Assert:
 	addq	$56, %rsp
 	ret
 	.seh_endproc
+	.p2align 4,,15
+	.globl	FormatTestLabel
+	.def	FormatTestLabel;	.scl	2;	.type	32;	.endef
+	.seh_proc	FormatTestLabel
+FormatTestLabel:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movl	%r8d, %r9d
+	movl	%edx, %r8d
+	movq	%rcx, %rdx
+	leaq	buffer.92154(%rip), %rcx
+	call	*__imp_wsprintfA(%rip)
+	leaq	buffer.92154(%rip), %rax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.p2align 4,,15
+	.globl	FormatTestMesssage
+	.def	FormatTestMesssage;	.scl	2;	.type	32;	.endef
+	.seh_proc	FormatTestMesssage
+FormatTestMesssage:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movl	%edx, %r8d
+	movq	%rcx, %rdx
+	leaq	buffer.92159(%rip), %rcx
+	call	*__imp_wsprintfA(%rip)
+	leaq	buffer.92159(%rip), %rax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+.lcomm buffer.92159,256,32
+.lcomm buffer.92154,256,32
 	.globl	test_ok_count
 	.bss
 	.align 4

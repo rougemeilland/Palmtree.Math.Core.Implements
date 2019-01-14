@@ -152,6 +152,9 @@ L7:
 	movl	$_PMC_BitwiseAnd_X_I@12, _entry_points+100
 	movl	$_PMC_BitwiseAnd_X_L@16, _entry_points+104
 	movl	$_PMC_BitwiseAnd_X_X@12, _entry_points+108
+	movl	$_PMC_BitwiseOr_X_I@12, _entry_points+112
+	movl	$_PMC_BitwiseOr_X_L@16, _entry_points+116
+	movl	$_PMC_BitwiseOr_X_X@12, _entry_points+120
 	jmp	L1
 	.p2align 4,,10
 L13:
@@ -201,7 +204,7 @@ L6:
 	.cfi_endproc
 LFE5485:
 	.comm	_configuration_info, 4, 2
-.lcomm _entry_points,112,32
+.lcomm _entry_points,124,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_From;	.scl	2;	.type	32;	.endef
@@ -239,5 +242,8 @@ LFE5485:
 	.def	_PMC_BitwiseAnd_X_I@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_BitwiseAnd_X_L@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_BitwiseAnd_X_X@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_BitwiseOr_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_BitwiseOr_X_L@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_BitwiseOr_X_X@12;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize@4\""

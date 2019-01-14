@@ -409,7 +409,7 @@ L61:
 	movl	%edx, 20(%ebx)
 	jmp	L56
 L62:
-	movl	$-4, %eax
+	movl	$-5, %eax
 	jmp	L52
 	.cfi_endproc
 LFE5495:
@@ -481,7 +481,7 @@ L73:
 	movl	%edx, 20(%ebx)
 	jmp	L67
 L68:
-	movl	$-4, %eax
+	movl	$-5, %eax
 	jmp	L63
 	.cfi_endproc
 LFE5496:
@@ -613,7 +613,7 @@ L93:
 	je	L95
 	movl	$31, %eax
 /APP
- # 832 "pmc_internal.h" 1
+ # 839 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -717,7 +717,7 @@ L101:
 	testl	%ebx, %ebx
 	jne	L107
 /APP
- # 912 "pmc_internal.h" 1
+ # 919 "pmc_internal.h" 1
 	bsrl %edx, %ebx
  # 0 "" 2
 /NO_APP

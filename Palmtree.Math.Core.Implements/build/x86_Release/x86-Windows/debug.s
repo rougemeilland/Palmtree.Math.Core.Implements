@@ -55,6 +55,50 @@ L4:
 	ret
 	.cfi_endproc
 LFE5490:
+	.p2align 4,,15
+	.globl	_FormatTestLabel
+	.def	_FormatTestLabel;	.scl	2;	.type	32;	.endef
+_FormatTestLabel:
+LFB5491:
+	.cfi_startproc
+	subl	$28, %esp
+	.cfi_def_cfa_offset 32
+	movl	40(%esp), %eax
+	movl	$_buffer.90944, (%esp)
+	movl	%eax, 12(%esp)
+	movl	36(%esp), %eax
+	movl	%eax, 8(%esp)
+	movl	32(%esp), %eax
+	movl	%eax, 4(%esp)
+	call	*__imp__wsprintfA
+	movl	$_buffer.90944, %eax
+	addl	$28, %esp
+	.cfi_def_cfa_offset 4
+	ret
+	.cfi_endproc
+LFE5491:
+	.p2align 4,,15
+	.globl	_FormatTestMesssage
+	.def	_FormatTestMesssage;	.scl	2;	.type	32;	.endef
+_FormatTestMesssage:
+LFB5492:
+	.cfi_startproc
+	subl	$28, %esp
+	.cfi_def_cfa_offset 32
+	movl	36(%esp), %eax
+	movl	$_buffer.90949, (%esp)
+	movl	%eax, 8(%esp)
+	movl	32(%esp), %eax
+	movl	%eax, 4(%esp)
+	call	*__imp__wsprintfA
+	movl	$_buffer.90949, %eax
+	addl	$28, %esp
+	.cfi_def_cfa_offset 4
+	ret
+	.cfi_endproc
+LFE5492:
+.lcomm _buffer.90949,256,32
+.lcomm _buffer.90944,256,32
 	.globl	_test_ok_count
 	.bss
 	.align 4

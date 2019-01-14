@@ -37,7 +37,7 @@ PMC_To_X_I:
 	popq	%rsi
 	ret
 .L4:
-	movl	$-1, %eax
+	movl	$-2, %eax
 	jmp	.L1
 	.seh_endproc
 	.p2align 4,,15
@@ -77,7 +77,7 @@ PMC_To_X_L:
 	popq	%rsi
 	ret
 .L9:
-	movl	$-1, %eax
+	movl	$-2, %eax
 	jmp	.L6
 	.seh_endproc
 	.p2align 4,,15
@@ -108,9 +108,9 @@ PMC_To_X_B:
 	movq	8(%rbp), %rcx
 	salq	$3, %rsi
 	cmpq	%rsi, %rcx
-	ja	.L13
+	ja	.L14
 	testb	$2, 32(%rbp)
-	je	.L14
+	je	.L12
 	movb	$0, (%rdi)
 	movq	$1, (%rbx)
 .L10:
@@ -121,7 +121,7 @@ PMC_To_X_B:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L14:
+.L12:
 	addq	$7, %rcx
 	movq	48(%rbp), %rsi
 	shrq	$3, %rcx
@@ -140,9 +140,11 @@ PMC_To_X_B:
 	popq	%rdi
 	popq	%rbp
 	ret
-	.p2align 4,,10
 .L13:
 	movl	$-1, %eax
+	jmp	.L10
+.L14:
+	movl	$-2, %eax
 	jmp	.L10
 	.seh_endproc
 	.p2align 4,,15

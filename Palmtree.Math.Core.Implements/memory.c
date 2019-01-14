@@ -368,7 +368,7 @@ static PMC_STATUS_CODE InitializeNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_count,
     }
     else
     {
-        // bit_count に 0 が与えられるのは、数値がゼロの場合。
+        // bit_count に 0 が与えられるのは、数値が 0 の場合。
         p->UNIT_BIT_COUNT = 0;
         p->BLOCK_COUNT = 0;
         p->BLOCK = NULL;

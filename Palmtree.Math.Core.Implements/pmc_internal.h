@@ -149,13 +149,13 @@ extern void CommitNumber(NUMBER_HEADER* p);
 // 与えられた NUMBER_HEADER 構造体へのポインタが正しい構造体を指しているかどうか検査します。(主としてメモリ破壊の観点で)
 extern PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p);
 
-// 与えられた NUMBER_HEADER 構造体を複製する。p が指す NUMBER_HEADER 構造体はゼロ値であってはならない。
+// 与えられた NUMBER_HEADER 構造体を複製する。p が指す NUMBER_HEADER 構造体は 0 値であってはならない。
 extern PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* p, NUMBER_HEADER** op);
 
-// 32bit 整数 x から NUMBER_HEADER 構造体を構築し、そのポインタを o が指す領域に格納して返す。x はゼロであってはならない。
+// 32bit 整数 x から NUMBER_HEADER 構造体を構築し、そのポインタを o が指す領域に格納して返す。x は 0 であってはならない。
 extern PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o);
 
-// 64bit 整数 x から NUMBER_HEADER 構造体を構築し、そのポインタを o が指す領域に格納して返す。x はゼロであってはならない。
+// 64bit 整数 x から NUMBER_HEADER 構造体を構築し、そのポインタを o が指す領域に格納して返す。x は 0 であってはならない。
 extern PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o);
 
 // 指定されたワード列を右にシフトして指定された領域に格納する。シフト数は 0 であってはならない。
@@ -190,6 +190,9 @@ extern PMC_STATUS_CODE Initialize_Shift(PROCESSOR_FEATURES* feature);
 
 // ビットAND処理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_BitwiseAnd(PROCESSOR_FEATURES* feature);
+
+// ビットOR処理の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_BitwiseOr(PROCESSOR_FEATURES* feature);
 
 /*
 extern PMC_STATUS_CODE Initialize_Get(PROCESSOR_FEATURES* feature);ure);
@@ -236,6 +239,10 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDL
 extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_I(HANDLE u, _UINT32_T v, _UINT32_T* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_L(HANDLE u, _UINT64_T v, _UINT64_T* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_X(HANDLE u, HANDLE v, HANDLE* w);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_BitwiseOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
 #pragma endregion
 
 
