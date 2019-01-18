@@ -88530,6 +88530,13 @@ typedef struct __tag_PMC_STATISTICS_INFO
     long COUNT_DIV32;
 } PMC_STATISTICS_INFO;
 
+typedef struct __tag_PMC_NUMBER_FORMAT_OPTION
+{
+    _UINT32_T MinimumWidth;
+    char GroupSeparator[17];
+    char GroupSizes[11];
+} PMC_NUMBER_FORMAT_OPTION;
+
 typedef struct __tag_PMC_ENTRY_POINTS
 {
 
@@ -88611,6 +88618,10 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE( * PMC_Equals_X_I)(HANDLE u, _UINT32_T v, _INT32_T* w);
     PMC_STATUS_CODE( * PMC_Equals_X_L)(HANDLE u, _UINT64_T v, _INT32_T* w);
     PMC_STATUS_CODE( * PMC_Equals_X_X)(HANDLE u, HANDLE v, _INT32_T* w);
+
+
+    PMC_STATUS_CODE( * PMC_ToString)(HANDLE x, char* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
+
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -88741,6 +88752,9 @@ extern void RightShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __U
 extern void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL padding_zero);
 
 
+extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
+
+
 extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
 
 
@@ -88778,6 +88792,12 @@ extern PMC_STATUS_CODE Initialize_Compare(PROCESSOR_FEATURES* feature);
 
 
 extern PMC_STATUS_CODE Initialize_Equals(PROCESSOR_FEATURES* feature);
+
+
+extern PMC_STATUS_CODE Initialize_ToString(PROCESSOR_FEATURES* feature);
+
+
+extern PMC_STATUS_CODE Initialize_Parse(PROCESSOR_FEATURES* feature);
 
 
 
@@ -88834,6 +88854,8 @@ extern PMC_STATUS_CODE PMC_Compare_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 extern PMC_STATUS_CODE PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
 extern PMC_STATUS_CODE PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
 extern PMC_STATUS_CODE PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
+
+extern PMC_STATUS_CODE PMC_ToString(HANDLE x, char* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
 #pragma endregion
 
 
@@ -89088,7 +89110,7 @@ __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_T
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 507 "pmc_internal.h"
+# 518 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89097,7 +89119,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 523 "pmc_internal.h"
+# 534 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89109,7 +89131,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYP
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 548 "pmc_internal.h"
+# 559 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89123,7 +89145,7 @@ __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 
 __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 569 "pmc_internal.h"
+# 580 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89138,7 +89160,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TY
 
 __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
 {
-# 607 "pmc_internal.h"
+# 618 "pmc_internal.h"
     __UNIT_TYPE q;
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -89159,7 +89181,7 @@ __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE
 
 __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
 {
-# 651 "pmc_internal.h"
+# 662 "pmc_internal.h"
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
@@ -89193,9 +89215,9 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 683 "pmc_internal.h" 3
+# 694 "pmc_internal.h" 3
            __rolq
-# 683 "pmc_internal.h"
+# 694 "pmc_internal.h"
                   (x, count));
 
 
@@ -89208,9 +89230,9 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 694 "pmc_internal.h" 3
+# 705 "pmc_internal.h" 3
            __rorq
-# 694 "pmc_internal.h"
+# 705 "pmc_internal.h"
                   (x, count));
 
 
@@ -89274,7 +89296,7 @@ __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 
 __inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
 {
-# 769 "pmc_internal.h"
+# 780 "pmc_internal.h"
     return (_lzcnt_u64(value));
 
 
@@ -89336,7 +89358,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 844 "pmc_internal.h"
+# 855 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89352,7 +89374,7 @@ __inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 873 "pmc_internal.h"
+# 884 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89390,7 +89412,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 924 "pmc_internal.h"
+# 935 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89456,7 +89478,7 @@ PMC_STATUS_CODE PMC_To_X_I(HANDLE p, _UINT32_T* o)
     if (sizeof(__UNIT_TYPE) < sizeof(*o))
     {
 
-        return ((-8));
+        return ((-6));
     }
     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
     PMC_STATUS_CODE result;
@@ -89476,7 +89498,7 @@ PMC_STATUS_CODE PMC_To_X_L(HANDLE p, _UINT64_T* o)
     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
     {
 
-        return ((-8));
+        return ((-6));
     }
     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
     PMC_STATUS_CODE result;
@@ -89518,7 +89540,7 @@ PMC_STATUS_CODE PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, 
     if ((result = CheckNumber(np)) != (0))
         return (result);
     if (np->UNIT_BIT_COUNT > sizeof(*buffer) * 8 * buffer_size)
-        return ((-2));
+        return ((-4));
     if (np->IS_ZERO)
     {
         buffer[0] = 0;

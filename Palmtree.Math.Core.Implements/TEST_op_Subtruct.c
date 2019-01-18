@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * The MIT License
  *
  * Copyright 2019 Palmtree Software.
@@ -43,12 +43,12 @@ void TEST_PMC_Subtruct_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
     PMC_STATUS_CODE z_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_B‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", x_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 2), (z_result = ep->PMC_Subtruct_X_I(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_I‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", z_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 2), (z_result = ep->PMC_Subtruct_X_I(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_Iã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", z_result));
     if (desired_result_code == PMC_STATUS_OK)
     {
-        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_B‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", result));
-        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "ƒf[ƒ^‚Ì“à—e‚ªˆê’v‚µ‚È‚¢");
+        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", result));
+        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "ãƒ‡ãƒ¼ã‚¿ã®å†…å®¹ãŒä¸€è‡´ã—ãªã„");
     }
     if (z_result == PMC_STATUS_OK)
         ep->PMC_Dispose(z);
@@ -65,12 +65,12 @@ void TEST_PMC_Subtruct_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
     PMC_STATUS_CODE z_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_B‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", x_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 2), (z_result = ep->PMC_Subtruct_X_L(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_L‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", z_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 2), (z_result = ep->PMC_Subtruct_X_L(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_Lã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", z_result));
     if (desired_result_code == PMC_STATUS_OK)
     {
-        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_B‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", result));
-        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "ƒf[ƒ^‚Ì“à—e‚ªˆê’v‚µ‚È‚¢");
+        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", result));
+        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "ãƒ‡ãƒ¼ã‚¿ã®å†…å®¹ãŒä¸€è‡´ã—ãªã„");
     }
     if (z_result == PMC_STATUS_OK)
         ep->PMC_Dispose(z);
@@ -89,13 +89,13 @@ void TEST_PMC_Subtruct_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int
     PMC_STATUS_CODE x_result;
     PMC_STATUS_CODE y_result;
     PMC_STATUS_CODE z_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_B‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", x_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_B‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", y_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 3), (z_result = ep->PMC_Subtruct_X_X(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_X‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", z_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", y_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 3), (z_result = ep->PMC_Subtruct_X_X(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_Xã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", z_result));
     if (desired_result_code == PMC_STATUS_OK)
     {
-        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_B‚Ì•œ‹AƒR[ƒh‚ªŠú‘Ò’Ê‚è‚Å‚Í‚È‚¢(%d)", result));
-        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "ƒf[ƒ^‚Ì“à—e‚ªˆê’v‚µ‚È‚¢");
+        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bã®å¾©å¸°ã‚³ãƒ¼ãƒ‰ãŒæœŸå¾…é€šã‚Šã§ã¯ãªã„(%d)", result));
+        TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "ãƒ‡ãƒ¼ã‚¿ã®å†…å®¹ãŒä¸€è‡´ã—ãªã„");
     }
     if (z_result == PMC_STATUS_OK)
         ep->PMC_Dispose(z);

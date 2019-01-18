@@ -48,6 +48,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/TEST_op_Multiply.o \
 	${OBJECTDIR}/TEST_op_Shift.o \
 	${OBJECTDIR}/TEST_op_Subtruct.o \
+	${OBJECTDIR}/TEST_op_ToStringD.o \
+	${OBJECTDIR}/TEST_op_ToStringN.o \
+	${OBJECTDIR}/TEST_op_ToStringX.o \
 	${OBJECTDIR}/cpuid.o \
 	${OBJECTDIR}/debug.o \
 	${OBJECTDIR}/dllmain.o \
@@ -62,10 +65,12 @@ OBJECTFILES= \
 	${OBJECTDIR}/pmc_from.o \
 	${OBJECTDIR}/pmc_initialize.o \
 	${OBJECTDIR}/pmc_multiply.o \
+	${OBJECTDIR}/pmc_parse.o \
 	${OBJECTDIR}/pmc_shift.o \
 	${OBJECTDIR}/pmc_statistics.o \
 	${OBJECTDIR}/pmc_subtruct.o \
-	${OBJECTDIR}/pmc_to.o
+	${OBJECTDIR}/pmc_to.o \
+	${OBJECTDIR}/pmc_tostring.o
 
 
 # C Compiler Flags
@@ -157,6 +162,21 @@ ${OBJECTDIR}/TEST_op_Subtruct.o: TEST_op_Subtruct.c nbproject/Makefile-${CND_CON
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Subtruct.o TEST_op_Subtruct.c
 
+${OBJECTDIR}/TEST_op_ToStringD.o: TEST_op_ToStringD.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_ToStringD.o TEST_op_ToStringD.c
+
+${OBJECTDIR}/TEST_op_ToStringN.o: TEST_op_ToStringN.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_ToStringN.o TEST_op_ToStringN.c
+
+${OBJECTDIR}/TEST_op_ToStringX.o: TEST_op_ToStringX.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_ToStringX.o TEST_op_ToStringX.c
+
 ${OBJECTDIR}/cpuid.o: cpuid.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -227,6 +247,11 @@ ${OBJECTDIR}/pmc_multiply.o: pmc_multiply.c nbproject/Makefile-${CND_CONF}.mk
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_multiply.o pmc_multiply.c
 
+${OBJECTDIR}/pmc_parse.o: pmc_parse.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_parse.o pmc_parse.c
+
 ${OBJECTDIR}/pmc_shift.o: pmc_shift.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -246,6 +271,11 @@ ${OBJECTDIR}/pmc_to.o: pmc_to.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_to.o pmc_to.c
+
+${OBJECTDIR}/pmc_tostring.o: pmc_tostring.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_tostring.o pmc_tostring.c
 
 # Subprojects
 .build-subprojects:

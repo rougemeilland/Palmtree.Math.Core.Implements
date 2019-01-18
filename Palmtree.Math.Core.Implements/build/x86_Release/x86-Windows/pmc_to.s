@@ -203,7 +203,7 @@ L17:
 	movl	$-1, %eax
 	jmp	L14
 L18:
-	movl	$-2, %eax
+	movl	$-4, %eax
 	jmp	L14
 	.cfi_endproc
 LFE5487:

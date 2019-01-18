@@ -52,7 +52,7 @@ extern "C" {
 #define PMC_STATUS_ARGUMENT_ERROR (-1)
 #define PMC_STATUS_OVERFLOW (-2)
 #define PMC_STATUS_DIVISION_BY_ZERO (-3)
-#define PMC_STATUS_OUT_OF_RANGE (-4)
+#define PMC_STATUS_INSUFFICIENT_BUFFER (-4)
 #define PMC_STATUS_NOT_ENOUGH_MEMORY (-5)
 #define PMC_STATUS_NOT_SUPPORTED (-6)
 #define PMC_STATUS_BAD_BUFFER (-7)
@@ -97,7 +97,14 @@ typedef struct __tag_PMC_STATISTICS_INFO
     long COUNT_DIV64;                    // 64bit / 32bit => 32bitの除算の回数
     long COUNT_DIV32;                    // 32bit / 16bit => 16bitの除算の回数
 } PMC_STATISTICS_INFO;
-    
+
+typedef struct __tag_PMC_NUMBER_FORMAT_OPTION
+{
+    _UINT32_T   MinimumWidth;           // 書式 D および X の場合に最小表示桁数と解釈され、実際の表示桁数が最小表示桁数を下回っている場合は上位桁を '0' で埋める。既定値は 0。
+    char        GroupSeparator[17];     // 書式 N の場合に数値をグループで区切る場合の区切り文字と解釈される。既定値は ","。
+    char        GroupSizes[11];         // 書式 N の場合に数値をグループで区切る場合のグループの大きさを示す文字の集合と解釈される。既定値は "3"。
+} PMC_NUMBER_FORMAT_OPTION;
+
 typedef struct __tag_PMC_ENTRY_POINTS
 {
     // 実行中のプロセッサの実装命令に関する情報
@@ -179,6 +186,10 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__PMC_CALL * PMC_Equals_X_I)(HANDLE u, _UINT32_T v, _INT32_T* w);
     PMC_STATUS_CODE(__PMC_CALL * PMC_Equals_X_L)(HANDLE u, _UINT64_T v, _INT32_T* w);
     PMC_STATUS_CODE(__PMC_CALL * PMC_Equals_X_X)(HANDLE u, HANDLE v, _INT32_T* w);
+
+    // 文字列化
+    PMC_STATUS_CODE(__PMC_CALL * PMC_ToString)(HANDLE x, char* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
+
 } PMC_ENTRY_POINTS;
 #pragma endregion
 

@@ -521,6 +521,11 @@ PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* x, NUMBER_HEADER** op)
         *op = x;
         return (PMC_STATUS_OK);
     }
+    if (x->IS_ZERO)
+    {
+        *op = &number_zero;
+        return (PMC_STATUS_OK);
+    }
     __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
     PMC_STATUS_CODE result;
     NUMBER_HEADER* o;

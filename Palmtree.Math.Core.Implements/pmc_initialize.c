@@ -48,31 +48,33 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     PROCESSOR_FEATURES feature;
     GetCPUInfo(&feature);
 
-    if (Initialize_Memory(&feature))
+    if (Initialize_Memory(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_From(&feature))
+    if (Initialize_From(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_To(&feature))
+    if (Initialize_To(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_Add(&feature))
+    if (Initialize_Add(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_Subtruct(&feature))
+    if (Initialize_Subtruct(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_Multiply(&feature))
+    if (Initialize_Multiply(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_DivRem(&feature))
+    if (Initialize_DivRem(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_Shift(&feature))
+    if (Initialize_Shift(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_BitwiseAnd(&feature))
+    if (Initialize_BitwiseAnd(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_BitwiseOr(&feature))
+    if (Initialize_BitwiseOr(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_ExclusiveOr(&feature))
+    if (Initialize_ExclusiveOr(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_Compare(&feature))
+    if (Initialize_Compare(&feature) != PMC_STATUS_OK)
         return (NULL);
-    if (Initialize_Equals(&feature))
+    if (Initialize_Equals(&feature) != PMC_STATUS_OK)
+        return (NULL);
+    if (Initialize_ToString(&feature) != PMC_STATUS_OK)
         return (NULL);
 
     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
@@ -119,6 +121,7 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     entry_points.PMC_Equals_X_I = PMC_Equals_X_I;
     entry_points.PMC_Equals_X_L = PMC_Equals_X_L;
     entry_points.PMC_Equals_X_X = PMC_Equals_X_X;
+    entry_points.PMC_ToString = PMC_ToString;
     return (&entry_points);
 }
 

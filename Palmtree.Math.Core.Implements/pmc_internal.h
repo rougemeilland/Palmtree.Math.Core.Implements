@@ -145,44 +145,53 @@ extern void RightShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __U
 // 指定されたワード列を左にシフトして指定された領域に格納する。シフト数は 0 であってはならない。
 extern void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL padding_zero);
 
+// 多倍長整数を 1 ワードで除算を行う。
+extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
+
 // メモリ管理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
 
 // コンストラクタの実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
 
-// To演算子の実装の初期化処理を行う。
+// Toの実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
-// 加算処理の実装の初期化処理を行う。
+// 加算演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
 
-// 減算処理の実装の初期化処理を行う。
+// 減算演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
 
-// 乗算処理の実装の初期化処理を行う。
+// 乗算演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
 
-// 除算処理の実装の初期化処理を行う。
+// 除算演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_DivRem(PROCESSOR_FEATURES* feature);
 
-// ビットシフト処理の実装の初期化処理を行う。
+// ビットシフト演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Shift(PROCESSOR_FEATURES* feature);
 
-// ビットAND処理の実装の初期化処理を行う。
+// ビットAND演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_BitwiseAnd(PROCESSOR_FEATURES* feature);
 
-// ビットOR処理の実装の初期化処理を行う。
+// ビットOR演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_BitwiseOr(PROCESSOR_FEATURES* feature);
 
-// XOR処理の実装の初期化処理を行う。
+// XOR演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_ExclusiveOr(PROCESSOR_FEATURES* feature);
 
-// 比較処理の実装の初期化処理を行う。
+// 比較演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Compare(PROCESSOR_FEATURES* feature);
 
-// 等値処理の実装の初期化処理を行う。
+// 等値演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Equals(PROCESSOR_FEATURES* feature);
+
+// 文字列化の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_ToString(PROCESSOR_FEATURES* feature);
+
+// 文字列解析の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_Parse(PROCESSOR_FEATURES* feature);
 
 // エントリポイントに登録される関数群
 
@@ -239,6 +248,8 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_Compare_X_X(HANDLE u, HANDLE v, _INT32_T* 
 extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_ToString(HANDLE x, char* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
 #pragma endregion
 
 

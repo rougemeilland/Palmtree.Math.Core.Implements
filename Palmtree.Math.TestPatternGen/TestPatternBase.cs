@@ -77,7 +77,7 @@ namespace Palmtree.Math.TestPatternGen
         {
 
             return (source
-                    .Where(item => item.enabled)
+                    .Where(item => item.enabled_test_data)
                     .Select(item => string.Format("static unsigned char {0}[] = {1}; // {2}", item.name, item.DumpParam, item.ImmediateDecParam)));
         }
 
@@ -115,7 +115,7 @@ namespace Palmtree.Math.TestPatternGen
         {
             var terms = CreateTestTerms(CreateInputDataSource());
             return (RenderTestInputDataSource(Id, terms.Select(term => term.inp).SelectMany(items => items).Where(item => item.enabled).Distinct().OrderBy(item => item))
-                    .Concat(RenderTestOutputData(Id, terms.Select(term => term.outp).SelectMany(items => items).Where(item => item.enabled).Distinct().OrderBy(item => item))));
+                    .Concat(RenderTestOutputData(Id, terms.Select(term => term.outp).SelectMany(items => items).Where(item => item.enabled_test_data).Distinct().OrderBy(item => item))));
         }
     }
 }

@@ -57,6 +57,9 @@
     <Compile Include="TEST_PMC_Compare.cs" />
     <Compile Include="TEST_PMC_ExclusiveOr.cs" />
     <Compile Include="TEST_PMC_From.cs" />
+    <Compile Include="TEST_PMC_ToStringN.cs" />
+    <Compile Include="TEST_PMC_ToStringD.cs" />
+    <Compile Include="TEST_PMC_ToStringX.cs" />
     <Compile Include="TEST_PMC_RightShift.cs" />
     <Compile Include="TEST_PMC_LeftShift.cs" />
     <Compile Include="TEST_PMC_Multiply.cs" />

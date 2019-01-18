@@ -36,7 +36,7 @@ namespace Palmtree.Math.TestPatternGen
                 {
                     item.u,
                     item.v,
-                    desired_w = new OutputTestData(_id, item.u, item.v, (u, v) => u >= v, (u, v) => u - v),
+                    desired_w = new OutputTestData(_id, item.u, item.v, (u, v) => u >= v, (u, v) => u >= v, (u, v) => u - v),
                 });
             return (source
                     .Where(item => item.v.value <= UInt32.MaxValue)
@@ -47,7 +47,7 @@ namespace Palmtree.Math.TestPatternGen
                                                  new[] { item.u, item.v },
                                                  new[] { item.desired_w },
                                                  string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4}, {5});",
-                                                               _id_i, item.index, item.u.BufferParam, item.v.ImmediateHex32Param, item.desired_w.enabled ? "PMC_STATUS_OK" : "PMC_STATUS_OVERFLOW", item.desired_w.BufferParam)))
+                                                               _id_i, item.index, item.u.BufferParam, item.v.ImmediateHex32Param, item.desired_w.enabled_value ? "PMC_STATUS_OK" : "PMC_STATUS_OVERFLOW", item.desired_w.BufferParam)))
                  .Concat(source
                          .Where(item => item.v.value <= UInt64.MaxValue)
                          .Zip(Enumerable.Range(1, int.MaxValue),
@@ -57,7 +57,7 @@ namespace Palmtree.Math.TestPatternGen
                                                       new[] { item.u, item.v },
                                                       new[] { item.desired_w },
                                                       string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4}, {5});",
-                                                                    _id_l, item.index, item.u.BufferParam, item.v.ImmediateHex64Param, item.desired_w.enabled ? "PMC_STATUS_OK" : "PMC_STATUS_OVERFLOW", item.desired_w.BufferParam))))
+                                                                    _id_l, item.index, item.u.BufferParam, item.v.ImmediateHex64Param, item.desired_w.enabled_value ? "PMC_STATUS_OK" : "PMC_STATUS_OVERFLOW", item.desired_w.BufferParam))))
                  .Concat(source
                          .Zip(Enumerable.Range(1, int.MaxValue),
                               (item, index) => new { index, item.u, item.v, item.desired_w })
@@ -66,7 +66,7 @@ namespace Palmtree.Math.TestPatternGen
                                                       new[] { item.u, item.v },
                                                       new[] { item.desired_w },
                                                       string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4}, {5});",
-                                                                    _id_x, item.index, item.u.BufferParam, item.v.BufferParam, item.desired_w.enabled ? "PMC_STATUS_OK" : "PMC_STATUS_OVERFLOW", item.desired_w.BufferParam)))));
+                                                                    _id_x, item.index, item.u.BufferParam, item.v.BufferParam, item.desired_w.enabled_value ? "PMC_STATUS_OK" : "PMC_STATUS_OVERFLOW", item.desired_w.BufferParam)))));
         }
     }
 }

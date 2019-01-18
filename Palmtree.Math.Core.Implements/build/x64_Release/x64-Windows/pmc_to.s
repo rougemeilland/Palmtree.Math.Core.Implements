@@ -144,7 +144,7 @@ PMC_To_X_B:
 	movl	$-1, %eax
 	jmp	.L10
 .L14:
-	movl	$-2, %eax
+	movl	$-4, %eax
 	jmp	.L10
 	.seh_endproc
 	.p2align 4,,15

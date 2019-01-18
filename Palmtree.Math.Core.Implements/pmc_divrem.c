@@ -38,7 +38,7 @@
 static void(*fp_DivRem_X_X)(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV* v_buf, __UNIT_TYPE v_buf_len, __UNIT_TYPE_DIV* work_v_buf, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
 
 
-static void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf)
+void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf)
 {
     // u の最上位ワードは 0 でありうることに注意すること。
     __UNIT_TYPE_DIV* up = u_buf + u_buf_len - 1;

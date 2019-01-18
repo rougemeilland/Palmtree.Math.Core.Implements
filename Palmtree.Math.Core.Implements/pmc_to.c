@@ -39,7 +39,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, _UINT32_T* o)
     if (sizeof(__UNIT_TYPE) < sizeof(*o))
     {
         // 32bit未満のCPUは未対応
-        return (PMC_STATUS_INTERNAL_ERROR);
+        return (PMC_STATUS_NOT_SUPPORTED);
     }
     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
     PMC_STATUS_CODE result;
@@ -59,7 +59,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o)
     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
     {
         // 32bit未満のCPUは未対応
-        return (PMC_STATUS_INTERNAL_ERROR);
+        return (PMC_STATUS_NOT_SUPPORTED);
     }
     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
     PMC_STATUS_CODE result;
@@ -97,7 +97,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t bu
     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
         return (result);
     if (np->UNIT_BIT_COUNT > sizeof(*buffer) * 8 * buffer_size)
-        return (PMC_STATUS_OVERFLOW);
+        return (PMC_STATUS_INSUFFICIENT_BUFFER);
     if (np->IS_ZERO)
     {
         buffer[0] = 0;
