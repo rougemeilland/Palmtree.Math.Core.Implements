@@ -96,7 +96,7 @@ namespace Palmtree.Math.TestPatternGen
                                                                item.index,
                                                                item.x.BufferParam,
                                                                item.format.value == 0 ? "'n'" : "'N'",
-                                                               "\"" + cultures[(int)item.locale.value].NumberFormat.NumberGroupSeparator + "\"",
+                                                               "L\"" + cultures[(int)item.locale.value].NumberFormat.NumberGroupSeparator + "\"",
                                                                "\"" + string.Concat(cultures[(int)item.locale.value].NumberFormat.NumberGroupSizes.Select(n => n.ToString())) + "\"",
                                                                item.desired_s.ImmediateStringParam))));
 

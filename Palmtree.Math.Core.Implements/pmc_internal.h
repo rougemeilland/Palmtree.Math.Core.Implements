@@ -249,7 +249,7 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T
 extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 
-extern PMC_STATUS_CODE __PMC_CALL PMC_ToString(HANDLE x, char* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
+extern PMC_STATUS_CODE __PMC_CALL PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
 #pragma endregion
 
 

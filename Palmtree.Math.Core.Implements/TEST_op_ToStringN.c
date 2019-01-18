@@ -35,19 +35,19 @@
 #include "pmc_debug.h"
 
 
-void TEST_PMC_ToStringN(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, char format_spec, char* group_separator, char* group_sizes, char* desired_str)
+void TEST_PMC_ToStringN(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, char format_spec, wchar_t* group_separator, char* group_sizes, wchar_t* desired_str)
 {
     HANDLE x;
-    static char actual_str_buffer[4096];
+    static wchar_t actual_str_buffer[4096];
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
     PMC_NUMBER_FORMAT_OPTION opt;
-    lstrcpy(opt.GroupSeparator, group_separator);
+    lstrcpyW(opt.GroupSeparator, group_separator);
     lstrcpy(opt.GroupSizes, group_sizes);
     opt.MinimumWidth = 0;
     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, &opt)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToStringの復帰コードが期待通りではない(%d)", result));
-    TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 3), lstrcmp(actual_str_buffer, desired_str) == 0, "データの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, "データの内容が一致しない");
     if (x_result == PMC_STATUS_OK)
         ep->PMC_Dispose(x);
 }

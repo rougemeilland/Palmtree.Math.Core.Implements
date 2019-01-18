@@ -4466,7 +4466,7 @@ PMC_Initialize:
 	.long	0x4d2d
 	.uleb128 0x12
 	.ascii "__tag_PMC_NUMBER_FORMAT_OPTION\0"
-	.byte	0x20
+	.byte	0x1c
 	.byte	0x1e
 	.byte	0x65
 	.byte	0x10
@@ -4482,7 +4482,7 @@ PMC_Initialize:
 	.ascii "GroupSeparator\0"
 	.byte	0x1e
 	.byte	0x68
-	.byte	0xa
+	.byte	0xd
 	.long	0x4e30
 	.byte	0x4
 	.uleb128 0x13
@@ -4491,14 +4491,14 @@ PMC_Initialize:
 	.byte	0x69
 	.byte	0xa
 	.long	0x4e40
-	.byte	0x15
+	.byte	0xe
 	.byte	0
 	.uleb128 0xe
-	.long	0xc5
+	.long	0x107
 	.long	0x4e40
 	.uleb128 0xf
 	.long	0xdc
-	.byte	0x10
+	.byte	0x4
 	.byte	0
 	.uleb128 0xe
 	.long	0xc5
@@ -5109,7 +5109,7 @@ PMC_Initialize:
 	.uleb128 0x11
 	.long	0x754
 	.uleb128 0x11
-	.long	0x448
+	.long	0x44e
 	.uleb128 0x11
 	.long	0xcd
 	.uleb128 0x11

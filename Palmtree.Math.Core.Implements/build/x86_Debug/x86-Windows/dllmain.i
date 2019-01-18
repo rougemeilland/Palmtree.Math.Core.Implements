@@ -87331,7 +87331,7 @@ typedef struct __tag_PMC_STATISTICS_INFO
 typedef struct __tag_PMC_NUMBER_FORMAT_OPTION
 {
     _UINT32_T MinimumWidth;
-    char GroupSeparator[17];
+    wchar_t GroupSeparator[5];
     char GroupSizes[11];
 } PMC_NUMBER_FORMAT_OPTION;
 
@@ -87418,7 +87418,7 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Equals_X_X)(HANDLE u, HANDLE v, _INT32_T* w);
 
 
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ToString)(HANDLE x, char* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
 
 } PMC_ENTRY_POINTS;
 #pragma endregion
@@ -87651,7 +87651,7 @@ extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_I(HANDLE u, _UI
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ToString(HANDLE x, char* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
 #pragma endregion
 
 

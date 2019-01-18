@@ -4549,7 +4549,7 @@ FormatTestMesssage:
 	.long	0x4d3d
 	.uleb128 0x12
 	.ascii "__tag_PMC_NUMBER_FORMAT_OPTION\0"
-	.byte	0x20
+	.byte	0x1c
 	.byte	0x1e
 	.byte	0x65
 	.byte	0x10
@@ -4565,7 +4565,7 @@ FormatTestMesssage:
 	.ascii "GroupSeparator\0"
 	.byte	0x1e
 	.byte	0x68
-	.byte	0xa
+	.byte	0xd
 	.long	0x4e40
 	.byte	0x4
 	.uleb128 0x13
@@ -4574,14 +4574,14 @@ FormatTestMesssage:
 	.byte	0x69
 	.byte	0xa
 	.long	0x4e50
-	.byte	0x15
+	.byte	0xe
 	.byte	0
 	.uleb128 0xe
-	.long	0xbc
+	.long	0x103
 	.long	0x4e50
 	.uleb128 0xf
 	.long	0xd8
-	.byte	0x10
+	.byte	0x4
 	.byte	0
 	.uleb128 0xe
 	.long	0xbc
@@ -5192,7 +5192,7 @@ FormatTestMesssage:
 	.uleb128 0x11
 	.long	0x75d
 	.uleb128 0x11
-	.long	0x444
+	.long	0x44a
 	.uleb128 0x11
 	.long	0xc9
 	.uleb128 0x11

@@ -107,7 +107,7 @@ namespace Palmtree.Math.TestPatternGen
         {
             get
             {
-                return ("\"" + (string)value + "\"");
+                return ("L\"" + (string)value + "\"");
             }
         }
 

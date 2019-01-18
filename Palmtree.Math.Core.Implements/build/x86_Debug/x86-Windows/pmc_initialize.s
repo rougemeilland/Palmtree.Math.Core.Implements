@@ -4416,7 +4416,7 @@ Ldebug_info0:
 	.long	0x4d18
 	.uleb128 0x10
 	.ascii "__tag_PMC_NUMBER_FORMAT_OPTION\0"
-	.byte	0x20
+	.byte	0x1c
 	.byte	0x1e
 	.byte	0x65
 	.byte	0x10
@@ -4432,7 +4432,7 @@ Ldebug_info0:
 	.ascii "GroupSeparator\0"
 	.byte	0x1e
 	.byte	0x68
-	.byte	0xa
+	.byte	0xd
 	.long	0x4e1b
 	.byte	0x4
 	.uleb128 0x11
@@ -4441,14 +4441,14 @@ Ldebug_info0:
 	.byte	0x69
 	.byte	0xa
 	.long	0x4e2b
-	.byte	0x15
+	.byte	0xe
 	.byte	0
 	.uleb128 0xc
-	.long	0xbd
+	.long	0xeb
 	.long	0x4e2b
 	.uleb128 0xd
 	.long	0xd4
-	.byte	0x10
+	.byte	0x4
 	.byte	0
 	.uleb128 0xc
 	.long	0xbd
@@ -5059,7 +5059,7 @@ Ldebug_info0:
 	.uleb128 0xf
 	.long	0x73f
 	.uleb128 0xf
-	.long	0x429
+	.long	0x42f
 	.uleb128 0xf
 	.long	0xc5
 	.uleb128 0xf
