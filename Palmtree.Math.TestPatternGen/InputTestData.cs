@@ -4,63 +4,103 @@ using System.Numerics;
 namespace Palmtree.Math.TestPatternGen
 {
     class InputTestData
-        : IComparable
+        : ITestData
     {
         private string _id;
+        private object _value;
+
+        public InputTestData(string id, string value, int index)
+        {
+            this._id = id;
+            this.IsAvailableAsTestData = false;
+            this._value = value;
+            this.Index = index;
+            this.Name = string.Format("{0}_in_data_{1}", id, index);
+        }
+        public InputTestData(string id, bool enabled, string value, int index)
+        {
+            this._id = id;
+            this.IsAvailableAsTestData = enabled;
+            this._value = value;
+            this.Index = index;
+            this.Name = string.Format("{0}_in_data_{1}", id, index);
+        }
 
         public InputTestData(string id, BigInteger value, int index)
         {
             this._id = id;
-            this.enabled = false;
-            this.value = value;
-            this.index = index;
-            this.name = string.Format("{0}_in_data_{1}", id, index);
+            this.IsAvailableAsTestData = false;
+            this._value = value;
+            this.Index = index;
+            this.Name = string.Format("{0}_in_data_{1}", id, index);
         }
         public InputTestData(string id, bool enabled, BigInteger value, int index)
         {
             this._id = id;
-            this.enabled = enabled;
-            this.value = value;
-            this.index = index;
-            this.name = string.Format("{0}_in_data_{1}", id, index);
+            this.IsAvailableAsTestData = enabled;
+            this._value = value;
+            this.Index = index;
+            this.Name = string.Format("{0}_in_data_{1}", id, index);
         }
-        public bool enabled { get; private set; }
-        public BigInteger value { get; private set; }
-        public int index { get; private set; }
-        public string name { get; private set; }
+
+        public InputTestData(string id, int value, int index)
+        {
+            this._id = id;
+            this.IsAvailableAsTestData = false;
+            this._value = value;
+            this.Index = index;
+            this.Name = string.Format("{0}_in_data_{1}", id, index);
+        }
+        public InputTestData(string id, bool enabled, int value, int index)
+        {
+            this._id = id;
+            this.IsAvailableAsTestData = enabled;
+            this._value = value;
+            this.Index = index;
+            this.Name = string.Format("{0}_in_data_{1}", id, index);
+        }
+
+        public int Index { get; private set; }
+
+        public string Name { get; private set; }
+
         public string BufferParam
         {
             get
             {
-                return (string.Format("{0}, sizeof({0})", name));
+                return (string.Format("{0}, sizeof({0})", Name));
             }
         }
-        public string ImmediateHex32Param
+
+        public bool IsAvailableAsTestData { get; private set; }
+
+        public string StringValue
         {
             get
             {
-                return (string.Format("0x{0:x08}", (UInt32)value));
+                if (!(_value is string))
+                    throw new ApplicationException();
+                return ((string)_value);
             }
         }
-        public string ImmediateHex64Param
+
+        public BigInteger BigIntegerValue
         {
             get
             {
-                return (string.Format("0x{0:x016}", (UInt64)value));
+                if (!(_value is BigInteger))
+                    throw new ApplicationException();
+                return ((BigInteger)_value);
             }
         }
-        public string ImmediateDecParam
+
+        public int IntegerValue
         {
             get
             {
-                return (value.ToString());
-            }
-        }
-        public string DumpParam
-        {
-            get
-            {
-                return (value.Dump());
+                if (!(_value is int))
+                    throw new ApplicationException();
+                return ((int)_value);
             }
         }
 
@@ -70,14 +110,14 @@ namespace Palmtree.Math.TestPatternGen
                 return false;
             if (!_id.Equals(((InputTestData)obj)._id))
                 return (false);
-            if (!index.Equals(((InputTestData)obj).index))
+            if (!Index.Equals(((InputTestData)obj).Index))
                 return (false);
             return (true);
         }
 
         public override int GetHashCode()
         {
-            return (_id.GetHashCode() ^ index.GetHashCode());
+            return (_id.GetHashCode() ^ Index.GetHashCode());
         }
 
         public int CompareTo(object obj)
@@ -89,7 +129,7 @@ namespace Palmtree.Math.TestPatternGen
             int c;
             if ((c = _id.CompareTo(((InputTestData)obj)._id)) != 0)
                 return (c);
-            if ((c = index.CompareTo(((InputTestData)obj).index)) != 0)
+            if ((c = Index.CompareTo(((InputTestData)obj).Index)) != 0)
                 return (c);
             return (0);
         }

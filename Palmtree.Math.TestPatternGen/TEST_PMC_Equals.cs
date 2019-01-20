@@ -36,10 +36,10 @@ namespace Palmtree.Math.TestPatternGen
                 {
                     item.u,
                     item.v,
-                    desired_w = new OutputTestData(_id, item.u, item.v, (u, v) => u.Equals(v) ? 1 : 0),
+                    desired_w = new OutputTestData(_id, new[] { item.u, item.v }, false, true, item.u.BigIntegerValue.Equals(item.v.BigIntegerValue)),
                 });
             return (source
-                    .Where(item => item.v.value <= UInt32.MaxValue)
+                    .Where(item => item.v.BigIntegerValue <= UInt32.MaxValue)
                     .Zip(Enumerable.Range(1, int.MaxValue),
                          (item, index) => new { index, item.u, item.v, item.desired_w })
                     .Select(item => new TestTerm(_id_i,
@@ -47,9 +47,12 @@ namespace Palmtree.Math.TestPatternGen
                                                  new[] { item.u, item.v },
                                                  new[] { item.desired_w },
                                                  string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4});",
-                                                               _id_i, item.index, item.u.BufferParam, item.v.ImmediateHex32Param, item.desired_w.ImmediateDecParam)))
+                                                               _id_i, item.index,
+                                                               item.u.BufferParam,
+                                                               item.v.BigIntegerValue.ToImmediateHex32String(),
+                                                               item.desired_w.BooleanValue ? 1 : 0)))
                  .Concat(source
-                         .Where(item => item.v.value <= UInt64.MaxValue)
+                         .Where(item => item.v.BigIntegerValue <= UInt64.MaxValue)
                          .Zip(Enumerable.Range(1, int.MaxValue),
                               (item, index) => new { index, item.u, item.v, item.desired_w })
                          .Select(item => new TestTerm(_id_l,
@@ -57,7 +60,10 @@ namespace Palmtree.Math.TestPatternGen
                                                       new[] { item.u, item.v },
                                                       new[] { item.desired_w },
                                                       string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4});",
-                                                                    _id_l, item.index, item.u.BufferParam, item.v.ImmediateHex64Param, item.desired_w.ImmediateDecParam))))
+                                                                    _id_l, item.index,
+                                                                    item.u.BufferParam,
+                                                                    item.v.BigIntegerValue.ToImmediateHex64String(),
+                                                                    item.desired_w.BooleanValue ? 1 : 0))))
                  .Concat(source
                          .Zip(Enumerable.Range(1, int.MaxValue),
                               (item, index) => new { index, item.u, item.v, item.desired_w })
@@ -66,7 +72,10 @@ namespace Palmtree.Math.TestPatternGen
                                                       new[] { item.u, item.v },
                                                       new[] { item.desired_w },
                                                       string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4});",
-                                                                    _id_x, item.index, item.u.BufferParam, item.v.BufferParam, item.desired_w.ImmediateDecParam)))));
+                                                                    _id_x, item.index,
+                                                                    item.u.BufferParam,
+                                                                    item.v.BufferParam,
+                                                                    item.desired_w.BooleanValue ? 1 : 0)))));
         }
     }
 }

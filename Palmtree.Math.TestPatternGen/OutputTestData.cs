@@ -1,113 +1,150 @@
-﻿using System.Numerics;
-using System;
+﻿using System;
+using System.Linq;
+using System.Numerics;
 
 namespace Palmtree.Math.TestPatternGen
 {
     class OutputTestData
-        : IComparable
+        : ITestData
     {
-        private IComparable[] _keys;
+        private string _id;
+        private string _type;
+        private int[] _in_indexes;
+        private object _value;
 
-        public OutputTestData(string id, InputTestData u, Func<BigInteger,  BigInteger> func)
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, string out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, null, (object)out_value)
         {
-            this.enabled_value = true;
-            this.enabled_test_data = true;
-            this.value = this.enabled_value ? func(u.value) : BigInteger.Zero;
-            this.name = string.Format("{0}_out_data_{1}", id, u.index);
-            this._keys = new[] { (IComparable)id, (IComparable)u.index, (IComparable)0, (IComparable)0, (IComparable)0 };
         }
-        public OutputTestData(string id, InputTestData u, Func<BigInteger,  bool> enabled_value_condition, Func<BigInteger, bool> enabled_test_data_condition, Func<BigInteger,   BigInteger> func)
+
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, BigInteger out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, null, (object)out_value)
         {
-            this.enabled_value = enabled_value_condition(u.value);
-            this.enabled_test_data = enabled_value_condition(u.value);
-            this.value = this.enabled_value ? func(u.value) : BigInteger.Zero;
-            this.name = string.Format("{0}_out_data_{1}", id, u.index);
-            this._keys = new[] { (IComparable)id, (IComparable)u.index, (IComparable)0, (IComparable)0, (IComparable)0 };
         }
-        public OutputTestData(string id, InputTestData u, InputTestData v, Func<BigInteger, BigInteger, BigInteger> func)
+
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, int out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, null, (object)out_value)
         {
-            this.enabled_value = true;
-            this.enabled_test_data = true;
-            this.value = this.enabled_value ? func(u.value, v.value) : BigInteger.Zero;
-            this.name = string.Format("{0}_out_data_{1}_{2}", id, u.index, v.index);
-            this._keys = new[] { (IComparable)id, (IComparable)u.index, (IComparable)v.index, (IComparable)0, (IComparable)0 };
         }
-        public OutputTestData(string id, InputTestData u, InputTestData v, Func<BigInteger, BigInteger, bool> enabled_value_condition, Func<BigInteger, BigInteger, bool> enabled_test_data_condition, Func<BigInteger, BigInteger, BigInteger> func)
+
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, PMC_STATUS_CODE out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, null, (object)out_value)
         {
-            this.enabled_value = enabled_value_condition(u.value, v.value);
-            this.enabled_test_data = enabled_test_data_condition(u.value, v.value);
-            this.value = this.enabled_value ? func(u.value, v.value) : BigInteger.Zero;
-            this.name = string.Format("{0}_out_data_{1}_{2}", id, u.index, v.index);
-            this._keys = new[] { (IComparable)id, (IComparable)u.index, (IComparable)v.index, (IComparable)0, (IComparable)0 };
         }
-        public OutputTestData(string id, InputTestData x1, InputTestData x2, InputTestData x3, Func<BigInteger, BigInteger, BigInteger, bool> enabled_value_condition, Func<BigInteger, BigInteger, BigInteger, bool> enabled_test_data_condition, Func<BigInteger, BigInteger, BigInteger, string> func)
+
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, bool out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, null, (object)out_value)
         {
-            this.enabled_value = enabled_value_condition(x1.value, x2.value, x3.value);
-            this.enabled_test_data = enabled_test_data_condition(x1.value, x2.value, x3.value);
-            this.value = this.enabled_value ? func(x1.value, x2.value, x3.value) : null;
-            this.name = string.Format("{0}_out_data_{1}_{2}_{3}", id, x1.index, x2.index, x3.index);
-            this._keys = new[] { (IComparable)id, (IComparable)x1.index, (IComparable)x2.index, (IComparable)x3.index, (IComparable)0 };
         }
-        public OutputTestData(string id, InputTestData x1, InputTestData x2, InputTestData x3, InputTestData x4, Func<BigInteger, BigInteger, BigInteger, BigInteger, bool> enabled_value_condition, Func<BigInteger, BigInteger, BigInteger, BigInteger, bool> enabled_test_data_condition, Func<BigInteger, BigInteger, BigInteger, BigInteger, string> func)
+
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, string type, string out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, type, (object)out_value)
         {
-            this.enabled_value = enabled_value_condition(x1.value, x2.value, x3.value, x4.value);
-            this.enabled_test_data = enabled_test_data_condition(x1.value, x2.value, x3.value, x4.value);
-            this.value = this.enabled_value ? func(x1.value, x2.value, x3.value, x4.value) : null;
-            this.name = string.Format("{0}_out_data_{1}_{2}_{3}_{4}", id, x1.index, x2.index, x3.index, x4.value);
-            this._keys = new[] { (IComparable)id, (IComparable)x1.index, (IComparable)x2.index, (IComparable)x3.index, (IComparable)x4.index };
         }
-        public OutputTestData(string id, string type, InputTestData u, InputTestData v, Func<BigInteger, BigInteger, bool> enabled_value_condition, Func<BigInteger, BigInteger, bool> enabled_test_data_condition, Func<BigInteger, BigInteger, BigInteger> func)
+
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, string type, BigInteger out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, type, (object)out_value)
         {
-            this.enabled_value = enabled_value_condition(u.value, v.value);
-            this.enabled_test_data = enabled_test_data_condition(u.value, v.value);
-            this.value = this.enabled_value ? func(u.value, v.value) : BigInteger.Zero;
-            this.name = string.Format("{0}_out_{1}_data_{2}_{3}", id, type, u.index, v.index);
-            this._keys = new[] { (IComparable)id, (IComparable)type, (IComparable)u.index, (IComparable)v.index, (IComparable)0 };
         }
-        public bool enabled_value { get; private set; }
-        public bool enabled_test_data { get; private set; }
-        public object value { get; private set; }
-        public string name { get; private set; }
+
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, string type, int out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, type, (object)out_value)
+        {
+        }
+
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, string type, PMC_STATUS_CODE out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, type, (object)out_value)
+        {
+        }
+
+        public OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, string type, bool out_value)
+            : this(id, in_params, is_available_as_test_data, is_available, type, (object)out_value)
+        {
+        }
+
+        private OutputTestData(string id, InputTestData[] in_params, bool is_available_as_test_data, bool is_available, string type, object out_value)
+        {
+            if (out_value is string && is_available_as_test_data)
+                throw new ApplicationException();
+            this._id = id;
+            this._type = type;
+            this._in_indexes = in_params.Select(p => p.Index).ToArray();
+            this.IsAvailableAsTestData = is_available_as_test_data;
+            this.IsAvailable = is_available;
+            if (type != null)
+                this.Name = string.Format("{0}_out_data_{1}_{2}", id, type, string.Join("_", _in_indexes.Select(index => index.ToString())));
+            else
+                this.Name = string.Format("{0}_out_data_{1}", id, string.Join("_", _in_indexes.Select(index => index.ToString())));
+            this._value = out_value;
+        }
+
         public string BufferParam
         {
             get
             {
-                return (enabled_value ? string.Format("{0}, sizeof({0})", name) : "NULL, 0");
+                return (IsAvailable ? string.Format("{0}, sizeof({0})", Name) : "NULL, 0");
             }
         }
-        public string ImmediateHex32Param
+
+        public string Name { get; private set; }
+
+        /// <summary>
+        /// テストデータをテスト実行行とは別にレンダリングするのならtrue、レンダリングしないのならfalse。
+        /// </summary>
+        public bool IsAvailableAsTestData { get; private set; }
+
+        /// <summary>
+        /// ゼロ除算などの理由で値が存在しない場合には false, 存在するのならtrue.
+        /// </summary>
+        public bool IsAvailable { get; private set; }
+
+        public string StringValue
         {
             get
             {
-                return (enabled_value ? string.Format("0x{0:x08}", (UInt32)(BigInteger)value) : "0");
+                if (!(_value is string))
+                    throw new ApplicationException();
+                return ((string)_value);
             }
         }
-        public string ImmediateHex64Param
+
+        public BigInteger BigIntegerValue
         {
             get
             {
-                return (enabled_value ? string.Format("0x{0:x016}", (UInt64)(BigInteger)value) : "0");
+                if (!(_value is BigInteger))
+                    throw new ApplicationException();
+                return ((BigInteger)_value);
             }
         }
-        public string ImmediateDecParam
+
+        public int IntegerValue
         {
             get
             {
-                return (enabled_value ? ((BigInteger)value).ToString() : "?????????");
+                if (!(_value is int))
+                    throw new ApplicationException();
+                return ((int)_value);
             }
         }
-        public string DumpParam
+
+        public PMC_STATUS_CODE PMC_STATUS_CODEValue
         {
             get
             {
-                return (((BigInteger)value).Dump());
+                if (!(_value is PMC_STATUS_CODE))
+                    throw new ApplicationException();
+                return ((PMC_STATUS_CODE)_value);
             }
         }
-        public string ImmediateStringParam
+
+        public bool BooleanValue
         {
             get
             {
-                return ("L\"" + (string)value + "\"");
+                if (!(_value is bool))
+                    throw new ApplicationException();
+                return ((bool)_value);
             }
         }
 
@@ -115,20 +152,32 @@ namespace Palmtree.Math.TestPatternGen
         {
             if (obj == null || GetType() != obj.GetType())
                 return false;
-            if (!_keys[0].Equals(((OutputTestData)obj)._keys[0]))
+            if (!_id.Equals(((OutputTestData)obj)._id))
                 return (false);
-            if (!_keys[1].Equals(((OutputTestData)obj)._keys[1]))
-                return (false);
-            if (!_keys[2].Equals(((OutputTestData)obj)._keys[2]))
-                return (false);
-            if (!_keys[3].Equals(((OutputTestData)obj)._keys[3]))
-                return (false);
-            return (true);
+            var col1 = _in_indexes;
+            var col2 = ((OutputTestData)obj)._in_indexes;
+            if (col1.Length > col2.Length)
+                col2 = col2.Concat(Enumerable.Repeat(-1, col2.Length - col1.Length)).ToArray();
+            else if (col1.Length < col2.Length)
+                col1 = col2.Concat(Enumerable.Repeat(-1, col1.Length - col2.Length)).ToArray();
+            else
+            {
+            }
+            if (_type != null)
+            {
+                if (!_type.Equals(((OutputTestData)obj)._type))
+                    return (false);
+            }
+            return (col1.Zip(col2, (x1, x2) => x1.Equals(x2)).All(x => x));
         }
 
         public override int GetHashCode()
         {
-            return (_keys[0].GetHashCode() ^ _keys[1].GetHashCode() ^ _keys[2].GetHashCode() ^ _keys[3].GetHashCode());
+            int code = _id.GetHashCode();
+            code ^= _in_indexes.Aggregate(code, (x, _code) => x ^ _code);
+            if (_type != null)
+                code ^= _type.GetHashCode();
+            return (code);
         }
 
         public int CompareTo(object obj)
@@ -138,16 +187,25 @@ namespace Palmtree.Math.TestPatternGen
             if (GetType() != obj.GetType())
                 throw new ArgumentException();
             int c;
-            if ((c = _keys[0].CompareTo(((OutputTestData)obj)._keys[0])) != 0)
+            if ((c = _id.CompareTo(((OutputTestData)obj)._id)) != 0)
                 return (c);
-            if ((c = _keys[1].CompareTo(((OutputTestData)obj)._keys[1])) != 0)
-                return (c);
-            if ((c = _keys[2].CompareTo(((OutputTestData)obj)._keys[2])) != 0)
-                return (c);
-            if ((c = _keys[3].CompareTo(((OutputTestData)obj)._keys[3])) != 0)
-                return (c);
-            if ((c = _keys[4].CompareTo(((OutputTestData)obj)._keys[4])) != 0)
-                return (c);
+            var col1 = _in_indexes;
+            var col2 = ((OutputTestData)obj)._in_indexes;
+            if (col1.Length > col2.Length)
+                col2 = col2.Concat(Enumerable.Repeat(-1, col2.Length - col1.Length)).ToArray();
+            else if (col1.Length < col2.Length)
+                col1 = col2.Concat(Enumerable.Repeat(-1, col1.Length - col2.Length)).ToArray();
+            else
+            {
+            }
+            var cp = col1.Zip(col2, (x1, x2) => x1.CompareTo(x2)).Where(x => x != 0).ToArray();
+            if (cp.Any())
+                return (cp.First());
+            if (_type != null)
+            {
+                if ((c = _type.CompareTo(((OutputTestData)obj)._type)) != 0)
+                    return (c);
+            }
             return (0);
         }
     }

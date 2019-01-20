@@ -10,7 +10,9 @@ namespace Palmtree.Math.TestPatternGen
         : TestPatternBase
     {
         private string _id;
-        private CultureInfo[] cultures = new[] { "ja-JP", "fr-FR", "es-ES", "pa-IN", "mn-Mong" }.Select(name => new CultureInfo(name)).ToArray();
+        private IDictionary<string, CultureInfo> cultures = new[] { "ja-JP", "fr-FR", "es-ES", "pa-IN", "mn-Mong" }
+                                                            .Select(name => new { key = name, value = new CultureInfo(name) })
+                                                            .ToDictionary(item => item.key, item => item.value);
         private IEnumerable<InputTestData> _format_spec_source;
         private IEnumerable<InputTestData> _locale_source;
 
@@ -18,17 +20,17 @@ namespace Palmtree.Math.TestPatternGen
         {
             _id = "PMC_ToStringN";
 
-            _format_spec_source = new[] { 0, 1 }
+            _format_spec_source = new[] { "n", "N" }
                                   .Zip(Enumerable.Range(1, int.MaxValue),
                                        (v, index) => new InputTestData(_id, v, index))
                                   .ToArray();
-            _locale_source = new[] { 0, 1, 2, 3 }
+            _locale_source = cultures.Keys.OrderBy(k => k)
                              .Zip(Enumerable.Range(1, int.MaxValue),
                                   (v, index) => new InputTestData(_id, v, index))
                              .ToArray();
 
             // このライブラリでは符号なし整数しか扱わないため、比較用のカルチャも小数点以下の表示桁数は 0 に改変する。
-            foreach (var culture in cultures)
+            foreach (var culture in cultures.Values)
             {
                 culture.NumberFormat.NumberDecimalDigits = 0;
             }
@@ -74,15 +76,7 @@ namespace Palmtree.Math.TestPatternGen
                     item.x,
                     item.format,
                     item.locale,
-                    desired_s = new OutputTestData(_id,
-                                                    item.x, item.format, item.locale,
-                                                    (x, format, locale) => true,
-                                                    (x, format, locale) => false,
-                                                    (x, format, locale) =>
-                                                    {
-                                                        var s = x.ToString(format == 0 ? "n" : "N", cultures[(int)item.locale.value].NumberFormat);
-                                                        return (s);
-                                                    })
+                    desired_s = new OutputTestData(_id, new[] { item.x, item.format, item.locale }, false, false, item.x.BigIntegerValue.ToString(item.format.StringValue, cultures[item.locale.StringValue].NumberFormat)),
                 });
             return (source
                     .Zip(Enumerable.Range(1, int.MaxValue),
@@ -95,10 +89,10 @@ namespace Palmtree.Math.TestPatternGen
                                                                _id,
                                                                item.index,
                                                                item.x.BufferParam,
-                                                               item.format.value == 0 ? "'n'" : "'N'",
-                                                               "L\"" + cultures[(int)item.locale.value].NumberFormat.NumberGroupSeparator + "\"",
-                                                               "\"" + string.Concat(cultures[(int)item.locale.value].NumberFormat.NumberGroupSizes.Select(n => n.ToString())) + "\"",
-                                                               item.desired_s.ImmediateStringParam))));
+                                                               item.format.StringValue.ToQuotedChar(),
+                                                               "L\"" + cultures[item.locale.StringValue].NumberFormat.NumberGroupSeparator + "\"",
+                                                               "\"" + string.Concat(cultures[item.locale.StringValue].NumberFormat.NumberGroupSizes.Select(n => n.ToString())) + "\"",
+                                                               item.desired_s.StringValue.ToQuotedWideCharString()))));
 
         }
     }

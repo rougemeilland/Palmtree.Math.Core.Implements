@@ -15,7 +15,7 @@ namespace Palmtree.Math.TestPatternGen
         {
             _id = "PMC_ToStringX";
 
-            _format_spec_source = new[] { 0, 1 }
+            _format_spec_source = new[] { "x", "X" }
                                   .Zip(Enumerable.Range(1, int.MaxValue),
                                        (v, index) => new InputTestData(_id, v, index))
                                   .ToArray();
@@ -38,22 +38,21 @@ namespace Palmtree.Math.TestPatternGen
             var source = in_source
                 .SelectMany(item => _format_spec_source, (x, format) => new { x, format })
                 .SelectMany(item => _min_width_source, (item, width) => new { item.x, item.format, width })
-                .Select(item => new
+                .Select(item =>
                 {
-                    item.x,
-                    item.format,
-                    item.width,
-                    desired_s = new OutputTestData(_id,
-                                                    item.x, item.format, item.width,
-                                                    (x, format, width) => true,
-                                                    (x, format, width) => false,
-                                                    (x, format, width) =>
-                                                    {
-                                                        var s = x.ToString((format == 0 ? "x" : "X") + width.ToString());
-                                                        while (s.Length > 1 && s.Length > width && s.StartsWith("0"))
-                                                            s = s.Substring(1);
-                                                        return (s);
-                                                    })
+                    var format = item.format.StringValue;
+                    if (item.width.IntegerValue != 0)
+                        format = format + item.width.IntegerValue.ToString();
+                    var s = item.x.BigIntegerValue.ToString(format);
+                    while (s.Length > 1 && s.Length > item.width.IntegerValue && s.StartsWith("0"))
+                        s = s.Substring(1);
+                    return (new
+                    {
+                        item.x,
+                        item.format,
+                        item.width,
+                        desired_s = new OutputTestData(_id, new[] { item.x, item.format, item.width }, false, false, s),
+                    });
                 });
             return (source
                     .Zip(Enumerable.Range(1, int.MaxValue),
@@ -63,7 +62,11 @@ namespace Palmtree.Math.TestPatternGen
                                                  new[] { item.x, item.format, item.width },
                                                  new[] { item.desired_s },
                                                  string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4}, {5});",
-                                                               _id, item.index, item.x.BufferParam, item.format.value == 0 ? "'x'" : "'X'", item.width.ImmediateDecParam, item.desired_s.ImmediateStringParam))));
+                                                               _id, item.index,
+                                                               item.x.BufferParam,
+                                                               item.format.StringValue.ToQuotedChar(),
+                                                               item.width.IntegerValue,
+                                                               item.desired_s.StringValue.ToQuotedWideCharString()))));
 
         }
     }

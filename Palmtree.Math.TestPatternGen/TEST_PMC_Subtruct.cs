@@ -36,37 +36,50 @@ namespace Palmtree.Math.TestPatternGen
                 {
                     item.u,
                     item.v,
-                    desired_w = new OutputTestData(_id, item.u, item.v, (u, v) => u >= v, (u, v) => u >= v, (u, v) => u - v),
+                    desired_status = new OutputTestData(_id, new[] { item.u, item.v }, false, true, item.u.BigIntegerValue >= item.v.BigIntegerValue ? PMC_STATUS_CODE.PMC_STATUS_OK : PMC_STATUS_CODE.PMC_STATUS_OVERFLOW),
+                    desired_w = new OutputTestData(_id, new[] { item.u, item.v }, item.u.BigIntegerValue >= item.v.BigIntegerValue, item.u.BigIntegerValue >= item.v.BigIntegerValue, item.u.BigIntegerValue - item.v.BigIntegerValue),
                 });
             return (source
-                    .Where(item => item.v.value <= UInt32.MaxValue)
+                    .Where(item => item.v.BigIntegerValue <= UInt32.MaxValue)
                     .Zip(Enumerable.Range(1, int.MaxValue),
-                         (item, index) => new { index, item.u, item.v, item.desired_w })
+                         (item, index) => new { index, item.u, item.v, item.desired_status, item.desired_w })
                     .Select(item => new TestTerm(_id_i,
                                                  item.index,
                                                  new[] { item.u, item.v },
                                                  new[] { item.desired_w },
                                                  string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4}, {5});",
-                                                               _id_i, item.index, item.u.BufferParam, item.v.ImmediateHex32Param, item.desired_w.enabled_value ? "PMC_STATUS_OK" : "PMC_STATUS_OVERFLOW", item.desired_w.BufferParam)))
+                                                               _id_i, item.index,
+                                                               item.u.BufferParam,
+                                                               item.v.BigIntegerValue.ToImmediateHex32String(),
+                                                               item.desired_status.PMC_STATUS_CODEValue,
+                                                               item.desired_w.BufferParam)))
                  .Concat(source
-                         .Where(item => item.v.value <= UInt64.MaxValue)
+                         .Where(item => item.v.BigIntegerValue <= UInt64.MaxValue)
                          .Zip(Enumerable.Range(1, int.MaxValue),
-                              (item, index) => new { index, item.u, item.v, item.desired_w })
+                              (item, index) => new { index, item.u, item.v, item.desired_status, item.desired_w })
                          .Select(item => new TestTerm(_id_l,
                                                       item.index,
                                                       new[] { item.u, item.v },
                                                       new[] { item.desired_w },
                                                       string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4}, {5});",
-                                                                    _id_l, item.index, item.u.BufferParam, item.v.ImmediateHex64Param, item.desired_w.enabled_value ? "PMC_STATUS_OK" : "PMC_STATUS_OVERFLOW", item.desired_w.BufferParam))))
+                                                                    _id_l, item.index,
+                                                                    item.u.BufferParam,
+                                                                    item.v.BigIntegerValue.ToImmediateHex64String(),
+                                                                    item.desired_status.PMC_STATUS_CODEValue,
+                                                                    item.desired_w.BufferParam))))
                  .Concat(source
                          .Zip(Enumerable.Range(1, int.MaxValue),
-                              (item, index) => new { index, item.u, item.v, item.desired_w })
+                              (item, index) => new { index, item.u, item.v, item.desired_status, item.desired_w })
                          .Select(item => new TestTerm(_id_x,
                                                       item.index,
                                                       new[] { item.u, item.v },
                                                       new[] { item.desired_w },
                                                       string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4}, {5});",
-                                                                    _id_x, item.index, item.u.BufferParam, item.v.BufferParam, item.desired_w.enabled_value ? "PMC_STATUS_OK" : "PMC_STATUS_OVERFLOW", item.desired_w.BufferParam)))));
+                                                                    _id_x, item.index,
+                                                                    item.u.BufferParam,
+                                                                    item.v.BufferParam,
+                                                                    item.desired_status.PMC_STATUS_CODEValue,
+                                                                    item.desired_w.BufferParam)))));
         }
     }
 }

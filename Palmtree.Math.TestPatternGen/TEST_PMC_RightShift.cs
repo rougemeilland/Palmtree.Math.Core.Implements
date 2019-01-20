@@ -40,10 +40,9 @@ namespace Palmtree.Math.TestPatternGen
                 {
                     item.u,
                     item.v,
-                    desired_w = new OutputTestData(_id, item.u, item.v, (u, v) => u >> (int)v),
+                    desired_w = new OutputTestData(_id, new[] { item.u, item.v }, true, true, item.u.BigIntegerValue >> item.v.IntegerValue),
                 });
             return (source
-                    .Where(item => item.v.value <= UInt32.MaxValue)
                     .Zip(Enumerable.Range(1, int.MaxValue),
                          (item, index) => new { index, item.u, item.v, item.desired_w })
                     .Select(item => new TestTerm(_id_i,
@@ -51,9 +50,11 @@ namespace Palmtree.Math.TestPatternGen
                                                  new[] { item.u, item.v },
                                                  new[] { item.desired_w },
                                                  string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4});",
-                                                               _id_i, item.index, item.u.BufferParam, item.v.ImmediateHex32Param, item.desired_w.BufferParam)))
+                                                               _id_i, item.index,
+                                                               item.u.BufferParam,
+                                                               item.v.IntegerValue,
+                                                               item.desired_w.BufferParam)))
                  .Concat(source
-                         .Where(item => item.v.value <= UInt64.MaxValue)
                          .Zip(Enumerable.Range(1, int.MaxValue),
                               (item, index) => new { index, item.u, item.v, item.desired_w })
                          .Select(item => new TestTerm(_id_l,
@@ -61,7 +62,10 @@ namespace Palmtree.Math.TestPatternGen
                                                       new[] { item.u, item.v },
                                                       new[] { item.desired_w },
                                                       string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4});",
-                                                                    _id_l, item.index, item.u.BufferParam, item.v.ImmediateHex64Param, item.desired_w.BufferParam)))));
+                                                                    _id_l, item.index,
+                                                                    item.u.BufferParam,
+                                                                    item.v.IntegerValue,
+                                                                    item.desired_w.BufferParam)))));
         }
     }
 }

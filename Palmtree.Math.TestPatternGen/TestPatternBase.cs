@@ -70,15 +70,15 @@ namespace Palmtree.Math.TestPatternGen
         private static IEnumerable<string> RenderTestInputDataSource(string id, IEnumerable<InputTestData> source)
         {
             return (source
-                .Select(item => string.Format("static unsigned char {0}[] = {1}; // {2}", item.name, item.DumpParam, item.ImmediateDecParam)));
+                .Select(item => string.Format("static unsigned char {0}[] = {1}; // {2}", item.Name, item.BigIntegerValue.Dump(), item.BigIntegerValue.ToImmediateDecimalString())));
         }
 
         private static IEnumerable<string> RenderTestOutputData(string id, IEnumerable<OutputTestData> source)
         {
 
             return (source
-                    .Where(item => item.enabled_test_data)
-                    .Select(item => string.Format("static unsigned char {0}[] = {1}; // {2}", item.name, item.DumpParam, item.ImmediateDecParam)));
+                    .Where(item => item.IsAvailableAsTestData)
+                    .Select(item => string.Format("static unsigned char {0}[] = {1}; // {2}", item.Name, item.BigIntegerValue.Dump(), item.BigIntegerValue.ToImmediateDecimalString())));
         }
 
         /*
@@ -114,8 +114,8 @@ namespace Palmtree.Math.TestPatternGen
         IEnumerable<string> ITestPattern.RenderTestDataSource()
         {
             var terms = CreateTestTerms(CreateInputDataSource());
-            return (RenderTestInputDataSource(Id, terms.Select(term => term.inp).SelectMany(items => items).Where(item => item.enabled).Distinct().OrderBy(item => item))
-                    .Concat(RenderTestOutputData(Id, terms.Select(term => term.outp).SelectMany(items => items).Where(item => item.enabled_test_data).Distinct().OrderBy(item => item))));
+            return (RenderTestInputDataSource(Id, terms.Select(term => term.inp).SelectMany(items => items).Where(item => item.IsAvailableAsTestData).Distinct().OrderBy(item => item))
+                    .Concat(RenderTestOutputData(Id, terms.Select(term => term.outp).SelectMany(items => items).Where(item => item.IsAvailableAsTestData).Distinct().OrderBy(item => item))));
         }
     }
 }
