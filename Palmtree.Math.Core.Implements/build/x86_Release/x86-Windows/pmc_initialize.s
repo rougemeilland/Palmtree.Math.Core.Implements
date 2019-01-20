@@ -119,7 +119,7 @@ LFB5485:
 	movl	$_PMC_Equals_X_I@12, _entry_points+148
 	movl	$_PMC_Equals_X_L@16, _entry_points+152
 	movl	$_PMC_Equals_X_X@12, _entry_points+156
-	movl	$_PMC_ToString@20, _entry_points+160
+	movl	$_PMC_ToString@24, _entry_points+160
 	jmp	L1
 	.p2align 4,,10
 L4:
@@ -190,6 +190,6 @@ LFE5485:
 	.def	_PMC_Equals_X_I@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Equals_X_L@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Equals_X_X@12;	.scl	2;	.type	32;	.endef
-	.def	_PMC_ToString@20;	.scl	2;	.type	32;	.endef
+	.def	_PMC_ToString@24;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize@4\""

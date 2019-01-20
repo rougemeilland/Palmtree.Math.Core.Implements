@@ -38,7 +38,9 @@ struct TOSTRINGN_OUTPUT_STATE
 {
     char FORMAT;
     wchar_t GROUP_SEPARATOR[5];
+    wchar_t DECIMAL_SEPARATOR[5];
     int GROUP_SEPARATOR_LENGTH;
+    int DECIMAL_SEPARATOR_LENGTH;
     char* CURRENT_GROUP;
     int CURRENT_GROUP_SIZE;
     int CURRENT_GROUP_INDEX;
@@ -98,20 +100,45 @@ static PMC_STATUS_CODE ConvertCardinalNumber(__UNIT_TYPE_DIV* x_buf, __UNIT_TYPE
 static void InitializeOutputState(struct TOSTRINGN_OUTPUT_STATE* state, wchar_t* out_buf, char format, PMC_NUMBER_FORMAT_OPTION* format_option)
 {
     state->FORMAT = format;
+
     state->GROUP_SEPARATOR_LENGTH = lstrlenW(format_option->GroupSeparator);
-    wchar_t* in_ptr = format_option->GroupSeparator + state->GROUP_SEPARATOR_LENGTH - 1;
-    wchar_t* out_ptr = state->GROUP_SEPARATOR;
+    wchar_t* in_ptr = format_option->GroupSeparator;
+    wchar_t* out_ptr = state->GROUP_SEPARATOR + state->GROUP_SEPARATOR_LENGTH;
+    *out_ptr-- = '\0';
     while (*in_ptr != L'\0')
     {
         *out_ptr = *in_ptr;
-        ++out_ptr;
-        --in_ptr;
+        --out_ptr;
+        ++in_ptr;
     }
-    *out_ptr = L'\0';
+
+    state->DECIMAL_SEPARATOR_LENGTH = lstrlenW(format_option->DecimalSeparator);
+    in_ptr = format_option->DecimalSeparator;
+    out_ptr = state->DECIMAL_SEPARATOR + state->DECIMAL_SEPARATOR_LENGTH;
+    *out_ptr-- = '\0';
+    while (*in_ptr != L'\0')
+    {
+        *out_ptr = *in_ptr;
+        --out_ptr;
+        ++in_ptr;
+    }
+
     state->CURRENT_GROUP = &format_option->GroupSizes[0];
     state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
     state->CURRENT_GROUP_INDEX = 0;
     state->OUT_PTR = out_buf;
+}
+
+static void OutputDecimalSeparator(struct TOSTRINGN_OUTPUT_STATE* state)
+{
+    lstrcpyW(state->OUT_PTR, state->DECIMAL_SEPARATOR);
+    state->OUT_PTR += state->DECIMAL_SEPARATOR_LENGTH;
+}
+
+static void OutputUngroupedOneChar(struct TOSTRINGN_OUTPUT_STATE* state, __UNIT_TYPE_DIV x)
+{
+    *state->OUT_PTR = decimal_digits[x];
+    state->OUT_PTR += 1;
 }
 
 static void OutputOneChar(struct TOSTRINGN_OUTPUT_STATE* state, __UNIT_TYPE_DIV x)
@@ -202,10 +229,20 @@ static void ToStringDN_1WORD(struct TOSTRINGN_OUTPUT_STATE* state, __UNIT_TYPE_D
     }
 }
 
-static void PrintDecimal(__UNIT_TYPE_DIV* in_buf, __UNIT_TYPE in_buf_count, wchar_t* out_buf, __UNIT_TYPE* out_buf_count, char format, PMC_NUMBER_FORMAT_OPTION* format_option)
+static void PrintDecimal(__UNIT_TYPE_DIV* in_buf, __UNIT_TYPE in_buf_count, wchar_t* out_buf, __UNIT_TYPE* out_buf_count, char format, _UINT32_T width, PMC_NUMBER_FORMAT_OPTION* format_option)
 {
     struct TOSTRINGN_OUTPUT_STATE state;
     InitializeOutputState(&state, out_buf, format, format_option);
+    if (format == 'N' && width > 0)
+    {
+        _UINT32_T count = width;
+        while (count > 0)
+        {
+            OutputUngroupedOneChar(&state, 0);
+            --count;
+        }
+        OutputDecimalSeparator(&state);
+    }
     __UNIT_TYPE_DIV* in_ptr = in_buf;
     __UNIT_TYPE in_count = in_buf_count - 1;
     while (in_count != 0)
@@ -217,14 +254,16 @@ static void PrintDecimal(__UNIT_TYPE_DIV* in_buf, __UNIT_TYPE in_buf_count, wcha
     ToStringDN_LEADING_1WORD(&state, *in_ptr);
     ++in_ptr;
     --in_count;
-    int min_width = format_option->MinimumWidth;
-    if (state.OUT_PTR - out_buf < min_width)
+    if (format == 'D')
     {
-        int count = min_width - (int)(state.OUT_PTR - out_buf);
-        while (count > 0)
+        if (state.OUT_PTR < out_buf + width)
         {
-            OutputOneChar(&state, 0);
-            --count;
+            int count = width - (int)(state.OUT_PTR - out_buf);
+            while (count > 0)
+            {
+                OutputOneChar(&state, 0);
+                --count;
+            }
         }
     }
     *out_buf_count = state.OUT_PTR - out_buf;
@@ -245,7 +284,7 @@ static void ToStringDN_Finalize(wchar_t* in_buf, __UNIT_TYPE in_buf_count, wchar
     *out_ptr = L'\0';
 }
 
-static PMC_STATUS_CODE ToStringDN(NUMBER_HEADER* x, wchar_t* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option)
+static PMC_STATUS_CODE ToStringDN(NUMBER_HEADER* x, wchar_t* buffer, size_t buffer_size, char format, _UINT32_T width, PMC_NUMBER_FORMAT_OPTION* format_option)
 {
     __UNIT_TYPE_DIV base_value;
     int word_digit_count;
@@ -265,15 +304,34 @@ static PMC_STATUS_CODE ToStringDN(NUMBER_HEADER* x, wchar_t* buffer, size_t buff
     if (x->IS_ZERO)
     {
         // x が 0 である場合
-        // 最低で 1 桁、最高で format_option->MinimumWidth 桁だけ '0' を出力する。
+        if (format == 'N')
+        {
+            // format が 'N' である場合
 
-        size_t width = format_option->MinimumWidth;
-        if (width < 1)
-            width = 1;
-        if (buffer_size < width + 1)
-            return (PMC_STATUS_INSUFFICIENT_BUFFER);
-        _FILL_MEMORY_16(buffer, L'0', width);
-        buffer[width] = L'\0';
+            // 整数部が 1 桁の 0、小数部が width 桁の 0 である文字列を出力する。
+            buffer[0] = '0';
+            if (width == 0)
+                buffer[1] = L'\0';
+            else
+            {
+                lstrcpyW(&buffer[1], format_option->DecimalSeparator);
+                int decimal_separator_len = lstrlenW(format_option->DecimalSeparator);
+                _FILL_MEMORY_16(buffer + 1 + decimal_separator_len, L'0', width);
+                buffer[1 + decimal_separator_len + width] = L'\0';
+            }
+        }
+        else
+        {
+            // format が 'D' である場合
+
+            // 最低で 1 桁、最高で width 桁だけ '0' を出力する。
+            if (width < 1)
+                width = 1;
+            if (buffer_size < width + 1)
+                return (PMC_STATUS_INSUFFICIENT_BUFFER);
+            _FILL_MEMORY_16(buffer, L'0', width);
+            buffer[width] = L'\0';
+        }
     }
     else
     {
@@ -297,14 +355,14 @@ static PMC_STATUS_CODE ToStringDN(NUMBER_HEADER* x, wchar_t* buffer, size_t buff
         __UNIT_TYPE rev_str_buf_code;
         __UNIT_TYPE rev_str_buf_words;
         // 獲得領域長の * 2 は、桁区切りのワーストケースにより文字列が膨らんだ場合を考慮したもの。
-        wchar_t* rev_str_buf = (wchar_t*)AllocateBlock((max(r_buf_count * word_digit_count, format_option->MinimumWidth) * 2 + 1) * sizeof(wchar_t) * 8, &rev_str_buf_words, &rev_str_buf_code);
+        wchar_t* rev_str_buf = (wchar_t*)AllocateBlock((max(r_buf_count * word_digit_count, width) * 2 + width + 2) * sizeof(wchar_t) * 8, &rev_str_buf_words, &rev_str_buf_code);
         if (r_buf == NULL)
         {
             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
         }
         __UNIT_TYPE rev_str_buf_count;
-        PrintDecimal(r_buf, r_buf_count, rev_str_buf, &rev_str_buf_count, format, format_option);
+        PrintDecimal(r_buf, r_buf_count, rev_str_buf, &rev_str_buf_count, format, width, format_option);
         if ((result = CheckBlockLight((__UNIT_TYPE*)rev_str_buf, rev_str_buf_code)) != PMC_STATUS_OK)
             return (result);
         DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
@@ -387,14 +445,13 @@ __inline static wchar_t* ToStringX_1WORD(__UNIT_TYPE x, int skip_digit_len, wcha
     return (ptr);
 }
 
-static PMC_STATUS_CODE ToStringX(NUMBER_HEADER* x, wchar_t* buffer, size_t buffer_size, PMC_NUMBER_FORMAT_OPTION* format_option, int using_upper_letter)
+static PMC_STATUS_CODE ToStringX(NUMBER_HEADER* x, wchar_t* buffer, size_t buffer_size, _UINT32_T width, PMC_NUMBER_FORMAT_OPTION* format_option, int using_upper_letter)
 {
     if (x->IS_ZERO)
     {
         // x が 0 である場合
         // 最低で 1 桁、最高で format_option->MinimumWidth 桁だけ '0' を出力する。
 
-        size_t width = format_option->MinimumWidth;
         if (width < 1)
             width = 1;
         if (buffer_size < width + 1)
@@ -408,10 +465,10 @@ static PMC_STATUS_CODE ToStringX(NUMBER_HEADER* x, wchar_t* buffer, size_t buffe
         __UNIT_TYPE output_len = _DIVIDE_CEILING_UNIT(x->UNIT_BIT_COUNT, 4);
         __UNIT_TYPE filling_digit_len;;
         __UNIT_TYPE total_length;
-        if (output_len < format_option->MinimumWidth)
+        if (output_len < width)
         {
-            filling_digit_len = format_option->MinimumWidth - output_len;
-            total_length = format_option->MinimumWidth;
+            filling_digit_len = width - output_len;
+            total_length = width;
         }
         else
         {
@@ -441,7 +498,7 @@ static PMC_STATUS_CODE ToStringX(NUMBER_HEADER* x, wchar_t* buffer, size_t buffe
     return (PMC_STATUS_OK);
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option)
+PMC_STATUS_CODE __PMC_CALL PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option)
 {
     if (x == NULL)
         return (PMC_STATUS_ARGUMENT_ERROR);
@@ -457,14 +514,14 @@ PMC_STATUS_CODE __PMC_CALL PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer
     {
     case 'n':
     case 'N':
-        return (ToStringDN(nx, buffer, buffer_size, 'N', format_option));
+        return (ToStringDN(nx, buffer, buffer_size, 'N', width >= 0 ? width : format_option->DecimalDigits, format_option));
     case 'x':
-        return (ToStringX(nx, buffer, buffer_size, format_option, 0));
+        return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 0));
     case 'X':
-        return (ToStringX(nx, buffer, buffer_size, format_option, 1));
+        return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 1));
     case 'd':
     case 'D':
-        return (ToStringDN(nx, buffer, buffer_size, 'D', format_option));
+        return (ToStringDN(nx, buffer, buffer_size, 'D', width >= 0 ? width : 0, format_option));
     default:
         return (PMC_STATUS_ARGUMENT_ERROR);
     }
@@ -472,9 +529,10 @@ PMC_STATUS_CODE __PMC_CALL PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer
 
 PMC_STATUS_CODE Initialize_ToString(PROCESSOR_FEATURES *feature)
 {
+    default_number_format_option.DecimalDigits = 2;
     lstrcpyW(default_number_format_option.GroupSeparator, L",");
+    lstrcpyW(default_number_format_option.DecimalSeparator, L".");
     lstrcpy(default_number_format_option.GroupSizes, "3");
-    default_number_format_option.MinimumWidth = 0;
 
     return (PMC_STATUS_OK);
 }

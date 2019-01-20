@@ -19,7 +19,7 @@ namespace Palmtree.Math.TestPatternGen
                                   .Zip(Enumerable.Range(1, int.MaxValue),
                                        (v, index) => new InputTestData(_id, v, index))
                                   .ToArray();
-            _min_width_source = new[] { 0, 1, 15, 16, 17, 31, 32, 33, 63, 64, 65 }
+            _min_width_source = new[] { -1, 0, 1, 15, 16, 17, 31, 32, 33, 63, 64, 65 }
                                 .Zip(Enumerable.Range(1, int.MaxValue),
                                      (v, index) => new InputTestData(_id, v, index))
                                 .ToArray();
@@ -41,7 +41,7 @@ namespace Palmtree.Math.TestPatternGen
                 .Select(item =>
                 {
                     var format = item.format.StringValue;
-                    if (item.width.IntegerValue != 0)
+                    if (item.width.IntegerValue >= 0)
                         format = format + item.width.IntegerValue.ToString();
                     var s = item.x.BigIntegerValue.ToString(format);
                     while (s.Length > 1 && s.Length > item.width.IntegerValue && s.StartsWith("0"))

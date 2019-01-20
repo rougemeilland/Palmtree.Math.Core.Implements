@@ -100,8 +100,9 @@ typedef struct __tag_PMC_STATISTICS_INFO
 
 typedef struct __tag_PMC_NUMBER_FORMAT_OPTION
 {
-    _UINT32_T   MinimumWidth;           // 書式 D および X の場合に最小表示桁数と解釈され、実際の表示桁数が最小表示桁数を下回っている場合は上位桁を '0' で埋める。既定値は 0。
+    int         DecimalDigits;          // 書式 N の場合に数値の小数点以下の既定の桁数として解釈される。既定値は 2。
     wchar_t     GroupSeparator[5];      // 書式 N の場合に数値をグループで区切る場合の区切り文字と解釈される。既定値は ","。
+    wchar_t     DecimalSeparator[5];    // 書式 N の場合に数値の整数部と小数部との区切り文字と解釈される。既定値は "."。
     char        GroupSizes[11];         // 書式 N の場合に数値をグループで区切る場合のグループの大きさを示す文字の集合と解釈される。既定値は "3"。
 } PMC_NUMBER_FORMAT_OPTION;
 
@@ -188,7 +189,7 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__PMC_CALL * PMC_Equals_X_X)(HANDLE u, HANDLE v, _INT32_T* w);
 
     // 文字列化
-    PMC_STATUS_CODE(__PMC_CALL * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, PMC_NUMBER_FORMAT_OPTION* format_option);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
 } PMC_ENTRY_POINTS;
 #pragma endregion
