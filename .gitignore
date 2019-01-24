@@ -12,9 +12,9 @@
 
 # Build results
 #vs_build/
-vs_dist/
+#vs_dist/
 #build/
-dist/
+#dist/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -29,6 +29,14 @@ bld/
 *.o.d
 *.tlog/
 *.idb
+*.dll
+*.exe
+*.exp
+*.lib
+*.iobj
+*.ipdb
+*.lastcodeanalysissucceeded
+palmtree.idebug
 
 # Visual Studio 2015 cache/options directory
 .vs/

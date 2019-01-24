@@ -67,6 +67,7 @@ namespace Palmtree.Math.TestPatternGen
                         writer.WriteLine("#include \"pmc_debug.h\"");
                         writer.WriteLine("");
                         writer.WriteLine("");
+                        writer.WriteLine("#ifdef _DEBUG");
                         foreach (var plugin in plugins)
                             writer.WriteLine(string.Join("\n", plugin.RenderTestDataSource()));
                         writer.WriteLine("");
@@ -75,6 +76,7 @@ namespace Palmtree.Math.TestPatternGen
                         foreach (var plugin in plugins)
                             writer.WriteLine("    " + string.Join("\n    ", plugin.RenderTestCode()));
                         writer.WriteLine("}");
+                        writer.WriteLine("#endif");
                         writer.WriteLine("");
                         writer.WriteLine("");
                         writer.WriteLine("/*");

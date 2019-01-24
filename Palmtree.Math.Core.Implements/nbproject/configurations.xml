@@ -95,7 +95,7 @@
             <linkerOptionItem>-lkernel32</linkerOptionItem>
             <linkerOptionItem>-luser32</linkerOptionItem>
           </linkerLibItems>
-          <commandLine>-mwindows -nostdlib -Wl,-eDllMain</commandLine>
+          <commandLine>-mwindows -nostdlib -Wl,-eDllMain -Wl,-Map=Palmtree.Math.Core.Implements.map</commandLine>
         </linkerTool>
       </compileType>
       <item path="CALC_divrem_critical.c" ex="false" tool="0" flavor2="0">
@@ -223,7 +223,7 @@
             <linkerOptionItem>-lkernel32</linkerOptionItem>
             <linkerOptionItem>-luser32</linkerOptionItem>
           </linkerLibItems>
-          <commandLine>-mwindows -nostdlib -Wl,-eDllMain</commandLine>
+          <commandLine>-mwindows -nostdlib -Wl,-eDllMain -Wl,-Map=Palmtree.Math.Core.Implements.map</commandLine>
         </linkerTool>
       </compileType>
       <item path="CALC_divrem_critical.c" ex="false" tool="0" flavor2="0">
@@ -344,7 +344,7 @@
             <linkerOptionItem>-lkernel32</linkerOptionItem>
             <linkerOptionItem>-luser32</linkerOptionItem>
           </linkerLibItems>
-          <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@12</commandLine>
+          <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@12 -Wl,-Map=Palmtree.Math.Core.Implements.map</commandLine>
         </linkerTool>
       </compileType>
       <item path="CALC_divrem_critical.c" ex="false" tool="0" flavor2="0">
@@ -473,7 +473,7 @@
             <linkerOptionItem>-lkernel32</linkerOptionItem>
             <linkerOptionItem>-luser32</linkerOptionItem>
           </linkerLibItems>
-          <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@12</commandLine>
+          <commandLine>-mwindows -nostdlib -Wl,-e_DllMain@12 -Wl,-Map=Palmtree.Math.Core.Implements.map</commandLine>
         </linkerTool>
       </compileType>
       <item path="CALC_divrem_critical.c" ex="false" tool="0" flavor2="0">
