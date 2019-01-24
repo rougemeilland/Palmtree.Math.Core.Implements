@@ -35,6 +35,7 @@
 #include "pmc_debug.h"
 
 
+#ifdef _DEBUG
 void TEST_PMC_From_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 v, unsigned char*buf, size_t buf_size)
 {
     HANDLE x;
@@ -90,6 +91,7 @@ void TEST_PMC_To_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, u
     if (x_result == PMC_STATUS_OK)
         ep->PMC_Dispose(x);
 }
+#endif
 
 
 /*

@@ -155,32 +155,32 @@ _buffer2$ = 16						; size = 4
 _count2$ = 20						; size = 4
 __EQUALS_MEMORY PROC
 
-; 102  : {
+; 105  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __1C66ECB2_pmc_debug@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 103  :     if (count1 != count2)
+; 106  :     if (count1 != count2)
 
 	mov	eax, DWORD PTR _count1$[ebp]
 	cmp	eax, DWORD PTR _count2$[ebp]
 	je	SHORT $LN2@EQUALS_MEM
 
-; 104  :         return (-1);
+; 107  :         return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN2@EQUALS_MEM:
 
-; 105  :     while (count1 > 0)
+; 108  :     while (count1 > 0)
 
 	cmp	DWORD PTR _count1$[ebp], 0
 	jbe	SHORT $LN3@EQUALS_MEM
 
-; 106  :     {
-; 107  :         if (*buffer1 != *buffer2)
+; 109  :     {
+; 110  :         if (*buffer1 != *buffer2)
 
 	mov	ecx, DWORD PTR _buffer1$[ebp]
 	movzx	edx, BYTE PTR [ecx]
@@ -189,41 +189,41 @@ $LN2@EQUALS_MEM:
 	cmp	edx, ecx
 	je	SHORT $LN5@EQUALS_MEM
 
-; 108  :             return (-1);
+; 111  :             return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN5@EQUALS_MEM:
 
-; 109  :         ++buffer1;
+; 112  :         ++buffer1;
 
 	mov	edx, DWORD PTR _buffer1$[ebp]
 	add	edx, 1
 	mov	DWORD PTR _buffer1$[ebp], edx
 
-; 110  :         ++buffer2;
+; 113  :         ++buffer2;
 
 	mov	eax, DWORD PTR _buffer2$[ebp]
 	add	eax, 1
 	mov	DWORD PTR _buffer2$[ebp], eax
 
-; 111  :         --count1;
+; 114  :         --count1;
 
 	mov	ecx, DWORD PTR _count1$[ebp]
 	sub	ecx, 1
 	mov	DWORD PTR _count1$[ebp], ecx
 
-; 112  :     }
+; 115  :     }
 
 	jmp	SHORT $LN2@EQUALS_MEM
 $LN3@EQUALS_MEM:
 
-; 113  :     return (0);
+; 116  :     return (0);
 
 	xor	eax, eax
 $LN1@EQUALS_MEM:
 
-; 114  : }
+; 117  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -260,7 +260,7 @@ _desired_z_buf$ = 36					; size = 4
 _desired_z_buf_size$ = 40				; size = 4
 _TEST_PMC_Multiply_X_X PROC
 
-; 77   : {
+; 78   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -277,16 +277,16 @@ _TEST_PMC_Multiply_X_X PROC
 	mov	ecx, OFFSET __85D345C4_test_op_multiply@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 78   :     HANDLE x;
-; 79   :     HANDLE y;
-; 80   :     HANDLE z;
-; 81   :     unsigned char actual_z_buf[256];
-; 82   :     size_t actual_z_buf_size;
-; 83   :     PMC_STATUS_CODE result;
-; 84   :     PMC_STATUS_CODE x_result;
-; 85   :     PMC_STATUS_CODE y_result;
-; 86   :     PMC_STATUS_CODE z_result;
-; 87   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 79   :     HANDLE x;
+; 80   :     HANDLE y;
+; 81   :     HANDLE z;
+; 82   :     unsigned char actual_z_buf[256];
+; 83   :     size_t actual_z_buf_size;
+; 84   :     PMC_STATUS_CODE result;
+; 85   :     PMC_STATUS_CODE x_result;
+; 86   :     PMC_STATUS_CODE y_result;
+; 87   :     PMC_STATUS_CODE z_result;
+; 88   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -328,7 +328,7 @@ $LN7@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 88   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", y_result));
+; 89   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", y_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _y$[ebp]
@@ -370,7 +370,7 @@ $LN9@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 89   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 3), (z_result = ep->PMC_Multiply_X_X(x, y, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_X_Xの復帰コードが期待通りではない(%d)", z_result));
+; 90   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 3), (z_result = ep->PMC_Multiply_X_X(x, y, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_X_Xの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -412,7 +412,7 @@ $LN11@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 90   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 91   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _actual_z_buf_size$[ebp]
@@ -455,7 +455,7 @@ $LN13@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 91   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 92   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	eax, DWORD PTR _desired_z_buf_size$[ebp]
 	push	eax
@@ -489,12 +489,12 @@ $LN15@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 92   :     if (z_result == PMC_STATUS_OK)
+; 93   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _z_result$[ebp], 0
 	jne	SHORT $LN2@TEST_PMC_M
 
-; 93   :         ep->PMC_Dispose(z);
+; 94   :         ep->PMC_Dispose(z);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _z$[ebp]
@@ -506,12 +506,12 @@ $LN15@TEST_PMC_M:
 	call	__RTC_CheckEsp
 $LN2@TEST_PMC_M:
 
-; 94   :     if (y_result == PMC_STATUS_OK)
+; 95   :     if (y_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _y_result$[ebp], 0
 	jne	SHORT $LN3@TEST_PMC_M
 
-; 95   :         ep->PMC_Dispose(y);
+; 96   :         ep->PMC_Dispose(y);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _y$[ebp]
@@ -523,12 +523,12 @@ $LN2@TEST_PMC_M:
 	call	__RTC_CheckEsp
 $LN3@TEST_PMC_M:
 
-; 96   :     if (x_result == PMC_STATUS_OK)
+; 97   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_M
 
-; 97   :         ep->PMC_Dispose(x);
+; 98   :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _x$[ebp]
@@ -540,7 +540,7 @@ $LN3@TEST_PMC_M:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_M:
 
-; 98   : }
+; 99   : }
 
 	push	edx
 	mov	ecx, ebp
@@ -648,7 +648,7 @@ _desired_z_buf$ = 36					; size = 4
 _desired_z_buf_size$ = 40				; size = 4
 _TEST_PMC_Multiply_X_L PROC
 
-; 58   : {
+; 59   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -665,14 +665,14 @@ _TEST_PMC_Multiply_X_L PROC
 	mov	ecx, OFFSET __85D345C4_test_op_multiply@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 59   :     HANDLE x;
-; 60   :     HANDLE z;
-; 61   :     unsigned char actual_z_buf[256];
-; 62   :     size_t actual_z_buf_size;
-; 63   :     PMC_STATUS_CODE result;
-; 64   :     PMC_STATUS_CODE x_result;
-; 65   :     PMC_STATUS_CODE z_result;
-; 66   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 60   :     HANDLE x;
+; 61   :     HANDLE z;
+; 62   :     unsigned char actual_z_buf[256];
+; 63   :     size_t actual_z_buf_size;
+; 64   :     PMC_STATUS_CODE result;
+; 65   :     PMC_STATUS_CODE x_result;
+; 66   :     PMC_STATUS_CODE z_result;
+; 67   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -714,7 +714,7 @@ $LN6@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 67   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 2), (z_result = ep->PMC_Multiply_X_L(x, y, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_X_Lの復帰コードが期待通りではない(%d)", z_result));
+; 68   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 2), (z_result = ep->PMC_Multiply_X_L(x, y, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_X_Lの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -758,7 +758,7 @@ $LN8@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 68   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 69   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -801,7 +801,7 @@ $LN10@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 69   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 70   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	ecx
@@ -835,12 +835,12 @@ $LN12@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 70   :     if (z_result == PMC_STATUS_OK)
+; 71   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _z_result$[ebp], 0
 	jne	SHORT $LN2@TEST_PMC_M
 
-; 71   :         ep->PMC_Dispose(z);
+; 72   :         ep->PMC_Dispose(z);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _z$[ebp]
@@ -852,12 +852,12 @@ $LN12@TEST_PMC_M:
 	call	__RTC_CheckEsp
 $LN2@TEST_PMC_M:
 
-; 72   :     if (x_result == PMC_STATUS_OK)
+; 73   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_M
 
-; 73   :         ep->PMC_Dispose(x);
+; 74   :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _x$[ebp]
@@ -869,7 +869,7 @@ $LN2@TEST_PMC_M:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_M:
 
-; 74   : }
+; 75   : }
 
 	push	edx
 	mov	ecx, ebp
@@ -971,7 +971,7 @@ _desired_z_buf$ = 32					; size = 4
 _desired_z_buf_size$ = 36				; size = 4
 _TEST_PMC_Multiply_X_I PROC
 
-; 39   : {
+; 40   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -988,14 +988,14 @@ _TEST_PMC_Multiply_X_I PROC
 	mov	ecx, OFFSET __85D345C4_test_op_multiply@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 40   :     HANDLE x;
-; 41   :     HANDLE z;
-; 42   :     unsigned char actual_z_buf[256];
-; 43   :     size_t actual_z_buf_size;
-; 44   :     PMC_STATUS_CODE result;
-; 45   :     PMC_STATUS_CODE x_result;
-; 46   :     PMC_STATUS_CODE z_result;
-; 47   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 41   :     HANDLE x;
+; 42   :     HANDLE z;
+; 43   :     unsigned char actual_z_buf[256];
+; 44   :     size_t actual_z_buf_size;
+; 45   :     PMC_STATUS_CODE result;
+; 46   :     PMC_STATUS_CODE x_result;
+; 47   :     PMC_STATUS_CODE z_result;
+; 48   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -1037,7 +1037,7 @@ $LN6@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 48   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 2), (z_result = ep->PMC_Multiply_X_I(x, y, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_X_Iの復帰コードが期待通りではない(%d)", z_result));
+; 49   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 2), (z_result = ep->PMC_Multiply_X_I(x, y, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_X_Iの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -1079,7 +1079,7 @@ $LN8@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 49   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 50   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _actual_z_buf_size$[ebp]
@@ -1122,7 +1122,7 @@ $LN10@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 50   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 51   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	eax, DWORD PTR _desired_z_buf_size$[ebp]
 	push	eax
@@ -1156,12 +1156,12 @@ $LN12@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 51   :     if (z_result == PMC_STATUS_OK)
+; 52   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _z_result$[ebp], 0
 	jne	SHORT $LN2@TEST_PMC_M
 
-; 52   :         ep->PMC_Dispose(z);
+; 53   :         ep->PMC_Dispose(z);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _z$[ebp]
@@ -1173,12 +1173,12 @@ $LN12@TEST_PMC_M:
 	call	__RTC_CheckEsp
 $LN2@TEST_PMC_M:
 
-; 53   :     if (x_result == PMC_STATUS_OK)
+; 54   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_M
 
-; 54   :         ep->PMC_Dispose(x);
+; 55   :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _x$[ebp]
@@ -1190,7 +1190,7 @@ $LN2@TEST_PMC_M:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_M:
 
-; 55   : }
+; 56   : }
 
 	push	edx
 	mov	ecx, ebp

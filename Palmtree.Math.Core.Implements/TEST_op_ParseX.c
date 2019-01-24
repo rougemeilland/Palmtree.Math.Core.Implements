@@ -35,6 +35,7 @@
 #include "pmc_debug.h"
 
 
+#ifdef _DEBUG
 void TEST_PMC_ParseX(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, wchar_t* str, unsigned int styles, PMC_STATUS_CODE desired_result_code, unsigned char* desired_buf, size_t desired_buf_size)
 {
     HANDLE x;
@@ -58,6 +59,7 @@ void TEST_PMC_ParseX(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, w
     if (x_result == PMC_STATUS_OK)
         ep->PMC_Dispose(x);
 }
+#endif
 
 
 /*

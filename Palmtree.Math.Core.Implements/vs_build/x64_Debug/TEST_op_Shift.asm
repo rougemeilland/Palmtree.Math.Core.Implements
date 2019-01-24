@@ -452,7 +452,7 @@ buffer2$ = 240
 count2$ = 248
 _EQUALS_MEMORY PROC					; COMDAT
 
-; 102  : {
+; 105  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -470,26 +470,26 @@ _EQUALS_MEMORY PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__1C66ECB2_pmc_debug@h
 	call	__CheckForDebuggerJustMyCode
 
-; 103  :     if (count1 != count2)
+; 106  :     if (count1 != count2)
 
 	mov	rax, QWORD PTR count2$[rbp]
 	cmp	QWORD PTR count1$[rbp], rax
 	je	SHORT $LN4@EQUALS_MEM
 
-; 104  :         return (-1);
+; 107  :         return (-1);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN4@EQUALS_MEM:
 $LN2@EQUALS_MEM:
 
-; 105  :     while (count1 > 0)
+; 108  :     while (count1 > 0)
 
 	cmp	QWORD PTR count1$[rbp], 0
 	jbe	SHORT $LN3@EQUALS_MEM
 
-; 106  :     {
-; 107  :         if (*buffer1 != *buffer2)
+; 109  :     {
+; 110  :         if (*buffer1 != *buffer2)
 
 	mov	rax, QWORD PTR buffer1$[rbp]
 	movzx	eax, BYTE PTR [rax]
@@ -498,41 +498,41 @@ $LN2@EQUALS_MEM:
 	cmp	eax, ecx
 	je	SHORT $LN5@EQUALS_MEM
 
-; 108  :             return (-1);
+; 111  :             return (-1);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN5@EQUALS_MEM:
 
-; 109  :         ++buffer1;
+; 112  :         ++buffer1;
 
 	mov	rax, QWORD PTR buffer1$[rbp]
 	inc	rax
 	mov	QWORD PTR buffer1$[rbp], rax
 
-; 110  :         ++buffer2;
+; 113  :         ++buffer2;
 
 	mov	rax, QWORD PTR buffer2$[rbp]
 	inc	rax
 	mov	QWORD PTR buffer2$[rbp], rax
 
-; 111  :         --count1;
+; 114  :         --count1;
 
 	mov	rax, QWORD PTR count1$[rbp]
 	dec	rax
 	mov	QWORD PTR count1$[rbp], rax
 
-; 112  :     }
+; 115  :     }
 
 	jmp	SHORT $LN2@EQUALS_MEM
 $LN3@EQUALS_MEM:
 
-; 113  :     return (0);
+; 116  :     return (0);
 
 	xor	eax, eax
 $LN1@EQUALS_MEM:
 
-; 114  : }
+; 117  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -569,7 +569,7 @@ desired_z_buf$ = 768
 desired_z_buf_size$ = 776
 TEST_PMC_LeftShift_X_L PROC				; COMDAT
 
-; 101  : {
+; 102  : {
 
 $LN14:
 	mov	QWORD PTR [rsp+32], r9
@@ -591,15 +591,15 @@ $LN14:
 	lea	rcx, OFFSET FLAT:__47B4FCBB_test_op_shift@c
 	call	__CheckForDebuggerJustMyCode
 
-; 102  : #ifdef _M_IX64
-; 103  :     HANDLE x;
-; 104  :     HANDLE z;
-; 105  :     unsigned char actual_z_buf[256];
-; 106  :     size_t actual_z_buf_size;
-; 107  :     PMC_STATUS_CODE result;
-; 108  :     PMC_STATUS_CODE x_result;
-; 109  :     PMC_STATUS_CODE z_result;
-; 110  :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 103  : #ifdef _M_IX64
+; 104  :     HANDLE x;
+; 105  :     HANDLE z;
+; 106  :     unsigned char actual_z_buf[256];
+; 107  :     size_t actual_z_buf_size;
+; 108  :     PMC_STATUS_CODE result;
+; 109  :     PMC_STATUS_CODE x_result;
+; 110  :     PMC_STATUS_CODE z_result;
+; 111  :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	lea	r8, QWORD PTR x$[rbp]
 	mov	rdx, QWORD PTR x_buf_size$[rbp]
@@ -629,7 +629,7 @@ $LN7@TEST_PMC_L:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 111  :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 2), (z_result = ep->PMC_LeftShift_X_L(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_LeftShift_X_Lの復帰コードが期待通りではない(%d)", z_result));
+; 112  :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 2), (z_result = ep->PMC_LeftShift_X_L(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_LeftShift_X_Lの復帰コードが期待通りではない(%d)", z_result));
 
 	lea	r8, QWORD PTR z$[rbp]
 	mov	rdx, QWORD PTR n$[rbp]
@@ -659,13 +659,13 @@ $LN9@TEST_PMC_L:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 112  :     if (z_result == PMC_STATUS_OK)
+; 113  :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR z_result$[rbp], 0
 	jne	$LN2@TEST_PMC_L
 
-; 113  :     {
-; 114  :         TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 114  :     {
+; 115  :         TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	lea	r9, QWORD PTR actual_z_buf_size$[rbp]
 	mov	r8d, 256				; 00000100H
@@ -696,7 +696,7 @@ $LN11@TEST_PMC_L:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 115  :         TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 116  :         TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_z_buf_size$[rbp]
 	mov	r8, QWORD PTR desired_z_buf$[rbp]
@@ -721,33 +721,33 @@ $LN13@TEST_PMC_L:
 	call	TEST_Assert
 $LN2@TEST_PMC_L:
 
-; 116  :     }
-; 117  :     if (z_result == PMC_STATUS_OK)
+; 117  :     }
+; 118  :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR z_result$[rbp], 0
 	jne	SHORT $LN3@TEST_PMC_L
 
-; 118  :         ep->PMC_Dispose(z);
+; 119  :         ep->PMC_Dispose(z);
 
 	mov	rcx, QWORD PTR z$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN3@TEST_PMC_L:
 
-; 119  :     if (x_result == PMC_STATUS_OK)
+; 120  :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR x_result$[rbp], 0
 	jne	SHORT $LN4@TEST_PMC_L
 
-; 120  :         ep->PMC_Dispose(x);
+; 121  :         ep->PMC_Dispose(x);
 
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN4@TEST_PMC_L:
 
-; 121  : #endif
-; 122  : }
+; 122  : #endif
+; 123  : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:TEST_PMC_LeftShift_X_L$rtcFrameData
@@ -790,7 +790,7 @@ desired_z_buf$ = 768
 desired_z_buf_size$ = 776
 TEST_PMC_LeftShift_X_I PROC				; COMDAT
 
-; 82   : {
+; 83   : {
 
 $LN13:
 	mov	QWORD PTR [rsp+32], r9
@@ -812,14 +812,14 @@ $LN13:
 	lea	rcx, OFFSET FLAT:__47B4FCBB_test_op_shift@c
 	call	__CheckForDebuggerJustMyCode
 
-; 83   :     HANDLE x;
-; 84   :     HANDLE z;
-; 85   :     unsigned char actual_z_buf[256];
-; 86   :     size_t actual_z_buf_size;
-; 87   :     PMC_STATUS_CODE result;
-; 88   :     PMC_STATUS_CODE x_result;
-; 89   :     PMC_STATUS_CODE z_result;
-; 90   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 84   :     HANDLE x;
+; 85   :     HANDLE z;
+; 86   :     unsigned char actual_z_buf[256];
+; 87   :     size_t actual_z_buf_size;
+; 88   :     PMC_STATUS_CODE result;
+; 89   :     PMC_STATUS_CODE x_result;
+; 90   :     PMC_STATUS_CODE z_result;
+; 91   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	lea	r8, QWORD PTR x$[rbp]
 	mov	rdx, QWORD PTR x_buf_size$[rbp]
@@ -849,7 +849,7 @@ $LN6@TEST_PMC_L:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 91   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_LeftShift_X_I(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_LeftShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
+; 92   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_LeftShift_X_I(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_LeftShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
 
 	lea	r8, QWORD PTR z$[rbp]
 	mov	edx, DWORD PTR n$[rbp]
@@ -879,7 +879,7 @@ $LN8@TEST_PMC_L:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 92   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 93   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	lea	r9, QWORD PTR actual_z_buf_size$[rbp]
 	mov	r8d, 256				; 00000100H
@@ -910,7 +910,7 @@ $LN10@TEST_PMC_L:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 93   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 94   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_z_buf_size$[rbp]
 	mov	r8, QWORD PTR desired_z_buf$[rbp]
@@ -934,31 +934,31 @@ $LN12@TEST_PMC_L:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 94   :     if (z_result == PMC_STATUS_OK)
+; 95   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR z_result$[rbp], 0
 	jne	SHORT $LN2@TEST_PMC_L
 
-; 95   :         ep->PMC_Dispose(z);
+; 96   :         ep->PMC_Dispose(z);
 
 	mov	rcx, QWORD PTR z$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN2@TEST_PMC_L:
 
-; 96   :     if (x_result == PMC_STATUS_OK)
+; 97   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR x_result$[rbp], 0
 	jne	SHORT $LN3@TEST_PMC_L
 
-; 97   :         ep->PMC_Dispose(x);
+; 98   :         ep->PMC_Dispose(x);
 
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN3@TEST_PMC_L:
 
-; 98   : }
+; 99   : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:TEST_PMC_LeftShift_X_I$rtcFrameData
@@ -1001,7 +1001,7 @@ desired_z_buf$ = 768
 desired_z_buf_size$ = 776
 TEST_PMC_RightShift_X_L PROC				; COMDAT
 
-; 58   : {
+; 59   : {
 
 $LN14:
 	mov	QWORD PTR [rsp+32], r9
@@ -1023,15 +1023,15 @@ $LN14:
 	lea	rcx, OFFSET FLAT:__47B4FCBB_test_op_shift@c
 	call	__CheckForDebuggerJustMyCode
 
-; 59   : #ifdef _M_IX64
-; 60   :     HANDLE x;
-; 61   :     HANDLE z;
-; 62   :     unsigned char actual_z_buf[256];
-; 63   :     size_t actual_z_buf_size;
-; 64   :     PMC_STATUS_CODE result;
-; 65   :     PMC_STATUS_CODE x_result;
-; 66   :     PMC_STATUS_CODE z_result;
-; 67   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 60   : #ifdef _M_IX64
+; 61   :     HANDLE x;
+; 62   :     HANDLE z;
+; 63   :     unsigned char actual_z_buf[256];
+; 64   :     size_t actual_z_buf_size;
+; 65   :     PMC_STATUS_CODE result;
+; 66   :     PMC_STATUS_CODE x_result;
+; 67   :     PMC_STATUS_CODE z_result;
+; 68   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	lea	r8, QWORD PTR x$[rbp]
 	mov	rdx, QWORD PTR x_buf_size$[rbp]
@@ -1061,7 +1061,7 @@ $LN7@TEST_PMC_R:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 68   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 2), (z_result = ep->PMC_RightShift_X_L(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_RightShift_X_Lの復帰コードが期待通りではない(%d)", z_result));
+; 69   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 2), (z_result = ep->PMC_RightShift_X_L(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_RightShift_X_Lの復帰コードが期待通りではない(%d)", z_result));
 
 	lea	r8, QWORD PTR z$[rbp]
 	mov	rdx, QWORD PTR n$[rbp]
@@ -1091,13 +1091,13 @@ $LN9@TEST_PMC_R:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 69   :     if (z_result == PMC_STATUS_OK)
+; 70   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR z_result$[rbp], 0
 	jne	$LN2@TEST_PMC_R
 
-; 70   :     {
-; 71   :         TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 71   :     {
+; 72   :         TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	lea	r9, QWORD PTR actual_z_buf_size$[rbp]
 	mov	r8d, 256				; 00000100H
@@ -1128,7 +1128,7 @@ $LN11@TEST_PMC_R:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 72   :         TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 73   :         TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_z_buf_size$[rbp]
 	mov	r8, QWORD PTR desired_z_buf$[rbp]
@@ -1153,33 +1153,33 @@ $LN13@TEST_PMC_R:
 	call	TEST_Assert
 $LN2@TEST_PMC_R:
 
-; 73   :     }
-; 74   :     if (z_result == PMC_STATUS_OK)
+; 74   :     }
+; 75   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR z_result$[rbp], 0
 	jne	SHORT $LN3@TEST_PMC_R
 
-; 75   :         ep->PMC_Dispose(z);
+; 76   :         ep->PMC_Dispose(z);
 
 	mov	rcx, QWORD PTR z$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN3@TEST_PMC_R:
 
-; 76   :     if (x_result == PMC_STATUS_OK)
+; 77   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR x_result$[rbp], 0
 	jne	SHORT $LN4@TEST_PMC_R
 
-; 77   :         ep->PMC_Dispose(x);
+; 78   :         ep->PMC_Dispose(x);
 
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN4@TEST_PMC_R:
 
-; 78   : #endif
-; 79   : }
+; 79   : #endif
+; 80   : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:TEST_PMC_RightShift_X_L$rtcFrameData
@@ -1222,7 +1222,7 @@ desired_z_buf$ = 768
 desired_z_buf_size$ = 776
 TEST_PMC_RightShift_X_I PROC				; COMDAT
 
-; 39   : {
+; 40   : {
 
 $LN13:
 	mov	QWORD PTR [rsp+32], r9
@@ -1244,14 +1244,14 @@ $LN13:
 	lea	rcx, OFFSET FLAT:__47B4FCBB_test_op_shift@c
 	call	__CheckForDebuggerJustMyCode
 
-; 40   :     HANDLE x;
-; 41   :     HANDLE z;
-; 42   :     unsigned char actual_z_buf[256];
-; 43   :     size_t actual_z_buf_size;
-; 44   :     PMC_STATUS_CODE result;
-; 45   :     PMC_STATUS_CODE x_result;
-; 46   :     PMC_STATUS_CODE z_result;
-; 47   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 41   :     HANDLE x;
+; 42   :     HANDLE z;
+; 43   :     unsigned char actual_z_buf[256];
+; 44   :     size_t actual_z_buf_size;
+; 45   :     PMC_STATUS_CODE result;
+; 46   :     PMC_STATUS_CODE x_result;
+; 47   :     PMC_STATUS_CODE z_result;
+; 48   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	lea	r8, QWORD PTR x$[rbp]
 	mov	rdx, QWORD PTR x_buf_size$[rbp]
@@ -1281,7 +1281,7 @@ $LN6@TEST_PMC_R:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 48   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_RightShift_X_I(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_RightShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
+; 49   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_RightShift_X_I(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_RightShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
 
 	lea	r8, QWORD PTR z$[rbp]
 	mov	edx, DWORD PTR n$[rbp]
@@ -1311,7 +1311,7 @@ $LN8@TEST_PMC_R:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 49   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 50   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	lea	r9, QWORD PTR actual_z_buf_size$[rbp]
 	mov	r8d, 256				; 00000100H
@@ -1342,7 +1342,7 @@ $LN10@TEST_PMC_R:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 50   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 51   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_z_buf_size$[rbp]
 	mov	r8, QWORD PTR desired_z_buf$[rbp]
@@ -1366,31 +1366,31 @@ $LN12@TEST_PMC_R:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 51   :     if (z_result == PMC_STATUS_OK)
+; 52   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR z_result$[rbp], 0
 	jne	SHORT $LN2@TEST_PMC_R
 
-; 52   :         ep->PMC_Dispose(z);
+; 53   :         ep->PMC_Dispose(z);
 
 	mov	rcx, QWORD PTR z$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN2@TEST_PMC_R:
 
-; 53   :     if (x_result == PMC_STATUS_OK)
+; 54   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR x_result$[rbp], 0
 	jne	SHORT $LN3@TEST_PMC_R
 
-; 54   :         ep->PMC_Dispose(x);
+; 55   :         ep->PMC_Dispose(x);
 
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN3@TEST_PMC_R:
 
-; 55   : }
+; 56   : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:TEST_PMC_RightShift_X_I$rtcFrameData

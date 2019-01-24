@@ -109,7 +109,7 @@ _decimal_digits$ = 48					; size = 4
 _desired_str$ = 52					; size = 4
 _TEST_PMC_ToStringN PROC
 
-; 39   : {
+; 40   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -126,12 +126,12 @@ _TEST_PMC_ToStringN PROC
 	mov	ecx, OFFSET __6032D7E2_test_op_tostringn@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 40   :     HANDLE x;
-; 41   :     static wchar_t actual_str_buffer[4096];
-; 42   :     PMC_STATUS_CODE result;
-; 43   :     PMC_STATUS_CODE x_result;
-; 44   :     PMC_NUMBER_FORMAT_OPTION opt;
-; 45   :     lstrcpyW(opt.GroupSeparator, group_separator);
+; 41   :     HANDLE x;
+; 42   :     static wchar_t actual_str_buffer[4096];
+; 43   :     PMC_STATUS_CODE result;
+; 44   :     PMC_STATUS_CODE x_result;
+; 45   :     PMC_NUMBER_FORMAT_OPTION opt;
+; 46   :     lstrcpyW(opt.GroupSeparator, group_separator);
 
 	mov	esi, esp
 	mov	eax, DWORD PTR _group_separator$[ebp]
@@ -142,7 +142,7 @@ _TEST_PMC_ToStringN PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 46   :     lstrcpy(opt.GroupSizes, group_sizes);
+; 47   :     lstrcpy(opt.GroupSizes, group_sizes);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _group_sizes$[ebp]
@@ -153,7 +153,7 @@ _TEST_PMC_ToStringN PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 47   :     lstrcpyW(opt.DecimalSeparator, decimal_separator);
+; 48   :     lstrcpyW(opt.DecimalSeparator, decimal_separator);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _decimal_separator$[ebp]
@@ -164,12 +164,12 @@ _TEST_PMC_ToStringN PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 48   :     opt.DecimalDigits = decimal_digits;
+; 49   :     opt.DecimalDigits = decimal_digits;
 
 	mov	eax, DWORD PTR _decimal_digits$[ebp]
 	mov	DWORD PTR _opt$[ebp], eax
 
-; 49   :     lstrcpyW(opt.PositiveSign, L"+");
+; 50   :     lstrcpyW(opt.PositiveSign, L"+");
 
 	mov	esi, esp
 	push	OFFSET $SG93854
@@ -179,7 +179,7 @@ _TEST_PMC_ToStringN PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 50   :     lstrcpyW(opt.NegativeSign, L"-");
+; 51   :     lstrcpyW(opt.NegativeSign, L"-");
 
 	mov	esi, esp
 	push	OFFSET $SG93855
@@ -189,7 +189,7 @@ _TEST_PMC_ToStringN PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 51   :     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 52   :     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -231,7 +231,7 @@ $LN5@TEST_PMC_T:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 52   :     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, width, &opt)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToStringの復帰コードが期待通りではない(%d)", result));
+; 53   :     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, width, &opt)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToStringの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _opt$[ebp]
@@ -277,7 +277,7 @@ $LN7@TEST_PMC_T:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 53   :     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, "データの内容が一致しない");
+; 54   :     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, "データの内容が一致しない");
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _desired_str$[ebp]
@@ -308,12 +308,12 @@ $LN9@TEST_PMC_T:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 54   :     if (x_result == PMC_STATUS_OK)
+; 55   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_T
 
-; 55   :         ep->PMC_Dispose(x);
+; 56   :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _x$[ebp]
@@ -325,7 +325,7 @@ $LN9@TEST_PMC_T:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_T:
 
-; 56   : }
+; 57   : }
 
 	push	edx
 	mov	ecx, ebp

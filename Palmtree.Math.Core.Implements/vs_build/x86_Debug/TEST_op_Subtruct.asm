@@ -155,32 +155,32 @@ _buffer2$ = 16						; size = 4
 _count2$ = 20						; size = 4
 __EQUALS_MEMORY PROC
 
-; 102  : {
+; 105  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __1C66ECB2_pmc_debug@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 103  :     if (count1 != count2)
+; 106  :     if (count1 != count2)
 
 	mov	eax, DWORD PTR _count1$[ebp]
 	cmp	eax, DWORD PTR _count2$[ebp]
 	je	SHORT $LN2@EQUALS_MEM
 
-; 104  :         return (-1);
+; 107  :         return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN2@EQUALS_MEM:
 
-; 105  :     while (count1 > 0)
+; 108  :     while (count1 > 0)
 
 	cmp	DWORD PTR _count1$[ebp], 0
 	jbe	SHORT $LN3@EQUALS_MEM
 
-; 106  :     {
-; 107  :         if (*buffer1 != *buffer2)
+; 109  :     {
+; 110  :         if (*buffer1 != *buffer2)
 
 	mov	ecx, DWORD PTR _buffer1$[ebp]
 	movzx	edx, BYTE PTR [ecx]
@@ -189,41 +189,41 @@ $LN2@EQUALS_MEM:
 	cmp	edx, ecx
 	je	SHORT $LN5@EQUALS_MEM
 
-; 108  :             return (-1);
+; 111  :             return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN5@EQUALS_MEM:
 
-; 109  :         ++buffer1;
+; 112  :         ++buffer1;
 
 	mov	edx, DWORD PTR _buffer1$[ebp]
 	add	edx, 1
 	mov	DWORD PTR _buffer1$[ebp], edx
 
-; 110  :         ++buffer2;
+; 113  :         ++buffer2;
 
 	mov	eax, DWORD PTR _buffer2$[ebp]
 	add	eax, 1
 	mov	DWORD PTR _buffer2$[ebp], eax
 
-; 111  :         --count1;
+; 114  :         --count1;
 
 	mov	ecx, DWORD PTR _count1$[ebp]
 	sub	ecx, 1
 	mov	DWORD PTR _count1$[ebp], ecx
 
-; 112  :     }
+; 115  :     }
 
 	jmp	SHORT $LN2@EQUALS_MEM
 $LN3@EQUALS_MEM:
 
-; 113  :     return (0);
+; 116  :     return (0);
 
 	xor	eax, eax
 $LN1@EQUALS_MEM:
 
-; 114  : }
+; 117  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -261,7 +261,7 @@ _desired_z_buf$ = 40					; size = 4
 _desired_z_buf_size$ = 44				; size = 4
 _TEST_PMC_Subtruct_X_X PROC
 
-; 82   : {
+; 83   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -278,16 +278,16 @@ _TEST_PMC_Subtruct_X_X PROC
 	mov	ecx, OFFSET __58741880_test_op_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 83   :     HANDLE x;
-; 84   :     HANDLE y;
-; 85   :     HANDLE z;
-; 86   :     unsigned char actual_z_buf[256];
-; 87   :     size_t actual_z_buf_size;
-; 88   :     PMC_STATUS_CODE result;
-; 89   :     PMC_STATUS_CODE x_result;
-; 90   :     PMC_STATUS_CODE y_result;
-; 91   :     PMC_STATUS_CODE z_result;
-; 92   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 84   :     HANDLE x;
+; 85   :     HANDLE y;
+; 86   :     HANDLE z;
+; 87   :     unsigned char actual_z_buf[256];
+; 88   :     size_t actual_z_buf_size;
+; 89   :     PMC_STATUS_CODE result;
+; 90   :     PMC_STATUS_CODE x_result;
+; 91   :     PMC_STATUS_CODE y_result;
+; 92   :     PMC_STATUS_CODE z_result;
+; 93   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -329,7 +329,7 @@ $LN8@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 93   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", y_result));
+; 94   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", y_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _y$[ebp]
@@ -371,7 +371,7 @@ $LN10@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 94   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 3), (z_result = ep->PMC_Subtruct_X_X(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_Xの復帰コードが期待通りではない(%d)", z_result));
+; 95   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 3), (z_result = ep->PMC_Subtruct_X_X(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_Xの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -414,13 +414,13 @@ $LN12@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 95   :     if (desired_result_code == PMC_STATUS_OK)
+; 96   :     if (desired_result_code == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _desired_result_code$[ebp], 0
 	jne	$LN2@TEST_PMC_S
 
-; 96   :     {
-; 97   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 97   :     {
+; 98   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -463,7 +463,7 @@ $LN14@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 98   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 99   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	ecx
@@ -498,13 +498,13 @@ $LN16@TEST_PMC_S:
 	add	esp, 16					; 00000010H
 $LN2@TEST_PMC_S:
 
-; 99   :     }
-; 100  :     if (z_result == PMC_STATUS_OK)
+; 100  :     }
+; 101  :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _z_result$[ebp], 0
 	jne	SHORT $LN3@TEST_PMC_S
 
-; 101  :         ep->PMC_Dispose(z);
+; 102  :         ep->PMC_Dispose(z);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _z$[ebp]
@@ -516,12 +516,12 @@ $LN2@TEST_PMC_S:
 	call	__RTC_CheckEsp
 $LN3@TEST_PMC_S:
 
-; 102  :     if (y_result == PMC_STATUS_OK)
+; 103  :     if (y_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _y_result$[ebp], 0
 	jne	SHORT $LN4@TEST_PMC_S
 
-; 103  :         ep->PMC_Dispose(y);
+; 104  :         ep->PMC_Dispose(y);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _y$[ebp]
@@ -533,12 +533,12 @@ $LN3@TEST_PMC_S:
 	call	__RTC_CheckEsp
 $LN4@TEST_PMC_S:
 
-; 104  :     if (x_result == PMC_STATUS_OK)
+; 105  :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_S
 
-; 105  :         ep->PMC_Dispose(x);
+; 106  :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _x$[ebp]
@@ -550,7 +550,7 @@ $LN4@TEST_PMC_S:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_S:
 
-; 106  : }
+; 107  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -659,7 +659,7 @@ _desired_z_buf$ = 40					; size = 4
 _desired_z_buf_size$ = 44				; size = 4
 _TEST_PMC_Subtruct_X_L PROC
 
-; 60   : {
+; 61   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -676,14 +676,14 @@ _TEST_PMC_Subtruct_X_L PROC
 	mov	ecx, OFFSET __58741880_test_op_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 61   :     HANDLE x;
-; 62   :     HANDLE z;
-; 63   :     unsigned char actual_z_buf[256];
-; 64   :     size_t actual_z_buf_size;
-; 65   :     PMC_STATUS_CODE result;
-; 66   :     PMC_STATUS_CODE x_result;
-; 67   :     PMC_STATUS_CODE z_result;
-; 68   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 62   :     HANDLE x;
+; 63   :     HANDLE z;
+; 64   :     unsigned char actual_z_buf[256];
+; 65   :     size_t actual_z_buf_size;
+; 66   :     PMC_STATUS_CODE result;
+; 67   :     PMC_STATUS_CODE x_result;
+; 68   :     PMC_STATUS_CODE z_result;
+; 69   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -725,7 +725,7 @@ $LN7@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 69   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 2), (z_result = ep->PMC_Subtruct_X_L(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_Lの復帰コードが期待通りではない(%d)", z_result));
+; 70   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 2), (z_result = ep->PMC_Subtruct_X_L(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_Lの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -770,13 +770,13 @@ $LN9@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 70   :     if (desired_result_code == PMC_STATUS_OK)
+; 71   :     if (desired_result_code == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _desired_result_code$[ebp], 0
 	jne	$LN2@TEST_PMC_S
 
-; 71   :     {
-; 72   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 72   :     {
+; 73   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	edx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -819,7 +819,7 @@ $LN11@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 73   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 74   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	edx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	edx
@@ -854,13 +854,13 @@ $LN13@TEST_PMC_S:
 	add	esp, 16					; 00000010H
 $LN2@TEST_PMC_S:
 
-; 74   :     }
-; 75   :     if (z_result == PMC_STATUS_OK)
+; 75   :     }
+; 76   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _z_result$[ebp], 0
 	jne	SHORT $LN3@TEST_PMC_S
 
-; 76   :         ep->PMC_Dispose(z);
+; 77   :         ep->PMC_Dispose(z);
 
 	mov	esi, esp
 	mov	eax, DWORD PTR _z$[ebp]
@@ -872,12 +872,12 @@ $LN2@TEST_PMC_S:
 	call	__RTC_CheckEsp
 $LN3@TEST_PMC_S:
 
-; 77   :     if (x_result == PMC_STATUS_OK)
+; 78   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_S
 
-; 78   :         ep->PMC_Dispose(x);
+; 79   :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	eax, DWORD PTR _x$[ebp]
@@ -889,7 +889,7 @@ $LN3@TEST_PMC_S:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_S:
 
-; 79   : }
+; 80   : }
 
 	push	edx
 	mov	ecx, ebp
@@ -992,7 +992,7 @@ _desired_z_buf$ = 36					; size = 4
 _desired_z_buf_size$ = 40				; size = 4
 _TEST_PMC_Subtruct_X_I PROC
 
-; 38   : {
+; 39   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1009,14 +1009,14 @@ _TEST_PMC_Subtruct_X_I PROC
 	mov	ecx, OFFSET __58741880_test_op_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 39   :     HANDLE x;
-; 40   :     HANDLE z;
-; 41   :     unsigned char actual_z_buf[256];
-; 42   :     size_t actual_z_buf_size;
-; 43   :     PMC_STATUS_CODE result;
-; 44   :     PMC_STATUS_CODE x_result;
-; 45   :     PMC_STATUS_CODE z_result;
-; 46   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 40   :     HANDLE x;
+; 41   :     HANDLE z;
+; 42   :     unsigned char actual_z_buf[256];
+; 43   :     size_t actual_z_buf_size;
+; 44   :     PMC_STATUS_CODE result;
+; 45   :     PMC_STATUS_CODE x_result;
+; 46   :     PMC_STATUS_CODE z_result;
+; 47   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -1058,7 +1058,7 @@ $LN7@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 47   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 2), (z_result = ep->PMC_Subtruct_X_I(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_Iの復帰コードが期待通りではない(%d)", z_result));
+; 48   :     TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 2), (z_result = ep->PMC_Subtruct_X_I(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_Subtruct_X_Iの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -1101,13 +1101,13 @@ $LN9@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 48   :     if (desired_result_code == PMC_STATUS_OK)
+; 49   :     if (desired_result_code == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _desired_result_code$[ebp], 0
 	jne	$LN2@TEST_PMC_S
 
-; 49   :     {
-; 50   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 50   :     {
+; 51   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -1150,7 +1150,7 @@ $LN11@TEST_PMC_S:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 51   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 52   :         TEST_Assert(env, FormatTestLabel("PMC_Subtruct_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	ecx
@@ -1185,13 +1185,13 @@ $LN13@TEST_PMC_S:
 	add	esp, 16					; 00000010H
 $LN2@TEST_PMC_S:
 
-; 52   :     }
-; 53   :     if (z_result == PMC_STATUS_OK)
+; 53   :     }
+; 54   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _z_result$[ebp], 0
 	jne	SHORT $LN3@TEST_PMC_S
 
-; 54   :         ep->PMC_Dispose(z);
+; 55   :         ep->PMC_Dispose(z);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _z$[ebp]
@@ -1203,12 +1203,12 @@ $LN2@TEST_PMC_S:
 	call	__RTC_CheckEsp
 $LN3@TEST_PMC_S:
 
-; 55   :     if (x_result == PMC_STATUS_OK)
+; 56   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_S
 
-; 56   :         ep->PMC_Dispose(x);
+; 57   :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _x$[ebp]
@@ -1220,7 +1220,7 @@ $LN3@TEST_PMC_S:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_S:
 
-; 57   : }
+; 58   : }
 
 	push	edx
 	mov	ecx, ebp

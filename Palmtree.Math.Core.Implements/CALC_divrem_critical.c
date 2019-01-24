@@ -35,6 +35,7 @@
 #include "pmc_debug.h"
 
 
+#ifdef _DEBUG
 __inline static char ADD_3W_UNIT(__UNIT_TYPE_DIV* x1, __UNIT_TYPE_DIV* x2, __UNIT_TYPE_DIV* x3, __UNIT_TYPE_DIV y)
 {
     return (_ADD_UNIT_DIV(_ADD_UNIT_DIV(_ADD_UNIT_DIV(0, *x3, y, x3), *x2, 0, x2), *x1, 0, x1));
@@ -165,7 +166,7 @@ void CalculateCriticalDataOfDivision(PMC_DEBUG_ENVIRONMENT *env)
     }
 
 }
-
+#endif
 
 
 /*

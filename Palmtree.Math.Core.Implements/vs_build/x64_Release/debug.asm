@@ -5,65 +5,7 @@ include listing.inc
 INCLUDELIB MSVCRT
 INCLUDELIB OLDNAMES
 
-PUBLIC	test_total_count
-PUBLIC	test_ok_count
-_BSS	SEGMENT
-test_total_count DD 01H DUP (?)
-test_ok_count DD 01H DUP (?)
-_BSS	ENDS
-PUBLIC	TEST_Assert
-PUBLIC	FormatTestLabel
-PUBLIC	FormatTestMesssage
 PUBLIC	DoDebug
-PUBLIC	??_C@_08EHONFECB@?$CK?$CK?$CKNG?$CK?$CK?$CK@	; `string'
-PUBLIC	??_C@_0BN@BCMOIBIP@?$IDe?$IDX?$IDg?5No?4?$CFd?3?5?$CFs?5?$DN?$DO?5?$CFs?5?$CI?$CFs?$CJ?6@ ; `string'
-EXTRN	__imp_wsprintfA:PROC
-_BSS	SEGMENT
-?buffer@?1??FormatTestLabel@@9@9 DB 0100H DUP (?)	; `FormatTestLabel'::`2'::buffer
-?buffer@?1??FormatTestMesssage@@9@9 DB 0100H DUP (?)	; `FormatTestMesssage'::`2'::buffer
-_BSS	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$TEST_Assert DD imagerel $LN7
-	DD	imagerel $LN7+76
-	DD	imagerel $unwind$TEST_Assert
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$FormatTestLabel DD imagerel $LN4
-	DD	imagerel $LN4+38
-	DD	imagerel $unwind$FormatTestLabel
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$FormatTestMesssage DD imagerel $LN4
-	DD	imagerel $LN4+35
-	DD	imagerel $unwind$FormatTestMesssage
-pdata	ENDS
-;	COMDAT ??_C@_0BN@BCMOIBIP@?$IDe?$IDX?$IDg?5No?4?$CFd?3?5?$CFs?5?$DN?$DO?5?$CFs?5?$CI?$CFs?$CJ?6@
-CONST	SEGMENT
-??_C@_0BN@BCMOIBIP@?$IDe?$IDX?$IDg?5No?4?$CFd?3?5?$CFs?5?$DN?$DO?5?$CFs?5?$CI?$CFs?$CJ?6@ DB 083H
-	DB	'e', 083H, 'X', 083H, 'g No.%d: %s => %s (%s)', 0aH, 00H ; `string'
-CONST	ENDS
-;	COMDAT ??_C@_08EHONFECB@?$CK?$CK?$CKNG?$CK?$CK?$CK@
-CONST	SEGMENT
-??_C@_08EHONFECB@?$CK?$CK?$CKNG?$CK?$CK?$CK@ DB '***NG***', 00H ; `string'
-CONST	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$FormatTestMesssage DD 010401H
-	DD	04204H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$FormatTestLabel DD 010401H
-	DD	04204H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$TEST_Assert DD 010401H
-	DD	06204H
-xdata	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
 ;	COMDAT DoDebug
@@ -71,168 +13,45 @@ _TEXT	SEGMENT
 env$ = 8
 DoDebug	PROC						; COMDAT
 
-; 68   : #ifdef _DEBUG
-; 69   :     PMC_CONFIGURATION_INFO conf;
-; 70   :     conf.MEMORY_VERIFICATION_ENABLED = FALSE;
-; 71   :     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
-; 72   :     if (ep == NULL)
-; 73   :     {
-; 74   :          env->log("PMC_Initialize failed");
-; 75   :          return;
-; 76   :     }
-; 77   : #ifdef _M_IX86
-; 78   :     char* platform = "x86";
-; 79   : #elif defined(_M_IX64)
-; 80   :     char* platform = "x64";
-; 81   : #else
-; 82   : #error unknown platform
-; 83   : #endif
-; 84   : #ifdef _MSC_VER
-; 85   :     char* compiler = "MSC";
-; 86   : #elif defined(__GNUC__)
-; 87   :     char* compiler = "GNUC";
-; 88   : #else
-; 89   : #error unknown platform
-; 90   : #endif
-; 91   : 
-; 92   :     env->log("PLATFORM: %s\n", platform);
-; 93   :     env->log("COMPILER: %s\n", compiler);
-; 94   :     env->log("CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
-; 95   :              ep->PROCESSOR_FEATURE_POPCNT,
-; 96   :              ep->PROCESSOR_FEATURE_ADX,
-; 97   :              ep->PROCESSOR_FEATURE_BMI1,
-; 98   :              ep->PROCESSOR_FEATURE_BMI2,
-; 99   :              ep->PROCESSOR_FEATURE_ABM);
-; 100  : 
-; 101  :     //CalculateCriticalDataOfDivision(env);
-; 102  :     DoTest(env, ep);
-; 103  : #endif
-; 104  : }
+; 71   : #ifdef _DEBUG
+; 72   :     PMC_CONFIGURATION_INFO conf;
+; 73   :     conf.MEMORY_VERIFICATION_ENABLED = FALSE;
+; 74   :     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
+; 75   :     if (ep == NULL)
+; 76   :     {
+; 77   :          env->log("PMC_Initialize failed");
+; 78   :          return;
+; 79   :     }
+; 80   : #ifdef _M_IX86
+; 81   :     char* platform = "x86";
+; 82   : #elif defined(_M_IX64)
+; 83   :     char* platform = "x64";
+; 84   : #else
+; 85   : #error unknown platform
+; 86   : #endif
+; 87   : #ifdef _MSC_VER
+; 88   :     char* compiler = "MSC";
+; 89   : #elif defined(__GNUC__)
+; 90   :     char* compiler = "GNUC";
+; 91   : #else
+; 92   : #error unknown platform
+; 93   : #endif
+; 94   : 
+; 95   :     env->log("PLATFORM: %s\n", platform);
+; 96   :     env->log("COMPILER: %s\n", compiler);
+; 97   :     env->log("CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
+; 98   :              ep->PROCESSOR_FEATURE_POPCNT,
+; 99   :              ep->PROCESSOR_FEATURE_ADX,
+; 100  :              ep->PROCESSOR_FEATURE_BMI1,
+; 101  :              ep->PROCESSOR_FEATURE_BMI2,
+; 102  :              ep->PROCESSOR_FEATURE_ABM);
+; 103  : 
+; 104  :     //CalculateCriticalDataOfDivision(env);
+; 105  :     DoTest(env, ep);
+; 106  : #endif
+; 107  : }
 
 	ret	0
 DoDebug	ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
-;	COMDAT FormatTestMesssage
-_TEXT	SEGMENT
-format$ = 48
-return_value$ = 56
-FormatTestMesssage PROC					; COMDAT
-
-; 129  : {
-
-$LN4:
-	sub	rsp, 40					; 00000028H
-
-; 130  :     static char buffer[256];
-; 131  :     wsprintf(buffer, format, return_value);
-
-	mov	r8d, edx
-	mov	rdx, rcx
-	lea	rcx, OFFSET FLAT:?buffer@?1??FormatTestMesssage@@9@9
-	call	QWORD PTR __imp_wsprintfA
-
-; 132  :     return buffer;
-
-	lea	rax, OFFSET FLAT:?buffer@?1??FormatTestMesssage@@9@9
-
-; 133  : }
-
-	add	rsp, 40					; 00000028H
-	ret	0
-FormatTestMesssage ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
-;	COMDAT FormatTestLabel
-_TEXT	SEGMENT
-format$ = 48
-n1$ = 56
-n2$ = 64
-FormatTestLabel PROC					; COMDAT
-
-; 122  : {
-
-$LN4:
-	sub	rsp, 40					; 00000028H
-
-; 123  :     static char buffer[256];
-; 124  :     wsprintf(buffer, format, n1, n2);
-
-	mov	r9d, r8d
-	mov	r8d, edx
-	mov	rdx, rcx
-	lea	rcx, OFFSET FLAT:?buffer@?1??FormatTestLabel@@9@9
-	call	QWORD PTR __imp_wsprintfA
-
-; 125  :     return buffer;
-
-	lea	rax, OFFSET FLAT:?buffer@?1??FormatTestLabel@@9@9
-
-; 126  : }
-
-	add	rsp, 40					; 00000028H
-	ret	0
-FormatTestLabel ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
-;	COMDAT TEST_Assert
-_TEXT	SEGMENT
-env$ = 64
-test_name$ = 72
-condition$ = 80
-reason$ = 88
-TEST_Assert PROC					; COMDAT
-
-; 108  : {
-
-$LN7:
-	sub	rsp, 56					; 00000038H
-	mov	rax, rdx
-	mov	r10, rcx
-
-; 109  :     if (condition)
-
-	test	r8d, r8d
-	je	SHORT $LN2@TEST_Asser
-
-; 110  :     {
-; 111  :         //env->log("テスト No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
-; 112  :         ++test_ok_count;
-
-	inc	DWORD PTR test_ok_count
-
-; 117  :     }
-; 118  :     ++test_total_count;
-; 119  : }
-
-	inc	DWORD PTR test_total_count
-	add	rsp, 56					; 00000038H
-	ret	0
-$LN2@TEST_Asser:
-
-; 113  :     }
-; 114  :     else
-; 115  :     {
-; 116  :         env->log("テスト No.%d: %s => %s (%s)\n", test_total_count + 1, test_name, "***NG***", reason);
-
-	mov	edx, DWORD PTR test_total_count
-	lea	rcx, OFFSET FLAT:??_C@_0BN@BCMOIBIP@?$IDe?$IDX?$IDg?5No?4?$CFd?3?5?$CFs?5?$DN?$DO?5?$CFs?5?$CI?$CFs?$CJ?6@
-	mov	QWORD PTR [rsp+32], r9
-	inc	edx
-	lea	r9, OFFSET FLAT:??_C@_08EHONFECB@?$CK?$CK?$CKNG?$CK?$CK?$CK@
-	mov	r8, rax
-	call	QWORD PTR [r10]
-
-; 117  :     }
-; 118  :     ++test_total_count;
-; 119  : }
-
-	inc	DWORD PTR test_total_count
-	add	rsp, 56					; 00000038H
-	ret	0
-TEST_Assert ENDP
 _TEXT	ENDS
 END

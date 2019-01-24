@@ -35,6 +35,7 @@
 #include "pmc_debug.h"
 
 
+#ifdef _DEBUG
 void TEST_PMC_ToStringD(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, char format_spec, int min_width, wchar_t* desired_str)
 {
     HANDLE x;
@@ -54,6 +55,7 @@ void TEST_PMC_ToStringD(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no
     if (x_result == PMC_STATUS_OK)
         ep->PMC_Dispose(x);
 }
+#endif
 
 
 /*

@@ -7,7 +7,7 @@
 _EQUALS_MEMORY:
 .LFB4273:
 	.file 1 "pmc_debug.h"
-	.loc 1 102 1
+	.loc 1 105 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -21,41 +21,41 @@ _EQUALS_MEMORY:
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 1 103 8
+	.loc 1 106 8
 	movq	24(%rbp), %rax
 	cmpq	40(%rbp), %rax
 	je	.L4
-	.loc 1 104 16
+	.loc 1 107 16
 	movl	$-1, %eax
 	jmp	.L3
 .L6:
-	.loc 1 107 13
+	.loc 1 110 13
 	movq	16(%rbp), %rax
 	movzbl	(%rax), %edx
-	.loc 1 107 25
+	.loc 1 110 25
 	movq	32(%rbp), %rax
 	movzbl	(%rax), %eax
-	.loc 1 107 12
+	.loc 1 110 12
 	cmpb	%al, %dl
 	je	.L5
-	.loc 1 108 20
+	.loc 1 111 20
 	movl	$-1, %eax
 	jmp	.L3
 .L5:
-	.loc 1 109 9
+	.loc 1 112 9
 	addq	$1, 16(%rbp)
-	.loc 1 110 9
+	.loc 1 113 9
 	addq	$1, 32(%rbp)
-	.loc 1 111 9
+	.loc 1 114 9
 	subq	$1, 24(%rbp)
 .L4:
-	.loc 1 105 11
+	.loc 1 108 11
 	cmpq	$0, 24(%rbp)
 	jne	.L6
-	.loc 1 113 12
+	.loc 1 116 12
 	movl	$0, %eax
 .L3:
-	.loc 1 114 1
+	.loc 1 117 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -87,7 +87,7 @@ _EQUALS_MEMORY:
 TEST_PMC_DivRem_X_I:
 .LFB4274:
 	.file 2 "TEST_op_DivRem.c"
-	.loc 2 39 1
+	.loc 2 40 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -112,48 +112,48 @@ TEST_PMC_DivRem_X_I:
 	movq	%rdx, 248(%rbp)
 	movl	%r8d, 256(%rbp)
 	movq	%r9, 264(%rbp)
-	.loc 2 48 128
+	.loc 2 49 128
 	movl	204(%rbp), %eax
 	movl	%eax, %edx
 	leaq	.LC0(%rip), %rcx
 	call	FormatTestMesssage
 	movq	%rax, %rsi
-	.loc 2 48 83
+	.loc 2 49 83
 	movq	248(%rbp), %rax
 	movq	32(%rax), %rax
-	.loc 2 48 81
+	.loc 2 49 81
 	leaq	184(%rbp), %r8
 	movq	272(%rbp), %rdx
 	movq	264(%rbp), %rcx
 	call	*%rax
 .LVL0:
 	movl	%eax, 204(%rbp)
-	.loc 2 48 2
+	.loc 2 49 2
 	cmpl	$0, 204(%rbp)
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 48 19
+	.loc 2 49 19
 	movl	256(%rbp), %eax
 	movl	$1, %r8d
 	movl	%eax, %edx
 	leaq	.LC1(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 48 2
+	.loc 2 49 2
 	movq	%rsi, %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 49 146
+	.loc 2 50 146
 	movl	200(%rbp), %eax
 	movl	%eax, %edx
 	leaq	.LC2(%rip), %rcx
 	call	FormatTestMesssage
 	movq	%rax, %rsi
-	.loc 2 49 83
+	.loc 2 50 83
 	movq	248(%rbp), %rax
 	movq	144(%rax), %rax
-	.loc 2 49 81
+	.loc 2 50 81
 	movq	184(%rbp), %rcx
 	leaq	-92(%rbp), %r9
 	leaq	176(%rbp), %r8
@@ -161,36 +161,36 @@ TEST_PMC_DivRem_X_I:
 	call	*%rax
 .LVL1:
 	movl	%eax, 200(%rbp)
-	.loc 2 49 2
+	.loc 2 50 2
 	movl	200(%rbp), %eax
 	cmpl	288(%rbp), %eax
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 49 19
+	.loc 2 50 19
 	movl	256(%rbp), %eax
 	movl	$2, %r8d
 	movl	%eax, %edx
 	leaq	.LC1(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 49 2
+	.loc 2 50 2
 	movq	%rsi, %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 50 5
+	.loc 2 51 5
 	cmpl	$0, 288(%rbp)
 	jne	.L8
-	.loc 2 52 163
+	.loc 2 53 163
 	movl	196(%rbp), %eax
 	movl	%eax, %edx
 	leaq	.LC3(%rip), %rcx
 	call	FormatTestMesssage
 	movq	%rax, %rsi
-	.loc 2 52 82
+	.loc 2 53 82
 	movq	248(%rbp), %rax
 	movq	64(%rax), %r10
-	.loc 2 52 80
+	.loc 2 53 80
 	movq	176(%rbp), %rcx
 	leaq	-88(%rbp), %rdx
 	leaq	-80(%rbp), %rax
@@ -200,23 +200,23 @@ TEST_PMC_DivRem_X_I:
 	call	*%r10
 .LVL2:
 	movl	%eax, 196(%rbp)
-	.loc 2 52 3
+	.loc 2 53 3
 	cmpl	$0, 196(%rbp)
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 52 20
+	.loc 2 53 20
 	movl	256(%rbp), %eax
 	movl	$3, %r8d
 	movl	%eax, %edx
 	leaq	.LC1(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 52 3
+	.loc 2 53 3
 	movq	%rsi, %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 53 70
+	.loc 2 54 70
 	movq	-88(%rbp), %rdx
 	movq	304(%rbp), %r8
 	movq	296(%rbp), %rcx
@@ -225,65 +225,65 @@ TEST_PMC_DivRem_X_I:
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	_EQUALS_MEMORY
-	.loc 2 53 3
+	.loc 2 54 3
 	testl	%eax, %eax
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 53 20
+	.loc 2 54 20
 	movl	256(%rbp), %eax
 	movl	$4, %r8d
 	movl	%eax, %edx
 	leaq	.LC1(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 53 3
+	.loc 2 54 3
 	leaq	.LC4(%rip), %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 54 3
+	.loc 2 55 3
 	movl	-92(%rbp), %eax
 	cmpl	%eax, 312(%rbp)
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 54 20
+	.loc 2 55 20
 	movl	256(%rbp), %eax
 	movl	$5, %r8d
 	movl	%eax, %edx
 	leaq	.LC1(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 54 3
+	.loc 2 55 3
 	leaq	.LC5(%rip), %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
 .L8:
-	.loc 2 56 5
+	.loc 2 57 5
 	cmpl	$0, 200(%rbp)
 	jne	.L9
-	.loc 2 57 5
+	.loc 2 58 5
 	movq	248(%rbp), %rax
 	movq	40(%rax), %rax
-	.loc 2 57 3
+	.loc 2 58 3
 	movq	176(%rbp), %rdx
 	movq	%rdx, %rcx
 	call	*%rax
 .LVL3:
 .L9:
-	.loc 2 58 5
+	.loc 2 59 5
 	cmpl	$0, 204(%rbp)
 	jne	.L11
-	.loc 2 59 5
+	.loc 2 60 5
 	movq	248(%rbp), %rax
 	movq	40(%rax), %rax
-	.loc 2 59 3
+	.loc 2 60 3
 	movq	184(%rbp), %rdx
 	movq	%rdx, %rcx
 	call	*%rax
 .LVL4:
 .L11:
-	.loc 2 60 1
+	.loc 2 61 1
 	nop
 	addq	$336, %rsp
 	popq	%rbx
@@ -309,7 +309,7 @@ TEST_PMC_DivRem_X_I:
 	.seh_proc	TEST_PMC_DivRem_X_L
 TEST_PMC_DivRem_X_L:
 .LFB4275:
-	.loc 2 63 1
+	.loc 2 64 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -334,48 +334,48 @@ TEST_PMC_DivRem_X_L:
 	movq	%rdx, 248(%rbp)
 	movl	%r8d, 256(%rbp)
 	movq	%r9, 264(%rbp)
-	.loc 2 72 128
+	.loc 2 73 128
 	movl	204(%rbp), %eax
 	movl	%eax, %edx
 	leaq	.LC0(%rip), %rcx
 	call	FormatTestMesssage
 	movq	%rax, %rsi
-	.loc 2 72 83
+	.loc 2 73 83
 	movq	248(%rbp), %rax
 	movq	32(%rax), %rax
-	.loc 2 72 81
+	.loc 2 73 81
 	leaq	184(%rbp), %r8
 	movq	272(%rbp), %rdx
 	movq	264(%rbp), %rcx
 	call	*%rax
 .LVL5:
 	movl	%eax, 204(%rbp)
-	.loc 2 72 2
+	.loc 2 73 2
 	cmpl	$0, 204(%rbp)
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 72 19
+	.loc 2 73 19
 	movl	256(%rbp), %eax
 	movl	$1, %r8d
 	movl	%eax, %edx
 	leaq	.LC6(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 72 2
+	.loc 2 73 2
 	movq	%rsi, %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 73 146
+	.loc 2 74 146
 	movl	200(%rbp), %eax
 	movl	%eax, %edx
 	leaq	.LC7(%rip), %rcx
 	call	FormatTestMesssage
 	movq	%rax, %rsi
-	.loc 2 73 83
+	.loc 2 74 83
 	movq	248(%rbp), %rax
 	movq	152(%rax), %rax
-	.loc 2 73 81
+	.loc 2 74 81
 	movq	184(%rbp), %rcx
 	leaq	-96(%rbp), %r9
 	leaq	176(%rbp), %r8
@@ -383,36 +383,36 @@ TEST_PMC_DivRem_X_L:
 	call	*%rax
 .LVL6:
 	movl	%eax, 200(%rbp)
-	.loc 2 73 2
+	.loc 2 74 2
 	movl	200(%rbp), %eax
 	cmpl	288(%rbp), %eax
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 73 19
+	.loc 2 74 19
 	movl	256(%rbp), %eax
 	movl	$2, %r8d
 	movl	%eax, %edx
 	leaq	.LC6(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 73 2
+	.loc 2 74 2
 	movq	%rsi, %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 74 5
+	.loc 2 75 5
 	cmpl	$0, 288(%rbp)
 	jne	.L13
-	.loc 2 76 163
+	.loc 2 77 163
 	movl	196(%rbp), %eax
 	movl	%eax, %edx
 	leaq	.LC3(%rip), %rcx
 	call	FormatTestMesssage
 	movq	%rax, %rsi
-	.loc 2 76 82
+	.loc 2 77 82
 	movq	248(%rbp), %rax
 	movq	64(%rax), %r10
-	.loc 2 76 80
+	.loc 2 77 80
 	movq	176(%rbp), %rcx
 	leaq	-88(%rbp), %rdx
 	leaq	-80(%rbp), %rax
@@ -422,23 +422,23 @@ TEST_PMC_DivRem_X_L:
 	call	*%r10
 .LVL7:
 	movl	%eax, 196(%rbp)
-	.loc 2 76 3
+	.loc 2 77 3
 	cmpl	$0, 196(%rbp)
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 76 20
+	.loc 2 77 20
 	movl	256(%rbp), %eax
 	movl	$3, %r8d
 	movl	%eax, %edx
 	leaq	.LC6(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 76 3
+	.loc 2 77 3
 	movq	%rsi, %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 77 70
+	.loc 2 78 70
 	movq	-88(%rbp), %rdx
 	movq	304(%rbp), %r8
 	movq	296(%rbp), %rcx
@@ -447,65 +447,65 @@ TEST_PMC_DivRem_X_L:
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	_EQUALS_MEMORY
-	.loc 2 77 3
+	.loc 2 78 3
 	testl	%eax, %eax
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 77 20
+	.loc 2 78 20
 	movl	256(%rbp), %eax
 	movl	$4, %r8d
 	movl	%eax, %edx
 	leaq	.LC6(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 77 3
+	.loc 2 78 3
 	leaq	.LC4(%rip), %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 78 3
+	.loc 2 79 3
 	movq	-96(%rbp), %rax
 	cmpq	%rax, 312(%rbp)
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 78 20
+	.loc 2 79 20
 	movl	256(%rbp), %eax
 	movl	$5, %r8d
 	movl	%eax, %edx
 	leaq	.LC6(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 78 3
+	.loc 2 79 3
 	leaq	.LC5(%rip), %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	240(%rbp), %rcx
 	call	TEST_Assert
 .L13:
-	.loc 2 80 5
+	.loc 2 81 5
 	cmpl	$0, 200(%rbp)
 	jne	.L14
-	.loc 2 81 5
+	.loc 2 82 5
 	movq	248(%rbp), %rax
 	movq	40(%rax), %rax
-	.loc 2 81 3
+	.loc 2 82 3
 	movq	176(%rbp), %rdx
 	movq	%rdx, %rcx
 	call	*%rax
 .LVL8:
 .L14:
-	.loc 2 82 5
+	.loc 2 83 5
 	cmpl	$0, 204(%rbp)
 	jne	.L16
-	.loc 2 83 5
+	.loc 2 84 5
 	movq	248(%rbp), %rax
 	movq	40(%rax), %rax
-	.loc 2 83 3
+	.loc 2 84 3
 	movq	184(%rbp), %rdx
 	movq	%rdx, %rcx
 	call	*%rax
 .LVL9:
 .L16:
-	.loc 2 84 1
+	.loc 2 85 1
 	nop
 	addq	$336, %rsp
 	popq	%rbx
@@ -531,7 +531,7 @@ TEST_PMC_DivRem_X_L:
 	.seh_proc	TEST_PMC_DivRem_X_X
 TEST_PMC_DivRem_X_X:
 .LFB4276:
-	.loc 2 87 1
+	.loc 2 88 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -556,40 +556,8 @@ TEST_PMC_DivRem_X_X:
 	movq	%rdx, 536(%rbp)
 	movl	%r8d, 544(%rbp)
 	movq	%r9, 552(%rbp)
-	.loc 2 100 128
-	movl	492(%rbp), %eax
-	movl	%eax, %edx
-	leaq	.LC0(%rip), %rcx
-	call	FormatTestMesssage
-	movq	%rax, %rsi
-	.loc 2 100 83
-	movq	536(%rbp), %rax
-	movq	32(%rax), %rax
-	.loc 2 100 81
-	leaq	472(%rbp), %r8
-	movq	560(%rbp), %rdx
-	movq	552(%rbp), %rcx
-	call	*%rax
-.LVL10:
-	movl	%eax, 492(%rbp)
-	.loc 2 100 2
-	cmpl	$0, 492(%rbp)
-	sete	%al
-	movzbl	%al, %ebx
-	.loc 2 100 19
-	movl	544(%rbp), %eax
-	movl	$1, %r8d
-	movl	%eax, %edx
-	leaq	.LC8(%rip), %rcx
-	call	FormatTestLabel
-	.loc 2 100 2
-	movq	%rsi, %r9
-	movl	%ebx, %r8d
-	movq	%rax, %rdx
-	movq	528(%rbp), %rcx
-	call	TEST_Assert
 	.loc 2 101 128
-	movl	488(%rbp), %eax
+	movl	492(%rbp), %eax
 	movl	%eax, %edx
 	leaq	.LC0(%rip), %rcx
 	call	FormatTestMesssage
@@ -598,19 +566,19 @@ TEST_PMC_DivRem_X_X:
 	movq	536(%rbp), %rax
 	movq	32(%rax), %rax
 	.loc 2 101 81
-	leaq	464(%rbp), %r8
-	movq	576(%rbp), %rdx
-	movq	568(%rbp), %rcx
+	leaq	472(%rbp), %r8
+	movq	560(%rbp), %rdx
+	movq	552(%rbp), %rcx
 	call	*%rax
-.LVL11:
-	movl	%eax, 488(%rbp)
+.LVL10:
+	movl	%eax, 492(%rbp)
 	.loc 2 101 2
-	cmpl	$0, 488(%rbp)
+	cmpl	$0, 492(%rbp)
 	sete	%al
 	movzbl	%al, %ebx
 	.loc 2 101 19
 	movl	544(%rbp), %eax
-	movl	$2, %r8d
+	movl	$1, %r8d
 	movl	%eax, %edx
 	leaq	.LC8(%rip), %rcx
 	call	FormatTestLabel
@@ -620,16 +588,48 @@ TEST_PMC_DivRem_X_X:
 	movq	%rax, %rdx
 	movq	528(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 102 141
+	.loc 2 102 128
+	movl	488(%rbp), %eax
+	movl	%eax, %edx
+	leaq	.LC0(%rip), %rcx
+	call	FormatTestMesssage
+	movq	%rax, %rsi
+	.loc 2 102 83
+	movq	536(%rbp), %rax
+	movq	32(%rax), %rax
+	.loc 2 102 81
+	leaq	464(%rbp), %r8
+	movq	576(%rbp), %rdx
+	movq	568(%rbp), %rcx
+	call	*%rax
+.LVL11:
+	movl	%eax, 488(%rbp)
+	.loc 2 102 2
+	cmpl	$0, 488(%rbp)
+	sete	%al
+	movzbl	%al, %ebx
+	.loc 2 102 19
+	movl	544(%rbp), %eax
+	movl	$2, %r8d
+	movl	%eax, %edx
+	leaq	.LC8(%rip), %rcx
+	call	FormatTestLabel
+	.loc 2 102 2
+	movq	%rsi, %r9
+	movl	%ebx, %r8d
+	movq	%rax, %rdx
+	movq	528(%rbp), %rcx
+	call	TEST_Assert
+	.loc 2 103 141
 	movl	484(%rbp), %eax
 	movl	%eax, %edx
 	leaq	.LC9(%rip), %rcx
 	call	FormatTestMesssage
 	movq	%rax, %rsi
-	.loc 2 102 85
+	.loc 2 103 85
 	movq	536(%rbp), %rax
 	movq	160(%rax), %rax
-	.loc 2 102 83
+	.loc 2 103 83
 	movq	464(%rbp), %rdx
 	movq	472(%rbp), %rcx
 	leaq	448(%rbp), %r9
@@ -637,61 +637,26 @@ TEST_PMC_DivRem_X_X:
 	call	*%rax
 .LVL12:
 	movl	%eax, 484(%rbp)
-	.loc 2 102 2
+	.loc 2 103 2
 	movl	484(%rbp), %eax
 	cmpl	584(%rbp), %eax
 	sete	%al
 	movzbl	%al, %ebx
-	.loc 2 102 19
+	.loc 2 103 19
 	movl	544(%rbp), %eax
 	movl	$3, %r8d
 	movl	%eax, %edx
 	leaq	.LC8(%rip), %rcx
 	call	FormatTestLabel
-	.loc 2 102 2
+	.loc 2 103 2
 	movq	%rsi, %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	528(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 103 5
+	.loc 2 104 5
 	cmpl	$0, 584(%rbp)
 	jne	.L18
-	.loc 2 105 163
-	movl	480(%rbp), %eax
-	movl	%eax, %edx
-	leaq	.LC3(%rip), %rcx
-	call	FormatTestMesssage
-	movq	%rax, %rsi
-	.loc 2 105 82
-	movq	536(%rbp), %rax
-	movq	64(%rax), %r10
-	.loc 2 105 80
-	movq	456(%rbp), %rcx
-	leaq	184(%rbp), %rdx
-	leaq	192(%rbp), %rax
-	movq	%rdx, %r9
-	movl	$256, %r8d
-	movq	%rax, %rdx
-	call	*%r10
-.LVL13:
-	movl	%eax, 480(%rbp)
-	.loc 2 105 3
-	cmpl	$0, 480(%rbp)
-	sete	%al
-	movzbl	%al, %ebx
-	.loc 2 105 20
-	movl	544(%rbp), %eax
-	movl	$4, %r8d
-	movl	%eax, %edx
-	leaq	.LC8(%rip), %rcx
-	call	FormatTestLabel
-	.loc 2 105 3
-	movq	%rsi, %r9
-	movl	%ebx, %r8d
-	movq	%rax, %rdx
-	movq	528(%rbp), %rcx
-	call	TEST_Assert
 	.loc 2 106 163
 	movl	480(%rbp), %eax
 	movl	%eax, %edx
@@ -702,14 +667,14 @@ TEST_PMC_DivRem_X_X:
 	movq	536(%rbp), %rax
 	movq	64(%rax), %r10
 	.loc 2 106 80
-	movq	448(%rbp), %rcx
-	leaq	-88(%rbp), %rdx
-	leaq	-80(%rbp), %rax
+	movq	456(%rbp), %rcx
+	leaq	184(%rbp), %rdx
+	leaq	192(%rbp), %rax
 	movq	%rdx, %r9
 	movl	$256, %r8d
 	movq	%rax, %rdx
 	call	*%r10
-.LVL14:
+.LVL13:
 	movl	%eax, 480(%rbp)
 	.loc 2 106 3
 	cmpl	$0, 480(%rbp)
@@ -717,7 +682,7 @@ TEST_PMC_DivRem_X_X:
 	movzbl	%al, %ebx
 	.loc 2 106 20
 	movl	544(%rbp), %eax
-	movl	$5, %r8d
+	movl	$4, %r8d
 	movl	%eax, %edx
 	leaq	.LC8(%rip), %rcx
 	call	FormatTestLabel
@@ -727,36 +692,46 @@ TEST_PMC_DivRem_X_X:
 	movq	%rax, %rdx
 	movq	528(%rbp), %rcx
 	call	TEST_Assert
-	.loc 2 107 70
-	movq	184(%rbp), %rdx
-	movq	600(%rbp), %r8
-	movq	592(%rbp), %rcx
-	leaq	192(%rbp), %rax
-	movq	%r8, %r9
-	movq	%rcx, %r8
-	movq	%rax, %rcx
-	call	_EQUALS_MEMORY
+	.loc 2 107 163
+	movl	480(%rbp), %eax
+	movl	%eax, %edx
+	leaq	.LC3(%rip), %rcx
+	call	FormatTestMesssage
+	movq	%rax, %rsi
+	.loc 2 107 82
+	movq	536(%rbp), %rax
+	movq	64(%rax), %r10
+	.loc 2 107 80
+	movq	448(%rbp), %rcx
+	leaq	-88(%rbp), %rdx
+	leaq	-80(%rbp), %rax
+	movq	%rdx, %r9
+	movl	$256, %r8d
+	movq	%rax, %rdx
+	call	*%r10
+.LVL14:
+	movl	%eax, 480(%rbp)
 	.loc 2 107 3
-	testl	%eax, %eax
+	cmpl	$0, 480(%rbp)
 	sete	%al
 	movzbl	%al, %ebx
 	.loc 2 107 20
 	movl	544(%rbp), %eax
-	movl	$6, %r8d
+	movl	$5, %r8d
 	movl	%eax, %edx
 	leaq	.LC8(%rip), %rcx
 	call	FormatTestLabel
 	.loc 2 107 3
-	leaq	.LC4(%rip), %r9
+	movq	%rsi, %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	528(%rbp), %rcx
 	call	TEST_Assert
 	.loc 2 108 70
-	movq	-88(%rbp), %rdx
-	movq	616(%rbp), %r8
-	movq	608(%rbp), %rcx
-	leaq	-80(%rbp), %rax
+	movq	184(%rbp), %rdx
+	movq	600(%rbp), %r8
+	movq	592(%rbp), %rcx
+	leaq	192(%rbp), %rax
 	movq	%r8, %r9
 	movq	%rcx, %r8
 	movq	%rax, %rcx
@@ -767,62 +742,87 @@ TEST_PMC_DivRem_X_X:
 	movzbl	%al, %ebx
 	.loc 2 108 20
 	movl	544(%rbp), %eax
-	movl	$7, %r8d
+	movl	$6, %r8d
 	movl	%eax, %edx
 	leaq	.LC8(%rip), %rcx
 	call	FormatTestLabel
 	.loc 2 108 3
+	leaq	.LC4(%rip), %r9
+	movl	%ebx, %r8d
+	movq	%rax, %rdx
+	movq	528(%rbp), %rcx
+	call	TEST_Assert
+	.loc 2 109 70
+	movq	-88(%rbp), %rdx
+	movq	616(%rbp), %r8
+	movq	608(%rbp), %rcx
+	leaq	-80(%rbp), %rax
+	movq	%r8, %r9
+	movq	%rcx, %r8
+	movq	%rax, %rcx
+	call	_EQUALS_MEMORY
+	.loc 2 109 3
+	testl	%eax, %eax
+	sete	%al
+	movzbl	%al, %ebx
+	.loc 2 109 20
+	movl	544(%rbp), %eax
+	movl	$7, %r8d
+	movl	%eax, %edx
+	leaq	.LC8(%rip), %rcx
+	call	FormatTestLabel
+	.loc 2 109 3
 	leaq	.LC5(%rip), %r9
 	movl	%ebx, %r8d
 	movq	%rax, %rdx
 	movq	528(%rbp), %rcx
 	call	TEST_Assert
 .L18:
-	.loc 2 110 5
+	.loc 2 111 5
 	cmpl	$0, 484(%rbp)
 	jne	.L19
-	.loc 2 112 5
-	movq	536(%rbp), %rax
-	movq	40(%rax), %rax
-	.loc 2 112 3
-	movq	456(%rbp), %rdx
-	movq	%rdx, %rcx
-	call	*%rax
-.LVL15:
 	.loc 2 113 5
 	movq	536(%rbp), %rax
 	movq	40(%rax), %rax
 	.loc 2 113 3
+	movq	456(%rbp), %rdx
+	movq	%rdx, %rcx
+	call	*%rax
+.LVL15:
+	.loc 2 114 5
+	movq	536(%rbp), %rax
+	movq	40(%rax), %rax
+	.loc 2 114 3
 	movq	448(%rbp), %rdx
 	movq	%rdx, %rcx
 	call	*%rax
 .LVL16:
 .L19:
-	.loc 2 115 5
+	.loc 2 116 5
 	cmpl	$0, 488(%rbp)
 	jne	.L20
-	.loc 2 116 5
+	.loc 2 117 5
 	movq	536(%rbp), %rax
 	movq	40(%rax), %rax
-	.loc 2 116 3
+	.loc 2 117 3
 	movq	464(%rbp), %rdx
 	movq	%rdx, %rcx
 	call	*%rax
 .LVL17:
 .L20:
-	.loc 2 117 5
+	.loc 2 118 5
 	cmpl	$0, 492(%rbp)
 	jne	.L22
-	.loc 2 118 5
+	.loc 2 119 5
 	movq	536(%rbp), %rax
 	movq	40(%rax), %rax
-	.loc 2 118 3
+	.loc 2 119 3
 	movq	472(%rbp), %rdx
 	movq	%rdx, %rcx
 	call	*%rax
 .LVL18:
 .L22:
-	.loc 2 119 1
+	.loc 2 120 1
 	nop
 	addq	$624, %rsp
 	popq	%rbx
@@ -5488,7 +5488,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1e
 	.ascii "TEST_PMC_DivRem_X_X\0"
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0x6
 	.quad	.LFB4276
 	.quad	.LFE4276-.LFB4276
@@ -5498,7 +5498,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "env\0"
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0x31
 	.long	0x5591
 	.uleb128 0x2
@@ -5507,7 +5507,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "ep\0"
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0x48
 	.long	0x5597
 	.uleb128 0x2
@@ -5516,7 +5516,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "no\0"
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0x50
 	.long	0x137
 	.uleb128 0x2
@@ -5525,7 +5525,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "u_buf\0"
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0x62
 	.long	0x753
 	.uleb128 0x2
@@ -5534,7 +5534,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF1
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0x70
 	.long	0xd2
 	.uleb128 0x2
@@ -5543,7 +5543,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "v_buf\0"
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0x8a
 	.long	0x753
 	.uleb128 0x2
@@ -5552,7 +5552,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "v_buf_size\0"
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0x98
 	.long	0xd2
 	.uleb128 0x2
@@ -5561,7 +5561,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF2
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0xb4
 	.long	0x49ff
 	.uleb128 0x2
@@ -5570,7 +5570,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF3
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0xd7
 	.long	0x753
 	.uleb128 0x3
@@ -5579,7 +5579,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF4
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.byte	0xed
 	.long	0xd2
 	.uleb128 0x3
@@ -5588,7 +5588,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x21
 	.ascii "desired_r_buf\0"
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.word	0x10f
 	.long	0x753
 	.uleb128 0x3
@@ -5597,7 +5597,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x21
 	.ascii "desired_r_buf_size\0"
 	.byte	0x2
-	.byte	0x56
+	.byte	0x57
 	.word	0x125
 	.long	0xd2
 	.uleb128 0x3
@@ -5606,7 +5606,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "u\0"
 	.byte	0x2
-	.byte	0x58
+	.byte	0x59
 	.byte	0x9
 	.long	0x759
 	.uleb128 0x2
@@ -5615,7 +5615,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "v\0"
 	.byte	0x2
-	.byte	0x59
+	.byte	0x5a
 	.byte	0x9
 	.long	0x759
 	.uleb128 0x2
@@ -5624,7 +5624,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "q\0"
 	.byte	0x2
-	.byte	0x5a
+	.byte	0x5b
 	.byte	0x9
 	.long	0x759
 	.uleb128 0x3
@@ -5633,7 +5633,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "r\0"
 	.byte	0x2
-	.byte	0x5b
+	.byte	0x5c
 	.byte	0x9
 	.long	0x759
 	.uleb128 0x3
@@ -5642,7 +5642,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF5
 	.byte	0x2
-	.byte	0x5c
+	.byte	0x5d
 	.byte	0x10
 	.long	0x1eeb
 	.uleb128 0x3
@@ -5651,7 +5651,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF6
 	.byte	0x2
-	.byte	0x5d
+	.byte	0x5e
 	.byte	0x9
 	.long	0xd2
 	.uleb128 0x3
@@ -5660,7 +5660,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "actual_r_buf\0"
 	.byte	0x2
-	.byte	0x5e
+	.byte	0x5f
 	.byte	0x10
 	.long	0x1eeb
 	.uleb128 0x3
@@ -5669,7 +5669,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "actual_r_buf_size\0"
 	.byte	0x2
-	.byte	0x5f
+	.byte	0x60
 	.byte	0x9
 	.long	0xd2
 	.uleb128 0x3
@@ -5678,7 +5678,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF7
 	.byte	0x2
-	.byte	0x60
+	.byte	0x61
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -5687,7 +5687,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF8
 	.byte	0x2
-	.byte	0x61
+	.byte	0x62
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -5696,7 +5696,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "v_result\0"
 	.byte	0x2
-	.byte	0x62
+	.byte	0x63
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -5705,7 +5705,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "q_r_result\0"
 	.byte	0x2
-	.byte	0x63
+	.byte	0x64
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -5721,7 +5721,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1e
 	.ascii "TEST_PMC_DivRem_X_L\0"
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0x6
 	.quad	.LFB4275
 	.quad	.LFE4275-.LFB4275
@@ -5731,7 +5731,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "env\0"
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0x31
 	.long	0x5591
 	.uleb128 0x2
@@ -5740,7 +5740,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "ep\0"
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0x48
 	.long	0x5597
 	.uleb128 0x2
@@ -5749,7 +5749,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "no\0"
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0x50
 	.long	0x137
 	.uleb128 0x2
@@ -5758,7 +5758,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "u_buf\0"
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0x62
 	.long	0x753
 	.uleb128 0x2
@@ -5767,7 +5767,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF1
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0x70
 	.long	0xd2
 	.uleb128 0x2
@@ -5776,7 +5776,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "v\0"
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0x8c
 	.long	0xe1
 	.uleb128 0x2
@@ -5785,7 +5785,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF2
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0x9f
 	.long	0x49ff
 	.uleb128 0x2
@@ -5794,7 +5794,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF3
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0xc2
 	.long	0x753
 	.uleb128 0x2
@@ -5803,7 +5803,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF4
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0xd8
 	.long	0xd2
 	.uleb128 0x3
@@ -5812,7 +5812,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF9
 	.byte	0x2
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0xfd
 	.long	0xe1
 	.uleb128 0x3
@@ -5821,7 +5821,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "u\0"
 	.byte	0x2
-	.byte	0x40
+	.byte	0x41
 	.byte	0x9
 	.long	0x759
 	.uleb128 0x2
@@ -5830,7 +5830,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "q\0"
 	.byte	0x2
-	.byte	0x41
+	.byte	0x42
 	.byte	0x9
 	.long	0x759
 	.uleb128 0x2
@@ -5839,7 +5839,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF5
 	.byte	0x2
-	.byte	0x42
+	.byte	0x43
 	.byte	0x10
 	.long	0x1eeb
 	.uleb128 0x3
@@ -5848,7 +5848,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF6
 	.byte	0x2
-	.byte	0x43
+	.byte	0x44
 	.byte	0x9
 	.long	0xd2
 	.uleb128 0x3
@@ -5857,7 +5857,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF10
 	.byte	0x2
-	.byte	0x44
+	.byte	0x45
 	.byte	0x12
 	.long	0xe1
 	.uleb128 0x3
@@ -5866,7 +5866,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF7
 	.byte	0x2
-	.byte	0x45
+	.byte	0x46
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -5875,7 +5875,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF8
 	.byte	0x2
-	.byte	0x46
+	.byte	0x47
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -5884,7 +5884,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF11
 	.byte	0x2
-	.byte	0x47
+	.byte	0x48
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -5894,7 +5894,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1e
 	.ascii "TEST_PMC_DivRem_X_I\0"
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0x6
 	.quad	.LFB4274
 	.quad	.LFE4274-.LFB4274
@@ -5904,7 +5904,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "env\0"
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0x31
 	.long	0x5591
 	.uleb128 0x2
@@ -5913,7 +5913,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "ep\0"
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0x48
 	.long	0x5597
 	.uleb128 0x2
@@ -5922,7 +5922,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "no\0"
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0x50
 	.long	0x137
 	.uleb128 0x2
@@ -5931,7 +5931,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "u_buf\0"
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0x62
 	.long	0x753
 	.uleb128 0x2
@@ -5940,7 +5940,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF1
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0x70
 	.long	0xd2
 	.uleb128 0x2
@@ -5949,7 +5949,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "v\0"
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0x8c
 	.long	0x45f
 	.uleb128 0x2
@@ -5958,7 +5958,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF2
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0x9f
 	.long	0x49ff
 	.uleb128 0x2
@@ -5967,7 +5967,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF3
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0xc2
 	.long	0x753
 	.uleb128 0x2
@@ -5976,7 +5976,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF4
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0xd8
 	.long	0xd2
 	.uleb128 0x3
@@ -5985,7 +5985,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x20
 	.secrel32	.LASF9
 	.byte	0x2
-	.byte	0x26
+	.byte	0x27
 	.byte	0xfd
 	.long	0x45f
 	.uleb128 0x3
@@ -5994,7 +5994,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "u\0"
 	.byte	0x2
-	.byte	0x28
+	.byte	0x29
 	.byte	0x9
 	.long	0x759
 	.uleb128 0x2
@@ -6003,7 +6003,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x22
 	.ascii "q\0"
 	.byte	0x2
-	.byte	0x29
+	.byte	0x2a
 	.byte	0x9
 	.long	0x759
 	.uleb128 0x2
@@ -6012,7 +6012,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF5
 	.byte	0x2
-	.byte	0x2a
+	.byte	0x2b
 	.byte	0x10
 	.long	0x1eeb
 	.uleb128 0x3
@@ -6021,7 +6021,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF6
 	.byte	0x2
-	.byte	0x2b
+	.byte	0x2c
 	.byte	0x9
 	.long	0xd2
 	.uleb128 0x3
@@ -6030,7 +6030,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF10
 	.byte	0x2
-	.byte	0x2c
+	.byte	0x2d
 	.byte	0x12
 	.long	0x45f
 	.uleb128 0x3
@@ -6039,7 +6039,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF7
 	.byte	0x2
-	.byte	0x2d
+	.byte	0x2e
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -6048,7 +6048,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF8
 	.byte	0x2
-	.byte	0x2e
+	.byte	0x2f
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -6057,7 +6057,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x23
 	.secrel32	.LASF11
 	.byte	0x2
-	.byte	0x2f
+	.byte	0x30
 	.byte	0x12
 	.long	0x49ff
 	.uleb128 0x2
@@ -6067,7 +6067,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x24
 	.ascii "_EQUALS_MEMORY\0"
 	.byte	0x1
-	.byte	0x65
+	.byte	0x68
 	.byte	0x15
 	.long	0x137
 	.quad	.LFB4273
@@ -6077,7 +6077,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "buffer1\0"
 	.byte	0x1
-	.byte	0x65
+	.byte	0x68
 	.byte	0x33
 	.long	0x753
 	.uleb128 0x2
@@ -6086,7 +6086,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "count1\0"
 	.byte	0x1
-	.byte	0x65
+	.byte	0x68
 	.byte	0x43
 	.long	0xd2
 	.uleb128 0x2
@@ -6095,7 +6095,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "buffer2\0"
 	.byte	0x1
-	.byte	0x65
+	.byte	0x68
 	.byte	0x5a
 	.long	0x753
 	.uleb128 0x2
@@ -6104,7 +6104,7 @@ TEST_PMC_DivRem_X_X:
 	.uleb128 0x1f
 	.ascii "count2\0"
 	.byte	0x1
-	.byte	0x65
+	.byte	0x68
 	.byte	0x6a
 	.long	0xd2
 	.uleb128 0x2

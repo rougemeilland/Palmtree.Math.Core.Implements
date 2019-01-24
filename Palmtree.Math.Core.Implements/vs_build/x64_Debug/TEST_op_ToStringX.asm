@@ -170,7 +170,7 @@ min_width$ = 448
 desired_str$ = 456
 TEST_PMC_ToStringX PROC					; COMDAT
 
-; 39   : {
+; 40   : {
 
 $LN10:
 	mov	QWORD PTR [rsp+32], r9
@@ -192,46 +192,46 @@ $LN10:
 	lea	rcx, OFFSET FLAT:__78990820_test_op_tostringx@c
 	call	__CheckForDebuggerJustMyCode
 
-; 40   :     HANDLE x;
-; 41   :     static wchar_t actual_str_buffer[4096];
-; 42   :     PMC_STATUS_CODE result;
-; 43   :     PMC_STATUS_CODE x_result;
-; 44   :     PMC_NUMBER_FORMAT_OPTION opt;
-; 45   :     lstrcpyW(opt.GroupSeparator, L",");
+; 41   :     HANDLE x;
+; 42   :     static wchar_t actual_str_buffer[4096];
+; 43   :     PMC_STATUS_CODE result;
+; 44   :     PMC_STATUS_CODE x_result;
+; 45   :     PMC_NUMBER_FORMAT_OPTION opt;
+; 46   :     lstrcpyW(opt.GroupSeparator, L",");
 
 	lea	rdx, OFFSET FLAT:??_C@_13DEFPDAGF@?$AA?0@
 	lea	rcx, QWORD PTR opt$[rbp+4]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 46   :     lstrcpy(opt.GroupSizes, "3");
+; 47   :     lstrcpy(opt.GroupSizes, "3");
 
 	lea	rdx, OFFSET FLAT:??_C@_01EKENIIDA@3@
 	lea	rcx, QWORD PTR opt$[rbp+28]
 	call	QWORD PTR __imp_lstrcpyA
 
-; 47   :     lstrcpyW(opt.DecimalSeparator, L".");
+; 48   :     lstrcpyW(opt.DecimalSeparator, L".");
 
 	lea	rdx, OFFSET FLAT:??_C@_13JOFGPIOO@?$AA?4@
 	lea	rcx, QWORD PTR opt$[rbp+10]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 48   :     opt.DecimalDigits = 2;
+; 49   :     opt.DecimalDigits = 2;
 
 	mov	DWORD PTR opt$[rbp], 2
 
-; 49   :     lstrcpyW(opt.PositiveSign, L"+");
+; 50   :     lstrcpyW(opt.PositiveSign, L"+");
 
 	lea	rdx, OFFSET FLAT:??_C@_13KJIIAINM@?$AA?$CL@
 	lea	rcx, QWORD PTR opt$[rbp+16]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 50   :     lstrcpyW(opt.NegativeSign, L"-");
+; 51   :     lstrcpyW(opt.NegativeSign, L"-");
 
 	lea	rdx, OFFSET FLAT:??_C@_13IMODFHAA@?$AA?9@
 	lea	rcx, QWORD PTR opt$[rbp+22]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 51   :     TEST_Assert(env, FormatTestLabel("ToStringX (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 52   :     TEST_Assert(env, FormatTestLabel("ToStringX (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	lea	r8, QWORD PTR x$[rbp]
 	mov	rdx, QWORD PTR buf_size$[rbp]
@@ -261,7 +261,7 @@ $LN5@TEST_PMC_T:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 52   :     TEST_Assert(env, FormatTestLabel("ToStringX (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, min_width, &opt)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToStringの復帰コードが期待通りではない(%d)", result));
+; 53   :     TEST_Assert(env, FormatTestLabel("ToStringX (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, min_width, &opt)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToStringの復帰コードが期待通りではない(%d)", result));
 
 	lea	rax, QWORD PTR opt$[rbp]
 	mov	QWORD PTR [rsp+40], rax
@@ -296,7 +296,7 @@ $LN7@TEST_PMC_T:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 53   :     TEST_Assert(env, FormatTestLabel("ToStringX (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, "データの内容が一致しない");
+; 54   :     TEST_Assert(env, FormatTestLabel("ToStringX (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, "データの内容が一致しない");
 
 	mov	rdx, QWORD PTR desired_str$[rbp]
 	lea	rcx, OFFSET FLAT:?actual_str_buffer@?1??TEST_PMC_ToStringX@@9@9
@@ -318,19 +318,19 @@ $LN9@TEST_PMC_T:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 54   :     if (x_result == PMC_STATUS_OK)
+; 55   :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR x_result$[rbp], 0
 	jne	SHORT $LN2@TEST_PMC_T
 
-; 55   :         ep->PMC_Dispose(x);
+; 56   :         ep->PMC_Dispose(x);
 
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN2@TEST_PMC_T:
 
-; 56   : }
+; 57   : }
 
 	lea	rcx, QWORD PTR [rbp-48]
 	lea	rdx, OFFSET FLAT:TEST_PMC_ToStringX$rtcFrameData
