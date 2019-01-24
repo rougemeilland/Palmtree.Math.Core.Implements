@@ -20,7 +20,7 @@ LFB5485:
 	testl	%ebx, %ebx
 	je	L2
 /APP
- # 812 "pmc_internal.h" 1
+ # 814 "pmc_internal.h" 1
 	bsrl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -77,7 +77,7 @@ LFB5486:
 	testl	%esi, %esi
 	je	L11
 /APP
- # 812 "pmc_internal.h" 1
+ # 814 "pmc_internal.h" 1
 	bsrl %esi, %eax
  # 0 "" 2
 /NO_APP
@@ -114,7 +114,7 @@ L9:
 L10:
 	.cfi_restore_state
 /APP
- # 812 "pmc_internal.h" 1
+ # 814 "pmc_internal.h" 1
 	bsrl %edi, %eax
  # 0 "" 2
 /NO_APP
@@ -212,20 +212,26 @@ LFE5488:
 _PMC_From_B@12:
 LFB5490:
 	.cfi_startproc
-	pushl	%edi
+	pushl	%ebp
 	.cfi_def_cfa_offset 8
-	.cfi_offset 7, -8
-	pushl	%esi
+	.cfi_offset 5, -8
+	pushl	%edi
 	.cfi_def_cfa_offset 12
-	.cfi_offset 6, -12
-	pushl	%ebx
+	.cfi_offset 7, -12
+	pushl	%esi
 	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
-	subl	$48, %esp
-	.cfi_def_cfa_offset 64
-	movl	64(%esp), %esi
-	movl	68(%esp), %eax
+	.cfi_offset 6, -16
+	pushl	%ebx
+	.cfi_def_cfa_offset 20
+	.cfi_offset 3, -20
+	subl	$60, %esp
+	.cfi_def_cfa_offset 80
+	movl	80(%esp), %esi
+	movl	84(%esp), %eax
+	movl	88(%esp), %ebx
 	testl	%esi, %esi
+	je	L34
+	testl	%ebx, %ebx
 	je	L34
 	leal	(%esi,%eax), %edx
 	testl	%eax, %eax
@@ -243,21 +249,23 @@ L30:
 	subl	$1, %eax
 	jne	L32
 L28:
-	movl	72(%esp), %eax
-	movl	$_number_zero, (%eax)
+	movl	$_number_zero, (%ebx)
 	xorl	%eax, %eax
 L26:
-	addl	$48, %esp
+	addl	$60, %esp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 16
+	.cfi_def_cfa_offset 20
 	popl	%ebx
 	.cfi_restore 3
-	.cfi_def_cfa_offset 12
+	.cfi_def_cfa_offset 16
 	popl	%esi
 	.cfi_restore 6
-	.cfi_def_cfa_offset 8
+	.cfi_def_cfa_offset 12
 	popl	%edi
 	.cfi_restore 7
+	.cfi_def_cfa_offset 8
+	popl	%ebp
+	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret	$12
 	.p2align 4,,10
@@ -266,14 +274,14 @@ L29:
 	movl	$7, %ecx
 	sall	$3, %eax
 /APP
- # 797 "pmc_internal.h" 1
+ # 799 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
 	subl	%edx, %ecx
 	movzbl	%cl, %edx
 	subl	%edx, %eax
-	movl	%eax, %ebx
+	movl	%eax, %ebp
 	je	L28
 	movl	%eax, 4(%esp)
 	leal	44(%esp), %eax
@@ -283,7 +291,7 @@ L29:
 	testl	%eax, %eax
 	jne	L26
 	movl	44(%esp), %edx
-	leal	7(%ebx), %ecx
+	leal	7(%ebp), %ecx
 	movl	%eax, 28(%esp)
 	shrl	$3, %ecx
 	movl	24(%edx), %edi
@@ -295,21 +303,23 @@ L29:
 	movl	44(%esp), %edx
 	movl	%edx, (%esp)
 	call	_CommitNumber
-	movl	72(%esp), %eax
 	movl	44(%esp), %edx
-	movl	%edx, (%eax)
 	movl	28(%esp), %eax
-	addl	$48, %esp
+	movl	%edx, (%ebx)
+	addl	$60, %esp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 16
+	.cfi_def_cfa_offset 20
 	popl	%ebx
 	.cfi_restore 3
-	.cfi_def_cfa_offset 12
+	.cfi_def_cfa_offset 16
 	popl	%esi
 	.cfi_restore 6
-	.cfi_def_cfa_offset 8
+	.cfi_def_cfa_offset 12
 	popl	%edi
 	.cfi_restore 7
+	.cfi_def_cfa_offset 8
+	popl	%ebp
+	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret	$12
 L34:

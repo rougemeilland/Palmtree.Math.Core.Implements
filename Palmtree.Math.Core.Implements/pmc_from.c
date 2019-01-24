@@ -149,6 +149,8 @@ PMC_STATUS_CODE __PMC_CALL PMC_From_B(unsigned char* buffer, size_t count, HANDL
     PMC_STATUS_CODE result;
     if (buffer == NULL)
         return (PMC_STATUS_ARGUMENT_ERROR);
+    if (o == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
     __UNIT_TYPE bit_count = CountActualBitsFromBuffer(buffer, count);
     if (bit_count == 0)
         *o = &number_zero;
@@ -172,6 +174,7 @@ PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature)
 {
     return (PMC_STATUS_OK);
 }
+
 
 /*
  * END OF FILE

@@ -101648,14 +101648,14 @@ __extension__ typedef unsigned long long uintmax_t;
 
 
 #pragma region マクロの定義
-# 61 "pmc.h"
+# 72 "pmc.h"
 #pragma endregion
 
 
 #pragma region 型の定義
-# 74 "pmc.h"
+# 85 "pmc.h"
 
-# 74 "pmc.h"
+# 85 "pmc.h"
 typedef int16_t _INT16_T;
 typedef int32_t _INT32_T;
 typedef int64_t _INT64_T;
@@ -101686,8 +101686,10 @@ typedef struct __tag_PMC_STATISTICS_INFO
 typedef struct __tag_PMC_NUMBER_FORMAT_OPTION
 {
     int DecimalDigits;
-    wchar_t GroupSeparator[5];
-    wchar_t DecimalSeparator[5];
+    wchar_t GroupSeparator[3];
+    wchar_t DecimalSeparator[3];
+    wchar_t PositiveSign[3];
+    wchar_t NegativeSign[3];
     char GroupSizes[11];
 } PMC_NUMBER_FORMAT_OPTION;
 
@@ -101776,6 +101778,8 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
     PMC_STATUS_CODE( * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
+
+    PMC_STATUS_CODE( * PMC_TryParse)(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -102010,6 +102014,8 @@ extern PMC_STATUS_CODE PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
 extern PMC_STATUS_CODE PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 
 extern PMC_STATUS_CODE PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
+
+extern PMC_STATUS_CODE PMC_TryParse(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
 #pragma endregion
 
 
@@ -102264,7 +102270,7 @@ __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_T
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 518 "pmc_internal.h"
+# 520 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -102273,7 +102279,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 534 "pmc_internal.h"
+# 536 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -102285,7 +102291,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYP
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 559 "pmc_internal.h"
+# 561 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -102299,7 +102305,7 @@ __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 
 __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 580 "pmc_internal.h"
+# 582 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -102314,7 +102320,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TY
 
 __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
 {
-# 618 "pmc_internal.h"
+# 620 "pmc_internal.h"
     __UNIT_TYPE q;
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -102335,7 +102341,7 @@ __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE
 
 __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
 {
-# 662 "pmc_internal.h"
+# 664 "pmc_internal.h"
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
@@ -102369,9 +102375,9 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 694 "pmc_internal.h" 3
+# 696 "pmc_internal.h" 3
            __rolq
-# 694 "pmc_internal.h"
+# 696 "pmc_internal.h"
                   (x, count));
 
 
@@ -102384,9 +102390,9 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 705 "pmc_internal.h" 3
+# 707 "pmc_internal.h" 3
            __rorq
-# 705 "pmc_internal.h"
+# 707 "pmc_internal.h"
                   (x, count));
 
 
@@ -102450,7 +102456,7 @@ __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 
 __inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
 {
-# 780 "pmc_internal.h"
+# 782 "pmc_internal.h"
     return (_lzcnt_u64(value));
 
 
@@ -102512,7 +102518,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 855 "pmc_internal.h"
+# 857 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -102528,7 +102534,7 @@ __inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 884 "pmc_internal.h"
+# 886 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -102566,7 +102572,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 935 "pmc_internal.h"
+# 937 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -104896,7 +104902,7 @@ static PMC_STATUS_CODE DoCarry(char c, __UNIT_TYPE* xp, __UNIT_TYPE x_count, __U
 
 
 
-                    return ((-8));
+                    return ((-256));
                 }
                 *op = 1;
             }
@@ -105155,7 +105161,7 @@ PMC_STATUS_CODE PMC_Add_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
     if ((sizeof(__UNIT_TYPE) * 8) < sizeof(y) * 8)
     {
 
-        return ((-8));
+        return ((-256));
     }
     if (x == 
 # 318 "pmc_add.c" 3 4
@@ -105241,7 +105247,7 @@ PMC_STATUS_CODE PMC_Add_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
     if ((sizeof(__UNIT_TYPE) * 8) * 2 < sizeof(y) * 8)
     {
 
-        return ((-8));
+        return ((-256));
     }
     if (x == 
 # 396 "pmc_add.c" 3 4

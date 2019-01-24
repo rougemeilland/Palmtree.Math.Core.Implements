@@ -33,28 +33,6 @@ namespace Palmtree.Math.TestPatternGen
                              .Zip(Enumerable.Range(1, int.MaxValue),
                                   (v, index) => new InputTestData(_id, v, index))
                              .ToArray();
-
-#if false
-            var encoding_ascii = new ASCIIEncoding();
-            Console.WriteLine(string.Join("\n",
-            CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(culture =>
-                {
-                    var original_str = culture.NumberFormat.NumberGroupSeparator;
-                    var bytes = Encoding.ASCII.GetBytes(original_str);
-                    var str2 = Encoding.ASCII.GetString(bytes);
-                    return (str2 == original_str);
-                })
-                .Where(culture => culture.NumberFormat.NumberGroupSizes.Length >= 2)
-                .OrderByDescending(culture => culture.NumberFormat.NumberGroupSizes.Length)
-                .Select(culture => string.Format("name='{0}', separator='{1}', sizes=[{2}]",
-                                                 culture.Name,
-                                                 culture.NumberFormat.NumberGroupSeparator,
-                                                 string.Join(", ",
-                                                             culture.NumberFormat.NumberGroupSizes
-                                                             .Select(n => n.ToString()))))));
-            Console.ReadLine();
-#endif
         }
 
         protected override string Id

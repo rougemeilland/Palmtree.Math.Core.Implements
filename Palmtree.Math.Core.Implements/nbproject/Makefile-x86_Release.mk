@@ -46,6 +46,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/TEST_op_ExclusiveOr.o \
 	${OBJECTDIR}/TEST_op_From_To.o \
 	${OBJECTDIR}/TEST_op_Multiply.o \
+	${OBJECTDIR}/TEST_op_ParseDN.o \
+	${OBJECTDIR}/TEST_op_ParseX.o \
 	${OBJECTDIR}/TEST_op_Shift.o \
 	${OBJECTDIR}/TEST_op_Subtruct.o \
 	${OBJECTDIR}/TEST_op_ToStringD.o \
@@ -151,6 +153,16 @@ ${OBJECTDIR}/TEST_op_Multiply.o: TEST_op_Multiply.c nbproject/Makefile-${CND_CON
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Multiply.o TEST_op_Multiply.c
+
+${OBJECTDIR}/TEST_op_ParseDN.o: TEST_op_ParseDN.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_ParseDN.o TEST_op_ParseDN.c
+
+${OBJECTDIR}/TEST_op_ParseX.o: TEST_op_ParseX.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_ParseX.o TEST_op_ParseX.c
 
 ${OBJECTDIR}/TEST_op_Shift.o: TEST_op_Shift.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

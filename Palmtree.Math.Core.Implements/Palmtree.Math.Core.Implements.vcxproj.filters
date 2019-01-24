@@ -109,6 +109,12 @@
     <ClCompile Include="TEST_op_ToStringN.c">
       <Filter>ソース ファイル\テスト</Filter>
     </ClCompile>
+    <ClCompile Include="TEST_op_ParseDN.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
+    <ClCompile Include="TEST_op_ParseX.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pmc.h">

@@ -46,6 +46,8 @@ void TEST_PMC_ToStringN(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no
     lstrcpy(opt.GroupSizes, group_sizes);
     lstrcpyW(opt.DecimalSeparator, decimal_separator);
     opt.DecimalDigits = decimal_digits;
+    lstrcpyW(opt.PositiveSign, L"+");
+    lstrcpyW(opt.NegativeSign, L"-");
     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, width, &opt)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToStringの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, "データの内容が一致しない");

@@ -48,6 +48,7 @@ extern "C" {
 #define PMC_EXPORT
 #endif
 
+#define PMC_STATUS_PARSING_ERROR (1)
 #define PMC_STATUS_OK (0)
 #define PMC_STATUS_ARGUMENT_ERROR (-1)
 #define PMC_STATUS_OVERFLOW (-2)
@@ -55,9 +56,19 @@ extern "C" {
 #define PMC_STATUS_INSUFFICIENT_BUFFER (-4)
 #define PMC_STATUS_NOT_ENOUGH_MEMORY (-5)
 #define PMC_STATUS_NOT_SUPPORTED (-6)
-#define PMC_STATUS_BAD_BUFFER (-7)
-#define PMC_STATUS_INTERNAL_ERROR (-8)
-#define PMC_STATUS_INTERNAL_BORROW (-9)
+#define PMC_STATUS_INTERNAL_ERROR (-256)
+#define PMC_STATUS_BAD_BUFFER (-257)
+#define PMC_STATUS_INTERNAL_BORROW (-258)
+
+#define PMC_NUMBER_STYLE_NONE                   (0x0000)    // スタイル要素 (先行する空白、後続の空白、桁区切り記号、小数点の記号など) を解析対象の文字列に含めることができないことを示す。
+#define PMC_NUMBER_STYLE_ALLOW_LEADING_WHITE    (0x0001)    // 先行する空白文字を解析対象の文字列に使用できることを示す。有効な空白文字の Unicode 値は、U+0009、U+000A、U+000B、U+000C、U+000D、および U+0020 である。
+#define PMC_NUMBER_STYLE_ALLOW_TRAILING_WHITE   (0x0002)    // 末尾の空白文字を解析対象の文字列に使用できることを示す。有効な空白文字の Unicode 値は、U+0009、U+000A、U+000B、U+000C、U+000D、および U+0020 である。
+#define PMC_NUMBER_STYLE_ALLOW_LEADING_SIGN     (0x0004)    // 数値文字列に先行する符号を使用できることを示す。
+#define PMC_NUMBER_STYLE_ALLOW_TRAILING_SIGN    (0x0008)    // 数値文字列に後続する符号を使用できることを示す。
+#define PMC_NUMBER_STYLE_ALLOW_PARENTHESES      (0x0010)    // 数値文字列にその数値を囲む一組の括弧を使用できることを示す。括弧は解析対象の文字列が負の値を表すことを示す。
+#define PMC_NUMBER_STYLE_ALLOW_DECIMAL_POINT    (0x0020)    // 数値文字列に小数点を使用できることを示す。
+#define PMC_NUMBER_STYLE_ALLOW_THOUSANDS        (0x0040)    // 先行する空白文字を解析対象の文字列に使用できることを示す。
+#define PMC_NUMBER_STYLE_ALLOW_HEX_SPECIFIER    (0x0200)    // 数値文字列が16進数を表すことを示す。
 #pragma endregion
 
 
@@ -101,8 +112,10 @@ typedef struct __tag_PMC_STATISTICS_INFO
 typedef struct __tag_PMC_NUMBER_FORMAT_OPTION
 {
     int         DecimalDigits;          // 書式 N の場合に数値の小数点以下の既定の桁数として解釈される。既定値は 2。
-    wchar_t     GroupSeparator[5];      // 書式 N の場合に数値をグループで区切る場合の区切り文字と解釈される。既定値は ","。
-    wchar_t     DecimalSeparator[5];    // 書式 N の場合に数値の整数部と小数部との区切り文字と解釈される。既定値は "."。
+    wchar_t     GroupSeparator[3];      // 書式 N の場合に数値をグループで区切る場合の区切り文字と解釈される。既定値は ","。
+    wchar_t     DecimalSeparator[3];    // 書式 N の場合に数値の整数部と小数部との区切り文字と解釈される。既定値は "."。
+    wchar_t     PositiveSign[3];        // 書式 D または N の場合に正の符号を表す文字として解釈される。既定値は "+"。
+    wchar_t     NegativeSign[3];        // 書式 D または N の場合に負の符号を表す文字として解釈される。既定値は "-"。
     char        GroupSizes[11];         // 書式 N の場合に数値をグループで区切る場合のグループの大きさを示す文字の集合と解釈される。既定値は "3"。
 } PMC_NUMBER_FORMAT_OPTION;
 
@@ -191,6 +204,8 @@ typedef struct __tag_PMC_ENTRY_POINTS
     // 文字列化
     PMC_STATUS_CODE(__PMC_CALL * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
+    // 文字列の解析
+    PMC_STATUS_CODE(__PMC_CALL * PMC_TryParse)(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 

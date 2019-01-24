@@ -533,6 +533,8 @@ PMC_STATUS_CODE Initialize_ToString(PROCESSOR_FEATURES *feature)
     lstrcpyW(default_number_format_option.GroupSeparator, L",");
     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
     lstrcpy(default_number_format_option.GroupSizes, "3");
+    lstrcpyW(default_number_format_option.PositiveSign, L"+");
+    lstrcpyW(default_number_format_option.NegativeSign, L"-");
 
     return (PMC_STATUS_OK);
 }

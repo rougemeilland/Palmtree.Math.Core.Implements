@@ -613,7 +613,7 @@ L93:
 	je	L95
 	movl	$31, %eax
 /APP
- # 846 "pmc_internal.h" 1
+ # 848 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -717,7 +717,7 @@ L101:
 	testl	%ebx, %ebx
 	jne	L107
 /APP
- # 926 "pmc_internal.h" 1
+ # 928 "pmc_internal.h" 1
 	bsrl %edx, %ebx
  # 0 "" 2
 /NO_APP

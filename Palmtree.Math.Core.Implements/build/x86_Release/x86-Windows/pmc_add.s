@@ -97,7 +97,7 @@ L9:
 	movl	%ebp, %edi
 	jmp	L2
 L11:
-	movl	$-8, %eax
+	movl	$-256, %eax
 	jmp	L1
 	.cfi_endproc
 LFE5525:
@@ -942,7 +942,7 @@ L88:
 	je	L97
 	leal	44(%esp), %edx
 /APP
- # 812 "pmc_internal.h" 1
+ # 814 "pmc_internal.h" 1
 	bsrl 84(%esp), %eax
  # 0 "" 2
 /NO_APP
@@ -1136,7 +1136,7 @@ L103:
 	testl	%esi, %esi
 	je	L108
 /APP
- # 812 "pmc_internal.h" 1
+ # 814 "pmc_internal.h" 1
 	bsrl %esi, %edx
  # 0 "" 2
 /NO_APP
@@ -1187,7 +1187,7 @@ L115:
 	.p2align 4,,10
 L107:
 /APP
- # 812 "pmc_internal.h" 1
+ # 814 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP

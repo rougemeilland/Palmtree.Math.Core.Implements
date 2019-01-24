@@ -13,6 +13,8 @@
       <itemPath>TEST_op_ExclusiveOr.c</itemPath>
       <itemPath>TEST_op_From_To.c</itemPath>
       <itemPath>TEST_op_Multiply.c</itemPath>
+      <itemPath>TEST_op_ParseDN.c</itemPath>
+      <itemPath>TEST_op_ParseX.c</itemPath>
       <itemPath>TEST_op_Shift.c</itemPath>
       <itemPath>TEST_op_Subtruct.c</itemPath>
       <itemPath>TEST_op_ToStringD.c</itemPath>
@@ -117,6 +119,10 @@
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Multiply.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="TEST_op_ParseDN.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="TEST_op_ParseX.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Shift.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -242,6 +248,10 @@
       </item>
       <item path="TEST_op_Multiply.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_ParseDN.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="TEST_op_ParseX.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_Shift.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Subtruct.c" ex="false" tool="0" flavor2="0">
@@ -358,6 +368,10 @@
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Multiply.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="TEST_op_ParseDN.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="TEST_op_ParseX.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Shift.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -483,6 +497,10 @@
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Multiply.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="TEST_op_ParseDN.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="TEST_op_ParseX.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Shift.c" ex="false" tool="0" flavor2="0">
       </item>

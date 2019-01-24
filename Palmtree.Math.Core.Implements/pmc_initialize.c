@@ -76,6 +76,8 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
         return (NULL);
     if (Initialize_ToString(&feature) != PMC_STATUS_OK)
         return (NULL);
+    if (Initialize_Parse(&feature) != PMC_STATUS_OK)
+        return (NULL);
 
     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
     entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;
@@ -122,6 +124,7 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
     entry_points.PMC_Equals_X_L = PMC_Equals_X_L;
     entry_points.PMC_Equals_X_X = PMC_Equals_X_X;
     entry_points.PMC_ToString = PMC_ToString;
+    entry_points.PMC_TryParse = PMC_TryParse;
     return (&entry_points);
 }
 

@@ -9,6 +9,8 @@
             PMC_STATUS_OK = new PMC_STATUS_CODE("PMC_STATUS_OK");
             PMC_STATUS_DIVISION_BY_ZERO = new PMC_STATUS_CODE("PMC_STATUS_DIVISION_BY_ZERO");
             PMC_STATUS_OVERFLOW = new PMC_STATUS_CODE("PMC_STATUS_OVERFLOW");
+            PMC_STATUS_ARGUMENT_ERROR = new PMC_STATUS_CODE("PMC_STATUS_ARGUMENT_ERROR");
+            PMC_STATUS_PARSING_ERROR = new PMC_STATUS_CODE("PMC_STATUS_PARSING_ERROR");
         }
 
         public PMC_STATUS_CODE(string name)
@@ -19,6 +21,8 @@
         static public PMC_STATUS_CODE PMC_STATUS_OK { get; private set; }
         static public PMC_STATUS_CODE PMC_STATUS_DIVISION_BY_ZERO { get; private set; }
         static public PMC_STATUS_CODE PMC_STATUS_OVERFLOW { get; private set; }
+        static public PMC_STATUS_CODE PMC_STATUS_ARGUMENT_ERROR { get; private set; }
+        static public PMC_STATUS_CODE PMC_STATUS_PARSING_ERROR { get; private set; }
 
         public override bool Equals(object obj)
         {

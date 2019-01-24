@@ -193,6 +193,8 @@
     <ClCompile Include="TEST_op_ExclusiveOr.c" />
     <ClCompile Include="TEST_op_From_To.c" />
     <ClCompile Include="TEST_op_Multiply.c" />
+    <ClCompile Include="TEST_op_ParseDN.c" />
+    <ClCompile Include="TEST_op_ParseX.c" />
     <ClCompile Include="TEST_op_Shift.c" />
     <ClCompile Include="TEST_op_Subtruct.c" />
     <ClCompile Include="TEST_op_ToStringD.c" />

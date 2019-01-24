@@ -71,6 +71,10 @@ PMC_Initialize:
 	call	Initialize_ToString
 	testl	%eax, %eax
 	jne	.L4
+	movq	%rbx, %rcx
+	call	Initialize_Parse
+	testl	%eax, %eax
+	jne	.L4
 	movzbl	entry_points(%rip), %eax
 	movzbl	44(%rsp), %edx
 	andl	$-32, %eax
@@ -157,6 +161,8 @@ PMC_Initialize:
 	movq	%rax, 312+entry_points(%rip)
 	movq	.refptr.PMC_ToString(%rip), %rax
 	movq	%rax, 320+entry_points(%rip)
+	movq	.refptr.PMC_TryParse(%rip), %rax
+	movq	%rax, 328+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
 	jmp	.L1
 	.p2align 4,,10
@@ -168,7 +174,7 @@ PMC_Initialize:
 	ret
 	.seh_endproc
 	.comm	configuration_info, 4, 2
-.lcomm entry_points,328,32
+.lcomm entry_points,336,32
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	GetCPUInfo;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
@@ -185,8 +191,14 @@ PMC_Initialize:
 	.def	Initialize_Compare;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Equals;	.scl	2;	.type	32;	.endef
 	.def	Initialize_ToString;	.scl	2;	.type	32;	.endef
+	.def	Initialize_Parse;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize\""
+	.section	.rdata$.refptr.PMC_TryParse, "dr"
+	.globl	.refptr.PMC_TryParse
+	.linkonce	discard
+.refptr.PMC_TryParse:
+	.quad	PMC_TryParse
 	.section	.rdata$.refptr.PMC_ToString, "dr"
 	.globl	.refptr.PMC_ToString
 	.linkonce	discard
