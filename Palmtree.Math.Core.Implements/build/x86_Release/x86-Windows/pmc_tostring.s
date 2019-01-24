@@ -432,8 +432,8 @@ L34:
 	movl	%eax, %ebx
 	movl	%ebp, %eax
 	call	_OutputOneChar
-	movl	%ebx, %eax
 	movl	%edi, %edx
+	movl	%ebx, %eax
 /APP
  # 622 "pmc_internal.h" 1
 	divl %esi
@@ -442,8 +442,8 @@ L34:
 	movl	%eax, %ebx
 	movl	%ebp, %eax
 	call	_OutputOneChar
-	movl	%ebx, %eax
 	movl	%edi, %edx
+	movl	%ebx, %eax
 /APP
  # 622 "pmc_internal.h" 1
 	divl %esi
@@ -452,8 +452,8 @@ L34:
 	movl	%eax, %ebx
 	movl	%ebp, %eax
 	call	_OutputOneChar
-	movl	%ebx, %eax
 	movl	%edi, %edx
+	movl	%ebx, %eax
 /APP
  # 622 "pmc_internal.h" 1
 	divl %esi
@@ -462,8 +462,8 @@ L34:
 	movl	%eax, %ebx
 	movl	%ebp, %eax
 	call	_OutputOneChar
-	movl	%ebx, %eax
 	movl	%edi, %edx
+	movl	%ebx, %eax
 /APP
  # 622 "pmc_internal.h" 1
 	divl %esi
@@ -472,8 +472,9 @@ L34:
 	movl	%eax, %ebx
 	movl	%ebp, %eax
 	call	_OutputOneChar
-	movl	%ebx, %eax
+	lock addl	$5, _statistics_info+12
 	movl	%edi, %edx
+	movl	%ebx, %eax
 /APP
  # 622 "pmc_internal.h" 1
 	divl %esi
@@ -482,8 +483,8 @@ L34:
 	movl	%eax, %ebx
 	movl	%ebp, %eax
 	call	_OutputOneChar
-	movl	%ebx, %eax
 	movl	%edi, %edx
+	movl	%ebx, %eax
 /APP
  # 622 "pmc_internal.h" 1
 	divl %esi
@@ -492,8 +493,9 @@ L34:
 	movl	%eax, %ebx
 	movl	%ebp, %eax
 	call	_OutputOneChar
-	movl	%ebx, %eax
+	lock addl	$2, _statistics_info+12
 	movl	%edi, %edx
+	movl	%ebx, %eax
 /APP
  # 622 "pmc_internal.h" 1
 	divl %esi
@@ -505,6 +507,7 @@ L34:
 	movl	%ebx, %edx
 	movl	%ebp, %eax
 	call	_OutputOneChar
+	lock addl	$1, _statistics_info+12
 	movl	32(%esp), %ecx
 	addl	$4, %ecx
 	subl	$1, 40(%esp)
@@ -528,6 +531,7 @@ L35:
 	movl	%eax, %edi
 	movl	%ebp, %eax
 	call	_OutputOneChar
+	lock addl	$1, _statistics_info+12
 	testl	%edi, %edi
 	jne	L35
 	movl	140(%esp), %eax

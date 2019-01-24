@@ -88594,6 +88594,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[31], &u_buf[31]);
         u_buf += 32;
         --count;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(32);
+        else
+            AddToMULTI64Counter(32);
+
     }
 
     if (u_count & 0x10)
@@ -88615,6 +88621,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[14], &u_buf[14]);
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[15], &u_buf[15]);
         u_buf += 16;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(16);
+        else
+            AddToMULTI64Counter(16);
+
     }
 
     if (u_count & 0x8)
@@ -88628,6 +88640,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[6], &u_buf[6]);
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[7], &u_buf[7]);
         u_buf += 8;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(8);
+        else
+            AddToMULTI64Counter(8);
+
     }
 
     if (u_count & 0x4)
@@ -88637,6 +88655,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[2], &u_buf[2]);
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[3], &u_buf[3]);
         u_buf += 4;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(4);
+        else
+            AddToMULTI64Counter(4);
+
     }
 
     if (u_count & 0x2)
@@ -88644,12 +88668,24 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[0], &u_buf[0]);
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[1], &u_buf[1]);
         u_buf += 2;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(2);
+        else
+            AddToMULTI64Counter(2);
+
     }
 
     if (u_count & 0x1)
     {
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[0], &u_buf[0]);
         u_buf += 1;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            IncrementMULTI32Counter();
+        else
+            IncrementMULTI64Counter();
+
     }
 
     if (k > 0)
@@ -88701,6 +88737,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[31], &u_buf[31]);
         u_buf += 32;
         --count;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(32);
+        else
+            AddToMULTI64Counter(32);
+
     }
 
     if (u_count & 0x10)
@@ -88722,6 +88764,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[14], &u_buf[14]);
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[15], &u_buf[15]);
         u_buf += 16;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(16);
+        else
+            AddToMULTI64Counter(16);
+
     }
 
     if (u_count & 0x8)
@@ -88735,6 +88783,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[6], &u_buf[6]);
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[7], &u_buf[7]);
         u_buf += 8;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(8);
+        else
+            AddToMULTI64Counter(8);
+
     }
 
     if (u_count & 0x4)
@@ -88744,6 +88798,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
         u_buf += 4;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(4);
+        else
+            AddToMULTI64Counter(4);
+
     }
 
     if (u_count & 0x2)
@@ -88751,12 +88811,24 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
         u_buf += 2;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(2);
+        else
+            AddToMULTI64Counter(2);
+
     }
 
     if (u_count & 0x1)
     {
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
         u_buf += 1;
+
+        if (sizeof(k) == sizeof(_UINT32_T))
+            IncrementMULTI32Counter();
+        else
+            IncrementMULTI64Counter();
+
     }
 
     if (k > 0)
@@ -88775,9 +88847,9 @@ static PMC_STATUS_CODE ConvertCardinalNumber(__UNIT_TYPE* in_buf, __UNIT_TYPE in
     __UNIT_TYPE work_buf_words;
     __UNIT_TYPE* work_buf = AllocateBlock((sizeof(__UNIT_TYPE) * 8) * (in_buf_count + 1), &work_buf_words, &work_buf_code);
     if (work_buf == 
-# 626 "pmc_parse.c" 3 4
+# 698 "pmc_parse.c" 3 4
                    ((void *)0)
-# 626 "pmc_parse.c"
+# 698 "pmc_parse.c"
                        )
         return ((-5));
 
@@ -88816,9 +88888,9 @@ static PMC_STATUS_CODE TryParseDN(wchar_t* source, _UINT32_T number_styles, PMC_
     __UNIT_TYPE int_part_buf_words;
     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
     if (int_part_buf == 
-# 663 "pmc_parse.c" 3 4
+# 735 "pmc_parse.c" 3 4
                        ((void *)0)
-# 663 "pmc_parse.c"
+# 735 "pmc_parse.c"
                            )
         return ((-5));
 
@@ -88826,9 +88898,9 @@ static PMC_STATUS_CODE TryParseDN(wchar_t* source, _UINT32_T number_styles, PMC_
     __UNIT_TYPE frac_part_buf_words;
     wchar_t* frac_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &frac_part_buf_words, &frac_part_buf_code);
     if (frac_part_buf == 
-# 669 "pmc_parse.c" 3 4
+# 741 "pmc_parse.c" 3 4
                         ((void *)0)
-# 669 "pmc_parse.c"
+# 741 "pmc_parse.c"
                             )
     {
         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
@@ -88915,9 +88987,9 @@ static PMC_STATUS_CODE TryParseDN(wchar_t* source, _UINT32_T number_styles, PMC_
     __UNIT_TYPE bin_buf_words;
     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * (sizeof(__UNIT_TYPE) * 8), &bin_buf_words, &bin_buf_code);
     if (bin_buf == 
-# 754 "pmc_parse.c" 3 4
+# 826 "pmc_parse.c" 3 4
                   ((void *)0)
-# 754 "pmc_parse.c"
+# 826 "pmc_parse.c"
                       )
     {
         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
@@ -89066,9 +89138,9 @@ static PMC_STATUS_CODE TryParseX(wchar_t* source, _UINT32_T number_styles, PMC_N
     __UNIT_TYPE int_part_buf_words;
     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
     if (int_part_buf == 
-# 901 "pmc_parse.c" 3 4
+# 973 "pmc_parse.c" 3 4
                        ((void *)0)
-# 901 "pmc_parse.c"
+# 973 "pmc_parse.c"
                            )
         return ((-5));
     int result_parsing = ParseAsHexNumberString(source, number_styles, format_option, int_part_buf);
@@ -89098,21 +89170,21 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_TryParse(wchar_t* source, _UINT
 {
     PMC_STATUS_CODE result;
     if (source == 
-# 929 "pmc_parse.c" 3 4
+# 1001 "pmc_parse.c" 3 4
                  ((void *)0)
-# 929 "pmc_parse.c"
+# 1001 "pmc_parse.c"
                      )
         return ((-1));
     if (o == 
-# 931 "pmc_parse.c" 3 4
+# 1003 "pmc_parse.c" 3 4
             ((void *)0)
-# 931 "pmc_parse.c"
+# 1003 "pmc_parse.c"
                 )
         return ((-1));
     if (format_option == 
-# 933 "pmc_parse.c" 3 4
+# 1005 "pmc_parse.c" 3 4
                         ((void *)0)
-# 933 "pmc_parse.c"
+# 1005 "pmc_parse.c"
                             )
         format_option = &default_number_format_option;
     NUMBER_HEADER* no;
@@ -89147,9 +89219,9 @@ PMC_STATUS_CODE Initialize_Parse(PROCESSOR_FEATURES* feature)
     lstrcpyW(default_number_format_option.GroupSeparator, L",");
     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
     
-# 966 "pmc_parse.c" 3
+# 1038 "pmc_parse.c" 3
    lstrcpyA
-# 966 "pmc_parse.c"
+# 1038 "pmc_parse.c"
           (default_number_format_option.GroupSizes, "3");
     lstrcpyW(default_number_format_option.PositiveSign, L"+");
     lstrcpyW(default_number_format_option.NegativeSign, L"-");

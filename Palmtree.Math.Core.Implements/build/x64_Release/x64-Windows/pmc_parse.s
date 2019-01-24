@@ -235,6 +235,10 @@ MultiplyAndAdd_using_ADC_MUL:
 	.seh_pushreg	%r15
 	pushq	%r14
 	.seh_pushreg	%r14
+	pushq	%r12
+	.seh_pushreg	%r12
+	pushq	%rbp
+	.seh_pushreg	%rbp
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -245,13 +249,15 @@ MultiplyAndAdd_using_ADC_MUL:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movq	%rdx, %rbx
-	movq	%rdx, %rdi
+	movq	%rdx, %r12
 	shrq	$5, %rbx
 	testq	%rbx, %rbx
 	je	.L52
+	movq	.refptr.statistics_info(%rip), %rdi
 	movq	%rbx, %rsi
 	movq	%rcx, %r10
 	xorl	%r9d, %r9d
+	leaq	8(%rsp), %rbp
 	movabsq	$-8446744073709551616, %r11
 	.p2align 4,,10
 .L53:
@@ -513,12 +519,44 @@ MultiplyAndAdd_using_ADC_MUL:
 	adcq	%r9, %r8
 	addq	$256, %r10
 	subq	$1, %rsi
+	movq	%r8, 0(%rbp)
+	lock addl	$32, (%rdi)
+	testq	%rsi, %rsi
 	jne	.L53
 	salq	$8, %rbx
 	addq	%rbx, %rcx
 .L52:
-	testb	$16, %dil
-	je	.L54
+	testb	$16, %r12b
+	jne	.L80
+	testb	$8, %r12b
+	jne	.L81
+.L55:
+	testb	$4, %r12b
+	jne	.L82
+.L56:
+	testb	$2, %r12b
+	jne	.L83
+.L57:
+	andl	$1, %r12d
+	jne	.L84
+.L58:
+	testq	%r8, %r8
+	je	.L51
+	movq	%r8, (%rcx)
+	addq	$8, %rcx
+.L51:
+	movq	%rcx, %rax
+	addq	$16, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	popq	%r12
+	popq	%r14
+	popq	%r15
+	ret
+	.p2align 4,,10
+.L80:
 	movabsq	$-8446744073709551616, %r9
 	movq	%r9, %rax
 	mulq	(%rcx)
@@ -649,9 +687,12 @@ MultiplyAndAdd_using_ADC_MUL:
 	addb	$-1, %al
 	adcq	%rdx, %r8
 	subq	$-128, %rcx
-.L54:
-	testb	$8, %dil
+	movq	%r8, 8(%rsp)
+	movq	.refptr.statistics_info(%rip), %rax
+	lock addl	$16, (%rax)
+	testb	$8, %r12b
 	je	.L55
+.L81:
 	movabsq	$-8446744073709551616, %r9
 	movq	%r9, %rax
 	mulq	(%rcx)
@@ -716,11 +757,14 @@ MultiplyAndAdd_using_ADC_MUL:
 	setc	%al
 	movq	%r10, 56(%rcx)
 	addb	$-1, %al
+	movq	.refptr.statistics_info(%rip), %rax
 	adcq	%rdx, %r8
 	addq	$64, %rcx
-.L55:
-	testb	$4, %dil
+	movq	%r8, 8(%rsp)
+	lock addl	$8, (%rax)
+	testb	$4, %r12b
 	je	.L56
+.L82:
 	movabsq	$-8446744073709551616, %r9
 	movq	%r9, %rax
 	mulq	(%rcx)
@@ -753,11 +797,14 @@ MultiplyAndAdd_using_ADC_MUL:
 	setc	%al
 	movq	%r10, 24(%rcx)
 	addb	$-1, %al
+	movq	.refptr.statistics_info(%rip), %rax
 	adcq	%rdx, %r8
 	addq	$32, %rcx
-.L56:
-	testb	$2, %dil
+	movq	%r8, 8(%rsp)
+	lock addl	$4, (%rax)
+	testb	$2, %r12b
 	je	.L57
+.L83:
 	movabsq	$-8446744073709551616, %r9
 	movq	%r9, %rax
 	mulq	(%rcx)
@@ -774,40 +821,37 @@ MultiplyAndAdd_using_ADC_MUL:
 	setc	%al
 	movq	%r10, 8(%rcx)
 	addb	$-1, %al
+	movq	.refptr.statistics_info(%rip), %rax
 	adcq	%rdx, %r8
 	addq	$16, %rcx
-.L57:
-	andl	$1, %edi
+	movq	%r8, 8(%rsp)
+	lock addl	$2, (%rax)
+	andl	$1, %r12d
 	je	.L58
-	movabsq	$-8446744073709551616, %rdi
-	movq	%rdi, %rax
+.L84:
+	movabsq	$-8446744073709551616, %rsi
+	movq	%rsi, %rax
 	mulq	(%rcx)
 	addq	%rax, %r8
 	setc	%al
 	movq	%r8, (%rcx)
 	movq	%rdx, %r8
 	addb	$-1, %al
+	movq	.refptr.statistics_info(%rip), %rax
 	adcq	$0, %r8
 	addq	$8, %rcx
-.L58:
-	testq	%r8, %r8
-	je	.L51
-	movq	%r8, (%rcx)
-	addq	$8, %rcx
-.L51:
-	movq	%rcx, %rax
-	addq	$16, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%r14
-	popq	%r15
-	ret
+	movq	%r8, 8(%rsp)
+	lock addl	$1, (%rax)
+	jmp	.L58
 	.seh_endproc
 	.p2align 4,,15
 	.def	MultiplyAndAdd_using_ADCX_MULX;	.scl	3;	.type	32;	.endef
 	.seh_proc	MultiplyAndAdd_using_ADCX_MULX
 MultiplyAndAdd_using_ADCX_MULX:
+	pushq	%r13
+	.seh_pushreg	%r13
+	pushq	%r12
+	.seh_pushreg	%r12
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -820,564 +864,584 @@ MultiplyAndAdd_using_ADCX_MULX:
 	.seh_stackalloc	24
 	.seh_endprologue
 	movq	%rdx, %rax
-	movq	%rdx, %rbx
+	movq	%rdx, %rdi
 	shrq	$5, %rax
 	testq	%rax, %rax
-	je	.L89
-	movq	%rax, %rsi
+	je	.L94
+	movq	.refptr.statistics_info(%rip), %rsi
+	movq	%rax, %rbx
 	movq	%rcx, %r11
 	xorl	%r9d, %r9d
+	leaq	8(%rsp), %rbp
 	movabsq	$-8446744073709551616, %r10
 	.p2align 4,,10
-.L82:
+.L87:
 	movq	(%r11), %rdx
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rbp, %rdi
+	mulxq %r10, %r13, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, (%r11)
 	addb	$-1, %dl
 	movq	8(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 8(%r11)
+	movq	%r12, 8(%r11)
 	addb	$-1, %dl
 	movq	16(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 16(%r11)
 	addb	$-1, %dl
 	movq	24(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 24(%r11)
+	movq	%r12, 24(%r11)
 	addb	$-1, %dl
 	movq	32(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 32(%r11)
 	addb	$-1, %dl
 	movq	40(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 40(%r11)
+	movq	%r12, 40(%r11)
 	addb	$-1, %dl
 	movq	48(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 48(%r11)
 	addb	$-1, %dl
 	movq	56(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 56(%r11)
+	movq	%r12, 56(%r11)
 	addb	$-1, %dl
 	movq	64(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 64(%r11)
 	addb	$-1, %dl
 	movq	72(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 72(%r11)
+	movq	%r12, 72(%r11)
 	addb	$-1, %dl
 	movq	80(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 80(%r11)
 	addb	$-1, %dl
 	movq	88(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 88(%r11)
+	movq	%r12, 88(%r11)
 	addb	$-1, %dl
 	movq	96(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 96(%r11)
 	addb	$-1, %dl
 	movq	104(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 104(%r11)
+	movq	%r12, 104(%r11)
 	addb	$-1, %dl
 	movq	112(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 112(%r11)
 	addb	$-1, %dl
 	movq	120(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 120(%r11)
+	movq	%r12, 120(%r11)
 	addb	$-1, %dl
 	movq	128(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 128(%r11)
 	addb	$-1, %dl
 	movq	136(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 136(%r11)
+	movq	%r12, 136(%r11)
 	addb	$-1, %dl
 	movq	144(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 144(%r11)
 	addb	$-1, %dl
 	movq	152(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 152(%r11)
+	movq	%r12, 152(%r11)
 	addb	$-1, %dl
 	movq	160(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 160(%r11)
 	addb	$-1, %dl
 	movq	168(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 168(%r11)
+	movq	%r12, 168(%r11)
 	addb	$-1, %dl
 	movq	176(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
 	setc	%dl
 	movq	%r8, 176(%r11)
 	addb	$-1, %dl
 	movq	184(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r12
+	movq	%r12, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 184(%r11)
+	movq	%r12, 184(%r11)
 	addb	$-1, %dl
 	movq	192(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 192(%r11)
 	addb	$-1, %dl
 	movq	200(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 200(%r11)
+	movq	%r12, 200(%r11)
 	addb	$-1, %dl
 	movq	208(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
 	setc	%dl
 	movq	%r8, 208(%r11)
 	addb	$-1, %dl
 	movq	216(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r12
+	movq	%r12, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 216(%r11)
+	movq	%r12, 216(%r11)
 	addb	$-1, %dl
 	movq	224(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
+	movq	%r12, %r13
 	setc	%dl
 	movq	%r8, 224(%r11)
 	addb	$-1, %dl
 	movq	232(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 232(%r11)
+	movq	%r12, 232(%r11)
 	addb	$-1, %dl
 	movq	240(%r11), %rdx
 	adcq	%r9, %r8
-	movq	%r8, %rbp
+	movq	%r8, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %r8, %rdi
+	mulxq %r10, %r8, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %r8
+	addq	%r13, %r8
 	setc	%dl
 	movq	%r8, 240(%r11)
 	addb	$-1, %dl
 	movq	248(%r11), %rdx
-	adcq	%r9, %rdi
-	movq	%rdi, %rbp
+	adcq	%r9, %r12
+	movq	%r12, %r13
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %r10, %rdi, %r8
+	mulxq %r10, %r12, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rbp, %rdi
+	addq	%r13, %r12
 	setc	%dl
-	movq	%rdi, 248(%r11)
+	movq	%r12, 248(%r11)
 	addb	$-1, %dl
 	adcq	%r9, %r8
 	addq	$256, %r11
-	subq	$1, %rsi
-	jne	.L82
+	subq	$1, %rbx
+	movq	%r8, 0(%rbp)
+	lock addl	$32, (%rsi)
+	testq	%rbx, %rbx
+	jne	.L87
 	salq	$8, %rax
 	addq	%rcx, %rax
-.L81:
-	testb	$16, %bl
-	je	.L83
+.L86:
+	testb	$16, %dil
+	jne	.L114
+	testb	$8, %dil
+	jne	.L115
+.L89:
+	testb	$4, %dil
+	jne	.L116
+.L90:
+	testb	$2, %dil
+	jne	.L117
+.L91:
+	andl	$1, %edi
+	jne	.L118
+.L92:
+	testq	%r8, %r8
+	je	.L85
+	movq	%r8, (%rax)
+	addq	$8, %rax
+.L85:
+	addq	$24, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	popq	%r12
+	popq	%r13
+	ret
+	.p2align 4,,10
+.L114:
 	movabsq	$-8446744073709551616, %rcx
 	movq	(%rax), %rdx
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r10, %r8
+	addq	%r9, %r8
 	setc	%dl
 	movq	%r8, (%rax)
 	xorl	%r8d, %r8d
 	addb	$-1, %dl
 	movq	8(%rax), %rdx
-	adcq	%r8, %r9
-	movq	%r9, %r11
+	adcq	%r8, %r10
+	movq	%r10, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r9, %r10
+	mulxq %rcx, %r10, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r9
+	addq	%r11, %r10
 	setc	%dl
-	movq	%r9, 8(%rax)
+	movq	%r10, 8(%rax)
 	addb	$-1, %dl
 	movq	16(%rax), %rdx
-	adcq	%r8, %r10
-	movq	%r10, %r11
+	adcq	%r8, %r9
+	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r10
+	addq	%r11, %r9
 	setc	%dl
-	movq	%r10, 16(%rax)
+	movq	%r9, 16(%rax)
 	addb	$-1, %dl
 	movq	24(%rax), %rdx
-	adcq	%r8, %r9
-	movq	%r9, %r11
+	adcq	%r8, %r10
+	movq	%r10, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r9, %r10
+	mulxq %rcx, %r10, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r9
+	addq	%r11, %r10
 	setc	%dl
-	movq	%r9, 24(%rax)
+	movq	%r10, 24(%rax)
 	addb	$-1, %dl
 	movq	32(%rax), %rdx
-	adcq	%r8, %r10
-	movq	%r10, %r11
+	adcq	%r8, %r9
+	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r10
+	addq	%r11, %r9
 	setc	%dl
-	movq	%r10, 32(%rax)
+	movq	%r9, 32(%rax)
 	addb	$-1, %dl
 	movq	40(%rax), %rdx
-	adcq	%r8, %r9
-	movq	%r9, %r11
+	adcq	%r8, %r10
+	movq	%r10, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r9, %r10
+	mulxq %rcx, %r10, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r9
+	addq	%r11, %r10
 	setc	%dl
-	movq	%r9, 40(%rax)
+	movq	%r10, 40(%rax)
 	addb	$-1, %dl
 	movq	48(%rax), %rdx
-	adcq	%r8, %r10
-	movq	%r10, %r11
+	adcq	%r8, %r9
+	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r10
+	addq	%r11, %r9
 	setc	%dl
-	movq	%r10, 48(%rax)
+	movq	%r9, 48(%rax)
 	addb	$-1, %dl
 	movq	56(%rax), %rdx
-	adcq	%r8, %r9
-	movq	%r9, %r11
+	adcq	%r8, %r10
+	movq	%r10, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r9, %r10
+	mulxq %rcx, %r10, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r9
+	addq	%r11, %r10
 	setc	%dl
-	movq	%r9, 56(%rax)
+	movq	%r10, 56(%rax)
 	addb	$-1, %dl
 	movq	64(%rax), %rdx
-	adcq	%r8, %r10
-	movq	%r10, %r11
+	adcq	%r8, %r9
+	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r10
+	addq	%r11, %r9
 	setc	%dl
-	movq	%r10, 64(%rax)
+	movq	%r9, 64(%rax)
 	addb	$-1, %dl
 	movq	72(%rax), %rdx
-	adcq	%r8, %r9
-	movq	%r9, %r11
+	adcq	%r8, %r10
+	movq	%r10, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r9, %r10
+	mulxq %rcx, %r10, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r9
+	addq	%r11, %r10
 	setc	%dl
-	movq	%r9, 72(%rax)
+	movq	%r10, 72(%rax)
 	addb	$-1, %dl
 	movq	80(%rax), %rdx
-	adcq	%r8, %r10
-	movq	%r10, %r11
+	adcq	%r8, %r9
+	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r10
+	addq	%r11, %r9
 	setc	%dl
-	movq	%r10, 80(%rax)
+	movq	%r9, 80(%rax)
 	addb	$-1, %dl
 	movq	88(%rax), %rdx
-	adcq	%r8, %r9
-	movq	%r9, %r11
+	adcq	%r8, %r10
+	movq	%r10, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r9, %r10
+	mulxq %rcx, %r10, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r9
+	addq	%r11, %r10
 	setc	%dl
-	movq	%r9, 88(%rax)
+	movq	%r10, 88(%rax)
 	addb	$-1, %dl
 	movq	96(%rax), %rdx
-	adcq	%r8, %r10
-	movq	%r10, %r11
-/APP
- # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
- # 0 "" 2
-/NO_APP
-	addq	%r11, %r10
-	setc	%dl
-	movq	%r10, 96(%rax)
-	addb	$-1, %dl
-	movq	104(%rax), %rdx
 	adcq	%r8, %r9
 	movq	%r9, %r11
 /APP
@@ -1387,9 +1451,9 @@ MultiplyAndAdd_using_ADCX_MULX:
 /NO_APP
 	addq	%r11, %r9
 	setc	%dl
-	movq	%r9, 104(%rax)
+	movq	%r9, 96(%rax)
 	addb	$-1, %dl
-	movq	112(%rax), %rdx
+	movq	104(%rax), %rdx
 	adcq	%r8, %r10
 	movq	%r10, %r11
 /APP
@@ -1399,85 +1463,88 @@ MultiplyAndAdd_using_ADCX_MULX:
 /NO_APP
 	addq	%r11, %r10
 	setc	%dl
-	movq	%r10, 112(%rax)
+	movq	%r10, 104(%rax)
 	addb	$-1, %dl
-	movq	120(%rax), %rdx
+	movq	112(%rax), %rdx
 	adcq	%r8, %r9
+	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %rcx, %r10
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r9, %rcx
+	addq	%r11, %r9
+	setc	%dl
+	movq	%r9, 112(%rax)
+	addb	$-1, %dl
+	movq	120(%rax), %rdx
+	adcq	%r8, %r10
+/APP
+ # 562 "pmc_internal.h" 1
+	mulxq %rcx, %rcx, %r9
+ # 0 "" 2
+/NO_APP
+	addq	%r10, %rcx
 	setc	%dl
 	movq	%rcx, 120(%rax)
 	addb	$-1, %dl
-	adcq	%r10, %r8
+	adcq	%r9, %r8
 	subq	$-128, %rax
-.L83:
-	testb	$8, %bl
-	je	.L84
+	movq	%r8, 8(%rsp)
+	movq	.refptr.statistics_info(%rip), %rdx
+	lock addl	$16, (%rdx)
+	testb	$8, %dil
+	je	.L89
+.L115:
 	movabsq	$-8446744073709551616, %rcx
 	movq	(%rax), %rdx
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r10, %r8
+	addq	%r9, %r8
 	setc	%dl
 	movq	%r8, (%rax)
 	xorl	%r8d, %r8d
 	addb	$-1, %dl
 	movq	8(%rax), %rdx
-	adcq	%r8, %r9
-	movq	%r9, %r11
+	adcq	%r8, %r10
+	movq	%r10, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r9, %r10
+	mulxq %rcx, %r10, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r9
+	addq	%r11, %r10
 	setc	%dl
-	movq	%r9, 8(%rax)
+	movq	%r10, 8(%rax)
 	addb	$-1, %dl
 	movq	16(%rax), %rdx
-	adcq	%r8, %r10
-	movq	%r10, %r11
+	adcq	%r8, %r9
+	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r10
+	addq	%r11, %r9
 	setc	%dl
-	movq	%r10, 16(%rax)
+	movq	%r9, 16(%rax)
 	addb	$-1, %dl
 	movq	24(%rax), %rdx
-	adcq	%r8, %r9
-	movq	%r9, %r11
+	adcq	%r8, %r10
+	movq	%r10, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r9, %r10
+	mulxq %rcx, %r10, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r9
+	addq	%r11, %r10
 	setc	%dl
-	movq	%r9, 24(%rax)
+	movq	%r10, 24(%rax)
 	addb	$-1, %dl
 	movq	32(%rax), %rdx
-	adcq	%r8, %r10
-	movq	%r10, %r11
-/APP
- # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
- # 0 "" 2
-/NO_APP
-	addq	%r11, %r10
-	setc	%dl
-	movq	%r10, 32(%rax)
-	addb	$-1, %dl
-	movq	40(%rax), %rdx
 	adcq	%r8, %r9
 	movq	%r9, %r11
 /APP
@@ -1487,9 +1554,9 @@ MultiplyAndAdd_using_ADCX_MULX:
 /NO_APP
 	addq	%r11, %r9
 	setc	%dl
-	movq	%r9, 40(%rax)
+	movq	%r9, 32(%rax)
 	addb	$-1, %dl
-	movq	48(%rax), %rdx
+	movq	40(%rax), %rdx
 	adcq	%r8, %r10
 	movq	%r10, %r11
 /APP
@@ -1499,49 +1566,52 @@ MultiplyAndAdd_using_ADCX_MULX:
 /NO_APP
 	addq	%r11, %r10
 	setc	%dl
-	movq	%r10, 48(%rax)
+	movq	%r10, 40(%rax)
 	addb	$-1, %dl
-	movq	56(%rax), %rdx
+	movq	48(%rax), %rdx
 	adcq	%r8, %r9
+	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %rcx, %r10
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r9, %rcx
+	addq	%r11, %r9
+	setc	%dl
+	movq	%r9, 48(%rax)
+	addb	$-1, %dl
+	movq	56(%rax), %rdx
+	adcq	%r8, %r10
+/APP
+ # 562 "pmc_internal.h" 1
+	mulxq %rcx, %rcx, %r9
+ # 0 "" 2
+/NO_APP
+	addq	%r10, %rcx
 	setc	%dl
 	movq	%rcx, 56(%rax)
 	addb	$-1, %dl
-	adcq	%r10, %r8
+	movq	.refptr.statistics_info(%rip), %rdx
+	adcq	%r9, %r8
 	addq	$64, %rax
-.L84:
-	testb	$4, %bl
-	je	.L85
+	movq	%r8, 8(%rsp)
+	lock addl	$8, (%rdx)
+	testb	$4, %dil
+	je	.L90
+.L116:
 	movabsq	$-8446744073709551616, %rcx
 	movq	(%rax), %rdx
-/APP
- # 562 "pmc_internal.h" 1
-	mulxq %rcx, %r10, %r9
- # 0 "" 2
-/NO_APP
-	addq	%r10, %r8
-	setc	%dl
-	movq	%r8, (%rax)
-	xorl	%r8d, %r8d
-	addb	$-1, %dl
-	movq	8(%rax), %rdx
-	adcq	%r8, %r9
-	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
 	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r11, %r9
+	addq	%r9, %r8
 	setc	%dl
-	movq	%r9, 8(%rax)
+	movq	%r8, (%rax)
+	xorl	%r8d, %r8d
 	addb	$-1, %dl
-	movq	16(%rax), %rdx
+	movq	8(%rax), %rdx
 	adcq	%r8, %r10
 	movq	%r10, %r11
 /APP
@@ -1551,24 +1621,39 @@ MultiplyAndAdd_using_ADCX_MULX:
 /NO_APP
 	addq	%r11, %r10
 	setc	%dl
-	movq	%r10, 16(%rax)
+	movq	%r10, 8(%rax)
 	addb	$-1, %dl
-	movq	24(%rax), %rdx
+	movq	16(%rax), %rdx
 	adcq	%r8, %r9
+	movq	%r9, %r11
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %rcx, %r10
+	mulxq %rcx, %r9, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r9, %rcx
+	addq	%r11, %r9
+	setc	%dl
+	movq	%r9, 16(%rax)
+	addb	$-1, %dl
+	movq	24(%rax), %rdx
+	adcq	%r8, %r10
+/APP
+ # 562 "pmc_internal.h" 1
+	mulxq %rcx, %rcx, %r9
+ # 0 "" 2
+/NO_APP
+	addq	%r10, %rcx
 	setc	%dl
 	movq	%rcx, 24(%rax)
 	addb	$-1, %dl
-	adcq	%r10, %r8
+	movq	.refptr.statistics_info(%rip), %rdx
+	adcq	%r9, %r8
 	addq	$32, %rax
-.L85:
-	testb	$2, %bl
-	je	.L86
+	movq	%r8, 8(%rsp)
+	lock addl	$4, (%rdx)
+	testb	$2, %dil
+	je	.L91
+.L117:
 	movabsq	$-8446744073709551616, %rcx
 	movq	(%rax), %rdx
 /APP
@@ -1577,26 +1662,30 @@ MultiplyAndAdd_using_ADCX_MULX:
  # 0 "" 2
 /NO_APP
 	addq	%r10, %r8
+	movq	%r9, %r10
 	setc	%dl
 	movq	%r8, (%rax)
 	xorl	%r8d, %r8d
 	addb	$-1, %dl
 	movq	8(%rax), %rdx
-	adcq	%r8, %r9
+	adcq	%r8, %r10
 /APP
  # 562 "pmc_internal.h" 1
-	mulxq %rcx, %rcx, %r10
+	mulxq %rcx, %rcx, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r9, %rcx
+	addq	%r10, %rcx
 	setc	%dl
 	movq	%rcx, 8(%rax)
 	addb	$-1, %dl
-	adcq	%r10, %r8
+	movq	.refptr.statistics_info(%rip), %rdx
+	adcq	%r9, %r8
 	addq	$16, %rax
-.L86:
-	andl	$1, %ebx
-	je	.L87
+	movq	%r8, 8(%rsp)
+	lock addl	$2, (%rdx)
+	andl	$1, %edi
+	je	.L92
+.L118:
 	movabsq	$-8446744073709551616, %rcx
 	movq	(%rax), %rdx
 /APP
@@ -1608,25 +1697,17 @@ MultiplyAndAdd_using_ADCX_MULX:
 	setc	%dl
 	movq	%r8, (%rax)
 	addb	$-1, %dl
+	movq	.refptr.statistics_info(%rip), %rdx
 	adcq	$0, %r9
 	addq	$8, %rax
 	movq	%r9, %r8
-.L87:
-	testq	%r8, %r8
-	je	.L80
-	movq	%r8, (%rax)
-	addq	$8, %rax
-.L80:
-	addq	$24, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%rbp
-	ret
+	movq	%r9, 8(%rsp)
+	lock addl	$1, (%rdx)
+	jmp	.L92
 	.p2align 4,,10
-.L89:
+.L94:
 	movq	%rcx, %rax
-	jmp	.L81
+	jmp	.L86
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_TryParse
@@ -1657,16 +1738,16 @@ PMC_TryParse:
 	movl	%edx, %esi
 	movq	%r8, %r13
 	movq	%r9, %rbx
-	je	.L239
+	je	.L249
 	testq	%r9, %r9
-	je	.L239
+	je	.L249
 	leaq	default_number_format_option(%rip), %rax
 	testq	%r8, %r8
 	cmove	%rax, %r13
 	testb	$2, %dh
-	je	.L112
+	je	.L122
 	testl	$-516, %edx
-	jne	.L239
+	jne	.L249
 	movq	__imp_lstrlenW(%rip), %r12
 	call	*%r12
 	leaq	136(%rsp), %rdx
@@ -1677,7 +1758,7 @@ PMC_TryParse:
 	call	AllocateBlock
 	testq	%rax, %rax
 	movq	%rax, %rdi
-	je	.L139
+	je	.L149
 	movq	%rax, 32(%rsp)
 	movq	%r13, %r9
 	movl	%esi, %r8d
@@ -1687,63 +1768,63 @@ PMC_TryParse:
 	movq	%rbp, %rcx
 	call	InitializeParserState
 	testb	$1, %sil
-	je	.L114
+	je	.L124
 	movq	144(%rsp), %rax
 	movzwl	(%rax), %edx
 	cmpw	$32, %dx
-	ja	.L114
+	ja	.L124
 	movabsq	$4294983168, %rcx
 	addq	$2, %rax
 	movl	$1, %r9d
 	btq	%rdx, %rcx
 	movq	%rcx, %r8
-	jc	.L116
-	jmp	.L114
+	jc	.L126
+	jmp	.L124
 	.p2align 4,,10
-.L117:
+.L127:
 	movq	%r9, %rdx
 	addq	$2, %rax
 	salq	%cl, %rdx
 	testq	%r8, %rdx
-	je	.L338
-.L116:
+	je	.L348
+.L126:
 	movzwl	(%rax), %ecx
 	movq	%rax, %r10
 	cmpw	$32, %cx
-	jbe	.L117
+	jbe	.L127
 	movq	%rax, 144(%rsp)
-.L114:
+.L124:
 	movq	%rbp, %rcx
 	call	ParseAsIntegerPartNumberSequence
 	movq	144(%rsp), %rax
 	andl	$2, %esi
 	movzwl	(%rax), %ecx
-	jne	.L118
-.L119:
+	jne	.L128
+.L129:
 	testw	%cx, %cx
 	movq	128(%rsp), %rdx
-	jne	.L124
+	jne	.L134
 	xorl	%esi, %esi
 	movq	224(%rsp), %rax
 	testb	$32, 152(%rsp)
 	movw	%si, (%rax)
-	je	.L335
+	je	.L345
 	movq	232(%rsp), %rax
 	xorl	%r11d, %r11d
 	movw	%r11w, (%rax)
-.L335:
+.L345:
 	movq	%rdi, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L109
+	jne	.L119
 	cmpw	$0, (%rdi)
-	jne	.L339
-.L128:
+	jne	.L349
+.L138:
 	movq	136(%rsp), %rdx
 	movq	%rdi, %rcx
 	call	DeallocateBlock
 	movl	$1, %eax
-.L109:
+.L119:
 	addq	$248, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -1755,38 +1836,38 @@ PMC_TryParse:
 	popq	%r15
 	ret
 	.p2align 4,,10
-.L118:
+.L128:
 	cmpw	$32, %cx
-	ja	.L120
+	ja	.L130
 	movabsq	$4294983168, %rdx
 	addq	$2, %rax
 	movl	$1, %r9d
 	btq	%rcx, %rdx
 	movq	%rdx, %r8
-	jc	.L122
-	jmp	.L119
+	jc	.L132
+	jmp	.L129
 	.p2align 4,,10
-.L123:
+.L133:
 	movq	%r9, %rdx
 	addq	$2, %rax
 	salq	%cl, %rdx
 	testq	%r8, %rdx
-	je	.L340
-.L122:
+	je	.L350
+.L132:
 	movzwl	(%rax), %ecx
 	movq	%rax, %r10
 	cmpw	$32, %cx
-	jbe	.L123
-.L120:
+	jbe	.L133
+.L130:
 	movq	128(%rsp), %rdx
-.L124:
+.L134:
 	movq	%rdi, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	je	.L128
-	jmp	.L109
+	je	.L138
+	jmp	.L119
 	.p2align 4,,10
-.L112:
+.L122:
 	movq	__imp_lstrlenW(%rip), %r12
 	call	*%r12
 	leaq	88(%rsp), %rdx
@@ -1798,14 +1879,14 @@ PMC_TryParse:
 	call	AllocateBlock
 	testq	%rax, %rax
 	movq	%rax, %rdi
-	je	.L139
+	je	.L149
 	leaq	104(%rsp), %rdx
 	movq	%rbp, %rcx
 	leaq	96(%rsp), %r8
 	call	AllocateBlock
 	testq	%rax, %rax
 	movq	%rax, %r14
-	je	.L336
+	je	.L346
 	movq	%rax, 40(%rsp)
 	movq	%r13, %r9
 	movl	%esi, %r8d
@@ -1816,64 +1897,64 @@ PMC_TryParse:
 	call	InitializeParserState
 	testb	$1, %sil
 	movq	144(%rsp), %rax
-	je	.L142
+	je	.L152
 	movzwl	(%rax), %edx
 	cmpw	$32, %dx
-	ja	.L142
+	ja	.L152
 	movabsq	$4294983168, %r8
 	btq	%rdx, %r8
-	jnc	.L147
+	jnc	.L157
 	leaq	2(%rax), %rdx
 	movl	$1, %r9d
-	jmp	.L144
+	jmp	.L154
 	.p2align 4,,10
-.L146:
+.L156:
 	leaq	2(%rax), %rdx
 	movq	%r9, %r15
 	salq	%cl, %r15
 	testq	%r8, %r15
-	je	.L145
-.L144:
+	je	.L155
+.L154:
 	movzwl	(%rdx), %ecx
 	movq	%rdx, %rax
 	cmpw	$32, %cx
-	jbe	.L146
+	jbe	.L156
 	movq	%rdx, 144(%rsp)
-.L142:
+.L152:
 	testb	$16, %sil
-	je	.L147
+	je	.L157
 	cmpw	$40, (%rax)
-	jne	.L147
+	jne	.L157
 	movl	$-1, 156(%rsp)
 	leaq	2(%rax), %r8
 	movzwl	2(%rax), %eax
 	movq	%r8, 144(%rsp)
 	subl	$48, %eax
 	cmpw	$9, %ax
-	jbe	.L341
-.L148:
+	jbe	.L351
+.L158:
 	testb	$32, %sil
-	je	.L149
+	je	.L159
 	movzwl	184(%rsp), %eax
 	testw	%ax, %ax
-	je	.L150
+	je	.L160
 	movzwl	(%r8), %r9d
 	cmpw	%ax, %r9w
-	jne	.L151
+	jne	.L161
 	leaq	40(%rbp), %rax
 	movq	%r8, %rdx
-	jmp	.L152
+	jmp	.L162
 	.p2align 4,,10
-.L153:
+.L163:
 	cmpw	%cx, (%rdx)
-	jne	.L151
-.L152:
+	jne	.L161
+.L162:
 	addq	$2, %rax
 	movzwl	(%rax), %ecx
 	addq	$2, %rdx
 	testw	%cx, %cx
-	jne	.L153
-.L150:
+	jne	.L163
+.L160:
 	movslq	192(%rsp), %rax
 	movq	%rbp, %rcx
 	leaq	(%r8,%rax,2), %rax
@@ -1881,41 +1962,41 @@ PMC_TryParse:
 	call	ParseAsFractionPartNumberSequence
 	movq	144(%rsp), %r8
 	movzwl	(%r8), %r9d
-	jmp	.L151
+	jmp	.L161
 	.p2align 4,,10
-.L145:
+.L155:
 	movq	%rax, 144(%rsp)
-.L147:
+.L157:
 	testb	$4, %sil
-	jne	.L342
+	jne	.L352
 	movzwl	(%rax), %r9d
-.L167:
+.L177:
 	leal	-48(%r9), %edx
 	movl	%esi, %r13d
 	andl	$32, %r13d
 	cmpw	$9, %dx
-	jbe	.L343
+	jbe	.L353
 	testl	%r13d, %r13d
-	je	.L187
+	je	.L197
 	movzwl	184(%rsp), %edx
 	testw	%dx, %dx
-	je	.L188
+	je	.L198
 	cmpw	%r9w, %dx
-	jne	.L187
+	jne	.L197
 	leaq	40(%rbp), %rdx
 	movq	%rax, %rcx
-	jmp	.L189
+	jmp	.L199
 	.p2align 4,,10
-.L190:
+.L200:
 	cmpw	%r8w, (%rcx)
-	jne	.L187
-.L189:
+	jne	.L197
+.L199:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r8d
 	addq	$2, %rcx
 	testw	%r8w, %r8w
-	jne	.L190
-.L188:
+	jne	.L200
+.L198:
 	movslq	192(%rsp), %rdx
 	movq	%rbp, %rcx
 	leaq	(%rax,%rdx,2), %rax
@@ -1923,35 +2004,35 @@ PMC_TryParse:
 	call	ParseAsFractionPartNumberSequence
 	testb	$8, %sil
 	movq	144(%rsp), %rax
-	je	.L162
+	je	.L172
 	movzwl	160(%rsp), %edx
 	testw	%dx, %dx
-	je	.L191
+	je	.L201
 	movzwl	(%rax), %ecx
 	cmpw	%cx, %dx
-	jne	.L192
+	jne	.L202
 	leaq	16(%rbp), %rdx
 	movq	%rax, %r8
-	jmp	.L193
+	jmp	.L203
 	.p2align 4,,10
-.L194:
+.L204:
 	cmpw	%r9w, (%r8)
-	jne	.L192
-.L193:
+	jne	.L202
+.L203:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r9d
 	addq	$2, %r8
 	testw	%r9w, %r9w
-	jne	.L194
-.L191:
+	jne	.L204
+.L201:
 	movslq	168(%rsp), %rdx
 	movl	$1, 156(%rsp)
 	leaq	(%rax,%rdx,2), %rax
 	movq	%rax, 144(%rsp)
 	movzwl	(%rax), %ecx
-	jmp	.L156
+	jmp	.L166
 	.p2align 4,,10
-.L339:
+.L349:
 	movq	%rdi, %rcx
 	call	*%r12
 	leaq	72(%rsp), %rcx
@@ -1960,7 +2041,7 @@ PMC_TryParse:
 	movslq	%edx, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L344
+	jne	.L354
 	movq	72(%rsp), %rax
 	movq	%rdi, %rcx
 	movq	48(%rax), %rsi
@@ -1971,7 +2052,7 @@ PMC_TryParse:
 	shrq	$4, %rdx
 	andl	$15, %eax
 	leaq	-8(%rsi,%rdx,8), %r12
-	je	.L132
+	je	.L142
 	movzwl	(%rdi), %ecx
 	leaq	-8(%r12), %rsi
 	movslq	%eax, %r11
@@ -1980,9 +2061,9 @@ PMC_TryParse:
 	movq	%r11, %r13
 	movl	%eax, %eax
 	subq	$1, %r13
-	je	.L133
+	je	.L143
 	.p2align 4,,10
-.L134:
+.L144:
 	movzwl	(%r14), %ecx
 	salq	$4, %rax
 	addq	$2, %r14
@@ -1991,17 +2072,17 @@ PMC_TryParse:
 	movl	%eax, %eax
 	addq	%r10, %rax
 	subq	$1, %r13
-	jne	.L134
-.L133:
+	jne	.L144
+.L143:
 	movq	%rax, (%r12)
 	leaq	(%rdi,%r11,2), %r10
 	subq	%r11, %rbp
 	movq	%rsi, %r12
-.L132:
+.L142:
 	testq	%rbp, %rbp
-	je	.L137
+	je	.L147
 	.p2align 4,,10
-.L135:
+.L145:
 	movzwl	(%r10), %ecx
 	subq	$8, %r12
 	call	Parse1DigitFromHexChar
@@ -2091,46 +2172,46 @@ PMC_TryParse:
 	addq	%rax, %r11
 	subq	$16, %rbp
 	movq	%r11, 8(%r12)
-	jne	.L135
-.L137:
+	jne	.L145
+.L147:
 	movq	72(%rsp), %rax
 	movq	144(%rsp), %rdx
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L109
+	jne	.L119
 	movq	136(%rsp), %rdx
 	movq	%rdi, %rcx
 	call	DeallocateBlock
 	movq	72(%rsp), %rcx
 	call	CommitNumber
 	movq	72(%rsp), %rcx
-.L138:
+.L148:
 	movq	%rcx, (%rbx)
 	xorl	%eax, %eax
-	jmp	.L109
+	jmp	.L119
 	.p2align 4,,10
-.L342:
+.L352:
 	movzwl	160(%rsp), %edx
 	testw	%dx, %dx
-	je	.L158
+	je	.L168
 	movzwl	(%rax), %r9d
 	cmpw	%r9w, %dx
-	jne	.L159
+	jne	.L169
 	leaq	16(%rbp), %rdx
 	movq	%rax, %rcx
-	jmp	.L160
+	jmp	.L170
 	.p2align 4,,10
-.L161:
+.L171:
 	cmpw	%r8w, (%rcx)
-	jne	.L159
-.L160:
+	jne	.L169
+.L170:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r8d
 	addq	$2, %rcx
 	testw	%r8w, %r8w
-	jne	.L161
-.L158:
+	jne	.L171
+.L168:
 	movslq	168(%rsp), %rdx
 	movl	$1, 156(%rsp)
 	leaq	(%rax,%rdx,2), %rax
@@ -2138,86 +2219,86 @@ PMC_TryParse:
 	movq	%rax, 144(%rsp)
 	leal	-48(%rcx), %edx
 	cmpw	$9, %dx
-	jbe	.L345
-.L236:
+	jbe	.L355
+.L246:
 	testb	$32, %sil
-	jne	.L346
-.L162:
+	jne	.L356
+.L172:
 	movzwl	(%rax), %ecx
-.L156:
+.L166:
 	andl	$2, %esi
-	je	.L197
-.L237:
+	je	.L207
+.L247:
 	cmpw	$32, %cx
-	ja	.L187
+	ja	.L197
 	movabsq	$4294983168, %rdx
 	addq	$2, %rax
 	movl	$1, %r9d
 	btq	%rcx, %rdx
 	movq	%rdx, %r8
-	jc	.L199
-	jmp	.L197
+	jc	.L209
+	jmp	.L207
 	.p2align 4,,10
-.L333:
+.L343:
 	movq	%r9, %rdx
 	addq	$2, %rax
 	salq	%cl, %rdx
 	testq	%r8, %rdx
-	je	.L347
-.L199:
+	je	.L357
+.L209:
 	movzwl	(%rax), %ecx
 	movq	%rax, %r10
 	cmpw	$32, %cx
-	jbe	.L333
-.L187:
+	jbe	.L343
+.L197:
 	xorl	%esi, %esi
-.L155:
+.L165:
 	movq	80(%rsp), %rdx
 	movq	%rdi, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L109
+	jne	.L119
 	movq	96(%rsp), %rdx
 	movq	%r14, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L109
+	jne	.L119
 	testl	%esi, %esi
-	je	.L205
+	je	.L215
 	movzwl	(%rdi), %eax
 	testw	%ax, %ax
-	jne	.L204
+	jne	.L214
 	cmpw	$0, (%r14)
-	je	.L205
-.L208:
+	je	.L215
+.L218:
 	movq	%r14, %rcx
 	call	*%r12
 	cltq
 	leaq	(%r14,%rax,2), %rax
 	cmpq	%rax, %r14
-	jb	.L206
-	jmp	.L207
+	jb	.L216
+	jmp	.L217
 	.p2align 4,,10
-.L348:
+.L358:
 	subq	$2, %rax
 	cmpq	%rax, %r14
-	jnb	.L207
-.L206:
+	jnb	.L217
+.L216:
 	cmpw	$48, -2(%rax)
-	je	.L348
-.L207:
+	je	.L358
+.L217:
 	xorl	%r8d, %r8d
 	movq	104(%rsp), %rdx
 	movw	%r8w, (%rax)
 	cmpw	$0, (%r14)
-	jne	.L337
+	jne	.L347
 	movl	60(%rsp), %ecx
 	movzwl	(%rdi), %eax
 	testl	%ecx, %ecx
-	js	.L349
+	js	.L359
 	testw	%ax, %ax
-	je	.L214
-.L215:
+	je	.L224
+.L225:
 	movabsq	$-2912643801112034465, %rsi
 	movq	%r14, %rcx
 	call	DeallocateBlock
@@ -2236,7 +2317,7 @@ PMC_TryParse:
 	call	AllocateBlock
 	testq	%rax, %rax
 	movq	%rax, %r13
-	je	.L336
+	je	.L346
 	movq	%rdi, %rcx
 	call	*%r12
 	movslq	%eax, %r8
@@ -2247,12 +2328,12 @@ PMC_TryParse:
 	leaq	(%rdx,%rax,2), %rax
 	movq	%r8, %rdx
 	subq	%rax, %rdx
-	je	.L241
+	je	.L251
 	leaq	8(%r13), %rsi
 	xorl	%ecx, %ecx
 	xorl	%eax, %eax
 	.p2align 4,,10
-.L218:
+.L228:
 	leaq	(%rax,%rax,4), %r9
 	movzwl	(%rdi,%rcx,2), %eax
 	addq	$1, %rcx
@@ -2260,17 +2341,17 @@ PMC_TryParse:
 	cmpq	%rcx, %rdx
 	cltq
 	leaq	(%rax,%r9,2), %rax
-	jne	.L218
+	jne	.L228
 	movq	%rax, 0(%r13)
 	leaq	(%rdi,%rdx,2), %rcx
 	subq	%rdx, %r8
-.L217:
+.L227:
 	testq	%r8, %r8
-	je	.L219
+	je	.L229
 	movq	%r8, %r9
 	movq	%rsi, %rax
 	.p2align 4,,10
-.L220:
+.L230:
 	movzwl	(%rcx), %edx
 	addq	$8, %rax
 	addq	$38, %rcx
@@ -2368,16 +2449,16 @@ PMC_TryParse:
 	movslq	%edx, %rdx
 	leaq	(%rdx,%r10,2), %rdx
 	movq	%rdx, -8(%rax)
-	jne	.L220
+	jne	.L230
 	movabsq	$3883525068149379288, %rax
 	imulq	%rax, %r8
 	addq	%r8, %rsi
-.L219:
+.L229:
 	movq	112(%rsp), %rdx
 	movq	%r13, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L109
+	jne	.L119
 	subq	%r13, %rsi
 	movq	88(%rsp), %rdx
 	movq	%rdi, %rcx
@@ -2390,7 +2471,7 @@ PMC_TryParse:
 	leaq	128(%rsp), %r8
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L350
+	jne	.L360
 	movq	72(%rsp), %rax
 	leaq	64(%r12), %rcx
 	movq	%rbp, %rdx
@@ -2399,15 +2480,15 @@ PMC_TryParse:
 	call	AllocateBlock
 	testq	%rax, %rax
 	movq	%rax, %r12
-	je	.L222
+	je	.L232
 	movq	0(%r13), %rax
 	subq	$1, %rsi
 	movl	$1, %ebp
 	leaq	8(%r13), %r14
 	movq	%rax, (%r12)
-	je	.L223
+	je	.L233
 	.p2align 4,,10
-.L224:
+.L234:
 	movq	(%r14), %r8
 	movq	%rbp, %rdx
 	movq	%r12, %rcx
@@ -2417,14 +2498,14 @@ PMC_TryParse:
 	movq	%rax, %rbp
 	sarq	$3, %rbp
 	subq	$1, %rsi
-	jne	.L224
-.L223:
+	jne	.L234
+.L233:
 	movq	136(%rsp), %rdx
 	movq	%r12, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	je	.L351
-.L227:
+	je	.L361
+.L237:
 	movq	72(%rsp), %rcx
 	movl	%eax, 60(%rsp)
 	call	DeallocateNumber
@@ -2432,55 +2513,55 @@ PMC_TryParse:
 	movq	%r13, %rcx
 	call	DeallocateBlock
 	movl	60(%rsp), %eax
-	jmp	.L109
+	jmp	.L119
 	.p2align 4,,10
-.L347:
+.L357:
 	movq	%r10, 144(%rsp)
-.L197:
+.L207:
 	testw	%cx, %cx
-	jne	.L187
+	jne	.L197
 	xorl	%r10d, %r10d
 	movq	224(%rsp), %rax
 	testb	$32, 152(%rsp)
 	movw	%r10w, (%rax)
-	je	.L201
+	je	.L211
 	movq	232(%rsp), %rax
 	xorl	%r9d, %r9d
 	movw	%r9w, (%rax)
-.L201:
+.L211:
 	movl	156(%rsp), %eax
 	movl	$1, %esi
 	movl	%eax, 60(%rsp)
-	jmp	.L155
+	jmp	.L165
 	.p2align 4,,10
-.L338:
+.L348:
 	movq	%r10, 144(%rsp)
-	jmp	.L114
+	jmp	.L124
 	.p2align 4,,10
-.L340:
+.L350:
 	movq	%r10, 144(%rsp)
-	jmp	.L119
+	jmp	.L129
 	.p2align 4,,10
-.L159:
+.L169:
 	movzwl	172(%rsp), %edx
 	testw	%dx, %dx
-	je	.L169
+	je	.L179
 	cmpw	%r9w, %dx
-	jne	.L167
+	jne	.L177
 	leaq	28(%rbp), %rdx
 	movq	%rax, %rcx
-	jmp	.L234
+	jmp	.L244
 	.p2align 4,,10
-.L168:
+.L178:
 	cmpw	%r8w, (%rcx)
-	jne	.L167
-.L234:
+	jne	.L177
+.L244:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r8d
 	addq	$2, %rcx
 	testw	%r8w, %r8w
-	jne	.L168
-.L169:
+	jne	.L178
+.L179:
 	movslq	180(%rsp), %rdx
 	movl	$-1, 156(%rsp)
 	leaq	(%rax,%rdx,2), %rax
@@ -2488,30 +2569,30 @@ PMC_TryParse:
 	movq	%rax, 144(%rsp)
 	leal	-48(%rcx), %edx
 	cmpw	$9, %dx
-	jbe	.L352
-.L233:
+	jbe	.L362
+.L243:
 	testb	$32, %sil
-	je	.L162
+	je	.L172
 	movzwl	184(%rsp), %edx
 	testw	%dx, %dx
-	je	.L171
+	je	.L181
 	movzwl	(%rax), %ecx
 	cmpw	%cx, %dx
-	jne	.L156
+	jne	.L166
 	leaq	40(%rbp), %rdx
 	movq	%rax, %rcx
-	jmp	.L172
+	jmp	.L182
 	.p2align 4,,10
-.L173:
+.L183:
 	cmpw	%r8w, (%rcx)
-	jne	.L165
-.L172:
+	jne	.L175
+.L182:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r8d
 	addq	$2, %rcx
 	testw	%r8w, %r8w
-	jne	.L173
-.L171:
+	jne	.L183
+.L181:
 	movslq	192(%rsp), %rdx
 	movq	%rbp, %rcx
 	leaq	(%rax,%rdx,2), %rax
@@ -2519,114 +2600,114 @@ PMC_TryParse:
 	call	ParseAsFractionPartNumberSequence
 	movq	144(%rsp), %rax
 	movzwl	(%rax), %ecx
-	jmp	.L156
+	jmp	.L166
 	.p2align 4,,10
-.L344:
+.L354:
 	movq	136(%rsp), %rdx
 	movq	%rdi, %rcx
 	movl	%eax, 60(%rsp)
 	call	DeallocateBlock
 	movl	60(%rsp), %eax
-	jmp	.L109
+	jmp	.L119
 	.p2align 4,,10
-.L204:
+.L214:
 	cmpw	$48, %ax
-	jne	.L208
+	jne	.L218
 	movq	%rdi, %rax
 	.p2align 4,,10
-.L209:
+.L219:
 	addq	$2, %rax
 	movzwl	(%rax), %edx
 	cmpw	$48, %dx
-	je	.L209
+	je	.L219
 	testw	%dx, %dx
 	movw	%dx, (%rdi)
-	je	.L208
+	je	.L218
 	movl	$2, %edx
 	.p2align 4,,10
-.L210:
+.L220:
 	movzwl	(%rax,%rdx), %ecx
 	movw	%cx, (%rdi,%rdx)
 	addq	$2, %rdx
 	testw	%cx, %cx
-	jne	.L210
-	jmp	.L208
+	jne	.L220
+	jmp	.L218
 	.p2align 4,,10
-.L346:
+.L356:
 	movzwl	184(%rsp), %edx
 	testw	%dx, %dx
-	je	.L171
+	je	.L181
 	movzwl	(%rax), %ecx
 	cmpw	%dx, %cx
-	jne	.L156
+	jne	.L166
 	leaq	40(%rbp), %rdx
 	movq	%rax, %rcx
-	jmp	.L164
+	jmp	.L174
 	.p2align 4,,10
-.L166:
+.L176:
 	cmpw	%r8w, (%rcx)
-	jne	.L165
-.L164:
+	jne	.L175
+.L174:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r8d
 	addq	$2, %rcx
 	testw	%r8w, %r8w
-	jne	.L166
-	jmp	.L171
+	jne	.L176
+	jmp	.L181
 	.p2align 4,,10
-.L149:
+.L159:
 	movzwl	(%r8), %r9d
-.L151:
+.L161:
 	cmpw	$41, %r9w
-	jne	.L187
+	jne	.L197
 	leaq	2(%r8), %rax
 	movzwl	2(%r8), %ecx
 	movq	%rax, 144(%rsp)
-	jmp	.L156
+	jmp	.L166
 	.p2align 4,,10
-.L345:
+.L355:
 	movq	%rbp, %rcx
 	call	ParseAsIntegerPartNumberSequence
 	movq	144(%rsp), %rax
-	jmp	.L236
+	jmp	.L246
 	.p2align 4,,10
-.L341:
+.L351:
 	movq	%rbp, %rcx
 	call	ParseAsIntegerPartNumberSequence
 	movq	144(%rsp), %r8
-	jmp	.L148
+	jmp	.L158
 	.p2align 4,,10
-.L352:
+.L362:
 	movq	%rbp, %rcx
 	call	ParseAsIntegerPartNumberSequence
 	movq	144(%rsp), %rax
-	jmp	.L233
+	jmp	.L243
 	.p2align 4,,10
-.L343:
+.L353:
 	movq	%rbp, %rcx
 	call	ParseAsIntegerPartNumberSequence
 	testl	%r13d, %r13d
 	movq	144(%rsp), %rax
-	je	.L177
+	je	.L187
 	movzwl	184(%rsp), %edx
 	testw	%dx, %dx
-	je	.L176
+	je	.L186
 	cmpw	%dx, (%rax)
-	jne	.L177
+	jne	.L187
 	leaq	40(%rbp), %rdx
 	movq	%rax, %rcx
-	jmp	.L178
+	jmp	.L188
 	.p2align 4,,10
-.L179:
+.L189:
 	cmpw	%r8w, (%rcx)
-	jne	.L177
-.L178:
+	jne	.L187
+.L188:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r8d
 	addq	$2, %rcx
 	testw	%r8w, %r8w
-	jne	.L179
-.L176:
+	jne	.L189
+.L186:
 	movslq	192(%rsp), %rdx
 	movq	%rbp, %rcx
 	leaq	(%rax,%rdx,2), %rax
@@ -2634,99 +2715,99 @@ PMC_TryParse:
 	call	ParseAsFractionPartNumberSequence
 	movq	144(%rsp), %rax
 	.p2align 4,,10
-.L177:
+.L187:
 	testb	$8, %sil
-	je	.L162
+	je	.L172
 	movzwl	160(%rsp), %edx
 	testw	%dx, %dx
-	je	.L191
+	je	.L201
 	movzwl	(%rax), %ecx
 	cmpw	%dx, %cx
-	jne	.L182
+	jne	.L192
 	leaq	16(%rbp), %rdx
 	movq	%rax, %r8
-	jmp	.L183
+	jmp	.L193
 	.p2align 4,,10
-.L184:
+.L194:
 	cmpw	%r9w, (%r8)
-	jne	.L182
-.L183:
+	jne	.L192
+.L193:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r9d
 	addq	$2, %r8
 	testw	%r9w, %r9w
-	jne	.L184
-	jmp	.L191
+	jne	.L194
+	jmp	.L201
 	.p2align 4,,10
-.L205:
+.L215:
 	movq	104(%rsp), %rdx
-.L337:
+.L347:
 	movq	%r14, %rcx
 	call	DeallocateBlock
 	movq	88(%rsp), %rdx
 	movq	%rdi, %rcx
 	call	DeallocateBlock
 	movl	$1, %eax
-	jmp	.L109
+	jmp	.L119
 	.p2align 4,,10
-.L165:
+.L175:
 	andl	$2, %esi
-	je	.L187
+	je	.L197
 	movq	144(%rsp), %rax
 	movzwl	(%rax), %ecx
-	jmp	.L237
+	jmp	.L247
 	.p2align 4,,10
-.L214:
+.L224:
 	movl	$48, (%rdi)
-	jmp	.L215
+	jmp	.L225
 	.p2align 4,,10
-.L349:
+.L359:
 	testw	%ax, %ax
-	je	.L214
+	je	.L224
 	movq	%r14, %rcx
 	call	DeallocateBlock
 	movq	88(%rsp), %rdx
 	movq	%rdi, %rcx
 	call	DeallocateBlock
 	movl	$-2, %eax
-	jmp	.L109
+	jmp	.L119
 	.p2align 4,,10
-.L241:
+.L251:
 	movq	%r13, %rsi
 	movq	%rdi, %rcx
-	jmp	.L217
+	jmp	.L227
 	.p2align 4,,10
-.L239:
+.L249:
 	movl	$-1, %eax
-	jmp	.L109
+	jmp	.L119
 	.p2align 4,,10
-.L182:
+.L192:
 	movzwl	172(%rsp), %edx
 	testw	%dx, %dx
-	je	.L196
+	je	.L206
 	cmpw	%dx, %cx
-	jne	.L156
+	jne	.L166
 	leaq	28(%rbp), %rdx
 	movq	%rax, %rcx
-	jmp	.L229
+	jmp	.L239
 	.p2align 4,,10
-.L185:
+.L195:
 	cmpw	%r8w, (%rcx)
-	jne	.L165
-.L229:
+	jne	.L175
+.L239:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r8d
 	addq	$2, %rcx
 	testw	%r8w, %r8w
-	jne	.L185
-.L196:
+	jne	.L195
+.L206:
 	movslq	180(%rsp), %rdx
 	movl	$-1, 156(%rsp)
 	leaq	(%rax,%rdx,2), %rax
 	movq	%rax, 144(%rsp)
 	movzwl	(%rax), %ecx
-	jmp	.L156
-.L351:
+	jmp	.L166
+.L361:
 	movq	%r12, %rsi
 	movq	%rbp, %rcx
 /APP
@@ -2742,7 +2823,7 @@ PMC_TryParse:
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L109
+	jne	.L119
 	movq	120(%rsp), %rdx
 	movq	%r13, %rcx
 	call	DeallocateBlock
@@ -2750,49 +2831,49 @@ PMC_TryParse:
 	call	CommitNumber
 	movq	72(%rsp), %rcx
 	testb	$2, 32(%rcx)
-	je	.L138
+	je	.L148
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
-	jmp	.L138
-.L192:
+	jmp	.L148
+.L202:
 	movzwl	172(%rsp), %edx
 	testw	%dx, %dx
-	je	.L196
+	je	.L206
 	cmpw	%cx, %dx
-	jne	.L156
+	jne	.L166
 	leaq	28(%rbp), %rdx
 	movq	%rax, %rcx
-	jmp	.L230
+	jmp	.L240
 	.p2align 4,,10
-.L195:
+.L205:
 	cmpw	%r8w, (%rcx)
-	jne	.L165
-.L230:
+	jne	.L175
+.L240:
 	addq	$2, %rdx
 	movzwl	(%rdx), %r8d
 	addq	$2, %rcx
 	testw	%r8w, %r8w
-	jne	.L195
-	jmp	.L196
-.L350:
+	jne	.L205
+	jmp	.L206
+.L360:
 	movq	120(%rsp), %rdx
 	movq	%r13, %rcx
 	movl	%eax, 60(%rsp)
 	call	DeallocateBlock
 	movl	60(%rsp), %eax
-	jmp	.L109
-.L139:
+	jmp	.L119
+.L149:
 	movl	$-5, %eax
-	jmp	.L109
-.L336:
+	jmp	.L119
+.L346:
 	movq	88(%rsp), %rdx
 	movq	%rdi, %rcx
 	call	DeallocateBlock
 	movl	$-5, %eax
-	jmp	.L109
-.L222:
+	jmp	.L119
+.L232:
 	movl	$-5, %eax
-	jmp	.L227
+	jmp	.L237
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 2
@@ -2867,3 +2948,8 @@ Initialize_Parse:
 	.linkonce	discard
 .refptr.number_zero:
 	.quad	number_zero
+	.section	.rdata$.refptr.statistics_info, "dr"
+	.globl	.refptr.statistics_info
+	.linkonce	discard
+.refptr.statistics_info:
+	.quad	statistics_info

@@ -189,6 +189,12 @@ static void ToStringDN_LEADING_1WORD(struct TOSTRINGN_OUTPUT_STATE* state, __UNI
     {
         x = _DIVREM_UNIT(0, x, 10, &r);
         OutputOneChar(state, r);
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(r) == sizeof(_UINT64_T))
+            IncrementDIV64Counter();
+        else
+            IncrementDIV32Counter();
+#endif
     } while (x != 0);
 }
 
@@ -208,6 +214,12 @@ static void ToStringDN_1WORD(struct TOSTRINGN_OUTPUT_STATE* state, __UNIT_TYPE_D
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(r) == sizeof(_UINT64_T))
+            AddToDIV64Counter(10);
+        else
+            AddToDIV32Counter(10);
+#endif
     }
     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT32_T))
     {
@@ -216,16 +228,34 @@ static void ToStringDN_1WORD(struct TOSTRINGN_OUTPUT_STATE* state, __UNIT_TYPE_D
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(r) == sizeof(_UINT64_T))
+            AddToDIV64Counter(5);
+        else
+            AddToDIV32Counter(5);
+#endif
     }
     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT16_T))
     {
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(r) == sizeof(_UINT64_T))
+            AddToDIV64Counter(2);
+        else
+            AddToDIV32Counter(2);
+#endif
     }
     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_BYTE_T))
     {
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         OutputOneChar(state, x);
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(r) == sizeof(_UINT64_T))
+            IncrementDIV64Counter();
+        else
+            IncrementDIV32Counter();
+#endif
     }
 }
 

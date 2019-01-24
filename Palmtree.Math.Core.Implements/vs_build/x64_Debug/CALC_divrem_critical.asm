@@ -30,6 +30,7 @@ EXTRN	_RTC_CheckStackVars:PROC
 EXTRN	_RTC_InitBase:PROC
 EXTRN	_RTC_Shutdown:PROC
 EXTRN	__CheckForDebuggerJustMyCode:PROC
+EXTRN	statistics_info:BYTE
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$_FROMWORDTODWORD DD imagerel _FROMWORDTODWORD
@@ -68,8 +69,32 @@ $pdata$_DIVREM_UNIT DD imagerel _DIVREM_UNIT
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$CalculateCriticalDataOfDivision DD imagerel $LN17
-	DD	imagerel $LN17+1197
+$pdata$IncrementDIV32Counter DD imagerel IncrementDIV32Counter
+	DD	imagerel IncrementDIV32Counter+62
+	DD	imagerel $unwind$IncrementDIV32Counter
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$IncrementDIV64Counter DD imagerel IncrementDIV64Counter
+	DD	imagerel IncrementDIV64Counter+62
+	DD	imagerel $unwind$IncrementDIV64Counter
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$AddToMULTI32Counter DD imagerel AddToMULTI32Counter
+	DD	imagerel AddToMULTI32Counter+78
+	DD	imagerel $unwind$AddToMULTI32Counter
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$AddToMULTI64Counter DD imagerel AddToMULTI64Counter
+	DD	imagerel AddToMULTI64Counter+78
+	DD	imagerel $unwind$AddToMULTI64Counter
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$CalculateCriticalDataOfDivision DD imagerel $LN19
+	DD	imagerel $LN19+1226
 	DD	imagerel $unwind$CalculateCriticalDataOfDivision
 pdata	ENDS
 ;	COMDAT pdata
@@ -99,13 +124,13 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$AsumeQ_ DD imagerel AsumeQ_
-	DD	imagerel AsumeQ_+148
+	DD	imagerel AsumeQ_+166
 	DD	imagerel $unwind$AsumeQ_
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$CheckQ_ DD imagerel CheckQ_
-	DD	imagerel CheckQ_+324
+	DD	imagerel CheckQ_+353
 	DD	imagerel $unwind$CheckQ_
 pdata	ENDS
 ;	COMDAT rtc$TMZ
@@ -444,6 +469,34 @@ CalculateCriticalDataOfDivision$rtcFrameData DD 015H
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$AddToMULTI64Counter DD 025052801H
+	DD	010d2312H
+	DD	07006001dH
+	DD	05005H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$AddToMULTI32Counter DD 025052801H
+	DD	010d2312H
+	DD	07006001dH
+	DD	05005H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$IncrementDIV64Counter DD 025051e01H
+	DD	010a230fH
+	DD	07003001dH
+	DD	05002H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$IncrementDIV32Counter DD 025051e01H
+	DD	010a230fH
+	DD	07003001dH
+	DD	05002H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$_DIVREM_UNIT DD 025053601H
 	DD	011b2320H
 	DD	070140021H
@@ -501,7 +554,7 @@ lh_lo$ = 68
 rh_hi$ = 100
 rh_mi$ = 132
 rh_lo$ = 164
-tv86 = 372
+tv89 = 372
 q_$ = 416
 u0$ = 424
 u1$ = 432
@@ -510,7 +563,7 @@ v1$ = 448
 v2$ = 456
 CheckQ_	PROC						; COMDAT
 
-; 69   : {
+; 75   : {
 
 	mov	DWORD PTR [rsp+32], r9d
 	mov	DWORD PTR [rsp+24], r8d
@@ -528,12 +581,12 @@ CheckQ_	PROC						; COMDAT
 	lea	rcx, OFFSET FLAT:__7646DD32_calc_divrem_critical@c
 	call	__CheckForDebuggerJustMyCode
 
-; 70   :     const __UNIT_TYPE_DIV lh_hi = 0;
+; 76   :     const __UNIT_TYPE_DIV lh_hi = 0;
 
 	mov	DWORD PTR lh_hi$[rbp], 0
 
-; 71   :     __UNIT_TYPE_DIV lh_mi;
-; 72   :     __UNIT_TYPE_DIV lh_lo = _MULTIPLY_UNIT_DIV(v2, q_, &lh_mi);
+; 77   :     __UNIT_TYPE_DIV lh_mi;
+; 78   :     __UNIT_TYPE_DIV lh_lo = _MULTIPLY_UNIT_DIV(v2, q_, &lh_mi);
 
 	lea	r8, QWORD PTR lh_mi$[rbp]
 	mov	edx, DWORD PTR q_$[rbp]
@@ -541,8 +594,8 @@ CheckQ_	PROC						; COMDAT
 	call	_MULTIPLY_UNIT_DIV
 	mov	DWORD PTR lh_lo$[rbp], eax
 
-; 73   :     __UNIT_TYPE_DIV rh_hi;
-; 74   :     __UNIT_TYPE_DIV rh_mi = _MULTIPLY_UNIT_DIV(q_, v1, &rh_hi);
+; 79   :     __UNIT_TYPE_DIV rh_hi;
+; 80   :     __UNIT_TYPE_DIV rh_mi = _MULTIPLY_UNIT_DIV(q_, v1, &rh_hi);
 
 	lea	r8, QWORD PTR rh_hi$[rbp]
 	mov	edx, DWORD PTR v1$[rbp]
@@ -550,12 +603,12 @@ CheckQ_	PROC						; COMDAT
 	call	_MULTIPLY_UNIT_DIV
 	mov	DWORD PTR rh_mi$[rbp], eax
 
-; 75   :     __UNIT_TYPE_DIV rh_lo = u2;
+; 81   :     __UNIT_TYPE_DIV rh_lo = u2;
 
 	mov	eax, DWORD PTR u2$[rbp]
 	mov	DWORD PTR rh_lo$[rbp], eax
 
-; 76   :     _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, u1, rh_mi, &rh_mi), u0, rh_hi, &rh_hi);
+; 82   :     _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, u1, rh_mi, &rh_mi), u0, rh_hi, &rh_hi);
 
 	lea	r9, QWORD PTR rh_mi$[rbp]
 	mov	r8d, DWORD PTR rh_mi$[rbp]
@@ -568,77 +621,99 @@ CheckQ_	PROC						; COMDAT
 	movzx	ecx, al
 	call	_SUBTRUCT_UNIT_DIV
 
-; 77   :     if (lh_hi > rh_hi)
+; 83   : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 84   :     if (sizeof(lh_hi) == sizeof(_UINT32_T))
 
-	mov	eax, DWORD PTR rh_hi$[rbp]
-	cmp	DWORD PTR lh_hi$[rbp], eax
-	jbe	SHORT $LN2@CheckQ_
+	xor	eax, eax
+	cmp	eax, 1
+	je	SHORT $LN2@CheckQ_
 
-; 78   :         return (TRUE);
+; 85   :         AddToMULTI32Counter(2);
 
-	mov	eax, 1
-	jmp	SHORT $LN1@CheckQ_
+	mov	ecx, 2
+	call	AddToMULTI32Counter
 	jmp	SHORT $LN3@CheckQ_
 $LN2@CheckQ_:
 
-; 79   :     else if (lh_hi < rh_hi)
+; 86   :     else
+; 87   :         AddToMULTI64Counter(2);
+
+	mov	ecx, 2
+	call	AddToMULTI64Counter
+$LN3@CheckQ_:
+
+; 88   : #endif
+; 89   :     if (lh_hi > rh_hi)
 
 	mov	eax, DWORD PTR rh_hi$[rbp]
 	cmp	DWORD PTR lh_hi$[rbp], eax
-	jae	SHORT $LN4@CheckQ_
+	jbe	SHORT $LN4@CheckQ_
 
-; 80   :         return (FALSE);
+; 90   :         return (TRUE);
 
-	xor	eax, eax
+	mov	eax, 1
 	jmp	SHORT $LN1@CheckQ_
 	jmp	SHORT $LN5@CheckQ_
 $LN4@CheckQ_:
 
-; 81   :     else if (lh_mi > rh_mi)
+; 91   :     else if (lh_hi < rh_hi)
 
-	mov	eax, DWORD PTR rh_mi$[rbp]
-	cmp	DWORD PTR lh_mi$[rbp], eax
-	jbe	SHORT $LN6@CheckQ_
+	mov	eax, DWORD PTR rh_hi$[rbp]
+	cmp	DWORD PTR lh_hi$[rbp], eax
+	jae	SHORT $LN6@CheckQ_
 
-; 82   :         return (TRUE);
+; 92   :         return (FALSE);
 
-	mov	eax, 1
+	xor	eax, eax
 	jmp	SHORT $LN1@CheckQ_
 	jmp	SHORT $LN7@CheckQ_
 $LN6@CheckQ_:
 
-; 83   :     else if (lh_mi < rh_mi)
+; 93   :     else if (lh_mi > rh_mi)
 
 	mov	eax, DWORD PTR rh_mi$[rbp]
 	cmp	DWORD PTR lh_mi$[rbp], eax
-	jae	SHORT $LN8@CheckQ_
+	jbe	SHORT $LN8@CheckQ_
 
-; 84   :         return (FALSE);
+; 94   :         return (TRUE);
 
-	xor	eax, eax
+	mov	eax, 1
 	jmp	SHORT $LN1@CheckQ_
 	jmp	SHORT $LN9@CheckQ_
 $LN8@CheckQ_:
 
-; 85   :     else
-; 86   :         return (lh_lo > rh_lo);
+; 95   :     else if (lh_mi < rh_mi)
+
+	mov	eax, DWORD PTR rh_mi$[rbp]
+	cmp	DWORD PTR lh_mi$[rbp], eax
+	jae	SHORT $LN10@CheckQ_
+
+; 96   :         return (FALSE);
+
+	xor	eax, eax
+	jmp	SHORT $LN1@CheckQ_
+	jmp	SHORT $LN11@CheckQ_
+$LN10@CheckQ_:
+
+; 97   :     else
+; 98   :         return (lh_lo > rh_lo);
 
 	mov	eax, DWORD PTR rh_lo$[rbp]
 	cmp	DWORD PTR lh_lo$[rbp], eax
-	jbe	SHORT $LN11@CheckQ_
-	mov	DWORD PTR tv86[rbp], 1
-	jmp	SHORT $LN12@CheckQ_
+	jbe	SHORT $LN13@CheckQ_
+	mov	DWORD PTR tv89[rbp], 1
+	jmp	SHORT $LN14@CheckQ_
+$LN13@CheckQ_:
+	mov	DWORD PTR tv89[rbp], 0
+$LN14@CheckQ_:
+	mov	eax, DWORD PTR tv89[rbp]
 $LN11@CheckQ_:
-	mov	DWORD PTR tv86[rbp], 0
-$LN12@CheckQ_:
-	mov	eax, DWORD PTR tv86[rbp]
 $LN9@CheckQ_:
 $LN7@CheckQ_:
 $LN5@CheckQ_:
-$LN3@CheckQ_:
 $LN1@CheckQ_:
 
-; 87   : }
+; 99   : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -701,12 +776,32 @@ $LN2@AsumeQ_:
 	call	_DIVREM_UNIT
 	mov	DWORD PTR q$[rbp], eax
 
-; 65   :     return (q);
+; 65   : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 66   :     if (sizeof(r) == sizeof(_UINT64_T))
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN3@AsumeQ_
+
+; 67   :         IncrementDIV64Counter();
+
+	call	IncrementDIV64Counter
+	jmp	SHORT $LN4@AsumeQ_
+$LN3@AsumeQ_:
+
+; 68   :     else
+; 69   :         IncrementDIV32Counter();
+
+	call	IncrementDIV32Counter
+$LN4@AsumeQ_:
+
+; 70   : #endif
+; 71   :     return (q);
 
 	mov	eax, DWORD PTR q$[rbp]
 $LN1@AsumeQ_:
 
-; 66   : }
+; 72   : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -1000,9 +1095,9 @@ mv3_lo$40 = 996
 env$ = 1440
 CalculateCriticalDataOfDivision PROC			; COMDAT
 
-; 90   : {
+; 102  : {
 
-$LN17:
+$LN19:
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
 	push	rdi
@@ -1016,108 +1111,108 @@ $LN17:
 	lea	rcx, OFFSET FLAT:__7646DD32_calc_divrem_critical@c
 	call	__CheckForDebuggerJustMyCode
 
-; 91   :     const __UNIT_TYPE_DIV v_min_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
+; 103  :     const __UNIT_TYPE_DIV v_min_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
 
 	mov	DWORD PTR v_min_1$[rbp], -2147483648	; 80000000H
 
-; 92   :     const __UNIT_TYPE_DIV v_min_2 = 0;                              // 0x00000000
+; 104  :     const __UNIT_TYPE_DIV v_min_2 = 0;                              // 0x00000000
 
 	mov	DWORD PTR v_min_2$[rbp], 0
 
-; 93   :     const __UNIT_TYPE_DIV v_min_3 = 0;
+; 105  :     const __UNIT_TYPE_DIV v_min_3 = 0;
 
 	mov	DWORD PTR v_min_3$[rbp], 0
 
-; 94   : 
-; 95   :     const __UNIT_TYPE_DIV u_min_0 = 0;                              // 0x00000000
+; 106  : 
+; 107  :     const __UNIT_TYPE_DIV u_min_0 = 0;                              // 0x00000000
 
 	mov	DWORD PTR u_min_0$[rbp], 0
 
-; 96   :     const __UNIT_TYPE_DIV u_min_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
+; 108  :     const __UNIT_TYPE_DIV u_min_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
 
 	mov	DWORD PTR u_min_1$[rbp], -2147483648	; 80000000H
 
-; 97   :     const __UNIT_TYPE_DIV u_min_2 = 0;                              // 0x00000000
+; 109  :     const __UNIT_TYPE_DIV u_min_2 = 0;                              // 0x00000000
 
 	mov	DWORD PTR u_min_2$[rbp], 0
 
-; 98   :     const __UNIT_TYPE_DIV u_min_3 = 0;                              // 0x00000000
+; 110  :     const __UNIT_TYPE_DIV u_min_3 = 0;                              // 0x00000000
 
 	mov	DWORD PTR u_min_3$[rbp], 0
 
-; 99   : 
-; 100  :     __UNIT_TYPE_DIV u_count_0 = (__UNIT_TYPE_DIV)-1;                // 0xffffffff
+; 111  : 
+; 112  :     __UNIT_TYPE_DIV u_count_0 = (__UNIT_TYPE_DIV)-1;                // 0xffffffff
 
 	mov	DWORD PTR u_count_0$[rbp], -1		; ffffffffH
 
-; 101  :     __UNIT_TYPE_DIV u_count_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);        // 0x80000000
+; 113  :     __UNIT_TYPE_DIV u_count_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);        // 0x80000000
 
 	mov	DWORD PTR u_count_1$[rbp], -2147483648	; 80000000H
 
-; 102  :     __UNIT_TYPE_DIV u_count_2 = 0;                                  // 0x00000000
+; 114  :     __UNIT_TYPE_DIV u_count_2 = 0;                                  // 0x00000000
 
 	mov	DWORD PTR u_count_2$[rbp], 0
 
-; 103  :     __UNIT_TYPE_DIV u_count_3 = 0;                                  // 0x00000000
+; 115  :     __UNIT_TYPE_DIV u_count_3 = 0;                                  // 0x00000000
 
 	mov	DWORD PTR u_count_3$[rbp], 0
 
-; 104  : 
-; 105  :     __UNIT_TYPE_DIV u0 = u_min_0;
+; 116  : 
+; 117  :     __UNIT_TYPE_DIV u0 = u_min_0;
 
 	mov	eax, DWORD PTR u_min_0$[rbp]
 	mov	DWORD PTR u0$[rbp], eax
 
-; 106  :     __UNIT_TYPE_DIV u1 = u_min_1;
+; 118  :     __UNIT_TYPE_DIV u1 = u_min_1;
 
 	mov	eax, DWORD PTR u_min_1$[rbp]
 	mov	DWORD PTR u1$[rbp], eax
 
-; 107  :     __UNIT_TYPE_DIV u2 = u_min_2;
+; 119  :     __UNIT_TYPE_DIV u2 = u_min_2;
 
 	mov	eax, DWORD PTR u_min_2$[rbp]
 	mov	DWORD PTR u2$[rbp], eax
 
-; 108  :     __UNIT_TYPE_DIV u3 = u_min_3;
+; 120  :     __UNIT_TYPE_DIV u3 = u_min_3;
 
 	mov	eax, DWORD PTR u_min_3$[rbp]
 	mov	DWORD PTR u3$[rbp], eax
 $LN2@CalculateC:
 
-; 109  : 
-; 110  :     for (;;)
-; 111  :     {
-; 112  :         __UNIT_TYPE_DIV v_count_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
+; 121  : 
+; 122  :     for (;;)
+; 123  :     {
+; 124  :         __UNIT_TYPE_DIV v_count_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
 
 	mov	DWORD PTR v_count_1$24[rbp], -2147483648 ; 80000000H
 
-; 113  :         __UNIT_TYPE_DIV v_count_2 = 0;                              // 0x00000000
+; 125  :         __UNIT_TYPE_DIV v_count_2 = 0;                              // 0x00000000
 
 	mov	DWORD PTR v_count_2$25[rbp], 0
 
-; 114  :         __UNIT_TYPE_DIV v_count_3 = 0;                              // 0x00000000
+; 126  :         __UNIT_TYPE_DIV v_count_3 = 0;                              // 0x00000000
 
 	mov	DWORD PTR v_count_3$26[rbp], 0
 
-; 115  :         __UNIT_TYPE_DIV v1 = v_min_1;
+; 127  :         __UNIT_TYPE_DIV v1 = v_min_1;
 
 	mov	eax, DWORD PTR v_min_1$[rbp]
 	mov	DWORD PTR v1$27[rbp], eax
 
-; 116  :         __UNIT_TYPE_DIV v2 = v_min_2;
+; 128  :         __UNIT_TYPE_DIV v2 = v_min_2;
 
 	mov	eax, DWORD PTR v_min_2$[rbp]
 	mov	DWORD PTR v2$28[rbp], eax
 
-; 117  :         __UNIT_TYPE_DIV v3 = v_min_3;
+; 129  :         __UNIT_TYPE_DIV v3 = v_min_3;
 
 	mov	eax, DWORD PTR v_min_3$[rbp]
 	mov	DWORD PTR v3$29[rbp], eax
 $LN5@CalculateC:
 
-; 118  :         for (;;)
-; 119  :         {
-; 120  :             __UNIT_TYPE_DIV q_ = AsumeQ_(u0, u1, v1);
+; 130  :         for (;;)
+; 131  :         {
+; 132  :             __UNIT_TYPE_DIV q_ = AsumeQ_(u0, u1, v1);
 
 	mov	r8d, DWORD PTR v1$27[rbp]
 	mov	edx, DWORD PTR u1$[rbp]
@@ -1125,7 +1220,7 @@ $LN5@CalculateC:
 	call	AsumeQ_
 	mov	DWORD PTR q_$30[rbp], eax
 
-; 121  :             if (CheckQ_(q_, u0, u1, u2, v1, v2))
+; 133  :             if (CheckQ_(q_, u0, u1, u2, v1, v2))
 
 	mov	eax, DWORD PTR v2$28[rbp]
 	mov	DWORD PTR [rsp+40], eax
@@ -1139,14 +1234,14 @@ $LN5@CalculateC:
 	test	eax, eax
 	je	SHORT $LN8@CalculateC
 
-; 122  :             {
-; 123  :                 --q_;
+; 134  :             {
+; 135  :                 --q_;
 
 	mov	eax, DWORD PTR q_$30[rbp]
 	dec	eax
 	mov	DWORD PTR q_$30[rbp], eax
 
-; 124  :                 if (CheckQ_(q_, u0, u1, u2, v1, v2))
+; 136  :                 if (CheckQ_(q_, u0, u1, u2, v1, v2))
 
 	mov	eax, DWORD PTR v2$28[rbp]
 	mov	DWORD PTR [rsp+40], eax
@@ -1160,8 +1255,8 @@ $LN5@CalculateC:
 	test	eax, eax
 	je	SHORT $LN9@CalculateC
 
-; 125  :                 {
-; 126  :                     --q_;
+; 137  :                 {
+; 138  :                     --q_;
 
 	mov	eax, DWORD PTR q_$30[rbp]
 	dec	eax
@@ -1169,30 +1264,30 @@ $LN5@CalculateC:
 $LN9@CalculateC:
 $LN8@CalculateC:
 
-; 127  :                 }
-; 128  :             }
-; 129  :             __UNIT_TYPE_DIV bu0 = u0;
+; 139  :                 }
+; 140  :             }
+; 141  :             __UNIT_TYPE_DIV bu0 = u0;
 
 	mov	eax, DWORD PTR u0$[rbp]
 	mov	DWORD PTR bu0$31[rbp], eax
 
-; 130  :             __UNIT_TYPE_DIV bu1 = u1;
+; 142  :             __UNIT_TYPE_DIV bu1 = u1;
 
 	mov	eax, DWORD PTR u1$[rbp]
 	mov	DWORD PTR bu1$32[rbp], eax
 
-; 131  :             __UNIT_TYPE_DIV bu2 = u2;
+; 143  :             __UNIT_TYPE_DIV bu2 = u2;
 
 	mov	eax, DWORD PTR u2$[rbp]
 	mov	DWORD PTR bu2$33[rbp], eax
 
-; 132  :             __UNIT_TYPE_DIV bu3 = u3;
+; 144  :             __UNIT_TYPE_DIV bu3 = u3;
 
 	mov	eax, DWORD PTR u3$[rbp]
 	mov	DWORD PTR bu3$34[rbp], eax
 
-; 133  :             __UNIT_TYPE_DIV mv1_hi;
-; 134  :             __UNIT_TYPE_DIV mv1_lo = _MULTIPLY_UNIT_DIV(v1, q_, &mv1_hi);
+; 145  :             __UNIT_TYPE_DIV mv1_hi;
+; 146  :             __UNIT_TYPE_DIV mv1_lo = _MULTIPLY_UNIT_DIV(v1, q_, &mv1_hi);
 
 	lea	r8, QWORD PTR mv1_hi$35[rbp]
 	mov	edx, DWORD PTR q_$30[rbp]
@@ -1200,8 +1295,8 @@ $LN8@CalculateC:
 	call	_MULTIPLY_UNIT_DIV
 	mov	DWORD PTR mv1_lo$36[rbp], eax
 
-; 135  :             __UNIT_TYPE_DIV mv2_hi;
-; 136  :             __UNIT_TYPE_DIV mv2_lo = _MULTIPLY_UNIT_DIV(v2, q_, &mv2_hi);
+; 147  :             __UNIT_TYPE_DIV mv2_hi;
+; 148  :             __UNIT_TYPE_DIV mv2_lo = _MULTIPLY_UNIT_DIV(v2, q_, &mv2_hi);
 
 	lea	r8, QWORD PTR mv2_hi$37[rbp]
 	mov	edx, DWORD PTR q_$30[rbp]
@@ -1209,8 +1304,8 @@ $LN8@CalculateC:
 	call	_MULTIPLY_UNIT_DIV
 	mov	DWORD PTR mv2_lo$38[rbp], eax
 
-; 137  :             __UNIT_TYPE_DIV mv3_hi;
-; 138  :             __UNIT_TYPE_DIV mv3_lo = _MULTIPLY_UNIT_DIV(v3, q_, &mv3_hi);
+; 149  :             __UNIT_TYPE_DIV mv3_hi;
+; 150  :             __UNIT_TYPE_DIV mv3_lo = _MULTIPLY_UNIT_DIV(v3, q_, &mv3_hi);
 
 	lea	r8, QWORD PTR mv3_hi$39[rbp]
 	mov	edx, DWORD PTR q_$30[rbp]
@@ -1218,17 +1313,39 @@ $LN8@CalculateC:
 	call	_MULTIPLY_UNIT_DIV
 	mov	DWORD PTR mv3_lo$40[rbp], eax
 
-; 139  : 
-; 140  :             // [bu0, bu1, bu2, bu3] -= mv3_lo;
-; 141  :             // [bu0, bu1, bu2] -= mv3_hi;
-; 142  :             // [bu0, bu1, bu2] -= mv2_lo;
-; 143  :             // [bu0, bu1] -= mv2_hi;
-; 144  :             // [bu0, bu1] -= mv1_lo;
-; 145  :             // [bu0] -= mv1_hi;
-; 146  : 
-; 147  :                 
-; 148  :             if (_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu3, mv3_lo, &bu3), bu2, mv3_hi, &bu2), bu1, 0, &bu1), bu0, 0, &bu0) ||
-; 149  :                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu2, mv2_lo, &bu2), bu1, mv2_hi, &bu1), bu0, 0, &bu0) ||
+; 151  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 152  :             if (sizeof(mv1_hi) == sizeof(_UINT32_T))
+
+	xor	eax, eax
+	cmp	eax, 1
+	je	SHORT $LN10@CalculateC
+
+; 153  :                 AddToMULTI32Counter(3);
+
+	mov	ecx, 3
+	call	AddToMULTI32Counter
+	jmp	SHORT $LN11@CalculateC
+$LN10@CalculateC:
+
+; 154  :             else
+; 155  :                 AddToMULTI64Counter(3);
+
+	mov	ecx, 3
+	call	AddToMULTI64Counter
+$LN11@CalculateC:
+
+; 156  : #endif
+; 157  : 
+; 158  :             // [bu0, bu1, bu2, bu3] -= mv3_lo;
+; 159  :             // [bu0, bu1, bu2] -= mv3_hi;
+; 160  :             // [bu0, bu1, bu2] -= mv2_lo;
+; 161  :             // [bu0, bu1] -= mv2_hi;
+; 162  :             // [bu0, bu1] -= mv1_lo;
+; 163  :             // [bu0] -= mv1_hi;
+; 164  : 
+; 165  :                 
+; 166  :             if (_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu3, mv3_lo, &bu3), bu2, mv3_hi, &bu2), bu1, 0, &bu1), bu0, 0, &bu0) ||
+; 167  :                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu2, mv2_lo, &bu2), bu1, mv2_hi, &bu1), bu0, 0, &bu0) ||
 
 	lea	r9, QWORD PTR bu3$34[rbp]
 	mov	r8d, DWORD PTR mv3_lo$40[rbp]
@@ -1252,7 +1369,7 @@ $LN8@CalculateC:
 	call	_SUBTRUCT_UNIT_DIV
 	movsx	eax, al
 	test	eax, eax
-	jne	$LN11@CalculateC
+	jne	$LN13@CalculateC
 	lea	r9, QWORD PTR bu2$33[rbp]
 	mov	r8d, DWORD PTR mv2_lo$38[rbp]
 	mov	edx, DWORD PTR bu2$33[rbp]
@@ -1270,7 +1387,7 @@ $LN8@CalculateC:
 	call	_SUBTRUCT_UNIT_DIV
 	movsx	eax, al
 	test	eax, eax
-	jne	SHORT $LN11@CalculateC
+	jne	SHORT $LN13@CalculateC
 	lea	r9, QWORD PTR bu1$32[rbp]
 	mov	r8d, DWORD PTR mv1_lo$36[rbp]
 	mov	edx, DWORD PTR bu1$32[rbp]
@@ -1283,18 +1400,18 @@ $LN8@CalculateC:
 	call	_SUBTRUCT_UNIT_DIV
 	movsx	eax, al
 	test	eax, eax
-	je	$LN10@CalculateC
-$LN11@CalculateC:
+	je	$LN12@CalculateC
+$LN13@CalculateC:
 
-; 150  :                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu1, mv1_lo, &bu1), bu0, mv1_hi, &bu0))
-; 151  :             {
-; 152  :                 if (sizeof(__UNIT_TYPE_DIV) <= 4)
+; 168  :                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu1, mv1_lo, &bu1), bu0, mv1_hi, &bu0))
+; 169  :             {
+; 170  :                 if (sizeof(__UNIT_TYPE_DIV) <= 4)
 
 	xor	eax, eax
 	cmp	eax, 1
-	je	SHORT $LN12@CalculateC
+	je	SHORT $LN14@CalculateC
 
-; 153  :                     env->log("found: u0=0x%08x, u1=0x%08x, u2=0x%08x, u3=0x%08x, v1=0x%08x, v2=0x%08x, v3=0x%08x\n", u0, u1, u2, u3, v1, v2, v3);
+; 171  :                     env->log("found: u0=0x%08x, u1=0x%08x, u2=0x%08x, u3=0x%08x, v1=0x%08x, v2=0x%08x, v3=0x%08x\n", u0, u1, u2, u3, v1, v2, v3);
 
 	mov	eax, DWORD PTR v3$29[rbp]
 	mov	DWORD PTR [rsp+56], eax
@@ -1310,11 +1427,11 @@ $LN11@CalculateC:
 	lea	rcx, OFFSET FLAT:??_C@_0FE@HJGKBDLB@found?3?5u0?$DN0x?$CF08x?0?5u1?$DN0x?$CF08x?0?5u2@
 	mov	rax, QWORD PTR env$[rbp]
 	call	QWORD PTR [rax]
-	jmp	SHORT $LN13@CalculateC
-$LN12@CalculateC:
+	jmp	SHORT $LN15@CalculateC
+$LN14@CalculateC:
 
-; 154  :                 else
-; 155  :                     env->log("found: u0=0x%016llx, u1=0x%016llx, u2=0x%016llx, u3=0x%016llx, v1=0x%016llx, v2=0x%016llx, v3=0x%016llx\n", u0, u1, u2, u3, v1, v2, v3);
+; 172  :                 else
+; 173  :                     env->log("found: u0=0x%016llx, u1=0x%016llx, u2=0x%016llx, u3=0x%016llx, v1=0x%016llx, v2=0x%016llx, v3=0x%016llx\n", u0, u1, u2, u3, v1, v2, v3);
 
 	mov	eax, DWORD PTR v3$29[rbp]
 	mov	DWORD PTR [rsp+56], eax
@@ -1330,17 +1447,17 @@ $LN12@CalculateC:
 	lea	rcx, OFFSET FLAT:??_C@_0GJ@FDENHGMK@found?3?5u0?$DN0x?$CF016llx?0?5u1?$DN0x?$CF016l@
 	mov	rax, QWORD PTR env$[rbp]
 	call	QWORD PTR [rax]
-$LN13@CalculateC:
+$LN15@CalculateC:
 
-; 156  :                 env->pause();
+; 174  :                 env->pause();
 
 	mov	rax, QWORD PTR env$[rbp]
 	call	QWORD PTR [rax+8]
-$LN10@CalculateC:
+$LN12@CalculateC:
 
-; 157  :             }
-; 158  : 
-; 159  :             if (SUBTRUCT_3W_UNIT(&v_count_1, &v_count_2, &v_count_3, 1))
+; 175  :             }
+; 176  : 
+; 177  :             if (SUBTRUCT_3W_UNIT(&v_count_1, &v_count_2, &v_count_3, 1))
 
 	mov	r9d, 1
 	lea	r8, QWORD PTR v_count_3$26[rbp]
@@ -1349,14 +1466,14 @@ $LN10@CalculateC:
 	call	SUBTRUCT_3W_UNIT
 	movsx	eax, al
 	test	eax, eax
-	je	SHORT $LN14@CalculateC
+	je	SHORT $LN16@CalculateC
 
-; 160  :                 break;
+; 178  :                 break;
 
 	jmp	SHORT $LN6@CalculateC
-$LN14@CalculateC:
+$LN16@CalculateC:
 
-; 161  :             ADD_3W_UNIT(&v1, &v2, &v3, 1);
+; 179  :             ADD_3W_UNIT(&v1, &v2, &v3, 1);
 
 	mov	r9d, 1
 	lea	r8, QWORD PTR v3$29[rbp]
@@ -1364,12 +1481,12 @@ $LN14@CalculateC:
 	lea	rcx, QWORD PTR v1$27[rbp]
 	call	ADD_3W_UNIT
 
-; 162  :         }
+; 180  :         }
 
 	jmp	$LN5@CalculateC
 $LN6@CalculateC:
 
-; 163  :         if (SUBTRUCT_4W_UNIT(&u_count_0, &u_count_1, &u_count_2, &u_count_3, 1))
+; 181  :         if (SUBTRUCT_4W_UNIT(&u_count_0, &u_count_1, &u_count_2, &u_count_3, 1))
 
 	mov	DWORD PTR [rsp+32], 1
 	lea	r9, QWORD PTR u_count_3$[rbp]
@@ -1379,14 +1496,14 @@ $LN6@CalculateC:
 	call	SUBTRUCT_4W_UNIT
 	movsx	eax, al
 	test	eax, eax
-	je	SHORT $LN15@CalculateC
+	je	SHORT $LN17@CalculateC
 
-; 164  :             break;
+; 182  :             break;
 
 	jmp	SHORT $LN3@CalculateC
-$LN15@CalculateC:
+$LN17@CalculateC:
 
-; 165  :         ADD_4W_UNIT(&u0, &u1, &u2, &u3, 1);
+; 183  :         ADD_4W_UNIT(&u0, &u1, &u2, &u3, 1);
 
 	mov	DWORD PTR [rsp+32], 1
 	lea	r9, QWORD PTR u3$[rbp]
@@ -1395,13 +1512,13 @@ $LN15@CalculateC:
 	lea	rcx, QWORD PTR u0$[rbp]
 	call	ADD_4W_UNIT
 
-; 166  :     }
+; 184  :     }
 
 	jmp	$LN2@CalculateC
 $LN3@CalculateC:
 
-; 167  : 
-; 168  : }
+; 185  : 
+; 186  : }
 
 	lea	rcx, QWORD PTR [rbp-64]
 	lea	rdx, OFFSET FLAT:CalculateCriticalDataOfDivision$rtcFrameData
@@ -1411,6 +1528,142 @@ $LN3@CalculateC:
 	pop	rbp
 	ret	0
 CalculateCriticalDataOfDivision ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT AddToMULTI64Counter
+_TEXT	SEGMENT
+value$ = 224
+AddToMULTI64Counter PROC				; COMDAT
+
+; 990  : {
+
+	mov	DWORD PTR [rsp+8], ecx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, DWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lea	rax, OFFSET FLAT:statistics_info
+	mov	ecx, DWORD PTR value$[rbp]
+	lock add DWORD PTR [rax], ecx
+
+; 992  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+AddToMULTI64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT AddToMULTI32Counter
+_TEXT	SEGMENT
+value$ = 224
+AddToMULTI32Counter PROC				; COMDAT
+
+; 984  : {
+
+	mov	DWORD PTR [rsp+8], ecx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, DWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	lea	rax, OFFSET FLAT:statistics_info+4
+	mov	ecx, DWORD PTR value$[rbp]
+	lock add DWORD PTR [rax], ecx
+
+; 986  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+AddToMULTI32Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT IncrementDIV64Counter
+_TEXT	SEGMENT
+IncrementDIV64Counter PROC				; COMDAT
+
+; 955  : {
+
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 956  :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+
+	lea	rax, OFFSET FLAT:statistics_info+8
+	lock inc DWORD PTR [rax]
+
+; 957  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+IncrementDIV64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT IncrementDIV32Counter
+_TEXT	SEGMENT
+IncrementDIV32Counter PROC				; COMDAT
+
+; 949  : {
+
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 950  :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+
+	lea	rax, OFFSET FLAT:statistics_info+12
+	lock inc DWORD PTR [rax]
+
+; 951  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+IncrementDIV32Counter ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h

@@ -43,6 +43,7 @@ EXTRN	_RTC_Shutdown:PROC
 EXTRN	__CheckForDebuggerJustMyCode:PROC
 EXTRN	__GSHandlerCheck:PROC
 EXTRN	__security_check_cookie:PROC
+EXTRN	statistics_info:BYTE
 EXTRN	__ImageBase:BYTE
 EXTRN	__security_cookie:QWORD
 _BSS	SEGMENT
@@ -104,6 +105,30 @@ $pdata$_ROTATE_L_UNIT DD imagerel _ROTATE_L_UNIT
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
+$pdata$IncrementDIV32Counter DD imagerel IncrementDIV32Counter
+	DD	imagerel IncrementDIV32Counter+62
+	DD	imagerel $unwind$IncrementDIV32Counter
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$IncrementDIV64Counter DD imagerel IncrementDIV64Counter
+	DD	imagerel IncrementDIV64Counter+62
+	DD	imagerel $unwind$IncrementDIV64Counter
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$AddToDIV32Counter DD imagerel AddToDIV32Counter
+	DD	imagerel AddToDIV32Counter+78
+	DD	imagerel $unwind$AddToDIV32Counter
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$AddToDIV64Counter DD imagerel AddToDIV64Counter
+	DD	imagerel AddToDIV64Counter+78
+	DD	imagerel $unwind$AddToDIV64Counter
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
 $pdata$ConvertCardinalNumber DD imagerel ConvertCardinalNumber
 	DD	imagerel ConvertCardinalNumber+643
 	DD	imagerel $unwind$ConvertCardinalNumber
@@ -135,13 +160,13 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$ToStringDN_LEADING_1WORD DD imagerel ToStringDN_LEADING_1WORD
-	DD	imagerel ToStringDN_LEADING_1WORD+137
+	DD	imagerel ToStringDN_LEADING_1WORD+155
 	DD	imagerel $unwind$ToStringDN_LEADING_1WORD
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$ToStringDN_1WORD DD imagerel ToStringDN_1WORD
-	DD	imagerel ToStringDN_1WORD+929
+	DD	imagerel ToStringDN_1WORD+1031
 	DD	imagerel $unwind$ToStringDN_1WORD
 pdata	ENDS
 ;	COMDAT pdata
@@ -563,6 +588,34 @@ ConvertCardinalNumber$rtcFrameData DD 05H
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$AddToDIV64Counter DD 025052801H
+	DD	010d2312H
+	DD	07006001dH
+	DD	05005H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$AddToDIV32Counter DD 025052801H
+	DD	010d2312H
+	DD	07006001dH
+	DD	05005H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$IncrementDIV64Counter DD 025051e01H
+	DD	010a230fH
+	DD	07003001dH
+	DD	05002H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$IncrementDIV32Counter DD 025051e01H
+	DD	010a230fH
+	DD	07003001dH
+	DD	05002H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$_ROTATE_L_UNIT DD 025052e01H
 	DD	01122317H
 	DD	0700b001dH
@@ -652,7 +705,7 @@ format_option$ = 512
 using_upper_letter$ = 520
 ToStringX PROC						; COMDAT
 
-; 449  : {
+; 479  : {
 
 	mov	DWORD PTR [rsp+32], r9d
 	mov	QWORD PTR [rsp+24], r8
@@ -670,7 +723,7 @@ ToStringX PROC						; COMDAT
 	lea	rcx, OFFSET FLAT:__3AA1CF5E_pmc_tostring@c
 	call	__CheckForDebuggerJustMyCode
 
-; 450  :     if (x->IS_ZERO)
+; 480  :     if (x->IS_ZERO)
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -679,21 +732,21 @@ ToStringX PROC						; COMDAT
 	test	eax, eax
 	je	SHORT $LN4@ToStringX
 
-; 451  :     {
-; 452  :         // x が 0 である場合
-; 453  :         // 最低で 1 桁、最高で format_option->MinimumWidth 桁だけ '0' を出力する。
-; 454  : 
-; 455  :         if (width < 1)
+; 481  :     {
+; 482  :         // x が 0 である場合
+; 483  :         // 最低で 1 桁、最高で format_option->MinimumWidth 桁だけ '0' を出力する。
+; 484  : 
+; 485  :         if (width < 1)
 
 	cmp	DWORD PTR width$[rbp], 1
 	jae	SHORT $LN6@ToStringX
 
-; 456  :             width = 1;
+; 486  :             width = 1;
 
 	mov	DWORD PTR width$[rbp], 1
 $LN6@ToStringX:
 
-; 457  :         if (buffer_size < width + 1)
+; 487  :         if (buffer_size < width + 1)
 
 	mov	eax, DWORD PTR width$[rbp]
 	inc	eax
@@ -701,13 +754,13 @@ $LN6@ToStringX:
 	cmp	QWORD PTR buffer_size$[rbp], rax
 	jae	SHORT $LN7@ToStringX
 
-; 458  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 488  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
 
 	mov	eax, -4
 	jmp	$LN1@ToStringX
 $LN7@ToStringX:
 
-; 459  :         _FILL_MEMORY_16(buffer, L'0', width);
+; 489  :         _FILL_MEMORY_16(buffer, L'0', width);
 
 	mov	eax, DWORD PTR width$[rbp]
 	mov	r8d, eax
@@ -715,22 +768,22 @@ $LN7@ToStringX:
 	mov	rcx, QWORD PTR buffer$[rbp]
 	call	_FILL_MEMORY_16
 
-; 460  :         buffer[width] = L'\0';
+; 490  :         buffer[width] = L'\0';
 
 	mov	eax, DWORD PTR width$[rbp]
 	xor	ecx, ecx
 	mov	rdx, QWORD PTR buffer$[rbp]
 	mov	WORD PTR [rdx+rax*2], cx
 
-; 461  :     }
+; 491  :     }
 
 	jmp	$LN5@ToStringX
 $LN4@ToStringX:
 
-; 462  :     else
-; 463  :     {
-; 464  :         // x が 0 ではない場合
-; 465  :         __UNIT_TYPE output_len = _DIVIDE_CEILING_UNIT(x->UNIT_BIT_COUNT, 4);
+; 492  :     else
+; 493  :     {
+; 494  :         // x が 0 ではない場合
+; 495  :         __UNIT_TYPE output_len = _DIVIDE_CEILING_UNIT(x->UNIT_BIT_COUNT, 4);
 
 	mov	edx, 4
 	mov	rax, QWORD PTR x$[rbp]
@@ -738,68 +791,68 @@ $LN4@ToStringX:
 	call	_DIVIDE_CEILING_UNIT
 	mov	QWORD PTR output_len$1[rbp], rax
 
-; 466  :         __UNIT_TYPE filling_digit_len;;
-; 467  :         __UNIT_TYPE total_length;
-; 468  :         if (output_len < width)
+; 496  :         __UNIT_TYPE filling_digit_len;;
+; 497  :         __UNIT_TYPE total_length;
+; 498  :         if (output_len < width)
 
 	mov	eax, DWORD PTR width$[rbp]
 	cmp	QWORD PTR output_len$1[rbp], rax
 	jae	SHORT $LN8@ToStringX
 
-; 469  :         {
-; 470  :             filling_digit_len = width - output_len;
+; 499  :         {
+; 500  :             filling_digit_len = width - output_len;
 
 	mov	eax, DWORD PTR width$[rbp]
 	sub	rax, QWORD PTR output_len$1[rbp]
 	mov	QWORD PTR filling_digit_len$2[rbp], rax
 
-; 471  :             total_length = width;
+; 501  :             total_length = width;
 
 	mov	eax, DWORD PTR width$[rbp]
 	mov	QWORD PTR total_length$3[rbp], rax
 
-; 472  :         }
+; 502  :         }
 
 	jmp	SHORT $LN9@ToStringX
 $LN8@ToStringX:
 
-; 473  :         else
-; 474  :         {
-; 475  :             filling_digit_len = 0;
+; 503  :         else
+; 504  :         {
+; 505  :             filling_digit_len = 0;
 
 	mov	QWORD PTR filling_digit_len$2[rbp], 0
 
-; 476  :             total_length = output_len;
+; 506  :             total_length = output_len;
 
 	mov	rax, QWORD PTR output_len$1[rbp]
 	mov	QWORD PTR total_length$3[rbp], rax
 $LN9@ToStringX:
 
-; 477  :         }
-; 478  :         if (buffer_size < total_length + 1)
+; 507  :         }
+; 508  :         if (buffer_size < total_length + 1)
 
 	mov	rax, QWORD PTR total_length$3[rbp]
 	inc	rax
 	cmp	QWORD PTR buffer_size$[rbp], rax
 	jae	SHORT $LN10@ToStringX
 
-; 479  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 509  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
 
 	mov	eax, -4
 	jmp	$LN1@ToStringX
 $LN10@ToStringX:
 
-; 480  :         __UNIT_TYPE filling_digit_count = filling_digit_len;
+; 510  :         __UNIT_TYPE filling_digit_count = filling_digit_len;
 
 	mov	rax, QWORD PTR filling_digit_len$2[rbp]
 	mov	QWORD PTR filling_digit_count$4[rbp], rax
 
-; 481  :         if (filling_digit_len > 0)
+; 511  :         if (filling_digit_len > 0)
 
 	cmp	QWORD PTR filling_digit_len$2[rbp], 0
 	jbe	SHORT $LN11@ToStringX
 
-; 482  :             _FILL_MEMORY_16(buffer, L'0', filling_digit_len);
+; 512  :             _FILL_MEMORY_16(buffer, L'0', filling_digit_len);
 
 	mov	r8, QWORD PTR filling_digit_len$2[rbp]
 	mov	dx, 48					; 00000030H
@@ -807,7 +860,7 @@ $LN10@ToStringX:
 	call	_FILL_MEMORY_16
 $LN11@ToStringX:
 
-; 483  :         __UNIT_TYPE* s_ptr = x->BLOCK + x->UNIT_WORD_COUNT - 1;
+; 513  :         __UNIT_TYPE* s_ptr = x->BLOCK + x->UNIT_WORD_COUNT - 1;
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -816,14 +869,14 @@ $LN11@ToStringX:
 	lea	rax, QWORD PTR [rcx+rax*8-8]
 	mov	QWORD PTR s_ptr$5[rbp], rax
 
-; 484  :         wchar_t* d_ptr = buffer + filling_digit_len;
+; 514  :         wchar_t* d_ptr = buffer + filling_digit_len;
 
 	mov	rax, QWORD PTR buffer$[rbp]
 	mov	rcx, QWORD PTR filling_digit_len$2[rbp]
 	lea	rax, QWORD PTR [rax+rcx*2]
 	mov	QWORD PTR d_ptr$6[rbp], rax
 
-; 485  :         wchar_t* digit_table = using_upper_letter ? hexadecimal_upper_digits : hexadecimal_lower_digits;
+; 515  :         wchar_t* digit_table = using_upper_letter ? hexadecimal_upper_digits : hexadecimal_lower_digits;
 
 	cmp	DWORD PTR using_upper_letter$[rbp], 0
 	je	SHORT $LN13@ToStringX
@@ -837,13 +890,13 @@ $LN14@ToStringX:
 	mov	rax, QWORD PTR tv134[rbp]
 	mov	QWORD PTR digit_table$7[rbp], rax
 
-; 486  :         __UNIT_TYPE w_count = x->UNIT_WORD_COUNT;
+; 516  :         __UNIT_TYPE w_count = x->UNIT_WORD_COUNT;
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR [rax]
 	mov	QWORD PTR w_count$8[rbp], rax
 
-; 487  :         d_ptr = ToStringX_1WORD(*s_ptr, (int)(x->UNIT_WORD_COUNT * (__UNIT_TYPE_BIT_COUNT / 4) - output_len), digit_table, d_ptr);
+; 517  :         d_ptr = ToStringX_1WORD(*s_ptr, (int)(x->UNIT_WORD_COUNT * (__UNIT_TYPE_BIT_COUNT / 4) - output_len), digit_table, d_ptr);
 
 	mov	rax, QWORD PTR x$[rbp]
 	imul	rax, QWORD PTR [rax], 16
@@ -856,26 +909,26 @@ $LN14@ToStringX:
 	call	ToStringX_1WORD
 	mov	QWORD PTR d_ptr$6[rbp], rax
 
-; 488  :         --s_ptr;
+; 518  :         --s_ptr;
 
 	mov	rax, QWORD PTR s_ptr$5[rbp]
 	sub	rax, 8
 	mov	QWORD PTR s_ptr$5[rbp], rax
 
-; 489  :         --w_count;
+; 519  :         --w_count;
 
 	mov	rax, QWORD PTR w_count$8[rbp]
 	dec	rax
 	mov	QWORD PTR w_count$8[rbp], rax
 $LN2@ToStringX:
 
-; 490  :         while (w_count > 0)
+; 520  :         while (w_count > 0)
 
 	cmp	QWORD PTR w_count$8[rbp], 0
 	jbe	SHORT $LN3@ToStringX
 
-; 491  :         {
-; 492  :             d_ptr = ToStringX_1WORD(*s_ptr, 0, digit_table, d_ptr);
+; 521  :         {
+; 522  :             d_ptr = ToStringX_1WORD(*s_ptr, 0, digit_table, d_ptr);
 
 	mov	r9, QWORD PTR d_ptr$6[rbp]
 	mov	r8, QWORD PTR digit_table$7[rbp]
@@ -885,37 +938,37 @@ $LN2@ToStringX:
 	call	ToStringX_1WORD
 	mov	QWORD PTR d_ptr$6[rbp], rax
 
-; 493  :             --s_ptr;
+; 523  :             --s_ptr;
 
 	mov	rax, QWORD PTR s_ptr$5[rbp]
 	sub	rax, 8
 	mov	QWORD PTR s_ptr$5[rbp], rax
 
-; 494  :             --w_count;
+; 524  :             --w_count;
 
 	mov	rax, QWORD PTR w_count$8[rbp]
 	dec	rax
 	mov	QWORD PTR w_count$8[rbp], rax
 
-; 495  :         }
+; 525  :         }
 
 	jmp	SHORT $LN2@ToStringX
 $LN3@ToStringX:
 
-; 496  :         *d_ptr = '\0';
+; 526  :         *d_ptr = '\0';
 
 	xor	eax, eax
 	mov	rcx, QWORD PTR d_ptr$6[rbp]
 	mov	WORD PTR [rcx], ax
 $LN5@ToStringX:
 
-; 497  :     }
-; 498  :     return (PMC_STATUS_OK);
+; 527  :     }
+; 528  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@ToStringX:
 
-; 499  : }
+; 529  : }
 
 	lea	rsp, QWORD PTR [rbp+456]
 	pop	rdi
@@ -934,7 +987,7 @@ digit_table$ = 272
 ptr$ = 280
 ToStringX_1WORD PROC					; COMDAT
 
-; 381  : {
+; 411  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -952,33 +1005,33 @@ ToStringX_1WORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__3AA1CF5E_pmc_tostring@c
 	call	__CheckForDebuggerJustMyCode
 
-; 382  :     if (sizeof(__UNIT_TYPE) > sizeof(_UINT64_T))
+; 412  :     if (sizeof(__UNIT_TYPE) > sizeof(_UINT64_T))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@ToStringX_
 
-; 383  :     {
-; 384  :         // 64bit を超える __UNIT_TYPE には未対応
-; 385  :         // 対応するには以降のコーディングを見直す必要がある
-; 386  :         return (NULL);
+; 413  :     {
+; 414  :         // 64bit を超える __UNIT_TYPE には未対応
+; 415  :         // 対応するには以降のコーディングを見直す必要がある
+; 416  :         return (NULL);
 
 	xor	eax, eax
 	jmp	$LN1@ToStringX_
 $LN2@ToStringX_:
 
-; 387  :     }
-; 388  :     int count = __UNIT_TYPE_BIT_COUNT / 4;
+; 417  :     }
+; 418  :     int count = __UNIT_TYPE_BIT_COUNT / 4;
 
 	mov	DWORD PTR count$[rbp], 16
 
-; 389  :     if (skip_digit_len > 0)
+; 419  :     if (skip_digit_len > 0)
 
 	cmp	DWORD PTR skip_digit_len$[rbp], 0
 	jle	SHORT $LN3@ToStringX_
 
-; 390  :     {
-; 391  :         x = _ROTATE_L_UNIT(x, 4 * skip_digit_len);
+; 420  :     {
+; 421  :         x = _ROTATE_L_UNIT(x, 4 * skip_digit_len);
 
 	mov	eax, DWORD PTR skip_digit_len$[rbp]
 	shl	eax, 2
@@ -987,7 +1040,7 @@ $LN2@ToStringX_:
 	call	_ROTATE_L_UNIT
 	mov	QWORD PTR x$[rbp], rax
 
-; 392  :         count -= skip_digit_len;
+; 422  :         count -= skip_digit_len;
 
 	mov	eax, DWORD PTR skip_digit_len$[rbp]
 	mov	ecx, DWORD PTR count$[rbp]
@@ -996,16 +1049,16 @@ $LN2@ToStringX_:
 	mov	DWORD PTR count$[rbp], eax
 $LN3@ToStringX_:
 
-; 393  :     }
-; 394  :     if (count & 0x10)
+; 423  :     }
+; 424  :     if (count & 0x10)
 
 	mov	eax, DWORD PTR count$[rbp]
 	and	eax, 16
 	test	eax, eax
 	je	$LN4@ToStringX_
 
-; 395  :     {
-; 396  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 425  :     {
+; 426  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1020,7 +1073,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 397  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 427  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1035,7 +1088,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 398  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
+; 428  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1050,7 +1103,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 399  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
+; 429  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1065,7 +1118,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 400  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
+; 430  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1080,7 +1133,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 401  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
+; 431  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1095,7 +1148,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 402  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
+; 432  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1110,7 +1163,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 403  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
+; 433  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1125,7 +1178,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 404  :         x = _ROTATE_L_UNIT(x, 4); ptr[8] = digit_table[x & 0x0f];
+; 434  :         x = _ROTATE_L_UNIT(x, 4); ptr[8] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1140,7 +1193,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 405  :         x = _ROTATE_L_UNIT(x, 4); ptr[9] = digit_table[x & 0x0f];
+; 435  :         x = _ROTATE_L_UNIT(x, 4); ptr[9] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1155,7 +1208,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 406  :         x = _ROTATE_L_UNIT(x, 4); ptr[10] = digit_table[x & 0x0f];
+; 436  :         x = _ROTATE_L_UNIT(x, 4); ptr[10] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1170,7 +1223,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 407  :         x = _ROTATE_L_UNIT(x, 4); ptr[11] = digit_table[x & 0x0f];
+; 437  :         x = _ROTATE_L_UNIT(x, 4); ptr[11] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1185,7 +1238,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 408  :         x = _ROTATE_L_UNIT(x, 4); ptr[12] = digit_table[x & 0x0f];
+; 438  :         x = _ROTATE_L_UNIT(x, 4); ptr[12] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1200,7 +1253,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 409  :         x = _ROTATE_L_UNIT(x, 4); ptr[13] = digit_table[x & 0x0f];
+; 439  :         x = _ROTATE_L_UNIT(x, 4); ptr[13] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1215,7 +1268,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 410  :         x = _ROTATE_L_UNIT(x, 4); ptr[14] = digit_table[x & 0x0f];
+; 440  :         x = _ROTATE_L_UNIT(x, 4); ptr[14] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1230,7 +1283,7 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 411  :         x = _ROTATE_L_UNIT(x, 4); ptr[15] = digit_table[x & 0x0f];
+; 441  :         x = _ROTATE_L_UNIT(x, 4); ptr[15] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1245,23 +1298,23 @@ $LN3@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 412  :         ptr += 16;
+; 442  :         ptr += 16;
 
 	mov	rax, QWORD PTR ptr$[rbp]
 	add	rax, 32					; 00000020H
 	mov	QWORD PTR ptr$[rbp], rax
 $LN4@ToStringX_:
 
-; 413  :     }
-; 414  :     if (count & 0x8)
+; 443  :     }
+; 444  :     if (count & 0x8)
 
 	mov	eax, DWORD PTR count$[rbp]
 	and	eax, 8
 	test	eax, eax
 	je	$LN5@ToStringX_
 
-; 415  :     {
-; 416  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 445  :     {
+; 446  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1276,7 +1329,7 @@ $LN4@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 417  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 447  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1291,7 +1344,7 @@ $LN4@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 418  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
+; 448  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1306,7 +1359,7 @@ $LN4@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 419  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
+; 449  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1321,7 +1374,7 @@ $LN4@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 420  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
+; 450  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1336,7 +1389,7 @@ $LN4@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 421  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
+; 451  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1351,7 +1404,7 @@ $LN4@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 422  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
+; 452  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1366,7 +1419,7 @@ $LN4@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 423  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
+; 453  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1381,23 +1434,23 @@ $LN4@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 424  :         ptr+=8;
+; 454  :         ptr+=8;
 
 	mov	rax, QWORD PTR ptr$[rbp]
 	add	rax, 16
 	mov	QWORD PTR ptr$[rbp], rax
 $LN5@ToStringX_:
 
-; 425  :     }
-; 426  :     if (count & 0x4)
+; 455  :     }
+; 456  :     if (count & 0x4)
 
 	mov	eax, DWORD PTR count$[rbp]
 	and	eax, 4
 	test	eax, eax
 	je	$LN6@ToStringX_
 
-; 427  :     {
-; 428  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 457  :     {
+; 458  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1412,7 +1465,7 @@ $LN5@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 429  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 459  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1427,7 +1480,7 @@ $LN5@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 430  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
+; 460  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1442,7 +1495,7 @@ $LN5@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 431  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
+; 461  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1457,23 +1510,23 @@ $LN5@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 432  :         ptr += 4;
+; 462  :         ptr += 4;
 
 	mov	rax, QWORD PTR ptr$[rbp]
 	add	rax, 8
 	mov	QWORD PTR ptr$[rbp], rax
 $LN6@ToStringX_:
 
-; 433  :     }
-; 434  :     if (count & 0x2)
+; 463  :     }
+; 464  :     if (count & 0x2)
 
 	mov	eax, DWORD PTR count$[rbp]
 	and	eax, 2
 	test	eax, eax
 	je	$LN7@ToStringX_
 
-; 435  :     {
-; 436  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 465  :     {
+; 466  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1488,7 +1541,7 @@ $LN6@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 437  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 467  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1503,23 +1556,23 @@ $LN6@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 438  :         ptr += 2;
+; 468  :         ptr += 2;
 
 	mov	rax, QWORD PTR ptr$[rbp]
 	add	rax, 4
 	mov	QWORD PTR ptr$[rbp], rax
 $LN7@ToStringX_:
 
-; 439  :     }
-; 440  :     if (count & 0x1)
+; 469  :     }
+; 470  :     if (count & 0x1)
 
 	mov	eax, DWORD PTR count$[rbp]
 	and	eax, 1
 	test	eax, eax
 	je	SHORT $LN8@ToStringX_
 
-; 441  :     {
-; 442  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 471  :     {
+; 472  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR x$[rbp]
@@ -1534,20 +1587,20 @@ $LN7@ToStringX_:
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx+rcx], ax
 
-; 443  :         ptr += 1;
+; 473  :         ptr += 1;
 
 	mov	rax, QWORD PTR ptr$[rbp]
 	add	rax, 2
 	mov	QWORD PTR ptr$[rbp], rax
 $LN8@ToStringX_:
 
-; 444  :     }
-; 445  :     return (ptr);
+; 474  :     }
+; 475  :     return (ptr);
 
 	mov	rax, QWORD PTR ptr$[rbp]
 $LN1@ToStringX_:
 
-; 446  : }
+; 476  : }
 
 	lea	rsp, QWORD PTR [rbp+232]
 	pop	rdi
@@ -1580,7 +1633,7 @@ width$ = 640
 format_option$ = 648
 ToStringDN PROC						; COMDAT
 
-; 288  : {
+; 318  : {
 
 	mov	BYTE PTR [rsp+32], r9b
 	mov	QWORD PTR [rsp+24], r8
@@ -1598,58 +1651,58 @@ ToStringDN PROC						; COMDAT
 	lea	rcx, OFFSET FLAT:__3AA1CF5E_pmc_tostring@c
 	call	__CheckForDebuggerJustMyCode
 
-; 289  :     __UNIT_TYPE_DIV base_value;
-; 290  :     int word_digit_count;
-; 291  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 319  :     __UNIT_TYPE_DIV base_value;
+; 320  :     int word_digit_count;
+; 321  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN2@ToStringDN
 
-; 292  :     {
-; 293  :         base_value = 1000000000U; // 10^9
+; 322  :     {
+; 323  :         base_value = 1000000000U; // 10^9
 
 	mov	DWORD PTR base_value$[rbp], 1000000000	; 3b9aca00H
 
-; 294  :         word_digit_count = 9;
+; 324  :         word_digit_count = 9;
 
 	mov	DWORD PTR word_digit_count$[rbp], 9
 
-; 295  :     }
+; 325  :     }
 
 	jmp	SHORT $LN3@ToStringDN
 $LN2@ToStringDN:
 
-; 296  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 326  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN4@ToStringDN
 
-; 297  :     {
-; 298  :         base_value = (__UNIT_TYPE_DIV)10000000000000000000UL; // 10^19
+; 327  :     {
+; 328  :         base_value = (__UNIT_TYPE_DIV)10000000000000000000UL; // 10^19
 
 	mov	DWORD PTR base_value$[rbp], -1981284352	; 89e80000H
 
-; 299  :         word_digit_count = 19;
+; 329  :         word_digit_count = 19;
 
 	mov	DWORD PTR word_digit_count$[rbp], 19
 
-; 300  :     }
+; 330  :     }
 
 	jmp	SHORT $LN5@ToStringDN
 $LN4@ToStringDN:
 
-; 301  :     else
-; 302  :         return (PMC_STATUS_NOT_SUPPORTED);
+; 331  :     else
+; 332  :         return (PMC_STATUS_NOT_SUPPORTED);
 
 	mov	eax, -6
 	jmp	$LN1@ToStringDN
 $LN5@ToStringDN:
 $LN3@ToStringDN:
 
-; 303  : 
-; 304  :     if (x->IS_ZERO)
+; 333  : 
+; 334  :     if (x->IS_ZERO)
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -1658,19 +1711,19 @@ $LN3@ToStringDN:
 	test	eax, eax
 	je	$LN6@ToStringDN
 
-; 305  :     {
-; 306  :         // x が 0 である場合
-; 307  :         if (format == 'N')
+; 335  :     {
+; 336  :         // x が 0 である場合
+; 337  :         if (format == 'N')
 
 	movsx	eax, BYTE PTR format$[rbp]
 	cmp	eax, 78					; 0000004eH
 	jne	$LN8@ToStringDN
 
-; 308  :         {
-; 309  :             // format が 'N' である場合
-; 310  : 
-; 311  :             // 整数部が 1 桁の 0、小数部が width 桁の 0 である文字列を出力する。
-; 312  :             buffer[0] = '0';
+; 338  :         {
+; 339  :             // format が 'N' である場合
+; 340  : 
+; 341  :             // 整数部が 1 桁の 0、小数部が width 桁の 0 である文字列を出力する。
+; 342  :             buffer[0] = '0';
 
 	mov	eax, 2
 	imul	rax, rax, 0
@@ -1678,12 +1731,12 @@ $LN3@ToStringDN:
 	mov	rdx, QWORD PTR buffer$[rbp]
 	mov	WORD PTR [rdx+rax], cx
 
-; 313  :             if (width == 0)
+; 343  :             if (width == 0)
 
 	cmp	DWORD PTR width$[rbp], 0
 	jne	SHORT $LN10@ToStringDN
 
-; 314  :                 buffer[1] = L'\0';
+; 344  :                 buffer[1] = L'\0';
 
 	mov	eax, 2
 	imul	rax, rax, 1
@@ -1693,9 +1746,9 @@ $LN3@ToStringDN:
 	jmp	SHORT $LN11@ToStringDN
 $LN10@ToStringDN:
 
-; 315  :             else
-; 316  :             {
-; 317  :                 lstrcpyW(&buffer[1], format_option->DecimalSeparator);
+; 345  :             else
+; 346  :             {
+; 347  :                 lstrcpyW(&buffer[1], format_option->DecimalSeparator);
 
 	mov	rax, QWORD PTR format_option$[rbp]
 	add	rax, 10
@@ -1707,7 +1760,7 @@ $LN10@ToStringDN:
 	mov	rdx, rax
 	call	QWORD PTR __imp_lstrcpyW
 
-; 318  :                 int decimal_separator_len = lstrlenW(format_option->DecimalSeparator);
+; 348  :                 int decimal_separator_len = lstrlenW(format_option->DecimalSeparator);
 
 	mov	rax, QWORD PTR format_option$[rbp]
 	add	rax, 10
@@ -1715,7 +1768,7 @@ $LN10@ToStringDN:
 	call	QWORD PTR __imp_lstrlenW
 	mov	DWORD PTR decimal_separator_len$9[rbp], eax
 
-; 319  :                 _FILL_MEMORY_16(buffer + 1 + decimal_separator_len, L'0', width);
+; 349  :                 _FILL_MEMORY_16(buffer + 1 + decimal_separator_len, L'0', width);
 
 	mov	eax, DWORD PTR width$[rbp]
 	movsxd	rcx, DWORD PTR decimal_separator_len$9[rbp]
@@ -1725,7 +1778,7 @@ $LN10@ToStringDN:
 	mov	dx, 48					; 00000030H
 	call	_FILL_MEMORY_16
 
-; 320  :                 buffer[1 + decimal_separator_len + width] = L'\0';
+; 350  :                 buffer[1 + decimal_separator_len + width] = L'\0';
 
 	mov	eax, DWORD PTR decimal_separator_len$9[rbp]
 	mov	ecx, DWORD PTR width$[rbp]
@@ -1736,28 +1789,28 @@ $LN10@ToStringDN:
 	mov	WORD PTR [rdx+rax*2], cx
 $LN11@ToStringDN:
 
-; 321  :             }
-; 322  :         }
+; 351  :             }
+; 352  :         }
 
 	jmp	SHORT $LN9@ToStringDN
 $LN8@ToStringDN:
 
-; 323  :         else
-; 324  :         {
-; 325  :             // format が 'D' である場合
-; 326  : 
-; 327  :             // 最低で 1 桁、最高で width 桁だけ '0' を出力する。
-; 328  :             if (width < 1)
+; 353  :         else
+; 354  :         {
+; 355  :             // format が 'D' である場合
+; 356  : 
+; 357  :             // 最低で 1 桁、最高で width 桁だけ '0' を出力する。
+; 358  :             if (width < 1)
 
 	cmp	DWORD PTR width$[rbp], 1
 	jae	SHORT $LN12@ToStringDN
 
-; 329  :                 width = 1;
+; 359  :                 width = 1;
 
 	mov	DWORD PTR width$[rbp], 1
 $LN12@ToStringDN:
 
-; 330  :             if (buffer_size < width + 1)
+; 360  :             if (buffer_size < width + 1)
 
 	mov	eax, DWORD PTR width$[rbp]
 	inc	eax
@@ -1765,13 +1818,13 @@ $LN12@ToStringDN:
 	cmp	QWORD PTR buffer_size$[rbp], rax
 	jae	SHORT $LN13@ToStringDN
 
-; 331  :                 return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 361  :                 return (PMC_STATUS_INSUFFICIENT_BUFFER);
 
 	mov	eax, -4
 	jmp	$LN1@ToStringDN
 $LN13@ToStringDN:
 
-; 332  :             _FILL_MEMORY_16(buffer, L'0', width);
+; 362  :             _FILL_MEMORY_16(buffer, L'0', width);
 
 	mov	eax, DWORD PTR width$[rbp]
 	mov	r8d, eax
@@ -1779,7 +1832,7 @@ $LN13@ToStringDN:
 	mov	rcx, QWORD PTR buffer$[rbp]
 	call	_FILL_MEMORY_16
 
-; 333  :             buffer[width] = L'\0';
+; 363  :             buffer[width] = L'\0';
 
 	mov	eax, DWORD PTR width$[rbp]
 	xor	ecx, ecx
@@ -1787,20 +1840,20 @@ $LN13@ToStringDN:
 	mov	WORD PTR [rdx+rax*2], cx
 $LN9@ToStringDN:
 
-; 334  :         }
-; 335  :     }
+; 364  :         }
+; 365  :     }
 
 	jmp	$LN7@ToStringDN
 $LN6@ToStringDN:
 
-; 336  :     else
-; 337  :     {
-; 338  :         // x が 0 ではない場合
-; 339  :         PMC_STATUS_CODE result;
-; 340  :         __UNIT_TYPE r_buf_code;
-; 341  :         __UNIT_TYPE r_buf_words;
-; 342  :         // xを base_value 基数として変換した数値が r に格納される。約 7% ほど余分に領域が必要な計算になるが、余裕を見て 12.5% 程度の領域を獲得している。
-; 343  :         __UNIT_TYPE_DIV* r_buf = (__UNIT_TYPE_DIV*)AllocateBlock(x->UNIT_BIT_COUNT + (x->UNIT_BIT_COUNT >> 3) + __UNIT_TYPE_BIT_COUNT, &r_buf_words, &r_buf_code);
+; 366  :     else
+; 367  :     {
+; 368  :         // x が 0 ではない場合
+; 369  :         PMC_STATUS_CODE result;
+; 370  :         __UNIT_TYPE r_buf_code;
+; 371  :         __UNIT_TYPE r_buf_words;
+; 372  :         // xを base_value 基数として変換した数値が r に格納される。約 7% ほど余分に領域が必要な計算になるが、余裕を見て 12.5% 程度の領域を獲得している。
+; 373  :         __UNIT_TYPE_DIV* r_buf = (__UNIT_TYPE_DIV*)AllocateBlock(x->UNIT_BIT_COUNT + (x->UNIT_BIT_COUNT >> 3) + __UNIT_TYPE_BIT_COUNT, &r_buf_words, &r_buf_code);
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR [rax+8]
@@ -1814,19 +1867,19 @@ $LN6@ToStringDN:
 	call	AllocateBlock
 	mov	QWORD PTR r_buf$13[rbp], rax
 
-; 344  :         if (r_buf == NULL)
+; 374  :         if (r_buf == NULL)
 
 	cmp	QWORD PTR r_buf$13[rbp], 0
 	jne	SHORT $LN14@ToStringDN
 
-; 345  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 375  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	$LN1@ToStringDN
 $LN14@ToStringDN:
 
-; 346  :         __UNIT_TYPE r_buf_count;
-; 347  :         if ((result = ConvertCardinalNumber((__UNIT_TYPE_DIV*)x->BLOCK, x->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), x->UNIT_BIT_COUNT, base_value, r_buf, &r_buf_count)) != PMC_STATUS_OK)
+; 376  :         __UNIT_TYPE r_buf_count;
+; 377  :         if ((result = ConvertCardinalNumber((__UNIT_TYPE_DIV*)x->BLOCK, x->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), x->UNIT_BIT_COUNT, base_value, r_buf, &r_buf_count)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -1849,21 +1902,21 @@ $LN14@ToStringDN:
 	cmp	DWORD PTR result$10[rbp], 0
 	je	SHORT $LN15@ToStringDN
 
-; 348  :         {
-; 349  :             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
+; 378  :         {
+; 379  :             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
 
 	mov	rdx, QWORD PTR r_buf_words$12[rbp]
 	mov	rcx, QWORD PTR r_buf$13[rbp]
 	call	DeallocateBlock
 
-; 350  :             return (result);
+; 380  :             return (result);
 
 	mov	eax, DWORD PTR result$10[rbp]
 	jmp	$LN1@ToStringDN
 $LN15@ToStringDN:
 
-; 351  :         }
-; 352  :         if ((result = CheckBlockLight((__UNIT_TYPE*)r_buf, r_buf_code)) != PMC_STATUS_OK)
+; 381  :         }
+; 382  :         if ((result = CheckBlockLight((__UNIT_TYPE*)r_buf, r_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR r_buf_code$11[rbp]
 	mov	rcx, QWORD PTR r_buf$13[rbp]
@@ -1872,17 +1925,17 @@ $LN15@ToStringDN:
 	cmp	DWORD PTR result$10[rbp], 0
 	je	SHORT $LN16@ToStringDN
 
-; 353  :             return (result);
+; 383  :             return (result);
 
 	mov	eax, DWORD PTR result$10[rbp]
 	jmp	$LN1@ToStringDN
 $LN16@ToStringDN:
 
-; 354  : 
-; 355  :         __UNIT_TYPE rev_str_buf_code;
-; 356  :         __UNIT_TYPE rev_str_buf_words;
-; 357  :         // 獲得領域長の * 2 は、桁区切りのワーストケースにより文字列が膨らんだ場合を考慮したもの。
-; 358  :         wchar_t* rev_str_buf = (wchar_t*)AllocateBlock((max(r_buf_count * word_digit_count, width) * 2 + width + 2) * sizeof(wchar_t) * 8, &rev_str_buf_words, &rev_str_buf_code);
+; 384  : 
+; 385  :         __UNIT_TYPE rev_str_buf_code;
+; 386  :         __UNIT_TYPE rev_str_buf_words;
+; 387  :         // 獲得領域長の * 2 は、桁区切りのワーストケースにより文字列が膨らんだ場合を考慮したもの。
+; 388  :         wchar_t* rev_str_buf = (wchar_t*)AllocateBlock((max(r_buf_count * word_digit_count, width) * 2 + width + 2) * sizeof(wchar_t) * 8, &rev_str_buf_words, &rev_str_buf_code);
 
 	movsxd	rax, DWORD PTR word_digit_count$[rbp]
 	mov	rcx, QWORD PTR r_buf_count$14[rbp]
@@ -1912,27 +1965,27 @@ $LN22@ToStringDN:
 	call	AllocateBlock
 	mov	QWORD PTR rev_str_buf$17[rbp], rax
 
-; 359  :         if (r_buf == NULL)
+; 389  :         if (r_buf == NULL)
 
 	cmp	QWORD PTR r_buf$13[rbp], 0
 	jne	SHORT $LN17@ToStringDN
 
-; 360  :         {
-; 361  :             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
+; 390  :         {
+; 391  :             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
 
 	mov	rdx, QWORD PTR r_buf_words$12[rbp]
 	mov	rcx, QWORD PTR r_buf$13[rbp]
 	call	DeallocateBlock
 
-; 362  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 392  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	$LN1@ToStringDN
 $LN17@ToStringDN:
 
-; 363  :         }
-; 364  :         __UNIT_TYPE rev_str_buf_count;
-; 365  :         PrintDecimal(r_buf, r_buf_count, rev_str_buf, &rev_str_buf_count, format, width, format_option);
+; 393  :         }
+; 394  :         __UNIT_TYPE rev_str_buf_count;
+; 395  :         PrintDecimal(r_buf, r_buf_count, rev_str_buf, &rev_str_buf_count, format, width, format_option);
 
 	mov	rax, QWORD PTR format_option$[rbp]
 	mov	QWORD PTR [rsp+48], rax
@@ -1946,7 +1999,7 @@ $LN17@ToStringDN:
 	mov	rcx, QWORD PTR r_buf$13[rbp]
 	call	PrintDecimal
 
-; 366  :         if ((result = CheckBlockLight((__UNIT_TYPE*)rev_str_buf, rev_str_buf_code)) != PMC_STATUS_OK)
+; 396  :         if ((result = CheckBlockLight((__UNIT_TYPE*)rev_str_buf, rev_str_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR rev_str_buf_code$15[rbp]
 	mov	rcx, QWORD PTR rev_str_buf$17[rbp]
@@ -1955,40 +2008,40 @@ $LN17@ToStringDN:
 	cmp	DWORD PTR result$10[rbp], 0
 	je	SHORT $LN18@ToStringDN
 
-; 367  :             return (result);
+; 397  :             return (result);
 
 	mov	eax, DWORD PTR result$10[rbp]
 	jmp	SHORT $LN1@ToStringDN
 $LN18@ToStringDN:
 
-; 368  :         DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
+; 398  :         DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
 
 	mov	rdx, QWORD PTR r_buf_words$12[rbp]
 	mov	rcx, QWORD PTR r_buf$13[rbp]
 	call	DeallocateBlock
 
-; 369  :         if (rev_str_buf_count + 1 > buffer_size)
+; 399  :         if (rev_str_buf_count + 1 > buffer_size)
 
 	mov	rax, QWORD PTR rev_str_buf_count$18[rbp]
 	inc	rax
 	cmp	rax, QWORD PTR buffer_size$[rbp]
 	jbe	SHORT $LN19@ToStringDN
 
-; 370  :         {
-; 371  :             DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
+; 400  :         {
+; 401  :             DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
 
 	mov	rdx, QWORD PTR rev_str_buf_words$16[rbp]
 	mov	rcx, QWORD PTR rev_str_buf$17[rbp]
 	call	DeallocateBlock
 
-; 372  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 402  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
 
 	mov	eax, -4
 	jmp	SHORT $LN1@ToStringDN
 $LN19@ToStringDN:
 
-; 373  :         }
-; 374  :         ToStringDN_Finalize(rev_str_buf, rev_str_buf_count, buffer, buffer_size);
+; 403  :         }
+; 404  :         ToStringDN_Finalize(rev_str_buf, rev_str_buf_count, buffer, buffer_size);
 
 	mov	r9, QWORD PTR buffer_size$[rbp]
 	mov	r8, QWORD PTR buffer$[rbp]
@@ -1996,20 +2049,20 @@ $LN19@ToStringDN:
 	mov	rcx, QWORD PTR rev_str_buf$17[rbp]
 	call	ToStringDN_Finalize
 
-; 375  :         DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
+; 405  :         DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
 
 	mov	rdx, QWORD PTR rev_str_buf_words$16[rbp]
 	mov	rcx, QWORD PTR rev_str_buf$17[rbp]
 	call	DeallocateBlock
 $LN7@ToStringDN:
 
-; 376  :     }
-; 377  :     return (PMC_STATUS_OK);
+; 406  :     }
+; 407  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@ToStringDN:
 
-; 378  : }
+; 408  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-64]
@@ -2035,7 +2088,7 @@ out_buf$ = 336
 out_buf_count$ = 344
 ToStringDN_Finalize PROC				; COMDAT
 
-; 275  : {
+; 305  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -2053,31 +2106,31 @@ ToStringDN_Finalize PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__3AA1CF5E_pmc_tostring@c
 	call	__CheckForDebuggerJustMyCode
 
-; 276  :     wchar_t* in_ptr = in_buf + in_buf_count - 1;
+; 306  :     wchar_t* in_ptr = in_buf + in_buf_count - 1;
 
 	mov	rax, QWORD PTR in_buf$[rbp]
 	mov	rcx, QWORD PTR in_buf_count$[rbp]
 	lea	rax, QWORD PTR [rax+rcx*2-2]
 	mov	QWORD PTR in_ptr$[rbp], rax
 
-; 277  :     wchar_t* out_ptr = out_buf;
+; 307  :     wchar_t* out_ptr = out_buf;
 
 	mov	rax, QWORD PTR out_buf$[rbp]
 	mov	QWORD PTR out_ptr$[rbp], rax
 
-; 278  :     __UNIT_TYPE count = in_buf_count;
+; 308  :     __UNIT_TYPE count = in_buf_count;
 
 	mov	rax, QWORD PTR in_buf_count$[rbp]
 	mov	QWORD PTR count$[rbp], rax
 $LN2@ToStringDN:
 
-; 279  :     while (count > 0)
+; 309  :     while (count > 0)
 
 	cmp	QWORD PTR count$[rbp], 0
 	jbe	SHORT $LN3@ToStringDN
 
-; 280  :     {
-; 281  :         *out_ptr++ = *in_ptr--;
+; 310  :     {
+; 311  :         *out_ptr++ = *in_ptr--;
 
 	mov	rax, QWORD PTR out_ptr$[rbp]
 	mov	rcx, QWORD PTR in_ptr$[rbp]
@@ -2090,24 +2143,24 @@ $LN2@ToStringDN:
 	sub	rax, 2
 	mov	QWORD PTR in_ptr$[rbp], rax
 
-; 282  :         --count;
+; 312  :         --count;
 
 	mov	rax, QWORD PTR count$[rbp]
 	dec	rax
 	mov	QWORD PTR count$[rbp], rax
 
-; 283  :     }
+; 313  :     }
 
 	jmp	SHORT $LN2@ToStringDN
 $LN3@ToStringDN:
 
-; 284  :     *out_ptr = L'\0';
+; 314  :     *out_ptr = L'\0';
 
 	xor	eax, eax
 	mov	rcx, QWORD PTR out_ptr$[rbp]
 	mov	WORD PTR [rcx], ax
 
-; 285  : }
+; 315  : }
 
 	lea	rsp, QWORD PTR [rbp+296]
 	pop	rdi
@@ -2134,7 +2187,7 @@ width$ = 472
 format_option$ = 480
 PrintDecimal PROC					; COMDAT
 
-; 233  : {
+; 263  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -2155,8 +2208,8 @@ PrintDecimal PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__3AA1CF5E_pmc_tostring@c
 	call	__CheckForDebuggerJustMyCode
 
-; 234  :     struct TOSTRINGN_OUTPUT_STATE state;
-; 235  :     InitializeOutputState(&state, out_buf, format, format_option);
+; 264  :     struct TOSTRINGN_OUTPUT_STATE state;
+; 265  :     InitializeOutputState(&state, out_buf, format, format_option);
 
 	mov	r9, QWORD PTR format_option$[rbp]
 	movzx	r8d, BYTE PTR format$[rbp]
@@ -2164,7 +2217,7 @@ PrintDecimal PROC					; COMDAT
 	lea	rcx, QWORD PTR state$[rbp]
 	call	InitializeOutputState
 
-; 236  :     if (format == 'N' && width > 0)
+; 266  :     if (format == 'N' && width > 0)
 
 	movsx	eax, BYTE PTR format$[rbp]
 	cmp	eax, 78					; 0000004eH
@@ -2172,112 +2225,112 @@ PrintDecimal PROC					; COMDAT
 	cmp	DWORD PTR width$[rbp], 0
 	jbe	SHORT $LN8@PrintDecim
 
-; 237  :     {
-; 238  :         _UINT32_T count = width;
+; 267  :     {
+; 268  :         _UINT32_T count = width;
 
 	mov	eax, DWORD PTR width$[rbp]
 	mov	DWORD PTR count$4[rbp], eax
 $LN2@PrintDecim:
 
-; 239  :         while (count > 0)
+; 269  :         while (count > 0)
 
 	cmp	DWORD PTR count$4[rbp], 0
 	jbe	SHORT $LN3@PrintDecim
 
-; 240  :         {
-; 241  :             OutputUngroupedOneChar(&state, 0);
+; 270  :         {
+; 271  :             OutputUngroupedOneChar(&state, 0);
 
 	xor	edx, edx
 	lea	rcx, QWORD PTR state$[rbp]
 	call	OutputUngroupedOneChar
 
-; 242  :             --count;
+; 272  :             --count;
 
 	mov	eax, DWORD PTR count$4[rbp]
 	dec	eax
 	mov	DWORD PTR count$4[rbp], eax
 
-; 243  :         }
+; 273  :         }
 
 	jmp	SHORT $LN2@PrintDecim
 $LN3@PrintDecim:
 
-; 244  :         OutputDecimalSeparator(&state);
+; 274  :         OutputDecimalSeparator(&state);
 
 	lea	rcx, QWORD PTR state$[rbp]
 	call	OutputDecimalSeparator
 $LN8@PrintDecim:
 
-; 245  :     }
-; 246  :     __UNIT_TYPE_DIV* in_ptr = in_buf;
+; 275  :     }
+; 276  :     __UNIT_TYPE_DIV* in_ptr = in_buf;
 
 	mov	rax, QWORD PTR in_buf$[rbp]
 	mov	QWORD PTR in_ptr$[rbp], rax
 
-; 247  :     __UNIT_TYPE in_count = in_buf_count - 1;
+; 277  :     __UNIT_TYPE in_count = in_buf_count - 1;
 
 	mov	rax, QWORD PTR in_buf_count$[rbp]
 	dec	rax
 	mov	QWORD PTR in_count$[rbp], rax
 $LN4@PrintDecim:
 
-; 248  :     while (in_count != 0)
+; 278  :     while (in_count != 0)
 
 	cmp	QWORD PTR in_count$[rbp], 0
 	je	SHORT $LN5@PrintDecim
 
-; 249  :     {
-; 250  :         ToStringDN_1WORD(&state, *in_ptr);
+; 279  :     {
+; 280  :         ToStringDN_1WORD(&state, *in_ptr);
 
 	mov	rax, QWORD PTR in_ptr$[rbp]
 	mov	edx, DWORD PTR [rax]
 	lea	rcx, QWORD PTR state$[rbp]
 	call	ToStringDN_1WORD
 
-; 251  :         ++in_ptr;
+; 281  :         ++in_ptr;
 
 	mov	rax, QWORD PTR in_ptr$[rbp]
 	add	rax, 4
 	mov	QWORD PTR in_ptr$[rbp], rax
 
-; 252  :         --in_count;
+; 282  :         --in_count;
 
 	mov	rax, QWORD PTR in_count$[rbp]
 	dec	rax
 	mov	QWORD PTR in_count$[rbp], rax
 
-; 253  :     }
+; 283  :     }
 
 	jmp	SHORT $LN4@PrintDecim
 $LN5@PrintDecim:
 
-; 254  :     ToStringDN_LEADING_1WORD(&state, *in_ptr);
+; 284  :     ToStringDN_LEADING_1WORD(&state, *in_ptr);
 
 	mov	rax, QWORD PTR in_ptr$[rbp]
 	mov	edx, DWORD PTR [rax]
 	lea	rcx, QWORD PTR state$[rbp]
 	call	ToStringDN_LEADING_1WORD
 
-; 255  :     ++in_ptr;
+; 285  :     ++in_ptr;
 
 	mov	rax, QWORD PTR in_ptr$[rbp]
 	add	rax, 4
 	mov	QWORD PTR in_ptr$[rbp], rax
 
-; 256  :     --in_count;
+; 286  :     --in_count;
 
 	mov	rax, QWORD PTR in_count$[rbp]
 	dec	rax
 	mov	QWORD PTR in_count$[rbp], rax
 
-; 257  :     if (format == 'D')
+; 287  :     if (format == 'D')
 
 	movsx	eax, BYTE PTR format$[rbp]
 	cmp	eax, 68					; 00000044H
 	jne	SHORT $LN9@PrintDecim
 
-; 258  :     {
-; 259  :         if (state.OUT_PTR < out_buf + width)
+; 288  :     {
+; 289  :         if (state.OUT_PTR < out_buf + width)
 
 	mov	eax, DWORD PTR width$[rbp]
 	mov	rcx, QWORD PTR out_buf$[rbp]
@@ -2285,8 +2338,8 @@ $LN5@PrintDecim:
 	cmp	QWORD PTR state$[rbp+48], rax
 	jae	SHORT $LN10@PrintDecim
 
-; 260  :         {
-; 261  :             int count = width - (int)(state.OUT_PTR - out_buf);
+; 290  :         {
+; 291  :             int count = width - (int)(state.OUT_PTR - out_buf);
 
 	mov	rax, QWORD PTR out_buf$[rbp]
 	mov	rcx, QWORD PTR state$[rbp+48]
@@ -2299,34 +2352,34 @@ $LN5@PrintDecim:
 	mov	DWORD PTR count$5[rbp], eax
 $LN6@PrintDecim:
 
-; 262  :             while (count > 0)
+; 292  :             while (count > 0)
 
 	cmp	DWORD PTR count$5[rbp], 0
 	jle	SHORT $LN7@PrintDecim
 
-; 263  :             {
-; 264  :                 OutputOneChar(&state, 0);
+; 293  :             {
+; 294  :                 OutputOneChar(&state, 0);
 
 	xor	edx, edx
 	lea	rcx, QWORD PTR state$[rbp]
 	call	OutputOneChar
 
-; 265  :                 --count;
+; 295  :                 --count;
 
 	mov	eax, DWORD PTR count$5[rbp]
 	dec	eax
 	mov	DWORD PTR count$5[rbp], eax
 
-; 266  :             }
+; 296  :             }
 
 	jmp	SHORT $LN6@PrintDecim
 $LN7@PrintDecim:
 $LN10@PrintDecim:
 $LN9@PrintDecim:
 
-; 267  :         }
-; 268  :     }
-; 269  :     *out_buf_count = state.OUT_PTR - out_buf;
+; 297  :         }
+; 298  :     }
+; 299  :     *out_buf_count = state.OUT_PTR - out_buf;
 
 	mov	rax, QWORD PTR out_buf$[rbp]
 	mov	rcx, QWORD PTR state$[rbp+48]
@@ -2336,13 +2389,13 @@ $LN9@PrintDecim:
 	mov	rcx, QWORD PTR out_buf_count$[rbp]
 	mov	QWORD PTR [rcx], rax
 
-; 270  :     *state.OUT_PTR = '\0';
+; 300  :     *state.OUT_PTR = '\0';
 
 	xor	eax, eax
 	mov	rcx, QWORD PTR state$[rbp+48]
 	mov	WORD PTR [rcx], ax
 
-; 271  : }
+; 301  : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:PrintDecimal$rtcFrameData
@@ -2365,7 +2418,7 @@ state$ = 256
 x$ = 264
 ToStringDN_1WORD PROC					; COMDAT
 
-; 197  : {
+; 203  : {
 
 	mov	DWORD PTR [rsp+16], edx
 	mov	QWORD PTR [rsp+8], rcx
@@ -2381,86 +2434,14 @@ ToStringDN_1WORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__3AA1CF5E_pmc_tostring@c
 	call	__CheckForDebuggerJustMyCode
 
-; 198  :     __UNIT_TYPE_DIV r;
-; 199  :     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT64_T))
+; 204  :     __UNIT_TYPE_DIV r;
+; 205  :     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT64_T))
 
 	xor	eax, eax
 	test	eax, eax
 	je	$LN2@ToStringDN
 
-; 200  :     {
-; 201  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
-
-; 202  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
-
-; 203  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
-
-; 204  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
-
-; 205  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
-
-; 206  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
-
+; 206  :     {
 ; 207  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	lea	r9, QWORD PTR r$[rbp]
@@ -2508,16 +2489,43 @@ ToStringDN_1WORD PROC					; COMDAT
 	mov	edx, DWORD PTR r$[rbp]
 	mov	rcx, QWORD PTR state$[rbp]
 	call	OutputOneChar
-$LN2@ToStringDN:
 
-; 211  :     }
-; 212  :     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT32_T))
+; 211  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
-	xor	eax, eax
-	cmp	eax, 1
-	je	$LN3@ToStringDN
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
 
-; 213  :     {
+; 212  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
+
+; 213  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
+
 ; 214  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	lea	r9, QWORD PTR r$[rbp]
@@ -2554,72 +2562,49 @@ $LN2@ToStringDN:
 	mov	rcx, QWORD PTR state$[rbp]
 	call	OutputOneChar
 
-; 217  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 217  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 218  :         if (sizeof(r) == sizeof(_UINT64_T))
 
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN3@ToStringDN
 
-; 218  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 219  :             AddToDIV64Counter(10);
 
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
+	mov	ecx, 10
+	call	AddToDIV64Counter
+	jmp	SHORT $LN4@ToStringDN
 $LN3@ToStringDN:
 
-; 219  :     }
-; 220  :     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT16_T))
+; 220  :         else
+; 221  :             AddToDIV32Counter(10);
 
-	xor	eax, eax
-	cmp	eax, 1
-	je	SHORT $LN4@ToStringDN
-
-; 221  :     {
-; 222  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
-
-; 223  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	lea	r9, QWORD PTR r$[rbp]
-	mov	r8d, 10
-	mov	edx, DWORD PTR x$[rbp]
-	xor	ecx, ecx
-	call	_DIVREM_UNIT
-	mov	DWORD PTR x$[rbp], eax
-	mov	edx, DWORD PTR r$[rbp]
-	mov	rcx, QWORD PTR state$[rbp]
-	call	OutputOneChar
+	mov	ecx, 10
+	call	AddToDIV32Counter
 $LN4@ToStringDN:
+$LN2@ToStringDN:
 
-; 224  :     }
-; 225  :     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_BYTE_T))
+; 222  : #endif
+; 223  :     }
+; 224  :     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT32_T))
 
 	xor	eax, eax
 	cmp	eax, 1
-	je	SHORT $LN5@ToStringDN
+	je	$LN5@ToStringDN
 
-; 226  :     {
+; 225  :     {
+; 226  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
+
 ; 227  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	lea	r9, QWORD PTR r$[rbp]
@@ -2632,15 +2617,169 @@ $LN4@ToStringDN:
 	mov	rcx, QWORD PTR state$[rbp]
 	call	OutputOneChar
 
-; 228  :         OutputOneChar(state, x);
+; 228  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
+
+; 229  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
+
+; 230  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
+
+; 231  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 232  :         if (sizeof(r) == sizeof(_UINT64_T))
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN6@ToStringDN
+
+; 233  :             AddToDIV64Counter(5);
+
+	mov	ecx, 5
+	call	AddToDIV64Counter
+	jmp	SHORT $LN7@ToStringDN
+$LN6@ToStringDN:
+
+; 234  :         else
+; 235  :             AddToDIV32Counter(5);
+
+	mov	ecx, 5
+	call	AddToDIV32Counter
+$LN7@ToStringDN:
+$LN5@ToStringDN:
+
+; 236  : #endif
+; 237  :     }
+; 238  :     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT16_T))
+
+	xor	eax, eax
+	cmp	eax, 1
+	je	SHORT $LN8@ToStringDN
+
+; 239  :     {
+; 240  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
+
+; 241  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
+
+; 242  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 243  :         if (sizeof(r) == sizeof(_UINT64_T))
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN9@ToStringDN
+
+; 244  :             AddToDIV64Counter(2);
+
+	mov	ecx, 2
+	call	AddToDIV64Counter
+	jmp	SHORT $LN10@ToStringDN
+$LN9@ToStringDN:
+
+; 245  :         else
+; 246  :             AddToDIV32Counter(2);
+
+	mov	ecx, 2
+	call	AddToDIV32Counter
+$LN10@ToStringDN:
+$LN8@ToStringDN:
+
+; 247  : #endif
+; 248  :     }
+; 249  :     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_BYTE_T))
+
+	xor	eax, eax
+	cmp	eax, 1
+	je	SHORT $LN11@ToStringDN
+
+; 250  :     {
+; 251  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	lea	r9, QWORD PTR r$[rbp]
+	mov	r8d, 10
+	mov	edx, DWORD PTR x$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	DWORD PTR x$[rbp], eax
+	mov	edx, DWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR state$[rbp]
+	call	OutputOneChar
+
+; 252  :         OutputOneChar(state, x);
 
 	mov	edx, DWORD PTR x$[rbp]
 	mov	rcx, QWORD PTR state$[rbp]
 	call	OutputOneChar
-$LN5@ToStringDN:
 
-; 229  :     }
-; 230  : }
+; 253  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 254  :         if (sizeof(r) == sizeof(_UINT64_T))
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN12@ToStringDN
+
+; 255  :             IncrementDIV64Counter();
+
+	call	IncrementDIV64Counter
+	jmp	SHORT $LN13@ToStringDN
+$LN12@ToStringDN:
+
+; 256  :         else
+; 257  :             IncrementDIV32Counter();
+
+	call	IncrementDIV32Counter
+$LN13@ToStringDN:
+$LN11@ToStringDN:
+
+; 258  : #endif
+; 259  :     }
+; 260  : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:ToStringDN_1WORD$rtcFrameData
@@ -2695,12 +2834,32 @@ $LN4@ToStringDN:
 	mov	rcx, QWORD PTR state$[rbp]
 	call	OutputOneChar
 
-; 192  :     } while (x != 0);
+; 192  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 193  :         if (sizeof(r) == sizeof(_UINT64_T))
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN5@ToStringDN
+
+; 194  :             IncrementDIV64Counter();
+
+	call	IncrementDIV64Counter
+	jmp	SHORT $LN6@ToStringDN
+$LN5@ToStringDN:
+
+; 195  :         else
+; 196  :             IncrementDIV32Counter();
+
+	call	IncrementDIV32Counter
+$LN6@ToStringDN:
+
+; 197  : #endif
+; 198  :     } while (x != 0);
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN4@ToStringDN
 
-; 193  : }
+; 199  : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:ToStringDN_LEADING_1WORD$rtcFrameData
@@ -3476,6 +3635,142 @@ ConvertCardinalNumber ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT AddToDIV64Counter
+_TEXT	SEGMENT
+value$ = 224
+AddToDIV64Counter PROC					; COMDAT
+
+; 978  : {
+
+	mov	DWORD PTR [rsp+8], ecx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, DWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 979  :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
+
+	lea	rax, OFFSET FLAT:statistics_info+8
+	mov	ecx, DWORD PTR value$[rbp]
+	lock add DWORD PTR [rax], ecx
+
+; 980  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+AddToDIV64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT AddToDIV32Counter
+_TEXT	SEGMENT
+value$ = 224
+AddToDIV32Counter PROC					; COMDAT
+
+; 972  : {
+
+	mov	DWORD PTR [rsp+8], ecx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, DWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 973  :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+
+	lea	rax, OFFSET FLAT:statistics_info+12
+	mov	ecx, DWORD PTR value$[rbp]
+	lock add DWORD PTR [rax], ecx
+
+; 974  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+AddToDIV32Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT IncrementDIV64Counter
+_TEXT	SEGMENT
+IncrementDIV64Counter PROC				; COMDAT
+
+; 955  : {
+
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 956  :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+
+	lea	rax, OFFSET FLAT:statistics_info+8
+	lock inc DWORD PTR [rax]
+
+; 957  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+IncrementDIV64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT IncrementDIV32Counter
+_TEXT	SEGMENT
+IncrementDIV32Counter PROC				; COMDAT
+
+; 949  : {
+
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 950  :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+
+	lea	rax, OFFSET FLAT:statistics_info+12
+	lock inc DWORD PTR [rax]
+
+; 951  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+IncrementDIV32Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ;	COMDAT _ROTATE_L_UNIT
 _TEXT	SEGMENT
 x$ = 224
@@ -3908,7 +4203,7 @@ width$ = 320
 format_option$ = 328
 PMC_ToString PROC					; COMDAT
 
-; 502  : {
+; 532  : {
 
 $LN24:
 	mov	BYTE PTR [rsp+32], r9b
@@ -3927,46 +4222,46 @@ $LN24:
 	lea	rcx, OFFSET FLAT:__3AA1CF5E_pmc_tostring@c
 	call	__CheckForDebuggerJustMyCode
 
-; 503  :     if (x == NULL)
+; 533  :     if (x == NULL)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN4@PMC_ToStri
 
-; 504  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 534  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_ToStri
 $LN4@PMC_ToStri:
 
-; 505  :     if (buffer == NULL)
+; 535  :     if (buffer == NULL)
 
 	cmp	QWORD PTR buffer$[rbp], 0
 	jne	SHORT $LN5@PMC_ToStri
 
-; 506  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 536  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_ToStri
 $LN5@PMC_ToStri:
 
-; 507  :     if (format_option == NULL)
+; 537  :     if (format_option == NULL)
 
 	cmp	QWORD PTR format_option$[rbp], 0
 	jne	SHORT $LN6@PMC_ToStri
 
-; 508  :         format_option = &default_number_format_option;
+; 538  :         format_option = &default_number_format_option;
 
 	lea	rax, OFFSET FLAT:default_number_format_option
 	mov	QWORD PTR format_option$[rbp], rax
 $LN6@PMC_ToStri:
 
-; 509  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 539  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	QWORD PTR nx$[rbp], rax
 
-; 510  :     PMC_STATUS_CODE result;
-; 511  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 540  :     PMC_STATUS_CODE result;
+; 541  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nx$[rbp]
 	call	CheckNumber
@@ -3974,13 +4269,13 @@ $LN6@PMC_ToStri:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN7@PMC_ToStri
 
-; 512  :         return (result);
+; 542  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_ToStri
 $LN7@PMC_ToStri:
 
-; 513  :     switch (format)
+; 543  :     switch (format)
 
 	movsx	eax, BYTE PTR format$[rbp]
 	mov	DWORD PTR tv71[rbp], eax
@@ -3997,10 +4292,10 @@ $LN7@PMC_ToStri:
 	jmp	rax
 $LN8@PMC_ToStri:
 
-; 514  :     {
-; 515  :     case 'n':
-; 516  :     case 'N':
-; 517  :         return (ToStringDN(nx, buffer, buffer_size, 'N', width >= 0 ? width : format_option->DecimalDigits, format_option));
+; 544  :     {
+; 545  :     case 'n':
+; 546  :     case 'N':
+; 547  :         return (ToStringDN(nx, buffer, buffer_size, 'N', width >= 0 ? width : format_option->DecimalDigits, format_option));
 
 	cmp	DWORD PTR width$[rbp], 0
 	jl	SHORT $LN14@PMC_ToStri
@@ -4024,8 +4319,8 @@ $LN15@PMC_ToStri:
 	jmp	$LN1@PMC_ToStri
 $LN9@PMC_ToStri:
 
-; 518  :     case 'x':
-; 519  :         return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 0));
+; 548  :     case 'x':
+; 549  :         return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 0));
 
 	cmp	DWORD PTR width$[rbp], 0
 	jl	SHORT $LN16@PMC_ToStri
@@ -4046,8 +4341,8 @@ $LN17@PMC_ToStri:
 	jmp	$LN1@PMC_ToStri
 $LN10@PMC_ToStri:
 
-; 520  :     case 'X':
-; 521  :         return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 1));
+; 550  :     case 'X':
+; 551  :         return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 1));
 
 	cmp	DWORD PTR width$[rbp], 0
 	jl	SHORT $LN18@PMC_ToStri
@@ -4068,9 +4363,9 @@ $LN19@PMC_ToStri:
 	jmp	SHORT $LN1@PMC_ToStri
 $LN11@PMC_ToStri:
 
-; 522  :     case 'd':
-; 523  :     case 'D':
-; 524  :         return (ToStringDN(nx, buffer, buffer_size, 'D', width >= 0 ? width : 0, format_option));
+; 552  :     case 'd':
+; 553  :     case 'D':
+; 554  :         return (ToStringDN(nx, buffer, buffer_size, 'D', width >= 0 ? width : 0, format_option));
 
 	cmp	DWORD PTR width$[rbp], 0
 	jl	SHORT $LN20@PMC_ToStri
@@ -4092,14 +4387,14 @@ $LN21@PMC_ToStri:
 	jmp	SHORT $LN1@PMC_ToStri
 $LN12@PMC_ToStri:
 
-; 525  :     default:
-; 526  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 555  :     default:
+; 556  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN1@PMC_ToStri:
 
-; 527  :     }
-; 528  : }
+; 557  :     }
+; 558  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -4175,7 +4470,7 @@ _TEXT	SEGMENT
 feature$ = 224
 Initialize_ToString PROC				; COMDAT
 
-; 531  : {
+; 561  : {
 
 $LN3:
 	mov	QWORD PTR [rsp+8], rcx
@@ -4191,46 +4486,46 @@ $LN3:
 	lea	rcx, OFFSET FLAT:__3AA1CF5E_pmc_tostring@c
 	call	__CheckForDebuggerJustMyCode
 
-; 532  :     default_number_format_option.DecimalDigits = 2;
+; 562  :     default_number_format_option.DecimalDigits = 2;
 
 	mov	DWORD PTR default_number_format_option, 2
 
-; 533  :     lstrcpyW(default_number_format_option.GroupSeparator, L",");
+; 563  :     lstrcpyW(default_number_format_option.GroupSeparator, L",");
 
 	lea	rdx, OFFSET FLAT:??_C@_13DEFPDAGF@?$AA?0@
 	lea	rcx, OFFSET FLAT:default_number_format_option+4
 	call	QWORD PTR __imp_lstrcpyW
 
-; 534  :     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
+; 564  :     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
 
 	lea	rdx, OFFSET FLAT:??_C@_13JOFGPIOO@?$AA?4@
 	lea	rcx, OFFSET FLAT:default_number_format_option+10
 	call	QWORD PTR __imp_lstrcpyW
 
-; 535  :     lstrcpy(default_number_format_option.GroupSizes, "3");
+; 565  :     lstrcpy(default_number_format_option.GroupSizes, "3");
 
 	lea	rdx, OFFSET FLAT:??_C@_01EKENIIDA@3@
 	lea	rcx, OFFSET FLAT:default_number_format_option+28
 	call	QWORD PTR __imp_lstrcpyA
 
-; 536  :     lstrcpyW(default_number_format_option.PositiveSign, L"+");
+; 566  :     lstrcpyW(default_number_format_option.PositiveSign, L"+");
 
 	lea	rdx, OFFSET FLAT:??_C@_13KJIIAINM@?$AA?$CL@
 	lea	rcx, OFFSET FLAT:default_number_format_option+16
 	call	QWORD PTR __imp_lstrcpyW
 
-; 537  :     lstrcpyW(default_number_format_option.NegativeSign, L"-");
+; 567  :     lstrcpyW(default_number_format_option.NegativeSign, L"-");
 
 	lea	rdx, OFFSET FLAT:??_C@_13IMODFHAA@?$AA?9@
 	lea	rcx, OFFSET FLAT:default_number_format_option+22
 	call	QWORD PTR __imp_lstrcpyW
 
-; 538  : 
-; 539  :     return (PMC_STATUS_OK);
+; 568  : 
+; 569  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 540  : }
+; 570  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi

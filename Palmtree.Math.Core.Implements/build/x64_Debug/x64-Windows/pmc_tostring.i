@@ -89643,6 +89643,12 @@ static void ToStringDN_LEADING_1WORD(struct TOSTRINGN_OUTPUT_STATE* state, __UNI
     {
         x = _DIVREM_UNIT(0, x, 10, &r);
         OutputOneChar(state, r);
+
+        if (sizeof(r) == sizeof(_UINT64_T))
+            IncrementDIV64Counter();
+        else
+            IncrementDIV32Counter();
+
     } while (x != 0);
 }
 
@@ -89662,6 +89668,12 @@ static void ToStringDN_1WORD(struct TOSTRINGN_OUTPUT_STATE* state, __UNIT_TYPE_D
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+        if (sizeof(r) == sizeof(_UINT64_T))
+            AddToDIV64Counter(10);
+        else
+            AddToDIV32Counter(10);
+
     }
     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT32_T))
     {
@@ -89670,16 +89682,34 @@ static void ToStringDN_1WORD(struct TOSTRINGN_OUTPUT_STATE* state, __UNIT_TYPE_D
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+        if (sizeof(r) == sizeof(_UINT64_T))
+            AddToDIV64Counter(5);
+        else
+            AddToDIV32Counter(5);
+
     }
     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_UINT16_T))
     {
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+        if (sizeof(r) == sizeof(_UINT64_T))
+            AddToDIV64Counter(2);
+        else
+            AddToDIV32Counter(2);
+
     }
     if (sizeof(__UNIT_TYPE_DIV) >= sizeof(_BYTE_T))
     {
         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
         OutputOneChar(state, x);
+
+        if (sizeof(r) == sizeof(_UINT64_T))
+            IncrementDIV64Counter();
+        else
+            IncrementDIV32Counter();
+
     }
 }
 
@@ -89796,9 +89826,9 @@ static PMC_STATUS_CODE ToStringDN(NUMBER_HEADER* x, wchar_t* buffer, size_t buff
 
         __UNIT_TYPE_DIV* r_buf = (__UNIT_TYPE_DIV*)AllocateBlock(x->UNIT_BIT_COUNT + (x->UNIT_BIT_COUNT >> 3) + (sizeof(__UNIT_TYPE) * 8), &r_buf_words, &r_buf_code);
         if (r_buf == 
-# 344 "pmc_tostring.c" 3 4
+# 374 "pmc_tostring.c" 3 4
                     ((void *)0)
-# 344 "pmc_tostring.c"
+# 374 "pmc_tostring.c"
                         )
             return ((-5));
         __UNIT_TYPE r_buf_count;
@@ -89814,30 +89844,30 @@ static PMC_STATUS_CODE ToStringDN(NUMBER_HEADER* x, wchar_t* buffer, size_t buff
         __UNIT_TYPE rev_str_buf_words;
 
         wchar_t* rev_str_buf = (wchar_t*)AllocateBlock((
-# 358 "pmc_tostring.c" 3
+# 388 "pmc_tostring.c" 3
                                                        (((
-# 358 "pmc_tostring.c"
+# 388 "pmc_tostring.c"
                                                        r_buf_count * word_digit_count
-# 358 "pmc_tostring.c" 3
+# 388 "pmc_tostring.c" 3
                                                        ) > (
-# 358 "pmc_tostring.c"
+# 388 "pmc_tostring.c"
                                                        width
-# 358 "pmc_tostring.c" 3
+# 388 "pmc_tostring.c" 3
                                                        )) ? (
-# 358 "pmc_tostring.c"
+# 388 "pmc_tostring.c"
                                                        r_buf_count * word_digit_count
-# 358 "pmc_tostring.c" 3
+# 388 "pmc_tostring.c" 3
                                                        ) : (
-# 358 "pmc_tostring.c"
+# 388 "pmc_tostring.c"
                                                        width
-# 358 "pmc_tostring.c" 3
+# 388 "pmc_tostring.c" 3
                                                        )) 
-# 358 "pmc_tostring.c"
+# 388 "pmc_tostring.c"
                                                                                                   * 2 + width + 2) * sizeof(wchar_t) * 8, &rev_str_buf_words, &rev_str_buf_code);
         if (r_buf == 
-# 359 "pmc_tostring.c" 3 4
+# 389 "pmc_tostring.c" 3 4
                     ((void *)0)
-# 359 "pmc_tostring.c"
+# 389 "pmc_tostring.c"
                         )
         {
             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
@@ -89866,9 +89896,9 @@ __inline static wchar_t* ToStringX_1WORD(__UNIT_TYPE x, int skip_digit_len, wcha
 
 
         return (
-# 386 "pmc_tostring.c" 3 4
+# 416 "pmc_tostring.c" 3 4
                ((void *)0)
-# 386 "pmc_tostring.c"
+# 416 "pmc_tostring.c"
                    );
     }
     int count = (sizeof(__UNIT_TYPE) * 8) / 4;
@@ -89987,21 +90017,21 @@ static PMC_STATUS_CODE ToStringX(NUMBER_HEADER* x, wchar_t* buffer, size_t buffe
 PMC_STATUS_CODE PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option)
 {
     if (x == 
-# 503 "pmc_tostring.c" 3 4
+# 533 "pmc_tostring.c" 3 4
             ((void *)0)
-# 503 "pmc_tostring.c"
+# 533 "pmc_tostring.c"
                 )
         return ((-1));
     if (buffer == 
-# 505 "pmc_tostring.c" 3 4
+# 535 "pmc_tostring.c" 3 4
                  ((void *)0)
-# 505 "pmc_tostring.c"
+# 535 "pmc_tostring.c"
                      )
         return ((-1));
     if (format_option == 
-# 507 "pmc_tostring.c" 3 4
+# 537 "pmc_tostring.c" 3 4
                         ((void *)0)
-# 507 "pmc_tostring.c"
+# 537 "pmc_tostring.c"
                             )
         format_option = &default_number_format_option;
     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
@@ -90031,9 +90061,9 @@ PMC_STATUS_CODE Initialize_ToString(PROCESSOR_FEATURES *feature)
     lstrcpyW(default_number_format_option.GroupSeparator, L",");
     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
     
-# 535 "pmc_tostring.c" 3
+# 565 "pmc_tostring.c" 3
    lstrcpyA
-# 535 "pmc_tostring.c"
+# 565 "pmc_tostring.c"
           (default_number_format_option.GroupSizes, "3");
     lstrcpyW(default_number_format_option.PositiveSign, L"+");
     lstrcpyW(default_number_format_option.NegativeSign, L"-");

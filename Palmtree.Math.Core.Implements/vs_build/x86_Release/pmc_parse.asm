@@ -27,6 +27,7 @@ EXTRN	_DeallocateNumber:PROC
 EXTRN	_CommitNumber:PROC
 EXTRN	@__security_check_cookie@4:PROC
 EXTRN	_number_zero:BYTE
+EXTRN	_statistics_info:BYTE
 EXTRN	___security_cookie:DWORD
 _BSS	SEGMENT
 _default_number_format_option DB 028H DUP (?)
@@ -68,7 +69,7 @@ _format_option$ = 16					; size = 4
 _o$ = 20						; size = 4
 _TryParseX PROC						; COMDAT
 
-; 895  : {
+; 967  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -83,16 +84,16 @@ _TryParseX PROC						; COMDAT
 	push	edi
 	mov	edi, DWORD PTR _source$[ebp]
 
-; 896  :     PMC_STATUS_CODE result;
-; 897  :     __UNIT_TYPE source_len = lstrlenW(source);
+; 968  :     PMC_STATUS_CODE result;
+; 969  :     __UNIT_TYPE source_len = lstrlenW(source);
 
 	push	edi
 	mov	DWORD PTR _o$GSCopy$1$[ebp], eax
 	call	DWORD PTR __imp__lstrlenW@4
 
-; 898  :     __UNIT_TYPE int_part_buf_code;
-; 899  :     __UNIT_TYPE int_part_buf_words;
-; 900  :     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
+; 970  :     __UNIT_TYPE int_part_buf_code;
+; 971  :     __UNIT_TYPE int_part_buf_words;
+; 972  :     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
 
 	lea	ecx, DWORD PTR _int_part_buf_code$[ebp]
 	inc	eax
@@ -105,17 +106,17 @@ _TryParseX PROC						; COMDAT
 	mov	esi, eax
 	add	esp, 12					; 0000000cH
 
-; 901  :     if (int_part_buf == NULL)
+; 973  :     if (int_part_buf == NULL)
 
 	test	esi, esi
 	jne	SHORT $LN2@TryParseX
 
-; 902  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 974  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	pop	edi
 	lea	eax, DWORD PTR [esi-5]
 
-; 924  : }
+; 996  : }
 
 	pop	esi
 	pop	ebx
@@ -259,8 +260,8 @@ $LN33@TryParseX:
 	mov	edi, 1
 $LN9@TryParseX:
 
-; 903  :     int result_parsing = ParseAsHexNumberString(source, number_styles, format_option, int_part_buf);
-; 904  :     if ((result = CheckBlockLight((__UNIT_TYPE*)int_part_buf, int_part_buf_code)) != PMC_STATUS_OK)
+; 975  :     int result_parsing = ParseAsHexNumberString(source, number_styles, format_option, int_part_buf);
+; 976  :     if ((result = CheckBlockLight((__UNIT_TYPE*)int_part_buf, int_part_buf_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _int_part_buf_code$[ebp]
 	push	esi
@@ -269,22 +270,22 @@ $LN9@TryParseX:
 	test	eax, eax
 	jne	$LN1@TryParseX
 
-; 905  :         return (result);
-; 906  :     if (!result_parsing || int_part_buf[0] == L'\0')
+; 977  :         return (result);
+; 978  :     if (!result_parsing || int_part_buf[0] == L'\0')
 
 	test	edi, edi
 	je	$LN5@TryParseX
 	cmp	WORD PTR [esi], ax
 	je	$LN5@TryParseX
 
-; 910  :     }
-; 911  :     __UNIT_TYPE o_bit_count = lstrlenW(int_part_buf) * 4;
+; 982  :     }
+; 983  :     __UNIT_TYPE o_bit_count = lstrlenW(int_part_buf) * 4;
 
 	push	esi
 	call	DWORD PTR __imp__lstrlenW@4
 
-; 912  :     __UNIT_TYPE o_light_check_code;
-; 913  :     if ((result = AllocateNumber(o, o_bit_count, &o_light_check_code)) != PMC_STATUS_OK)
+; 984  :     __UNIT_TYPE o_light_check_code;
+; 985  :     if ((result = AllocateNumber(o, o_bit_count, &o_light_check_code)) != PMC_STATUS_OK)
 
 	mov	ebx, DWORD PTR _o$GSCopy$1$[ebp]
 	lea	ecx, DWORD PTR _o_light_check_code$[ebp]
@@ -298,14 +299,14 @@ $LN9@TryParseX:
 	test	edi, edi
 	je	SHORT $LN6@TryParseX
 
-; 914  :     {
-; 915  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 986  :     {
+; 987  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	push	DWORD PTR _int_part_buf_words$[ebp]
 	push	esi
 	call	_DeallocateBlock
 
-; 924  : }
+; 996  : }
 
 	add	esp, 8
 	mov	eax, edi
@@ -320,16 +321,16 @@ $LN9@TryParseX:
 	ret	0
 $LN6@TryParseX:
 
-; 916  :         return (result);
-; 917  :     }
-; 918  :     BuildBinaryFromHexString(int_part_buf, (*o)->BLOCK);
+; 988  :         return (result);
+; 989  :     }
+; 990  :     BuildBinaryFromHexString(int_part_buf, (*o)->BLOCK);
 
 	mov	eax, DWORD PTR [ebx]
 	push	DWORD PTR [eax+24]
 	push	esi
 	call	_BuildBinaryFromHexString
 
-; 919  :     if ((result = CheckBlockLight((*o)->BLOCK, o_light_check_code)) != PMC_STATUS_OK)
+; 991  :     if ((result = CheckBlockLight((*o)->BLOCK, o_light_check_code)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR [ebx]
 	push	DWORD PTR _o_light_check_code$[ebp]
@@ -339,25 +340,25 @@ $LN6@TryParseX:
 	test	eax, eax
 	jne	SHORT $LN1@TryParseX
 
-; 920  :         return (result);
-; 921  :     DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 992  :         return (result);
+; 993  :     DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	push	DWORD PTR _int_part_buf_words$[ebp]
 	push	esi
 	call	_DeallocateBlock
 
-; 922  :     CommitNumber(*o);
+; 994  :     CommitNumber(*o);
 
 	push	DWORD PTR [ebx]
 	call	_CommitNumber
 	add	esp, 12					; 0000000cH
 
-; 923  :     return (PMC_STATUS_OK);
+; 995  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	pop	edi
 
-; 924  : }
+; 996  : }
 
 	pop	esi
 	pop	ebx
@@ -369,18 +370,18 @@ $LN6@TryParseX:
 	ret	0
 $LN5@TryParseX:
 
-; 907  :     {
-; 908  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 979  :     {
+; 980  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	push	DWORD PTR _int_part_buf_words$[ebp]
 	push	esi
 	call	_DeallocateBlock
 
-; 909  :         return (PMC_STATUS_PARSING_ERROR);
+; 981  :         return (PMC_STATUS_PARSING_ERROR);
 
 	mov	eax, 1
 
-; 924  : }
+; 996  : }
 
 	add	esp, 8
 $LN1@TryParseX:
@@ -419,14 +420,14 @@ _out_ptr$1$ = 12					; size = 4
 _out_buf$ = 12						; size = 4
 _BuildBinaryFromHexString PROC				; COMDAT
 
-; 874  : {
+; 946  : {
 
 	push	ebp
 	mov	ebp, esp
 	sub	esp, 20					; 00000014H
 	push	ebx
 
-; 876  :     __UNIT_TYPE source_count = lstrlenW(source);
+; 948  :     __UNIT_TYPE source_count = lstrlenW(source);
 
 	mov	ebx, DWORD PTR _source$[ebp]
 	push	esi
@@ -440,7 +441,7 @@ _BuildBinaryFromHexString PROC				; COMDAT
 	mov	ecx, DWORD PTR _out_buf$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 876  :     __UNIT_TYPE source_count = lstrlenW(source);
+; 948  :     __UNIT_TYPE source_count = lstrlenW(source);
 
 	mov	esi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -450,11 +451,11 @@ _BuildBinaryFromHexString PROC				; COMDAT
 	sub	ecx, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 876  :     __UNIT_TYPE source_count = lstrlenW(source);
+; 948  :     __UNIT_TYPE source_count = lstrlenW(source);
 
 	mov	DWORD PTR _source_count$1$[ebp], esi
 
-; 879  :     int r = source_count % word_digit_count;
+; 951  :     int r = source_count % word_digit_count;
 
 	mov	edi, esi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -465,7 +466,7 @@ _BuildBinaryFromHexString PROC				; COMDAT
 	shr	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 879  :     int r = source_count % word_digit_count;
+; 951  :     int r = source_count % word_digit_count;
 
 	and	edi, 7
 	mov	DWORD PTR _r$1$[ebp], edi
@@ -477,38 +478,38 @@ _BuildBinaryFromHexString PROC				; COMDAT
 	mov	DWORD PTR _out_ptr$1$[ebp], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 880  :     if (r > 0)
+; 952  :     if (r > 0)
 
 	jle	SHORT $LN35@BuildBinar
 
-; 828  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
+; 900  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
 
 	movzx	eax, WORD PTR [ebx]
 	push	eax
 	call	_Parse1DigitFromHexChar
 	add	esp, 4
 
-; 829  :     ++in_ptr;
+; 901  :     ++in_ptr;
 
 	lea	edx, DWORD PTR [ebx+2]
 	mov	ecx, eax
 
-; 830  :     --count;
+; 902  :     --count;
 
 	add	edi, -1
 
-; 831  :     while (count > 0)
+; 903  :     while (count > 0)
 
 	je	SHORT $LN10@BuildBinar
 	npad	6
 $LL9@BuildBinar:
 
-; 832  :     {
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 904  :     {
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	movzx	esi, WORD PTR [edx]
 
-; 794  :     switch (c)
+; 866  :     switch (c)
 
 	lea	eax, DWORD PTR [esi-48]
 	cmp	eax, 54					; 00000036H
@@ -517,90 +518,90 @@ $LL9@BuildBinar:
 	jmp	DWORD PTR $LN45@BuildBinar[eax*4]
 $LN15@BuildBinar:
 
-; 795  :     {
-; 796  :     case L'0':
-; 797  :     case L'1':
-; 798  :     case L'2':
-; 799  :     case L'3':
-; 800  :     case L'4':
-; 801  :     case L'5':
-; 802  :     case L'6':
-; 803  :     case L'7':
-; 804  :     case L'8':
-; 805  :     case L'9':
-; 806  :         return (c - L'0');
+; 867  :     {
+; 868  :     case L'0':
+; 869  :     case L'1':
+; 870  :     case L'2':
+; 871  :     case L'3':
+; 872  :     case L'4':
+; 873  :     case L'5':
+; 874  :     case L'6':
+; 875  :     case L'7':
+; 876  :     case L'8':
+; 877  :     case L'9':
+; 878  :         return (c - L'0');
 
 	lea	eax, DWORD PTR [esi-48]
 	jmp	SHORT $LN12@BuildBinar
 $LN16@BuildBinar:
 
-; 807  :     case L'a':
-; 808  :     case L'b':
-; 809  :     case L'c':
-; 810  :     case L'd':
-; 811  :     case L'e':
-; 812  :     case L'f':
-; 813  :         return (c - L'a' + 10);
+; 879  :     case L'a':
+; 880  :     case L'b':
+; 881  :     case L'c':
+; 882  :     case L'd':
+; 883  :     case L'e':
+; 884  :     case L'f':
+; 885  :         return (c - L'a' + 10);
 
 	lea	eax, DWORD PTR [esi-87]
 	jmp	SHORT $LN12@BuildBinar
 $LN17@BuildBinar:
 
-; 814  :     case L'A':
-; 815  :     case L'B':
-; 816  :     case L'C':
-; 817  :     case L'D':
-; 818  :     case L'E':
-; 819  :     case L'F':
-; 820  :         return (c - L'A' + 10);
+; 886  :     case L'A':
+; 887  :     case L'B':
+; 888  :     case L'C':
+; 889  :     case L'D':
+; 890  :     case L'E':
+; 891  :     case L'F':
+; 892  :         return (c - L'A' + 10);
 
 	lea	eax, DWORD PTR [esi-55]
 	jmp	SHORT $LN12@BuildBinar
 $LN18@BuildBinar:
 
-; 821  :     default:
-; 822  :         return ((_UINT32_T)-1);
+; 893  :     default:
+; 894  :         return ((_UINT32_T)-1);
 
 	or	eax, -1
 $LN12@BuildBinar:
 
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	shl	ecx, 4
 
-; 834  :         ++in_ptr;
+; 906  :         ++in_ptr;
 
 	add	edx, 2
 	add	ecx, eax
 
-; 835  :         --count;
+; 907  :         --count;
 
 	sub	edi, 1
 	jne	SHORT $LL9@BuildBinar
 	mov	esi, DWORD PTR _source_count$1$[ebp]
 $LN10@BuildBinar:
 
-; 881  :     {
-; 882  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
+; 953  :     {
+; 954  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
 
 	mov	eax, DWORD PTR _out_ptr$1$[ebp]
 	mov	DWORD PTR [eax], ecx
 	sub	eax, 4
 	mov	DWORD PTR _out_ptr$1$[ebp], eax
 
-; 883  :         in_ptr += r;
+; 955  :         in_ptr += r;
 
 	mov	eax, DWORD PTR _r$1$[ebp]
 
-; 884  :         source_count -= r;
+; 956  :         source_count -= r;
 
 	sub	esi, eax
 	lea	ebx, DWORD PTR [ebx+eax*2]
 	mov	DWORD PTR _source$[ebp], ebx
 $LN35@BuildBinar:
 
-; 885  :     }
-; 886  :     while (source_count > 0)
+; 957  :     }
+; 958  :     while (source_count > 0)
 
 	test	esi, esi
 	je	$LN3@BuildBinar
@@ -610,11 +611,11 @@ $LN35@BuildBinar:
 	mov	DWORD PTR tv487[ebp], ecx
 $LL2@BuildBinar:
 
-; 842  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr++);
+; 914  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr++);
 
 	movzx	esi, WORD PTR [ebx]
 
-; 794  :     switch (c)
+; 866  :     switch (c)
 
 	lea	eax, DWORD PTR [esi-48]
 	cmp	eax, 54					; 00000036H
@@ -623,57 +624,57 @@ $LL2@BuildBinar:
 	jmp	DWORD PTR $LN46@BuildBinar[eax*4]
 $LN29@BuildBinar:
 
-; 795  :     {
-; 796  :     case L'0':
-; 797  :     case L'1':
-; 798  :     case L'2':
-; 799  :     case L'3':
-; 800  :     case L'4':
-; 801  :     case L'5':
-; 802  :     case L'6':
-; 803  :     case L'7':
-; 804  :     case L'8':
-; 805  :     case L'9':
-; 806  :         return (c - L'0');
+; 867  :     {
+; 868  :     case L'0':
+; 869  :     case L'1':
+; 870  :     case L'2':
+; 871  :     case L'3':
+; 872  :     case L'4':
+; 873  :     case L'5':
+; 874  :     case L'6':
+; 875  :     case L'7':
+; 876  :     case L'8':
+; 877  :     case L'9':
+; 878  :         return (c - L'0');
 
 	shl	esi, 4
 	sub	esi, 768				; 00000300H
 	jmp	SHORT $LN26@BuildBinar
 $LN30@BuildBinar:
 
-; 807  :     case L'a':
-; 808  :     case L'b':
-; 809  :     case L'c':
-; 810  :     case L'd':
-; 811  :     case L'e':
-; 812  :     case L'f':
-; 813  :         return (c - L'a' + 10);
+; 879  :     case L'a':
+; 880  :     case L'b':
+; 881  :     case L'c':
+; 882  :     case L'd':
+; 883  :     case L'e':
+; 884  :     case L'f':
+; 885  :         return (c - L'a' + 10);
 
 	shl	esi, 4
 	sub	esi, 1392				; 00000570H
 	jmp	SHORT $LN26@BuildBinar
 $LN31@BuildBinar:
 
-; 814  :     case L'A':
-; 815  :     case L'B':
-; 816  :     case L'C':
-; 817  :     case L'D':
-; 818  :     case L'E':
-; 819  :     case L'F':
-; 820  :         return (c - L'A' + 10);
+; 886  :     case L'A':
+; 887  :     case L'B':
+; 888  :     case L'C':
+; 889  :     case L'D':
+; 890  :     case L'E':
+; 891  :     case L'F':
+; 892  :         return (c - L'A' + 10);
 
 	shl	esi, 4
 	sub	esi, 880				; 00000370H
 	jmp	SHORT $LN26@BuildBinar
 $LN32@BuildBinar:
 
-; 821  :     default:
-; 822  :         return ((_UINT32_T)-1);
+; 893  :     default:
+; 894  :         return ((_UINT32_T)-1);
 
 	mov	esi, -16				; fffffff0H
 $LN26@BuildBinar:
 
-; 859  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 931  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	movzx	ecx, WORD PTR [ebx+8]
 	lea	edx, DWORD PTR [ebx+2]
@@ -682,10 +683,10 @@ $LN26@BuildBinar:
 	movzx	ebx, WORD PTR [edx+4]
 	mov	DWORD PTR tv479[ebp], ecx
 
-; 860  :     }
-; 861  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT16_T))
-; 862  :     {
-; 863  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 932  :     }
+; 933  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT16_T))
+; 934  :     {
+; 935  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	movzx	ecx, WORD PTR [edx+8]
 	add	edx, 10					; 0000000aH
@@ -694,11 +695,11 @@ $LN26@BuildBinar:
 	mov	DWORD PTR _in_ptr$1$[ebp], edx
 	call	_Parse1DigitFromHexChar
 
-; 864  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 865  :     }
-; 866  :     if (sizeof(__UNIT_TYPE) >= sizeof(_BYTE_T))
-; 867  :     {
-; 868  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 936  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 937  :     }
+; 938  :     if (sizeof(__UNIT_TYPE) >= sizeof(_BYTE_T))
+; 939  :     {
+; 940  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	add	eax, esi
 	mov	esi, eax
@@ -730,24 +731,24 @@ $LN26@BuildBinar:
 	shl	esi, 4
 	call	_Parse1DigitFromHexChar
 
-; 887  :     {
-; 888  :         *out_ptr-- = Build1WordFromHexString(in_ptr);
+; 959  :     {
+; 960  :         *out_ptr-- = Build1WordFromHexString(in_ptr);
 
 	mov	edx, DWORD PTR _out_ptr$1$[ebp]
 
-; 868  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 940  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	add	esi, eax
 
-; 889  :         in_ptr += word_digit_count;
+; 961  :         in_ptr += word_digit_count;
 
 	mov	ebx, DWORD PTR _source$[ebp]
 
-; 868  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 940  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	add	esp, 28					; 0000001cH
 
-; 889  :         in_ptr += word_digit_count;
+; 961  :         in_ptr += word_digit_count;
 
 	add	ebx, 16					; 00000010H
 	mov	DWORD PTR _source$[ebp], ebx
@@ -759,9 +760,9 @@ $LN26@BuildBinar:
 $LN3@BuildBinar:
 	pop	edi
 
-; 890  :         source_count -= word_digit_count;
-; 891  :     }
-; 892  : }
+; 962  :         source_count -= word_digit_count;
+; 963  :     }
+; 964  : }
 
 	pop	esi
 	pop	ebx
@@ -904,13 +905,13 @@ tv173 = -4						; size = 4
 _in_ptr$ = 8						; size = 4
 _Build1WordFromHexString PROC				; COMDAT
 
-; 841  : {
+; 913  : {
 
 	push	ebp
 	mov	ebp, esp
 	sub	esp, 12					; 0000000cH
 
-; 842  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr++);
+; 914  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr++);
 
 	mov	edx, DWORD PTR _in_ptr$[ebp]
 	push	ebx
@@ -920,23 +921,23 @@ _Build1WordFromHexString PROC				; COMDAT
 	add	edx, 2
 	push	eax
 
-; 843  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT64_T))
-; 844  :     {
-; 845  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 846  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 847  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 848  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 849  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 850  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 851  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 852  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 853  :     }
-; 854  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT32_T))
-; 855  :     {
-; 856  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 857  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 858  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 859  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 915  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT64_T))
+; 916  :     {
+; 917  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 918  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 919  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 920  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 921  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 922  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 923  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 924  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 925  :     }
+; 926  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT32_T))
+; 927  :     {
+; 928  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 929  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 930  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 931  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	movzx	ecx, WORD PTR [edx+6]
 	movzx	esi, WORD PTR [edx]
@@ -944,10 +945,10 @@ _Build1WordFromHexString PROC				; COMDAT
 	movzx	ebx, WORD PTR [edx+4]
 	mov	DWORD PTR tv175[ebp], ecx
 
-; 860  :     }
-; 861  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT16_T))
-; 862  :     {
-; 863  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 932  :     }
+; 933  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT16_T))
+; 934  :     {
+; 935  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	movzx	ecx, WORD PTR [edx+8]
 	add	edx, 10					; 0000000aH
@@ -959,11 +960,11 @@ _Build1WordFromHexString PROC				; COMDAT
 	mov	DWORD PTR tv173[ebp], eax
 	call	_Parse1DigitFromHexChar
 
-; 864  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 865  :     }
-; 866  :     if (sizeof(__UNIT_TYPE) >= sizeof(_BYTE_T))
-; 867  :     {
-; 868  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 936  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 937  :     }
+; 938  :     if (sizeof(__UNIT_TYPE) >= sizeof(_BYTE_T))
+; 939  :     {
+; 940  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	mov	esi, DWORD PTR tv173[ebp]
 	add	esi, eax
@@ -996,14 +997,14 @@ _Build1WordFromHexString PROC				; COMDAT
 	add	esp, 32					; 00000020H
 	add	eax, esi
 
-; 869  :     }
-; 870  :     return (x);
+; 941  :     }
+; 942  :     return (x);
 
 	pop	edi
 	pop	esi
 	pop	ebx
 
-; 871  : }
+; 943  : }
 
 	mov	esp, ebp
 	pop	ebp
@@ -1018,13 +1019,13 @@ _in_ptr$ = 8						; size = 4
 _count$ = 12						; size = 4
 _BuildLeading1WordFromHexString PROC			; COMDAT
 
-; 827  : {
+; 899  : {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 
-; 828  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
+; 900  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
 
 	mov	esi, DWORD PTR _in_ptr$[ebp]
 	push	edi
@@ -1032,8 +1033,8 @@ _BuildLeading1WordFromHexString PROC			; COMDAT
 	push	eax
 	call	_Parse1DigitFromHexChar
 
-; 829  :     ++in_ptr;
-; 830  :     --count;
+; 901  :     ++in_ptr;
+; 902  :     --count;
 
 	mov	edi, DWORD PTR _count$[ebp]
 	add	esp, 4
@@ -1041,17 +1042,17 @@ _BuildLeading1WordFromHexString PROC			; COMDAT
 	mov	edx, eax
 	sub	edi, 1
 
-; 831  :     while (count > 0)
+; 903  :     while (count > 0)
 
 	je	SHORT $LN3@BuildLeadi
 $LL2@BuildLeadi:
 
-; 832  :     {
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 904  :     {
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	movzx	ecx, WORD PTR [esi]
 
-; 794  :     switch (c)
+; 866  :     switch (c)
 
 	lea	eax, DWORD PTR [ecx-48]
 	cmp	eax, 54					; 00000036H
@@ -1060,76 +1061,76 @@ $LL2@BuildLeadi:
 	jmp	DWORD PTR $LN20@BuildLeadi[eax*4]
 $LN8@BuildLeadi:
 
-; 795  :     {
-; 796  :     case L'0':
-; 797  :     case L'1':
-; 798  :     case L'2':
-; 799  :     case L'3':
-; 800  :     case L'4':
-; 801  :     case L'5':
-; 802  :     case L'6':
-; 803  :     case L'7':
-; 804  :     case L'8':
-; 805  :     case L'9':
-; 806  :         return (c - L'0');
+; 867  :     {
+; 868  :     case L'0':
+; 869  :     case L'1':
+; 870  :     case L'2':
+; 871  :     case L'3':
+; 872  :     case L'4':
+; 873  :     case L'5':
+; 874  :     case L'6':
+; 875  :     case L'7':
+; 876  :     case L'8':
+; 877  :     case L'9':
+; 878  :         return (c - L'0');
 
 	lea	eax, DWORD PTR [ecx-48]
 	jmp	SHORT $LN5@BuildLeadi
 $LN9@BuildLeadi:
 
-; 807  :     case L'a':
-; 808  :     case L'b':
-; 809  :     case L'c':
-; 810  :     case L'd':
-; 811  :     case L'e':
-; 812  :     case L'f':
-; 813  :         return (c - L'a' + 10);
+; 879  :     case L'a':
+; 880  :     case L'b':
+; 881  :     case L'c':
+; 882  :     case L'd':
+; 883  :     case L'e':
+; 884  :     case L'f':
+; 885  :         return (c - L'a' + 10);
 
 	lea	eax, DWORD PTR [ecx-87]
 	jmp	SHORT $LN5@BuildLeadi
 $LN10@BuildLeadi:
 
-; 814  :     case L'A':
-; 815  :     case L'B':
-; 816  :     case L'C':
-; 817  :     case L'D':
-; 818  :     case L'E':
-; 819  :     case L'F':
-; 820  :         return (c - L'A' + 10);
+; 886  :     case L'A':
+; 887  :     case L'B':
+; 888  :     case L'C':
+; 889  :     case L'D':
+; 890  :     case L'E':
+; 891  :     case L'F':
+; 892  :         return (c - L'A' + 10);
 
 	lea	eax, DWORD PTR [ecx-55]
 	jmp	SHORT $LN5@BuildLeadi
 $LN11@BuildLeadi:
 
-; 821  :     default:
-; 822  :         return ((_UINT32_T)-1);
+; 893  :     default:
+; 894  :         return ((_UINT32_T)-1);
 
 	or	eax, -1
 $LN5@BuildLeadi:
 
-; 832  :     {
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 904  :     {
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	shl	edx, 4
 
-; 834  :         ++in_ptr;
+; 906  :         ++in_ptr;
 
 	add	esi, 2
 	add	edx, eax
 
-; 835  :         --count;
+; 907  :         --count;
 
 	sub	edi, 1
 	jne	SHORT $LL2@BuildLeadi
 
-; 836  :     }
-; 837  :     return (x);
+; 908  :     }
+; 909  :     return (x);
 
 	mov	eax, edx
 $LN3@BuildLeadi:
 	pop	edi
 
-; 838  : }
+; 910  : }
 
 	pop	esi
 	pop	ebp
@@ -1205,12 +1206,12 @@ _TEXT	SEGMENT
 _c$ = 8							; size = 2
 _Parse1DigitFromHexChar PROC				; COMDAT
 
-; 793  : {
+; 865  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 794  :     switch (c)
+; 866  :     switch (c)
 
 	movzx	edx, WORD PTR _c$[ebp]
 	lea	eax, DWORD PTR [edx-48]
@@ -1220,60 +1221,60 @@ _Parse1DigitFromHexChar PROC				; COMDAT
 	jmp	DWORD PTR $LN11@Parse1Digi[ecx*4]
 $LN5@Parse1Digi:
 
-; 795  :     {
-; 796  :     case L'0':
-; 797  :     case L'1':
-; 798  :     case L'2':
-; 799  :     case L'3':
-; 800  :     case L'4':
-; 801  :     case L'5':
-; 802  :     case L'6':
-; 803  :     case L'7':
-; 804  :     case L'8':
-; 805  :     case L'9':
-; 806  :         return (c - L'0');
-; 807  :     case L'a':
-; 808  :     case L'b':
-; 809  :     case L'c':
-; 810  :     case L'd':
-; 811  :     case L'e':
-; 812  :     case L'f':
-; 813  :         return (c - L'a' + 10);
+; 867  :     {
+; 868  :     case L'0':
+; 869  :     case L'1':
+; 870  :     case L'2':
+; 871  :     case L'3':
+; 872  :     case L'4':
+; 873  :     case L'5':
+; 874  :     case L'6':
+; 875  :     case L'7':
+; 876  :     case L'8':
+; 877  :     case L'9':
+; 878  :         return (c - L'0');
+; 879  :     case L'a':
+; 880  :     case L'b':
+; 881  :     case L'c':
+; 882  :     case L'd':
+; 883  :     case L'e':
+; 884  :     case L'f':
+; 885  :         return (c - L'a' + 10);
 
 	lea	eax, DWORD PTR [edx-87]
 
-; 823  :     }
-; 824  : }
+; 895  :     }
+; 896  : }
 
 	pop	ebp
 	ret	0
 $LN6@Parse1Digi:
 
-; 814  :     case L'A':
-; 815  :     case L'B':
-; 816  :     case L'C':
-; 817  :     case L'D':
-; 818  :     case L'E':
-; 819  :     case L'F':
-; 820  :         return (c - L'A' + 10);
+; 886  :     case L'A':
+; 887  :     case L'B':
+; 888  :     case L'C':
+; 889  :     case L'D':
+; 890  :     case L'E':
+; 891  :     case L'F':
+; 892  :         return (c - L'A' + 10);
 
 	lea	eax, DWORD PTR [edx-55]
 
-; 823  :     }
-; 824  : }
+; 895  :     }
+; 896  : }
 
 	pop	ebp
 	ret	0
 $LN7@Parse1Digi:
 
-; 821  :     default:
-; 822  :         return ((_UINT32_T)-1);
+; 893  :     default:
+; 894  :         return ((_UINT32_T)-1);
 
 	or	eax, -1
 $LN1@Parse1Digi:
 
-; 823  :     }
-; 824  : }
+; 895  :     }
+; 896  : }
 
 	pop	ebp
 	ret	0
@@ -1382,7 +1383,7 @@ _format_option$ = 16					; size = 4
 _o$ = 20						; size = 4
 _TryParseDN PROC					; COMDAT
 
-; 649  : {
+; 721  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1391,24 +1392,24 @@ _TryParseDN PROC					; COMDAT
 	push	esi
 	push	edi
 
-; 650  :     PMC_STATUS_CODE result;
-; 651  : #ifdef _M_IX86
-; 652  :     int word_digit_count = 9;
-; 653  : #elif defined(_M_IX64)
-; 654  :     int word_digit_count = 19;
-; 655  : #else
-; 656  : #error unknown platform
-; 657  : #endif
-; 658  :     __UNIT_TYPE source_len = lstrlenW(source);
+; 722  :     PMC_STATUS_CODE result;
+; 723  : #ifdef _M_IX86
+; 724  :     int word_digit_count = 9;
+; 725  : #elif defined(_M_IX64)
+; 726  :     int word_digit_count = 19;
+; 727  : #else
+; 728  : #error unknown platform
+; 729  : #endif
+; 730  :     __UNIT_TYPE source_len = lstrlenW(source);
 
 	push	DWORD PTR _source$[ebp]
 	mov	edi, DWORD PTR __imp__lstrlenW@4
 	call	edi
 
-; 659  : 
-; 660  :     __UNIT_TYPE int_part_buf_code;
-; 661  :     __UNIT_TYPE int_part_buf_words;
-; 662  :     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
+; 731  : 
+; 732  :     __UNIT_TYPE int_part_buf_code;
+; 733  :     __UNIT_TYPE int_part_buf_words;
+; 734  :     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
 
 	lea	esi, DWORD PTR [eax+1]
 	lea	eax, DWORD PTR _int_part_buf_code$[ebp]
@@ -1422,16 +1423,16 @@ _TryParseDN PROC					; COMDAT
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _int_part_buf$1$[ebp], ebx
 
-; 663  :     if (int_part_buf == NULL)
+; 735  :     if (int_part_buf == NULL)
 
 	test	ebx, ebx
 	je	SHORT $LN87@TryParseDN
 
-; 664  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 665  : 
-; 666  :     __UNIT_TYPE frac_part_buf_code;
-; 667  :     __UNIT_TYPE frac_part_buf_words;
-; 668  :     wchar_t* frac_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &frac_part_buf_words, &frac_part_buf_code);
+; 736  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 737  : 
+; 738  :     __UNIT_TYPE frac_part_buf_code;
+; 739  :     __UNIT_TYPE frac_part_buf_words;
+; 740  :     wchar_t* frac_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &frac_part_buf_words, &frac_part_buf_code);
 
 	lea	eax, DWORD PTR _frac_part_buf_code$[ebp]
 	push	eax
@@ -1442,13 +1443,13 @@ _TryParseDN PROC					; COMDAT
 	mov	esi, eax
 	add	esp, 12					; 0000000cH
 
-; 669  :     if (frac_part_buf == NULL)
+; 741  :     if (frac_part_buf == NULL)
 
 	test	esi, esi
 	jne	SHORT $LN10@TryParseDN
 $LN88@TryParseDN:
 
-; 789  : }
+; 861  : }
 
 	push	DWORD PTR _int_part_buf_words$[ebp]
 	push	ebx
@@ -1464,12 +1465,12 @@ $LN87@TryParseDN:
 	ret	0
 $LN10@TryParseDN:
 
-; 670  :     {
-; 671  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 672  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 673  :     }
-; 674  :     int sign;
-; 675  :     int result_parsing = ParseAsDecimalNumberString(source, number_styles, format_option, &sign, int_part_buf, frac_part_buf);
+; 742  :     {
+; 743  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 744  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 745  :     }
+; 746  :     int sign;
+; 747  :     int result_parsing = ParseAsDecimalNumberString(source, number_styles, format_option, &sign, int_part_buf, frac_part_buf);
 
 	push	esi
 	push	ebx
@@ -1480,7 +1481,7 @@ $LN10@TryParseDN:
 	push	DWORD PTR _source$[ebp]
 	call	_ParseAsDecimalNumberString
 
-; 676  :     if ((result = CheckBlockLight((__UNIT_TYPE*)int_part_buf, int_part_buf_code)) != PMC_STATUS_OK)
+; 748  :     if ((result = CheckBlockLight((__UNIT_TYPE*)int_part_buf, int_part_buf_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _int_part_buf_code$[ebp]
 	mov	DWORD PTR _result_parsing$1$[ebp], eax
@@ -1490,8 +1491,8 @@ $LN10@TryParseDN:
 	test	eax, eax
 	jne	$LN1@TryParseDN
 
-; 677  :         return (result);
-; 678  :     if ((result = CheckBlockLight((__UNIT_TYPE*)frac_part_buf, frac_part_buf_code)) != PMC_STATUS_OK)
+; 749  :         return (result);
+; 750  :     if ((result = CheckBlockLight((__UNIT_TYPE*)frac_part_buf, frac_part_buf_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _frac_part_buf_code$[ebp]
 	push	esi
@@ -1500,19 +1501,19 @@ $LN10@TryParseDN:
 	test	eax, eax
 	jne	$LN1@TryParseDN
 
-; 679  :         return (result);
-; 680  :     if (!result_parsing)
+; 751  :         return (result);
+; 752  :     if (!result_parsing)
 
 	cmp	DWORD PTR _result_parsing$1$[ebp], eax
 	je	SHORT $LN89@TryParseDN
 
-; 681  :     {
-; 682  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
-; 683  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 684  :         return (PMC_STATUS_PARSING_ERROR);
-; 685  :     }
-; 686  :     // 整数部と小数部がともに空ならばエラーとする
-; 687  :     if (int_part_buf[0] == L'\0' && frac_part_buf[0] == L'\0')
+; 753  :     {
+; 754  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 755  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 756  :         return (PMC_STATUS_PARSING_ERROR);
+; 757  :     }
+; 758  :     // 整数部と小数部がともに空ならばエラーとする
+; 759  :     if (int_part_buf[0] == L'\0' && frac_part_buf[0] == L'\0')
 
 	movzx	eax, WORD PTR [ebx]
 	test	ax, ax
@@ -1521,7 +1522,7 @@ $LN10@TryParseDN:
 	jne	SHORT $LN60@TryParseDN
 $LN89@TryParseDN:
 
-; 789  : }
+; 861  : }
 
 	push	DWORD PTR _frac_part_buf_words$[ebp]
 	push	esi
@@ -1539,63 +1540,63 @@ $LN89@TryParseDN:
 	ret	0
 $LN73@TryParseDN:
 
-; 688  :     {
-; 689  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
-; 690  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 691  :         return (PMC_STATUS_PARSING_ERROR);
-; 692  :     }
-; 693  : 
-; 694  :     if (int_part_buf[0] == L'0')
+; 760  :     {
+; 761  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 762  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 763  :         return (PMC_STATUS_PARSING_ERROR);
+; 764  :     }
+; 765  : 
+; 766  :     if (int_part_buf[0] == L'0')
 
 	cmp	eax, 48					; 00000030H
 	jne	SHORT $LN60@TryParseDN
 
-; 695  :     {
-; 696  :         // 整数部の先行する 0 を削除する
-; 697  :         wchar_t* s_ptr = int_part_buf;
+; 767  :     {
+; 768  :         // 整数部の先行する 0 を削除する
+; 769  :         wchar_t* s_ptr = int_part_buf;
 
 	mov	eax, ebx
 
-; 698  :         wchar_t* d_ptr = int_part_buf;
+; 770  :         wchar_t* d_ptr = int_part_buf;
 
 	mov	edx, ebx
 	npad	2
 $LL2@TryParseDN:
 
-; 699  :         while (*s_ptr == L'0')
+; 771  :         while (*s_ptr == L'0')
 
 	movzx	ecx, WORD PTR [eax+2]
 
-; 700  :             ++s_ptr;
+; 772  :             ++s_ptr;
 
 	add	eax, 2
 	cmp	ecx, 48					; 00000030H
 	je	SHORT $LL2@TryParseDN
 
-; 701  :         for (;;)
-; 702  :         {
-; 703  :             *d_ptr = *s_ptr;
+; 773  :         for (;;)
+; 774  :         {
+; 775  :             *d_ptr = *s_ptr;
 
 	mov	WORD PTR [ebx], cx
 
-; 704  :             if (*s_ptr == L'\0')
+; 776  :             if (*s_ptr == L'\0')
 
 	cmp	WORD PTR [eax], 0
 	je	SHORT $LN60@TryParseDN
 $LL4@TryParseDN:
 
-; 701  :         for (;;)
-; 702  :         {
-; 703  :             *d_ptr = *s_ptr;
+; 773  :         for (;;)
+; 774  :         {
+; 775  :             *d_ptr = *s_ptr;
 
 	mov	cx, WORD PTR [eax+2]
 
-; 705  :                 break;
-; 706  :             ++s_ptr;
+; 777  :                 break;
+; 778  :             ++s_ptr;
 
 	lea	eax, DWORD PTR [eax+2]
 
-; 707  :             ++d_ptr;
+; 779  :             ++d_ptr;
 
 	lea	edx, DWORD PTR [edx+2]
 	mov	WORD PTR [edx], cx
@@ -1603,17 +1604,17 @@ $LL4@TryParseDN:
 	jne	SHORT $LL4@TryParseDN
 $LN60@TryParseDN:
 
-; 708  :         }
-; 709  :     }
-; 710  : 
-; 711  :     // 小数部の末尾の 0 を削除する
-; 712  :     wchar_t* frac_ptr = frac_part_buf + lstrlenW(frac_part_buf);
+; 780  :         }
+; 781  :     }
+; 782  : 
+; 783  :     // 小数部の末尾の 0 を削除する
+; 784  :     wchar_t* frac_ptr = frac_part_buf + lstrlenW(frac_part_buf);
 
 	push	esi
 	call	edi
 	lea	eax, DWORD PTR [esi+eax*2]
 
-; 713  :     while (frac_ptr > frac_part_buf && frac_ptr[-1] == L'0')
+; 785  :     while (frac_ptr > frac_part_buf && frac_ptr[-1] == L'0')
 
 	cmp	eax, esi
 	jbe	SHORT $LN84@TryParseDN
@@ -1621,69 +1622,69 @@ $LL7@TryParseDN:
 	cmp	WORD PTR [eax-2], 48			; 00000030H
 	jne	SHORT $LN84@TryParseDN
 
-; 714  :         --frac_ptr;
+; 786  :         --frac_ptr;
 
 	add	eax, -2					; fffffffeH
 	cmp	eax, esi
 	ja	SHORT $LL7@TryParseDN
 $LN84@TryParseDN:
 
-; 715  :     *frac_ptr = L'\0';
+; 787  :     *frac_ptr = L'\0';
 
 	xor	ecx, ecx
 	mov	WORD PTR [eax], cx
 
-; 716  : 
-; 717  :     // 小数部が 0 ではない場合、エラーとする
-; 718  :     if (frac_part_buf[0] != L'\0')
+; 788  : 
+; 789  :     // 小数部が 0 ではない場合、エラーとする
+; 790  :     if (frac_part_buf[0] != L'\0')
 
 	cmp	WORD PTR [esi], cx
 	jne	SHORT $LN89@TryParseDN
 
-; 719  :     {
-; 720  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
-; 721  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 722  :         return (PMC_STATUS_PARSING_ERROR);
-; 723  :     }
-; 724  : 
-; 725  :     if (sign < 0)
+; 791  :     {
+; 792  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 793  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 794  :         return (PMC_STATUS_PARSING_ERROR);
+; 795  :     }
+; 796  : 
+; 797  :     if (sign < 0)
 
 	movzx	eax, WORD PTR [ebx]
 	cmp	DWORD PTR _sign$[ebp], ecx
 	jge	SHORT $LN74@TryParseDN
 
-; 726  :     {
-; 727  :         if (int_part_buf[0] == L'\0')
+; 798  :     {
+; 799  :         if (int_part_buf[0] == L'\0')
 
 	test	ax, ax
 	je	SHORT $LN82@TryParseDN
 
-; 728  :         {
-; 729  :             // - 符号が与えられていてかつ整数部が 0 であるなら符号を修正する
-; 730  :             sign = 0;
-; 731  :         }
-; 732  :         else
-; 733  :         {
-; 734  :             // - 符号が与えられていてかつ整数部が 0 ではないなら、エラーとする
-; 735  :             DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 800  :         {
+; 801  :             // - 符号が与えられていてかつ整数部が 0 であるなら符号を修正する
+; 802  :             sign = 0;
+; 803  :         }
+; 804  :         else
+; 805  :         {
+; 806  :             // - 符号が与えられていてかつ整数部が 0 ではないなら、エラーとする
+; 807  :             DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
 
 	push	DWORD PTR _frac_part_buf_words$[ebp]
 	push	esi
 	call	_DeallocateBlock
 
-; 736  :             DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 808  :             DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	push	DWORD PTR _int_part_buf_words$[ebp]
 	push	ebx
 	call	_DeallocateBlock
 	add	esp, 16					; 00000010H
 
-; 737  :             return (PMC_STATUS_OVERFLOW);
+; 809  :             return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	pop	edi
 
-; 789  : }
+; 861  : }
 
 	pop	esi
 	pop	ebx
@@ -1692,34 +1693,34 @@ $LN84@TryParseDN:
 	ret	0
 $LN74@TryParseDN:
 
-; 738  :         }
-; 739  :     }
-; 740  : 
-; 741  :     // 整数部が空である場合、1桁の 0 を設定する
-; 742  :     if (int_part_buf[0] == L'\0')
+; 810  :         }
+; 811  :     }
+; 812  : 
+; 813  :     // 整数部が空である場合、1桁の 0 を設定する
+; 814  :     if (int_part_buf[0] == L'\0')
 
 	test	ax, ax
 	jne	SHORT $LN21@TryParseDN
 $LN82@TryParseDN:
 
-; 743  :     {
-; 744  :         int_part_buf[0] = L'0';
+; 815  :     {
+; 816  :         int_part_buf[0] = L'0';
 
 	mov	DWORD PTR [ebx], 48			; 00000030H
 $LN21@TryParseDN:
 
-; 745  :         int_part_buf[1] = L'\0';
-; 746  :     }
-; 747  : 
-; 748  :     // 小数部は捨てる
-; 749  :     DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 817  :         int_part_buf[1] = L'\0';
+; 818  :     }
+; 819  : 
+; 820  :     // 小数部は捨てる
+; 821  :     DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
 
 	push	DWORD PTR _frac_part_buf_words$[ebp]
 	push	esi
 	call	_DeallocateBlock
 	add	esp, 8
 
-; 753  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
+; 825  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
 
 	push	ebx
 	call	edi
@@ -1737,7 +1738,7 @@ $LN21@TryParseDN:
 	shr	edx, 1
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 753  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
+; 825  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
 
 	shl	edx, 5
 	push	edx
@@ -1746,7 +1747,7 @@ $LN21@TryParseDN:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _bin_buf$1$[ebp], edi
 
-; 754  :     if (bin_buf == NULL)
+; 826  :     if (bin_buf == NULL)
 
 	test	edi, edi
 	je	$LN88@TryParseDN
@@ -1931,13 +1932,13 @@ $LL32@TryParseDN:
 	mov	edi, DWORD PTR _bin_buf$1$[ebp]
 $LN33@TryParseDN:
 
-; 755  :     {
-; 756  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 757  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 758  :     }
-; 759  :     __UNIT_TYPE bin_buf_count;
-; 760  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
-; 761  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
+; 827  :     {
+; 828  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 829  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 830  :     }
+; 831  :     __UNIT_TYPE bin_buf_count;
+; 832  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
+; 833  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _bin_buf_code$[ebp]
 
@@ -1946,13 +1947,13 @@ $LN33@TryParseDN:
 	sub	esi, edi
 	sar	esi, 2
 
-; 755  :     {
-; 756  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 757  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 758  :     }
-; 759  :     __UNIT_TYPE bin_buf_count;
-; 760  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
-; 761  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
+; 827  :     {
+; 828  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 829  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 830  :     }
+; 831  :     __UNIT_TYPE bin_buf_count;
+; 832  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
+; 833  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
 
 	push	edi
 
@@ -1960,30 +1961,30 @@ $LN33@TryParseDN:
 
 	mov	DWORD PTR _bin_buf_count$1$[ebp], esi
 
-; 755  :     {
-; 756  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 757  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 758  :     }
-; 759  :     __UNIT_TYPE bin_buf_count;
-; 760  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
-; 761  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
+; 827  :     {
+; 828  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 829  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 830  :     }
+; 831  :     __UNIT_TYPE bin_buf_count;
+; 832  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
+; 833  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
 
 	call	_CheckBlockLight
 	add	esp, 8
 	test	eax, eax
 	jne	$LN1@TryParseDN
 
-; 762  :         return (result);
-; 763  :     DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 834  :         return (result);
+; 835  :     DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	push	DWORD PTR _int_part_buf_words$[ebp]
 	push	ebx
 	call	_DeallocateBlock
 
-; 764  : 
-; 765  :     __UNIT_TYPE o_bit_count = bin_buf_count * __UNIT_TYPE_BIT_COUNT;
-; 766  :     __UNIT_TYPE no_light_check_code;
-; 767  :     if ((result = AllocateNumber(o, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+; 836  : 
+; 837  :     __UNIT_TYPE o_bit_count = bin_buf_count * __UNIT_TYPE_BIT_COUNT;
+; 838  :     __UNIT_TYPE no_light_check_code;
+; 839  :     if ((result = AllocateNumber(o, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	ebx, DWORD PTR _o$[ebp]
 	lea	eax, DWORD PTR _no_light_check_code$[ebp]
@@ -1997,20 +1998,20 @@ $LN33@TryParseDN:
 	test	eax, eax
 	je	SHORT $LN24@TryParseDN
 
-; 768  :     {
-; 769  :         DeallocateBlock(bin_buf, bin_buf_words);
+; 840  :     {
+; 841  :         DeallocateBlock(bin_buf, bin_buf_words);
 
 	push	DWORD PTR _bin_buf_words$[ebp]
 	push	edi
 	call	_DeallocateBlock
 
-; 770  :         return (result);
+; 842  :         return (result);
 
 	mov	eax, DWORD PTR _result$4$[ebp]
 	add	esp, 8
 	pop	edi
 
-; 789  : }
+; 861  : }
 
 	pop	esi
 	pop	ebx
@@ -2019,15 +2020,15 @@ $LN33@TryParseDN:
 	ret	0
 $LN24@TryParseDN:
 
-; 771  :     }
-; 772  : 
-; 773  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
+; 843  :     }
+; 844  : 
+; 845  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR [ebx]
 	mov	eax, DWORD PTR [eax+24]
 	mov	DWORD PTR _out_buf$1$[ebp], eax
 
-; 625  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
+; 697  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
 
 	lea	eax, DWORD PTR _work_buf_code$1[ebp]
 	push	eax
@@ -2040,43 +2041,43 @@ $LN24@TryParseDN:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _work_buf$1$[ebp], esi
 
-; 626  :     if (work_buf == NULL)
+; 698  :     if (work_buf == NULL)
 
 	test	esi, esi
 	jne	SHORT $LN49@TryParseDN
 
-; 627  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 699  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, DWORD PTR [esi-5]
 	jmp	SHORT $LN86@TryParseDN
 $LN49@TryParseDN:
 
-; 628  : 
-; 629  :     __UNIT_TYPE work_buf_count = 1;
-; 630  :     work_buf[0] = in_buf[0];
+; 700  : 
+; 701  :     __UNIT_TYPE work_buf_count = 1;
+; 702  :     work_buf[0] = in_buf[0];
 
 	mov	eax, DWORD PTR [edi]
 	mov	ebx, 1
 	mov	DWORD PTR [esi], eax
 
-; 631  :     ++in_buf;
+; 703  :     ++in_buf;
 
 	add	edi, 4
 
-; 632  :     --in_buf_count;
+; 704  :     --in_buf_count;
 
 	mov	eax, DWORD PTR _bin_buf_count$1$[ebp]
 	add	eax, -1
 	mov	DWORD PTR _in_buf_count$1$[ebp], eax
 
-; 633  : 
-; 634  :     while (in_buf_count > 0)
+; 705  : 
+; 706  :     while (in_buf_count > 0)
 
 	je	SHORT $LN48@TryParseDN
 $LL47@TryParseDN:
 
-; 635  :     {
-; 636  :         __UNIT_TYPE* w_tail = (*fp_MultiplyAndAdd)(work_buf, work_buf_count, *in_buf);
+; 707  :     {
+; 708  :         __UNIT_TYPE* w_tail = (*fp_MultiplyAndAdd)(work_buf, work_buf_count, *in_buf);
 
 	push	DWORD PTR [edi]
 	push	ebx
@@ -2084,22 +2085,22 @@ $LL47@TryParseDN:
 	call	DWORD PTR _fp_MultiplyAndAdd
 	mov	ebx, eax
 
-; 637  :         work_buf_count = w_tail - work_buf;
-; 638  :         ++in_buf;
+; 709  :         work_buf_count = w_tail - work_buf;
+; 710  :         ++in_buf;
 
 	lea	edi, DWORD PTR [edi+4]
 	sub	ebx, esi
 	add	esp, 12					; 0000000cH
 	sar	ebx, 2
 
-; 639  :         --in_buf_count;
+; 711  :         --in_buf_count;
 
 	sub	DWORD PTR _in_buf_count$1$[ebp], 1
 	jne	SHORT $LL47@TryParseDN
 $LN48@TryParseDN:
 
-; 640  :     }
-; 641  :     if ((result = CheckBlockLight(work_buf, work_buf_code)) != PMC_STATUS_OK)
+; 712  :     }
+; 713  :     if ((result = CheckBlockLight(work_buf, work_buf_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _work_buf_code$1[ebp]
 	push	esi
@@ -2109,14 +2110,14 @@ $LN48@TryParseDN:
 	test	eax, eax
 	je	SHORT $LN50@TryParseDN
 
-; 642  :         return (result);
+; 714  :         return (result);
 
 	mov	edi, DWORD PTR _bin_buf$1$[ebp]
 	mov	ebx, DWORD PTR _o$[ebp]
 	jmp	SHORT $LN46@TryParseDN
 $LN50@TryParseDN:
 
-; 644  :     DeallocateBlock(work_buf, work_buf_words);
+; 716  :     DeallocateBlock(work_buf, work_buf_words);
 
 	push	DWORD PTR _work_buf_words$2[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -2127,7 +2128,7 @@ $LN50@TryParseDN:
 	mov	ecx, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 644  :     DeallocateBlock(work_buf, work_buf_words);
+; 716  :     DeallocateBlock(work_buf, work_buf_words);
 
 	push	DWORD PTR _work_buf$1$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -2137,21 +2138,21 @@ $LN50@TryParseDN:
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 644  :     DeallocateBlock(work_buf, work_buf_words);
+; 716  :     DeallocateBlock(work_buf, work_buf_words);
 
 	call	_DeallocateBlock
 	mov	edi, DWORD PTR _bin_buf$1$[ebp]
 	add	esp, 8
 	mov	ebx, DWORD PTR _o$[ebp]
 
-; 645  :     return (PMC_STATUS_OK);
+; 717  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN86@TryParseDN:
 
-; 771  :     }
-; 772  : 
-; 773  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
+; 843  :     }
+; 844  : 
+; 845  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
 
 	mov	DWORD PTR _result$5$[ebp], eax
 $LN46@TryParseDN:
@@ -2159,25 +2160,25 @@ $LN46@TryParseDN:
 	test	eax, eax
 	je	SHORT $LN25@TryParseDN
 
-; 774  :     {
-; 775  :         DeallocateNumber(*o);
+; 846  :     {
+; 847  :         DeallocateNumber(*o);
 
 	push	ecx
 	call	_DeallocateNumber
 
-; 776  :         DeallocateBlock(bin_buf, bin_buf_words);
+; 848  :         DeallocateBlock(bin_buf, bin_buf_words);
 
 	push	DWORD PTR _bin_buf_words$[ebp]
 	push	edi
 	call	_DeallocateBlock
 
-; 777  :         return (result);
+; 849  :         return (result);
 
 	mov	eax, DWORD PTR _result$5$[ebp]
 	add	esp, 12					; 0000000cH
 	pop	edi
 
-; 789  : }
+; 861  : }
 
 	pop	esi
 	pop	ebx
@@ -2186,8 +2187,8 @@ $LN46@TryParseDN:
 	ret	0
 $LN25@TryParseDN:
 
-; 778  :     }
-; 779  :     if ((result = CheckBlockLight((*o)->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+; 850  :     }
+; 851  :     if ((result = CheckBlockLight((*o)->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _no_light_check_code$[ebp]
 	push	DWORD PTR [ecx+24]
@@ -2196,45 +2197,45 @@ $LN25@TryParseDN:
 	test	eax, eax
 	jne	SHORT $LN1@TryParseDN
 
-; 780  :         return (result);
-; 781  :     DeallocateBlock(bin_buf, bin_buf_words);
+; 852  :         return (result);
+; 853  :     DeallocateBlock(bin_buf, bin_buf_words);
 
 	push	DWORD PTR _bin_buf_words$[ebp]
 	push	edi
 	call	_DeallocateBlock
 
-; 782  :     CommitNumber(*o);
+; 854  :     CommitNumber(*o);
 
 	push	DWORD PTR [ebx]
 	call	_CommitNumber
 
-; 783  :     if ((*o)->IS_ZERO)
+; 855  :     if ((*o)->IS_ZERO)
 
 	mov	eax, DWORD PTR [ebx]
 	add	esp, 12					; 0000000cH
 	test	BYTE PTR [eax+16], 2
 	je	SHORT $LN27@TryParseDN
 
-; 784  :     {
-; 785  :         DeallocateNumber(*o);
+; 856  :     {
+; 857  :         DeallocateNumber(*o);
 
 	push	eax
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 786  :         *o = &number_zero;
+; 858  :         *o = &number_zero;
 
 	mov	DWORD PTR [ebx], OFFSET _number_zero
 $LN27@TryParseDN:
 
-; 787  :     }
-; 788  :     return (PMC_STATUS_OK);
+; 859  :     }
+; 860  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@TryParseDN:
 	pop	edi
 
-; 789  : }
+; 861  : }
 
 	pop	esi
 	pop	ebx
@@ -2259,17 +2260,17 @@ _in_buf_count$ = 12					; size = 4
 _out_buf$ = 16						; size = 4
 _ConvertCardinalNumber PROC				; COMDAT
 
-; 621  : {
+; 693  : {
 
 	push	ebp
 	mov	ebp, esp
 	sub	esp, 12					; 0000000cH
 	push	edi
 
-; 622  :     PMC_STATUS_CODE result;
-; 623  :     __UNIT_TYPE work_buf_code;
-; 624  :     __UNIT_TYPE work_buf_words;
-; 625  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
+; 694  :     PMC_STATUS_CODE result;
+; 695  :     __UNIT_TYPE work_buf_code;
+; 696  :     __UNIT_TYPE work_buf_words;
+; 697  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
 
 	lea	eax, DWORD PTR _work_buf_code$[ebp]
 	push	eax
@@ -2284,17 +2285,17 @@ _ConvertCardinalNumber PROC				; COMDAT
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _work_buf$1$[ebp], edi
 
-; 626  :     if (work_buf == NULL)
+; 698  :     if (work_buf == NULL)
 
 	test	edi, edi
 	jne	SHORT $LN4@ConvertCar
 
-; 627  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 699  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, DWORD PTR [edi-5]
 	pop	edi
 
-; 646  : }
+; 718  : }
 
 	mov	esp, ebp
 	pop	ebp
@@ -2303,29 +2304,29 @@ $LN4@ConvertCar:
 	push	ebx
 	push	esi
 
-; 628  : 
-; 629  :     __UNIT_TYPE work_buf_count = 1;
-; 630  :     work_buf[0] = in_buf[0];
+; 700  : 
+; 701  :     __UNIT_TYPE work_buf_count = 1;
+; 702  :     work_buf[0] = in_buf[0];
 
 	mov	esi, DWORD PTR _in_buf$[ebp]
 	mov	ebx, 1
 	mov	eax, DWORD PTR [esi]
 
-; 631  :     ++in_buf;
+; 703  :     ++in_buf;
 
 	add	esi, 4
 	sub	DWORD PTR _in_buf_count$[ebp], ebx
 	mov	DWORD PTR [edi], eax
 
-; 632  :     --in_buf_count;
-; 633  : 
-; 634  :     while (in_buf_count > 0)
+; 704  :     --in_buf_count;
+; 705  : 
+; 706  :     while (in_buf_count > 0)
 
 	je	SHORT $LN3@ConvertCar
 $LL2@ConvertCar:
 
-; 635  :     {
-; 636  :         __UNIT_TYPE* w_tail = (*fp_MultiplyAndAdd)(work_buf, work_buf_count, *in_buf);
+; 707  :     {
+; 708  :         __UNIT_TYPE* w_tail = (*fp_MultiplyAndAdd)(work_buf, work_buf_count, *in_buf);
 
 	push	DWORD PTR [esi]
 	push	ebx
@@ -2333,22 +2334,22 @@ $LL2@ConvertCar:
 	call	DWORD PTR _fp_MultiplyAndAdd
 	mov	ebx, eax
 
-; 637  :         work_buf_count = w_tail - work_buf;
-; 638  :         ++in_buf;
+; 709  :         work_buf_count = w_tail - work_buf;
+; 710  :         ++in_buf;
 
 	lea	esi, DWORD PTR [esi+4]
 	sub	ebx, edi
 	add	esp, 12					; 0000000cH
 	sar	ebx, 2
 
-; 639  :         --in_buf_count;
+; 711  :         --in_buf_count;
 
 	sub	DWORD PTR _in_buf_count$[ebp], 1
 	jne	SHORT $LL2@ConvertCar
 $LN3@ConvertCar:
 
-; 640  :     }
-; 641  :     if ((result = CheckBlockLight(work_buf, work_buf_code)) != PMC_STATUS_OK)
+; 712  :     }
+; 713  :     if ((result = CheckBlockLight(work_buf, work_buf_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _work_buf_code$[ebp]
 	push	edi
@@ -2364,7 +2365,7 @@ $LN3@ConvertCar:
 	mov	ecx, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 644  :     DeallocateBlock(work_buf, work_buf_words);
+; 716  :     DeallocateBlock(work_buf, work_buf_words);
 
 	push	DWORD PTR _work_buf_words$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -2376,13 +2377,13 @@ $LN3@ConvertCar:
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 644  :     DeallocateBlock(work_buf, work_buf_words);
+; 716  :     DeallocateBlock(work_buf, work_buf_words);
 
 	push	eax
 	call	_DeallocateBlock
 	add	esp, 8
 
-; 645  :     return (PMC_STATUS_OK);
+; 717  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN13@ConvertCar:
@@ -2390,7 +2391,7 @@ $LN13@ConvertCar:
 	pop	ebx
 	pop	edi
 
-; 646  : }
+; 718  : }
 
 	mov	esp, ebp
 	pop	ebp
@@ -2411,6 +2412,18 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 ;	COMDAT _MultiplyAndAdd_using_ADCX_MULX
 _TEXT	SEGMENT
 _u_buf$ = 8						; size = 4
@@ -2418,14 +2431,14 @@ _u_count$ = 12						; size = 4
 _x$ = 16						; size = 4
 _MultiplyAndAdd_using_ADCX_MULX PROC			; COMDAT
 
-; 514  : {
+; 550  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 515  :     __UNIT_TYPE k = x;
-; 516  :     __UNIT_TYPE count = u_count >> 5;
-; 517  :     while (count > 0)
+; 551  :     __UNIT_TYPE k = x;
+; 552  :     __UNIT_TYPE count = u_count >> 5;
+; 553  :     while (count > 0)
 
 	mov	ecx, DWORD PTR _u_buf$[ebp]
 	push	ebx
@@ -3041,32 +3054,52 @@ $LL2@MultiplyAn:
 ; 454  :     return (_addcarryx_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+124], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, OFFSET _statistics_info+4
+
+; 454  :     return (_addcarryx_u32(carry, u, v, w));
+
 	mov	eax, 0
 	adcx	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 551  :         u_buf += 32;
+; 587  :         u_buf += 32;
 
 	sub	ecx, -128				; ffffff80H
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 552  :         --count;
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, 32					; 00000020H
+	lock	 xadd	 DWORD PTR [edx], eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 588  :         --count;
 
 	sub	ebx, 1
 	jne	$LL2@MultiplyAn
 
-; 515  :     __UNIT_TYPE k = x;
-; 516  :     __UNIT_TYPE count = u_count >> 5;
-; 517  :     while (count > 0)
+; 551  :     __UNIT_TYPE k = x;
+; 552  :     __UNIT_TYPE count = u_count >> 5;
+; 553  :     while (count > 0)
 
 	mov	ebx, DWORD PTR _u_count$[ebp]
 $LN3@MultiplyAn:
 
-; 553  :     }
-; 554  : 
-; 555  :     if (u_count & 0x10)
+; 589  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 590  :         if (sizeof(k) == sizeof(_UINT32_T))
+; 591  :             AddToMULTI32Counter(32);
+; 592  :         else
+; 593  :             AddToMULTI64Counter(32);
+; 594  : #endif
+; 595  :     }
+; 596  : 
+; 597  :     if (u_count & 0x10)
 
 	test	bl, 16					; 00000010H
-	je	$LN4@MultiplyAn
+	je	$LN509@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 549  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -3364,21 +3397,33 @@ $LN3@MultiplyAn:
 ; 454  :     return (_addcarryx_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+60], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, OFFSET _statistics_info+4
+
+; 454  :     return (_addcarryx_u32(carry, u, v, w));
+
 	mov	eax, 0
 	adcx	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 573  :         u_buf += 16;
+; 615  :         u_buf += 16;
 
 	add	ecx, 64					; 00000040H
-$LN4@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 574  :     }
-; 575  : 
-; 576  :     if (u_count & 0x8)
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, 16					; 00000010H
+	lock	 xadd	 DWORD PTR [edx], eax
+$LN509@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 624  :     if (u_count & 0x8)
 
 	test	bl, 8
-	je	$LN5@MultiplyAn
+	je	$LN593@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 549  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -3530,21 +3575,33 @@ $LN4@MultiplyAn:
 ; 454  :     return (_addcarryx_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+28], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, OFFSET _statistics_info+4
+
+; 454  :     return (_addcarryx_u32(carry, u, v, w));
+
 	mov	eax, 0
 	adcx	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 586  :         u_buf += 8;
+; 634  :         u_buf += 8;
 
 	add	ecx, 32					; 00000020H
-$LN5@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 587  :     }
-; 588  : 
-; 589  :     if (u_count & 0x4)
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, 8
+	lock	 xadd	 DWORD PTR [edx], eax
+$LN593@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 643  :     if (u_count & 0x4)
 
 	test	bl, 4
-	je	SHORT $LN6@MultiplyAn
+	je	SHORT $LN637@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 549  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -3620,21 +3677,33 @@ $LN5@MultiplyAn:
 ; 454  :     return (_addcarryx_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+12], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, OFFSET _statistics_info+4
+
+; 454  :     return (_addcarryx_u32(carry, u, v, w));
+
 	mov	eax, 0
 	adcx	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 595  :         u_buf += 4;
+; 649  :         u_buf += 4;
 
 	add	ecx, 16					; 00000010H
-$LN6@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 596  :     }
-; 597  : 
-; 598  :     if (u_count & 0x2)
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, 4
+	lock	 xadd	 DWORD PTR [edx], eax
+$LN637@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 658  :     if (u_count & 0x2)
 
 	test	bl, 2
-	je	SHORT $LN7@MultiplyAn
+	je	SHORT $LN661@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 549  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -3672,21 +3741,33 @@ $LN6@MultiplyAn:
 ; 454  :     return (_addcarryx_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+4], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, 2
+
+; 454  :     return (_addcarryx_u32(carry, u, v, w));
+
 	mov	eax, 0
 	adcx	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 602  :         u_buf += 2;
+; 662  :         u_buf += 2;
 
 	add	ecx, 8
-$LN7@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 603  :     }
-; 604  : 
-; 605  :     if (u_count & 0x1)
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, OFFSET _statistics_info+4
+	lock	 xadd	 DWORD PTR [eax], edx
+$LN661@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 671  :     if (u_count & 0x1)
 
 	test	bl, 1
-	je	SHORT $LN8@MultiplyAn
+	je	SHORT $LN675@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 549  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -3703,38 +3784,42 @@ $LN7@MultiplyAn:
 	adcx	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 608  :         u_buf += 1;
+; 674  :         u_buf += 1;
 
 	add	ecx, 4
-$LN8@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 609  :     }
-; 610  : 
-; 611  :     if (k > 0)
+; 962  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+
+	lock	 inc	 (null) PTR _statistics_info+4
+$LN675@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 683  :     if (k > 0)
 
 	test	edi, edi
-	je	SHORT $LN645@MultiplyAn
+	je	SHORT $LN680@MultiplyAn
 
-; 612  :     {
-; 613  :         u_buf[0] = k;
+; 684  :     {
+; 685  :         u_buf[0] = k;
 
 	mov	DWORD PTR [ecx], edi
 
-; 614  :         u_buf += 1;
+; 686  :         u_buf += 1;
 
 	lea	eax, DWORD PTR [ecx+4]
 	pop	edi
 
-; 615  :     }
-; 616  : 
-; 617  :     return (u_buf);
-; 618  : }
+; 687  :     }
+; 688  : 
+; 689  :     return (u_buf);
+; 690  : }
 
 	pop	esi
 	pop	ebx
 	pop	ebp
 	ret	0
-$LN645@MultiplyAn:
+$LN680@MultiplyAn:
 	pop	edi
 	pop	esi
 	mov	eax, ecx
@@ -3744,6 +3829,18 @@ $LN645@MultiplyAn:
 _MultiplyAndAdd_using_ADCX_MULX ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
@@ -4536,12 +4633,29 @@ $LL2@MultiplyAn:
 ; 426  :     return (_addcarry_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+124], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, OFFSET _statistics_info+4
+
+; 426  :     return (_addcarry_u32(carry, u, v, w));
+
 	adc	edi, 0
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, 32					; 00000020H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
 ; 444  :         u_buf += 32;
 
 	sub	ecx, -128				; ffffff80H
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	lock	 xadd	 DWORD PTR [edx], eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
 ; 445  :         --count;
 
@@ -4555,12 +4669,18 @@ $LL2@MultiplyAn:
 	mov	ebx, DWORD PTR _u_count$[ebp]
 $LN3@MultiplyAn:
 
-; 446  :     }
-; 447  : 
-; 448  :     if (u_count & 0x10)
+; 446  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 447  :         if (sizeof(k) == sizeof(_UINT32_T))
+; 448  :             AddToMULTI32Counter(32);
+; 449  :         else
+; 450  :             AddToMULTI64Counter(32);
+; 451  : #endif
+; 452  :     }
+; 453  : 
+; 454  :     if (u_count & 0x10)
 
 	test	bl, 16					; 00000010H
-	je	$LN4@MultiplyAn
+	je	$LN509@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 511  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -4933,20 +5053,35 @@ $LN3@MultiplyAn:
 ; 426  :     return (_addcarry_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+60], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, OFFSET _statistics_info+4
+
+; 426  :     return (_addcarry_u32(carry, u, v, w));
+
 	adc	edi, 0
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, 16					; 00000010H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 466  :         u_buf += 16;
+; 472  :         u_buf += 16;
 
 	add	ecx, 64					; 00000040H
-$LN4@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 467  :     }
-; 468  : 
-; 469  :     if (u_count & 0x8)
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	lock	 xadd	 DWORD PTR [edx], eax
+$LN509@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 481  :     if (u_count & 0x8)
 
 	test	bl, 8
-	je	$LN5@MultiplyAn
+	je	$LN593@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 511  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -5133,20 +5268,35 @@ $LN4@MultiplyAn:
 ; 426  :     return (_addcarry_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+28], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, OFFSET _statistics_info+4
+
+; 426  :     return (_addcarry_u32(carry, u, v, w));
+
 	adc	edi, 0
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, 8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 479  :         u_buf += 8;
+; 491  :         u_buf += 8;
 
 	add	ecx, 32					; 00000020H
-$LN5@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 480  :     }
-; 481  : 
-; 482  :     if (u_count & 0x4)
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	lock	 xadd	 DWORD PTR [edx], eax
+$LN593@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 500  :     if (u_count & 0x4)
 
 	test	bl, 4
-	je	SHORT $LN6@MultiplyAn
+	je	SHORT $LN637@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 511  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -5237,20 +5387,35 @@ $LN5@MultiplyAn:
 ; 426  :     return (_addcarry_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+12], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, OFFSET _statistics_info+4
+
+; 426  :     return (_addcarry_u32(carry, u, v, w));
+
 	adc	edi, 0
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 488  :         u_buf += 4;
+; 506  :         u_buf += 4;
 
 	add	ecx, 16					; 00000010H
-$LN6@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 489  :     }
-; 490  : 
-; 491  :     if (u_count & 0x2)
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	lock	 xadd	 DWORD PTR [edx], eax
+$LN637@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 515  :     if (u_count & 0x2)
 
 	test	bl, 2
-	je	SHORT $LN7@MultiplyAn
+	je	SHORT $LN661@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 511  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -5293,20 +5458,35 @@ $LN6@MultiplyAn:
 ; 426  :     return (_addcarry_u32(carry, u, v, w));
 
 	mov	DWORD PTR [ecx+4], eax
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	edx, 2
+
+; 426  :     return (_addcarry_u32(carry, u, v, w));
+
 	adc	edi, 0
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, OFFSET _statistics_info+4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 495  :         u_buf += 2;
+; 519  :         u_buf += 2;
 
 	add	ecx, 8
-$LN7@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 496  :     }
-; 497  : 
-; 498  :     if (u_count & 0x1)
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	lock	 xadd	 DWORD PTR [eax], edx
+$LN661@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 528  :     if (u_count & 0x1)
 
 	test	bl, 1
-	je	SHORT $LN8@MultiplyAn
+	je	SHORT $LN675@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 511  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
@@ -5322,38 +5502,42 @@ $LN7@MultiplyAn:
 	adc	edi, 0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 501  :         u_buf += 1;
+; 531  :         u_buf += 1;
 
 	add	ecx, 4
-$LN8@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 502  :     }
-; 503  : 
-; 504  :     if (k > 0)
+; 962  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+
+	lock	 inc	 (null) PTR _statistics_info+4
+$LN675@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 540  :     if (k > 0)
 
 	test	edi, edi
-	je	SHORT $LN645@MultiplyAn
+	je	SHORT $LN680@MultiplyAn
 
-; 505  :     {
-; 506  :         u_buf[0] = k;
+; 541  :     {
+; 542  :         u_buf[0] = k;
 
 	mov	DWORD PTR [ecx], edi
 
-; 507  :         u_buf += 1;
+; 543  :         u_buf += 1;
 
 	lea	eax, DWORD PTR [ecx+4]
 	pop	edi
 
-; 508  :     }
-; 509  : 
-; 510  :     return (u_buf);
-; 511  : }
+; 544  :     }
+; 545  : 
+; 546  :     return (u_buf);
+; 547  : }
 
 	pop	esi
 	pop	ebx
 	pop	ebp
 	ret	0
-$LN645@MultiplyAn:
+$LN680@MultiplyAn:
 	pop	edi
 	pop	esi
 	mov	eax, ecx
@@ -7215,6 +7399,84 @@ _StartsWith ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _AddToMULTI64Counter
+_TEXT	SEGMENT
+_value$ = 8						; size = 4
+_AddToMULTI64Counter PROC				; COMDAT
+
+; 990  : {
+
+	push	ebp
+	mov	ebp, esp
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, DWORD PTR _value$[ebp]
+	mov	ecx, OFFSET _statistics_info
+	lock	 xadd	 DWORD PTR [ecx], eax
+
+; 992  : }
+
+	pop	ebp
+	ret	0
+_AddToMULTI64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _AddToMULTI32Counter
+_TEXT	SEGMENT
+_value$ = 8						; size = 4
+_AddToMULTI32Counter PROC				; COMDAT
+
+; 984  : {
+
+	push	ebp
+	mov	ebp, esp
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, DWORD PTR _value$[ebp]
+	mov	ecx, OFFSET _statistics_info+4
+	lock	 xadd	 DWORD PTR [ecx], eax
+
+; 986  : }
+
+	pop	ebp
+	ret	0
+_AddToMULTI32Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _IncrementMULTI64Counter
+_TEXT	SEGMENT
+_IncrementMULTI64Counter PROC				; COMDAT
+
+; 968  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
+
+	lock	 inc	 (null) PTR _statistics_info
+
+; 969  : }
+
+	ret	0
+_IncrementMULTI64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _IncrementMULTI32Counter
+_TEXT	SEGMENT
+_IncrementMULTI32Counter PROC				; COMDAT
+
+; 962  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+
+	lock	 inc	 (null) PTR _statistics_info+4
+
+; 963  : }
+
+	ret	0
+_IncrementMULTI32Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ;	COMDAT __MULTIPLYX_UNIT
 _TEXT	SEGMENT
 _u$ = 8							; size = 4
@@ -7514,13 +7776,13 @@ _format_option$ = 16					; size = 4
 _o$ = 20						; size = 4
 _PMC_TryParse@16 PROC					; COMDAT
 
-; 927  : {
+; 999  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 928  :     PMC_STATUS_CODE result;
-; 929  :     if (source == NULL)
+; 1000 :     PMC_STATUS_CODE result;
+; 1001 :     if (source == NULL)
 
 	mov	ecx, DWORD PTR _source$[ebp]
 	push	esi
@@ -7528,18 +7790,18 @@ _PMC_TryParse@16 PROC					; COMDAT
 	test	ecx, ecx
 	je	SHORT $LN11@PMC_TryPar
 
-; 930  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 931  :     if (o == NULL)
+; 1002 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1003 :     if (o == NULL)
 
 	mov	esi, DWORD PTR _o$[ebp]
 	test	esi, esi
 	je	SHORT $LN11@PMC_TryPar
 
-; 932  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 933  :     if (format_option == NULL)
-; 934  :         format_option = &default_number_format_option;
-; 935  :     NUMBER_HEADER* no;
-; 936  :     if (number_styles & PMC_NUMBER_STYLE_ALLOW_HEX_SPECIFIER)
+; 1004 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1005 :     if (format_option == NULL)
+; 1006 :         format_option = &default_number_format_option;
+; 1007 :     NUMBER_HEADER* no;
+; 1008 :     if (number_styles & PMC_NUMBER_STYLE_ALLOW_HEX_SPECIFIER)
 
 	mov	eax, DWORD PTR _format_option$[ebp]
 	mov	edx, OFFSET _default_number_format_option
@@ -7549,18 +7811,18 @@ _PMC_TryParse@16 PROC					; COMDAT
 	test	eax, 512				; 00000200H
 	je	SHORT $LN5@PMC_TryPar
 
-; 937  :     {
-; 938  :         // 許可されている組み合わせのフラグ
-; 939  :         _UINT32_T mask = PMC_NUMBER_STYLE_ALLOW_HEX_SPECIFIER | PMC_NUMBER_STYLE_ALLOW_LEADING_WHITE | PMC_NUMBER_STYLE_ALLOW_TRAILING_WHITE;
-; 940  : 
-; 941  :         // 許可されていないフラグが指定されていればエラー
-; 942  :         if (number_styles & ~mask)
+; 1009 :     {
+; 1010 :         // 許可されている組み合わせのフラグ
+; 1011 :         _UINT32_T mask = PMC_NUMBER_STYLE_ALLOW_HEX_SPECIFIER | PMC_NUMBER_STYLE_ALLOW_LEADING_WHITE | PMC_NUMBER_STYLE_ALLOW_TRAILING_WHITE;
+; 1012 : 
+; 1013 :         // 許可されていないフラグが指定されていればエラー
+; 1014 :         if (number_styles & ~mask)
 
 	test	eax, -516				; fffffdfcH
 	jne	SHORT $LN11@PMC_TryPar
 
-; 944  : 
-; 945  :         if ((result = TryParseX(source, number_styles, format_option, &no)) != PMC_STATUS_OK)
+; 1016 : 
+; 1017 :         if ((result = TryParseX(source, number_styles, format_option, &no)) != PMC_STATUS_OK)
 
 	lea	edi, DWORD PTR _no$[ebp]
 	push	edi
@@ -7572,7 +7834,7 @@ _PMC_TryParse@16 PROC					; COMDAT
 	test	eax, eax
 	je	SHORT $LN9@PMC_TryPar
 
-; 959  : }
+; 1031 : }
 
 	pop	edi
 	pop	esi
@@ -7580,11 +7842,11 @@ _PMC_TryParse@16 PROC					; COMDAT
 	ret	16					; 00000010H
 $LN5@PMC_TryPar:
 
-; 946  :             return (result);
-; 947  :     }
-; 948  :     else
-; 949  :     {
-; 950  :         if ((result = TryParseDN(source, number_styles, format_option, &no)) != PMC_STATUS_OK)
+; 1018 :             return (result);
+; 1019 :     }
+; 1020 :     else
+; 1021 :     {
+; 1022 :         if ((result = TryParseDN(source, number_styles, format_option, &no)) != PMC_STATUS_OK)
 
 	lea	edi, DWORD PTR _no$[ebp]
 	push	edi
@@ -7597,36 +7859,36 @@ $LN5@PMC_TryPar:
 	jne	SHORT $LN1@PMC_TryPar
 $LN9@PMC_TryPar:
 
-; 951  :             return (result);
-; 952  :     }
-; 953  :     *o = no;
+; 1023 :             return (result);
+; 1024 :     }
+; 1025 :     *o = no;
 
 	mov	eax, DWORD PTR _no$[ebp]
 	mov	DWORD PTR [esi], eax
 
-; 954  : #ifdef _DEBUG
-; 955  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 956  :         return (result);
-; 957  : #endif
-; 958  :     return (PMC_STATUS_OK);
+; 1026 : #ifdef _DEBUG
+; 1027 :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 1028 :         return (result);
+; 1029 : #endif
+; 1030 :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	pop	edi
 
-; 959  : }
+; 1031 : }
 
 	pop	esi
 	pop	ebp
 	ret	16					; 00000010H
 $LN11@PMC_TryPar:
 
-; 943  :             return (PMC_STATUS_ARGUMENT_ERROR);
+; 1015 :             return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 $LN1@PMC_TryPar:
 	pop	edi
 
-; 959  : }
+; 1031 : }
 
 	pop	esi
 	pop	ebp
@@ -7640,14 +7902,14 @@ _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_Parse PROC					; COMDAT
 
-; 962  : {
+; 1034 : {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 
-; 963  :     default_number_format_option.DecimalDigits = 2;
-; 964  :     lstrcpyW(default_number_format_option.GroupSeparator, L",");
+; 1035 :     default_number_format_option.DecimalDigits = 2;
+; 1036 :     lstrcpyW(default_number_format_option.GroupSeparator, L",");
 
 	mov	esi, DWORD PTR __imp__lstrcpyW@8
 	push	OFFSET ??_C@_13DEFPDAGF@?$AA?0@
@@ -7655,38 +7917,38 @@ _Initialize_Parse PROC					; COMDAT
 	mov	DWORD PTR _default_number_format_option, 2
 	call	esi
 
-; 965  :     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
+; 1037 :     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
 
 	push	OFFSET ??_C@_13JOFGPIOO@?$AA?4@
 	push	OFFSET _default_number_format_option+10
 	call	esi
 
-; 966  :     lstrcpy(default_number_format_option.GroupSizes, "3");
+; 1038 :     lstrcpy(default_number_format_option.GroupSizes, "3");
 
 	push	OFFSET ??_C@_01EKENIIDA@3@
 	push	OFFSET _default_number_format_option+28
 	call	DWORD PTR __imp__lstrcpyA@8
 
-; 967  :     lstrcpyW(default_number_format_option.PositiveSign, L"+");
+; 1039 :     lstrcpyW(default_number_format_option.PositiveSign, L"+");
 
 	push	OFFSET ??_C@_13KJIIAINM@?$AA?$CL@
 	push	OFFSET _default_number_format_option+16
 	call	esi
 
-; 968  :     lstrcpyW(default_number_format_option.NegativeSign, L"-");
+; 1040 :     lstrcpyW(default_number_format_option.NegativeSign, L"-");
 
 	push	OFFSET ??_C@_13IMODFHAA@?$AA?9@
 	push	OFFSET _default_number_format_option+22
 	call	esi
 	mov	eax, DWORD PTR _feature$[ebp]
 
-; 969  : 
-; 970  :     if (feature->PROCESSOR_FEATURE_ADX && feature->PROCESSOR_FEATURE_BMI2)
-; 971  :         fp_MultiplyAndAdd = MultiplyAndAdd_using_ADCX_MULX;
-; 972  :     else
-; 973  :         fp_MultiplyAndAdd = MultiplyAndAdd_using_ADC_MUL;
-; 974  : 
-; 975  :     return (PMC_STATUS_OK);
+; 1041 : 
+; 1042 :     if (feature->PROCESSOR_FEATURE_ADX && feature->PROCESSOR_FEATURE_BMI2)
+; 1043 :         fp_MultiplyAndAdd = MultiplyAndAdd_using_ADCX_MULX;
+; 1044 :     else
+; 1045 :         fp_MultiplyAndAdd = MultiplyAndAdd_using_ADC_MUL;
+; 1046 : 
+; 1047 :     return (PMC_STATUS_OK);
 
 	mov	ecx, OFFSET _MultiplyAndAdd_using_ADCX_MULX
 	mov	edx, OFFSET _MultiplyAndAdd_using_ADC_MUL
@@ -7698,7 +7960,7 @@ _Initialize_Parse PROC					; COMDAT
 	xor	eax, eax
 	mov	DWORD PTR _fp_MultiplyAndAdd, ecx
 
-; 976  : }
+; 1048 : }
 
 	pop	ebp
 	ret	0

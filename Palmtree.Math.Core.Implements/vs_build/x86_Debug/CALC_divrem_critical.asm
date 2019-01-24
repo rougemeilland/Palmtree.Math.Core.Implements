@@ -37,6 +37,7 @@ EXTRN	__allshl:PROC
 EXTRN	__aulldiv:PROC
 EXTRN	__aullrem:PROC
 EXTRN	__aullshr:PROC
+EXTRN	_statistics_info:BYTE
 ;	COMDAT rtc$TMZ
 rtc$TMZ	SEGMENT
 __RTC_Shutdown.rtc$TMZ DD FLAT:__RTC_Shutdown
@@ -46,10 +47,10 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG94817 DB	'found: u0=0x%08x, u1=0x%08x, u2=0x%08x, u3=0x%08x, v1=0x'
+$SG94826 DB	'found: u0=0x%08x, u1=0x%08x, u2=0x%08x, u3=0x%08x, v1=0x'
 	DB	'%08x, v2=0x%08x, v3=0x%08x', 0aH, 00H
 	ORG $+4
-$SG94818 DB	'found: u0=0x%016llx, u1=0x%016llx, u2=0x%016llx, u3=0x%0'
+$SG94827 DB	'found: u0=0x%016llx, u1=0x%016llx, u2=0x%016llx, u3=0x%0'
 	DB	'16llx, v1=0x%016llx, v2=0x%016llx, v3=0x%016llx', 0aH, 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
@@ -65,7 +66,7 @@ _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\calc_divrem_critical.c
 _TEXT	SEGMENT
-tv86 = -52						; size = 4
+tv89 = -52						; size = 4
 _rh_lo$ = -48						; size = 4
 _rh_mi$ = -40						; size = 4
 _rh_hi$ = -28						; size = 4
@@ -80,7 +81,7 @@ _v1$ = 24						; size = 4
 _v2$ = 28						; size = 4
 _CheckQ_ PROC
 
-; 69   : {
+; 75   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -93,12 +94,12 @@ _CheckQ_ PROC
 	mov	ecx, OFFSET __7646DD32_calc_divrem_critical@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 70   :     const __UNIT_TYPE_DIV lh_hi = 0;
+; 76   :     const __UNIT_TYPE_DIV lh_hi = 0;
 
 	mov	DWORD PTR _lh_hi$[ebp], 0
 
-; 71   :     __UNIT_TYPE_DIV lh_mi;
-; 72   :     __UNIT_TYPE_DIV lh_lo = _MULTIPLY_UNIT_DIV(v2, q_, &lh_mi);
+; 77   :     __UNIT_TYPE_DIV lh_mi;
+; 78   :     __UNIT_TYPE_DIV lh_lo = _MULTIPLY_UNIT_DIV(v2, q_, &lh_mi);
 
 	lea	eax, DWORD PTR _lh_mi$[ebp]
 	push	eax
@@ -110,8 +111,8 @@ _CheckQ_ PROC
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _lh_lo$[ebp], eax
 
-; 73   :     __UNIT_TYPE_DIV rh_hi;
-; 74   :     __UNIT_TYPE_DIV rh_mi = _MULTIPLY_UNIT_DIV(q_, v1, &rh_hi);
+; 79   :     __UNIT_TYPE_DIV rh_hi;
+; 80   :     __UNIT_TYPE_DIV rh_mi = _MULTIPLY_UNIT_DIV(q_, v1, &rh_hi);
 
 	lea	eax, DWORD PTR _rh_hi$[ebp]
 	push	eax
@@ -123,12 +124,12 @@ _CheckQ_ PROC
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _rh_mi$[ebp], eax
 
-; 75   :     __UNIT_TYPE_DIV rh_lo = u2;
+; 81   :     __UNIT_TYPE_DIV rh_lo = u2;
 
 	mov	eax, DWORD PTR _u2$[ebp]
 	mov	DWORD PTR _rh_lo$[ebp], eax
 
-; 76   :     _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, u1, rh_mi, &rh_mi), u0, rh_hi, &rh_hi);
+; 82   :     _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, u1, rh_mi, &rh_mi), u0, rh_hi, &rh_hi);
 
 	lea	ecx, DWORD PTR _rh_hi$[ebp]
 	push	ecx
@@ -150,78 +151,102 @@ _CheckQ_ PROC
 	call	__SUBTRUCT_UNIT_DIV
 	add	esp, 16					; 00000010H
 
-; 77   :     if (lh_hi > rh_hi)
+; 83   : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 84   :     if (sizeof(lh_hi) == sizeof(_UINT32_T))
 
-	mov	edx, DWORD PTR _lh_hi$[ebp]
-	cmp	edx, DWORD PTR _rh_hi$[ebp]
-	jbe	SHORT $LN2@CheckQ_
+	mov	edx, 1
+	test	edx, edx
+	je	SHORT $LN2@CheckQ_
 
-; 78   :         return (TRUE);
+; 85   :         AddToMULTI32Counter(2);
 
-	mov	eax, 1
-	jmp	SHORT $LN1@CheckQ_
-	jmp	SHORT $LN1@CheckQ_
+	push	2
+	call	_AddToMULTI32Counter
+	add	esp, 4
+	jmp	SHORT $LN3@CheckQ_
 $LN2@CheckQ_:
 
-; 79   :     else if (lh_hi < rh_hi)
+; 86   :     else
+; 87   :         AddToMULTI64Counter(2);
+
+	push	2
+	call	_AddToMULTI64Counter
+	add	esp, 4
+$LN3@CheckQ_:
+
+; 88   : #endif
+; 89   :     if (lh_hi > rh_hi)
 
 	mov	eax, DWORD PTR _lh_hi$[ebp]
 	cmp	eax, DWORD PTR _rh_hi$[ebp]
-	jae	SHORT $LN4@CheckQ_
+	jbe	SHORT $LN4@CheckQ_
 
-; 80   :         return (FALSE);
+; 90   :         return (TRUE);
 
-	xor	eax, eax
+	mov	eax, 1
 	jmp	SHORT $LN1@CheckQ_
 	jmp	SHORT $LN1@CheckQ_
 $LN4@CheckQ_:
 
-; 81   :     else if (lh_mi > rh_mi)
+; 91   :     else if (lh_hi < rh_hi)
 
-	mov	ecx, DWORD PTR _lh_mi$[ebp]
-	cmp	ecx, DWORD PTR _rh_mi$[ebp]
-	jbe	SHORT $LN6@CheckQ_
+	mov	ecx, DWORD PTR _lh_hi$[ebp]
+	cmp	ecx, DWORD PTR _rh_hi$[ebp]
+	jae	SHORT $LN6@CheckQ_
 
-; 82   :         return (TRUE);
-
-	mov	eax, 1
-	jmp	SHORT $LN1@CheckQ_
-	jmp	SHORT $LN1@CheckQ_
-$LN6@CheckQ_:
-
-; 83   :     else if (lh_mi < rh_mi)
-
-	mov	edx, DWORD PTR _lh_mi$[ebp]
-	cmp	edx, DWORD PTR _rh_mi$[ebp]
-	jae	SHORT $LN8@CheckQ_
-
-; 84   :         return (FALSE);
+; 92   :         return (FALSE);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@CheckQ_
 	jmp	SHORT $LN1@CheckQ_
+$LN6@CheckQ_:
+
+; 93   :     else if (lh_mi > rh_mi)
+
+	mov	edx, DWORD PTR _lh_mi$[ebp]
+	cmp	edx, DWORD PTR _rh_mi$[ebp]
+	jbe	SHORT $LN8@CheckQ_
+
+; 94   :         return (TRUE);
+
+	mov	eax, 1
+	jmp	SHORT $LN1@CheckQ_
+	jmp	SHORT $LN1@CheckQ_
 $LN8@CheckQ_:
 
-; 85   :     else
-; 86   :         return (lh_lo > rh_lo);
+; 95   :     else if (lh_mi < rh_mi)
 
-	mov	eax, DWORD PTR _lh_lo$[ebp]
-	cmp	eax, DWORD PTR _rh_lo$[ebp]
-	jbe	SHORT $LN11@CheckQ_
-	mov	DWORD PTR tv86[ebp], 1
-	jmp	SHORT $LN12@CheckQ_
-$LN11@CheckQ_:
-	mov	DWORD PTR tv86[ebp], 0
-$LN12@CheckQ_:
-	mov	eax, DWORD PTR tv86[ebp]
+	mov	eax, DWORD PTR _lh_mi$[ebp]
+	cmp	eax, DWORD PTR _rh_mi$[ebp]
+	jae	SHORT $LN10@CheckQ_
+
+; 96   :         return (FALSE);
+
+	xor	eax, eax
+	jmp	SHORT $LN1@CheckQ_
+	jmp	SHORT $LN1@CheckQ_
+$LN10@CheckQ_:
+
+; 97   :     else
+; 98   :         return (lh_lo > rh_lo);
+
+	mov	ecx, DWORD PTR _lh_lo$[ebp]
+	cmp	ecx, DWORD PTR _rh_lo$[ebp]
+	jbe	SHORT $LN13@CheckQ_
+	mov	DWORD PTR tv89[ebp], 1
+	jmp	SHORT $LN14@CheckQ_
+$LN13@CheckQ_:
+	mov	DWORD PTR tv89[ebp], 0
+$LN14@CheckQ_:
+	mov	eax, DWORD PTR tv89[ebp]
 $LN1@CheckQ_:
 
-; 87   : }
+; 99   : }
 
 	push	edx
 	mov	ecx, ebp
 	push	eax
-	lea	edx, DWORD PTR $LN17@CheckQ_
+	lea	edx, DWORD PTR $LN19@CheckQ_
 	call	@_RTC_CheckStackVars@8
 	pop	eax
 	pop	edx
@@ -232,35 +257,35 @@ $LN1@CheckQ_:
 	mov	esp, ebp
 	pop	ebp
 	ret	0
-	npad	2
-$LN17@CheckQ_:
+	npad	3
+$LN19@CheckQ_:
 	DD	3
-	DD	$LN16@CheckQ_
-$LN16@CheckQ_:
+	DD	$LN18@CheckQ_
+$LN18@CheckQ_:
 	DD	-12					; fffffff4H
 	DD	4
-	DD	$LN13@CheckQ_
+	DD	$LN15@CheckQ_
 	DD	-28					; ffffffe4H
 	DD	4
-	DD	$LN14@CheckQ_
+	DD	$LN16@CheckQ_
 	DD	-40					; ffffffd8H
 	DD	4
-	DD	$LN15@CheckQ_
-$LN15@CheckQ_:
+	DD	$LN17@CheckQ_
+$LN17@CheckQ_:
 	DB	114					; 00000072H
 	DB	104					; 00000068H
 	DB	95					; 0000005fH
 	DB	109					; 0000006dH
 	DB	105					; 00000069H
 	DB	0
-$LN14@CheckQ_:
+$LN16@CheckQ_:
 	DB	114					; 00000072H
 	DB	104					; 00000068H
 	DB	95					; 0000005fH
 	DB	104					; 00000068H
 	DB	105					; 00000069H
 	DB	0
-$LN13@CheckQ_:
+$LN15@CheckQ_:
 	DB	108					; 0000006cH
 	DB	104					; 00000068H
 	DB	95					; 0000005fH
@@ -319,17 +344,36 @@ $LN2@AsumeQ_:
 	add	esp, 16					; 00000010H
 	mov	DWORD PTR _q$[ebp], eax
 
-; 65   :     return (q);
+; 65   : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 66   :     if (sizeof(r) == sizeof(_UINT64_T))
+
+	xor	edx, edx
+	je	SHORT $LN3@AsumeQ_
+
+; 67   :         IncrementDIV64Counter();
+
+	call	_IncrementDIV64Counter
+	jmp	SHORT $LN4@AsumeQ_
+$LN3@AsumeQ_:
+
+; 68   :     else
+; 69   :         IncrementDIV32Counter();
+
+	call	_IncrementDIV32Counter
+$LN4@AsumeQ_:
+
+; 70   : #endif
+; 71   :     return (q);
 
 	mov	eax, DWORD PTR _q$[ebp]
 $LN1@AsumeQ_:
 
-; 66   : }
+; 72   : }
 
 	push	edx
 	mov	ecx, ebp
 	push	eax
-	lea	edx, DWORD PTR $LN6@AsumeQ_
+	lea	edx, DWORD PTR $LN8@AsumeQ_
 	call	@_RTC_CheckStackVars@8
 	pop	eax
 	pop	edx
@@ -340,14 +384,14 @@ $LN1@AsumeQ_:
 	pop	ebp
 	ret	0
 	npad	1
-$LN6@AsumeQ_:
+$LN8@AsumeQ_:
 	DD	1
-	DD	$LN5@AsumeQ_
-$LN5@AsumeQ_:
+	DD	$LN7@AsumeQ_
+$LN7@AsumeQ_:
 	DD	-8					; fffffff8H
 	DD	4
-	DD	$LN4@AsumeQ_
-$LN4@AsumeQ_:
+	DD	$LN6@AsumeQ_
+$LN6@AsumeQ_:
 	DB	114					; 00000072H
 	DB	0
 _AsumeQ_ ENDP
@@ -640,7 +684,7 @@ _v_min_1$ = -4						; size = 4
 _env$ = 8						; size = 4
 _CalculateCriticalDataOfDivision PROC
 
-; 90   : {
+; 102  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -654,108 +698,108 @@ _CalculateCriticalDataOfDivision PROC
 	mov	ecx, OFFSET __7646DD32_calc_divrem_critical@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 91   :     const __UNIT_TYPE_DIV v_min_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
+; 103  :     const __UNIT_TYPE_DIV v_min_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
 
 	mov	DWORD PTR _v_min_1$[ebp], -2147483648	; 80000000H
 
-; 92   :     const __UNIT_TYPE_DIV v_min_2 = 0;                              // 0x00000000
+; 104  :     const __UNIT_TYPE_DIV v_min_2 = 0;                              // 0x00000000
 
 	mov	DWORD PTR _v_min_2$[ebp], 0
 
-; 93   :     const __UNIT_TYPE_DIV v_min_3 = 0;
+; 105  :     const __UNIT_TYPE_DIV v_min_3 = 0;
 
 	mov	DWORD PTR _v_min_3$[ebp], 0
 
-; 94   : 
-; 95   :     const __UNIT_TYPE_DIV u_min_0 = 0;                              // 0x00000000
+; 106  : 
+; 107  :     const __UNIT_TYPE_DIV u_min_0 = 0;                              // 0x00000000
 
 	mov	DWORD PTR _u_min_0$[ebp], 0
 
-; 96   :     const __UNIT_TYPE_DIV u_min_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
+; 108  :     const __UNIT_TYPE_DIV u_min_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
 
 	mov	DWORD PTR _u_min_1$[ebp], -2147483648	; 80000000H
 
-; 97   :     const __UNIT_TYPE_DIV u_min_2 = 0;                              // 0x00000000
+; 109  :     const __UNIT_TYPE_DIV u_min_2 = 0;                              // 0x00000000
 
 	mov	DWORD PTR _u_min_2$[ebp], 0
 
-; 98   :     const __UNIT_TYPE_DIV u_min_3 = 0;                              // 0x00000000
+; 110  :     const __UNIT_TYPE_DIV u_min_3 = 0;                              // 0x00000000
 
 	mov	DWORD PTR _u_min_3$[ebp], 0
 
-; 99   : 
-; 100  :     __UNIT_TYPE_DIV u_count_0 = (__UNIT_TYPE_DIV)-1;                // 0xffffffff
+; 111  : 
+; 112  :     __UNIT_TYPE_DIV u_count_0 = (__UNIT_TYPE_DIV)-1;                // 0xffffffff
 
 	mov	DWORD PTR _u_count_0$[ebp], -1
 
-; 101  :     __UNIT_TYPE_DIV u_count_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);        // 0x80000000
+; 113  :     __UNIT_TYPE_DIV u_count_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);        // 0x80000000
 
 	mov	DWORD PTR _u_count_1$[ebp], -2147483648	; 80000000H
 
-; 102  :     __UNIT_TYPE_DIV u_count_2 = 0;                                  // 0x00000000
+; 114  :     __UNIT_TYPE_DIV u_count_2 = 0;                                  // 0x00000000
 
 	mov	DWORD PTR _u_count_2$[ebp], 0
 
-; 103  :     __UNIT_TYPE_DIV u_count_3 = 0;                                  // 0x00000000
+; 115  :     __UNIT_TYPE_DIV u_count_3 = 0;                                  // 0x00000000
 
 	mov	DWORD PTR _u_count_3$[ebp], 0
 
-; 104  : 
-; 105  :     __UNIT_TYPE_DIV u0 = u_min_0;
+; 116  : 
+; 117  :     __UNIT_TYPE_DIV u0 = u_min_0;
 
 	mov	eax, DWORD PTR _u_min_0$[ebp]
 	mov	DWORD PTR _u0$[ebp], eax
 
-; 106  :     __UNIT_TYPE_DIV u1 = u_min_1;
+; 118  :     __UNIT_TYPE_DIV u1 = u_min_1;
 
 	mov	ecx, DWORD PTR _u_min_1$[ebp]
 	mov	DWORD PTR _u1$[ebp], ecx
 
-; 107  :     __UNIT_TYPE_DIV u2 = u_min_2;
+; 119  :     __UNIT_TYPE_DIV u2 = u_min_2;
 
 	mov	edx, DWORD PTR _u_min_2$[ebp]
 	mov	DWORD PTR _u2$[ebp], edx
 
-; 108  :     __UNIT_TYPE_DIV u3 = u_min_3;
+; 120  :     __UNIT_TYPE_DIV u3 = u_min_3;
 
 	mov	eax, DWORD PTR _u_min_3$[ebp]
 	mov	DWORD PTR _u3$[ebp], eax
 $LN4@CalculateC:
 
-; 109  : 
-; 110  :     for (;;)
-; 111  :     {
-; 112  :         __UNIT_TYPE_DIV v_count_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
+; 121  : 
+; 122  :     for (;;)
+; 123  :     {
+; 124  :         __UNIT_TYPE_DIV v_count_1 = ~((__UNIT_TYPE_DIV)-1 >> 1);    // 0x80000000
 
 	mov	DWORD PTR _v_count_1$17[ebp], -2147483648 ; 80000000H
 
-; 113  :         __UNIT_TYPE_DIV v_count_2 = 0;                              // 0x00000000
+; 125  :         __UNIT_TYPE_DIV v_count_2 = 0;                              // 0x00000000
 
 	mov	DWORD PTR _v_count_2$16[ebp], 0
 
-; 114  :         __UNIT_TYPE_DIV v_count_3 = 0;                              // 0x00000000
+; 126  :         __UNIT_TYPE_DIV v_count_3 = 0;                              // 0x00000000
 
 	mov	DWORD PTR _v_count_3$15[ebp], 0
 
-; 115  :         __UNIT_TYPE_DIV v1 = v_min_1;
+; 127  :         __UNIT_TYPE_DIV v1 = v_min_1;
 
 	mov	ecx, DWORD PTR _v_min_1$[ebp]
 	mov	DWORD PTR _v1$14[ebp], ecx
 
-; 116  :         __UNIT_TYPE_DIV v2 = v_min_2;
+; 128  :         __UNIT_TYPE_DIV v2 = v_min_2;
 
 	mov	edx, DWORD PTR _v_min_2$[ebp]
 	mov	DWORD PTR _v2$13[ebp], edx
 
-; 117  :         __UNIT_TYPE_DIV v3 = v_min_3;
+; 129  :         __UNIT_TYPE_DIV v3 = v_min_3;
 
 	mov	eax, DWORD PTR _v_min_3$[ebp]
 	mov	DWORD PTR _v3$12[ebp], eax
 $LN7@CalculateC:
 
-; 118  :         for (;;)
-; 119  :         {
-; 120  :             __UNIT_TYPE_DIV q_ = AsumeQ_(u0, u1, v1);
+; 130  :         for (;;)
+; 131  :         {
+; 132  :             __UNIT_TYPE_DIV q_ = AsumeQ_(u0, u1, v1);
 
 	mov	ecx, DWORD PTR _v1$14[ebp]
 	push	ecx
@@ -767,7 +811,7 @@ $LN7@CalculateC:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _q_$11[ebp], eax
 
-; 121  :             if (CheckQ_(q_, u0, u1, u2, v1, v2))
+; 133  :             if (CheckQ_(q_, u0, u1, u2, v1, v2))
 
 	mov	ecx, DWORD PTR _v2$13[ebp]
 	push	ecx
@@ -786,14 +830,14 @@ $LN7@CalculateC:
 	test	eax, eax
 	je	SHORT $LN8@CalculateC
 
-; 122  :             {
-; 123  :                 --q_;
+; 134  :             {
+; 135  :                 --q_;
 
 	mov	ecx, DWORD PTR _q_$11[ebp]
 	sub	ecx, 1
 	mov	DWORD PTR _q_$11[ebp], ecx
 
-; 124  :                 if (CheckQ_(q_, u0, u1, u2, v1, v2))
+; 136  :                 if (CheckQ_(q_, u0, u1, u2, v1, v2))
 
 	mov	edx, DWORD PTR _v2$13[ebp]
 	push	edx
@@ -812,38 +856,38 @@ $LN7@CalculateC:
 	test	eax, eax
 	je	SHORT $LN8@CalculateC
 
-; 125  :                 {
-; 126  :                     --q_;
+; 137  :                 {
+; 138  :                     --q_;
 
 	mov	edx, DWORD PTR _q_$11[ebp]
 	sub	edx, 1
 	mov	DWORD PTR _q_$11[ebp], edx
 $LN8@CalculateC:
 
-; 127  :                 }
-; 128  :             }
-; 129  :             __UNIT_TYPE_DIV bu0 = u0;
+; 139  :                 }
+; 140  :             }
+; 141  :             __UNIT_TYPE_DIV bu0 = u0;
 
 	mov	eax, DWORD PTR _u0$[ebp]
 	mov	DWORD PTR _bu0$10[ebp], eax
 
-; 130  :             __UNIT_TYPE_DIV bu1 = u1;
+; 142  :             __UNIT_TYPE_DIV bu1 = u1;
 
 	mov	ecx, DWORD PTR _u1$[ebp]
 	mov	DWORD PTR _bu1$9[ebp], ecx
 
-; 131  :             __UNIT_TYPE_DIV bu2 = u2;
+; 143  :             __UNIT_TYPE_DIV bu2 = u2;
 
 	mov	edx, DWORD PTR _u2$[ebp]
 	mov	DWORD PTR _bu2$8[ebp], edx
 
-; 132  :             __UNIT_TYPE_DIV bu3 = u3;
+; 144  :             __UNIT_TYPE_DIV bu3 = u3;
 
 	mov	eax, DWORD PTR _u3$[ebp]
 	mov	DWORD PTR _bu3$7[ebp], eax
 
-; 133  :             __UNIT_TYPE_DIV mv1_hi;
-; 134  :             __UNIT_TYPE_DIV mv1_lo = _MULTIPLY_UNIT_DIV(v1, q_, &mv1_hi);
+; 145  :             __UNIT_TYPE_DIV mv1_hi;
+; 146  :             __UNIT_TYPE_DIV mv1_lo = _MULTIPLY_UNIT_DIV(v1, q_, &mv1_hi);
 
 	lea	ecx, DWORD PTR _mv1_hi$6[ebp]
 	push	ecx
@@ -855,8 +899,8 @@ $LN8@CalculateC:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _mv1_lo$5[ebp], eax
 
-; 135  :             __UNIT_TYPE_DIV mv2_hi;
-; 136  :             __UNIT_TYPE_DIV mv2_lo = _MULTIPLY_UNIT_DIV(v2, q_, &mv2_hi);
+; 147  :             __UNIT_TYPE_DIV mv2_hi;
+; 148  :             __UNIT_TYPE_DIV mv2_lo = _MULTIPLY_UNIT_DIV(v2, q_, &mv2_hi);
 
 	lea	ecx, DWORD PTR _mv2_hi$4[ebp]
 	push	ecx
@@ -868,8 +912,8 @@ $LN8@CalculateC:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _mv2_lo$3[ebp], eax
 
-; 137  :             __UNIT_TYPE_DIV mv3_hi;
-; 138  :             __UNIT_TYPE_DIV mv3_lo = _MULTIPLY_UNIT_DIV(v3, q_, &mv3_hi);
+; 149  :             __UNIT_TYPE_DIV mv3_hi;
+; 150  :             __UNIT_TYPE_DIV mv3_lo = _MULTIPLY_UNIT_DIV(v3, q_, &mv3_hi);
 
 	lea	ecx, DWORD PTR _mv3_hi$2[ebp]
 	push	ecx
@@ -881,18 +925,82 @@ $LN8@CalculateC:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _mv3_lo$1[ebp], eax
 
-; 139  : 
-; 140  :             // [bu0, bu1, bu2, bu3] -= mv3_lo;
-; 141  :             // [bu0, bu1, bu2] -= mv3_hi;
-; 142  :             // [bu0, bu1, bu2] -= mv2_lo;
-; 143  :             // [bu0, bu1] -= mv2_hi;
-; 144  :             // [bu0, bu1] -= mv1_lo;
-; 145  :             // [bu0] -= mv1_hi;
-; 146  : 
-; 147  :                 
-; 148  :             if (_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu3, mv3_lo, &bu3), bu2, mv3_hi, &bu2), bu1, 0, &bu1), bu0, 0, &bu0) ||
-; 149  :                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu2, mv2_lo, &bu2), bu1, mv2_hi, &bu1), bu0, 0, &bu0) ||
+; 151  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 152  :             if (sizeof(mv1_hi) == sizeof(_UINT32_T))
 
+	mov	ecx, 1
+	test	ecx, ecx
+	je	SHORT $LN10@CalculateC
+
+; 153  :                 AddToMULTI32Counter(3);
+
+	push	3
+	call	_AddToMULTI32Counter
+	add	esp, 4
+	jmp	SHORT $LN11@CalculateC
+$LN10@CalculateC:
+
+; 154  :             else
+; 155  :                 AddToMULTI64Counter(3);
+
+	push	3
+	call	_AddToMULTI64Counter
+	add	esp, 4
+$LN11@CalculateC:
+
+; 156  : #endif
+; 157  : 
+; 158  :             // [bu0, bu1, bu2, bu3] -= mv3_lo;
+; 159  :             // [bu0, bu1, bu2] -= mv3_hi;
+; 160  :             // [bu0, bu1, bu2] -= mv2_lo;
+; 161  :             // [bu0, bu1] -= mv2_hi;
+; 162  :             // [bu0, bu1] -= mv1_lo;
+; 163  :             // [bu0] -= mv1_hi;
+; 164  : 
+; 165  :                 
+; 166  :             if (_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu3, mv3_lo, &bu3), bu2, mv3_hi, &bu2), bu1, 0, &bu1), bu0, 0, &bu0) ||
+; 167  :                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu2, mv2_lo, &bu2), bu1, mv2_hi, &bu1), bu0, 0, &bu0) ||
+
+	lea	edx, DWORD PTR _bu0$10[ebp]
+	push	edx
+	push	0
+	mov	eax, DWORD PTR _bu0$10[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _bu1$9[ebp]
+	push	ecx
+	push	0
+	mov	edx, DWORD PTR _bu1$9[ebp]
+	push	edx
+	lea	eax, DWORD PTR _bu2$8[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _mv3_hi$2[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _bu2$8[ebp]
+	push	edx
+	lea	eax, DWORD PTR _bu3$7[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _mv3_lo$1[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _bu3$7[ebp]
+	push	edx
+	push	0
+	call	__SUBTRUCT_UNIT_DIV
+	add	esp, 16					; 00000010H
+	movzx	eax, al
+	push	eax
+	call	__SUBTRUCT_UNIT_DIV
+	add	esp, 16					; 00000010H
+	movzx	ecx, al
+	push	ecx
+	call	__SUBTRUCT_UNIT_DIV
+	add	esp, 16					; 00000010H
+	movzx	edx, al
+	push	edx
+	call	__SUBTRUCT_UNIT_DIV
+	add	esp, 16					; 00000010H
+	movsx	eax, al
+	test	eax, eax
+	jne	$LN13@CalculateC
 	lea	ecx, DWORD PTR _bu0$10[ebp]
 	push	ecx
 	push	0
@@ -900,26 +1008,17 @@ $LN8@CalculateC:
 	push	edx
 	lea	eax, DWORD PTR _bu1$9[ebp]
 	push	eax
-	push	0
-	mov	ecx, DWORD PTR _bu1$9[ebp]
+	mov	ecx, DWORD PTR _mv2_hi$4[ebp]
 	push	ecx
-	lea	edx, DWORD PTR _bu2$8[ebp]
+	mov	edx, DWORD PTR _bu1$9[ebp]
 	push	edx
-	mov	eax, DWORD PTR _mv3_hi$2[ebp]
+	lea	eax, DWORD PTR _bu2$8[ebp]
 	push	eax
-	mov	ecx, DWORD PTR _bu2$8[ebp]
+	mov	ecx, DWORD PTR _mv2_lo$3[ebp]
 	push	ecx
-	lea	edx, DWORD PTR _bu3$7[ebp]
+	mov	edx, DWORD PTR _bu2$8[ebp]
 	push	edx
-	mov	eax, DWORD PTR _mv3_lo$1[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _bu3$7[ebp]
-	push	ecx
 	push	0
-	call	__SUBTRUCT_UNIT_DIV
-	add	esp, 16					; 00000010H
-	movzx	edx, al
-	push	edx
 	call	__SUBTRUCT_UNIT_DIV
 	add	esp, 16					; 00000010H
 	movzx	eax, al
@@ -932,29 +1031,20 @@ $LN8@CalculateC:
 	add	esp, 16					; 00000010H
 	movsx	edx, al
 	test	edx, edx
-	jne	$LN11@CalculateC
+	jne	SHORT $LN13@CalculateC
 	lea	eax, DWORD PTR _bu0$10[ebp]
 	push	eax
-	push	0
-	mov	ecx, DWORD PTR _bu0$10[ebp]
+	mov	ecx, DWORD PTR _mv1_hi$6[ebp]
 	push	ecx
-	lea	edx, DWORD PTR _bu1$9[ebp]
+	mov	edx, DWORD PTR _bu0$10[ebp]
 	push	edx
-	mov	eax, DWORD PTR _mv2_hi$4[ebp]
+	lea	eax, DWORD PTR _bu1$9[ebp]
 	push	eax
-	mov	ecx, DWORD PTR _bu1$9[ebp]
+	mov	ecx, DWORD PTR _mv1_lo$5[ebp]
 	push	ecx
-	lea	edx, DWORD PTR _bu2$8[ebp]
+	mov	edx, DWORD PTR _bu1$9[ebp]
 	push	edx
-	mov	eax, DWORD PTR _mv2_lo$3[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _bu2$8[ebp]
-	push	ecx
 	push	0
-	call	__SUBTRUCT_UNIT_DIV
-	add	esp, 16					; 00000010H
-	movzx	edx, al
-	push	edx
 	call	__SUBTRUCT_UNIT_DIV
 	add	esp, 16					; 00000010H
 	movzx	eax, al
@@ -963,190 +1053,168 @@ $LN8@CalculateC:
 	add	esp, 16					; 00000010H
 	movsx	ecx, al
 	test	ecx, ecx
-	jne	SHORT $LN11@CalculateC
-	lea	edx, DWORD PTR _bu0$10[ebp]
-	push	edx
-	mov	eax, DWORD PTR _mv1_hi$6[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _bu0$10[ebp]
-	push	ecx
-	lea	edx, DWORD PTR _bu1$9[ebp]
-	push	edx
-	mov	eax, DWORD PTR _mv1_lo$5[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _bu1$9[ebp]
-	push	ecx
-	push	0
-	call	__SUBTRUCT_UNIT_DIV
-	add	esp, 16					; 00000010H
-	movzx	edx, al
-	push	edx
-	call	__SUBTRUCT_UNIT_DIV
-	add	esp, 16					; 00000010H
-	movsx	eax, al
-	test	eax, eax
-	je	$LN10@CalculateC
-$LN11@CalculateC:
-
-; 150  :                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu1, mv1_lo, &bu1), bu0, mv1_hi, &bu0))
-; 151  :             {
-; 152  :                 if (sizeof(__UNIT_TYPE_DIV) <= 4)
-
-	mov	ecx, 1
-	test	ecx, ecx
-	je	SHORT $LN12@CalculateC
-
-; 153  :                     env->log("found: u0=0x%08x, u1=0x%08x, u2=0x%08x, u3=0x%08x, v1=0x%08x, v2=0x%08x, v3=0x%08x\n", u0, u1, u2, u3, v1, v2, v3);
-
-	mov	esi, esp
-	mov	edx, DWORD PTR _v3$12[ebp]
-	push	edx
-	mov	eax, DWORD PTR _v2$13[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _v1$14[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _u3$[ebp]
-	push	edx
-	mov	eax, DWORD PTR _u2$[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _u1$[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _u0$[ebp]
-	push	edx
-	push	OFFSET $SG94817
-	mov	eax, DWORD PTR _env$[ebp]
-	mov	ecx, DWORD PTR [eax]
-	call	ecx
-	add	esp, 32					; 00000020H
-	cmp	esi, esp
-	call	__RTC_CheckEsp
-	jmp	SHORT $LN13@CalculateC
-$LN12@CalculateC:
-
-; 154  :                 else
-; 155  :                     env->log("found: u0=0x%016llx, u1=0x%016llx, u2=0x%016llx, u3=0x%016llx, v1=0x%016llx, v2=0x%016llx, v3=0x%016llx\n", u0, u1, u2, u3, v1, v2, v3);
-
-	mov	esi, esp
-	mov	edx, DWORD PTR _v3$12[ebp]
-	push	edx
-	mov	eax, DWORD PTR _v2$13[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _v1$14[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _u3$[ebp]
-	push	edx
-	mov	eax, DWORD PTR _u2$[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _u1$[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _u0$[ebp]
-	push	edx
-	push	OFFSET $SG94818
-	mov	eax, DWORD PTR _env$[ebp]
-	mov	ecx, DWORD PTR [eax]
-	call	ecx
-	add	esp, 32					; 00000020H
-	cmp	esi, esp
-	call	__RTC_CheckEsp
+	je	$LN12@CalculateC
 $LN13@CalculateC:
 
-; 156  :                 env->pause();
+; 168  :                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu1, mv1_lo, &bu1), bu0, mv1_hi, &bu0))
+; 169  :             {
+; 170  :                 if (sizeof(__UNIT_TYPE_DIV) <= 4)
 
-	mov	edx, DWORD PTR _env$[ebp]
-	mov	esi, esp
-	mov	eax, DWORD PTR [edx+4]
-	call	eax
-	cmp	esi, esp
-	call	__RTC_CheckEsp
-$LN10@CalculateC:
-
-; 157  :             }
-; 158  : 
-; 159  :             if (SUBTRUCT_3W_UNIT(&v_count_1, &v_count_2, &v_count_3, 1))
-
-	push	1
-	lea	ecx, DWORD PTR _v_count_3$15[ebp]
-	push	ecx
-	lea	edx, DWORD PTR _v_count_2$16[ebp]
-	push	edx
-	lea	eax, DWORD PTR _v_count_1$17[ebp]
-	push	eax
-	call	_SUBTRUCT_3W_UNIT
-	add	esp, 16					; 00000010H
-	movsx	ecx, al
-	test	ecx, ecx
+	mov	edx, 1
+	test	edx, edx
 	je	SHORT $LN14@CalculateC
 
-; 160  :                 break;
+; 171  :                     env->log("found: u0=0x%08x, u1=0x%08x, u2=0x%08x, u3=0x%08x, v1=0x%08x, v2=0x%08x, v3=0x%08x\n", u0, u1, u2, u3, v1, v2, v3);
 
-	jmp	SHORT $LN6@CalculateC
+	mov	esi, esp
+	mov	eax, DWORD PTR _v3$12[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _v2$13[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v1$14[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u3$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _u2$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _u1$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u0$[ebp]
+	push	eax
+	push	OFFSET $SG94826
+	mov	ecx, DWORD PTR _env$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	call	edx
+	add	esp, 32					; 00000020H
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	jmp	SHORT $LN15@CalculateC
 $LN14@CalculateC:
 
-; 161  :             ADD_3W_UNIT(&v1, &v2, &v3, 1);
+; 172  :                 else
+; 173  :                     env->log("found: u0=0x%016llx, u1=0x%016llx, u2=0x%016llx, u3=0x%016llx, v1=0x%016llx, v2=0x%016llx, v3=0x%016llx\n", u0, u1, u2, u3, v1, v2, v3);
+
+	mov	esi, esp
+	mov	eax, DWORD PTR _v3$12[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _v2$13[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v1$14[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u3$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _u2$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _u1$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u0$[ebp]
+	push	eax
+	push	OFFSET $SG94827
+	mov	ecx, DWORD PTR _env$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	call	edx
+	add	esp, 32					; 00000020H
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+$LN15@CalculateC:
+
+; 174  :                 env->pause();
+
+	mov	eax, DWORD PTR _env$[ebp]
+	mov	esi, esp
+	mov	ecx, DWORD PTR [eax+4]
+	call	ecx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+$LN12@CalculateC:
+
+; 175  :             }
+; 176  : 
+; 177  :             if (SUBTRUCT_3W_UNIT(&v_count_1, &v_count_2, &v_count_3, 1))
 
 	push	1
-	lea	edx, DWORD PTR _v3$12[ebp]
+	lea	edx, DWORD PTR _v_count_3$15[ebp]
 	push	edx
-	lea	eax, DWORD PTR _v2$13[ebp]
+	lea	eax, DWORD PTR _v_count_2$16[ebp]
 	push	eax
-	lea	ecx, DWORD PTR _v1$14[ebp]
+	lea	ecx, DWORD PTR _v_count_1$17[ebp]
 	push	ecx
+	call	_SUBTRUCT_3W_UNIT
+	add	esp, 16					; 00000010H
+	movsx	edx, al
+	test	edx, edx
+	je	SHORT $LN16@CalculateC
+
+; 178  :                 break;
+
+	jmp	SHORT $LN6@CalculateC
+$LN16@CalculateC:
+
+; 179  :             ADD_3W_UNIT(&v1, &v2, &v3, 1);
+
+	push	1
+	lea	eax, DWORD PTR _v3$12[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _v2$13[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _v1$14[ebp]
+	push	edx
 	call	_ADD_3W_UNIT
 	add	esp, 16					; 00000010H
 
-; 162  :         }
+; 180  :         }
 
 	jmp	$LN7@CalculateC
 $LN6@CalculateC:
 
-; 163  :         if (SUBTRUCT_4W_UNIT(&u_count_0, &u_count_1, &u_count_2, &u_count_3, 1))
+; 181  :         if (SUBTRUCT_4W_UNIT(&u_count_0, &u_count_1, &u_count_2, &u_count_3, 1))
 
 	push	1
-	lea	edx, DWORD PTR _u_count_3$[ebp]
-	push	edx
-	lea	eax, DWORD PTR _u_count_2$[ebp]
+	lea	eax, DWORD PTR _u_count_3$[ebp]
 	push	eax
-	lea	ecx, DWORD PTR _u_count_1$[ebp]
+	lea	ecx, DWORD PTR _u_count_2$[ebp]
 	push	ecx
-	lea	edx, DWORD PTR _u_count_0$[ebp]
+	lea	edx, DWORD PTR _u_count_1$[ebp]
 	push	edx
+	lea	eax, DWORD PTR _u_count_0$[ebp]
+	push	eax
 	call	_SUBTRUCT_4W_UNIT
 	add	esp, 20					; 00000014H
-	movsx	eax, al
-	test	eax, eax
-	je	SHORT $LN15@CalculateC
+	movsx	ecx, al
+	test	ecx, ecx
+	je	SHORT $LN17@CalculateC
 
-; 164  :             break;
+; 182  :             break;
 
 	jmp	SHORT $LN1@CalculateC
-$LN15@CalculateC:
+$LN17@CalculateC:
 
-; 165  :         ADD_4W_UNIT(&u0, &u1, &u2, &u3, 1);
+; 183  :         ADD_4W_UNIT(&u0, &u1, &u2, &u3, 1);
 
 	push	1
-	lea	ecx, DWORD PTR _u3$[ebp]
-	push	ecx
-	lea	edx, DWORD PTR _u2$[ebp]
+	lea	edx, DWORD PTR _u3$[ebp]
 	push	edx
-	lea	eax, DWORD PTR _u1$[ebp]
+	lea	eax, DWORD PTR _u2$[ebp]
 	push	eax
-	lea	ecx, DWORD PTR _u0$[ebp]
+	lea	ecx, DWORD PTR _u1$[ebp]
 	push	ecx
+	lea	edx, DWORD PTR _u0$[ebp]
+	push	edx
 	call	_ADD_4W_UNIT
 	add	esp, 20					; 00000014H
 
-; 166  :     }
+; 184  :     }
 
 	jmp	$LN4@CalculateC
 $LN1@CalculateC:
 
-; 167  : 
-; 168  : }
+; 185  : 
+; 186  : }
 
 	push	edx
 	mov	ecx, ebp
 	push	eax
-	lea	edx, DWORD PTR $LN39@CalculateC
+	lea	edx, DWORD PTR $LN41@CalculateC
 	call	@_RTC_CheckStackVars@8
 	pop	eax
 	pop	edx
@@ -1158,128 +1226,151 @@ $LN1@CalculateC:
 	mov	esp, ebp
 	pop	ebp
 	ret	0
-$LN39@CalculateC:
+	npad	1
+$LN41@CalculateC:
 	DD	21					; 00000015H
-	DD	$LN38@CalculateC
-$LN38@CalculateC:
+	DD	$LN40@CalculateC
+$LN40@CalculateC:
 	DD	-36					; ffffffdcH
 	DD	4
-	DD	$LN17@CalculateC
+	DD	$LN19@CalculateC
 	DD	-48					; ffffffd0H
 	DD	4
-	DD	$LN18@CalculateC
+	DD	$LN20@CalculateC
 	DD	-60					; ffffffc4H
 	DD	4
-	DD	$LN19@CalculateC
+	DD	$LN21@CalculateC
 	DD	-72					; ffffffb8H
 	DD	4
-	DD	$LN20@CalculateC
+	DD	$LN22@CalculateC
 	DD	-84					; ffffffacH
 	DD	4
-	DD	$LN21@CalculateC
+	DD	$LN23@CalculateC
 	DD	-96					; ffffffa0H
 	DD	4
-	DD	$LN22@CalculateC
+	DD	$LN24@CalculateC
 	DD	-108					; ffffff94H
 	DD	4
-	DD	$LN23@CalculateC
+	DD	$LN25@CalculateC
 	DD	-120					; ffffff88H
 	DD	4
-	DD	$LN24@CalculateC
+	DD	$LN26@CalculateC
 	DD	-132					; ffffff7cH
 	DD	4
-	DD	$LN25@CalculateC
+	DD	$LN27@CalculateC
 	DD	-144					; ffffff70H
 	DD	4
-	DD	$LN26@CalculateC
+	DD	$LN28@CalculateC
 	DD	-156					; ffffff64H
 	DD	4
-	DD	$LN27@CalculateC
+	DD	$LN29@CalculateC
 	DD	-168					; ffffff58H
 	DD	4
-	DD	$LN28@CalculateC
+	DD	$LN30@CalculateC
 	DD	-180					; ffffff4cH
 	DD	4
-	DD	$LN29@CalculateC
+	DD	$LN31@CalculateC
 	DD	-192					; ffffff40H
 	DD	4
-	DD	$LN30@CalculateC
+	DD	$LN32@CalculateC
 	DD	-208					; ffffff30H
 	DD	4
-	DD	$LN31@CalculateC
+	DD	$LN33@CalculateC
 	DD	-220					; ffffff24H
 	DD	4
-	DD	$LN32@CalculateC
+	DD	$LN34@CalculateC
 	DD	-232					; ffffff18H
 	DD	4
-	DD	$LN33@CalculateC
+	DD	$LN35@CalculateC
 	DD	-244					; ffffff0cH
 	DD	4
-	DD	$LN34@CalculateC
+	DD	$LN36@CalculateC
 	DD	-256					; ffffff00H
 	DD	4
-	DD	$LN35@CalculateC
+	DD	$LN37@CalculateC
 	DD	-272					; fffffef0H
 	DD	4
-	DD	$LN36@CalculateC
+	DD	$LN38@CalculateC
 	DD	-288					; fffffee0H
 	DD	4
-	DD	$LN37@CalculateC
-$LN37@CalculateC:
+	DD	$LN39@CalculateC
+$LN39@CalculateC:
 	DB	109					; 0000006dH
 	DB	118					; 00000076H
 	DB	51					; 00000033H
+	DB	95					; 0000005fH
+	DB	104					; 00000068H
+	DB	105					; 00000069H
+	DB	0
+$LN38@CalculateC:
+	DB	109					; 0000006dH
+	DB	118					; 00000076H
+	DB	50					; 00000032H
+	DB	95					; 0000005fH
+	DB	104					; 00000068H
+	DB	105					; 00000069H
+	DB	0
+$LN37@CalculateC:
+	DB	109					; 0000006dH
+	DB	118					; 00000076H
+	DB	49					; 00000031H
 	DB	95					; 0000005fH
 	DB	104					; 00000068H
 	DB	105					; 00000069H
 	DB	0
 $LN36@CalculateC:
-	DB	109					; 0000006dH
-	DB	118					; 00000076H
-	DB	50					; 00000032H
-	DB	95					; 0000005fH
-	DB	104					; 00000068H
-	DB	105					; 00000069H
+	DB	98					; 00000062H
+	DB	117					; 00000075H
+	DB	51					; 00000033H
 	DB	0
 $LN35@CalculateC:
-	DB	109					; 0000006dH
-	DB	118					; 00000076H
-	DB	49					; 00000031H
-	DB	95					; 0000005fH
-	DB	104					; 00000068H
-	DB	105					; 00000069H
+	DB	98					; 00000062H
+	DB	117					; 00000075H
+	DB	50					; 00000032H
 	DB	0
 $LN34@CalculateC:
 	DB	98					; 00000062H
 	DB	117					; 00000075H
-	DB	51					; 00000033H
+	DB	49					; 00000031H
 	DB	0
 $LN33@CalculateC:
 	DB	98					; 00000062H
 	DB	117					; 00000075H
-	DB	50					; 00000032H
-	DB	0
-$LN32@CalculateC:
-	DB	98					; 00000062H
-	DB	117					; 00000075H
-	DB	49					; 00000031H
-	DB	0
-$LN31@CalculateC:
-	DB	98					; 00000062H
-	DB	117					; 00000075H
 	DB	48					; 00000030H
 	DB	0
-$LN30@CalculateC:
+$LN32@CalculateC:
 	DB	118					; 00000076H
 	DB	51					; 00000033H
 	DB	0
-$LN29@CalculateC:
+$LN31@CalculateC:
 	DB	118					; 00000076H
 	DB	50					; 00000032H
 	DB	0
-$LN28@CalculateC:
+$LN30@CalculateC:
 	DB	118					; 00000076H
 	DB	49					; 00000031H
+	DB	0
+$LN29@CalculateC:
+	DB	118					; 00000076H
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	111					; 0000006fH
+	DB	117					; 00000075H
+	DB	110					; 0000006eH
+	DB	116					; 00000074H
+	DB	95					; 0000005fH
+	DB	51					; 00000033H
+	DB	0
+$LN28@CalculateC:
+	DB	118					; 00000076H
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	111					; 0000006fH
+	DB	117					; 00000075H
+	DB	110					; 0000006eH
+	DB	116					; 00000074H
+	DB	95					; 0000005fH
+	DB	50					; 00000032H
 	DB	0
 $LN27@CalculateC:
 	DB	118					; 00000076H
@@ -1290,45 +1381,45 @@ $LN27@CalculateC:
 	DB	110					; 0000006eH
 	DB	116					; 00000074H
 	DB	95					; 0000005fH
-	DB	51					; 00000033H
+	DB	49					; 00000031H
 	DB	0
 $LN26@CalculateC:
-	DB	118					; 00000076H
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	111					; 0000006fH
 	DB	117					; 00000075H
-	DB	110					; 0000006eH
-	DB	116					; 00000074H
-	DB	95					; 0000005fH
-	DB	50					; 00000032H
+	DB	51					; 00000033H
 	DB	0
 $LN25@CalculateC:
-	DB	118					; 00000076H
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	111					; 0000006fH
 	DB	117					; 00000075H
-	DB	110					; 0000006eH
-	DB	116					; 00000074H
-	DB	95					; 0000005fH
-	DB	49					; 00000031H
+	DB	50					; 00000032H
 	DB	0
 $LN24@CalculateC:
 	DB	117					; 00000075H
-	DB	51					; 00000033H
+	DB	49					; 00000031H
 	DB	0
 $LN23@CalculateC:
 	DB	117					; 00000075H
-	DB	50					; 00000032H
+	DB	48					; 00000030H
 	DB	0
 $LN22@CalculateC:
 	DB	117					; 00000075H
-	DB	49					; 00000031H
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	111					; 0000006fH
+	DB	117					; 00000075H
+	DB	110					; 0000006eH
+	DB	116					; 00000074H
+	DB	95					; 0000005fH
+	DB	51					; 00000033H
 	DB	0
 $LN21@CalculateC:
 	DB	117					; 00000075H
-	DB	48					; 00000030H
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	111					; 0000006fH
+	DB	117					; 00000075H
+	DB	110					; 0000006eH
+	DB	116					; 00000074H
+	DB	95					; 0000005fH
+	DB	50					; 00000032H
 	DB	0
 $LN20@CalculateC:
 	DB	117					; 00000075H
@@ -1339,31 +1430,9 @@ $LN20@CalculateC:
 	DB	110					; 0000006eH
 	DB	116					; 00000074H
 	DB	95					; 0000005fH
-	DB	51					; 00000033H
-	DB	0
-$LN19@CalculateC:
-	DB	117					; 00000075H
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	111					; 0000006fH
-	DB	117					; 00000075H
-	DB	110					; 0000006eH
-	DB	116					; 00000074H
-	DB	95					; 0000005fH
-	DB	50					; 00000032H
-	DB	0
-$LN18@CalculateC:
-	DB	117					; 00000075H
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	111					; 0000006fH
-	DB	117					; 00000075H
-	DB	110					; 0000006eH
-	DB	116					; 00000074H
-	DB	95					; 0000005fH
 	DB	49					; 00000031H
 	DB	0
-$LN17@CalculateC:
+$LN19@CalculateC:
 	DB	117					; 00000075H
 	DB	95					; 0000005fH
 	DB	99					; 00000063H
@@ -1375,6 +1444,108 @@ $LN17@CalculateC:
 	DB	48					; 00000030H
 	DB	0
 _CalculateCriticalDataOfDivision ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+_TEXT	SEGMENT
+_value$ = 8						; size = 4
+_AddToMULTI64Counter PROC
+
+; 990  : {
+
+	push	ebp
+	mov	ebp, esp
+	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, DWORD PTR _value$[ebp]
+	mov	ecx, OFFSET _statistics_info
+	lock	 xadd	 DWORD PTR [ecx], eax
+
+; 992  : }
+
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	pop	ebp
+	ret	0
+_AddToMULTI64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+_TEXT	SEGMENT
+_value$ = 8						; size = 4
+_AddToMULTI32Counter PROC
+
+; 984  : {
+
+	push	ebp
+	mov	ebp, esp
+	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	mov	eax, DWORD PTR _value$[ebp]
+	mov	ecx, OFFSET _statistics_info+4
+	lock	 xadd	 DWORD PTR [ecx], eax
+
+; 986  : }
+
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	pop	ebp
+	ret	0
+_AddToMULTI32Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+_TEXT	SEGMENT
+_IncrementDIV64Counter PROC
+
+; 955  : {
+
+	push	ebp
+	mov	ebp, esp
+	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 956  :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+
+	lock	 inc	 (null) PTR _statistics_info+8
+
+; 957  : }
+
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	pop	ebp
+	ret	0
+_IncrementDIV64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+_TEXT	SEGMENT
+_IncrementDIV32Counter PROC
+
+; 949  : {
+
+	push	ebp
+	mov	ebp, esp
+	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 950  :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+
+	lock	 inc	 (null) PTR _statistics_info+12
+
+; 951  : }
+
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	pop	ebp
+	ret	0
+_IncrementDIV32Counter ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h

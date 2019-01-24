@@ -443,6 +443,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[31], &u_buf[31]);
         u_buf += 32;
         --count;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(32);
+        else
+            AddToMULTI64Counter(32);
+#endif
     }
 
     if (u_count & 0x10)
@@ -464,6 +470,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[14], &u_buf[14]);
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[15], &u_buf[15]);
         u_buf += 16;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(16);
+        else
+            AddToMULTI64Counter(16);
+#endif
     }
 
     if (u_count & 0x8)
@@ -477,6 +489,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[6], &u_buf[6]);
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[7], &u_buf[7]);
         u_buf += 8;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(8);
+        else
+            AddToMULTI64Counter(8);
+#endif
     }
 
     if (u_count & 0x4)
@@ -486,6 +504,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[2], &u_buf[2]);
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[3], &u_buf[3]);
         u_buf += 4;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(4);
+        else
+            AddToMULTI64Counter(4);
+#endif
     }
 
     if (u_count & 0x2)
@@ -493,12 +517,24 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADC_MUL(__UNIT_TYPE* u_buf, __UNIT_TYPE
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[0], &u_buf[0]);
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[1], &u_buf[1]);
         u_buf += 2;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(2);
+        else
+            AddToMULTI64Counter(2);
+#endif
     }
 
     if (u_count & 0x1)
     {
         k = MultiplyAndAdd1Word_using_ADC_MUL(k, u_buf[0], &u_buf[0]);
         u_buf += 1;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            IncrementMULTI32Counter();
+        else
+            IncrementMULTI64Counter();
+#endif
     }
 
     if (k > 0)
@@ -550,6 +586,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[31], &u_buf[31]);
         u_buf += 32;
         --count;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(32);
+        else
+            AddToMULTI64Counter(32);
+#endif
     }
 
     if (u_count & 0x10)
@@ -571,6 +613,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[14], &u_buf[14]);
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[15], &u_buf[15]);
         u_buf += 16;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(16);
+        else
+            AddToMULTI64Counter(16);
+#endif
     }
 
     if (u_count & 0x8)
@@ -584,6 +632,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[6], &u_buf[6]);
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[7], &u_buf[7]);
         u_buf += 8;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(8);
+        else
+            AddToMULTI64Counter(8);
+#endif
     }
 
     if (u_count & 0x4)
@@ -593,6 +647,12 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
         u_buf += 4;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(4);
+        else
+            AddToMULTI64Counter(4);
+#endif
     }
 
     if (u_count & 0x2)
@@ -600,12 +660,24 @@ static __UNIT_TYPE* MultiplyAndAdd_using_ADCX_MULX(__UNIT_TYPE* u_buf, __UNIT_TY
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
         u_buf += 2;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            AddToMULTI32Counter(2);
+        else
+            AddToMULTI64Counter(2);
+#endif
     }
 
     if (u_count & 0x1)
     {
         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
         u_buf += 1;
+#ifdef ENABLED_PERFORMANCE_COUNTER
+        if (sizeof(k) == sizeof(_UINT32_T))
+            IncrementMULTI32Counter();
+        else
+            IncrementMULTI64Counter();
+#endif
     }
 
     if (k > 0)

@@ -88435,6 +88435,12 @@ __inline static __UNIT_TYPE_DIV AsumeQ_(__UNIT_TYPE_DIV u0, __UNIT_TYPE_DIV u1, 
         return ((__UNIT_TYPE_DIV)-1);
     __UNIT_TYPE_DIV r;
     __UNIT_TYPE_DIV q = _DIVREM_UNIT(u0, u1, v1, &r);
+
+    if (sizeof(r) == sizeof(_UINT64_T))
+        IncrementDIV64Counter();
+    else
+        IncrementDIV32Counter();
+
     return (q);
 }
 
@@ -88447,29 +88453,35 @@ __inline static BOOL CheckQ_(__UNIT_TYPE_DIV q_, __UNIT_TYPE_DIV u0, __UNIT_TYPE
     __UNIT_TYPE_DIV rh_mi = _MULTIPLY_UNIT_DIV(q_, v1, &rh_hi);
     __UNIT_TYPE_DIV rh_lo = u2;
     _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, u1, rh_mi, &rh_mi), u0, rh_hi, &rh_hi);
+
+    if (sizeof(lh_hi) == sizeof(_UINT32_T))
+        AddToMULTI32Counter(2);
+    else
+        AddToMULTI64Counter(2);
+
     if (lh_hi > rh_hi)
         return (
-# 78 "CALC_divrem_critical.c" 3
+# 90 "CALC_divrem_critical.c" 3
                1
-# 78 "CALC_divrem_critical.c"
+# 90 "CALC_divrem_critical.c"
                    );
     else if (lh_hi < rh_hi)
         return (
-# 80 "CALC_divrem_critical.c" 3
+# 92 "CALC_divrem_critical.c" 3
                0
-# 80 "CALC_divrem_critical.c"
+# 92 "CALC_divrem_critical.c"
                     );
     else if (lh_mi > rh_mi)
         return (
-# 82 "CALC_divrem_critical.c" 3
+# 94 "CALC_divrem_critical.c" 3
                1
-# 82 "CALC_divrem_critical.c"
+# 94 "CALC_divrem_critical.c"
                    );
     else if (lh_mi < rh_mi)
         return (
-# 84 "CALC_divrem_critical.c" 3
+# 96 "CALC_divrem_critical.c" 3
                0
-# 84 "CALC_divrem_critical.c"
+# 96 "CALC_divrem_critical.c"
                     );
     else
         return (lh_lo > rh_lo);
@@ -88525,7 +88537,12 @@ void CalculateCriticalDataOfDivision(PMC_DEBUG_ENVIRONMENT *env)
             __UNIT_TYPE_DIV mv2_lo = _MULTIPLY_UNIT_DIV(v2, q_, &mv2_hi);
             __UNIT_TYPE_DIV mv3_hi;
             __UNIT_TYPE_DIV mv3_lo = _MULTIPLY_UNIT_DIV(v3, q_, &mv3_hi);
-# 148 "CALC_divrem_critical.c"
+
+            if (sizeof(mv1_hi) == sizeof(_UINT32_T))
+                AddToMULTI32Counter(3);
+            else
+                AddToMULTI64Counter(3);
+# 166 "CALC_divrem_critical.c"
             if (_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu3, mv3_lo, &bu3), bu2, mv3_hi, &bu2), bu1, 0, &bu1), bu0, 0, &bu0) ||
                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu2, mv2_lo, &bu2), bu1, mv2_hi, &bu1), bu0, 0, &bu0) ||
                 _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, bu1, mv1_lo, &bu1), bu0, mv1_hi, &bu0))

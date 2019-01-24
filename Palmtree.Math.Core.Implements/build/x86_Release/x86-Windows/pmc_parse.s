@@ -755,457 +755,36 @@ L51:
  # 0 "" 2
 /NO_APP
 	addl	%edi, %eax
-	movl	%edx, %edi
 	setc	%cl
 	movl	%eax, 124(%ebx)
 	movl	%ecx, %eax
 	addb	$-1, %al
 	movl	$0, %eax
-	adcl	%eax, %edi
+	adcl	%eax, %edx
 	subl	$-128, %ebx
 	subl	$1, %ebp
+	movl	%edx, %edi
+	movl	%edx, 16(%esp)
+	lock addl	$32, _statistics_info+4
+	testl	%ebp, %ebp
 	jne	L51
 	movl	(%esp), %ecx
 	sall	$7, %ecx
 	addl	40(%esp), %ecx
 L50:
 	testb	$16, 44(%esp)
-	je	L52
-	movl	(%ecx), %eax
-	movl	$1000000000, %ebx
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%edi, %eax
-	movl	%edx, %esi
-	setc	%dl
-	xorl	%edi, %edi
-	movl	%eax, (%ecx)
-	movl	4(%ecx), %eax
-	addb	$-1, %dl
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 4(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	8(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 8(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	12(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 12(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	16(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 16(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	20(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 20(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	24(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 24(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	28(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 28(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	32(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 32(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	36(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 36(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	40(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 40(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	44(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 44(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	48(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 48(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	52(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 52(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	56(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 56(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	60(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 60(%ecx)
-	addb	$-1, %bl
-	adcl	%edx, %edi
-	addl	$64, %ecx
-L52:
+	jne	L79
 	testb	$8, 44(%esp)
-	je	L53
-	movl	(%ecx), %eax
-	movl	$1000000000, %ebx
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%edi, %eax
-	movl	%edx, %esi
-	setc	%dl
-	xorl	%edi, %edi
-	movl	%eax, (%ecx)
-	movl	4(%ecx), %eax
-	addb	$-1, %dl
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 4(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	8(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 8(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	12(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 12(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	16(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 16(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	20(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 20(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	24(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ebp, %eax
-	movl	%edx, %esi
-	setc	%bl
-	movl	%eax, 24(%ecx)
-	movl	%ebx, %eax
-	movl	$1000000000, %ebx
-	addb	$-1, %al
-	movl	28(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 28(%ecx)
-	addb	$-1, %bl
-	adcl	%edx, %edi
-	addl	$32, %ecx
+	jne	L80
 L53:
 	testb	$4, 44(%esp)
-	je	L54
-	movl	$1000000000, %ebx
-	movl	(%ecx), %eax
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%edi, %eax
-	movl	%edx, %esi
-	setc	%dl
-	xorl	%edi, %edi
-	movl	%eax, (%ecx)
-	movl	4(%ecx), %eax
-	addb	$-1, %dl
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	movl	%eax, %ebp
-	setc	%al
-	addb	$-1, %al
-	movl	%ebp, 4(%ecx)
-	movl	8(%ecx), %eax
-	adcl	%edi, %edx
-	movl	%edx, %ebp
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%eax, %ebp
-	movl	%edx, %esi
-	setc	%al
-	movl	%ebp, 8(%ecx)
-	addb	$-1, %al
-	movl	12(%ecx), %eax
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 12(%ecx)
-	addb	$-1, %bl
-	adcl	%edx, %edi
-	addl	$16, %ecx
+	jne	L81
 L54:
 	testb	$2, 44(%esp)
-	je	L55
-	movl	$1000000000, %ebx
-	movl	(%ecx), %eax
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%edi, %eax
-	movl	%edx, %esi
-	setc	%dl
-	xorl	%edi, %edi
-	movl	%eax, (%ecx)
-	movl	4(%ecx), %eax
-	addb	$-1, %dl
-	adcl	%edi, %esi
-/APP
- # 514 "pmc_internal.h" 1
-	mull %ebx
- # 0 "" 2
-/NO_APP
-	addl	%esi, %eax
-	setc	%bl
-	movl	%eax, 4(%ecx)
-	addb	$-1, %bl
-	adcl	%edx, %edi
-	addl	$8, %ecx
+	jne	L82
 L55:
 	testb	$1, 44(%esp)
-	je	L56
-	movl	(%ecx), %eax
-	movl	$1000000000, %edx
-/APP
- # 514 "pmc_internal.h" 1
-	mull %edx
- # 0 "" 2
-/NO_APP
-	addl	%edi, %eax
-	setc	%bl
-	movl	%eax, (%ecx)
-	addb	$-1, %bl
-	adcl	$0, %edx
-	addl	$4, %ecx
-	movl	%edx, %edi
+	jne	L83
 L56:
 	testl	%edi, %edi
 	je	L49
@@ -1230,8 +809,462 @@ L49:
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
-L58:
+L79:
 	.cfi_restore_state
+	movl	$1000000000, %esi
+	movl	(%ecx), %eax
+	movl	$0, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, (%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	4(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 4(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	8(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, 8(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	12(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 12(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	16(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, 16(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	20(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 20(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	24(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, 24(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	28(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 28(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	32(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, 32(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	36(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 36(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	40(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, 40(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	44(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 44(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	48(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, 48(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	52(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 52(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	56(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	movl	%ebp, %edi
+	setc	%bl
+	movl	%eax, 56(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	60(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	setc	%bl
+	movl	%eax, 60(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	adcl	%edi, %edx
+	addl	$64, %ecx
+	movl	%edx, %edi
+	movl	%edx, 16(%esp)
+	lock addl	$16, _statistics_info+4
+	testb	$8, 44(%esp)
+	je	L53
+L80:
+	movl	$1000000000, %esi
+	movl	(%ecx), %eax
+	movl	$0, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, (%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	4(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 4(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	8(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, 8(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	12(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 12(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	16(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, 16(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	20(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	movl	$0, %ebp
+	setc	%bl
+	movl	%eax, 20(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	24(%ecx), %eax
+	adcl	%ebp, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	movl	%ebp, %edi
+	setc	%bl
+	movl	%eax, 24(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	movl	28(%ecx), %eax
+	adcl	%ebp, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %esi
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	setc	%bl
+	movl	%eax, 28(%ecx)
+	movl	%ebx, %eax
+	addb	$-1, %al
+	adcl	%edi, %edx
+	addl	$32, %ecx
+	movl	%edx, %edi
+	movl	%edx, 16(%esp)
+	lock addl	$8, _statistics_info+4
+	testb	$4, 44(%esp)
+	je	L54
+L81:
+	movl	(%ecx), %eax
+	movl	$1000000000, %ebx
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %ebx
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, (%ecx)
+	xorl	%esi, %esi
+	movl	%ebx, %eax
+	movl	$1000000000, %ebx
+	addb	$-1, %al
+	movl	4(%ecx), %eax
+	adcl	%esi, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %ebx
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	movl	%edx, %edi
+	setc	%bl
+	movl	%eax, 4(%ecx)
+	movl	%ebx, %eax
+	movl	$1000000000, %ebx
+	addb	$-1, %al
+	movl	8(%ecx), %eax
+	adcl	%esi, %edi
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %ebx
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, 8(%ecx)
+	movl	%ebx, %eax
+	movl	$1000000000, %ebx
+	addb	$-1, %al
+	movl	12(%ecx), %eax
+	adcl	%esi, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %ebx
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	setc	%bl
+	movl	%eax, 12(%ecx)
+	addb	$-1, %bl
+	adcl	%esi, %edx
+	addl	$16, %ecx
+	movl	%edx, %edi
+	movl	%edx, 16(%esp)
+	lock addl	$4, _statistics_info+4
+	testb	$2, 44(%esp)
+	je	L55
+L82:
+	movl	(%ecx), %eax
+	movl	$1000000000, %ebx
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %ebx
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	movl	%eax, %esi
+	setc	%al
+	movl	%esi, (%ecx)
+	xorl	%esi, %esi
+	addb	$-1, %al
+	movl	4(%ecx), %eax
+	adcl	%esi, %edx
+	movl	%edx, %ebp
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %ebx
+ # 0 "" 2
+/NO_APP
+	addl	%ebp, %eax
+	setc	%bl
+	movl	%eax, 4(%ecx)
+	addb	$-1, %bl
+	adcl	%esi, %edx
+	addl	$8, %ecx
+	movl	%edx, %edi
+	movl	%edx, 16(%esp)
+	lock addl	$2, _statistics_info+4
+	testb	$1, 44(%esp)
+	je	L56
+L83:
+	movl	(%ecx), %eax
+	movl	$1000000000, %edx
+/APP
+ # 514 "pmc_internal.h" 1
+	mull %edx
+ # 0 "" 2
+/NO_APP
+	addl	%edi, %eax
+	setc	%bl
+	movl	%eax, (%ecx)
+	addb	$-1, %bl
+	adcl	$0, %edx
+	addl	$4, %ecx
+	movl	%edx, %edi
+	movl	%edx, 16(%esp)
+	lock addl	$1, _statistics_info+4
+	jmp	L56
+	.p2align 4,,10
+L58:
 	movl	40(%esp), %ecx
 	jmp	L50
 	.cfi_endproc
@@ -1256,25 +1289,25 @@ LFB5499:
 	subl	$24, %esp
 	.cfi_def_cfa_offset 44
 	movl	48(%esp), %eax
-	movl	52(%esp), %esi
+	movl	52(%esp), %edi
 	shrl	$5, %eax
 	movl	%eax, 4(%esp)
-	je	L88
+	je	L93
 	movl	44(%esp), %ebx
 	movl	%eax, (%esp)
 	movl	$1000000000, %ecx
 	xorl	%eax, %eax
 	.p2align 4,,10
-L81:
+L86:
 	movl	(%ebx), %edx
 /APP
  # 558 "pmc_internal.h" 1
-	mulxl %ecx, %edi, %ebp
+	mulxl %ecx, %esi, %ebp
  # 0 "" 2
 /NO_APP
-	addl	%edi, %esi
+	addl	%esi, %edi
 	setc	%dl
-	movl	%esi, (%ebx)
+	movl	%edi, (%ebx)
 	addb	$-1, %dl
 	movl	4(%ebx), %edx
 	adcl	%eax, %ebp
@@ -1610,34 +1643,75 @@ L81:
 	adcl	%eax, %ebp
 /APP
  # 558 "pmc_internal.h" 1
-	mulxl %ecx, %edi, %esi
+	mulxl %ecx, %esi, %edi
  # 0 "" 2
 /NO_APP
-	addl	%ebp, %edi
+	addl	%ebp, %esi
 	setc	%dl
-	movl	%edi, 124(%ebx)
+	movl	%esi, 124(%ebx)
 	addb	$-1, %dl
-	adcl	%eax, %esi
+	adcl	%eax, %edi
 	subl	$-128, %ebx
+	movl	%edi, 20(%esp)
 	subl	$1, (%esp)
-	jne	L81
+	movl	(%esp), %esi
+	lock addl	$32, _statistics_info+4
+	testl	%esi, %esi
+	jne	L86
 	movl	4(%esp), %eax
 	sall	$7, %eax
 	addl	44(%esp), %eax
-L80:
+L85:
 	testb	$16, 48(%esp)
-	je	L82
+	jne	L114
+	testb	$8, 48(%esp)
+	jne	L115
+L88:
+	testb	$4, 48(%esp)
+	jne	L116
+L89:
+	testb	$2, 48(%esp)
+	jne	L117
+L90:
+	testb	$1, 48(%esp)
+	jne	L118
+L91:
+	testl	%edi, %edi
+	je	L84
+	movl	%edi, (%eax)
+	addl	$4, %eax
+L84:
+	addl	$24, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 20
+	popl	%ebx
+	.cfi_restore 3
+	.cfi_def_cfa_offset 16
+	popl	%esi
+	.cfi_restore 6
+	.cfi_def_cfa_offset 12
+	popl	%edi
+	.cfi_restore 7
+	.cfi_def_cfa_offset 8
+	popl	%ebp
+	.cfi_restore 5
+	.cfi_def_cfa_offset 4
+	ret
+	.p2align 4,,10
+L114:
+	.cfi_restore_state
 	movl	$1000000000, %ecx
 	movl	(%eax), %edx
 /APP
  # 558 "pmc_internal.h" 1
-	mulxl %ecx, %ebx, %edi
+	mulxl %ecx, %ebx, %esi
  # 0 "" 2
 /NO_APP
-	addl	%ebx, %esi
+	addl	%ebx, %edi
 	setc	%dl
+	movl	%edi, (%eax)
 	xorl	%ebx, %ebx
-	movl	%esi, (%eax)
+	movl	%esi, %edi
 	addb	$-1, %dl
 	movl	4(%eax), %edx
 	adcl	%ebx, %edi
@@ -1800,27 +1874,29 @@ L80:
 	mulxl %ecx, %ecx, %edi
  # 0 "" 2
 /NO_APP
-	addl	%esi, %ecx
+	addl	%ecx, %esi
 	setc	%dl
-	movl	%ecx, 60(%eax)
+	movl	%esi, 60(%eax)
 	addb	$-1, %dl
 	adcl	%ebx, %edi
 	addl	$64, %eax
-	movl	%edi, %esi
-L82:
+	movl	%edi, 20(%esp)
+	lock addl	$16, _statistics_info+4
 	testb	$8, 48(%esp)
-	je	L83
+	je	L88
+L115:
 	movl	$1000000000, %ecx
 	movl	(%eax), %edx
 /APP
  # 558 "pmc_internal.h" 1
-	mulxl %ecx, %ebx, %edi
+	mulxl %ecx, %ebx, %esi
  # 0 "" 2
 /NO_APP
-	addl	%ebx, %esi
+	addl	%ebx, %edi
 	setc	%dl
+	movl	%edi, (%eax)
 	xorl	%ebx, %ebx
-	movl	%esi, (%eax)
+	movl	%esi, %edi
 	addb	$-1, %dl
 	movl	4(%eax), %edx
 	adcl	%ebx, %edi
@@ -1895,27 +1971,29 @@ L82:
 	mulxl %ecx, %ecx, %edi
  # 0 "" 2
 /NO_APP
-	addl	%esi, %ecx
+	addl	%ecx, %esi
 	setc	%dl
-	movl	%ecx, 28(%eax)
+	movl	%esi, 28(%eax)
 	addb	$-1, %dl
 	adcl	%ebx, %edi
 	addl	$32, %eax
-	movl	%edi, %esi
-L83:
+	movl	%edi, 20(%esp)
+	lock addl	$8, _statistics_info+4
 	testb	$4, 48(%esp)
-	je	L84
-	movl	$1000000000, %ecx
+	je	L89
+L116:
 	movl	(%eax), %edx
+	movl	$1000000000, %ecx
 /APP
  # 558 "pmc_internal.h" 1
-	mulxl %ecx, %ebx, %edi
+	mulxl %ecx, %ebx, %esi
  # 0 "" 2
 /NO_APP
-	addl	%ebx, %esi
+	addl	%ebx, %edi
 	setc	%dl
+	movl	%edi, (%eax)
 	xorl	%ebx, %ebx
-	movl	%esi, (%eax)
+	movl	%esi, %edi
 	addb	$-1, %dl
 	movl	4(%eax), %edx
 	adcl	%ebx, %edi
@@ -1946,85 +2024,68 @@ L83:
 	mulxl %ecx, %ecx, %edi
  # 0 "" 2
 /NO_APP
-	addl	%esi, %ecx
+	addl	%ecx, %esi
 	setc	%dl
-	movl	%ecx, 12(%eax)
+	movl	%esi, 12(%eax)
 	addb	$-1, %dl
 	adcl	%ebx, %edi
 	addl	$16, %eax
-	movl	%edi, %esi
-L84:
+	movl	%edi, 20(%esp)
+	lock addl	$4, _statistics_info+4
 	testb	$2, 48(%esp)
-	je	L85
+	je	L90
+L117:
 	movl	(%eax), %edx
 	movl	$1000000000, %ecx
 /APP
  # 558 "pmc_internal.h" 1
-	mulxl %ecx, %ebx, %edi
+	mulxl %ecx, %ebx, %esi
  # 0 "" 2
 /NO_APP
-	addl	%ebx, %esi
+	addl	%ebx, %edi
 	setc	%dl
 	xorl	%ebx, %ebx
-	movl	%esi, (%eax)
+	movl	%edi, (%eax)
 	addb	$-1, %dl
 	movl	4(%eax), %edx
+	adcl	%ebx, %esi
+/APP
+ # 558 "pmc_internal.h" 1
+	mulxl %ecx, %ecx, %edi
+ # 0 "" 2
+/NO_APP
+	addl	%esi, %ecx
+	setc	%dl
+	movl	%ecx, 4(%eax)
+	addb	$-1, %dl
 	adcl	%ebx, %edi
+	addl	$8, %eax
+	movl	%edi, 20(%esp)
+	lock addl	$2, _statistics_info+4
+	testb	$1, 48(%esp)
+	je	L91
+L118:
+	movl	(%eax), %edx
+	movl	$1000000000, %ecx
 /APP
  # 558 "pmc_internal.h" 1
 	mulxl %ecx, %ecx, %esi
  # 0 "" 2
 /NO_APP
-	addl	%edi, %ecx
+	addl	%ecx, %edi
 	setc	%dl
-	movl	%ecx, 4(%eax)
+	movl	%edi, (%eax)
+	movl	%esi, %edi
 	addb	$-1, %dl
-	adcl	%ebx, %esi
-	addl	$8, %eax
-L85:
-	testb	$1, 48(%esp)
-	je	L86
-	movl	(%eax), %edx
-	movl	$1000000000, %ecx
-/APP
- # 558 "pmc_internal.h" 1
-	mulxl %ecx, %ecx, %ebx
- # 0 "" 2
-/NO_APP
-	addl	%ecx, %esi
-	setc	%dl
-	movl	%esi, (%eax)
-	addb	$-1, %dl
-	adcl	$0, %ebx
+	adcl	$0, %edi
 	addl	$4, %eax
-	movl	%ebx, %esi
-L86:
-	testl	%esi, %esi
-	je	L79
-	movl	%esi, (%eax)
-	addl	$4, %eax
-L79:
-	addl	$24, %esp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 20
-	popl	%ebx
-	.cfi_restore 3
-	.cfi_def_cfa_offset 16
-	popl	%esi
-	.cfi_restore 6
-	.cfi_def_cfa_offset 12
-	popl	%edi
-	.cfi_restore 7
-	.cfi_def_cfa_offset 8
-	popl	%ebp
-	.cfi_restore 5
-	.cfi_def_cfa_offset 4
-	ret
+	movl	%edi, 20(%esp)
+	lock addl	$1, _statistics_info+4
+	jmp	L91
 	.p2align 4,,10
-L88:
-	.cfi_restore_state
+L93:
 	movl	44(%esp), %eax
-	jmp	L80
+	jmp	L85
 	.cfi_endproc
 LFE5499:
 	.p2align 4,,15
@@ -2051,17 +2112,17 @@ LFB5507:
 	movl	196(%esp), %esi
 	movl	200(%esp), %edi
 	testl	%eax, %eax
-	je	L286
+	je	L296
 	movl	204(%esp), %ebp
 	testl	%ebp, %ebp
-	je	L286
+	je	L296
 	testl	%edi, %edi
 	movl	$_default_number_format_option, %eax
 	cmove	%eax, %edi
 	testl	$512, %esi
-	je	L112
+	je	L122
 	testl	$-516, %esi
-	jne	L286
+	jne	L296
 	movl	192(%esp), %eax
 	movl	__imp__lstrlenW@4, %ebp
 	movl	%eax, (%esp)
@@ -2079,7 +2140,7 @@ LFB5507:
 	call	_AllocateBlock
 	movl	%eax, %ebx
 	testl	%eax, %eax
-	je	L187
+	je	L197
 	movl	%edi, (%esp)
 	movl	192(%esp), %edx
 	leal	80(%esp), %eax
@@ -2089,94 +2150,94 @@ LFB5507:
 	movl	%eax, 16(%esp)
 	call	_InitializeParserState
 	testl	$1, %esi
-	je	L114
+	je	L124
 	movl	80(%esp), %eax
 	movzwl	(%eax), %ecx
 	subl	$9, %ecx
 	cmpw	$23, %cx
-	ja	L114
+	ja	L124
 	movl	$1, %edx
 	addl	$2, %eax
 	sall	%cl, %edx
 	movl	%edx, %ecx
 	movl	$1, %edx
 	andl	$8388639, %ecx
-	je	L114
+	je	L124
 	movl	%ebx, 20(%esp)
-	jmp	L116
+	jmp	L126
 	.p2align 4,,10
-L117:
+L127:
 	movl	%edx, %ebx
 	addl	$2, %eax
 	sall	%cl, %ebx
 	movl	%ebx, %ecx
 	andl	$8388639, %ecx
-	je	L420
-L116:
+	je	L430
+L126:
 	movzwl	(%eax), %ebx
 	movl	%eax, %edi
 	leal	-9(%ebx), %ecx
 	cmpw	$23, %cx
-	jbe	L117
+	jbe	L127
 	movl	%eax, 80(%esp)
 	movl	20(%esp), %ebx
-L114:
+L124:
 	movl	16(%esp), %eax
 	call	_ParseAsIntegerPartNumberSequence
 	movl	80(%esp), %eax
 	andl	$2, %esi
 	movzwl	(%eax), %edx
-	je	L119
+	je	L129
 	leal	-9(%edx), %ecx
 	cmpw	$23, %cx
-	ja	L119
+	ja	L129
 	movl	$1, %edx
 	sall	%cl, %edx
 	andl	$8388639, %edx
-	je	L120
+	je	L130
 	addl	$2, %eax
 	movl	$1, %esi
-	jmp	L121
+	jmp	L131
 	.p2align 4,,10
-L122:
+L132:
 	movl	%esi, %edx
 	addl	$2, %eax
 	sall	%cl, %edx
 	andl	$8388639, %edx
-	je	L120
-L121:
+	je	L130
+L131:
 	movzwl	(%eax), %edx
 	leal	-9(%edx), %ecx
 	cmpw	$23, %cx
-	jbe	L122
+	jbe	L132
 	movl	%eax, 80(%esp)
-L119:
+L129:
 	movl	72(%esp), %eax
 	testw	%dx, %dx
-	jne	L282
+	jne	L292
 	movl	152(%esp), %edx
 	xorl	%esi, %esi
 	movw	%si, (%edx)
 	testb	$32, 84(%esp)
-	je	L416
+	je	L426
 	movl	156(%esp), %edx
 	xorl	%ecx, %ecx
 	movw	%cx, (%edx)
-L416:
+L426:
 	movl	%eax, 4(%esp)
 	movl	%ebx, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	jne	L109
+	jne	L119
 	cmpw	$0, (%ebx)
-	jne	L421
-L126:
+	jne	L431
+L136:
 	movl	76(%esp), %eax
 	movl	%ebx, (%esp)
 	movl	%eax, 4(%esp)
 	call	_DeallocateBlock
 	movl	$1, %eax
-L109:
+L119:
 	addl	$172, %esp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -2194,7 +2255,7 @@ L109:
 	.cfi_def_cfa_offset 4
 	ret	$16
 	.p2align 4,,10
-L112:
+L122:
 	.cfi_restore_state
 	movl	192(%esp), %eax
 	movl	__imp__lstrlenW@4, %ebp
@@ -2213,7 +2274,7 @@ L112:
 	call	_AllocateBlock
 	movl	%eax, 20(%esp)
 	testl	%eax, %eax
-	je	L187
+	je	L197
 	leal	56(%esp), %eax
 	movl	%ebx, (%esp)
 	movl	%eax, 8(%esp)
@@ -2222,7 +2283,7 @@ L112:
 	call	_AllocateBlock
 	movl	%eax, 24(%esp)
 	testl	%eax, %eax
-	je	L417
+	je	L427
 	movl	24(%esp), %ebx
 	movl	%edi, (%esp)
 	leal	80(%esp), %eax
@@ -2235,67 +2296,67 @@ L112:
 	call	_InitializeParserState
 	movl	80(%esp), %eax
 	testl	$1, %esi
-	je	L190
+	je	L200
 	movzwl	(%eax), %ebx
 	leal	-9(%ebx), %ecx
 	cmpw	$23, %cx
-	ja	L190
+	ja	L200
 	movl	$1, %edx
 	sall	%cl, %edx
 	andl	$8388639, %edx
-	je	L195
+	je	L205
 	leal	2(%eax), %edx
 	movl	$1, %ebx
-	jmp	L192
+	jmp	L202
 	.p2align 4,,10
-L194:
+L204:
 	movl	%ebx, %edi
 	leal	2(%eax), %edx
 	sall	%cl, %edi
 	movl	%edi, %ecx
 	andl	$8388639, %ecx
-	je	L193
-L192:
+	je	L203
+L202:
 	movl	%edx, %eax
 	movzwl	(%edx), %edx
 	leal	-9(%edx), %ecx
 	cmpw	$23, %cx
-	jbe	L194
+	jbe	L204
 	movl	%eax, 80(%esp)
-L190:
+L200:
 	testl	$16, %esi
-	je	L195
+	je	L205
 	cmpw	$40, (%eax)
-	jne	L195
+	jne	L205
 	leal	2(%eax), %ecx
 	movzwl	2(%eax), %eax
 	movl	$-1, 88(%esp)
 	movl	%ecx, 80(%esp)
 	subl	$48, %eax
 	cmpw	$9, %ax
-	jbe	L422
-L196:
+	jbe	L432
+L206:
 	testl	$32, %esi
-	je	L197
+	je	L207
 	movzwl	116(%esp), %eax
 	testw	%ax, %ax
-	je	L198
+	je	L208
 	movzwl	(%ecx), %edi
 	cmpw	%ax, %di
-	jne	L199
+	jne	L209
 	xorl	%eax, %eax
 	leal	118(%esp), %edx
-	jmp	L200
+	jmp	L210
 	.p2align 4,,10
-L201:
+L211:
 	addl	$2, %eax
 	cmpw	%bx, (%ecx,%eax)
-	jne	L199
-L200:
+	jne	L209
+L210:
 	movzwl	(%edx,%eax), %ebx
 	testw	%bx, %bx
-	jne	L201
-L198:
+	jne	L211
+L208:
 	movl	124(%esp), %eax
 	leal	(%ecx,%eax,2), %eax
 	movl	%eax, 80(%esp)
@@ -2303,40 +2364,40 @@ L198:
 	call	_ParseAsFractionPartNumberSequence
 	movl	80(%esp), %ecx
 	movzwl	(%ecx), %edi
-	jmp	L199
+	jmp	L209
 	.p2align 4,,10
-L193:
+L203:
 	movl	%eax, 80(%esp)
-L195:
+L205:
 	testl	$4, %esi
-	jne	L423
+	jne	L433
 	movzwl	(%eax), %ebx
-L214:
+L224:
 	movl	%esi, %edi
 	leal	-48(%ebx), %edx
 	andl	$32, %edi
 	cmpw	$9, %dx
-	jbe	L424
+	jbe	L434
 	testl	%edi, %edi
-	je	L202
+	je	L212
 	movzwl	116(%esp), %edx
 	testw	%dx, %dx
-	je	L234
+	je	L244
 	cmpw	%bx, %dx
-	jne	L202
+	jne	L212
 	xorl	%ecx, %ecx
 	leal	118(%esp), %edx
-	jmp	L235
+	jmp	L245
 	.p2align 4,,10
-L236:
+L246:
 	addl	$2, %ecx
 	cmpw	%bx, (%eax,%ecx)
-	jne	L202
-L235:
+	jne	L212
+L245:
 	movzwl	(%edx,%ecx), %ebx
 	testw	%bx, %bx
-	jne	L236
-L234:
+	jne	L246
+L244:
 	movl	124(%esp), %edx
 	leal	(%eax,%edx,2), %eax
 	movl	%eax, 80(%esp)
@@ -2344,44 +2405,44 @@ L234:
 	call	_ParseAsFractionPartNumberSequence
 	movl	80(%esp), %eax
 	testl	$8, %esi
-	je	L209
+	je	L219
 	movzwl	92(%esp), %ecx
 	testw	%cx, %cx
-	je	L237
+	je	L247
 	movzwl	(%eax), %edx
 	cmpw	%cx, %dx
-	jne	L238
+	jne	L248
 	xorl	%ebx, %ebx
 	leal	94(%esp), %ecx
-	jmp	L239
+	jmp	L249
 	.p2align 4,,10
-L240:
+L250:
 	addl	$2, %ebx
 	cmpw	%di, (%eax,%ebx)
-	jne	L238
-L239:
+	jne	L248
+L249:
 	movzwl	(%ecx,%ebx), %edi
 	testw	%di, %di
-	jne	L240
-L237:
+	jne	L250
+L247:
 	movl	100(%esp), %edx
 	movl	$1, 88(%esp)
 	leal	(%eax,%edx,2), %eax
 	movl	%eax, 80(%esp)
 	movzwl	(%eax), %edx
-	jmp	L203
+	jmp	L213
 	.p2align 4,,10
-L120:
+L130:
 	movl	72(%esp), %eax
-L282:
+L292:
 	movl	%eax, 4(%esp)
 	movl	%ebx, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	je	L126
-	jmp	L109
+	je	L136
+	jmp	L119
 	.p2align 4,,10
-L421:
+L431:
 	movl	%ebx, (%esp)
 	call	*%ebp
 	.cfi_def_cfa_offset 188
@@ -2395,7 +2456,7 @@ L421:
 	movl	%ecx, 8(%esp)
 	call	_AllocateNumber
 	testl	%eax, %eax
-	jne	L425
+	jne	L435
 	movl	44(%esp), %eax
 	movl	24(%eax), %esi
 	movl	%ebx, (%esp)
@@ -2411,96 +2472,96 @@ L421:
 	movl	%ebp, %eax
 	andl	$7, %eax
 	movl	%eax, 16(%esp)
-	je	L130
+	je	L140
 	movzwl	(%ebx), %ecx
 	leal	-4(%edx), %eax
 	movl	%eax, 20(%esp)
 	movl	%ecx, %eax
 	subl	$48, %eax
 	cmpw	$54, %ax
-	ja	L288
+	ja	L298
 	movzwl	%ax, %eax
-	jmp	*L133(,%eax,4)
+	jmp	*L143(,%eax,4)
 	.section .rdata,"dr"
 	.align 4
-L133:
-	.long	L135
-	.long	L135
-	.long	L135
-	.long	L135
-	.long	L135
-	.long	L135
-	.long	L135
-	.long	L135
-	.long	L135
-	.long	L135
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L134
-	.long	L134
-	.long	L134
-	.long	L134
-	.long	L134
-	.long	L134
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L288
-	.long	L132
-	.long	L132
-	.long	L132
-	.long	L132
-	.long	L132
-	.long	L132
+L143:
+	.long	L145
+	.long	L145
+	.long	L145
+	.long	L145
+	.long	L145
+	.long	L145
+	.long	L145
+	.long	L145
+	.long	L145
+	.long	L145
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L144
+	.long	L144
+	.long	L144
+	.long	L144
+	.long	L144
+	.long	L144
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L298
+	.long	L142
+	.long	L142
+	.long	L142
+	.long	L142
+	.long	L142
+	.long	L142
 	.text
 	.p2align 4,,10
-L423:
+L433:
 	movzwl	92(%esp), %edx
 	testw	%dx, %dx
-	je	L205
+	je	L215
 	movzwl	(%eax), %ebx
 	cmpw	%dx, %bx
-	jne	L206
+	jne	L216
 	xorl	%edx, %edx
 	leal	94(%esp), %ecx
-	jmp	L207
+	jmp	L217
 	.p2align 4,,10
-L208:
+L218:
 	addl	$2, %edx
 	cmpw	%di, (%eax,%edx)
-	jne	L206
-L207:
+	jne	L216
+L217:
 	movzwl	(%ecx,%edx), %edi
 	testw	%di, %di
-	jne	L208
-L205:
+	jne	L218
+L215:
 	movl	100(%esp), %edx
 	movl	$1, 88(%esp)
 	leal	(%eax,%edx,2), %eax
@@ -2508,79 +2569,79 @@ L205:
 	movl	%eax, 80(%esp)
 	leal	-48(%ebx), %edx
 	cmpw	$9, %dx
-	jbe	L426
-L280:
+	jbe	L436
+L290:
 	testl	$32, %esi
-	jne	L427
-L209:
+	jne	L437
+L219:
 	movzwl	(%eax), %edx
-L203:
+L213:
 	andl	$2, %esi
-	je	L243
-L284:
+	je	L253
+L294:
 	leal	-9(%edx), %ecx
 	cmpw	$23, %cx
-	ja	L243
+	ja	L253
 	movl	$1, %edx
 	sall	%cl, %edx
 	andl	$8388639, %edx
-	je	L202
+	je	L212
 	addl	$2, %eax
 	movl	$1, %ebx
-	jmp	L244
+	jmp	L254
 	.p2align 4,,10
-L245:
+L255:
 	movl	%ebx, %edx
 	addl	$2, %eax
 	sall	%cl, %edx
 	andl	$8388639, %edx
-	je	L202
-L244:
+	je	L212
+L254:
 	movzwl	(%eax), %edx
 	leal	-9(%edx), %ecx
 	cmpw	$23, %cx
-	jbe	L245
+	jbe	L255
 	movl	%eax, 80(%esp)
-L243:
+L253:
 	testw	%dx, %dx
-	jne	L202
+	jne	L212
 	movl	152(%esp), %eax
 	xorl	%edi, %edi
 	movw	%di, (%eax)
 	testb	$32, 84(%esp)
-	je	L246
+	je	L256
 	movl	156(%esp), %eax
 	xorl	%esi, %esi
 	movw	%si, (%eax)
-L246:
+L256:
 	movl	88(%esp), %eax
 	movl	$1, %ebx
 	movl	%eax, 28(%esp)
-L283:
+L293:
 	movl	48(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	20(%esp), %eax
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	jne	L109
+	jne	L119
 	movl	56(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	24(%esp), %eax
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	jne	L109
+	jne	L119
 	testl	%ebx, %ebx
-	je	L250
+	je	L260
 	movl	20(%esp), %eax
 	movzwl	(%eax), %eax
 	testw	%ax, %ax
-	jne	L249
+	jne	L259
 	movl	24(%esp), %eax
 	cmpw	$0, (%eax)
-	je	L250
-L253:
+	je	L260
+L263:
 	movl	24(%esp), %ebx
 	movl	%ebx, (%esp)
 	call	*%ebp
@@ -2589,34 +2650,34 @@ L253:
 	subl	$4, %esp
 	.cfi_def_cfa_offset 192
 	cmpl	%eax, %ebx
-	jnb	L252
+	jnb	L262
 	cmpw	$48, -2(%eax)
-	jne	L252
+	jne	L262
 	movl	24(%esp), %edx
-	jmp	L256
+	jmp	L266
 	.p2align 4,,10
-L428:
+L438:
 	cmpw	$48, -2(%eax)
-	jne	L252
-L256:
+	jne	L262
+L266:
 	subl	$2, %eax
 	cmpl	%eax, %edx
-	jb	L428
-L252:
+	jb	L438
+L262:
 	xorl	%ebx, %ebx
 	movw	%bx, (%eax)
 	movl	24(%esp), %ebx
 	movl	60(%esp), %eax
 	cmpw	$0, (%ebx)
-	jne	L429
+	jne	L439
 	movl	20(%esp), %ebx
 	movl	28(%esp), %ecx
 	movzwl	(%ebx), %edx
 	testl	%ecx, %ecx
-	js	L430
+	js	L440
 	testw	%dx, %dx
-	je	L259
-L260:
+	je	L269
+L270:
 	movl	%eax, 4(%esp)
 	movl	24(%esp), %eax
 	movl	$954437177, %edi
@@ -2641,7 +2702,7 @@ L260:
 	call	_AllocateBlock
 	movl	%eax, %ebx
 	testl	%eax, %eax
-	je	L417
+	je	L427
 	movl	20(%esp), %ecx
 	movl	%ecx, (%esp)
 	call	*%ebp
@@ -2654,29 +2715,29 @@ L260:
 	leal	(%edx,%edx,8), %eax
 	movl	%esi, %edx
 	subl	%eax, %edx
-	je	L298
+	je	L308
 	movl	20(%esp), %ecx
 	leal	4(%ebx), %eax
 	xorl	%edi, %edi
 	movl	%eax, 24(%esp)
 	leal	(%ecx,%edx,2), %eax
 	.p2align 4,,10
-L263:
+L273:
 	addl	$2, %ecx
 	leal	(%edi,%edi,4), %ebp
 	movzwl	-2(%ecx), %edi
 	leal	-48(%edi,%ebp,2), %edi
 	cmpl	%eax, %ecx
-	jne	L263
+	jne	L273
 	movl	%edi, (%ebx)
 	subl	%edx, %esi
-L262:
+L272:
 	testl	%esi, %esi
-	je	L264
+	je	L274
 	movl	24(%esp), %edx
 	movl	%esi, %ecx
 	.p2align 4,,10
-L265:
+L275:
 	movzwl	(%eax), %edi
 	addl	$4, %edx
 	addl	$18, %eax
@@ -2706,16 +2767,16 @@ L265:
 	leal	-48(%edi,%ebp,2), %edi
 	movl	%edi, -4(%edx)
 	subl	$9, %ecx
-	jne	L265
+	jne	L275
 	imull	$-477218588, %esi, %esi
 	addl	%esi, 24(%esp)
-L264:
+L274:
 	movl	64(%esp), %eax
 	movl	%ebx, (%esp)
 	movl	%eax, 4(%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	jne	L109
+	jne	L119
 	movl	52(%esp), %eax
 	movl	24(%esp), %esi
 	movl	%eax, 4(%esp)
@@ -2733,7 +2794,7 @@ L264:
 	movl	%eax, (%esp)
 	call	_AllocateNumber
 	testl	%eax, %eax
-	jne	L431
+	jne	L441
 	movl	44(%esp), %eax
 	addl	$32, %ebp
 	movl	24(%eax), %eax
@@ -2746,15 +2807,15 @@ L264:
 	call	_AllocateBlock
 	movl	%eax, %ebp
 	testl	%eax, %eax
-	je	L267
+	je	L277
 	movl	(%ebx), %eax
 	leal	4(%ebx), %edi
 	movl	$1, %ecx
 	movl	%eax, 0(%ebp)
 	subl	$1, %esi
-	je	L268
+	je	L278
 	.p2align 4,,10
-L269:
+L279:
 	movl	(%edi), %eax
 	movl	%ecx, 4(%esp)
 	addl	$4, %edi
@@ -2765,206 +2826,62 @@ L269:
 	movl	%eax, %ecx
 	sarl	$2, %ecx
 	subl	$1, %esi
-	jne	L269
-L268:
+	jne	L279
+L278:
 	movl	76(%esp), %eax
 	movl	%ebp, (%esp)
 	movl	%ecx, 16(%esp)
 	movl	%eax, 4(%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	je	L432
-L272:
+	je	L442
+L282:
 	movl	44(%esp), %edx
 	movl	%eax, 16(%esp)
 	movl	%edx, (%esp)
 	call	_DeallocateNumber
-L418:
+L428:
 	movl	68(%esp), %edx
 	movl	%ebx, (%esp)
 	movl	%edx, 4(%esp)
 	call	_DeallocateBlock
 	movl	16(%esp), %eax
-	jmp	L109
+	jmp	L119
 	.p2align 4,,10
-L202:
+L212:
 	xorl	%ebx, %ebx
-	jmp	L283
+	jmp	L293
 	.p2align 4,,10
-L420:
+L430:
 	movl	20(%esp), %ebx
 	movl	%edi, 80(%esp)
-	jmp	L114
+	jmp	L124
 	.p2align 4,,10
-L138:
+L148:
 	subl	$87, %ebx
-L137:
+L147:
 	addl	%ebx, %ecx
 	addl	$2, %edi
 	subl	$1, %esi
-	jne	L142
+	jne	L152
 	movl	24(%esp), %ebx
-L136:
+L146:
 	movl	16(%esp), %eax
 	movl	%ecx, (%edx)
 	movl	20(%esp), %edx
 	leal	(%ebx,%eax,2), %ecx
 	subl	%eax, %ebp
-L130:
+L140:
 	testl	%ebp, %ebp
-	je	L185
+	je	L195
 	.p2align 4,,10
-L143:
+L153:
 	movzwl	(%ecx), %eax
 	subl	$4, %edx
 	movl	%eax, %esi
 	subl	$48, %esi
 	cmpw	$54, %si
-	ja	L290
-	movzwl	%si, %esi
-	jmp	*L147(,%esi,4)
-	.section .rdata,"dr"
-	.align 4
-L147:
-	.long	L149
-	.long	L149
-	.long	L149
-	.long	L149
-	.long	L149
-	.long	L149
-	.long	L149
-	.long	L149
-	.long	L149
-	.long	L149
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L148
-	.long	L148
-	.long	L148
-	.long	L148
-	.long	L148
-	.long	L148
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L290
-	.long	L146
-	.long	L146
-	.long	L146
-	.long	L146
-	.long	L146
-	.long	L146
-	.text
-	.p2align 4,,10
-L146:
-	subl	$87, %eax
-	sall	$4, %eax
-L145:
-	movzwl	2(%ecx), %edi
-	movl	%edi, %esi
-	subl	$48, %esi
-	cmpw	$54, %si
-	ja	L291
-L433:
-	movzwl	%si, %esi
-	jmp	*L152(,%esi,4)
-	.section .rdata,"dr"
-	.align 4
-L152:
-	.long	L154
-	.long	L154
-	.long	L154
-	.long	L154
-	.long	L154
-	.long	L154
-	.long	L154
-	.long	L154
-	.long	L154
-	.long	L154
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L153
-	.long	L153
-	.long	L153
-	.long	L153
-	.long	L153
-	.long	L153
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L291
-	.long	L151
-	.long	L151
-	.long	L151
-	.long	L151
-	.long	L151
-	.long	L151
-	.text
-	.p2align 4,,10
-L151:
-	subl	$87, %edi
-L150:
-	addl	%edi, %eax
-	movzwl	4(%ecx), %edi
-	sall	$4, %eax
-	movl	%edi, %esi
-	subl	$48, %esi
-	cmpw	$54, %si
-	ja	L292
+	ja	L300
 	movzwl	%si, %esi
 	jmp	*L157(,%esi,4)
 	.section .rdata,"dr"
@@ -2980,45 +2897,45 @@ L157:
 	.long	L159
 	.long	L159
 	.long	L159
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
 	.long	L158
 	.long	L158
 	.long	L158
 	.long	L158
 	.long	L158
 	.long	L158
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
-	.long	L292
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
+	.long	L300
 	.long	L156
 	.long	L156
 	.long	L156
@@ -3028,15 +2945,15 @@ L157:
 	.text
 	.p2align 4,,10
 L156:
-	subl	$87, %edi
-L155:
-	addl	%edi, %eax
-	movzwl	6(%ecx), %edi
+	subl	$87, %eax
 	sall	$4, %eax
+L155:
+	movzwl	2(%ecx), %edi
 	movl	%edi, %esi
 	subl	$48, %esi
 	cmpw	$54, %si
-	ja	L293
+	ja	L301
+L443:
 	movzwl	%si, %esi
 	jmp	*L162(,%esi,4)
 	.section .rdata,"dr"
@@ -3052,45 +2969,45 @@ L162:
 	.long	L164
 	.long	L164
 	.long	L164
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
 	.long	L163
 	.long	L163
 	.long	L163
 	.long	L163
 	.long	L163
 	.long	L163
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
-	.long	L293
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
+	.long	L301
 	.long	L161
 	.long	L161
 	.long	L161
@@ -3103,12 +3020,12 @@ L161:
 	subl	$87, %edi
 L160:
 	addl	%edi, %eax
-	movzwl	8(%ecx), %edi
+	movzwl	4(%ecx), %edi
 	sall	$4, %eax
 	movl	%edi, %esi
 	subl	$48, %esi
 	cmpw	$54, %si
-	ja	L294
+	ja	L302
 	movzwl	%si, %esi
 	jmp	*L167(,%esi,4)
 	.section .rdata,"dr"
@@ -3124,45 +3041,45 @@ L167:
 	.long	L169
 	.long	L169
 	.long	L169
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
 	.long	L168
 	.long	L168
 	.long	L168
 	.long	L168
 	.long	L168
 	.long	L168
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
-	.long	L294
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
+	.long	L302
 	.long	L166
 	.long	L166
 	.long	L166
@@ -3175,12 +3092,12 @@ L166:
 	subl	$87, %edi
 L165:
 	addl	%edi, %eax
-	movzwl	10(%ecx), %edi
+	movzwl	6(%ecx), %edi
 	sall	$4, %eax
 	movl	%edi, %esi
 	subl	$48, %esi
 	cmpw	$54, %si
-	ja	L295
+	ja	L303
 	movzwl	%si, %esi
 	jmp	*L172(,%esi,4)
 	.section .rdata,"dr"
@@ -3196,45 +3113,45 @@ L172:
 	.long	L174
 	.long	L174
 	.long	L174
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
 	.long	L173
 	.long	L173
 	.long	L173
 	.long	L173
 	.long	L173
 	.long	L173
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
-	.long	L295
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
+	.long	L303
 	.long	L171
 	.long	L171
 	.long	L171
@@ -3247,12 +3164,12 @@ L171:
 	subl	$87, %edi
 L170:
 	addl	%edi, %eax
-	movzwl	12(%ecx), %edi
+	movzwl	8(%ecx), %edi
 	sall	$4, %eax
 	movl	%edi, %esi
 	subl	$48, %esi
 	cmpw	$54, %si
-	ja	L296
+	ja	L304
 	movzwl	%si, %esi
 	jmp	*L177(,%esi,4)
 	.section .rdata,"dr"
@@ -3268,45 +3185,45 @@ L177:
 	.long	L179
 	.long	L179
 	.long	L179
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
 	.long	L178
 	.long	L178
 	.long	L178
 	.long	L178
 	.long	L178
 	.long	L178
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
-	.long	L296
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
+	.long	L304
 	.long	L176
 	.long	L176
 	.long	L176
@@ -3319,12 +3236,12 @@ L176:
 	subl	$87, %edi
 L175:
 	addl	%edi, %eax
-	movzwl	14(%ecx), %edi
+	movzwl	10(%ecx), %edi
 	sall	$4, %eax
 	movl	%edi, %esi
 	subl	$48, %esi
 	cmpw	$54, %si
-	ja	L297
+	ja	L305
 	movzwl	%si, %esi
 	jmp	*L182(,%esi,4)
 	.section .rdata,"dr"
@@ -3340,45 +3257,45 @@ L182:
 	.long	L184
 	.long	L184
 	.long	L184
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
 	.long	L183
 	.long	L183
 	.long	L183
 	.long	L183
 	.long	L183
 	.long	L183
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
-	.long	L297
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
+	.long	L305
 	.long	L181
 	.long	L181
 	.long	L181
@@ -3391,11 +3308,155 @@ L181:
 	subl	$87, %edi
 L180:
 	addl	%edi, %eax
+	movzwl	12(%ecx), %edi
+	sall	$4, %eax
+	movl	%edi, %esi
+	subl	$48, %esi
+	cmpw	$54, %si
+	ja	L306
+	movzwl	%si, %esi
+	jmp	*L187(,%esi,4)
+	.section .rdata,"dr"
+	.align 4
+L187:
+	.long	L189
+	.long	L189
+	.long	L189
+	.long	L189
+	.long	L189
+	.long	L189
+	.long	L189
+	.long	L189
+	.long	L189
+	.long	L189
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L188
+	.long	L188
+	.long	L188
+	.long	L188
+	.long	L188
+	.long	L188
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L306
+	.long	L186
+	.long	L186
+	.long	L186
+	.long	L186
+	.long	L186
+	.long	L186
+	.text
+	.p2align 4,,10
+L186:
+	subl	$87, %edi
+L185:
+	addl	%edi, %eax
+	movzwl	14(%ecx), %edi
+	sall	$4, %eax
+	movl	%edi, %esi
+	subl	$48, %esi
+	cmpw	$54, %si
+	ja	L307
+	movzwl	%si, %esi
+	jmp	*L192(,%esi,4)
+	.section .rdata,"dr"
+	.align 4
+L192:
+	.long	L194
+	.long	L194
+	.long	L194
+	.long	L194
+	.long	L194
+	.long	L194
+	.long	L194
+	.long	L194
+	.long	L194
+	.long	L194
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L193
+	.long	L193
+	.long	L193
+	.long	L193
+	.long	L193
+	.long	L193
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L307
+	.long	L191
+	.long	L191
+	.long	L191
+	.long	L191
+	.long	L191
+	.long	L191
+	.text
+	.p2align 4,,10
+L191:
+	subl	$87, %edi
+L190:
+	addl	%edi, %eax
 	addl	$16, %ecx
 	movl	%eax, 4(%edx)
 	subl	$8, %ebp
-	jne	L143
-L185:
+	jne	L153
+L195:
 	movl	80(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	44(%esp), %eax
@@ -3403,7 +3464,7 @@ L185:
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	jne	L109
+	jne	L119
 	movl	76(%esp), %eax
 	movl	%ebx, (%esp)
 	movl	%eax, 4(%esp)
@@ -3412,7 +3473,7 @@ L185:
 	movl	%eax, (%esp)
 	call	_CommitNumber
 	movl	44(%esp), %eax
-L186:
+L196:
 	movl	204(%esp), %ebx
 	movl	%eax, (%ebx)
 	addl	$172, %esp
@@ -3433,8 +3494,24 @@ L186:
 	.cfi_def_cfa_offset 4
 	ret	$16
 	.p2align 4,,10
-L183:
+L193:
 	.cfi_restore_state
+	subl	$55, %edi
+	jmp	L190
+	.p2align 4,,10
+L194:
+	subl	$48, %edi
+	jmp	L190
+	.p2align 4,,10
+L188:
+	subl	$55, %edi
+	jmp	L185
+	.p2align 4,,10
+L189:
+	subl	$48, %edi
+	jmp	L185
+	.p2align 4,,10
+L183:
 	subl	$55, %edi
 	jmp	L180
 	.p2align 4,,10
@@ -3475,86 +3552,70 @@ L164:
 	jmp	L160
 	.p2align 4,,10
 L158:
-	subl	$55, %edi
-	jmp	L155
-	.p2align 4,,10
-L159:
-	subl	$48, %edi
-	jmp	L155
-	.p2align 4,,10
-L153:
-	subl	$55, %edi
-	jmp	L150
-	.p2align 4,,10
-L154:
-	subl	$48, %edi
-	jmp	L150
-	.p2align 4,,10
-L148:
 	movzwl	2(%ecx), %edi
 	subl	$55, %eax
 	sall	$4, %eax
 	movl	%edi, %esi
 	subl	$48, %esi
 	cmpw	$54, %si
-	jbe	L433
+	jbe	L443
 	.p2align 4,,10
-L291:
-	movl	$-1, %edi
-	jmp	L150
-	.p2align 4,,10
-L149:
-	subl	$48, %eax
-	sall	$4, %eax
-	jmp	L145
-	.p2align 4,,10
-L293:
+L301:
 	movl	$-1, %edi
 	jmp	L160
 	.p2align 4,,10
-L292:
-	movl	$-1, %edi
+L159:
+	subl	$48, %eax
+	sall	$4, %eax
 	jmp	L155
 	.p2align 4,,10
-L297:
-	movl	$-1, %edi
-	jmp	L180
-	.p2align 4,,10
-L296:
-	movl	$-1, %edi
-	jmp	L175
-	.p2align 4,,10
-L295:
+L303:
 	movl	$-1, %edi
 	jmp	L170
 	.p2align 4,,10
-L294:
+L302:
 	movl	$-1, %edi
 	jmp	L165
 	.p2align 4,,10
-L290:
-	movl	$-16, %eax
-	jmp	L145
+L307:
+	movl	$-1, %edi
+	jmp	L190
 	.p2align 4,,10
-L206:
+L306:
+	movl	$-1, %edi
+	jmp	L185
+	.p2align 4,,10
+L305:
+	movl	$-1, %edi
+	jmp	L180
+	.p2align 4,,10
+L304:
+	movl	$-1, %edi
+	jmp	L175
+	.p2align 4,,10
+L300:
+	movl	$-16, %eax
+	jmp	L155
+	.p2align 4,,10
+L216:
 	movzwl	104(%esp), %edx
 	testw	%dx, %dx
-	je	L216
+	je	L226
 	cmpw	%bx, %dx
-	jne	L214
+	jne	L224
 	xorl	%edx, %edx
 	leal	106(%esp), %ecx
-	jmp	L281
+	jmp	L291
 	.p2align 4,,10
-L215:
+L225:
 	addl	$2, %edx
 	cmpw	%di, (%eax,%edx)
-	jne	L214
-L281:
+	jne	L224
+L291:
 	movzwl	(%ecx,%edx), %edi
 	testw	%di, %di
-	jne	L215
-L216:
+	jne	L225
+L226:
 	movl	112(%esp), %edx
 	movl	$-1, 88(%esp)
 	leal	(%eax,%edx,2), %eax
@@ -3562,29 +3623,29 @@ L216:
 	movl	%eax, 80(%esp)
 	leal	-48(%ebx), %edx
 	cmpw	$9, %dx
-	jbe	L434
-L278:
+	jbe	L444
+L288:
 	testl	$32, %esi
-	je	L209
+	je	L219
 	movzwl	116(%esp), %ecx
 	testw	%cx, %cx
-	je	L218
+	je	L228
 	movzwl	(%eax), %edx
 	cmpw	%dx, %cx
-	jne	L203
+	jne	L213
 	xorl	%ecx, %ecx
 	leal	118(%esp), %edx
-	jmp	L219
+	jmp	L229
 	.p2align 4,,10
-L220:
+L230:
 	addl	$2, %ecx
 	cmpw	%bx, (%eax,%ecx)
-	jne	L212
-L219:
+	jne	L222
+L229:
 	movzwl	(%edx,%ecx), %ebx
 	testw	%bx, %bx
-	jne	L220
-L218:
+	jne	L230
+L228:
 	movl	124(%esp), %edx
 	leal	(%eax,%edx,2), %eax
 	movl	%eax, 80(%esp)
@@ -3592,216 +3653,216 @@ L218:
 	call	_ParseAsFractionPartNumberSequence
 	movl	80(%esp), %eax
 	movzwl	(%eax), %edx
-	jmp	L203
+	jmp	L213
 	.p2align 4,,10
-L425:
+L435:
 	movl	76(%esp), %edx
 	movl	%ebx, (%esp)
 	movl	%eax, 16(%esp)
 	movl	%edx, 4(%esp)
 	call	_DeallocateBlock
 	movl	16(%esp), %eax
-	jmp	L109
+	jmp	L119
 	.p2align 4,,10
-L249:
+L259:
 	cmpw	$48, %ax
-	jne	L253
+	jne	L263
 	movl	20(%esp), %eax
 	.p2align 4,,10
-L254:
+L264:
 	addl	$2, %eax
 	movzwl	(%eax), %edx
 	cmpw	$48, %dx
-	je	L254
+	je	L264
 	movl	20(%esp), %ebx
 	movw	%dx, (%ebx)
 	testw	%dx, %dx
-	je	L253
+	je	L263
 	movl	$2, %edx
 	.p2align 4,,10
-L255:
+L265:
 	movzwl	(%eax,%edx), %ecx
 	movw	%cx, (%ebx,%edx)
 	addl	$2, %edx
 	testw	%cx, %cx
-	jne	L255
-	jmp	L253
+	jne	L265
+	jmp	L263
 	.p2align 4,,10
-L427:
+L437:
 	movzwl	116(%esp), %ecx
 	testw	%cx, %cx
-	je	L218
+	je	L228
 	movzwl	(%eax), %edx
 	cmpw	%dx, %cx
-	jne	L203
+	jne	L213
 	xorl	%ecx, %ecx
 	leal	118(%esp), %edx
-	jmp	L211
+	jmp	L221
 	.p2align 4,,10
-L213:
+L223:
 	addl	$2, %ecx
 	cmpw	%bx, (%eax,%ecx)
-	jne	L212
-L211:
+	jne	L222
+L221:
 	movzwl	(%edx,%ecx), %ebx
 	testw	%bx, %bx
-	jne	L213
-	jmp	L218
+	jne	L223
+	jmp	L228
 	.p2align 4,,10
-L197:
+L207:
 	movzwl	(%ecx), %edi
-L199:
+L209:
 	cmpw	$41, %di
-	jne	L202
+	jne	L212
 	leal	2(%ecx), %eax
 	movzwl	2(%ecx), %edx
 	movl	%eax, 80(%esp)
-	jmp	L203
+	jmp	L213
 	.p2align 4,,10
-L426:
+L436:
 	movl	16(%esp), %eax
 	call	_ParseAsIntegerPartNumberSequence
 	movl	80(%esp), %eax
-	jmp	L280
+	jmp	L290
 	.p2align 4,,10
-L422:
+L432:
 	movl	16(%esp), %eax
 	call	_ParseAsIntegerPartNumberSequence
 	movl	80(%esp), %ecx
-	jmp	L196
+	jmp	L206
 	.p2align 4,,10
-L434:
+L444:
 	movl	16(%esp), %eax
 	call	_ParseAsIntegerPartNumberSequence
 	movl	80(%esp), %eax
-	jmp	L278
+	jmp	L288
 	.p2align 4,,10
-L132:
+L142:
 	subl	$87, %ecx
-L131:
+L141:
 	movl	16(%esp), %esi
 	leal	2(%ebx), %edi
 	subl	$1, %esi
-	je	L136
+	je	L146
 	movl	%ebx, 24(%esp)
 	.p2align 4,,10
-L142:
+L152:
 	movzwl	(%edi), %ebx
 	sall	$4, %ecx
 	movl	%ebx, %eax
 	subl	$48, %eax
 	cmpw	$54, %ax
-	ja	L289
+	ja	L299
 	movzwl	%ax, %eax
-	jmp	*L139(,%eax,4)
+	jmp	*L149(,%eax,4)
 	.section .rdata,"dr"
 	.align 4
-L139:
-	.long	L141
-	.long	L141
-	.long	L141
-	.long	L141
-	.long	L141
-	.long	L141
-	.long	L141
-	.long	L141
-	.long	L141
-	.long	L141
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L140
-	.long	L140
-	.long	L140
-	.long	L140
-	.long	L140
-	.long	L140
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L289
-	.long	L138
-	.long	L138
-	.long	L138
-	.long	L138
-	.long	L138
-	.long	L138
+L149:
+	.long	L151
+	.long	L151
+	.long	L151
+	.long	L151
+	.long	L151
+	.long	L151
+	.long	L151
+	.long	L151
+	.long	L151
+	.long	L151
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L150
+	.long	L150
+	.long	L150
+	.long	L150
+	.long	L150
+	.long	L150
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L299
+	.long	L148
+	.long	L148
+	.long	L148
+	.long	L148
+	.long	L148
+	.long	L148
 	.text
 	.p2align 4,,10
-L140:
+L150:
 	subl	$55, %ebx
-	jmp	L137
+	jmp	L147
 	.p2align 4,,10
-L141:
+L151:
 	subl	$48, %ebx
-	jmp	L137
+	jmp	L147
 	.p2align 4,,10
-L289:
+L299:
 	movl	$-1, %ebx
-	jmp	L137
+	jmp	L147
 	.p2align 4,,10
-L134:
+L144:
 	subl	$55, %ecx
-	jmp	L131
+	jmp	L141
 	.p2align 4,,10
-L135:
+L145:
 	subl	$48, %ecx
-	jmp	L131
+	jmp	L141
 	.p2align 4,,10
-L288:
+L298:
 	movl	$-1, %ecx
-	jmp	L131
+	jmp	L141
 	.p2align 4,,10
-L424:
+L434:
 	movl	16(%esp), %eax
 	call	_ParseAsIntegerPartNumberSequence
 	movl	80(%esp), %eax
 	testl	%edi, %edi
-	je	L224
+	je	L234
 	movzwl	116(%esp), %edx
 	testw	%dx, %dx
-	je	L223
+	je	L233
 	cmpw	%dx, (%eax)
-	jne	L224
+	jne	L234
 	xorl	%ecx, %ecx
 	leal	118(%esp), %edx
-	jmp	L225
+	jmp	L235
 	.p2align 4,,10
-L226:
+L236:
 	addl	$2, %ecx
 	cmpw	%bx, (%eax,%ecx)
-	jne	L224
-L225:
+	jne	L234
+L235:
 	movzwl	(%edx,%ecx), %ebx
 	testw	%bx, %bx
-	jne	L226
-L223:
+	jne	L236
+L233:
 	movl	124(%esp), %edx
 	leal	(%eax,%edx,2), %eax
 	movl	%eax, 80(%esp)
@@ -3809,46 +3870,46 @@ L223:
 	call	_ParseAsFractionPartNumberSequence
 	movl	80(%esp), %eax
 	.p2align 4,,10
-L224:
+L234:
 	testl	$8, %esi
-	je	L209
+	je	L219
 	movzwl	92(%esp), %ecx
 	testw	%cx, %cx
-	je	L237
+	je	L247
 	movzwl	(%eax), %edx
 	cmpw	%cx, %dx
-	jne	L229
+	jne	L239
 	xorl	%ebx, %ebx
 	leal	94(%esp), %ecx
-	jmp	L230
+	jmp	L240
 	.p2align 4,,10
-L231:
+L241:
 	addl	$2, %ebx
 	cmpw	%di, (%eax,%ebx)
-	jne	L229
-L230:
+	jne	L239
+L240:
 	movzwl	(%ecx,%ebx), %edi
 	testw	%di, %di
-	jne	L231
-	jmp	L237
+	jne	L241
+	jmp	L247
 	.p2align 4,,10
-L212:
+L222:
 	andl	$2, %esi
-	je	L202
+	je	L212
 	movl	80(%esp), %eax
 	movzwl	(%eax), %edx
-	jmp	L284
+	jmp	L294
 	.p2align 4,,10
-L259:
+L269:
 	movl	20(%esp), %ebx
 	movl	$48, (%ebx)
-	jmp	L260
+	jmp	L270
 	.p2align 4,,10
-L250:
+L260:
 	movl	60(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	24(%esp), %eax
-L419:
+L429:
 	movl	%eax, (%esp)
 	call	_DeallocateBlock
 	movl	52(%esp), %eax
@@ -3857,11 +3918,11 @@ L419:
 	movl	%eax, (%esp)
 	call	_DeallocateBlock
 	movl	$1, %eax
-	jmp	L109
+	jmp	L119
 	.p2align 4,,10
-L430:
+L440:
 	testw	%dx, %dx
-	je	L259
+	je	L269
 	movl	%eax, 4(%esp)
 	movl	24(%esp), %eax
 	movl	%eax, (%esp)
@@ -3872,48 +3933,48 @@ L430:
 	movl	%eax, (%esp)
 	call	_DeallocateBlock
 	movl	$-2, %eax
-	jmp	L109
+	jmp	L119
 	.p2align 4,,10
-L298:
+L308:
 	movl	%ebx, 24(%esp)
 	movl	20(%esp), %eax
-	jmp	L262
+	jmp	L272
 	.p2align 4,,10
-L286:
+L296:
 	movl	$-1, %eax
-	jmp	L109
+	jmp	L119
 	.p2align 4,,10
-L229:
+L239:
 	movzwl	104(%esp), %ecx
 	testw	%cx, %cx
-	je	L242
+	je	L252
 	cmpw	%cx, %dx
-	jne	L203
+	jne	L213
 	xorl	%edx, %edx
 	leal	106(%esp), %ecx
-	jmp	L274
+	jmp	L284
 	.p2align 4,,10
-L232:
+L242:
 	addl	$2, %edx
 	cmpw	%bx, (%eax,%edx)
-	jne	L212
-L274:
+	jne	L222
+L284:
 	movzwl	(%ecx,%edx), %ebx
 	testw	%bx, %bx
-	jne	L232
-L242:
+	jne	L242
+L252:
 	movl	112(%esp), %edx
 	movl	$-1, 88(%esp)
 	leal	(%eax,%edx,2), %eax
 	movl	%eax, 80(%esp)
 	movzwl	(%eax), %edx
-	jmp	L203
+	jmp	L213
 	.p2align 4,,10
-L429:
+L439:
 	movl	%eax, 4(%esp)
 	movl	%ebx, %eax
-	jmp	L419
-L432:
+	jmp	L429
+L442:
 	movl	20(%esp), %edi
 	movl	%ebp, %esi
 	movl	16(%esp), %ecx
@@ -3933,7 +3994,7 @@ L432:
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	jne	L109
+	jne	L119
 	movl	68(%esp), %eax
 	movl	%ebx, (%esp)
 	movl	%eax, 4(%esp)
@@ -3943,47 +4004,47 @@ L432:
 	call	_CommitNumber
 	movl	44(%esp), %eax
 	testb	$2, 16(%eax)
-	je	L186
+	je	L196
 	movl	%eax, (%esp)
 	call	_DeallocateNumber
 	movl	$_number_zero, %eax
-	jmp	L186
-L238:
+	jmp	L196
+L248:
 	movzwl	104(%esp), %ecx
 	testw	%cx, %cx
-	je	L242
+	je	L252
 	cmpw	%cx, %dx
-	jne	L203
+	jne	L213
 	xorl	%edx, %edx
 	leal	106(%esp), %ecx
-	jmp	L275
+	jmp	L285
 	.p2align 4,,10
-L241:
+L251:
 	addl	$2, %edx
 	cmpw	%bx, (%eax,%edx)
-	jne	L212
-L275:
+	jne	L222
+L285:
 	movzwl	(%ecx,%edx), %ebx
 	testw	%bx, %bx
-	jne	L241
-	jmp	L242
-L431:
+	jne	L251
+	jmp	L252
+L441:
 	movl	%eax, 16(%esp)
-	jmp	L418
-L187:
+	jmp	L428
+L197:
 	movl	$-5, %eax
-	jmp	L109
-L417:
+	jmp	L119
+L427:
 	movl	52(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	20(%esp), %eax
 	movl	%eax, (%esp)
 	call	_DeallocateBlock
 	movl	$-5, %eax
-	jmp	L109
-L267:
+	jmp	L119
+L277:
 	movl	$-5, %eax
-	jmp	L272
+	jmp	L282
 	.cfi_endproc
 LFE5507:
 	.section .rdata,"dr"

@@ -109,7 +109,7 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
                 0x000002b8                . = SIZEOF_HEADERS
                 0x00001000                . = ALIGN (__section_alignment__)
 
-.text           0x65681000     0xd200
+.text           0x65681000     0xd400
  *(.init)
  *(.text)
  .text          0x65681000        0x0 build/x86_Release/x86-Windows/CALC_divrem_critical.o
@@ -203,55 +203,55 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
                 0x65689400                PMC_Multiply_X_L@16
                 0x65689600                PMC_Multiply_X_X@12
                 0x656897a0                Initialize_Multiply
- .text          0x65689800     0x20d0 build/x86_Release/x86-Windows/pmc_parse.o
-                0x6568a6d0                PMC_TryParse@16
-                0x6568b820                Initialize_Parse
- .text          0x6568b8d0     0x1050 build/x86_Release/x86-Windows/pmc_shift.o
-                0x6568b8d0                RightShift_Imp_DIV
-                0x6568bfb0                RightShift_Imp
-                0x6568bfc0                LeftShift_Imp_DIV
-                0x6568c6c0                LeftShift_Imp
-                0x6568c6d0                PMC_RightShift_X_I@12
-                0x6568c7e0                PMC_RightShift_X_L@16
-                0x6568c7f0                PMC_LeftShift_X_I@12
-                0x6568c900                PMC_LeftShift_X_L@16
-                0x6568c910                Initialize_Shift
- .text          0x6568c920       0x30 build/x86_Release/x86-Windows/pmc_statistics.o
-                0x6568c920                PMC_GetStatisticsInfo@4
- .text          0x6568c950      0x980 build/x86_Release/x86-Windows/pmc_subtruct.o
-                0x6568c9d0                PMC_Subtruct_X_I@12
-                0x6568cb30                PMC_Subtruct_X_L@16
-                0x6568cd90                PMC_Subtruct_X_X@12
-                0x6568d2c0                Initialize_Subtruct
- .text          0x6568d2d0      0x170 build/x86_Release/x86-Windows/pmc_to.o
-                0x6568d2d0                PMC_To_X_I@8
-                0x6568d320                PMC_To_X_L@8
-                0x6568d3a0                PMC_To_X_B@16
-                0x6568d430                Initialize_To
- .text          0x6568d440      0xd00 build/x86_Release/x86-Windows/pmc_tostring.o
-                0x6568df90                PMC_ToString@24
-                0x6568e0b0                Initialize_ToString
- .text          0x6568e140        0x0 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzch.o)
- .text          0x6568e140        0x0 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzct.o)
+ .text          0x65689800     0x21e0 build/x86_Release/x86-Windows/pmc_parse.o
+                0x6568a7e0                PMC_TryParse@16
+                0x6568b930                Initialize_Parse
+ .text          0x6568b9e0     0x1050 build/x86_Release/x86-Windows/pmc_shift.o
+                0x6568b9e0                RightShift_Imp_DIV
+                0x6568c0c0                RightShift_Imp
+                0x6568c0d0                LeftShift_Imp_DIV
+                0x6568c7d0                LeftShift_Imp
+                0x6568c7e0                PMC_RightShift_X_I@12
+                0x6568c8f0                PMC_RightShift_X_L@16
+                0x6568c900                PMC_LeftShift_X_I@12
+                0x6568ca10                PMC_LeftShift_X_L@16
+                0x6568ca20                Initialize_Shift
+ .text          0x6568ca30       0x30 build/x86_Release/x86-Windows/pmc_statistics.o
+                0x6568ca30                PMC_GetStatisticsInfo@4
+ .text          0x6568ca60      0x980 build/x86_Release/x86-Windows/pmc_subtruct.o
+                0x6568cae0                PMC_Subtruct_X_I@12
+                0x6568cc40                PMC_Subtruct_X_L@16
+                0x6568cea0                PMC_Subtruct_X_X@12
+                0x6568d3d0                Initialize_Subtruct
+ .text          0x6568d3e0      0x170 build/x86_Release/x86-Windows/pmc_to.o
+                0x6568d3e0                PMC_To_X_I@8
+                0x6568d430                PMC_To_X_L@8
+                0x6568d4b0                PMC_To_X_B@16
+                0x6568d540                Initialize_To
+ .text          0x6568d550      0xd20 build/x86_Release/x86-Windows/pmc_tostring.o
+                0x6568e0c0                PMC_ToString@24
+                0x6568e1e0                Initialize_ToString
+ .text          0x6568e270        0x0 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzch.o)
+ .text          0x6568e270        0x0 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzct.o)
  *(SORT_BY_NAME(.text$*))
  *(.text.*)
  *(.gnu.linkonce.t.*)
  *(.glue_7t)
  *(.glue_7)
-                0x6568e140                ___CTOR_LIST__ = .
-                0x6568e140                __CTOR_LIST__ = .
-                0x6568e140        0x4 LONG 0xffffffff
+                0x6568e270                ___CTOR_LIST__ = .
+                0x6568e270                __CTOR_LIST__ = .
+                0x6568e270        0x4 LONG 0xffffffff
  *(.ctors)
  *(.ctor)
  *(SORT_BY_NAME(.ctors.*))
-                0x6568e144        0x4 LONG 0x0
-                0x6568e148                ___DTOR_LIST__ = .
-                0x6568e148                __DTOR_LIST__ = .
-                0x6568e148        0x4 LONG 0xffffffff
+                0x6568e274        0x4 LONG 0x0
+                0x6568e278                ___DTOR_LIST__ = .
+                0x6568e278                __DTOR_LIST__ = .
+                0x6568e278        0x4 LONG 0xffffffff
  *(.dtors)
  *(.dtor)
  *(SORT_BY_NAME(.dtors.*))
-                0x6568e14c        0x4 LONG 0x0
+                0x6568e27c        0x4 LONG 0x0
  *(.fini)
  *(.gcc_exc)
                 [!provide]                PROVIDE (etext = .)
@@ -560,7 +560,7 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
 
 .reloc          0x65697000      0x800
  *(.reloc)
- .reloc         0x65697000      0x758 dll stuff
+ .reloc         0x65697000      0x778 dll stuff
 
 .stab
  *(.stab)

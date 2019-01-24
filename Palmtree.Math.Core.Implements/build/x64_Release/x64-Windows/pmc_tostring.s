@@ -88,8 +88,8 @@ ToStringDN:
 	.seh_stackalloc	216
 	.seh_endprologue
 	testb	$2, 32(%rcx)
-	movq	%rcx, %rdi
-	movq	%rdx, %r12
+	movq	%rcx, %rbp
+	movq	%rdx, %r14
 	movl	%r9d, 68(%rsp)
 	movq	%r8, 304(%rsp)
 	je	.L9
@@ -104,7 +104,7 @@ ToStringDN:
 	cmpq	%rax, 304(%rsp)
 	jb	.L42
 	movl	320(%rsp), %edx
-	movq	%r12, %rdi
+	movq	%r14, %rdi
 	movl	$48, %eax
 	movq	%rdx, %rcx
 /APP
@@ -113,10 +113,10 @@ ToStringDN:
  # 0 "" 2
 /NO_APP
 	xorl	%ebx, %ebx
-	xorl	%r9d, %r9d
-	movw	%bx, (%r12,%rdx,2)
+	xorl	%edi, %edi
+	movw	%bx, (%r14,%rdx,2)
 .L8:
-	movl	%r9d, %eax
+	movl	%edi, %eax
 	addq	$216, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -129,57 +129,53 @@ ToStringDN:
 	ret
 	.p2align 4,,10
 .L67:
-	movl	320(%rsp), %r14d
-	movl	$48, %r13d
-	movw	%r13w, (%rdx)
-	testl	%r14d, %r14d
+	movl	320(%rsp), %r13d
+	movl	$48, %r12d
+	movw	%r12w, (%rdx)
+	testl	%r13d, %r13d
 	jne	.L11
 	xorl	%ebp, %ebp
-	xorl	%r9d, %r9d
+	xorl	%edi, %edi
 	movw	%bp, 2(%rdx)
 	jmp	.L8
 	.p2align 4,,10
 .L9:
 	movq	8(%rcx), %rax
 	leaq	104(%rsp), %rdx
+	movl	$-5, %edi
 	leaq	96(%rsp), %r8
 	movq	%rax, %rcx
 	shrq	$3, %rcx
 	leaq	64(%rax,%rcx), %rcx
 	call	AllocateBlock
-	movl	$-5, %r9d
 	testq	%rax, %rax
-	movq	%rax, %r14
+	movq	%rax, %r15
 	je	.L8
-	movq	48(%rdi), %rsi
+	movq	48(%rbp), %rsi
 	leaq	120(%rsp), %rdx
-	movl	%r9d, 56(%rsp)
 	movabsq	$2305843009213693951, %rbx
-	andq	(%rdi), %rbx
+	andq	0(%rbp), %rbx
 	leaq	112(%rsp), %r8
-	movq	8(%rdi), %rdi
-	addq	$64, %rdi
-	movq	%rdi, %rcx
+	movq	8(%rbp), %rbp
+	addq	$64, %rbp
+	movq	%rbp, %rcx
 	call	AllocateBlock
-	movl	56(%rsp), %r9d
 	testq	%rax, %rax
 	movq	%rax, 48(%rsp)
 	je	.L16
 	leaq	136(%rsp), %rax
-	movq	%rdi, %rcx
-	movl	%r9d, 72(%rsp)
+	movq	%rbp, %rcx
 	leaq	128(%rsp), %r8
 	movq	%rax, %rdx
-	movq	%rax, 88(%rsp)
-	movq	%r8, 80(%rsp)
+	movq	%rax, 80(%rsp)
+	movq	%r8, 72(%rsp)
 	call	AllocateBlock
-	movl	72(%rsp), %r9d
 	testq	%rax, %rax
 	movq	%rax, 56(%rsp)
 	je	.L68
-	movq	48(%rsp), %r15
+	movq	48(%rsp), %r12
 	movq	%rbx, %rcx
-	movq	%r15, %rdi
+	movq	%r12, %rdi
 /APP
  # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsq
@@ -190,7 +186,7 @@ ToStringDN:
 	je	.L44
 	movq	56(%rsp), %rsi
 	leaq	144(%rsp), %rbx
-	movq	%r14, %rbp
+	movq	%r15, %rbp
 	.p2align 4,,10
 .L23:
 	movq	%rsi, %rdi
@@ -203,7 +199,7 @@ ToStringDN:
 /NO_APP
 	movq	%rsi, %r9
 	movq	%r13, %rdx
-	movq	%r15, %rcx
+	movq	%r12, %rcx
 	movq	%rbx, 32(%rsp)
 	movabsq	$-8446744073709551616, %r8
 	call	DivRem_X_1W
@@ -226,9 +222,9 @@ ToStringDN:
 	jne	.L69
 	subq	$1, %r13
 	jne	.L20
-	subq	%r14, %rbp
+	subq	%r15, %rbp
 	sarq	$3, %rbp
-	movq	%rbp, 72(%rsp)
+	movq	%rbp, 88(%rsp)
 .L18:
 	movq	136(%rsp), %rdx
 	movq	56(%rsp), %rcx
@@ -237,15 +233,15 @@ ToStringDN:
 	movq	48(%rsp), %rcx
 	call	DeallocateBlock
 	movq	96(%rsp), %rdx
-	movq	%r14, %rcx
+	movq	%r15, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	movl	%eax, %r9d
+	movl	%eax, %edi
 	jne	.L8
-	movq	72(%rsp), %rbx
+	movq	88(%rsp), %rbx
 	movl	320(%rsp), %edi
-	movq	88(%rsp), %rdx
-	movq	80(%rsp), %r8
+	movq	80(%rsp), %rdx
+	movq	72(%rsp), %r8
 	leaq	(%rbx,%rbx,8), %rax
 	leaq	(%rbx,%rax,2), %rax
 	movq	%rdi, 56(%rsp)
@@ -342,15 +338,19 @@ ToStringDN:
 	addq	%rax, %rax
 	addq	%rax, 192(%rsp)
 .L31:
-	movq	72(%rsp), %r15
-	subq	$1, %r15
+	movq	88(%rsp), %rax
+	subq	$1, %rax
 	je	.L45
+	movq	.refptr.statistics_info(%rip), %r12
 	xorl	%edi, %edi
 	xorl	%ebp, %ebp
 	movl	$10, %esi
+	movq	%r14, 296(%rsp)
+	movq	%rdi, %r14
+	movq	%rax, %rdi
 	.p2align 4,,10
 .L34:
-	movq	(%r14,%rdi,8), %r13
+	movq	(%r15,%r14,8), %r13
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
 	movq	%r13, %rax
@@ -361,9 +361,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -371,9 +371,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -381,9 +381,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -391,9 +391,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -401,9 +401,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -411,9 +411,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -421,9 +421,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -431,9 +431,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -441,9 +441,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -451,9 +451,10 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
+	lock addl	$10, 8(%r12)
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -461,9 +462,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -471,9 +472,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -481,9 +482,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -491,9 +492,9 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -501,9 +502,10 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
+	lock addl	$5, 8(%r12)
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -511,20 +513,20 @@ ToStringDN:
 /NO_APP
 	movq	%rax, %r13
 	call	OutputOneChar
-	movq	%r13, %rax
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
  # 0 "" 2
 /NO_APP
 	movq	%rax, %r13
-	addq	$1, %rdi
 	call	OutputOneChar
-	movq	%r13, %rax
+	lock addl	$2, 8(%r12)
 	movq	%rbx, %rcx
 	movq	%rbp, %rdx
+	movq	%r13, %rax
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
@@ -535,33 +537,37 @@ ToStringDN:
 	movq	%r13, %rdx
 	movq	%rbx, %rcx
 	call	OutputOneChar
-	cmpq	%rdi, %r15
+	lock addl	$1, 8(%r12)
+	addq	$1, %r14
+	cmpq	%r14, %rdi
 	jne	.L34
-	movq	72(%rsp), %rax
-	leaq	-8(%r14,%rax,8), %rax
+	movq	88(%rsp), %rax
+	movq	296(%rsp), %r14
+	leaq	-8(%r15,%rax,8), %rax
 .L33:
-	movq	(%rax), %rbp
-	xorl	%edi, %edi
+	movq	(%rax), %r13
+	xorl	%ebp, %ebp
 	movl	$10, %esi
 	.p2align 4,,10
 .L35:
-	movq	%rbp, %rax
-	movq	%rdi, %rdx
 	movq	%rbx, %rcx
+	movq	%r13, %rax
+	movq	%rbp, %rdx
 /APP
  # 624 "pmc_internal.h" 1
 	divq %rsi
  # 0 "" 2
 /NO_APP
-	movq	%rax, %rbp
+	movq	%rax, %r13
 	call	OutputOneChar
-	testq	%rbp, %rbp
+	lock addl	$1, 8(%r12)
+	testq	%r13, %r13
 	jne	.L35
 	movq	192(%rsp), %rax
 	movq	%rax, %rsi
 	subq	48(%rsp), %rsi
-	movq	%rsi, %rdi
-	sarq	%rdi
+	movq	%rsi, %rbp
+	sarq	%rbp
 	cmpb	$68, 68(%rsp)
 	je	.L70
 .L36:
@@ -571,25 +577,23 @@ ToStringDN:
 	movq	128(%rsp), %rdx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	movl	%eax, %r9d
+	movl	%eax, %edi
 	jne	.L8
 	movq	104(%rsp), %rdx
-	movq	%r14, %rcx
-	movl	%eax, 56(%rsp)
+	movq	%r15, %rcx
 	call	DeallocateBlock
-	leaq	1(%rdi), %rax
-	movl	56(%rsp), %r9d
+	leaq	1(%rbp), %rax
 	cmpq	304(%rsp), %rax
 	ja	.L71
 	subq	$2, %rsi
-	testq	%rdi, %rdi
+	testq	%rbp, %rbp
 	je	.L39
-	movq	%rdi, %rax
-	movq	%r12, %rdx
+	movq	%rbp, %rax
+	movq	%r14, %rdx
 	negq	%rax
 	leaq	(%rsi,%rax,2), %r8
 	addq	48(%rsp), %r8
-	movq	%rdi, %rax
+	movq	%rbp, %rax
 	.p2align 4,,10
 .L40:
 	movzwl	(%r8,%rax,2), %ecx
@@ -597,20 +601,18 @@ ToStringDN:
 	movw	%cx, -2(%rdx)
 	subq	$1, %rax
 	jne	.L40
-	leaq	(%r12,%rdi,2), %r12
+	leaq	(%r14,%rbp,2), %r14
 .L39:
 	movq	136(%rsp), %rdx
 	xorl	%eax, %eax
-	movl	%r9d, 56(%rsp)
 	movq	48(%rsp), %rcx
-	movw	%ax, (%r12)
+	movw	%ax, (%r14)
 	call	DeallocateBlock
-	movl	56(%rsp), %r9d
 	jmp	.L8
 	.p2align 4,,10
 .L69:
-	movq	%r15, %rax
-	movq	%rsi, %r15
+	movq	%r12, %rax
+	movq	%rsi, %r12
 	movq	%rax, %rsi
 	jmp	.L23
 	.p2align 4,,10
@@ -630,7 +632,7 @@ ToStringDN:
 	movl	320(%rsp), %ecx
 	movl	%eax, %edx
 	cltq
-	leaq	2(%r12,%rax,2), %rdi
+	leaq	2(%r14,%rax,2), %rdi
 	movl	$48, %eax
 /APP
  # 1454 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
@@ -639,65 +641,62 @@ ToStringDN:
 /NO_APP
 	movl	320(%rsp), %eax
 	xorl	%edi, %edi
-	xorl	%r9d, %r9d
 	leal	1(%rdx,%rax), %eax
-	movw	%di, (%r12,%rax,2)
+	movw	%di, (%r14,%rax,2)
+	xorl	%edi, %edi
 	jmp	.L8
 	.p2align 4,,10
 .L64:
-	movl	%eax, %r9d
+	movl	%eax, %edi
 .L16:
 	movq	104(%rsp), %rdx
-	movq	%r14, %rcx
-	movl	%r9d, 48(%rsp)
+	movq	%r15, %rcx
 	call	DeallocateBlock
-	movl	48(%rsp), %r9d
 	jmp	.L8
 	.p2align 4,,10
 .L70:
-	movq	48(%rsp), %rcx
-	movq	56(%rsp), %rdx
-	leaq	(%rcx,%rdx,2), %rdx
+	movq	48(%rsp), %rdi
+	movq	56(%rsp), %rcx
+	leaq	(%rdi,%rcx,2), %rdx
 	cmpq	%rdx, %rax
 	jnb	.L36
-	movl	320(%rsp), %ebp
-	subl	%edi, %ebp
-	testl	%ebp, %ebp
+	movl	320(%rsp), %edi
+	subl	%ebp, %edi
+	testl	%edi, %edi
 	jle	.L36
 	.p2align 4,,10
 .L37:
 	xorl	%edx, %edx
 	movq	%rbx, %rcx
 	call	OutputOneChar
-	subl	$1, %ebp
+	subl	$1, %edi
 	jne	.L37
 	movq	192(%rsp), %rax
 	movq	%rax, %rsi
 	subq	48(%rsp), %rsi
-	movq	%rsi, %rdi
-	sarq	%rdi
+	movq	%rsi, %rbp
+	sarq	%rbp
 	jmp	.L36
 .L44:
-	movq	$0, 72(%rsp)
+	movq	$0, 88(%rsp)
 	jmp	.L18
 .L45:
-	movq	%r14, %rax
+	movq	%r15, %rax
+	movq	.refptr.statistics_info(%rip), %r12
 	jmp	.L33
 .L71:
 	movq	136(%rsp), %rdx
+	movl	$-4, %edi
 	movq	48(%rsp), %rcx
 	call	DeallocateBlock
-	movl	$-4, %r9d
 	jmp	.L8
 .L42:
-	movl	$-4, %r9d
+	movl	$-4, %edi
 	jmp	.L8
 .L68:
 	movq	120(%rsp), %rdx
-	movl	%r9d, 56(%rsp)
 	movq	48(%rsp), %rcx
 	call	DeallocateBlock
-	movl	56(%rsp), %r9d
 	jmp	.L16
 	.seh_endproc
 	.p2align 4,,15
@@ -1348,3 +1347,8 @@ decimal_digits:
 	.def	CheckBlockLight;	.scl	2;	.type	32;	.endef
 	.def	DeallocateBlock;	.scl	2;	.type	32;	.endef
 	.def	CheckNumber;	.scl	2;	.type	32;	.endef
+	.section	.rdata$.refptr.statistics_info, "dr"
+	.globl	.refptr.statistics_info
+	.linkonce	discard
+.refptr.statistics_info:
+	.quad	statistics_info

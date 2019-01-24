@@ -24,6 +24,7 @@ EXTRN	CommitNumber:PROC
 EXTRN	__GSHandlerCheck:PROC
 EXTRN	__security_check_cookie:PROC
 EXTRN	number_zero:BYTE
+EXTRN	statistics_info:BYTE
 EXTRN	__ImageBase:BYTE
 EXTRN	__security_cookie:QWORD
 _BSS	SEGMENT
@@ -93,13 +94,13 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$MultiplyAndAdd_using_ADC_MUL DD imagerel MultiplyAndAdd_using_ADC_MUL
-	DD	imagerel MultiplyAndAdd_using_ADC_MUL+1559
+	DD	imagerel MultiplyAndAdd_using_ADC_MUL+2410
 	DD	imagerel $unwind$MultiplyAndAdd_using_ADC_MUL
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$MultiplyAndAdd_using_ADCX_MULX DD imagerel MultiplyAndAdd_using_ADCX_MULX
-	DD	imagerel MultiplyAndAdd_using_ADCX_MULX+1635
+	DD	imagerel MultiplyAndAdd_using_ADCX_MULX+2467
 	DD	imagerel $unwind$MultiplyAndAdd_using_ADCX_MULX
 pdata	ENDS
 ;	COMDAT pdata
@@ -343,16 +344,16 @@ $unwind$ConvertCardinalNumber DD 085301H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$MultiplyAndAdd_using_ADCX_MULX DD 050e01H
-	DD	04740eH
-	DD	03340eH
-	DD	0500bH
+$unwind$MultiplyAndAdd_using_ADCX_MULX DD 051301H
+	DD	07a0113H
+	DD	030037004H
+	DD	05002H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$MultiplyAndAdd_using_ADC_MUL DD 030901H
-	DD	033409H
-	DD	05006H
+$unwind$MultiplyAndAdd_using_ADC_MUL DD 041201H
+	DD	07b0112H
+	DD	050023003H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -445,7 +446,7 @@ format_option$ = 272
 o$ = 280
 TryParseX PROC						; COMDAT
 
-; 895  : {
+; 967  : {
 
 	push	rbp
 	push	rsi
@@ -461,15 +462,15 @@ TryParseX PROC						; COMDAT
 	mov	edi, edx
 	mov	rsi, rcx
 
-; 896  :     PMC_STATUS_CODE result;
-; 897  :     __UNIT_TYPE source_len = lstrlenW(source);
+; 968  :     PMC_STATUS_CODE result;
+; 969  :     __UNIT_TYPE source_len = lstrlenW(source);
 
 	call	QWORD PTR __imp_lstrlenW
 	movsxd	rcx, eax
 
-; 898  :     __UNIT_TYPE int_part_buf_code;
-; 899  :     __UNIT_TYPE int_part_buf_words;
-; 900  :     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
+; 970  :     __UNIT_TYPE int_part_buf_code;
+; 971  :     __UNIT_TYPE int_part_buf_words;
+; 972  :     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
 
 	lea	r8, QWORD PTR int_part_buf_code$[rsp]
 	inc	rcx
@@ -478,12 +479,12 @@ TryParseX PROC						; COMDAT
 	call	AllocateBlock
 	mov	r14, rax
 
-; 901  :     if (int_part_buf == NULL)
+; 973  :     if (int_part_buf == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN2@TryParseX
 
-; 902  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 974  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, QWORD PTR [r14-5]
 	jmp	$LN1@TryParseX
@@ -611,8 +612,8 @@ $LN33@TryParseX:
 	mov	ebx, 1
 $LN9@TryParseX:
 
-; 903  :     int result_parsing = ParseAsHexNumberString(source, number_styles, format_option, int_part_buf);
-; 904  :     if ((result = CheckBlockLight((__UNIT_TYPE*)int_part_buf, int_part_buf_code)) != PMC_STATUS_OK)
+; 975  :     int result_parsing = ParseAsHexNumberString(source, number_styles, format_option, int_part_buf);
+; 976  :     if ((result = CheckBlockLight((__UNIT_TYPE*)int_part_buf, int_part_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR int_part_buf_code$[rsp]
 	mov	rcx, r14
@@ -620,23 +621,23 @@ $LN9@TryParseX:
 	test	eax, eax
 	jne	$LN76@TryParseX
 
-; 905  :         return (result);
-; 906  :     if (!result_parsing || int_part_buf[0] == L'\0')
+; 977  :         return (result);
+; 978  :     if (!result_parsing || int_part_buf[0] == L'\0')
 
 	test	ebx, ebx
 	je	$LN5@TryParseX
 	cmp	WORD PTR [r14], ax
 	je	$LN5@TryParseX
 
-; 910  :     }
-; 911  :     __UNIT_TYPE o_bit_count = lstrlenW(int_part_buf) * 4;
+; 982  :     }
+; 983  :     __UNIT_TYPE o_bit_count = lstrlenW(int_part_buf) * 4;
 
 	mov	rcx, r14
 	call	QWORD PTR __imp_lstrlenW
 	shl	eax, 2
 
-; 912  :     __UNIT_TYPE o_light_check_code;
-; 913  :     if ((result = AllocateNumber(o, o_bit_count, &o_light_check_code)) != PMC_STATUS_OK)
+; 984  :     __UNIT_TYPE o_light_check_code;
+; 985  :     if ((result = AllocateNumber(o, o_bit_count, &o_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR o_light_check_code$[rsp]
 	movsxd	rdx, eax
@@ -647,34 +648,34 @@ $LN9@TryParseX:
 	test	eax, eax
 	je	SHORT $LN6@TryParseX
 
-; 914  :     {
-; 915  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 986  :     {
+; 987  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	mov	rdx, QWORD PTR int_part_buf_words$[rsp]
 	call	DeallocateBlock
 
-; 916  :         return (result);
+; 988  :         return (result);
 
 	mov	eax, ebx
 	jmp	$LN76@TryParseX
 $LN6@TryParseX:
 
-; 917  :     }
-; 918  :     BuildBinaryFromHexString(int_part_buf, (*o)->BLOCK);
+; 989  :     }
+; 990  :     BuildBinaryFromHexString(int_part_buf, (*o)->BLOCK);
 
 	mov	rax, QWORD PTR [r15]
 	mov	rbx, QWORD PTR [rax+48]
 
-; 876  :     __UNIT_TYPE source_count = lstrlenW(source);
+; 948  :     __UNIT_TYPE source_count = lstrlenW(source);
 
 	call	QWORD PTR __imp_lstrlenW
 	movsxd	rsi, eax
 
-; 877  :     wchar_t* in_ptr = source;
+; 949  :     wchar_t* in_ptr = source;
 
 	mov	rdi, r14
 
-; 879  :     int r = source_count % word_digit_count;
+; 951  :     int r = source_count % word_digit_count;
 
 	mov	r11, rsi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -687,33 +688,33 @@ $LN6@TryParseX:
 	add	rbx, -8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 879  :     int r = source_count % word_digit_count;
+; 951  :     int r = source_count % word_digit_count;
 
 	and	r11d, 15
 
-; 880  :     if (r > 0)
+; 952  :     if (r > 0)
 
 	jbe	$LN57@TryParseX
 
-; 828  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
+; 900  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
 
 	movzx	ecx, WORD PTR [r14]
 	call	Parse1DigitFromHexChar
 
-; 830  :     --count;
+; 902  :     --count;
 
 	lea	r9, QWORD PTR [r11-1]
 	mov	r10d, eax
 
-; 882  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
+; 954  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
 
 	mov	ebp, r11d
 
-; 829  :     ++in_ptr;
+; 901  :     ++in_ptr;
 
 	lea	r8, QWORD PTR [r14+2]
 
-; 831  :     while (count > 0)
+; 903  :     while (count > 0)
 
 	test	r9, r9
 	je	SHORT $LN44@TryParseX
@@ -722,12 +723,12 @@ $LN6@TryParseX:
 	mov	r12d, -1				; ffffffffH
 $LL43@TryParseX:
 
-; 832  :     {
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 904  :     {
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	movzx	edx, WORD PTR [r8]
 
-; 794  :     switch (c)
+; 866  :     switch (c)
 
 	lea	eax, DWORD PTR [rdx-48]
 	cmp	eax, 54					; 00000036H
@@ -739,89 +740,89 @@ $LL43@TryParseX:
 	jmp	rcx
 $LN49@TryParseX:
 
-; 795  :     {
-; 796  :     case L'0':
-; 797  :     case L'1':
-; 798  :     case L'2':
-; 799  :     case L'3':
-; 800  :     case L'4':
-; 801  :     case L'5':
-; 802  :     case L'6':
-; 803  :     case L'7':
-; 804  :     case L'8':
-; 805  :     case L'9':
-; 806  :         return (c - L'0');
+; 867  :     {
+; 868  :     case L'0':
+; 869  :     case L'1':
+; 870  :     case L'2':
+; 871  :     case L'3':
+; 872  :     case L'4':
+; 873  :     case L'5':
+; 874  :     case L'6':
+; 875  :     case L'7':
+; 876  :     case L'8':
+; 877  :     case L'9':
+; 878  :         return (c - L'0');
 
 	lea	rax, QWORD PTR [rdx-48]
 	jmp	SHORT $LN46@TryParseX
 $LN50@TryParseX:
 
-; 807  :     case L'a':
-; 808  :     case L'b':
-; 809  :     case L'c':
-; 810  :     case L'd':
-; 811  :     case L'e':
-; 812  :     case L'f':
-; 813  :         return (c - L'a' + 10);
+; 879  :     case L'a':
+; 880  :     case L'b':
+; 881  :     case L'c':
+; 882  :     case L'd':
+; 883  :     case L'e':
+; 884  :     case L'f':
+; 885  :         return (c - L'a' + 10);
 
 	lea	rax, QWORD PTR [rdx-87]
 	jmp	SHORT $LN46@TryParseX
 $LN51@TryParseX:
 
-; 814  :     case L'A':
-; 815  :     case L'B':
-; 816  :     case L'C':
-; 817  :     case L'D':
-; 818  :     case L'E':
-; 819  :     case L'F':
-; 820  :         return (c - L'A' + 10);
+; 886  :     case L'A':
+; 887  :     case L'B':
+; 888  :     case L'C':
+; 889  :     case L'D':
+; 890  :     case L'E':
+; 891  :     case L'F':
+; 892  :         return (c - L'A' + 10);
 
 	lea	rax, QWORD PTR [rdx-55]
 	jmp	SHORT $LN46@TryParseX
 $LN52@TryParseX:
 
-; 821  :     default:
-; 822  :         return ((_UINT32_T)-1);
+; 893  :     default:
+; 894  :         return ((_UINT32_T)-1);
 
 	mov	rax, r12
 $LN46@TryParseX:
 
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	shl	r10, 4
 
-; 834  :         ++in_ptr;
+; 906  :         ++in_ptr;
 
 	add	r8, 2
 	mov	eax, eax
 	add	r10, rax
 
-; 835  :         --count;
+; 907  :         --count;
 
 	sub	r9, 1
 	jne	SHORT $LL43@TryParseX
 
-; 831  :     while (count > 0)
+; 903  :     while (count > 0)
 
 	mov	r12, QWORD PTR [rsp+192]
 $LN44@TryParseX:
 
-; 882  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
+; 954  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
 
 	mov	QWORD PTR [rbx], r10
 
-; 883  :         in_ptr += r;
+; 955  :         in_ptr += r;
 
 	lea	rdi, QWORD PTR [r14+r11*2]
 	sub	rbx, 8
 
-; 884  :         source_count -= r;
+; 956  :         source_count -= r;
 
 	sub	rsi, rbp
 $LN57@TryParseX:
 
-; 885  :     }
-; 886  :     while (source_count > 0)
+; 957  :     }
+; 958  :     while (source_count > 0)
 
 	test	rsi, rsi
 	je	SHORT $LN37@TryParseX
@@ -831,13 +832,13 @@ $LN57@TryParseX:
 	npad	1
 $LL36@TryParseX:
 
-; 887  :     {
-; 888  :         *out_ptr-- = Build1WordFromHexString(in_ptr);
+; 959  :     {
+; 960  :         *out_ptr-- = Build1WordFromHexString(in_ptr);
 
 	mov	rcx, rdi
 	call	Build1WordFromHexString
 
-; 889  :         in_ptr += word_digit_count;
+; 961  :         in_ptr += word_digit_count;
 
 	add	rdi, 32					; 00000020H
 	mov	QWORD PTR [rbx], rax
@@ -846,7 +847,7 @@ $LL36@TryParseX:
 	jne	SHORT $LL36@TryParseX
 $LN37@TryParseX:
 
-; 919  :     if ((result = CheckBlockLight((*o)->BLOCK, o_light_check_code)) != PMC_STATUS_OK)
+; 991  :     if ((result = CheckBlockLight((*o)->BLOCK, o_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR [r15]
 	mov	rdx, QWORD PTR o_light_check_code$[rsp]
@@ -855,39 +856,39 @@ $LN37@TryParseX:
 	test	eax, eax
 	jne	SHORT $LN76@TryParseX
 
-; 920  :         return (result);
-; 921  :     DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 992  :         return (result);
+; 993  :     DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	mov	rdx, QWORD PTR int_part_buf_words$[rsp]
 	mov	rcx, r14
 	call	DeallocateBlock
 
-; 922  :     CommitNumber(*o);
+; 994  :     CommitNumber(*o);
 
 	mov	rcx, QWORD PTR [r15]
 	call	CommitNumber
 
-; 923  :     return (PMC_STATUS_OK);
+; 995  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN76@TryParseX
 $LN5@TryParseX:
 
-; 907  :     {
-; 908  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 979  :     {
+; 980  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	mov	rdx, QWORD PTR int_part_buf_words$[rsp]
 	mov	rcx, r14
 	call	DeallocateBlock
 
-; 909  :         return (PMC_STATUS_PARSING_ERROR);
+; 981  :         return (PMC_STATUS_PARSING_ERROR);
 
 	mov	eax, 1
 $LN76@TryParseX:
 	mov	rbx, QWORD PTR [rsp+200]
 $LN1@TryParseX:
 
-; 924  : }
+; 996  : }
 
 	mov	rcx, QWORD PTR __$ArrayPad$[rsp]
 	xor	rcx, rsp
@@ -974,7 +975,7 @@ source$ = 64
 out_buf$ = 72
 BuildBinaryFromHexString PROC				; COMDAT
 
-; 874  : {
+; 946  : {
 
 	push	rbx
 	push	rsi
@@ -983,7 +984,7 @@ BuildBinaryFromHexString PROC				; COMDAT
 	mov	rbx, rdx
 	mov	rdi, rcx
 
-; 876  :     __UNIT_TYPE source_count = lstrlenW(source);
+; 948  :     __UNIT_TYPE source_count = lstrlenW(source);
 
 	call	QWORD PTR __imp_lstrlenW
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -993,7 +994,7 @@ BuildBinaryFromHexString PROC				; COMDAT
 	sub	rbx, 8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 876  :     __UNIT_TYPE source_count = lstrlenW(source);
+; 948  :     __UNIT_TYPE source_count = lstrlenW(source);
 
 	movsxd	r11, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -1005,36 +1006,36 @@ BuildBinaryFromHexString PROC				; COMDAT
 	lea	rsi, QWORD PTR [rbx+rsi*8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 879  :     int r = source_count % word_digit_count;
+; 951  :     int r = source_count % word_digit_count;
 
 	mov	rbx, r11
 	and	ebx, 15
 
-; 880  :     if (r > 0)
+; 952  :     if (r > 0)
 
 	jbe	$LN21@BuildBinar
 
-; 828  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
+; 900  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
 
 	movzx	ecx, WORD PTR [rdi]
 	mov	QWORD PTR [rsp+64], rbp
 	call	Parse1DigitFromHexChar
 
-; 830  :     --count;
+; 902  :     --count;
 
 	lea	r9, QWORD PTR [rbx-1]
 	mov	r10d, eax
 
-; 881  :     {
-; 882  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
+; 953  :     {
+; 954  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
 
 	mov	ebp, ebx
 
-; 829  :     ++in_ptr;
+; 901  :     ++in_ptr;
 
 	lea	r8, QWORD PTR [rdi+2]
 
-; 831  :     while (count > 0)
+; 903  :     while (count > 0)
 
 	test	r9, r9
 	je	SHORT $LN10@BuildBinar
@@ -1045,12 +1046,12 @@ BuildBinaryFromHexString PROC				; COMDAT
 	npad	7
 $LL9@BuildBinar:
 
-; 832  :     {
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 904  :     {
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	movzx	edx, WORD PTR [r8]
 
-; 794  :     switch (c)
+; 866  :     switch (c)
 
 	lea	eax, DWORD PTR [rdx-48]
 	cmp	eax, 54					; 00000036H
@@ -1062,92 +1063,92 @@ $LL9@BuildBinar:
 	jmp	rcx
 $LN15@BuildBinar:
 
-; 795  :     {
-; 796  :     case L'0':
-; 797  :     case L'1':
-; 798  :     case L'2':
-; 799  :     case L'3':
-; 800  :     case L'4':
-; 801  :     case L'5':
-; 802  :     case L'6':
-; 803  :     case L'7':
-; 804  :     case L'8':
-; 805  :     case L'9':
-; 806  :         return (c - L'0');
+; 867  :     {
+; 868  :     case L'0':
+; 869  :     case L'1':
+; 870  :     case L'2':
+; 871  :     case L'3':
+; 872  :     case L'4':
+; 873  :     case L'5':
+; 874  :     case L'6':
+; 875  :     case L'7':
+; 876  :     case L'8':
+; 877  :     case L'9':
+; 878  :         return (c - L'0');
 
 	lea	rax, QWORD PTR [rdx-48]
 	jmp	SHORT $LN12@BuildBinar
 $LN16@BuildBinar:
 
-; 807  :     case L'a':
-; 808  :     case L'b':
-; 809  :     case L'c':
-; 810  :     case L'd':
-; 811  :     case L'e':
-; 812  :     case L'f':
-; 813  :         return (c - L'a' + 10);
+; 879  :     case L'a':
+; 880  :     case L'b':
+; 881  :     case L'c':
+; 882  :     case L'd':
+; 883  :     case L'e':
+; 884  :     case L'f':
+; 885  :         return (c - L'a' + 10);
 
 	lea	rax, QWORD PTR [rdx-87]
 	jmp	SHORT $LN12@BuildBinar
 $LN17@BuildBinar:
 
-; 814  :     case L'A':
-; 815  :     case L'B':
-; 816  :     case L'C':
-; 817  :     case L'D':
-; 818  :     case L'E':
-; 819  :     case L'F':
-; 820  :         return (c - L'A' + 10);
+; 886  :     case L'A':
+; 887  :     case L'B':
+; 888  :     case L'C':
+; 889  :     case L'D':
+; 890  :     case L'E':
+; 891  :     case L'F':
+; 892  :         return (c - L'A' + 10);
 
 	lea	rax, QWORD PTR [rdx-55]
 	jmp	SHORT $LN12@BuildBinar
 $LN18@BuildBinar:
 
-; 821  :     default:
-; 822  :         return ((_UINT32_T)-1);
+; 893  :     default:
+; 894  :         return ((_UINT32_T)-1);
 
 	mov	rax, r15
 $LN12@BuildBinar:
 
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	shl	r10, 4
 
-; 834  :         ++in_ptr;
+; 906  :         ++in_ptr;
 
 	add	r8, 2
 	mov	eax, eax
 	add	r10, rax
 
-; 835  :         --count;
+; 907  :         --count;
 
 	sub	r9, 1
 	jne	SHORT $LL9@BuildBinar
 
-; 831  :     while (count > 0)
+; 903  :     while (count > 0)
 
 	mov	r15, QWORD PTR [rsp+80]
 	mov	r14, QWORD PTR [rsp+72]
 $LN10@BuildBinar:
 
-; 881  :     {
-; 882  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
+; 953  :     {
+; 954  :         *out_ptr-- = BuildLeading1WordFromHexString(in_ptr, r);
 
 	mov	QWORD PTR [rsi], r10
 
-; 883  :         in_ptr += r;
+; 955  :         in_ptr += r;
 
 	lea	rdi, QWORD PTR [rdi+rbx*2]
 	sub	rsi, 8
 
-; 884  :         source_count -= r;
+; 956  :         source_count -= r;
 
 	sub	r11, rbp
 	mov	rbp, QWORD PTR [rsp+64]
 $LN21@BuildBinar:
 
-; 885  :     }
-; 886  :     while (source_count > 0)
+; 957  :     }
+; 958  :     while (source_count > 0)
 
 	test	r11, r11
 	je	SHORT $LN3@BuildBinar
@@ -1157,13 +1158,13 @@ $LN21@BuildBinar:
 	npad	7
 $LL2@BuildBinar:
 
-; 887  :     {
-; 888  :         *out_ptr-- = Build1WordFromHexString(in_ptr);
+; 959  :     {
+; 960  :         *out_ptr-- = Build1WordFromHexString(in_ptr);
 
 	mov	rcx, rdi
 	call	Build1WordFromHexString
 
-; 889  :         in_ptr += word_digit_count;
+; 961  :         in_ptr += word_digit_count;
 
 	add	rdi, 32					; 00000020H
 	mov	QWORD PTR [rsi], rax
@@ -1172,9 +1173,9 @@ $LL2@BuildBinar:
 	jne	SHORT $LL2@BuildBinar
 $LN3@BuildBinar:
 
-; 890  :         source_count -= word_digit_count;
-; 891  :     }
-; 892  : }
+; 962  :         source_count -= word_digit_count;
+; 963  :     }
+; 964  : }
 
 	add	rsp, 32					; 00000020H
 	pop	rdi
@@ -1256,7 +1257,7 @@ tv429 = 144
 tv428 = 152
 Build1WordFromHexString PROC				; COMDAT
 
-; 841  : {
+; 913  : {
 
 	push	rbx
 	push	rbp
@@ -1269,26 +1270,26 @@ Build1WordFromHexString PROC				; COMDAT
 	sub	rsp, 56					; 00000038H
 	mov	rdx, rcx
 
-; 842  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr++);
+; 914  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr++);
 
 	movzx	ecx, WORD PTR [rcx]
 
-; 843  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT64_T))
-; 844  :     {
-; 845  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 846  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 847  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 848  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 849  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 850  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 851  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 852  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 853  :     }
-; 854  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT32_T))
-; 855  :     {
-; 856  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 857  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 858  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 915  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT64_T))
+; 916  :     {
+; 917  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 918  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 919  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 920  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 921  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 922  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 923  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 924  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 925  :     }
+; 926  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT32_T))
+; 927  :     {
+; 928  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 929  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 930  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	movzx	eax, WORD PTR [rdx+22]
 	movzx	r10d, WORD PTR [rdx+2]
@@ -1303,15 +1304,15 @@ Build1WordFromHexString PROC				; COMDAT
 	movzx	r13d, WORD PTR [rdx+20]
 	mov	WORD PTR tv458[rsp], ax
 
-; 859  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 931  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	movzx	eax, WORD PTR [rdx+24]
 	mov	WORD PTR tv429[rsp], ax
 
-; 860  :     }
-; 861  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT16_T))
-; 862  :     {
-; 863  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 932  :     }
+; 933  :     if (sizeof(__UNIT_TYPE) >= sizeof(_UINT16_T))
+; 934  :     {
+; 935  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	movzx	eax, WORD PTR [rdx+26]
 	add	rdx, 28
@@ -1321,11 +1322,11 @@ Build1WordFromHexString PROC				; COMDAT
 	mov	eax, eax
 	movzx	ecx, r10w
 
-; 864  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
-; 865  :     }
-; 866  :     if (sizeof(__UNIT_TYPE) >= sizeof(_BYTE_T))
-; 867  :     {
-; 868  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 936  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
+; 937  :     }
+; 938  :     if (sizeof(__UNIT_TYPE) >= sizeof(_BYTE_T))
+; 939  :     {
+; 940  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr++);
 
 	shl	rax, 4
 	mov	QWORD PTR tv264[rsp], rax
@@ -1407,9 +1408,9 @@ Build1WordFromHexString PROC				; COMDAT
 	mov	eax, eax
 	add	rax, r11
 
-; 869  :     }
-; 870  :     return (x);
-; 871  : }
+; 941  :     }
+; 942  :     return (x);
+; 943  : }
 
 	add	rsp, 56					; 00000038H
 	pop	r15
@@ -1431,28 +1432,28 @@ in_ptr$ = 48
 count$ = 56
 BuildLeading1WordFromHexString PROC			; COMDAT
 
-; 827  : {
+; 899  : {
 
 	push	rbx
 	sub	rsp, 32					; 00000020H
 	mov	r11, rcx
 	mov	rbx, rdx
 
-; 828  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
+; 900  :     __UNIT_TYPE x = Parse1DigitFromHexChar(*in_ptr);
 
 	movzx	ecx, WORD PTR [rcx]
 	call	Parse1DigitFromHexChar
 
-; 829  :     ++in_ptr;
+; 901  :     ++in_ptr;
 
 	add	r11, 2
 	mov	r10d, eax
 
-; 830  :     --count;
+; 902  :     --count;
 
 	sub	rbx, 1
 
-; 831  :     while (count > 0)
+; 903  :     while (count > 0)
 
 	je	SHORT $LN19@BuildLeadi
 	lea	r8, OFFSET FLAT:__ImageBase
@@ -1460,12 +1461,12 @@ BuildLeading1WordFromHexString PROC			; COMDAT
 	npad	2
 $LL2@BuildLeadi:
 
-; 832  :     {
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 904  :     {
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	movzx	edx, WORD PTR [r11]
 
-; 794  :     switch (c)
+; 866  :     switch (c)
 
 	lea	eax, DWORD PTR [rdx-48]
 	cmp	eax, 54					; 00000036H
@@ -1477,73 +1478,73 @@ $LL2@BuildLeadi:
 	jmp	rcx
 $LN8@BuildLeadi:
 
-; 795  :     {
-; 796  :     case L'0':
-; 797  :     case L'1':
-; 798  :     case L'2':
-; 799  :     case L'3':
-; 800  :     case L'4':
-; 801  :     case L'5':
-; 802  :     case L'6':
-; 803  :     case L'7':
-; 804  :     case L'8':
-; 805  :     case L'9':
-; 806  :         return (c - L'0');
+; 867  :     {
+; 868  :     case L'0':
+; 869  :     case L'1':
+; 870  :     case L'2':
+; 871  :     case L'3':
+; 872  :     case L'4':
+; 873  :     case L'5':
+; 874  :     case L'6':
+; 875  :     case L'7':
+; 876  :     case L'8':
+; 877  :     case L'9':
+; 878  :         return (c - L'0');
 
 	lea	rax, QWORD PTR [rdx-48]
 	jmp	SHORT $LN5@BuildLeadi
 $LN9@BuildLeadi:
 
-; 807  :     case L'a':
-; 808  :     case L'b':
-; 809  :     case L'c':
-; 810  :     case L'd':
-; 811  :     case L'e':
-; 812  :     case L'f':
-; 813  :         return (c - L'a' + 10);
+; 879  :     case L'a':
+; 880  :     case L'b':
+; 881  :     case L'c':
+; 882  :     case L'd':
+; 883  :     case L'e':
+; 884  :     case L'f':
+; 885  :         return (c - L'a' + 10);
 
 	lea	rax, QWORD PTR [rdx-87]
 	jmp	SHORT $LN5@BuildLeadi
 $LN10@BuildLeadi:
 
-; 814  :     case L'A':
-; 815  :     case L'B':
-; 816  :     case L'C':
-; 817  :     case L'D':
-; 818  :     case L'E':
-; 819  :     case L'F':
-; 820  :         return (c - L'A' + 10);
+; 886  :     case L'A':
+; 887  :     case L'B':
+; 888  :     case L'C':
+; 889  :     case L'D':
+; 890  :     case L'E':
+; 891  :     case L'F':
+; 892  :         return (c - L'A' + 10);
 
 	lea	rax, QWORD PTR [rdx-55]
 	jmp	SHORT $LN5@BuildLeadi
 $LN11@BuildLeadi:
 
-; 821  :     default:
-; 822  :         return ((_UINT32_T)-1);
+; 893  :     default:
+; 894  :         return ((_UINT32_T)-1);
 
 	mov	rax, r9
 $LN5@BuildLeadi:
 
-; 832  :     {
-; 833  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
+; 904  :     {
+; 905  :         x = x * 16 + Parse1DigitFromHexChar(*in_ptr);
 
 	shl	r10, 4
 
-; 834  :         ++in_ptr;
+; 906  :         ++in_ptr;
 
 	add	r11, 2
 	mov	ecx, eax
 	add	r10, rcx
 
-; 835  :         --count;
+; 907  :         --count;
 
 	sub	rbx, 1
 	jne	SHORT $LL2@BuildLeadi
 $LN19@BuildLeadi:
 
-; 836  :     }
-; 837  :     return (x);
-; 838  : }
+; 908  :     }
+; 909  :     return (x);
+; 910  : }
 
 	mov	rax, r10
 	add	rsp, 32					; 00000020H
@@ -1620,7 +1621,7 @@ _TEXT	SEGMENT
 c$ = 8
 Parse1DigitFromHexChar PROC				; COMDAT
 
-; 794  :     switch (c)
+; 866  :     switch (c)
 
 	movzx	eax, cx
 	lea	r8d, DWORD PTR [rax-48]
@@ -1634,66 +1635,66 @@ Parse1DigitFromHexChar PROC				; COMDAT
 	jmp	rdx
 $LN4@Parse1Digi:
 
-; 795  :     {
-; 796  :     case L'0':
-; 797  :     case L'1':
-; 798  :     case L'2':
-; 799  :     case L'3':
-; 800  :     case L'4':
-; 801  :     case L'5':
-; 802  :     case L'6':
-; 803  :     case L'7':
-; 804  :     case L'8':
-; 805  :     case L'9':
-; 806  :         return (c - L'0');
+; 867  :     {
+; 868  :     case L'0':
+; 869  :     case L'1':
+; 870  :     case L'2':
+; 871  :     case L'3':
+; 872  :     case L'4':
+; 873  :     case L'5':
+; 874  :     case L'6':
+; 875  :     case L'7':
+; 876  :     case L'8':
+; 877  :     case L'9':
+; 878  :         return (c - L'0');
 
 	mov	eax, r8d
 
-; 823  :     }
-; 824  : }
+; 895  :     }
+; 896  : }
 
 	ret	0
 $LN5@Parse1Digi:
 
-; 807  :     case L'a':
-; 808  :     case L'b':
-; 809  :     case L'c':
-; 810  :     case L'd':
-; 811  :     case L'e':
-; 812  :     case L'f':
-; 813  :         return (c - L'a' + 10);
+; 879  :     case L'a':
+; 880  :     case L'b':
+; 881  :     case L'c':
+; 882  :     case L'd':
+; 883  :     case L'e':
+; 884  :     case L'f':
+; 885  :         return (c - L'a' + 10);
 
 	add	eax, -87				; ffffffffffffffa9H
 
-; 823  :     }
-; 824  : }
+; 895  :     }
+; 896  : }
 
 	ret	0
 $LN6@Parse1Digi:
 
-; 814  :     case L'A':
-; 815  :     case L'B':
-; 816  :     case L'C':
-; 817  :     case L'D':
-; 818  :     case L'E':
-; 819  :     case L'F':
-; 820  :         return (c - L'A' + 10);
+; 886  :     case L'A':
+; 887  :     case L'B':
+; 888  :     case L'C':
+; 889  :     case L'D':
+; 890  :     case L'E':
+; 891  :     case L'F':
+; 892  :         return (c - L'A' + 10);
 
 	add	eax, -55				; ffffffffffffffc9H
 
-; 823  :     }
-; 824  : }
+; 895  :     }
+; 896  : }
 
 	ret	0
 $LN7@Parse1Digi:
 
-; 821  :     default:
-; 822  :         return ((_UINT32_T)-1);
+; 893  :     default:
+; 894  :         return ((_UINT32_T)-1);
 
 	mov	eax, -1					; ffffffffH
 
-; 823  :     }
-; 824  : }
+; 895  :     }
+; 896  : }
 
 	ret	0
 	npad	1
@@ -1788,7 +1789,7 @@ format_option$ = 192
 o$ = 200
 TryParseDN PROC						; COMDAT
 
-; 649  : {
+; 721  : {
 
 	mov	QWORD PTR [rsp+16], rbx
 	mov	QWORD PTR [rsp+24], rsi
@@ -1804,23 +1805,23 @@ TryParseDN PROC						; COMDAT
 	mov	r15d, edx
 	mov	rbx, rcx
 
-; 650  :     PMC_STATUS_CODE result;
-; 651  : #ifdef _M_IX86
-; 652  :     int word_digit_count = 9;
-; 653  : #elif defined(_M_IX64)
-; 654  :     int word_digit_count = 19;
-; 655  : #else
-; 656  : #error unknown platform
-; 657  : #endif
-; 658  :     __UNIT_TYPE source_len = lstrlenW(source);
+; 722  :     PMC_STATUS_CODE result;
+; 723  : #ifdef _M_IX86
+; 724  :     int word_digit_count = 9;
+; 725  : #elif defined(_M_IX64)
+; 726  :     int word_digit_count = 19;
+; 727  : #else
+; 728  : #error unknown platform
+; 729  : #endif
+; 730  :     __UNIT_TYPE source_len = lstrlenW(source);
 
 	call	QWORD PTR __imp_lstrlenW
 	movsxd	rsi, eax
 
-; 659  : 
-; 660  :     __UNIT_TYPE int_part_buf_code;
-; 661  :     __UNIT_TYPE int_part_buf_words;
-; 662  :     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
+; 731  : 
+; 732  :     __UNIT_TYPE int_part_buf_code;
+; 733  :     __UNIT_TYPE int_part_buf_words;
+; 734  :     wchar_t* int_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &int_part_buf_words, &int_part_buf_code);
 
 	lea	r8, QWORD PTR int_part_buf_code$[rbp-128]
 	inc	rsi
@@ -1830,16 +1831,16 @@ TryParseDN PROC						; COMDAT
 	call	AllocateBlock
 	mov	rdi, rax
 
-; 663  :     if (int_part_buf == NULL)
+; 735  :     if (int_part_buf == NULL)
 
 	test	rax, rax
 	je	SHORT $LN80@TryParseDN
 
-; 664  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 665  : 
-; 666  :     __UNIT_TYPE frac_part_buf_code;
-; 667  :     __UNIT_TYPE frac_part_buf_words;
-; 668  :     wchar_t* frac_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &frac_part_buf_words, &frac_part_buf_code);
+; 736  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 737  : 
+; 738  :     __UNIT_TYPE frac_part_buf_code;
+; 739  :     __UNIT_TYPE frac_part_buf_words;
+; 740  :     wchar_t* frac_part_buf = (wchar_t*)AllocateBlock((source_len + 1) * sizeof(wchar_t) * 8, &frac_part_buf_words, &frac_part_buf_code);
 
 	lea	r8, QWORD PTR frac_part_buf_code$[rbp-128]
 	mov	rcx, rsi
@@ -1847,29 +1848,29 @@ TryParseDN PROC						; COMDAT
 	call	AllocateBlock
 	mov	rsi, rax
 
-; 669  :     if (frac_part_buf == NULL)
+; 741  :     if (frac_part_buf == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN10@TryParseDN
 
-; 670  :     {
-; 671  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 742  :     {
+; 743  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	mov	rdx, QWORD PTR int_part_buf_words$[rbp-128]
 	mov	rcx, rdi
 	call	DeallocateBlock
 $LN80@TryParseDN:
 
-; 789  : }
+; 861  : }
 
 	mov	eax, -5
 	jmp	$LN1@TryParseDN
 $LN10@TryParseDN:
 
-; 672  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 673  :     }
-; 674  :     int sign;
-; 675  :     int result_parsing = ParseAsDecimalNumberString(source, number_styles, format_option, &sign, int_part_buf, frac_part_buf);
+; 744  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 745  :     }
+; 746  :     int sign;
+; 747  :     int result_parsing = ParseAsDecimalNumberString(source, number_styles, format_option, &sign, int_part_buf, frac_part_buf);
 
 	mov	QWORD PTR [rsp+40], rsi
 	lea	r9, QWORD PTR sign$[rbp-128]
@@ -1879,7 +1880,7 @@ $LN10@TryParseDN:
 	mov	rcx, rbx
 	call	ParseAsDecimalNumberString
 
-; 676  :     if ((result = CheckBlockLight((__UNIT_TYPE*)int_part_buf, int_part_buf_code)) != PMC_STATUS_OK)
+; 748  :     if ((result = CheckBlockLight((__UNIT_TYPE*)int_part_buf, int_part_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR int_part_buf_code$[rbp-128]
 	mov	rcx, rdi
@@ -1888,8 +1889,8 @@ $LN10@TryParseDN:
 	test	eax, eax
 	jne	$LN1@TryParseDN
 
-; 677  :         return (result);
-; 678  :     if ((result = CheckBlockLight((__UNIT_TYPE*)frac_part_buf, frac_part_buf_code)) != PMC_STATUS_OK)
+; 749  :         return (result);
+; 750  :     if ((result = CheckBlockLight((__UNIT_TYPE*)frac_part_buf, frac_part_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR frac_part_buf_code$[rbp-128]
 	mov	rcx, rsi
@@ -1897,19 +1898,19 @@ $LN10@TryParseDN:
 	test	eax, eax
 	jne	$LN1@TryParseDN
 
-; 679  :         return (result);
-; 680  :     if (!result_parsing)
+; 751  :         return (result);
+; 752  :     if (!result_parsing)
 
 	test	ebx, ebx
 	je	SHORT $LN81@TryParseDN
 
-; 681  :     {
-; 682  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
-; 683  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 684  :         return (PMC_STATUS_PARSING_ERROR);
-; 685  :     }
-; 686  :     // 整数部と小数部がともに空ならばエラーとする
-; 687  :     if (int_part_buf[0] == L'\0' && frac_part_buf[0] == L'\0')
+; 753  :     {
+; 754  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 755  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 756  :         return (PMC_STATUS_PARSING_ERROR);
+; 757  :     }
+; 758  :     // 整数部と小数部がともに空ならばエラーとする
+; 759  :     if (int_part_buf[0] == L'\0' && frac_part_buf[0] == L'\0')
 
 	movzx	eax, WORD PTR [rdi]
 	test	ax, ax
@@ -1918,7 +1919,7 @@ $LN10@TryParseDN:
 	jne	SHORT $LN54@TryParseDN
 $LN81@TryParseDN:
 
-; 789  : }
+; 861  : }
 
 	mov	rdx, QWORD PTR frac_part_buf_words$[rbp-128]
 	mov	rcx, rsi
@@ -1930,64 +1931,64 @@ $LN81@TryParseDN:
 	jmp	$LN1@TryParseDN
 $LN67@TryParseDN:
 
-; 688  :     {
-; 689  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
-; 690  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 691  :         return (PMC_STATUS_PARSING_ERROR);
-; 692  :     }
-; 693  : 
-; 694  :     if (int_part_buf[0] == L'0')
+; 760  :     {
+; 761  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 762  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 763  :         return (PMC_STATUS_PARSING_ERROR);
+; 764  :     }
+; 765  : 
+; 766  :     if (int_part_buf[0] == L'0')
 
 	cmp	ax, 48					; 00000030H
 	jne	SHORT $LN54@TryParseDN
 
-; 695  :     {
-; 696  :         // 整数部の先行する 0 を削除する
-; 697  :         wchar_t* s_ptr = int_part_buf;
+; 767  :     {
+; 768  :         // 整数部の先行する 0 を削除する
+; 769  :         wchar_t* s_ptr = int_part_buf;
 
 	mov	rcx, rdi
 
-; 698  :         wchar_t* d_ptr = int_part_buf;
+; 770  :         wchar_t* d_ptr = int_part_buf;
 
 	mov	rdx, rdi
 	npad	13
 $LL2@TryParseDN:
 
-; 699  :         while (*s_ptr == L'0')
+; 771  :         while (*s_ptr == L'0')
 
 	movzx	eax, WORD PTR [rcx+2]
 
-; 700  :             ++s_ptr;
+; 772  :             ++s_ptr;
 
 	add	rcx, 2
 	cmp	ax, 48					; 00000030H
 	je	SHORT $LL2@TryParseDN
 
-; 701  :         for (;;)
-; 702  :         {
-; 703  :             *d_ptr = *s_ptr;
+; 773  :         for (;;)
+; 774  :         {
+; 775  :             *d_ptr = *s_ptr;
 
 	mov	WORD PTR [rdi], ax
 
-; 704  :             if (*s_ptr == L'\0')
+; 776  :             if (*s_ptr == L'\0')
 
 	cmp	WORD PTR [rcx], 0
 	je	SHORT $LN54@TryParseDN
 	npad	9
 $LL4@TryParseDN:
 
-; 701  :         for (;;)
-; 702  :         {
-; 703  :             *d_ptr = *s_ptr;
+; 773  :         for (;;)
+; 774  :         {
+; 775  :             *d_ptr = *s_ptr;
 
 	movzx	eax, WORD PTR [rcx+2]
 
-; 705  :                 break;
-; 706  :             ++s_ptr;
+; 777  :                 break;
+; 778  :             ++s_ptr;
 
 	lea	rcx, QWORD PTR [rcx+2]
 
-; 707  :             ++d_ptr;
+; 779  :             ++d_ptr;
 
 	lea	rdx, QWORD PTR [rdx+2]
 	mov	WORD PTR [rdx], ax
@@ -1995,18 +1996,18 @@ $LL4@TryParseDN:
 	jne	SHORT $LL4@TryParseDN
 $LN54@TryParseDN:
 
-; 708  :         }
-; 709  :     }
-; 710  : 
-; 711  :     // 小数部の末尾の 0 を削除する
-; 712  :     wchar_t* frac_ptr = frac_part_buf + lstrlenW(frac_part_buf);
+; 780  :         }
+; 781  :     }
+; 782  : 
+; 783  :     // 小数部の末尾の 0 を削除する
+; 784  :     wchar_t* frac_ptr = frac_part_buf + lstrlenW(frac_part_buf);
 
 	mov	rcx, rsi
 	call	QWORD PTR __imp_lstrlenW
 	movsxd	rcx, eax
 	lea	rax, QWORD PTR [rsi+rcx*2]
 
-; 713  :     while (frac_ptr > frac_part_buf && frac_ptr[-1] == L'0')
+; 785  :     while (frac_ptr > frac_part_buf && frac_ptr[-1] == L'0')
 
 	cmp	rax, rsi
 	jbe	SHORT $LN78@TryParseDN
@@ -2016,96 +2017,96 @@ $LL7@TryParseDN:
 	lea	rcx, QWORD PTR [rax-2]
 	jne	SHORT $LN78@TryParseDN
 
-; 714  :         --frac_ptr;
+; 786  :         --frac_ptr;
 
 	mov	rax, rcx
 	cmp	rcx, rsi
 	ja	SHORT $LL7@TryParseDN
 $LN78@TryParseDN:
 
-; 715  :     *frac_ptr = L'\0';
+; 787  :     *frac_ptr = L'\0';
 
 	xor	r14d, r14d
 	mov	WORD PTR [rax], r14w
 
-; 716  : 
-; 717  :     // 小数部が 0 ではない場合、エラーとする
-; 718  :     if (frac_part_buf[0] != L'\0')
+; 788  : 
+; 789  :     // 小数部が 0 ではない場合、エラーとする
+; 790  :     if (frac_part_buf[0] != L'\0')
 
 	cmp	WORD PTR [rsi], r14w
 	jne	$LN81@TryParseDN
 
-; 719  :     {
-; 720  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
-; 721  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
-; 722  :         return (PMC_STATUS_PARSING_ERROR);
-; 723  :     }
-; 724  : 
-; 725  :     if (sign < 0)
+; 791  :     {
+; 792  :         DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 793  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 794  :         return (PMC_STATUS_PARSING_ERROR);
+; 795  :     }
+; 796  : 
+; 797  :     if (sign < 0)
 
 	movzx	eax, WORD PTR [rdi]
 	cmp	DWORD PTR sign$[rbp-128], r14d
 	jge	SHORT $LN68@TryParseDN
 
-; 726  :     {
-; 727  :         if (int_part_buf[0] == L'\0')
+; 798  :     {
+; 799  :         if (int_part_buf[0] == L'\0')
 
 	test	ax, ax
 	je	SHORT $LN76@TryParseDN
 
-; 728  :         {
-; 729  :             // - 符号が与えられていてかつ整数部が 0 であるなら符号を修正する
-; 730  :             sign = 0;
-; 731  :         }
-; 732  :         else
-; 733  :         {
-; 734  :             // - 符号が与えられていてかつ整数部が 0 ではないなら、エラーとする
-; 735  :             DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 800  :         {
+; 801  :             // - 符号が与えられていてかつ整数部が 0 であるなら符号を修正する
+; 802  :             sign = 0;
+; 803  :         }
+; 804  :         else
+; 805  :         {
+; 806  :             // - 符号が与えられていてかつ整数部が 0 ではないなら、エラーとする
+; 807  :             DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
 
 	mov	rdx, QWORD PTR frac_part_buf_words$[rbp-128]
 	mov	rcx, rsi
 	call	DeallocateBlock
 
-; 736  :             DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 808  :             DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	mov	rdx, QWORD PTR int_part_buf_words$[rbp-128]
 	mov	rcx, rdi
 	call	DeallocateBlock
 
-; 737  :             return (PMC_STATUS_OVERFLOW);
+; 809  :             return (PMC_STATUS_OVERFLOW);
 
 	lea	eax, QWORD PTR [r14-2]
 	jmp	$LN1@TryParseDN
 $LN68@TryParseDN:
 
-; 738  :         }
-; 739  :     }
-; 740  : 
-; 741  :     // 整数部が空である場合、1桁の 0 を設定する
-; 742  :     if (int_part_buf[0] == L'\0')
+; 810  :         }
+; 811  :     }
+; 812  : 
+; 813  :     // 整数部が空である場合、1桁の 0 を設定する
+; 814  :     if (int_part_buf[0] == L'\0')
 
 	test	ax, ax
 	jne	SHORT $LN21@TryParseDN
 $LN76@TryParseDN:
 
-; 743  :     {
-; 744  :         int_part_buf[0] = L'0';
+; 815  :     {
+; 816  :         int_part_buf[0] = L'0';
 
 	mov	DWORD PTR [rdi], 48			; 00000030H
 $LN21@TryParseDN:
 
-; 745  :         int_part_buf[1] = L'\0';
-; 746  :     }
-; 747  : 
-; 748  :     // 小数部は捨てる
-; 749  :     DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
+; 817  :         int_part_buf[1] = L'\0';
+; 818  :     }
+; 819  : 
+; 820  :     // 小数部は捨てる
+; 821  :     DeallocateBlock((__UNIT_TYPE*)frac_part_buf, frac_part_buf_words);
 
 	mov	rdx, QWORD PTR frac_part_buf_words$[rbp-128]
 	mov	rcx, rsi
 	mov	QWORD PTR [rsp+176], r13
 	call	DeallocateBlock
 
-; 753  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
+; 825  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
 
 	mov	rcx, rdi
 	call	QWORD PTR __imp_lstrlenW
@@ -2118,7 +2119,7 @@ $LN21@TryParseDN:
 	add	rcx, 18
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 753  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
+; 825  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
 
 	lea	r8, QWORD PTR bin_buf_code$[rbp-128]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -2130,7 +2131,7 @@ $LN21@TryParseDN:
 	mov	rcx, rdx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 753  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
+; 825  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
 
 	lea	rdx, QWORD PTR bin_buf_words$[rbp-128]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -2140,25 +2141,25 @@ $LN21@TryParseDN:
 	shr	rcx, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 753  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
+; 825  :     __UNIT_TYPE* bin_buf = AllocateBlock(_DIVIDE_CEILING_SIZE(lstrlenW(int_part_buf), word_digit_count) * __UNIT_TYPE_BIT_COUNT, &bin_buf_words, &bin_buf_code);
 
 	shl	rcx, 6
 	call	AllocateBlock
 	mov	r15, rax
 
-; 754  :     if (bin_buf == NULL)
+; 826  :     if (bin_buf == NULL)
 
 	mov	rcx, rdi
 	test	rax, rax
 	jne	SHORT $LN22@TryParseDN
 
-; 755  :     {
-; 756  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 827  :     {
+; 828  :         DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	mov	rdx, QWORD PTR int_part_buf_words$[rbp-128]
 	call	DeallocateBlock
 
-; 757  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 829  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, QWORD PTR [r15-5]
 	jmp	$LN79@TryParseDN
@@ -2261,10 +2262,10 @@ $LL32@TryParseDN:
 	jne	SHORT $LL32@TryParseDN
 $LN33@TryParseDN:
 
-; 758  :     }
-; 759  :     __UNIT_TYPE bin_buf_count;
-; 760  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
-; 761  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
+; 830  :     }
+; 831  :     __UNIT_TYPE bin_buf_count;
+; 832  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
+; 833  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR bin_buf_code$[rbp-128]
 
@@ -2272,10 +2273,10 @@ $LN33@TryParseDN:
 
 	sub	rsi, r15
 
-; 758  :     }
-; 759  :     __UNIT_TYPE bin_buf_count;
-; 760  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
-; 761  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
+; 830  :     }
+; 831  :     __UNIT_TYPE bin_buf_count;
+; 832  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
+; 833  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
 
 	mov	rcx, r15
 
@@ -2283,29 +2284,29 @@ $LN33@TryParseDN:
 
 	sar	rsi, 3
 
-; 758  :     }
-; 759  :     __UNIT_TYPE bin_buf_count;
-; 760  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
-; 761  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
+; 830  :     }
+; 831  :     __UNIT_TYPE bin_buf_count;
+; 832  :     BuildBinaryFromDecimalString(int_part_buf, bin_buf, &bin_buf_count);
+; 833  :     if ((result = CheckBlockLight(bin_buf, bin_buf_code)) != PMC_STATUS_OK)
 
 	call	CheckBlockLight
 	test	eax, eax
 	jne	$LN79@TryParseDN
 
-; 762  :         return (result);
-; 763  :     DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
+; 834  :         return (result);
+; 835  :     DeallocateBlock((__UNIT_TYPE*)int_part_buf, int_part_buf_words);
 
 	mov	rdx, QWORD PTR int_part_buf_words$[rbp-128]
 	mov	rcx, rdi
 	call	DeallocateBlock
 
-; 764  : 
-; 765  :     __UNIT_TYPE o_bit_count = bin_buf_count * __UNIT_TYPE_BIT_COUNT;
+; 836  : 
+; 837  :     __UNIT_TYPE o_bit_count = bin_buf_count * __UNIT_TYPE_BIT_COUNT;
 
 	mov	rdi, rsi
 
-; 766  :     __UNIT_TYPE no_light_check_code;
-; 767  :     if ((result = AllocateNumber(o, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+; 838  :     __UNIT_TYPE no_light_check_code;
+; 839  :     if ((result = AllocateNumber(o, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR no_light_check_code$[rbp-128]
 	shl	rdi, 6
@@ -2316,78 +2317,78 @@ $LN33@TryParseDN:
 	test	eax, eax
 	je	SHORT $LN24@TryParseDN
 
-; 768  :     {
-; 769  :         DeallocateBlock(bin_buf, bin_buf_words);
+; 840  :     {
+; 841  :         DeallocateBlock(bin_buf, bin_buf_words);
 
 	mov	rdx, QWORD PTR bin_buf_words$[rbp-128]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 770  :         return (result);
+; 842  :         return (result);
 
 	mov	eax, ebx
 	jmp	$LN79@TryParseDN
 $LN24@TryParseDN:
 
-; 771  :     }
-; 772  : 
-; 773  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
+; 843  :     }
+; 844  : 
+; 845  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR [r12]
 
-; 625  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
+; 697  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
 
 	lea	rcx, QWORD PTR [rdi+64]
 	lea	r8, QWORD PTR work_buf_code$1[rbp-128]
 	lea	rdx, QWORD PTR work_buf_words$2[rbp-128]
 
-; 771  :     }
-; 772  : 
-; 773  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
+; 843  :     }
+; 844  : 
+; 845  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
 
 	mov	r13, QWORD PTR [rax+48]
 
-; 625  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
+; 697  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
 
 	call	AllocateBlock
 	mov	r14, rax
 
-; 626  :     if (work_buf == NULL)
+; 698  :     if (work_buf == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN43@TryParseDN
 
-; 627  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 699  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	edi, QWORD PTR [rax-5]
 	jmp	SHORT $LN40@TryParseDN
 $LN43@TryParseDN:
 
-; 628  : 
-; 629  :     __UNIT_TYPE work_buf_count = 1;
-; 630  :     work_buf[0] = in_buf[0];
+; 700  : 
+; 701  :     __UNIT_TYPE work_buf_count = 1;
+; 702  :     work_buf[0] = in_buf[0];
 
 	mov	rax, QWORD PTR [r15]
 
-; 631  :     ++in_buf;
+; 703  :     ++in_buf;
 
 	lea	rdi, QWORD PTR [r15+8]
 	mov	ebx, 1
 	mov	QWORD PTR [r14], rax
 
-; 632  :     --in_buf_count;
+; 704  :     --in_buf_count;
 
 	sub	rsi, rbx
 
-; 633  : 
-; 634  :     while (in_buf_count > 0)
+; 705  : 
+; 706  :     while (in_buf_count > 0)
 
 	je	SHORT $LN42@TryParseDN
 	npad	7
 $LL41@TryParseDN:
 
-; 635  :     {
-; 636  :         __UNIT_TYPE* w_tail = (*fp_MultiplyAndAdd)(work_buf, work_buf_count, *in_buf);
+; 707  :     {
+; 708  :         __UNIT_TYPE* w_tail = (*fp_MultiplyAndAdd)(work_buf, work_buf_count, *in_buf);
 
 	mov	r8, QWORD PTR [rdi]
 	mov	rdx, rbx
@@ -2395,21 +2396,21 @@ $LL41@TryParseDN:
 	call	QWORD PTR fp_MultiplyAndAdd
 	mov	rbx, rax
 
-; 637  :         work_buf_count = w_tail - work_buf;
-; 638  :         ++in_buf;
+; 709  :         work_buf_count = w_tail - work_buf;
+; 710  :         ++in_buf;
 
 	lea	rdi, QWORD PTR [rdi+8]
 	sub	rbx, r14
 	sar	rbx, 3
 
-; 639  :         --in_buf_count;
+; 711  :         --in_buf_count;
 
 	sub	rsi, 1
 	jne	SHORT $LL41@TryParseDN
 $LN42@TryParseDN:
 
-; 640  :     }
-; 641  :     if ((result = CheckBlockLight(work_buf, work_buf_code)) != PMC_STATUS_OK)
+; 712  :     }
+; 713  :     if ((result = CheckBlockLight(work_buf, work_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_buf_code$1[rbp-128]
 	mov	rcx, r14
@@ -2418,7 +2419,7 @@ $LN42@TryParseDN:
 	test	eax, eax
 	jne	SHORT $LN40@TryParseDN
 
-; 644  :     DeallocateBlock(work_buf, work_buf_words);
+; 716  :     DeallocateBlock(work_buf, work_buf_words);
 
 	mov	rdx, QWORD PTR work_buf_words$2[rbp-128]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -2431,43 +2432,43 @@ $LN42@TryParseDN:
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 644  :     DeallocateBlock(work_buf, work_buf_words);
+; 716  :     DeallocateBlock(work_buf, work_buf_words);
 
 	mov	rcx, r14
 	call	DeallocateBlock
 
-; 645  :     return (PMC_STATUS_OK);
+; 717  :     return (PMC_STATUS_OK);
 
 	xor	edi, edi
 $LN40@TryParseDN:
 
-; 771  :     }
-; 772  : 
-; 773  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
+; 843  :     }
+; 844  : 
+; 845  :     if ((result = ConvertCardinalNumber(bin_buf, bin_buf_count, (*o)->BLOCK)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR [r12]
 	test	edi, edi
 	je	SHORT $LN25@TryParseDN
 
-; 774  :     {
-; 775  :         DeallocateNumber(*o);
+; 846  :     {
+; 847  :         DeallocateNumber(*o);
 
 	call	DeallocateNumber
 
-; 776  :         DeallocateBlock(bin_buf, bin_buf_words);
+; 848  :         DeallocateBlock(bin_buf, bin_buf_words);
 
 	mov	rdx, QWORD PTR bin_buf_words$[rbp-128]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 777  :         return (result);
+; 849  :         return (result);
 
 	mov	eax, edi
 	jmp	SHORT $LN79@TryParseDN
 $LN25@TryParseDN:
 
-; 778  :     }
-; 779  :     if ((result = CheckBlockLight((*o)->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+; 850  :     }
+; 851  :     if ((result = CheckBlockLight((*o)->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR no_light_check_code$[rbp-128]
 	mov	rcx, QWORD PTR [rcx+48]
@@ -2475,44 +2476,44 @@ $LN25@TryParseDN:
 	test	eax, eax
 	jne	SHORT $LN79@TryParseDN
 
-; 780  :         return (result);
-; 781  :     DeallocateBlock(bin_buf, bin_buf_words);
+; 852  :         return (result);
+; 853  :     DeallocateBlock(bin_buf, bin_buf_words);
 
 	mov	rdx, QWORD PTR bin_buf_words$[rbp-128]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 782  :     CommitNumber(*o);
+; 854  :     CommitNumber(*o);
 
 	mov	rcx, QWORD PTR [r12]
 	call	CommitNumber
 
-; 783  :     if ((*o)->IS_ZERO)
+; 855  :     if ((*o)->IS_ZERO)
 
 	mov	rcx, QWORD PTR [r12]
 	test	BYTE PTR [rcx+32], 2
 	je	SHORT $LN27@TryParseDN
 
-; 784  :     {
-; 785  :         DeallocateNumber(*o);
+; 856  :     {
+; 857  :         DeallocateNumber(*o);
 
 	call	DeallocateNumber
 
-; 786  :         *o = &number_zero;
+; 858  :         *o = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR [r12], rax
 $LN27@TryParseDN:
 
-; 787  :     }
-; 788  :     return (PMC_STATUS_OK);
+; 859  :     }
+; 860  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN79@TryParseDN:
 	mov	r13, QWORD PTR [rsp+176]
 $LN1@TryParseDN:
 
-; 789  : }
+; 861  : }
 
 	lea	r11, QWORD PTR [rsp+128]
 	mov	rbx, QWORD PTR [r11+56]
@@ -2539,7 +2540,7 @@ out_buf$ = 80
 work_buf_words$ = 88
 ConvertCardinalNumber PROC				; COMDAT
 
-; 621  : {
+; 693  : {
 
 	mov	QWORD PTR [rsp+24], rbp
 	push	rsi
@@ -2549,10 +2550,10 @@ ConvertCardinalNumber PROC				; COMDAT
 	mov	rdi, rcx
 	mov	rbp, r8
 
-; 622  :     PMC_STATUS_CODE result;
-; 623  :     __UNIT_TYPE work_buf_code;
-; 624  :     __UNIT_TYPE work_buf_words;
-; 625  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
+; 694  :     PMC_STATUS_CODE result;
+; 695  :     __UNIT_TYPE work_buf_code;
+; 696  :     __UNIT_TYPE work_buf_words;
+; 697  :     __UNIT_TYPE* work_buf = AllocateBlock(__UNIT_TYPE_BIT_COUNT * (in_buf_count + 1), &work_buf_words, &work_buf_code);
 
 	lea	rcx, QWORD PTR [rdx+1]
 	mov	rsi, rdx
@@ -2562,16 +2563,16 @@ ConvertCardinalNumber PROC				; COMDAT
 	call	AllocateBlock
 	mov	r14, rax
 
-; 626  :     if (work_buf == NULL)
+; 698  :     if (work_buf == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN4@ConvertCar
 
-; 627  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 699  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, QWORD PTR [r14-5]
 
-; 646  : }
+; 718  : }
 
 	mov	rbp, QWORD PTR [rsp+80]
 	add	rsp, 32					; 00000020H
@@ -2581,13 +2582,13 @@ ConvertCardinalNumber PROC				; COMDAT
 	ret	0
 $LN4@ConvertCar:
 
-; 628  : 
-; 629  :     __UNIT_TYPE work_buf_count = 1;
-; 630  :     work_buf[0] = in_buf[0];
+; 700  : 
+; 701  :     __UNIT_TYPE work_buf_count = 1;
+; 702  :     work_buf[0] = in_buf[0];
 
 	mov	rax, QWORD PTR [rdi]
 
-; 631  :     ++in_buf;
+; 703  :     ++in_buf;
 
 	add	rdi, 8
 	mov	QWORD PTR [rsp+64], rbx
@@ -2595,15 +2596,15 @@ $LN4@ConvertCar:
 	mov	QWORD PTR [r14], rax
 	sub	rsi, rbx
 
-; 632  :     --in_buf_count;
-; 633  : 
-; 634  :     while (in_buf_count > 0)
+; 704  :     --in_buf_count;
+; 705  : 
+; 706  :     while (in_buf_count > 0)
 
 	je	SHORT $LN3@ConvertCar
 $LL2@ConvertCar:
 
-; 635  :     {
-; 636  :         __UNIT_TYPE* w_tail = (*fp_MultiplyAndAdd)(work_buf, work_buf_count, *in_buf);
+; 707  :     {
+; 708  :         __UNIT_TYPE* w_tail = (*fp_MultiplyAndAdd)(work_buf, work_buf_count, *in_buf);
 
 	mov	r8, QWORD PTR [rdi]
 	mov	rdx, rbx
@@ -2611,21 +2612,21 @@ $LL2@ConvertCar:
 	call	QWORD PTR fp_MultiplyAndAdd
 	mov	rbx, rax
 
-; 637  :         work_buf_count = w_tail - work_buf;
-; 638  :         ++in_buf;
+; 709  :         work_buf_count = w_tail - work_buf;
+; 710  :         ++in_buf;
 
 	lea	rdi, QWORD PTR [rdi+8]
 	sub	rbx, r14
 	sar	rbx, 3
 
-; 639  :         --in_buf_count;
+; 711  :         --in_buf_count;
 
 	sub	rsi, 1
 	jne	SHORT $LL2@ConvertCar
 $LN3@ConvertCar:
 
-; 640  :     }
-; 641  :     if ((result = CheckBlockLight(work_buf, work_buf_code)) != PMC_STATUS_OK)
+; 712  :     }
+; 713  :     if ((result = CheckBlockLight(work_buf, work_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_buf_code$[rsp]
 	mov	rcx, r14
@@ -2633,7 +2634,7 @@ $LN3@ConvertCar:
 	test	eax, eax
 	jne	SHORT $LN13@ConvertCar
 
-; 644  :     DeallocateBlock(work_buf, work_buf_words);
+; 716  :     DeallocateBlock(work_buf, work_buf_words);
 
 	mov	rdx, QWORD PTR work_buf_words$[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -2646,17 +2647,17 @@ $LN3@ConvertCar:
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 644  :     DeallocateBlock(work_buf, work_buf_words);
+; 716  :     DeallocateBlock(work_buf, work_buf_words);
 
 	mov	rcx, r14
 	call	DeallocateBlock
 
-; 645  :     return (PMC_STATUS_OK);
+; 717  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN13@ConvertCar:
 
-; 646  : }
+; 718  : }
 
 	mov	rbx, QWORD PTR [rsp+64]
 	mov	rbp, QWORD PTR [rsp+80]
@@ -2795,29 +2796,168 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 ;	COMDAT MultiplyAndAdd_using_ADCX_MULX
 _TEXT	SEGMENT
-u_buf$ = 16
-u_count$ = 24
-x$ = 32
+k$ = 0
+k$ = 8
+k$ = 16
+k$ = 24
+k$ = 32
+k$ = 40
+k$ = 48
+k$ = 56
+k$ = 64
+k$ = 72
+k$ = 80
+k$ = 88
+k$ = 96
+k$ = 104
+k$ = 112
+k$ = 120
+k$ = 128
+k$ = 136
+k$ = 144
+k$ = 152
+k$ = 160
+k$ = 168
+k$ = 176
+k$ = 184
+k$ = 192
+k$ = 200
+k$ = 208
+k$ = 216
+k$ = 224
+k$ = 232
+k$ = 240
+k$ = 248
+k$ = 256
+k$ = 264
+k$ = 272
+k$ = 280
+k$ = 288
+k$ = 296
+k$ = 304
+k$ = 312
+k$ = 320
+k$ = 328
+k$ = 336
+k$ = 344
+k$ = 352
+k$ = 360
+k$ = 368
+k$ = 376
+k$ = 384
+k$ = 392
+k$ = 400
+k$ = 408
+k$ = 416
+k$ = 424
+k$ = 432
+k$ = 440
+k$ = 448
+k$ = 456
+k$ = 464
+t_hi$1 = 472
+t_hi$2 = 480
+t_hi$3 = 488
+t_hi$4 = 496
+t_hi$5 = 504
+t_hi$6 = 512
+t_hi$7 = 520
+t_hi$8 = 528
+t_hi$9 = 536
+t_hi$10 = 544
+t_hi$11 = 552
+t_hi$12 = 560
+t_hi$13 = 568
+t_hi$14 = 576
+t_hi$15 = 584
+t_hi$16 = 592
+t_hi$17 = 600
+t_hi$18 = 608
+t_hi$19 = 616
+t_hi$20 = 624
+t_hi$21 = 632
+t_hi$22 = 640
+t_hi$23 = 648
+t_hi$24 = 656
+t_hi$25 = 664
+t_hi$26 = 672
+t_hi$27 = 680
+t_hi$28 = 688
+t_hi$29 = 696
+t_hi$30 = 704
+t_hi$31 = 712
+t_hi$32 = 720
+t_hi$33 = 728
+t_hi$34 = 736
+t_hi$35 = 744
+t_hi$36 = 752
+t_hi$37 = 760
+t_hi$38 = 768
+t_hi$39 = 776
+t_hi$40 = 784
+t_hi$41 = 792
+t_hi$42 = 800
+t_hi$43 = 808
+t_hi$44 = 816
+t_hi$45 = 824
+t_hi$46 = 832
+t_hi$47 = 840
+t_hi$48 = 848
+t_hi$49 = 856
+t_hi$50 = 864
+t_hi$51 = 872
+t_hi$52 = 880
+t_hi$53 = 888
+t_hi$54 = 896
+t_hi$55 = 904
+t_hi$56 = 912
+t_hi$57 = 920
+t_hi$58 = 928
+t_hi$59 = 936
+t_hi$60 = 944
+t_hi$61 = 952
+t_hi$62 = 960
+t_hi$63 = 968
+k$ = 1008
+u_buf$ = 1008
+k$ = 1016
+u_count$ = 1016
+k$ = 1024
+x$ = 1024
+k$ = 1032
 MultiplyAndAdd_using_ADCX_MULX PROC			; COMDAT
 
-; 514  : {
+; 550  : {
 
-	mov	QWORD PTR [rsp+16], rbx
-	mov	QWORD PTR [rsp+24], rdi
 	push	rbp
-	mov	rbp, rsp
+	push	rbx
+	push	rdi
+	lea	rbp, QWORD PTR [rsp-720]
+	sub	rsp, 976				; 000003d0H
 
-; 515  :     __UNIT_TYPE k = x;
-; 516  :     __UNIT_TYPE count = u_count >> 5;
+; 551  :     __UNIT_TYPE k = x;
+; 552  :     __UNIT_TYPE count = u_count >> 5;
 
 	mov	rbx, rdx
-	shr	rbx, 5
 
-; 517  :     while (count > 0)
+; 553  :     while (count > 0)
 
 	xor	edi, edi
+	shr	rbx, 5
 	mov	r11, rdx
 	mov	r10, r8
 	mov	rdx, -8446744073709551616		; 8ac7230489e80000H
@@ -2825,8 +2965,8 @@ MultiplyAndAdd_using_ADCX_MULX PROC			; COMDAT
 	je	$LN3@MultiplyAn
 $LL2@MultiplyAn:
 
-; 518  :     {
-; 519  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
+; 554  :     {
+; 555  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
 
 	mov	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -2838,10 +2978,17 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$1[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 520  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
+; 556  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
 
 	mov	rax, QWORD PTR [rcx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -2857,184 +3004,181 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+	mov	QWORD PTR k$[rbp-256], r9
 	mov	QWORD PTR [rcx+8], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 521  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
+; 557  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
 
 	mov	rax, QWORD PTR [rcx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$2[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+16], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 522  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
+; 558  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
 
 	mov	rax, QWORD PTR [rcx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$3[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+	mov	QWORD PTR k$[rbp-256], r9
 	mov	QWORD PTR [rcx+24], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 523  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[4], &u_buf[4]);
+; 559  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[4], &u_buf[4]);
 
 	mov	rax, QWORD PTR [rcx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$4[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+32], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 524  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[5], &u_buf[5]);
+; 560  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[5], &u_buf[5]);
 
 	mov	rax, QWORD PTR [rcx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$5[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+	mov	QWORD PTR k$[rsp], r9
 	mov	QWORD PTR [rcx+40], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 525  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[6], &u_buf[6]);
+; 561  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[6], &u_buf[6]);
 
 	mov	rax, QWORD PTR [rcx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$6[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rsp], r10
 	mov	QWORD PTR [rcx+48], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 526  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[7], &u_buf[7]);
+; 562  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[7], &u_buf[7]);
 
 	mov	rax, QWORD PTR [rcx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$7[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+	mov	QWORD PTR k$[rsp], r9
 	mov	QWORD PTR [rcx+56], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 527  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[8], &u_buf[8]);
+; 563  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[8], &u_buf[8]);
 
 	mov	rax, QWORD PTR [rcx+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$8[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rsp], r10
 	mov	QWORD PTR [rcx+64], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 528  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[9], &u_buf[9]);
+; 564  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[9], &u_buf[9]);
 
 	mov	rax, QWORD PTR [rcx+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$9[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+	mov	QWORD PTR k$[rsp], r9
 	mov	QWORD PTR [rcx+72], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 529  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[10], &u_buf[10]);
+; 565  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[10], &u_buf[10]);
 
 	mov	rax, QWORD PTR [rcx+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$10[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rsp], r10
 	mov	QWORD PTR [rcx+80], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 530  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[11], &u_buf[11]);
+; 566  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[11], &u_buf[11]);
 
 	mov	rax, QWORD PTR [rcx+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$11[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
@@ -3042,15 +3186,16 @@ $LL2@MultiplyAn:
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
-	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$12[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+	mov	QWORD PTR k$[rsp], r9
 	mov	QWORD PTR [rcx+88], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 531  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[12], &u_buf[12]);
+; 567  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[12], &u_buf[12]);
 
 	mov	rax, QWORD PTR [rcx+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3066,10 +3211,17 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$13[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+96], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 532  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[13], &u_buf[13]);
+; 568  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[13], &u_buf[13]);
 
 	mov	rax, QWORD PTR [rcx+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3077,6 +3229,7 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r9, rdi
+	mov	QWORD PTR k$[rsp], r10
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3085,32 +3238,43 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+	mov	QWORD PTR k$[rsp], r9
 	mov	QWORD PTR [rcx+104], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 533  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[14], &u_buf[14]);
+; 569  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[14], &u_buf[14]);
 
 	mov	rax, QWORD PTR [rcx+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$14[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$15[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+112], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 534  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[15], &u_buf[15]);
+; 570  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[15], &u_buf[15]);
 
 	mov	rax, QWORD PTR [rcx+120]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
+	adcx	r9, rdi
+	mov	QWORD PTR k$[rsp], r10
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3118,31 +3282,36 @@ $LL2@MultiplyAn:
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
-	adcx	r9, rdi
 	add	r8, r9
+	mov	QWORD PTR k$[rsp], r9
 	mov	QWORD PTR [rcx+120], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 535  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[16], &u_buf[16]);
+; 571  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[16], &u_buf[16]);
 
 	mov	rax, QWORD PTR [rcx+128]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$16[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$17[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+128], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 536  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[17], &u_buf[17]);
+; 572  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[17], &u_buf[17]);
 
 	mov	rax, QWORD PTR [rcx+136]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3150,6 +3319,7 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r9, rdi
+	mov	QWORD PTR k$[rsp], r10
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3158,29 +3328,35 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+	mov	QWORD PTR k$[rsp], r9
 	mov	QWORD PTR [rcx+136], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 537  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[18], &u_buf[18]);
+; 573  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[18], &u_buf[18]);
 
 	mov	rax, QWORD PTR [rcx+144]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$18[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$19[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+144], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 538  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[19], &u_buf[19]);
+; 574  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[19], &u_buf[19]);
 
 	mov	rax, QWORD PTR [rcx+152]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3188,6 +3364,7 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r9, rdi
+	mov	QWORD PTR k$[rsp], r10
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3196,29 +3373,35 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+	mov	QWORD PTR k$[rsp], r9
 	mov	QWORD PTR [rcx+152], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 539  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[20], &u_buf[20]);
+; 575  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[20], &u_buf[20]);
 
 	mov	rax, QWORD PTR [rcx+160]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$20[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$21[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+160], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 540  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[21], &u_buf[21]);
+; 576  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[21], &u_buf[21]);
 
 	mov	rax, QWORD PTR [rcx+168]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3226,6 +3409,7 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r9, rdi
+	mov	QWORD PTR k$[rsp], r10
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3234,29 +3418,35 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+	mov	QWORD PTR k$[rbp-256], r9
 	mov	QWORD PTR [rcx+168], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 541  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[22], &u_buf[22]);
+; 577  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[22], &u_buf[22]);
 
 	mov	rax, QWORD PTR [rcx+176]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$22[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$23[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+176], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 542  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[23], &u_buf[23]);
+; 578  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[23], &u_buf[23]);
 
 	mov	rax, QWORD PTR [rcx+184]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3264,6 +3454,8 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r9, rdi
+	mov	QWORD PTR k$[rbp-256], r9
+	mov	QWORD PTR k$[rbp-256], r10
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3272,10 +3464,17 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$24[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+184], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 543  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[24], &u_buf[24]);
+; 579  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[24], &u_buf[24]);
 
 	mov	rax, QWORD PTR [rcx+192]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3291,29 +3490,35 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+192], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 544  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[25], &u_buf[25]);
+; 580  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[25], &u_buf[25]);
 
 	mov	rax, QWORD PTR [rcx+200]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$25[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$26[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+200], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 545  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[26], &u_buf[26]);
+; 581  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[26], &u_buf[26]);
 
 	mov	rax, QWORD PTR [rcx+208]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3321,6 +3526,7 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r9
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3329,29 +3535,35 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+208], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 546  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[27], &u_buf[27]);
+; 582  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[27], &u_buf[27]);
 
 	mov	rax, QWORD PTR [rcx+216]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$27[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$28[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+216], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 547  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[28], &u_buf[28]);
+; 583  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[28], &u_buf[28]);
 
 	mov	rax, QWORD PTR [rcx+224]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3359,6 +3571,7 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r9
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3367,29 +3580,35 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+224], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 548  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[29], &u_buf[29]);
+; 584  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[29], &u_buf[29]);
 
 	mov	rax, QWORD PTR [rcx+232]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$29[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$30[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+232], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 549  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[30], &u_buf[30]);
+; 585  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[30], &u_buf[30]);
 
 	mov	rax, QWORD PTR [rcx+240]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3397,6 +3616,7 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r9
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3405,51 +3625,76 @@ $LL2@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+240], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 550  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[31], &u_buf[31]);
+; 586  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[31], &u_buf[31]);
 
 	mov	rax, QWORD PTR [rcx+248]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$31[rbp-256], r9
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, 32					; 00000020H
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$32[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+248], r8
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r10
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 551  :         u_buf += 32;
+; 587  :         u_buf += 32;
 
 	add	rcx, 256				; 00000100H
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 552  :         --count;
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 553  :     while (count > 0)
 
 	sub	rbx, 1
-
-; 517  :     while (count > 0)
-
 	jne	$LL2@MultiplyAn
 $LN3@MultiplyAn:
 
-; 553  :     }
-; 554  : 
-; 555  :     if (u_count & 0x10)
+; 588  :         --count;
+; 589  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 590  :         if (sizeof(k) == sizeof(_UINT32_T))
+; 591  :             AddToMULTI32Counter(32);
+; 592  :         else
+; 593  :             AddToMULTI64Counter(32);
+; 594  : #endif
+; 595  :     }
+; 596  : 
+; 597  :     if (u_count & 0x10)
 
 	test	r11b, 16
-	je	$LN4@MultiplyAn
+	je	$LN413@MultiplyAn
 
-; 556  :     {
-; 557  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
+; 598  :     {
+; 599  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
 
 	mov	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3461,10 +3706,17 @@ $LN3@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$33[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 558  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
+; 600  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
 
 	mov	rax, QWORD PTR [rcx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3480,184 +3732,181 @@ $LN3@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+	mov	QWORD PTR k$[rbp-256], r9
 	mov	QWORD PTR [rcx+8], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 559  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
+; 601  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
 
 	mov	rax, QWORD PTR [rcx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$34[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+16], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 560  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
+; 602  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
 
 	mov	rax, QWORD PTR [rcx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$35[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+	mov	QWORD PTR k$[rbp-256], r9
 	mov	QWORD PTR [rcx+24], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 561  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[4], &u_buf[4]);
+; 603  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[4], &u_buf[4]);
 
 	mov	rax, QWORD PTR [rcx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$36[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+32], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 562  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[5], &u_buf[5]);
+; 604  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[5], &u_buf[5]);
 
 	mov	rax, QWORD PTR [rcx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$37[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+	mov	QWORD PTR k$[rbp-256], r9
 	mov	QWORD PTR [rcx+40], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 563  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[6], &u_buf[6]);
+; 605  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[6], &u_buf[6]);
 
 	mov	rax, QWORD PTR [rcx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$38[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+48], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 564  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[7], &u_buf[7]);
+; 606  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[7], &u_buf[7]);
 
 	mov	rax, QWORD PTR [rcx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$39[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+	mov	QWORD PTR k$[rbp-256], r9
 	mov	QWORD PTR [rcx+56], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 565  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[8], &u_buf[8]);
+; 607  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[8], &u_buf[8]);
 
 	mov	rax, QWORD PTR [rcx+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$40[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+64], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 566  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[9], &u_buf[9]);
+; 608  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[9], &u_buf[9]);
 
 	mov	rax, QWORD PTR [rcx+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$41[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+	mov	QWORD PTR k$[rbp-256], r9
 	mov	QWORD PTR [rcx+72], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 567  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[10], &u_buf[10]);
+; 609  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[10], &u_buf[10]);
 
 	mov	rax, QWORD PTR [rcx+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r10, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r9, r8, rax
+	mov	QWORD PTR t_hi$42[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r10, rdi
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+80], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 568  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[11], &u_buf[11]);
+; 610  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[11], &u_buf[11]);
 
 	mov	rax, QWORD PTR [rcx+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$43[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
@@ -3665,15 +3914,16 @@ $LN3@MultiplyAn:
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
-	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$44[rbp-256], r10
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+	mov	QWORD PTR k$[rbp-256], r9
 	mov	QWORD PTR [rcx+88], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 569  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[12], &u_buf[12]);
+; 611  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[12], &u_buf[12]);
 
 	mov	rax, QWORD PTR [rcx+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3689,29 +3939,35 @@ $LN3@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+96], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 570  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[13], &u_buf[13]);
+; 612  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[13], &u_buf[13]);
 
 	mov	rax, QWORD PTR [rcx+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$45[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$46[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+104], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 571  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[14], &u_buf[14]);
+; 613  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[14], &u_buf[14]);
 
 	mov	rax, QWORD PTR [rcx+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3719,6 +3975,7 @@ $LN3@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r9
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3727,43 +3984,62 @@ $LN3@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+112], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 572  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[15], &u_buf[15]);
+; 614  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[15], &u_buf[15]);
 
 	mov	rax, QWORD PTR [rcx+120]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$47[rbp-256], r9
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, 16
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$48[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+120], r8
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r10
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 573  :         u_buf += 16;
+; 615  :         u_buf += 16;
 
 	sub	rcx, -128				; ffffffffffffff80H
-$LN4@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 574  :     }
-; 575  : 
-; 576  :     if (u_count & 0x8)
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, eax
+$LN413@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 624  :     if (u_count & 0x8)
 
 	test	r11b, 8
-	je	$LN5@MultiplyAn
+	je	$LN481@MultiplyAn
 
-; 577  :     {
-; 578  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
+; 625  :     {
+; 626  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
 
 	mov	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3775,10 +4051,17 @@ $LN4@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$49[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 579  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
+; 627  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
 
 	mov	rax, QWORD PTR [rcx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3794,10 +4077,17 @@ $LN4@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$50[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+8], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 580  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
+; 628  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
 
 	mov	rax, QWORD PTR [rcx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3805,6 +4095,7 @@ $LN4@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r9
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3813,29 +4104,35 @@ $LN4@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+16], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 581  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
+; 629  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
 
 	mov	rax, QWORD PTR [rcx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$51[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$52[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+24], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 582  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[4], &u_buf[4]);
+; 630  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[4], &u_buf[4]);
 
 	mov	rax, QWORD PTR [rcx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3843,6 +4140,7 @@ $LN4@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r9
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3851,29 +4149,35 @@ $LN4@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+32], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 583  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[5], &u_buf[5]);
+; 631  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[5], &u_buf[5]);
 
 	mov	rax, QWORD PTR [rcx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$53[rbp-256], r9
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$54[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+40], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 584  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[6], &u_buf[6]);
+; 632  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[6], &u_buf[6]);
 
 	mov	rax, QWORD PTR [rcx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3881,6 +4185,7 @@ $LN4@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r9
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3889,43 +4194,62 @@ $LN4@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+48], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 585  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[7], &u_buf[7]);
+; 633  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[7], &u_buf[7]);
 
 	mov	rax, QWORD PTR [rcx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$55[rbp-256], r9
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, 8
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$56[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+56], r8
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r10
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 586  :         u_buf += 8;
+; 634  :         u_buf += 8;
 
 	add	rcx, 64					; 00000040H
-$LN5@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 587  :     }
-; 588  : 
-; 589  :     if (u_count & 0x4)
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, eax
+$LN481@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 643  :     if (u_count & 0x4)
 
 	test	r11b, 4
-	je	SHORT $LN6@MultiplyAn
+	je	$LN517@MultiplyAn
 
-; 590  :     {
-; 591  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
+; 644  :     {
+; 645  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
 
 	mov	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3937,10 +4261,17 @@ $LN5@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$57[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 592  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
+; 646  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
 
 	mov	rax, QWORD PTR [rcx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3956,10 +4287,17 @@ $LN5@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$58[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+8], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 593  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
+; 647  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[2], &u_buf[2]);
 
 	mov	rax, QWORD PTR [rcx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -3967,6 +4305,7 @@ $LN5@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r9
 
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
@@ -3975,43 +4314,62 @@ $LN5@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+	mov	QWORD PTR k$[rbp-256], r10
 	mov	QWORD PTR [rcx+16], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 594  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
+; 648  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[3], &u_buf[3]);
 
 	mov	rax, QWORD PTR [rcx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
+	mov	QWORD PTR t_hi$59[rbp-256], r9
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, 4
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$60[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+24], r8
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r10
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 595  :         u_buf += 4;
+; 649  :         u_buf += 4;
 
 	add	rcx, 32					; 00000020H
-$LN6@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 596  :     }
-; 597  : 
-; 598  :     if (u_count & 0x2)
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, eax
+$LN517@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 658  :     if (u_count & 0x2)
 
 	test	r11b, 2
-	je	SHORT $LN7@MultiplyAn
+	je	SHORT $LN537@MultiplyAn
 
-; 599  :     {
-; 600  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
+; 659  :     {
+; 660  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
 
 	mov	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -4023,43 +4381,70 @@ $LN6@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$61[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx], r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 601  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
+; 661  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[1], &u_buf[1]);
 
 	mov	rax, QWORD PTR [rcx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 456  :     return (_addcarryx_u64(carry, u, v, w));
-
-	adcx	r9, rdi
-
 ; 551  :     return (_mulx_u64(u, v, w_hi));
 
 	mulx	r10, r8, rax
 
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
+	adcx	r9, rdi
 	add	r8, r9
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$62[rbp-256], r10
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+8], r8
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, 2
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r10
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 602  :         u_buf += 2;
+; 662  :         u_buf += 2;
 
 	add	rcx, 16
-$LN7@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 603  :     }
-; 604  : 
-; 605  :     if (u_count & 0x1)
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, eax
+$LN537@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 671  :     if (u_count & 0x1)
 
 	test	r11b, 1
-	je	SHORT $LN8@MultiplyAn
+	je	SHORT $LN549@MultiplyAn
 
-; 606  :     {
-; 607  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
+; 672  :     {
+; 673  :         k = MultiplyAndAdd1Word_using_ADCX_MULX(k, u_buf[0], &u_buf[0]);
 
 	mov	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -4071,45 +4456,64 @@ $LN7@MultiplyAn:
 ; 456  :     return (_addcarryx_u64(carry, u, v, w));
 
 	add	r8, r10
+
+; 551  :     return (_mulx_u64(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$63[rbp-256], r9
+
+; 456  :     return (_addcarryx_u64(carry, u, v, w));
+
 	mov	r10, r9
 	mov	QWORD PTR [rcx], r8
 	adcx	r10, rdi
+	mov	QWORD PTR k$[rbp-256], r10
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 608  :         u_buf += 1;
+; 674  :         u_buf += 1;
 
 	add	rcx, 8
-$LN8@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 609  :     }
-; 610  : 
-; 611  :     if (k > 0)
+; 968  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
+
+	lock inc DWORD PTR statistics_info
+$LN549@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 683  :     if (k > 0)
 
 	test	r10, r10
-	je	SHORT $LN519@MultiplyAn
+	je	SHORT $LN554@MultiplyAn
 
-; 612  :     {
-; 613  :         u_buf[0] = k;
+; 684  :     {
+; 685  :         u_buf[0] = k;
 
 	mov	QWORD PTR [rcx], r10
 
-; 614  :         u_buf += 1;
+; 686  :         u_buf += 1;
 
 	lea	rax, QWORD PTR [rcx+8]
 
-; 615  :     }
-; 616  : 
-; 617  :     return (u_buf);
-; 618  : }
+; 690  : }
 
-	mov	rbx, QWORD PTR [rsp+24]
-	mov	rdi, QWORD PTR [rsp+32]
+	add	rsp, 976				; 000003d0H
+	pop	rdi
+	pop	rbx
 	pop	rbp
 	ret	0
-$LN519@MultiplyAn:
-	mov	rbx, QWORD PTR [rsp+24]
+$LN554@MultiplyAn:
+
+; 687  :     }
+; 688  : 
+; 689  :     return (u_buf);
+
 	mov	rax, rcx
-	mov	rdi, QWORD PTR [rsp+32]
+
+; 690  : }
+
+	add	rsp, 976				; 000003d0H
+	pop	rdi
+	pop	rbx
 	pop	rbp
 	ret	0
 MultiplyAndAdd_using_ADCX_MULX ENDP
@@ -4128,25 +4532,164 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 ;	COMDAT MultiplyAndAdd_using_ADC_MUL
 _TEXT	SEGMENT
-u_buf$ = 16
-u_count$ = 24
-x$ = 32
+k$ = 0
+k$ = 8
+k$ = 16
+k$ = 24
+k$ = 32
+k$ = 40
+k$ = 48
+k$ = 56
+k$ = 64
+k$ = 72
+k$ = 80
+k$ = 88
+k$ = 96
+k$ = 104
+k$ = 112
+k$ = 120
+k$ = 128
+k$ = 136
+k$ = 144
+k$ = 152
+k$ = 160
+k$ = 168
+k$ = 176
+k$ = 184
+k$ = 192
+k$ = 200
+k$ = 208
+k$ = 216
+k$ = 224
+k$ = 232
+k$ = 240
+k$ = 248
+k$ = 256
+k$ = 264
+k$ = 272
+k$ = 280
+k$ = 288
+k$ = 296
+k$ = 304
+k$ = 312
+k$ = 320
+k$ = 328
+k$ = 336
+k$ = 344
+k$ = 352
+k$ = 360
+k$ = 368
+k$ = 376
+k$ = 384
+k$ = 392
+k$ = 400
+k$ = 408
+k$ = 416
+k$ = 424
+k$ = 432
+k$ = 440
+k$ = 448
+k$ = 456
+k$ = 464
+t_hi$1 = 472
+t_hi$2 = 480
+t_hi$3 = 488
+t_hi$4 = 496
+t_hi$5 = 504
+t_hi$6 = 512
+t_hi$7 = 520
+t_hi$8 = 528
+t_hi$9 = 536
+t_hi$10 = 544
+t_hi$11 = 552
+t_hi$12 = 560
+t_hi$13 = 568
+t_hi$14 = 576
+t_hi$15 = 584
+t_hi$16 = 592
+t_hi$17 = 600
+t_hi$18 = 608
+t_hi$19 = 616
+t_hi$20 = 624
+t_hi$21 = 632
+t_hi$22 = 640
+t_hi$23 = 648
+t_hi$24 = 656
+t_hi$25 = 664
+t_hi$26 = 672
+t_hi$27 = 680
+t_hi$28 = 688
+t_hi$29 = 696
+t_hi$30 = 704
+t_hi$31 = 712
+t_hi$32 = 720
+t_hi$33 = 728
+t_hi$34 = 736
+t_hi$35 = 744
+t_hi$36 = 752
+t_hi$37 = 760
+t_hi$38 = 768
+t_hi$39 = 776
+t_hi$40 = 784
+t_hi$41 = 792
+t_hi$42 = 800
+t_hi$43 = 808
+t_hi$44 = 816
+t_hi$45 = 824
+t_hi$46 = 832
+t_hi$47 = 840
+t_hi$48 = 848
+t_hi$49 = 856
+t_hi$50 = 864
+t_hi$51 = 872
+t_hi$52 = 880
+t_hi$53 = 888
+t_hi$54 = 896
+t_hi$55 = 904
+t_hi$56 = 912
+t_hi$57 = 920
+t_hi$58 = 928
+t_hi$59 = 936
+t_hi$60 = 944
+t_hi$61 = 952
+t_hi$62 = 960
+t_hi$63 = 968
+k$ = 1008
+u_buf$ = 1008
+k$ = 1016
+u_count$ = 1016
+k$ = 1024
+x$ = 1024
+k$ = 1032
 MultiplyAndAdd_using_ADC_MUL PROC			; COMDAT
 
 ; 407  : {
 
-	mov	QWORD PTR [rsp+16], rbx
 	push	rbp
-	mov	rbp, rsp
+	push	rbx
+	lea	rbp, QWORD PTR [rsp-728]
+	sub	rsp, 984				; 000003d8H
 
 ; 408  :     __UNIT_TYPE k = x;
 ; 409  :     __UNIT_TYPE count = u_count >> 5;
 
 	mov	r11, rdx
-	shr	r11, 5
 	mov	r9, r8
+	shr	r11, 5
 	mov	r10, rdx
 
 ; 410  :     while (count > 0)
@@ -4154,7 +4697,7 @@ MultiplyAndAdd_using_ADC_MUL PROC			; COMDAT
 	mov	rbx, -8446744073709551616		; 8ac7230489e80000H
 	test	r11, r11
 	je	$LN3@MultiplyAn
-	npad	7
+	npad	14
 $LL2@MultiplyAn:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
@@ -4169,7 +4712,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$1[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4177,7 +4720,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4185,15 +4728,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+8]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$2[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4201,7 +4746,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4209,15 +4754,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+16]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$3[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4225,7 +4772,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4233,15 +4780,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+24]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$4[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4249,7 +4798,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4257,15 +4806,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+32]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$5[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4273,7 +4824,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4281,15 +4832,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+40]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$6[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4297,7 +4850,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4305,15 +4858,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+48]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$7[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4321,7 +4876,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4329,15 +4884,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+56]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$8[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4345,7 +4902,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4353,15 +4910,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+64]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$9[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4369,7 +4928,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4377,19 +4936,23 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+72]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	QWORD PTR t_hi$10[rbp-256], rdx
 	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
 	mov	QWORD PTR [rcx+72], rax
+	adc	r9, 0
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -4397,7 +4960,7 @@ $LL2@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
-	adc	r9, 0
+	mov	QWORD PTR k$[rsp], r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -4409,7 +4972,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$11[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4417,7 +4980,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4425,15 +4988,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+88]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$12[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4441,7 +5006,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4449,15 +5014,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+96]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$13[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4465,7 +5032,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4473,17 +5040,25 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+104]
-	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r8
 	add	rax, r8
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$14[rbp-256], rdx
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+104], rax
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4491,15 +5066,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+112]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$15[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4507,7 +5084,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4515,15 +5092,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+120]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$16[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4531,7 +5110,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4539,15 +5118,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+128]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$17[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4555,7 +5136,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4563,15 +5144,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+136]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$18[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4579,7 +5162,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4587,15 +5170,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+144]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$19[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4603,7 +5188,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4611,39 +5196,37 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+152]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	QWORD PTR t_hi$20[rbp-256], rdx
 	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
 	mov	QWORD PTR [rcx+152], rax
-
-; 520  :     return (_umul128(u, v, w_hi));
-
-	mov	rax, rbx
-
-; 428  :     return (_addcarry_u64(carry, u, v, w));
-
 	adc	r9, 0
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+160]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rsp], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$21[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4651,7 +5234,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4659,15 +5242,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+168]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$22[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4675,7 +5260,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4683,15 +5268,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+176]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$23[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4699,7 +5286,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4707,15 +5294,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+184]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$24[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4723,7 +5312,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4731,15 +5320,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+192]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$25[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4747,7 +5338,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4755,15 +5346,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+200]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$26[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4771,7 +5364,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4779,11 +5372,21 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+208]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$27[rbp-256], rdx
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR [rcx+208], rax
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -4791,7 +5394,6 @@ $LL2@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
-	mov	QWORD PTR [rcx+208], rax
 	adc	r8, 0
 
 ; 520  :     return (_umul128(u, v, w_hi));
@@ -4801,11 +5403,12 @@ $LL2@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$28[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4813,7 +5416,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4821,15 +5424,17 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+224]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$29[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4837,7 +5442,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4845,31 +5450,36 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+232]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	QWORD PTR t_hi$30[rbp-256], rdx
 	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
 	mov	QWORD PTR [rcx+232], rax
-
-; 520  :     return (_umul128(u, v, w_hi));
-
-	mov	rax, rbx
-
-; 428  :     return (_addcarry_u64(carry, u, v, w));
-
 	adc	r9, 0
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+240]
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4877,7 +5487,7 @@ $LL2@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$31[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4897,7 +5507,16 @@ $LL2@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$32[rbp-256], rdx
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR [rcx+248], rax
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -4905,26 +5524,46 @@ $LL2@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
-	mov	QWORD PTR [rcx+248], rax
 	adc	r9, 0
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, 32					; 00000020H
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
 ; 444  :         u_buf += 32;
 
 	add	rcx, 256				; 00000100H
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 445  :         --count;
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 410  :     while (count > 0)
 
 	sub	r11, 1
 	jne	$LL2@MultiplyAn
 $LN3@MultiplyAn:
 
-; 446  :     }
-; 447  : 
-; 448  :     if (u_count & 0x10)
+; 445  :         --count;
+; 446  : #ifdef ENABLED_PERFORMANCE_COUNTER
+; 447  :         if (sizeof(k) == sizeof(_UINT32_T))
+; 448  :             AddToMULTI32Counter(32);
+; 449  :         else
+; 450  :             AddToMULTI64Counter(32);
+; 451  : #endif
+; 452  :     }
+; 453  : 
+; 454  :     if (u_count & 0x10)
 
 	test	r10b, 16
-	je	$LN4@MultiplyAn
+	je	$LN413@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 520  :     return (_umul128(u, v, w_hi));
@@ -4938,7 +5577,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$33[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4946,7 +5585,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4954,15 +5593,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+8]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$34[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4970,7 +5611,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4978,15 +5619,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+16]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$35[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -4994,7 +5637,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5002,15 +5645,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+24]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$36[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5018,7 +5663,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5026,15 +5671,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+32]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$37[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5042,7 +5689,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5050,15 +5697,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+40]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$38[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5066,7 +5715,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5074,15 +5723,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+48]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$39[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5090,7 +5741,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5098,15 +5749,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+56]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$40[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5114,7 +5767,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5122,15 +5775,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+64]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$41[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5138,7 +5793,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5146,19 +5801,23 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+72]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	QWORD PTR t_hi$42[rbp-256], rdx
 	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
 	mov	QWORD PTR [rcx+72], rax
+	adc	r9, 0
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -5166,7 +5825,7 @@ $LN3@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
-	adc	r9, 0
+	mov	QWORD PTR k$[rbp-256], r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -5178,7 +5837,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$43[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5186,7 +5845,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5194,15 +5853,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+88]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$44[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5210,7 +5871,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5218,15 +5879,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+96]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$45[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5234,7 +5897,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5242,17 +5905,25 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+104]
-	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$46[rbp-256], rdx
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
 	mov	QWORD PTR [rcx+104], rax
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5260,15 +5931,17 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+112]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$47[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5276,7 +5949,7 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5284,11 +5957,21 @@ $LN3@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+120]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$48[rbp-256], rdx
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR [rcx+120], rax
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -5296,21 +5979,32 @@ $LN3@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
-	mov	QWORD PTR [rcx+120], rax
 	adc	r9, 0
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, 16
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 466  :         u_buf += 16;
+; 472  :         u_buf += 16;
 
 	sub	rcx, -128				; ffffffffffffff80H
-$LN4@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 467  :     }
-; 468  : 
-; 469  :     if (u_count & 0x8)
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, eax
+$LN413@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 481  :     if (u_count & 0x8)
 
 	test	r10b, 8
-	je	$LN5@MultiplyAn
+	je	$LN481@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 520  :     return (_umul128(u, v, w_hi));
@@ -5324,7 +6018,7 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$49[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5332,7 +6026,7 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5340,15 +6034,17 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+8]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$50[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5356,7 +6052,7 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5364,15 +6060,17 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+16]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$51[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5380,7 +6078,7 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5388,15 +6086,17 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+24]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$52[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5404,7 +6104,7 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5412,15 +6112,17 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+32]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$53[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5428,7 +6130,7 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5436,15 +6138,17 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+40]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$54[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5452,7 +6156,7 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5460,15 +6164,17 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+48]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$55[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5476,7 +6182,7 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5484,11 +6190,21 @@ $LN4@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+56]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$56[rbp-256], rdx
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR [rcx+56], rax
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -5496,21 +6212,32 @@ $LN4@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
-	mov	QWORD PTR [rcx+56], rax
 	adc	r9, 0
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, 8
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 479  :         u_buf += 8;
+; 491  :         u_buf += 8;
 
 	add	rcx, 64					; 00000040H
-$LN5@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 480  :     }
-; 481  : 
-; 482  :     if (u_count & 0x4)
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, eax
+$LN481@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 500  :     if (u_count & 0x4)
 
 	test	r10b, 4
-	je	SHORT $LN6@MultiplyAn
+	je	$LN517@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 520  :     return (_umul128(u, v, w_hi));
@@ -5524,7 +6251,7 @@ $LN5@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$57[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5532,7 +6259,7 @@ $LN5@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5540,15 +6267,17 @@ $LN5@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+8]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r9, rdx
+	mov	QWORD PTR t_hi$58[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5556,7 +6285,7 @@ $LN5@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5564,15 +6293,17 @@ $LN5@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+16]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r9
 	add	rax, r9
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	r8, rdx
+	mov	QWORD PTR t_hi$59[rbp-256], rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5580,7 +6311,7 @@ $LN5@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
-	mov	rax, rbx
+	mov	r8, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
@@ -5588,11 +6319,21 @@ $LN5@MultiplyAn:
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+24]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$60[rbp-256], rdx
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR [rcx+24], rax
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -5600,21 +6341,32 @@ $LN5@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
-	mov	QWORD PTR [rcx+24], rax
 	adc	r9, 0
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	eax, 4
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 488  :         u_buf += 4;
+; 506  :         u_buf += 4;
 
 	add	rcx, 32					; 00000020H
-$LN6@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 489  :     }
-; 490  : 
-; 491  :     if (u_count & 0x2)
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, eax
+$LN517@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 515  :     if (u_count & 0x2)
 
 	test	r10b, 2
-	je	SHORT $LN7@MultiplyAn
+	je	SHORT $LN537@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 520  :     return (_umul128(u, v, w_hi));
@@ -5625,6 +6377,14 @@ $LN6@MultiplyAn:
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
 	add	rax, r9
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$61[rbp-256], rdx
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR [rcx], rax
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
@@ -5632,45 +6392,52 @@ $LN6@MultiplyAn:
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
-	mov	QWORD PTR [rcx], rax
-
-; 520  :     return (_umul128(u, v, w_hi));
-
-	mov	rax, rbx
-
-; 428  :     return (_addcarry_u64(carry, u, v, w));
-
 	adc	r8, 0
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	rax, rbx
 	mul	QWORD PTR [rcx+8]
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
+	mov	QWORD PTR k$[rbp-256], r8
 	add	rax, r8
 
 ; 520  :     return (_umul128(u, v, w_hi));
 
+	mov	QWORD PTR t_hi$62[rbp-256], rdx
 	mov	r9, rdx
 
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
 	mov	QWORD PTR [rcx+8], rax
 	adc	r9, 0
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	mov	edx, 2
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
+	mov	QWORD PTR k$[rbp-256], r9
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 495  :         u_buf += 2;
+; 519  :         u_buf += 2;
 
 	add	rcx, 16
-$LN7@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 496  :     }
-; 497  : 
-; 498  :     if (u_count & 0x1)
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, edx
+$LN537@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 528  :     if (u_count & 0x1)
 
 	test	r10b, 1
-	je	SHORT $LN8@MultiplyAn
+	je	SHORT $LN549@MultiplyAn
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
 ; 520  :     return (_umul128(u, v, w_hi));
@@ -5681,43 +6448,62 @@ $LN7@MultiplyAn:
 ; 428  :     return (_addcarry_u64(carry, u, v, w));
 
 	add	rax, r9
+
+; 520  :     return (_umul128(u, v, w_hi));
+
+	mov	QWORD PTR t_hi$63[rbp-256], rdx
+
+; 428  :     return (_addcarry_u64(carry, u, v, w));
+
 	mov	r9, rdx
 	mov	QWORD PTR [rcx], rax
 	adc	r9, 0
+	mov	QWORD PTR k$[rbp-256], r9
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
 
-; 501  :         u_buf += 1;
+; 531  :         u_buf += 1;
 
 	add	rcx, 8
-$LN8@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 502  :     }
-; 503  : 
-; 504  :     if (k > 0)
+; 968  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
+
+	lock inc DWORD PTR statistics_info
+$LN549@MultiplyAn:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_parse.c
+
+; 540  :     if (k > 0)
 
 	test	r9, r9
-	je	SHORT $LN519@MultiplyAn
+	je	SHORT $LN554@MultiplyAn
 
-; 505  :     {
-; 506  :         u_buf[0] = k;
+; 541  :     {
+; 542  :         u_buf[0] = k;
 
 	mov	QWORD PTR [rcx], r9
 
-; 507  :         u_buf += 1;
+; 543  :         u_buf += 1;
 
 	lea	rax, QWORD PTR [rcx+8]
 
-; 508  :     }
-; 509  : 
-; 510  :     return (u_buf);
-; 511  : }
+; 547  : }
 
-	mov	rbx, QWORD PTR [rsp+24]
+	add	rsp, 984				; 000003d8H
+	pop	rbx
 	pop	rbp
 	ret	0
-$LN519@MultiplyAn:
-	mov	rbx, QWORD PTR [rsp+24]
+$LN554@MultiplyAn:
+
+; 544  :     }
+; 545  : 
+; 546  :     return (u_buf);
+
 	mov	rax, rcx
+
+; 547  : }
+
+	add	rsp, 984				; 000003d8H
+	pop	rbx
 	pop	rbp
 	ret	0
 MultiplyAndAdd_using_ADC_MUL ENDP
@@ -8047,6 +8833,68 @@ StartsWith ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT AddToMULTI64Counter
+_TEXT	SEGMENT
+value$ = 8
+AddToMULTI64Counter PROC				; COMDAT
+
+; 991  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+
+	lock xadd DWORD PTR statistics_info, ecx
+
+; 992  : }
+
+	ret	0
+AddToMULTI64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT AddToMULTI32Counter
+_TEXT	SEGMENT
+value$ = 8
+AddToMULTI32Counter PROC				; COMDAT
+
+; 985  :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+
+	lock xadd DWORD PTR statistics_info+4, ecx
+
+; 986  : }
+
+	ret	0
+AddToMULTI32Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT IncrementMULTI64Counter
+_TEXT	SEGMENT
+IncrementMULTI64Counter PROC				; COMDAT
+
+; 968  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
+
+	lock inc DWORD PTR statistics_info
+
+; 969  : }
+
+	ret	0
+IncrementMULTI64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT IncrementMULTI32Counter
+_TEXT	SEGMENT
+IncrementMULTI32Counter PROC				; COMDAT
+
+; 962  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+
+	lock inc DWORD PTR statistics_info+4
+
+; 963  : }
+
+	ret	0
+IncrementMULTI32Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ;	COMDAT _MULTIPLYX_UNIT
 _TEXT	SEGMENT
 u$ = 8
@@ -8263,7 +9111,7 @@ format_option$ = 64
 o$ = 72
 PMC_TryParse PROC					; COMDAT
 
-; 927  : {
+; 999  : {
 
 $LN13:
 	push	rbx
@@ -8271,23 +9119,23 @@ $LN13:
 	mov	rbx, r9
 	mov	rax, r8
 
-; 928  :     PMC_STATUS_CODE result;
-; 929  :     if (source == NULL)
+; 1000 :     PMC_STATUS_CODE result;
+; 1001 :     if (source == NULL)
 
 	test	rcx, rcx
 	je	SHORT $LN11@PMC_TryPar
 
-; 930  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 931  :     if (o == NULL)
+; 1002 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1003 :     if (o == NULL)
 
 	test	rbx, rbx
 	je	SHORT $LN11@PMC_TryPar
 
-; 932  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 933  :     if (format_option == NULL)
-; 934  :         format_option = &default_number_format_option;
-; 935  :     NUMBER_HEADER* no;
-; 936  :     if (number_styles & PMC_NUMBER_STYLE_ALLOW_HEX_SPECIFIER)
+; 1004 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1005 :     if (format_option == NULL)
+; 1006 :         format_option = &default_number_format_option;
+; 1007 :     NUMBER_HEADER* no;
+; 1008 :     if (number_styles & PMC_NUMBER_STYLE_ALLOW_HEX_SPECIFIER)
 
 	test	rax, rax
 	lea	r8, OFFSET FLAT:default_number_format_option
@@ -8295,36 +9143,36 @@ $LN13:
 	bt	edx, 9
 	jae	SHORT $LN5@PMC_TryPar
 
-; 937  :     {
-; 938  :         // 許可されている組み合わせのフラグ
-; 939  :         _UINT32_T mask = PMC_NUMBER_STYLE_ALLOW_HEX_SPECIFIER | PMC_NUMBER_STYLE_ALLOW_LEADING_WHITE | PMC_NUMBER_STYLE_ALLOW_TRAILING_WHITE;
-; 940  : 
-; 941  :         // 許可されていないフラグが指定されていればエラー
-; 942  :         if (number_styles & ~mask)
+; 1009 :     {
+; 1010 :         // 許可されている組み合わせのフラグ
+; 1011 :         _UINT32_T mask = PMC_NUMBER_STYLE_ALLOW_HEX_SPECIFIER | PMC_NUMBER_STYLE_ALLOW_LEADING_WHITE | PMC_NUMBER_STYLE_ALLOW_TRAILING_WHITE;
+; 1012 : 
+; 1013 :         // 許可されていないフラグが指定されていればエラー
+; 1014 :         if (number_styles & ~mask)
 
 	test	edx, -516				; fffffdfcH
 	jne	SHORT $LN11@PMC_TryPar
 
-; 944  : 
-; 945  :         if ((result = TryParseX(source, number_styles, format_option, &no)) != PMC_STATUS_OK)
+; 1016 : 
+; 1017 :         if ((result = TryParseX(source, number_styles, format_option, &no)) != PMC_STATUS_OK)
 
 	lea	r9, QWORD PTR no$[rsp]
 	call	TryParseX
 	test	eax, eax
 	je	SHORT $LN9@PMC_TryPar
 
-; 959  : }
+; 1031 : }
 
 	add	rsp, 32					; 00000020H
 	pop	rbx
 	ret	0
 $LN5@PMC_TryPar:
 
-; 946  :             return (result);
-; 947  :     }
-; 948  :     else
-; 949  :     {
-; 950  :         if ((result = TryParseDN(source, number_styles, format_option, &no)) != PMC_STATUS_OK)
+; 1018 :             return (result);
+; 1019 :     }
+; 1020 :     else
+; 1021 :     {
+; 1022 :         if ((result = TryParseDN(source, number_styles, format_option, &no)) != PMC_STATUS_OK)
 
 	lea	r9, QWORD PTR no$[rsp]
 	call	TryParseDN
@@ -8332,34 +9180,34 @@ $LN5@PMC_TryPar:
 	jne	SHORT $LN1@PMC_TryPar
 $LN9@PMC_TryPar:
 
-; 951  :             return (result);
-; 952  :     }
-; 953  :     *o = no;
+; 1023 :             return (result);
+; 1024 :     }
+; 1025 :     *o = no;
 
 	mov	rax, QWORD PTR no$[rsp]
 	mov	QWORD PTR [rbx], rax
 
-; 954  : #ifdef _DEBUG
-; 955  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 956  :         return (result);
-; 957  : #endif
-; 958  :     return (PMC_STATUS_OK);
+; 1026 : #ifdef _DEBUG
+; 1027 :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 1028 :         return (result);
+; 1029 : #endif
+; 1030 :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 959  : }
+; 1031 : }
 
 	add	rsp, 32					; 00000020H
 	pop	rbx
 	ret	0
 $LN11@PMC_TryPar:
 
-; 943  :             return (PMC_STATUS_ARGUMENT_ERROR);
+; 1015 :             return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN1@PMC_TryPar:
 
-; 959  : }
+; 1031 : }
 
 	add	rsp, 32					; 00000020H
 	pop	rbx
@@ -8373,55 +9221,55 @@ _TEXT	SEGMENT
 feature$ = 48
 Initialize_Parse PROC					; COMDAT
 
-; 962  : {
+; 1034 : {
 
 $LN6:
 	push	rbx
 	sub	rsp, 32					; 00000020H
 	mov	rbx, rcx
 
-; 963  :     default_number_format_option.DecimalDigits = 2;
+; 1035 :     default_number_format_option.DecimalDigits = 2;
 
 	mov	DWORD PTR default_number_format_option, 2
 
-; 964  :     lstrcpyW(default_number_format_option.GroupSeparator, L",");
+; 1036 :     lstrcpyW(default_number_format_option.GroupSeparator, L",");
 
 	lea	rcx, OFFSET FLAT:default_number_format_option+4
 	lea	rdx, OFFSET FLAT:??_C@_13DEFPDAGF@?$AA?0@
 	call	QWORD PTR __imp_lstrcpyW
 
-; 965  :     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
+; 1037 :     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
 
 	lea	rdx, OFFSET FLAT:??_C@_13JOFGPIOO@?$AA?4@
 	lea	rcx, OFFSET FLAT:default_number_format_option+10
 	call	QWORD PTR __imp_lstrcpyW
 
-; 966  :     lstrcpy(default_number_format_option.GroupSizes, "3");
+; 1038 :     lstrcpy(default_number_format_option.GroupSizes, "3");
 
 	lea	rdx, OFFSET FLAT:??_C@_01EKENIIDA@3@
 	lea	rcx, OFFSET FLAT:default_number_format_option+28
 	call	QWORD PTR __imp_lstrcpyA
 
-; 967  :     lstrcpyW(default_number_format_option.PositiveSign, L"+");
+; 1039 :     lstrcpyW(default_number_format_option.PositiveSign, L"+");
 
 	lea	rdx, OFFSET FLAT:??_C@_13KJIIAINM@?$AA?$CL@
 	lea	rcx, OFFSET FLAT:default_number_format_option+16
 	call	QWORD PTR __imp_lstrcpyW
 
-; 968  :     lstrcpyW(default_number_format_option.NegativeSign, L"-");
+; 1040 :     lstrcpyW(default_number_format_option.NegativeSign, L"-");
 
 	lea	rdx, OFFSET FLAT:??_C@_13IMODFHAA@?$AA?9@
 	lea	rcx, OFFSET FLAT:default_number_format_option+22
 	call	QWORD PTR __imp_lstrcpyW
 	mov	eax, DWORD PTR [rbx]
 
-; 969  : 
-; 970  :     if (feature->PROCESSOR_FEATURE_ADX && feature->PROCESSOR_FEATURE_BMI2)
-; 971  :         fp_MultiplyAndAdd = MultiplyAndAdd_using_ADCX_MULX;
-; 972  :     else
-; 973  :         fp_MultiplyAndAdd = MultiplyAndAdd_using_ADC_MUL;
-; 974  : 
-; 975  :     return (PMC_STATUS_OK);
+; 1041 : 
+; 1042 :     if (feature->PROCESSOR_FEATURE_ADX && feature->PROCESSOR_FEATURE_BMI2)
+; 1043 :         fp_MultiplyAndAdd = MultiplyAndAdd_using_ADCX_MULX;
+; 1044 :     else
+; 1045 :         fp_MultiplyAndAdd = MultiplyAndAdd_using_ADC_MUL;
+; 1046 : 
+; 1047 :     return (PMC_STATUS_OK);
 
 	lea	rcx, OFFSET FLAT:MultiplyAndAdd_using_ADCX_MULX
 	and	eax, 10
@@ -8431,7 +9279,7 @@ $LN6:
 	xor	eax, eax
 	mov	QWORD PTR fp_MultiplyAndAdd, rcx
 
-; 976  : }
+; 1048 : }
 
 	add	rsp, 32					; 00000020H
 	pop	rbx

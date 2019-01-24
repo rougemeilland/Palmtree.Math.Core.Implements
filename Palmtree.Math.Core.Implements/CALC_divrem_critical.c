@@ -62,6 +62,12 @@ __inline static __UNIT_TYPE_DIV AsumeQ_(__UNIT_TYPE_DIV u0, __UNIT_TYPE_DIV u1, 
         return ((__UNIT_TYPE_DIV)-1);
     __UNIT_TYPE_DIV r;
     __UNIT_TYPE_DIV q = _DIVREM_UNIT(u0, u1, v1, &r);
+#ifdef ENABLED_PERFORMANCE_COUNTER
+    if (sizeof(r) == sizeof(_UINT64_T))
+        IncrementDIV64Counter();
+    else
+        IncrementDIV32Counter();
+#endif
     return (q);
 }
 
@@ -74,6 +80,12 @@ __inline static BOOL CheckQ_(__UNIT_TYPE_DIV q_, __UNIT_TYPE_DIV u0, __UNIT_TYPE
     __UNIT_TYPE_DIV rh_mi = _MULTIPLY_UNIT_DIV(q_, v1, &rh_hi);
     __UNIT_TYPE_DIV rh_lo = u2;
     _SUBTRUCT_UNIT_DIV(_SUBTRUCT_UNIT_DIV(0, u1, rh_mi, &rh_mi), u0, rh_hi, &rh_hi);
+#ifdef ENABLED_PERFORMANCE_COUNTER
+    if (sizeof(lh_hi) == sizeof(_UINT32_T))
+        AddToMULTI32Counter(2);
+    else
+        AddToMULTI64Counter(2);
+#endif
     if (lh_hi > rh_hi)
         return (TRUE);
     else if (lh_hi < rh_hi)
@@ -136,6 +148,12 @@ void CalculateCriticalDataOfDivision(PMC_DEBUG_ENVIRONMENT *env)
             __UNIT_TYPE_DIV mv2_lo = _MULTIPLY_UNIT_DIV(v2, q_, &mv2_hi);
             __UNIT_TYPE_DIV mv3_hi;
             __UNIT_TYPE_DIV mv3_lo = _MULTIPLY_UNIT_DIV(v3, q_, &mv3_hi);
+#ifdef ENABLED_PERFORMANCE_COUNTER
+            if (sizeof(mv1_hi) == sizeof(_UINT32_T))
+                AddToMULTI32Counter(3);
+            else
+                AddToMULTI64Counter(3);
+#endif
 
             // [bu0, bu1, bu2, bu3] -= mv3_lo;
             // [bu0, bu1, bu2] -= mv3_hi;
