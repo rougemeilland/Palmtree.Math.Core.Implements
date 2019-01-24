@@ -1489,7 +1489,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_2WORDS_ADCX PROC
 
-; 4376 :     {
+; 4376 : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1497,7 +1497,7 @@ __ADD_2WORDS_ADCX PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 4377 : #ifdef _MSC_VER
-; 4378 :         c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 4378 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -1519,7 +1519,7 @@ __ADD_2WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 4379 :         c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 4379 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -1543,44 +1543,44 @@ __ADD_2WORDS_ADCX PROC
 
 ; 4380 : #elif defined(__GNUC__)
 ; 4381 : #ifdef _M_IX86
-; 4382 :         __asm__ volatile (
-; 4383 :             "addb\t$-1, %0\n\t"
-; 4384 :             "movl\t(%1), %%ecx\n\t"
-; 4385 :             "adcxl\t(%2), %%ecx\n\t"
-; 4386 :             "movl\t%%ecx, (%3)\n\t"
-; 4387 :             "movl\t4(%1), %%ecx\n\t"
-; 4388 :             "adcxl\t4(%2), %%ecx\n\t"
-; 4389 :             "movl\t%%ecx, 4(%3)\n\t"
-; 4390 :             "setc\t%0"
-; 4391 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 4392 :             :
-; 4393 :             : "cc", "memory", "%ecx"
-; 4394 :             );
+; 4382 :     __asm__ volatile (
+; 4383 :         "addb\t$-1, %0\n\t"
+; 4384 :         "movl\t(%1), %%ecx\n\t"
+; 4385 :         "adcxl\t(%2), %%ecx\n\t"
+; 4386 :         "movl\t%%ecx, (%3)\n\t"
+; 4387 :         "movl\t4(%1), %%ecx\n\t"
+; 4388 :         "adcxl\t4(%2), %%ecx\n\t"
+; 4389 :         "movl\t%%ecx, 4(%3)\n\t"
+; 4390 :         "setc\t%0"
+; 4391 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 4392 :         :
+; 4393 :         : "cc", "memory", "%ecx"
+; 4394 : );
 ; 4395 : #elif defined(_M_IX64)
-; 4396 :         __asm__ volatile (
-; 4397 :             "addb\t$-1, %0\n\t"
-; 4398 :             "movq\t(%1), %%rcx\n\t"
-; 4399 :             "adcxq\t(%2), %%rcx\n\t"
-; 4400 :             "movq\t%%rcx, (%3)\n\t"
-; 4401 :             "movq\t8(%1), %%rcx\n\t"
-; 4402 :             "adcxq\t8(%2), %%rcx\n\t"
-; 4403 :             "movq\t%%rcx, 8(%3)\n\t"
-; 4404 :             "setc\t%0"
-; 4405 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 4406 :             :
-; 4407 :             : "cc", "memory", "%rcx"
-; 4408 :             );
+; 4396 :     __asm__ volatile (
+; 4397 :         "addb\t$-1, %0\n\t"
+; 4398 :         "movq\t(%1), %%rcx\n\t"
+; 4399 :         "adcxq\t(%2), %%rcx\n\t"
+; 4400 :         "movq\t%%rcx, (%3)\n\t"
+; 4401 :         "movq\t8(%1), %%rcx\n\t"
+; 4402 :         "adcxq\t8(%2), %%rcx\n\t"
+; 4403 :         "movq\t%%rcx, 8(%3)\n\t"
+; 4404 :         "setc\t%0"
+; 4405 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 4406 :         :
+; 4407 :         : "cc", "memory", "%rcx"
+; 4408 : );
 ; 4409 : #else
 ; 4410 : #error unknown platform
 ; 4411 : #endif
 ; 4412 : #else
 ; 4413 : #error unknown compiler
 ; 4414 : #endif
-; 4415 :         return (c);
+; 4415 :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 4416 :     }
+; 4416 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1597,7 +1597,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_2WORDS_ADC PROC
 
-; 4333 :     {
+; 4333 : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1605,7 +1605,7 @@ __ADD_2WORDS_ADC PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 4334 : #ifdef _MSC_VER
-; 4335 :         c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 4335 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -1627,7 +1627,7 @@ __ADD_2WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 4336 :         c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 4336 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -1651,44 +1651,44 @@ __ADD_2WORDS_ADC PROC
 
 ; 4337 : #elif defined(__GNUC__)
 ; 4338 : #ifdef _M_IX86
-; 4339 :         __asm__ volatile (
-; 4340 :             "addb\t$-1, %0\n\t"
-; 4341 :             "movl\t(%1), %%ecx\n\t"
-; 4342 :             "adcl\t(%2), %%ecx\n\t"
-; 4343 :             "movl\t%%ecx, (%3)\n\t"
-; 4344 :             "movl\t4(%1), %%ecx\n\t"
-; 4345 :             "adcl\t4(%2), %%ecx\n\t"
-; 4346 :             "movl\t%%ecx, 4(%3)\n\t"
-; 4347 :             "setc\t%0"
-; 4348 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 4349 :             :
-; 4350 :             : "cc", "memory", "%ecx"
-; 4351 :             );
+; 4339 :     __asm__ volatile (
+; 4340 :         "addb\t$-1, %0\n\t"
+; 4341 :         "movl\t(%1), %%ecx\n\t"
+; 4342 :         "adcl\t(%2), %%ecx\n\t"
+; 4343 :         "movl\t%%ecx, (%3)\n\t"
+; 4344 :         "movl\t4(%1), %%ecx\n\t"
+; 4345 :         "adcl\t4(%2), %%ecx\n\t"
+; 4346 :         "movl\t%%ecx, 4(%3)\n\t"
+; 4347 :         "setc\t%0"
+; 4348 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 4349 :         :
+; 4350 :         : "cc", "memory", "%ecx"
+; 4351 : );
 ; 4352 : #elif defined(_M_IX64)
-; 4353 :         __asm__ volatile (
-; 4354 :             "addb\t$-1, %0\n\t"
-; 4355 :             "movq\t(%1), %%rcx\n\t"
-; 4356 :             "adcq\t(%2), %%rcx\n\t"
-; 4357 :             "movq\t%%rcx, (%3)\n\t"
-; 4358 :             "movq\t8(%1), %%rcx\n\t"
-; 4359 :             "adcq\t8(%2), %%rcx\n\t"
-; 4360 :             "movq\t%%rcx, 8(%3)\n\t"
-; 4361 :             "setc\t%0"
-; 4362 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 4363 :             :
-; 4364 :             : "cc", "memory", "%rcx"
-; 4365 :             );
+; 4353 :     __asm__ volatile (
+; 4354 :         "addb\t$-1, %0\n\t"
+; 4355 :         "movq\t(%1), %%rcx\n\t"
+; 4356 :         "adcq\t(%2), %%rcx\n\t"
+; 4357 :         "movq\t%%rcx, (%3)\n\t"
+; 4358 :         "movq\t8(%1), %%rcx\n\t"
+; 4359 :         "adcq\t8(%2), %%rcx\n\t"
+; 4360 :         "movq\t%%rcx, 8(%3)\n\t"
+; 4361 :         "setc\t%0"
+; 4362 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 4363 :         :
+; 4364 :         : "cc", "memory", "%rcx"
+; 4365 : );
 ; 4366 : #else
 ; 4367 : #error unknown platform
 ; 4368 : #endif
 ; 4369 : #else
 ; 4370 : #error unknown compiler
 ; 4371 : #endif
-; 4372 :         return (c);
+; 4372 :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 4373 :     }
+; 4373 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1705,7 +1705,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_4WORDS_ADCX PROC
 
-; 3934 :     {
+; 3934 : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1713,7 +1713,7 @@ __ADD_4WORDS_ADCX PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 3935 : #ifdef _MSC_VER
-; 3936 :         c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3936 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -1735,7 +1735,7 @@ __ADD_4WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3937 :         c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3937 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -1757,7 +1757,7 @@ __ADD_4WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3938 :         c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3938 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -1779,7 +1779,7 @@ __ADD_4WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3939 :         c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3939 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 4
 	imul	ecx, eax, 3
@@ -1803,56 +1803,56 @@ __ADD_4WORDS_ADCX PROC
 
 ; 3940 : #elif defined(__GNUC__)
 ; 3941 : #ifdef _M_IX86
-; 3942 :         __asm__ volatile (
-; 3943 :             "addb\t$-1, %0\n\t"
-; 3944 :             "movl\t(%1), %%ecx\n\t"
-; 3945 :             "adcxl\t(%2), %%ecx\n\t"
-; 3946 :             "movl\t%%ecx, (%3)\n\t"
-; 3947 :             "movl\t4(%1), %%ecx\n\t"
-; 3948 :             "adcxl\t4(%2), %%ecx\n\t"
-; 3949 :             "movl\t%%ecx, 4(%3)\n\t"
-; 3950 :             "movl\t8(%1), %%ecx\n\t"
-; 3951 :             "adcxl\t8(%2), %%ecx\n\t"
-; 3952 :             "movl\t%%ecx, 8(%3)\n\t"
-; 3953 :             "movl\t12(%1), %%ecx\n\t"
-; 3954 :             "adcxl\t12(%2), %%ecx\n\t"
-; 3955 :             "movl\t%%ecx, 12(%3)\n\t"
-; 3956 :             "setc\t%0"
-; 3957 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3958 :             :
-; 3959 :             : "cc", "memory", "%ecx"
-; 3960 :             );
+; 3942 :     __asm__ volatile (
+; 3943 :         "addb\t$-1, %0\n\t"
+; 3944 :         "movl\t(%1), %%ecx\n\t"
+; 3945 :         "adcxl\t(%2), %%ecx\n\t"
+; 3946 :         "movl\t%%ecx, (%3)\n\t"
+; 3947 :         "movl\t4(%1), %%ecx\n\t"
+; 3948 :         "adcxl\t4(%2), %%ecx\n\t"
+; 3949 :         "movl\t%%ecx, 4(%3)\n\t"
+; 3950 :         "movl\t8(%1), %%ecx\n\t"
+; 3951 :         "adcxl\t8(%2), %%ecx\n\t"
+; 3952 :         "movl\t%%ecx, 8(%3)\n\t"
+; 3953 :         "movl\t12(%1), %%ecx\n\t"
+; 3954 :         "adcxl\t12(%2), %%ecx\n\t"
+; 3955 :         "movl\t%%ecx, 12(%3)\n\t"
+; 3956 :         "setc\t%0"
+; 3957 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3958 :         :
+; 3959 :         : "cc", "memory", "%ecx"
+; 3960 : );
 ; 3961 : #elif defined(_M_IX64)
-; 3962 :         __asm__ volatile (
-; 3963 :             "addb\t$-1, %0\n\t"
-; 3964 :             "movq\t(%1), %%rcx\n\t"
-; 3965 :             "adcxq\t(%2), %%rcx\n\t"
-; 3966 :             "movq\t%%rcx, (%3)\n\t"
-; 3967 :             "movq\t8(%1), %%rcx\n\t"
-; 3968 :             "adcxq\t8(%2), %%rcx\n\t"
-; 3969 :             "movq\t%%rcx, 8(%3)\n\t"
-; 3970 :             "movq\t16(%1), %%rcx\n\t"
-; 3971 :             "adcxq\t16(%2), %%rcx\n\t"
-; 3972 :             "movq\t%%rcx, 16(%3)\n\t"
-; 3973 :             "movq\t24(%1), %%rcx\n\t"
-; 3974 :             "adcxq\t24(%2), %%rcx\n\t"
-; 3975 :             "movq\t%%rcx, 24(%3)\n\t"
-; 3976 :             "setc\t%0"
-; 3977 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3978 :             :
-; 3979 :             : "cc", "memory", "%rcx"
-; 3980 :             );
+; 3962 :     __asm__ volatile (
+; 3963 :         "addb\t$-1, %0\n\t"
+; 3964 :         "movq\t(%1), %%rcx\n\t"
+; 3965 :         "adcxq\t(%2), %%rcx\n\t"
+; 3966 :         "movq\t%%rcx, (%3)\n\t"
+; 3967 :         "movq\t8(%1), %%rcx\n\t"
+; 3968 :         "adcxq\t8(%2), %%rcx\n\t"
+; 3969 :         "movq\t%%rcx, 8(%3)\n\t"
+; 3970 :         "movq\t16(%1), %%rcx\n\t"
+; 3971 :         "adcxq\t16(%2), %%rcx\n\t"
+; 3972 :         "movq\t%%rcx, 16(%3)\n\t"
+; 3973 :         "movq\t24(%1), %%rcx\n\t"
+; 3974 :         "adcxq\t24(%2), %%rcx\n\t"
+; 3975 :         "movq\t%%rcx, 24(%3)\n\t"
+; 3976 :         "setc\t%0"
+; 3977 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3978 :         :
+; 3979 :         : "cc", "memory", "%rcx"
+; 3980 : );
 ; 3981 : #else
 ; 3982 : #error unknown platform
 ; 3983 : #endif
 ; 3984 : #else
 ; 3985 : #error unknown compiler
 ; 3986 : #endif
-; 3987 :         return (c);
+; 3987 :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 3988 :     }
+; 3988 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1869,7 +1869,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_4WORDS_ADC PROC
 
-; 3877 :     {
+; 3877 : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1877,7 +1877,7 @@ __ADD_4WORDS_ADC PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 3878 : #ifdef _MSC_VER
-; 3879 :         c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3879 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -1899,7 +1899,7 @@ __ADD_4WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3880 :         c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3880 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -1921,7 +1921,7 @@ __ADD_4WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3881 :         c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3881 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -1943,7 +1943,7 @@ __ADD_4WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3882 :         c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3882 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 4
 	imul	ecx, eax, 3
@@ -1967,56 +1967,56 @@ __ADD_4WORDS_ADC PROC
 
 ; 3883 : #elif defined(__GNUC__)
 ; 3884 : #ifdef _M_IX86
-; 3885 :         __asm__ volatile (
-; 3886 :             "addb\t$-1, %0\n\t"
-; 3887 :             "movl\t(%1), %%ecx\n\t"
-; 3888 :             "adcl\t(%2), %%ecx\n\t"
-; 3889 :             "movl\t%%ecx, (%3)\n\t"
-; 3890 :             "movl\t4(%1), %%ecx\n\t"
-; 3891 :             "adcl\t4(%2), %%ecx\n\t"
-; 3892 :             "movl\t%%ecx, 4(%3)\n\t"
-; 3893 :             "movl\t8(%1), %%ecx\n\t"
-; 3894 :             "adcl\t8(%2), %%ecx\n\t"
-; 3895 :             "movl\t%%ecx, 8(%3)\n\t"
-; 3896 :             "movl\t12(%1), %%ecx\n\t"
-; 3897 :             "adcl\t12(%2), %%ecx\n\t"
-; 3898 :             "movl\t%%ecx, 12(%3)\n\t"
-; 3899 :             "setc\t%0"
-; 3900 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3901 :             :
-; 3902 :             : "cc", "memory", "%ecx"
-; 3903 :             );
+; 3885 :     __asm__ volatile (
+; 3886 :         "addb\t$-1, %0\n\t"
+; 3887 :         "movl\t(%1), %%ecx\n\t"
+; 3888 :         "adcl\t(%2), %%ecx\n\t"
+; 3889 :         "movl\t%%ecx, (%3)\n\t"
+; 3890 :         "movl\t4(%1), %%ecx\n\t"
+; 3891 :         "adcl\t4(%2), %%ecx\n\t"
+; 3892 :         "movl\t%%ecx, 4(%3)\n\t"
+; 3893 :         "movl\t8(%1), %%ecx\n\t"
+; 3894 :         "adcl\t8(%2), %%ecx\n\t"
+; 3895 :         "movl\t%%ecx, 8(%3)\n\t"
+; 3896 :         "movl\t12(%1), %%ecx\n\t"
+; 3897 :         "adcl\t12(%2), %%ecx\n\t"
+; 3898 :         "movl\t%%ecx, 12(%3)\n\t"
+; 3899 :         "setc\t%0"
+; 3900 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3901 :         :
+; 3902 :         : "cc", "memory", "%ecx"
+; 3903 : );
 ; 3904 : #elif defined(_M_IX64)
-; 3905 :         __asm__ volatile (
-; 3906 :             "addb\t$-1, %0\n\t"
-; 3907 :             "movq\t(%1), %%rcx\n\t"
-; 3908 :             "adcq\t(%2), %%rcx\n\t"
-; 3909 :             "movq\t%%rcx, (%3)\n\t"
-; 3910 :             "movq\t8(%1), %%rcx\n\t"
-; 3911 :             "adcq\t8(%2), %%rcx\n\t"
-; 3912 :             "movq\t%%rcx, 8(%3)\n\t"
-; 3913 :             "movq\t16(%1), %%rcx\n\t"
-; 3914 :             "adcq\t16(%2), %%rcx\n\t"
-; 3915 :             "movq\t%%rcx, 16(%3)\n\t"
-; 3916 :             "movq\t24(%1), %%rcx\n\t"
-; 3917 :             "adcq\t24(%2), %%rcx\n\t"
-; 3918 :             "movq\t%%rcx, 24(%3)\n\t"
-; 3919 :             "setc\t%0"
-; 3920 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3921 :             :
-; 3922 :             : "cc", "memory", "%rcx"
-; 3923 :             );
+; 3905 :     __asm__ volatile (
+; 3906 :         "addb\t$-1, %0\n\t"
+; 3907 :         "movq\t(%1), %%rcx\n\t"
+; 3908 :         "adcq\t(%2), %%rcx\n\t"
+; 3909 :         "movq\t%%rcx, (%3)\n\t"
+; 3910 :         "movq\t8(%1), %%rcx\n\t"
+; 3911 :         "adcq\t8(%2), %%rcx\n\t"
+; 3912 :         "movq\t%%rcx, 8(%3)\n\t"
+; 3913 :         "movq\t16(%1), %%rcx\n\t"
+; 3914 :         "adcq\t16(%2), %%rcx\n\t"
+; 3915 :         "movq\t%%rcx, 16(%3)\n\t"
+; 3916 :         "movq\t24(%1), %%rcx\n\t"
+; 3917 :         "adcq\t24(%2), %%rcx\n\t"
+; 3918 :         "movq\t%%rcx, 24(%3)\n\t"
+; 3919 :         "setc\t%0"
+; 3920 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3921 :         :
+; 3922 :         : "cc", "memory", "%rcx"
+; 3923 : );
 ; 3924 : #else
 ; 3925 : #error unknown platform
 ; 3926 : #endif
 ; 3927 : #else
 ; 3928 : #error unknown compiler
 ; 3929 : #endif
-; 3930 :         return (c);
+; 3930 :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 3931 :     }
+; 3931 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -2033,7 +2033,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_8WORDS_ADCX PROC
 
-; 3282 :     {
+; 3282 : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2041,7 +2041,7 @@ __ADD_8WORDS_ADCX PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 3283 : #ifdef _MSC_VER
-; 3284 :         c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3284 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -2063,7 +2063,7 @@ __ADD_8WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3285 :         c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3285 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -2085,7 +2085,7 @@ __ADD_8WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3286 :         c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3286 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -2107,7 +2107,7 @@ __ADD_8WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3287 :         c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3287 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 4
 	imul	ecx, eax, 3
@@ -2129,7 +2129,7 @@ __ADD_8WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3288 :         c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+; 3288 :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	edx, 4
 	shl	edx, 2
@@ -2151,7 +2151,7 @@ __ADD_8WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3289 :         c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+; 3289 :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 5
@@ -2173,7 +2173,7 @@ __ADD_8WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3290 :         c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+; 3290 :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	eax, 4
 	imul	ecx, eax, 6
@@ -2195,7 +2195,7 @@ __ADD_8WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3291 :         c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+; 3291 :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	edx, 4
 	imul	eax, edx, 7
@@ -2219,80 +2219,80 @@ __ADD_8WORDS_ADCX PROC
 
 ; 3292 : #elif defined(__GNUC__)
 ; 3293 : #ifdef _M_IX86
-; 3294 :         __asm__ volatile (
-; 3295 :             "addb\t$-1, %0\n\t"
-; 3296 :             "movl\t(%1), %%ecx\n\t"
-; 3297 :             "adcxl\t(%2), %%ecx\n\t"
-; 3298 :             "movl\t%%ecx, (%3)\n\t"
-; 3299 :             "movl\t4(%1), %%ecx\n\t"
-; 3300 :             "adcxl\t4(%2), %%ecx\n\t"
-; 3301 :             "movl\t%%ecx, 4(%3)\n\t"
-; 3302 :             "movl\t8(%1), %%ecx\n\t"
-; 3303 :             "adcxl\t8(%2), %%ecx\n\t"
-; 3304 :             "movl\t%%ecx, 8(%3)\n\t"
-; 3305 :             "movl\t12(%1), %%ecx\n\t"
-; 3306 :             "adcxl\t12(%2), %%ecx\n\t"
-; 3307 :             "movl\t%%ecx, 12(%3)\n\t"
-; 3308 :             "movl\t16(%1), %%ecx\n\t"
-; 3309 :             "adcxl\t16(%2), %%ecx\n\t"
-; 3310 :             "movl\t%%ecx, 16(%3)\n\t"
-; 3311 :             "movl\t20(%1), %%ecx\n\t"
-; 3312 :             "adcxl\t20(%2), %%ecx\n\t"
-; 3313 :             "movl\t%%ecx, 20(%3)\n\t"
-; 3314 :             "movl\t24(%1), %%ecx\n\t"
-; 3315 :             "adcxl\t24(%2), %%ecx\n\t"
-; 3316 :             "movl\t%%ecx, 24(%3)\n\t"
-; 3317 :             "movl\t28(%1), %%ecx\n\t"
-; 3318 :             "adcxl\t28(%2), %%ecx\n\t"
-; 3319 :             "movl\t%%ecx, 28(%3)\n\t"
-; 3320 :             "setc\t%0"
-; 3321 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3322 :             :
-; 3323 :             : "cc", "memory", "%ecx"
-; 3324 :             );
+; 3294 :     __asm__ volatile (
+; 3295 :         "addb\t$-1, %0\n\t"
+; 3296 :         "movl\t(%1), %%ecx\n\t"
+; 3297 :         "adcxl\t(%2), %%ecx\n\t"
+; 3298 :         "movl\t%%ecx, (%3)\n\t"
+; 3299 :         "movl\t4(%1), %%ecx\n\t"
+; 3300 :         "adcxl\t4(%2), %%ecx\n\t"
+; 3301 :         "movl\t%%ecx, 4(%3)\n\t"
+; 3302 :         "movl\t8(%1), %%ecx\n\t"
+; 3303 :         "adcxl\t8(%2), %%ecx\n\t"
+; 3304 :         "movl\t%%ecx, 8(%3)\n\t"
+; 3305 :         "movl\t12(%1), %%ecx\n\t"
+; 3306 :         "adcxl\t12(%2), %%ecx\n\t"
+; 3307 :         "movl\t%%ecx, 12(%3)\n\t"
+; 3308 :         "movl\t16(%1), %%ecx\n\t"
+; 3309 :         "adcxl\t16(%2), %%ecx\n\t"
+; 3310 :         "movl\t%%ecx, 16(%3)\n\t"
+; 3311 :         "movl\t20(%1), %%ecx\n\t"
+; 3312 :         "adcxl\t20(%2), %%ecx\n\t"
+; 3313 :         "movl\t%%ecx, 20(%3)\n\t"
+; 3314 :         "movl\t24(%1), %%ecx\n\t"
+; 3315 :         "adcxl\t24(%2), %%ecx\n\t"
+; 3316 :         "movl\t%%ecx, 24(%3)\n\t"
+; 3317 :         "movl\t28(%1), %%ecx\n\t"
+; 3318 :         "adcxl\t28(%2), %%ecx\n\t"
+; 3319 :         "movl\t%%ecx, 28(%3)\n\t"
+; 3320 :         "setc\t%0"
+; 3321 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3322 :         :
+; 3323 :         : "cc", "memory", "%ecx"
+; 3324 : );
 ; 3325 : #elif defined(_M_IX64)
-; 3326 :         __asm__ volatile (
-; 3327 :             "addb\t$-1, %0\n\t"
-; 3328 :             "movq\t(%1), %%rcx\n\t"
-; 3329 :             "adcxq\t(%2), %%rcx\n\t"
-; 3330 :             "movq\t%%rcx, (%3)\n\t"
-; 3331 :             "movq\t8(%1), %%rcx\n\t"
-; 3332 :             "adcxq\t8(%2), %%rcx\n\t"
-; 3333 :             "movq\t%%rcx, 8(%3)\n\t"
-; 3334 :             "movq\t16(%1), %%rcx\n\t"
-; 3335 :             "adcxq\t16(%2), %%rcx\n\t"
-; 3336 :             "movq\t%%rcx, 16(%3)\n\t"
-; 3337 :             "movq\t24(%1), %%rcx\n\t"
-; 3338 :             "adcxq\t24(%2), %%rcx\n\t"
-; 3339 :             "movq\t%%rcx, 24(%3)\n\t"
-; 3340 :             "movq\t32(%1), %%rcx\n\t"
-; 3341 :             "adcxq\t32(%2), %%rcx\n\t"
-; 3342 :             "movq\t%%rcx, 32(%3)\n\t"
-; 3343 :             "movq\t40(%1), %%rcx\n\t"
-; 3344 :             "adcxq\t40(%2), %%rcx\n\t"
-; 3345 :             "movq\t%%rcx, 40(%3)\n\t"
-; 3346 :             "movq\t48(%1), %%rcx\n\t"
-; 3347 :             "adcxq\t48(%2), %%rcx\n\t"
-; 3348 :             "movq\t%%rcx, 48(%3)\n\t"
-; 3349 :             "movq\t56(%1), %%rcx\n\t"
-; 3350 :             "adcxq\t56(%2), %%rcx\n\t"
-; 3351 :             "movq\t%%rcx, 56(%3)\n\t"
-; 3352 :             "setc\t%0"
-; 3353 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3354 :             :
-; 3355 :             : "cc", "memory", "%rcx"
-; 3356 :             );
+; 3326 :     __asm__ volatile (
+; 3327 :         "addb\t$-1, %0\n\t"
+; 3328 :         "movq\t(%1), %%rcx\n\t"
+; 3329 :         "adcxq\t(%2), %%rcx\n\t"
+; 3330 :         "movq\t%%rcx, (%3)\n\t"
+; 3331 :         "movq\t8(%1), %%rcx\n\t"
+; 3332 :         "adcxq\t8(%2), %%rcx\n\t"
+; 3333 :         "movq\t%%rcx, 8(%3)\n\t"
+; 3334 :         "movq\t16(%1), %%rcx\n\t"
+; 3335 :         "adcxq\t16(%2), %%rcx\n\t"
+; 3336 :         "movq\t%%rcx, 16(%3)\n\t"
+; 3337 :         "movq\t24(%1), %%rcx\n\t"
+; 3338 :         "adcxq\t24(%2), %%rcx\n\t"
+; 3339 :         "movq\t%%rcx, 24(%3)\n\t"
+; 3340 :         "movq\t32(%1), %%rcx\n\t"
+; 3341 :         "adcxq\t32(%2), %%rcx\n\t"
+; 3342 :         "movq\t%%rcx, 32(%3)\n\t"
+; 3343 :         "movq\t40(%1), %%rcx\n\t"
+; 3344 :         "adcxq\t40(%2), %%rcx\n\t"
+; 3345 :         "movq\t%%rcx, 40(%3)\n\t"
+; 3346 :         "movq\t48(%1), %%rcx\n\t"
+; 3347 :         "adcxq\t48(%2), %%rcx\n\t"
+; 3348 :         "movq\t%%rcx, 48(%3)\n\t"
+; 3349 :         "movq\t56(%1), %%rcx\n\t"
+; 3350 :         "adcxq\t56(%2), %%rcx\n\t"
+; 3351 :         "movq\t%%rcx, 56(%3)\n\t"
+; 3352 :         "setc\t%0"
+; 3353 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3354 :         :
+; 3355 :         : "cc", "memory", "%rcx"
+; 3356 : );
 ; 3357 : #else
 ; 3358 : #error unknown platform
 ; 3359 : #endif
 ; 3360 : #else
 ; 3361 : #error unknown compiler
 ; 3362 : #endif
-; 3363 :         return (c);
+; 3363 :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 3364 :     }
+; 3364 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -2309,7 +2309,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_8WORDS_ADC PROC
 
-; 3197 :     {
+; 3197 : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2317,7 +2317,7 @@ __ADD_8WORDS_ADC PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 3198 : #ifdef _MSC_VER
-; 3199 :         c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3199 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -2339,7 +2339,7 @@ __ADD_8WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3200 :         c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3200 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -2361,7 +2361,7 @@ __ADD_8WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3201 :         c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3201 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -2383,7 +2383,7 @@ __ADD_8WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3202 :         c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3202 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 4
 	imul	ecx, eax, 3
@@ -2405,7 +2405,7 @@ __ADD_8WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3203 :         c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+; 3203 :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	edx, 4
 	shl	edx, 2
@@ -2427,7 +2427,7 @@ __ADD_8WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3204 :         c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+; 3204 :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 5
@@ -2449,7 +2449,7 @@ __ADD_8WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3205 :         c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+; 3205 :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	eax, 4
 	imul	ecx, eax, 6
@@ -2471,7 +2471,7 @@ __ADD_8WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 3206 :         c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+; 3206 :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	edx, 4
 	imul	eax, edx, 7
@@ -2495,80 +2495,80 @@ __ADD_8WORDS_ADC PROC
 
 ; 3207 : #elif defined(__GNUC__)
 ; 3208 : #ifdef _M_IX86
-; 3209 :         __asm__ volatile (
-; 3210 :             "addb\t$-1, %0\n\t"
-; 3211 :             "movl\t(%1), %%ecx\n\t"
-; 3212 :             "adcl\t(%2), %%ecx\n\t"
-; 3213 :             "movl\t%%ecx, (%3)\n\t"
-; 3214 :             "movl\t4(%1), %%ecx\n\t"
-; 3215 :             "adcl\t4(%2), %%ecx\n\t"
-; 3216 :             "movl\t%%ecx, 4(%3)\n\t"
-; 3217 :             "movl\t8(%1), %%ecx\n\t"
-; 3218 :             "adcl\t8(%2), %%ecx\n\t"
-; 3219 :             "movl\t%%ecx, 8(%3)\n\t"
-; 3220 :             "movl\t12(%1), %%ecx\n\t"
-; 3221 :             "adcl\t12(%2), %%ecx\n\t"
-; 3222 :             "movl\t%%ecx, 12(%3)\n\t"
-; 3223 :             "movl\t16(%1), %%ecx\n\t"
-; 3224 :             "adcl\t16(%2), %%ecx\n\t"
-; 3225 :             "movl\t%%ecx, 16(%3)\n\t"
-; 3226 :             "movl\t20(%1), %%ecx\n\t"
-; 3227 :             "adcl\t20(%2), %%ecx\n\t"
-; 3228 :             "movl\t%%ecx, 20(%3)\n\t"
-; 3229 :             "movl\t24(%1), %%ecx\n\t"
-; 3230 :             "adcl\t24(%2), %%ecx\n\t"
-; 3231 :             "movl\t%%ecx, 24(%3)\n\t"
-; 3232 :             "movl\t28(%1), %%ecx\n\t"
-; 3233 :             "adcl\t28(%2), %%ecx\n\t"
-; 3234 :             "movl\t%%ecx, 28(%3)\n\t"
-; 3235 :             "setc\t%0"
-; 3236 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3237 :             :
-; 3238 :             : "cc", "memory", "%ecx"
-; 3239 :             );
+; 3209 :     __asm__ volatile (
+; 3210 :         "addb\t$-1, %0\n\t"
+; 3211 :         "movl\t(%1), %%ecx\n\t"
+; 3212 :         "adcl\t(%2), %%ecx\n\t"
+; 3213 :         "movl\t%%ecx, (%3)\n\t"
+; 3214 :         "movl\t4(%1), %%ecx\n\t"
+; 3215 :         "adcl\t4(%2), %%ecx\n\t"
+; 3216 :         "movl\t%%ecx, 4(%3)\n\t"
+; 3217 :         "movl\t8(%1), %%ecx\n\t"
+; 3218 :         "adcl\t8(%2), %%ecx\n\t"
+; 3219 :         "movl\t%%ecx, 8(%3)\n\t"
+; 3220 :         "movl\t12(%1), %%ecx\n\t"
+; 3221 :         "adcl\t12(%2), %%ecx\n\t"
+; 3222 :         "movl\t%%ecx, 12(%3)\n\t"
+; 3223 :         "movl\t16(%1), %%ecx\n\t"
+; 3224 :         "adcl\t16(%2), %%ecx\n\t"
+; 3225 :         "movl\t%%ecx, 16(%3)\n\t"
+; 3226 :         "movl\t20(%1), %%ecx\n\t"
+; 3227 :         "adcl\t20(%2), %%ecx\n\t"
+; 3228 :         "movl\t%%ecx, 20(%3)\n\t"
+; 3229 :         "movl\t24(%1), %%ecx\n\t"
+; 3230 :         "adcl\t24(%2), %%ecx\n\t"
+; 3231 :         "movl\t%%ecx, 24(%3)\n\t"
+; 3232 :         "movl\t28(%1), %%ecx\n\t"
+; 3233 :         "adcl\t28(%2), %%ecx\n\t"
+; 3234 :         "movl\t%%ecx, 28(%3)\n\t"
+; 3235 :         "setc\t%0"
+; 3236 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3237 :         :
+; 3238 :         : "cc", "memory", "%ecx"
+; 3239 : );
 ; 3240 : #elif defined(_M_IX64)
-; 3241 :         __asm__ volatile (
-; 3242 :             "addb\t$-1, %0\n\t"
-; 3243 :             "movq\t(%1), %%rcx\n\t"
-; 3244 :             "adcq\t(%2), %%rcx\n\t"
-; 3245 :             "movq\t%%rcx, (%3)\n\t"
-; 3246 :             "movq\t8(%1), %%rcx\n\t"
-; 3247 :             "adcq\t8(%2), %%rcx\n\t"
-; 3248 :             "movq\t%%rcx, 8(%3)\n\t"
-; 3249 :             "movq\t16(%1), %%rcx\n\t"
-; 3250 :             "adcq\t16(%2), %%rcx\n\t"
-; 3251 :             "movq\t%%rcx, 16(%3)\n\t"
-; 3252 :             "movq\t24(%1), %%rcx\n\t"
-; 3253 :             "adcq\t24(%2), %%rcx\n\t"
-; 3254 :             "movq\t%%rcx, 24(%3)\n\t"
-; 3255 :             "movq\t32(%1), %%rcx\n\t"
-; 3256 :             "adcq\t32(%2), %%rcx\n\t"
-; 3257 :             "movq\t%%rcx, 32(%3)\n\t"
-; 3258 :             "movq\t40(%1), %%rcx\n\t"
-; 3259 :             "adcq\t40(%2), %%rcx\n\t"
-; 3260 :             "movq\t%%rcx, 40(%3)\n\t"
-; 3261 :             "movq\t48(%1), %%rcx\n\t"
-; 3262 :             "adcq\t48(%2), %%rcx\n\t"
-; 3263 :             "movq\t%%rcx, 48(%3)\n\t"
-; 3264 :             "movq\t56(%1), %%rcx\n\t"
-; 3265 :             "adcq\t56(%2), %%rcx\n\t"
-; 3266 :             "movq\t%%rcx, 56(%3)\n\t"
-; 3267 :             "setc\t%0"
-; 3268 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3269 :             :
-; 3270 :             : "cc", "memory", "%rcx"
-; 3271 :             );
+; 3241 :     __asm__ volatile (
+; 3242 :         "addb\t$-1, %0\n\t"
+; 3243 :         "movq\t(%1), %%rcx\n\t"
+; 3244 :         "adcq\t(%2), %%rcx\n\t"
+; 3245 :         "movq\t%%rcx, (%3)\n\t"
+; 3246 :         "movq\t8(%1), %%rcx\n\t"
+; 3247 :         "adcq\t8(%2), %%rcx\n\t"
+; 3248 :         "movq\t%%rcx, 8(%3)\n\t"
+; 3249 :         "movq\t16(%1), %%rcx\n\t"
+; 3250 :         "adcq\t16(%2), %%rcx\n\t"
+; 3251 :         "movq\t%%rcx, 16(%3)\n\t"
+; 3252 :         "movq\t24(%1), %%rcx\n\t"
+; 3253 :         "adcq\t24(%2), %%rcx\n\t"
+; 3254 :         "movq\t%%rcx, 24(%3)\n\t"
+; 3255 :         "movq\t32(%1), %%rcx\n\t"
+; 3256 :         "adcq\t32(%2), %%rcx\n\t"
+; 3257 :         "movq\t%%rcx, 32(%3)\n\t"
+; 3258 :         "movq\t40(%1), %%rcx\n\t"
+; 3259 :         "adcq\t40(%2), %%rcx\n\t"
+; 3260 :         "movq\t%%rcx, 40(%3)\n\t"
+; 3261 :         "movq\t48(%1), %%rcx\n\t"
+; 3262 :         "adcq\t48(%2), %%rcx\n\t"
+; 3263 :         "movq\t%%rcx, 48(%3)\n\t"
+; 3264 :         "movq\t56(%1), %%rcx\n\t"
+; 3265 :         "adcq\t56(%2), %%rcx\n\t"
+; 3266 :         "movq\t%%rcx, 56(%3)\n\t"
+; 3267 :         "setc\t%0"
+; 3268 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3269 :         :
+; 3270 :         : "cc", "memory", "%rcx"
+; 3271 : );
 ; 3272 : #else
 ; 3273 : #error unknown platform
 ; 3274 : #endif
 ; 3275 : #else
 ; 3276 : #error unknown compiler
 ; 3277 : #endif
-; 3278 :         return (c);
+; 3278 :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 3279 :     }
+; 3279 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -2585,7 +2585,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_16WORDS_ADCX PROC
 
-; 2210 :     {
+; 2210 : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2593,7 +2593,7 @@ __ADD_16WORDS_ADCX PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 2211 : #ifdef _MSC_VER
-; 2212 :         c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 2212 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -2615,7 +2615,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2213 :         c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 2213 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -2637,7 +2637,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2214 :         c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 2214 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -2659,7 +2659,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2215 :         c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 2215 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 4
 	imul	ecx, eax, 3
@@ -2681,7 +2681,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2216 :         c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+; 2216 :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	edx, 4
 	shl	edx, 2
@@ -2703,7 +2703,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2217 :         c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+; 2217 :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 5
@@ -2725,7 +2725,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2218 :         c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+; 2218 :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	eax, 4
 	imul	ecx, eax, 6
@@ -2747,7 +2747,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2219 :         c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+; 2219 :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	edx, 4
 	imul	eax, edx, 7
@@ -2769,7 +2769,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2220 :         c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+; 2220 :     c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	ecx, 4
 	shl	ecx, 3
@@ -2791,7 +2791,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2221 :         c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+; 2221 :     c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	eax, 4
 	imul	ecx, eax, 9
@@ -2813,7 +2813,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2222 :         c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+; 2222 :     c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	edx, 4
 	imul	eax, edx, 10
@@ -2835,7 +2835,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2223 :         c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+; 2223 :     c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 11
@@ -2857,7 +2857,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2224 :         c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+; 2224 :     c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	eax, 4
 	imul	ecx, eax, 12
@@ -2879,7 +2879,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2225 :         c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+; 2225 :     c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	edx, 4
 	imul	eax, edx, 13
@@ -2901,7 +2901,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2226 :         c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+; 2226 :     c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 14
@@ -2923,7 +2923,7 @@ __ADD_16WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2227 :         c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+; 2227 :     c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	eax, 4
 	imul	ecx, eax, 15
@@ -2947,128 +2947,128 @@ __ADD_16WORDS_ADCX PROC
 
 ; 2228 : #elif defined(__GNUC__)
 ; 2229 : #ifdef _M_IX86
-; 2230 :         __asm__ volatile (
-; 2231 :             "addb\t$-1, %0\n\t"
-; 2232 :             "movl\t(%1), %%ecx\n\t"
-; 2233 :             "adcxl\t(%2), %%ecx\n\t"
-; 2234 :             "movl\t%%ecx, (%3)\n\t"
-; 2235 :             "movl\t4(%1), %%ecx\n\t"
-; 2236 :             "adcxl\t4(%2), %%ecx\n\t"
-; 2237 :             "movl\t%%ecx, 4(%3)\n\t"
-; 2238 :             "movl\t8(%1), %%ecx\n\t"
-; 2239 :             "adcxl\t8(%2), %%ecx\n\t"
-; 2240 :             "movl\t%%ecx, 8(%3)\n\t"
-; 2241 :             "movl\t12(%1), %%ecx\n\t"
-; 2242 :             "adcxl\t12(%2), %%ecx\n\t"
-; 2243 :             "movl\t%%ecx, 12(%3)\n\t"
-; 2244 :             "movl\t16(%1), %%ecx\n\t"
-; 2245 :             "adcxl\t16(%2), %%ecx\n\t"
-; 2246 :             "movl\t%%ecx, 16(%3)\n\t"
-; 2247 :             "movl\t20(%1), %%ecx\n\t"
-; 2248 :             "adcxl\t20(%2), %%ecx\n\t"
-; 2249 :             "movl\t%%ecx, 20(%3)\n\t"
-; 2250 :             "movl\t24(%1), %%ecx\n\t"
-; 2251 :             "adcxl\t24(%2), %%ecx\n\t"
-; 2252 :             "movl\t%%ecx, 24(%3)\n\t"
-; 2253 :             "movl\t28(%1), %%ecx\n\t"
-; 2254 :             "adcxl\t28(%2), %%ecx\n\t"
-; 2255 :             "movl\t%%ecx, 28(%3)\n\t"
-; 2256 :             "movl\t32(%1), %%ecx\n\t"
-; 2257 :             "adcxl\t32(%2), %%ecx\n\t"
-; 2258 :             "movl\t%%ecx, 32(%3)\n\t"
-; 2259 :             "movl\t36(%1), %%ecx\n\t"
-; 2260 :             "adcxl\t36(%2), %%ecx\n\t"
-; 2261 :             "movl\t%%ecx, 36(%3)\n\t"
-; 2262 :             "movl\t40(%1), %%ecx\n\t"
-; 2263 :             "adcxl\t40(%2), %%ecx\n\t"
-; 2264 :             "movl\t%%ecx, 40(%3)\n\t"
-; 2265 :             "movl\t44(%1), %%ecx\n\t"
-; 2266 :             "adcxl\t44(%2), %%ecx\n\t"
-; 2267 :             "movl\t%%ecx, 44(%3)\n\t"
-; 2268 :             "movl\t48(%1), %%ecx\n\t"
-; 2269 :             "adcxl\t48(%2), %%ecx\n\t"
-; 2270 :             "movl\t%%ecx, 48(%3)\n\t"
-; 2271 :             "movl\t52(%1), %%ecx\n\t"
-; 2272 :             "adcxl\t52(%2), %%ecx\n\t"
-; 2273 :             "movl\t%%ecx, 52(%3)\n\t"
-; 2274 :             "movl\t56(%1), %%ecx\n\t"
-; 2275 :             "adcxl\t56(%2), %%ecx\n\t"
-; 2276 :             "movl\t%%ecx, 56(%3)\n\t"
-; 2277 :             "movl\t60(%1), %%ecx\n\t"
-; 2278 :             "adcxl\t60(%2), %%ecx\n\t"
-; 2279 :             "movl\t%%ecx, 60(%3)\n\t"
-; 2280 :             "setc\t%0"
-; 2281 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 2282 :             :
-; 2283 :             : "cc", "memory", "%ecx"
-; 2284 :             );
+; 2230 :     __asm__ volatile (
+; 2231 :         "addb\t$-1, %0\n\t"
+; 2232 :         "movl\t(%1), %%ecx\n\t"
+; 2233 :         "adcxl\t(%2), %%ecx\n\t"
+; 2234 :         "movl\t%%ecx, (%3)\n\t"
+; 2235 :         "movl\t4(%1), %%ecx\n\t"
+; 2236 :         "adcxl\t4(%2), %%ecx\n\t"
+; 2237 :         "movl\t%%ecx, 4(%3)\n\t"
+; 2238 :         "movl\t8(%1), %%ecx\n\t"
+; 2239 :         "adcxl\t8(%2), %%ecx\n\t"
+; 2240 :         "movl\t%%ecx, 8(%3)\n\t"
+; 2241 :         "movl\t12(%1), %%ecx\n\t"
+; 2242 :         "adcxl\t12(%2), %%ecx\n\t"
+; 2243 :         "movl\t%%ecx, 12(%3)\n\t"
+; 2244 :         "movl\t16(%1), %%ecx\n\t"
+; 2245 :         "adcxl\t16(%2), %%ecx\n\t"
+; 2246 :         "movl\t%%ecx, 16(%3)\n\t"
+; 2247 :         "movl\t20(%1), %%ecx\n\t"
+; 2248 :         "adcxl\t20(%2), %%ecx\n\t"
+; 2249 :         "movl\t%%ecx, 20(%3)\n\t"
+; 2250 :         "movl\t24(%1), %%ecx\n\t"
+; 2251 :         "adcxl\t24(%2), %%ecx\n\t"
+; 2252 :         "movl\t%%ecx, 24(%3)\n\t"
+; 2253 :         "movl\t28(%1), %%ecx\n\t"
+; 2254 :         "adcxl\t28(%2), %%ecx\n\t"
+; 2255 :         "movl\t%%ecx, 28(%3)\n\t"
+; 2256 :         "movl\t32(%1), %%ecx\n\t"
+; 2257 :         "adcxl\t32(%2), %%ecx\n\t"
+; 2258 :         "movl\t%%ecx, 32(%3)\n\t"
+; 2259 :         "movl\t36(%1), %%ecx\n\t"
+; 2260 :         "adcxl\t36(%2), %%ecx\n\t"
+; 2261 :         "movl\t%%ecx, 36(%3)\n\t"
+; 2262 :         "movl\t40(%1), %%ecx\n\t"
+; 2263 :         "adcxl\t40(%2), %%ecx\n\t"
+; 2264 :         "movl\t%%ecx, 40(%3)\n\t"
+; 2265 :         "movl\t44(%1), %%ecx\n\t"
+; 2266 :         "adcxl\t44(%2), %%ecx\n\t"
+; 2267 :         "movl\t%%ecx, 44(%3)\n\t"
+; 2268 :         "movl\t48(%1), %%ecx\n\t"
+; 2269 :         "adcxl\t48(%2), %%ecx\n\t"
+; 2270 :         "movl\t%%ecx, 48(%3)\n\t"
+; 2271 :         "movl\t52(%1), %%ecx\n\t"
+; 2272 :         "adcxl\t52(%2), %%ecx\n\t"
+; 2273 :         "movl\t%%ecx, 52(%3)\n\t"
+; 2274 :         "movl\t56(%1), %%ecx\n\t"
+; 2275 :         "adcxl\t56(%2), %%ecx\n\t"
+; 2276 :         "movl\t%%ecx, 56(%3)\n\t"
+; 2277 :         "movl\t60(%1), %%ecx\n\t"
+; 2278 :         "adcxl\t60(%2), %%ecx\n\t"
+; 2279 :         "movl\t%%ecx, 60(%3)\n\t"
+; 2280 :         "setc\t%0"
+; 2281 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 2282 :         :
+; 2283 :         : "cc", "memory", "%ecx"
+; 2284 : );
 ; 2285 : #elif defined(_M_IX64)
-; 2286 :         __asm__ volatile (
-; 2287 :             "addb\t$-1, %0\n\t"
-; 2288 :             "movq\t(%1), %%rcx\n\t"
-; 2289 :             "adcxq\t(%2), %%rcx\n\t"
-; 2290 :             "movq\t%%rcx, (%3)\n\t"
-; 2291 :             "movq\t8(%1), %%rcx\n\t"
-; 2292 :             "adcxq\t8(%2), %%rcx\n\t"
-; 2293 :             "movq\t%%rcx, 8(%3)\n\t"
-; 2294 :             "movq\t16(%1), %%rcx\n\t"
-; 2295 :             "adcxq\t16(%2), %%rcx\n\t"
-; 2296 :             "movq\t%%rcx, 16(%3)\n\t"
-; 2297 :             "movq\t24(%1), %%rcx\n\t"
-; 2298 :             "adcxq\t24(%2), %%rcx\n\t"
-; 2299 :             "movq\t%%rcx, 24(%3)\n\t"
-; 2300 :             "movq\t32(%1), %%rcx\n\t"
-; 2301 :             "adcxq\t32(%2), %%rcx\n\t"
-; 2302 :             "movq\t%%rcx, 32(%3)\n\t"
-; 2303 :             "movq\t40(%1), %%rcx\n\t"
-; 2304 :             "adcxq\t40(%2), %%rcx\n\t"
-; 2305 :             "movq\t%%rcx, 40(%3)\n\t"
-; 2306 :             "movq\t48(%1), %%rcx\n\t"
-; 2307 :             "adcxq\t48(%2), %%rcx\n\t"
-; 2308 :             "movq\t%%rcx, 48(%3)\n\t"
-; 2309 :             "movq\t56(%1), %%rcx\n\t"
-; 2310 :             "adcxq\t56(%2), %%rcx\n\t"
-; 2311 :             "movq\t%%rcx, 56(%3)\n\t"
-; 2312 :             "movq\t64(%1), %%rcx\n\t"
-; 2313 :             "adcxq\t64(%2), %%rcx\n\t"
-; 2314 :             "movq\t%%rcx, 64(%3)\n\t"
-; 2315 :             "movq\t72(%1), %%rcx\n\t"
-; 2316 :             "adcxq\t72(%2), %%rcx\n\t"
-; 2317 :             "movq\t%%rcx, 72(%3)\n\t"
-; 2318 :             "movq\t80(%1), %%rcx\n\t"
-; 2319 :             "adcxq\t80(%2), %%rcx\n\t"
-; 2320 :             "movq\t%%rcx, 80(%3)\n\t"
-; 2321 :             "movq\t88(%1), %%rcx\n\t"
-; 2322 :             "adcxq\t88(%2), %%rcx\n\t"
-; 2323 :             "movq\t%%rcx, 88(%3)\n\t"
-; 2324 :             "movq\t96(%1), %%rcx\n\t"
-; 2325 :             "adcxq\t96(%2), %%rcx\n\t"
-; 2326 :             "movq\t%%rcx, 96(%3)\n\t"
-; 2327 :             "movq\t104(%1), %%rcx\n\t"
-; 2328 :             "adcxq\t104(%2), %%rcx\n\t"
-; 2329 :             "movq\t%%rcx, 104(%3)\n\t"
-; 2330 :             "movq\t112(%1), %%rcx\n\t"
-; 2331 :             "adcxq\t112(%2), %%rcx\n\t"
-; 2332 :             "movq\t%%rcx, 112(%3)\n\t"
-; 2333 :             "movq\t120(%1), %%rcx\n\t"
-; 2334 :             "adcxq\t120(%2), %%rcx\n\t"
-; 2335 :             "movq\t%%rcx, 120(%3)\n\t"
-; 2336 :             "setc\t%0"
-; 2337 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 2338 :             :
-; 2339 :             : "cc", "memory", "%rcx"
-; 2340 :             );
+; 2286 :     __asm__ volatile (
+; 2287 :         "addb\t$-1, %0\n\t"
+; 2288 :         "movq\t(%1), %%rcx\n\t"
+; 2289 :         "adcxq\t(%2), %%rcx\n\t"
+; 2290 :         "movq\t%%rcx, (%3)\n\t"
+; 2291 :         "movq\t8(%1), %%rcx\n\t"
+; 2292 :         "adcxq\t8(%2), %%rcx\n\t"
+; 2293 :         "movq\t%%rcx, 8(%3)\n\t"
+; 2294 :         "movq\t16(%1), %%rcx\n\t"
+; 2295 :         "adcxq\t16(%2), %%rcx\n\t"
+; 2296 :         "movq\t%%rcx, 16(%3)\n\t"
+; 2297 :         "movq\t24(%1), %%rcx\n\t"
+; 2298 :         "adcxq\t24(%2), %%rcx\n\t"
+; 2299 :         "movq\t%%rcx, 24(%3)\n\t"
+; 2300 :         "movq\t32(%1), %%rcx\n\t"
+; 2301 :         "adcxq\t32(%2), %%rcx\n\t"
+; 2302 :         "movq\t%%rcx, 32(%3)\n\t"
+; 2303 :         "movq\t40(%1), %%rcx\n\t"
+; 2304 :         "adcxq\t40(%2), %%rcx\n\t"
+; 2305 :         "movq\t%%rcx, 40(%3)\n\t"
+; 2306 :         "movq\t48(%1), %%rcx\n\t"
+; 2307 :         "adcxq\t48(%2), %%rcx\n\t"
+; 2308 :         "movq\t%%rcx, 48(%3)\n\t"
+; 2309 :         "movq\t56(%1), %%rcx\n\t"
+; 2310 :         "adcxq\t56(%2), %%rcx\n\t"
+; 2311 :         "movq\t%%rcx, 56(%3)\n\t"
+; 2312 :         "movq\t64(%1), %%rcx\n\t"
+; 2313 :         "adcxq\t64(%2), %%rcx\n\t"
+; 2314 :         "movq\t%%rcx, 64(%3)\n\t"
+; 2315 :         "movq\t72(%1), %%rcx\n\t"
+; 2316 :         "adcxq\t72(%2), %%rcx\n\t"
+; 2317 :         "movq\t%%rcx, 72(%3)\n\t"
+; 2318 :         "movq\t80(%1), %%rcx\n\t"
+; 2319 :         "adcxq\t80(%2), %%rcx\n\t"
+; 2320 :         "movq\t%%rcx, 80(%3)\n\t"
+; 2321 :         "movq\t88(%1), %%rcx\n\t"
+; 2322 :         "adcxq\t88(%2), %%rcx\n\t"
+; 2323 :         "movq\t%%rcx, 88(%3)\n\t"
+; 2324 :         "movq\t96(%1), %%rcx\n\t"
+; 2325 :         "adcxq\t96(%2), %%rcx\n\t"
+; 2326 :         "movq\t%%rcx, 96(%3)\n\t"
+; 2327 :         "movq\t104(%1), %%rcx\n\t"
+; 2328 :         "adcxq\t104(%2), %%rcx\n\t"
+; 2329 :         "movq\t%%rcx, 104(%3)\n\t"
+; 2330 :         "movq\t112(%1), %%rcx\n\t"
+; 2331 :         "adcxq\t112(%2), %%rcx\n\t"
+; 2332 :         "movq\t%%rcx, 112(%3)\n\t"
+; 2333 :         "movq\t120(%1), %%rcx\n\t"
+; 2334 :         "adcxq\t120(%2), %%rcx\n\t"
+; 2335 :         "movq\t%%rcx, 120(%3)\n\t"
+; 2336 :         "setc\t%0"
+; 2337 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 2338 :         :
+; 2339 :         : "cc", "memory", "%rcx"
+; 2340 : );
 ; 2341 : #else
 ; 2342 : #error unknown platform
 ; 2343 : #endif
 ; 2344 : #else
 ; 2345 : #error unknown compiler
 ; 2346 : #endif
-; 2347 :         return (c);
+; 2347 :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 2348 :     }
+; 2348 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -3085,7 +3085,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_16WORDS_ADC PROC
 
-; 2069 :     {
+; 2069 : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3093,7 +3093,7 @@ __ADD_16WORDS_ADC PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 2070 : #ifdef _MSC_VER
-; 2071 :         c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 2071 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -3115,7 +3115,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2072 :         c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 2072 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -3137,7 +3137,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2073 :         c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 2073 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -3159,7 +3159,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2074 :         c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 2074 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 4
 	imul	ecx, eax, 3
@@ -3181,7 +3181,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2075 :         c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+; 2075 :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	edx, 4
 	shl	edx, 2
@@ -3203,7 +3203,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2076 :         c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+; 2076 :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 5
@@ -3225,7 +3225,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2077 :         c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+; 2077 :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	eax, 4
 	imul	ecx, eax, 6
@@ -3247,7 +3247,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2078 :         c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+; 2078 :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	edx, 4
 	imul	eax, edx, 7
@@ -3269,7 +3269,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2079 :         c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
+; 2079 :     c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	ecx, 4
 	shl	ecx, 3
@@ -3291,7 +3291,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2080 :         c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
+; 2080 :     c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	eax, 4
 	imul	ecx, eax, 9
@@ -3313,7 +3313,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2081 :         c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
+; 2081 :     c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	edx, 4
 	imul	eax, edx, 10
@@ -3335,7 +3335,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2082 :         c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
+; 2082 :     c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 11
@@ -3357,7 +3357,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2083 :         c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
+; 2083 :     c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	eax, 4
 	imul	ecx, eax, 12
@@ -3379,7 +3379,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2084 :         c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
+; 2084 :     c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	edx, 4
 	imul	eax, edx, 13
@@ -3401,7 +3401,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2085 :         c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
+; 2085 :     c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 14
@@ -3423,7 +3423,7 @@ __ADD_16WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 2086 :         c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
+; 2086 :     c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	eax, 4
 	imul	ecx, eax, 15
@@ -3447,128 +3447,128 @@ __ADD_16WORDS_ADC PROC
 
 ; 2087 : #elif defined(__GNUC__)
 ; 2088 : #ifdef _M_IX86
-; 2089 :         __asm__ volatile (
-; 2090 :             "addb\t$-1, %0\n\t"
-; 2091 :             "movl\t(%1), %%ecx\n\t"
-; 2092 :             "adcl\t(%2), %%ecx\n\t"
-; 2093 :             "movl\t%%ecx, (%3)\n\t"
-; 2094 :             "movl\t4(%1), %%ecx\n\t"
-; 2095 :             "adcl\t4(%2), %%ecx\n\t"
-; 2096 :             "movl\t%%ecx, 4(%3)\n\t"
-; 2097 :             "movl\t8(%1), %%ecx\n\t"
-; 2098 :             "adcl\t8(%2), %%ecx\n\t"
-; 2099 :             "movl\t%%ecx, 8(%3)\n\t"
-; 2100 :             "movl\t12(%1), %%ecx\n\t"
-; 2101 :             "adcl\t12(%2), %%ecx\n\t"
-; 2102 :             "movl\t%%ecx, 12(%3)\n\t"
-; 2103 :             "movl\t16(%1), %%ecx\n\t"
-; 2104 :             "adcl\t16(%2), %%ecx\n\t"
-; 2105 :             "movl\t%%ecx, 16(%3)\n\t"
-; 2106 :             "movl\t20(%1), %%ecx\n\t"
-; 2107 :             "adcl\t20(%2), %%ecx\n\t"
-; 2108 :             "movl\t%%ecx, 20(%3)\n\t"
-; 2109 :             "movl\t24(%1), %%ecx\n\t"
-; 2110 :             "adcl\t24(%2), %%ecx\n\t"
-; 2111 :             "movl\t%%ecx, 24(%3)\n\t"
-; 2112 :             "movl\t28(%1), %%ecx\n\t"
-; 2113 :             "adcl\t28(%2), %%ecx\n\t"
-; 2114 :             "movl\t%%ecx, 28(%3)\n\t"
-; 2115 :             "movl\t32(%1), %%ecx\n\t"
-; 2116 :             "adcl\t32(%2), %%ecx\n\t"
-; 2117 :             "movl\t%%ecx, 32(%3)\n\t"
-; 2118 :             "movl\t36(%1), %%ecx\n\t"
-; 2119 :             "adcl\t36(%2), %%ecx\n\t"
-; 2120 :             "movl\t%%ecx, 36(%3)\n\t"
-; 2121 :             "movl\t40(%1), %%ecx\n\t"
-; 2122 :             "adcl\t40(%2), %%ecx\n\t"
-; 2123 :             "movl\t%%ecx, 40(%3)\n\t"
-; 2124 :             "movl\t44(%1), %%ecx\n\t"
-; 2125 :             "adcl\t44(%2), %%ecx\n\t"
-; 2126 :             "movl\t%%ecx, 44(%3)\n\t"
-; 2127 :             "movl\t48(%1), %%ecx\n\t"
-; 2128 :             "adcl\t48(%2), %%ecx\n\t"
-; 2129 :             "movl\t%%ecx, 48(%3)\n\t"
-; 2130 :             "movl\t52(%1), %%ecx\n\t"
-; 2131 :             "adcl\t52(%2), %%ecx\n\t"
-; 2132 :             "movl\t%%ecx, 52(%3)\n\t"
-; 2133 :             "movl\t56(%1), %%ecx\n\t"
-; 2134 :             "adcl\t56(%2), %%ecx\n\t"
-; 2135 :             "movl\t%%ecx, 56(%3)\n\t"
-; 2136 :             "movl\t60(%1), %%ecx\n\t"
-; 2137 :             "adcl\t60(%2), %%ecx\n\t"
-; 2138 :             "movl\t%%ecx, 60(%3)\n\t"
-; 2139 :             "setc\t%0"
-; 2140 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 2141 :             :
-; 2142 :             : "cc", "memory", "%ecx"
-; 2143 :             );
+; 2089 :     __asm__ volatile (
+; 2090 :         "addb\t$-1, %0\n\t"
+; 2091 :         "movl\t(%1), %%ecx\n\t"
+; 2092 :         "adcl\t(%2), %%ecx\n\t"
+; 2093 :         "movl\t%%ecx, (%3)\n\t"
+; 2094 :         "movl\t4(%1), %%ecx\n\t"
+; 2095 :         "adcl\t4(%2), %%ecx\n\t"
+; 2096 :         "movl\t%%ecx, 4(%3)\n\t"
+; 2097 :         "movl\t8(%1), %%ecx\n\t"
+; 2098 :         "adcl\t8(%2), %%ecx\n\t"
+; 2099 :         "movl\t%%ecx, 8(%3)\n\t"
+; 2100 :         "movl\t12(%1), %%ecx\n\t"
+; 2101 :         "adcl\t12(%2), %%ecx\n\t"
+; 2102 :         "movl\t%%ecx, 12(%3)\n\t"
+; 2103 :         "movl\t16(%1), %%ecx\n\t"
+; 2104 :         "adcl\t16(%2), %%ecx\n\t"
+; 2105 :         "movl\t%%ecx, 16(%3)\n\t"
+; 2106 :         "movl\t20(%1), %%ecx\n\t"
+; 2107 :         "adcl\t20(%2), %%ecx\n\t"
+; 2108 :         "movl\t%%ecx, 20(%3)\n\t"
+; 2109 :         "movl\t24(%1), %%ecx\n\t"
+; 2110 :         "adcl\t24(%2), %%ecx\n\t"
+; 2111 :         "movl\t%%ecx, 24(%3)\n\t"
+; 2112 :         "movl\t28(%1), %%ecx\n\t"
+; 2113 :         "adcl\t28(%2), %%ecx\n\t"
+; 2114 :         "movl\t%%ecx, 28(%3)\n\t"
+; 2115 :         "movl\t32(%1), %%ecx\n\t"
+; 2116 :         "adcl\t32(%2), %%ecx\n\t"
+; 2117 :         "movl\t%%ecx, 32(%3)\n\t"
+; 2118 :         "movl\t36(%1), %%ecx\n\t"
+; 2119 :         "adcl\t36(%2), %%ecx\n\t"
+; 2120 :         "movl\t%%ecx, 36(%3)\n\t"
+; 2121 :         "movl\t40(%1), %%ecx\n\t"
+; 2122 :         "adcl\t40(%2), %%ecx\n\t"
+; 2123 :         "movl\t%%ecx, 40(%3)\n\t"
+; 2124 :         "movl\t44(%1), %%ecx\n\t"
+; 2125 :         "adcl\t44(%2), %%ecx\n\t"
+; 2126 :         "movl\t%%ecx, 44(%3)\n\t"
+; 2127 :         "movl\t48(%1), %%ecx\n\t"
+; 2128 :         "adcl\t48(%2), %%ecx\n\t"
+; 2129 :         "movl\t%%ecx, 48(%3)\n\t"
+; 2130 :         "movl\t52(%1), %%ecx\n\t"
+; 2131 :         "adcl\t52(%2), %%ecx\n\t"
+; 2132 :         "movl\t%%ecx, 52(%3)\n\t"
+; 2133 :         "movl\t56(%1), %%ecx\n\t"
+; 2134 :         "adcl\t56(%2), %%ecx\n\t"
+; 2135 :         "movl\t%%ecx, 56(%3)\n\t"
+; 2136 :         "movl\t60(%1), %%ecx\n\t"
+; 2137 :         "adcl\t60(%2), %%ecx\n\t"
+; 2138 :         "movl\t%%ecx, 60(%3)\n\t"
+; 2139 :         "setc\t%0"
+; 2140 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 2141 :         :
+; 2142 :         : "cc", "memory", "%ecx"
+; 2143 : );
 ; 2144 : #elif defined(_M_IX64)
-; 2145 :         __asm__ volatile (
-; 2146 :             "addb\t$-1, %0\n\t"
-; 2147 :             "movq\t(%1), %%rcx\n\t"
-; 2148 :             "adcq\t(%2), %%rcx\n\t"
-; 2149 :             "movq\t%%rcx, (%3)\n\t"
-; 2150 :             "movq\t8(%1), %%rcx\n\t"
-; 2151 :             "adcq\t8(%2), %%rcx\n\t"
-; 2152 :             "movq\t%%rcx, 8(%3)\n\t"
-; 2153 :             "movq\t16(%1), %%rcx\n\t"
-; 2154 :             "adcq\t16(%2), %%rcx\n\t"
-; 2155 :             "movq\t%%rcx, 16(%3)\n\t"
-; 2156 :             "movq\t24(%1), %%rcx\n\t"
-; 2157 :             "adcq\t24(%2), %%rcx\n\t"
-; 2158 :             "movq\t%%rcx, 24(%3)\n\t"
-; 2159 :             "movq\t32(%1), %%rcx\n\t"
-; 2160 :             "adcq\t32(%2), %%rcx\n\t"
-; 2161 :             "movq\t%%rcx, 32(%3)\n\t"
-; 2162 :             "movq\t40(%1), %%rcx\n\t"
-; 2163 :             "adcq\t40(%2), %%rcx\n\t"
-; 2164 :             "movq\t%%rcx, 40(%3)\n\t"
-; 2165 :             "movq\t48(%1), %%rcx\n\t"
-; 2166 :             "adcq\t48(%2), %%rcx\n\t"
-; 2167 :             "movq\t%%rcx, 48(%3)\n\t"
-; 2168 :             "movq\t56(%1), %%rcx\n\t"
-; 2169 :             "adcq\t56(%2), %%rcx\n\t"
-; 2170 :             "movq\t%%rcx, 56(%3)\n\t"
-; 2171 :             "movq\t64(%1), %%rcx\n\t"
-; 2172 :             "adcq\t64(%2), %%rcx\n\t"
-; 2173 :             "movq\t%%rcx, 64(%3)\n\t"
-; 2174 :             "movq\t72(%1), %%rcx\n\t"
-; 2175 :             "adcq\t72(%2), %%rcx\n\t"
-; 2176 :             "movq\t%%rcx, 72(%3)\n\t"
-; 2177 :             "movq\t80(%1), %%rcx\n\t"
-; 2178 :             "adcq\t80(%2), %%rcx\n\t"
-; 2179 :             "movq\t%%rcx, 80(%3)\n\t"
-; 2180 :             "movq\t88(%1), %%rcx\n\t"
-; 2181 :             "adcq\t88(%2), %%rcx\n\t"
-; 2182 :             "movq\t%%rcx, 88(%3)\n\t"
-; 2183 :             "movq\t96(%1), %%rcx\n\t"
-; 2184 :             "adcq\t96(%2), %%rcx\n\t"
-; 2185 :             "movq\t%%rcx, 96(%3)\n\t"
-; 2186 :             "movq\t104(%1), %%rcx\n\t"
-; 2187 :             "adcq\t104(%2), %%rcx\n\t"
-; 2188 :             "movq\t%%rcx, 104(%3)\n\t"
-; 2189 :             "movq\t112(%1), %%rcx\n\t"
-; 2190 :             "adcq\t112(%2), %%rcx\n\t"
-; 2191 :             "movq\t%%rcx, 112(%3)\n\t"
-; 2192 :             "movq\t120(%1), %%rcx\n\t"
-; 2193 :             "adcq\t120(%2), %%rcx\n\t"
-; 2194 :             "movq\t%%rcx, 120(%3)\n\t"
-; 2195 :             "setc\t%0"
-; 2196 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 2197 :             :
-; 2198 :             : "cc", "memory", "%rcx"
-; 2199 :             );
+; 2145 :     __asm__ volatile (
+; 2146 :         "addb\t$-1, %0\n\t"
+; 2147 :         "movq\t(%1), %%rcx\n\t"
+; 2148 :         "adcq\t(%2), %%rcx\n\t"
+; 2149 :         "movq\t%%rcx, (%3)\n\t"
+; 2150 :         "movq\t8(%1), %%rcx\n\t"
+; 2151 :         "adcq\t8(%2), %%rcx\n\t"
+; 2152 :         "movq\t%%rcx, 8(%3)\n\t"
+; 2153 :         "movq\t16(%1), %%rcx\n\t"
+; 2154 :         "adcq\t16(%2), %%rcx\n\t"
+; 2155 :         "movq\t%%rcx, 16(%3)\n\t"
+; 2156 :         "movq\t24(%1), %%rcx\n\t"
+; 2157 :         "adcq\t24(%2), %%rcx\n\t"
+; 2158 :         "movq\t%%rcx, 24(%3)\n\t"
+; 2159 :         "movq\t32(%1), %%rcx\n\t"
+; 2160 :         "adcq\t32(%2), %%rcx\n\t"
+; 2161 :         "movq\t%%rcx, 32(%3)\n\t"
+; 2162 :         "movq\t40(%1), %%rcx\n\t"
+; 2163 :         "adcq\t40(%2), %%rcx\n\t"
+; 2164 :         "movq\t%%rcx, 40(%3)\n\t"
+; 2165 :         "movq\t48(%1), %%rcx\n\t"
+; 2166 :         "adcq\t48(%2), %%rcx\n\t"
+; 2167 :         "movq\t%%rcx, 48(%3)\n\t"
+; 2168 :         "movq\t56(%1), %%rcx\n\t"
+; 2169 :         "adcq\t56(%2), %%rcx\n\t"
+; 2170 :         "movq\t%%rcx, 56(%3)\n\t"
+; 2171 :         "movq\t64(%1), %%rcx\n\t"
+; 2172 :         "adcq\t64(%2), %%rcx\n\t"
+; 2173 :         "movq\t%%rcx, 64(%3)\n\t"
+; 2174 :         "movq\t72(%1), %%rcx\n\t"
+; 2175 :         "adcq\t72(%2), %%rcx\n\t"
+; 2176 :         "movq\t%%rcx, 72(%3)\n\t"
+; 2177 :         "movq\t80(%1), %%rcx\n\t"
+; 2178 :         "adcq\t80(%2), %%rcx\n\t"
+; 2179 :         "movq\t%%rcx, 80(%3)\n\t"
+; 2180 :         "movq\t88(%1), %%rcx\n\t"
+; 2181 :         "adcq\t88(%2), %%rcx\n\t"
+; 2182 :         "movq\t%%rcx, 88(%3)\n\t"
+; 2183 :         "movq\t96(%1), %%rcx\n\t"
+; 2184 :         "adcq\t96(%2), %%rcx\n\t"
+; 2185 :         "movq\t%%rcx, 96(%3)\n\t"
+; 2186 :         "movq\t104(%1), %%rcx\n\t"
+; 2187 :         "adcq\t104(%2), %%rcx\n\t"
+; 2188 :         "movq\t%%rcx, 104(%3)\n\t"
+; 2189 :         "movq\t112(%1), %%rcx\n\t"
+; 2190 :         "adcq\t112(%2), %%rcx\n\t"
+; 2191 :         "movq\t%%rcx, 112(%3)\n\t"
+; 2192 :         "movq\t120(%1), %%rcx\n\t"
+; 2193 :         "adcq\t120(%2), %%rcx\n\t"
+; 2194 :         "movq\t%%rcx, 120(%3)\n\t"
+; 2195 :         "setc\t%0"
+; 2196 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 2197 :         :
+; 2198 :         : "cc", "memory", "%rcx"
+; 2199 : );
 ; 2200 : #else
 ; 2201 : #error unknown platform
 ; 2202 : #endif
 ; 2203 : #else
 ; 2204 : #error unknown compiler
 ; 2205 : #endif
-; 2206 :         return (c);
+; 2206 :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 2207 :     }
+; 2207 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -3585,7 +3585,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_32WORDS_ADCX PROC
 
-; 298  :     {
+; 298  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3593,7 +3593,7 @@ __ADD_32WORDS_ADCX PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 299  : #ifdef _MSC_VER
-; 300  :         c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 300  :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -3615,7 +3615,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 301  :         c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 301  :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -3637,7 +3637,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 302  :         c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 302  :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -3659,7 +3659,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 303  :         c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 303  :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 4
 	imul	ecx, eax, 3
@@ -3681,7 +3681,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 304  :         c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+; 304  :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	edx, 4
 	shl	edx, 2
@@ -3703,7 +3703,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 305  :         c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+; 305  :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 5
@@ -3725,7 +3725,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 306  :         c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+; 306  :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	eax, 4
 	imul	ecx, eax, 6
@@ -3747,7 +3747,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 307  :         c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+; 307  :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	edx, 4
 	imul	eax, edx, 7
@@ -3769,7 +3769,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 308  :         c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+; 308  :     c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	ecx, 4
 	shl	ecx, 3
@@ -3791,7 +3791,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 309  :         c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+; 309  :     c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	eax, 4
 	imul	ecx, eax, 9
@@ -3813,7 +3813,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 310  :         c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+; 310  :     c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	edx, 4
 	imul	eax, edx, 10
@@ -3835,7 +3835,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 311  :         c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+; 311  :     c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 11
@@ -3857,7 +3857,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 312  :         c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+; 312  :     c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	eax, 4
 	imul	ecx, eax, 12
@@ -3879,7 +3879,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 313  :         c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+; 313  :     c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	edx, 4
 	imul	eax, edx, 13
@@ -3901,7 +3901,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 314  :         c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+; 314  :     c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 14
@@ -3923,7 +3923,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 315  :         c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+; 315  :     c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	eax, 4
 	imul	ecx, eax, 15
@@ -3945,7 +3945,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 316  :         c = _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
+; 316  :     c = _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
 
 	mov	edx, 4
 	shl	edx, 4
@@ -3967,7 +3967,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 317  :         c = _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
+; 317  :     c = _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 17
@@ -3989,7 +3989,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 318  :         c = _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
+; 318  :     c = _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
 
 	mov	eax, 4
 	imul	ecx, eax, 18
@@ -4011,7 +4011,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 319  :         c = _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
+; 319  :     c = _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
 
 	mov	edx, 4
 	imul	eax, edx, 19
@@ -4033,7 +4033,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 320  :         c = _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
+; 320  :     c = _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 20
@@ -4055,7 +4055,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 321  :         c = _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
+; 321  :     c = _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
 
 	mov	eax, 4
 	imul	ecx, eax, 21
@@ -4077,7 +4077,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 322  :         c = _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
+; 322  :     c = _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
 
 	mov	edx, 4
 	imul	eax, edx, 22
@@ -4099,7 +4099,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 323  :         c = _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
+; 323  :     c = _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 23
@@ -4121,7 +4121,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 324  :         c = _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
+; 324  :     c = _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
 
 	mov	eax, 4
 	imul	ecx, eax, 24
@@ -4143,7 +4143,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 325  :         c = _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
+; 325  :     c = _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
 
 	mov	edx, 4
 	imul	eax, edx, 25
@@ -4165,7 +4165,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 326  :         c = _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
+; 326  :     c = _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 26
@@ -4187,7 +4187,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 327  :         c = _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
+; 327  :     c = _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
 
 	mov	eax, 4
 	imul	ecx, eax, 27
@@ -4209,7 +4209,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 328  :         c = _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
+; 328  :     c = _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
 
 	mov	edx, 4
 	imul	eax, edx, 28
@@ -4231,7 +4231,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 329  :         c = _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
+; 329  :     c = _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 29
@@ -4253,7 +4253,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 330  :         c = _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
+; 330  :     c = _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
 
 	mov	eax, 4
 	imul	ecx, eax, 30
@@ -4275,7 +4275,7 @@ __ADD_32WORDS_ADCX PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 331  :         c = _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
+; 331  :     c = _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
 
 	mov	edx, 4
 	imul	eax, edx, 31
@@ -4299,224 +4299,224 @@ __ADD_32WORDS_ADCX PROC
 
 ; 332  : #elif defined(__GNUC__)
 ; 333  : #ifdef _M_IX86
-; 334  :         __asm__ volatile (
-; 335  :             "addb\t$-1, %0\n\t"
-; 336  :             "movl\t(%1), %%ecx\n\t"
-; 337  :             "adcxl\t(%2), %%ecx\n\t"
-; 338  :             "movl\t%%ecx, (%3)\n\t"
-; 339  :             "movl\t4(%1), %%ecx\n\t"
-; 340  :             "adcxl\t4(%2), %%ecx\n\t"
-; 341  :             "movl\t%%ecx, 4(%3)\n\t"
-; 342  :             "movl\t8(%1), %%ecx\n\t"
-; 343  :             "adcxl\t8(%2), %%ecx\n\t"
-; 344  :             "movl\t%%ecx, 8(%3)\n\t"
-; 345  :             "movl\t12(%1), %%ecx\n\t"
-; 346  :             "adcxl\t12(%2), %%ecx\n\t"
-; 347  :             "movl\t%%ecx, 12(%3)\n\t"
-; 348  :             "movl\t16(%1), %%ecx\n\t"
-; 349  :             "adcxl\t16(%2), %%ecx\n\t"
-; 350  :             "movl\t%%ecx, 16(%3)\n\t"
-; 351  :             "movl\t20(%1), %%ecx\n\t"
-; 352  :             "adcxl\t20(%2), %%ecx\n\t"
-; 353  :             "movl\t%%ecx, 20(%3)\n\t"
-; 354  :             "movl\t24(%1), %%ecx\n\t"
-; 355  :             "adcxl\t24(%2), %%ecx\n\t"
-; 356  :             "movl\t%%ecx, 24(%3)\n\t"
-; 357  :             "movl\t28(%1), %%ecx\n\t"
-; 358  :             "adcxl\t28(%2), %%ecx\n\t"
-; 359  :             "movl\t%%ecx, 28(%3)\n\t"
-; 360  :             "movl\t32(%1), %%ecx\n\t"
-; 361  :             "adcxl\t32(%2), %%ecx\n\t"
-; 362  :             "movl\t%%ecx, 32(%3)\n\t"
-; 363  :             "movl\t36(%1), %%ecx\n\t"
-; 364  :             "adcxl\t36(%2), %%ecx\n\t"
-; 365  :             "movl\t%%ecx, 36(%3)\n\t"
-; 366  :             "movl\t40(%1), %%ecx\n\t"
-; 367  :             "adcxl\t40(%2), %%ecx\n\t"
-; 368  :             "movl\t%%ecx, 40(%3)\n\t"
-; 369  :             "movl\t44(%1), %%ecx\n\t"
-; 370  :             "adcxl\t44(%2), %%ecx\n\t"
-; 371  :             "movl\t%%ecx, 44(%3)\n\t"
-; 372  :             "movl\t48(%1), %%ecx\n\t"
-; 373  :             "adcxl\t48(%2), %%ecx\n\t"
-; 374  :             "movl\t%%ecx, 48(%3)\n\t"
-; 375  :             "movl\t52(%1), %%ecx\n\t"
-; 376  :             "adcxl\t52(%2), %%ecx\n\t"
-; 377  :             "movl\t%%ecx, 52(%3)\n\t"
-; 378  :             "movl\t56(%1), %%ecx\n\t"
-; 379  :             "adcxl\t56(%2), %%ecx\n\t"
-; 380  :             "movl\t%%ecx, 56(%3)\n\t"
-; 381  :             "movl\t60(%1), %%ecx\n\t"
-; 382  :             "adcxl\t60(%2), %%ecx\n\t"
-; 383  :             "movl\t%%ecx, 60(%3)\n\t"
-; 384  :             "movl\t64(%1), %%ecx\n\t"
-; 385  :             "adcxl\t64(%2), %%ecx\n\t"
-; 386  :             "movl\t%%ecx, 64(%3)\n\t"
-; 387  :             "movl\t68(%1), %%ecx\n\t"
-; 388  :             "adcxl\t68(%2), %%ecx\n\t"
-; 389  :             "movl\t%%ecx, 68(%3)\n\t"
-; 390  :             "movl\t72(%1), %%ecx\n\t"
-; 391  :             "adcxl\t72(%2), %%ecx\n\t"
-; 392  :             "movl\t%%ecx, 72(%3)\n\t"
-; 393  :             "movl\t76(%1), %%ecx\n\t"
-; 394  :             "adcxl\t76(%2), %%ecx\n\t"
-; 395  :             "movl\t%%ecx, 76(%3)\n\t"
-; 396  :             "movl\t80(%1), %%ecx\n\t"
-; 397  :             "adcxl\t80(%2), %%ecx\n\t"
-; 398  :             "movl\t%%ecx, 80(%3)\n\t"
-; 399  :             "movl\t84(%1), %%ecx\n\t"
-; 400  :             "adcxl\t84(%2), %%ecx\n\t"
-; 401  :             "movl\t%%ecx, 84(%3)\n\t"
-; 402  :             "movl\t88(%1), %%ecx\n\t"
-; 403  :             "adcxl\t88(%2), %%ecx\n\t"
-; 404  :             "movl\t%%ecx, 88(%3)\n\t"
-; 405  :             "movl\t92(%1), %%ecx\n\t"
-; 406  :             "adcxl\t92(%2), %%ecx\n\t"
-; 407  :             "movl\t%%ecx, 92(%3)\n\t"
-; 408  :             "movl\t96(%1), %%ecx\n\t"
-; 409  :             "adcxl\t96(%2), %%ecx\n\t"
-; 410  :             "movl\t%%ecx, 96(%3)\n\t"
-; 411  :             "movl\t100(%1), %%ecx\n\t"
-; 412  :             "adcxl\t100(%2), %%ecx\n\t"
-; 413  :             "movl\t%%ecx, 100(%3)\n\t"
-; 414  :             "movl\t104(%1), %%ecx\n\t"
-; 415  :             "adcxl\t104(%2), %%ecx\n\t"
-; 416  :             "movl\t%%ecx, 104(%3)\n\t"
-; 417  :             "movl\t108(%1), %%ecx\n\t"
-; 418  :             "adcxl\t108(%2), %%ecx\n\t"
-; 419  :             "movl\t%%ecx, 108(%3)\n\t"
-; 420  :             "movl\t112(%1), %%ecx\n\t"
-; 421  :             "adcxl\t112(%2), %%ecx\n\t"
-; 422  :             "movl\t%%ecx, 112(%3)\n\t"
-; 423  :             "movl\t116(%1), %%ecx\n\t"
-; 424  :             "adcxl\t116(%2), %%ecx\n\t"
-; 425  :             "movl\t%%ecx, 116(%3)\n\t"
-; 426  :             "movl\t120(%1), %%ecx\n\t"
-; 427  :             "adcxl\t120(%2), %%ecx\n\t"
-; 428  :             "movl\t%%ecx, 120(%3)\n\t"
-; 429  :             "movl\t124(%1), %%ecx\n\t"
-; 430  :             "adcxl\t124(%2), %%ecx\n\t"
-; 431  :             "movl\t%%ecx, 124(%3)\n\t"
-; 432  :             "setc\t%0"
-; 433  :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 434  :             :
-; 435  :             : "cc", "memory", "%ecx"
-; 436  :             );
+; 334  :     __asm__ volatile (
+; 335  :         "addb\t$-1, %0\n\t"
+; 336  :         "movl\t(%1), %%ecx\n\t"
+; 337  :         "adcxl\t(%2), %%ecx\n\t"
+; 338  :         "movl\t%%ecx, (%3)\n\t"
+; 339  :         "movl\t4(%1), %%ecx\n\t"
+; 340  :         "adcxl\t4(%2), %%ecx\n\t"
+; 341  :         "movl\t%%ecx, 4(%3)\n\t"
+; 342  :         "movl\t8(%1), %%ecx\n\t"
+; 343  :         "adcxl\t8(%2), %%ecx\n\t"
+; 344  :         "movl\t%%ecx, 8(%3)\n\t"
+; 345  :         "movl\t12(%1), %%ecx\n\t"
+; 346  :         "adcxl\t12(%2), %%ecx\n\t"
+; 347  :         "movl\t%%ecx, 12(%3)\n\t"
+; 348  :         "movl\t16(%1), %%ecx\n\t"
+; 349  :         "adcxl\t16(%2), %%ecx\n\t"
+; 350  :         "movl\t%%ecx, 16(%3)\n\t"
+; 351  :         "movl\t20(%1), %%ecx\n\t"
+; 352  :         "adcxl\t20(%2), %%ecx\n\t"
+; 353  :         "movl\t%%ecx, 20(%3)\n\t"
+; 354  :         "movl\t24(%1), %%ecx\n\t"
+; 355  :         "adcxl\t24(%2), %%ecx\n\t"
+; 356  :         "movl\t%%ecx, 24(%3)\n\t"
+; 357  :         "movl\t28(%1), %%ecx\n\t"
+; 358  :         "adcxl\t28(%2), %%ecx\n\t"
+; 359  :         "movl\t%%ecx, 28(%3)\n\t"
+; 360  :         "movl\t32(%1), %%ecx\n\t"
+; 361  :         "adcxl\t32(%2), %%ecx\n\t"
+; 362  :         "movl\t%%ecx, 32(%3)\n\t"
+; 363  :         "movl\t36(%1), %%ecx\n\t"
+; 364  :         "adcxl\t36(%2), %%ecx\n\t"
+; 365  :         "movl\t%%ecx, 36(%3)\n\t"
+; 366  :         "movl\t40(%1), %%ecx\n\t"
+; 367  :         "adcxl\t40(%2), %%ecx\n\t"
+; 368  :         "movl\t%%ecx, 40(%3)\n\t"
+; 369  :         "movl\t44(%1), %%ecx\n\t"
+; 370  :         "adcxl\t44(%2), %%ecx\n\t"
+; 371  :         "movl\t%%ecx, 44(%3)\n\t"
+; 372  :         "movl\t48(%1), %%ecx\n\t"
+; 373  :         "adcxl\t48(%2), %%ecx\n\t"
+; 374  :         "movl\t%%ecx, 48(%3)\n\t"
+; 375  :         "movl\t52(%1), %%ecx\n\t"
+; 376  :         "adcxl\t52(%2), %%ecx\n\t"
+; 377  :         "movl\t%%ecx, 52(%3)\n\t"
+; 378  :         "movl\t56(%1), %%ecx\n\t"
+; 379  :         "adcxl\t56(%2), %%ecx\n\t"
+; 380  :         "movl\t%%ecx, 56(%3)\n\t"
+; 381  :         "movl\t60(%1), %%ecx\n\t"
+; 382  :         "adcxl\t60(%2), %%ecx\n\t"
+; 383  :         "movl\t%%ecx, 60(%3)\n\t"
+; 384  :         "movl\t64(%1), %%ecx\n\t"
+; 385  :         "adcxl\t64(%2), %%ecx\n\t"
+; 386  :         "movl\t%%ecx, 64(%3)\n\t"
+; 387  :         "movl\t68(%1), %%ecx\n\t"
+; 388  :         "adcxl\t68(%2), %%ecx\n\t"
+; 389  :         "movl\t%%ecx, 68(%3)\n\t"
+; 390  :         "movl\t72(%1), %%ecx\n\t"
+; 391  :         "adcxl\t72(%2), %%ecx\n\t"
+; 392  :         "movl\t%%ecx, 72(%3)\n\t"
+; 393  :         "movl\t76(%1), %%ecx\n\t"
+; 394  :         "adcxl\t76(%2), %%ecx\n\t"
+; 395  :         "movl\t%%ecx, 76(%3)\n\t"
+; 396  :         "movl\t80(%1), %%ecx\n\t"
+; 397  :         "adcxl\t80(%2), %%ecx\n\t"
+; 398  :         "movl\t%%ecx, 80(%3)\n\t"
+; 399  :         "movl\t84(%1), %%ecx\n\t"
+; 400  :         "adcxl\t84(%2), %%ecx\n\t"
+; 401  :         "movl\t%%ecx, 84(%3)\n\t"
+; 402  :         "movl\t88(%1), %%ecx\n\t"
+; 403  :         "adcxl\t88(%2), %%ecx\n\t"
+; 404  :         "movl\t%%ecx, 88(%3)\n\t"
+; 405  :         "movl\t92(%1), %%ecx\n\t"
+; 406  :         "adcxl\t92(%2), %%ecx\n\t"
+; 407  :         "movl\t%%ecx, 92(%3)\n\t"
+; 408  :         "movl\t96(%1), %%ecx\n\t"
+; 409  :         "adcxl\t96(%2), %%ecx\n\t"
+; 410  :         "movl\t%%ecx, 96(%3)\n\t"
+; 411  :         "movl\t100(%1), %%ecx\n\t"
+; 412  :         "adcxl\t100(%2), %%ecx\n\t"
+; 413  :         "movl\t%%ecx, 100(%3)\n\t"
+; 414  :         "movl\t104(%1), %%ecx\n\t"
+; 415  :         "adcxl\t104(%2), %%ecx\n\t"
+; 416  :         "movl\t%%ecx, 104(%3)\n\t"
+; 417  :         "movl\t108(%1), %%ecx\n\t"
+; 418  :         "adcxl\t108(%2), %%ecx\n\t"
+; 419  :         "movl\t%%ecx, 108(%3)\n\t"
+; 420  :         "movl\t112(%1), %%ecx\n\t"
+; 421  :         "adcxl\t112(%2), %%ecx\n\t"
+; 422  :         "movl\t%%ecx, 112(%3)\n\t"
+; 423  :         "movl\t116(%1), %%ecx\n\t"
+; 424  :         "adcxl\t116(%2), %%ecx\n\t"
+; 425  :         "movl\t%%ecx, 116(%3)\n\t"
+; 426  :         "movl\t120(%1), %%ecx\n\t"
+; 427  :         "adcxl\t120(%2), %%ecx\n\t"
+; 428  :         "movl\t%%ecx, 120(%3)\n\t"
+; 429  :         "movl\t124(%1), %%ecx\n\t"
+; 430  :         "adcxl\t124(%2), %%ecx\n\t"
+; 431  :         "movl\t%%ecx, 124(%3)\n\t"
+; 432  :         "setc\t%0"
+; 433  :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 434  :         :
+; 435  :         : "cc", "memory", "%ecx"
+; 436  : );
 ; 437  : #elif defined(_M_IX64)
-; 438  :         __asm__ volatile (
-; 439  :             "addb\t$-1, %0\n\t"
-; 440  :             "movq\t(%1), %%rcx\n\t"
-; 441  :             "adcxq\t(%2), %%rcx\n\t"
-; 442  :             "movq\t%%rcx, (%3)\n\t"
-; 443  :             "movq\t8(%1), %%rcx\n\t"
-; 444  :             "adcxq\t8(%2), %%rcx\n\t"
-; 445  :             "movq\t%%rcx, 8(%3)\n\t"
-; 446  :             "movq\t16(%1), %%rcx\n\t"
-; 447  :             "adcxq\t16(%2), %%rcx\n\t"
-; 448  :             "movq\t%%rcx, 16(%3)\n\t"
-; 449  :             "movq\t24(%1), %%rcx\n\t"
-; 450  :             "adcxq\t24(%2), %%rcx\n\t"
-; 451  :             "movq\t%%rcx, 24(%3)\n\t"
-; 452  :             "movq\t32(%1), %%rcx\n\t"
-; 453  :             "adcxq\t32(%2), %%rcx\n\t"
-; 454  :             "movq\t%%rcx, 32(%3)\n\t"
-; 455  :             "movq\t40(%1), %%rcx\n\t"
-; 456  :             "adcxq\t40(%2), %%rcx\n\t"
-; 457  :             "movq\t%%rcx, 40(%3)\n\t"
-; 458  :             "movq\t48(%1), %%rcx\n\t"
-; 459  :             "adcxq\t48(%2), %%rcx\n\t"
-; 460  :             "movq\t%%rcx, 48(%3)\n\t"
-; 461  :             "movq\t56(%1), %%rcx\n\t"
-; 462  :             "adcxq\t56(%2), %%rcx\n\t"
-; 463  :             "movq\t%%rcx, 56(%3)\n\t"
-; 464  :             "movq\t64(%1), %%rcx\n\t"
-; 465  :             "adcxq\t64(%2), %%rcx\n\t"
-; 466  :             "movq\t%%rcx, 64(%3)\n\t"
-; 467  :             "movq\t72(%1), %%rcx\n\t"
-; 468  :             "adcxq\t72(%2), %%rcx\n\t"
-; 469  :             "movq\t%%rcx, 72(%3)\n\t"
-; 470  :             "movq\t80(%1), %%rcx\n\t"
-; 471  :             "adcxq\t80(%2), %%rcx\n\t"
-; 472  :             "movq\t%%rcx, 80(%3)\n\t"
-; 473  :             "movq\t88(%1), %%rcx\n\t"
-; 474  :             "adcxq\t88(%2), %%rcx\n\t"
-; 475  :             "movq\t%%rcx, 88(%3)\n\t"
-; 476  :             "movq\t96(%1), %%rcx\n\t"
-; 477  :             "adcxq\t96(%2), %%rcx\n\t"
-; 478  :             "movq\t%%rcx, 96(%3)\n\t"
-; 479  :             "movq\t104(%1), %%rcx\n\t"
-; 480  :             "adcxq\t104(%2), %%rcx\n\t"
-; 481  :             "movq\t%%rcx, 104(%3)\n\t"
-; 482  :             "movq\t112(%1), %%rcx\n\t"
-; 483  :             "adcxq\t112(%2), %%rcx\n\t"
-; 484  :             "movq\t%%rcx, 112(%3)\n\t"
-; 485  :             "movq\t120(%1), %%rcx\n\t"
-; 486  :             "adcxq\t120(%2), %%rcx\n\t"
-; 487  :             "movq\t%%rcx, 120(%3)\n\t"
-; 488  :             "movq\t128(%1), %%rcx\n\t"
-; 489  :             "adcxq\t128(%2), %%rcx\n\t"
-; 490  :             "movq\t%%rcx, 128(%3)\n\t"
-; 491  :             "movq\t136(%1), %%rcx\n\t"
-; 492  :             "adcxq\t136(%2), %%rcx\n\t"
-; 493  :             "movq\t%%rcx, 136(%3)\n\t"
-; 494  :             "movq\t144(%1), %%rcx\n\t"
-; 495  :             "adcxq\t144(%2), %%rcx\n\t"
-; 496  :             "movq\t%%rcx, 144(%3)\n\t"
-; 497  :             "movq\t152(%1), %%rcx\n\t"
-; 498  :             "adcxq\t152(%2), %%rcx\n\t"
-; 499  :             "movq\t%%rcx, 152(%3)\n\t"
-; 500  :             "movq\t160(%1), %%rcx\n\t"
-; 501  :             "adcxq\t160(%2), %%rcx\n\t"
-; 502  :             "movq\t%%rcx, 160(%3)\n\t"
-; 503  :             "movq\t168(%1), %%rcx\n\t"
-; 504  :             "adcxq\t168(%2), %%rcx\n\t"
-; 505  :             "movq\t%%rcx, 168(%3)\n\t"
-; 506  :             "movq\t176(%1), %%rcx\n\t"
-; 507  :             "adcxq\t176(%2), %%rcx\n\t"
-; 508  :             "movq\t%%rcx, 176(%3)\n\t"
-; 509  :             "movq\t184(%1), %%rcx\n\t"
-; 510  :             "adcxq\t184(%2), %%rcx\n\t"
-; 511  :             "movq\t%%rcx, 184(%3)\n\t"
-; 512  :             "movq\t192(%1), %%rcx\n\t"
-; 513  :             "adcxq\t192(%2), %%rcx\n\t"
-; 514  :             "movq\t%%rcx, 192(%3)\n\t"
-; 515  :             "movq\t200(%1), %%rcx\n\t"
-; 516  :             "adcxq\t200(%2), %%rcx\n\t"
-; 517  :             "movq\t%%rcx, 200(%3)\n\t"
-; 518  :             "movq\t208(%1), %%rcx\n\t"
-; 519  :             "adcxq\t208(%2), %%rcx\n\t"
-; 520  :             "movq\t%%rcx, 208(%3)\n\t"
-; 521  :             "movq\t216(%1), %%rcx\n\t"
-; 522  :             "adcxq\t216(%2), %%rcx\n\t"
-; 523  :             "movq\t%%rcx, 216(%3)\n\t"
-; 524  :             "movq\t224(%1), %%rcx\n\t"
-; 525  :             "adcxq\t224(%2), %%rcx\n\t"
-; 526  :             "movq\t%%rcx, 224(%3)\n\t"
-; 527  :             "movq\t232(%1), %%rcx\n\t"
-; 528  :             "adcxq\t232(%2), %%rcx\n\t"
-; 529  :             "movq\t%%rcx, 232(%3)\n\t"
-; 530  :             "movq\t240(%1), %%rcx\n\t"
-; 531  :             "adcxq\t240(%2), %%rcx\n\t"
-; 532  :             "movq\t%%rcx, 240(%3)\n\t"
-; 533  :             "movq\t248(%1), %%rcx\n\t"
-; 534  :             "adcxq\t248(%2), %%rcx\n\t"
-; 535  :             "movq\t%%rcx, 248(%3)\n\t"
-; 536  :             "setc\t%0"
-; 537  :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 538  :             :
-; 539  :             : "cc", "memory", "%rcx"
-; 540  :             );
+; 438  :     __asm__ volatile (
+; 439  :         "addb\t$-1, %0\n\t"
+; 440  :         "movq\t(%1), %%rcx\n\t"
+; 441  :         "adcxq\t(%2), %%rcx\n\t"
+; 442  :         "movq\t%%rcx, (%3)\n\t"
+; 443  :         "movq\t8(%1), %%rcx\n\t"
+; 444  :         "adcxq\t8(%2), %%rcx\n\t"
+; 445  :         "movq\t%%rcx, 8(%3)\n\t"
+; 446  :         "movq\t16(%1), %%rcx\n\t"
+; 447  :         "adcxq\t16(%2), %%rcx\n\t"
+; 448  :         "movq\t%%rcx, 16(%3)\n\t"
+; 449  :         "movq\t24(%1), %%rcx\n\t"
+; 450  :         "adcxq\t24(%2), %%rcx\n\t"
+; 451  :         "movq\t%%rcx, 24(%3)\n\t"
+; 452  :         "movq\t32(%1), %%rcx\n\t"
+; 453  :         "adcxq\t32(%2), %%rcx\n\t"
+; 454  :         "movq\t%%rcx, 32(%3)\n\t"
+; 455  :         "movq\t40(%1), %%rcx\n\t"
+; 456  :         "adcxq\t40(%2), %%rcx\n\t"
+; 457  :         "movq\t%%rcx, 40(%3)\n\t"
+; 458  :         "movq\t48(%1), %%rcx\n\t"
+; 459  :         "adcxq\t48(%2), %%rcx\n\t"
+; 460  :         "movq\t%%rcx, 48(%3)\n\t"
+; 461  :         "movq\t56(%1), %%rcx\n\t"
+; 462  :         "adcxq\t56(%2), %%rcx\n\t"
+; 463  :         "movq\t%%rcx, 56(%3)\n\t"
+; 464  :         "movq\t64(%1), %%rcx\n\t"
+; 465  :         "adcxq\t64(%2), %%rcx\n\t"
+; 466  :         "movq\t%%rcx, 64(%3)\n\t"
+; 467  :         "movq\t72(%1), %%rcx\n\t"
+; 468  :         "adcxq\t72(%2), %%rcx\n\t"
+; 469  :         "movq\t%%rcx, 72(%3)\n\t"
+; 470  :         "movq\t80(%1), %%rcx\n\t"
+; 471  :         "adcxq\t80(%2), %%rcx\n\t"
+; 472  :         "movq\t%%rcx, 80(%3)\n\t"
+; 473  :         "movq\t88(%1), %%rcx\n\t"
+; 474  :         "adcxq\t88(%2), %%rcx\n\t"
+; 475  :         "movq\t%%rcx, 88(%3)\n\t"
+; 476  :         "movq\t96(%1), %%rcx\n\t"
+; 477  :         "adcxq\t96(%2), %%rcx\n\t"
+; 478  :         "movq\t%%rcx, 96(%3)\n\t"
+; 479  :         "movq\t104(%1), %%rcx\n\t"
+; 480  :         "adcxq\t104(%2), %%rcx\n\t"
+; 481  :         "movq\t%%rcx, 104(%3)\n\t"
+; 482  :         "movq\t112(%1), %%rcx\n\t"
+; 483  :         "adcxq\t112(%2), %%rcx\n\t"
+; 484  :         "movq\t%%rcx, 112(%3)\n\t"
+; 485  :         "movq\t120(%1), %%rcx\n\t"
+; 486  :         "adcxq\t120(%2), %%rcx\n\t"
+; 487  :         "movq\t%%rcx, 120(%3)\n\t"
+; 488  :         "movq\t128(%1), %%rcx\n\t"
+; 489  :         "adcxq\t128(%2), %%rcx\n\t"
+; 490  :         "movq\t%%rcx, 128(%3)\n\t"
+; 491  :         "movq\t136(%1), %%rcx\n\t"
+; 492  :         "adcxq\t136(%2), %%rcx\n\t"
+; 493  :         "movq\t%%rcx, 136(%3)\n\t"
+; 494  :         "movq\t144(%1), %%rcx\n\t"
+; 495  :         "adcxq\t144(%2), %%rcx\n\t"
+; 496  :         "movq\t%%rcx, 144(%3)\n\t"
+; 497  :         "movq\t152(%1), %%rcx\n\t"
+; 498  :         "adcxq\t152(%2), %%rcx\n\t"
+; 499  :         "movq\t%%rcx, 152(%3)\n\t"
+; 500  :         "movq\t160(%1), %%rcx\n\t"
+; 501  :         "adcxq\t160(%2), %%rcx\n\t"
+; 502  :         "movq\t%%rcx, 160(%3)\n\t"
+; 503  :         "movq\t168(%1), %%rcx\n\t"
+; 504  :         "adcxq\t168(%2), %%rcx\n\t"
+; 505  :         "movq\t%%rcx, 168(%3)\n\t"
+; 506  :         "movq\t176(%1), %%rcx\n\t"
+; 507  :         "adcxq\t176(%2), %%rcx\n\t"
+; 508  :         "movq\t%%rcx, 176(%3)\n\t"
+; 509  :         "movq\t184(%1), %%rcx\n\t"
+; 510  :         "adcxq\t184(%2), %%rcx\n\t"
+; 511  :         "movq\t%%rcx, 184(%3)\n\t"
+; 512  :         "movq\t192(%1), %%rcx\n\t"
+; 513  :         "adcxq\t192(%2), %%rcx\n\t"
+; 514  :         "movq\t%%rcx, 192(%3)\n\t"
+; 515  :         "movq\t200(%1), %%rcx\n\t"
+; 516  :         "adcxq\t200(%2), %%rcx\n\t"
+; 517  :         "movq\t%%rcx, 200(%3)\n\t"
+; 518  :         "movq\t208(%1), %%rcx\n\t"
+; 519  :         "adcxq\t208(%2), %%rcx\n\t"
+; 520  :         "movq\t%%rcx, 208(%3)\n\t"
+; 521  :         "movq\t216(%1), %%rcx\n\t"
+; 522  :         "adcxq\t216(%2), %%rcx\n\t"
+; 523  :         "movq\t%%rcx, 216(%3)\n\t"
+; 524  :         "movq\t224(%1), %%rcx\n\t"
+; 525  :         "adcxq\t224(%2), %%rcx\n\t"
+; 526  :         "movq\t%%rcx, 224(%3)\n\t"
+; 527  :         "movq\t232(%1), %%rcx\n\t"
+; 528  :         "adcxq\t232(%2), %%rcx\n\t"
+; 529  :         "movq\t%%rcx, 232(%3)\n\t"
+; 530  :         "movq\t240(%1), %%rcx\n\t"
+; 531  :         "adcxq\t240(%2), %%rcx\n\t"
+; 532  :         "movq\t%%rcx, 240(%3)\n\t"
+; 533  :         "movq\t248(%1), %%rcx\n\t"
+; 534  :         "adcxq\t248(%2), %%rcx\n\t"
+; 535  :         "movq\t%%rcx, 248(%3)\n\t"
+; 536  :         "setc\t%0"
+; 537  :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 538  :         :
+; 539  :         : "cc", "memory", "%rcx"
+; 540  : );
 ; 541  : #else
 ; 542  : #error unknown platform
 ; 543  : #endif
 ; 544  : #else
 ; 545  : #error unknown compiler
 ; 546  : #endif
-; 547  :         return (c);
+; 547  :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 548  :     }
+; 548  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -4533,7 +4533,7 @@ _yp$ = 16						; size = 4
 _zp$ = 20						; size = 4
 __ADD_32WORDS_ADC PROC
 
-; 45   :     {
+; 45   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -4541,7 +4541,7 @@ __ADD_32WORDS_ADC PROC
 	call	@__CheckForDebuggerJustMyCode@4
 
 ; 46   : #ifdef _MSC_VER
-; 47   :         c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 47   :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -4563,7 +4563,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 48   :         c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 48   :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	edx, 4
 	shl	edx, 0
@@ -4585,7 +4585,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 49   :         c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 49   :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -4607,7 +4607,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 50   :         c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 50   :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 4
 	imul	ecx, eax, 3
@@ -4629,7 +4629,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 51   :         c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+; 51   :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	edx, 4
 	shl	edx, 2
@@ -4651,7 +4651,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 52   :         c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+; 52   :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 5
@@ -4673,7 +4673,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 53   :         c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+; 53   :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	eax, 4
 	imul	ecx, eax, 6
@@ -4695,7 +4695,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 54   :         c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+; 54   :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	edx, 4
 	imul	eax, edx, 7
@@ -4717,7 +4717,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 55   :         c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
+; 55   :     c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	ecx, 4
 	shl	ecx, 3
@@ -4739,7 +4739,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 56   :         c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
+; 56   :     c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	eax, 4
 	imul	ecx, eax, 9
@@ -4761,7 +4761,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 57   :         c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
+; 57   :     c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	edx, 4
 	imul	eax, edx, 10
@@ -4783,7 +4783,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 58   :         c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
+; 58   :     c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 11
@@ -4805,7 +4805,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 59   :         c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
+; 59   :     c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	eax, 4
 	imul	ecx, eax, 12
@@ -4827,7 +4827,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 60   :         c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
+; 60   :     c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	edx, 4
 	imul	eax, edx, 13
@@ -4849,7 +4849,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 61   :         c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
+; 61   :     c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 14
@@ -4871,7 +4871,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 62   :         c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
+; 62   :     c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	eax, 4
 	imul	ecx, eax, 15
@@ -4893,7 +4893,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 63   :         c = _ADD_UNIT(c, xp[16], yp[16], &zp[16]);
+; 63   :     c = _ADD_UNIT(c, xp[16], yp[16], &zp[16]);
 
 	mov	edx, 4
 	shl	edx, 4
@@ -4915,7 +4915,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 64   :         c = _ADD_UNIT(c, xp[17], yp[17], &zp[17]);
+; 64   :     c = _ADD_UNIT(c, xp[17], yp[17], &zp[17]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 17
@@ -4937,7 +4937,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 65   :         c = _ADD_UNIT(c, xp[18], yp[18], &zp[18]);
+; 65   :     c = _ADD_UNIT(c, xp[18], yp[18], &zp[18]);
 
 	mov	eax, 4
 	imul	ecx, eax, 18
@@ -4959,7 +4959,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 66   :         c = _ADD_UNIT(c, xp[19], yp[19], &zp[19]);
+; 66   :     c = _ADD_UNIT(c, xp[19], yp[19], &zp[19]);
 
 	mov	edx, 4
 	imul	eax, edx, 19
@@ -4981,7 +4981,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 67   :         c = _ADD_UNIT(c, xp[20], yp[20], &zp[20]);
+; 67   :     c = _ADD_UNIT(c, xp[20], yp[20], &zp[20]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 20
@@ -5003,7 +5003,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 68   :         c = _ADD_UNIT(c, xp[21], yp[21], &zp[21]);
+; 68   :     c = _ADD_UNIT(c, xp[21], yp[21], &zp[21]);
 
 	mov	eax, 4
 	imul	ecx, eax, 21
@@ -5025,7 +5025,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 69   :         c = _ADD_UNIT(c, xp[22], yp[22], &zp[22]);
+; 69   :     c = _ADD_UNIT(c, xp[22], yp[22], &zp[22]);
 
 	mov	edx, 4
 	imul	eax, edx, 22
@@ -5047,7 +5047,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 70   :         c = _ADD_UNIT(c, xp[23], yp[23], &zp[23]);
+; 70   :     c = _ADD_UNIT(c, xp[23], yp[23], &zp[23]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 23
@@ -5069,7 +5069,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 71   :         c = _ADD_UNIT(c, xp[24], yp[24], &zp[24]);
+; 71   :     c = _ADD_UNIT(c, xp[24], yp[24], &zp[24]);
 
 	mov	eax, 4
 	imul	ecx, eax, 24
@@ -5091,7 +5091,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 72   :         c = _ADD_UNIT(c, xp[25], yp[25], &zp[25]);
+; 72   :     c = _ADD_UNIT(c, xp[25], yp[25], &zp[25]);
 
 	mov	edx, 4
 	imul	eax, edx, 25
@@ -5113,7 +5113,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 73   :         c = _ADD_UNIT(c, xp[26], yp[26], &zp[26]);
+; 73   :     c = _ADD_UNIT(c, xp[26], yp[26], &zp[26]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 26
@@ -5135,7 +5135,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 74   :         c = _ADD_UNIT(c, xp[27], yp[27], &zp[27]);
+; 74   :     c = _ADD_UNIT(c, xp[27], yp[27], &zp[27]);
 
 	mov	eax, 4
 	imul	ecx, eax, 27
@@ -5157,7 +5157,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 75   :         c = _ADD_UNIT(c, xp[28], yp[28], &zp[28]);
+; 75   :     c = _ADD_UNIT(c, xp[28], yp[28], &zp[28]);
 
 	mov	edx, 4
 	imul	eax, edx, 28
@@ -5179,7 +5179,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 76   :         c = _ADD_UNIT(c, xp[29], yp[29], &zp[29]);
+; 76   :     c = _ADD_UNIT(c, xp[29], yp[29], &zp[29]);
 
 	mov	ecx, 4
 	imul	edx, ecx, 29
@@ -5201,7 +5201,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 77   :         c = _ADD_UNIT(c, xp[30], yp[30], &zp[30]);
+; 77   :     c = _ADD_UNIT(c, xp[30], yp[30], &zp[30]);
 
 	mov	eax, 4
 	imul	ecx, eax, 30
@@ -5223,7 +5223,7 @@ __ADD_32WORDS_ADC PROC
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 78   :         c = _ADD_UNIT(c, xp[31], yp[31], &zp[31]);
+; 78   :     c = _ADD_UNIT(c, xp[31], yp[31], &zp[31]);
 
 	mov	edx, 4
 	imul	eax, edx, 31
@@ -5247,224 +5247,224 @@ __ADD_32WORDS_ADC PROC
 
 ; 79   : #elif defined(__GNUC__)
 ; 80   : #ifdef _M_IX86
-; 81   :         __asm__ volatile (
-; 82   :             "addb\t$-1, %0\n\t"
-; 83   :             "movl\t(%1), %%ecx\n\t"
-; 84   :             "adcl\t(%2), %%ecx\n\t"
-; 85   :             "movl\t%%ecx, (%3)\n\t"
-; 86   :             "movl\t4(%1), %%ecx\n\t"
-; 87   :             "adcl\t4(%2), %%ecx\n\t"
-; 88   :             "movl\t%%ecx, 4(%3)\n\t"
-; 89   :             "movl\t8(%1), %%ecx\n\t"
-; 90   :             "adcl\t8(%2), %%ecx\n\t"
-; 91   :             "movl\t%%ecx, 8(%3)\n\t"
-; 92   :             "movl\t12(%1), %%ecx\n\t"
-; 93   :             "adcl\t12(%2), %%ecx\n\t"
-; 94   :             "movl\t%%ecx, 12(%3)\n\t"
-; 95   :             "movl\t16(%1), %%ecx\n\t"
-; 96   :             "adcl\t16(%2), %%ecx\n\t"
-; 97   :             "movl\t%%ecx, 16(%3)\n\t"
-; 98   :             "movl\t20(%1), %%ecx\n\t"
-; 99   :             "adcl\t20(%2), %%ecx\n\t"
-; 100  :             "movl\t%%ecx, 20(%3)\n\t"
-; 101  :             "movl\t24(%1), %%ecx\n\t"
-; 102  :             "adcl\t24(%2), %%ecx\n\t"
-; 103  :             "movl\t%%ecx, 24(%3)\n\t"
-; 104  :             "movl\t28(%1), %%ecx\n\t"
-; 105  :             "adcl\t28(%2), %%ecx\n\t"
-; 106  :             "movl\t%%ecx, 28(%3)\n\t"
-; 107  :             "movl\t32(%1), %%ecx\n\t"
-; 108  :             "adcl\t32(%2), %%ecx\n\t"
-; 109  :             "movl\t%%ecx, 32(%3)\n\t"
-; 110  :             "movl\t36(%1), %%ecx\n\t"
-; 111  :             "adcl\t36(%2), %%ecx\n\t"
-; 112  :             "movl\t%%ecx, 36(%3)\n\t"
-; 113  :             "movl\t40(%1), %%ecx\n\t"
-; 114  :             "adcl\t40(%2), %%ecx\n\t"
-; 115  :             "movl\t%%ecx, 40(%3)\n\t"
-; 116  :             "movl\t44(%1), %%ecx\n\t"
-; 117  :             "adcl\t44(%2), %%ecx\n\t"
-; 118  :             "movl\t%%ecx, 44(%3)\n\t"
-; 119  :             "movl\t48(%1), %%ecx\n\t"
-; 120  :             "adcl\t48(%2), %%ecx\n\t"
-; 121  :             "movl\t%%ecx, 48(%3)\n\t"
-; 122  :             "movl\t52(%1), %%ecx\n\t"
-; 123  :             "adcl\t52(%2), %%ecx\n\t"
-; 124  :             "movl\t%%ecx, 52(%3)\n\t"
-; 125  :             "movl\t56(%1), %%ecx\n\t"
-; 126  :             "adcl\t56(%2), %%ecx\n\t"
-; 127  :             "movl\t%%ecx, 56(%3)\n\t"
-; 128  :             "movl\t60(%1), %%ecx\n\t"
-; 129  :             "adcl\t60(%2), %%ecx\n\t"
-; 130  :             "movl\t%%ecx, 60(%3)\n\t"
-; 131  :             "movl\t64(%1), %%ecx\n\t"
-; 132  :             "adcl\t64(%2), %%ecx\n\t"
-; 133  :             "movl\t%%ecx, 64(%3)\n\t"
-; 134  :             "movl\t68(%1), %%ecx\n\t"
-; 135  :             "adcl\t68(%2), %%ecx\n\t"
-; 136  :             "movl\t%%ecx, 68(%3)\n\t"
-; 137  :             "movl\t72(%1), %%ecx\n\t"
-; 138  :             "adcl\t72(%2), %%ecx\n\t"
-; 139  :             "movl\t%%ecx, 72(%3)\n\t"
-; 140  :             "movl\t76(%1), %%ecx\n\t"
-; 141  :             "adcl\t76(%2), %%ecx\n\t"
-; 142  :             "movl\t%%ecx, 76(%3)\n\t"
-; 143  :             "movl\t80(%1), %%ecx\n\t"
-; 144  :             "adcl\t80(%2), %%ecx\n\t"
-; 145  :             "movl\t%%ecx, 80(%3)\n\t"
-; 146  :             "movl\t84(%1), %%ecx\n\t"
-; 147  :             "adcl\t84(%2), %%ecx\n\t"
-; 148  :             "movl\t%%ecx, 84(%3)\n\t"
-; 149  :             "movl\t88(%1), %%ecx\n\t"
-; 150  :             "adcl\t88(%2), %%ecx\n\t"
-; 151  :             "movl\t%%ecx, 88(%3)\n\t"
-; 152  :             "movl\t92(%1), %%ecx\n\t"
-; 153  :             "adcl\t92(%2), %%ecx\n\t"
-; 154  :             "movl\t%%ecx, 92(%3)\n\t"
-; 155  :             "movl\t96(%1), %%ecx\n\t"
-; 156  :             "adcl\t96(%2), %%ecx\n\t"
-; 157  :             "movl\t%%ecx, 96(%3)\n\t"
-; 158  :             "movl\t100(%1), %%ecx\n\t"
-; 159  :             "adcl\t100(%2), %%ecx\n\t"
-; 160  :             "movl\t%%ecx, 100(%3)\n\t"
-; 161  :             "movl\t104(%1), %%ecx\n\t"
-; 162  :             "adcl\t104(%2), %%ecx\n\t"
-; 163  :             "movl\t%%ecx, 104(%3)\n\t"
-; 164  :             "movl\t108(%1), %%ecx\n\t"
-; 165  :             "adcl\t108(%2), %%ecx\n\t"
-; 166  :             "movl\t%%ecx, 108(%3)\n\t"
-; 167  :             "movl\t112(%1), %%ecx\n\t"
-; 168  :             "adcl\t112(%2), %%ecx\n\t"
-; 169  :             "movl\t%%ecx, 112(%3)\n\t"
-; 170  :             "movl\t116(%1), %%ecx\n\t"
-; 171  :             "adcl\t116(%2), %%ecx\n\t"
-; 172  :             "movl\t%%ecx, 116(%3)\n\t"
-; 173  :             "movl\t120(%1), %%ecx\n\t"
-; 174  :             "adcl\t120(%2), %%ecx\n\t"
-; 175  :             "movl\t%%ecx, 120(%3)\n\t"
-; 176  :             "movl\t124(%1), %%ecx\n\t"
-; 177  :             "adcl\t124(%2), %%ecx\n\t"
-; 178  :             "movl\t%%ecx, 124(%3)\n\t"
-; 179  :             "setc\t%0"
-; 180  :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 181  :             :
-; 182  :             : "cc", "memory", "%ecx"
-; 183  :             );
+; 81   :     __asm__ volatile (
+; 82   :         "addb\t$-1, %0\n\t"
+; 83   :         "movl\t(%1), %%ecx\n\t"
+; 84   :         "adcl\t(%2), %%ecx\n\t"
+; 85   :         "movl\t%%ecx, (%3)\n\t"
+; 86   :         "movl\t4(%1), %%ecx\n\t"
+; 87   :         "adcl\t4(%2), %%ecx\n\t"
+; 88   :         "movl\t%%ecx, 4(%3)\n\t"
+; 89   :         "movl\t8(%1), %%ecx\n\t"
+; 90   :         "adcl\t8(%2), %%ecx\n\t"
+; 91   :         "movl\t%%ecx, 8(%3)\n\t"
+; 92   :         "movl\t12(%1), %%ecx\n\t"
+; 93   :         "adcl\t12(%2), %%ecx\n\t"
+; 94   :         "movl\t%%ecx, 12(%3)\n\t"
+; 95   :         "movl\t16(%1), %%ecx\n\t"
+; 96   :         "adcl\t16(%2), %%ecx\n\t"
+; 97   :         "movl\t%%ecx, 16(%3)\n\t"
+; 98   :         "movl\t20(%1), %%ecx\n\t"
+; 99   :         "adcl\t20(%2), %%ecx\n\t"
+; 100  :         "movl\t%%ecx, 20(%3)\n\t"
+; 101  :         "movl\t24(%1), %%ecx\n\t"
+; 102  :         "adcl\t24(%2), %%ecx\n\t"
+; 103  :         "movl\t%%ecx, 24(%3)\n\t"
+; 104  :         "movl\t28(%1), %%ecx\n\t"
+; 105  :         "adcl\t28(%2), %%ecx\n\t"
+; 106  :         "movl\t%%ecx, 28(%3)\n\t"
+; 107  :         "movl\t32(%1), %%ecx\n\t"
+; 108  :         "adcl\t32(%2), %%ecx\n\t"
+; 109  :         "movl\t%%ecx, 32(%3)\n\t"
+; 110  :         "movl\t36(%1), %%ecx\n\t"
+; 111  :         "adcl\t36(%2), %%ecx\n\t"
+; 112  :         "movl\t%%ecx, 36(%3)\n\t"
+; 113  :         "movl\t40(%1), %%ecx\n\t"
+; 114  :         "adcl\t40(%2), %%ecx\n\t"
+; 115  :         "movl\t%%ecx, 40(%3)\n\t"
+; 116  :         "movl\t44(%1), %%ecx\n\t"
+; 117  :         "adcl\t44(%2), %%ecx\n\t"
+; 118  :         "movl\t%%ecx, 44(%3)\n\t"
+; 119  :         "movl\t48(%1), %%ecx\n\t"
+; 120  :         "adcl\t48(%2), %%ecx\n\t"
+; 121  :         "movl\t%%ecx, 48(%3)\n\t"
+; 122  :         "movl\t52(%1), %%ecx\n\t"
+; 123  :         "adcl\t52(%2), %%ecx\n\t"
+; 124  :         "movl\t%%ecx, 52(%3)\n\t"
+; 125  :         "movl\t56(%1), %%ecx\n\t"
+; 126  :         "adcl\t56(%2), %%ecx\n\t"
+; 127  :         "movl\t%%ecx, 56(%3)\n\t"
+; 128  :         "movl\t60(%1), %%ecx\n\t"
+; 129  :         "adcl\t60(%2), %%ecx\n\t"
+; 130  :         "movl\t%%ecx, 60(%3)\n\t"
+; 131  :         "movl\t64(%1), %%ecx\n\t"
+; 132  :         "adcl\t64(%2), %%ecx\n\t"
+; 133  :         "movl\t%%ecx, 64(%3)\n\t"
+; 134  :         "movl\t68(%1), %%ecx\n\t"
+; 135  :         "adcl\t68(%2), %%ecx\n\t"
+; 136  :         "movl\t%%ecx, 68(%3)\n\t"
+; 137  :         "movl\t72(%1), %%ecx\n\t"
+; 138  :         "adcl\t72(%2), %%ecx\n\t"
+; 139  :         "movl\t%%ecx, 72(%3)\n\t"
+; 140  :         "movl\t76(%1), %%ecx\n\t"
+; 141  :         "adcl\t76(%2), %%ecx\n\t"
+; 142  :         "movl\t%%ecx, 76(%3)\n\t"
+; 143  :         "movl\t80(%1), %%ecx\n\t"
+; 144  :         "adcl\t80(%2), %%ecx\n\t"
+; 145  :         "movl\t%%ecx, 80(%3)\n\t"
+; 146  :         "movl\t84(%1), %%ecx\n\t"
+; 147  :         "adcl\t84(%2), %%ecx\n\t"
+; 148  :         "movl\t%%ecx, 84(%3)\n\t"
+; 149  :         "movl\t88(%1), %%ecx\n\t"
+; 150  :         "adcl\t88(%2), %%ecx\n\t"
+; 151  :         "movl\t%%ecx, 88(%3)\n\t"
+; 152  :         "movl\t92(%1), %%ecx\n\t"
+; 153  :         "adcl\t92(%2), %%ecx\n\t"
+; 154  :         "movl\t%%ecx, 92(%3)\n\t"
+; 155  :         "movl\t96(%1), %%ecx\n\t"
+; 156  :         "adcl\t96(%2), %%ecx\n\t"
+; 157  :         "movl\t%%ecx, 96(%3)\n\t"
+; 158  :         "movl\t100(%1), %%ecx\n\t"
+; 159  :         "adcl\t100(%2), %%ecx\n\t"
+; 160  :         "movl\t%%ecx, 100(%3)\n\t"
+; 161  :         "movl\t104(%1), %%ecx\n\t"
+; 162  :         "adcl\t104(%2), %%ecx\n\t"
+; 163  :         "movl\t%%ecx, 104(%3)\n\t"
+; 164  :         "movl\t108(%1), %%ecx\n\t"
+; 165  :         "adcl\t108(%2), %%ecx\n\t"
+; 166  :         "movl\t%%ecx, 108(%3)\n\t"
+; 167  :         "movl\t112(%1), %%ecx\n\t"
+; 168  :         "adcl\t112(%2), %%ecx\n\t"
+; 169  :         "movl\t%%ecx, 112(%3)\n\t"
+; 170  :         "movl\t116(%1), %%ecx\n\t"
+; 171  :         "adcl\t116(%2), %%ecx\n\t"
+; 172  :         "movl\t%%ecx, 116(%3)\n\t"
+; 173  :         "movl\t120(%1), %%ecx\n\t"
+; 174  :         "adcl\t120(%2), %%ecx\n\t"
+; 175  :         "movl\t%%ecx, 120(%3)\n\t"
+; 176  :         "movl\t124(%1), %%ecx\n\t"
+; 177  :         "adcl\t124(%2), %%ecx\n\t"
+; 178  :         "movl\t%%ecx, 124(%3)\n\t"
+; 179  :         "setc\t%0"
+; 180  :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 181  :         :
+; 182  :         : "cc", "memory", "%ecx"
+; 183  : );
 ; 184  : #elif defined(_M_IX64)
-; 185  :         __asm__ volatile (
-; 186  :             "addb\t$-1, %0\n\t"
-; 187  :             "movq\t(%1), %%rcx\n\t"
-; 188  :             "adcq\t(%2), %%rcx\n\t"
-; 189  :             "movq\t%%rcx, (%3)\n\t"
-; 190  :             "movq\t8(%1), %%rcx\n\t"
-; 191  :             "adcq\t8(%2), %%rcx\n\t"
-; 192  :             "movq\t%%rcx, 8(%3)\n\t"
-; 193  :             "movq\t16(%1), %%rcx\n\t"
-; 194  :             "adcq\t16(%2), %%rcx\n\t"
-; 195  :             "movq\t%%rcx, 16(%3)\n\t"
-; 196  :             "movq\t24(%1), %%rcx\n\t"
-; 197  :             "adcq\t24(%2), %%rcx\n\t"
-; 198  :             "movq\t%%rcx, 24(%3)\n\t"
-; 199  :             "movq\t32(%1), %%rcx\n\t"
-; 200  :             "adcq\t32(%2), %%rcx\n\t"
-; 201  :             "movq\t%%rcx, 32(%3)\n\t"
-; 202  :             "movq\t40(%1), %%rcx\n\t"
-; 203  :             "adcq\t40(%2), %%rcx\n\t"
-; 204  :             "movq\t%%rcx, 40(%3)\n\t"
-; 205  :             "movq\t48(%1), %%rcx\n\t"
-; 206  :             "adcq\t48(%2), %%rcx\n\t"
-; 207  :             "movq\t%%rcx, 48(%3)\n\t"
-; 208  :             "movq\t56(%1), %%rcx\n\t"
-; 209  :             "adcq\t56(%2), %%rcx\n\t"
-; 210  :             "movq\t%%rcx, 56(%3)\n\t"
-; 211  :             "movq\t64(%1), %%rcx\n\t"
-; 212  :             "adcq\t64(%2), %%rcx\n\t"
-; 213  :             "movq\t%%rcx, 64(%3)\n\t"
-; 214  :             "movq\t72(%1), %%rcx\n\t"
-; 215  :             "adcq\t72(%2), %%rcx\n\t"
-; 216  :             "movq\t%%rcx, 72(%3)\n\t"
-; 217  :             "movq\t80(%1), %%rcx\n\t"
-; 218  :             "adcq\t80(%2), %%rcx\n\t"
-; 219  :             "movq\t%%rcx, 80(%3)\n\t"
-; 220  :             "movq\t88(%1), %%rcx\n\t"
-; 221  :             "adcq\t88(%2), %%rcx\n\t"
-; 222  :             "movq\t%%rcx, 88(%3)\n\t"
-; 223  :             "movq\t96(%1), %%rcx\n\t"
-; 224  :             "adcq\t96(%2), %%rcx\n\t"
-; 225  :             "movq\t%%rcx, 96(%3)\n\t"
-; 226  :             "movq\t104(%1), %%rcx\n\t"
-; 227  :             "adcq\t104(%2), %%rcx\n\t"
-; 228  :             "movq\t%%rcx, 104(%3)\n\t"
-; 229  :             "movq\t112(%1), %%rcx\n\t"
-; 230  :             "adcq\t112(%2), %%rcx\n\t"
-; 231  :             "movq\t%%rcx, 112(%3)\n\t"
-; 232  :             "movq\t120(%1), %%rcx\n\t"
-; 233  :             "adcq\t120(%2), %%rcx\n\t"
-; 234  :             "movq\t%%rcx, 120(%3)\n\t"
-; 235  :             "movq\t128(%1), %%rcx\n\t"
-; 236  :             "adcq\t128(%2), %%rcx\n\t"
-; 237  :             "movq\t%%rcx, 128(%3)\n\t"
-; 238  :             "movq\t136(%1), %%rcx\n\t"
-; 239  :             "adcq\t136(%2), %%rcx\n\t"
-; 240  :             "movq\t%%rcx, 136(%3)\n\t"
-; 241  :             "movq\t144(%1), %%rcx\n\t"
-; 242  :             "adcq\t144(%2), %%rcx\n\t"
-; 243  :             "movq\t%%rcx, 144(%3)\n\t"
-; 244  :             "movq\t152(%1), %%rcx\n\t"
-; 245  :             "adcq\t152(%2), %%rcx\n\t"
-; 246  :             "movq\t%%rcx, 152(%3)\n\t"
-; 247  :             "movq\t160(%1), %%rcx\n\t"
-; 248  :             "adcq\t160(%2), %%rcx\n\t"
-; 249  :             "movq\t%%rcx, 160(%3)\n\t"
-; 250  :             "movq\t168(%1), %%rcx\n\t"
-; 251  :             "adcq\t168(%2), %%rcx\n\t"
-; 252  :             "movq\t%%rcx, 168(%3)\n\t"
-; 253  :             "movq\t176(%1), %%rcx\n\t"
-; 254  :             "adcq\t176(%2), %%rcx\n\t"
-; 255  :             "movq\t%%rcx, 176(%3)\n\t"
-; 256  :             "movq\t184(%1), %%rcx\n\t"
-; 257  :             "adcq\t184(%2), %%rcx\n\t"
-; 258  :             "movq\t%%rcx, 184(%3)\n\t"
-; 259  :             "movq\t192(%1), %%rcx\n\t"
-; 260  :             "adcq\t192(%2), %%rcx\n\t"
-; 261  :             "movq\t%%rcx, 192(%3)\n\t"
-; 262  :             "movq\t200(%1), %%rcx\n\t"
-; 263  :             "adcq\t200(%2), %%rcx\n\t"
-; 264  :             "movq\t%%rcx, 200(%3)\n\t"
-; 265  :             "movq\t208(%1), %%rcx\n\t"
-; 266  :             "adcq\t208(%2), %%rcx\n\t"
-; 267  :             "movq\t%%rcx, 208(%3)\n\t"
-; 268  :             "movq\t216(%1), %%rcx\n\t"
-; 269  :             "adcq\t216(%2), %%rcx\n\t"
-; 270  :             "movq\t%%rcx, 216(%3)\n\t"
-; 271  :             "movq\t224(%1), %%rcx\n\t"
-; 272  :             "adcq\t224(%2), %%rcx\n\t"
-; 273  :             "movq\t%%rcx, 224(%3)\n\t"
-; 274  :             "movq\t232(%1), %%rcx\n\t"
-; 275  :             "adcq\t232(%2), %%rcx\n\t"
-; 276  :             "movq\t%%rcx, 232(%3)\n\t"
-; 277  :             "movq\t240(%1), %%rcx\n\t"
-; 278  :             "adcq\t240(%2), %%rcx\n\t"
-; 279  :             "movq\t%%rcx, 240(%3)\n\t"
-; 280  :             "movq\t248(%1), %%rcx\n\t"
-; 281  :             "adcq\t248(%2), %%rcx\n\t"
-; 282  :             "movq\t%%rcx, 248(%3)\n\t"
-; 283  :             "setc\t%0"
-; 284  :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 285  :             :
-; 286  :             : "cc", "memory", "%rcx"
-; 287  :             );
+; 185  :     __asm__ volatile (
+; 186  :         "addb\t$-1, %0\n\t"
+; 187  :         "movq\t(%1), %%rcx\n\t"
+; 188  :         "adcq\t(%2), %%rcx\n\t"
+; 189  :         "movq\t%%rcx, (%3)\n\t"
+; 190  :         "movq\t8(%1), %%rcx\n\t"
+; 191  :         "adcq\t8(%2), %%rcx\n\t"
+; 192  :         "movq\t%%rcx, 8(%3)\n\t"
+; 193  :         "movq\t16(%1), %%rcx\n\t"
+; 194  :         "adcq\t16(%2), %%rcx\n\t"
+; 195  :         "movq\t%%rcx, 16(%3)\n\t"
+; 196  :         "movq\t24(%1), %%rcx\n\t"
+; 197  :         "adcq\t24(%2), %%rcx\n\t"
+; 198  :         "movq\t%%rcx, 24(%3)\n\t"
+; 199  :         "movq\t32(%1), %%rcx\n\t"
+; 200  :         "adcq\t32(%2), %%rcx\n\t"
+; 201  :         "movq\t%%rcx, 32(%3)\n\t"
+; 202  :         "movq\t40(%1), %%rcx\n\t"
+; 203  :         "adcq\t40(%2), %%rcx\n\t"
+; 204  :         "movq\t%%rcx, 40(%3)\n\t"
+; 205  :         "movq\t48(%1), %%rcx\n\t"
+; 206  :         "adcq\t48(%2), %%rcx\n\t"
+; 207  :         "movq\t%%rcx, 48(%3)\n\t"
+; 208  :         "movq\t56(%1), %%rcx\n\t"
+; 209  :         "adcq\t56(%2), %%rcx\n\t"
+; 210  :         "movq\t%%rcx, 56(%3)\n\t"
+; 211  :         "movq\t64(%1), %%rcx\n\t"
+; 212  :         "adcq\t64(%2), %%rcx\n\t"
+; 213  :         "movq\t%%rcx, 64(%3)\n\t"
+; 214  :         "movq\t72(%1), %%rcx\n\t"
+; 215  :         "adcq\t72(%2), %%rcx\n\t"
+; 216  :         "movq\t%%rcx, 72(%3)\n\t"
+; 217  :         "movq\t80(%1), %%rcx\n\t"
+; 218  :         "adcq\t80(%2), %%rcx\n\t"
+; 219  :         "movq\t%%rcx, 80(%3)\n\t"
+; 220  :         "movq\t88(%1), %%rcx\n\t"
+; 221  :         "adcq\t88(%2), %%rcx\n\t"
+; 222  :         "movq\t%%rcx, 88(%3)\n\t"
+; 223  :         "movq\t96(%1), %%rcx\n\t"
+; 224  :         "adcq\t96(%2), %%rcx\n\t"
+; 225  :         "movq\t%%rcx, 96(%3)\n\t"
+; 226  :         "movq\t104(%1), %%rcx\n\t"
+; 227  :         "adcq\t104(%2), %%rcx\n\t"
+; 228  :         "movq\t%%rcx, 104(%3)\n\t"
+; 229  :         "movq\t112(%1), %%rcx\n\t"
+; 230  :         "adcq\t112(%2), %%rcx\n\t"
+; 231  :         "movq\t%%rcx, 112(%3)\n\t"
+; 232  :         "movq\t120(%1), %%rcx\n\t"
+; 233  :         "adcq\t120(%2), %%rcx\n\t"
+; 234  :         "movq\t%%rcx, 120(%3)\n\t"
+; 235  :         "movq\t128(%1), %%rcx\n\t"
+; 236  :         "adcq\t128(%2), %%rcx\n\t"
+; 237  :         "movq\t%%rcx, 128(%3)\n\t"
+; 238  :         "movq\t136(%1), %%rcx\n\t"
+; 239  :         "adcq\t136(%2), %%rcx\n\t"
+; 240  :         "movq\t%%rcx, 136(%3)\n\t"
+; 241  :         "movq\t144(%1), %%rcx\n\t"
+; 242  :         "adcq\t144(%2), %%rcx\n\t"
+; 243  :         "movq\t%%rcx, 144(%3)\n\t"
+; 244  :         "movq\t152(%1), %%rcx\n\t"
+; 245  :         "adcq\t152(%2), %%rcx\n\t"
+; 246  :         "movq\t%%rcx, 152(%3)\n\t"
+; 247  :         "movq\t160(%1), %%rcx\n\t"
+; 248  :         "adcq\t160(%2), %%rcx\n\t"
+; 249  :         "movq\t%%rcx, 160(%3)\n\t"
+; 250  :         "movq\t168(%1), %%rcx\n\t"
+; 251  :         "adcq\t168(%2), %%rcx\n\t"
+; 252  :         "movq\t%%rcx, 168(%3)\n\t"
+; 253  :         "movq\t176(%1), %%rcx\n\t"
+; 254  :         "adcq\t176(%2), %%rcx\n\t"
+; 255  :         "movq\t%%rcx, 176(%3)\n\t"
+; 256  :         "movq\t184(%1), %%rcx\n\t"
+; 257  :         "adcq\t184(%2), %%rcx\n\t"
+; 258  :         "movq\t%%rcx, 184(%3)\n\t"
+; 259  :         "movq\t192(%1), %%rcx\n\t"
+; 260  :         "adcq\t192(%2), %%rcx\n\t"
+; 261  :         "movq\t%%rcx, 192(%3)\n\t"
+; 262  :         "movq\t200(%1), %%rcx\n\t"
+; 263  :         "adcq\t200(%2), %%rcx\n\t"
+; 264  :         "movq\t%%rcx, 200(%3)\n\t"
+; 265  :         "movq\t208(%1), %%rcx\n\t"
+; 266  :         "adcq\t208(%2), %%rcx\n\t"
+; 267  :         "movq\t%%rcx, 208(%3)\n\t"
+; 268  :         "movq\t216(%1), %%rcx\n\t"
+; 269  :         "adcq\t216(%2), %%rcx\n\t"
+; 270  :         "movq\t%%rcx, 216(%3)\n\t"
+; 271  :         "movq\t224(%1), %%rcx\n\t"
+; 272  :         "adcq\t224(%2), %%rcx\n\t"
+; 273  :         "movq\t%%rcx, 224(%3)\n\t"
+; 274  :         "movq\t232(%1), %%rcx\n\t"
+; 275  :         "adcq\t232(%2), %%rcx\n\t"
+; 276  :         "movq\t%%rcx, 232(%3)\n\t"
+; 277  :         "movq\t240(%1), %%rcx\n\t"
+; 278  :         "adcq\t240(%2), %%rcx\n\t"
+; 279  :         "movq\t%%rcx, 240(%3)\n\t"
+; 280  :         "movq\t248(%1), %%rcx\n\t"
+; 281  :         "adcq\t248(%2), %%rcx\n\t"
+; 282  :         "movq\t%%rcx, 248(%3)\n\t"
+; 283  :         "setc\t%0"
+; 284  :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 285  :         :
+; 286  :         : "cc", "memory", "%rcx"
+; 287  : );
 ; 288  : #else
 ; 289  : #error unknown platform
 ; 290  : #endif
 ; 291  : #else
 ; 292  : #error unknown compiler
 ; 293  : #endif
-; 294  :         return (c);
+; 294  :     return (c);
 
 	mov	al, BYTE PTR _c$[ebp]
 
-; 295  :     }
+; 295  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp

@@ -1314,7 +1314,7 @@ yp$ = 240
 zp$ = 248
 _SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 
-; 4462 :     {
+; 4462 : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -1333,7 +1333,7 @@ _SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 	call	__CheckForDebuggerJustMyCode
 
 ; 4463 : #ifdef _MSC_VER
-; 4464 :         c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+; 4464 :     c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -1353,7 +1353,7 @@ _SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 4465 :         c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+; 4465 :     c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -1375,44 +1375,44 @@ _SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 
 ; 4466 : #elif defined(__GNUC__)
 ; 4467 : #ifdef _M_IX86
-; 4468 :         __asm__ volatile (
-; 4469 :             "addb\t$-1, %0\n\t"
-; 4470 :             "movl\t(%1), %%ecx\n\t"
-; 4471 :             "sbbl\t(%2), %%ecx\n\t"
-; 4472 :             "movl\t%%ecx, (%3)\n\t"
-; 4473 :             "movl\t4(%1), %%ecx\n\t"
-; 4474 :             "sbbl\t4(%2), %%ecx\n\t"
-; 4475 :             "movl\t%%ecx, 4(%3)\n\t"
-; 4476 :             "setc\t%0"
-; 4477 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 4478 :             :
-; 4479 :             : "cc", "memory", "%ecx"
-; 4480 :             );
+; 4468 :     __asm__ volatile (
+; 4469 :         "addb\t$-1, %0\n\t"
+; 4470 :         "movl\t(%1), %%ecx\n\t"
+; 4471 :         "sbbl\t(%2), %%ecx\n\t"
+; 4472 :         "movl\t%%ecx, (%3)\n\t"
+; 4473 :         "movl\t4(%1), %%ecx\n\t"
+; 4474 :         "sbbl\t4(%2), %%ecx\n\t"
+; 4475 :         "movl\t%%ecx, 4(%3)\n\t"
+; 4476 :         "setc\t%0"
+; 4477 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 4478 :         :
+; 4479 :         : "cc", "memory", "%ecx"
+; 4480 : );
 ; 4481 : #elif defined(_M_IX64)
-; 4482 :         __asm__ volatile (
-; 4483 :             "addb\t$-1, %0\n\t"
-; 4484 :             "movq\t(%1), %%rcx\n\t"
-; 4485 :             "sbbq\t(%2), %%rcx\n\t"
-; 4486 :             "movq\t%%rcx, (%3)\n\t"
-; 4487 :             "movq\t8(%1), %%rcx\n\t"
-; 4488 :             "sbbq\t8(%2), %%rcx\n\t"
-; 4489 :             "movq\t%%rcx, 8(%3)\n\t"
-; 4490 :             "setc\t%0"
-; 4491 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 4492 :             :
-; 4493 :             : "cc", "memory", "%rcx"
-; 4494 :             );
+; 4482 :     __asm__ volatile (
+; 4483 :         "addb\t$-1, %0\n\t"
+; 4484 :         "movq\t(%1), %%rcx\n\t"
+; 4485 :         "sbbq\t(%2), %%rcx\n\t"
+; 4486 :         "movq\t%%rcx, (%3)\n\t"
+; 4487 :         "movq\t8(%1), %%rcx\n\t"
+; 4488 :         "sbbq\t8(%2), %%rcx\n\t"
+; 4489 :         "movq\t%%rcx, 8(%3)\n\t"
+; 4490 :         "setc\t%0"
+; 4491 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 4492 :         :
+; 4493 :         : "cc", "memory", "%rcx"
+; 4494 : );
 ; 4495 : #else
 ; 4496 : #error unknown platform
 ; 4497 : #endif
 ; 4498 : #else
 ; 4499 : #error unknown compiler
 ; 4500 : #endif
-; 4501 :         return (c);
+; 4501 :     return (c);
 
 	movzx	eax, BYTE PTR c$[rbp]
 
-; 4502 :     }
+; 4502 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -1430,7 +1430,7 @@ yp$ = 240
 zp$ = 248
 _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 
-; 4048 :     {
+; 4048 : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -1449,7 +1449,7 @@ _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	call	__CheckForDebuggerJustMyCode
 
 ; 4049 : #ifdef _MSC_VER
-; 4050 :         c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+; 4050 :     c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -1469,7 +1469,7 @@ _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 4051 :         c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+; 4051 :     c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -1489,7 +1489,7 @@ _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 4052 :         c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
+; 4052 :     c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	eax, 8
 	imul	rax, rax, 2
@@ -1509,7 +1509,7 @@ _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 4053 :         c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
+; 4053 :     c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 8
 	imul	rax, rax, 3
@@ -1531,56 +1531,56 @@ _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 
 ; 4054 : #elif defined(__GNUC__)
 ; 4055 : #ifdef _M_IX86
-; 4056 :         __asm__ volatile (
-; 4057 :             "addb\t$-1, %0\n\t"
-; 4058 :             "movl\t(%1), %%ecx\n\t"
-; 4059 :             "sbbl\t(%2), %%ecx\n\t"
-; 4060 :             "movl\t%%ecx, (%3)\n\t"
-; 4061 :             "movl\t4(%1), %%ecx\n\t"
-; 4062 :             "sbbl\t4(%2), %%ecx\n\t"
-; 4063 :             "movl\t%%ecx, 4(%3)\n\t"
-; 4064 :             "movl\t8(%1), %%ecx\n\t"
-; 4065 :             "sbbl\t8(%2), %%ecx\n\t"
-; 4066 :             "movl\t%%ecx, 8(%3)\n\t"
-; 4067 :             "movl\t12(%1), %%ecx\n\t"
-; 4068 :             "sbbl\t12(%2), %%ecx\n\t"
-; 4069 :             "movl\t%%ecx, 12(%3)\n\t"
-; 4070 :             "setc\t%0"
-; 4071 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 4072 :             :
-; 4073 :             : "cc", "memory", "%ecx"
-; 4074 :             );
+; 4056 :     __asm__ volatile (
+; 4057 :         "addb\t$-1, %0\n\t"
+; 4058 :         "movl\t(%1), %%ecx\n\t"
+; 4059 :         "sbbl\t(%2), %%ecx\n\t"
+; 4060 :         "movl\t%%ecx, (%3)\n\t"
+; 4061 :         "movl\t4(%1), %%ecx\n\t"
+; 4062 :         "sbbl\t4(%2), %%ecx\n\t"
+; 4063 :         "movl\t%%ecx, 4(%3)\n\t"
+; 4064 :         "movl\t8(%1), %%ecx\n\t"
+; 4065 :         "sbbl\t8(%2), %%ecx\n\t"
+; 4066 :         "movl\t%%ecx, 8(%3)\n\t"
+; 4067 :         "movl\t12(%1), %%ecx\n\t"
+; 4068 :         "sbbl\t12(%2), %%ecx\n\t"
+; 4069 :         "movl\t%%ecx, 12(%3)\n\t"
+; 4070 :         "setc\t%0"
+; 4071 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 4072 :         :
+; 4073 :         : "cc", "memory", "%ecx"
+; 4074 : );
 ; 4075 : #elif defined(_M_IX64)
-; 4076 :         __asm__ volatile (
-; 4077 :             "addb\t$-1, %0\n\t"
-; 4078 :             "movq\t(%1), %%rcx\n\t"
-; 4079 :             "sbbq\t(%2), %%rcx\n\t"
-; 4080 :             "movq\t%%rcx, (%3)\n\t"
-; 4081 :             "movq\t8(%1), %%rcx\n\t"
-; 4082 :             "sbbq\t8(%2), %%rcx\n\t"
-; 4083 :             "movq\t%%rcx, 8(%3)\n\t"
-; 4084 :             "movq\t16(%1), %%rcx\n\t"
-; 4085 :             "sbbq\t16(%2), %%rcx\n\t"
-; 4086 :             "movq\t%%rcx, 16(%3)\n\t"
-; 4087 :             "movq\t24(%1), %%rcx\n\t"
-; 4088 :             "sbbq\t24(%2), %%rcx\n\t"
-; 4089 :             "movq\t%%rcx, 24(%3)\n\t"
-; 4090 :             "setc\t%0"
-; 4091 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 4092 :             :
-; 4093 :             : "cc", "memory", "%rcx"
-; 4094 :             );
+; 4076 :     __asm__ volatile (
+; 4077 :         "addb\t$-1, %0\n\t"
+; 4078 :         "movq\t(%1), %%rcx\n\t"
+; 4079 :         "sbbq\t(%2), %%rcx\n\t"
+; 4080 :         "movq\t%%rcx, (%3)\n\t"
+; 4081 :         "movq\t8(%1), %%rcx\n\t"
+; 4082 :         "sbbq\t8(%2), %%rcx\n\t"
+; 4083 :         "movq\t%%rcx, 8(%3)\n\t"
+; 4084 :         "movq\t16(%1), %%rcx\n\t"
+; 4085 :         "sbbq\t16(%2), %%rcx\n\t"
+; 4086 :         "movq\t%%rcx, 16(%3)\n\t"
+; 4087 :         "movq\t24(%1), %%rcx\n\t"
+; 4088 :         "sbbq\t24(%2), %%rcx\n\t"
+; 4089 :         "movq\t%%rcx, 24(%3)\n\t"
+; 4090 :         "setc\t%0"
+; 4091 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 4092 :         :
+; 4093 :         : "cc", "memory", "%rcx"
+; 4094 : );
 ; 4095 : #else
 ; 4096 : #error unknown platform
 ; 4097 : #endif
 ; 4098 : #else
 ; 4099 : #error unknown compiler
 ; 4100 : #endif
-; 4101 :         return (c);
+; 4101 :     return (c);
 
 	movzx	eax, BYTE PTR c$[rbp]
 
-; 4102 :     }
+; 4102 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -1598,7 +1598,7 @@ yp$ = 240
 zp$ = 248
 _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 
-; 3452 :     {
+; 3452 : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -1617,7 +1617,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	call	__CheckForDebuggerJustMyCode
 
 ; 3453 : #ifdef _MSC_VER
-; 3454 :         c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3454 :     c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -1637,7 +1637,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 3455 :         c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3455 :     c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -1657,7 +1657,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 3456 :         c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3456 :     c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	eax, 8
 	imul	rax, rax, 2
@@ -1677,7 +1677,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 3457 :         c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3457 :     c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 8
 	imul	rax, rax, 3
@@ -1697,7 +1697,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 3458 :         c = _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
+; 3458 :     c = _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	eax, 8
 	imul	rax, rax, 4
@@ -1717,7 +1717,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 3459 :         c = _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
+; 3459 :     c = _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	eax, 8
 	imul	rax, rax, 5
@@ -1737,7 +1737,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 3460 :         c = _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
+; 3460 :     c = _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	eax, 8
 	imul	rax, rax, 6
@@ -1757,7 +1757,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 3461 :         c = _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
+; 3461 :     c = _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	eax, 8
 	imul	rax, rax, 7
@@ -1779,80 +1779,80 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 
 ; 3462 : #elif defined(__GNUC__)
 ; 3463 : #ifdef _M_IX86
-; 3464 :         __asm__ volatile (
-; 3465 :             "addb\t$-1, %0\n\t"
-; 3466 :             "movl\t(%1), %%ecx\n\t"
-; 3467 :             "sbbl\t(%2), %%ecx\n\t"
-; 3468 :             "movl\t%%ecx, (%3)\n\t"
-; 3469 :             "movl\t4(%1), %%ecx\n\t"
-; 3470 :             "sbbl\t4(%2), %%ecx\n\t"
-; 3471 :             "movl\t%%ecx, 4(%3)\n\t"
-; 3472 :             "movl\t8(%1), %%ecx\n\t"
-; 3473 :             "sbbl\t8(%2), %%ecx\n\t"
-; 3474 :             "movl\t%%ecx, 8(%3)\n\t"
-; 3475 :             "movl\t12(%1), %%ecx\n\t"
-; 3476 :             "sbbl\t12(%2), %%ecx\n\t"
-; 3477 :             "movl\t%%ecx, 12(%3)\n\t"
-; 3478 :             "movl\t16(%1), %%ecx\n\t"
-; 3479 :             "sbbl\t16(%2), %%ecx\n\t"
-; 3480 :             "movl\t%%ecx, 16(%3)\n\t"
-; 3481 :             "movl\t20(%1), %%ecx\n\t"
-; 3482 :             "sbbl\t20(%2), %%ecx\n\t"
-; 3483 :             "movl\t%%ecx, 20(%3)\n\t"
-; 3484 :             "movl\t24(%1), %%ecx\n\t"
-; 3485 :             "sbbl\t24(%2), %%ecx\n\t"
-; 3486 :             "movl\t%%ecx, 24(%3)\n\t"
-; 3487 :             "movl\t28(%1), %%ecx\n\t"
-; 3488 :             "sbbl\t28(%2), %%ecx\n\t"
-; 3489 :             "movl\t%%ecx, 28(%3)\n\t"
-; 3490 :             "setc\t%0"
-; 3491 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3492 :             :
-; 3493 :             : "cc", "memory", "%ecx"
-; 3494 :             );
+; 3464 :     __asm__ volatile (
+; 3465 :         "addb\t$-1, %0\n\t"
+; 3466 :         "movl\t(%1), %%ecx\n\t"
+; 3467 :         "sbbl\t(%2), %%ecx\n\t"
+; 3468 :         "movl\t%%ecx, (%3)\n\t"
+; 3469 :         "movl\t4(%1), %%ecx\n\t"
+; 3470 :         "sbbl\t4(%2), %%ecx\n\t"
+; 3471 :         "movl\t%%ecx, 4(%3)\n\t"
+; 3472 :         "movl\t8(%1), %%ecx\n\t"
+; 3473 :         "sbbl\t8(%2), %%ecx\n\t"
+; 3474 :         "movl\t%%ecx, 8(%3)\n\t"
+; 3475 :         "movl\t12(%1), %%ecx\n\t"
+; 3476 :         "sbbl\t12(%2), %%ecx\n\t"
+; 3477 :         "movl\t%%ecx, 12(%3)\n\t"
+; 3478 :         "movl\t16(%1), %%ecx\n\t"
+; 3479 :         "sbbl\t16(%2), %%ecx\n\t"
+; 3480 :         "movl\t%%ecx, 16(%3)\n\t"
+; 3481 :         "movl\t20(%1), %%ecx\n\t"
+; 3482 :         "sbbl\t20(%2), %%ecx\n\t"
+; 3483 :         "movl\t%%ecx, 20(%3)\n\t"
+; 3484 :         "movl\t24(%1), %%ecx\n\t"
+; 3485 :         "sbbl\t24(%2), %%ecx\n\t"
+; 3486 :         "movl\t%%ecx, 24(%3)\n\t"
+; 3487 :         "movl\t28(%1), %%ecx\n\t"
+; 3488 :         "sbbl\t28(%2), %%ecx\n\t"
+; 3489 :         "movl\t%%ecx, 28(%3)\n\t"
+; 3490 :         "setc\t%0"
+; 3491 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3492 :         :
+; 3493 :         : "cc", "memory", "%ecx"
+; 3494 : );
 ; 3495 : #elif defined(_M_IX64)
-; 3496 :         __asm__ volatile (
-; 3497 :             "addb\t$-1, %0\n\t"
-; 3498 :             "movq\t(%1), %%rcx\n\t"
-; 3499 :             "sbbq\t(%2), %%rcx\n\t"
-; 3500 :             "movq\t%%rcx, (%3)\n\t"
-; 3501 :             "movq\t8(%1), %%rcx\n\t"
-; 3502 :             "sbbq\t8(%2), %%rcx\n\t"
-; 3503 :             "movq\t%%rcx, 8(%3)\n\t"
-; 3504 :             "movq\t16(%1), %%rcx\n\t"
-; 3505 :             "sbbq\t16(%2), %%rcx\n\t"
-; 3506 :             "movq\t%%rcx, 16(%3)\n\t"
-; 3507 :             "movq\t24(%1), %%rcx\n\t"
-; 3508 :             "sbbq\t24(%2), %%rcx\n\t"
-; 3509 :             "movq\t%%rcx, 24(%3)\n\t"
-; 3510 :             "movq\t32(%1), %%rcx\n\t"
-; 3511 :             "sbbq\t32(%2), %%rcx\n\t"
-; 3512 :             "movq\t%%rcx, 32(%3)\n\t"
-; 3513 :             "movq\t40(%1), %%rcx\n\t"
-; 3514 :             "sbbq\t40(%2), %%rcx\n\t"
-; 3515 :             "movq\t%%rcx, 40(%3)\n\t"
-; 3516 :             "movq\t48(%1), %%rcx\n\t"
-; 3517 :             "sbbq\t48(%2), %%rcx\n\t"
-; 3518 :             "movq\t%%rcx, 48(%3)\n\t"
-; 3519 :             "movq\t56(%1), %%rcx\n\t"
-; 3520 :             "sbbq\t56(%2), %%rcx\n\t"
-; 3521 :             "movq\t%%rcx, 56(%3)\n\t"
-; 3522 :             "setc\t%0"
-; 3523 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 3524 :             :
-; 3525 :             : "cc", "memory", "%rcx"
-; 3526 :             );
+; 3496 :     __asm__ volatile (
+; 3497 :         "addb\t$-1, %0\n\t"
+; 3498 :         "movq\t(%1), %%rcx\n\t"
+; 3499 :         "sbbq\t(%2), %%rcx\n\t"
+; 3500 :         "movq\t%%rcx, (%3)\n\t"
+; 3501 :         "movq\t8(%1), %%rcx\n\t"
+; 3502 :         "sbbq\t8(%2), %%rcx\n\t"
+; 3503 :         "movq\t%%rcx, 8(%3)\n\t"
+; 3504 :         "movq\t16(%1), %%rcx\n\t"
+; 3505 :         "sbbq\t16(%2), %%rcx\n\t"
+; 3506 :         "movq\t%%rcx, 16(%3)\n\t"
+; 3507 :         "movq\t24(%1), %%rcx\n\t"
+; 3508 :         "sbbq\t24(%2), %%rcx\n\t"
+; 3509 :         "movq\t%%rcx, 24(%3)\n\t"
+; 3510 :         "movq\t32(%1), %%rcx\n\t"
+; 3511 :         "sbbq\t32(%2), %%rcx\n\t"
+; 3512 :         "movq\t%%rcx, 32(%3)\n\t"
+; 3513 :         "movq\t40(%1), %%rcx\n\t"
+; 3514 :         "sbbq\t40(%2), %%rcx\n\t"
+; 3515 :         "movq\t%%rcx, 40(%3)\n\t"
+; 3516 :         "movq\t48(%1), %%rcx\n\t"
+; 3517 :         "sbbq\t48(%2), %%rcx\n\t"
+; 3518 :         "movq\t%%rcx, 48(%3)\n\t"
+; 3519 :         "movq\t56(%1), %%rcx\n\t"
+; 3520 :         "sbbq\t56(%2), %%rcx\n\t"
+; 3521 :         "movq\t%%rcx, 56(%3)\n\t"
+; 3522 :         "setc\t%0"
+; 3523 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 3524 :         :
+; 3525 :         : "cc", "memory", "%rcx"
+; 3526 : );
 ; 3527 : #else
 ; 3528 : #error unknown platform
 ; 3529 : #endif
 ; 3530 : #else
 ; 3531 : #error unknown compiler
 ; 3532 : #endif
-; 3533 :         return (c);
+; 3533 :     return (c);
 
 	movzx	eax, BYTE PTR c$[rbp]
 
-; 3534 :     }
+; 3534 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -1870,7 +1870,7 @@ yp$ = 240
 zp$ = 248
 _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 
-; 2492 :     {
+; 2492 : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -1889,7 +1889,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	__CheckForDebuggerJustMyCode
 
 ; 2493 : #ifdef _MSC_VER
-; 2494 :         c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+; 2494 :     c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -1909,7 +1909,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2495 :         c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+; 2495 :     c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -1929,7 +1929,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2496 :         c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
+; 2496 :     c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	eax, 8
 	imul	rax, rax, 2
@@ -1949,7 +1949,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2497 :         c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
+; 2497 :     c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 8
 	imul	rax, rax, 3
@@ -1969,7 +1969,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2498 :         c = _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
+; 2498 :     c = _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	eax, 8
 	imul	rax, rax, 4
@@ -1989,7 +1989,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2499 :         c = _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
+; 2499 :     c = _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	eax, 8
 	imul	rax, rax, 5
@@ -2009,7 +2009,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2500 :         c = _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
+; 2500 :     c = _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	eax, 8
 	imul	rax, rax, 6
@@ -2029,7 +2029,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2501 :         c = _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
+; 2501 :     c = _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	eax, 8
 	imul	rax, rax, 7
@@ -2049,7 +2049,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2502 :         c = _SUBTRUCT_UNIT(c, xp[8], yp[8], &zp[8]);
+; 2502 :     c = _SUBTRUCT_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	eax, 8
 	imul	rax, rax, 8
@@ -2069,7 +2069,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2503 :         c = _SUBTRUCT_UNIT(c, xp[9], yp[9], &zp[9]);
+; 2503 :     c = _SUBTRUCT_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	eax, 8
 	imul	rax, rax, 9
@@ -2089,7 +2089,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2504 :         c = _SUBTRUCT_UNIT(c, xp[10], yp[10], &zp[10]);
+; 2504 :     c = _SUBTRUCT_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	eax, 8
 	imul	rax, rax, 10
@@ -2109,7 +2109,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2505 :         c = _SUBTRUCT_UNIT(c, xp[11], yp[11], &zp[11]);
+; 2505 :     c = _SUBTRUCT_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	eax, 8
 	imul	rax, rax, 11
@@ -2129,7 +2129,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2506 :         c = _SUBTRUCT_UNIT(c, xp[12], yp[12], &zp[12]);
+; 2506 :     c = _SUBTRUCT_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	eax, 8
 	imul	rax, rax, 12
@@ -2149,7 +2149,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2507 :         c = _SUBTRUCT_UNIT(c, xp[13], yp[13], &zp[13]);
+; 2507 :     c = _SUBTRUCT_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	eax, 8
 	imul	rax, rax, 13
@@ -2169,7 +2169,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2508 :         c = _SUBTRUCT_UNIT(c, xp[14], yp[14], &zp[14]);
+; 2508 :     c = _SUBTRUCT_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	eax, 8
 	imul	rax, rax, 14
@@ -2189,7 +2189,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 2509 :         c = _SUBTRUCT_UNIT(c, xp[15], yp[15], &zp[15]);
+; 2509 :     c = _SUBTRUCT_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	eax, 8
 	imul	rax, rax, 15
@@ -2211,128 +2211,128 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 
 ; 2510 : #elif defined(__GNUC__)
 ; 2511 : #ifdef _M_IX86
-; 2512 :         __asm__ volatile (
-; 2513 :             "addb\t$-1, %0\n\t"
-; 2514 :             "movl\t(%1), %%ecx\n\t"
-; 2515 :             "sbbl\t(%2), %%ecx\n\t"
-; 2516 :             "movl\t%%ecx, (%3)\n\t"
-; 2517 :             "movl\t4(%1), %%ecx\n\t"
-; 2518 :             "sbbl\t4(%2), %%ecx\n\t"
-; 2519 :             "movl\t%%ecx, 4(%3)\n\t"
-; 2520 :             "movl\t8(%1), %%ecx\n\t"
-; 2521 :             "sbbl\t8(%2), %%ecx\n\t"
-; 2522 :             "movl\t%%ecx, 8(%3)\n\t"
-; 2523 :             "movl\t12(%1), %%ecx\n\t"
-; 2524 :             "sbbl\t12(%2), %%ecx\n\t"
-; 2525 :             "movl\t%%ecx, 12(%3)\n\t"
-; 2526 :             "movl\t16(%1), %%ecx\n\t"
-; 2527 :             "sbbl\t16(%2), %%ecx\n\t"
-; 2528 :             "movl\t%%ecx, 16(%3)\n\t"
-; 2529 :             "movl\t20(%1), %%ecx\n\t"
-; 2530 :             "sbbl\t20(%2), %%ecx\n\t"
-; 2531 :             "movl\t%%ecx, 20(%3)\n\t"
-; 2532 :             "movl\t24(%1), %%ecx\n\t"
-; 2533 :             "sbbl\t24(%2), %%ecx\n\t"
-; 2534 :             "movl\t%%ecx, 24(%3)\n\t"
-; 2535 :             "movl\t28(%1), %%ecx\n\t"
-; 2536 :             "sbbl\t28(%2), %%ecx\n\t"
-; 2537 :             "movl\t%%ecx, 28(%3)\n\t"
-; 2538 :             "movl\t32(%1), %%ecx\n\t"
-; 2539 :             "sbbl\t32(%2), %%ecx\n\t"
-; 2540 :             "movl\t%%ecx, 32(%3)\n\t"
-; 2541 :             "movl\t36(%1), %%ecx\n\t"
-; 2542 :             "sbbl\t36(%2), %%ecx\n\t"
-; 2543 :             "movl\t%%ecx, 36(%3)\n\t"
-; 2544 :             "movl\t40(%1), %%ecx\n\t"
-; 2545 :             "sbbl\t40(%2), %%ecx\n\t"
-; 2546 :             "movl\t%%ecx, 40(%3)\n\t"
-; 2547 :             "movl\t44(%1), %%ecx\n\t"
-; 2548 :             "sbbl\t44(%2), %%ecx\n\t"
-; 2549 :             "movl\t%%ecx, 44(%3)\n\t"
-; 2550 :             "movl\t48(%1), %%ecx\n\t"
-; 2551 :             "sbbl\t48(%2), %%ecx\n\t"
-; 2552 :             "movl\t%%ecx, 48(%3)\n\t"
-; 2553 :             "movl\t52(%1), %%ecx\n\t"
-; 2554 :             "sbbl\t52(%2), %%ecx\n\t"
-; 2555 :             "movl\t%%ecx, 52(%3)\n\t"
-; 2556 :             "movl\t56(%1), %%ecx\n\t"
-; 2557 :             "sbbl\t56(%2), %%ecx\n\t"
-; 2558 :             "movl\t%%ecx, 56(%3)\n\t"
-; 2559 :             "movl\t60(%1), %%ecx\n\t"
-; 2560 :             "sbbl\t60(%2), %%ecx\n\t"
-; 2561 :             "movl\t%%ecx, 60(%3)\n\t"
-; 2562 :             "setc\t%0"
-; 2563 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 2564 :             :
-; 2565 :             : "cc", "memory", "%ecx"
-; 2566 :             );
+; 2512 :     __asm__ volatile (
+; 2513 :         "addb\t$-1, %0\n\t"
+; 2514 :         "movl\t(%1), %%ecx\n\t"
+; 2515 :         "sbbl\t(%2), %%ecx\n\t"
+; 2516 :         "movl\t%%ecx, (%3)\n\t"
+; 2517 :         "movl\t4(%1), %%ecx\n\t"
+; 2518 :         "sbbl\t4(%2), %%ecx\n\t"
+; 2519 :         "movl\t%%ecx, 4(%3)\n\t"
+; 2520 :         "movl\t8(%1), %%ecx\n\t"
+; 2521 :         "sbbl\t8(%2), %%ecx\n\t"
+; 2522 :         "movl\t%%ecx, 8(%3)\n\t"
+; 2523 :         "movl\t12(%1), %%ecx\n\t"
+; 2524 :         "sbbl\t12(%2), %%ecx\n\t"
+; 2525 :         "movl\t%%ecx, 12(%3)\n\t"
+; 2526 :         "movl\t16(%1), %%ecx\n\t"
+; 2527 :         "sbbl\t16(%2), %%ecx\n\t"
+; 2528 :         "movl\t%%ecx, 16(%3)\n\t"
+; 2529 :         "movl\t20(%1), %%ecx\n\t"
+; 2530 :         "sbbl\t20(%2), %%ecx\n\t"
+; 2531 :         "movl\t%%ecx, 20(%3)\n\t"
+; 2532 :         "movl\t24(%1), %%ecx\n\t"
+; 2533 :         "sbbl\t24(%2), %%ecx\n\t"
+; 2534 :         "movl\t%%ecx, 24(%3)\n\t"
+; 2535 :         "movl\t28(%1), %%ecx\n\t"
+; 2536 :         "sbbl\t28(%2), %%ecx\n\t"
+; 2537 :         "movl\t%%ecx, 28(%3)\n\t"
+; 2538 :         "movl\t32(%1), %%ecx\n\t"
+; 2539 :         "sbbl\t32(%2), %%ecx\n\t"
+; 2540 :         "movl\t%%ecx, 32(%3)\n\t"
+; 2541 :         "movl\t36(%1), %%ecx\n\t"
+; 2542 :         "sbbl\t36(%2), %%ecx\n\t"
+; 2543 :         "movl\t%%ecx, 36(%3)\n\t"
+; 2544 :         "movl\t40(%1), %%ecx\n\t"
+; 2545 :         "sbbl\t40(%2), %%ecx\n\t"
+; 2546 :         "movl\t%%ecx, 40(%3)\n\t"
+; 2547 :         "movl\t44(%1), %%ecx\n\t"
+; 2548 :         "sbbl\t44(%2), %%ecx\n\t"
+; 2549 :         "movl\t%%ecx, 44(%3)\n\t"
+; 2550 :         "movl\t48(%1), %%ecx\n\t"
+; 2551 :         "sbbl\t48(%2), %%ecx\n\t"
+; 2552 :         "movl\t%%ecx, 48(%3)\n\t"
+; 2553 :         "movl\t52(%1), %%ecx\n\t"
+; 2554 :         "sbbl\t52(%2), %%ecx\n\t"
+; 2555 :         "movl\t%%ecx, 52(%3)\n\t"
+; 2556 :         "movl\t56(%1), %%ecx\n\t"
+; 2557 :         "sbbl\t56(%2), %%ecx\n\t"
+; 2558 :         "movl\t%%ecx, 56(%3)\n\t"
+; 2559 :         "movl\t60(%1), %%ecx\n\t"
+; 2560 :         "sbbl\t60(%2), %%ecx\n\t"
+; 2561 :         "movl\t%%ecx, 60(%3)\n\t"
+; 2562 :         "setc\t%0"
+; 2563 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 2564 :         :
+; 2565 :         : "cc", "memory", "%ecx"
+; 2566 : );
 ; 2567 : #elif defined(_M_IX64)
-; 2568 :         __asm__ volatile (
-; 2569 :             "addb\t$-1, %0\n\t"
-; 2570 :             "movq\t(%1), %%rcx\n\t"
-; 2571 :             "sbbq\t(%2), %%rcx\n\t"
-; 2572 :             "movq\t%%rcx, (%3)\n\t"
-; 2573 :             "movq\t8(%1), %%rcx\n\t"
-; 2574 :             "sbbq\t8(%2), %%rcx\n\t"
-; 2575 :             "movq\t%%rcx, 8(%3)\n\t"
-; 2576 :             "movq\t16(%1), %%rcx\n\t"
-; 2577 :             "sbbq\t16(%2), %%rcx\n\t"
-; 2578 :             "movq\t%%rcx, 16(%3)\n\t"
-; 2579 :             "movq\t24(%1), %%rcx\n\t"
-; 2580 :             "sbbq\t24(%2), %%rcx\n\t"
-; 2581 :             "movq\t%%rcx, 24(%3)\n\t"
-; 2582 :             "movq\t32(%1), %%rcx\n\t"
-; 2583 :             "sbbq\t32(%2), %%rcx\n\t"
-; 2584 :             "movq\t%%rcx, 32(%3)\n\t"
-; 2585 :             "movq\t40(%1), %%rcx\n\t"
-; 2586 :             "sbbq\t40(%2), %%rcx\n\t"
-; 2587 :             "movq\t%%rcx, 40(%3)\n\t"
-; 2588 :             "movq\t48(%1), %%rcx\n\t"
-; 2589 :             "sbbq\t48(%2), %%rcx\n\t"
-; 2590 :             "movq\t%%rcx, 48(%3)\n\t"
-; 2591 :             "movq\t56(%1), %%rcx\n\t"
-; 2592 :             "sbbq\t56(%2), %%rcx\n\t"
-; 2593 :             "movq\t%%rcx, 56(%3)\n\t"
-; 2594 :             "movq\t64(%1), %%rcx\n\t"
-; 2595 :             "sbbq\t64(%2), %%rcx\n\t"
-; 2596 :             "movq\t%%rcx, 64(%3)\n\t"
-; 2597 :             "movq\t72(%1), %%rcx\n\t"
-; 2598 :             "sbbq\t72(%2), %%rcx\n\t"
-; 2599 :             "movq\t%%rcx, 72(%3)\n\t"
-; 2600 :             "movq\t80(%1), %%rcx\n\t"
-; 2601 :             "sbbq\t80(%2), %%rcx\n\t"
-; 2602 :             "movq\t%%rcx, 80(%3)\n\t"
-; 2603 :             "movq\t88(%1), %%rcx\n\t"
-; 2604 :             "sbbq\t88(%2), %%rcx\n\t"
-; 2605 :             "movq\t%%rcx, 88(%3)\n\t"
-; 2606 :             "movq\t96(%1), %%rcx\n\t"
-; 2607 :             "sbbq\t96(%2), %%rcx\n\t"
-; 2608 :             "movq\t%%rcx, 96(%3)\n\t"
-; 2609 :             "movq\t104(%1), %%rcx\n\t"
-; 2610 :             "sbbq\t104(%2), %%rcx\n\t"
-; 2611 :             "movq\t%%rcx, 104(%3)\n\t"
-; 2612 :             "movq\t112(%1), %%rcx\n\t"
-; 2613 :             "sbbq\t112(%2), %%rcx\n\t"
-; 2614 :             "movq\t%%rcx, 112(%3)\n\t"
-; 2615 :             "movq\t120(%1), %%rcx\n\t"
-; 2616 :             "sbbq\t120(%2), %%rcx\n\t"
-; 2617 :             "movq\t%%rcx, 120(%3)\n\t"
-; 2618 :             "setc\t%0"
-; 2619 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 2620 :             :
-; 2621 :             : "cc", "memory", "%rcx"
-; 2622 :             );
+; 2568 :     __asm__ volatile (
+; 2569 :         "addb\t$-1, %0\n\t"
+; 2570 :         "movq\t(%1), %%rcx\n\t"
+; 2571 :         "sbbq\t(%2), %%rcx\n\t"
+; 2572 :         "movq\t%%rcx, (%3)\n\t"
+; 2573 :         "movq\t8(%1), %%rcx\n\t"
+; 2574 :         "sbbq\t8(%2), %%rcx\n\t"
+; 2575 :         "movq\t%%rcx, 8(%3)\n\t"
+; 2576 :         "movq\t16(%1), %%rcx\n\t"
+; 2577 :         "sbbq\t16(%2), %%rcx\n\t"
+; 2578 :         "movq\t%%rcx, 16(%3)\n\t"
+; 2579 :         "movq\t24(%1), %%rcx\n\t"
+; 2580 :         "sbbq\t24(%2), %%rcx\n\t"
+; 2581 :         "movq\t%%rcx, 24(%3)\n\t"
+; 2582 :         "movq\t32(%1), %%rcx\n\t"
+; 2583 :         "sbbq\t32(%2), %%rcx\n\t"
+; 2584 :         "movq\t%%rcx, 32(%3)\n\t"
+; 2585 :         "movq\t40(%1), %%rcx\n\t"
+; 2586 :         "sbbq\t40(%2), %%rcx\n\t"
+; 2587 :         "movq\t%%rcx, 40(%3)\n\t"
+; 2588 :         "movq\t48(%1), %%rcx\n\t"
+; 2589 :         "sbbq\t48(%2), %%rcx\n\t"
+; 2590 :         "movq\t%%rcx, 48(%3)\n\t"
+; 2591 :         "movq\t56(%1), %%rcx\n\t"
+; 2592 :         "sbbq\t56(%2), %%rcx\n\t"
+; 2593 :         "movq\t%%rcx, 56(%3)\n\t"
+; 2594 :         "movq\t64(%1), %%rcx\n\t"
+; 2595 :         "sbbq\t64(%2), %%rcx\n\t"
+; 2596 :         "movq\t%%rcx, 64(%3)\n\t"
+; 2597 :         "movq\t72(%1), %%rcx\n\t"
+; 2598 :         "sbbq\t72(%2), %%rcx\n\t"
+; 2599 :         "movq\t%%rcx, 72(%3)\n\t"
+; 2600 :         "movq\t80(%1), %%rcx\n\t"
+; 2601 :         "sbbq\t80(%2), %%rcx\n\t"
+; 2602 :         "movq\t%%rcx, 80(%3)\n\t"
+; 2603 :         "movq\t88(%1), %%rcx\n\t"
+; 2604 :         "sbbq\t88(%2), %%rcx\n\t"
+; 2605 :         "movq\t%%rcx, 88(%3)\n\t"
+; 2606 :         "movq\t96(%1), %%rcx\n\t"
+; 2607 :         "sbbq\t96(%2), %%rcx\n\t"
+; 2608 :         "movq\t%%rcx, 96(%3)\n\t"
+; 2609 :         "movq\t104(%1), %%rcx\n\t"
+; 2610 :         "sbbq\t104(%2), %%rcx\n\t"
+; 2611 :         "movq\t%%rcx, 104(%3)\n\t"
+; 2612 :         "movq\t112(%1), %%rcx\n\t"
+; 2613 :         "sbbq\t112(%2), %%rcx\n\t"
+; 2614 :         "movq\t%%rcx, 112(%3)\n\t"
+; 2615 :         "movq\t120(%1), %%rcx\n\t"
+; 2616 :         "sbbq\t120(%2), %%rcx\n\t"
+; 2617 :         "movq\t%%rcx, 120(%3)\n\t"
+; 2618 :         "setc\t%0"
+; 2619 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 2620 :         :
+; 2621 :         : "cc", "memory", "%rcx"
+; 2622 : );
 ; 2623 : #else
 ; 2624 : #error unknown platform
 ; 2625 : #endif
 ; 2626 : #else
 ; 2627 : #error unknown compiler
 ; 2628 : #endif
-; 2629 :         return (c);
+; 2629 :     return (c);
 
 	movzx	eax, BYTE PTR c$[rbp]
 
-; 2630 :     }
+; 2630 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -2350,7 +2350,7 @@ yp$ = 240
 zp$ = 248
 _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 
-; 804  :     {
+; 804  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -2369,7 +2369,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	__CheckForDebuggerJustMyCode
 
 ; 805  : #ifdef _MSC_VER
-; 806  :         c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
+; 806  :     c = _SUBTRUCT_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2389,7 +2389,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 807  :         c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
+; 807  :     c = _SUBTRUCT_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -2409,7 +2409,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 808  :         c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
+; 808  :     c = _SUBTRUCT_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	eax, 8
 	imul	rax, rax, 2
@@ -2429,7 +2429,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 809  :         c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
+; 809  :     c = _SUBTRUCT_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	eax, 8
 	imul	rax, rax, 3
@@ -2449,7 +2449,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 810  :         c = _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
+; 810  :     c = _SUBTRUCT_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	eax, 8
 	imul	rax, rax, 4
@@ -2469,7 +2469,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 811  :         c = _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
+; 811  :     c = _SUBTRUCT_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	eax, 8
 	imul	rax, rax, 5
@@ -2489,7 +2489,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 812  :         c = _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
+; 812  :     c = _SUBTRUCT_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	eax, 8
 	imul	rax, rax, 6
@@ -2509,7 +2509,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 813  :         c = _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
+; 813  :     c = _SUBTRUCT_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	eax, 8
 	imul	rax, rax, 7
@@ -2529,7 +2529,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 814  :         c = _SUBTRUCT_UNIT(c, xp[8], yp[8], &zp[8]);
+; 814  :     c = _SUBTRUCT_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	eax, 8
 	imul	rax, rax, 8
@@ -2549,7 +2549,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 815  :         c = _SUBTRUCT_UNIT(c, xp[9], yp[9], &zp[9]);
+; 815  :     c = _SUBTRUCT_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	eax, 8
 	imul	rax, rax, 9
@@ -2569,7 +2569,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 816  :         c = _SUBTRUCT_UNIT(c, xp[10], yp[10], &zp[10]);
+; 816  :     c = _SUBTRUCT_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	eax, 8
 	imul	rax, rax, 10
@@ -2589,7 +2589,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 817  :         c = _SUBTRUCT_UNIT(c, xp[11], yp[11], &zp[11]);
+; 817  :     c = _SUBTRUCT_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	eax, 8
 	imul	rax, rax, 11
@@ -2609,7 +2609,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 818  :         c = _SUBTRUCT_UNIT(c, xp[12], yp[12], &zp[12]);
+; 818  :     c = _SUBTRUCT_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	eax, 8
 	imul	rax, rax, 12
@@ -2629,7 +2629,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 819  :         c = _SUBTRUCT_UNIT(c, xp[13], yp[13], &zp[13]);
+; 819  :     c = _SUBTRUCT_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	eax, 8
 	imul	rax, rax, 13
@@ -2649,7 +2649,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 820  :         c = _SUBTRUCT_UNIT(c, xp[14], yp[14], &zp[14]);
+; 820  :     c = _SUBTRUCT_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	eax, 8
 	imul	rax, rax, 14
@@ -2669,7 +2669,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 821  :         c = _SUBTRUCT_UNIT(c, xp[15], yp[15], &zp[15]);
+; 821  :     c = _SUBTRUCT_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	eax, 8
 	imul	rax, rax, 15
@@ -2689,7 +2689,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 822  :         c = _SUBTRUCT_UNIT(c, xp[16], yp[16], &zp[16]);
+; 822  :     c = _SUBTRUCT_UNIT(c, xp[16], yp[16], &zp[16]);
 
 	mov	eax, 8
 	imul	rax, rax, 16
@@ -2709,7 +2709,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 823  :         c = _SUBTRUCT_UNIT(c, xp[17], yp[17], &zp[17]);
+; 823  :     c = _SUBTRUCT_UNIT(c, xp[17], yp[17], &zp[17]);
 
 	mov	eax, 8
 	imul	rax, rax, 17
@@ -2729,7 +2729,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 824  :         c = _SUBTRUCT_UNIT(c, xp[18], yp[18], &zp[18]);
+; 824  :     c = _SUBTRUCT_UNIT(c, xp[18], yp[18], &zp[18]);
 
 	mov	eax, 8
 	imul	rax, rax, 18
@@ -2749,7 +2749,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 825  :         c = _SUBTRUCT_UNIT(c, xp[19], yp[19], &zp[19]);
+; 825  :     c = _SUBTRUCT_UNIT(c, xp[19], yp[19], &zp[19]);
 
 	mov	eax, 8
 	imul	rax, rax, 19
@@ -2769,7 +2769,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 826  :         c = _SUBTRUCT_UNIT(c, xp[20], yp[20], &zp[20]);
+; 826  :     c = _SUBTRUCT_UNIT(c, xp[20], yp[20], &zp[20]);
 
 	mov	eax, 8
 	imul	rax, rax, 20
@@ -2789,7 +2789,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 827  :         c = _SUBTRUCT_UNIT(c, xp[21], yp[21], &zp[21]);
+; 827  :     c = _SUBTRUCT_UNIT(c, xp[21], yp[21], &zp[21]);
 
 	mov	eax, 8
 	imul	rax, rax, 21
@@ -2809,7 +2809,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 828  :         c = _SUBTRUCT_UNIT(c, xp[22], yp[22], &zp[22]);
+; 828  :     c = _SUBTRUCT_UNIT(c, xp[22], yp[22], &zp[22]);
 
 	mov	eax, 8
 	imul	rax, rax, 22
@@ -2829,7 +2829,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 829  :         c = _SUBTRUCT_UNIT(c, xp[23], yp[23], &zp[23]);
+; 829  :     c = _SUBTRUCT_UNIT(c, xp[23], yp[23], &zp[23]);
 
 	mov	eax, 8
 	imul	rax, rax, 23
@@ -2849,7 +2849,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 830  :         c = _SUBTRUCT_UNIT(c, xp[24], yp[24], &zp[24]);
+; 830  :     c = _SUBTRUCT_UNIT(c, xp[24], yp[24], &zp[24]);
 
 	mov	eax, 8
 	imul	rax, rax, 24
@@ -2869,7 +2869,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 831  :         c = _SUBTRUCT_UNIT(c, xp[25], yp[25], &zp[25]);
+; 831  :     c = _SUBTRUCT_UNIT(c, xp[25], yp[25], &zp[25]);
 
 	mov	eax, 8
 	imul	rax, rax, 25
@@ -2889,7 +2889,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 832  :         c = _SUBTRUCT_UNIT(c, xp[26], yp[26], &zp[26]);
+; 832  :     c = _SUBTRUCT_UNIT(c, xp[26], yp[26], &zp[26]);
 
 	mov	eax, 8
 	imul	rax, rax, 26
@@ -2909,7 +2909,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 833  :         c = _SUBTRUCT_UNIT(c, xp[27], yp[27], &zp[27]);
+; 833  :     c = _SUBTRUCT_UNIT(c, xp[27], yp[27], &zp[27]);
 
 	mov	eax, 8
 	imul	rax, rax, 27
@@ -2929,7 +2929,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 834  :         c = _SUBTRUCT_UNIT(c, xp[28], yp[28], &zp[28]);
+; 834  :     c = _SUBTRUCT_UNIT(c, xp[28], yp[28], &zp[28]);
 
 	mov	eax, 8
 	imul	rax, rax, 28
@@ -2949,7 +2949,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 835  :         c = _SUBTRUCT_UNIT(c, xp[29], yp[29], &zp[29]);
+; 835  :     c = _SUBTRUCT_UNIT(c, xp[29], yp[29], &zp[29]);
 
 	mov	eax, 8
 	imul	rax, rax, 29
@@ -2969,7 +2969,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 836  :         c = _SUBTRUCT_UNIT(c, xp[30], yp[30], &zp[30]);
+; 836  :     c = _SUBTRUCT_UNIT(c, xp[30], yp[30], &zp[30]);
 
 	mov	eax, 8
 	imul	rax, rax, 30
@@ -2989,7 +2989,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 837  :         c = _SUBTRUCT_UNIT(c, xp[31], yp[31], &zp[31]);
+; 837  :     c = _SUBTRUCT_UNIT(c, xp[31], yp[31], &zp[31]);
 
 	mov	eax, 8
 	imul	rax, rax, 31
@@ -3011,224 +3011,224 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 
 ; 838  : #elif defined(__GNUC__)
 ; 839  : #ifdef _M_IX86
-; 840  :         __asm__ volatile (
-; 841  :             "addb\t$-1, %0\n\t"
-; 842  :             "movl\t(%1), %%ecx\n\t"
-; 843  :             "sbbl\t(%2), %%ecx\n\t"
-; 844  :             "movl\t%%ecx, (%3)\n\t"
-; 845  :             "movl\t4(%1), %%ecx\n\t"
-; 846  :             "sbbl\t4(%2), %%ecx\n\t"
-; 847  :             "movl\t%%ecx, 4(%3)\n\t"
-; 848  :             "movl\t8(%1), %%ecx\n\t"
-; 849  :             "sbbl\t8(%2), %%ecx\n\t"
-; 850  :             "movl\t%%ecx, 8(%3)\n\t"
-; 851  :             "movl\t12(%1), %%ecx\n\t"
-; 852  :             "sbbl\t12(%2), %%ecx\n\t"
-; 853  :             "movl\t%%ecx, 12(%3)\n\t"
-; 854  :             "movl\t16(%1), %%ecx\n\t"
-; 855  :             "sbbl\t16(%2), %%ecx\n\t"
-; 856  :             "movl\t%%ecx, 16(%3)\n\t"
-; 857  :             "movl\t20(%1), %%ecx\n\t"
-; 858  :             "sbbl\t20(%2), %%ecx\n\t"
-; 859  :             "movl\t%%ecx, 20(%3)\n\t"
-; 860  :             "movl\t24(%1), %%ecx\n\t"
-; 861  :             "sbbl\t24(%2), %%ecx\n\t"
-; 862  :             "movl\t%%ecx, 24(%3)\n\t"
-; 863  :             "movl\t28(%1), %%ecx\n\t"
-; 864  :             "sbbl\t28(%2), %%ecx\n\t"
-; 865  :             "movl\t%%ecx, 28(%3)\n\t"
-; 866  :             "movl\t32(%1), %%ecx\n\t"
-; 867  :             "sbbl\t32(%2), %%ecx\n\t"
-; 868  :             "movl\t%%ecx, 32(%3)\n\t"
-; 869  :             "movl\t36(%1), %%ecx\n\t"
-; 870  :             "sbbl\t36(%2), %%ecx\n\t"
-; 871  :             "movl\t%%ecx, 36(%3)\n\t"
-; 872  :             "movl\t40(%1), %%ecx\n\t"
-; 873  :             "sbbl\t40(%2), %%ecx\n\t"
-; 874  :             "movl\t%%ecx, 40(%3)\n\t"
-; 875  :             "movl\t44(%1), %%ecx\n\t"
-; 876  :             "sbbl\t44(%2), %%ecx\n\t"
-; 877  :             "movl\t%%ecx, 44(%3)\n\t"
-; 878  :             "movl\t48(%1), %%ecx\n\t"
-; 879  :             "sbbl\t48(%2), %%ecx\n\t"
-; 880  :             "movl\t%%ecx, 48(%3)\n\t"
-; 881  :             "movl\t52(%1), %%ecx\n\t"
-; 882  :             "sbbl\t52(%2), %%ecx\n\t"
-; 883  :             "movl\t%%ecx, 52(%3)\n\t"
-; 884  :             "movl\t56(%1), %%ecx\n\t"
-; 885  :             "sbbl\t56(%2), %%ecx\n\t"
-; 886  :             "movl\t%%ecx, 56(%3)\n\t"
-; 887  :             "movl\t60(%1), %%ecx\n\t"
-; 888  :             "sbbl\t60(%2), %%ecx\n\t"
-; 889  :             "movl\t%%ecx, 60(%3)\n\t"
-; 890  :             "movl\t64(%1), %%ecx\n\t"
-; 891  :             "sbbl\t64(%2), %%ecx\n\t"
-; 892  :             "movl\t%%ecx, 64(%3)\n\t"
-; 893  :             "movl\t68(%1), %%ecx\n\t"
-; 894  :             "sbbl\t68(%2), %%ecx\n\t"
-; 895  :             "movl\t%%ecx, 68(%3)\n\t"
-; 896  :             "movl\t72(%1), %%ecx\n\t"
-; 897  :             "sbbl\t72(%2), %%ecx\n\t"
-; 898  :             "movl\t%%ecx, 72(%3)\n\t"
-; 899  :             "movl\t76(%1), %%ecx\n\t"
-; 900  :             "sbbl\t76(%2), %%ecx\n\t"
-; 901  :             "movl\t%%ecx, 76(%3)\n\t"
-; 902  :             "movl\t80(%1), %%ecx\n\t"
-; 903  :             "sbbl\t80(%2), %%ecx\n\t"
-; 904  :             "movl\t%%ecx, 80(%3)\n\t"
-; 905  :             "movl\t84(%1), %%ecx\n\t"
-; 906  :             "sbbl\t84(%2), %%ecx\n\t"
-; 907  :             "movl\t%%ecx, 84(%3)\n\t"
-; 908  :             "movl\t88(%1), %%ecx\n\t"
-; 909  :             "sbbl\t88(%2), %%ecx\n\t"
-; 910  :             "movl\t%%ecx, 88(%3)\n\t"
-; 911  :             "movl\t92(%1), %%ecx\n\t"
-; 912  :             "sbbl\t92(%2), %%ecx\n\t"
-; 913  :             "movl\t%%ecx, 92(%3)\n\t"
-; 914  :             "movl\t96(%1), %%ecx\n\t"
-; 915  :             "sbbl\t96(%2), %%ecx\n\t"
-; 916  :             "movl\t%%ecx, 96(%3)\n\t"
-; 917  :             "movl\t100(%1), %%ecx\n\t"
-; 918  :             "sbbl\t100(%2), %%ecx\n\t"
-; 919  :             "movl\t%%ecx, 100(%3)\n\t"
-; 920  :             "movl\t104(%1), %%ecx\n\t"
-; 921  :             "sbbl\t104(%2), %%ecx\n\t"
-; 922  :             "movl\t%%ecx, 104(%3)\n\t"
-; 923  :             "movl\t108(%1), %%ecx\n\t"
-; 924  :             "sbbl\t108(%2), %%ecx\n\t"
-; 925  :             "movl\t%%ecx, 108(%3)\n\t"
-; 926  :             "movl\t112(%1), %%ecx\n\t"
-; 927  :             "sbbl\t112(%2), %%ecx\n\t"
-; 928  :             "movl\t%%ecx, 112(%3)\n\t"
-; 929  :             "movl\t116(%1), %%ecx\n\t"
-; 930  :             "sbbl\t116(%2), %%ecx\n\t"
-; 931  :             "movl\t%%ecx, 116(%3)\n\t"
-; 932  :             "movl\t120(%1), %%ecx\n\t"
-; 933  :             "sbbl\t120(%2), %%ecx\n\t"
-; 934  :             "movl\t%%ecx, 120(%3)\n\t"
-; 935  :             "movl\t124(%1), %%ecx\n\t"
-; 936  :             "sbbl\t124(%2), %%ecx\n\t"
-; 937  :             "movl\t%%ecx, 124(%3)\n\t"
-; 938  :             "setc\t%0"
-; 939  :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 940  :             :
-; 941  :             : "cc", "memory", "%ecx"
-; 942  :             );
+; 840  :     __asm__ volatile (
+; 841  :         "addb\t$-1, %0\n\t"
+; 842  :         "movl\t(%1), %%ecx\n\t"
+; 843  :         "sbbl\t(%2), %%ecx\n\t"
+; 844  :         "movl\t%%ecx, (%3)\n\t"
+; 845  :         "movl\t4(%1), %%ecx\n\t"
+; 846  :         "sbbl\t4(%2), %%ecx\n\t"
+; 847  :         "movl\t%%ecx, 4(%3)\n\t"
+; 848  :         "movl\t8(%1), %%ecx\n\t"
+; 849  :         "sbbl\t8(%2), %%ecx\n\t"
+; 850  :         "movl\t%%ecx, 8(%3)\n\t"
+; 851  :         "movl\t12(%1), %%ecx\n\t"
+; 852  :         "sbbl\t12(%2), %%ecx\n\t"
+; 853  :         "movl\t%%ecx, 12(%3)\n\t"
+; 854  :         "movl\t16(%1), %%ecx\n\t"
+; 855  :         "sbbl\t16(%2), %%ecx\n\t"
+; 856  :         "movl\t%%ecx, 16(%3)\n\t"
+; 857  :         "movl\t20(%1), %%ecx\n\t"
+; 858  :         "sbbl\t20(%2), %%ecx\n\t"
+; 859  :         "movl\t%%ecx, 20(%3)\n\t"
+; 860  :         "movl\t24(%1), %%ecx\n\t"
+; 861  :         "sbbl\t24(%2), %%ecx\n\t"
+; 862  :         "movl\t%%ecx, 24(%3)\n\t"
+; 863  :         "movl\t28(%1), %%ecx\n\t"
+; 864  :         "sbbl\t28(%2), %%ecx\n\t"
+; 865  :         "movl\t%%ecx, 28(%3)\n\t"
+; 866  :         "movl\t32(%1), %%ecx\n\t"
+; 867  :         "sbbl\t32(%2), %%ecx\n\t"
+; 868  :         "movl\t%%ecx, 32(%3)\n\t"
+; 869  :         "movl\t36(%1), %%ecx\n\t"
+; 870  :         "sbbl\t36(%2), %%ecx\n\t"
+; 871  :         "movl\t%%ecx, 36(%3)\n\t"
+; 872  :         "movl\t40(%1), %%ecx\n\t"
+; 873  :         "sbbl\t40(%2), %%ecx\n\t"
+; 874  :         "movl\t%%ecx, 40(%3)\n\t"
+; 875  :         "movl\t44(%1), %%ecx\n\t"
+; 876  :         "sbbl\t44(%2), %%ecx\n\t"
+; 877  :         "movl\t%%ecx, 44(%3)\n\t"
+; 878  :         "movl\t48(%1), %%ecx\n\t"
+; 879  :         "sbbl\t48(%2), %%ecx\n\t"
+; 880  :         "movl\t%%ecx, 48(%3)\n\t"
+; 881  :         "movl\t52(%1), %%ecx\n\t"
+; 882  :         "sbbl\t52(%2), %%ecx\n\t"
+; 883  :         "movl\t%%ecx, 52(%3)\n\t"
+; 884  :         "movl\t56(%1), %%ecx\n\t"
+; 885  :         "sbbl\t56(%2), %%ecx\n\t"
+; 886  :         "movl\t%%ecx, 56(%3)\n\t"
+; 887  :         "movl\t60(%1), %%ecx\n\t"
+; 888  :         "sbbl\t60(%2), %%ecx\n\t"
+; 889  :         "movl\t%%ecx, 60(%3)\n\t"
+; 890  :         "movl\t64(%1), %%ecx\n\t"
+; 891  :         "sbbl\t64(%2), %%ecx\n\t"
+; 892  :         "movl\t%%ecx, 64(%3)\n\t"
+; 893  :         "movl\t68(%1), %%ecx\n\t"
+; 894  :         "sbbl\t68(%2), %%ecx\n\t"
+; 895  :         "movl\t%%ecx, 68(%3)\n\t"
+; 896  :         "movl\t72(%1), %%ecx\n\t"
+; 897  :         "sbbl\t72(%2), %%ecx\n\t"
+; 898  :         "movl\t%%ecx, 72(%3)\n\t"
+; 899  :         "movl\t76(%1), %%ecx\n\t"
+; 900  :         "sbbl\t76(%2), %%ecx\n\t"
+; 901  :         "movl\t%%ecx, 76(%3)\n\t"
+; 902  :         "movl\t80(%1), %%ecx\n\t"
+; 903  :         "sbbl\t80(%2), %%ecx\n\t"
+; 904  :         "movl\t%%ecx, 80(%3)\n\t"
+; 905  :         "movl\t84(%1), %%ecx\n\t"
+; 906  :         "sbbl\t84(%2), %%ecx\n\t"
+; 907  :         "movl\t%%ecx, 84(%3)\n\t"
+; 908  :         "movl\t88(%1), %%ecx\n\t"
+; 909  :         "sbbl\t88(%2), %%ecx\n\t"
+; 910  :         "movl\t%%ecx, 88(%3)\n\t"
+; 911  :         "movl\t92(%1), %%ecx\n\t"
+; 912  :         "sbbl\t92(%2), %%ecx\n\t"
+; 913  :         "movl\t%%ecx, 92(%3)\n\t"
+; 914  :         "movl\t96(%1), %%ecx\n\t"
+; 915  :         "sbbl\t96(%2), %%ecx\n\t"
+; 916  :         "movl\t%%ecx, 96(%3)\n\t"
+; 917  :         "movl\t100(%1), %%ecx\n\t"
+; 918  :         "sbbl\t100(%2), %%ecx\n\t"
+; 919  :         "movl\t%%ecx, 100(%3)\n\t"
+; 920  :         "movl\t104(%1), %%ecx\n\t"
+; 921  :         "sbbl\t104(%2), %%ecx\n\t"
+; 922  :         "movl\t%%ecx, 104(%3)\n\t"
+; 923  :         "movl\t108(%1), %%ecx\n\t"
+; 924  :         "sbbl\t108(%2), %%ecx\n\t"
+; 925  :         "movl\t%%ecx, 108(%3)\n\t"
+; 926  :         "movl\t112(%1), %%ecx\n\t"
+; 927  :         "sbbl\t112(%2), %%ecx\n\t"
+; 928  :         "movl\t%%ecx, 112(%3)\n\t"
+; 929  :         "movl\t116(%1), %%ecx\n\t"
+; 930  :         "sbbl\t116(%2), %%ecx\n\t"
+; 931  :         "movl\t%%ecx, 116(%3)\n\t"
+; 932  :         "movl\t120(%1), %%ecx\n\t"
+; 933  :         "sbbl\t120(%2), %%ecx\n\t"
+; 934  :         "movl\t%%ecx, 120(%3)\n\t"
+; 935  :         "movl\t124(%1), %%ecx\n\t"
+; 936  :         "sbbl\t124(%2), %%ecx\n\t"
+; 937  :         "movl\t%%ecx, 124(%3)\n\t"
+; 938  :         "setc\t%0"
+; 939  :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 940  :         :
+; 941  :         : "cc", "memory", "%ecx"
+; 942  : );
 ; 943  : #elif defined(_M_IX64)
-; 944  :         __asm__ volatile (
-; 945  :             "addb\t$-1, %0\n\t"
-; 946  :             "movq\t(%1), %%rcx\n\t"
-; 947  :             "sbbq\t(%2), %%rcx\n\t"
-; 948  :             "movq\t%%rcx, (%3)\n\t"
-; 949  :             "movq\t8(%1), %%rcx\n\t"
-; 950  :             "sbbq\t8(%2), %%rcx\n\t"
-; 951  :             "movq\t%%rcx, 8(%3)\n\t"
-; 952  :             "movq\t16(%1), %%rcx\n\t"
-; 953  :             "sbbq\t16(%2), %%rcx\n\t"
-; 954  :             "movq\t%%rcx, 16(%3)\n\t"
-; 955  :             "movq\t24(%1), %%rcx\n\t"
-; 956  :             "sbbq\t24(%2), %%rcx\n\t"
-; 957  :             "movq\t%%rcx, 24(%3)\n\t"
-; 958  :             "movq\t32(%1), %%rcx\n\t"
-; 959  :             "sbbq\t32(%2), %%rcx\n\t"
-; 960  :             "movq\t%%rcx, 32(%3)\n\t"
-; 961  :             "movq\t40(%1), %%rcx\n\t"
-; 962  :             "sbbq\t40(%2), %%rcx\n\t"
-; 963  :             "movq\t%%rcx, 40(%3)\n\t"
-; 964  :             "movq\t48(%1), %%rcx\n\t"
-; 965  :             "sbbq\t48(%2), %%rcx\n\t"
-; 966  :             "movq\t%%rcx, 48(%3)\n\t"
-; 967  :             "movq\t56(%1), %%rcx\n\t"
-; 968  :             "sbbq\t56(%2), %%rcx\n\t"
-; 969  :             "movq\t%%rcx, 56(%3)\n\t"
-; 970  :             "movq\t64(%1), %%rcx\n\t"
-; 971  :             "sbbq\t64(%2), %%rcx\n\t"
-; 972  :             "movq\t%%rcx, 64(%3)\n\t"
-; 973  :             "movq\t72(%1), %%rcx\n\t"
-; 974  :             "sbbq\t72(%2), %%rcx\n\t"
-; 975  :             "movq\t%%rcx, 72(%3)\n\t"
-; 976  :             "movq\t80(%1), %%rcx\n\t"
-; 977  :             "sbbq\t80(%2), %%rcx\n\t"
-; 978  :             "movq\t%%rcx, 80(%3)\n\t"
-; 979  :             "movq\t88(%1), %%rcx\n\t"
-; 980  :             "sbbq\t88(%2), %%rcx\n\t"
-; 981  :             "movq\t%%rcx, 88(%3)\n\t"
-; 982  :             "movq\t96(%1), %%rcx\n\t"
-; 983  :             "sbbq\t96(%2), %%rcx\n\t"
-; 984  :             "movq\t%%rcx, 96(%3)\n\t"
-; 985  :             "movq\t104(%1), %%rcx\n\t"
-; 986  :             "sbbq\t104(%2), %%rcx\n\t"
-; 987  :             "movq\t%%rcx, 104(%3)\n\t"
-; 988  :             "movq\t112(%1), %%rcx\n\t"
-; 989  :             "sbbq\t112(%2), %%rcx\n\t"
-; 990  :             "movq\t%%rcx, 112(%3)\n\t"
-; 991  :             "movq\t120(%1), %%rcx\n\t"
-; 992  :             "sbbq\t120(%2), %%rcx\n\t"
-; 993  :             "movq\t%%rcx, 120(%3)\n\t"
-; 994  :             "movq\t128(%1), %%rcx\n\t"
-; 995  :             "sbbq\t128(%2), %%rcx\n\t"
-; 996  :             "movq\t%%rcx, 128(%3)\n\t"
-; 997  :             "movq\t136(%1), %%rcx\n\t"
-; 998  :             "sbbq\t136(%2), %%rcx\n\t"
-; 999  :             "movq\t%%rcx, 136(%3)\n\t"
-; 1000 :             "movq\t144(%1), %%rcx\n\t"
-; 1001 :             "sbbq\t144(%2), %%rcx\n\t"
-; 1002 :             "movq\t%%rcx, 144(%3)\n\t"
-; 1003 :             "movq\t152(%1), %%rcx\n\t"
-; 1004 :             "sbbq\t152(%2), %%rcx\n\t"
-; 1005 :             "movq\t%%rcx, 152(%3)\n\t"
-; 1006 :             "movq\t160(%1), %%rcx\n\t"
-; 1007 :             "sbbq\t160(%2), %%rcx\n\t"
-; 1008 :             "movq\t%%rcx, 160(%3)\n\t"
-; 1009 :             "movq\t168(%1), %%rcx\n\t"
-; 1010 :             "sbbq\t168(%2), %%rcx\n\t"
-; 1011 :             "movq\t%%rcx, 168(%3)\n\t"
-; 1012 :             "movq\t176(%1), %%rcx\n\t"
-; 1013 :             "sbbq\t176(%2), %%rcx\n\t"
-; 1014 :             "movq\t%%rcx, 176(%3)\n\t"
-; 1015 :             "movq\t184(%1), %%rcx\n\t"
-; 1016 :             "sbbq\t184(%2), %%rcx\n\t"
-; 1017 :             "movq\t%%rcx, 184(%3)\n\t"
-; 1018 :             "movq\t192(%1), %%rcx\n\t"
-; 1019 :             "sbbq\t192(%2), %%rcx\n\t"
-; 1020 :             "movq\t%%rcx, 192(%3)\n\t"
-; 1021 :             "movq\t200(%1), %%rcx\n\t"
-; 1022 :             "sbbq\t200(%2), %%rcx\n\t"
-; 1023 :             "movq\t%%rcx, 200(%3)\n\t"
-; 1024 :             "movq\t208(%1), %%rcx\n\t"
-; 1025 :             "sbbq\t208(%2), %%rcx\n\t"
-; 1026 :             "movq\t%%rcx, 208(%3)\n\t"
-; 1027 :             "movq\t216(%1), %%rcx\n\t"
-; 1028 :             "sbbq\t216(%2), %%rcx\n\t"
-; 1029 :             "movq\t%%rcx, 216(%3)\n\t"
-; 1030 :             "movq\t224(%1), %%rcx\n\t"
-; 1031 :             "sbbq\t224(%2), %%rcx\n\t"
-; 1032 :             "movq\t%%rcx, 224(%3)\n\t"
-; 1033 :             "movq\t232(%1), %%rcx\n\t"
-; 1034 :             "sbbq\t232(%2), %%rcx\n\t"
-; 1035 :             "movq\t%%rcx, 232(%3)\n\t"
-; 1036 :             "movq\t240(%1), %%rcx\n\t"
-; 1037 :             "sbbq\t240(%2), %%rcx\n\t"
-; 1038 :             "movq\t%%rcx, 240(%3)\n\t"
-; 1039 :             "movq\t248(%1), %%rcx\n\t"
-; 1040 :             "sbbq\t248(%2), %%rcx\n\t"
-; 1041 :             "movq\t%%rcx, 248(%3)\n\t"
-; 1042 :             "setc\t%0"
-; 1043 :             : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-; 1044 :             :
-; 1045 :             : "cc", "memory", "%rcx"
-; 1046 :             );
+; 944  :     __asm__ volatile (
+; 945  :         "addb\t$-1, %0\n\t"
+; 946  :         "movq\t(%1), %%rcx\n\t"
+; 947  :         "sbbq\t(%2), %%rcx\n\t"
+; 948  :         "movq\t%%rcx, (%3)\n\t"
+; 949  :         "movq\t8(%1), %%rcx\n\t"
+; 950  :         "sbbq\t8(%2), %%rcx\n\t"
+; 951  :         "movq\t%%rcx, 8(%3)\n\t"
+; 952  :         "movq\t16(%1), %%rcx\n\t"
+; 953  :         "sbbq\t16(%2), %%rcx\n\t"
+; 954  :         "movq\t%%rcx, 16(%3)\n\t"
+; 955  :         "movq\t24(%1), %%rcx\n\t"
+; 956  :         "sbbq\t24(%2), %%rcx\n\t"
+; 957  :         "movq\t%%rcx, 24(%3)\n\t"
+; 958  :         "movq\t32(%1), %%rcx\n\t"
+; 959  :         "sbbq\t32(%2), %%rcx\n\t"
+; 960  :         "movq\t%%rcx, 32(%3)\n\t"
+; 961  :         "movq\t40(%1), %%rcx\n\t"
+; 962  :         "sbbq\t40(%2), %%rcx\n\t"
+; 963  :         "movq\t%%rcx, 40(%3)\n\t"
+; 964  :         "movq\t48(%1), %%rcx\n\t"
+; 965  :         "sbbq\t48(%2), %%rcx\n\t"
+; 966  :         "movq\t%%rcx, 48(%3)\n\t"
+; 967  :         "movq\t56(%1), %%rcx\n\t"
+; 968  :         "sbbq\t56(%2), %%rcx\n\t"
+; 969  :         "movq\t%%rcx, 56(%3)\n\t"
+; 970  :         "movq\t64(%1), %%rcx\n\t"
+; 971  :         "sbbq\t64(%2), %%rcx\n\t"
+; 972  :         "movq\t%%rcx, 64(%3)\n\t"
+; 973  :         "movq\t72(%1), %%rcx\n\t"
+; 974  :         "sbbq\t72(%2), %%rcx\n\t"
+; 975  :         "movq\t%%rcx, 72(%3)\n\t"
+; 976  :         "movq\t80(%1), %%rcx\n\t"
+; 977  :         "sbbq\t80(%2), %%rcx\n\t"
+; 978  :         "movq\t%%rcx, 80(%3)\n\t"
+; 979  :         "movq\t88(%1), %%rcx\n\t"
+; 980  :         "sbbq\t88(%2), %%rcx\n\t"
+; 981  :         "movq\t%%rcx, 88(%3)\n\t"
+; 982  :         "movq\t96(%1), %%rcx\n\t"
+; 983  :         "sbbq\t96(%2), %%rcx\n\t"
+; 984  :         "movq\t%%rcx, 96(%3)\n\t"
+; 985  :         "movq\t104(%1), %%rcx\n\t"
+; 986  :         "sbbq\t104(%2), %%rcx\n\t"
+; 987  :         "movq\t%%rcx, 104(%3)\n\t"
+; 988  :         "movq\t112(%1), %%rcx\n\t"
+; 989  :         "sbbq\t112(%2), %%rcx\n\t"
+; 990  :         "movq\t%%rcx, 112(%3)\n\t"
+; 991  :         "movq\t120(%1), %%rcx\n\t"
+; 992  :         "sbbq\t120(%2), %%rcx\n\t"
+; 993  :         "movq\t%%rcx, 120(%3)\n\t"
+; 994  :         "movq\t128(%1), %%rcx\n\t"
+; 995  :         "sbbq\t128(%2), %%rcx\n\t"
+; 996  :         "movq\t%%rcx, 128(%3)\n\t"
+; 997  :         "movq\t136(%1), %%rcx\n\t"
+; 998  :         "sbbq\t136(%2), %%rcx\n\t"
+; 999  :         "movq\t%%rcx, 136(%3)\n\t"
+; 1000 :         "movq\t144(%1), %%rcx\n\t"
+; 1001 :         "sbbq\t144(%2), %%rcx\n\t"
+; 1002 :         "movq\t%%rcx, 144(%3)\n\t"
+; 1003 :         "movq\t152(%1), %%rcx\n\t"
+; 1004 :         "sbbq\t152(%2), %%rcx\n\t"
+; 1005 :         "movq\t%%rcx, 152(%3)\n\t"
+; 1006 :         "movq\t160(%1), %%rcx\n\t"
+; 1007 :         "sbbq\t160(%2), %%rcx\n\t"
+; 1008 :         "movq\t%%rcx, 160(%3)\n\t"
+; 1009 :         "movq\t168(%1), %%rcx\n\t"
+; 1010 :         "sbbq\t168(%2), %%rcx\n\t"
+; 1011 :         "movq\t%%rcx, 168(%3)\n\t"
+; 1012 :         "movq\t176(%1), %%rcx\n\t"
+; 1013 :         "sbbq\t176(%2), %%rcx\n\t"
+; 1014 :         "movq\t%%rcx, 176(%3)\n\t"
+; 1015 :         "movq\t184(%1), %%rcx\n\t"
+; 1016 :         "sbbq\t184(%2), %%rcx\n\t"
+; 1017 :         "movq\t%%rcx, 184(%3)\n\t"
+; 1018 :         "movq\t192(%1), %%rcx\n\t"
+; 1019 :         "sbbq\t192(%2), %%rcx\n\t"
+; 1020 :         "movq\t%%rcx, 192(%3)\n\t"
+; 1021 :         "movq\t200(%1), %%rcx\n\t"
+; 1022 :         "sbbq\t200(%2), %%rcx\n\t"
+; 1023 :         "movq\t%%rcx, 200(%3)\n\t"
+; 1024 :         "movq\t208(%1), %%rcx\n\t"
+; 1025 :         "sbbq\t208(%2), %%rcx\n\t"
+; 1026 :         "movq\t%%rcx, 208(%3)\n\t"
+; 1027 :         "movq\t216(%1), %%rcx\n\t"
+; 1028 :         "sbbq\t216(%2), %%rcx\n\t"
+; 1029 :         "movq\t%%rcx, 216(%3)\n\t"
+; 1030 :         "movq\t224(%1), %%rcx\n\t"
+; 1031 :         "sbbq\t224(%2), %%rcx\n\t"
+; 1032 :         "movq\t%%rcx, 224(%3)\n\t"
+; 1033 :         "movq\t232(%1), %%rcx\n\t"
+; 1034 :         "sbbq\t232(%2), %%rcx\n\t"
+; 1035 :         "movq\t%%rcx, 232(%3)\n\t"
+; 1036 :         "movq\t240(%1), %%rcx\n\t"
+; 1037 :         "sbbq\t240(%2), %%rcx\n\t"
+; 1038 :         "movq\t%%rcx, 240(%3)\n\t"
+; 1039 :         "movq\t248(%1), %%rcx\n\t"
+; 1040 :         "sbbq\t248(%2), %%rcx\n\t"
+; 1041 :         "movq\t%%rcx, 248(%3)\n\t"
+; 1042 :         "setc\t%0"
+; 1043 :         : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
+; 1044 :         :
+; 1045 :         : "cc", "memory", "%rcx"
+; 1046 : );
 ; 1047 : #else
 ; 1048 : #error unknown platform
 ; 1049 : #endif
 ; 1050 : #else
 ; 1051 : #error unknown compiler
 ; 1052 : #endif
-; 1053 :         return (c);
+; 1053 :     return (c);
 
 	movzx	eax, BYTE PTR c$[rbp]
 
-; 1054 :     }
+; 1054 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
