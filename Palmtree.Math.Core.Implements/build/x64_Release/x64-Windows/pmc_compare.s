@@ -1,10 +1,10 @@
 	.file	"pmc_compare.c"
 	.text
 	.p2align 4,,15
-	.globl	Compare_X_X
-	.def	Compare_X_X;	.scl	2;	.type	32;	.endef
-	.seh_proc	Compare_X_X
-Compare_X_X:
+	.globl	Compare_Imp
+	.def	Compare_Imp;	.scl	2;	.type	32;	.endef
+	.seh_proc	Compare_Imp
+Compare_Imp:
 	.seh_endprologue
 	leaq	0(,%r8,8), %rax
 	addq	%rax, %rcx
@@ -86,7 +86,7 @@ PMC_Compare_X_I:
 	je	.L16
 	movl	$31, %ecx
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP
@@ -161,7 +161,7 @@ PMC_Compare_X_L:
 	testq	%rdi, %rdi
 	je	.L24
 /APP
- # 858 "pmc_internal.h" 1
+ # 877 "pmc_internal.h" 1
 	bsrq %rdi, %rdx
  # 0 "" 2
 /NO_APP

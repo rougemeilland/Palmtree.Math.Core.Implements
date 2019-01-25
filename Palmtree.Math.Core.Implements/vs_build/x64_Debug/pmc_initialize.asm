@@ -43,6 +43,7 @@ EXTRN	Initialize_Compare:PROC
 EXTRN	Initialize_Equals:PROC
 EXTRN	Initialize_ToString:PROC
 EXTRN	Initialize_Parse:PROC
+EXTRN	Initialize_GreatestCommonDivisor:PROC
 EXTRN	PMC_GetStatisticsInfo:PROC
 EXTRN	PMC_From_I:PROC
 EXTRN	PMC_From_L:PROC
@@ -84,17 +85,20 @@ EXTRN	PMC_Equals_X_L:PROC
 EXTRN	PMC_Equals_X_X:PROC
 EXTRN	PMC_ToString:PROC
 EXTRN	PMC_TryParse:PROC
+EXTRN	PMC_GreatestCommonDivisor_X_I:PROC
+EXTRN	PMC_GreatestCommonDivisor_X_L:PROC
+EXTRN	PMC_GreatestCommonDivisor_X_X:PROC
 EXTRN	_RTC_CheckStackVars:PROC
 EXTRN	_RTC_InitBase:PROC
 EXTRN	_RTC_Shutdown:PROC
 EXTRN	__CheckForDebuggerJustMyCode:PROC
 _BSS	SEGMENT
-entry_points DB	0150H DUP (?)
+entry_points DB	0168H DUP (?)
 _BSS	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$PMC_Initialize DD imagerel $LN18
-	DD	imagerel $LN18+1153
+$pdata$PMC_Initialize DD imagerel $LN19
+	DD	imagerel $LN19+1215
 	DD	imagerel $unwind$PMC_Initialize
 pdata	ENDS
 ;	COMDAT rtc$TMZ
@@ -148,7 +152,7 @@ PMC_Initialize PROC					; COMDAT
 
 ; 46   : {
 
-$LN18:
+$LN19:
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
 	push	rdi
@@ -370,8 +374,21 @@ $LN15@PMC_Initia:
 	jmp	$LN1@PMC_Initia
 $LN16@PMC_Initia:
 
-; 81   : 
-; 82   :     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
+; 81   :     if (Initialize_GreatestCommonDivisor(&feature) != PMC_STATUS_OK)
+
+	lea	rcx, QWORD PTR feature$[rbp]
+	call	Initialize_GreatestCommonDivisor
+	test	eax, eax
+	je	SHORT $LN17@PMC_Initia
+
+; 82   :         return (NULL);
+
+	xor	eax, eax
+	jmp	$LN1@PMC_Initia
+$LN17@PMC_Initia:
+
+; 83   : 
+; 84   :     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
 
 	mov	eax, DWORD PTR feature$[rbp]
 	and	eax, 1
@@ -382,7 +399,7 @@ $LN16@PMC_Initia:
 	mov	eax, ecx
 	mov	DWORD PTR entry_points, eax
 
-; 83   :     entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;
+; 85   :     entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;
 
 	mov	eax, DWORD PTR feature$[rbp]
 	shr	eax, 1
@@ -395,7 +412,7 @@ $LN16@PMC_Initia:
 	mov	eax, ecx
 	mov	DWORD PTR entry_points, eax
 
-; 84   : 	entry_points.PROCESSOR_FEATURE_BMI1 = feature.PROCESSOR_FEATURE_BMI1;
+; 86   : 	entry_points.PROCESSOR_FEATURE_BMI1 = feature.PROCESSOR_FEATURE_BMI1;
 
 	mov	eax, DWORD PTR feature$[rbp]
 	shr	eax, 2
@@ -408,7 +425,7 @@ $LN16@PMC_Initia:
 	mov	eax, ecx
 	mov	DWORD PTR entry_points, eax
 
-; 85   :     entry_points.PROCESSOR_FEATURE_BMI2 = feature.PROCESSOR_FEATURE_BMI2;
+; 87   :     entry_points.PROCESSOR_FEATURE_BMI2 = feature.PROCESSOR_FEATURE_BMI2;
 
 	mov	eax, DWORD PTR feature$[rbp]
 	shr	eax, 3
@@ -421,7 +438,7 @@ $LN16@PMC_Initia:
 	mov	eax, ecx
 	mov	DWORD PTR entry_points, eax
 
-; 86   :     entry_points.PROCESSOR_FEATURE_ABM = feature.PROCESSOR_FEATURE_ABM;
+; 88   :     entry_points.PROCESSOR_FEATURE_ABM = feature.PROCESSOR_FEATURE_ABM;
 
 	mov	eax, DWORD PTR feature$[rbp]
 	shr	eax, 4
@@ -434,217 +451,232 @@ $LN16@PMC_Initia:
 	mov	eax, ecx
 	mov	DWORD PTR entry_points, eax
 
-; 87   : 	entry_points.PMC_GetStatisticsInfo = PMC_GetStatisticsInfo;
+; 89   : 	entry_points.PMC_GetStatisticsInfo = PMC_GetStatisticsInfo;
 
 	lea	rax, OFFSET FLAT:PMC_GetStatisticsInfo
 	mov	QWORD PTR entry_points+8, rax
 
-; 88   : 	entry_points.PMC_From_I = PMC_From_I;
+; 90   : 	entry_points.PMC_From_I = PMC_From_I;
 
 	lea	rax, OFFSET FLAT:PMC_From_I
 	mov	QWORD PTR entry_points+16, rax
 
-; 89   : 	entry_points.PMC_From_L = PMC_From_L;
+; 91   : 	entry_points.PMC_From_L = PMC_From_L;
 
 	lea	rax, OFFSET FLAT:PMC_From_L
 	mov	QWORD PTR entry_points+24, rax
 
-; 90   :     entry_points.PMC_From_B = PMC_From_B;
+; 92   :     entry_points.PMC_From_B = PMC_From_B;
 
 	lea	rax, OFFSET FLAT:PMC_From_B
 	mov	QWORD PTR entry_points+32, rax
 
-; 91   :     entry_points.PMC_Dispose = PMC_Dispose;
+; 93   :     entry_points.PMC_Dispose = PMC_Dispose;
 
 	lea	rax, OFFSET FLAT:PMC_Dispose
 	mov	QWORD PTR entry_points+40, rax
 
-; 92   :     entry_points.PMC_To_X_I = PMC_To_X_I;
+; 94   :     entry_points.PMC_To_X_I = PMC_To_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_To_X_I
 	mov	QWORD PTR entry_points+48, rax
 
-; 93   : 	entry_points.PMC_To_X_L = PMC_To_X_L;
+; 95   : 	entry_points.PMC_To_X_L = PMC_To_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_To_X_L
 	mov	QWORD PTR entry_points+56, rax
 
-; 94   :     entry_points.PMC_To_X_B = PMC_To_X_B;
+; 96   :     entry_points.PMC_To_X_B = PMC_To_X_B;
 
 	lea	rax, OFFSET FLAT:PMC_To_X_B
 	mov	QWORD PTR entry_points+64, rax
 
-; 95   :     entry_points.PMC_Add_X_I = PMC_Add_X_I;
+; 97   :     entry_points.PMC_Add_X_I = PMC_Add_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_Add_X_I
 	mov	QWORD PTR entry_points+72, rax
 
-; 96   : 	entry_points.PMC_Add_X_L = PMC_Add_X_L;
+; 98   : 	entry_points.PMC_Add_X_L = PMC_Add_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_Add_X_L
 	mov	QWORD PTR entry_points+80, rax
 
-; 97   : 	entry_points.PMC_Add_X_X = PMC_Add_X_X;
+; 99   : 	entry_points.PMC_Add_X_X = PMC_Add_X_X;
 
 	lea	rax, OFFSET FLAT:PMC_Add_X_X
 	mov	QWORD PTR entry_points+88, rax
 
-; 98   :     entry_points.PMC_Subtruct_X_I = PMC_Subtruct_X_I;
+; 100  :     entry_points.PMC_Subtruct_X_I = PMC_Subtruct_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_Subtruct_X_I
 	mov	QWORD PTR entry_points+96, rax
 
-; 99   :     entry_points.PMC_Subtruct_X_L = PMC_Subtruct_X_L;
+; 101  :     entry_points.PMC_Subtruct_X_L = PMC_Subtruct_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_Subtruct_X_L
 	mov	QWORD PTR entry_points+104, rax
 
-; 100  :     entry_points.PMC_Subtruct_X_X = PMC_Subtruct_X_X;
+; 102  :     entry_points.PMC_Subtruct_X_X = PMC_Subtruct_X_X;
 
 	lea	rax, OFFSET FLAT:PMC_Subtruct_X_X
 	mov	QWORD PTR entry_points+112, rax
 
-; 101  :     entry_points.PMC_Multiply_X_I = PMC_Multiply_X_I;
+; 103  :     entry_points.PMC_Multiply_X_I = PMC_Multiply_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_Multiply_X_I
 	mov	QWORD PTR entry_points+120, rax
 
-; 102  :     entry_points.PMC_Multiply_X_L = PMC_Multiply_X_L;
+; 104  :     entry_points.PMC_Multiply_X_L = PMC_Multiply_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_Multiply_X_L
 	mov	QWORD PTR entry_points+128, rax
 
-; 103  :     entry_points.PMC_Multiply_X_X = PMC_Multiply_X_X;
+; 105  :     entry_points.PMC_Multiply_X_X = PMC_Multiply_X_X;
 
 	lea	rax, OFFSET FLAT:PMC_Multiply_X_X
 	mov	QWORD PTR entry_points+136, rax
 
-; 104  :     entry_points.PMC_DivRem_X_I = PMC_DivRem_X_I;
+; 106  :     entry_points.PMC_DivRem_X_I = PMC_DivRem_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_DivRem_X_I
 	mov	QWORD PTR entry_points+144, rax
 
-; 105  :     entry_points.PMC_DivRem_X_L = PMC_DivRem_X_L;
+; 107  :     entry_points.PMC_DivRem_X_L = PMC_DivRem_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_DivRem_X_L
 	mov	QWORD PTR entry_points+152, rax
 
-; 106  :     entry_points.PMC_DivRem_X_X = PMC_DivRem_X_X;
+; 108  :     entry_points.PMC_DivRem_X_X = PMC_DivRem_X_X;
 
 	lea	rax, OFFSET FLAT:PMC_DivRem_X_X
 	mov	QWORD PTR entry_points+160, rax
 
-; 107  :     entry_points.PMC_RightShift_X_I = PMC_RightShift_X_I;
+; 109  :     entry_points.PMC_RightShift_X_I = PMC_RightShift_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_RightShift_X_I
 	mov	QWORD PTR entry_points+184, rax
 
-; 108  :     entry_points.PMC_RightShift_X_L = PMC_RightShift_X_L;
+; 110  :     entry_points.PMC_RightShift_X_L = PMC_RightShift_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_RightShift_X_L
 	mov	QWORD PTR entry_points+192, rax
 
-; 109  :     entry_points.PMC_LeftShift_X_I = PMC_LeftShift_X_I;
+; 111  :     entry_points.PMC_LeftShift_X_I = PMC_LeftShift_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_LeftShift_X_I
 	mov	QWORD PTR entry_points+168, rax
 
-; 110  :     entry_points.PMC_LeftShift_X_L = PMC_LeftShift_X_L;
+; 112  :     entry_points.PMC_LeftShift_X_L = PMC_LeftShift_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_LeftShift_X_L
 	mov	QWORD PTR entry_points+176, rax
 
-; 111  :     entry_points.PMC_BitwiseAnd_X_I = PMC_BitwiseAnd_X_I;
+; 113  :     entry_points.PMC_BitwiseAnd_X_I = PMC_BitwiseAnd_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_BitwiseAnd_X_I
 	mov	QWORD PTR entry_points+200, rax
 
-; 112  :     entry_points.PMC_BitwiseAnd_X_L = PMC_BitwiseAnd_X_L;
+; 114  :     entry_points.PMC_BitwiseAnd_X_L = PMC_BitwiseAnd_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_BitwiseAnd_X_L
 	mov	QWORD PTR entry_points+208, rax
 
-; 113  :     entry_points.PMC_BitwiseAnd_X_X = PMC_BitwiseAnd_X_X;
+; 115  :     entry_points.PMC_BitwiseAnd_X_X = PMC_BitwiseAnd_X_X;
 
 	lea	rax, OFFSET FLAT:PMC_BitwiseAnd_X_X
 	mov	QWORD PTR entry_points+216, rax
 
-; 114  :     entry_points.PMC_BitwiseOr_X_I = PMC_BitwiseOr_X_I;
+; 116  :     entry_points.PMC_BitwiseOr_X_I = PMC_BitwiseOr_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_BitwiseOr_X_I
 	mov	QWORD PTR entry_points+224, rax
 
-; 115  :     entry_points.PMC_BitwiseOr_X_L = PMC_BitwiseOr_X_L;
+; 117  :     entry_points.PMC_BitwiseOr_X_L = PMC_BitwiseOr_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_BitwiseOr_X_L
 	mov	QWORD PTR entry_points+232, rax
 
-; 116  :     entry_points.PMC_BitwiseOr_X_X = PMC_BitwiseOr_X_X;
+; 118  :     entry_points.PMC_BitwiseOr_X_X = PMC_BitwiseOr_X_X;
 
 	lea	rax, OFFSET FLAT:PMC_BitwiseOr_X_X
 	mov	QWORD PTR entry_points+240, rax
 
-; 117  :     entry_points.PMC_ExclusiveOr_X_I = PMC_ExclusiveOr_X_I;
+; 119  :     entry_points.PMC_ExclusiveOr_X_I = PMC_ExclusiveOr_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_ExclusiveOr_X_I
 	mov	QWORD PTR entry_points+248, rax
 
-; 118  :     entry_points.PMC_ExclusiveOr_X_L = PMC_ExclusiveOr_X_L;
+; 120  :     entry_points.PMC_ExclusiveOr_X_L = PMC_ExclusiveOr_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_ExclusiveOr_X_L
 	mov	QWORD PTR entry_points+256, rax
 
-; 119  :     entry_points.PMC_ExclusiveOr_X_X = PMC_ExclusiveOr_X_X;
+; 121  :     entry_points.PMC_ExclusiveOr_X_X = PMC_ExclusiveOr_X_X;
 
 	lea	rax, OFFSET FLAT:PMC_ExclusiveOr_X_X
 	mov	QWORD PTR entry_points+264, rax
 
-; 120  :     entry_points.PMC_Compare_X_I = PMC_Compare_X_I;
+; 122  :     entry_points.PMC_Compare_X_I = PMC_Compare_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_Compare_X_I
 	mov	QWORD PTR entry_points+272, rax
 
-; 121  :     entry_points.PMC_Compare_X_L = PMC_Compare_X_L;
+; 123  :     entry_points.PMC_Compare_X_L = PMC_Compare_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_Compare_X_L
 	mov	QWORD PTR entry_points+280, rax
 
-; 122  :     entry_points.PMC_Compare_X_X = PMC_Compare_X_X;
+; 124  :     entry_points.PMC_Compare_X_X = PMC_Compare_X_X;
 
 	lea	rax, OFFSET FLAT:PMC_Compare_X_X
 	mov	QWORD PTR entry_points+288, rax
 
-; 123  :     entry_points.PMC_Equals_X_I = PMC_Equals_X_I;
+; 125  :     entry_points.PMC_Equals_X_I = PMC_Equals_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_Equals_X_I
 	mov	QWORD PTR entry_points+296, rax
 
-; 124  :     entry_points.PMC_Equals_X_L = PMC_Equals_X_L;
+; 126  :     entry_points.PMC_Equals_X_L = PMC_Equals_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_Equals_X_L
 	mov	QWORD PTR entry_points+304, rax
 
-; 125  :     entry_points.PMC_Equals_X_X = PMC_Equals_X_X;
+; 127  :     entry_points.PMC_Equals_X_X = PMC_Equals_X_X;
 
 	lea	rax, OFFSET FLAT:PMC_Equals_X_X
 	mov	QWORD PTR entry_points+312, rax
 
-; 126  :     entry_points.PMC_ToString = PMC_ToString;
+; 128  :     entry_points.PMC_ToString = PMC_ToString;
 
 	lea	rax, OFFSET FLAT:PMC_ToString
 	mov	QWORD PTR entry_points+320, rax
 
-; 127  :     entry_points.PMC_TryParse = PMC_TryParse;
+; 129  :     entry_points.PMC_TryParse = PMC_TryParse;
 
 	lea	rax, OFFSET FLAT:PMC_TryParse
 	mov	QWORD PTR entry_points+328, rax
 
-; 128  :     return (&entry_points);
+; 130  :     entry_points.PMC_GreatestCommonDivisor_X_I = PMC_GreatestCommonDivisor_X_I;
+
+	lea	rax, OFFSET FLAT:PMC_GreatestCommonDivisor_X_I
+	mov	QWORD PTR entry_points+336, rax
+
+; 131  :     entry_points.PMC_GreatestCommonDivisor_X_L = PMC_GreatestCommonDivisor_X_L;
+
+	lea	rax, OFFSET FLAT:PMC_GreatestCommonDivisor_X_L
+	mov	QWORD PTR entry_points+344, rax
+
+; 132  :     entry_points.PMC_GreatestCommonDivisor_X_X = PMC_GreatestCommonDivisor_X_X;
+
+	lea	rax, OFFSET FLAT:PMC_GreatestCommonDivisor_X_X
+	mov	QWORD PTR entry_points+352, rax
+
+; 133  :     return (&entry_points);
 
 	lea	rax, OFFSET FLAT:entry_points
 $LN1@PMC_Initia:
 
-; 129  : }
+; 134  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]

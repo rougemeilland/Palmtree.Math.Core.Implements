@@ -177,11 +177,11 @@ $LN3@CountActua:
 $LN10@CountActua:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 797  :     _BitScanReverse(&pos, x);
+; 816  :     _BitScanReverse(&pos, x);
 
 	movzx	eax, al
 
-; 803  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 822  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	edx, 7
 	bsr	ecx, eax
@@ -192,7 +192,7 @@ $LN10@CountActua:
 	lea	rax, QWORD PTR [r8*8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 803  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 822  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	sub	dl, cl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
@@ -214,51 +214,51 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 841  :     if (x == 0)
+; 860  :     if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 842  :         return (sizeof(x) * 8);
+; 861  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 
-; 866  : }
+; 885  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 843  : #ifdef _M_IX86
-; 844  :     _UINT32_T pos;
-; 845  : #ifdef _MSC_VER
-; 846  :     _BitScanReverse(&pos, x);
-; 847  : #elif defined(__GNUC__)
-; 848  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 849  : #else
-; 850  : #error unknown compiler
-; 851  : #endif
-; 852  : #elif defined(_M_X64)
-; 853  : #ifdef _MSC_VER
-; 854  :     _UINT32_T pos;
-; 855  :     _BitScanReverse64(&pos, x);
+; 862  : #ifdef _M_IX86
+; 863  :     _UINT32_T pos;
+; 864  : #ifdef _MSC_VER
+; 865  :     _BitScanReverse(&pos, x);
+; 866  : #elif defined(__GNUC__)
+; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 868  : #else
+; 869  : #error unknown compiler
+; 870  : #endif
+; 871  : #elif defined(_M_X64)
+; 872  : #ifdef _MSC_VER
+; 873  :     _UINT32_T pos;
+; 874  :     _BitScanReverse64(&pos, x);
 
 	bsr	rcx, rcx
 
-; 856  : #elif defined(__GNUC__)
-; 857  :     _UINT64_T pos;
-; 858  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 859  : #else
-; 860  : #error unknown compiler
-; 861  : #endif
-; 862  : #else
-; 863  : #error unknown platform
-; 864  : #endif
-; 865  :     return (sizeof(x) * 8 - 1 - pos);
+; 875  : #elif defined(__GNUC__)
+; 876  :     _UINT64_T pos;
+; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 878  : #else
+; 879  : #error unknown compiler
+; 880  : #endif
+; 881  : #else
+; 882  : #error unknown platform
+; 883  : #endif
+; 884  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 63					; 0000003fH
 	sub	rax, rcx
 
-; 866  : }
+; 885  : }
 
 	ret	0
 _LZCNT_ALT_UNIT ENDP
@@ -270,37 +270,37 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 808  :     if (x == 0)
+; 827  :     if (x == 0)
 
 	test	ecx, ecx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 809  :         return (sizeof(x) * 8);
+; 828  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 819  : }
+; 838  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 810  :     _UINT32_T pos;
-; 811  : #ifdef _MSC_VER
-; 812  :     _BitScanReverse(&pos, x);
+; 829  :     _UINT32_T pos;
+; 830  : #ifdef _MSC_VER
+; 831  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, ecx
 
-; 813  : #elif defined(__GNUC__)
-; 814  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 815  : #else
-; 816  : #error unknown compiler
-; 817  : #endif
-; 818  :     return (sizeof(x) * 8 - 1 - pos);
+; 832  : #elif defined(__GNUC__)
+; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 834  : #else
+; 835  : #error unknown compiler
+; 836  : #endif
+; 837  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31
 	sub	eax, ecx
 
-; 819  : }
+; 838  : }
 
 	ret	0
 _LZCNT_ALT_32 ENDP
@@ -312,38 +312,38 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_8 PROC					; COMDAT
 
-; 793  :     if (x == 0)
+; 812  :     if (x == 0)
 
 	test	cl, cl
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 794  :         return (sizeof(x) * 8);
+; 813  :         return (sizeof(x) * 8);
 
 	mov	al, 8
 
-; 804  : }
+; 823  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 795  :     _UINT32_T pos;
-; 796  : #ifdef _MSC_VER
-; 797  :     _BitScanReverse(&pos, x);
+; 814  :     _UINT32_T pos;
+; 815  : #ifdef _MSC_VER
+; 816  :     _BitScanReverse(&pos, x);
 
 	movzx	eax, cl
 	bsr	ecx, eax
 
-; 798  : #elif defined(__GNUC__)
-; 799  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-; 800  : #else
-; 801  : #error unknown compiler
-; 802  : #endif
-; 803  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 817  : #elif defined(__GNUC__)
+; 818  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+; 819  : #else
+; 820  : #error unknown compiler
+; 821  : #endif
+; 822  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	eax, 7
 	sub	al, cl
 
-; 804  : }
+; 823  : }
 
 	ret	0
 _LZCNT_ALT_8 ENDP
@@ -356,7 +356,7 @@ u$ = 8
 v$ = 16
 _DIVIDE_CEILING_SIZE PROC				; COMDAT
 
-; 410  :     return ((u + v - 1) / v);
+; 429  :     return ((u + v - 1) / v);
 
 	lea	rax, QWORD PTR [rdx-1]
 	mov	r8, rdx
@@ -364,7 +364,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	xor	edx, edx
 	div	r8
 
-; 411  : }
+; 430  : }
 
 	ret	0
 _DIVIDE_CEILING_SIZE ENDP
@@ -377,17 +377,17 @@ value$ = 8
 result_high$ = 16
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 394  :     *result_high = (_UINT32_T)(value >> 32);
+; 413  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, rcx
 	shr	rax, 32					; 00000020H
 	mov	DWORD PTR [rdx], eax
 
-; 395  :     return ((_UINT32_T)value);
+; 414  :     return ((_UINT32_T)value);
 
 	mov	eax, ecx
 
-; 396  : }
+; 415  : }
 
 	ret	0
 _FROMDWORDTOWORD ENDP
@@ -401,19 +401,19 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 260  : {
+; 279  : {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 
-; 261  :     __movsb(d, s, count);
+; 280  :     __movsb(d, s, count);
 
 	mov	rdi, rcx
 	mov	rsi, rdx
 	mov	rcx, r8
 	rep movsb
 
-; 262  : }
+; 281  : }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -508,7 +508,7 @@ $LN27@PMC_From_B:
 $LN21@PMC_From_B:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 797  :     _BitScanReverse(&pos, x);
+; 816  :     _BitScanReverse(&pos, x);
 
 	movzx	eax, cl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
@@ -518,16 +518,16 @@ $LN21@PMC_From_B:
 	lea	rdi, QWORD PTR [rdx*8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 797  :     _BitScanReverse(&pos, x);
+; 816  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 798  : #elif defined(__GNUC__)
-; 799  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-; 800  : #else
-; 801  : #error unknown compiler
-; 802  : #endif
-; 803  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 817  : #elif defined(__GNUC__)
+; 818  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+; 819  : #else
+; 820  : #error unknown compiler
+; 821  : #endif
+; 822  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	eax, 7
 	sub	al, cl
@@ -557,19 +557,19 @@ $LN21@PMC_From_B:
 	jne	SHORT $LN27@PMC_From_B
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 410  :     return ((u + v - 1) / v);
+; 429  :     return ((u + v - 1) / v);
 
 	lea	rcx, QWORD PTR [rdi+7]
 
-; 261  :     __movsb(d, s, count);
+; 280  :     __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR p$1[rsp]
 
-; 410  :     return ((u + v - 1) / v);
+; 429  :     return ((u + v - 1) / v);
 
 	shr	rcx, 3
 
-; 261  :     __movsb(d, s, count);
+; 280  :     __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR [rdi+48]
 	rep movsb
@@ -666,7 +666,7 @@ $LN30:
 $LN3@PMC_From_L:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 855  :     _BitScanReverse64(&pos, x);
+; 874  :     _BitScanReverse64(&pos, x);
 
 	bsr	rdx, rbx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
@@ -677,7 +677,7 @@ $LN3@PMC_From_L:
 	lea	rcx, QWORD PTR p$[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 865  :     return (sizeof(x) * 8 - 1 - pos);
+; 884  :     return (sizeof(x) * 8 - 1 - pos);
 
 	inc	rdx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
@@ -781,11 +781,11 @@ $LN14:
 $LN3@PMC_From_I:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 812  :     _BitScanReverse(&pos, x);
+; 831  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, ebx
 
-; 818  :     return (sizeof(x) * 8 - 1 - pos);
+; 837  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
@@ -795,7 +795,7 @@ $LN3@PMC_From_I:
 	mov	edx, 32					; 00000020H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 818  :     return (sizeof(x) * 8 - 1 - pos);
+; 837  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
@@ -886,43 +886,43 @@ $LN24:
 	mov	rbx, rcx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 841  :     if (x == 0)
+; 860  :     if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN21@From_L_Imp
 
-; 842  :         return (sizeof(x) * 8);
+; 861  :         return (sizeof(x) * 8);
 
 	xor	edx, edx
 	jmp	SHORT $LN20@From_L_Imp
 $LN21@From_L_Imp:
 
-; 843  : #ifdef _M_IX86
-; 844  :     _UINT32_T pos;
-; 845  : #ifdef _MSC_VER
-; 846  :     _BitScanReverse(&pos, x);
-; 847  : #elif defined(__GNUC__)
-; 848  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 849  : #else
-; 850  : #error unknown compiler
-; 851  : #endif
-; 852  : #elif defined(_M_X64)
-; 853  : #ifdef _MSC_VER
-; 854  :     _UINT32_T pos;
-; 855  :     _BitScanReverse64(&pos, x);
+; 862  : #ifdef _M_IX86
+; 863  :     _UINT32_T pos;
+; 864  : #ifdef _MSC_VER
+; 865  :     _BitScanReverse(&pos, x);
+; 866  : #elif defined(__GNUC__)
+; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 868  : #else
+; 869  : #error unknown compiler
+; 870  : #endif
+; 871  : #elif defined(_M_X64)
+; 872  : #ifdef _MSC_VER
+; 873  :     _UINT32_T pos;
+; 874  :     _BitScanReverse64(&pos, x);
 
 	bsr	rdx, rbx
 
-; 856  : #elif defined(__GNUC__)
-; 857  :     _UINT64_T pos;
-; 858  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 859  : #else
-; 860  : #error unknown compiler
-; 861  : #endif
-; 862  : #else
-; 863  : #error unknown platform
-; 864  : #endif
-; 865  :     return (sizeof(x) * 8 - 1 - pos);
+; 875  : #elif defined(__GNUC__)
+; 876  :     _UINT64_T pos;
+; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 878  : #else
+; 879  : #error unknown compiler
+; 880  : #endif
+; 881  : #else
+; 882  : #error unknown platform
+; 883  : #endif
+; 884  :     return (sizeof(x) * 8 - 1 - pos);
 
 	inc	rdx
 $LN20@From_L_Imp:
@@ -982,30 +982,30 @@ $LN8:
 	mov	rdi, rdx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 808  :     if (x == 0)
+; 827  :     if (x == 0)
 
 	mov	edx, 32					; 00000020H
 	test	ecx, ecx
 	jne	SHORT $LN5@From_I_Imp
 
-; 809  :         return (sizeof(x) * 8);
+; 828  :         return (sizeof(x) * 8);
 
 	mov	r8d, edx
 	jmp	SHORT $LN4@From_I_Imp
 $LN5@From_I_Imp:
 
-; 810  :     _UINT32_T pos;
-; 811  : #ifdef _MSC_VER
-; 812  :     _BitScanReverse(&pos, x);
+; 829  :     _UINT32_T pos;
+; 830  : #ifdef _MSC_VER
+; 831  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, ebx
 
-; 813  : #elif defined(__GNUC__)
-; 814  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 815  : #else
-; 816  : #error unknown compiler
-; 817  : #endif
-; 818  :     return (sizeof(x) * 8 - 1 - pos);
+; 832  : #elif defined(__GNUC__)
+; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 834  : #else
+; 835  : #error unknown compiler
+; 836  : #endif
+; 837  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	r8d, 31
 	sub	r8d, eax

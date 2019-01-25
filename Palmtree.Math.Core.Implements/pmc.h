@@ -206,6 +206,11 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
     // 文字列の解析
     PMC_STATUS_CODE(__PMC_CALL * PMC_TryParse)(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
+
+    // 最大公約数の計算
+    PMC_STATUS_CODE( __PMC_CALL * PMC_GreatestCommonDivisor_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
+    PMC_STATUS_CODE( __PMC_CALL * PMC_GreatestCommonDivisor_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
+    PMC_STATUS_CODE( __PMC_CALL * PMC_GreatestCommonDivisor_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 

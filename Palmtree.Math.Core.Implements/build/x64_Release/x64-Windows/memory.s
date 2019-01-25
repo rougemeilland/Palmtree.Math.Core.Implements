@@ -500,7 +500,7 @@ CommitNumber:
 	je	.L88
 	movl	$63, %eax
 /APP
- # 858 "pmc_internal.h" 1
+ # 877 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
@@ -546,24 +546,26 @@ CommitNumber:
 	sall	$3, %eax
 	orl	%edx, %eax
 	movb	%al, 32(%rbx)
-	movq	(%rsi), %rax
-	testq	%rax, %rax
-	je	.L95
-	jmp	.L115
+	movq	(%rsi), %r8
+	testq	%r8, %r8
+	jne	.L99
+	xorl	%edx, %edx
+	xorl	%eax, %eax
+	jmp	.L95
 	.p2align 4,,10
 .L97:
-	movq	(%rsi,%rax), %rdx
-	subq	$1, %r11
-	testq	%rdx, %rdx
+	addq	$1, %rax
+	movq	(%rsi,%rax,8), %rcx
+	testq	%rcx, %rcx
 	jne	.L94
 .L95:
-	addq	$8, %rax
-	testq	%r11, %r11
+	addq	$64, %rdx
+	cmpq	%r11, %rax
 	jne	.L97
 	movl	$1, %eax
 .L96:
 	cmpq	%rdi, %rax
-	movq	%r11, 24(%rbx)
+	movq	%r8, 24(%rbx)
 	sete	%al
 	sall	$4, %eax
 	movl	%eax, %edx
@@ -576,25 +578,18 @@ CommitNumber:
 	popq	%rsi
 	popq	%rdi
 	ret
-.L115:
-	movq	%rax, %rdx
-	xorl	%eax, %eax
+.L99:
+	movq	%r8, %rcx
+	xorl	%edx, %edx
 	.p2align 4,,10
 .L94:
-	testq	%r11, %r11
-	jne	.L100
 /APP
- # 938 "pmc_internal.h" 1
-	bsrq %rdx, %r11
+ # 957 "pmc_internal.h" 1
+	bsfq %rcx, %rcx
  # 0 "" 2
 /NO_APP
-	addq	%rax, %r11
-	leaq	1(%r11), %rax
-	jmp	.L96
-	.p2align 4,,10
-.L100:
-	movl	$1, %eax
-	xorl	%r11d, %r11d
+	leaq	(%rdx,%rcx), %r8
+	leaq	1(%r8), %rax
 	jmp	.L96
 	.seh_endproc
 	.p2align 4,,15
@@ -628,13 +623,13 @@ DuplicateNumber:
 	testb	$1, %al
 	movq	%rcx, %rbx
 	movq	%rdx, %r12
-	jne	.L121
+	jne	.L119
 	testb	$2, %al
-	je	.L120
+	je	.L118
 	leaq	number_zero(%rip), %rax
 	movq	%rax, (%rdx)
 	xorl	%eax, %eax
-.L117:
+.L115:
 	addq	$64, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -643,14 +638,14 @@ DuplicateNumber:
 	popq	%r12
 	ret
 	.p2align 4,,10
-.L120:
+.L118:
 	movq	8(%rcx), %rbp
 	leaq	56(%rsp), %rcx
 	xorl	%r8d, %r8d
 	movq	%rbp, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L117
+	jne	.L115
 	movq	56(%rsp), %rdx
 	leaq	63(%rbp), %rcx
 	movl	%eax, 44(%rsp)
@@ -675,7 +670,7 @@ DuplicateNumber:
 	popq	%r12
 	ret
 	.p2align 4,,10
-.L121:
+.L119:
 	xorl	%eax, %eax
 	movq	%rcx, (%r12)
 	addq	$64, %rsp
@@ -693,12 +688,12 @@ DuplicateNumber:
 PMC_Dispose:
 	.seh_endprologue
 	testq	%rcx, %rcx
-	je	.L122
+	je	.L120
 	testb	$1, 32(%rcx)
-	jne	.L122
+	jne	.L120
 	jmp	DeallocateNumber.part.3
 	.p2align 4,,10
-.L122:
+.L120:
 	ret
 	.seh_endproc
 	.p2align 4,,15
@@ -751,10 +746,10 @@ DeallocateHeapArea:
 	.seh_endprologue
 	movq	hLocalHeap(%rip), %rcx
 	testq	%rcx, %rcx
-	je	.L129
+	je	.L127
 	call	*__imp_HeapDestroy(%rip)
 	movq	$0, hLocalHeap(%rip)
-.L129:
+.L127:
 	addq	$40, %rsp
 	ret
 	.seh_endproc

@@ -46,6 +46,8 @@ void RightShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __U
     {
         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
         _COPY_MEMORY_UNIT(op, pp + n_word_count, p_count - n_word_count);
+        if (padding_zero)
+            _ZERO_MEMORY_UNIT(op + p_count - n_word_count, n_word_count);
     }
     else
     {
@@ -159,11 +161,11 @@ void RightShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __U
         }
 
         work = temp >> n_rshift_bit_count;
-        if (work != 0)
+        if (work != 0 || padding_zero)
             *op = work;
 
         if (padding_zero)
-            _ZERO_MEMORY_UNIT(p + p_word_count - n_word_count, n_word_count);
+            _ZERO_MEMORY_UNIT(o + p_word_count - n_word_count, n_word_count);
     }
 }
 
@@ -179,6 +181,8 @@ void RightShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYP
     {
         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
         _COPY_MEMORY_UNIT_DIV(op, pp + n_word_count, p_count - n_word_count);
+        if (padding_zero)
+            _ZERO_MEMORY_UNIT_DIV(op + p_count - n_word_count, n_word_count);
     }
     else
     {
@@ -292,11 +296,11 @@ void RightShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYP
         }
 
         work = temp >> n_rshift_bit_count;
-        if (work != 0)
+        if (work != 0 || padding_zero)
             *op = work;
 
         if (padding_zero)
-            _ZERO_MEMORY_UNIT_DIV(p + p_word_count - n_word_count, n_word_count);
+            _ZERO_MEMORY_UNIT_DIV(o + p_word_count - n_word_count, n_word_count);
     }
 }
 
@@ -311,6 +315,8 @@ void LeftShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UN
     {
         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
         _COPY_MEMORY_UNIT(op + n_word_count, pp, p_count);
+        if (padding_zero)
+            _ZERO_MEMORY_UNIT(op, n_word_count);
     }
     else
     {
@@ -429,7 +435,7 @@ void LeftShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UN
         *op = work;
 
         if (padding_zero)
-            _ZERO_MEMORY_UNIT(p, n_word_count);
+            _ZERO_MEMORY_UNIT(o, n_word_count);
     }
 }
 
@@ -444,6 +450,8 @@ void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE
     {
         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
         _COPY_MEMORY_UNIT_DIV(op + n_word_count, pp, p_count);
+        if (padding_zero)
+            _ZERO_MEMORY_UNIT_DIV(op, n_word_count);
     }
     else
     {
@@ -562,7 +570,7 @@ void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE
         *op = work;
 
         if (padding_zero)
-            _ZERO_MEMORY_UNIT_DIV(p, n_word_count);
+            _ZERO_MEMORY_UNIT_DIV(o, n_word_count);
     }
 }
 

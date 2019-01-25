@@ -464,18 +464,18 @@ _x$ = 8							; size = 4
 _y$ = 12						; size = 4
 __MINIMUM_UNIT PROC					; COMDAT
 
-; 419  : {
+; 438  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 420  :     return (x <= y ? x : y);
+; 439  :     return (x <= y ? x : y);
 
 	mov	eax, DWORD PTR _y$[ebp]
 	cmp	DWORD PTR _x$[ebp], eax
 	cmovbe	eax, DWORD PTR _x$[ebp]
 
-; 421  : }
+; 440  : }
 
 	pop	ebp
 	ret	0
@@ -489,12 +489,12 @@ _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 404  : {
+; 423  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 405  :     return ((u + v - 1) / v);
+; 424  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _u$[ebp]
 	xor	edx, edx
@@ -502,7 +502,7 @@ __DIVIDE_CEILING_UNIT PROC				; COMDAT
 	add	eax, DWORD PTR _v$[ebp]
 	div	DWORD PTR _v$[ebp]
 
-; 406  : }
+; 425  : }
 
 	pop	ebp
 	ret	0
@@ -516,22 +516,22 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC					; COMDAT
 
-; 393  : {
+; 412  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 394  :     *result_high = (_UINT32_T)(value >> 32);
+; 413  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _result_high$[ebp]
 	mov	ecx, DWORD PTR _value$[ebp+4]
 	mov	DWORD PTR [eax], ecx
 
-; 395  :     return ((_UINT32_T)value);
+; 414  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 396  : }
+; 415  : }
 
 	pop	ebp
 	ret	0
@@ -545,18 +545,18 @@ _value_high$ = 8					; size = 4
 _value_low$ = 12					; size = 4
 __FROMWORDTODWORD PROC					; COMDAT
 
-; 388  : {
+; 407  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 389  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 408  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edx, DWORD PTR _value_high$[ebp]
 	xor	eax, eax
 	or	eax, DWORD PTR _value_low$[ebp]
 
-; 390  : }
+; 409  : }
 
 	pop	ebp
 	ret	0
@@ -656,7 +656,7 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 	lea	eax, DWORD PTR _nw_light_check_code$1[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 420  :     return (x <= y ? x : y);
+; 439  :     return (x <= y ? x : y);
 
 	cmp	DWORD PTR [esi+4], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -666,7 +666,7 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 420  :     return (x <= y ? x : y);
+; 439  :     return (x <= y ? x : y);
 
 	cmovbe	ecx, DWORD PTR [esi+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -678,7 +678,7 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 420  :     return (x <= y ? x : y);
+; 439  :     return (x <= y ? x : y);
 
 	mov	DWORD PTR _w_bit_count$1$[ebp], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -691,7 +691,7 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 	jne	SHORT $LN1@PMC_Bitwis
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 405  :     return ((u + v - 1) / v);
+; 424  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _w_bit_count$1$[ebp]
 	add	eax, 31					; 0000001fH
@@ -902,7 +902,7 @@ $LN8@PMC_Bitwis:
 	and	ecx, DWORD PTR [eax]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 389  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 408  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	eax, eax
 	or	eax, edx
@@ -928,7 +928,7 @@ $LN13@PMC_Bitwis:
 	xor	edx, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 389  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 408  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	eax, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -938,7 +938,7 @@ $LN13@PMC_Bitwis:
 	mov	DWORD PTR [edi], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 389  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 408  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	or	eax, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c

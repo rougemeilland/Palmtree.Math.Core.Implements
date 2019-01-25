@@ -134,14 +134,8 @@ static PMC_STATUS_CODE Subtruct_X_2W(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_
 }
 
 // 減算の実装。x のワード数は y のワード数以上でなければならない。また、x と y はどちらも 0 であってはならない。
-static PMC_STATUS_CODE Subtruct_X_X(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z)
+PMC_STATUS_CODE Subtruct_Imp(__UNIT_TYPE* xp, __UNIT_TYPE x_count, __UNIT_TYPE* yp, __UNIT_TYPE y_count, __UNIT_TYPE* zp, __UNIT_TYPE z_count)
 {
-    __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
-    __UNIT_TYPE y_count = y->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->BLOCK_COUNT;
-    __UNIT_TYPE* xp = &x->BLOCK[0];
-    __UNIT_TYPE* yp = &y->BLOCK[0];
-    __UNIT_TYPE* zp = &z->BLOCK[0];
     char c = 0;
 
     // まず 32 ワードずつ減算をする。
@@ -492,7 +486,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Subtruct_X_X(HANDLE x, HANDLE y, HANDLE* o)
             __UNIT_TYPE nz_light_check_code;
             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                 return (result);
-            if ((result = Subtruct_X_X(nx, ny, nz)) != PMC_STATUS_OK)
+            if ((result = Subtruct_Imp(nx->BLOCK, nx->UNIT_WORD_COUNT, ny->BLOCK, ny->UNIT_WORD_COUNT, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
             {
                 DeallocateNumber(nz);
                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);

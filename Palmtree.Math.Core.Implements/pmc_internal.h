@@ -70,7 +70,7 @@ typedef struct __tag_NUMBER_HEADER
     __UNIT_TYPE UNIT_WORD_COUNT;        // BLOCKが示す領域において有効なデータが格納されている要素の数
     __UNIT_TYPE UNIT_BIT_COUNT;         // データの有効部分の合計ビット数
     __UNIT_TYPE HASH_CODE;              // データのハッシュコード。
-    __UNIT_TYPE LEAST_ZERO_BITS_COUNT;  // データの最下位の連続した 0 ビット数
+    __UNIT_TYPE TRAILING_ZERO_BITS_COUNT;  // データの最下位の連続した 0 ビット数
     unsigned IS_STATIC : 1;             // 本構造体が静的に割り当てられていて開放不要ならばTRUE
     unsigned IS_ZERO : 1;               // データが 0 なら TRUE
     unsigned IS_ONE : 1;                // データが 1 なら TRUE
@@ -142,11 +142,23 @@ extern PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o);
 // 指定されたワード列を右にシフトして指定された領域に格納する。シフト数は 0 であってはならない。
 extern void RightShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL pad1ding_zero);
 
+// 指定されたワード列を右にシフトして指定された領域に格納する。シフト数は 0 であってはならない。
+extern void RightShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
+
 // 指定されたワード列を左にシフトして指定された領域に格納する。シフト数は 0 であってはならない。
 extern void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL padding_zero);
 
+// 指定されたワード列を左にシフトして指定された領域に格納する。シフト数は 0 であってはならない。
+extern void LeftShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
+
+// 多倍長整数の減算を行う。x と y はどちらも 0 であってはならない。また、x のワード長は y のワード長以上でなければならない。
+extern PMC_STATUS_CODE Subtruct_Imp(__UNIT_TYPE* xp, __UNIT_TYPE x_count, __UNIT_TYPE* yp, __UNIT_TYPE y_count, __UNIT_TYPE* zp, __UNIT_TYPE z_count);
+
 // 多倍長整数を 1 ワードで除算を行う。
 extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
+
+// 多倍長整数の大小比較を行う。
+extern _INT32_T Compare_Imp(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count);
 
 // メモリ管理の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
@@ -192,6 +204,9 @@ extern PMC_STATUS_CODE Initialize_ToString(PROCESSOR_FEATURES* feature);
 
 // 文字列解析の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Parse(PROCESSOR_FEATURES* feature);
+
+// 最大公約数の計算の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_GreatestCommonDivisor(PROCESSOR_FEATURES* feature);
 
 // エントリポイントに登録される関数群
 
@@ -252,6 +267,10 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w
 extern PMC_STATUS_CODE __PMC_CALL PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
 extern PMC_STATUS_CODE __PMC_CALL PMC_TryParse(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_GreatestCommonDivisor_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_GreatestCommonDivisor_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+extern PMC_STATUS_CODE __PMC_CALL PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w);
 #pragma endregion
 
 
@@ -923,19 +942,19 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 #ifdef _M_IX86
     _UINT32_T pos;
 #ifdef _MSC_VER
-    _BitScanReverse(&pos, x);
+    _BitScanForward(&pos, x);
 #elif defined(__GNUC__)
-    __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+    __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
 #else
 #error unknown compiler
 #endif
 #elif defined(_M_X64)
 #ifdef _MSC_VER
     _UINT32_T pos;
-    _BitScanReverse64(&pos, x);
+    _BitScanForward64(&pos, x);
 #elif defined(__GNUC__)
     _UINT64_T pos;
-    __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+    __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
 #else
 #error unknown compiler
 #endif

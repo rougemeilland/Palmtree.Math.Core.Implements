@@ -34,7 +34,7 @@
 #include "pmc_internal.h"
 
 
-_INT32_T Compare_X_X(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count)
+_INT32_T Compare_Imp(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count)
 {
     u += count;
     v += count;
@@ -293,7 +293,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Compare_X_X(HANDLE u, HANDLE v, _INT32_T* w)
         else
         {
             // u > 0 && v > 0 かつ u のビット長と v のビット長が等しい場合
-            *w = Compare_X_X(nu->BLOCK, nv->BLOCK, nu->UNIT_WORD_COUNT);
+            *w = Compare_Imp(nu->BLOCK, nv->BLOCK, nu->UNIT_WORD_COUNT);
         }
     }
     return (PMC_STATUS_OK);

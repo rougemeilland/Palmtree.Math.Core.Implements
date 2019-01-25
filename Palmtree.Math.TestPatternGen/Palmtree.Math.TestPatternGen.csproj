@@ -62,6 +62,7 @@
     <Compile Include="TEST_PMC_From.cs" />
     <Compile Include="TEST_PMC_ParseDN1.cs" />
     <Compile Include="TEST_PMC_ParseDN2.cs" />
+    <Compile Include="TEST_PMC_GreatestCommonDivisor.cs" />
     <Compile Include="TEST_PMC_ToStringN.cs" />
     <Compile Include="TEST_PMC_ToStringD.cs" />
     <Compile Include="TEST_PMC_ParseX.cs" />

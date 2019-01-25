@@ -89,7 +89,7 @@ L14:
 	testl	%edx, %edx
 	je	L15
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl 36(%esp), %edx
  # 0 "" 2
 /NO_APP
@@ -190,7 +190,7 @@ L23:
 	testl	%ebp, %ebp
 	je	L26
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
@@ -220,7 +220,7 @@ L24:
 L25:
 	.cfi_restore_state
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP

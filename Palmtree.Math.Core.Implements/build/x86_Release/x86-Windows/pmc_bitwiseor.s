@@ -66,7 +66,7 @@ L3:
 	je	L19
 	leal	28(%esp), %ecx
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl 68(%esp), %eax
  # 0 "" 2
 /NO_APP
@@ -230,7 +230,7 @@ L22:
 	testl	%esi, %esi
 	je	L26
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %esi, %ecx
  # 0 "" 2
 /NO_APP
@@ -281,7 +281,7 @@ L44:
 	.p2align 4,,10
 L25:
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %edi, %ecx
  # 0 "" 2
 /NO_APP

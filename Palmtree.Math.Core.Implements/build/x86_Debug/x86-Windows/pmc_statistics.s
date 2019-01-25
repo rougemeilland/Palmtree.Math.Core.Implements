@@ -75,7 +75,7 @@ Letext0:
 	.file 31 "pmc_internal.h"
 	.section	.debug_info,"dr"
 Ldebug_info0:
-	.long	0x4f21
+	.long	0x4f24
 	.word	0x4
 	.secrel32	Ldebug_abbrev0
 	.byte	0x4
@@ -4105,7 +4105,7 @@ Ldebug_info0:
 	.byte	0x1f
 	.byte	0x44
 	.byte	0x10
-	.long	0x4e64
+	.long	0x4e67
 	.uleb128 0x11
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1f
@@ -4128,7 +4128,7 @@ Ldebug_info0:
 	.long	0x4d3e
 	.byte	0x8
 	.uleb128 0x11
-	.ascii "LEAST_ZERO_BITS_COUNT\0"
+	.ascii "TRAILING_ZERO_BITS_COUNT\0"
 	.byte	0x1f
 	.byte	0x49
 	.byte	0x11
@@ -4196,7 +4196,7 @@ Ldebug_info0:
 	.byte	0x1f
 	.byte	0x54
 	.byte	0x12
-	.long	0x4e64
+	.long	0x4e67
 	.byte	0x18
 	.byte	0
 	.uleb128 0x6
@@ -4219,7 +4219,7 @@ Ldebug_info0:
 	.byte	0x1f
 	.byte	0x5f
 	.byte	0x16
-	.long	0x4e6a
+	.long	0x4e6d
 	.uleb128 0x13
 	.ascii "statistics_info\0"
 	.byte	0x1f
@@ -4227,7 +4227,7 @@ Ldebug_info0:
 	.byte	0x1c
 	.long	0x4d1c
 	.uleb128 0x1b
-	.long	0x4eaf
+	.long	0x4eb2
 	.byte	0x1
 	.byte	0x24
 	.byte	0x15

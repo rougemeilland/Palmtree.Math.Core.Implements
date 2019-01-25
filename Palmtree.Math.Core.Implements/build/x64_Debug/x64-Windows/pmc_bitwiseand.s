@@ -7,7 +7,7 @@
 _DIVIDE_CEILING_UNIT:
 .LFB4326:
 	.file 1 "pmc_internal.h"
-	.loc 1 404 1
+	.loc 1 423 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -19,16 +19,16 @@ _DIVIDE_CEILING_UNIT:
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
 	movq	%rdx, 24(%rbp)
-	.loc 1 405 16
+	.loc 1 424 16
 	movq	16(%rbp), %rdx
 	movq	24(%rbp), %rax
 	addq	%rdx, %rax
-	.loc 1 405 20
+	.loc 1 424 20
 	subq	$1, %rax
-	.loc 1 405 25
+	.loc 1 424 25
 	movl	$0, %edx
 	divq	24(%rbp)
-	.loc 1 406 1
+	.loc 1 425 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -40,7 +40,7 @@ _DIVIDE_CEILING_UNIT:
 	.seh_proc	_MINIMUM_UNIT
 _MINIMUM_UNIT:
 .LFB4329:
-	.loc 1 419 1
+	.loc 1 438 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -52,11 +52,11 @@ _MINIMUM_UNIT:
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
 	movq	%rdx, 24(%rbp)
-	.loc 1 420 24
+	.loc 1 439 24
 	movq	24(%rbp), %rax
 	cmpq	%rax, 16(%rbp)
 	cmovbe	16(%rbp), %rax
-	.loc 1 421 1
+	.loc 1 440 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -1555,7 +1555,7 @@ Initialize_BitwiseAnd:
 	.file 31 "pmc_cpuid.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
-	.long	0x5101
+	.long	0x5104
 	.word	0x4
 	.secrel32	.Ldebug_abbrev0
 	.byte	0x8
@@ -5500,7 +5500,7 @@ Initialize_BitwiseAnd:
 	.byte	0x1
 	.byte	0x44
 	.byte	0x10
-	.long	0x4cf8
+	.long	0x4cfb
 	.uleb128 0x13
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1
@@ -5523,7 +5523,7 @@ Initialize_BitwiseAnd:
 	.long	0x4bd2
 	.byte	0x10
 	.uleb128 0x13
-	.ascii "LEAST_ZERO_BITS_COUNT\0"
+	.ascii "TRAILING_ZERO_BITS_COUNT\0"
 	.byte	0x1
 	.byte	0x49
 	.byte	0x11
@@ -5591,7 +5591,7 @@ Initialize_BitwiseAnd:
 	.byte	0x1
 	.byte	0x54
 	.byte	0x12
-	.long	0x4cf8
+	.long	0x4cfb
 	.byte	0x30
 	.byte	0
 	.uleb128 0x6
@@ -5614,7 +5614,7 @@ Initialize_BitwiseAnd:
 	.byte	0x1
 	.byte	0x5f
 	.byte	0x16
-	.long	0x4cfe
+	.long	0x4d01
 	.uleb128 0x15
 	.ascii "statistics_info\0"
 	.byte	0x1
@@ -5631,13 +5631,13 @@ Initialize_BitwiseAnd:
 	.quad	.LFE4371-.LFB4371
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4da5
+	.long	0x4da8
 	.uleb128 0x1a
 	.ascii "feature\0"
 	.byte	0x2
 	.word	0x117
 	.byte	0x3b
-	.long	0x4da5
+	.long	0x4da8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -5655,7 +5655,7 @@ Initialize_BitwiseAnd:
 	.quad	.LFE4370-.LFB4370
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4ed0
+	.long	0x4ed3
 	.uleb128 0x1c
 	.ascii "u\0"
 	.byte	0x2
@@ -5688,7 +5688,7 @@ Initialize_BitwiseAnd:
 	.byte	0x2
 	.byte	0xef
 	.byte	0x14
-	.long	0x4ed0
+	.long	0x4ed3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -5697,7 +5697,7 @@ Initialize_BitwiseAnd:
 	.byte	0x2
 	.byte	0xf0
 	.byte	0x14
-	.long	0x4ed0
+	.long	0x4ed3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -5715,7 +5715,7 @@ Initialize_BitwiseAnd:
 	.byte	0x2
 	.byte	0xf6
 	.byte	0x14
-	.long	0x4ed0
+	.long	0x4ed3
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -80
@@ -5771,7 +5771,7 @@ Initialize_BitwiseAnd:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4cfe
+	.long	0x4d01
 	.uleb128 0x1b
 	.ascii "PMC_BitwiseAnd_X_L\0"
 	.byte	0x2
@@ -5782,7 +5782,7 @@ Initialize_BitwiseAnd:
 	.quad	.LFE4369-.LFB4369
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4f82
+	.long	0x4f85
 	.uleb128 0x1c
 	.ascii "u\0"
 	.byte	0x2
@@ -5815,7 +5815,7 @@ Initialize_BitwiseAnd:
 	.byte	0x2
 	.byte	0xc1
 	.byte	0x14
-	.long	0x4ed0
+	.long	0x4ed3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -5865,7 +5865,7 @@ Initialize_BitwiseAnd:
 	.quad	.LFE4368-.LFB4368
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4ff8
+	.long	0x4ffb
 	.uleb128 0x1c
 	.ascii "u\0"
 	.byte	0x2
@@ -5898,7 +5898,7 @@ Initialize_BitwiseAnd:
 	.byte	0x2
 	.byte	0x9e
 	.byte	0x14
-	.long	0x4ed0
+	.long	0x4ed3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -5921,13 +5921,13 @@ Initialize_BitwiseAnd:
 	.quad	.LFE4367-.LFB4367
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x506d
+	.long	0x5070
 	.uleb128 0x1c
 	.ascii "u\0"
 	.byte	0x2
 	.byte	0x25
 	.byte	0x29
-	.long	0x4cf8
+	.long	0x4cfb
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -5936,7 +5936,7 @@ Initialize_BitwiseAnd:
 	.byte	0x2
 	.byte	0x25
 	.byte	0x38
-	.long	0x4cf8
+	.long	0x4cfb
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -5945,7 +5945,7 @@ Initialize_BitwiseAnd:
 	.byte	0x2
 	.byte	0x25
 	.byte	0x47
-	.long	0x4cf8
+	.long	0x4cfb
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -5971,18 +5971,18 @@ Initialize_BitwiseAnd:
 	.uleb128 0x24
 	.ascii "_MINIMUM_UNIT\0"
 	.byte	0x1
-	.word	0x1a2
+	.word	0x1b5
 	.byte	0x1d
 	.long	0x4bd2
 	.quad	.LFB4329
 	.quad	.LFE4329-.LFB4329
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x50b7
+	.long	0x50ba
 	.uleb128 0x1a
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x1a2
+	.word	0x1b5
 	.byte	0x37
 	.long	0x4bd2
 	.uleb128 0x2
@@ -5991,7 +5991,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x1a
 	.ascii "y\0"
 	.byte	0x1
-	.word	0x1a2
+	.word	0x1b5
 	.byte	0x46
 	.long	0x4bd2
 	.uleb128 0x2
@@ -6001,7 +6001,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x25
 	.ascii "_DIVIDE_CEILING_UNIT\0"
 	.byte	0x1
-	.word	0x193
+	.word	0x1a6
 	.byte	0x1d
 	.long	0x4bd2
 	.quad	.LFB4326
@@ -6011,7 +6011,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x1a
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x193
+	.word	0x1a6
 	.byte	0x3e
 	.long	0x4bd2
 	.uleb128 0x2
@@ -6020,7 +6020,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x1a
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x193
+	.word	0x1a6
 	.byte	0x4d
 	.long	0x4bd2
 	.uleb128 0x2

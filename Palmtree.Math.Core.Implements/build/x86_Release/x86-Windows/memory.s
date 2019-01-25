@@ -613,7 +613,7 @@ L93:
 	je	L95
 	movl	$31, %eax
 /APP
- # 848 "pmc_internal.h" 1
+ # 867 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -672,7 +672,7 @@ L100:
 	movl	(%esi), %eax
 	testl	%eax, %eax
 	je	L102
-	jmp	L123
+	jmp	L122
 	.p2align 4,,10
 L104:
 	movl	(%esi), %edx
@@ -680,7 +680,7 @@ L104:
 	testl	%edx, %edx
 	jne	L101
 L102:
-	addl	$8, %eax
+	addl	$32, %eax
 	addl	$4, %esi
 	testl	%ebx, %ebx
 	jne	L104
@@ -708,26 +708,19 @@ L103:
 	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret
-L123:
+L122:
 	.cfi_restore_state
 	movl	%eax, %edx
 	xorl	%eax, %eax
 	.p2align 4,,10
 L101:
-	testl	%ebx, %ebx
-	jne	L107
 /APP
- # 928 "pmc_internal.h" 1
-	bsrl %edx, %ebx
+ # 947 "pmc_internal.h" 1
+	bsfl %edx, %ebx
  # 0 "" 2
 /NO_APP
 	addl	%eax, %ebx
 	leal	1(%ebx), %eax
-	jmp	L103
-	.p2align 4,,10
-L107:
-	movl	$1, %eax
-	xorl	%ebx, %ebx
 	jmp	L103
 	.cfi_endproc
 LFE5501:
@@ -764,13 +757,13 @@ LFB5503:
 	movl	80(%esp), %ebx
 	movzbl	16(%ebx), %eax
 	testb	$1, %al
-	jne	L130
+	jne	L129
 	testb	$2, %al
-	je	L128
+	je	L127
 	movl	84(%esp), %eax
 	movl	$_number_zero, (%eax)
 	xorl	%eax, %eax
-L125:
+L124:
 	addl	$60, %esp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -788,7 +781,7 @@ L125:
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
-L128:
+L127:
 	.cfi_restore_state
 	movl	4(%ebx), %ebp
 	leal	44(%esp), %eax
@@ -797,7 +790,7 @@ L128:
 	movl	%ebp, 4(%esp)
 	call	_AllocateNumber
 	testl	%eax, %eax
-	jne	L125
+	jne	L124
 	movl	44(%esp), %edx
 	leal	31(%ebp), %ecx
 	movl	24(%ebx), %esi
@@ -833,7 +826,7 @@ L128:
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
-L130:
+L129:
 	.cfi_restore_state
 	movl	84(%esp), %eax
 	movl	%ebx, (%eax)
@@ -865,11 +858,11 @@ LFB5504:
 	.cfi_def_cfa_offset 16
 	movl	16(%esp), %eax
 	testl	%eax, %eax
-	je	L131
+	je	L130
 	testb	$1, 16(%eax)
-	jne	L131
+	jne	L130
 	call	_DeallocateNumber.part.3
-L131:
+L130:
 	addl	$12, %esp
 	.cfi_def_cfa_offset 4
 	ret	$4
@@ -930,7 +923,7 @@ LFB5507:
 	.cfi_startproc
 	movl	_hLocalHeap, %eax
 	testl	%eax, %eax
-	je	L147
+	je	L146
 	subl	$28, %esp
 	.cfi_def_cfa_offset 32
 	movl	%eax, (%esp)
@@ -943,7 +936,7 @@ LFB5507:
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
-L147:
+L146:
 	ret
 	.cfi_endproc
 LFE5507:

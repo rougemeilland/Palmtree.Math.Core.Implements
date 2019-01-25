@@ -52,7 +52,7 @@ PMC_BitwiseOr_X_I:
 	leaq	32(%rsp), %rcx
 	movl	$31, %eax
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %esi, %edx
  # 0 "" 2
 /NO_APP
@@ -176,7 +176,7 @@ PMC_BitwiseOr_X_L:
 	testq	%rsi, %rsi
 	je	.L35
 /APP
- # 858 "pmc_internal.h" 1
+ # 877 "pmc_internal.h" 1
 	bsrq %rsi, %rdx
  # 0 "" 2
 /NO_APP

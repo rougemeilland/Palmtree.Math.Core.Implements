@@ -1,9 +1,9 @@
 	.file	"pmc_compare.c"
 	.text
 	.p2align 4,,15
-	.globl	_Compare_X_X
-	.def	_Compare_X_X;	.scl	2;	.type	32;	.endef
-_Compare_X_X:
+	.globl	_Compare_Imp
+	.def	_Compare_Imp;	.scl	2;	.type	32;	.endef
+_Compare_Imp:
 LFB5485:
 	.cfi_startproc
 	pushl	%esi
@@ -127,7 +127,7 @@ L14:
 	testl	%edx, %edx
 	je	L17
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl 36(%esp), %edx
  # 0 "" 2
 /NO_APP
@@ -240,7 +240,7 @@ L23:
 	testl	%ebp, %ebp
 	je	L27
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
@@ -273,7 +273,7 @@ L28:
 L26:
 	.cfi_restore_state
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP

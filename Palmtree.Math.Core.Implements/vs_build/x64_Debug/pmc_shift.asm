@@ -22,14 +22,14 @@ __4522B509_pmc_internal@h DB 01H
 __BE4F50ED_pmc_shift@c DB 01H
 msvcjmc	ENDS
 PUBLIC	RightShift_Imp_DIV
+PUBLIC	RightShift_Imp
 PUBLIC	LeftShift_Imp_DIV
+PUBLIC	LeftShift_Imp
 PUBLIC	Initialize_Shift
 PUBLIC	PMC_RightShift_X_I
 PUBLIC	PMC_RightShift_X_L
 PUBLIC	PMC_LeftShift_X_I
 PUBLIC	PMC_LeftShift_X_L
-PUBLIC	RightShift_Imp
-PUBLIC	LeftShift_Imp
 PUBLIC	__JustMyCode_Default
 EXTRN	CheckBlockLight:PROC
 EXTRN	AllocateNumber:PROC
@@ -43,15 +43,27 @@ EXTRN	__CheckForDebuggerJustMyCode:PROC
 EXTRN	number_zero:BYTE
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$RightShift_Imp_DIV DD imagerel $LN14
-	DD	imagerel $LN14+7118
+$pdata$RightShift_Imp_DIV DD imagerel $LN16
+	DD	imagerel $LN16+7171
 	DD	imagerel $unwind$RightShift_Imp_DIV
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$LeftShift_Imp_DIV DD imagerel $LN14
-	DD	imagerel $LN14+7124
+$pdata$RightShift_Imp DD imagerel $LN16
+	DD	imagerel $LN16+8006
+	DD	imagerel $unwind$RightShift_Imp
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$LeftShift_Imp_DIV DD imagerel $LN15
+	DD	imagerel $LN15+7146
 	DD	imagerel $unwind$LeftShift_Imp_DIV
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$LeftShift_Imp DD imagerel $LN15
+	DD	imagerel $LN15+7986
+	DD	imagerel $unwind$LeftShift_Imp
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -107,18 +119,6 @@ $pdata$_ZERO_MEMORY_UNIT_DIV DD imagerel _ZERO_MEMORY_UNIT_DIV
 	DD	imagerel _ZERO_MEMORY_UNIT_DIV+100
 	DD	imagerel $unwind$_ZERO_MEMORY_UNIT_DIV
 pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$RightShift_Imp DD imagerel $LN14
-	DD	imagerel $LN14+7953
-	DD	imagerel $unwind$RightShift_Imp
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$LeftShift_Imp DD imagerel $LN14
-	DD	imagerel $LN14+7964
-	DD	imagerel $unwind$LeftShift_Imp
-pdata	ENDS
 ;	COMDAT rtc$TMZ
 rtc$TMZ	SEGMENT
 _RTC_Shutdown.rtc$TMZ DQ FLAT:_RTC_Shutdown
@@ -127,20 +127,6 @@ rtc$TMZ	ENDS
 rtc$IMZ	SEGMENT
 _RTC_InitBase.rtc$IMZ DQ FLAT:_RTC_InitBase
 rtc$IMZ	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$LeftShift_Imp DD 025053901H
-	DD	011d2322H
-	DD	070160041H
-	DD	05015H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$RightShift_Imp DD 025053901H
-	DD	011d2322H
-	DD	070160045H
-	DD	05015H
-xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $unwind$_ZERO_MEMORY_UNIT_DIV DD 025052f01H
@@ -358,9 +344,23 @@ $unwind$Initialize_Shift DD 025052a01H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$LeftShift_Imp DD 025053901H
+	DD	011d2322H
+	DD	070160041H
+	DD	05015H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$LeftShift_Imp_DIV DD 025053901H
 	DD	011d2322H
 	DD	070160041H
+	DD	05015H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$RightShift_Imp DD 025053901H
+	DD	011d2322H
+	DD	070160045H
 	DD	05015H
 xdata	ENDS
 ;	COMDAT xdata
@@ -376,6 +376,1283 @@ _TEXT	SEGMENT
 __JustMyCode_Default PROC				; COMDAT
 	ret	0
 __JustMyCode_Default ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _ZERO_MEMORY_UNIT_DIV
+_TEXT	SEGMENT
+tv64 = 192
+d$ = 240
+count$ = 248
+_ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
+
+; 357  : {
+
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 248				; 000000f8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 62					; 0000003eH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+280]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 358  : #ifdef _M_IX86
+; 359  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 360  : #elif defined(_M_X64)
+; 361  : #ifdef _MSC_VER
+; 362  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+
+	mov	eax, DWORD PTR count$[rbp]
+	mov	QWORD PTR tv64[rbp], rax
+	mov	rdi, QWORD PTR d$[rbp]
+	xor	eax, eax
+	mov	rcx, QWORD PTR tv64[rbp]
+	rep stosd
+
+; 363  : #elif defined(__GNUC__)
+; 364  :     __stosq(d, 0, count);
+; 365  : #else
+; 366  : #error unknown compiler
+; 367  : #endif
+; 368  : #else
+; 369  : #error unknown platform
+; 370  : #endif
+; 371  : }
+
+	lea	rsp, QWORD PTR [rbp+216]
+	pop	rdi
+	pop	rbp
+	ret	0
+_ZERO_MEMORY_UNIT_DIV ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _ZERO_MEMORY_UNIT
+_TEXT	SEGMENT
+d$ = 224
+count$ = 232
+_ZERO_MEMORY_UNIT PROC					; COMDAT
+
+; 346  : {
+
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 347  : #ifdef _M_IX86
+; 348  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 349  : #elif defined(_M_X64)
+; 350  :     __stosq(d, 0, count);
+
+	mov	rdi, QWORD PTR d$[rbp]
+	xor	eax, eax
+	mov	rcx, QWORD PTR count$[rbp]
+	rep stosq
+
+; 351  : #else
+; 352  : #error unknown platform
+; 353  : #endif
+; 354  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+_ZERO_MEMORY_UNIT ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _COPY_MEMORY_UNIT_DIV
+_TEXT	SEGMENT
+d$ = 224
+s$ = 232
+count$ = 240
+_COPY_MEMORY_UNIT_DIV PROC				; COMDAT
+
+; 307  : {
+
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rsi
+	push	rdi
+	sub	rsp, 224				; 000000e0H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 56					; 00000038H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 308  : #ifdef _M_IX86
+; 309  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 310  : #elif defined(_M_X64)
+; 311  : #ifdef _MSC_VER
+; 312  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+
+	mov	eax, DWORD PTR count$[rbp]
+	mov	rdi, QWORD PTR d$[rbp]
+	mov	rsi, QWORD PTR s$[rbp]
+	mov	ecx, eax
+	rep movsd
+
+; 313  : #elif defined(__GNUC__)
+; 314  :     __movsq(d, s, count);
+; 315  : #else
+; 316  : #error unknown compiler
+; 317  : #endif
+; 318  : #else
+; 319  : #error unknown platform
+; 320  : #endif
+; 321  : }
+
+	lea	rsp, QWORD PTR [rbp+192]
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	ret	0
+_COPY_MEMORY_UNIT_DIV ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _COPY_MEMORY_UNIT
+_TEXT	SEGMENT
+d$ = 224
+s$ = 232
+count$ = 240
+_COPY_MEMORY_UNIT PROC					; COMDAT
+
+; 296  : {
+
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rsi
+	push	rdi
+	sub	rsp, 224				; 000000e0H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 56					; 00000038H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 297  : #ifdef _M_IX86
+; 298  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 299  : #elif defined(_M_X64)
+; 300  :     __movsq(d, s, count);
+
+	mov	rdi, QWORD PTR d$[rbp]
+	mov	rsi, QWORD PTR s$[rbp]
+	mov	rcx, QWORD PTR count$[rbp]
+	rep movsq
+
+; 301  : #else
+; 302  : #error unknown platform
+; 303  : #endif
+; 304  : }
+
+	lea	rsp, QWORD PTR [rbp+192]
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	ret	0
+_COPY_MEMORY_UNIT ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
+;	COMDAT PMC_LeftShift_X_L
+_TEXT	SEGMENT
+np$ = 8
+no$ = 40
+result$ = 68
+p_bit_count$5 = 104
+o_bit_count$6 = 136
+no_light_check_code$7 = 168
+p$ = 416
+n$ = 424
+o$ = 432
+PMC_LeftShift_X_L PROC					; COMDAT
+
+; 720  : {
+
+$LN15:
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 440				; 000001b8H
+	lea	rbp, QWORD PTR [rsp+48]
+	mov	rdi, rsp
+	mov	ecx, 110				; 0000006eH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+472]
+	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
+	call	__CheckForDebuggerJustMyCode
+
+; 721  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN2@PMC_LeftSh
+
+; 722  :     {
+; 723  :         // _UINT64_T が 1 ワードで表現しきれない処理系には対応しない
+; 724  :         return (PMC_STATUS_NOT_SUPPORTED);
+
+	mov	eax, -6
+	jmp	$LN1@PMC_LeftSh
+$LN2@PMC_LeftSh:
+
+; 725  :     }
+; 726  :     if (p == NULL)
+
+	cmp	QWORD PTR p$[rbp], 0
+	jne	SHORT $LN3@PMC_LeftSh
+
+; 727  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_LeftSh
+$LN3@PMC_LeftSh:
+
+; 728  :     if (o == NULL)
+
+	cmp	QWORD PTR o$[rbp], 0
+	jne	SHORT $LN4@PMC_LeftSh
+
+; 729  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_LeftSh
+$LN4@PMC_LeftSh:
+
+; 730  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+
+	mov	rax, QWORD PTR p$[rbp]
+	mov	QWORD PTR np$[rbp], rax
+
+; 731  :     NUMBER_HEADER* no;
+; 732  :     PMC_STATUS_CODE result;
+; 733  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR np$[rbp]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN5@PMC_LeftSh
+
+; 734  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_LeftSh
+$LN5@PMC_LeftSh:
+
+; 735  :     if (np->IS_ZERO)
+
+	mov	rax, QWORD PTR np$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN6@PMC_LeftSh
+
+; 736  :         *o = &number_zero;
+
+	mov	rax, QWORD PTR o$[rbp]
+	lea	rcx, OFFSET FLAT:number_zero
+	mov	QWORD PTR [rax], rcx
+	jmp	$LN7@PMC_LeftSh
+$LN6@PMC_LeftSh:
+
+; 737  :     else if (n == 0)
+
+	cmp	QWORD PTR n$[rbp], 0
+	jne	SHORT $LN8@PMC_LeftSh
+
+; 738  :     {
+; 739  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
+
+	lea	rdx, QWORD PTR no$[rbp]
+	mov	rcx, QWORD PTR np$[rbp]
+	call	DuplicateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN10@PMC_LeftSh
+
+; 740  :             return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_LeftSh
+$LN10@PMC_LeftSh:
+
+; 741  :         *o = no;
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	QWORD PTR [rax], rcx
+
+; 742  :     }
+
+	jmp	$LN9@PMC_LeftSh
+$LN8@PMC_LeftSh:
+
+; 743  :     else
+; 744  :     {
+; 745  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR p_bit_count$5[rbp], rax
+
+; 746  :         __UNIT_TYPE o_bit_count = p_bit_count + (__UNIT_TYPE)n;
+
+	mov	rax, QWORD PTR n$[rbp]
+	mov	rcx, QWORD PTR p_bit_count$5[rbp]
+	add	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR o_bit_count$6[rbp], rax
+
+; 747  :         __UNIT_TYPE no_light_check_code;
+; 748  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+
+	lea	r8, QWORD PTR no_light_check_code$7[rbp]
+	mov	rdx, QWORD PTR o_bit_count$6[rbp]
+	lea	rcx, QWORD PTR no$[rbp]
+	call	AllocateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN11@PMC_LeftSh
+
+; 749  :             return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_LeftSh
+$LN11@PMC_LeftSh:
+
+; 750  :         LeftShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, (__UNIT_TYPE)n, no->BLOCK, FALSE);
+
+	mov	DWORD PTR [rsp+32], 0
+	mov	rax, QWORD PTR no$[rbp]
+	mov	r9, QWORD PTR [rax+48]
+	mov	r8, QWORD PTR n$[rbp]
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rdx, QWORD PTR [rax]
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	LeftShift_Imp
+
+; 751  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+
+	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
+	mov	rax, QWORD PTR no$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	CheckBlockLight
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN12@PMC_LeftSh
+
+; 752  :             return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_LeftSh
+$LN12@PMC_LeftSh:
+
+; 753  :         CommitNumber(no);
+
+	mov	rcx, QWORD PTR no$[rbp]
+	call	CommitNumber
+
+; 754  :         *o = no;
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	QWORD PTR [rax], rcx
+$LN9@PMC_LeftSh:
+$LN7@PMC_LeftSh:
+
+; 755  :     }
+; 756  : #ifdef _DEBUG
+; 757  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR [rax]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN13@PMC_LeftSh
+
+; 758  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_LeftSh
+$LN13@PMC_LeftSh:
+
+; 759  : #endif
+; 760  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_LeftSh:
+
+; 761  : }
+
+	mov	rdi, rax
+	lea	rcx, QWORD PTR [rbp-48]
+	lea	rdx, OFFSET FLAT:PMC_LeftShift_X_L$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rax, rdi
+	lea	rsp, QWORD PTR [rbp+392]
+	pop	rdi
+	pop	rbp
+	ret	0
+PMC_LeftShift_X_L ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
+;	COMDAT PMC_LeftShift_X_I
+_TEXT	SEGMENT
+np$ = 8
+no$ = 40
+result$ = 68
+p_bit_count$5 = 104
+o_bit_count$6 = 136
+no_light_check_code$7 = 168
+p$ = 416
+n$ = 424
+o$ = 432
+PMC_LeftShift_X_I PROC					; COMDAT
+
+; 676  : {
+
+$LN15:
+	mov	QWORD PTR [rsp+24], r8
+	mov	DWORD PTR [rsp+16], edx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 440				; 000001b8H
+	lea	rbp, QWORD PTR [rsp+48]
+	mov	rdi, rsp
+	mov	ecx, 110				; 0000006eH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+472]
+	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
+	call	__CheckForDebuggerJustMyCode
+
+; 677  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN2@PMC_LeftSh
+
+; 678  :     {
+; 679  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 680  :         return (PMC_STATUS_NOT_SUPPORTED);
+
+	mov	eax, -6
+	jmp	$LN1@PMC_LeftSh
+$LN2@PMC_LeftSh:
+
+; 681  :     }
+; 682  :     if (p == NULL)
+
+	cmp	QWORD PTR p$[rbp], 0
+	jne	SHORT $LN3@PMC_LeftSh
+
+; 683  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_LeftSh
+$LN3@PMC_LeftSh:
+
+; 684  :     if (o == NULL)
+
+	cmp	QWORD PTR o$[rbp], 0
+	jne	SHORT $LN4@PMC_LeftSh
+
+; 685  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_LeftSh
+$LN4@PMC_LeftSh:
+
+; 686  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+
+	mov	rax, QWORD PTR p$[rbp]
+	mov	QWORD PTR np$[rbp], rax
+
+; 687  :     NUMBER_HEADER* no;
+; 688  :     PMC_STATUS_CODE result;
+; 689  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR np$[rbp]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN5@PMC_LeftSh
+
+; 690  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_LeftSh
+$LN5@PMC_LeftSh:
+
+; 691  :     if (np->IS_ZERO)
+
+	mov	rax, QWORD PTR np$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN6@PMC_LeftSh
+
+; 692  :         *o = &number_zero;
+
+	mov	rax, QWORD PTR o$[rbp]
+	lea	rcx, OFFSET FLAT:number_zero
+	mov	QWORD PTR [rax], rcx
+	jmp	$LN7@PMC_LeftSh
+$LN6@PMC_LeftSh:
+
+; 693  :     else if (n == 0)
+
+	cmp	DWORD PTR n$[rbp], 0
+	jne	SHORT $LN8@PMC_LeftSh
+
+; 694  :     {
+; 695  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
+
+	lea	rdx, QWORD PTR no$[rbp]
+	mov	rcx, QWORD PTR np$[rbp]
+	call	DuplicateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN10@PMC_LeftSh
+
+; 696  :             return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_LeftSh
+$LN10@PMC_LeftSh:
+
+; 697  :         *o = no;
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	QWORD PTR [rax], rcx
+
+; 698  :     }
+
+	jmp	$LN9@PMC_LeftSh
+$LN8@PMC_LeftSh:
+
+; 699  :     else
+; 700  :     {
+; 701  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR p_bit_count$5[rbp], rax
+
+; 702  :         __UNIT_TYPE o_bit_count = p_bit_count + n;
+
+	mov	eax, DWORD PTR n$[rbp]
+	mov	rcx, QWORD PTR p_bit_count$5[rbp]
+	add	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR o_bit_count$6[rbp], rax
+
+; 703  :         __UNIT_TYPE no_light_check_code;
+; 704  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+
+	lea	r8, QWORD PTR no_light_check_code$7[rbp]
+	mov	rdx, QWORD PTR o_bit_count$6[rbp]
+	lea	rcx, QWORD PTR no$[rbp]
+	call	AllocateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN11@PMC_LeftSh
+
+; 705  :             return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_LeftSh
+$LN11@PMC_LeftSh:
+
+; 706  :         LeftShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, n, no->BLOCK, FALSE);
+
+	mov	eax, DWORD PTR n$[rbp]
+	mov	DWORD PTR [rsp+32], 0
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	r9, QWORD PTR [rcx+48]
+	mov	r8d, eax
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rdx, QWORD PTR [rax]
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	LeftShift_Imp
+
+; 707  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+
+	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
+	mov	rax, QWORD PTR no$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	CheckBlockLight
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN12@PMC_LeftSh
+
+; 708  :             return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_LeftSh
+$LN12@PMC_LeftSh:
+
+; 709  :         CommitNumber(no);
+
+	mov	rcx, QWORD PTR no$[rbp]
+	call	CommitNumber
+
+; 710  :         *o = no;
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	QWORD PTR [rax], rcx
+$LN9@PMC_LeftSh:
+$LN7@PMC_LeftSh:
+
+; 711  :     }
+; 712  : #ifdef _DEBUG
+; 713  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR [rax]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN13@PMC_LeftSh
+
+; 714  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_LeftSh
+$LN13@PMC_LeftSh:
+
+; 715  : #endif
+; 716  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_LeftSh:
+
+; 717  : }
+
+	mov	rdi, rax
+	lea	rcx, QWORD PTR [rbp-48]
+	lea	rdx, OFFSET FLAT:PMC_LeftShift_X_I$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rax, rdi
+	lea	rsp, QWORD PTR [rbp+392]
+	pop	rdi
+	pop	rbp
+	ret	0
+PMC_LeftShift_X_I ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
+;	COMDAT PMC_RightShift_X_L
+_TEXT	SEGMENT
+np$ = 8
+no$ = 40
+result$ = 68
+p_bit_count$5 = 104
+o_bit_count$6 = 136
+no_light_check_code$7 = 168
+p$ = 416
+n$ = 424
+o$ = 432
+PMC_RightShift_X_L PROC					; COMDAT
+
+; 627  : {
+
+$LN17:
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 440				; 000001b8H
+	lea	rbp, QWORD PTR [rsp+48]
+	mov	rdi, rsp
+	mov	ecx, 110				; 0000006eH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+472]
+	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
+	call	__CheckForDebuggerJustMyCode
+
+; 628  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN2@PMC_RightS
+
+; 629  :     {
+; 630  :         // _UINT64_T が 1 ワードで表現しきれない処理系には対応しない
+; 631  :         return (PMC_STATUS_NOT_SUPPORTED);
+
+	mov	eax, -6
+	jmp	$LN1@PMC_RightS
+$LN2@PMC_RightS:
+
+; 632  :     }
+; 633  :     if (p == NULL)
+
+	cmp	QWORD PTR p$[rbp], 0
+	jne	SHORT $LN3@PMC_RightS
+
+; 634  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_RightS
+$LN3@PMC_RightS:
+
+; 635  :     if (o == NULL)
+
+	cmp	QWORD PTR o$[rbp], 0
+	jne	SHORT $LN4@PMC_RightS
+
+; 636  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_RightS
+$LN4@PMC_RightS:
+
+; 637  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+
+	mov	rax, QWORD PTR p$[rbp]
+	mov	QWORD PTR np$[rbp], rax
+
+; 638  :     NUMBER_HEADER* no;
+; 639  :     PMC_STATUS_CODE result;
+; 640  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR np$[rbp]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN5@PMC_RightS
+
+; 641  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_RightS
+$LN5@PMC_RightS:
+
+; 642  :     if (np->IS_ZERO)
+
+	mov	rax, QWORD PTR np$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN6@PMC_RightS
+
+; 643  :         *o = &number_zero;
+
+	mov	rax, QWORD PTR o$[rbp]
+	lea	rcx, OFFSET FLAT:number_zero
+	mov	QWORD PTR [rax], rcx
+	jmp	$LN7@PMC_RightS
+$LN6@PMC_RightS:
+
+; 644  :     else if (n == 0)
+
+	cmp	QWORD PTR n$[rbp], 0
+	jne	SHORT $LN8@PMC_RightS
+
+; 645  :     {
+; 646  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
+
+	lea	rdx, QWORD PTR no$[rbp]
+	mov	rcx, QWORD PTR np$[rbp]
+	call	DuplicateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN10@PMC_RightS
+
+; 647  :             return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_RightS
+$LN10@PMC_RightS:
+
+; 648  :         *o = no;
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	QWORD PTR [rax], rcx
+
+; 649  :     }
+
+	jmp	$LN9@PMC_RightS
+$LN8@PMC_RightS:
+
+; 650  :     else
+; 651  :     {
+; 652  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR p_bit_count$5[rbp], rax
+
+; 653  :         if (p_bit_count <= n)
+
+	mov	rax, QWORD PTR n$[rbp]
+	cmp	QWORD PTR p_bit_count$5[rbp], rax
+	ja	SHORT $LN11@PMC_RightS
+
+; 654  :             *o = &number_zero;
+
+	mov	rax, QWORD PTR o$[rbp]
+	lea	rcx, OFFSET FLAT:number_zero
+	mov	QWORD PTR [rax], rcx
+	jmp	$LN12@PMC_RightS
+$LN11@PMC_RightS:
+
+; 655  :         else
+; 656  :         {
+; 657  :             __UNIT_TYPE o_bit_count = p_bit_count - (__UNIT_TYPE)n;
+
+	mov	rax, QWORD PTR n$[rbp]
+	mov	rcx, QWORD PTR p_bit_count$5[rbp]
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR o_bit_count$6[rbp], rax
+
+; 658  :             __UNIT_TYPE no_light_check_code;
+; 659  :             if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+
+	lea	r8, QWORD PTR no_light_check_code$7[rbp]
+	mov	rdx, QWORD PTR o_bit_count$6[rbp]
+	lea	rcx, QWORD PTR no$[rbp]
+	call	AllocateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN13@PMC_RightS
+
+; 660  :                 return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_RightS
+$LN13@PMC_RightS:
+
+; 661  :             RightShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, (__UNIT_TYPE)n, no->BLOCK, FALSE);
+
+	mov	DWORD PTR [rsp+32], 0
+	mov	rax, QWORD PTR no$[rbp]
+	mov	r9, QWORD PTR [rax+48]
+	mov	r8, QWORD PTR n$[rbp]
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rdx, QWORD PTR [rax]
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	RightShift_Imp
+
+; 662  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+
+	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
+	mov	rax, QWORD PTR no$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	CheckBlockLight
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN14@PMC_RightS
+
+; 663  :                 return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_RightS
+$LN14@PMC_RightS:
+
+; 664  :             CommitNumber(no);
+
+	mov	rcx, QWORD PTR no$[rbp]
+	call	CommitNumber
+
+; 665  :             *o = no;
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	QWORD PTR [rax], rcx
+$LN12@PMC_RightS:
+$LN9@PMC_RightS:
+$LN7@PMC_RightS:
+
+; 666  :         }
+; 667  :     }
+; 668  : #ifdef _DEBUG
+; 669  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR [rax]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN15@PMC_RightS
+
+; 670  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_RightS
+$LN15@PMC_RightS:
+
+; 671  : #endif
+; 672  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_RightS:
+
+; 673  : }
+
+	mov	rdi, rax
+	lea	rcx, QWORD PTR [rbp-48]
+	lea	rdx, OFFSET FLAT:PMC_RightShift_X_L$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rax, rdi
+	lea	rsp, QWORD PTR [rbp+392]
+	pop	rdi
+	pop	rbp
+	ret	0
+PMC_RightShift_X_L ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
+;	COMDAT PMC_RightShift_X_I
+_TEXT	SEGMENT
+np$ = 8
+no$ = 40
+result$ = 68
+p_bit_count$5 = 104
+o_bit_count$6 = 136
+no_light_check_code$7 = 168
+p$ = 416
+n$ = 424
+o$ = 432
+PMC_RightShift_X_I PROC					; COMDAT
+
+; 578  : {
+
+$LN17:
+	mov	QWORD PTR [rsp+24], r8
+	mov	DWORD PTR [rsp+16], edx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 440				; 000001b8H
+	lea	rbp, QWORD PTR [rsp+48]
+	mov	rdi, rsp
+	mov	ecx, 110				; 0000006eH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+472]
+	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
+	call	__CheckForDebuggerJustMyCode
+
+; 579  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN2@PMC_RightS
+
+; 580  :     {
+; 581  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 582  :         return (PMC_STATUS_NOT_SUPPORTED);
+
+	mov	eax, -6
+	jmp	$LN1@PMC_RightS
+$LN2@PMC_RightS:
+
+; 583  :     }
+; 584  :     if (p == NULL)
+
+	cmp	QWORD PTR p$[rbp], 0
+	jne	SHORT $LN3@PMC_RightS
+
+; 585  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_RightS
+$LN3@PMC_RightS:
+
+; 586  :     if (o == NULL)
+
+	cmp	QWORD PTR o$[rbp], 0
+	jne	SHORT $LN4@PMC_RightS
+
+; 587  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_RightS
+$LN4@PMC_RightS:
+
+; 588  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+
+	mov	rax, QWORD PTR p$[rbp]
+	mov	QWORD PTR np$[rbp], rax
+
+; 589  :     NUMBER_HEADER* no;
+; 590  :     PMC_STATUS_CODE result;
+; 591  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR np$[rbp]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN5@PMC_RightS
+
+; 592  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_RightS
+$LN5@PMC_RightS:
+
+; 593  :     if (np->IS_ZERO)
+
+	mov	rax, QWORD PTR np$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN6@PMC_RightS
+
+; 594  :         *o = &number_zero;
+
+	mov	rax, QWORD PTR o$[rbp]
+	lea	rcx, OFFSET FLAT:number_zero
+	mov	QWORD PTR [rax], rcx
+	jmp	$LN7@PMC_RightS
+$LN6@PMC_RightS:
+
+; 595  :     else if (n == 0)
+
+	cmp	DWORD PTR n$[rbp], 0
+	jne	SHORT $LN8@PMC_RightS
+
+; 596  :     {
+; 597  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
+
+	lea	rdx, QWORD PTR no$[rbp]
+	mov	rcx, QWORD PTR np$[rbp]
+	call	DuplicateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN10@PMC_RightS
+
+; 598  :             return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_RightS
+$LN10@PMC_RightS:
+
+; 599  :         *o = no;
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	QWORD PTR [rax], rcx
+
+; 600  :     }
+
+	jmp	$LN9@PMC_RightS
+$LN8@PMC_RightS:
+
+; 601  :     else
+; 602  :     {
+; 603  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR p_bit_count$5[rbp], rax
+
+; 604  :         if (p_bit_count <= n)
+
+	mov	eax, DWORD PTR n$[rbp]
+	cmp	QWORD PTR p_bit_count$5[rbp], rax
+	ja	SHORT $LN11@PMC_RightS
+
+; 605  :             *o = &number_zero;
+
+	mov	rax, QWORD PTR o$[rbp]
+	lea	rcx, OFFSET FLAT:number_zero
+	mov	QWORD PTR [rax], rcx
+	jmp	$LN12@PMC_RightS
+$LN11@PMC_RightS:
+
+; 606  :         else
+; 607  :         {
+; 608  :             __UNIT_TYPE o_bit_count = p_bit_count - n;
+
+	mov	eax, DWORD PTR n$[rbp]
+	mov	rcx, QWORD PTR p_bit_count$5[rbp]
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR o_bit_count$6[rbp], rax
+
+; 609  :             __UNIT_TYPE no_light_check_code;
+; 610  :             if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+
+	lea	r8, QWORD PTR no_light_check_code$7[rbp]
+	mov	rdx, QWORD PTR o_bit_count$6[rbp]
+	lea	rcx, QWORD PTR no$[rbp]
+	call	AllocateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN13@PMC_RightS
+
+; 611  :                 return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_RightS
+$LN13@PMC_RightS:
+
+; 612  :             RightShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, n, no->BLOCK, FALSE);
+
+	mov	eax, DWORD PTR n$[rbp]
+	mov	DWORD PTR [rsp+32], 0
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	r9, QWORD PTR [rcx+48]
+	mov	r8d, eax
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rdx, QWORD PTR [rax]
+	mov	rax, QWORD PTR np$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	RightShift_Imp
+
+; 613  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+
+	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
+	mov	rax, QWORD PTR no$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	CheckBlockLight
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN14@PMC_RightS
+
+; 614  :                 return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_RightS
+$LN14@PMC_RightS:
+
+; 615  :             CommitNumber(no);
+
+	mov	rcx, QWORD PTR no$[rbp]
+	call	CommitNumber
+
+; 616  :             *o = no;
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR no$[rbp]
+	mov	QWORD PTR [rax], rcx
+$LN12@PMC_RightS:
+$LN9@PMC_RightS:
+$LN7@PMC_RightS:
+
+; 617  :         }
+; 618  :     }
+; 619  : #ifdef _DEBUG
+; 620  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	rcx, QWORD PTR [rax]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN15@PMC_RightS
+
+; 621  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_RightS
+$LN15@PMC_RightS:
+
+; 622  : #endif
+; 623  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_RightS:
+
+; 624  : }
+
+	mov	rdi, rax
+	lea	rcx, QWORD PTR [rbp-48]
+	lea	rdx, OFFSET FLAT:PMC_RightShift_X_I$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rax, rdi
+	lea	rsp, QWORD PTR [rbp+392]
+	pop	rdi
+	pop	rbp
+	ret	0
+PMC_RightShift_X_I ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
+;	COMDAT Initialize_Shift
+_TEXT	SEGMENT
+feature$ = 224
+Initialize_Shift PROC					; COMDAT
+
+; 764  : {
+
+$LN3:
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
+	call	__CheckForDebuggerJustMyCode
+
+; 765  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+
+; 766  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+Initialize_Shift ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
@@ -397,9 +1674,9 @@ o$ = 536
 padding_zero$ = 544
 LeftShift_Imp PROC					; COMDAT
 
-; 304  : {
+; 308  : {
 
-$LN14:
+$LN15:
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -416,22 +1693,22 @@ $LN14:
 	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
 	call	__CheckForDebuggerJustMyCode
 
-; 305  :     __UNIT_TYPE* pp = p;
+; 309  :     __UNIT_TYPE* pp = p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR pp$[rbp], rax
 
-; 306  :     __UNIT_TYPE p_count = p_word_count;
+; 310  :     __UNIT_TYPE p_count = p_word_count;
 
 	mov	rax, QWORD PTR p_word_count$[rbp]
 	mov	QWORD PTR p_count$[rbp], rax
 
-; 307  :     __UNIT_TYPE* op = o;
+; 311  :     __UNIT_TYPE* op = o;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	QWORD PTR op$[rbp], rax
 
-; 308  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
+; 312  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
 
 	xor	edx, edx
 	mov	rax, QWORD PTR n$[rbp]
@@ -439,7 +1716,7 @@ $LN14:
 	div	rcx
 	mov	QWORD PTR n_word_count$[rbp], rax
 
-; 309  :     __UNIT_TYPE n_lshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
+; 313  :     __UNIT_TYPE n_lshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
 
 	xor	edx, edx
 	mov	rax, QWORD PTR n$[rbp]
@@ -448,14 +1725,14 @@ $LN14:
 	mov	rax, rdx
 	mov	QWORD PTR n_lshift_bit_count$[rbp], rax
 
-; 310  :     if (n_lshift_bit_count == 0)
+; 314  :     if (n_lshift_bit_count == 0)
 
 	cmp	QWORD PTR n_lshift_bit_count$[rbp], 0
 	jne	SHORT $LN4@LeftShift_
 
-; 311  :     {
-; 312  :         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
-; 313  :         _COPY_MEMORY_UNIT(op + n_word_count, pp, p_count);
+; 315  :     {
+; 316  :         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
+; 317  :         _COPY_MEMORY_UNIT(op + n_word_count, pp, p_count);
 
 	mov	rax, QWORD PTR op$[rbp]
 	mov	rcx, QWORD PTR n_word_count$[rbp]
@@ -465,27 +1742,39 @@ $LN14:
 	mov	rcx, rax
 	call	_COPY_MEMORY_UNIT
 
-; 314  :     }
+; 318  :         if (padding_zero)
+
+	cmp	DWORD PTR padding_zero$[rbp], 0
+	je	SHORT $LN6@LeftShift_
+
+; 319  :             _ZERO_MEMORY_UNIT(op, n_word_count);
+
+	mov	rdx, QWORD PTR n_word_count$[rbp]
+	mov	rcx, QWORD PTR op$[rbp]
+	call	_ZERO_MEMORY_UNIT
+$LN6@LeftShift_:
+
+; 320  :     }
 
 	jmp	$LN5@LeftShift_
 $LN4@LeftShift_:
 
-; 315  :     else
-; 316  :     {
-; 317  :         __UNIT_TYPE n_rshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_lshift_bit_count;
+; 321  :     else
+; 322  :     {
+; 323  :         __UNIT_TYPE n_rshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_lshift_bit_count;
 
 	mov	eax, 64					; 00000040H
 	sub	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	mov	QWORD PTR n_rshift_bit_count$1[rbp], rax
 
-; 318  :         pp += p_count - 1;
+; 324  :         pp += p_count - 1;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	mov	rcx, QWORD PTR p_count$[rbp]
 	lea	rax, QWORD PTR [rax+rcx*8-8]
 	mov	QWORD PTR pp$[rbp], rax
 
-; 319  :         op += p_count + n_word_count;
+; 325  :         op += p_count + n_word_count;
 
 	mov	rax, QWORD PTR n_word_count$[rbp]
 	mov	rcx, QWORD PTR p_count$[rbp]
@@ -495,19 +1784,19 @@ $LN4@LeftShift_:
 	lea	rax, QWORD PTR [rcx+rax*8]
 	mov	QWORD PTR op$[rbp], rax
 
-; 320  :         p_count -= 1;
+; 326  :         p_count -= 1;
 
 	mov	rax, QWORD PTR p_count$[rbp]
 	dec	rax
 	mov	QWORD PTR p_count$[rbp], rax
 
-; 321  :         __UNIT_TYPE temp = *pp;
+; 327  :         __UNIT_TYPE temp = *pp;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	mov	rax, QWORD PTR [rax]
 	mov	QWORD PTR temp$2[rbp], rax
 
-; 322  :         __UNIT_TYPE work = temp >> n_rshift_bit_count;
+; 328  :         __UNIT_TYPE work = temp >> n_rshift_bit_count;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
 	movzx	ecx, al
@@ -515,45 +1804,45 @@ $LN4@LeftShift_:
 	shr	rax, cl
 	mov	QWORD PTR work$3[rbp], rax
 
-; 323  :         if (work != 0)
+; 329  :         if (work != 0)
 
 	cmp	QWORD PTR work$3[rbp], 0
-	je	SHORT $LN6@LeftShift_
+	je	SHORT $LN7@LeftShift_
 
-; 324  :             *op = work;
+; 330  :             *op = work;
 
 	mov	rax, QWORD PTR op$[rbp]
 	mov	rcx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rax], rcx
-$LN6@LeftShift_:
+$LN7@LeftShift_:
 
-; 325  :         --pp;
+; 331  :         --pp;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	sub	rax, 8
 	mov	QWORD PTR pp$[rbp], rax
 
-; 326  :         --op;
+; 332  :         --op;
 
 	mov	rax, QWORD PTR op$[rbp]
 	sub	rax, 8
 	mov	QWORD PTR op$[rbp], rax
 
-; 327  : 
-; 328  :         __UNIT_TYPE count = p_count >> 5;
+; 333  : 
+; 334  :         __UNIT_TYPE count = p_count >> 5;
 
 	mov	rax, QWORD PTR p_count$[rbp]
 	shr	rax, 5
 	mov	QWORD PTR count$4[rbp], rax
 $LN2@LeftShift_:
 
-; 329  :         while (count != 0)
+; 335  :         while (count != 0)
 
 	cmp	QWORD PTR count$4[rbp], 0
 	je	$LN3@LeftShift_
 
-; 330  :         {
-; 331  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 336  :         {
+; 337  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -579,7 +1868,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 332  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 338  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -605,7 +1894,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 333  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 339  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -631,7 +1920,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 334  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 340  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -657,7 +1946,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 335  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+; 341  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -683,7 +1972,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 336  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+; 342  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -709,7 +1998,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 337  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+; 343  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -735,7 +2024,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 338  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+; 344  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -761,7 +2050,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 339  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
+; 345  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -787,7 +2076,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 340  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
+; 346  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -813,7 +2102,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 341  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
+; 347  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -839,7 +2128,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 342  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
+; 348  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -865,7 +2154,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 343  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
+; 349  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -891,7 +2180,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 344  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
+; 350  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -917,7 +2206,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 345  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
+; 351  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -943,7 +2232,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 346  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
+; 352  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -969,7 +2258,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 347  :             work = temp << n_lshift_bit_count; temp = pp[-16]; work |= temp >> n_rshift_bit_count; op[-16] = work;
+; 353  :             work = temp << n_lshift_bit_count; temp = pp[-16]; work |= temp >> n_rshift_bit_count; op[-16] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -995,7 +2284,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 348  :             work = temp << n_lshift_bit_count; temp = pp[-17]; work |= temp >> n_rshift_bit_count; op[-17] = work;
+; 354  :             work = temp << n_lshift_bit_count; temp = pp[-17]; work |= temp >> n_rshift_bit_count; op[-17] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1021,7 +2310,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 349  :             work = temp << n_lshift_bit_count; temp = pp[-18]; work |= temp >> n_rshift_bit_count; op[-18] = work;
+; 355  :             work = temp << n_lshift_bit_count; temp = pp[-18]; work |= temp >> n_rshift_bit_count; op[-18] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1047,7 +2336,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 350  :             work = temp << n_lshift_bit_count; temp = pp[-19]; work |= temp >> n_rshift_bit_count; op[-19] = work;
+; 356  :             work = temp << n_lshift_bit_count; temp = pp[-19]; work |= temp >> n_rshift_bit_count; op[-19] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1073,7 +2362,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 351  :             work = temp << n_lshift_bit_count; temp = pp[-20]; work |= temp >> n_rshift_bit_count; op[-20] = work;
+; 357  :             work = temp << n_lshift_bit_count; temp = pp[-20]; work |= temp >> n_rshift_bit_count; op[-20] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1099,7 +2388,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 352  :             work = temp << n_lshift_bit_count; temp = pp[-21]; work |= temp >> n_rshift_bit_count; op[-21] = work;
+; 358  :             work = temp << n_lshift_bit_count; temp = pp[-21]; work |= temp >> n_rshift_bit_count; op[-21] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1125,7 +2414,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 353  :             work = temp << n_lshift_bit_count; temp = pp[-22]; work |= temp >> n_rshift_bit_count; op[-22] = work;
+; 359  :             work = temp << n_lshift_bit_count; temp = pp[-22]; work |= temp >> n_rshift_bit_count; op[-22] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1151,7 +2440,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 354  :             work = temp << n_lshift_bit_count; temp = pp[-23]; work |= temp >> n_rshift_bit_count; op[-23] = work;
+; 360  :             work = temp << n_lshift_bit_count; temp = pp[-23]; work |= temp >> n_rshift_bit_count; op[-23] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1177,7 +2466,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 355  :             work = temp << n_lshift_bit_count; temp = pp[-24]; work |= temp >> n_rshift_bit_count; op[-24] = work;
+; 361  :             work = temp << n_lshift_bit_count; temp = pp[-24]; work |= temp >> n_rshift_bit_count; op[-24] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1203,7 +2492,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 356  :             work = temp << n_lshift_bit_count; temp = pp[-25]; work |= temp >> n_rshift_bit_count; op[-25] = work;
+; 362  :             work = temp << n_lshift_bit_count; temp = pp[-25]; work |= temp >> n_rshift_bit_count; op[-25] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1229,7 +2518,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 357  :             work = temp << n_lshift_bit_count; temp = pp[-26]; work |= temp >> n_rshift_bit_count; op[-26] = work;
+; 363  :             work = temp << n_lshift_bit_count; temp = pp[-26]; work |= temp >> n_rshift_bit_count; op[-26] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1255,7 +2544,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 358  :             work = temp << n_lshift_bit_count; temp = pp[-27]; work |= temp >> n_rshift_bit_count; op[-27] = work;
+; 364  :             work = temp << n_lshift_bit_count; temp = pp[-27]; work |= temp >> n_rshift_bit_count; op[-27] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1281,7 +2570,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 359  :             work = temp << n_lshift_bit_count; temp = pp[-28]; work |= temp >> n_rshift_bit_count; op[-28] = work;
+; 365  :             work = temp << n_lshift_bit_count; temp = pp[-28]; work |= temp >> n_rshift_bit_count; op[-28] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1307,7 +2596,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 360  :             work = temp << n_lshift_bit_count; temp = pp[-29]; work |= temp >> n_rshift_bit_count; op[-29] = work;
+; 366  :             work = temp << n_lshift_bit_count; temp = pp[-29]; work |= temp >> n_rshift_bit_count; op[-29] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1333,7 +2622,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 361  :             work = temp << n_lshift_bit_count; temp = pp[-30]; work |= temp >> n_rshift_bit_count; op[-30] = work;
+; 367  :             work = temp << n_lshift_bit_count; temp = pp[-30]; work |= temp >> n_rshift_bit_count; op[-30] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1359,7 +2648,7 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 362  :             work = temp << n_lshift_bit_count; temp = pp[-31]; work |= temp >> n_rshift_bit_count; op[-31] = work;
+; 368  :             work = temp << n_lshift_bit_count; temp = pp[-31]; work |= temp >> n_rshift_bit_count; op[-31] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1385,39 +2674,39 @@ $LN2@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 363  :             pp -= 32;
+; 369  :             pp -= 32;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	sub	rax, 256				; 00000100H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 364  :             op -= 32;
+; 370  :             op -= 32;
 
 	mov	rax, QWORD PTR op$[rbp]
 	sub	rax, 256				; 00000100H
 	mov	QWORD PTR op$[rbp], rax
 
-; 365  :             --count;
+; 371  :             --count;
 
 	mov	rax, QWORD PTR count$4[rbp]
 	dec	rax
 	mov	QWORD PTR count$4[rbp], rax
 
-; 366  :         }
+; 372  :         }
 
 	jmp	$LN2@LeftShift_
 $LN3@LeftShift_:
 
-; 367  : 
-; 368  :         if (p_count & 0x10)
+; 373  : 
+; 374  :         if (p_count & 0x10)
 
 	mov	rax, QWORD PTR p_count$[rbp]
 	and	rax, 16
 	test	rax, rax
-	je	$LN7@LeftShift_
+	je	$LN8@LeftShift_
 
-; 369  :         {
-; 370  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 375  :         {
+; 376  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1443,7 +2732,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 371  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 377  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1469,7 +2758,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 372  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 378  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1495,7 +2784,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 373  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 379  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1521,7 +2810,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 374  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+; 380  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1547,7 +2836,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 375  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+; 381  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1573,7 +2862,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 376  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+; 382  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1599,7 +2888,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 377  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+; 383  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1625,7 +2914,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 378  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
+; 384  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1651,7 +2940,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 379  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
+; 385  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1677,7 +2966,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 380  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
+; 386  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1703,7 +2992,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 381  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
+; 387  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1729,7 +3018,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 382  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
+; 388  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1755,7 +3044,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 383  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
+; 389  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1781,7 +3070,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 384  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
+; 390  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1807,7 +3096,7 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 385  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
+; 391  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1833,30 +3122,30 @@ $LN3@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 386  :             pp -= 16;
+; 392  :             pp -= 16;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	sub	rax, 128				; 00000080H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 387  :             op -= 16;
+; 393  :             op -= 16;
 
 	mov	rax, QWORD PTR op$[rbp]
 	sub	rax, 128				; 00000080H
 	mov	QWORD PTR op$[rbp], rax
-$LN7@LeftShift_:
+$LN8@LeftShift_:
 
-; 388  :         }
-; 389  : 
-; 390  :         if (p_count & 0x8)
+; 394  :         }
+; 395  : 
+; 396  :         if (p_count & 0x8)
 
 	mov	rax, QWORD PTR p_count$[rbp]
 	and	rax, 8
 	test	rax, rax
-	je	$LN8@LeftShift_
+	je	$LN9@LeftShift_
 
-; 391  :         {
-; 392  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 397  :         {
+; 398  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1882,7 +3171,7 @@ $LN7@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 393  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 399  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1908,7 +3197,7 @@ $LN7@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 394  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 400  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1934,7 +3223,7 @@ $LN7@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 395  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 401  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1960,7 +3249,7 @@ $LN7@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 396  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+; 402  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -1986,7 +3275,7 @@ $LN7@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 397  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+; 403  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2012,7 +3301,7 @@ $LN7@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 398  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+; 404  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2038,7 +3327,7 @@ $LN7@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 399  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+; 405  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2064,30 +3353,30 @@ $LN7@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 400  :             pp -= 8;
+; 406  :             pp -= 8;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	sub	rax, 64					; 00000040H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 401  :             op -= 8;
+; 407  :             op -= 8;
 
 	mov	rax, QWORD PTR op$[rbp]
 	sub	rax, 64					; 00000040H
 	mov	QWORD PTR op$[rbp], rax
-$LN8@LeftShift_:
+$LN9@LeftShift_:
 
-; 402  :         }
-; 403  : 
-; 404  :         if (p_count & 0x4)
+; 408  :         }
+; 409  : 
+; 410  :         if (p_count & 0x4)
 
 	mov	rax, QWORD PTR p_count$[rbp]
 	and	rax, 4
 	test	rax, rax
-	je	$LN9@LeftShift_
+	je	$LN10@LeftShift_
 
-; 405  :         {
-; 406  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 411  :         {
+; 412  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2113,7 +3402,7 @@ $LN8@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 407  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 413  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2139,7 +3428,7 @@ $LN8@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 408  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 414  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2165,7 +3454,7 @@ $LN8@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 409  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 415  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2191,30 +3480,30 @@ $LN8@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 410  :             pp -= 4;
+; 416  :             pp -= 4;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	sub	rax, 32					; 00000020H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 411  :             op -= 4;
+; 417  :             op -= 4;
 
 	mov	rax, QWORD PTR op$[rbp]
 	sub	rax, 32					; 00000020H
 	mov	QWORD PTR op$[rbp], rax
-$LN9@LeftShift_:
+$LN10@LeftShift_:
 
-; 412  :         }
-; 413  : 
-; 414  :         if (p_count & 0x2)
+; 418  :         }
+; 419  : 
+; 420  :         if (p_count & 0x2)
 
 	mov	rax, QWORD PTR p_count$[rbp]
 	and	rax, 2
 	test	rax, rax
-	je	$LN10@LeftShift_
+	je	$LN11@LeftShift_
 
-; 415  :         {
-; 416  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 421  :         {
+; 422  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2240,7 +3529,7 @@ $LN9@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 417  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 423  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2266,30 +3555,30 @@ $LN9@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 418  :             pp -= 2;
+; 424  :             pp -= 2;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	sub	rax, 16
 	mov	QWORD PTR pp$[rbp], rax
 
-; 419  :             op -= 2;
+; 425  :             op -= 2;
 
 	mov	rax, QWORD PTR op$[rbp]
 	sub	rax, 16
 	mov	QWORD PTR op$[rbp], rax
-$LN10@LeftShift_:
+$LN11@LeftShift_:
 
-; 420  :         }
-; 421  : 
-; 422  :         if (p_count & 0x1)
+; 426  :         }
+; 427  : 
+; 428  :         if (p_count & 0x1)
 
 	mov	rax, QWORD PTR p_count$[rbp]
 	and	rax, 1
 	test	rax, rax
-	je	$LN11@LeftShift_
+	je	$LN12@LeftShift_
 
-; 423  :         {
-; 424  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 429  :         {
+; 430  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2315,21 +3604,21 @@ $LN10@LeftShift_:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 425  :             pp -= 1;
+; 431  :             pp -= 1;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	sub	rax, 8
 	mov	QWORD PTR pp$[rbp], rax
 
-; 426  :             op -= 1;
+; 432  :             op -= 1;
 
 	mov	rax, QWORD PTR op$[rbp]
 	sub	rax, 8
 	mov	QWORD PTR op$[rbp], rax
-$LN11@LeftShift_:
+$LN12@LeftShift_:
 
-; 427  :         }
-; 428  :         work = temp << n_lshift_bit_count;
+; 433  :         }
+; 434  :         work = temp << n_lshift_bit_count;
 
 	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2337,34 +3626,2035 @@ $LN11@LeftShift_:
 	shl	rax, cl
 	mov	QWORD PTR work$3[rbp], rax
 
-; 429  :         *op = work;
+; 435  :         *op = work;
 
 	mov	rax, QWORD PTR op$[rbp]
 	mov	rcx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 430  : 
-; 431  :         if (padding_zero)
+; 436  : 
+; 437  :         if (padding_zero)
 
 	cmp	DWORD PTR padding_zero$[rbp], 0
-	je	SHORT $LN12@LeftShift_
+	je	SHORT $LN13@LeftShift_
 
-; 432  :             _ZERO_MEMORY_UNIT(p, n_word_count);
+; 438  :             _ZERO_MEMORY_UNIT(o, n_word_count);
 
 	mov	rdx, QWORD PTR n_word_count$[rbp]
-	mov	rcx, QWORD PTR p$[rbp]
+	mov	rcx, QWORD PTR o$[rbp]
 	call	_ZERO_MEMORY_UNIT
-$LN12@LeftShift_:
+$LN13@LeftShift_:
 $LN5@LeftShift_:
 
-; 433  :     }
-; 434  : }
+; 439  :     }
+; 440  : }
 
 	lea	rsp, QWORD PTR [rbp+488]
 	pop	rdi
 	pop	rbp
 	ret	0
 LeftShift_Imp ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
+;	COMDAT LeftShift_Imp_DIV
+_TEXT	SEGMENT
+pp$ = 8
+p_count$ = 40
+op$ = 72
+n_word_count$ = 104
+n_lshift_bit_count$ = 136
+n_rshift_bit_count$1 = 168
+temp$2 = 196
+work$3 = 228
+count$4 = 264
+p$ = 512
+p_word_count$ = 520
+n$ = 528
+o$ = 536
+padding_zero$ = 544
+LeftShift_Imp_DIV PROC					; COMDAT
+
+; 443  : {
+
+$LN15:
+	mov	QWORD PTR [rsp+32], r9
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 520				; 00000208H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 130				; 00000082H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+552]
+	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
+	call	__CheckForDebuggerJustMyCode
+
+; 444  :     __UNIT_TYPE_DIV* pp = p;
+
+	mov	rax, QWORD PTR p$[rbp]
+	mov	QWORD PTR pp$[rbp], rax
+
+; 445  :     __UNIT_TYPE p_count = p_word_count;
+
+	mov	rax, QWORD PTR p_word_count$[rbp]
+	mov	QWORD PTR p_count$[rbp], rax
+
+; 446  :     __UNIT_TYPE_DIV* op = o;
+
+	mov	rax, QWORD PTR o$[rbp]
+	mov	QWORD PTR op$[rbp], rax
+
+; 447  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
+
+	xor	edx, edx
+	mov	rax, QWORD PTR n$[rbp]
+	mov	ecx, 64					; 00000040H
+	div	rcx
+	mov	QWORD PTR n_word_count$[rbp], rax
+
+; 448  :     __UNIT_TYPE n_lshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
+
+	xor	edx, edx
+	mov	rax, QWORD PTR n$[rbp]
+	mov	ecx, 64					; 00000040H
+	div	rcx
+	mov	rax, rdx
+	mov	QWORD PTR n_lshift_bit_count$[rbp], rax
+
+; 449  :     if (n_lshift_bit_count == 0)
+
+	cmp	QWORD PTR n_lshift_bit_count$[rbp], 0
+	jne	SHORT $LN4@LeftShift_
+
+; 450  :     {
+; 451  :         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
+; 452  :         _COPY_MEMORY_UNIT_DIV(op + n_word_count, pp, p_count);
+
+	mov	rax, QWORD PTR op$[rbp]
+	mov	rcx, QWORD PTR n_word_count$[rbp]
+	lea	rax, QWORD PTR [rax+rcx*4]
+	mov	r8, QWORD PTR p_count$[rbp]
+	mov	rdx, QWORD PTR pp$[rbp]
+	mov	rcx, rax
+	call	_COPY_MEMORY_UNIT_DIV
+
+; 453  :         if (padding_zero)
+
+	cmp	DWORD PTR padding_zero$[rbp], 0
+	je	SHORT $LN6@LeftShift_
+
+; 454  :             _ZERO_MEMORY_UNIT_DIV(op, n_word_count);
+
+	mov	rdx, QWORD PTR n_word_count$[rbp]
+	mov	rcx, QWORD PTR op$[rbp]
+	call	_ZERO_MEMORY_UNIT_DIV
+$LN6@LeftShift_:
+
+; 455  :     }
+
+	jmp	$LN5@LeftShift_
+$LN4@LeftShift_:
+
+; 456  :     else
+; 457  :     {
+; 458  :         __UNIT_TYPE n_rshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_lshift_bit_count;
+
+	mov	eax, 64					; 00000040H
+	sub	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	mov	QWORD PTR n_rshift_bit_count$1[rbp], rax
+
+; 459  :         pp += p_count - 1;
+
+	mov	rax, QWORD PTR pp$[rbp]
+	mov	rcx, QWORD PTR p_count$[rbp]
+	lea	rax, QWORD PTR [rax+rcx*4-4]
+	mov	QWORD PTR pp$[rbp], rax
+
+; 460  :         op += p_count + n_word_count;
+
+	mov	rax, QWORD PTR n_word_count$[rbp]
+	mov	rcx, QWORD PTR p_count$[rbp]
+	add	rcx, rax
+	mov	rax, rcx
+	mov	rcx, QWORD PTR op$[rbp]
+	lea	rax, QWORD PTR [rcx+rax*4]
+	mov	QWORD PTR op$[rbp], rax
+
+; 461  :         p_count -= 1;
+
+	mov	rax, QWORD PTR p_count$[rbp]
+	dec	rax
+	mov	QWORD PTR p_count$[rbp], rax
+
+; 462  :         __UNIT_TYPE_DIV temp = *pp;
+
+	mov	rax, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rax]
+	mov	DWORD PTR temp$2[rbp], eax
+
+; 463  :         __UNIT_TYPE_DIV work = temp >> n_rshift_bit_count;
+
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+
+; 464  :         if (work != 0)
+
+	cmp	DWORD PTR work$3[rbp], 0
+	je	SHORT $LN7@LeftShift_
+
+; 465  :             *op = work;
+
+	mov	rax, QWORD PTR op$[rbp]
+	mov	ecx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rax], ecx
+$LN7@LeftShift_:
+
+; 466  :         --pp;
+
+	mov	rax, QWORD PTR pp$[rbp]
+	sub	rax, 4
+	mov	QWORD PTR pp$[rbp], rax
+
+; 467  :         --op;
+
+	mov	rax, QWORD PTR op$[rbp]
+	sub	rax, 4
+	mov	QWORD PTR op$[rbp], rax
+
+; 468  : 
+; 469  :         __UNIT_TYPE count = p_count >> 5;
+
+	mov	rax, QWORD PTR p_count$[rbp]
+	shr	rax, 5
+	mov	QWORD PTR count$4[rbp], rax
+$LN2@LeftShift_:
+
+; 470  :         while (count != 0)
+
+	cmp	QWORD PTR count$4[rbp], 0
+	je	$LN3@LeftShift_
+
+; 471  :         {
+; 472  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 473  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 474  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -2
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -2
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 475  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -3
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -3
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 476  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -4
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -4
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 477  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -5
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -5
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 478  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -6
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -6
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 479  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -7
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -7
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 480  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -8
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -8
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 481  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -9
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -9
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 482  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -10
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -10
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 483  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -11
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -11
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 484  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -12
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -12
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 485  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -13
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -13
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 486  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -14
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -14
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 487  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -15
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -15
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 488  :             work = temp << n_lshift_bit_count; temp = pp[-16]; work |= temp >> n_rshift_bit_count; op[-16] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -16
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -16
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 489  :             work = temp << n_lshift_bit_count; temp = pp[-17]; work |= temp >> n_rshift_bit_count; op[-17] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -17
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -17
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 490  :             work = temp << n_lshift_bit_count; temp = pp[-18]; work |= temp >> n_rshift_bit_count; op[-18] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -18
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -18
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 491  :             work = temp << n_lshift_bit_count; temp = pp[-19]; work |= temp >> n_rshift_bit_count; op[-19] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -19
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -19
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 492  :             work = temp << n_lshift_bit_count; temp = pp[-20]; work |= temp >> n_rshift_bit_count; op[-20] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -20
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -20
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 493  :             work = temp << n_lshift_bit_count; temp = pp[-21]; work |= temp >> n_rshift_bit_count; op[-21] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -21
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -21
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 494  :             work = temp << n_lshift_bit_count; temp = pp[-22]; work |= temp >> n_rshift_bit_count; op[-22] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -22
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -22
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 495  :             work = temp << n_lshift_bit_count; temp = pp[-23]; work |= temp >> n_rshift_bit_count; op[-23] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -23
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -23
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 496  :             work = temp << n_lshift_bit_count; temp = pp[-24]; work |= temp >> n_rshift_bit_count; op[-24] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -24
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -24
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 497  :             work = temp << n_lshift_bit_count; temp = pp[-25]; work |= temp >> n_rshift_bit_count; op[-25] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -25
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -25
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 498  :             work = temp << n_lshift_bit_count; temp = pp[-26]; work |= temp >> n_rshift_bit_count; op[-26] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -26
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -26
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 499  :             work = temp << n_lshift_bit_count; temp = pp[-27]; work |= temp >> n_rshift_bit_count; op[-27] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -27
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -27
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 500  :             work = temp << n_lshift_bit_count; temp = pp[-28]; work |= temp >> n_rshift_bit_count; op[-28] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -28
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -28
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 501  :             work = temp << n_lshift_bit_count; temp = pp[-29]; work |= temp >> n_rshift_bit_count; op[-29] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -29
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -29
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 502  :             work = temp << n_lshift_bit_count; temp = pp[-30]; work |= temp >> n_rshift_bit_count; op[-30] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -30
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -30
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 503  :             work = temp << n_lshift_bit_count; temp = pp[-31]; work |= temp >> n_rshift_bit_count; op[-31] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -31
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -31
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 504  :             pp -= 32;
+
+	mov	rax, QWORD PTR pp$[rbp]
+	sub	rax, 128				; 00000080H
+	mov	QWORD PTR pp$[rbp], rax
+
+; 505  :             op -= 32;
+
+	mov	rax, QWORD PTR op$[rbp]
+	sub	rax, 128				; 00000080H
+	mov	QWORD PTR op$[rbp], rax
+
+; 506  :             --count;
+
+	mov	rax, QWORD PTR count$4[rbp]
+	dec	rax
+	mov	QWORD PTR count$4[rbp], rax
+
+; 507  :         }
+
+	jmp	$LN2@LeftShift_
+$LN3@LeftShift_:
+
+; 508  : 
+; 509  :         if (p_count & 0x10)
+
+	mov	rax, QWORD PTR p_count$[rbp]
+	and	rax, 16
+	test	rax, rax
+	je	$LN8@LeftShift_
+
+; 510  :         {
+; 511  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 512  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 513  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -2
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -2
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 514  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -3
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -3
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 515  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -4
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -4
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 516  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -5
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -5
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 517  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -6
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -6
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 518  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -7
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -7
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 519  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -8
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -8
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 520  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -9
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -9
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 521  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -10
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -10
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 522  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -11
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -11
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 523  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -12
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -12
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 524  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -13
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -13
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 525  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -14
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -14
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 526  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -15
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -15
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 527  :             pp -= 16;
+
+	mov	rax, QWORD PTR pp$[rbp]
+	sub	rax, 64					; 00000040H
+	mov	QWORD PTR pp$[rbp], rax
+
+; 528  :             op -= 16;
+
+	mov	rax, QWORD PTR op$[rbp]
+	sub	rax, 64					; 00000040H
+	mov	QWORD PTR op$[rbp], rax
+$LN8@LeftShift_:
+
+; 529  :         }
+; 530  : 
+; 531  :         if (p_count & 0x8)
+
+	mov	rax, QWORD PTR p_count$[rbp]
+	and	rax, 8
+	test	rax, rax
+	je	$LN9@LeftShift_
+
+; 532  :         {
+; 533  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 534  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 535  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -2
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -2
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 536  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -3
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -3
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 537  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -4
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -4
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 538  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -5
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -5
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 539  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -6
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -6
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 540  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -7
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -7
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 541  :             pp -= 8;
+
+	mov	rax, QWORD PTR pp$[rbp]
+	sub	rax, 32					; 00000020H
+	mov	QWORD PTR pp$[rbp], rax
+
+; 542  :             op -= 8;
+
+	mov	rax, QWORD PTR op$[rbp]
+	sub	rax, 32					; 00000020H
+	mov	QWORD PTR op$[rbp], rax
+$LN9@LeftShift_:
+
+; 543  :         }
+; 544  : 
+; 545  :         if (p_count & 0x4)
+
+	mov	rax, QWORD PTR p_count$[rbp]
+	and	rax, 4
+	test	rax, rax
+	je	$LN10@LeftShift_
+
+; 546  :         {
+; 547  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 548  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 549  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -2
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -2
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 550  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -3
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -3
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 551  :             pp -= 4;
+
+	mov	rax, QWORD PTR pp$[rbp]
+	sub	rax, 16
+	mov	QWORD PTR pp$[rbp], rax
+
+; 552  :             op -= 4;
+
+	mov	rax, QWORD PTR op$[rbp]
+	sub	rax, 16
+	mov	QWORD PTR op$[rbp], rax
+$LN10@LeftShift_:
+
+; 553  :         }
+; 554  : 
+; 555  :         if (p_count & 0x2)
+
+	mov	rax, QWORD PTR p_count$[rbp]
+	and	rax, 2
+	test	rax, rax
+	je	$LN11@LeftShift_
+
+; 556  :         {
+; 557  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 558  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, -1
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 559  :             pp -= 2;
+
+	mov	rax, QWORD PTR pp$[rbp]
+	sub	rax, 8
+	mov	QWORD PTR pp$[rbp], rax
+
+; 560  :             op -= 2;
+
+	mov	rax, QWORD PTR op$[rbp]
+	sub	rax, 8
+	mov	QWORD PTR op$[rbp], rax
+$LN11@LeftShift_:
+
+; 561  :         }
+; 562  : 
+; 563  :         if (p_count & 0x1)
+
+	mov	rax, QWORD PTR p_count$[rbp]
+	and	rax, 1
+	test	rax, rax
+	je	SHORT $LN12@LeftShift_
+
+; 564  :         {
+; 565  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR pp$[rbp]
+	mov	eax, DWORD PTR [rcx+rax]
+	mov	DWORD PTR temp$2[rbp], eax
+	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shr	eax, cl
+	mov	ecx, DWORD PTR work$3[rbp]
+	or	ecx, eax
+	mov	eax, ecx
+	mov	DWORD PTR work$3[rbp], eax
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR op$[rbp]
+	mov	edx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rcx+rax], edx
+
+; 566  :             pp -= 1;
+
+	mov	rax, QWORD PTR pp$[rbp]
+	sub	rax, 4
+	mov	QWORD PTR pp$[rbp], rax
+
+; 567  :             op -= 1;
+
+	mov	rax, QWORD PTR op$[rbp]
+	sub	rax, 4
+	mov	QWORD PTR op$[rbp], rax
+$LN12@LeftShift_:
+
+; 568  :         }
+; 569  :         work = temp << n_lshift_bit_count;
+
+	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
+	movzx	ecx, al
+	mov	eax, DWORD PTR temp$2[rbp]
+	shl	eax, cl
+	mov	DWORD PTR work$3[rbp], eax
+
+; 570  :         *op = work;
+
+	mov	rax, QWORD PTR op$[rbp]
+	mov	ecx, DWORD PTR work$3[rbp]
+	mov	DWORD PTR [rax], ecx
+
+; 571  : 
+; 572  :         if (padding_zero)
+
+	cmp	DWORD PTR padding_zero$[rbp], 0
+	je	SHORT $LN13@LeftShift_
+
+; 573  :             _ZERO_MEMORY_UNIT_DIV(o, n_word_count);
+
+	mov	rdx, QWORD PTR n_word_count$[rbp]
+	mov	rcx, QWORD PTR o$[rbp]
+	call	_ZERO_MEMORY_UNIT_DIV
+$LN13@LeftShift_:
+$LN5@LeftShift_:
+
+; 574  :     }
+; 575  : }
+
+	lea	rsp, QWORD PTR [rbp+488]
+	pop	rdi
+	pop	rbp
+	ret	0
+LeftShift_Imp_DIV ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
@@ -2389,7 +5679,7 @@ RightShift_Imp PROC					; COMDAT
 
 ; 38   : {
 
-$LN14:
+$LN16:
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -2460,29 +5750,47 @@ $LN14:
 	mov	rcx, QWORD PTR op$[rbp]
 	call	_COPY_MEMORY_UNIT
 
-; 49   :     }
+; 49   :         if (padding_zero)
+
+	cmp	DWORD PTR padding_zero$[rbp], 0
+	je	SHORT $LN6@RightShift
+
+; 50   :             _ZERO_MEMORY_UNIT(op + p_count - n_word_count, n_word_count);
+
+	mov	rax, QWORD PTR op$[rbp]
+	mov	rcx, QWORD PTR p_count$[rbp]
+	lea	rax, QWORD PTR [rax+rcx*8]
+	mov	rcx, QWORD PTR n_word_count$[rbp]
+	shl	rcx, 3
+	sub	rax, rcx
+	mov	rdx, QWORD PTR n_word_count$[rbp]
+	mov	rcx, rax
+	call	_ZERO_MEMORY_UNIT
+$LN6@RightShift:
+
+; 51   :     }
 
 	jmp	$LN5@RightShift
 $LN4@RightShift:
 
-; 50   :     else
-; 51   :     {
-; 52   :         pp += n_word_count;
+; 52   :     else
+; 53   :     {
+; 54   :         pp += n_word_count;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	mov	rcx, QWORD PTR n_word_count$[rbp]
 	lea	rax, QWORD PTR [rax+rcx*8]
 	mov	QWORD PTR pp$[rbp], rax
 
-; 53   :         __UNIT_TYPE n_lshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_rshift_bit_count;
+; 55   :         __UNIT_TYPE n_lshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_rshift_bit_count;
 
 	mov	eax, 64					; 00000040H
 	sub	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	mov	QWORD PTR n_lshift_bit_count$1[rbp], rax
 
-; 54   :         // p_count - n_word_count 回繰り返し
-; 55   : 
-; 56   :         __UNIT_TYPE temp = *pp++;
+; 56   :         // p_count - n_word_count 回繰り返し
+; 57   : 
+; 58   :         __UNIT_TYPE temp = *pp++;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -2491,8 +5799,8 @@ $LN4@RightShift:
 	add	rax, 8
 	mov	QWORD PTR pp$[rbp], rax
 
-; 57   :         __UNIT_TYPE work;
-; 58   :         __UNIT_TYPE t_count = p_count - n_word_count - 1;
+; 59   :         __UNIT_TYPE work;
+; 60   :         __UNIT_TYPE t_count = p_count - n_word_count - 1;
 
 	mov	rax, QWORD PTR n_word_count$[rbp]
 	mov	rcx, QWORD PTR p_count$[rbp]
@@ -2501,21 +5809,21 @@ $LN4@RightShift:
 	dec	rax
 	mov	QWORD PTR t_count$4[rbp], rax
 
-; 59   : 
-; 60   :         __UNIT_TYPE count = t_count >> 5;
+; 61   : 
+; 62   :         __UNIT_TYPE count = t_count >> 5;
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	shr	rax, 5
 	mov	QWORD PTR count$5[rbp], rax
 $LN2@RightShift:
 
-; 61   :         while ( count > 0)
+; 63   :         while ( count > 0)
 
 	cmp	QWORD PTR count$5[rbp], 0
 	jbe	$LN3@RightShift
 
-; 62   :         {
-; 63   :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 64   :         {
+; 65   :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2541,7 +5849,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 64   :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 66   :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2567,7 +5875,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 65   :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 67   :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2593,7 +5901,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 66   :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 68   :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2619,7 +5927,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 67   :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 69   :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2645,7 +5953,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 68   :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 70   :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2671,7 +5979,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 69   :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 71   :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2697,7 +6005,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 70   :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 72   :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2723,7 +6031,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 71   :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
+; 73   :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2749,7 +6057,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 72   :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
+; 74   :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2775,7 +6083,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 73   :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
+; 75   :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2801,7 +6109,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 74   :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
+; 76   :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2827,7 +6135,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 75   :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
+; 77   :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2853,7 +6161,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 76   :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
+; 78   :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2879,7 +6187,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 77   :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
+; 79   :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2905,7 +6213,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 78   :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
+; 80   :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2931,7 +6239,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 79   :             work = temp >> n_rshift_bit_count; temp = pp[16]; work |= temp << n_lshift_bit_count; op[16] = work;
+; 81   :             work = temp >> n_rshift_bit_count; temp = pp[16]; work |= temp << n_lshift_bit_count; op[16] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2957,7 +6265,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 80   :             work = temp >> n_rshift_bit_count; temp = pp[17]; work |= temp << n_lshift_bit_count; op[17] = work;
+; 82   :             work = temp >> n_rshift_bit_count; temp = pp[17]; work |= temp << n_lshift_bit_count; op[17] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -2983,7 +6291,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 81   :             work = temp >> n_rshift_bit_count; temp = pp[18]; work |= temp << n_lshift_bit_count; op[18] = work;
+; 83   :             work = temp >> n_rshift_bit_count; temp = pp[18]; work |= temp << n_lshift_bit_count; op[18] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3009,7 +6317,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 82   :             work = temp >> n_rshift_bit_count; temp = pp[19]; work |= temp << n_lshift_bit_count; op[19] = work;
+; 84   :             work = temp >> n_rshift_bit_count; temp = pp[19]; work |= temp << n_lshift_bit_count; op[19] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3035,7 +6343,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 83   :             work = temp >> n_rshift_bit_count; temp = pp[20]; work |= temp << n_lshift_bit_count; op[20] = work;
+; 85   :             work = temp >> n_rshift_bit_count; temp = pp[20]; work |= temp << n_lshift_bit_count; op[20] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3061,7 +6369,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 84   :             work = temp >> n_rshift_bit_count; temp = pp[21]; work |= temp << n_lshift_bit_count; op[21] = work;
+; 86   :             work = temp >> n_rshift_bit_count; temp = pp[21]; work |= temp << n_lshift_bit_count; op[21] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3087,7 +6395,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 85   :             work = temp >> n_rshift_bit_count; temp = pp[22]; work |= temp << n_lshift_bit_count; op[22] = work;
+; 87   :             work = temp >> n_rshift_bit_count; temp = pp[22]; work |= temp << n_lshift_bit_count; op[22] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3113,7 +6421,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 86   :             work = temp >> n_rshift_bit_count; temp = pp[23]; work |= temp << n_lshift_bit_count; op[23] = work;
+; 88   :             work = temp >> n_rshift_bit_count; temp = pp[23]; work |= temp << n_lshift_bit_count; op[23] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3139,7 +6447,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 87   :             work = temp >> n_rshift_bit_count; temp = pp[24]; work |= temp << n_lshift_bit_count; op[24] = work;
+; 89   :             work = temp >> n_rshift_bit_count; temp = pp[24]; work |= temp << n_lshift_bit_count; op[24] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3165,7 +6473,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 88   :             work = temp >> n_rshift_bit_count; temp = pp[25]; work |= temp << n_lshift_bit_count; op[25] = work;
+; 90   :             work = temp >> n_rshift_bit_count; temp = pp[25]; work |= temp << n_lshift_bit_count; op[25] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3191,7 +6499,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 89   :             work = temp >> n_rshift_bit_count; temp = pp[26]; work |= temp << n_lshift_bit_count; op[26] = work;
+; 91   :             work = temp >> n_rshift_bit_count; temp = pp[26]; work |= temp << n_lshift_bit_count; op[26] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3217,7 +6525,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 90   :             work = temp >> n_rshift_bit_count; temp = pp[27]; work |= temp << n_lshift_bit_count; op[27] = work;
+; 92   :             work = temp >> n_rshift_bit_count; temp = pp[27]; work |= temp << n_lshift_bit_count; op[27] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3243,7 +6551,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 91   :             work = temp >> n_rshift_bit_count; temp = pp[28]; work |= temp << n_lshift_bit_count; op[28] = work;
+; 93   :             work = temp >> n_rshift_bit_count; temp = pp[28]; work |= temp << n_lshift_bit_count; op[28] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3269,7 +6577,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 92   :             work = temp >> n_rshift_bit_count; temp = pp[29]; work |= temp << n_lshift_bit_count; op[29] = work;
+; 94   :             work = temp >> n_rshift_bit_count; temp = pp[29]; work |= temp << n_lshift_bit_count; op[29] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3295,7 +6603,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 93   :             work = temp >> n_rshift_bit_count; temp = pp[30]; work |= temp << n_lshift_bit_count; op[30] = work;
+; 95   :             work = temp >> n_rshift_bit_count; temp = pp[30]; work |= temp << n_lshift_bit_count; op[30] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3321,7 +6629,7 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 94   :             work = temp >> n_rshift_bit_count; temp = pp[31]; work |= temp << n_lshift_bit_count; op[31] = work;
+; 96   :             work = temp >> n_rshift_bit_count; temp = pp[31]; work |= temp << n_lshift_bit_count; op[31] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3347,39 +6655,39 @@ $LN2@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 95   :             --count;
+; 97   :             --count;
 
 	mov	rax, QWORD PTR count$5[rbp]
 	dec	rax
 	mov	QWORD PTR count$5[rbp], rax
 
-; 96   :             pp += 32;
+; 98   :             pp += 32;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 256				; 00000100H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 97   :             op += 32;
+; 99   :             op += 32;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 256				; 00000100H
 	mov	QWORD PTR op$[rbp], rax
 
-; 98   :         }
+; 100  :         }
 
 	jmp	$LN2@RightShift
 $LN3@RightShift:
 
-; 99   : 
-; 100  :         if (t_count & 0x10)
+; 101  : 
+; 102  :         if (t_count & 0x10)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 16
 	test	rax, rax
-	je	$LN6@RightShift
+	je	$LN7@RightShift
 
-; 101  :         {
-; 102  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 103  :         {
+; 104  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3405,7 +6713,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 103  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 105  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3431,7 +6739,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 104  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 106  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3457,7 +6765,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 105  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 107  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3483,7 +6791,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 106  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 108  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3509,7 +6817,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 107  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 109  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3535,7 +6843,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 108  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 110  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3561,7 +6869,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 109  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 111  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3587,7 +6895,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 110  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
+; 112  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3613,7 +6921,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 111  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
+; 113  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3639,7 +6947,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 112  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
+; 114  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3665,7 +6973,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 113  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
+; 115  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3691,7 +6999,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 114  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
+; 116  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3717,7 +7025,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 115  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
+; 117  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3743,7 +7051,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 116  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
+; 118  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3769,7 +7077,7 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 117  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
+; 119  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3795,30 +7103,30 @@ $LN3@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 118  :             pp += 16;
+; 120  :             pp += 16;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 128				; 00000080H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 119  :             op += 16;
+; 121  :             op += 16;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 128				; 00000080H
 	mov	QWORD PTR op$[rbp], rax
-$LN6@RightShift:
+$LN7@RightShift:
 
-; 120  :         }
-; 121  : 
-; 122  :         if (t_count & 0x8)
+; 122  :         }
+; 123  : 
+; 124  :         if (t_count & 0x8)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 8
 	test	rax, rax
-	je	$LN7@RightShift
+	je	$LN8@RightShift
 
-; 123  :         {
-; 124  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 125  :         {
+; 126  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3844,7 +7152,7 @@ $LN6@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 125  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 127  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3870,7 +7178,7 @@ $LN6@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 126  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 128  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3896,7 +7204,7 @@ $LN6@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 127  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 129  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3922,7 +7230,7 @@ $LN6@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 128  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 130  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3948,7 +7256,7 @@ $LN6@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 129  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 131  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -3974,7 +7282,7 @@ $LN6@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 130  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 132  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4000,7 +7308,7 @@ $LN6@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 131  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 133  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4026,30 +7334,30 @@ $LN6@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 132  :             pp += 8;
+; 134  :             pp += 8;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 133  :             op += 8;
+; 135  :             op += 8;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR op$[rbp], rax
-$LN7@RightShift:
+$LN8@RightShift:
 
-; 134  :         }
-; 135  : 
-; 136  :         if (t_count & 0x4)
+; 136  :         }
+; 137  : 
+; 138  :         if (t_count & 0x4)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 4
 	test	rax, rax
-	je	$LN8@RightShift
+	je	$LN9@RightShift
 
-; 137  :         {
-; 138  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 139  :         {
+; 140  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4075,7 +7383,7 @@ $LN7@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 139  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 141  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4101,7 +7409,7 @@ $LN7@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 140  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 142  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4127,7 +7435,7 @@ $LN7@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 141  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 143  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4153,30 +7461,30 @@ $LN7@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 142  :             pp += 4;
+; 144  :             pp += 4;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 32					; 00000020H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 143  :             op += 4;
+; 145  :             op += 4;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 32					; 00000020H
 	mov	QWORD PTR op$[rbp], rax
-$LN8@RightShift:
+$LN9@RightShift:
 
-; 144  :         }
-; 145  : 
-; 146  :         if (t_count & 0x2)
+; 146  :         }
+; 147  : 
+; 148  :         if (t_count & 0x2)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 2
 	test	rax, rax
-	je	$LN9@RightShift
+	je	$LN10@RightShift
 
-; 147  :         {
-; 148  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 149  :         {
+; 150  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4202,7 +7510,7 @@ $LN8@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 149  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 151  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4228,30 +7536,30 @@ $LN8@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 150  :             pp += 2;
+; 152  :             pp += 2;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 16
 	mov	QWORD PTR pp$[rbp], rax
 
-; 151  :             op += 2;
+; 153  :             op += 2;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 16
 	mov	QWORD PTR op$[rbp], rax
-$LN9@RightShift:
+$LN10@RightShift:
 
-; 152  :         }
-; 153  : 
-; 154  :         if (t_count & 0x1)
+; 154  :         }
+; 155  : 
+; 156  :         if (t_count & 0x1)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 1
 	test	rax, rax
-	je	$LN10@RightShift
+	je	$LN11@RightShift
 
-; 155  :         {
-; 156  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 157  :         {
+; 158  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4277,22 +7585,22 @@ $LN9@RightShift:
 	mov	rdx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 157  :             pp += 1;
+; 159  :             pp += 1;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 8
 	mov	QWORD PTR pp$[rbp], rax
 
-; 158  :             op += 1;
+; 160  :             op += 1;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 8
 	mov	QWORD PTR op$[rbp], rax
-$LN10@RightShift:
+$LN11@RightShift:
 
-; 159  :         }
-; 160  : 
-; 161  :         work = temp >> n_rshift_bit_count;
+; 161  :         }
+; 162  : 
+; 163  :         work = temp >> n_rshift_bit_count;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -4300,27 +7608,30 @@ $LN10@RightShift:
 	shr	rax, cl
 	mov	QWORD PTR work$3[rbp], rax
 
-; 162  :         if (work != 0)
+; 164  :         if (work != 0 || padding_zero)
 
 	cmp	QWORD PTR work$3[rbp], 0
-	je	SHORT $LN11@RightShift
+	jne	SHORT $LN13@RightShift
+	cmp	DWORD PTR padding_zero$[rbp], 0
+	je	SHORT $LN12@RightShift
+$LN13@RightShift:
 
-; 163  :             *op = work;
+; 165  :             *op = work;
 
 	mov	rax, QWORD PTR op$[rbp]
 	mov	rcx, QWORD PTR work$3[rbp]
 	mov	QWORD PTR [rax], rcx
-$LN11@RightShift:
+$LN12@RightShift:
 
-; 164  : 
-; 165  :         if (padding_zero)
+; 166  : 
+; 167  :         if (padding_zero)
 
 	cmp	DWORD PTR padding_zero$[rbp], 0
-	je	SHORT $LN12@RightShift
+	je	SHORT $LN14@RightShift
 
-; 166  :             _ZERO_MEMORY_UNIT(p + p_word_count - n_word_count, n_word_count);
+; 168  :             _ZERO_MEMORY_UNIT(o + p_word_count - n_word_count, n_word_count);
 
-	mov	rax, QWORD PTR p$[rbp]
+	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR p_word_count$[rbp]
 	lea	rax, QWORD PTR [rax+rcx*8]
 	mov	rcx, QWORD PTR n_word_count$[rbp]
@@ -4329,3283 +7640,17 @@ $LN11@RightShift:
 	mov	rdx, QWORD PTR n_word_count$[rbp]
 	mov	rcx, rax
 	call	_ZERO_MEMORY_UNIT
-$LN12@RightShift:
+$LN14@RightShift:
 $LN5@RightShift:
 
-; 167  :     }
-; 168  : }
+; 169  :     }
+; 170  : }
 
 	lea	rsp, QWORD PTR [rbp+520]
 	pop	rdi
 	pop	rbp
 	ret	0
 RightShift_Imp ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT _ZERO_MEMORY_UNIT_DIV
-_TEXT	SEGMENT
-tv64 = 192
-d$ = 240
-count$ = 248
-_ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
-
-; 338  : {
-
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 248				; 000000f8H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 62					; 0000003eH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+280]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
-	call	__CheckForDebuggerJustMyCode
-
-; 339  : #ifdef _M_IX86
-; 340  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 341  : #elif defined(_M_X64)
-; 342  : #ifdef _MSC_VER
-; 343  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-
-	mov	eax, DWORD PTR count$[rbp]
-	mov	QWORD PTR tv64[rbp], rax
-	mov	rdi, QWORD PTR d$[rbp]
-	xor	eax, eax
-	mov	rcx, QWORD PTR tv64[rbp]
-	rep stosd
-
-; 344  : #elif defined(__GNUC__)
-; 345  :     __stosq(d, 0, count);
-; 346  : #else
-; 347  : #error unknown compiler
-; 348  : #endif
-; 349  : #else
-; 350  : #error unknown platform
-; 351  : #endif
-; 352  : }
-
-	lea	rsp, QWORD PTR [rbp+216]
-	pop	rdi
-	pop	rbp
-	ret	0
-_ZERO_MEMORY_UNIT_DIV ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT _ZERO_MEMORY_UNIT
-_TEXT	SEGMENT
-d$ = 224
-count$ = 232
-_ZERO_MEMORY_UNIT PROC					; COMDAT
-
-; 327  : {
-
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 232				; 000000e8H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 58					; 0000003aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
-	call	__CheckForDebuggerJustMyCode
-
-; 328  : #ifdef _M_IX86
-; 329  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 330  : #elif defined(_M_X64)
-; 331  :     __stosq(d, 0, count);
-
-	mov	rdi, QWORD PTR d$[rbp]
-	xor	eax, eax
-	mov	rcx, QWORD PTR count$[rbp]
-	rep stosq
-
-; 332  : #else
-; 333  : #error unknown platform
-; 334  : #endif
-; 335  : }
-
-	lea	rsp, QWORD PTR [rbp+200]
-	pop	rdi
-	pop	rbp
-	ret	0
-_ZERO_MEMORY_UNIT ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT _COPY_MEMORY_UNIT_DIV
-_TEXT	SEGMENT
-d$ = 224
-s$ = 232
-count$ = 240
-_COPY_MEMORY_UNIT_DIV PROC				; COMDAT
-
-; 288  : {
-
-	mov	QWORD PTR [rsp+24], r8
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rsi
-	push	rdi
-	sub	rsp, 224				; 000000e0H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 56					; 00000038H
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
-	call	__CheckForDebuggerJustMyCode
-
-; 289  : #ifdef _M_IX86
-; 290  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 291  : #elif defined(_M_X64)
-; 292  : #ifdef _MSC_VER
-; 293  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-
-	mov	eax, DWORD PTR count$[rbp]
-	mov	rdi, QWORD PTR d$[rbp]
-	mov	rsi, QWORD PTR s$[rbp]
-	mov	ecx, eax
-	rep movsd
-
-; 294  : #elif defined(__GNUC__)
-; 295  :     __movsq(d, s, count);
-; 296  : #else
-; 297  : #error unknown compiler
-; 298  : #endif
-; 299  : #else
-; 300  : #error unknown platform
-; 301  : #endif
-; 302  : }
-
-	lea	rsp, QWORD PTR [rbp+192]
-	pop	rdi
-	pop	rsi
-	pop	rbp
-	ret	0
-_COPY_MEMORY_UNIT_DIV ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT _COPY_MEMORY_UNIT
-_TEXT	SEGMENT
-d$ = 224
-s$ = 232
-count$ = 240
-_COPY_MEMORY_UNIT PROC					; COMDAT
-
-; 277  : {
-
-	mov	QWORD PTR [rsp+24], r8
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rsi
-	push	rdi
-	sub	rsp, 224				; 000000e0H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 56					; 00000038H
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
-	call	__CheckForDebuggerJustMyCode
-
-; 278  : #ifdef _M_IX86
-; 279  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 280  : #elif defined(_M_X64)
-; 281  :     __movsq(d, s, count);
-
-	mov	rdi, QWORD PTR d$[rbp]
-	mov	rsi, QWORD PTR s$[rbp]
-	mov	rcx, QWORD PTR count$[rbp]
-	rep movsq
-
-; 282  : #else
-; 283  : #error unknown platform
-; 284  : #endif
-; 285  : }
-
-	lea	rsp, QWORD PTR [rbp+192]
-	pop	rdi
-	pop	rsi
-	pop	rbp
-	ret	0
-_COPY_MEMORY_UNIT ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-;	COMDAT PMC_LeftShift_X_L
-_TEXT	SEGMENT
-np$ = 8
-no$ = 40
-result$ = 68
-p_bit_count$5 = 104
-o_bit_count$6 = 136
-no_light_check_code$7 = 168
-p$ = 416
-n$ = 424
-o$ = 432
-PMC_LeftShift_X_L PROC					; COMDAT
-
-; 712  : {
-
-$LN15:
-	mov	QWORD PTR [rsp+24], r8
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 440				; 000001b8H
-	lea	rbp, QWORD PTR [rsp+48]
-	mov	rdi, rsp
-	mov	ecx, 110				; 0000006eH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+472]
-	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
-	call	__CheckForDebuggerJustMyCode
-
-; 713  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
-
-	xor	eax, eax
-	test	eax, eax
-	je	SHORT $LN2@PMC_LeftSh
-
-; 714  :     {
-; 715  :         // _UINT64_T が 1 ワードで表現しきれない処理系には対応しない
-; 716  :         return (PMC_STATUS_NOT_SUPPORTED);
-
-	mov	eax, -6
-	jmp	$LN1@PMC_LeftSh
-$LN2@PMC_LeftSh:
-
-; 717  :     }
-; 718  :     if (p == NULL)
-
-	cmp	QWORD PTR p$[rbp], 0
-	jne	SHORT $LN3@PMC_LeftSh
-
-; 719  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	mov	eax, -1
-	jmp	$LN1@PMC_LeftSh
-$LN3@PMC_LeftSh:
-
-; 720  :     if (o == NULL)
-
-	cmp	QWORD PTR o$[rbp], 0
-	jne	SHORT $LN4@PMC_LeftSh
-
-; 721  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	mov	eax, -1
-	jmp	$LN1@PMC_LeftSh
-$LN4@PMC_LeftSh:
-
-; 722  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-
-	mov	rax, QWORD PTR p$[rbp]
-	mov	QWORD PTR np$[rbp], rax
-
-; 723  :     NUMBER_HEADER* no;
-; 724  :     PMC_STATUS_CODE result;
-; 725  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR np$[rbp]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN5@PMC_LeftSh
-
-; 726  :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_LeftSh
-$LN5@PMC_LeftSh:
-
-; 727  :     if (np->IS_ZERO)
-
-	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
-	shr	eax, 1
-	and	eax, 1
-	test	eax, eax
-	je	SHORT $LN6@PMC_LeftSh
-
-; 728  :         *o = &number_zero;
-
-	mov	rax, QWORD PTR o$[rbp]
-	lea	rcx, OFFSET FLAT:number_zero
-	mov	QWORD PTR [rax], rcx
-	jmp	$LN7@PMC_LeftSh
-$LN6@PMC_LeftSh:
-
-; 729  :     else if (n == 0)
-
-	cmp	QWORD PTR n$[rbp], 0
-	jne	SHORT $LN8@PMC_LeftSh
-
-; 730  :     {
-; 731  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
-
-	lea	rdx, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR np$[rbp]
-	call	DuplicateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN10@PMC_LeftSh
-
-; 732  :             return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_LeftSh
-$LN10@PMC_LeftSh:
-
-; 733  :         *o = no;
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	QWORD PTR [rax], rcx
-
-; 734  :     }
-
-	jmp	$LN9@PMC_LeftSh
-$LN8@PMC_LeftSh:
-
-; 735  :     else
-; 736  :     {
-; 737  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
-
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rax, QWORD PTR [rax+8]
-	mov	QWORD PTR p_bit_count$5[rbp], rax
-
-; 738  :         __UNIT_TYPE o_bit_count = p_bit_count + (__UNIT_TYPE)n;
-
-	mov	rax, QWORD PTR n$[rbp]
-	mov	rcx, QWORD PTR p_bit_count$5[rbp]
-	add	rcx, rax
-	mov	rax, rcx
-	mov	QWORD PTR o_bit_count$6[rbp], rax
-
-; 739  :         __UNIT_TYPE no_light_check_code;
-; 740  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
-
-	lea	r8, QWORD PTR no_light_check_code$7[rbp]
-	mov	rdx, QWORD PTR o_bit_count$6[rbp]
-	lea	rcx, QWORD PTR no$[rbp]
-	call	AllocateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN11@PMC_LeftSh
-
-; 741  :             return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_LeftSh
-$LN11@PMC_LeftSh:
-
-; 742  :         LeftShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, (__UNIT_TYPE)n, no->BLOCK, FALSE);
-
-	mov	DWORD PTR [rsp+32], 0
-	mov	rax, QWORD PTR no$[rbp]
-	mov	r9, QWORD PTR [rax+48]
-	mov	r8, QWORD PTR n$[rbp]
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax]
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	LeftShift_Imp
-
-; 743  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
-
-	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
-	mov	rax, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	CheckBlockLight
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN12@PMC_LeftSh
-
-; 744  :             return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_LeftSh
-$LN12@PMC_LeftSh:
-
-; 745  :         CommitNumber(no);
-
-	mov	rcx, QWORD PTR no$[rbp]
-	call	CommitNumber
-
-; 746  :         *o = no;
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	QWORD PTR [rax], rcx
-$LN9@PMC_LeftSh:
-$LN7@PMC_LeftSh:
-
-; 747  :     }
-; 748  : #ifdef _DEBUG
-; 749  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR [rax]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN13@PMC_LeftSh
-
-; 750  :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_LeftSh
-$LN13@PMC_LeftSh:
-
-; 751  : #endif
-; 752  :     return (PMC_STATUS_OK);
-
-	xor	eax, eax
-$LN1@PMC_LeftSh:
-
-; 753  : }
-
-	mov	rdi, rax
-	lea	rcx, QWORD PTR [rbp-48]
-	lea	rdx, OFFSET FLAT:PMC_LeftShift_X_L$rtcFrameData
-	call	_RTC_CheckStackVars
-	mov	rax, rdi
-	lea	rsp, QWORD PTR [rbp+392]
-	pop	rdi
-	pop	rbp
-	ret	0
-PMC_LeftShift_X_L ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-;	COMDAT PMC_LeftShift_X_I
-_TEXT	SEGMENT
-np$ = 8
-no$ = 40
-result$ = 68
-p_bit_count$5 = 104
-o_bit_count$6 = 136
-no_light_check_code$7 = 168
-p$ = 416
-n$ = 424
-o$ = 432
-PMC_LeftShift_X_I PROC					; COMDAT
-
-; 668  : {
-
-$LN15:
-	mov	QWORD PTR [rsp+24], r8
-	mov	DWORD PTR [rsp+16], edx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 440				; 000001b8H
-	lea	rbp, QWORD PTR [rsp+48]
-	mov	rdi, rsp
-	mov	ecx, 110				; 0000006eH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+472]
-	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
-	call	__CheckForDebuggerJustMyCode
-
-; 669  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
-
-	xor	eax, eax
-	test	eax, eax
-	je	SHORT $LN2@PMC_LeftSh
-
-; 670  :     {
-; 671  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 672  :         return (PMC_STATUS_NOT_SUPPORTED);
-
-	mov	eax, -6
-	jmp	$LN1@PMC_LeftSh
-$LN2@PMC_LeftSh:
-
-; 673  :     }
-; 674  :     if (p == NULL)
-
-	cmp	QWORD PTR p$[rbp], 0
-	jne	SHORT $LN3@PMC_LeftSh
-
-; 675  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	mov	eax, -1
-	jmp	$LN1@PMC_LeftSh
-$LN3@PMC_LeftSh:
-
-; 676  :     if (o == NULL)
-
-	cmp	QWORD PTR o$[rbp], 0
-	jne	SHORT $LN4@PMC_LeftSh
-
-; 677  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	mov	eax, -1
-	jmp	$LN1@PMC_LeftSh
-$LN4@PMC_LeftSh:
-
-; 678  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-
-	mov	rax, QWORD PTR p$[rbp]
-	mov	QWORD PTR np$[rbp], rax
-
-; 679  :     NUMBER_HEADER* no;
-; 680  :     PMC_STATUS_CODE result;
-; 681  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR np$[rbp]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN5@PMC_LeftSh
-
-; 682  :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_LeftSh
-$LN5@PMC_LeftSh:
-
-; 683  :     if (np->IS_ZERO)
-
-	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
-	shr	eax, 1
-	and	eax, 1
-	test	eax, eax
-	je	SHORT $LN6@PMC_LeftSh
-
-; 684  :         *o = &number_zero;
-
-	mov	rax, QWORD PTR o$[rbp]
-	lea	rcx, OFFSET FLAT:number_zero
-	mov	QWORD PTR [rax], rcx
-	jmp	$LN7@PMC_LeftSh
-$LN6@PMC_LeftSh:
-
-; 685  :     else if (n == 0)
-
-	cmp	DWORD PTR n$[rbp], 0
-	jne	SHORT $LN8@PMC_LeftSh
-
-; 686  :     {
-; 687  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
-
-	lea	rdx, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR np$[rbp]
-	call	DuplicateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN10@PMC_LeftSh
-
-; 688  :             return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_LeftSh
-$LN10@PMC_LeftSh:
-
-; 689  :         *o = no;
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	QWORD PTR [rax], rcx
-
-; 690  :     }
-
-	jmp	$LN9@PMC_LeftSh
-$LN8@PMC_LeftSh:
-
-; 691  :     else
-; 692  :     {
-; 693  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
-
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rax, QWORD PTR [rax+8]
-	mov	QWORD PTR p_bit_count$5[rbp], rax
-
-; 694  :         __UNIT_TYPE o_bit_count = p_bit_count + n;
-
-	mov	eax, DWORD PTR n$[rbp]
-	mov	rcx, QWORD PTR p_bit_count$5[rbp]
-	add	rcx, rax
-	mov	rax, rcx
-	mov	QWORD PTR o_bit_count$6[rbp], rax
-
-; 695  :         __UNIT_TYPE no_light_check_code;
-; 696  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
-
-	lea	r8, QWORD PTR no_light_check_code$7[rbp]
-	mov	rdx, QWORD PTR o_bit_count$6[rbp]
-	lea	rcx, QWORD PTR no$[rbp]
-	call	AllocateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN11@PMC_LeftSh
-
-; 697  :             return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_LeftSh
-$LN11@PMC_LeftSh:
-
-; 698  :         LeftShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, n, no->BLOCK, FALSE);
-
-	mov	eax, DWORD PTR n$[rbp]
-	mov	DWORD PTR [rsp+32], 0
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	r9, QWORD PTR [rcx+48]
-	mov	r8d, eax
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax]
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	LeftShift_Imp
-
-; 699  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
-
-	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
-	mov	rax, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	CheckBlockLight
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN12@PMC_LeftSh
-
-; 700  :             return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_LeftSh
-$LN12@PMC_LeftSh:
-
-; 701  :         CommitNumber(no);
-
-	mov	rcx, QWORD PTR no$[rbp]
-	call	CommitNumber
-
-; 702  :         *o = no;
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	QWORD PTR [rax], rcx
-$LN9@PMC_LeftSh:
-$LN7@PMC_LeftSh:
-
-; 703  :     }
-; 704  : #ifdef _DEBUG
-; 705  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR [rax]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN13@PMC_LeftSh
-
-; 706  :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_LeftSh
-$LN13@PMC_LeftSh:
-
-; 707  : #endif
-; 708  :     return (PMC_STATUS_OK);
-
-	xor	eax, eax
-$LN1@PMC_LeftSh:
-
-; 709  : }
-
-	mov	rdi, rax
-	lea	rcx, QWORD PTR [rbp-48]
-	lea	rdx, OFFSET FLAT:PMC_LeftShift_X_I$rtcFrameData
-	call	_RTC_CheckStackVars
-	mov	rax, rdi
-	lea	rsp, QWORD PTR [rbp+392]
-	pop	rdi
-	pop	rbp
-	ret	0
-PMC_LeftShift_X_I ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-;	COMDAT PMC_RightShift_X_L
-_TEXT	SEGMENT
-np$ = 8
-no$ = 40
-result$ = 68
-p_bit_count$5 = 104
-o_bit_count$6 = 136
-no_light_check_code$7 = 168
-p$ = 416
-n$ = 424
-o$ = 432
-PMC_RightShift_X_L PROC					; COMDAT
-
-; 619  : {
-
-$LN17:
-	mov	QWORD PTR [rsp+24], r8
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 440				; 000001b8H
-	lea	rbp, QWORD PTR [rsp+48]
-	mov	rdi, rsp
-	mov	ecx, 110				; 0000006eH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+472]
-	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
-	call	__CheckForDebuggerJustMyCode
-
-; 620  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
-
-	xor	eax, eax
-	test	eax, eax
-	je	SHORT $LN2@PMC_RightS
-
-; 621  :     {
-; 622  :         // _UINT64_T が 1 ワードで表現しきれない処理系には対応しない
-; 623  :         return (PMC_STATUS_NOT_SUPPORTED);
-
-	mov	eax, -6
-	jmp	$LN1@PMC_RightS
-$LN2@PMC_RightS:
-
-; 624  :     }
-; 625  :     if (p == NULL)
-
-	cmp	QWORD PTR p$[rbp], 0
-	jne	SHORT $LN3@PMC_RightS
-
-; 626  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	mov	eax, -1
-	jmp	$LN1@PMC_RightS
-$LN3@PMC_RightS:
-
-; 627  :     if (o == NULL)
-
-	cmp	QWORD PTR o$[rbp], 0
-	jne	SHORT $LN4@PMC_RightS
-
-; 628  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	mov	eax, -1
-	jmp	$LN1@PMC_RightS
-$LN4@PMC_RightS:
-
-; 629  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-
-	mov	rax, QWORD PTR p$[rbp]
-	mov	QWORD PTR np$[rbp], rax
-
-; 630  :     NUMBER_HEADER* no;
-; 631  :     PMC_STATUS_CODE result;
-; 632  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR np$[rbp]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN5@PMC_RightS
-
-; 633  :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_RightS
-$LN5@PMC_RightS:
-
-; 634  :     if (np->IS_ZERO)
-
-	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
-	shr	eax, 1
-	and	eax, 1
-	test	eax, eax
-	je	SHORT $LN6@PMC_RightS
-
-; 635  :         *o = &number_zero;
-
-	mov	rax, QWORD PTR o$[rbp]
-	lea	rcx, OFFSET FLAT:number_zero
-	mov	QWORD PTR [rax], rcx
-	jmp	$LN7@PMC_RightS
-$LN6@PMC_RightS:
-
-; 636  :     else if (n == 0)
-
-	cmp	QWORD PTR n$[rbp], 0
-	jne	SHORT $LN8@PMC_RightS
-
-; 637  :     {
-; 638  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
-
-	lea	rdx, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR np$[rbp]
-	call	DuplicateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN10@PMC_RightS
-
-; 639  :             return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_RightS
-$LN10@PMC_RightS:
-
-; 640  :         *o = no;
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	QWORD PTR [rax], rcx
-
-; 641  :     }
-
-	jmp	$LN9@PMC_RightS
-$LN8@PMC_RightS:
-
-; 642  :     else
-; 643  :     {
-; 644  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
-
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rax, QWORD PTR [rax+8]
-	mov	QWORD PTR p_bit_count$5[rbp], rax
-
-; 645  :         if (p_bit_count <= n)
-
-	mov	rax, QWORD PTR n$[rbp]
-	cmp	QWORD PTR p_bit_count$5[rbp], rax
-	ja	SHORT $LN11@PMC_RightS
-
-; 646  :             *o = &number_zero;
-
-	mov	rax, QWORD PTR o$[rbp]
-	lea	rcx, OFFSET FLAT:number_zero
-	mov	QWORD PTR [rax], rcx
-	jmp	$LN12@PMC_RightS
-$LN11@PMC_RightS:
-
-; 647  :         else
-; 648  :         {
-; 649  :             __UNIT_TYPE o_bit_count = p_bit_count - (__UNIT_TYPE)n;
-
-	mov	rax, QWORD PTR n$[rbp]
-	mov	rcx, QWORD PTR p_bit_count$5[rbp]
-	sub	rcx, rax
-	mov	rax, rcx
-	mov	QWORD PTR o_bit_count$6[rbp], rax
-
-; 650  :             __UNIT_TYPE no_light_check_code;
-; 651  :             if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
-
-	lea	r8, QWORD PTR no_light_check_code$7[rbp]
-	mov	rdx, QWORD PTR o_bit_count$6[rbp]
-	lea	rcx, QWORD PTR no$[rbp]
-	call	AllocateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN13@PMC_RightS
-
-; 652  :                 return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_RightS
-$LN13@PMC_RightS:
-
-; 653  :             RightShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, (__UNIT_TYPE)n, no->BLOCK, FALSE);
-
-	mov	DWORD PTR [rsp+32], 0
-	mov	rax, QWORD PTR no$[rbp]
-	mov	r9, QWORD PTR [rax+48]
-	mov	r8, QWORD PTR n$[rbp]
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax]
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	RightShift_Imp
-
-; 654  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
-
-	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
-	mov	rax, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	CheckBlockLight
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN14@PMC_RightS
-
-; 655  :                 return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_RightS
-$LN14@PMC_RightS:
-
-; 656  :             CommitNumber(no);
-
-	mov	rcx, QWORD PTR no$[rbp]
-	call	CommitNumber
-
-; 657  :             *o = no;
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	QWORD PTR [rax], rcx
-$LN12@PMC_RightS:
-$LN9@PMC_RightS:
-$LN7@PMC_RightS:
-
-; 658  :         }
-; 659  :     }
-; 660  : #ifdef _DEBUG
-; 661  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR [rax]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN15@PMC_RightS
-
-; 662  :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_RightS
-$LN15@PMC_RightS:
-
-; 663  : #endif
-; 664  :     return (PMC_STATUS_OK);
-
-	xor	eax, eax
-$LN1@PMC_RightS:
-
-; 665  : }
-
-	mov	rdi, rax
-	lea	rcx, QWORD PTR [rbp-48]
-	lea	rdx, OFFSET FLAT:PMC_RightShift_X_L$rtcFrameData
-	call	_RTC_CheckStackVars
-	mov	rax, rdi
-	lea	rsp, QWORD PTR [rbp+392]
-	pop	rdi
-	pop	rbp
-	ret	0
-PMC_RightShift_X_L ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-;	COMDAT PMC_RightShift_X_I
-_TEXT	SEGMENT
-np$ = 8
-no$ = 40
-result$ = 68
-p_bit_count$5 = 104
-o_bit_count$6 = 136
-no_light_check_code$7 = 168
-p$ = 416
-n$ = 424
-o$ = 432
-PMC_RightShift_X_I PROC					; COMDAT
-
-; 570  : {
-
-$LN17:
-	mov	QWORD PTR [rsp+24], r8
-	mov	DWORD PTR [rsp+16], edx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 440				; 000001b8H
-	lea	rbp, QWORD PTR [rsp+48]
-	mov	rdi, rsp
-	mov	ecx, 110				; 0000006eH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+472]
-	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
-	call	__CheckForDebuggerJustMyCode
-
-; 571  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
-
-	xor	eax, eax
-	test	eax, eax
-	je	SHORT $LN2@PMC_RightS
-
-; 572  :     {
-; 573  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 574  :         return (PMC_STATUS_NOT_SUPPORTED);
-
-	mov	eax, -6
-	jmp	$LN1@PMC_RightS
-$LN2@PMC_RightS:
-
-; 575  :     }
-; 576  :     if (p == NULL)
-
-	cmp	QWORD PTR p$[rbp], 0
-	jne	SHORT $LN3@PMC_RightS
-
-; 577  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	mov	eax, -1
-	jmp	$LN1@PMC_RightS
-$LN3@PMC_RightS:
-
-; 578  :     if (o == NULL)
-
-	cmp	QWORD PTR o$[rbp], 0
-	jne	SHORT $LN4@PMC_RightS
-
-; 579  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	mov	eax, -1
-	jmp	$LN1@PMC_RightS
-$LN4@PMC_RightS:
-
-; 580  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-
-	mov	rax, QWORD PTR p$[rbp]
-	mov	QWORD PTR np$[rbp], rax
-
-; 581  :     NUMBER_HEADER* no;
-; 582  :     PMC_STATUS_CODE result;
-; 583  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR np$[rbp]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN5@PMC_RightS
-
-; 584  :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_RightS
-$LN5@PMC_RightS:
-
-; 585  :     if (np->IS_ZERO)
-
-	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
-	shr	eax, 1
-	and	eax, 1
-	test	eax, eax
-	je	SHORT $LN6@PMC_RightS
-
-; 586  :         *o = &number_zero;
-
-	mov	rax, QWORD PTR o$[rbp]
-	lea	rcx, OFFSET FLAT:number_zero
-	mov	QWORD PTR [rax], rcx
-	jmp	$LN7@PMC_RightS
-$LN6@PMC_RightS:
-
-; 587  :     else if (n == 0)
-
-	cmp	DWORD PTR n$[rbp], 0
-	jne	SHORT $LN8@PMC_RightS
-
-; 588  :     {
-; 589  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
-
-	lea	rdx, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR np$[rbp]
-	call	DuplicateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN10@PMC_RightS
-
-; 590  :             return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_RightS
-$LN10@PMC_RightS:
-
-; 591  :         *o = no;
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	QWORD PTR [rax], rcx
-
-; 592  :     }
-
-	jmp	$LN9@PMC_RightS
-$LN8@PMC_RightS:
-
-; 593  :     else
-; 594  :     {
-; 595  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
-
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rax, QWORD PTR [rax+8]
-	mov	QWORD PTR p_bit_count$5[rbp], rax
-
-; 596  :         if (p_bit_count <= n)
-
-	mov	eax, DWORD PTR n$[rbp]
-	cmp	QWORD PTR p_bit_count$5[rbp], rax
-	ja	SHORT $LN11@PMC_RightS
-
-; 597  :             *o = &number_zero;
-
-	mov	rax, QWORD PTR o$[rbp]
-	lea	rcx, OFFSET FLAT:number_zero
-	mov	QWORD PTR [rax], rcx
-	jmp	$LN12@PMC_RightS
-$LN11@PMC_RightS:
-
-; 598  :         else
-; 599  :         {
-; 600  :             __UNIT_TYPE o_bit_count = p_bit_count - n;
-
-	mov	eax, DWORD PTR n$[rbp]
-	mov	rcx, QWORD PTR p_bit_count$5[rbp]
-	sub	rcx, rax
-	mov	rax, rcx
-	mov	QWORD PTR o_bit_count$6[rbp], rax
-
-; 601  :             __UNIT_TYPE no_light_check_code;
-; 602  :             if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
-
-	lea	r8, QWORD PTR no_light_check_code$7[rbp]
-	mov	rdx, QWORD PTR o_bit_count$6[rbp]
-	lea	rcx, QWORD PTR no$[rbp]
-	call	AllocateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN13@PMC_RightS
-
-; 603  :                 return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_RightS
-$LN13@PMC_RightS:
-
-; 604  :             RightShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, n, no->BLOCK, FALSE);
-
-	mov	eax, DWORD PTR n$[rbp]
-	mov	DWORD PTR [rsp+32], 0
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	r9, QWORD PTR [rcx+48]
-	mov	r8d, eax
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax]
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	RightShift_Imp
-
-; 605  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
-
-	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
-	mov	rax, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	CheckBlockLight
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN14@PMC_RightS
-
-; 606  :                 return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_RightS
-$LN14@PMC_RightS:
-
-; 607  :             CommitNumber(no);
-
-	mov	rcx, QWORD PTR no$[rbp]
-	call	CommitNumber
-
-; 608  :             *o = no;
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR no$[rbp]
-	mov	QWORD PTR [rax], rcx
-$LN12@PMC_RightS:
-$LN9@PMC_RightS:
-$LN7@PMC_RightS:
-
-; 609  :         }
-; 610  :     }
-; 611  : #ifdef _DEBUG
-; 612  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR [rax]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN15@PMC_RightS
-
-; 613  :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_RightS
-$LN15@PMC_RightS:
-
-; 614  : #endif
-; 615  :     return (PMC_STATUS_OK);
-
-	xor	eax, eax
-$LN1@PMC_RightS:
-
-; 616  : }
-
-	mov	rdi, rax
-	lea	rcx, QWORD PTR [rbp-48]
-	lea	rdx, OFFSET FLAT:PMC_RightShift_X_I$rtcFrameData
-	call	_RTC_CheckStackVars
-	mov	rax, rdi
-	lea	rsp, QWORD PTR [rbp+392]
-	pop	rdi
-	pop	rbp
-	ret	0
-PMC_RightShift_X_I ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-;	COMDAT Initialize_Shift
-_TEXT	SEGMENT
-feature$ = 224
-Initialize_Shift PROC					; COMDAT
-
-; 756  : {
-
-$LN3:
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 232				; 000000e8H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 58					; 0000003aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
-	call	__CheckForDebuggerJustMyCode
-
-; 757  :     return (PMC_STATUS_OK);
-
-	xor	eax, eax
-
-; 758  : }
-
-	lea	rsp, QWORD PTR [rbp+200]
-	pop	rdi
-	pop	rbp
-	ret	0
-Initialize_Shift ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-;	COMDAT LeftShift_Imp_DIV
-_TEXT	SEGMENT
-pp$ = 8
-p_count$ = 40
-op$ = 72
-n_word_count$ = 104
-n_lshift_bit_count$ = 136
-n_rshift_bit_count$1 = 168
-temp$2 = 196
-work$3 = 228
-count$4 = 264
-p$ = 512
-p_word_count$ = 520
-n$ = 528
-o$ = 536
-padding_zero$ = 544
-LeftShift_Imp_DIV PROC					; COMDAT
-
-; 437  : {
-
-$LN14:
-	mov	QWORD PTR [rsp+32], r9
-	mov	QWORD PTR [rsp+24], r8
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 520				; 00000208H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 130				; 00000082H
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+552]
-	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
-	call	__CheckForDebuggerJustMyCode
-
-; 438  :     __UNIT_TYPE_DIV* pp = p;
-
-	mov	rax, QWORD PTR p$[rbp]
-	mov	QWORD PTR pp$[rbp], rax
-
-; 439  :     __UNIT_TYPE p_count = p_word_count;
-
-	mov	rax, QWORD PTR p_word_count$[rbp]
-	mov	QWORD PTR p_count$[rbp], rax
-
-; 440  :     __UNIT_TYPE_DIV* op = o;
-
-	mov	rax, QWORD PTR o$[rbp]
-	mov	QWORD PTR op$[rbp], rax
-
-; 441  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
-
-	xor	edx, edx
-	mov	rax, QWORD PTR n$[rbp]
-	mov	ecx, 64					; 00000040H
-	div	rcx
-	mov	QWORD PTR n_word_count$[rbp], rax
-
-; 442  :     __UNIT_TYPE n_lshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
-
-	xor	edx, edx
-	mov	rax, QWORD PTR n$[rbp]
-	mov	ecx, 64					; 00000040H
-	div	rcx
-	mov	rax, rdx
-	mov	QWORD PTR n_lshift_bit_count$[rbp], rax
-
-; 443  :     if (n_lshift_bit_count == 0)
-
-	cmp	QWORD PTR n_lshift_bit_count$[rbp], 0
-	jne	SHORT $LN4@LeftShift_
-
-; 444  :     {
-; 445  :         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
-; 446  :         _COPY_MEMORY_UNIT_DIV(op + n_word_count, pp, p_count);
-
-	mov	rax, QWORD PTR op$[rbp]
-	mov	rcx, QWORD PTR n_word_count$[rbp]
-	lea	rax, QWORD PTR [rax+rcx*4]
-	mov	r8, QWORD PTR p_count$[rbp]
-	mov	rdx, QWORD PTR pp$[rbp]
-	mov	rcx, rax
-	call	_COPY_MEMORY_UNIT_DIV
-
-; 447  :     }
-
-	jmp	$LN5@LeftShift_
-$LN4@LeftShift_:
-
-; 448  :     else
-; 449  :     {
-; 450  :         __UNIT_TYPE n_rshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_lshift_bit_count;
-
-	mov	eax, 64					; 00000040H
-	sub	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	mov	QWORD PTR n_rshift_bit_count$1[rbp], rax
-
-; 451  :         pp += p_count - 1;
-
-	mov	rax, QWORD PTR pp$[rbp]
-	mov	rcx, QWORD PTR p_count$[rbp]
-	lea	rax, QWORD PTR [rax+rcx*4-4]
-	mov	QWORD PTR pp$[rbp], rax
-
-; 452  :         op += p_count + n_word_count;
-
-	mov	rax, QWORD PTR n_word_count$[rbp]
-	mov	rcx, QWORD PTR p_count$[rbp]
-	add	rcx, rax
-	mov	rax, rcx
-	mov	rcx, QWORD PTR op$[rbp]
-	lea	rax, QWORD PTR [rcx+rax*4]
-	mov	QWORD PTR op$[rbp], rax
-
-; 453  :         p_count -= 1;
-
-	mov	rax, QWORD PTR p_count$[rbp]
-	dec	rax
-	mov	QWORD PTR p_count$[rbp], rax
-
-; 454  :         __UNIT_TYPE_DIV temp = *pp;
-
-	mov	rax, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rax]
-	mov	DWORD PTR temp$2[rbp], eax
-
-; 455  :         __UNIT_TYPE_DIV work = temp >> n_rshift_bit_count;
-
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-
-; 456  :         if (work != 0)
-
-	cmp	DWORD PTR work$3[rbp], 0
-	je	SHORT $LN6@LeftShift_
-
-; 457  :             *op = work;
-
-	mov	rax, QWORD PTR op$[rbp]
-	mov	ecx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rax], ecx
-$LN6@LeftShift_:
-
-; 458  :         --pp;
-
-	mov	rax, QWORD PTR pp$[rbp]
-	sub	rax, 4
-	mov	QWORD PTR pp$[rbp], rax
-
-; 459  :         --op;
-
-	mov	rax, QWORD PTR op$[rbp]
-	sub	rax, 4
-	mov	QWORD PTR op$[rbp], rax
-
-; 460  : 
-; 461  :         __UNIT_TYPE count = p_count >> 5;
-
-	mov	rax, QWORD PTR p_count$[rbp]
-	shr	rax, 5
-	mov	QWORD PTR count$4[rbp], rax
-$LN2@LeftShift_:
-
-; 462  :         while (count != 0)
-
-	cmp	QWORD PTR count$4[rbp], 0
-	je	$LN3@LeftShift_
-
-; 463  :         {
-; 464  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 465  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 466  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -2
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -2
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 467  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -3
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -3
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 468  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -4
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -4
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 469  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -5
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -5
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 470  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -6
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -6
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 471  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -7
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -7
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 472  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -8
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -8
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 473  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -9
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -9
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 474  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -10
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -10
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 475  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -11
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -11
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 476  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -12
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -12
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 477  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -13
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -13
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 478  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -14
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -14
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 479  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -15
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -15
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 480  :             work = temp << n_lshift_bit_count; temp = pp[-16]; work |= temp >> n_rshift_bit_count; op[-16] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -16
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -16
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 481  :             work = temp << n_lshift_bit_count; temp = pp[-17]; work |= temp >> n_rshift_bit_count; op[-17] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -17
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -17
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 482  :             work = temp << n_lshift_bit_count; temp = pp[-18]; work |= temp >> n_rshift_bit_count; op[-18] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -18
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -18
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 483  :             work = temp << n_lshift_bit_count; temp = pp[-19]; work |= temp >> n_rshift_bit_count; op[-19] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -19
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -19
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 484  :             work = temp << n_lshift_bit_count; temp = pp[-20]; work |= temp >> n_rshift_bit_count; op[-20] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -20
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -20
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 485  :             work = temp << n_lshift_bit_count; temp = pp[-21]; work |= temp >> n_rshift_bit_count; op[-21] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -21
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -21
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 486  :             work = temp << n_lshift_bit_count; temp = pp[-22]; work |= temp >> n_rshift_bit_count; op[-22] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -22
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -22
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 487  :             work = temp << n_lshift_bit_count; temp = pp[-23]; work |= temp >> n_rshift_bit_count; op[-23] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -23
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -23
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 488  :             work = temp << n_lshift_bit_count; temp = pp[-24]; work |= temp >> n_rshift_bit_count; op[-24] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -24
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -24
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 489  :             work = temp << n_lshift_bit_count; temp = pp[-25]; work |= temp >> n_rshift_bit_count; op[-25] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -25
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -25
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 490  :             work = temp << n_lshift_bit_count; temp = pp[-26]; work |= temp >> n_rshift_bit_count; op[-26] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -26
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -26
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 491  :             work = temp << n_lshift_bit_count; temp = pp[-27]; work |= temp >> n_rshift_bit_count; op[-27] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -27
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -27
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 492  :             work = temp << n_lshift_bit_count; temp = pp[-28]; work |= temp >> n_rshift_bit_count; op[-28] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -28
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -28
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 493  :             work = temp << n_lshift_bit_count; temp = pp[-29]; work |= temp >> n_rshift_bit_count; op[-29] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -29
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -29
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 494  :             work = temp << n_lshift_bit_count; temp = pp[-30]; work |= temp >> n_rshift_bit_count; op[-30] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -30
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -30
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 495  :             work = temp << n_lshift_bit_count; temp = pp[-31]; work |= temp >> n_rshift_bit_count; op[-31] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -31
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -31
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 496  :             pp -= 32;
-
-	mov	rax, QWORD PTR pp$[rbp]
-	sub	rax, 128				; 00000080H
-	mov	QWORD PTR pp$[rbp], rax
-
-; 497  :             op -= 32;
-
-	mov	rax, QWORD PTR op$[rbp]
-	sub	rax, 128				; 00000080H
-	mov	QWORD PTR op$[rbp], rax
-
-; 498  :             --count;
-
-	mov	rax, QWORD PTR count$4[rbp]
-	dec	rax
-	mov	QWORD PTR count$4[rbp], rax
-
-; 499  :         }
-
-	jmp	$LN2@LeftShift_
-$LN3@LeftShift_:
-
-; 500  : 
-; 501  :         if (p_count & 0x10)
-
-	mov	rax, QWORD PTR p_count$[rbp]
-	and	rax, 16
-	test	rax, rax
-	je	$LN7@LeftShift_
-
-; 502  :         {
-; 503  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 504  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 505  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -2
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -2
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 506  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -3
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -3
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 507  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -4
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -4
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 508  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -5
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -5
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 509  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -6
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -6
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 510  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -7
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -7
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 511  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -8
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -8
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 512  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -9
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -9
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 513  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -10
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -10
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 514  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -11
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -11
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 515  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -12
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -12
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 516  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -13
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -13
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 517  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -14
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -14
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 518  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -15
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -15
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 519  :             pp -= 16;
-
-	mov	rax, QWORD PTR pp$[rbp]
-	sub	rax, 64					; 00000040H
-	mov	QWORD PTR pp$[rbp], rax
-
-; 520  :             op -= 16;
-
-	mov	rax, QWORD PTR op$[rbp]
-	sub	rax, 64					; 00000040H
-	mov	QWORD PTR op$[rbp], rax
-$LN7@LeftShift_:
-
-; 521  :         }
-; 522  : 
-; 523  :         if (p_count & 0x8)
-
-	mov	rax, QWORD PTR p_count$[rbp]
-	and	rax, 8
-	test	rax, rax
-	je	$LN8@LeftShift_
-
-; 524  :         {
-; 525  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 526  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 527  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -2
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -2
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 528  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -3
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -3
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 529  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -4
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -4
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 530  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -5
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -5
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 531  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -6
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -6
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 532  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -7
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -7
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 533  :             pp -= 8;
-
-	mov	rax, QWORD PTR pp$[rbp]
-	sub	rax, 32					; 00000020H
-	mov	QWORD PTR pp$[rbp], rax
-
-; 534  :             op -= 8;
-
-	mov	rax, QWORD PTR op$[rbp]
-	sub	rax, 32					; 00000020H
-	mov	QWORD PTR op$[rbp], rax
-$LN8@LeftShift_:
-
-; 535  :         }
-; 536  : 
-; 537  :         if (p_count & 0x4)
-
-	mov	rax, QWORD PTR p_count$[rbp]
-	and	rax, 4
-	test	rax, rax
-	je	$LN9@LeftShift_
-
-; 538  :         {
-; 539  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 540  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 541  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -2
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -2
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 542  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -3
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -3
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 543  :             pp -= 4;
-
-	mov	rax, QWORD PTR pp$[rbp]
-	sub	rax, 16
-	mov	QWORD PTR pp$[rbp], rax
-
-; 544  :             op -= 4;
-
-	mov	rax, QWORD PTR op$[rbp]
-	sub	rax, 16
-	mov	QWORD PTR op$[rbp], rax
-$LN9@LeftShift_:
-
-; 545  :         }
-; 546  : 
-; 547  :         if (p_count & 0x2)
-
-	mov	rax, QWORD PTR p_count$[rbp]
-	and	rax, 2
-	test	rax, rax
-	je	$LN10@LeftShift_
-
-; 548  :         {
-; 549  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 550  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, -1
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 551  :             pp -= 2;
-
-	mov	rax, QWORD PTR pp$[rbp]
-	sub	rax, 8
-	mov	QWORD PTR pp$[rbp], rax
-
-; 552  :             op -= 2;
-
-	mov	rax, QWORD PTR op$[rbp]
-	sub	rax, 8
-	mov	QWORD PTR op$[rbp], rax
-$LN10@LeftShift_:
-
-; 553  :         }
-; 554  : 
-; 555  :         if (p_count & 0x1)
-
-	mov	rax, QWORD PTR p_count$[rbp]
-	and	rax, 1
-	test	rax, rax
-	je	SHORT $LN11@LeftShift_
-
-; 556  :         {
-; 557  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR pp$[rbp]
-	mov	eax, DWORD PTR [rcx+rax]
-	mov	DWORD PTR temp$2[rbp], eax
-	mov	rax, QWORD PTR n_rshift_bit_count$1[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shr	eax, cl
-	mov	ecx, DWORD PTR work$3[rbp]
-	or	ecx, eax
-	mov	eax, ecx
-	mov	DWORD PTR work$3[rbp], eax
-	mov	eax, 4
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR op$[rbp]
-	mov	edx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rcx+rax], edx
-
-; 558  :             pp -= 1;
-
-	mov	rax, QWORD PTR pp$[rbp]
-	sub	rax, 4
-	mov	QWORD PTR pp$[rbp], rax
-
-; 559  :             op -= 1;
-
-	mov	rax, QWORD PTR op$[rbp]
-	sub	rax, 4
-	mov	QWORD PTR op$[rbp], rax
-$LN11@LeftShift_:
-
-; 560  :         }
-; 561  :         work = temp << n_lshift_bit_count;
-
-	mov	rax, QWORD PTR n_lshift_bit_count$[rbp]
-	movzx	ecx, al
-	mov	eax, DWORD PTR temp$2[rbp]
-	shl	eax, cl
-	mov	DWORD PTR work$3[rbp], eax
-
-; 562  :         *op = work;
-
-	mov	rax, QWORD PTR op$[rbp]
-	mov	ecx, DWORD PTR work$3[rbp]
-	mov	DWORD PTR [rax], ecx
-
-; 563  : 
-; 564  :         if (padding_zero)
-
-	cmp	DWORD PTR padding_zero$[rbp], 0
-	je	SHORT $LN12@LeftShift_
-
-; 565  :             _ZERO_MEMORY_UNIT_DIV(p, n_word_count);
-
-	mov	rdx, QWORD PTR n_word_count$[rbp]
-	mov	rcx, QWORD PTR p$[rbp]
-	call	_ZERO_MEMORY_UNIT_DIV
-$LN12@LeftShift_:
-$LN5@LeftShift_:
-
-; 566  :     }
-; 567  : }
-
-	lea	rsp, QWORD PTR [rbp+488]
-	pop	rdi
-	pop	rbp
-	ret	0
-LeftShift_Imp_DIV ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
@@ -7628,9 +7673,9 @@ o$ = 568
 padding_zero$ = 576
 RightShift_Imp_DIV PROC					; COMDAT
 
-; 171  : {
+; 173  : {
 
-$LN14:
+$LN16:
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -7647,23 +7692,23 @@ $LN14:
 	lea	rcx, OFFSET FLAT:__BE4F50ED_pmc_shift@c
 	call	__CheckForDebuggerJustMyCode
 
-; 172  :     __UNIT_TYPE_DIV* pp = p;
+; 174  :     __UNIT_TYPE_DIV* pp = p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR pp$[rbp], rax
 
-; 173  :     __UNIT_TYPE p_count = p_word_count;
+; 175  :     __UNIT_TYPE p_count = p_word_count;
 
 	mov	rax, QWORD PTR p_word_count$[rbp]
 	mov	QWORD PTR p_count$[rbp], rax
 
-; 174  :     __UNIT_TYPE_DIV* op = o;
+; 176  :     __UNIT_TYPE_DIV* op = o;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	QWORD PTR op$[rbp], rax
 
-; 175  :     // n_word_count ワード右に移動し、更に n_bit_count ビット右に移動する。
-; 176  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
+; 177  :     // n_word_count ワード右に移動し、更に n_bit_count ビット右に移動する。
+; 178  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
 
 	xor	edx, edx
 	mov	rax, QWORD PTR n$[rbp]
@@ -7671,7 +7716,7 @@ $LN14:
 	div	rcx
 	mov	QWORD PTR n_word_count$[rbp], rax
 
-; 177  :     __UNIT_TYPE n_rshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
+; 179  :     __UNIT_TYPE n_rshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
 
 	xor	edx, edx
 	mov	rax, QWORD PTR n$[rbp]
@@ -7680,14 +7725,14 @@ $LN14:
 	mov	rax, rdx
 	mov	QWORD PTR n_rshift_bit_count$[rbp], rax
 
-; 178  :     if (n_rshift_bit_count == 0)
+; 180  :     if (n_rshift_bit_count == 0)
 
 	cmp	QWORD PTR n_rshift_bit_count$[rbp], 0
 	jne	SHORT $LN4@RightShift
 
-; 179  :     {
-; 180  :         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
-; 181  :         _COPY_MEMORY_UNIT_DIV(op, pp + n_word_count, p_count - n_word_count);
+; 181  :     {
+; 182  :         // シフト数がちょうどワード境界分であれば単にワード単位のデータ移動のみ行う。
+; 183  :         _COPY_MEMORY_UNIT_DIV(op, pp + n_word_count, p_count - n_word_count);
 
 	mov	rax, QWORD PTR n_word_count$[rbp]
 	mov	rcx, QWORD PTR p_count$[rbp]
@@ -7701,29 +7746,47 @@ $LN14:
 	mov	rcx, QWORD PTR op$[rbp]
 	call	_COPY_MEMORY_UNIT_DIV
 
-; 182  :     }
+; 184  :         if (padding_zero)
+
+	cmp	DWORD PTR padding_zero$[rbp], 0
+	je	SHORT $LN6@RightShift
+
+; 185  :             _ZERO_MEMORY_UNIT_DIV(op + p_count - n_word_count, n_word_count);
+
+	mov	rax, QWORD PTR op$[rbp]
+	mov	rcx, QWORD PTR p_count$[rbp]
+	lea	rax, QWORD PTR [rax+rcx*4]
+	mov	rcx, QWORD PTR n_word_count$[rbp]
+	shl	rcx, 2
+	sub	rax, rcx
+	mov	rdx, QWORD PTR n_word_count$[rbp]
+	mov	rcx, rax
+	call	_ZERO_MEMORY_UNIT_DIV
+$LN6@RightShift:
+
+; 186  :     }
 
 	jmp	$LN5@RightShift
 $LN4@RightShift:
 
-; 183  :     else
-; 184  :     {
-; 185  :         pp += n_word_count;
+; 187  :     else
+; 188  :     {
+; 189  :         pp += n_word_count;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	mov	rcx, QWORD PTR n_word_count$[rbp]
 	lea	rax, QWORD PTR [rax+rcx*4]
 	mov	QWORD PTR pp$[rbp], rax
 
-; 186  :         __UNIT_TYPE n_lshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_rshift_bit_count;
+; 190  :         __UNIT_TYPE n_lshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_rshift_bit_count;
 
 	mov	eax, 64					; 00000040H
 	sub	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	mov	QWORD PTR n_lshift_bit_count$1[rbp], rax
 
-; 187  :         // p_count - n_word_count 回繰り返し
-; 188  : 
-; 189  :         __UNIT_TYPE_DIV temp = *pp++;
+; 191  :         // p_count - n_word_count 回繰り返し
+; 192  : 
+; 193  :         __UNIT_TYPE_DIV temp = *pp++;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	mov	eax, DWORD PTR [rax]
@@ -7732,8 +7795,8 @@ $LN4@RightShift:
 	add	rax, 4
 	mov	QWORD PTR pp$[rbp], rax
 
-; 190  :         __UNIT_TYPE_DIV work;
-; 191  :         __UNIT_TYPE t_count = p_count - n_word_count - 1;
+; 194  :         __UNIT_TYPE_DIV work;
+; 195  :         __UNIT_TYPE t_count = p_count - n_word_count - 1;
 
 	mov	rax, QWORD PTR n_word_count$[rbp]
 	mov	rcx, QWORD PTR p_count$[rbp]
@@ -7742,21 +7805,21 @@ $LN4@RightShift:
 	dec	rax
 	mov	QWORD PTR t_count$4[rbp], rax
 
-; 192  : 
-; 193  :         __UNIT_TYPE count = t_count >> 5;
+; 196  : 
+; 197  :         __UNIT_TYPE count = t_count >> 5;
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	shr	rax, 5
 	mov	QWORD PTR count$5[rbp], rax
 $LN2@RightShift:
 
-; 194  :         while (count > 0)
+; 198  :         while (count > 0)
 
 	cmp	QWORD PTR count$5[rbp], 0
 	jbe	$LN3@RightShift
 
-; 195  :         {
-; 196  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 199  :         {
+; 200  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -7782,7 +7845,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 197  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 201  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -7808,7 +7871,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 198  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 202  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -7834,7 +7897,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 199  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 203  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -7860,7 +7923,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 200  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 204  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -7886,7 +7949,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 201  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 205  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -7912,7 +7975,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 202  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 206  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -7938,7 +8001,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 203  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 207  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -7964,7 +8027,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 204  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
+; 208  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -7990,7 +8053,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 205  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
+; 209  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8016,7 +8079,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 206  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
+; 210  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8042,7 +8105,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 207  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
+; 211  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8068,7 +8131,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 208  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
+; 212  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8094,7 +8157,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 209  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
+; 213  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8120,7 +8183,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 210  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
+; 214  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8146,7 +8209,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 211  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
+; 215  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8172,7 +8235,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 212  :             work = temp >> n_rshift_bit_count; temp = pp[16]; work |= temp << n_lshift_bit_count; op[16] = work;
+; 216  :             work = temp >> n_rshift_bit_count; temp = pp[16]; work |= temp << n_lshift_bit_count; op[16] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8198,7 +8261,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 213  :             work = temp >> n_rshift_bit_count; temp = pp[17]; work |= temp << n_lshift_bit_count; op[17] = work;
+; 217  :             work = temp >> n_rshift_bit_count; temp = pp[17]; work |= temp << n_lshift_bit_count; op[17] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8224,7 +8287,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 214  :             work = temp >> n_rshift_bit_count; temp = pp[18]; work |= temp << n_lshift_bit_count; op[18] = work;
+; 218  :             work = temp >> n_rshift_bit_count; temp = pp[18]; work |= temp << n_lshift_bit_count; op[18] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8250,7 +8313,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 215  :             work = temp >> n_rshift_bit_count; temp = pp[19]; work |= temp << n_lshift_bit_count; op[19] = work;
+; 219  :             work = temp >> n_rshift_bit_count; temp = pp[19]; work |= temp << n_lshift_bit_count; op[19] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8276,7 +8339,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 216  :             work = temp >> n_rshift_bit_count; temp = pp[20]; work |= temp << n_lshift_bit_count; op[20] = work;
+; 220  :             work = temp >> n_rshift_bit_count; temp = pp[20]; work |= temp << n_lshift_bit_count; op[20] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8302,7 +8365,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 217  :             work = temp >> n_rshift_bit_count; temp = pp[21]; work |= temp << n_lshift_bit_count; op[21] = work;
+; 221  :             work = temp >> n_rshift_bit_count; temp = pp[21]; work |= temp << n_lshift_bit_count; op[21] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8328,7 +8391,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 218  :             work = temp >> n_rshift_bit_count; temp = pp[22]; work |= temp << n_lshift_bit_count; op[22] = work;
+; 222  :             work = temp >> n_rshift_bit_count; temp = pp[22]; work |= temp << n_lshift_bit_count; op[22] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8354,7 +8417,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 219  :             work = temp >> n_rshift_bit_count; temp = pp[23]; work |= temp << n_lshift_bit_count; op[23] = work;
+; 223  :             work = temp >> n_rshift_bit_count; temp = pp[23]; work |= temp << n_lshift_bit_count; op[23] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8380,7 +8443,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 220  :             work = temp >> n_rshift_bit_count; temp = pp[24]; work |= temp << n_lshift_bit_count; op[24] = work;
+; 224  :             work = temp >> n_rshift_bit_count; temp = pp[24]; work |= temp << n_lshift_bit_count; op[24] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8406,7 +8469,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 221  :             work = temp >> n_rshift_bit_count; temp = pp[25]; work |= temp << n_lshift_bit_count; op[25] = work;
+; 225  :             work = temp >> n_rshift_bit_count; temp = pp[25]; work |= temp << n_lshift_bit_count; op[25] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8432,7 +8495,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 222  :             work = temp >> n_rshift_bit_count; temp = pp[26]; work |= temp << n_lshift_bit_count; op[26] = work;
+; 226  :             work = temp >> n_rshift_bit_count; temp = pp[26]; work |= temp << n_lshift_bit_count; op[26] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8458,7 +8521,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 223  :             work = temp >> n_rshift_bit_count; temp = pp[27]; work |= temp << n_lshift_bit_count; op[27] = work;
+; 227  :             work = temp >> n_rshift_bit_count; temp = pp[27]; work |= temp << n_lshift_bit_count; op[27] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8484,7 +8547,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 224  :             work = temp >> n_rshift_bit_count; temp = pp[28]; work |= temp << n_lshift_bit_count; op[28] = work;
+; 228  :             work = temp >> n_rshift_bit_count; temp = pp[28]; work |= temp << n_lshift_bit_count; op[28] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8510,7 +8573,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 225  :             work = temp >> n_rshift_bit_count; temp = pp[29]; work |= temp << n_lshift_bit_count; op[29] = work;
+; 229  :             work = temp >> n_rshift_bit_count; temp = pp[29]; work |= temp << n_lshift_bit_count; op[29] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8536,7 +8599,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 226  :             work = temp >> n_rshift_bit_count; temp = pp[30]; work |= temp << n_lshift_bit_count; op[30] = work;
+; 230  :             work = temp >> n_rshift_bit_count; temp = pp[30]; work |= temp << n_lshift_bit_count; op[30] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8562,7 +8625,7 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 227  :             work = temp >> n_rshift_bit_count; temp = pp[31]; work |= temp << n_lshift_bit_count; op[31] = work;
+; 231  :             work = temp >> n_rshift_bit_count; temp = pp[31]; work |= temp << n_lshift_bit_count; op[31] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8588,39 +8651,39 @@ $LN2@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 228  :             --count;
+; 232  :             --count;
 
 	mov	rax, QWORD PTR count$5[rbp]
 	dec	rax
 	mov	QWORD PTR count$5[rbp], rax
 
-; 229  :             pp += 32;
+; 233  :             pp += 32;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 128				; 00000080H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 230  :             op += 32;
+; 234  :             op += 32;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 128				; 00000080H
 	mov	QWORD PTR op$[rbp], rax
 
-; 231  :         }
+; 235  :         }
 
 	jmp	$LN2@RightShift
 $LN3@RightShift:
 
-; 232  : 
-; 233  :         if (t_count & 0x10)
+; 236  : 
+; 237  :         if (t_count & 0x10)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 16
 	test	rax, rax
-	je	$LN6@RightShift
+	je	$LN7@RightShift
 
-; 234  :         {
-; 235  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 238  :         {
+; 239  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8646,7 +8709,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 236  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 240  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8672,7 +8735,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 237  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 241  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8698,7 +8761,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 238  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 242  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8724,7 +8787,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 239  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 243  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8750,7 +8813,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 240  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 244  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8776,7 +8839,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 241  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 245  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8802,7 +8865,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 242  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 246  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8828,7 +8891,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 243  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
+; 247  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8854,7 +8917,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 244  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
+; 248  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8880,7 +8943,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 245  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
+; 249  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8906,7 +8969,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 246  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
+; 250  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8932,7 +8995,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 247  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
+; 251  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8958,7 +9021,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 248  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
+; 252  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -8984,7 +9047,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 249  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
+; 253  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9010,7 +9073,7 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 250  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
+; 254  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9036,30 +9099,30 @@ $LN3@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 251  :             pp += 16;
+; 255  :             pp += 16;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 252  :             op += 16;
+; 256  :             op += 16;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR op$[rbp], rax
-$LN6@RightShift:
+$LN7@RightShift:
 
-; 253  :         }
-; 254  : 
-; 255  :         if (t_count & 0x8)
+; 257  :         }
+; 258  : 
+; 259  :         if (t_count & 0x8)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 8
 	test	rax, rax
-	je	$LN7@RightShift
+	je	$LN8@RightShift
 
-; 256  :         {
-; 257  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 260  :         {
+; 261  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9085,7 +9148,7 @@ $LN6@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 258  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 262  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9111,7 +9174,7 @@ $LN6@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 259  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 263  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9137,7 +9200,7 @@ $LN6@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 260  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 264  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9163,7 +9226,7 @@ $LN6@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 261  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 265  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9189,7 +9252,7 @@ $LN6@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 262  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 266  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9215,7 +9278,7 @@ $LN6@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 263  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 267  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9241,7 +9304,7 @@ $LN6@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 264  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 268  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9267,30 +9330,30 @@ $LN6@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 265  :             pp += 8;
+; 269  :             pp += 8;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 32					; 00000020H
 	mov	QWORD PTR pp$[rbp], rax
 
-; 266  :             op += 8;
+; 270  :             op += 8;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 32					; 00000020H
 	mov	QWORD PTR op$[rbp], rax
-$LN7@RightShift:
+$LN8@RightShift:
 
-; 267  :         }
-; 268  : 
-; 269  :         if (t_count & 0x4)
+; 271  :         }
+; 272  : 
+; 273  :         if (t_count & 0x4)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 4
 	test	rax, rax
-	je	$LN8@RightShift
+	je	$LN9@RightShift
 
-; 270  :         {
-; 271  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 274  :         {
+; 275  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9316,7 +9379,7 @@ $LN7@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 272  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 276  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9342,7 +9405,7 @@ $LN7@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 273  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 277  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9368,7 +9431,7 @@ $LN7@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 274  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 278  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9394,30 +9457,30 @@ $LN7@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 275  :             pp += 4;
+; 279  :             pp += 4;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 16
 	mov	QWORD PTR pp$[rbp], rax
 
-; 276  :             op += 4;
+; 280  :             op += 4;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 16
 	mov	QWORD PTR op$[rbp], rax
-$LN8@RightShift:
+$LN9@RightShift:
 
-; 277  :         }
-; 278  : 
-; 279  :         if (t_count & 0x2)
+; 281  :         }
+; 282  : 
+; 283  :         if (t_count & 0x2)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 2
 	test	rax, rax
-	je	$LN9@RightShift
+	je	$LN10@RightShift
 
-; 280  :         {
-; 281  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 284  :         {
+; 285  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9443,7 +9506,7 @@ $LN8@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 282  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 286  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9469,30 +9532,30 @@ $LN8@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 283  :             pp += 2;
+; 287  :             pp += 2;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 8
 	mov	QWORD PTR pp$[rbp], rax
 
-; 284  :             op += 2;
+; 288  :             op += 2;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 8
 	mov	QWORD PTR op$[rbp], rax
-$LN9@RightShift:
+$LN10@RightShift:
 
-; 285  :         }
-; 286  : 
-; 287  :         if (t_count & 0x1)
+; 289  :         }
+; 290  : 
+; 291  :         if (t_count & 0x1)
 
 	mov	rax, QWORD PTR t_count$4[rbp]
 	and	rax, 1
 	test	rax, rax
-	je	SHORT $LN10@RightShift
+	je	SHORT $LN11@RightShift
 
-; 288  :         {
-; 289  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 292  :         {
+; 293  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9518,22 +9581,22 @@ $LN9@RightShift:
 	mov	edx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rcx+rax], edx
 
-; 290  :             pp += 1;
+; 294  :             pp += 1;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	add	rax, 4
 	mov	QWORD PTR pp$[rbp], rax
 
-; 291  :             op += 1;
+; 295  :             op += 1;
 
 	mov	rax, QWORD PTR op$[rbp]
 	add	rax, 4
 	mov	QWORD PTR op$[rbp], rax
-$LN10@RightShift:
+$LN11@RightShift:
 
-; 292  :         }
-; 293  : 
-; 294  :         work = temp >> n_rshift_bit_count;
+; 296  :         }
+; 297  : 
+; 298  :         work = temp >> n_rshift_bit_count;
 
 	mov	rax, QWORD PTR n_rshift_bit_count$[rbp]
 	movzx	ecx, al
@@ -9541,27 +9604,30 @@ $LN10@RightShift:
 	shr	eax, cl
 	mov	DWORD PTR work$3[rbp], eax
 
-; 295  :         if (work != 0)
+; 299  :         if (work != 0 || padding_zero)
 
 	cmp	DWORD PTR work$3[rbp], 0
-	je	SHORT $LN11@RightShift
+	jne	SHORT $LN13@RightShift
+	cmp	DWORD PTR padding_zero$[rbp], 0
+	je	SHORT $LN12@RightShift
+$LN13@RightShift:
 
-; 296  :             *op = work;
+; 300  :             *op = work;
 
 	mov	rax, QWORD PTR op$[rbp]
 	mov	ecx, DWORD PTR work$3[rbp]
 	mov	DWORD PTR [rax], ecx
-$LN11@RightShift:
+$LN12@RightShift:
 
-; 297  : 
-; 298  :         if (padding_zero)
+; 301  : 
+; 302  :         if (padding_zero)
 
 	cmp	DWORD PTR padding_zero$[rbp], 0
-	je	SHORT $LN12@RightShift
+	je	SHORT $LN14@RightShift
 
-; 299  :             _ZERO_MEMORY_UNIT_DIV(p + p_word_count - n_word_count, n_word_count);
+; 303  :             _ZERO_MEMORY_UNIT_DIV(o + p_word_count - n_word_count, n_word_count);
 
-	mov	rax, QWORD PTR p$[rbp]
+	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR p_word_count$[rbp]
 	lea	rax, QWORD PTR [rax+rcx*4]
 	mov	rcx, QWORD PTR n_word_count$[rbp]
@@ -9570,11 +9636,11 @@ $LN11@RightShift:
 	mov	rdx, QWORD PTR n_word_count$[rbp]
 	mov	rcx, rax
 	call	_ZERO_MEMORY_UNIT_DIV
-$LN12@RightShift:
+$LN14@RightShift:
 $LN5@RightShift:
 
-; 300  :     }
-; 301  : }
+; 304  :     }
+; 305  : }
 
 	lea	rsp, QWORD PTR [rbp+520]
 	pop	rdi

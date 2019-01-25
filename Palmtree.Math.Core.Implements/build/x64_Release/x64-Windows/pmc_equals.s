@@ -72,7 +72,7 @@ PMC_Equals_X_I:
 	je	.L12
 	movl	$31, %ecx
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP
@@ -140,7 +140,7 @@ PMC_Equals_X_L:
 	testq	%rdi, %rdi
 	je	.L20
 /APP
- # 858 "pmc_internal.h" 1
+ # 877 "pmc_internal.h" 1
 	bsrq %rdi, %rdx
  # 0 "" 2
 /NO_APP

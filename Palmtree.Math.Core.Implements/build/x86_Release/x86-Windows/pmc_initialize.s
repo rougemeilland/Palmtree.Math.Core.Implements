@@ -77,6 +77,10 @@ LFB5485:
 	call	_Initialize_Parse
 	testl	%eax, %eax
 	jne	L4
+	movl	%ebx, (%esp)
+	call	_Initialize_GreatestCommonDivisor
+	testl	%eax, %eax
+	jne	L4
 	movzbl	_entry_points, %eax
 	movzbl	28(%esp), %edx
 	movl	$_PMC_GetStatisticsInfo@4, _entry_points+4
@@ -125,6 +129,9 @@ LFB5485:
 	movl	$_PMC_Equals_X_X@12, _entry_points+156
 	movl	$_PMC_ToString@24, _entry_points+160
 	movl	$_PMC_TryParse@16, _entry_points+164
+	movl	$_PMC_GreatestCommonDivisor_X_I@12, _entry_points+168
+	movl	$_PMC_GreatestCommonDivisor_X_L@16, _entry_points+172
+	movl	$_PMC_GreatestCommonDivisor_X_X@12, _entry_points+176
 	jmp	L1
 	.p2align 4,,10
 L4:
@@ -139,7 +146,7 @@ L1:
 	.cfi_endproc
 LFE5485:
 	.comm	_configuration_info, 4, 2
-.lcomm _entry_points,168,32
+.lcomm _entry_points,180,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_GetCPUInfo;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
@@ -157,6 +164,7 @@ LFE5485:
 	.def	_Initialize_Equals;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_ToString;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Parse;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_GreatestCommonDivisor;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_L@12;	.scl	2;	.type	32;	.endef
@@ -198,5 +206,8 @@ LFE5485:
 	.def	_PMC_Equals_X_X@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_ToString@24;	.scl	2;	.type	32;	.endef
 	.def	_PMC_TryParse@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_GreatestCommonDivisor_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_GreatestCommonDivisor_X_L@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_GreatestCommonDivisor_X_X@12;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize@4\""

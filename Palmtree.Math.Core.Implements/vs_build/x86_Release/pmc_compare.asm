@@ -9,111 +9,12 @@
 INCLUDELIB MSVCRT
 INCLUDELIB OLDNAMES
 
+PUBLIC	_Compare_Imp
 PUBLIC	_Initialize_Compare
 PUBLIC	_PMC_Compare_X_I@12
 PUBLIC	_PMC_Compare_X_L@16
 PUBLIC	_PMC_Compare_X_X@12
-PUBLIC	_Compare_X_X
 EXTRN	_CheckNumber:PROC
-; Function compile flags: /Ogtp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
-;	COMDAT _Compare_X_X
-_TEXT	SEGMENT
-_u$ = 8							; size = 4
-_v$ = 12						; size = 4
-_count$ = 16						; size = 4
-_Compare_X_X PROC					; COMDAT
-
-; 38   : {
-
-	push	ebp
-	mov	ebp, esp
-
-; 39   :     u += count;
-
-	mov	ecx, DWORD PTR _count$[ebp]
-	mov	edx, DWORD PTR _u$[ebp]
-	push	esi
-
-; 40   :     v += count;
-
-	mov	esi, DWORD PTR _v$[ebp]
-	lea	eax, DWORD PTR [ecx*4]
-	add	edx, eax
-	add	esi, eax
-	push	edi
-
-; 41   :     while (count > 0)
-
-	test	ecx, ecx
-	je	SHORT $LN3@Compare_X_
-	npad	3
-$LL2@Compare_X_:
-
-; 42   :     {
-; 43   :         --u;
-; 44   :         --v;
-; 45   :         --count;
-; 46   : 
-; 47   :         if (*u > *v)
-
-	mov	eax, DWORD PTR [edx-4]
-	lea	edx, DWORD PTR [edx-4]
-	lea	esi, DWORD PTR [esi-4]
-	dec	ecx
-	cmp	eax, DWORD PTR [esi]
-	ja	SHORT $LN10@Compare_X_
-
-; 49   :         else if (*u < *v)
-
-	jb	SHORT $LN11@Compare_X_
-
-; 41   :     while (count > 0)
-
-	test	ecx, ecx
-	jne	SHORT $LL2@Compare_X_
-$LN3@Compare_X_:
-	pop	edi
-
-; 51   :         else
-; 52   :         {
-; 53   :         }
-; 54   :     }
-; 55   :     return (0);
-
-	xor	eax, eax
-
-; 56   : }
-
-	pop	esi
-	pop	ebp
-	ret	0
-$LN11@Compare_X_:
-	pop	edi
-
-; 50   :             return (-1);
-
-	or	eax, -1
-
-; 56   : }
-
-	pop	esi
-	pop	ebp
-	ret	0
-$LN10@Compare_X_:
-	pop	edi
-
-; 48   :             return (1);
-
-	mov	eax, 1
-
-; 56   : }
-
-	pop	esi
-	pop	ebp
-	ret	0
-_Compare_X_X ENDP
-_TEXT	ENDS
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ;	COMDAT __LZCNT_ALT_UNIT
@@ -121,58 +22,58 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 840  : {
+; 859  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 841  :     if (x == 0)
+; 860  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 842  :         return (sizeof(x) * 8);
+; 861  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 866  : }
+; 885  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 843  : #ifdef _M_IX86
-; 844  :     _UINT32_T pos;
-; 845  : #ifdef _MSC_VER
-; 846  :     _BitScanReverse(&pos, x);
+; 862  : #ifdef _M_IX86
+; 863  :     _UINT32_T pos;
+; 864  : #ifdef _MSC_VER
+; 865  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 847  : #elif defined(__GNUC__)
-; 848  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 849  : #else
-; 850  : #error unknown compiler
-; 851  : #endif
-; 852  : #elif defined(_M_X64)
-; 853  : #ifdef _MSC_VER
-; 854  :     _UINT32_T pos;
-; 855  :     _BitScanReverse64(&pos, x);
-; 856  : #elif defined(__GNUC__)
-; 857  :     _UINT64_T pos;
-; 858  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 859  : #else
-; 860  : #error unknown compiler
-; 861  : #endif
-; 862  : #else
-; 863  : #error unknown platform
-; 864  : #endif
-; 865  :     return (sizeof(x) * 8 - 1 - pos);
+; 866  : #elif defined(__GNUC__)
+; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 868  : #else
+; 869  : #error unknown compiler
+; 870  : #endif
+; 871  : #elif defined(_M_X64)
+; 872  : #ifdef _MSC_VER
+; 873  :     _UINT32_T pos;
+; 874  :     _BitScanReverse64(&pos, x);
+; 875  : #elif defined(__GNUC__)
+; 876  :     _UINT64_T pos;
+; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 878  : #else
+; 879  : #error unknown compiler
+; 880  : #endif
+; 881  : #else
+; 882  : #error unknown platform
+; 883  : #endif
+; 884  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 866  : }
+; 885  : }
 
 	pop	ebp
 	ret	0
@@ -185,44 +86,44 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC					; COMDAT
 
-; 807  : {
+; 826  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 808  :     if (x == 0)
+; 827  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 809  :         return (sizeof(x) * 8);
+; 828  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 819  : }
+; 838  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 810  :     _UINT32_T pos;
-; 811  : #ifdef _MSC_VER
-; 812  :     _BitScanReverse(&pos, x);
+; 829  :     _UINT32_T pos;
+; 830  : #ifdef _MSC_VER
+; 831  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 813  : #elif defined(__GNUC__)
-; 814  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 815  : #else
-; 816  : #error unknown compiler
-; 817  : #endif
-; 818  :     return (sizeof(x) * 8 - 1 - pos);
+; 832  : #elif defined(__GNUC__)
+; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 834  : #else
+; 835  : #error unknown compiler
+; 836  : #endif
+; 837  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 819  : }
+; 838  : }
 
 	pop	ebp
 	ret	0
@@ -236,22 +137,22 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC					; COMDAT
 
-; 393  : {
+; 412  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 394  :     *result_high = (_UINT32_T)(value >> 32);
+; 413  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _result_high$[ebp]
 	mov	ecx, DWORD PTR _value$[ebp+4]
 	mov	DWORD PTR [eax], ecx
 
-; 395  :     return ((_UINT32_T)value);
+; 414  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 396  : }
+; 415  : }
 
 	pop	ebp
 	ret	0
@@ -382,7 +283,7 @@ $LN7@PMC_Compar:
 ; 293  :         else
 ; 294  :         {
 ; 295  :             // u > 0 && v > 0 かつ u のビット長と v のビット長が等しい場合
-; 296  :             *w = Compare_X_X(nu->BLOCK, nv->BLOCK, nu->UNIT_WORD_COUNT);
+; 296  :             *w = Compare_Imp(nu->BLOCK, nv->BLOCK, nu->UNIT_WORD_COUNT);
 
 	mov	ecx, DWORD PTR [esi]
 
@@ -1211,5 +1112,104 @@ _Initialize_Compare PROC				; COMDAT
 
 	ret	0
 _Initialize_Compare ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
+;	COMDAT _Compare_Imp
+_TEXT	SEGMENT
+_u$ = 8							; size = 4
+_v$ = 12						; size = 4
+_count$ = 16						; size = 4
+_Compare_Imp PROC					; COMDAT
+
+; 38   : {
+
+	push	ebp
+	mov	ebp, esp
+
+; 39   :     u += count;
+
+	mov	ecx, DWORD PTR _count$[ebp]
+	mov	edx, DWORD PTR _u$[ebp]
+	push	esi
+
+; 40   :     v += count;
+
+	mov	esi, DWORD PTR _v$[ebp]
+	lea	eax, DWORD PTR [ecx*4]
+	add	edx, eax
+	add	esi, eax
+	push	edi
+
+; 41   :     while (count > 0)
+
+	test	ecx, ecx
+	je	SHORT $LN3@Compare_Im
+	npad	3
+$LL2@Compare_Im:
+
+; 42   :     {
+; 43   :         --u;
+; 44   :         --v;
+; 45   :         --count;
+; 46   : 
+; 47   :         if (*u > *v)
+
+	mov	eax, DWORD PTR [edx-4]
+	lea	edx, DWORD PTR [edx-4]
+	lea	esi, DWORD PTR [esi-4]
+	dec	ecx
+	cmp	eax, DWORD PTR [esi]
+	ja	SHORT $LN10@Compare_Im
+
+; 49   :         else if (*u < *v)
+
+	jb	SHORT $LN11@Compare_Im
+
+; 41   :     while (count > 0)
+
+	test	ecx, ecx
+	jne	SHORT $LL2@Compare_Im
+$LN3@Compare_Im:
+	pop	edi
+
+; 51   :         else
+; 52   :         {
+; 53   :         }
+; 54   :     }
+; 55   :     return (0);
+
+	xor	eax, eax
+
+; 56   : }
+
+	pop	esi
+	pop	ebp
+	ret	0
+$LN11@Compare_Im:
+	pop	edi
+
+; 50   :             return (-1);
+
+	or	eax, -1
+
+; 56   : }
+
+	pop	esi
+	pop	ebp
+	ret	0
+$LN10@Compare_Im:
+	pop	edi
+
+; 48   :             return (1);
+
+	mov	eax, 1
+
+; 56   : }
+
+	pop	esi
+	pop	ebp
+	ret	0
+_Compare_Imp ENDP
 _TEXT	ENDS
 END

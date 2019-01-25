@@ -21,17 +21,23 @@ __86261D59_stralign@h DB 01H
 __4522B509_pmc_internal@h DB 01H
 __F5940173_pmc_compare@c DB 01H
 msvcjmc	ENDS
+PUBLIC	Compare_Imp
 PUBLIC	Initialize_Compare
 PUBLIC	PMC_Compare_X_I
 PUBLIC	PMC_Compare_X_L
 PUBLIC	PMC_Compare_X_X
-PUBLIC	Compare_X_X
 PUBLIC	__JustMyCode_Default
 EXTRN	CheckNumber:PROC
 EXTRN	_RTC_CheckStackVars:PROC
 EXTRN	_RTC_InitBase:PROC
 EXTRN	_RTC_Shutdown:PROC
 EXTRN	__CheckForDebuggerJustMyCode:PROC
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$Compare_Imp DD imagerel $LN9
+	DD	imagerel $LN9+251
+	DD	imagerel $unwind$Compare_Imp
+pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$Initialize_Compare DD imagerel $LN3
@@ -74,12 +80,6 @@ $pdata$_LZCNT_ALT_UNIT DD imagerel _LZCNT_ALT_UNIT
 	DD	imagerel _LZCNT_ALT_UNIT+131
 	DD	imagerel $unwind$_LZCNT_ALT_UNIT
 pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$Compare_X_X DD imagerel $LN9
-	DD	imagerel $LN9+251
-	DD	imagerel $unwind$Compare_X_X
-pdata	ENDS
 ;	COMDAT rtc$TMZ
 rtc$TMZ	SEGMENT
 _RTC_Shutdown.rtc$TMZ DQ FLAT:_RTC_Shutdown
@@ -88,13 +88,6 @@ rtc$TMZ	ENDS
 rtc$IMZ	SEGMENT
 _RTC_InitBase.rtc$IMZ DQ FLAT:_RTC_InitBase
 rtc$IMZ	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$Compare_X_X DD 025053401H
-	DD	0118231dH
-	DD	07011001dH
-	DD	05010H
-xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $unwind$_LZCNT_ALT_UNIT DD 025052a01H
@@ -190,130 +183,19 @@ $unwind$Initialize_Compare DD 025052a01H
 	DD	07007001dH
 	DD	05006H
 xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$Compare_Imp DD 025053401H
+	DD	0118231dH
+	DD	07011001dH
+	DD	05010H
+xdata	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
 _TEXT	SEGMENT
 __JustMyCode_Default PROC				; COMDAT
 	ret	0
 __JustMyCode_Default ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
-;	COMDAT Compare_X_X
-_TEXT	SEGMENT
-u$ = 224
-v$ = 232
-count$ = 240
-Compare_X_X PROC					; COMDAT
-
-; 38   : {
-
-$LN9:
-	mov	QWORD PTR [rsp+24], r8
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 232				; 000000e8H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 58					; 0000003aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__F5940173_pmc_compare@c
-	call	__CheckForDebuggerJustMyCode
-
-; 39   :     u += count;
-
-	mov	rax, QWORD PTR u$[rbp]
-	mov	rcx, QWORD PTR count$[rbp]
-	lea	rax, QWORD PTR [rax+rcx*8]
-	mov	QWORD PTR u$[rbp], rax
-
-; 40   :     v += count;
-
-	mov	rax, QWORD PTR v$[rbp]
-	mov	rcx, QWORD PTR count$[rbp]
-	lea	rax, QWORD PTR [rax+rcx*8]
-	mov	QWORD PTR v$[rbp], rax
-$LN2@Compare_X_:
-
-; 41   :     while (count > 0)
-
-	cmp	QWORD PTR count$[rbp], 0
-	jbe	SHORT $LN3@Compare_X_
-
-; 42   :     {
-; 43   :         --u;
-
-	mov	rax, QWORD PTR u$[rbp]
-	sub	rax, 8
-	mov	QWORD PTR u$[rbp], rax
-
-; 44   :         --v;
-
-	mov	rax, QWORD PTR v$[rbp]
-	sub	rax, 8
-	mov	QWORD PTR v$[rbp], rax
-
-; 45   :         --count;
-
-	mov	rax, QWORD PTR count$[rbp]
-	dec	rax
-	mov	QWORD PTR count$[rbp], rax
-
-; 46   : 
-; 47   :         if (*u > *v)
-
-	mov	rax, QWORD PTR u$[rbp]
-	mov	rcx, QWORD PTR v$[rbp]
-	mov	rcx, QWORD PTR [rcx]
-	cmp	QWORD PTR [rax], rcx
-	jbe	SHORT $LN4@Compare_X_
-
-; 48   :             return (1);
-
-	mov	eax, 1
-	jmp	SHORT $LN1@Compare_X_
-	jmp	SHORT $LN5@Compare_X_
-$LN4@Compare_X_:
-
-; 49   :         else if (*u < *v)
-
-	mov	rax, QWORD PTR u$[rbp]
-	mov	rcx, QWORD PTR v$[rbp]
-	mov	rcx, QWORD PTR [rcx]
-	cmp	QWORD PTR [rax], rcx
-	jae	SHORT $LN6@Compare_X_
-
-; 50   :             return (-1);
-
-	mov	eax, -1
-	jmp	SHORT $LN1@Compare_X_
-$LN6@Compare_X_:
-$LN5@Compare_X_:
-
-; 51   :         else
-; 52   :         {
-; 53   :         }
-; 54   :     }
-
-	jmp	SHORT $LN2@Compare_X_
-$LN3@Compare_X_:
-
-; 55   :     return (0);
-
-	xor	eax, eax
-$LN1@Compare_X_:
-
-; 56   : }
-
-	lea	rsp, QWORD PTR [rbp+200]
-	pop	rdi
-	pop	rbp
-	ret	0
-Compare_X_X ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -323,7 +205,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 840  : {
+; 859  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -338,45 +220,45 @@ _LZCNT_ALT_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 841  :     if (x == 0)
+; 860  :     if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 842  :         return (sizeof(x) * 8);
+; 861  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 843  : #ifdef _M_IX86
-; 844  :     _UINT32_T pos;
-; 845  : #ifdef _MSC_VER
-; 846  :     _BitScanReverse(&pos, x);
-; 847  : #elif defined(__GNUC__)
-; 848  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 849  : #else
-; 850  : #error unknown compiler
-; 851  : #endif
-; 852  : #elif defined(_M_X64)
-; 853  : #ifdef _MSC_VER
-; 854  :     _UINT32_T pos;
-; 855  :     _BitScanReverse64(&pos, x);
+; 862  : #ifdef _M_IX86
+; 863  :     _UINT32_T pos;
+; 864  : #ifdef _MSC_VER
+; 865  :     _BitScanReverse(&pos, x);
+; 866  : #elif defined(__GNUC__)
+; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 868  : #else
+; 869  : #error unknown compiler
+; 870  : #endif
+; 871  : #elif defined(_M_X64)
+; 872  : #ifdef _MSC_VER
+; 873  :     _UINT32_T pos;
+; 874  :     _BitScanReverse64(&pos, x);
 
 	mov	rax, QWORD PTR x$[rbp]
 	bsr	rax, rax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 856  : #elif defined(__GNUC__)
-; 857  :     _UINT64_T pos;
-; 858  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 859  : #else
-; 860  : #error unknown compiler
-; 861  : #endif
-; 862  : #else
-; 863  : #error unknown platform
-; 864  : #endif
-; 865  :     return (sizeof(x) * 8 - 1 - pos);
+; 875  : #elif defined(__GNUC__)
+; 876  :     _UINT64_T pos;
+; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 878  : #else
+; 879  : #error unknown compiler
+; 880  : #endif
+; 881  : #else
+; 882  : #error unknown platform
+; 883  : #endif
+; 884  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 63					; 0000003fH
@@ -384,7 +266,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 866  : }
+; 885  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -405,7 +287,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 807  : {
+; 826  : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -420,31 +302,31 @@ _LZCNT_ALT_32 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 808  :     if (x == 0)
+; 827  :     if (x == 0)
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 809  :         return (sizeof(x) * 8);
+; 828  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 810  :     _UINT32_T pos;
-; 811  : #ifdef _MSC_VER
-; 812  :     _BitScanReverse(&pos, x);
+; 829  :     _UINT32_T pos;
+; 830  : #ifdef _MSC_VER
+; 831  :     _BitScanReverse(&pos, x);
 
 	mov	eax, DWORD PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 813  : #elif defined(__GNUC__)
-; 814  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 815  : #else
-; 816  : #error unknown compiler
-; 817  : #endif
-; 818  :     return (sizeof(x) * 8 - 1 - pos);
+; 832  : #elif defined(__GNUC__)
+; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 834  : #else
+; 835  : #error unknown compiler
+; 836  : #endif
+; 837  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 31
@@ -452,7 +334,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 819  : }
+; 838  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -473,7 +355,7 @@ value$ = 224
 result_high$ = 232
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 393  : {
+; 412  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -489,18 +371,18 @@ _FROMDWORDTOWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 394  :     *result_high = (_UINT32_T)(value >> 32);
+; 413  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, QWORD PTR value$[rbp]
 	shr	rax, 32					; 00000020H
 	mov	rcx, QWORD PTR result_high$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 395  :     return ((_UINT32_T)value);
+; 414  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR value$[rbp]
 
-; 396  : }
+; 415  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -718,7 +600,7 @@ $LN13@PMC_Compar:
 ; 293  :         else
 ; 294  :         {
 ; 295  :             // u > 0 && v > 0 かつ u のビット長と v のビット長が等しい場合
-; 296  :             *w = Compare_X_X(nu->BLOCK, nv->BLOCK, nu->UNIT_WORD_COUNT);
+; 296  :             *w = Compare_Imp(nu->BLOCK, nv->BLOCK, nu->UNIT_WORD_COUNT);
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	r8, QWORD PTR [rax]
@@ -726,7 +608,7 @@ $LN13@PMC_Compar:
 	mov	rdx, QWORD PTR [rax+48]
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	rcx, QWORD PTR [rax+48]
-	call	Compare_X_X
+	call	Compare_Imp
 	mov	rcx, QWORD PTR w$[rbp]
 	mov	DWORD PTR [rcx], eax
 $LN14@PMC_Compar:
@@ -1605,5 +1487,123 @@ $LN3:
 	pop	rbp
 	ret	0
 Initialize_Compare ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
+;	COMDAT Compare_Imp
+_TEXT	SEGMENT
+u$ = 224
+v$ = 232
+count$ = 240
+Compare_Imp PROC					; COMDAT
+
+; 38   : {
+
+$LN9:
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__F5940173_pmc_compare@c
+	call	__CheckForDebuggerJustMyCode
+
+; 39   :     u += count;
+
+	mov	rax, QWORD PTR u$[rbp]
+	mov	rcx, QWORD PTR count$[rbp]
+	lea	rax, QWORD PTR [rax+rcx*8]
+	mov	QWORD PTR u$[rbp], rax
+
+; 40   :     v += count;
+
+	mov	rax, QWORD PTR v$[rbp]
+	mov	rcx, QWORD PTR count$[rbp]
+	lea	rax, QWORD PTR [rax+rcx*8]
+	mov	QWORD PTR v$[rbp], rax
+$LN2@Compare_Im:
+
+; 41   :     while (count > 0)
+
+	cmp	QWORD PTR count$[rbp], 0
+	jbe	SHORT $LN3@Compare_Im
+
+; 42   :     {
+; 43   :         --u;
+
+	mov	rax, QWORD PTR u$[rbp]
+	sub	rax, 8
+	mov	QWORD PTR u$[rbp], rax
+
+; 44   :         --v;
+
+	mov	rax, QWORD PTR v$[rbp]
+	sub	rax, 8
+	mov	QWORD PTR v$[rbp], rax
+
+; 45   :         --count;
+
+	mov	rax, QWORD PTR count$[rbp]
+	dec	rax
+	mov	QWORD PTR count$[rbp], rax
+
+; 46   : 
+; 47   :         if (*u > *v)
+
+	mov	rax, QWORD PTR u$[rbp]
+	mov	rcx, QWORD PTR v$[rbp]
+	mov	rcx, QWORD PTR [rcx]
+	cmp	QWORD PTR [rax], rcx
+	jbe	SHORT $LN4@Compare_Im
+
+; 48   :             return (1);
+
+	mov	eax, 1
+	jmp	SHORT $LN1@Compare_Im
+	jmp	SHORT $LN5@Compare_Im
+$LN4@Compare_Im:
+
+; 49   :         else if (*u < *v)
+
+	mov	rax, QWORD PTR u$[rbp]
+	mov	rcx, QWORD PTR v$[rbp]
+	mov	rcx, QWORD PTR [rcx]
+	cmp	QWORD PTR [rax], rcx
+	jae	SHORT $LN6@Compare_Im
+
+; 50   :             return (-1);
+
+	mov	eax, -1
+	jmp	SHORT $LN1@Compare_Im
+$LN6@Compare_Im:
+$LN5@Compare_Im:
+
+; 51   :         else
+; 52   :         {
+; 53   :         }
+; 54   :     }
+
+	jmp	SHORT $LN2@Compare_Im
+$LN3@Compare_Im:
+
+; 55   :     return (0);
+
+	xor	eax, eax
+$LN1@Compare_Im:
+
+; 56   : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+Compare_Imp ENDP
 _TEXT	ENDS
 END

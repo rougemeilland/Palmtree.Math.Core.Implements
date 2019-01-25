@@ -109,7 +109,7 @@ DllMain:
 	.file 30 "pmc_internal.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
-	.long	0x4cd6
+	.long	0x4cd9
 	.word	0x4
 	.secrel32	.Ldebug_abbrev0
 	.byte	0x8
@@ -3993,7 +3993,7 @@ DllMain:
 	.byte	0x1e
 	.byte	0x44
 	.byte	0x10
-	.long	0x4c02
+	.long	0x4c05
 	.uleb128 0x13
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1e
@@ -4016,7 +4016,7 @@ DllMain:
 	.long	0x4adc
 	.byte	0x10
 	.uleb128 0x13
-	.ascii "LEAST_ZERO_BITS_COUNT\0"
+	.ascii "TRAILING_ZERO_BITS_COUNT\0"
 	.byte	0x1e
 	.byte	0x49
 	.byte	0x11
@@ -4084,7 +4084,7 @@ DllMain:
 	.byte	0x1e
 	.byte	0x54
 	.byte	0x12
-	.long	0x4c02
+	.long	0x4c05
 	.byte	0x30
 	.byte	0
 	.uleb128 0x6
@@ -4107,7 +4107,7 @@ DllMain:
 	.byte	0x1e
 	.byte	0x5f
 	.byte	0x16
-	.long	0x4c08
+	.long	0x4c0b
 	.uleb128 0x15
 	.ascii "statistics_info\0"
 	.byte	0x1e

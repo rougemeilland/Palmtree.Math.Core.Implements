@@ -115,6 +115,12 @@
     <ClCompile Include="TEST_op_ParseX.c">
       <Filter>ソース ファイル\テスト</Filter>
     </ClCompile>
+    <ClCompile Include="pmc_greatestcommondivisor.c">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="TEST_op_GreatestCommonDivisor.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pmc.h">

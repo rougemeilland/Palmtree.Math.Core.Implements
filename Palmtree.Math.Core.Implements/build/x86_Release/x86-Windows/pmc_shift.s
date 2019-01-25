@@ -21,20 +21,32 @@ LFB5486:
 	subl	$28, %esp
 	.cfi_def_cfa_offset 48
 	movl	56(%esp), %eax
-	movl	52(%esp), %ecx
-	movl	48(%esp), %ebx
+	movl	52(%esp), %ebx
 	movl	%eax, %edx
 	shrl	$5, %edx
-	subl	%edx, %ecx
+	subl	%edx, %ebx
+	leal	0(,%edx,4), %esi
 	movl	%edx, 20(%esp)
-	leal	(%ebx,%edx,4), %esi
-	movl	%ecx, 16(%esp)
+	addl	48(%esp), %esi
+	movl	%ebx, 16(%esp)
 	andl	$31, %eax
 	jne	L2
 	movl	60(%esp), %edi
+	movl	%ebx, %ecx
 /APP
  # 1773 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsd
+ # 0 "" 2
+/NO_APP
+	movl	64(%esp), %ecx
+	testl	%ecx, %ecx
+	je	L1
+	movl	60(%esp), %esi
+	movl	%edx, %ecx
+	leal	(%esi,%ebx,4), %edi
+/APP
+ # 1463 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep stosl
  # 0 "" 2
 /NO_APP
 L1:
@@ -64,15 +76,16 @@ L2:
 	subl	%eax, %edx
 	movl	%ebx, 8(%esp)
 	subl	$1, %esi
+	movl	%edx, (%esp)
 	movl	%esi, 12(%esp)
 	shrl	$5, %esi
 	movl	%esi, 24(%esp)
-	je	L4
+	je	L13
 	movl	%eax, (%esp)
 	movl	%esi, 4(%esp)
 	movl	60(%esp), %esi
 	.p2align 4,,10
-L5:
+L6:
 	movl	(%ebx), %ebp
 	movzbl	(%esp), %ecx
 	movl	%ebp, %eax
@@ -362,368 +375,331 @@ L5:
 	subl	$-128, %esi
 	movl	%ebp, -4(%esi)
 	subl	$1, 4(%esp)
-	jne	L5
-	movl	24(%esp), %ecx
+	jne	L6
 	movl	(%esp), %eax
-	sall	$7, %ecx
-	addl	%ecx, 8(%esp)
-	addl	%ecx, 60(%esp)
-L4:
+	movl	24(%esp), %ebx
+	movl	%edx, (%esp)
+	sall	$7, %ebx
+	addl	%ebx, 8(%esp)
+	addl	60(%esp), %ebx
+L5:
 	movl	%eax, %ecx
 	shrl	%cl, %edi
 	testb	$16, 12(%esp)
-	je	L6
-	movl	8(%esp), %ebp
-	movl	%edx, %ecx
-	movl	0(%ebp), %ebx
-	movl	%ebx, %esi
-	sall	%cl, %esi
-	movl	%eax, %ecx
-	orl	%esi, %edi
-	movl	60(%esp), %esi
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%edi, (%esi)
-	movl	%ebx, %esi
-	movl	4(%ebp), %ebx
-	movl	%ebp, %edi
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 4(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	8(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 8(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	12(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 12(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	16(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 16(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	20(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 20(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	24(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 24(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	28(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 28(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	32(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 32(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	36(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 36(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	40(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 40(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	44(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 44(%ecx)
-	movl	%ebx, %esi
-	movl	48(%edi), %ebx
-	movl	%eax, %ecx
-	shrl	%cl, %esi
-	movl	%edx, %ecx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 48(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	52(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 52(%ecx)
-	movl	%ebx, %esi
-	movl	56(%edi), %ebx
-	movl	%eax, %ecx
-	shrl	%cl, %esi
-	movl	%edx, %ecx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 56(%ecx)
-	movl	%edi, %esi
-	movl	60(%edi), %edi
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	addl	$64, %esi
-	movl	%edi, %ebp
-	movl	%esi, 8(%esp)
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	addl	$64, 60(%esp)
-	orl	%ebp, %ebx
-	movl	%ebx, 60(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %edi
-L6:
-	testb	$8, 12(%esp)
 	je	L7
 	movl	8(%esp), %ebp
-	movl	%edx, %ecx
-	movl	0(%ebp), %ebx
-	movl	%ebx, %esi
-	sall	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	0(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
-	orl	%esi, %edi
-	movl	60(%esp), %esi
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%edi, (%esi)
-	movl	%ebx, %esi
-	movl	4(%ebp), %ebx
-	movl	%ebp, %edi
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 4(%ecx)
-	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	8(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 8(%ecx)
-	movl	%ebx, %esi
-	movl	12(%edi), %ebx
-	movl	%eax, %ecx
+	orl	%edx, %edi
 	shrl	%cl, %esi
-	movl	%edx, %ecx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 12(%ecx)
+	movzbl	(%esp), %ecx
+	movl	%edi, (%ebx)
+	movl	%esi, %edi
+	movl	4(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	16(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 16(%ecx)
-	movl	%ebx, %esi
-	movl	20(%edi), %ebx
-	movl	%eax, %ecx
+	orl	%edx, %edi
 	shrl	%cl, %esi
-	movl	%edx, %ecx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 20(%ecx)
+	movzbl	(%esp), %ecx
+	movl	%edi, 4(%ebx)
+	movl	%esi, %edi
+	movl	8(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%ebx, %esi
-	movl	24(%edi), %ebx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 24(%ecx)
-	movl	%edi, %esi
-	movl	28(%edi), %edi
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, 8(%ebx)
+	movl	%esi, %edi
+	movl	12(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	addl	$32, %esi
-	movl	%edi, %ebp
-	movl	%esi, 8(%esp)
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	addl	$32, 60(%esp)
-	orl	%ebp, %ebx
-	movl	%ebx, 28(%ecx)
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, 12(%ebx)
+	movl	%esi, %edi
+	movl	16(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, 16(%ebx)
+	movl	%esi, %edi
+	movl	20(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, 20(%ebx)
+	movl	%esi, %edi
+	movl	24(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, 24(%ebx)
+	movl	%esi, %edi
+	movl	28(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, 28(%ebx)
+	movl	%esi, %edi
+	movl	32(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, 32(%ebx)
+	movl	%esi, %edi
+	movl	36(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movl	%edi, 36(%ebx)
+	movl	%esi, %edi
+	movl	40(%ebp), %esi
+	movzbl	(%esp), %ecx
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	addl	$64, %ebp
+	movl	%edi, 40(%ebx)
+	movl	%esi, %edi
+	movl	-20(%ebp), %esi
+	addl	$64, %ebx
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -20(%ebx)
+	movl	%esi, %edi
+	movl	-16(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -16(%ebx)
+	movl	%esi, %edi
+	movl	-12(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -12(%ebx)
+	movl	%esi, %edi
+	movl	-8(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -8(%ebx)
+	movl	-4(%ebp), %edi
+	movl	%ebp, 8(%esp)
+	movl	%edi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %esi
 	shrl	%cl, %edi
+	movl	%esi, -4(%ebx)
 L7:
-	testb	$4, 12(%esp)
+	testb	$8, 12(%esp)
 	je	L8
 	movl	8(%esp), %ebp
-	movl	%edx, %ecx
-	movl	0(%ebp), %ebx
-	movl	%ebx, %esi
-	sall	%cl, %esi
+	movzbl	(%esp), %ecx
+	addl	$32, %ebx
+	movl	0(%ebp), %esi
+	addl	$32, %ebp
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
-	orl	%esi, %edi
-	movl	60(%esp), %esi
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%edi, (%esi)
-	movl	%ebx, %esi
-	movl	4(%ebp), %ebx
-	movl	%ebp, %edi
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 4(%ecx)
-	movl	%ebx, %esi
-	movl	8(%edi), %ebx
-	movl	%eax, %ecx
+	orl	%edx, %edi
 	shrl	%cl, %esi
-	movl	%edx, %ecx
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %esi
-	movl	%esi, 8(%ecx)
-	movl	%edi, %esi
-	movl	12(%edi), %edi
+	movzbl	(%esp), %ecx
+	movl	%edi, -32(%ebx)
+	movl	%esi, %edi
+	movl	-28(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	addl	$16, %esi
-	movl	%edi, %ebp
-	movl	%esi, 8(%esp)
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	addl	$16, 60(%esp)
-	orl	%ebp, %ebx
-	movl	%ebx, 12(%ecx)
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -28(%ebx)
+	movl	%esi, %edi
+	movl	-24(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -24(%ebx)
+	movl	%esi, %edi
+	movl	-20(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -20(%ebx)
+	movl	%esi, %edi
+	movl	-16(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -16(%ebx)
+	movl	%esi, %edi
+	movl	-12(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -12(%ebx)
+	movl	%esi, %edi
+	movl	-8(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -8(%ebx)
+	movl	-4(%ebp), %edi
+	movl	%ebp, 8(%esp)
+	movl	%edi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %esi
 	shrl	%cl, %edi
+	movl	%esi, -4(%ebx)
 L8:
-	testb	$2, 12(%esp)
+	testb	$4, 12(%esp)
 	je	L9
-	movl	8(%esp), %esi
-	movl	%edx, %ecx
-	movl	(%esi), %ebx
-	addl	$8, %esi
-	movl	%ebx, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	orl	%ebp, %edi
-	movl	%edi, (%ecx)
-	movl	-4(%esi), %edi
+	movl	8(%esp), %ebp
+	movzbl	(%esp), %ecx
+	addl	$16, %ebx
+	movl	0(%ebp), %esi
+	addl	$16, %ebp
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
-	shrl	%cl, %ebx
-	movl	%edx, %ecx
-	movl	%esi, 8(%esp)
-	movl	%edi, %ebp
-	sall	%cl, %ebp
-	movl	60(%esp), %ecx
-	addl	$8, 60(%esp)
-	orl	%ebp, %ebx
-	movl	%ebx, 4(%ecx)
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -16(%ebx)
+	movl	%esi, %edi
+	movl	-12(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -12(%ebx)
+	movl	%esi, %edi
+	movl	-8(%ebp), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -8(%ebx)
+	movl	-4(%ebp), %edi
+	movl	%ebp, 8(%esp)
+	movl	%edi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %esi
 	shrl	%cl, %edi
+	movl	%esi, -4(%ebx)
 L9:
-	testb	$1, 12(%esp)
+	testb	$2, 12(%esp)
 	je	L10
-	movl	8(%esp), %ebx
-	movl	%edx, %ecx
-	movl	60(%esp), %edx
-	addl	$4, 60(%esp)
-	movl	(%ebx), %ebx
-	movl	%ebx, %esi
-	sall	%cl, %esi
+	movl	8(%esp), %ebp
+	movzbl	(%esp), %ecx
+	addl	$8, %ebx
+	movl	0(%ebp), %esi
+	addl	$8, %ebp
+	movl	%esi, %edx
+	sall	%cl, %edx
 	movl	%eax, %ecx
-	orl	%esi, %edi
-	shrl	%cl, %ebx
-	movl	%edi, (%edx)
-	movl	%ebx, %edi
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movzbl	(%esp), %ecx
+	movl	%edi, -8(%ebx)
+	movl	-4(%ebp), %edi
+	movl	%ebp, 8(%esp)
+	movl	%edi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %esi
+	shrl	%cl, %edi
+	movl	%esi, -4(%ebx)
 L10:
-	testl	%edi, %edi
+	testb	$1, 12(%esp)
 	je	L11
-	movl	60(%esp), %eax
-	movl	%edi, (%eax)
+	movl	8(%esp), %edx
+	movzbl	(%esp), %ecx
+	addl	$4, %ebx
+	movl	(%edx), %esi
+	movl	%esi, %edx
+	sall	%cl, %edx
+	movl	%eax, %ecx
+	orl	%edx, %edi
+	shrl	%cl, %esi
+	movl	%edi, -4(%ebx)
+	movl	%esi, %edi
 L11:
+	movl	%edi, %eax
+	orl	64(%esp), %eax
+	je	L1
 	movl	64(%esp), %eax
+	movl	%edi, (%ebx)
 	testl	%eax, %eax
 	je	L1
-	movl	48(%esp), %eax
-	movl	16(%esp), %edx
+	movl	60(%esp), %eax
+	movl	16(%esp), %ebx
 	movl	20(%esp), %ecx
-	leal	(%eax,%edx,4), %edi
+	leal	(%eax,%ebx,4), %edi
 	xorl	%eax, %eax
 /APP
  # 1463 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
@@ -731,6 +707,7 @@ L11:
  # 0 "" 2
 /NO_APP
 	addl	$28, %esp
+	.cfi_remember_state
 	.cfi_def_cfa_offset 20
 	popl	%ebx
 	.cfi_restore 3
@@ -745,6 +722,11 @@ L11:
 	.cfi_restore 5
 	.cfi_def_cfa_offset 4
 	ret
+	.p2align 4,,10
+L13:
+	.cfi_restore_state
+	movl	60(%esp), %ebx
+	jmp	L5
 	.cfi_endproc
 LFE5486:
 	.p2align 4,,15
@@ -778,20 +760,30 @@ LFB5488:
 	.cfi_def_cfa_offset 52
 	movl	60(%esp), %eax
 	movl	56(%esp), %ecx
-	movl	64(%esp), %edi
 	movl	%eax, %edx
 	shrl	$5, %edx
 	movl	%edx, 24(%esp)
 	andl	$31, %eax
-	jne	L41
-	leal	(%edi,%edx,4), %edi
+	jne	L40
+	movl	64(%esp), %ebx
 	movl	52(%esp), %esi
+	leal	(%ebx,%edx,4), %edi
 /APP
  # 1773 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsd
  # 0 "" 2
 /NO_APP
-L40:
+	movl	68(%esp), %ecx
+	testl	%ecx, %ecx
+	je	L39
+	movl	64(%esp), %edi
+	movl	%edx, %ecx
+/APP
+ # 1463 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep stosl
+ # 0 "" 2
+/NO_APP
+L39:
 	addl	$32, %esp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 20
@@ -809,9 +801,10 @@ L40:
 	.cfi_def_cfa_offset 4
 	ret
 	.p2align 4,,10
-L41:
+L40:
 	.cfi_restore_state
 	movl	52(%esp), %ebx
+	movl	64(%esp), %edi
 	movl	$32, %edx
 	subl	%eax, %edx
 	leal	-4(%ebx,%ecx,4), %esi
@@ -1173,11 +1166,11 @@ L44:
 	shrl	%cl, %edx
 	movl	%eax, %ecx
 	orl	%edx, %esi
-	sall	%cl, %ebx
-	movzbl	4(%esp), %ecx
 	movl	%esi, -8(%ebp)
 	movl	%ebx, %esi
 	movl	-12(%edi), %ebx
+	sall	%cl, %esi
+	movzbl	4(%esp), %ecx
 	movl	%ebx, %edx
 	shrl	%cl, %edx
 	movl	%eax, %ecx
@@ -1470,8 +1463,8 @@ L50:
 	movl	%edi, (%eax)
 	movl	68(%esp), %eax
 	testl	%eax, %eax
-	je	L40
-	movl	52(%esp), %edi
+	je	L39
+	movl	64(%esp), %edi
 	movl	24(%esp), %ecx
 	xorl	%eax, %eax
 /APP
@@ -1522,24 +1515,24 @@ LFB5489:
 	movl	88(%esp), %esi
 	movl	80(%esp), %ebx
 	testl	%esi, %esi
-	je	L84
+	je	L85
 	testl	%ebx, %ebx
-	je	L84
+	je	L85
 	movl	%ebx, (%esp)
 	call	_CheckNumber
 	testl	%eax, %eax
-	jne	L78
+	jne	L79
 	testb	$2, 16(%ebx)
-	jne	L82
+	jne	L83
 	movl	84(%esp), %edx
 	testl	%edx, %edx
-	je	L86
+	je	L87
 	movl	4(%ebx), %edx
 	cmpl	%edx, 84(%esp)
-	jb	L87
-L82:
+	jb	L88
+L83:
 	movl	$_number_zero, (%esi)
-L78:
+L79:
 	addl	$68, %esp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 12
@@ -1551,7 +1544,7 @@ L78:
 	.cfi_def_cfa_offset 4
 	ret	$12
 	.p2align 4,,10
-L87:
+L88:
 	.cfi_restore_state
 	leal	60(%esp), %eax
 	subl	84(%esp), %edx
@@ -1561,7 +1554,7 @@ L87:
 	movl	%eax, (%esp)
 	call	_AllocateNumber
 	testl	%eax, %eax
-	jne	L78
+	jne	L79
 	movl	56(%esp), %eax
 	movl	$0, 16(%esp)
 	movl	24(%eax), %eax
@@ -1580,7 +1573,7 @@ L87:
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	jne	L78
+	jne	L79
 	movl	56(%esp), %edx
 	movl	%eax, 44(%esp)
 	movl	%edx, (%esp)
@@ -1588,22 +1581,22 @@ L87:
 	movl	56(%esp), %edx
 	movl	44(%esp), %eax
 	movl	%edx, (%esi)
-	jmp	L78
+	jmp	L79
 	.p2align 4,,10
-L86:
+L87:
 	leal	56(%esp), %eax
 	movl	%ebx, (%esp)
 	movl	%eax, 4(%esp)
 	call	_DuplicateNumber
 	testl	%eax, %eax
-	jne	L78
+	jne	L79
 	movl	56(%esp), %edx
 	movl	%edx, (%esi)
-	jmp	L78
+	jmp	L79
 	.p2align 4,,10
-L84:
+L85:
 	movl	$-1, %eax
-	jmp	L78
+	jmp	L79
 	.cfi_endproc
 LFE5489:
 	.p2align 4,,15
@@ -1633,41 +1626,17 @@ LFB5491:
 	movl	88(%esp), %esi
 	movl	80(%esp), %ebx
 	testl	%esi, %esi
-	je	L94
+	je	L95
 	testl	%ebx, %ebx
-	je	L94
+	je	L95
 	movl	%ebx, (%esp)
 	call	_CheckNumber
 	testl	%eax, %eax
-	jne	L89
+	jne	L90
 	testb	$2, 16(%ebx)
-	je	L91
+	je	L92
 	movl	$_number_zero, (%esi)
-L89:
-	addl	$68, %esp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 12
-	popl	%ebx
-	.cfi_restore 3
-	.cfi_def_cfa_offset 8
-	popl	%esi
-	.cfi_restore 6
-	.cfi_def_cfa_offset 4
-	ret	$12
-	.p2align 4,,10
-L91:
-	.cfi_restore_state
-	movl	84(%esp), %eax
-	testl	%eax, %eax
-	jne	L92
-	leal	56(%esp), %eax
-	movl	%ebx, (%esp)
-	movl	%eax, 4(%esp)
-	call	_DuplicateNumber
-	testl	%eax, %eax
-	jne	L89
-	movl	56(%esp), %edx
-	movl	%edx, (%esi)
+L90:
 	addl	$68, %esp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 12
@@ -1681,6 +1650,30 @@ L91:
 	.p2align 4,,10
 L92:
 	.cfi_restore_state
+	movl	84(%esp), %eax
+	testl	%eax, %eax
+	jne	L93
+	leal	56(%esp), %eax
+	movl	%ebx, (%esp)
+	movl	%eax, 4(%esp)
+	call	_DuplicateNumber
+	testl	%eax, %eax
+	jne	L90
+	movl	56(%esp), %edx
+	movl	%edx, (%esi)
+	addl	$68, %esp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 12
+	popl	%ebx
+	.cfi_restore 3
+	.cfi_def_cfa_offset 8
+	popl	%esi
+	.cfi_restore 6
+	.cfi_def_cfa_offset 4
+	ret	$12
+	.p2align 4,,10
+L93:
+	.cfi_restore_state
 	leal	60(%esp), %eax
 	movl	%eax, 8(%esp)
 	movl	84(%esp), %eax
@@ -1690,7 +1683,7 @@ L92:
 	movl	%eax, (%esp)
 	call	_AllocateNumber
 	testl	%eax, %eax
-	jne	L89
+	jne	L90
 	movl	56(%esp), %eax
 	movl	$0, 16(%esp)
 	movl	24(%eax), %eax
@@ -1709,7 +1702,7 @@ L92:
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
-	jne	L89
+	jne	L90
 	movl	56(%esp), %edx
 	movl	%eax, 44(%esp)
 	movl	%edx, (%esp)
@@ -1717,11 +1710,11 @@ L92:
 	movl	56(%esp), %edx
 	movl	44(%esp), %eax
 	movl	%edx, (%esi)
-	jmp	L89
+	jmp	L90
 	.p2align 4,,10
-L94:
+L95:
 	movl	$-1, %eax
-	jmp	L89
+	jmp	L90
 	.cfi_endproc
 LFE5491:
 	.p2align 4,,15

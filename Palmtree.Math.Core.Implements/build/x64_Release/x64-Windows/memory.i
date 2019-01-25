@@ -101780,6 +101780,11 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
 
     PMC_STATUS_CODE( * PMC_TryParse)(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
+
+
+    PMC_STATUS_CODE( * PMC_GreatestCommonDivisor_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
+    PMC_STATUS_CODE( * PMC_GreatestCommonDivisor_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
+    PMC_STATUS_CODE( * PMC_GreatestCommonDivisor_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -101834,7 +101839,7 @@ typedef struct __tag_NUMBER_HEADER
     __UNIT_TYPE UNIT_WORD_COUNT;
     __UNIT_TYPE UNIT_BIT_COUNT;
     __UNIT_TYPE HASH_CODE;
-    __UNIT_TYPE LEAST_ZERO_BITS_COUNT;
+    __UNIT_TYPE TRAILING_ZERO_BITS_COUNT;
     unsigned IS_STATIC : 1;
     unsigned IS_ZERO : 1;
     unsigned IS_ONE : 1;
@@ -101907,10 +101912,22 @@ extern PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o);
 extern void RightShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL pad1ding_zero);
 
 
+extern void RightShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
+
+
 extern void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL padding_zero);
 
 
+extern void LeftShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
+
+
+extern PMC_STATUS_CODE Subtruct_Imp(__UNIT_TYPE* xp, __UNIT_TYPE x_count, __UNIT_TYPE* yp, __UNIT_TYPE y_count, __UNIT_TYPE* zp, __UNIT_TYPE z_count);
+
+
 extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
+
+
+extern _INT32_T Compare_Imp(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count);
 
 
 extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
@@ -101956,6 +101973,9 @@ extern PMC_STATUS_CODE Initialize_ToString(PROCESSOR_FEATURES* feature);
 
 
 extern PMC_STATUS_CODE Initialize_Parse(PROCESSOR_FEATURES* feature);
+
+
+extern PMC_STATUS_CODE Initialize_GreatestCommonDivisor(PROCESSOR_FEATURES* feature);
 
 
 
@@ -102016,6 +102036,10 @@ extern PMC_STATUS_CODE PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 extern PMC_STATUS_CODE PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
 extern PMC_STATUS_CODE PMC_TryParse(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
+
+extern PMC_STATUS_CODE PMC_GreatestCommonDivisor_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+extern PMC_STATUS_CODE PMC_GreatestCommonDivisor_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+extern PMC_STATUS_CODE PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w);
 #pragma endregion
 
 
@@ -102270,7 +102294,7 @@ __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_T
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 520 "pmc_internal.h"
+# 539 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -102279,7 +102303,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 536 "pmc_internal.h"
+# 555 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -102291,7 +102315,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYP
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 561 "pmc_internal.h"
+# 580 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -102305,7 +102329,7 @@ __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 
 __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 582 "pmc_internal.h"
+# 601 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -102320,7 +102344,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TY
 
 __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
 {
-# 620 "pmc_internal.h"
+# 639 "pmc_internal.h"
     __UNIT_TYPE q;
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -102341,7 +102365,7 @@ __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE
 
 __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
 {
-# 664 "pmc_internal.h"
+# 683 "pmc_internal.h"
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
@@ -102375,9 +102399,9 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 696 "pmc_internal.h" 3
+# 715 "pmc_internal.h" 3
            __rolq
-# 696 "pmc_internal.h"
+# 715 "pmc_internal.h"
                   (x, count));
 
 
@@ -102390,9 +102414,9 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 707 "pmc_internal.h" 3
+# 726 "pmc_internal.h" 3
            __rorq
-# 707 "pmc_internal.h"
+# 726 "pmc_internal.h"
                   (x, count));
 
 
@@ -102456,7 +102480,7 @@ __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 
 __inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
 {
-# 782 "pmc_internal.h"
+# 801 "pmc_internal.h"
     return (_lzcnt_u64(value));
 
 
@@ -102518,7 +102542,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 857 "pmc_internal.h"
+# 876 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -102534,7 +102558,7 @@ __inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 886 "pmc_internal.h"
+# 905 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -102572,9 +102596,9 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 937 "pmc_internal.h"
+# 956 "pmc_internal.h"
     _UINT64_T pos;
-    __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+    __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
 
 
 
@@ -103070,23 +103094,15 @@ static __UNIT_TYPE GetEffectiveBitLength(__UNIT_TYPE* p, __UNIT_TYPE word_count,
     return (0);
 }
 
-static __UNIT_TYPE GetLeastZeroBitCount(__UNIT_TYPE* p, __UNIT_TYPE word_count)
+static __UNIT_TYPE GetTrailingZeroBitCount(__UNIT_TYPE* p, __UNIT_TYPE word_count)
 {
     __UNIT_TYPE bit_count = 0;
     while (word_count > 0)
     {
         --word_count;
         if (*p != 0)
-        {
-            if (word_count > 0)
-                return (
-# 457 "memory.c" 3
-                       0
-# 457 "memory.c"
-                            );
             return (bit_count + _TZCNT_ALT_UNIT(*p));
-        }
-        bit_count += 8;
+        bit_count += (sizeof(__UNIT_TYPE) * 8);
         ++p;
     }
 
@@ -103101,70 +103117,70 @@ void CommitNumber(NUMBER_HEADER* p)
     {
         p->HASH_CODE = 0;
         p->IS_ZERO = 
-# 474 "memory.c" 3
+# 470 "memory.c" 3
                     1
-# 474 "memory.c"
+# 470 "memory.c"
                         ;
         p->IS_ONE = 
-# 475 "memory.c" 3
+# 471 "memory.c" 3
                    0
-# 475 "memory.c"
+# 471 "memory.c"
                         ;
         p->IS_EVEN = 
-# 476 "memory.c" 3
+# 472 "memory.c" 3
                     1
-# 476 "memory.c"
+# 472 "memory.c"
                         ;
-        p->LEAST_ZERO_BITS_COUNT = 0;
+        p->TRAILING_ZERO_BITS_COUNT = 0;
         p->IS_POWER_OF_TWO = 
-# 478 "memory.c" 3
+# 474 "memory.c" 3
                             0
-# 478 "memory.c"
+# 474 "memory.c"
                                  ;
     }
     else if (p->UNIT_BIT_COUNT == 1)
     {
         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
         p->IS_ZERO = 
-# 483 "memory.c" 3
+# 479 "memory.c" 3
                     0
-# 483 "memory.c"
+# 479 "memory.c"
                          ;
         p->IS_ONE = p->BLOCK[0] == 1;
         p->IS_EVEN = 
-# 485 "memory.c" 3
+# 481 "memory.c" 3
                     0
-# 485 "memory.c"
+# 481 "memory.c"
                          ;
-        p->LEAST_ZERO_BITS_COUNT = 0;
+        p->TRAILING_ZERO_BITS_COUNT = 0;
         p->IS_POWER_OF_TWO = 
-# 487 "memory.c" 3
+# 483 "memory.c" 3
                             1
-# 487 "memory.c"
+# 483 "memory.c"
                                 ;
     }
     else
     {
         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
         p->IS_ZERO = 
-# 492 "memory.c" 3
+# 488 "memory.c" 3
                     0
-# 492 "memory.c"
+# 488 "memory.c"
                          ;
         p->IS_ONE = 
-# 493 "memory.c" 3
+# 489 "memory.c" 3
                    0
-# 493 "memory.c"
+# 489 "memory.c"
                         ;
         p->IS_EVEN = !(p->BLOCK[0] & 1);
-        p->LEAST_ZERO_BITS_COUNT = GetLeastZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
-        p->IS_POWER_OF_TWO = p->LEAST_ZERO_BITS_COUNT + 1 == p->UNIT_BIT_COUNT;
+        p->TRAILING_ZERO_BITS_COUNT = GetTrailingZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
+        p->IS_POWER_OF_TWO = p->TRAILING_ZERO_BITS_COUNT + 1 == p->UNIT_BIT_COUNT;
     }
 }
 
 PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p)
 {
-# 513 "memory.c"
+# 509 "memory.c"
     return ((0));
 }
 
@@ -103185,9 +103201,9 @@ PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* x, NUMBER_HEADER** op)
     PMC_STATUS_CODE result;
     NUMBER_HEADER* o;
     if ((result = AllocateNumber(&o, x_bit_count, 
-# 532 "memory.c" 3 4
+# 528 "memory.c" 3 4
                                                  ((void *)0)
-# 532 "memory.c"
+# 528 "memory.c"
                                                      )) != (0))
         return (result);
     _COPY_MEMORY_UNIT(o->BLOCK, x->BLOCK, _DIVIDE_CEILING_UNIT(x_bit_count, (sizeof(__UNIT_TYPE) * 8)));
@@ -103212,9 +103228,9 @@ PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature)
     PMC_STATUS_CODE result = (0);
 
     BOOL number_zero_ok = 
-# 555 "memory.c" 3
+# 551 "memory.c" 3
                          1
-# 555 "memory.c"
+# 551 "memory.c"
                              ;
     if (result == (0))
     {
@@ -103223,9 +103239,9 @@ PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature)
         {
             CommitNumber(&number_zero);
             number_zero_ok = 
-# 562 "memory.c" 3
+# 558 "memory.c" 3
                             1
-# 562 "memory.c"
+# 558 "memory.c"
                                 ;
         }
     }
@@ -103243,35 +103259,35 @@ BOOL AllocateHeapArea()
 {
     hLocalHeap = HeapCreate(0, 0x1000, 0);
     if (hLocalHeap == 
-# 578 "memory.c" 3 4
+# 574 "memory.c" 3 4
                      ((void *)0)
-# 578 "memory.c"
+# 574 "memory.c"
                          )
         return (
-# 579 "memory.c" 3
+# 575 "memory.c" 3
                0
-# 579 "memory.c"
+# 575 "memory.c"
                     );
     return (
-# 580 "memory.c" 3
+# 576 "memory.c" 3
            1
-# 580 "memory.c"
+# 576 "memory.c"
                );
 }
 
 void DeallocateHeapArea()
 {
     if (hLocalHeap != 
-# 585 "memory.c" 3 4
+# 581 "memory.c" 3 4
                      ((void *)0)
-# 585 "memory.c"
+# 581 "memory.c"
                          )
     {
         HeapDestroy(hLocalHeap);
         hLocalHeap = 
-# 588 "memory.c" 3 4
+# 584 "memory.c" 3 4
                     ((void *)0)
-# 588 "memory.c"
+# 584 "memory.c"
                         ;
     }
 }

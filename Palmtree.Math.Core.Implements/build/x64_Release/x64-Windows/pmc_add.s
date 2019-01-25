@@ -826,7 +826,7 @@ PMC_Add_X_I:
 	leaq	64(%rsp), %rcx
 	movl	$31, %eax
 /APP
- # 814 "pmc_internal.h" 1
+ # 833 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
@@ -965,7 +965,7 @@ PMC_Add_X_L:
 	testq	%rbp, %rbp
 	je	.L106
 /APP
- # 858 "pmc_internal.h" 1
+ # 877 "pmc_internal.h" 1
 	bsrq %rbp, %rdx
  # 0 "" 2
 /NO_APP
