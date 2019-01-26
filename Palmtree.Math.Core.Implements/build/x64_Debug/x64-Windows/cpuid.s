@@ -7,7 +7,7 @@
 _ZERO_MEMORY_BYTE:
 .LFB4310:
 	.file 1 "pmc_internal.h"
-	.loc 1 324 1
+	.loc 1 344 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -52,7 +52,7 @@ _ZERO_MEMORY_BYTE:
 	movq	%rdx, -120(%rbp)
 .LBE9:
 .LBE8:
-	.loc 1 326 1
+	.loc 1 346 1
 	nop
 	addq	$40, %rsp
 	popq	%rdi
@@ -4785,7 +4785,7 @@ GetCPUInfo:
 	.uleb128 0x21
 	.ascii "_ZERO_MEMORY_BYTE\0"
 	.byte	0x1
-	.word	0x143
+	.word	0x157
 	.byte	0x16
 	.quad	.LFB4310
 	.quad	.LFE4310-.LFB4310
@@ -4795,7 +4795,7 @@ GetCPUInfo:
 	.uleb128 0x22
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x143
+	.word	0x157
 	.byte	0x2e
 	.long	0x7a5
 	.uleb128 0x2
@@ -4804,7 +4804,7 @@ GetCPUInfo:
 	.uleb128 0x22
 	.ascii "count\0"
 	.byte	0x1
-	.word	0x143
+	.word	0x157
 	.byte	0x38
 	.long	0xc4
 	.uleb128 0x2
@@ -4815,7 +4815,7 @@ GetCPUInfo:
 	.quad	.LBB8
 	.quad	.LBE8-.LBB8
 	.byte	0x1
-	.word	0x145
+	.word	0x159
 	.byte	0x5
 	.uleb128 0x20
 	.long	0x509f

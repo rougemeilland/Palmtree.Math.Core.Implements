@@ -52,27 +52,27 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG93934 DB	'+', 00H, 00H, 00H
-$SG93935 DB	'-', 00H, 00H, 00H
-$SG93936 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+$SG94414 DB	'+', 00H, 00H, 00H
+$SG94415 DB	'-', 00H, 00H, 00H
+$SG94416 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG93937 DB	'PMC_ToStringN (%d.%d)', 00H
+$SG94417 DB	'PMC_ToStringN (%d.%d)', 00H
 	ORG $+2
-$SG93938 DB	'PMC_ToString', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+$SG94418 DB	'PMC_ToString', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+1
-$SG93939 DB	'PMC_ToStringN (%d.%d)', 00H
+$SG94419 DB	'PMC_ToStringN (%d.%d)', 00H
 	ORG $+2
-$SG93940 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94420 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG93941 DB	'PMC_ToStringN (%d.%d)', 00H
+$SG94421 DB	'PMC_ToStringN (%d.%d)', 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -172,7 +172,7 @@ _TEST_PMC_ToStringN PROC
 ; 50   :     lstrcpyW(opt.PositiveSign, L"+");
 
 	mov	esi, esp
-	push	OFFSET $SG93934
+	push	OFFSET $SG94414
 	lea	ecx, DWORD PTR _opt$[ebp+16]
 	push	ecx
 	call	DWORD PTR __imp__lstrcpyW@8
@@ -182,7 +182,7 @@ _TEST_PMC_ToStringN PROC
 ; 51   :     lstrcpyW(opt.NegativeSign, L"-");
 
 	mov	esi, esp
-	push	OFFSET $SG93935
+	push	OFFSET $SG94415
 	lea	edx, DWORD PTR _opt$[ebp+22]
 	push	edx
 	call	DWORD PTR __imp__lstrcpyW@8
@@ -213,7 +213,7 @@ $LN4@TEST_PMC_T:
 $LN5@TEST_PMC_T:
 	mov	edx, DWORD PTR _x_result$[ebp]
 	push	edx
-	push	OFFSET $SG93936
+	push	OFFSET $SG94416
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -222,7 +222,7 @@ $LN5@TEST_PMC_T:
 	push	1
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG93937
+	push	OFFSET $SG94417
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -245,7 +245,7 @@ $LN5@TEST_PMC_T:
 	mov	eax, DWORD PTR _x$[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _ep$[ebp]
-	mov	edx, DWORD PTR [ecx+160]
+	mov	edx, DWORD PTR [ecx+36]
 	call	edx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -259,7 +259,7 @@ $LN6@TEST_PMC_T:
 $LN7@TEST_PMC_T:
 	mov	eax, DWORD PTR _result$[ebp]
 	push	eax
-	push	OFFSET $SG93938
+	push	OFFSET $SG94418
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -268,7 +268,7 @@ $LN7@TEST_PMC_T:
 	push	2
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG93939
+	push	OFFSET $SG94419
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -293,13 +293,13 @@ $LN7@TEST_PMC_T:
 $LN8@TEST_PMC_T:
 	mov	DWORD PTR tv150[ebp], 0
 $LN9@TEST_PMC_T:
-	push	OFFSET $SG93940
+	push	OFFSET $SG94420
 	mov	edx, DWORD PTR tv150[ebp]
 	push	edx
 	push	3
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG93941
+	push	OFFSET $SG94421
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -345,7 +345,6 @@ $LN1@TEST_PMC_T:
 	mov	esp, ebp
 	pop	ebp
 	ret	0
-	npad	1
 $LN13@TEST_PMC_T:
 	DD	2
 	DD	$LN12@TEST_PMC_T

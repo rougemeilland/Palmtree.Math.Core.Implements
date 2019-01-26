@@ -11,6 +11,8 @@ INCLUDELIB OLDNAMES
 
 PUBLIC	_Subtruct_Imp
 PUBLIC	_Initialize_Subtruct
+PUBLIC	_PMC_Subtruct_I_X@12
+PUBLIC	_PMC_Subtruct_L_X@16
 PUBLIC	_PMC_Subtruct_X_I@12
 PUBLIC	_PMC_Subtruct_X_L@16
 PUBLIC	_PMC_Subtruct_X_X@12
@@ -27,126 +29,112 @@ EXTRN	_number_zero:BYTE
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ;	COMDAT _Subtruct_X_2W
 _TEXT	SEGMENT
-_z_count$1$ = 8						; size = 4
-_x$ = 8							; size = 4
-_y_hi$ = 12						; size = 4
-_y_lo$ = 16						; size = 4
-_c$ = 20						; size = 1
-_z$ = 20						; size = 4
+_up$ = 8						; size = 4
+_c$1 = 12						; size = 1
+_u_count$ = 12						; size = 4
+_v_hi$ = 16						; size = 4
+_v_lo$ = 20						; size = 4
+_wp$ = 24						; size = 4
+_w_count$ = 28						; size = 4
 _Subtruct_X_2W PROC					; COMDAT
 
-; 105  : {
+; 97   : {
 
 	push	ebp
 	mov	ebp, esp
-
-; 106  :     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
-
-	mov	ecx, DWORD PTR _x$[ebp]
-
-; 107  :     __UNIT_TYPE z_count = z->BLOCK_COUNT;
-
-	mov	eax, DWORD PTR _z$[ebp]
 	push	ebx
-	push	esi
-	mov	esi, DWORD PTR [ecx]
-	mov	edx, DWORD PTR [eax+20]
 
-; 108  :     __UNIT_TYPE* xp = &x->BLOCK[0];
-; 109  :     __UNIT_TYPE* zp = &z->BLOCK[0];
+; 98   :     if (u_count < 2)
 
-	mov	ebx, DWORD PTR [eax+24]
-	mov	DWORD PTR _z_count$1$[ebp], edx
-	push	edi
-	mov	edi, DWORD PTR [ecx+24]
-
-; 110  :     char c;
-; 111  : 
-; 112  :     if (x_count < 2)
-
-	cmp	esi, 2
+	mov	ebx, DWORD PTR _u_count$[ebp]
+	cmp	ebx, 2
 	jae	SHORT $LN2@Subtruct_X
 
-; 133  :     }
-; 134  : }
+; 99   :     {
+; 100  :         // u が 1 ワードしかなかった場合
+; 101  : 
+; 102  :         // 明らかに演算結果が負になるのでエラーを通知する。
+; 103  :         return (PMC_STATUS_INTERNAL_BORROW);
 
-	pop	edi
-	pop	esi
 	mov	eax, -258				; fffffefeH
 	pop	ebx
+
+; 119  :     }
+; 120  : }
+
 	pop	ebp
 	ret	0
 $LN2@Subtruct_X:
+	push	esi
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 113  :     {
-; 114  :         // x が 1 ワードしかなかった場合
-; 115  : 
-; 116  :         // 明らかに演算結果が負になるのでエラーを通知する。
-; 117  :         return (PMC_STATUS_INTERNAL_BORROW);
-; 118  :     }
-; 119  :     else
-; 120  :     {
-; 121  :         // x が 2 ワード以上あった場合
-; 122  : 
-; 123  :         // 最下位のワードの減算をする
-; 124  :         c = _SUBTRUCT_UNIT(0, *xp++, y_lo, zp++);
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
+	mov	esi, DWORD PTR _wp$[ebp]
+	push	edi
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 110  :         char c = _SUBTRUCT_UNIT(0, *up++, v_lo, wp++);
+
+	mov	edi, DWORD PTR _up$[ebp]
 	mov	eax, DWORD PTR [edi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
-	sub	eax, DWORD PTR _y_lo$[ebp]
-	mov	DWORD PTR [ebx], eax
+	sub	eax, DWORD PTR _v_lo$[ebp]
+	mov	DWORD PTR [esi], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 127  :         c = _SUBTRUCT_UNIT(c, *xp++, y_hi, zp++);
+; 113  :         c = _SUBTRUCT_UNIT(c, *up++, v_hi, wp++);
 
 	mov	ecx, DWORD PTR [edi+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	setb	dl
 	add	dl, 255					; 000000ffH
-	sbb	ecx, DWORD PTR _y_hi$[ebp]
-	mov	DWORD PTR [ebx+4], ecx
+	sbb	ecx, DWORD PTR _v_hi$[ebp]
+	mov	DWORD PTR [esi+4], ecx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 127  :         c = _SUBTRUCT_UNIT(c, *xp++, y_hi, zp++);
+; 113  :         c = _SUBTRUCT_UNIT(c, *up++, v_hi, wp++);
 
-	mov	BYTE PTR _c$[ebp], al
+	mov	BYTE PTR _c$1[ebp], al
 
-; 128  :         x_count -= 2;
-; 129  :         z_count -= 2;
+; 114  :         u_count -= 2;
+; 115  :         w_count -= 2;
 
-	mov	eax, DWORD PTR _z_count$1$[ebp]
+	mov	eax, DWORD PTR _w_count$[ebp]
 	add	eax, -2					; fffffffeH
 
-; 130  : 
-; 131  :         // 残りの桁の繰り上がりを計算し、復帰する。
-; 132  :         return (DoBorrow(c, xp, x_count, zp, z_count));
+; 116  : 
+; 117  :         // 残りの桁の繰り上がりを計算し、復帰する。
+; 118  :         return (DoBorrow(c, up, u_count, wp, w_count));
 
 	push	eax
-	lea	eax, DWORD PTR [ebx+8]
+	lea	eax, DWORD PTR [esi+8]
 	push	eax
-	lea	eax, DWORD PTR [esi-2]
+	lea	eax, DWORD PTR [ebx-2]
 	push	eax
 	lea	eax, DWORD PTR [edi+8]
 	push	eax
-	push	DWORD PTR _c$[ebp]
+	push	DWORD PTR _c$1[ebp]
 	call	_DoBorrow
 	add	esp, 20					; 00000014H
 	pop	edi
-
-; 133  :     }
-; 134  : }
-
 	pop	esi
 	pop	ebx
+
+; 119  :     }
+; 120  : }
+
 	pop	ebp
 	ret	0
 _Subtruct_X_2W ENDP
@@ -155,78 +143,74 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ;	COMDAT _Subtruct_X_1W
 _TEXT	SEGMENT
 _c$ = 8							; size = 1
-_x$ = 8							; size = 4
-_y$ = 12						; size = 4
-_z$ = 16						; size = 4
+_up$ = 8						; size = 4
+_u_count$ = 12						; size = 4
+_v$ = 16						; size = 4
+_wp$ = 20						; size = 4
+_w_count$ = 24						; size = 4
 _Subtruct_X_1W PROC					; COMDAT
 
 ; 85   : {
 
 	push	ebp
 	mov	ebp, esp
-
-; 86   :     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
-
-	mov	ecx, DWORD PTR _x$[ebp]
-
-; 87   :     __UNIT_TYPE z_count = z->BLOCK_COUNT;
-
-	mov	eax, DWORD PTR _z$[ebp]
-	push	ebx
-	push	esi
-	mov	ebx, DWORD PTR [ecx]
-	mov	edx, DWORD PTR [eax+20]
-
-; 88   :     __UNIT_TYPE* xp = &x->BLOCK[0];
-; 89   :     __UNIT_TYPE* zp = &z->BLOCK[0];
-
-	mov	esi, DWORD PTR [eax+24]
-	push	edi
-	mov	edi, DWORD PTR [ecx+24]
-
-; 95   :     c = _SUBTRUCT_UNIT(0, *xp++, y, zp++);
-
-	mov	ecx, DWORD PTR [edi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
-	sub	ecx, DWORD PTR _y$[ebp]
-	mov	DWORD PTR [esi], ecx
+	mov	edx, DWORD PTR _wp$[ebp]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 85   : {
+
+	push	esi
+
+; 87   :     char c = _SUBTRUCT_UNIT(0, *up++, v, wp++);
+
+	mov	esi, DWORD PTR _up$[ebp]
+	mov	ecx, DWORD PTR [esi]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
+
+	sub	ecx, DWORD PTR _v$[ebp]
+	mov	DWORD PTR [edx], ecx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 95   :     c = _SUBTRUCT_UNIT(0, *xp++, y, zp++);
+; 87   :     char c = _SUBTRUCT_UNIT(0, *up++, v, wp++);
 
 	mov	BYTE PTR _c$[ebp], al
 
-; 96   :     --x_count;
-; 97   :     --z_count;
+; 88   :     --u_count;
+; 89   :     --w_count;
 
-	lea	eax, DWORD PTR [edx-1]
+	mov	eax, DWORD PTR _w_count$[ebp]
+	dec	eax
 
-; 98   : 
-; 99   :     // 残りの桁の繰上りを行い復帰する。
-; 100  :     return (DoBorrow(c, xp, x_count, zp, z_count));
+; 90   : 
+; 91   :     // 残りの桁の繰上りを行い復帰する。
+; 92   :     return (DoBorrow(c, up, u_count, wp, w_count));
 
+	push	eax
+	lea	eax, DWORD PTR [edx+4]
+	push	eax
+	mov	eax, DWORD PTR _u_count$[ebp]
+	dec	eax
 	push	eax
 	lea	eax, DWORD PTR [esi+4]
-	push	eax
-	lea	eax, DWORD PTR [ebx-1]
-	push	eax
-	lea	eax, DWORD PTR [edi+4]
 	push	eax
 	push	DWORD PTR _c$[ebp]
 	call	_DoBorrow
 	add	esp, 20					; 00000014H
-	pop	edi
 	pop	esi
-	pop	ebx
 
-; 101  : }
+; 93   : }
 
 	pop	ebp
 	ret	0
@@ -239,10 +223,10 @@ _TEXT	ENDS
 ;	COMDAT _DoBorrow
 _TEXT	SEGMENT
 _c$ = 8							; size = 1
-_xp$ = 12						; size = 4
-_x_count$ = 16						; size = 4
-_op$ = 20						; size = 4
-_o_count$ = 24						; size = 4
+_up$ = 12						; size = 4
+_u_count$ = 16						; size = 4
+_wp$ = 20						; size = 4
+_w_count$ = 24						; size = 4
 _DoBorrow PROC						; COMDAT
 
 ; 39   : {
@@ -253,16 +237,16 @@ _DoBorrow PROC						; COMDAT
 ; 40   :     // 桁借りを続く限り行う
 ; 41   :     for (;;)
 ; 42   :     {
-; 43   :         if (x_count <= 0)
+; 43   :         if (u_count <= 0)
 
-	mov	edx, DWORD PTR _x_count$[ebp]
+	mov	edx, DWORD PTR _u_count$[ebp]
 	push	ebx
 	mov	bl, BYTE PTR _c$[ebp]
 	push	esi
 	test	edx, edx
 	je	SHORT $LN17@DoBorrow
-	mov	eax, DWORD PTR _op$[ebp]
-	mov	esi, DWORD PTR _xp$[ebp]
+	mov	eax, DWORD PTR _wp$[ebp]
+	mov	esi, DWORD PTR _up$[ebp]
 $LL2@DoBorrow:
 
 ; 53   :             }
@@ -276,12 +260,12 @@ $LL2@DoBorrow:
 	test	bl, bl
 	je	SHORT $LN16@DoBorrow
 
-; 64   :             c = _SUBTRUCT_UNIT(c, *xp++, 0, op++);
+; 64   :             c = _SUBTRUCT_UNIT(c, *up++, 0, wp++);
 
 	mov	ecx, DWORD PTR [esi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	add	bl, 255					; 000000ffH
 	sbb	ecx, 0
@@ -289,12 +273,12 @@ $LL2@DoBorrow:
 	setb	bl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 64   :             c = _SUBTRUCT_UNIT(c, *xp++, 0, op++);
+; 64   :             c = _SUBTRUCT_UNIT(c, *up++, 0, wp++);
 
 	add	esi, 4
 	add	eax, 4
 
-; 65   :             --x_count;
+; 65   :             --u_count;
 
 	sub	edx, 1
 	jne	SHORT $LL2@DoBorrow
@@ -326,14 +310,14 @@ $LN17@DoBorrow:
 	ret	0
 $LN16@DoBorrow:
 
-; 66   :             --o_count;
+; 66   :             --w_count;
 ; 67   :         }
 ; 68   :         else
 ; 69   :         {
 ; 70   :             // xの最上位に達しておらず、かつボローが立っていない場合
 ; 71   : 
 ; 72   :             // 桁借りを中断し、xの残りのデータをzにそのまま複写し、正常復帰する。
-; 73   :             while (x_count > 0)
+; 73   :             while (u_count > 0)
 
 	test	edx, edx
 	je	SHORT $LN6@DoBorrow
@@ -341,20 +325,20 @@ $LN16@DoBorrow:
 $LL5@DoBorrow:
 
 ; 74   :             {
-; 75   :                 *op++ = *xp++;
+; 75   :                 *wp++ = *up++;
 
 	mov	ecx, DWORD PTR [esi+eax]
 	lea	eax, DWORD PTR [eax+4]
 	mov	DWORD PTR [eax-4], ecx
 
-; 76   :                 --x_count;
+; 76   :                 --u_count;
 
 	sub	edx, 1
 	jne	SHORT $LL5@DoBorrow
 $LN6@DoBorrow:
 	pop	esi
 
-; 77   :                 --o_count;
+; 77   :                 --w_count;
 ; 78   :             }
 ; 79   :             return (PMC_STATUS_OK);
 
@@ -399,7 +383,7 @@ __SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 	mov	edx, DWORD PTR _xp$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	al, BYTE PTR _c$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
@@ -413,7 +397,7 @@ __SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 	mov	esi, DWORD PTR _yp$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	add	al, 255					; 000000ffH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
@@ -424,7 +408,7 @@ __SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 	push	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	edi, DWORD PTR _zp$[ebp]
 	sbb	ecx, DWORD PTR [esi]
@@ -436,7 +420,7 @@ __SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 	mov	ecx, DWORD PTR [edx+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	ecx, DWORD PTR [esi+4]
 	mov	DWORD PTR [edi+4], ecx
@@ -447,7 +431,7 @@ __SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 	pop	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
@@ -496,7 +480,7 @@ __SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	mov	edx, DWORD PTR _xp$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	al, BYTE PTR _c$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
@@ -510,7 +494,7 @@ __SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	mov	esi, DWORD PTR _yp$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	add	al, 255					; 000000ffH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
@@ -521,7 +505,7 @@ __SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	push	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	edi, DWORD PTR _zp$[ebp]
 	sbb	ecx, DWORD PTR [esi]
@@ -533,7 +517,7 @@ __SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+4]
 	mov	DWORD PTR [edi+4], eax
@@ -544,7 +528,7 @@ __SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+8]
 	mov	DWORD PTR [edi+8], eax
@@ -555,7 +539,7 @@ __SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	mov	ecx, DWORD PTR [edx+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	ecx, DWORD PTR [esi+12]
 	mov	DWORD PTR [edi+12], ecx
@@ -566,7 +550,7 @@ __SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	pop	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
@@ -622,7 +606,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	edx, DWORD PTR _xp$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	al, BYTE PTR _c$[ebp]
 	add	al, 255					; 000000ffH
@@ -640,7 +624,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	push	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	edi, DWORD PTR _zp$[ebp]
 	sbb	ecx, DWORD PTR [esi]
@@ -652,7 +636,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+4]
 	mov	DWORD PTR [edi+4], eax
@@ -663,7 +647,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+8]
 	mov	DWORD PTR [edi+8], eax
@@ -674,7 +658,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+12]
 	mov	DWORD PTR [edi+12], eax
@@ -685,7 +669,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+16]
 	mov	DWORD PTR [edi+16], eax
@@ -696,7 +680,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+20]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+20]
 	mov	DWORD PTR [edi+20], eax
@@ -707,7 +691,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+24]
 	mov	DWORD PTR [edi+24], eax
@@ -718,7 +702,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	ecx, DWORD PTR [edx+28]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	ecx, DWORD PTR [esi+28]
 	mov	DWORD PTR [edi+28], ecx
@@ -729,7 +713,7 @@ __SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	pop	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
@@ -801,7 +785,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	edx, DWORD PTR _xp$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	al, BYTE PTR _c$[ebp]
 	add	al, 255					; 000000ffH
@@ -819,7 +803,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	push	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	edi, DWORD PTR _zp$[ebp]
 	sbb	ecx, DWORD PTR [esi]
@@ -831,7 +815,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+4]
 	mov	DWORD PTR [edi+4], eax
@@ -842,7 +826,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+8]
 	mov	DWORD PTR [edi+8], eax
@@ -853,7 +837,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+12]
 	mov	DWORD PTR [edi+12], eax
@@ -864,7 +848,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+16]
 	mov	DWORD PTR [edi+16], eax
@@ -875,7 +859,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+20]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+20]
 	mov	DWORD PTR [edi+20], eax
@@ -886,7 +870,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+24]
 	mov	DWORD PTR [edi+24], eax
@@ -897,7 +881,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+28]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+28]
 	mov	DWORD PTR [edi+28], eax
@@ -908,7 +892,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+32]
 	mov	DWORD PTR [edi+32], eax
@@ -919,7 +903,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+36]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+36]
 	mov	DWORD PTR [edi+36], eax
@@ -930,7 +914,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+40]
 	mov	DWORD PTR [edi+40], eax
@@ -941,7 +925,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+44]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+44]
 	mov	DWORD PTR [edi+44], eax
@@ -952,7 +936,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+48]
 	mov	DWORD PTR [edi+48], eax
@@ -963,7 +947,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+52]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+52]
 	mov	DWORD PTR [edi+52], eax
@@ -974,7 +958,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+56]
 	mov	DWORD PTR [edi+56], eax
@@ -985,7 +969,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	ecx, DWORD PTR [edx+60]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	ecx, DWORD PTR [esi+60]
 	mov	DWORD PTR [edi+60], ecx
@@ -996,7 +980,7 @@ __SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	pop	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
@@ -1100,7 +1084,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	edx, DWORD PTR _xp$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	al, BYTE PTR _c$[ebp]
 	add	al, 255					; 000000ffH
@@ -1118,7 +1102,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	push	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	edi, DWORD PTR _zp$[ebp]
 	sbb	ecx, DWORD PTR [esi]
@@ -1130,7 +1114,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+4]
 	mov	DWORD PTR [edi+4], eax
@@ -1141,7 +1125,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+8]
 	mov	DWORD PTR [edi+8], eax
@@ -1152,7 +1136,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+12]
 	mov	DWORD PTR [edi+12], eax
@@ -1163,7 +1147,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+16]
 	mov	DWORD PTR [edi+16], eax
@@ -1174,7 +1158,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+20]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+20]
 	mov	DWORD PTR [edi+20], eax
@@ -1185,7 +1169,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+24]
 	mov	DWORD PTR [edi+24], eax
@@ -1196,7 +1180,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+28]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+28]
 	mov	DWORD PTR [edi+28], eax
@@ -1207,7 +1191,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+32]
 	mov	DWORD PTR [edi+32], eax
@@ -1218,7 +1202,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+36]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+36]
 	mov	DWORD PTR [edi+36], eax
@@ -1229,7 +1213,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+40]
 	mov	DWORD PTR [edi+40], eax
@@ -1240,7 +1224,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+44]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+44]
 	mov	DWORD PTR [edi+44], eax
@@ -1251,7 +1235,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+48]
 	mov	DWORD PTR [edi+48], eax
@@ -1262,7 +1246,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+52]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+52]
 	mov	DWORD PTR [edi+52], eax
@@ -1273,7 +1257,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+56]
 	mov	DWORD PTR [edi+56], eax
@@ -1284,7 +1268,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+60]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+60]
 	mov	DWORD PTR [edi+60], eax
@@ -1295,7 +1279,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+64]
 	mov	DWORD PTR [edi+64], eax
@@ -1306,7 +1290,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+68]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+68]
 	mov	DWORD PTR [edi+68], eax
@@ -1317,7 +1301,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+72]
 	mov	DWORD PTR [edi+72], eax
@@ -1328,7 +1312,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+76]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+76]
 	mov	DWORD PTR [edi+76], eax
@@ -1339,7 +1323,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+80]
 	mov	DWORD PTR [edi+80], eax
@@ -1350,7 +1334,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+84]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+84]
 	mov	DWORD PTR [edi+84], eax
@@ -1361,7 +1345,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+88]
 	mov	DWORD PTR [edi+88], eax
@@ -1372,7 +1356,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+92]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+92]
 	mov	DWORD PTR [edi+92], eax
@@ -1383,7 +1367,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+96]
 	mov	DWORD PTR [edi+96], eax
@@ -1394,7 +1378,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+100]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+100]
 	mov	DWORD PTR [edi+100], eax
@@ -1405,7 +1389,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+104]
 	mov	DWORD PTR [edi+104], eax
@@ -1416,7 +1400,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+108]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+108]
 	mov	DWORD PTR [edi+108], eax
@@ -1427,7 +1411,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+112]
 	mov	DWORD PTR [edi+112], eax
@@ -1438,7 +1422,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+116]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+116]
 	mov	DWORD PTR [edi+116], eax
@@ -1449,7 +1433,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	eax, DWORD PTR [edx+120]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [esi+120]
 	mov	DWORD PTR [edi+120], eax
@@ -1460,7 +1444,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	ecx, DWORD PTR [edx+124]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	ecx, DWORD PTR [esi+124]
 	mov	DWORD PTR [edi+124], ecx
@@ -1471,7 +1455,7 @@ __SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	pop	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
@@ -1493,58 +1477,58 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 859  : {
+; 879  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 860  :     if (x == 0)
+; 880  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 861  :         return (sizeof(x) * 8);
+; 881  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 885  : }
+; 905  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 862  : #ifdef _M_IX86
-; 863  :     _UINT32_T pos;
-; 864  : #ifdef _MSC_VER
-; 865  :     _BitScanReverse(&pos, x);
+; 882  : #ifdef _M_IX86
+; 883  :     _UINT32_T pos;
+; 884  : #ifdef _MSC_VER
+; 885  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 866  : #elif defined(__GNUC__)
-; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 868  : #else
-; 869  : #error unknown compiler
-; 870  : #endif
-; 871  : #elif defined(_M_X64)
-; 872  : #ifdef _MSC_VER
-; 873  :     _UINT32_T pos;
-; 874  :     _BitScanReverse64(&pos, x);
-; 875  : #elif defined(__GNUC__)
-; 876  :     _UINT64_T pos;
-; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 878  : #else
-; 879  : #error unknown compiler
-; 880  : #endif
-; 881  : #else
-; 882  : #error unknown platform
-; 883  : #endif
-; 884  :     return (sizeof(x) * 8 - 1 - pos);
+; 886  : #elif defined(__GNUC__)
+; 887  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 888  : #else
+; 889  : #error unknown compiler
+; 890  : #endif
+; 891  : #elif defined(_M_X64)
+; 892  : #ifdef _MSC_VER
+; 893  :     _UINT32_T pos;
+; 894  :     _BitScanReverse64(&pos, x);
+; 895  : #elif defined(__GNUC__)
+; 896  :     _UINT64_T pos;
+; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 898  : #else
+; 899  : #error unknown compiler
+; 900  : #endif
+; 901  : #else
+; 902  : #error unknown platform
+; 903  : #endif
+; 904  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 885  : }
+; 905  : }
 
 	pop	ebp
 	ret	0
@@ -1557,44 +1541,44 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC					; COMDAT
 
-; 826  : {
+; 846  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 827  :     if (x == 0)
+; 847  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 828  :         return (sizeof(x) * 8);
+; 848  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 838  : }
+; 858  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 829  :     _UINT32_T pos;
-; 830  : #ifdef _MSC_VER
-; 831  :     _BitScanReverse(&pos, x);
+; 849  :     _UINT32_T pos;
+; 850  : #ifdef _MSC_VER
+; 851  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 832  : #elif defined(__GNUC__)
-; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 834  : #else
-; 835  : #error unknown compiler
-; 836  : #endif
-; 837  :     return (sizeof(x) * 8 - 1 - pos);
+; 852  : #elif defined(__GNUC__)
+; 853  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 854  : #else
+; 855  : #error unknown compiler
+; 856  : #endif
+; 857  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 838  : }
+; 858  : }
 
 	pop	ebp
 	ret	0
@@ -1610,13 +1594,13 @@ _v$ = 16						; size = 4
 _w$ = 20						; size = 4
 __SUBTRUCT_UNIT PROC					; COMDAT
 
-; 499  : {
+; 519  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 500  : #ifdef _M_IX86
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 520  : #ifdef _M_IX86
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	al, BYTE PTR _borrow$[ebp]
 	mov	edx, DWORD PTR _w$[ebp]
@@ -1626,12 +1610,12 @@ __SUBTRUCT_UNIT PROC					; COMDAT
 	setb	al
 	mov	DWORD PTR [edx], ecx
 
-; 502  : #elif defined(_M_X64)
-; 503  :     return (_subborrow_u64(borrow, u, v, w));
-; 504  : #else
-; 505  : #error unknown platform
-; 506  : #endif
-; 507  : }
+; 522  : #elif defined(_M_X64)
+; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 524  : #else
+; 525  : #error unknown platform
+; 526  : #endif
+; 527  : }
 
 	pop	ebp
 	ret	0
@@ -1645,26 +1629,51 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC					; COMDAT
 
-; 412  : {
+; 432  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 413  :     *result_high = (_UINT32_T)(value >> 32);
+; 433  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _result_high$[ebp]
 	mov	ecx, DWORD PTR _value$[ebp+4]
 	mov	DWORD PTR [eax], ecx
 
-; 414  :     return ((_UINT32_T)value);
+; 434  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 415  : }
+; 435  : }
 
 	pop	ebp
 	ret	0
 __FROMDWORDTOWORD ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT __FROMWORDTODWORD
+_TEXT	SEGMENT
+_value_high$ = 8					; size = 4
+_value_low$ = 12					; size = 4
+__FROMWORDTODWORD PROC					; COMDAT
+
+; 427  : {
+
+	push	ebp
+	mov	ebp, esp
+
+; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
+
+	mov	edx, DWORD PTR _value_high$[ebp]
+	xor	eax, eax
+	or	eax, DWORD PTR _value_low$[ebp]
+
+; 429  : }
+
+	pop	ebp
+	ret	0
+__FROMWORDTODWORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
@@ -1677,38 +1686,38 @@ _y$ = 12						; size = 4
 _o$ = 16						; size = 4
 _PMC_Subtruct_X_X@12 PROC				; COMDAT
 
-; 429  : {
+; 664  : {
 
 	push	ebp
 	mov	ebp, esp
 	push	ebx
 	push	esi
 
-; 430  :     if (x == NULL)
+; 665  :     if (x == NULL)
 
 	mov	esi, DWORD PTR _x$[ebp]
 	push	edi
 	test	esi, esi
 	je	$LN20@PMC_Subtru
 
-; 431  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 432  :     if (y == NULL)
+; 666  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 667  :     if (y == NULL)
 
 	mov	edi, DWORD PTR _y$[ebp]
 	test	edi, edi
 	je	$LN20@PMC_Subtru
 
-; 433  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 434  :     if (o == NULL)
+; 668  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 669  :     if (o == NULL)
 
 	mov	ebx, DWORD PTR _o$[ebp]
 	test	ebx, ebx
 	je	$LN20@PMC_Subtru
 
-; 436  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
-; 437  :     NUMBER_HEADER* ny = (NUMBER_HEADER*)y;
-; 438  :     PMC_STATUS_CODE result;
-; 439  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 671  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 672  :     NUMBER_HEADER* ny = (NUMBER_HEADER*)y;
+; 673  :     PMC_STATUS_CODE result;
+; 674  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
 
 	push	esi
 	call	_CheckNumber
@@ -1716,8 +1725,8 @@ _PMC_Subtruct_X_X@12 PROC				; COMDAT
 	test	eax, eax
 	jne	$LN1@PMC_Subtru
 
-; 440  :         return (result);
-; 441  :     if ((result = CheckNumber(ny)) != PMC_STATUS_OK)
+; 675  :         return (result);
+; 676  :     if ((result = CheckNumber(ny)) != PMC_STATUS_OK)
 
 	push	edi
 	call	_CheckNumber
@@ -1725,22 +1734,22 @@ _PMC_Subtruct_X_X@12 PROC				; COMDAT
 	test	eax, eax
 	jne	$LN1@PMC_Subtru
 
-; 442  :         return (result);
-; 443  :     NUMBER_HEADER* nz;
-; 444  :     if (nx->IS_ZERO)
+; 677  :         return (result);
+; 678  :     NUMBER_HEADER* nz;
+; 679  :     if (nx->IS_ZERO)
 
 	mov	eax, DWORD PTR [edi+16]
 	and	eax, 2
 	test	BYTE PTR [esi+16], 2
 	je	SHORT $LN7@PMC_Subtru
 
-; 445  :     {
-; 446  :         if (ny->IS_ZERO)
+; 680  :     {
+; 681  :         if (ny->IS_ZERO)
 
 	test	eax, eax
 	je	SHORT $LN19@PMC_Subtru
 
-; 505  : }
+; 740  : }
 
 	pop	edi
 	pop	esi
@@ -1751,34 +1760,34 @@ _PMC_Subtruct_X_X@12 PROC				; COMDAT
 	ret	12					; 0000000cH
 $LN7@PMC_Subtru:
 
-; 447  :         {
-; 448  :             // y が 0 である場合
-; 449  : 
-; 450  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
-; 451  :             *o = &number_zero;
-; 452  :         }
-; 453  :         else
-; 454  :         {
-; 455  :             // y が 0 ではない場合
-; 456  : 
-; 457  :             // 演算結果は負となってしまうのでエラーを返す。
-; 458  :             return (PMC_STATUS_OVERFLOW);
-; 459  :         }
-; 460  :     }
-; 461  :     else
-; 462  :     {
-; 463  :         // x が 0 ではない場合
-; 464  : 
-; 465  :         if (ny->IS_ZERO)
+; 682  :         {
+; 683  :             // y が 0 である場合
+; 684  : 
+; 685  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 686  :             *o = &number_zero;
+; 687  :         }
+; 688  :         else
+; 689  :         {
+; 690  :             // y が 0 ではない場合
+; 691  : 
+; 692  :             // 演算結果は負となってしまうのでエラーを返す。
+; 693  :             return (PMC_STATUS_OVERFLOW);
+; 694  :         }
+; 695  :     }
+; 696  :     else
+; 697  :     {
+; 698  :         // x が 0 ではない場合
+; 699  : 
+; 700  :         if (ny->IS_ZERO)
 
 	test	eax, eax
 	je	SHORT $LN11@PMC_Subtru
 
-; 466  :         {
-; 467  :             // y が 0 である場合
-; 468  : 
-; 469  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-; 470  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+; 701  :         {
+; 702  :             // y が 0 である場合
+; 703  : 
+; 704  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 705  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
 
 	lea	eax, DWORD PTR _nz$[ebp]
 	push	eax
@@ -1788,7 +1797,7 @@ $LN7@PMC_Subtru:
 	test	eax, eax
 	je	$LN12@PMC_Subtru
 
-; 505  : }
+; 740  : }
 
 	pop	edi
 	pop	esi
@@ -1797,26 +1806,26 @@ $LN7@PMC_Subtru:
 	ret	12					; 0000000cH
 $LN11@PMC_Subtru:
 
-; 471  :                 return (result);
-; 472  :         }
-; 473  :         else
-; 474  :         {
-; 475  :             // x と y がともに 0 ではない場合
-; 476  : 
-; 477  :             // x と y の差を計算する
-; 478  :             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 706  :                 return (result);
+; 707  :         }
+; 708  :         else
+; 709  :         {
+; 710  :             // x と y がともに 0 ではない場合
+; 711  : 
+; 712  :             // x と y の差を計算する
+; 713  :             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
 
 	mov	eax, DWORD PTR [esi+4]
 
-; 479  :             __UNIT_TYPE y_bit_count = ny->UNIT_BIT_COUNT;
-; 480  :             if (x_bit_count < y_bit_count)
+; 714  :             __UNIT_TYPE y_bit_count = ny->UNIT_BIT_COUNT;
+; 715  :             if (x_bit_count < y_bit_count)
 
 	cmp	eax, DWORD PTR [edi+4]
 	jae	SHORT $LN14@PMC_Subtru
 $LN19@PMC_Subtru:
 	pop	edi
 
-; 505  : }
+; 740  : }
 
 	pop	esi
 	mov	eax, -2					; fffffffeH
@@ -1825,13 +1834,13 @@ $LN19@PMC_Subtru:
 	ret	12					; 0000000cH
 $LN14@PMC_Subtru:
 
-; 481  :             {
-; 482  :                 // 演算結果は負となってしまうのでエラーを返す。
-; 483  :                 return (PMC_STATUS_OVERFLOW);
-; 484  :             }
-; 485  :             __UNIT_TYPE z_bit_count = x_bit_count;
-; 486  :             __UNIT_TYPE nz_light_check_code;
-; 487  :             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 716  :             {
+; 717  :                 // 演算結果は負となってしまうのでエラーを返す。
+; 718  :                 return (PMC_STATUS_OVERFLOW);
+; 719  :             }
+; 720  :             __UNIT_TYPE z_bit_count = x_bit_count;
+; 721  :             __UNIT_TYPE nz_light_check_code;
+; 722  :             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	ecx, DWORD PTR _nz_light_check_code$1[ebp]
 	push	ecx
@@ -1843,8 +1852,8 @@ $LN14@PMC_Subtru:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Subtru
 
-; 488  :                 return (result);
-; 489  :             if ((result = Subtruct_Imp(nx->BLOCK, nx->UNIT_WORD_COUNT, ny->BLOCK, ny->UNIT_WORD_COUNT, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
+; 723  :                 return (result);
+; 724  :             if ((result = Subtruct_Imp(nx->BLOCK, nx->UNIT_WORD_COUNT, ny->BLOCK, ny->UNIT_WORD_COUNT, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nz$[ebp]
 	push	DWORD PTR [eax+20]
@@ -1859,14 +1868,14 @@ $LN14@PMC_Subtru:
 	test	esi, esi
 	je	SHORT $LN16@PMC_Subtru
 
-; 490  :             {
-; 491  :                 DeallocateNumber(nz);
+; 725  :             {
+; 726  :                 DeallocateNumber(nz);
 
 	push	DWORD PTR _nz$[ebp]
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 492  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 727  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	mov	eax, -2					; fffffffeH
 	cmp	esi, -258				; fffffefeH
@@ -1874,7 +1883,7 @@ $LN14@PMC_Subtru:
 	pop	edi
 	mov	eax, esi
 
-; 505  : }
+; 740  : }
 
 	pop	esi
 	pop	ebx
@@ -1882,8 +1891,8 @@ $LN14@PMC_Subtru:
 	ret	12					; 0000000cH
 $LN16@PMC_Subtru:
 
-; 493  :             }
-; 494  :             if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 728  :             }
+; 729  :             if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nz$[ebp]
 	push	DWORD PTR _nz_light_check_code$1[ebp]
@@ -1893,31 +1902,31 @@ $LN16@PMC_Subtru:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Subtru
 
-; 495  :                 return (result);
-; 496  :             CommitNumber(nz);
+; 730  :                 return (result);
+; 731  :             CommitNumber(nz);
 
 	push	DWORD PTR _nz$[ebp]
 	call	_CommitNumber
 	add	esp, 4
 $LN12@PMC_Subtru:
 
-; 497  :         }
-; 498  :         *o = nz;
+; 732  :         }
+; 733  :         *o = nz;
 
 	mov	eax, DWORD PTR _nz$[ebp]
 	pop	edi
 	mov	DWORD PTR [ebx], eax
 
-; 499  :     }
-; 500  : #ifdef _DEBUG
-; 501  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 502  :         return (result);
-; 503  : #endif
-; 504  :     return (PMC_STATUS_OK);
+; 734  :     }
+; 735  : #ifdef _DEBUG
+; 736  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 737  :         return (result);
+; 738  : #endif
+; 739  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 505  : }
+; 740  : }
 
 	pop	esi
 	pop	ebx
@@ -1925,13 +1934,13 @@ $LN12@PMC_Subtru:
 	ret	12					; 0000000cH
 $LN20@PMC_Subtru:
 
-; 435  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 670  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 $LN1@PMC_Subtru:
 	pop	edi
 
-; 505  : }
+; 740  : }
 
 	pop	esi
 	pop	ebx
@@ -1945,195 +1954,202 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ;	COMDAT _PMC_Subtruct_X_L@16
 _TEXT	SEGMENT
-_nz_light_check_code$1 = -8				; size = 4
-_x_count$1$ = -4					; size = 4
+_nz_light_check_code$1 = -12				; size = 4
+_u_count$1$ = -8					; size = 4
+_w_count$1$ = -4					; size = 4
 _nz$ = 8						; size = 4
 _x$ = 8							; size = 4
 _y$ = 12						; size = 8
-_c$2 = 16						; size = 1
-_z_count$1$ = 20					; size = 4
+_wp$1$ = 20						; size = 4
+_c$2 = 20						; size = 1
 _nz_light_check_code$3 = 20				; size = 4
 _o$ = 20						; size = 4
 _PMC_Subtruct_X_L@16 PROC				; COMDAT
 
-; 288  : {
+; 523  : {
 
 	push	ebp
 	mov	ebp, esp
-	sub	esp, 8
-	push	ebx
+	sub	esp, 12					; 0000000cH
+	push	esi
+
+; 524  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(y) * 8)
+; 525  :     {
+; 526  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 527  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 528  :     }
+; 529  :     if (x == NULL)
+
+	mov	esi, DWORD PTR _x$[ebp]
 	push	edi
+	test	esi, esi
+	je	$LN43@PMC_Subtru
 
-; 289  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(y) * 8)
-; 290  :     {
-; 291  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 292  :         return (PMC_STATUS_INTERNAL_ERROR);
-; 293  :     }
-; 294  :     if (x == NULL)
+; 530  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 531  :     if (o == NULL)
 
-	mov	edi, DWORD PTR _x$[ebp]
+	mov	edi, DWORD PTR _o$[ebp]
 	test	edi, edi
-	je	$LN46@PMC_Subtru
+	je	$LN43@PMC_Subtru
 
-; 295  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 296  :     if (o == NULL)
+; 533  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 534  :     PMC_STATUS_CODE result;
+; 535  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
 
-	mov	ebx, DWORD PTR _o$[ebp]
-	test	ebx, ebx
-	je	$LN46@PMC_Subtru
-
-; 298  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
-; 299  :     PMC_STATUS_CODE result;
-; 300  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
-
-	push	edi
+	push	esi
 	call	_CheckNumber
 	add	esp, 4
 	test	eax, eax
 	jne	$LN1@PMC_Subtru
 
-; 301  :         return (result);
-; 302  :     NUMBER_HEADER* nz;
-; 303  :     if (nx->IS_ZERO)
+; 536  :         return (result);
+; 537  :     NUMBER_HEADER* nz;
+; 538  :     if (nx->IS_ZERO)
 
-	test	BYTE PTR [edi+16], 2
-	push	esi
+	test	BYTE PTR [esi+16], 2
+	push	ebx
 	je	SHORT $LN6@PMC_Subtru
 
-; 304  :     {
-; 305  :         // x が 0 である場合
-; 306  : 
-; 307  :         if (y == 0)
+; 539  :     {
+; 540  :         // x が 0 である場合
+; 541  : 
+; 542  :         if (y == 0)
 
 	mov	eax, DWORD PTR _y$[ebp]
 	or	eax, DWORD PTR _y$[ebp+4]
-	jne	$LN45@PMC_Subtru
+	jne	$LN42@PMC_Subtru
 
-; 308  :         {
-; 309  :             // y が 0 である場合
-; 310  : 
-; 311  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
-; 312  :             *o = &number_zero;
-
-	pop	esi
-	pop	edi
-	mov	DWORD PTR [ebx], OFFSET _number_zero
-
-; 426  : }
+; 543  :         {
+; 544  :             // y が 0 である場合
+; 545  : 
+; 546  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 547  :             *o = &number_zero;
 
 	pop	ebx
+	mov	DWORD PTR [edi], OFFSET _number_zero
+	pop	edi
+
+; 661  : }
+
+	pop	esi
 	mov	esp, ebp
 	pop	ebp
 	ret	16					; 00000010H
 $LN6@PMC_Subtru:
 
-; 313  :         }
-; 314  :         else
-; 315  :         {
-; 316  :             // y が 0 ではない場合
-; 317  : 
-; 318  :             // 演算結果は負となってしまうのでエラーを返す。
-; 319  :             return (PMC_STATUS_OVERFLOW);
-; 320  :         }
-; 321  :     }
-; 322  :     else
-; 323  :     {
-; 324  :         // x が 0 ではない場合
-; 325  : 
-; 326  :         if (y == 0)
+; 548  :         }
+; 549  :         else
+; 550  :         {
+; 551  :             // y が 0 ではない場合
+; 552  : 
+; 553  :             // 演算結果は負となってしまうのでエラーを返す。
+; 554  :             return (PMC_STATUS_OVERFLOW);
+; 555  :         }
+; 556  :     }
+; 557  :     else
+; 558  :     {
+; 559  :         // x が 0 ではない場合
+; 560  : 
+; 561  :         if (y == 0)
 
-	mov	esi, DWORD PTR _y$[ebp]
-	mov	eax, esi
-	mov	ecx, DWORD PTR _y$[ebp+4]
-	or	eax, ecx
+	mov	ecx, DWORD PTR _y$[ebp]
+	mov	eax, ecx
+	mov	ebx, DWORD PTR _y$[ebp+4]
+	or	eax, ebx
 	jne	SHORT $LN10@PMC_Subtru
 
-; 327  :         {
-; 328  :             // y が 0 である場合
-; 329  : 
-; 330  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-; 331  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+; 562  :         {
+; 563  :             // y が 0 である場合
+; 564  : 
+; 565  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 566  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
 
 	lea	eax, DWORD PTR _nz$[ebp]
 	push	eax
-	push	edi
+	push	esi
 	call	_DuplicateNumber
 	add	esp, 8
 	test	eax, eax
-	jne	SHORT $LN48@PMC_Subtru
+	jne	$LN45@PMC_Subtru
 	mov	eax, DWORD PTR _nz$[ebp]
-	pop	esi
+	pop	ebx
 
-; 417  :             }
-; 418  :         }
-; 419  :         *o = nz;
+; 652  :             }
+; 653  :         }
+; 654  :         *o = nz;
 
-	mov	DWORD PTR [ebx], eax
+	mov	DWORD PTR [edi], eax
 
-; 420  :     }
-; 421  : #ifdef _DEBUG
-; 422  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 423  :         return (result);
-; 424  : #endif
-; 425  :     return (PMC_STATUS_OK);
+; 655  :     }
+; 656  : #ifdef _DEBUG
+; 657  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 658  :         return (result);
+; 659  : #endif
+; 660  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	pop	edi
 
-; 426  : }
+; 661  : }
 
-	pop	ebx
+	pop	esi
 	mov	esp, ebp
 	pop	ebp
 	ret	16					; 00000010H
 $LN10@PMC_Subtru:
 
-; 332  :                 return (result);
-; 333  :         }
-; 334  :         else
-; 335  :         {
-; 336  :             // x と y がともに 0 ではない場合
-; 337  : 
-; 338  :             // x と y の差を計算する
-; 339  :             if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
-; 340  :             {
-; 341  :                 // _UINT64_T が 1 ワードで表現しきれない場合
-; 342  : 
-; 343  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 567  :                 return (result);
+; 568  :         }
+; 569  :         else
+; 570  :         {
+; 571  :             // x と y がともに 0 ではない場合
+; 572  : 
+; 573  :             // x と y の差を計算する
+; 574  :             if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
+; 575  :             {
+; 576  :                 // _UINT64_T が 1 ワードで表現しきれない場合
+; 577  : 
+; 578  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
 
-	mov	edx, DWORD PTR [edi+4]
+	mov	edx, DWORD PTR [esi+4]
 
-; 344  :                 _UINT32_T y_hi;
-; 345  :                 _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
-; 346  :                 if (y_hi == 0)
+; 579  :                 _UINT32_T y_hi;
+; 580  :                 _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
+; 581  :                 if (y_hi == 0)
 
-	test	ecx, ecx
+	test	ebx, ebx
 	jne	SHORT $LN15@PMC_Subtru
 
-; 347  :                 {
-; 348  :                     // y の値が 32bit で表現可能な場合
-; 349  :                     __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
+; 582  :                 {
+; 583  :                     // y の値が 32bit で表現可能な場合
+; 584  :                     __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
 
-	push	esi
+	push	ecx
 	call	__LZCNT_ALT_32
 	mov	ecx, 32					; 00000020H
 	add	esp, 4
 	sub	ecx, eax
 
-; 350  :                     if (x_bit_count < y_bit_count)
+; 585  :                     if (x_bit_count < y_bit_count)
 
 	cmp	edx, ecx
-	jb	SHORT $LN45@PMC_Subtru
+	jb	SHORT $LN42@PMC_Subtru
 
-; 351  :                     {
-; 352  :                         // 演算結果は負となってしまうのでエラーを返す。
-; 353  :                         return (PMC_STATUS_OVERFLOW);
-; 354  :                     }
-; 355  :                     __UNIT_TYPE z_bit_count = x_bit_count;
-; 356  :                     __UNIT_TYPE nz_light_check_code;
-; 357  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 586  :                     {
+; 587  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 588  :                         return (PMC_STATUS_OVERFLOW);
+; 589  :                     }
+; 590  :                     __UNIT_TYPE z_bit_count = x_bit_count;
+; 591  :                     __UNIT_TYPE nz_light_check_code;
+; 592  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	eax, DWORD PTR _nz_light_check_code$3[ebp]
 	push	eax
@@ -2143,32 +2159,36 @@ $LN10@PMC_Subtru:
 	call	_AllocateNumber
 	add	esp, 12					; 0000000cH
 	test	eax, eax
-	jne	SHORT $LN48@PMC_Subtru
+	jne	SHORT $LN45@PMC_Subtru
 
-; 358  :                         return (result);
-; 359  :                     if ((result = Subtruct_X_1W(nx, y_lo, nz)) != PMC_STATUS_OK)
+; 593  :                         return (result);
+; 594  :                     if ((result = Subtruct_X_1W(nx->BLOCK, nx->UNIT_WORD_COUNT, y_lo, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
-	push	DWORD PTR _nz$[ebp]
-	push	esi
-	push	edi
+	mov	eax, DWORD PTR _nz$[ebp]
+	mov	ecx, DWORD PTR _y$[ebp]
+	push	DWORD PTR [eax+20]
+	push	DWORD PTR [eax+24]
+	push	ecx
+	push	DWORD PTR [esi]
+	push	DWORD PTR [esi+24]
 	call	_Subtruct_X_1W
 	mov	esi, eax
-	add	esp, 12					; 0000000cH
+	add	esp, 20					; 00000014H
 	test	esi, esi
 	je	SHORT $LN19@PMC_Subtru
 
-; 360  :                     {
-; 361  :                         DeallocateNumber(nz);
+; 595  :                     {
+; 596  :                         DeallocateNumber(nz);
 
 	push	DWORD PTR _nz$[ebp]
 
-; 362  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 597  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
-	jmp	$LN49@PMC_Subtru
+	jmp	$LN46@PMC_Subtru
 $LN19@PMC_Subtru:
 
-; 363  :                     }
-; 364  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 598  :                     }
+; 599  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nz$[ebp]
 	push	DWORD PTR _nz_light_check_code$3[ebp]
@@ -2177,58 +2197,58 @@ $LN19@PMC_Subtru:
 	add	esp, 8
 	test	eax, eax
 	je	$LN24@PMC_Subtru
-$LN48@PMC_Subtru:
-	pop	esi
+$LN45@PMC_Subtru:
+	pop	ebx
 $LN1@PMC_Subtru:
 	pop	edi
 
-; 426  : }
+; 661  : }
 
-	pop	ebx
+	pop	esi
 	mov	esp, ebp
 	pop	ebp
 	ret	16					; 00000010H
 $LN15@PMC_Subtru:
 
-; 365  :                         return (result);
-; 366  :                 }
-; 367  :                 else
-; 368  :                 {
-; 369  :                     // y の値が 32bit では表現できない場合
-; 370  :                     __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
+; 600  :                         return (result);
+; 601  :                 }
+; 602  :                 else
+; 603  :                 {
+; 604  :                     // y の値が 32bit では表現できない場合
+; 605  :                     __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
 
-	push	ecx
+	push	ebx
 	call	__LZCNT_ALT_32
 	mov	ecx, 64					; 00000040H
 	add	esp, 4
 	sub	ecx, eax
 
-; 371  :                     if (x_bit_count < y_bit_count)
+; 606  :                     if (x_bit_count < y_bit_count)
 
 	cmp	edx, ecx
 	jae	SHORT $LN21@PMC_Subtru
-$LN45@PMC_Subtru:
-	pop	esi
+$LN42@PMC_Subtru:
+	pop	ebx
 	pop	edi
 
-; 372  :                     {
-; 373  :                         // 演算結果は負となってしまうのでエラーを返す。
-; 374  :                         return (PMC_STATUS_OVERFLOW);
+; 607  :                     {
+; 608  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 609  :                         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 
-; 426  : }
+; 661  : }
 
-	pop	ebx
+	pop	esi
 	mov	esp, ebp
 	pop	ebp
 	ret	16					; 00000010H
 $LN21@PMC_Subtru:
 
-; 375  :                     }
-; 376  :                     __UNIT_TYPE z_bit_count = x_bit_count;
-; 377  :                     __UNIT_TYPE nz_light_check_code;
-; 378  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 610  :                     }
+; 611  :                     __UNIT_TYPE z_bit_count = x_bit_count;
+; 612  :                     __UNIT_TYPE nz_light_check_code;
+; 613  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	eax, DWORD PTR _nz_light_check_code$1[ebp]
 	push	eax
@@ -2238,224 +2258,238 @@ $LN21@PMC_Subtru:
 	call	_AllocateNumber
 	add	esp, 12					; 0000000cH
 	test	eax, eax
-	jne	SHORT $LN48@PMC_Subtru
+	jne	SHORT $LN45@PMC_Subtru
 
-; 107  :     __UNIT_TYPE z_count = z->BLOCK_COUNT;
+; 614  :                         return (result);
+; 615  :                     if ((result = Subtruct_X_2W(nx->BLOCK, nx->UNIT_WORD_COUNT, y_hi, y_lo, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nz$[ebp]
-	mov	ecx, DWORD PTR [edi]
-	mov	DWORD PTR _x_count$1$[ebp], ecx
-	mov	edx, DWORD PTR [eax+20]
-	mov	DWORD PTR _z_count$1$[ebp], edx
+	mov	ecx, DWORD PTR [eax+20]
+	mov	edx, DWORD PTR [eax+24]
+	mov	DWORD PTR _w_count$1$[ebp], ecx
+	mov	ecx, DWORD PTR [esi]
+	mov	DWORD PTR _wp$1$[ebp], edx
+	mov	DWORD PTR _u_count$1$[ebp], ecx
 
-; 110  :     char c;
-; 111  : 
-; 112  :     if (x_count < 2)
+; 98   :     if (u_count < 2)
 
 	cmp	ecx, 2
 	jae	SHORT $LN34@PMC_Subtru
 
-; 113  :     {
-; 114  :         // x が 1 ワードしかなかった場合
-; 115  : 
-; 116  :         // 明らかに演算結果が負になるのでエラーを通知する。
-; 117  :         return (PMC_STATUS_INTERNAL_BORROW);
+; 99   :     {
+; 100  :         // u が 1 ワードしかなかった場合
+; 101  : 
+; 102  :         // 明らかに演算結果が負になるのでエラーを通知する。
+; 103  :         return (PMC_STATUS_INTERNAL_BORROW);
 
 	mov	esi, -258				; fffffefeH
-	jmp	SHORT $LN44@PMC_Subtru
+	jmp	SHORT $LN41@PMC_Subtru
 $LN34@PMC_Subtru:
 
-; 108  :     __UNIT_TYPE* xp = &x->BLOCK[0];
-; 109  :     __UNIT_TYPE* zp = &z->BLOCK[0];
+; 614  :                         return (result);
+; 615  :                     if ((result = Subtruct_X_2W(nx->BLOCK, nx->UNIT_WORD_COUNT, y_hi, y_lo, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
-	mov	esi, DWORD PTR [eax+24]
-	mov	edi, DWORD PTR [edi+24]
-
-; 118  :     }
-; 119  :     else
-; 120  :     {
-; 121  :         // x が 2 ワード以上あった場合
-; 122  : 
-; 123  :         // 最下位のワードの減算をする
-; 124  :         c = _SUBTRUCT_UNIT(0, *xp++, y_lo, zp++);
-
-	mov	eax, DWORD PTR [edi]
+	mov	esi, DWORD PTR [esi+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
-	sub	eax, DWORD PTR _y$[ebp]
-	mov	DWORD PTR [esi], eax
+	mov	ecx, DWORD PTR _wp$1$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 127  :         c = _SUBTRUCT_UNIT(c, *xp++, y_hi, zp++);
+; 110  :         char c = _SUBTRUCT_UNIT(0, *up++, v_lo, wp++);
 
-	mov	ecx, DWORD PTR [edi+4]
+	mov	eax, DWORD PTR [esi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
+	sub	eax, DWORD PTR _y$[ebp]
+	mov	DWORD PTR [ecx], eax
 	setb	dl
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 110  :         char c = _SUBTRUCT_UNIT(0, *up++, v_lo, wp++);
+
+	add	ecx, 4
+	mov	DWORD PTR _wp$1$[ebp], ecx
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
+
 	add	dl, 255					; 000000ffH
-	sbb	ecx, DWORD PTR _y$[ebp+4]
-	mov	DWORD PTR [esi+4], ecx
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 113  :         c = _SUBTRUCT_UNIT(c, *up++, v_hi, wp++);
+
+	mov	ecx, DWORD PTR [esi+4]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
+
+	mov	edx, DWORD PTR _wp$1$[ebp]
+	sbb	ecx, ebx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 127  :         c = _SUBTRUCT_UNIT(c, *xp++, y_hi, zp++);
+; 113  :         c = _SUBTRUCT_UNIT(c, *up++, v_hi, wp++);
 
 	mov	BYTE PTR _c$2[ebp], al
 
-; 128  :         x_count -= 2;
-; 129  :         z_count -= 2;
+; 114  :         u_count -= 2;
+; 115  :         w_count -= 2;
 
-	mov	eax, DWORD PTR _z_count$1$[ebp]
+	mov	eax, DWORD PTR _w_count$1$[ebp]
 	add	eax, -2					; fffffffeH
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 130  : 
-; 131  :         // 残りの桁の繰り上がりを計算し、復帰する。
-; 132  :         return (DoBorrow(c, xp, x_count, zp, z_count));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
+	mov	DWORD PTR [edx], ecx
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 118  :         return (DoBorrow(c, up, u_count, wp, w_count));
+
+	push	eax
+	lea	eax, DWORD PTR [edx+4]
+	push	eax
+	mov	eax, DWORD PTR _u_count$1$[ebp]
+	add	eax, -2					; fffffffeH
 	push	eax
 	lea	eax, DWORD PTR [esi+8]
-	push	eax
-	mov	eax, DWORD PTR _x_count$1$[ebp]
-	add	eax, -2					; fffffffeH
-	push	eax
-	lea	eax, DWORD PTR [edi+8]
 	push	eax
 	push	DWORD PTR _c$2[ebp]
 	call	_DoBorrow
 	mov	esi, eax
 	add	esp, 20					; 00000014H
 
-; 379  :                         return (result);
-; 380  :                     if ((result = Subtruct_X_2W(nx, y_hi, y_lo, nz)) != PMC_STATUS_OK)
+; 614  :                         return (result);
+; 615  :                     if ((result = Subtruct_X_2W(nx->BLOCK, nx->UNIT_WORD_COUNT, y_hi, y_lo, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nz$[ebp]
 	test	esi, esi
 	je	SHORT $LN23@PMC_Subtru
-$LN44@PMC_Subtru:
+$LN41@PMC_Subtru:
 
-; 381  :                     {
-; 382  :                         DeallocateNumber(nz);
+; 616  :                     {
+; 617  :                         DeallocateNumber(nz);
 
 	push	eax
-$LN49@PMC_Subtru:
+$LN46@PMC_Subtru:
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 383  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 618  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	mov	eax, -2					; fffffffeH
 	cmp	esi, -258				; fffffefeH
 	cmove	esi, eax
-	mov	eax, esi
-	pop	esi
-	pop	edi
-
-; 426  : }
-
 	pop	ebx
+	pop	edi
+	mov	eax, esi
+
+; 661  : }
+
+	pop	esi
 	mov	esp, ebp
 	pop	ebp
 	ret	16					; 00000010H
 $LN23@PMC_Subtru:
 
-; 384  :                     }
-; 385  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 619  :                     }
+; 620  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _nz_light_check_code$1[ebp]
 	push	DWORD PTR [eax+24]
 	call	_CheckBlockLight
 	add	esp, 8
 	test	eax, eax
-	jne	$LN48@PMC_Subtru
+	jne	$LN45@PMC_Subtru
 $LN24@PMC_Subtru:
 
-; 386  :                         return (result);
-; 387  :                 }
-; 388  :             }
-; 389  :             else
-; 390  :             {
-; 391  :                 // _UINT64_T が 1 ワードで表現できる場合
-; 392  : 
-; 393  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
-; 394  :                 __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
-; 395  :                 if (x_bit_count < y_bit_count)
-; 396  :                 {
-; 397  :                     // 演算結果は負となってしまうのでエラーを返す。
-; 398  :                     return (PMC_STATUS_OVERFLOW);
-; 399  :                 }
-; 400  :                 __UNIT_TYPE z_bit_count = x_bit_count;
-; 401  :                 __UNIT_TYPE nz_light_check_code;
-; 402  :                 if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
-; 403  :                     return (result);
-; 404  :                 if ((result = Subtruct_X_1W(nx, (__UNIT_TYPE)y, nz)) != PMC_STATUS_OK)
-; 405  :                 {
-; 406  :                     DeallocateNumber(nz);
-; 407  :                     return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
-; 408  :                 }
-; 409  :                 if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
-; 410  :                     return (result);
-; 411  :             }
-; 412  :             CommitNumber(nz);
+; 621  :                         return (result);
+; 622  :                 }
+; 623  :             }
+; 624  :             else
+; 625  :             {
+; 626  :                 // _UINT64_T が 1 ワードで表現できる場合
+; 627  : 
+; 628  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 629  :                 __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
+; 630  :                 if (x_bit_count < y_bit_count)
+; 631  :                 {
+; 632  :                     // 演算結果は負となってしまうのでエラーを返す。
+; 633  :                     return (PMC_STATUS_OVERFLOW);
+; 634  :                 }
+; 635  :                 __UNIT_TYPE z_bit_count = x_bit_count;
+; 636  :                 __UNIT_TYPE nz_light_check_code;
+; 637  :                 if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 638  :                     return (result);
+; 639  :                 if ((result = Subtruct_X_1W(nx->BLOCK, nx->UNIT_WORD_COUNT, (__UNIT_TYPE)y, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
+; 640  :                 {
+; 641  :                     DeallocateNumber(nz);
+; 642  :                     return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 643  :                 }
+; 644  :                 if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 645  :                     return (result);
+; 646  :             }
+; 647  :             CommitNumber(nz);
 
 	push	DWORD PTR _nz$[ebp]
 	call	_CommitNumber
 
-; 413  :             if (nz->IS_ZERO)
+; 648  :             if (nz->IS_ZERO)
 
 	mov	eax, DWORD PTR _nz$[ebp]
 	add	esp, 4
 	test	BYTE PTR [eax+16], 2
 	je	SHORT $LN29@PMC_Subtru
 
-; 414  :             {
-; 415  :                 DeallocateNumber(nz);
+; 649  :             {
+; 650  :                 DeallocateNumber(nz);
 
 	push	eax
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 416  :                 nz = &number_zero;
+; 651  :                 nz = &number_zero;
 
 	mov	eax, OFFSET _number_zero
 $LN29@PMC_Subtru:
 
-; 417  :             }
-; 418  :         }
-; 419  :         *o = nz;
+; 652  :             }
+; 653  :         }
+; 654  :         *o = nz;
 
-	pop	esi
-	mov	DWORD PTR [ebx], eax
+	pop	ebx
+	mov	DWORD PTR [edi], eax
 
-; 420  :     }
-; 421  : #ifdef _DEBUG
-; 422  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 423  :         return (result);
-; 424  : #endif
-; 425  :     return (PMC_STATUS_OK);
+; 655  :     }
+; 656  : #ifdef _DEBUG
+; 657  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 658  :         return (result);
+; 659  : #endif
+; 660  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	pop	edi
 
-; 426  : }
+; 661  : }
 
-	pop	ebx
+	pop	esi
 	mov	esp, ebp
 	pop	ebp
 	ret	16					; 00000010H
-$LN46@PMC_Subtru:
+$LN43@PMC_Subtru:
 	pop	edi
 
-; 297  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 532  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 
-; 426  : }
+; 661  : }
 
-	pop	ebx
+	pop	esi
 	mov	esp, ebp
 	pop	ebp
 	ret	16					; 00000010H
@@ -2465,41 +2499,41 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ;	COMDAT _PMC_Subtruct_X_I@12
 _TEXT	SEGMENT
-_nz$ = 8						; size = 4
-_x$ = 8							; size = 4
-_nz_light_check_code$1 = 12				; size = 4
-_y$ = 12						; size = 4
-_o$ = 16						; size = 4
+_nw$ = 8						; size = 4
+_u$ = 8							; size = 4
+_w_light_check_code$1 = 12				; size = 4
+_v$ = 12						; size = 4
+_w$ = 16						; size = 4
 _PMC_Subtruct_X_I@12 PROC				; COMDAT
 
-; 202  : {
+; 268  : {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 
-; 203  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
-; 204  :     {
-; 205  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 206  :         return (PMC_STATUS_INTERNAL_ERROR);
-; 207  :     }
-; 208  :     if (x == NULL)
+; 269  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 270  :     {
+; 271  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 272  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 273  :     }
+; 274  :     if (u == NULL)
 
-	mov	esi, DWORD PTR _x$[ebp]
+	mov	esi, DWORD PTR _u$[ebp]
 	push	edi
 	test	esi, esi
 	je	$LN20@PMC_Subtru
 
-; 209  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 210  :     if (o == NULL)
+; 275  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 276  :     if (w == NULL)
 
-	mov	edi, DWORD PTR _o$[ebp]
+	mov	edi, DWORD PTR _w$[ebp]
 	test	edi, edi
 	je	$LN20@PMC_Subtru
 
-; 212  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
-; 213  :     PMC_STATUS_CODE result;
-; 214  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 278  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 279  :     PMC_STATUS_CODE result;
+; 280  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	push	esi
 	call	_CheckNumber
@@ -2507,109 +2541,109 @@ _PMC_Subtruct_X_I@12 PROC				; COMDAT
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Subtru
 
-; 215  :         return (result);
-; 216  :     NUMBER_HEADER* nz;
-; 217  :     if (nx->IS_ZERO)
+; 281  :         return (result);
+; 282  :     NUMBER_HEADER* nw;
+; 283  :     if (nu->IS_ZERO)
 
 	test	BYTE PTR [esi+16], 2
 	push	ebx
 	je	SHORT $LN6@PMC_Subtru
 
-; 218  :     {
-; 219  :         // x が 0 である場合
-; 220  : 
-; 221  :         if (y == 0)
+; 284  :     {
+; 285  :         // u が 0 である場合
+; 286  : 
+; 287  :         if (v == 0)
 
-	cmp	DWORD PTR _y$[ebp], eax
+	cmp	DWORD PTR _v$[ebp], eax
 	jne	SHORT $LN19@PMC_Subtru
 
-; 222  :         {
-; 223  :             // y が 0 である場合
-; 224  : 
-; 225  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
-; 226  :             *o = &number_zero;
+; 288  :         {
+; 289  :             // v が 0 である場合
+; 290  : 
+; 291  :             // u と v がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 292  :             *w = &number_zero;
 
 	pop	ebx
 	mov	DWORD PTR [edi], OFFSET _number_zero
 	pop	edi
 
-; 285  : }
+; 351  : }
 
 	pop	esi
 	pop	ebp
 	ret	12					; 0000000cH
 $LN6@PMC_Subtru:
 
-; 227  :         }
-; 228  :         else
-; 229  :         {
-; 230  :             // y が 0 ではない場合
-; 231  : 
-; 232  :             // 演算結果は負となってしまうのでエラーを返す。
-; 233  :             return (PMC_STATUS_OVERFLOW);
-; 234  :         }
-; 235  :     }
-; 236  :     else
-; 237  :     {
-; 238  :         // x が 0 ではない場合
-; 239  : 
-; 240  :         if (y == 0)
+; 293  :         }
+; 294  :         else
+; 295  :         {
+; 296  :             // v が 0 ではない場合
+; 297  : 
+; 298  :             // 演算結果は負となってしまうのでエラーを返す。
+; 299  :             return (PMC_STATUS_OVERFLOW);
+; 300  :         }
+; 301  :     }
+; 302  :     else
+; 303  :     {
+; 304  :         // u が 0 ではない場合
+; 305  : 
+; 306  :         if (v == 0)
 
-	mov	ebx, DWORD PTR _y$[ebp]
+	mov	ebx, DWORD PTR _v$[ebp]
 	test	ebx, ebx
 	jne	SHORT $LN10@PMC_Subtru
 
-; 241  :         {
-; 242  :             // y が 0 である場合
-; 243  : 
-; 244  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-; 245  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+; 307  :         {
+; 308  :             // v が 0 である場合
+; 309  : 
+; 310  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 311  :             if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
 
-	lea	eax, DWORD PTR _nz$[ebp]
+	lea	eax, DWORD PTR _nw$[ebp]
 	push	eax
 	push	esi
 	call	_DuplicateNumber
 	add	esp, 8
 	test	eax, eax
 	jne	SHORT $LN22@PMC_Subtru
-	mov	eax, DWORD PTR _nz$[ebp]
+	mov	eax, DWORD PTR _nw$[ebp]
 	pop	ebx
 
-; 276  :             }
-; 277  :         }
-; 278  :         *o = nz;
+; 342  :             }
+; 343  :         }
+; 344  :         *w = nw;
 
 	mov	DWORD PTR [edi], eax
 
-; 279  :     }
-; 280  : #ifdef _DEBUG
-; 281  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 282  :         return (result);
-; 283  : #endif
-; 284  :     return (PMC_STATUS_OK);
+; 345  :     }
+; 346  : #ifdef _DEBUG
+; 347  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 348  :         return (result);
+; 349  : #endif
+; 350  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	pop	edi
 
-; 285  : }
+; 351  : }
 
 	pop	esi
 	pop	ebp
 	ret	12					; 0000000cH
 $LN10@PMC_Subtru:
 
-; 246  :                 return (result);
-; 247  :         }
-; 248  :         else
-; 249  :         {
-; 250  :             // x と y がともに 0 ではない場合
-; 251  : 
-; 252  :             // x と y の差を計算する
-; 253  :             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 312  :                 return (result);
+; 313  :         }
+; 314  :         else
+; 315  :         {
+; 316  :             // u と v がともに 0 ではない場合
+; 317  : 
+; 318  :             // u と v の差を計算する
+; 319  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
 	mov	edx, DWORD PTR [esi+4]
 
-; 254  :             __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y);
+; 320  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
 
 	push	ebx
 	call	__LZCNT_ALT_32
@@ -2617,15 +2651,15 @@ $LN10@PMC_Subtru:
 	add	esp, 4
 	sub	ecx, eax
 
-; 255  :             if (x_bit_count < y_bit_count)
+; 321  :             if (u_bit_count < v_bit_count)
 
 	cmp	edx, ecx
 	jae	SHORT $LN13@PMC_Subtru
 $LN19@PMC_Subtru:
 
-; 256  :             {
-; 257  :                 // 演算結果は負となってしまうのでエラーを返す。
-; 258  :                 return (PMC_STATUS_OVERFLOW);
+; 322  :             {
+; 323  :                 // 演算結果は負となってしまうのでエラーを返す。
+; 324  :                 return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 $LN22@PMC_Subtru:
@@ -2633,48 +2667,51 @@ $LN22@PMC_Subtru:
 $LN1@PMC_Subtru:
 	pop	edi
 
-; 285  : }
+; 351  : }
 
 	pop	esi
 	pop	ebp
 	ret	12					; 0000000cH
 $LN13@PMC_Subtru:
 
-; 259  :             }
-; 260  :             __UNIT_TYPE z_bit_count = x_bit_count;
-; 261  :             __UNIT_TYPE nz_light_check_code;
-; 262  :             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 325  :             }
+; 326  :             __UNIT_TYPE w_bit_count = u_bit_count;
+; 327  :             __UNIT_TYPE w_light_check_code;
+; 328  :             if ((result = AllocateNumber(&nw, w_bit_count, &w_light_check_code)) != PMC_STATUS_OK)
 
-	lea	eax, DWORD PTR _nz_light_check_code$1[ebp]
+	lea	eax, DWORD PTR _w_light_check_code$1[ebp]
 	push	eax
 	push	edx
-	lea	eax, DWORD PTR _nz$[ebp]
+	lea	eax, DWORD PTR _nw$[ebp]
 	push	eax
 	call	_AllocateNumber
 	add	esp, 12					; 0000000cH
 	test	eax, eax
 	jne	SHORT $LN22@PMC_Subtru
 
-; 263  :                 return (result);
-; 264  :             if ((result = Subtruct_X_1W(nx, y, nz)) != PMC_STATUS_OK)
+; 329  :                 return (result);
+; 330  :             if ((result = Subtruct_X_1W(nu->BLOCK, nu->UNIT_WORD_COUNT, v, nw->BLOCK, nw->BLOCK_COUNT)) != PMC_STATUS_OK)
 
-	push	DWORD PTR _nz$[ebp]
+	mov	eax, DWORD PTR _nw$[ebp]
+	push	DWORD PTR [eax+20]
+	push	DWORD PTR [eax+24]
 	push	ebx
-	push	esi
+	push	DWORD PTR [esi]
+	push	DWORD PTR [esi+24]
 	call	_Subtruct_X_1W
 	mov	esi, eax
-	add	esp, 12					; 0000000cH
+	add	esp, 20					; 00000014H
 	test	esi, esi
 	je	SHORT $LN15@PMC_Subtru
 
-; 265  :             {
-; 266  :                 DeallocateNumber(nz);
+; 331  :             {
+; 332  :                 DeallocateNumber(nw);
 
-	push	DWORD PTR _nz$[ebp]
+	push	DWORD PTR _nw$[ebp]
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 267  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 333  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	mov	eax, -2					; fffffffeH
 	cmp	esi, -258				; fffffefeH
@@ -2683,67 +2720,67 @@ $LN13@PMC_Subtru:
 	pop	edi
 	mov	eax, esi
 
-; 285  : }
+; 351  : }
 
 	pop	esi
 	pop	ebp
 	ret	12					; 0000000cH
 $LN15@PMC_Subtru:
 
-; 268  :             }
-; 269  :             if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 334  :             }
+; 335  :             if ((result = CheckBlockLight(nw->BLOCK, w_light_check_code)) != PMC_STATUS_OK)
 
-	mov	eax, DWORD PTR _nz$[ebp]
-	push	DWORD PTR _nz_light_check_code$1[ebp]
+	mov	eax, DWORD PTR _nw$[ebp]
+	push	DWORD PTR _w_light_check_code$1[ebp]
 	push	DWORD PTR [eax+24]
 	call	_CheckBlockLight
 	add	esp, 8
 	test	eax, eax
 	jne	SHORT $LN22@PMC_Subtru
 
-; 270  :                 return (result);
-; 271  :             CommitNumber(nz);
+; 336  :                 return (result);
+; 337  :             CommitNumber(nw);
 
-	push	DWORD PTR _nz$[ebp]
+	push	DWORD PTR _nw$[ebp]
 	call	_CommitNumber
 
-; 272  :             if (nz->IS_ZERO)
+; 338  :             if (nw->IS_ZERO)
 
-	mov	eax, DWORD PTR _nz$[ebp]
+	mov	eax, DWORD PTR _nw$[ebp]
 	add	esp, 4
 	test	BYTE PTR [eax+16], 2
 	je	SHORT $LN17@PMC_Subtru
 
-; 273  :             {
-; 274  :                 DeallocateNumber(nz);
+; 339  :             {
+; 340  :                 DeallocateNumber(nw);
 
 	push	eax
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 275  :                 nz = &number_zero;
+; 341  :                 nw = &number_zero;
 
 	mov	eax, OFFSET _number_zero
 $LN17@PMC_Subtru:
 
-; 276  :             }
-; 277  :         }
-; 278  :         *o = nz;
+; 342  :             }
+; 343  :         }
+; 344  :         *w = nw;
 
 	pop	ebx
 	mov	DWORD PTR [edi], eax
 
-; 279  :     }
-; 280  : #ifdef _DEBUG
-; 281  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 282  :         return (result);
-; 283  : #endif
-; 284  :     return (PMC_STATUS_OK);
+; 345  :     }
+; 346  : #ifdef _DEBUG
+; 347  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 348  :         return (result);
+; 349  : #endif
+; 350  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	pop	edi
 
-; 285  : }
+; 351  : }
 
 	pop	esi
 	pop	ebp
@@ -2751,11 +2788,11 @@ $LN17@PMC_Subtru:
 $LN20@PMC_Subtru:
 	pop	edi
 
-; 211  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 277  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 
-; 285  : }
+; 351  : }
 
 	pop	esi
 	pop	ebp
@@ -2764,16 +2801,565 @@ _PMC_Subtruct_X_I@12 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+;	COMDAT _PMC_Subtruct_L_X@16
+_TEXT	SEGMENT
+$T1 = 8							; size = 8
+_u$ = 8							; size = 8
+_temp_w_lo$1$ = 16					; size = 4
+_v$ = 16						; size = 4
+_w$ = 20						; size = 4
+_PMC_Subtruct_L_X@16 PROC				; COMDAT
+
+; 354  : {
+
+	push	ebp
+	mov	ebp, esp
+	push	ebx
+	push	edi
+
+; 355  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+; 356  :     {
+; 357  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 358  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 359  :     }
+; 360  :     if (v == NULL)
+
+	mov	edi, DWORD PTR _v$[ebp]
+	test	edi, edi
+	je	$LN46@PMC_Subtru
+
+; 361  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 362  :     if (w == NULL)
+
+	mov	ebx, DWORD PTR _w$[ebp]
+	test	ebx, ebx
+	je	$LN46@PMC_Subtru
+
+; 364  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 365  :     PMC_STATUS_CODE result;
+; 366  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+
+	push	edi
+	call	_CheckNumber
+	add	esp, 4
+	test	eax, eax
+	jne	$LN1@PMC_Subtru
+
+; 367  :         return (result);
+; 368  :     if (u == 0)
+
+	mov	ecx, DWORD PTR [edi+16]
+	mov	edx, DWORD PTR _u$[ebp+4]
+	and	ecx, 2
+	push	esi
+	mov	esi, DWORD PTR _u$[ebp]
+	mov	eax, esi
+	or	eax, edx
+	jne	SHORT $LN6@PMC_Subtru
+
+; 369  :     {
+; 370  :         // u が 0 である場合
+; 371  : 
+; 372  :         if (nv->IS_ZERO)
+
+	test	ecx, ecx
+	je	$LN45@PMC_Subtru
+
+; 373  :         {
+; 374  :             // v が 0 である場合
+; 375  : 
+; 376  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 377  :             *w = 0;
+
+	xorps	xmm0, xmm0
+	movlpd	QWORD PTR $T1[ebp], xmm0
+
+; 378  :         }
+; 379  :         else
+; 380  :         {
+; 381  :             // v が 0 ではない場合
+; 382  : 
+; 383  :             // 演算結果は負となってしまうのでエラーを返す。
+; 384  :             return (PMC_STATUS_OVERFLOW);
+; 385  :         }
+; 386  :     }
+
+	mov	esi, DWORD PTR $T1[ebp]
+	mov	edx, DWORD PTR $T1[ebp+4]
+
+; 519  :     return (PMC_STATUS_OK);
+
+	mov	DWORD PTR [ebx], esi
+	pop	esi
+	pop	edi
+	mov	DWORD PTR [ebx+4], edx
+
+; 520  : }
+
+	pop	ebx
+	pop	ebp
+	ret	16					; 00000010H
+$LN6@PMC_Subtru:
+
+; 387  :     else
+; 388  :     {
+; 389  :         // u が 0 ではない場合
+; 390  : 
+; 391  :         if (nv->IS_ZERO)
+
+	test	ecx, ecx
+	jne	SHORT $LN25@PMC_Subtru
+
+; 392  :         {
+; 393  :             // v が 0 である場合
+; 394  : 
+; 395  :             // 演算結果となる u の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 396  :             *w = u;
+; 397  :         }
+; 398  :         else
+; 399  :         {
+; 400  :             // u と v がともに 0 ではない場合
+; 401  : 
+; 402  :             // u と v の差を計算する
+; 403  :             if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+; 404  :             {
+; 405  :                 // _UINT64_T が 1 ワードで表現しきれない場合
+; 406  : 
+; 407  :                 _UINT32_T u_hi;
+; 408  :                 _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
+; 409  :                 if (u_hi == 0)
+
+	test	edx, edx
+	jne	SHORT $LN14@PMC_Subtru
+
+; 410  :                 {
+; 411  :                     // u の値が 32bit で表現可能な場合
+; 412  :                     __UNIT_TYPE u_bit_count = sizeof(u_lo) * 8 - _LZCNT_ALT_32(u_lo);
+
+	push	esi
+	call	__LZCNT_ALT_32
+	mov	ecx, 32					; 00000020H
+	add	esp, 4
+	sub	ecx, eax
+
+; 413  :                     __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 414  :                     if (u_bit_count < v_bit_count)
+
+	cmp	ecx, DWORD PTR [edi+4]
+	jb	SHORT $LN45@PMC_Subtru
+
+; 415  :                     {
+; 416  :                         // 明らかに u < v である場合
+; 417  : 
+; 418  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 419  :                         return (PMC_STATUS_OVERFLOW);
+; 420  :                     }
+; 421  :                     else
+; 422  :                     {
+; 423  :                         // u のビット長が v のビット長以上である場合
+; 424  : 
+; 425  :                         // u が32bit 整数で表現できるので v も 32bit 整数で表現できる
+; 426  : 
+; 427  :                         __UNIT_TYPE temp_w;
+; 428  :                         char borrow = _SUBTRUCT_UNIT(0, u_lo, nv->BLOCK[0], &temp_w);
+
+	mov	eax, DWORD PTR [edi+24]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
+
+	sub	esi, DWORD PTR [eax]
+	setb	al
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 429  :                         if (borrow)
+
+	test	al, al
+	jne	SHORT $LN45@PMC_Subtru
+
+; 519  :     return (PMC_STATUS_OK);
+
+	mov	DWORD PTR [ebx], esi
+	xor	eax, eax
+	pop	esi
+	pop	edi
+	mov	DWORD PTR [ebx+4], edx
+
+; 520  : }
+
+	pop	ebx
+	pop	ebp
+	ret	16					; 00000010H
+$LN14@PMC_Subtru:
+
+; 430  :                         {
+; 431  :                             // ボローが発生した場合は演算結果が負なのでエラーとする
+; 432  :                             return (PMC_STATUS_OVERFLOW);
+; 433  :                         }
+; 434  :                         else
+; 435  :                         {
+; 436  :                             *w = temp_w;
+; 437  :                         }
+; 438  :                     }
+; 439  :                 }
+; 440  :                 else
+; 441  :                 {
+; 442  :                     // u の値が 32bit では表現できない場合
+; 443  :                     __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u_hi);
+
+	push	edx
+	call	__LZCNT_ALT_32
+	mov	ecx, 64					; 00000040H
+	add	esp, 4
+	sub	ecx, eax
+
+; 444  :                     __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 445  :                     if (u_bit_count < v_bit_count)
+
+	cmp	ecx, DWORD PTR [edi+4]
+	jb	SHORT $LN45@PMC_Subtru
+
+; 446  :                     {
+; 447  :                         // 明らかに u < v である場合
+; 448  : 
+; 449  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 450  :                         return (PMC_STATUS_OVERFLOW);
+; 451  :                     }
+; 452  :                     else
+; 453  :                     {
+; 454  :                         // u のビット長が v のビット長以上である場合
+; 455  : 
+; 456  :                         // この時点では u は 33 ～ 64bit 整数であり、v は 1 ～ 64bit整数である
+; 457  : 
+; 458  :                         __UNIT_TYPE temp_w_hi;
+; 459  :                         __UNIT_TYPE temp_w_lo;
+; 460  :                         char borrow;
+; 461  :                         borrow = _SUBTRUCT_UNIT(0, u_lo, nv->BLOCK[0], &temp_w_lo);
+
+	mov	ecx, DWORD PTR [edi+24]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
+
+	sub	esi, DWORD PTR [ecx]
+	mov	DWORD PTR _temp_w_lo$1$[ebp], esi
+	setb	al
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 462  :                         if (nv->UNIT_WORD_COUNT <= 1)
+
+	cmp	DWORD PTR [edi], 1
+	ja	SHORT $LN22@PMC_Subtru
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
+
+	add	al, 255					; 000000ffH
+	sbb	edx, 0
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 466  :                         }
+
+	jmp	SHORT $LN48@PMC_Subtru
+$LN22@PMC_Subtru:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
+
+	add	al, 255					; 000000ffH
+	sbb	edx, DWORD PTR [ecx+4]
+$LN48@PMC_Subtru:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 472  :                         if (borrow)
+
+	setb	al
+	test	al, al
+	jne	SHORT $LN45@PMC_Subtru
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
+
+	xor	esi, esi
+	or	esi, DWORD PTR _temp_w_lo$1$[ebp]
+$LN25@PMC_Subtru:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 519  :     return (PMC_STATUS_OK);
+
+	mov	DWORD PTR [ebx], esi
+	xor	eax, eax
+	mov	DWORD PTR [ebx+4], edx
+	pop	esi
+$LN1@PMC_Subtru:
+
+; 520  : }
+
+	pop	edi
+	pop	ebx
+	pop	ebp
+	ret	16					; 00000010H
+$LN45@PMC_Subtru:
+	pop	esi
+	pop	edi
+
+; 473  :                         {
+; 474  :                             // ボローが発生した場合は演算結果が負なのでエラーとする
+; 475  :                             return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+
+; 520  : }
+
+	pop	ebx
+	pop	ebp
+	ret	16					; 00000010H
+$LN46@PMC_Subtru:
+	pop	edi
+
+; 363  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+
+; 520  : }
+
+	pop	ebx
+	pop	ebp
+	ret	16					; 00000010H
+_PMC_Subtruct_L_X@16 ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+;	COMDAT _PMC_Subtruct_I_X@12
+_TEXT	SEGMENT
+_u$ = 8							; size = 4
+_v$ = 12						; size = 4
+_w$ = 16						; size = 4
+_PMC_Subtruct_I_X@12 PROC				; COMDAT
+
+; 188  : {
+
+	push	ebp
+	mov	ebp, esp
+	push	esi
+	push	edi
+
+; 189  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+; 190  :     {
+; 191  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 192  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 193  :     }
+; 194  :     if (v == NULL)
+
+	mov	edi, DWORD PTR _v$[ebp]
+	test	edi, edi
+	je	SHORT $LN20@PMC_Subtru
+
+; 195  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 196  :     if (w == NULL)
+
+	mov	esi, DWORD PTR _w$[ebp]
+	test	esi, esi
+	je	SHORT $LN20@PMC_Subtru
+
+; 198  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 199  :     PMC_STATUS_CODE result;
+; 200  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+
+	push	edi
+	call	_CheckNumber
+	add	esp, 4
+	test	eax, eax
+	jne	SHORT $LN1@PMC_Subtru
+
+; 201  :         return (result);
+; 202  :     if (u == 0)
+
+	mov	eax, DWORD PTR [edi+16]
+	mov	edx, DWORD PTR _u$[ebp]
+	and	eax, 2
+	test	edx, edx
+	jne	SHORT $LN6@PMC_Subtru
+
+; 203  :     {
+; 204  :         // u が 0 である場合
+; 205  : 
+; 206  :         if (nv->IS_ZERO)
+
+	test	eax, eax
+	je	SHORT $LN19@PMC_Subtru
+
+; 207  :         {
+; 208  :             // v が 0 である場合
+; 209  : 
+; 210  :             // u と v がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 211  :             *w = 0;
+
+	pop	edi
+	mov	DWORD PTR [esi], edx
+
+; 256  :                 }
+; 257  :                 else
+; 258  :                 {
+; 259  :                     *w = (_UINT32_T)temp_w;
+; 260  :                 }
+; 261  :             }
+; 262  :         }
+; 263  :     }
+; 264  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+
+; 265  : }
+
+	pop	esi
+	pop	ebp
+	ret	12					; 0000000cH
+$LN6@PMC_Subtru:
+
+; 212  :         }
+; 213  :         else
+; 214  :         {
+; 215  :             // v が 0 ではない場合
+; 216  : 
+; 217  :             // 演算結果は負となってしまうのでエラーを返す。
+; 218  :             return (PMC_STATUS_OVERFLOW);
+; 219  :         }
+; 220  :     }
+; 221  :     else
+; 222  :     {
+; 223  :         // u が 0 ではない場合
+; 224  : 
+; 225  :         if (nv->IS_ZERO)
+
+	test	eax, eax
+	jne	SHORT $LN21@PMC_Subtru
+
+; 226  :         {
+; 227  :             // v が 0 である場合
+; 228  : 
+; 229  :             // 演算結果となる u の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 230  :             *w = u;
+; 231  :         }
+; 232  :         else
+; 233  :         {
+; 234  :             // u と v がともに 0 ではない場合
+; 235  : 
+; 236  :             // x と y の差を計算する
+; 237  :             __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u);
+
+	push	edx
+	call	__LZCNT_ALT_32
+	mov	ecx, 32					; 00000020H
+	add	esp, 4
+	sub	ecx, eax
+
+; 238  :             __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 239  :             if (u_bit_count < v_bit_count)
+
+	cmp	ecx, DWORD PTR [edi+4]
+	jb	SHORT $LN19@PMC_Subtru
+
+; 240  :             {
+; 241  :                 // 明らかに u < v である場合
+; 242  :                 // 演算結果は負となってしまうのでエラーを返す。
+; 243  :                 return (PMC_STATUS_OVERFLOW);
+; 244  :             }
+; 245  :             else
+; 246  :             {
+; 247  :                 // u のビット長が v のビット長以上である場合
+; 248  : 
+; 249  :                 // u が 32bit 整数なので、v も32bit 整数で表現できる
+; 250  :                 __UNIT_TYPE temp_w;
+; 251  :                 char borrow = _SUBTRUCT_UNIT(0, u, nv->BLOCK[0], &temp_w);
+
+	mov	eax, DWORD PTR [edi+24]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
+
+	sub	edx, DWORD PTR [eax]
+	setb	al
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+
+; 252  :                 if (borrow)
+
+	test	al, al
+	jne	SHORT $LN19@PMC_Subtru
+$LN21@PMC_Subtru:
+	pop	edi
+
+; 256  :                 }
+; 257  :                 else
+; 258  :                 {
+; 259  :                     *w = (_UINT32_T)temp_w;
+; 260  :                 }
+; 261  :             }
+; 262  :         }
+; 263  :     }
+; 264  :     return (PMC_STATUS_OK);
+
+	mov	DWORD PTR [esi], edx
+	xor	eax, eax
+
+; 265  : }
+
+	pop	esi
+	pop	ebp
+	ret	12					; 0000000cH
+$LN19@PMC_Subtru:
+	pop	edi
+
+; 253  :                 {
+; 254  :                     // ボローが発生した場合は演算結果が負なのでエラーとする
+; 255  :                     return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+
+; 265  : }
+
+	pop	esi
+	pop	ebp
+	ret	12					; 0000000cH
+$LN20@PMC_Subtru:
+
+; 197  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+$LN1@PMC_Subtru:
+	pop	edi
+
+; 265  : }
+
+	pop	esi
+	pop	ebp
+	ret	12					; 0000000cH
+_PMC_Subtruct_I_X@12 ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ;	COMDAT _Initialize_Subtruct
 _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_Subtruct PROC				; COMDAT
 
-; 509  :     return (PMC_STATUS_OK);
+; 744  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 510  : }
+; 745  : }
 
 	ret	0
 _Initialize_Subtruct ENDP
@@ -2883,39 +3469,39 @@ _TEXT	ENDS
 ;	COMDAT _Subtruct_Imp
 _TEXT	SEGMENT
 _c$ = -4						; size = 1
-_xp$ = 8						; size = 4
-_x_count$ = 12						; size = 4
-_yp$ = 16						; size = 4
-_y_count$ = 20						; size = 4
-_zp$ = 24						; size = 4
-_z_count$ = 28						; size = 4
+_up$ = 8						; size = 4
+_u_count$ = 12						; size = 4
+_vp$ = 16						; size = 4
+_v_count$ = 20						; size = 4
+_wp$ = 24						; size = 4
+_w_count$ = 28						; size = 4
 _Subtruct_Imp PROC					; COMDAT
 
-; 138  : {
+; 124  : {
 
 	push	ebp
 	mov	ebp, esp
 	sub	esp, 8
 
-; 139  :     char c = 0;
-; 140  : 
-; 141  :     // まず 32 ワードずつ減算をする。
-; 142  :     __UNIT_TYPE count = y_count >> 5;
+; 125  :     char c = 0;
+; 126  : 
+; 127  :     // まず 32 ワードずつ減算をする。
+; 128  :     __UNIT_TYPE count = v_count >> 5;
 
-	mov	ecx, DWORD PTR _y_count$[ebp]
+	mov	ecx, DWORD PTR _v_count$[ebp]
 	xor	dl, dl
 	push	ebx
 
-; 143  :     while (count != 0)
+; 129  :     while (count != 0)
 
-	mov	ebx, DWORD PTR _yp$[ebp]
+	mov	ebx, DWORD PTR _vp$[ebp]
 	mov	eax, ecx
 	push	esi
-	mov	esi, DWORD PTR _xp$[ebp]
+	mov	esi, DWORD PTR _up$[ebp]
 	shr	eax, 5
 	mov	BYTE PTR _c$[ebp], dl
 	push	edi
-	mov	edi, DWORD PTR _zp$[ebp]
+	mov	edi, DWORD PTR _wp$[ebp]
 	test	eax, eax
 	je	$LN3@Subtruct_I
 	mov	ecx, eax
@@ -2928,7 +3514,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	add	dl, 255					; 000000ffH
 	sbb	eax, DWORD PTR [ebx]
@@ -2940,7 +3526,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+4]
 	mov	DWORD PTR [edi+4], eax
@@ -2951,7 +3537,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+8]
 	mov	DWORD PTR [edi+8], eax
@@ -2962,7 +3548,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+12]
 	mov	DWORD PTR [edi+12], eax
@@ -2973,7 +3559,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+16]
 	mov	DWORD PTR [edi+16], eax
@@ -2984,7 +3570,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+20]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+20]
 	mov	DWORD PTR [edi+20], eax
@@ -2995,7 +3581,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+24]
 	mov	DWORD PTR [edi+24], eax
@@ -3006,7 +3592,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+28]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+28]
 	mov	DWORD PTR [edi+28], eax
@@ -3017,7 +3603,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+32]
 	mov	DWORD PTR [edi+32], eax
@@ -3028,7 +3614,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+36]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+36]
 	mov	DWORD PTR [edi+36], eax
@@ -3039,7 +3625,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+40]
 	mov	DWORD PTR [edi+40], eax
@@ -3050,7 +3636,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+44]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+44]
 	mov	DWORD PTR [edi+44], eax
@@ -3061,7 +3647,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+48]
 	mov	DWORD PTR [edi+48], eax
@@ -3072,7 +3658,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+52]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+52]
 	mov	DWORD PTR [edi+52], eax
@@ -3083,7 +3669,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+56]
 	mov	DWORD PTR [edi+56], eax
@@ -3094,7 +3680,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+60]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+60]
 	mov	DWORD PTR [edi+60], eax
@@ -3105,7 +3691,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+64]
 	mov	DWORD PTR [edi+64], eax
@@ -3116,7 +3702,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+68]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+68]
 	mov	DWORD PTR [edi+68], eax
@@ -3127,7 +3713,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+72]
 	mov	DWORD PTR [edi+72], eax
@@ -3138,7 +3724,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+76]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+76]
 	mov	DWORD PTR [edi+76], eax
@@ -3149,7 +3735,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+80]
 	mov	DWORD PTR [edi+80], eax
@@ -3160,7 +3746,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+84]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+84]
 	mov	DWORD PTR [edi+84], eax
@@ -3171,7 +3757,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+88]
 	mov	DWORD PTR [edi+88], eax
@@ -3182,7 +3768,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+92]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+92]
 	mov	DWORD PTR [edi+92], eax
@@ -3193,7 +3779,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+96]
 	mov	DWORD PTR [edi+96], eax
@@ -3204,7 +3790,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+100]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+100]
 	mov	DWORD PTR [edi+100], eax
@@ -3215,7 +3801,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+104]
 	mov	DWORD PTR [edi+104], eax
@@ -3226,7 +3812,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+108]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+108]
 	mov	DWORD PTR [edi+108], eax
@@ -3237,7 +3823,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+112]
 	mov	DWORD PTR [edi+112], eax
@@ -3248,7 +3834,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+116]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+116]
 	mov	DWORD PTR [edi+116], eax
@@ -3259,7 +3845,7 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+120]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+120]
 	mov	DWORD PTR [edi+120], eax
@@ -3270,47 +3856,47 @@ $LL2@Subtruct_I:
 	mov	eax, DWORD PTR [esi+124]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+124]
 	mov	DWORD PTR [edi+124], eax
 	setb	dl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 146  :         xp += 32;
+; 132  :         up += 32;
 
 	sub	esi, -128				; ffffff80H
 
-; 147  :         yp += 32;
+; 133  :         vp += 32;
 
 	sub	ebx, -128				; ffffff80H
 	mov	BYTE PTR _c$[ebp], dl
 
-; 148  :         zp += 32;
+; 134  :         wp += 32;
 
 	sub	edi, -128				; ffffff80H
 
-; 149  :         --count;
+; 135  :         --count;
 
 	sub	ecx, 1
 	jne	$LL2@Subtruct_I
 
-; 143  :     while (count != 0)
+; 129  :     while (count != 0)
 
-	mov	ecx, DWORD PTR _y_count$[ebp]
+	mov	ecx, DWORD PTR _v_count$[ebp]
 $LN3@Subtruct_I:
 
-; 150  :     }
-; 151  :     // この時点で未処理の桁は 32 ワード未満のはず
-; 152  : 
-; 153  :     // 未処理の桁が 16 ワード以上あるなら 16 ワード減算を行う。
-; 154  :     if (y_count & 0x10)
+; 136  :     }
+; 137  :     // この時点で未処理の桁は 32 ワード未満のはず
+; 138  : 
+; 139  :     // 未処理の桁が 16 ワード以上あるなら 16 ワード減算を行う。
+; 140  :     if (v_count & 0x10)
 
 	test	cl, 16					; 00000010H
 	je	SHORT $LN4@Subtruct_I
 
-; 155  :     {
-; 156  :         c = _SUBTRUCT_16WORDS_SBB(c, xp, yp, zp);
+; 141  :     {
+; 142  :         c = _SUBTRUCT_16WORDS_SBB(c, up, vp, wp);
 
 	push	edi
 	push	ebx
@@ -3318,11 +3904,11 @@ $LN3@Subtruct_I:
 	push	DWORD PTR _c$[ebp]
 	call	__SUBTRUCT_16WORDS_SBB
 
-; 157  :         xp += 16;
-; 158  :         yp += 16;
-; 159  :         zp += 16;
+; 143  :         up += 16;
+; 144  :         vp += 16;
+; 145  :         wp += 16;
 
-	mov	ecx, DWORD PTR _y_count$[ebp]
+	mov	ecx, DWORD PTR _v_count$[ebp]
 	mov	dl, al
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], dl
@@ -3331,11 +3917,11 @@ $LN3@Subtruct_I:
 	add	edi, 64					; 00000040H
 $LN4@Subtruct_I:
 
-; 160  :     }
-; 161  :     // この時点で未処理の桁は 16 ワード未満のはず
-; 162  : 
-; 163  :     // 未処理の桁が 8 ワード以上あるなら 8 ワード減算を行う。
-; 164  :     if (y_count & 0x8)
+; 146  :     }
+; 147  :     // この時点で未処理の桁は 16 ワード未満のはず
+; 148  : 
+; 149  :     // 未処理の桁が 8 ワード以上あるなら 8 ワード減算を行う。
+; 150  :     if (v_count & 0x8)
 
 	test	cl, 8
 	je	SHORT $LN5@Subtruct_I
@@ -3346,7 +3932,7 @@ $LN4@Subtruct_I:
 	mov	eax, DWORD PTR [esi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	add	dl, 255					; 000000ffH
 	sbb	eax, DWORD PTR [ebx]
@@ -3358,7 +3944,7 @@ $LN4@Subtruct_I:
 	mov	eax, DWORD PTR [esi+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+4]
 	mov	DWORD PTR [edi+4], eax
@@ -3369,7 +3955,7 @@ $LN4@Subtruct_I:
 	mov	eax, DWORD PTR [esi+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+8]
 	mov	DWORD PTR [edi+8], eax
@@ -3380,7 +3966,7 @@ $LN4@Subtruct_I:
 	mov	eax, DWORD PTR [esi+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+12]
 	mov	DWORD PTR [edi+12], eax
@@ -3391,7 +3977,7 @@ $LN4@Subtruct_I:
 	mov	eax, DWORD PTR [esi+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+16]
 	mov	DWORD PTR [edi+16], eax
@@ -3402,7 +3988,7 @@ $LN4@Subtruct_I:
 	mov	eax, DWORD PTR [esi+20]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+20]
 	mov	DWORD PTR [edi+20], eax
@@ -3413,7 +3999,7 @@ $LN4@Subtruct_I:
 	mov	eax, DWORD PTR [esi+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+24]
 	mov	DWORD PTR [edi+24], eax
@@ -3424,32 +4010,32 @@ $LN4@Subtruct_I:
 	mov	eax, DWORD PTR [esi+28]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+28]
 	mov	DWORD PTR [edi+28], eax
 	setb	dl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 167  :         xp += 8;
+; 153  :         up += 8;
 
 	add	esi, 32					; 00000020H
 
-; 168  :         yp += 8;
+; 154  :         vp += 8;
 
 	add	ebx, 32					; 00000020H
 	mov	BYTE PTR _c$[ebp], dl
 
-; 169  :         zp += 8;
+; 155  :         wp += 8;
 
 	add	edi, 32					; 00000020H
 $LN5@Subtruct_I:
 
-; 170  :     }
-; 171  :     // この時点で未処理の桁は 8 ワード未満のはず
-; 172  : 
-; 173  :     // 未処理の桁が 4 ワード以上あるなら 4 ワード減算を行う。
-; 174  :     if (y_count & 0x4)
+; 156  :     }
+; 157  :     // この時点で未処理の桁は 8 ワード未満のはず
+; 158  : 
+; 159  :     // 未処理の桁が 4 ワード以上あるなら 4 ワード減算を行う。
+; 160  :     if (v_count & 0x4)
 
 	test	cl, 4
 	je	SHORT $LN6@Subtruct_I
@@ -3460,7 +4046,7 @@ $LN5@Subtruct_I:
 	mov	eax, DWORD PTR [esi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	add	dl, 255					; 000000ffH
 	sbb	eax, DWORD PTR [ebx]
@@ -3472,7 +4058,7 @@ $LN5@Subtruct_I:
 	mov	eax, DWORD PTR [esi+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+4]
 	mov	DWORD PTR [edi+4], eax
@@ -3483,7 +4069,7 @@ $LN5@Subtruct_I:
 	mov	eax, DWORD PTR [esi+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+8]
 	mov	DWORD PTR [edi+8], eax
@@ -3494,32 +4080,32 @@ $LN5@Subtruct_I:
 	mov	eax, DWORD PTR [esi+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+12]
 	mov	DWORD PTR [edi+12], eax
 	setb	dl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 177  :         xp += 4;
+; 163  :         up += 4;
 
 	add	esi, 16					; 00000010H
 
-; 178  :         yp += 4;
+; 164  :         vp += 4;
 
 	add	ebx, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], dl
 
-; 179  :         zp += 4;
+; 165  :         wp += 4;
 
 	add	edi, 16					; 00000010H
 $LN6@Subtruct_I:
 
-; 180  :     }
-; 181  :     // この時点で未処理の桁は 4 ワード未満のはず
-; 182  : 
-; 183  :     // 未処理の桁が 2 ワード以上あるなら 2 ワード減算を行う。
-; 184  :     if (y_count & 0x2)
+; 166  :     }
+; 167  :     // この時点で未処理の桁は 4 ワード未満のはず
+; 168  : 
+; 169  :     // 未処理の桁が 2 ワード以上あるなら 2 ワード減算を行う。
+; 170  :     if (v_count & 0x2)
 
 	test	cl, 2
 	je	SHORT $LN7@Subtruct_I
@@ -3530,7 +4116,7 @@ $LN6@Subtruct_I:
 	mov	eax, DWORD PTR [esi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	add	dl, 255					; 000000ffH
 	sbb	eax, DWORD PTR [ebx]
@@ -3542,73 +4128,73 @@ $LN6@Subtruct_I:
 	mov	eax, DWORD PTR [esi+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	sbb	eax, DWORD PTR [ebx+4]
 	mov	DWORD PTR [edi+4], eax
 	setb	dl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 187  :         xp += 2;
+; 173  :         up += 2;
 
 	add	esi, 8
 
-; 188  :         yp += 2;
+; 174  :         vp += 2;
 
 	add	ebx, 8
 	mov	BYTE PTR _c$[ebp], dl
 
-; 189  :         zp += 2;
+; 175  :         wp += 2;
 
 	add	edi, 8
 $LN7@Subtruct_I:
 
-; 190  :     }
-; 191  :     // この時点で未処理の桁は 2 ワード未満のはず
-; 192  : 
-; 193  :     // 未処理の桁が 1 ワード以上あるなら 1 ワード減算を行う。
-; 194  :     if (y_count & 1)
+; 176  :     }
+; 177  :     // この時点で未処理の桁は 2 ワード未満のはず
+; 178  : 
+; 179  :     // 未処理の桁が 1 ワード以上あるなら 1 ワード減算を行う。
+; 180  :     if (v_count & 1)
 
 	test	cl, 1
 	je	SHORT $LN8@Subtruct_I
 
-; 195  :         c = _SUBTRUCT_UNIT(c, *xp++, *yp++, zp++);
+; 181  :         c = _SUBTRUCT_UNIT(c, *up++, *vp++, wp++);
 
 	mov	ecx, DWORD PTR [esi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	add	dl, 255					; 000000ffH
 	sbb	ecx, DWORD PTR [ebx]
 	mov	DWORD PTR [edi], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 195  :         c = _SUBTRUCT_UNIT(c, *xp++, *yp++, zp++);
+; 181  :         c = _SUBTRUCT_UNIT(c, *up++, *vp++, wp++);
 
-	mov	ecx, DWORD PTR _y_count$[ebp]
+	mov	ecx, DWORD PTR _v_count$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 
-; 195  :         c = _SUBTRUCT_UNIT(c, *xp++, *yp++, zp++);
+; 181  :         c = _SUBTRUCT_UNIT(c, *up++, *vp++, wp++);
 
 	add	esi, 4
 	mov	BYTE PTR _c$[ebp], al
 	add	edi, 4
 $LN8@Subtruct_I:
 
-; 196  : 
-; 197  :     // 残りの桁の繰り上がりを計算し、復帰する。
-; 198  :     return (DoBorrow(c, xp, x_count - y_count, zp, z_count - y_count));
+; 182  : 
+; 183  :     // 残りの桁の繰り上がりを計算し、復帰する。
+; 184  :     return (DoBorrow(c, up, u_count - v_count, wp, w_count - v_count));
 
-	mov	eax, DWORD PTR _z_count$[ebp]
+	mov	eax, DWORD PTR _w_count$[ebp]
 	sub	eax, ecx
 	push	eax
-	mov	eax, DWORD PTR _x_count$[ebp]
+	mov	eax, DWORD PTR _u_count$[ebp]
 	push	edi
 	sub	eax, ecx
 	push	eax
@@ -3620,7 +4206,7 @@ $LN8@Subtruct_I:
 	pop	esi
 	pop	ebx
 
-; 199  : }
+; 185  : }
 
 	mov	esp, ebp
 	pop	ebp

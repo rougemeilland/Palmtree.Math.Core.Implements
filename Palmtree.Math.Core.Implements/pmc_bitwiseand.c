@@ -144,6 +144,41 @@ static void BitwiseAnd_X_X(__UNIT_TYPE* u, __UNIT_TYPE*v, __UNIT_TYPE*w, __UNIT_
     }
 }
 
+PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_I_X(_UINT32_T u, HANDLE v, _UINT32_T* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+    {
+        // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+        return (result);
+    if (nv->IS_ZERO)
+    {
+        // v が 0 である場合
+        *w = 0;
+    }
+    else  if (u == 0)
+    {
+        // u が 0 である場合
+        *w = 0;
+    }
+    else
+    {
+        // u と v がともに 0 ではない場合
+
+        // u と v の bit AND を計算する
+        *w = nv->BLOCK[0] & u;
+    }
+    return (PMC_STATUS_OK);
+}
+
 PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_I(HANDLE u, _UINT32_T v, _UINT32_T* w)
 {
     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
@@ -161,7 +196,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_I(HANDLE u, _UINT32_T v, _UINT32_T* 
         return (result);
     if (nu->IS_ZERO)
     {
-        // x が 0 である場合
+        // u が 0 である場合
         *w = 0;
     }
     else  if (v == 0)
@@ -175,6 +210,55 @@ PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_X_I(HANDLE u, _UINT32_T v, _UINT32_T* 
 
         // u と v の bit AND を計算する
         *w = nu->BLOCK[0] & v;
+    }
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_BitwiseAnd_L_X(_UINT64_T u, HANDLE v, _UINT64_T* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+    {
+        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+        return (result);
+    if (nv->IS_ZERO)
+    {
+        // v が 0 である場合
+        *w = 0;
+    }
+    else if (u == 0)
+    {
+        // u が 0 である場合
+        *w = 0;
+    }
+    else
+    {
+        // u と v がともに 0 ではない場合
+
+        // x と y の和を計算する
+        if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+        {
+            // _UINT64_T が 1 ワードで表現しきれない場合
+
+            _UINT32_T u_hi;
+            _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
+            _UINT32_T w_hi = nv->UNIT_WORD_COUNT > 1 ? nv->BLOCK[1] & u_hi : 0;
+            _UINT32_T w_lo = nv->BLOCK[0] & u_lo;
+            *w = _FROMWORDTODWORD(w_hi, w_lo);
+        }
+        else
+        {
+            // _UINT64_T が 1 ワードで表現できる場合
+            *w = nv->BLOCK[0] & u;
+        }
     }
     return (PMC_STATUS_OK);
 }

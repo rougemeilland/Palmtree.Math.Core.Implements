@@ -6,6 +6,8 @@ INCLUDELIB MSVCRT
 INCLUDELIB OLDNAMES
 
 PUBLIC	Initialize_GreatestCommonDivisor
+PUBLIC	PMC_GreatestCommonDivisor_I_X
+PUBLIC	PMC_GreatestCommonDivisor_L_X
 PUBLIC	PMC_GreatestCommonDivisor_X_I
 PUBLIC	PMC_GreatestCommonDivisor_X_L
 PUBLIC	PMC_GreatestCommonDivisor_X_X
@@ -24,14 +26,26 @@ EXTRN	Subtruct_Imp:PROC
 EXTRN	Compare_Imp:PROC
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$PMC_GreatestCommonDivisor_X_I DD imagerel $LN41
-	DD	imagerel $LN41+606
+$pdata$PMC_GreatestCommonDivisor_I_X DD imagerel $LN10
+	DD	imagerel $LN10+94
+	DD	imagerel $unwind$PMC_GreatestCommonDivisor_I_X
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$PMC_GreatestCommonDivisor_L_X DD imagerel $LN10
+	DD	imagerel $LN10+96
+	DD	imagerel $unwind$PMC_GreatestCommonDivisor_L_X
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$PMC_GreatestCommonDivisor_X_I DD imagerel $LN10
+	DD	imagerel $LN10+91
 	DD	imagerel $unwind$PMC_GreatestCommonDivisor_X_I
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$PMC_GreatestCommonDivisor_X_L DD imagerel $LN99
-	DD	imagerel $LN99+584
+$pdata$PMC_GreatestCommonDivisor_X_L DD imagerel $LN10
+	DD	imagerel $LN10+93
 	DD	imagerel $unwind$PMC_GreatestCommonDivisor_X_L
 pdata	ENDS
 ;	COMDAT pdata
@@ -48,13 +62,95 @@ $pdata$_COPY_MEMORY_UNIT DD imagerel _COPY_MEMORY_UNIT
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$GreatestCommonDivisor DD imagerel GreatestCommonDivisor
-	DD	imagerel GreatestCommonDivisor+251
-	DD	imagerel $unwind$GreatestCommonDivisor
+$pdata$GreatestCommonDivisor_Imp DD imagerel GreatestCommonDivisor_Imp
+	DD	imagerel GreatestCommonDivisor_Imp+251
+	DD	imagerel $unwind$GreatestCommonDivisor_Imp
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$PMC_GreatestCommonDivisor_X_I_Imp DD imagerel PMC_GreatestCommonDivisor_X_I_Imp
+	DD	imagerel PMC_GreatestCommonDivisor_X_I_Imp+326
+	DD	imagerel $unwind$PMC_GreatestCommonDivisor_X_I_Imp
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$0$PMC_GreatestCommonDivisor_X_I_Imp DD imagerel PMC_GreatestCommonDivisor_X_I_Imp+326
+	DD	imagerel PMC_GreatestCommonDivisor_X_I_Imp+481
+	DD	imagerel $chain$0$PMC_GreatestCommonDivisor_X_I_Imp
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$1$PMC_GreatestCommonDivisor_X_I_Imp DD imagerel PMC_GreatestCommonDivisor_X_I_Imp+481
+	DD	imagerel PMC_GreatestCommonDivisor_X_I_Imp+628
+	DD	imagerel $chain$1$PMC_GreatestCommonDivisor_X_I_Imp
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$PMC_GreatestCommonDivisor_X_L_Imp DD imagerel PMC_GreatestCommonDivisor_X_L_Imp
+	DD	imagerel PMC_GreatestCommonDivisor_X_L_Imp+319
+	DD	imagerel $unwind$PMC_GreatestCommonDivisor_X_L_Imp
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$0$PMC_GreatestCommonDivisor_X_L_Imp DD imagerel PMC_GreatestCommonDivisor_X_L_Imp+319
+	DD	imagerel PMC_GreatestCommonDivisor_X_L_Imp+452
+	DD	imagerel $chain$0$PMC_GreatestCommonDivisor_X_L_Imp
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$1$PMC_GreatestCommonDivisor_X_L_Imp DD imagerel PMC_GreatestCommonDivisor_X_L_Imp+452
+	DD	imagerel PMC_GreatestCommonDivisor_X_L_Imp+601
+	DD	imagerel $chain$1$PMC_GreatestCommonDivisor_X_L_Imp
 pdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$GreatestCommonDivisor DD 0a1801H
+$chain$1$PMC_GreatestCommonDivisor_X_L_Imp DD 021H
+	DD	imagerel PMC_GreatestCommonDivisor_X_L_Imp
+	DD	imagerel PMC_GreatestCommonDivisor_X_L_Imp+319
+	DD	imagerel $unwind$PMC_GreatestCommonDivisor_X_L_Imp
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$chain$0$PMC_GreatestCommonDivisor_X_L_Imp DD 020821H
+	DD	015d408H
+	DD	imagerel PMC_GreatestCommonDivisor_X_L_Imp
+	DD	imagerel PMC_GreatestCommonDivisor_X_L_Imp+319
+	DD	imagerel $unwind$PMC_GreatestCommonDivisor_X_L_Imp
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_GreatestCommonDivisor_X_L_Imp DD 080f01H
+	DD	0f00bb20fH
+	DD	0c007e009H
+	DD	060047005H
+	DD	030025003H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$chain$1$PMC_GreatestCommonDivisor_X_I_Imp DD 021H
+	DD	imagerel PMC_GreatestCommonDivisor_X_I_Imp
+	DD	imagerel PMC_GreatestCommonDivisor_X_I_Imp+326
+	DD	imagerel $unwind$PMC_GreatestCommonDivisor_X_I_Imp
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$chain$0$PMC_GreatestCommonDivisor_X_I_Imp DD 020821H
+	DD	013d408H
+	DD	imagerel PMC_GreatestCommonDivisor_X_I_Imp
+	DD	imagerel PMC_GreatestCommonDivisor_X_I_Imp+326
+	DD	imagerel $unwind$PMC_GreatestCommonDivisor_X_I_Imp
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_GreatestCommonDivisor_X_I_Imp DD 080f01H
+	DD	0f00b920fH
+	DD	0c007e009H
+	DD	060047005H
+	DD	030025003H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$GreatestCommonDivisor_Imp DD 0a1801H
 	DD	0c6418H
 	DD	0b5418H
 	DD	0a3418H
@@ -78,34 +174,982 @@ $unwind$PMC_GreatestCommonDivisor_X_X DD 0a1701H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$PMC_GreatestCommonDivisor_X_L DD 0a1701H
-	DD	0153417H
-	DD	0f010b217H
-	DD	0d00ce00eH
-	DD	07008c00aH
-	DD	050066007H
+$unwind$PMC_GreatestCommonDivisor_X_L DD 060f01H
+	DD	07640fH
+	DD	06340fH
+	DD	0700b320fH
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$PMC_GreatestCommonDivisor_X_I DD 0a1701H
-	DD	0153417H
-	DD	0f010b217H
-	DD	0d00ce00eH
-	DD	07008c00aH
-	DD	050066007H
+$unwind$PMC_GreatestCommonDivisor_X_I DD 060f01H
+	DD	07640fH
+	DD	06340fH
+	DD	0700b320fH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_GreatestCommonDivisor_L_X DD 060f01H
+	DD	07640fH
+	DD	06340fH
+	DD	0700b320fH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_GreatestCommonDivisor_I_X DD 060f01H
+	DD	07640fH
+	DD	06340fH
+	DD	0700b320fH
 xdata	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-;	COMDAT GreatestCommonDivisor
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+;	COMDAT PMC_GreatestCommonDivisor_X_L_Imp
+_TEXT	SEGMENT
+nw_check_code$1 = 48
+work_u_buf_code$2 = 56
+work_v_buf_code$3 = 64
+k$1$ = 72
+w_buf_count$4 = 80
+work_u_buf_words$5 = 160
+u$ = 160
+v$ = 168
+w$ = 176
+work_v_buf_words$6 = 184
+PMC_GreatestCommonDivisor_X_L_Imp PROC			; COMDAT
+
+; 222  : {
+
+	push	rbx
+	push	rbp
+	push	rsi
+	push	rdi
+	push	r12
+	push	r14
+	push	r15
+	sub	rsp, 96					; 00000060H
+
+; 223  :     PMC_STATUS_CODE result;
+; 224  :     if (u->IS_ZERO)
+
+	test	BYTE PTR [rcx+32], 2
+	mov	rbx, r8
+	mov	rbp, rdx
+	mov	rdi, rcx
+	je	SHORT $LN2@PMC_Greate
+
+; 225  :     {
+; 226  :         // u が 0 である場合
+; 227  : 
+; 228  :         if (v == 0)
+
+	test	rdx, rdx
+	jne	SHORT $LN4@PMC_Greate
+
+; 229  :         {
+; 230  :             // v が 0 である場合
+; 231  : 
+; 232  :             // u と v がともに 0 であり、GCD は一意に存在しないため、エラーを返す。
+; 233  :             return (PMC_STATUS_ARGUMENT_ERROR);
+
+	lea	eax, QWORD PTR [rdx-1]
+
+; 439  : }
+
+	add	rsp, 96					; 00000060H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN4@PMC_Greate:
+
+; 234  :         }
+; 235  :         else
+; 236  :         {
+; 237  :             // v が 0 ではない場合
+; 238  : 
+; 239  :             // GCD は v そのものであるため、v を計算結果として返す。
+; 240  :             if ((result = From_L_Imp(v, w)) != PMC_STATUS_OK)
+
+	mov	rdx, rbx
+	mov	rcx, rbp
+	call	From_L_Imp
+	test	eax, eax
+	je	$LN11@PMC_Greate
+
+; 439  : }
+
+	add	rsp, 96					; 00000060H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN2@PMC_Greate:
+
+; 241  :                 return (result);
+; 242  :         }
+; 243  :     }
+; 244  :     else
+; 245  :     {
+; 246  :         // u が 0 ではない場合
+; 247  : 
+; 248  :         if (v == 0)
+
+	test	rbp, rbp
+	jne	SHORT $LN7@PMC_Greate
+
+; 249  :         {
+; 250  :             // v が 0 である場合
+; 251  : 
+; 252  :             // GCD は u そのものであるため、u を計算結果として返す。
+; 253  :             if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
+
+	mov	rdx, rbx
+	call	DuplicateNumber
+	test	eax, eax
+	je	$LN11@PMC_Greate
+
+; 439  : }
+
+	add	rsp, 96					; 00000060H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN7@PMC_Greate:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 894  :     _BitScanReverse64(&pos, x);
+
+	bsr	r14, rbp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 390  :                 __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+
+	lea	r8, QWORD PTR work_u_buf_code$2[rsp]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 904  :     return (sizeof(x) * 8 - 1 - pos);
+
+	inc	r14
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 390  :                 __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+
+	lea	rdx, QWORD PTR work_u_buf_words$5[rsp]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 454  :     return (x >= y ? x : y);
+
+	cmp	QWORD PTR [rcx+8], r14
+	cmovae	r14, QWORD PTR [rcx+8]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 390  :                 __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+
+	mov	rcx, r14
+	call	AllocateBlock
+	mov	r15, rax
+
+; 391  :                 if (work_u_buf == NULL)
+
+	test	rax, rax
+	je	SHORT $LN92@PMC_Greate
+
+; 392  :                     return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 393  : 
+; 394  :                 __UNIT_TYPE work_v_buf_code;
+; 395  :                 __UNIT_TYPE work_v_buf_words;
+; 396  :                 __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
+
+	lea	r8, QWORD PTR work_v_buf_code$3[rsp]
+	mov	rcx, r14
+	lea	rdx, QWORD PTR work_v_buf_words$6[rsp]
+	call	AllocateBlock
+	mov	r12, rax
+
+; 397  :                 if (work_v_buf == NULL)
+
+	test	rax, rax
+	jne	SHORT $LN34@PMC_Greate
+
+; 398  :                 {
+; 399  :                     DeallocateBlock(work_u_buf, work_u_buf_words);
+
+	mov	rdx, QWORD PTR work_u_buf_words$5[rsp]
+	mov	rcx, r15
+	call	DeallocateBlock
+$LN92@PMC_Greate:
+
+; 439  : }
+
+	mov	eax, -5
+	add	rsp, 96					; 00000060H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN34@PMC_Greate:
+
+; 400  :                     return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 401  :                 }
+; 402  : 
+; 403  :                 __UNIT_TYPE nw_check_code;
+; 404  :                 if ((result = AllocateNumber(w, work_bit_count, &nw_check_code)) != PMC_STATUS_OK)
+
+	lea	r8, QWORD PTR nw_check_code$1[rsp]
+	mov	rdx, r14
+	mov	rcx, rbx
+	call	AllocateNumber
+	mov	esi, eax
+	test	eax, eax
+	je	SHORT $LN35@PMC_Greate
+
+; 405  :                 {
+; 406  :                     DeallocateBlock(work_v_buf, work_v_buf_words);
+
+	mov	rdx, QWORD PTR work_v_buf_words$6[rsp]
+	mov	rcx, r12
+	call	DeallocateBlock
+
+; 407  :                     DeallocateBlock(work_u_buf, work_u_buf_words);
+
+	mov	rdx, QWORD PTR work_u_buf_words$5[rsp]
+	mov	rcx, r15
+	call	DeallocateBlock
+
+; 408  :                     return (result);
+
+	mov	eax, esi
+
+; 439  : }
+
+	add	rsp, 96					; 00000060H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN35@PMC_Greate:
+
+; 409  :                 }
+; 410  : 
+; 411  :                 __UNIT_TYPE u_tzcnt = u->TRAILING_ZERO_BITS_COUNT;
+
+	mov	r8, QWORD PTR [rdi+24]
+
+; 412  :                 __UNIT_TYPE v_tzcnt = _TZCNT_ALT_UNIT((__UNIT_TYPE)v);
+; 413  :                 __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
+
+	mov	rcx, QWORD PTR [rdi]
+	mov	rsi, QWORD PTR [rdi+48]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 974  :     _BitScanForward64(&pos, x);
+
+	bsf	rax, rbp
+	mov	QWORD PTR [rsp+168], r13
+
+; 975  : #elif defined(__GNUC__)
+; 976  :     _UINT64_T pos;
+; 977  :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 978  : #else
+; 979  : #error unknown compiler
+; 980  : #endif
+; 981  : #else
+; 982  : #error unknown platform
+; 983  : #endif
+; 984  :     return (pos);
+
+	mov	r13d, eax
+
+; 459  :     return (x <= y ? x : y);
+
+	cmp	r8, r13
+	cmovbe	rax, r8
+	mov	QWORD PTR k$1$[rsp], rax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 414  :                 if (u_tzcnt > 0)
+
+	test	r8, r8
+	je	SHORT $LN36@PMC_Greate
+
+; 415  :                     RightShift_Imp(u->BLOCK, u->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, FALSE);
+
+	mov	rdx, rcx
+	mov	DWORD PTR [rsp+32], 0
+	mov	rcx, rsi
+	mov	r9, r15
+	call	RightShift_Imp
+	jmp	SHORT $LN88@PMC_Greate
+$LN36@PMC_Greate:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 320  :     __movsq(d, s, count);
+
+	mov	rdi, r15
+	rep movsq
+$LN88@PMC_Greate:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 418  :                 work_v_buf[0] = (__UNIT_TYPE)(v >> v_tzcnt);
+
+	mov	rcx, r13
+
+; 421  :                 GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), (*w)->BLOCK, &w_buf_count);
+
+	lea	rax, QWORD PTR w_buf_count$4[rsp]
+	shr	rbp, cl
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 444  :     return ((u + v - 1) / v);
+
+	lea	r8, QWORD PTR [r14+63]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 418  :                 work_v_buf[0] = (__UNIT_TYPE)(v >> v_tzcnt);
+
+	mov	QWORD PTR [r12], rbp
+
+; 421  :                 GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), (*w)->BLOCK, &w_buf_count);
+
+	mov	rdx, r12
+	mov	r9, QWORD PTR [rbx]
+	mov	rcx, r15
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 444  :     return ((u + v - 1) / v);
+
+	shr	r8, 6
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 421  :                 GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), (*w)->BLOCK, &w_buf_count);
+
+	mov	QWORD PTR [rsp+32], rax
+	mov	r9, QWORD PTR [r9+48]
+	call	GreatestCommonDivisor_Imp
+
+; 422  :                 if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != PMC_STATUS_OK)
+
+	mov	rdx, QWORD PTR work_u_buf_code$2[rsp]
+	mov	rcx, r15
+	call	CheckBlockLight
+	mov	r13, QWORD PTR [rsp+168]
+	test	eax, eax
+	jne	$LN1@PMC_Greate
+
+; 423  :                     return (result);
+; 424  :                 if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
+
+	mov	rdx, QWORD PTR work_v_buf_code$3[rsp]
+	mov	rcx, r12
+	call	CheckBlockLight
+	test	eax, eax
+	jne	SHORT $LN1@PMC_Greate
+
+; 425  :                     return (result);
+; 426  :                 if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR [rbx]
+	mov	rdx, QWORD PTR nw_check_code$1[rsp]
+	mov	rcx, QWORD PTR [rcx+48]
+	call	CheckBlockLight
+	test	eax, eax
+	jne	SHORT $LN1@PMC_Greate
+
+; 427  :                     return (result);
+; 428  :                 DeallocateBlock(work_v_buf, work_v_buf_words);
+
+	mov	rdx, QWORD PTR work_v_buf_words$6[rsp]
+	mov	rcx, r12
+	call	DeallocateBlock
+
+; 429  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
+
+	mov	rdx, QWORD PTR work_u_buf_words$5[rsp]
+	mov	rcx, r15
+	call	DeallocateBlock
+
+; 430  : 
+; 431  :                 LeftShift_Imp((*w)->BLOCK, w_buf_count, k, (*w)->BLOCK, TRUE);
+
+	mov	rax, QWORD PTR [rbx]
+	mov	r8, QWORD PTR k$1$[rsp]
+	mov	rdx, QWORD PTR w_buf_count$4[rsp]
+	mov	DWORD PTR [rsp+32], 1
+	mov	rcx, QWORD PTR [rax+48]
+	mov	r9, rcx
+	call	LeftShift_Imp
+
+; 432  :                 if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR [rbx]
+	mov	rdx, QWORD PTR nw_check_code$1[rsp]
+	mov	rcx, QWORD PTR [rcx+48]
+	call	CheckBlockLight
+	test	eax, eax
+	jne	SHORT $LN1@PMC_Greate
+
+; 433  :                     return (result);
+; 434  :                 CommitNumber(*w);
+
+	mov	rcx, QWORD PTR [rbx]
+	call	CommitNumber
+$LN11@PMC_Greate:
+
+; 435  :             }
+; 436  :         }
+; 437  :     }
+; 438  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Greate:
+
+; 439  : }
+
+	add	rsp, 96					; 00000060H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+PMC_GreatestCommonDivisor_X_L_Imp ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+;	COMDAT PMC_GreatestCommonDivisor_X_I_Imp
+_TEXT	SEGMENT
+nw_check_code$1 = 48
+k$1$ = 56
+w_buf_count$2 = 56
+work_u_buf_code$3 = 64
+work_v_buf_code$4 = 72
+work_u_buf_words$5 = 144
+u$ = 144
+v$ = 152
+w$ = 160
+work_v_buf_words$6 = 168
+PMC_GreatestCommonDivisor_X_I_Imp PROC			; COMDAT
+
+; 80   : {
+
+	push	rbx
+	push	rbp
+	push	rsi
+	push	rdi
+	push	r12
+	push	r14
+	push	r15
+	sub	rsp, 80					; 00000050H
+
+; 81   :     PMC_STATUS_CODE result;
+; 82   :     if (u->IS_ZERO)
+
+	test	BYTE PTR [rcx+32], 2
+	mov	rbx, r8
+	mov	edi, edx
+	mov	rsi, rcx
+	je	SHORT $LN2@PMC_Greate
+
+; 83   :     {
+; 84   :         // u が 0 である場合
+; 85   : 
+; 86   :         if (v == 0)
+
+	test	edx, edx
+	jne	SHORT $LN4@PMC_Greate
+
+; 87   :         {
+; 88   :             // v が 0 である場合
+; 89   : 
+; 90   :             // u と v がともに 0 であり、GCD は一意に存在しないため、エラーを返す。
+; 91   :             return (PMC_STATUS_ARGUMENT_ERROR);
+
+	lea	eax, QWORD PTR [rdx-1]
+
+; 173  : }
+
+	add	rsp, 80					; 00000050H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN4@PMC_Greate:
+
+; 92   :         }
+; 93   :         else
+; 94   :         {
+; 95   :             // v が 0 ではない場合
+; 96   : 
+; 97   :             // GCD は v そのものであるため、v を計算結果として返す。
+; 98   :             if ((result = From_I_Imp(v, w)) != PMC_STATUS_OK)
+
+	mov	rdx, rbx
+	mov	ecx, edi
+	call	From_I_Imp
+	test	eax, eax
+	je	$LN8@PMC_Greate
+
+; 173  : }
+
+	add	rsp, 80					; 00000050H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN2@PMC_Greate:
+
+; 99   :                 return (result);
+; 100  :         }
+; 101  :     }
+; 102  :     else
+; 103  :     {
+; 104  :         // u が 0 ではない場合
+; 105  : 
+; 106  :         if (v == 0)
+
+	test	edx, edx
+	jne	SHORT $LN7@PMC_Greate
+
+; 107  :         {
+; 108  :             // v が 0 である場合
+; 109  : 
+; 110  :             // GCD は u そのものであるため、u を計算結果として返す。
+; 111  :             if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
+
+	mov	rdx, rbx
+	call	DuplicateNumber
+	test	eax, eax
+	je	$LN8@PMC_Greate
+
+; 173  : }
+
+	add	rsp, 80					; 00000050H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN7@PMC_Greate:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 851  :     _BitScanReverse(&pos, x);
+
+	bsr	eax, edi
+
+; 857  :     return (sizeof(x) * 8 - 1 - pos);
+
+	mov	ecx, 31
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 125  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+
+	lea	r8, QWORD PTR work_u_buf_code$3[rsp]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 857  :     return (sizeof(x) * 8 - 1 - pos);
+
+	sub	ecx, eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 125  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+
+	lea	rdx, QWORD PTR work_u_buf_words$5[rsp]
+	mov	eax, ecx
+	mov	r15d, 32				; 00000020H
+	sub	r15, rax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 454  :     return (x >= y ? x : y);
+
+	cmp	QWORD PTR [rsi+8], r15
+	cmovae	r15, QWORD PTR [rsi+8]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 125  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+
+	mov	rcx, r15
+	call	AllocateBlock
+	mov	rbp, rax
+
+; 126  :             if (work_u_buf == NULL)
+
+	test	rax, rax
+	je	SHORT $LN34@PMC_Greate
+
+; 127  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 128  : 
+; 129  :             __UNIT_TYPE work_v_buf_code;
+; 130  :             __UNIT_TYPE work_v_buf_words;
+; 131  :             __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
+
+	lea	r8, QWORD PTR work_v_buf_code$4[rsp]
+	mov	rcx, r15
+	lea	rdx, QWORD PTR work_v_buf_words$6[rsp]
+	call	AllocateBlock
+	mov	r14, rax
+
+; 132  :             if (work_v_buf == NULL)
+
+	test	rax, rax
+	jne	SHORT $LN11@PMC_Greate
+
+; 133  :             {
+; 134  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
+
+	mov	rdx, QWORD PTR work_u_buf_words$5[rsp]
+	mov	rcx, rbp
+	call	DeallocateBlock
+$LN34@PMC_Greate:
+
+; 173  : }
+
+	mov	eax, -5
+	add	rsp, 80					; 00000050H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN11@PMC_Greate:
+
+; 135  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 136  :             }
+; 137  : 
+; 138  :             __UNIT_TYPE nw_check_code;
+; 139  :             if ((result = AllocateNumber(w, work_bit_count, &nw_check_code)) != PMC_STATUS_OK)
+
+	lea	r8, QWORD PTR nw_check_code$1[rsp]
+	mov	rdx, r15
+	mov	rcx, rbx
+	call	AllocateNumber
+	mov	r12d, eax
+	test	eax, eax
+	je	SHORT $LN12@PMC_Greate
+
+; 140  :             {
+; 141  :                 DeallocateBlock(work_v_buf, work_v_buf_words);
+
+	mov	rdx, QWORD PTR work_v_buf_words$6[rsp]
+	mov	rcx, r14
+	call	DeallocateBlock
+
+; 142  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
+
+	mov	rdx, QWORD PTR work_u_buf_words$5[rsp]
+	mov	rcx, rbp
+	call	DeallocateBlock
+
+; 143  :                 return (result);
+
+	mov	eax, r12d
+
+; 173  : }
+
+	add	rsp, 80					; 00000050H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+$LN12@PMC_Greate:
+
+; 144  :             }
+; 145  : 
+; 146  :             __UNIT_TYPE u_tzcnt = u->TRAILING_ZERO_BITS_COUNT;
+
+	mov	r8, QWORD PTR [rsi+24]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 961  :         return (sizeof(x) * 8);
+
+	mov	r12d, 64				; 00000040H
+	mov	QWORD PTR [rsp+152], r13
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 147  :             __UNIT_TYPE v_tzcnt = _TZCNT_ALT_UNIT(v);
+
+	mov	r13, rdi
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 960  :     if (x == 0)
+
+	test	edi, edi
+	je	SHORT $LN25@PMC_Greate
+
+; 962  : #ifdef _M_IX86
+; 963  :     _UINT32_T pos;
+; 964  : #ifdef _MSC_VER
+; 965  :     _BitScanForward(&pos, x);
+; 966  : #elif defined(__GNUC__)
+; 967  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+; 968  : #else
+; 969  : #error unknown compiler
+; 970  : #endif
+; 971  : #elif defined(_M_X64)
+; 972  : #ifdef _MSC_VER
+; 973  :     _UINT32_T pos;
+; 974  :     _BitScanForward64(&pos, x);
+
+	bsf	r12, rdi
+$LN25@PMC_Greate:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 148  :             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
+
+	mov	rcx, QWORD PTR [rsi]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 459  :     return (x <= y ? x : y);
+
+	cmp	r8, r12
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 148  :             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
+
+	mov	rsi, QWORD PTR [rsi+48]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 459  :     return (x <= y ? x : y);
+
+	mov	rdi, r12
+	cmovbe	rdi, r8
+	mov	QWORD PTR k$1$[rsp], rdi
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 149  :             if (u_tzcnt > 0)
+
+	test	r8, r8
+	je	SHORT $LN13@PMC_Greate
+
+; 150  :                 RightShift_Imp(u->BLOCK, u->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, FALSE);
+
+	mov	rdx, rcx
+	mov	DWORD PTR [rsp+32], 0
+	mov	rcx, rsi
+	mov	r9, rbp
+	call	RightShift_Imp
+	jmp	SHORT $LN30@PMC_Greate
+$LN13@PMC_Greate:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 320  :     __movsq(d, s, count);
+
+	mov	rdi, rbp
+	rep movsq
+	mov	rdi, QWORD PTR k$1$[rsp]
+$LN30@PMC_Greate:
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 153  :             work_v_buf[0] = v >> v_tzcnt;
+
+	mov	rcx, r12
+
+; 156  :             GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), (*w)->BLOCK, &w_buf_count);
+
+	lea	rax, QWORD PTR w_buf_count$2[rsp]
+	shr	r13, cl
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 444  :     return ((u + v - 1) / v);
+
+	lea	r8, QWORD PTR [r15+63]
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 153  :             work_v_buf[0] = v >> v_tzcnt;
+
+	mov	QWORD PTR [r14], r13
+
+; 156  :             GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), (*w)->BLOCK, &w_buf_count);
+
+	mov	rdx, r14
+	mov	r9, QWORD PTR [rbx]
+	mov	rcx, rbp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+
+; 444  :     return ((u + v - 1) / v);
+
+	shr	r8, 6
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+
+; 156  :             GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), (*w)->BLOCK, &w_buf_count);
+
+	mov	QWORD PTR [rsp+32], rax
+	mov	r9, QWORD PTR [r9+48]
+	call	GreatestCommonDivisor_Imp
+
+; 157  :             if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != PMC_STATUS_OK)
+
+	mov	rdx, QWORD PTR work_u_buf_code$3[rsp]
+	mov	rcx, rbp
+	call	CheckBlockLight
+	mov	r13, QWORD PTR [rsp+152]
+	test	eax, eax
+	jne	$LN1@PMC_Greate
+
+; 158  :                 return (result);
+; 159  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
+
+	mov	rdx, QWORD PTR work_v_buf_code$4[rsp]
+	mov	rcx, r14
+	call	CheckBlockLight
+	test	eax, eax
+	jne	SHORT $LN1@PMC_Greate
+
+; 160  :                 return (result);
+; 161  :             if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR [rbx]
+	mov	rdx, QWORD PTR nw_check_code$1[rsp]
+	mov	rcx, QWORD PTR [rcx+48]
+	call	CheckBlockLight
+	test	eax, eax
+	jne	SHORT $LN1@PMC_Greate
+
+; 162  :                 return (result);
+; 163  :             DeallocateBlock(work_v_buf, work_v_buf_words);
+
+	mov	rdx, QWORD PTR work_v_buf_words$6[rsp]
+	mov	rcx, r14
+	call	DeallocateBlock
+
+; 164  :             DeallocateBlock(work_u_buf, work_u_buf_words);
+
+	mov	rdx, QWORD PTR work_u_buf_words$5[rsp]
+	mov	rcx, rbp
+	call	DeallocateBlock
+
+; 165  : 
+; 166  :             LeftShift_Imp((*w)->BLOCK, w_buf_count, k, (*w)->BLOCK, TRUE);
+
+	mov	rax, QWORD PTR [rbx]
+	mov	r8, rdi
+	mov	rdx, QWORD PTR w_buf_count$2[rsp]
+	mov	DWORD PTR [rsp+32], 1
+	mov	rcx, QWORD PTR [rax+48]
+	mov	r9, rcx
+	call	LeftShift_Imp
+
+; 167  :             if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR [rbx]
+	mov	rdx, QWORD PTR nw_check_code$1[rsp]
+	mov	rcx, QWORD PTR [rcx+48]
+	call	CheckBlockLight
+	test	eax, eax
+	jne	SHORT $LN1@PMC_Greate
+
+; 168  :                 return (result);
+; 169  :             CommitNumber(*w);
+
+	mov	rcx, QWORD PTR [rbx]
+	call	CommitNumber
+$LN8@PMC_Greate:
+
+; 170  :         }
+; 171  :     }
+; 172  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Greate:
+
+; 173  : }
+
+	add	rsp, 80					; 00000050H
+	pop	r15
+	pop	r14
+	pop	r12
+	pop	rdi
+	pop	rsi
+	pop	rbp
+	pop	rbx
+	ret	0
+PMC_GreatestCommonDivisor_X_I_Imp ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+;	COMDAT GreatestCommonDivisor_Imp
 _TEXT	SEGMENT
 p1_buf$ = 80
 p2_buf$ = 88
 word_count$ = 96
 w_buf$ = 104
 w_buf_count$ = 112
-GreatestCommonDivisor PROC				; COMDAT
+GreatestCommonDivisor_Imp PROC				; COMDAT
 
 ; 39   : {
 
@@ -223,14 +1267,16 @@ $LN11@GreatestCo:
 	call	Subtruct_Imp
 
 ; 71   : 
-; 72   :         while ((*u & 1) == 0)
+; 72   :         // この時点で u は偶数
+; 73   : 
+; 74   :         while ((*u & 1) == 0)
 
 	test	BYTE PTR [rsi], 1
 	jne	SHORT $LL2@GreatestCo
 	npad	10
 $LL7@GreatestCo:
 
-; 73   :             RightShift_Imp(u, word_count, 1, u, TRUE);
+; 75   :             RightShift_Imp(u, word_count, 1, u, TRUE);
 
 	mov	r9, rsi
 	mov	DWORD PTR [rsp+32], 1
@@ -243,19 +1289,19 @@ $LL7@GreatestCo:
 	jmp	$LL2@GreatestCo
 $LN19@GreatestCo:
 
-; 75   : }
+; 77   : }
 
 	mov	rbp, QWORD PTR [rsp+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 300  :     __movsq(d, s, count);
+; 320  :     __movsq(d, s, count);
 
 	mov	rcx, rbx
 	mov	rdi, r14
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
-; 75   : }
+; 77   : }
 
 	mov	rsi, QWORD PTR [rsp+96]
 	mov	QWORD PTR [r15], rbx
@@ -265,7 +1311,7 @@ $LN19@GreatestCo:
 	pop	r14
 	pop	rdi
 	ret	0
-GreatestCommonDivisor ENDP
+GreatestCommonDivisor_Imp ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -274,41 +1320,41 @@ _TEXT	SEGMENT
 x$ = 8
 _TZCNT_ALT_UNIT PROC					; COMDAT
 
-; 940  :     if (x == 0)
-; 941  :         return (sizeof(x) * 8);
+; 960  :     if (x == 0)
+; 961  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	test	rcx, rcx
 	je	SHORT $LN1@TZCNT_ALT_
 
-; 942  : #ifdef _M_IX86
-; 943  :     _UINT32_T pos;
-; 944  : #ifdef _MSC_VER
-; 945  :     _BitScanForward(&pos, x);
-; 946  : #elif defined(__GNUC__)
-; 947  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-; 948  : #else
-; 949  : #error unknown compiler
-; 950  : #endif
-; 951  : #elif defined(_M_X64)
-; 952  : #ifdef _MSC_VER
-; 953  :     _UINT32_T pos;
-; 954  :     _BitScanForward64(&pos, x);
+; 962  : #ifdef _M_IX86
+; 963  :     _UINT32_T pos;
+; 964  : #ifdef _MSC_VER
+; 965  :     _BitScanForward(&pos, x);
+; 966  : #elif defined(__GNUC__)
+; 967  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+; 968  : #else
+; 969  : #error unknown compiler
+; 970  : #endif
+; 971  : #elif defined(_M_X64)
+; 972  : #ifdef _MSC_VER
+; 973  :     _UINT32_T pos;
+; 974  :     _BitScanForward64(&pos, x);
 
 	bsf	rax, rcx
 $LN1@TZCNT_ALT_:
 
-; 955  : #elif defined(__GNUC__)
-; 956  :     _UINT64_T pos;
-; 957  :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
-; 958  : #else
-; 959  : #error unknown compiler
-; 960  : #endif
-; 961  : #else
-; 962  : #error unknown platform
-; 963  : #endif
-; 964  :     return (pos);
-; 965  : }
+; 975  : #elif defined(__GNUC__)
+; 976  :     _UINT64_T pos;
+; 977  :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 978  : #else
+; 979  : #error unknown compiler
+; 980  : #endif
+; 981  : #else
+; 982  : #error unknown platform
+; 983  : #endif
+; 984  :     return (pos);
+; 985  : }
 
 	ret	0
 _TZCNT_ALT_UNIT ENDP
@@ -320,51 +1366,51 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 860  :     if (x == 0)
+; 880  :     if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 861  :         return (sizeof(x) * 8);
+; 881  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 
-; 885  : }
+; 905  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 862  : #ifdef _M_IX86
-; 863  :     _UINT32_T pos;
-; 864  : #ifdef _MSC_VER
-; 865  :     _BitScanReverse(&pos, x);
-; 866  : #elif defined(__GNUC__)
-; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 868  : #else
-; 869  : #error unknown compiler
-; 870  : #endif
-; 871  : #elif defined(_M_X64)
-; 872  : #ifdef _MSC_VER
-; 873  :     _UINT32_T pos;
-; 874  :     _BitScanReverse64(&pos, x);
+; 882  : #ifdef _M_IX86
+; 883  :     _UINT32_T pos;
+; 884  : #ifdef _MSC_VER
+; 885  :     _BitScanReverse(&pos, x);
+; 886  : #elif defined(__GNUC__)
+; 887  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 888  : #else
+; 889  : #error unknown compiler
+; 890  : #endif
+; 891  : #elif defined(_M_X64)
+; 892  : #ifdef _MSC_VER
+; 893  :     _UINT32_T pos;
+; 894  :     _BitScanReverse64(&pos, x);
 
 	bsr	rcx, rcx
 
-; 875  : #elif defined(__GNUC__)
-; 876  :     _UINT64_T pos;
-; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 878  : #else
-; 879  : #error unknown compiler
-; 880  : #endif
-; 881  : #else
-; 882  : #error unknown platform
-; 883  : #endif
-; 884  :     return (sizeof(x) * 8 - 1 - pos);
+; 895  : #elif defined(__GNUC__)
+; 896  :     _UINT64_T pos;
+; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 898  : #else
+; 899  : #error unknown compiler
+; 900  : #endif
+; 901  : #else
+; 902  : #error unknown platform
+; 903  : #endif
+; 904  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 63					; 0000003fH
 	sub	rax, rcx
 
-; 885  : }
+; 905  : }
 
 	ret	0
 _LZCNT_ALT_UNIT ENDP
@@ -376,37 +1422,37 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 827  :     if (x == 0)
+; 847  :     if (x == 0)
 
 	test	ecx, ecx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 828  :         return (sizeof(x) * 8);
+; 848  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 838  : }
+; 858  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 829  :     _UINT32_T pos;
-; 830  : #ifdef _MSC_VER
-; 831  :     _BitScanReverse(&pos, x);
+; 849  :     _UINT32_T pos;
+; 850  : #ifdef _MSC_VER
+; 851  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, ecx
 
-; 832  : #elif defined(__GNUC__)
-; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 834  : #else
-; 835  : #error unknown compiler
-; 836  : #endif
-; 837  :     return (sizeof(x) * 8 - 1 - pos);
+; 852  : #elif defined(__GNUC__)
+; 853  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 854  : #else
+; 855  : #error unknown compiler
+; 856  : #endif
+; 857  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31
 	sub	eax, ecx
 
-; 838  : }
+; 858  : }
 
 	ret	0
 _LZCNT_ALT_32 ENDP
@@ -419,13 +1465,13 @@ x$ = 8
 y$ = 16
 _MINIMUM_UNIT PROC					; COMDAT
 
-; 439  :     return (x <= y ? x : y);
+; 459  :     return (x <= y ? x : y);
 
 	cmp	rcx, rdx
 	cmovbe	rdx, rcx
 	mov	rax, rdx
 
-; 440  : }
+; 460  : }
 
 	ret	0
 _MINIMUM_UNIT ENDP
@@ -438,13 +1484,13 @@ x$ = 8
 y$ = 16
 _MAXIMUM_UNIT PROC					; COMDAT
 
-; 434  :     return (x >= y ? x : y);
+; 454  :     return (x >= y ? x : y);
 
 	cmp	rcx, rdx
 	cmovae	rdx, rcx
 	mov	rax, rdx
 
-; 435  : }
+; 455  : }
 
 	ret	0
 _MAXIMUM_UNIT ENDP
@@ -457,7 +1503,7 @@ u$ = 8
 v$ = 16
 _DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 424  :     return ((u + v - 1) / v);
+; 444  :     return ((u + v - 1) / v);
 
 	lea	rax, QWORD PTR [rdx-1]
 	mov	r8, rdx
@@ -465,7 +1511,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	xor	edx, edx
 	div	r8
 
-; 425  : }
+; 445  : }
 
 	ret	0
 _DIVIDE_CEILING_UNIT ENDP
@@ -478,17 +1524,17 @@ value$ = 8
 result_high$ = 16
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 413  :     *result_high = (_UINT32_T)(value >> 32);
+; 433  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, rcx
 	shr	rax, 32					; 00000020H
 	mov	DWORD PTR [rdx], eax
 
-; 414  :     return ((_UINT32_T)value);
+; 434  :     return ((_UINT32_T)value);
 
 	mov	eax, ecx
 
-; 415  : }
+; 435  : }
 
 	ret	0
 _FROMDWORDTOWORD ENDP
@@ -502,25 +1548,25 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 296  : {
+; 316  : {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 
-; 297  : #ifdef _M_IX86
-; 298  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 299  : #elif defined(_M_X64)
-; 300  :     __movsq(d, s, count);
+; 317  : #ifdef _M_IX86
+; 318  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 319  : #elif defined(_M_X64)
+; 320  :     __movsq(d, s, count);
 
 	mov	rdi, rcx
 	mov	rsi, rdx
 	mov	rcx, r8
 	rep movsq
 
-; 301  : #else
-; 302  : #error unknown platform
-; 303  : #endif
-; 304  : }
+; 321  : #else
+; 322  : #error unknown platform
+; 323  : #endif
+; 324  : }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -561,7 +1607,7 @@ w$ = 176
 work_u_buf_words$6 = 184
 PMC_GreatestCommonDivisor_X_X PROC			; COMDAT
 
-; 436  : {
+; 488  : {
 
 $LN40:
 	mov	QWORD PTR [rsp+16], rbx
@@ -578,65 +1624,65 @@ $LN40:
 	mov	rbx, rdx
 	mov	rdi, rcx
 
-; 437  :     if (u == NULL)
+; 489  :     if (u == NULL)
 
 	test	rcx, rcx
 	je	$LN37@PMC_Greate
 
-; 438  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 439  :     if (v == NULL)
+; 490  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 491  :     if (v == NULL)
 
 	test	rdx, rdx
 	je	$LN37@PMC_Greate
 
-; 440  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 441  :     if (w == NULL)
+; 492  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 493  :     if (w == NULL)
 
 	test	r8, r8
 	je	$LN37@PMC_Greate
 
-; 442  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 443  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
-; 444  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
-; 445  :     PMC_STATUS_CODE result;
-; 446  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 494  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 495  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 496  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 497  :     PMC_STATUS_CODE result;
+; 498  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_Greate
 
-; 447  :         return (result);
-; 448  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+; 499  :         return (result);
+; 500  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
 	mov	rcx, rbx
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_Greate
 
-; 449  :         return (result);
-; 450  :     NUMBER_HEADER* nw;
-; 451  :     if (nu->IS_ZERO)
+; 501  :         return (result);
+; 502  :     NUMBER_HEADER* nw;
+; 503  :     if (nu->IS_ZERO)
 
 	mov	eax, DWORD PTR [rbx+32]
 	and	eax, 2
 	test	BYTE PTR [rdi+32], 2
 	je	SHORT $LN7@PMC_Greate
 
-; 452  :     {
-; 453  :         // u が 0 である場合
-; 454  : 
-; 455  :         if (nv->IS_ZERO)
+; 504  :     {
+; 505  :         // u が 0 である場合
+; 506  : 
+; 507  :         if (nv->IS_ZERO)
 
 	test	eax, eax
 	jne	$LN37@PMC_Greate
 
-; 461  :         }
-; 462  :         else
-; 463  :         {
-; 464  :             // v が 0 ではない場合
-; 465  : 
-; 466  :             // GCD は v そのものであるため、v を計算結果として返す。
-; 467  :             if ((result = DuplicateNumber(nv, &nw)) != PMC_STATUS_OK)
+; 513  :         }
+; 514  :         else
+; 515  :         {
+; 516  :             // v が 0 ではない場合
+; 517  : 
+; 518  :             // GCD は v そのものであるため、v を計算結果として返す。
+; 519  :             if ((result = DuplicateNumber(nv, &nw)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR nw$[rbp-96]
 	mov	rcx, rbx
@@ -644,28 +1690,28 @@ $LN40:
 	test	eax, eax
 	je	$LN14@PMC_Greate
 
-; 468  :                 return (result);
+; 520  :                 return (result);
 
 	jmp	$LN1@PMC_Greate
 $LN7@PMC_Greate:
 
-; 469  :             *w = nw;
-; 470  :         }
-; 471  :     }
-; 472  :     else
-; 473  :     {
-; 474  :         // u が 0 ではない場合
-; 475  : 
-; 476  :         if (nv->IS_ZERO)
+; 521  :             *w = nw;
+; 522  :         }
+; 523  :     }
+; 524  :     else
+; 525  :     {
+; 526  :         // u が 0 ではない場合
+; 527  : 
+; 528  :         if (nv->IS_ZERO)
 
 	test	eax, eax
 	je	SHORT $LN12@PMC_Greate
 
-; 477  :         {
-; 478  :             // v が 0 である場合
-; 479  : 
-; 480  :             // GCD は u そのものであるため、u を計算結果として返す。
-; 481  :             if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
+; 529  :         {
+; 530  :             // v が 0 である場合
+; 531  : 
+; 532  :             // GCD は u そのものであるため、u を計算結果として返す。
+; 533  :             if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR nw$[rbp-96]
 	mov	rcx, rdi
@@ -673,14 +1719,14 @@ $LN7@PMC_Greate:
 	test	eax, eax
 	jne	$LN1@PMC_Greate
 
-; 544  :             *w = nw;
-; 545  :         }
-; 546  :     }
-; 547  : #ifdef _DEBUG
-; 548  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
-; 549  :         return (result);
-; 550  : #endif
-; 551  :     return (PMC_STATUS_OK);
+; 596  :             *w = nw;
+; 597  :         }
+; 598  :     }
+; 599  : #ifdef _DEBUG
+; 600  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 601  :         return (result);
+; 602  : #endif
+; 603  :     return (PMC_STATUS_OK);
 
 	mov	rax, QWORD PTR nw$[rbp-96]
 	mov	QWORD PTR [r12], rax
@@ -688,55 +1734,55 @@ $LN7@PMC_Greate:
 	jmp	$LN1@PMC_Greate
 $LN12@PMC_Greate:
 
-; 482  :                 return (result);
-; 483  :             *w = nw;
-; 484  :         }
-; 485  :         else
-; 486  :         {
-; 487  :             // u と v がともに 0 ではない場合
-; 488  : 
-; 489  :             // u と v の GCD を計算する
-; 490  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-; 491  :             __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 534  :                 return (result);
+; 535  :             *w = nw;
+; 536  :         }
+; 537  :         else
+; 538  :         {
+; 539  :             // u と v がともに 0 ではない場合
+; 540  : 
+; 541  :             // u と v の GCD を計算する
+; 542  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 543  :             __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
 	mov	r13, QWORD PTR [rbx+8]
 
-; 496  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+; 548  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
 
 	lea	r8, QWORD PTR work_u_buf_code$4[rbp-96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 434  :     return (x >= y ? x : y);
+; 454  :     return (x >= y ? x : y);
 
 	cmp	QWORD PTR [rdi+8], r13
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
-; 496  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+; 548  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
 
 	lea	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 434  :     return (x >= y ? x : y);
+; 454  :     return (x >= y ? x : y);
 
 	cmovae	r13, QWORD PTR [rdi+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
-; 496  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+; 548  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
 
 	mov	rcx, r13
 	call	AllocateBlock
 	mov	r15, rax
 
-; 497  :             if (work_u_buf == NULL)
+; 549  :             if (work_u_buf == NULL)
 
 	test	rax, rax
 	je	SHORT $LN38@PMC_Greate
 
-; 498  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 499  : 
-; 500  :             __UNIT_TYPE work_v_buf_code;
-; 501  :             __UNIT_TYPE work_v_buf_words;
-; 502  :             __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
+; 550  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 551  : 
+; 552  :             __UNIT_TYPE work_v_buf_code;
+; 553  :             __UNIT_TYPE work_v_buf_words;
+; 554  :             __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
 
 	lea	r8, QWORD PTR work_v_buf_code$5[rbp-96]
 	mov	rcx, r13
@@ -744,30 +1790,30 @@ $LN12@PMC_Greate:
 	call	AllocateBlock
 	mov	r14, rax
 
-; 503  :             if (work_v_buf == NULL)
+; 555  :             if (work_v_buf == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN16@PMC_Greate
 
-; 504  :             {
-; 505  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
+; 556  :             {
+; 557  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
 
 	mov	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
 	mov	rcx, r15
 	call	DeallocateBlock
 $LN38@PMC_Greate:
 
-; 552  : }
+; 604  : }
 
 	mov	eax, -5
 	jmp	$LN1@PMC_Greate
 $LN16@PMC_Greate:
 
-; 506  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 507  :             }
-; 508  : 
-; 509  :             __UNIT_TYPE nw_check_code;
-; 510  :             if ((result = AllocateNumber(&nw, work_bit_count, &nw_check_code)) != PMC_STATUS_OK)
+; 558  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 559  :             }
+; 560  : 
+; 561  :             __UNIT_TYPE nw_check_code;
+; 562  :             if ((result = AllocateNumber(&nw, work_bit_count, &nw_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nw_check_code$2[rbp-96]
 	mov	rdx, r13
@@ -777,67 +1823,67 @@ $LN16@PMC_Greate:
 	test	eax, eax
 	je	SHORT $LN17@PMC_Greate
 
-; 511  :             {
-; 512  :                 DeallocateBlock(work_v_buf, work_v_buf_words);
+; 563  :             {
+; 564  :                 DeallocateBlock(work_v_buf, work_v_buf_words);
 
 	mov	rdx, QWORD PTR work_v_buf_words$1[rbp-96]
 	mov	rcx, r14
 	call	DeallocateBlock
 
-; 513  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
+; 565  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
 
 	mov	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 514  :                 return (result);
+; 566  :                 return (result);
 
 	mov	eax, esi
 	jmp	$LN1@PMC_Greate
 $LN17@PMC_Greate:
 
-; 515  :             }
-; 516  : 
-; 517  :             __UNIT_TYPE u_tzcnt = nu->TRAILING_ZERO_BITS_COUNT;
+; 567  :             }
+; 568  : 
+; 569  :             __UNIT_TYPE u_tzcnt = nu->TRAILING_ZERO_BITS_COUNT;
 
 	mov	r8, QWORD PTR [rdi+24]
 
-; 518  :             __UNIT_TYPE v_tzcnt = nv->TRAILING_ZERO_BITS_COUNT;
+; 570  :             __UNIT_TYPE v_tzcnt = nv->TRAILING_ZERO_BITS_COUNT;
 
 	mov	rax, QWORD PTR [rbx+24]
 
-; 519  :             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
+; 571  :             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
 
 	mov	rsi, QWORD PTR [rdi+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 439  :     return (x <= y ? x : y);
+; 459  :     return (x <= y ? x : y);
 
 	cmp	r8, rax
 	mov	rcx, rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
-; 518  :             __UNIT_TYPE v_tzcnt = nv->TRAILING_ZERO_BITS_COUNT;
+; 570  :             __UNIT_TYPE v_tzcnt = nv->TRAILING_ZERO_BITS_COUNT;
 
 	mov	QWORD PTR v_tzcnt$1$[rbp-96], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 439  :     return (x <= y ? x : y);
+; 459  :     return (x <= y ? x : y);
 
 	cmovbe	rcx, r8
 	mov	QWORD PTR k$1$[rbp-96], rcx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
-; 519  :             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
+; 571  :             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
 
 	mov	rcx, QWORD PTR [rdi]
 
-; 520  :             if (u_tzcnt > 0)
+; 572  :             if (u_tzcnt > 0)
 
 	test	r8, r8
 	je	SHORT $LN18@PMC_Greate
 
-; 521  :                 RightShift_Imp(nu->BLOCK, nu->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, FALSE);
+; 573  :                 RightShift_Imp(nu->BLOCK, nu->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, FALSE);
 
 	mov	rdx, rcx
 	mov	DWORD PTR [rsp+32], 0
@@ -849,21 +1895,21 @@ $LN17@PMC_Greate:
 $LN18@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 300  :     __movsq(d, s, count);
+; 320  :     __movsq(d, s, count);
 
 	mov	rdi, r15
 	rep movsq
 $LN31@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
-; 524  :             if (v_tzcnt > 0)
+; 576  :             if (v_tzcnt > 0)
 
 	mov	rcx, QWORD PTR [rbx]
 	mov	rsi, QWORD PTR [rbx+48]
 	test	rax, rax
 	je	SHORT $LN20@PMC_Greate
 
-; 525  :                 RightShift_Imp(nv->BLOCK, nv->UNIT_WORD_COUNT, v_tzcnt, work_v_buf, FALSE);
+; 577  :                 RightShift_Imp(nv->BLOCK, nv->UNIT_WORD_COUNT, v_tzcnt, work_v_buf, FALSE);
 
 	mov	rdx, rcx
 	mov	DWORD PTR [rsp+32], 0
@@ -875,42 +1921,42 @@ $LN31@PMC_Greate:
 $LN20@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 300  :     __movsq(d, s, count);
+; 320  :     __movsq(d, s, count);
 
 	mov	rdi, r14
 	rep movsq
 $LN33@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
-; 530  :             GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
+; 582  :             GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
 
 	mov	r9, QWORD PTR nw$[rbp-96]
 	lea	rax, QWORD PTR w_buf_count$3[rbp-96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 424  :     return ((u + v - 1) / v);
+; 444  :     return ((u + v - 1) / v);
 
 	lea	r8, QWORD PTR [r13+63]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
-; 530  :             GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
+; 582  :             GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
 
 	mov	QWORD PTR [rsp+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 424  :     return ((u + v - 1) / v);
+; 444  :     return ((u + v - 1) / v);
 
 	shr	r8, 6
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
-; 530  :             GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
+; 582  :             GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
 
 	mov	rdx, r14
 	mov	rcx, r15
 	mov	r9, QWORD PTR [r9+48]
-	call	GreatestCommonDivisor
+	call	GreatestCommonDivisor_Imp
 
-; 531  :             if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != PMC_STATUS_OK)
+; 583  :             if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_u_buf_code$4[rbp-96]
 	mov	rcx, r15
@@ -918,8 +1964,8 @@ $LN33@PMC_Greate:
 	test	eax, eax
 	jne	$LN1@PMC_Greate
 
-; 532  :                 return (result);
-; 533  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
+; 584  :                 return (result);
+; 585  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_v_buf_code$5[rbp-96]
 	mov	rcx, r14
@@ -927,8 +1973,8 @@ $LN33@PMC_Greate:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Greate
 
-; 534  :                 return (result);
-; 535  :             if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != PMC_STATUS_OK)
+; 586  :                 return (result);
+; 587  :             if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nw$[rbp-96]
 	mov	rdx, QWORD PTR nw_check_code$2[rbp-96]
@@ -937,21 +1983,21 @@ $LN33@PMC_Greate:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Greate
 
-; 536  :                 return (result);
-; 537  :             DeallocateBlock(work_v_buf, work_v_buf_words);
+; 588  :                 return (result);
+; 589  :             DeallocateBlock(work_v_buf, work_v_buf_words);
 
 	mov	rdx, QWORD PTR work_v_buf_words$1[rbp-96]
 	mov	rcx, r14
 	call	DeallocateBlock
 
-; 538  :             DeallocateBlock(work_u_buf, work_u_buf_words);
+; 590  :             DeallocateBlock(work_u_buf, work_u_buf_words);
 
 	mov	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 539  : 
-; 540  :             LeftShift_Imp(nw->BLOCK, w_buf_count, k, nw->BLOCK, TRUE);
+; 591  : 
+; 592  :             LeftShift_Imp(nw->BLOCK, w_buf_count, k, nw->BLOCK, TRUE);
 
 	mov	rax, QWORD PTR nw$[rbp-96]
 	mov	r8, QWORD PTR k$1$[rbp-96]
@@ -961,7 +2007,7 @@ $LN33@PMC_Greate:
 	mov	r9, rcx
 	call	LeftShift_Imp
 
-; 541  :             if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != PMC_STATUS_OK)
+; 593  :             if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nw$[rbp-96]
 	mov	rdx, QWORD PTR nw_check_code$2[rbp-96]
@@ -970,21 +2016,21 @@ $LN33@PMC_Greate:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Greate
 
-; 542  :                 return (result);
-; 543  :             CommitNumber(nw);
+; 594  :                 return (result);
+; 595  :             CommitNumber(nw);
 
 	mov	rcx, QWORD PTR nw$[rbp-96]
 	call	CommitNumber
 $LN14@PMC_Greate:
 
-; 544  :             *w = nw;
-; 545  :         }
-; 546  :     }
-; 547  : #ifdef _DEBUG
-; 548  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
-; 549  :         return (result);
-; 550  : #endif
-; 551  :     return (PMC_STATUS_OK);
+; 596  :             *w = nw;
+; 597  :         }
+; 598  :     }
+; 599  : #ifdef _DEBUG
+; 600  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 601  :         return (result);
+; 602  : #endif
+; 603  :     return (PMC_STATUS_OK);
 
 	mov	rax, QWORD PTR nw$[rbp-96]
 	mov	QWORD PTR [r12], rax
@@ -992,16 +2038,16 @@ $LN14@PMC_Greate:
 	jmp	SHORT $LN1@PMC_Greate
 $LN37@PMC_Greate:
 
-; 456  :         {
-; 457  :             // v が 0 である場合
-; 458  : 
-; 459  :             // u と v がともに 0 であり、GCD は一意に存在しないため、エラーを返す。
-; 460  :             return (PMC_STATUS_ARGUMENT_ERROR);
+; 508  :         {
+; 509  :             // v が 0 である場合
+; 510  : 
+; 511  :             // u と v がともに 0 であり、GCD は一意に存在しないため、エラーを返す。
+; 512  :             return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN1@PMC_Greate:
 
-; 552  : }
+; 604  : }
 
 	mov	rbx, QWORD PTR [rsp+168]
 	add	rsp, 96					; 00000060H
@@ -1017,935 +2063,361 @@ PMC_GreatestCommonDivisor_X_X ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 ;	COMDAT PMC_GreatestCommonDivisor_X_L
 _TEXT	SEGMENT
-work_v_buf_words$1 = 48
-nw_check_code$2 = 56
-v_tzcnt$1$ = 64
-w_buf_count$3 = 64
-work_u_buf_code$4 = 72
-work_v_buf_code$5 = 80
-k$1$ = 88
-nw$ = 160
-u$ = 160
-v$ = 168
-w$ = 176
-work_u_buf_words$6 = 184
+u$ = 48
+v$ = 56
+w$ = 64
 PMC_GreatestCommonDivisor_X_L PROC			; COMDAT
 
-; 194  : {
+; 465  : {
 
-$LN99:
-	mov	QWORD PTR [rsp+16], rbx
-	push	rbp
-	push	rsi
+$LN10:
+	mov	QWORD PTR [rsp+8], rbx
+	mov	QWORD PTR [rsp+16], rsi
 	push	rdi
-	push	r12
-	push	r13
-	push	r14
-	push	r15
-	mov	rbp, rsp
-	sub	rsp, 96					; 00000060H
-	mov	r13, r8
-	mov	rbx, rdx
-	mov	rdi, rcx
+	sub	rsp, 32					; 00000020H
+	mov	rdi, r8
+	mov	rsi, rdx
+	mov	rbx, rcx
 
-; 195  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
-; 196  :     {
-; 197  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 198  :         return (PMC_STATUS_INTERNAL_ERROR);
-; 199  :     }
-; 200  :     if (u == NULL)
+; 466  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
+; 467  :     {
+; 468  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 469  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 470  :     }
+; 471  :     if (u == NULL)
 
 	test	rcx, rcx
-	je	$LN96@PMC_Greate
+	je	SHORT $LN8@PMC_Greate
 
-; 201  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 202  :     if (w == NULL)
+; 472  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 473  :     if (w == NULL)
 
 	test	r8, r8
-	je	$LN96@PMC_Greate
+	je	SHORT $LN8@PMC_Greate
 
-; 203  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 204  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
-; 205  :     PMC_STATUS_CODE result;
-; 206  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 475  :     PMC_STATUS_CODE result;
+; 476  :     if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
-	jne	$LN1@PMC_Greate
+	jne	SHORT $LN6@PMC_Greate
 
-; 207  :         return (result);
-; 208  :     NUMBER_HEADER* nw;
-; 209  :     if (nu->IS_ZERO)
+; 477  :         return (result);
+; 478  :     if ((result = PMC_GreatestCommonDivisor_X_L_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
 
-	test	BYTE PTR [rdi+32], 2
-	je	SHORT $LN6@PMC_Greate
-
-; 210  :     {
-; 211  :         // u が 0 である場合
-; 212  : 
-; 213  :         if (v == 0)
-
-	test	rbx, rbx
-	je	$LN96@PMC_Greate
-
-; 219  :         }
-; 220  :         else
-; 221  :         {
-; 222  :             // v が 0 ではない場合
-; 223  : 
-; 224  :             // GCD は v そのものであるため、v を計算結果として返す。
-; 225  :             if ((result = From_L_Imp(v, &nw)) != PMC_STATUS_OK)
-
-	lea	rdx, QWORD PTR nw$[rbp-96]
+	mov	r8, rdi
+	mov	rdx, rsi
 	mov	rcx, rbx
-	call	From_L_Imp
-	test	eax, eax
-	je	$LN13@PMC_Greate
 
-; 226  :                 return (result);
-
-	jmp	$LN1@PMC_Greate
-$LN6@PMC_Greate:
-
-; 227  :             *w = nw;
-; 228  :         }
-; 229  :     }
-; 230  :     else
-; 231  :     {
-; 232  :         // u が 0 ではない場合
-; 233  : 
-; 234  :         if (v == 0)
-
-	test	rbx, rbx
-	jne	SHORT $LN11@PMC_Greate
-
-; 235  :         {
-; 236  :             // v が 0 である場合
-; 237  : 
-; 238  :             // GCD は u そのものであるため、u を計算結果として返す。
-; 239  :             if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
-
-	lea	rdx, QWORD PTR nw$[rbp-96]
-	mov	rcx, rdi
-	call	DuplicateNumber
-	test	eax, eax
-	jne	$LN1@PMC_Greate
-
-; 424  :                 *w = nw;
-; 425  :             }
-; 426  :         }
-; 427  :     }
-; 428  : #ifdef _DEBUG
-; 429  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
-; 430  :         return (result);
-; 431  : #endif
-; 432  :     return (PMC_STATUS_OK);
-
-	mov	rax, QWORD PTR nw$[rbp-96]
-	mov	QWORD PTR [r13], rax
-	xor	eax, eax
-	jmp	$LN1@PMC_Greate
-$LN11@PMC_Greate:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 874  :     _BitScanReverse64(&pos, x);
-
-	bsr	r14, rbx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 379  :                 __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
-
-	lea	r8, QWORD PTR work_u_buf_code$4[rbp-96]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 884  :     return (sizeof(x) * 8 - 1 - pos);
-
-	inc	r14
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 379  :                 __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
-
-	lea	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 434  :     return (x >= y ? x : y);
-
-	cmp	QWORD PTR [rdi+8], r14
-	cmovae	r14, QWORD PTR [rdi+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 379  :                 __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
-
-	mov	rcx, r14
-	call	AllocateBlock
-	mov	r15, rax
-
-; 380  :                 if (work_u_buf == NULL)
-
-	test	rax, rax
-	je	SHORT $LN97@PMC_Greate
-
-; 381  :                     return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 382  : 
-; 383  :                 __UNIT_TYPE work_v_buf_code;
-; 384  :                 __UNIT_TYPE work_v_buf_words;
-; 385  :                 __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
-
-	lea	r8, QWORD PTR work_v_buf_code$5[rbp-96]
-	mov	rcx, r14
-	lea	rdx, QWORD PTR work_v_buf_words$1[rbp-96]
-	call	AllocateBlock
-	mov	r12, rax
-
-; 386  :                 if (work_v_buf == NULL)
-
-	test	rax, rax
-	jne	SHORT $LN38@PMC_Greate
-
-; 387  :                 {
-; 388  :                     DeallocateBlock(work_u_buf, work_u_buf_words);
-
-	mov	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
-	mov	rcx, r15
-	call	DeallocateBlock
-$LN97@PMC_Greate:
-
-; 433  : }
-
-	mov	eax, -5
-	jmp	$LN1@PMC_Greate
-$LN38@PMC_Greate:
-
-; 389  :                     return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 390  :                 }
-; 391  : 
-; 392  :                 __UNIT_TYPE nw_check_code;
-; 393  :                 if ((result = AllocateNumber(&nw, work_bit_count, &nw_check_code)) != PMC_STATUS_OK)
-
-	lea	r8, QWORD PTR nw_check_code$2[rbp-96]
-	mov	rdx, r14
-	lea	rcx, QWORD PTR nw$[rbp-96]
-	call	AllocateNumber
-	mov	esi, eax
-	test	eax, eax
-	je	SHORT $LN39@PMC_Greate
-
-; 394  :                 {
-; 395  :                     DeallocateBlock(work_v_buf, work_v_buf_words);
-
-	mov	rdx, QWORD PTR work_v_buf_words$1[rbp-96]
-	mov	rcx, r12
-	call	DeallocateBlock
-
-; 396  :                     DeallocateBlock(work_u_buf, work_u_buf_words);
-
-	mov	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
-	mov	rcx, r15
-	call	DeallocateBlock
-
-; 397  :                     return (result);
-
-	mov	eax, esi
-	jmp	$LN1@PMC_Greate
-$LN39@PMC_Greate:
-
-; 398  :                 }
-; 399  : 
-; 400  :                 __UNIT_TYPE u_tzcnt = nu->TRAILING_ZERO_BITS_COUNT;
-
-	mov	r8, QWORD PTR [rdi+24]
-
-; 402  :                 __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
-
-	mov	rsi, QWORD PTR [rdi+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 954  :     _BitScanForward64(&pos, x);
-
-	bsf	rax, rbx
-
-; 439  :     return (x <= y ? x : y);
-
-	cmp	r8, rax
-
-; 964  :     return (pos);
-
-	mov	QWORD PTR v_tzcnt$1$[rbp-96], rax
-
-; 439  :     return (x <= y ? x : y);
-
-	mov	rcx, rax
-	cmovbe	rcx, r8
-	mov	QWORD PTR k$1$[rbp-96], rcx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 402  :                 __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
-
-	mov	rcx, QWORD PTR [rdi]
-
-; 403  :                 if (u_tzcnt > 0)
-
-	test	r8, r8
-	je	SHORT $LN40@PMC_Greate
-
-; 404  :                     RightShift_Imp(nu->BLOCK, nu->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, FALSE);
-
-	mov	rdx, rcx
-	mov	DWORD PTR [rsp+32], 0
-	mov	rcx, rsi
-	mov	r9, r15
-	call	RightShift_Imp
-	mov	rax, QWORD PTR v_tzcnt$1$[rbp-96]
-	jmp	SHORT $LN92@PMC_Greate
-$LN40@PMC_Greate:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 300  :     __movsq(d, s, count);
-
-	mov	rdi, r15
-	rep movsq
-$LN92@PMC_Greate:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 407  :                 work_v_buf[0] = (__UNIT_TYPE)(v >> v_tzcnt);
-
-	mov	rcx, rax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 424  :     return ((u + v - 1) / v);
-
-	lea	r8, QWORD PTR [r14+63]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 407  :                 work_v_buf[0] = (__UNIT_TYPE)(v >> v_tzcnt);
-
-	shr	rbx, cl
-
-; 410  :                 GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
-
-	lea	rax, QWORD PTR w_buf_count$3[rbp-96]
-	mov	QWORD PTR [r12], rbx
-	mov	rdx, r12
-	mov	r9, QWORD PTR nw$[rbp-96]
-	mov	rcx, r15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 424  :     return ((u + v - 1) / v);
-
-	shr	r8, 6
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 410  :                 GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
-
-	mov	QWORD PTR [rsp+32], rax
-	mov	r9, QWORD PTR [r9+48]
-	call	GreatestCommonDivisor
-
-; 411  :                 if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != PMC_STATUS_OK)
-
-	mov	rdx, QWORD PTR work_u_buf_code$4[rbp-96]
-	mov	rcx, r15
-	call	CheckBlockLight
-	test	eax, eax
-	jne	$LN1@PMC_Greate
-
-; 412  :                     return (result);
-; 413  :                 if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
-
-	mov	rdx, QWORD PTR work_v_buf_code$5[rbp-96]
-	mov	rcx, r12
-	call	CheckBlockLight
-	test	eax, eax
-	jne	SHORT $LN1@PMC_Greate
-
-; 414  :                     return (result);
-; 415  :                 if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR nw$[rbp-96]
-	mov	rdx, QWORD PTR nw_check_code$2[rbp-96]
-	mov	rcx, QWORD PTR [rcx+48]
-	call	CheckBlockLight
-	test	eax, eax
-	jne	SHORT $LN1@PMC_Greate
-
-; 416  :                     return (result);
-; 417  :                 DeallocateBlock(work_v_buf, work_v_buf_words);
-
-	mov	rdx, QWORD PTR work_v_buf_words$1[rbp-96]
-	mov	rcx, r12
-	call	DeallocateBlock
-
-; 418  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
-
-	mov	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
-	mov	rcx, r15
-	call	DeallocateBlock
-
-; 419  : 
-; 420  :                 LeftShift_Imp(nw->BLOCK, w_buf_count, k, nw->BLOCK, TRUE);
-
-	mov	rax, QWORD PTR nw$[rbp-96]
-	mov	r8, QWORD PTR k$1$[rbp-96]
-	mov	rdx, QWORD PTR w_buf_count$3[rbp-96]
-	mov	DWORD PTR [rsp+32], 1
-	mov	rcx, QWORD PTR [rax+48]
-	mov	r9, rcx
-	call	LeftShift_Imp
-
-; 421  :                 if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR nw$[rbp-96]
-	mov	rdx, QWORD PTR nw_check_code$2[rbp-96]
-	mov	rcx, QWORD PTR [rcx+48]
-	call	CheckBlockLight
-	test	eax, eax
-	jne	SHORT $LN1@PMC_Greate
-
-; 422  :                     return (result);
-; 423  :                 CommitNumber(nw);
-
-	mov	rcx, QWORD PTR nw$[rbp-96]
-	call	CommitNumber
-$LN13@PMC_Greate:
-
-; 424  :                 *w = nw;
-; 425  :             }
-; 426  :         }
-; 427  :     }
-; 428  : #ifdef _DEBUG
-; 429  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
-; 430  :         return (result);
-; 431  : #endif
-; 432  :     return (PMC_STATUS_OK);
-
-	mov	rax, QWORD PTR nw$[rbp-96]
-	mov	QWORD PTR [r13], rax
-	xor	eax, eax
-	jmp	SHORT $LN1@PMC_Greate
-$LN96@PMC_Greate:
-
-; 214  :         {
-; 215  :             // v が 0 である場合
-; 216  : 
-; 217  :             // u と v がともに 0 であり、GCD は一意に存在しないため、エラーを返す。
-; 218  :             return (PMC_STATUS_ARGUMENT_ERROR);
+; 479  :         return (result);
+; 480  : #ifdef _DEBUG
+; 481  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 482  :         return (result);
+; 483  : #endif
+; 484  :     return (PMC_STATUS_OK);
+; 485  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+
+; 477  :         return (result);
+; 478  :     if ((result = PMC_GreatestCommonDivisor_X_L_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+
+	jmp	PMC_GreatestCommonDivisor_X_L_Imp
+$LN8@PMC_Greate:
+
+; 474  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
-$LN1@PMC_Greate:
+$LN6@PMC_Greate:
 
-; 433  : }
+; 479  :         return (result);
+; 480  : #ifdef _DEBUG
+; 481  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 482  :         return (result);
+; 483  : #endif
+; 484  :     return (PMC_STATUS_OK);
+; 485  : }
 
-	mov	rbx, QWORD PTR [rsp+168]
-	add	rsp, 96					; 00000060H
-	pop	r15
-	pop	r14
-	pop	r13
-	pop	r12
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
 	pop	rdi
-	pop	rsi
-	pop	rbp
 	ret	0
 PMC_GreatestCommonDivisor_X_L ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 ;	COMDAT PMC_GreatestCommonDivisor_X_I
 _TEXT	SEGMENT
-work_v_buf_words$1 = 48
-nw_check_code$2 = 56
-x$1$ = 64
-w_buf_count$3 = 64
-work_u_buf_code$4 = 72
-work_v_buf_code$5 = 80
-k$1$ = 88
-nw$ = 160
-u$ = 160
-v$ = 168
-w$ = 176
-work_u_buf_words$6 = 184
+u$ = 48
+v$ = 56
+w$ = 64
 PMC_GreatestCommonDivisor_X_I PROC			; COMDAT
 
-; 78   : {
+; 199  : {
 
-$LN41:
-	mov	QWORD PTR [rsp+16], rbx
-	push	rbp
-	push	rsi
+$LN10:
+	mov	QWORD PTR [rsp+8], rbx
+	mov	QWORD PTR [rsp+16], rsi
 	push	rdi
-	push	r12
-	push	r13
-	push	r14
-	push	r15
-	mov	rbp, rsp
-	sub	rsp, 96					; 00000060H
+	sub	rsp, 32					; 00000020H
+	mov	rdi, r8
 	mov	esi, edx
-	mov	r15, r8
-	mov	rdi, rcx
+	mov	rbx, rcx
 
-; 79   :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
-; 80   :     {
-; 81   :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 82   :         return (PMC_STATUS_INTERNAL_ERROR);
-; 83   :     }
-; 84   :     if (u == NULL)
+; 200  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 201  :     {
+; 202  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 203  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 204  :     }
+; 205  :     if (u == NULL)
 
 	test	rcx, rcx
-	je	$LN38@PMC_Greate
+	je	SHORT $LN8@PMC_Greate
 
-; 85   :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 86   :     if (w == NULL)
+; 206  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 207  :     if (w == NULL)
 
 	test	r8, r8
-	je	$LN38@PMC_Greate
+	je	SHORT $LN8@PMC_Greate
 
-; 87   :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 88   :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
-; 89   :     PMC_STATUS_CODE result;
-; 90   :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 209  :     PMC_STATUS_CODE result;
+; 210  :     if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
-	jne	$LN1@PMC_Greate
+	jne	SHORT $LN6@PMC_Greate
 
-; 91   :         return (result);
-; 92   :     NUMBER_HEADER* nw;
-; 93   :     if (nu->IS_ZERO)
+; 211  :         return (result);
+; 212  :     if ((result = PMC_GreatestCommonDivisor_X_I_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
 
-	test	BYTE PTR [rdi+32], 2
-	je	SHORT $LN6@PMC_Greate
-
-; 94   :     {
-; 95   :         // u が 0 である場合
-; 96   : 
-; 97   :         if (v == 0)
-
-	test	esi, esi
-	je	$LN38@PMC_Greate
-
-; 103  :         }
-; 104  :         else
-; 105  :         {
-; 106  :             // v が 0 ではない場合
-; 107  : 
-; 108  :             // GCD は v そのものであるため、v を計算結果として返す。
-; 109  :             if ((result = From_I_Imp(v, &nw)) != PMC_STATUS_OK)
-
-	lea	rdx, QWORD PTR nw$[rbp-96]
-	mov	ecx, esi
-	call	From_I_Imp
-	test	eax, eax
-	je	$LN13@PMC_Greate
-
-; 110  :                 return (result);
-
-	jmp	$LN1@PMC_Greate
-$LN6@PMC_Greate:
-
-; 111  :             *w = nw;
-; 112  :         }
-; 113  :     }
-; 114  :     else
-; 115  :     {
-; 116  :         // u が 0 ではない場合
-; 117  : 
-; 118  :         if (v == 0)
-
-	test	esi, esi
-	jne	SHORT $LN11@PMC_Greate
-
-; 119  :         {
-; 120  :             // v が 0 である場合
-; 121  : 
-; 122  :             // GCD は u そのものであるため、u を計算結果として返す。
-; 123  :             if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
-
-	lea	rdx, QWORD PTR nw$[rbp-96]
-	mov	rcx, rdi
-	call	DuplicateNumber
-	test	eax, eax
-	jne	$LN1@PMC_Greate
-
-; 183  :             *w = nw;
-; 184  :         }
-; 185  :     }
-; 186  : #ifdef _DEBUG
-; 187  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
-; 188  :         return (result);
-; 189  : #endif
-; 190  :     return (PMC_STATUS_OK);
-
-	mov	rax, QWORD PTR nw$[rbp-96]
-	mov	QWORD PTR [r15], rax
-	xor	eax, eax
-	jmp	$LN1@PMC_Greate
-$LN11@PMC_Greate:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 831  :     _BitScanReverse(&pos, x);
-
-	bsr	eax, esi
-
-; 837  :     return (sizeof(x) * 8 - 1 - pos);
-
-	mov	ecx, 31
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 138  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
-
-	lea	r8, QWORD PTR work_u_buf_code$4[rbp-96]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 837  :     return (sizeof(x) * 8 - 1 - pos);
-
-	sub	ecx, eax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 138  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
-
-	lea	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
-	mov	eax, ecx
-	mov	r13d, 32				; 00000020H
-	sub	r13, rax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 434  :     return (x >= y ? x : y);
-
-	cmp	QWORD PTR [rdi+8], r13
-	cmovae	r13, QWORD PTR [rdi+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 138  :             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
-
-	mov	rcx, r13
-	call	AllocateBlock
-	mov	rbx, rax
-
-; 139  :             if (work_u_buf == NULL)
-
-	test	rax, rax
-	je	SHORT $LN39@PMC_Greate
-
-; 140  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 141  : 
-; 142  :             __UNIT_TYPE work_v_buf_code;
-; 143  :             __UNIT_TYPE work_v_buf_words;
-; 144  :             __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
-
-	lea	r8, QWORD PTR work_v_buf_code$5[rbp-96]
-	mov	rcx, r13
-	lea	rdx, QWORD PTR work_v_buf_words$1[rbp-96]
-	call	AllocateBlock
-	mov	r14, rax
-
-; 145  :             if (work_v_buf == NULL)
-
-	test	rax, rax
-	jne	SHORT $LN15@PMC_Greate
-
-; 146  :             {
-; 147  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
-
-	mov	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
+	mov	r8, rdi
+	mov	edx, esi
 	mov	rcx, rbx
-	call	DeallocateBlock
-$LN39@PMC_Greate:
 
-; 191  : }
-
-	mov	eax, -5
-	jmp	$LN1@PMC_Greate
-$LN15@PMC_Greate:
-
-; 148  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 149  :             }
-; 150  : 
-; 151  :             __UNIT_TYPE nw_check_code;
-; 152  :             if ((result = AllocateNumber(&nw, work_bit_count, &nw_check_code)) != PMC_STATUS_OK)
-
-	lea	r8, QWORD PTR nw_check_code$2[rbp-96]
-	mov	rdx, r13
-	lea	rcx, QWORD PTR nw$[rbp-96]
-	call	AllocateNumber
-	mov	r12d, eax
-	test	eax, eax
-	je	SHORT $LN16@PMC_Greate
-
-; 153  :             {
-; 154  :                 DeallocateBlock(work_v_buf, work_v_buf_words);
-
-	mov	rdx, QWORD PTR work_v_buf_words$1[rbp-96]
-	mov	rcx, r14
-	call	DeallocateBlock
-
-; 155  :                 DeallocateBlock(work_u_buf, work_u_buf_words);
-
-	mov	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
-	mov	rcx, rbx
-	call	DeallocateBlock
-
-; 156  :                 return (result);
-
-	mov	eax, r12d
-	jmp	$LN1@PMC_Greate
-$LN16@PMC_Greate:
-
-; 157  :             }
-; 158  : 
-; 159  :             __UNIT_TYPE u_tzcnt = nu->TRAILING_ZERO_BITS_COUNT;
-
-	mov	r8, QWORD PTR [rdi+24]
-
-; 160  :             __UNIT_TYPE v_tzcnt = _TZCNT_ALT_UNIT(v);
-
-	mov	rdx, rsi
-	mov	QWORD PTR x$1$[rbp-96], rdx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 941  :         return (sizeof(x) * 8);
-
-	mov	r12d, 64				; 00000040H
-	test	esi, esi
-	je	SHORT $LN29@PMC_Greate
-
-; 942  : #ifdef _M_IX86
-; 943  :     _UINT32_T pos;
-; 944  : #ifdef _MSC_VER
-; 945  :     _BitScanForward(&pos, x);
-; 946  : #elif defined(__GNUC__)
-; 947  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-; 948  : #else
-; 949  : #error unknown compiler
-; 950  : #endif
-; 951  : #elif defined(_M_X64)
-; 952  : #ifdef _MSC_VER
-; 953  :     _UINT32_T pos;
-; 954  :     _BitScanForward64(&pos, x);
-
-	bsf	r12, rdx
-$LN29@PMC_Greate:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 161  :             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
-
-	mov	rcx, QWORD PTR [rdi]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 439  :     return (x <= y ? x : y);
-
-	cmp	r8, r12
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 161  :             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
-
-	mov	rsi, QWORD PTR [rdi+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 439  :     return (x <= y ? x : y);
-
-	mov	rax, r12
-	cmovbe	rax, r8
-	mov	QWORD PTR k$1$[rbp-96], rax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 162  :             if (u_tzcnt > 0)
-
-	test	r8, r8
-	je	SHORT $LN17@PMC_Greate
-
-; 163  :                 RightShift_Imp(nu->BLOCK, nu->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, FALSE);
-
-	mov	rdx, rcx
-	mov	DWORD PTR [rsp+32], 0
-	mov	rcx, rsi
-	mov	r9, rbx
-	call	RightShift_Imp
-	mov	rdx, QWORD PTR x$1$[rbp-96]
-	jmp	SHORT $LN34@PMC_Greate
-$LN17@PMC_Greate:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 300  :     __movsq(d, s, count);
-
-	mov	rdi, rbx
-	rep movsq
-$LN34@PMC_Greate:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 166  :             work_v_buf[0] = v >> v_tzcnt;
-
-	mov	rcx, r12
-
-; 169  :             GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
-
-	lea	rax, QWORD PTR w_buf_count$3[rbp-96]
-	shr	rdx, cl
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 424  :     return ((u + v - 1) / v);
-
-	lea	r8, QWORD PTR [r13+63]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 166  :             work_v_buf[0] = v >> v_tzcnt;
-
-	mov	QWORD PTR [r14], rdx
-
-; 169  :             GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
-
-	mov	rcx, rbx
-	mov	r9, QWORD PTR nw$[rbp-96]
-	mov	rdx, r14
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 424  :     return ((u + v - 1) / v);
-
-	shr	r8, 6
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
-
-; 169  :             GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), nw->BLOCK, &w_buf_count);
-
-	mov	QWORD PTR [rsp+32], rax
-	mov	r9, QWORD PTR [r9+48]
-	call	GreatestCommonDivisor
-
-; 170  :             if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != PMC_STATUS_OK)
-
-	mov	rdx, QWORD PTR work_u_buf_code$4[rbp-96]
-	mov	rcx, rbx
-	call	CheckBlockLight
-	test	eax, eax
-	jne	$LN1@PMC_Greate
-
-; 171  :                 return (result);
-; 172  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
-
-	mov	rdx, QWORD PTR work_v_buf_code$5[rbp-96]
-	mov	rcx, r14
-	call	CheckBlockLight
-	test	eax, eax
-	jne	SHORT $LN1@PMC_Greate
-
-; 173  :                 return (result);
-; 174  :             if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR nw$[rbp-96]
-	mov	rdx, QWORD PTR nw_check_code$2[rbp-96]
-	mov	rcx, QWORD PTR [rcx+48]
-	call	CheckBlockLight
-	test	eax, eax
-	jne	SHORT $LN1@PMC_Greate
-
-; 175  :                 return (result);
-; 176  :             DeallocateBlock(work_v_buf, work_v_buf_words);
-
-	mov	rdx, QWORD PTR work_v_buf_words$1[rbp-96]
-	mov	rcx, r14
-	call	DeallocateBlock
-
-; 177  :             DeallocateBlock(work_u_buf, work_u_buf_words);
-
-	mov	rdx, QWORD PTR work_u_buf_words$6[rbp-96]
-	mov	rcx, rbx
-	call	DeallocateBlock
-
-; 178  : 
-; 179  :             LeftShift_Imp(nw->BLOCK, w_buf_count, k, nw->BLOCK, TRUE);
-
-	mov	rax, QWORD PTR nw$[rbp-96]
-	mov	r8, QWORD PTR k$1$[rbp-96]
-	mov	rdx, QWORD PTR w_buf_count$3[rbp-96]
-	mov	DWORD PTR [rsp+32], 1
-	mov	rcx, QWORD PTR [rax+48]
-	mov	r9, rcx
-	call	LeftShift_Imp
-
-; 180  :             if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR nw$[rbp-96]
-	mov	rdx, QWORD PTR nw_check_code$2[rbp-96]
-	mov	rcx, QWORD PTR [rcx+48]
-	call	CheckBlockLight
-	test	eax, eax
-	jne	SHORT $LN1@PMC_Greate
-
-; 181  :                 return (result);
-; 182  :             CommitNumber(nw);
-
-	mov	rcx, QWORD PTR nw$[rbp-96]
-	call	CommitNumber
-$LN13@PMC_Greate:
-
-; 183  :             *w = nw;
-; 184  :         }
-; 185  :     }
-; 186  : #ifdef _DEBUG
-; 187  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
-; 188  :         return (result);
-; 189  : #endif
-; 190  :     return (PMC_STATUS_OK);
-
-	mov	rax, QWORD PTR nw$[rbp-96]
-	mov	QWORD PTR [r15], rax
-	xor	eax, eax
-	jmp	SHORT $LN1@PMC_Greate
-$LN38@PMC_Greate:
-
-; 98   :         {
-; 99   :             // v が 0 である場合
-; 100  : 
-; 101  :             // u と v がともに 0 であり、GCD は一意に存在しないため、エラーを返す。
-; 102  :             return (PMC_STATUS_ARGUMENT_ERROR);
+; 213  :         return (result);
+; 214  : #ifdef _DEBUG
+; 215  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 216  :         return (result);
+; 217  : #endif
+; 218  :     return (PMC_STATUS_OK);
+; 219  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+
+; 211  :         return (result);
+; 212  :     if ((result = PMC_GreatestCommonDivisor_X_I_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+
+	jmp	PMC_GreatestCommonDivisor_X_I_Imp
+$LN8@PMC_Greate:
+
+; 208  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
-$LN1@PMC_Greate:
+$LN6@PMC_Greate:
 
-; 191  : }
+; 213  :         return (result);
+; 214  : #ifdef _DEBUG
+; 215  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 216  :         return (result);
+; 217  : #endif
+; 218  :     return (PMC_STATUS_OK);
+; 219  : }
 
-	mov	rbx, QWORD PTR [rsp+168]
-	add	rsp, 96					; 00000060H
-	pop	r15
-	pop	r14
-	pop	r13
-	pop	r12
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
 	pop	rdi
-	pop	rsi
-	pop	rbp
 	ret	0
 PMC_GreatestCommonDivisor_X_I ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+;	COMDAT PMC_GreatestCommonDivisor_L_X
+_TEXT	SEGMENT
+u$ = 48
+v$ = 56
+w$ = 64
+PMC_GreatestCommonDivisor_L_X PROC			; COMDAT
+
+; 442  : {
+
+$LN10:
+	mov	QWORD PTR [rsp+8], rbx
+	mov	QWORD PTR [rsp+16], rsi
+	push	rdi
+	sub	rsp, 32					; 00000020H
+	mov	rdi, r8
+	mov	rbx, rdx
+	mov	rsi, rcx
+
+; 443  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+; 444  :     {
+; 445  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 446  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 447  :     }
+; 448  :     if (v == NULL)
+
+	test	rdx, rdx
+	je	SHORT $LN8@PMC_Greate
+
+; 449  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 450  :     if (w == NULL)
+
+	test	r8, r8
+	je	SHORT $LN8@PMC_Greate
+
+; 452  :     PMC_STATUS_CODE result;
+; 453  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+
+	mov	rcx, rdx
+	call	CheckNumber
+	test	eax, eax
+	jne	SHORT $LN6@PMC_Greate
+
+; 454  :         return (result);
+; 455  :     if ((result = PMC_GreatestCommonDivisor_X_L_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+
+	mov	r8, rdi
+	mov	rdx, rsi
+	mov	rcx, rbx
+
+; 456  :         return (result);
+; 457  : #ifdef _DEBUG
+; 458  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 459  :         return (result);
+; 460  : #endif
+; 461  :     return (PMC_STATUS_OK);
+; 462  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+
+; 454  :         return (result);
+; 455  :     if ((result = PMC_GreatestCommonDivisor_X_L_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+
+	jmp	PMC_GreatestCommonDivisor_X_L_Imp
+$LN8@PMC_Greate:
+
+; 451  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+$LN6@PMC_Greate:
+
+; 456  :         return (result);
+; 457  : #ifdef _DEBUG
+; 458  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 459  :         return (result);
+; 460  : #endif
+; 461  :     return (PMC_STATUS_OK);
+; 462  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+	ret	0
+PMC_GreatestCommonDivisor_L_X ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
+;	COMDAT PMC_GreatestCommonDivisor_I_X
+_TEXT	SEGMENT
+u$ = 48
+v$ = 56
+w$ = 64
+PMC_GreatestCommonDivisor_I_X PROC			; COMDAT
+
+; 176  : {
+
+$LN10:
+	mov	QWORD PTR [rsp+8], rbx
+	mov	QWORD PTR [rsp+16], rsi
+	push	rdi
+	sub	rsp, 32					; 00000020H
+	mov	rdi, r8
+	mov	rbx, rdx
+	mov	esi, ecx
+
+; 177  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+; 178  :     {
+; 179  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 180  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 181  :     }
+; 182  :     if (v == NULL)
+
+	test	rdx, rdx
+	je	SHORT $LN8@PMC_Greate
+
+; 183  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 184  :     if (w == NULL)
+
+	test	r8, r8
+	je	SHORT $LN8@PMC_Greate
+
+; 186  :     PMC_STATUS_CODE result;
+; 187  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+
+	mov	rcx, rdx
+	call	CheckNumber
+	test	eax, eax
+	jne	SHORT $LN6@PMC_Greate
+
+; 188  :         return (result);
+; 189  :     if ((result = PMC_GreatestCommonDivisor_X_I_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+
+	mov	r8, rdi
+	mov	edx, esi
+	mov	rcx, rbx
+
+; 190  :         return (result);
+; 191  : #ifdef _DEBUG
+; 192  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 193  :         return (result);
+; 194  : #endif
+; 195  :     return (PMC_STATUS_OK);
+; 196  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+
+; 188  :         return (result);
+; 189  :     if ((result = PMC_GreatestCommonDivisor_X_I_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+
+	jmp	PMC_GreatestCommonDivisor_X_I_Imp
+$LN8@PMC_Greate:
+
+; 185  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+$LN6@PMC_Greate:
+
+; 190  :         return (result);
+; 191  : #ifdef _DEBUG
+; 192  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 193  :         return (result);
+; 194  : #endif
+; 195  :     return (PMC_STATUS_OK);
+; 196  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+	ret	0
+PMC_GreatestCommonDivisor_I_X ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -1954,11 +2426,11 @@ _TEXT	SEGMENT
 feature$ = 8
 Initialize_GreatestCommonDivisor PROC			; COMDAT
 
-; 556  :     return (PMC_STATUS_OK);
+; 608  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 557  : }
+; 609  : }
 
 	ret	0
 Initialize_GreatestCommonDivisor ENDP

@@ -6,6 +6,8 @@ INCLUDELIB MSVCRT
 INCLUDELIB OLDNAMES
 
 PUBLIC	Initialize_BitwiseAnd
+PUBLIC	PMC_BitwiseAnd_I_X
+PUBLIC	PMC_BitwiseAnd_L_X
 PUBLIC	PMC_BitwiseAnd_X_I
 PUBLIC	PMC_BitwiseAnd_X_L
 PUBLIC	PMC_BitwiseAnd_X_X
@@ -15,6 +17,18 @@ EXTRN	DeallocateNumber:PROC
 EXTRN	CommitNumber:PROC
 EXTRN	CheckNumber:PROC
 EXTRN	number_zero:BYTE
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$PMC_BitwiseAnd_I_X DD imagerel $LN14
+	DD	imagerel $LN14+124
+	DD	imagerel $unwind$PMC_BitwiseAnd_I_X
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$PMC_BitwiseAnd_L_X DD imagerel $LN22
+	DD	imagerel $LN22+130
+	DD	imagerel $unwind$PMC_BitwiseAnd_L_X
+pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_BitwiseAnd_X_I DD imagerel $LN14
@@ -130,6 +144,20 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $unwind$PMC_BitwiseAnd_X_I DD 060f01H
+	DD	07640fH
+	DD	06340fH
+	DD	0700b320fH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_BitwiseAnd_L_X DD 060f01H
+	DD	07640fH
+	DD	06340fH
+	DD	0700b320fH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_BitwiseAnd_I_X DD 060f01H
 	DD	07640fH
 	DD	06340fH
 	DD	0700b320fH
@@ -537,13 +565,13 @@ x$ = 8
 y$ = 16
 _MINIMUM_UNIT PROC					; COMDAT
 
-; 439  :     return (x <= y ? x : y);
+; 459  :     return (x <= y ? x : y);
 
 	cmp	rcx, rdx
 	cmovbe	rdx, rcx
 	mov	rax, rdx
 
-; 440  : }
+; 460  : }
 
 	ret	0
 _MINIMUM_UNIT ENDP
@@ -556,7 +584,7 @@ u$ = 8
 v$ = 16
 _DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 424  :     return ((u + v - 1) / v);
+; 444  :     return ((u + v - 1) / v);
 
 	lea	rax, QWORD PTR [rdx-1]
 	mov	r8, rdx
@@ -564,7 +592,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	xor	edx, edx
 	div	r8
 
-; 425  : }
+; 445  : }
 
 	ret	0
 _DIVIDE_CEILING_UNIT ENDP
@@ -577,17 +605,17 @@ value$ = 8
 result_high$ = 16
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 413  :     *result_high = (_UINT32_T)(value >> 32);
+; 433  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, rcx
 	shr	rax, 32					; 00000020H
 	mov	DWORD PTR [rdx], eax
 
-; 414  :     return ((_UINT32_T)value);
+; 434  :     return ((_UINT32_T)value);
 
 	mov	eax, ecx
 
-; 415  : }
+; 435  : }
 
 	ret	0
 _FROMDWORDTOWORD ENDP
@@ -600,14 +628,14 @@ value_high$ = 8
 value_low$ = 16
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 408  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, ecx
 	shl	rax, 32					; 00000020H
 	mov	ecx, edx
 	or	rax, rcx
 
-; 409  : }
+; 429  : }
 
 	ret	0
 _FROMWORDTODWORD ENDP
@@ -631,7 +659,7 @@ w$ = 80
 nw_light_check_code$1 = 88
 PMC_BitwiseAnd_X_X PROC					; COMDAT
 
-; 232  : {
+; 316  : {
 
 $LN23:
 	push	rbx
@@ -642,116 +670,116 @@ $LN23:
 	mov	rbx, rdx
 	mov	rdi, rcx
 
-; 233  :     if (u == NULL)
+; 317  :     if (u == NULL)
 
 	test	rcx, rcx
 	je	$LN20@PMC_Bitwis
 
-; 234  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 235  :     if (v == NULL)
+; 318  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 319  :     if (v == NULL)
 
 	test	rdx, rdx
 	je	$LN20@PMC_Bitwis
 
-; 236  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 237  :     if (w == NULL)
+; 320  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 321  :     if (w == NULL)
 
 	test	r8, r8
 	je	$LN20@PMC_Bitwis
 
-; 239  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
-; 240  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
-; 241  :     PMC_STATUS_CODE result;
-; 242  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 323  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 324  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 325  :     PMC_STATUS_CODE result;
+; 326  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_Bitwis
 
-; 243  :         return (result);
-; 244  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+; 327  :         return (result);
+; 328  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
 	mov	rcx, rbx
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_Bitwis
 
-; 245  :         return (result);
-; 246  :     NUMBER_HEADER* nw;
-; 247  :     if (nu->IS_ZERO)
+; 329  :         return (result);
+; 330  :     NUMBER_HEADER* nw;
+; 331  :     if (nu->IS_ZERO)
 
 	test	BYTE PTR [rdi+32], 2
 	mov	QWORD PTR [rsp+72], rbp
 	jne	SHORT $LN19@PMC_Bitwis
 
-; 248  :         *w = &number_zero;
-; 249  :     else if (nv->IS_ZERO)
+; 332  :         *w = &number_zero;
+; 333  :     else if (nv->IS_ZERO)
 
 	test	BYTE PTR [rbx+32], 2
 	jne	SHORT $LN19@PMC_Bitwis
 
-; 250  :         *w = &number_zero;
-; 251  :     else
-; 252  :     {
-; 253  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-; 254  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 334  :         *w = &number_zero;
+; 335  :     else
+; 336  :     {
+; 337  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 338  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
 	mov	rbp, QWORD PTR [rbx+8]
 
-; 257  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nw_light_check_code$1[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 439  :     return (x <= y ? x : y);
+; 459  :     return (x <= y ? x : y);
 
 	cmp	QWORD PTR [rdi+8], rbp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
-; 257  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	rcx, QWORD PTR nw$[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 439  :     return (x <= y ? x : y);
+; 459  :     return (x <= y ? x : y);
 
 	cmovbe	rbp, QWORD PTR [rdi+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
-; 257  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, rbp
 	call	AllocateNumber
 	test	eax, eax
 	jne	SHORT $LN21@PMC_Bitwis
 
-; 260  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
+; 344  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
 
 	mov	r8, QWORD PTR nw$[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 424  :     return ((u + v - 1) / v);
+; 444  :     return ((u + v - 1) / v);
 
 	lea	r9, QWORD PTR [rbp+63]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
-; 260  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
+; 344  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
 
 	mov	rdx, QWORD PTR [rbx+48]
 	mov	rcx, QWORD PTR [rdi+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 424  :     return ((u + v - 1) / v);
+; 444  :     return ((u + v - 1) / v);
 
 	shr	r9, 6
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
-; 260  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
+; 344  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
 
 	mov	r8, QWORD PTR [r8+48]
 	call	BitwiseAnd_X_X
 
-; 261  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+; 345  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nw$[rsp]
 	mov	rdx, QWORD PTR nw_light_check_code$1[rsp]
@@ -760,34 +788,34 @@ $LN23:
 	test	eax, eax
 	jne	SHORT $LN21@PMC_Bitwis
 
-; 262  :             return (result);
-; 263  :         CommitNumber(nw);
+; 346  :             return (result);
+; 347  :         CommitNumber(nw);
 
 	mov	rcx, QWORD PTR nw$[rsp]
 	call	CommitNumber
 
-; 264  :         if (nw->IS_ZERO)
+; 348  :         if (nw->IS_ZERO)
 
 	mov	rax, QWORD PTR nw$[rsp]
 	test	BYTE PTR [rax+32], 2
 	je	SHORT $LN13@PMC_Bitwis
 
-; 265  :         {
-; 266  :             DeallocateNumber(nw);
+; 349  :         {
+; 350  :             DeallocateNumber(nw);
 
 	mov	rcx, rax
 	call	DeallocateNumber
 $LN19@PMC_Bitwis:
 
-; 267  :             nw = &number_zero;
-; 268  :         }
-; 269  :         *w = nw;
-; 270  :     }
-; 271  : #ifdef _DEBUG
-; 272  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
-; 273  :         return (result);
-; 274  : #endif
-; 275  :     return (PMC_STATUS_OK);
+; 351  :             nw = &number_zero;
+; 352  :         }
+; 353  :         *w = nw;
+; 354  :     }
+; 355  : #ifdef _DEBUG
+; 356  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 357  :         return (result);
+; 358  : #endif
+; 359  :     return (PMC_STATUS_OK);
 
 	lea	rax, OFFSET FLAT:number_zero
 $LN13@PMC_Bitwis:
@@ -797,7 +825,7 @@ $LN21@PMC_Bitwis:
 	mov	rbp, QWORD PTR [rsp+72]
 $LN1@PMC_Bitwis:
 
-; 276  : }
+; 360  : }
 
 	add	rsp, 32					; 00000020H
 	pop	rdi
@@ -806,11 +834,11 @@ $LN1@PMC_Bitwis:
 	ret	0
 $LN20@PMC_Bitwis:
 
-; 238  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 322  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 
-; 276  : }
+; 360  : }
 
 	add	rsp, 32					; 00000020H
 	pop	rdi
@@ -828,7 +856,7 @@ v$ = 56
 w$ = 64
 PMC_BitwiseAnd_X_L PROC					; COMDAT
 
-; 183  : {
+; 267  : {
 
 $LN22:
 	mov	QWORD PTR [rsp+8], rbx
@@ -839,54 +867,54 @@ $LN22:
 	mov	rsi, rdx
 	mov	rbx, rcx
 
-; 184  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
-; 185  :     {
-; 186  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 187  :         return (PMC_STATUS_INTERNAL_ERROR);
-; 188  :     }
-; 189  :     if (u == NULL)
+; 268  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
+; 269  :     {
+; 270  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 271  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 272  :     }
+; 273  :     if (u == NULL)
 
 	test	rcx, rcx
 	je	SHORT $LN19@PMC_Bitwis
 
-; 190  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 191  :     if (w == NULL)
+; 274  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 275  :     if (w == NULL)
 
 	test	r8, r8
 	je	SHORT $LN19@PMC_Bitwis
 
-; 193  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
-; 194  :     PMC_STATUS_CODE result;
-; 195  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 277  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 278  :     PMC_STATUS_CODE result;
+; 279  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Bitwis
 
-; 196  :         return (result);
-; 197  :     if (nu->IS_ZERO)
+; 280  :         return (result);
+; 281  :     if (nu->IS_ZERO)
 
 	test	BYTE PTR [rbx+32], 2
 	jne	SHORT $LN20@PMC_Bitwis
 
-; 198  :     {
-; 199  :         // u が 0 である場合
-; 200  :         *w = 0;
-; 201  :     }
-; 202  :     else if (v == 0)
+; 282  :     {
+; 283  :         // u が 0 である場合
+; 284  :         *w = 0;
+; 285  :     }
+; 286  :     else if (v == 0)
 
 	test	rsi, rsi
 	jne	SHORT $LN8@PMC_Bitwis
 $LN20@PMC_Bitwis:
 
-; 226  :         }
-; 227  :     }
-; 228  :     return (PMC_STATUS_OK);
+; 310  :         }
+; 311  :     }
+; 312  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	mov	QWORD PTR [rdi], rax
 
-; 229  : }
+; 313  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	mov	rsi, QWORD PTR [rsp+56]
@@ -895,42 +923,42 @@ $LN20@PMC_Bitwis:
 	ret	0
 $LN8@PMC_Bitwis:
 
-; 203  :     {
-; 204  :         // v が 0 である場合
-; 205  :         *w = 0;
-; 206  :     }
-; 207  :     else
-; 208  :     {
-; 209  :         // u と v がともに 0 ではない場合
-; 210  : 
-; 211  :         // x と y の和を計算する
-; 212  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
-; 213  :         {
-; 214  :             // _UINT64_T が 1 ワードで表現しきれない場合
-; 215  : 
-; 216  :             _UINT32_T v_hi;
-; 217  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
-; 218  :             _UINT32_T w_hi = nu->UNIT_WORD_COUNT > 1 ? nu->BLOCK[1] & v_hi : 0;
-; 219  :             _UINT32_T w_lo = nu->BLOCK[0] & v_lo;
-; 220  :             *w = _FROMWORDTODWORD(w_hi, w_lo);
-; 221  :         }
-; 222  :         else
-; 223  :         {
-; 224  :             // _UINT64_T が 1 ワードで表現できる場合
-; 225  :             *w = nu->BLOCK[0] & v;
+; 287  :     {
+; 288  :         // v が 0 である場合
+; 289  :         *w = 0;
+; 290  :     }
+; 291  :     else
+; 292  :     {
+; 293  :         // u と v がともに 0 ではない場合
+; 294  : 
+; 295  :         // x と y の和を計算する
+; 296  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 297  :         {
+; 298  :             // _UINT64_T が 1 ワードで表現しきれない場合
+; 299  : 
+; 300  :             _UINT32_T v_hi;
+; 301  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
+; 302  :             _UINT32_T w_hi = nu->UNIT_WORD_COUNT > 1 ? nu->BLOCK[1] & v_hi : 0;
+; 303  :             _UINT32_T w_lo = nu->BLOCK[0] & v_lo;
+; 304  :             *w = _FROMWORDTODWORD(w_hi, w_lo);
+; 305  :         }
+; 306  :         else
+; 307  :         {
+; 308  :             // _UINT64_T が 1 ワードで表現できる場合
+; 309  :             *w = nu->BLOCK[0] & v;
 
 	mov	rax, QWORD PTR [rbx+48]
 	mov	rax, QWORD PTR [rax]
 	and	rax, rsi
 
-; 226  :         }
-; 227  :     }
-; 228  :     return (PMC_STATUS_OK);
+; 310  :         }
+; 311  :     }
+; 312  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 229  : }
+; 313  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	mov	rsi, QWORD PTR [rsp+56]
@@ -939,12 +967,12 @@ $LN8@PMC_Bitwis:
 	ret	0
 $LN19@PMC_Bitwis:
 
-; 192  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 276  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN1@PMC_Bitwis:
 
-; 229  : }
+; 313  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	mov	rsi, QWORD PTR [rsp+56]
@@ -962,7 +990,7 @@ v$ = 56
 w$ = 64
 PMC_BitwiseAnd_X_I PROC					; COMDAT
 
-; 148  : {
+; 183  : {
 
 $LN14:
 	mov	QWORD PTR [rsp+8], rbx
@@ -973,14 +1001,268 @@ $LN14:
 	mov	esi, edx
 	mov	rbx, rcx
 
-; 149  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 184  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 185  :     {
+; 186  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 187  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 188  :     }
+; 189  :     if (u == NULL)
+
+	test	rcx, rcx
+	je	SHORT $LN11@PMC_Bitwis
+
+; 190  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 191  :     if (w == NULL)
+
+	test	r8, r8
+	je	SHORT $LN11@PMC_Bitwis
+
+; 193  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 194  :     PMC_STATUS_CODE result;
+; 195  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+
+	call	CheckNumber
+	test	eax, eax
+	jne	SHORT $LN1@PMC_Bitwis
+
+; 196  :         return (result);
+; 197  :     if (nu->IS_ZERO)
+
+	test	BYTE PTR [rbx+32], 2
+	jne	SHORT $LN12@PMC_Bitwis
+
+; 198  :     {
+; 199  :         // u が 0 である場合
+; 200  :         *w = 0;
+; 201  :     }
+; 202  :     else  if (v == 0)
+
+	test	esi, esi
+	jne	SHORT $LN8@PMC_Bitwis
+$LN12@PMC_Bitwis:
+
+; 213  :     }
+; 214  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+	mov	DWORD PTR [rdi], eax
+
+; 215  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+	ret	0
+$LN8@PMC_Bitwis:
+
+; 203  :     {
+; 204  :         // v が 0 である場合
+; 205  :         *w = 0;
+; 206  :     }
+; 207  :     else
+; 208  :     {
+; 209  :         // u と v がともに 0 ではない場合
+; 210  : 
+; 211  :         // u と v の bit AND を計算する
+; 212  :         *w = nu->BLOCK[0] & v;
+
+	mov	rax, QWORD PTR [rbx+48]
+	mov	eax, DWORD PTR [rax]
+	and	eax, esi
+
+; 213  :     }
+; 214  :     return (PMC_STATUS_OK);
+
+	mov	DWORD PTR [rdi], eax
+	xor	eax, eax
+
+; 215  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+	ret	0
+$LN11@PMC_Bitwis:
+
+; 192  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+$LN1@PMC_Bitwis:
+
+; 215  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+	ret	0
+PMC_BitwiseAnd_X_I ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
+;	COMDAT PMC_BitwiseAnd_L_X
+_TEXT	SEGMENT
+u$ = 48
+v$ = 56
+w$ = 64
+PMC_BitwiseAnd_L_X PROC					; COMDAT
+
+; 218  : {
+
+$LN22:
+	mov	QWORD PTR [rsp+8], rbx
+	mov	QWORD PTR [rsp+16], rsi
+	push	rdi
+	sub	rsp, 32					; 00000020H
+	mov	rdi, r8
+	mov	rbx, rdx
+	mov	rsi, rcx
+
+; 219  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+; 220  :     {
+; 221  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 222  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 223  :     }
+; 224  :     if (v == NULL)
+
+	test	rdx, rdx
+	je	SHORT $LN19@PMC_Bitwis
+
+; 225  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 226  :     if (w == NULL)
+
+	test	r8, r8
+	je	SHORT $LN19@PMC_Bitwis
+
+; 228  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 229  :     PMC_STATUS_CODE result;
+; 230  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+
+	mov	rcx, rdx
+	call	CheckNumber
+	test	eax, eax
+	jne	SHORT $LN1@PMC_Bitwis
+
+; 231  :         return (result);
+; 232  :     if (nv->IS_ZERO)
+
+	test	BYTE PTR [rbx+32], 2
+	jne	SHORT $LN20@PMC_Bitwis
+
+; 233  :     {
+; 234  :         // v が 0 である場合
+; 235  :         *w = 0;
+; 236  :     }
+; 237  :     else if (u == 0)
+
+	test	rsi, rsi
+	jne	SHORT $LN8@PMC_Bitwis
+$LN20@PMC_Bitwis:
+
+; 261  :         }
+; 262  :     }
+; 263  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+	mov	QWORD PTR [rdi], rax
+
+; 264  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+	ret	0
+$LN8@PMC_Bitwis:
+
+; 238  :     {
+; 239  :         // u が 0 である場合
+; 240  :         *w = 0;
+; 241  :     }
+; 242  :     else
+; 243  :     {
+; 244  :         // u と v がともに 0 ではない場合
+; 245  : 
+; 246  :         // x と y の和を計算する
+; 247  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+; 248  :         {
+; 249  :             // _UINT64_T が 1 ワードで表現しきれない場合
+; 250  : 
+; 251  :             _UINT32_T u_hi;
+; 252  :             _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
+; 253  :             _UINT32_T w_hi = nv->UNIT_WORD_COUNT > 1 ? nv->BLOCK[1] & u_hi : 0;
+; 254  :             _UINT32_T w_lo = nv->BLOCK[0] & u_lo;
+; 255  :             *w = _FROMWORDTODWORD(w_hi, w_lo);
+; 256  :         }
+; 257  :         else
+; 258  :         {
+; 259  :             // _UINT64_T が 1 ワードで表現できる場合
+; 260  :             *w = nv->BLOCK[0] & u;
+
+	mov	rax, QWORD PTR [rbx+48]
+	mov	rax, QWORD PTR [rax]
+	and	rax, rsi
+
+; 261  :         }
+; 262  :     }
+; 263  :     return (PMC_STATUS_OK);
+
+	mov	QWORD PTR [rdi], rax
+	xor	eax, eax
+
+; 264  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+	ret	0
+$LN19@PMC_Bitwis:
+
+; 227  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+$LN1@PMC_Bitwis:
+
+; 264  : }
+
+	mov	rbx, QWORD PTR [rsp+48]
+	mov	rsi, QWORD PTR [rsp+56]
+	add	rsp, 32					; 00000020H
+	pop	rdi
+	ret	0
+PMC_BitwiseAnd_L_X ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
+;	COMDAT PMC_BitwiseAnd_I_X
+_TEXT	SEGMENT
+u$ = 48
+v$ = 56
+w$ = 64
+PMC_BitwiseAnd_I_X PROC					; COMDAT
+
+; 148  : {
+
+$LN14:
+	mov	QWORD PTR [rsp+8], rbx
+	mov	QWORD PTR [rsp+16], rsi
+	push	rdi
+	sub	rsp, 32					; 00000020H
+	mov	rdi, r8
+	mov	rbx, rdx
+	mov	esi, ecx
+
+; 149  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
 ; 150  :     {
 ; 151  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
 ; 152  :         return (PMC_STATUS_INTERNAL_ERROR);
 ; 153  :     }
-; 154  :     if (u == NULL)
+; 154  :     if (v == NULL)
 
-	test	rcx, rcx
+	test	rdx, rdx
 	je	SHORT $LN11@PMC_Bitwis
 
 ; 155  :         return (PMC_STATUS_ARGUMENT_ERROR);
@@ -989,25 +1271,26 @@ $LN14:
 	test	r8, r8
 	je	SHORT $LN11@PMC_Bitwis
 
-; 158  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 158  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
 ; 159  :     PMC_STATUS_CODE result;
-; 160  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 160  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
+	mov	rcx, rdx
 	call	CheckNumber
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Bitwis
 
 ; 161  :         return (result);
-; 162  :     if (nu->IS_ZERO)
+; 162  :     if (nv->IS_ZERO)
 
 	test	BYTE PTR [rbx+32], 2
 	jne	SHORT $LN12@PMC_Bitwis
 
 ; 163  :     {
-; 164  :         // x が 0 である場合
+; 164  :         // v が 0 である場合
 ; 165  :         *w = 0;
 ; 166  :     }
-; 167  :     else  if (v == 0)
+; 167  :     else  if (u == 0)
 
 	test	esi, esi
 	jne	SHORT $LN8@PMC_Bitwis
@@ -1029,7 +1312,7 @@ $LN12@PMC_Bitwis:
 $LN8@PMC_Bitwis:
 
 ; 168  :     {
-; 169  :         // v が 0 である場合
+; 169  :         // u が 0 である場合
 ; 170  :         *w = 0;
 ; 171  :     }
 ; 172  :     else
@@ -1037,7 +1320,7 @@ $LN8@PMC_Bitwis:
 ; 174  :         // u と v がともに 0 ではない場合
 ; 175  : 
 ; 176  :         // u と v の bit AND を計算する
-; 177  :         *w = nu->BLOCK[0] & v;
+; 177  :         *w = nv->BLOCK[0] & u;
 
 	mov	rax, QWORD PTR [rbx+48]
 	mov	eax, DWORD PTR [rax]
@@ -1070,7 +1353,7 @@ $LN1@PMC_Bitwis:
 	add	rsp, 32					; 00000020H
 	pop	rdi
 	ret	0
-PMC_BitwiseAnd_X_I ENDP
+PMC_BitwiseAnd_I_X ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -1079,11 +1362,11 @@ _TEXT	SEGMENT
 feature$ = 8
 Initialize_BitwiseAnd PROC				; COMDAT
 
-; 281  :     return (PMC_STATUS_OK);
+; 365  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 282  : }
+; 366  : }
 
 	ret	0
 Initialize_BitwiseAnd ENDP

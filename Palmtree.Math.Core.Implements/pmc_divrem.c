@@ -938,6 +938,79 @@ static void DivRem_X_X_using_ADX_MULX(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_
         RightShift_Imp_DIV(work_u_buf, u_buf_len + 1, d_factor, work_u_buf, FALSE);
 }
 
+PMC_STATUS_CODE __PMC_CALL PMC_DivRem_I_X(_UINT32_T u, HANDLE v, _UINT32_T* q, _UINT32_T* r)
+{
+    if (sizeof(__UNIT_TYPE_DIV) < sizeof(u))
+    {
+        // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (q == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (r == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+        return (result);
+    if (nv->IS_ZERO)
+    {
+        // v が 0 である場合
+
+        // 0 による除算はエラーで返す
+        return (PMC_STATUS_DIVISION_BY_ZERO);
+    }
+    if (u == 0)
+    {
+        // u が 0 である場合
+
+        // q = 0, r = 0 を返す
+        *q = 0;
+        *r = 0;
+    }
+    else
+    {
+        // u が 0 ではない場合
+
+        if (nv->IS_ONE)
+        {
+            // v が 1 である場合
+
+            // q = u, r = 0 を返す
+            *q = u;
+            *r = 0;
+        }
+        else
+        {
+            // u と v がともに 0 ではない場合
+
+            // x と y の商・剰余を計算する
+            __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u);
+            __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+            if (u_bit_count < v_bit_count)
+            {
+                // 明らかに u < v である場合
+
+                // q = 0, r = u を返す。
+                *q = 0;
+                *r = u;
+            }
+            else
+            {
+                // u のビット数が v のビット数以上である場合
+                
+                // u は 1 ワードで表現できるので、v も 1 ワードで表現できる。
+                __UNIT_TYPE_DIV temp_r;
+                *q = _DIVREM_UNIT(0, u, (__UNIT_TYPE_DIV)nv->BLOCK[0], &temp_r);
+                *r = temp_r;
+            }
+        }
+    }
+    return (PMC_STATUS_OK);
+}
+
 PMC_STATUS_CODE __PMC_CALL PMC_DivRem_X_I(HANDLE u, _UINT32_T v, HANDLE* q, _UINT32_T* r)
 {
     if (sizeof(__UNIT_TYPE_DIV) < sizeof(v))
@@ -1024,6 +1097,160 @@ PMC_STATUS_CODE __PMC_CALL PMC_DivRem_X_I(HANDLE u, _UINT32_T v, HANDLE* q, _UIN
     if ((result = CheckNumber(nq)) != PMC_STATUS_OK)
         return (result);
 #endif
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_DivRem_L_X(_UINT64_T u, HANDLE v, _UINT64_T* q, _UINT64_T* r)
+{
+    if (sizeof(__UNIT_TYPE_DIV) * 2 < sizeof(u))
+    {
+        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (q == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (r == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+        return (result);
+    if (nv->IS_ZERO)
+    {
+        // v が 0 である場合
+
+        // 0 による除算はエラーで返す
+        return (PMC_STATUS_DIVISION_BY_ZERO);
+    }
+    if (u == 0)
+    {
+        // x が 0 である場合
+
+        // q = 0, r = 0 を返す
+        *q = 0;
+        *r = 0;
+    }
+    else
+    {
+        // u が 0 ではない場合
+
+        if (nv->IS_ONE)
+        {
+            // v が 1 である場合
+
+            // q = u, r = 0 を返す
+            *q = u;
+            *r = 0;
+        }
+        else
+        {
+            // u > 0 かつ v > 1 である場合
+
+            // u と v の商・剰余を計算する
+            if (sizeof(__UNIT_TYPE_DIV) < sizeof(u))
+            {
+                // _UINT64_T が 1 ワードで表現しきれない場合
+                _UINT32_T u_hi;
+                _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
+                if (u_hi == 0)
+                {
+                    // u の値が 32bit で表現可能な場合
+                    __UNIT_TYPE u_bit_count = sizeof(u_lo) * 8 - _LZCNT_ALT_32(u_lo);
+                    __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+                    if (u_bit_count < v_bit_count)
+                    {
+                        // 明らかに u < v である場合
+
+                        // q = 0, r = u を返す。
+                        *q = 0;
+                        *r = u_lo;
+                    }
+                    else
+                    {
+                        // u のビット数が v のビット数以上である場合
+
+                        // u は 32bit で表現できるので、v も 32bit で表現できる。
+                        __UNIT_TYPE_DIV temp_r;
+                        *q = _DIVREM_UNIT(0, u_lo, (__UNIT_TYPE_DIV)nv->BLOCK[0], &temp_r);
+                        *r = temp_r;
+                    }
+                }
+                else
+                {
+                    // v の値が 32bit では表現できない場合
+                    __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u_hi);
+                    __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+                    if (u_bit_count < v_bit_count)
+                    {
+                        // 明らかに u < v である場合
+
+                        // q = 0, r = u を返す。
+                        *q = 0;
+                        *r = u;
+                    }
+                    else
+                    {
+                        // u のビット長が 33 以上 64 以下であり、かつ、u のビット長が v のビット長以上(v のビット長は多くとも64以下)である場合
+
+                        if (nv->UNIT_BIT_COUNT <= sizeof(__UNIT_TYPE_DIV) * 8)
+                        {
+                            // v が 32bit で表現できる場合
+
+                            __UNIT_TYPE_DIV u_buf[] = { u_lo, u_hi };
+                            __UNIT_TYPE_DIV q_buf[] = { 0, 0, 0 };
+                            __UNIT_TYPE_DIV r_buf;
+
+                            DivRem_X_1W(u_buf, countof(u_buf), (__UNIT_TYPE_DIV)nv->BLOCK[0], q_buf, &r_buf);
+
+                            *q = _FROMWORDTODWORD(q_buf[1], q_buf[0]);
+                            *r = r_buf;
+                        }
+                        else
+                        {
+                            // v が 32bit では表現できない場合
+
+                            // この場合、2 ワード / 2 ワード の除算となるため、_DIVREM_UNIT 単発では計算できない。
+                            __UNIT_TYPE_DIV u_buf[] = { u_lo, u_hi };
+                            __UNIT_TYPE_DIV q_buf[] = { 0, 0, 0 };// 演算結果を格納するためには u のビット数 - v のビット数 + 1 ビットだけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+                            __UNIT_TYPE_DIV r_buf[] = { 0, 0, 0 }; // 演算結果を格納するためには v と同じ大きさだけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+                            __UNIT_TYPE_DIV work_v_buf[] = { 0, 0 };
+                            (*fp_DivRem_X_X)(u_buf, countof(u_buf), (__UNIT_TYPE_DIV*)nv->BLOCK, nv->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), work_v_buf, q_buf, r_buf);
+                            *q = _FROMWORDTODWORD((_UINT32_T)q_buf[1], (_UINT32_T)q_buf[0]);
+                            *r = _FROMWORDTODWORD((_UINT32_T)r_buf[1], (_UINT32_T)r_buf[0]);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // _UINT64_T が 1 ワードで表現できる場合
+
+                // x と y の商・剰余を計算する
+                __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)u);
+                __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+                if (u_bit_count < v_bit_count)
+                {
+                    // 明らかに u < v である場合
+
+                    // q = 0, r = u を返す。
+                    *q = 0;
+                    *r = u;
+                }
+                else
+                {
+                    // u のビット数が v のビット数以上である場合
+
+                    // u は 1 ワードで表現できるので、v も 1 ワードで表現できる。
+                    __UNIT_TYPE_DIV temp_r;
+                    *q = _DIVREM_UNIT(0, (__UNIT_TYPE_DIV)u, (__UNIT_TYPE_DIV)nv->BLOCK[0], &temp_r);
+                    *r = temp_r;
+                }
+            }
+
+        }
+    }
     return (PMC_STATUS_OK);
 }
 

@@ -101,78 +101,118 @@ PMC_Initialize:
 	movq	%rax, 56+entry_points(%rip)
 	movq	.refptr.PMC_To_X_B(%rip), %rax
 	movq	%rax, 64+entry_points(%rip)
-	movq	.refptr.PMC_Add_X_I(%rip), %rax
-	movq	%rax, 72+entry_points(%rip)
-	movq	.refptr.PMC_Add_X_L(%rip), %rax
-	movq	%rax, 80+entry_points(%rip)
-	movq	.refptr.PMC_Add_X_X(%rip), %rax
-	movq	%rax, 88+entry_points(%rip)
-	movq	.refptr.PMC_Subtruct_X_I(%rip), %rax
-	movq	%rax, 96+entry_points(%rip)
-	movq	.refptr.PMC_Subtruct_X_L(%rip), %rax
-	movq	%rax, 104+entry_points(%rip)
-	movq	.refptr.PMC_Subtruct_X_X(%rip), %rax
-	movq	%rax, 112+entry_points(%rip)
-	movq	.refptr.PMC_Multiply_X_I(%rip), %rax
-	movq	%rax, 120+entry_points(%rip)
-	movq	.refptr.PMC_Multiply_X_L(%rip), %rax
-	movq	%rax, 128+entry_points(%rip)
-	movq	.refptr.PMC_Multiply_X_X(%rip), %rax
-	movq	%rax, 136+entry_points(%rip)
-	movq	.refptr.PMC_DivRem_X_I(%rip), %rax
-	movq	%rax, 144+entry_points(%rip)
-	movq	.refptr.PMC_DivRem_X_L(%rip), %rax
-	movq	%rax, 152+entry_points(%rip)
-	movq	.refptr.PMC_DivRem_X_X(%rip), %rax
-	movq	%rax, 160+entry_points(%rip)
-	movq	.refptr.PMC_RightShift_X_I(%rip), %rax
-	movq	%rax, 184+entry_points(%rip)
-	movq	.refptr.PMC_RightShift_X_L(%rip), %rax
-	movq	%rax, 192+entry_points(%rip)
-	movq	.refptr.PMC_LeftShift_X_I(%rip), %rax
-	movq	%rax, 168+entry_points(%rip)
-	movq	.refptr.PMC_LeftShift_X_L(%rip), %rax
-	movq	%rax, 176+entry_points(%rip)
-	movq	.refptr.PMC_BitwiseAnd_X_I(%rip), %rax
-	movq	%rax, 200+entry_points(%rip)
-	movq	.refptr.PMC_BitwiseAnd_X_L(%rip), %rax
-	movq	%rax, 208+entry_points(%rip)
-	movq	.refptr.PMC_BitwiseAnd_X_X(%rip), %rax
-	movq	%rax, 216+entry_points(%rip)
-	movq	.refptr.PMC_BitwiseOr_X_I(%rip), %rax
-	movq	%rax, 224+entry_points(%rip)
-	movq	.refptr.PMC_BitwiseOr_X_L(%rip), %rax
-	movq	%rax, 232+entry_points(%rip)
-	movq	.refptr.PMC_BitwiseOr_X_X(%rip), %rax
-	movq	%rax, 240+entry_points(%rip)
-	movq	.refptr.PMC_ExclusiveOr_X_I(%rip), %rax
-	movq	%rax, 248+entry_points(%rip)
-	movq	.refptr.PMC_ExclusiveOr_X_L(%rip), %rax
-	movq	%rax, 256+entry_points(%rip)
-	movq	.refptr.PMC_ExclusiveOr_X_X(%rip), %rax
-	movq	%rax, 264+entry_points(%rip)
-	movq	.refptr.PMC_Compare_X_I(%rip), %rax
-	movq	%rax, 272+entry_points(%rip)
-	movq	.refptr.PMC_Compare_X_L(%rip), %rax
-	movq	%rax, 280+entry_points(%rip)
-	movq	.refptr.PMC_Compare_X_X(%rip), %rax
-	movq	%rax, 288+entry_points(%rip)
-	movq	.refptr.PMC_Equals_X_I(%rip), %rax
-	movq	%rax, 296+entry_points(%rip)
-	movq	.refptr.PMC_Equals_X_L(%rip), %rax
-	movq	%rax, 304+entry_points(%rip)
-	movq	.refptr.PMC_Equals_X_X(%rip), %rax
-	movq	%rax, 312+entry_points(%rip)
 	movq	.refptr.PMC_ToString(%rip), %rax
-	movq	%rax, 320+entry_points(%rip)
+	movq	%rax, 72+entry_points(%rip)
 	movq	.refptr.PMC_TryParse(%rip), %rax
+	movq	%rax, 80+entry_points(%rip)
+	movq	.refptr.PMC_Add_I_X(%rip), %rax
+	movq	%rax, 88+entry_points(%rip)
+	movq	.refptr.PMC_Add_L_X(%rip), %rax
+	movq	%rax, 96+entry_points(%rip)
+	movq	.refptr.PMC_Add_X_I(%rip), %rax
+	movq	%rax, 104+entry_points(%rip)
+	movq	.refptr.PMC_Add_X_L(%rip), %rax
+	movq	%rax, 112+entry_points(%rip)
+	movq	.refptr.PMC_Add_X_X(%rip), %rax
+	movq	%rax, 120+entry_points(%rip)
+	movq	.refptr.PMC_Subtruct_I_X(%rip), %rax
+	movq	%rax, 128+entry_points(%rip)
+	movq	.refptr.PMC_Subtruct_L_X(%rip), %rax
+	movq	%rax, 136+entry_points(%rip)
+	movq	.refptr.PMC_Subtruct_X_I(%rip), %rax
+	movq	%rax, 144+entry_points(%rip)
+	movq	.refptr.PMC_Subtruct_X_L(%rip), %rax
+	movq	%rax, 152+entry_points(%rip)
+	movq	.refptr.PMC_Subtruct_X_X(%rip), %rax
+	movq	%rax, 160+entry_points(%rip)
+	movq	.refptr.PMC_Multiply_I_X(%rip), %rax
+	movq	%rax, 168+entry_points(%rip)
+	movq	.refptr.PMC_Multiply_L_X(%rip), %rax
+	movq	%rax, 176+entry_points(%rip)
+	movq	.refptr.PMC_Multiply_X_I(%rip), %rax
+	movq	%rax, 184+entry_points(%rip)
+	movq	.refptr.PMC_Multiply_X_L(%rip), %rax
+	movq	%rax, 192+entry_points(%rip)
+	movq	.refptr.PMC_Multiply_X_X(%rip), %rax
+	movq	%rax, 200+entry_points(%rip)
+	movq	.refptr.PMC_DivRem_I_X(%rip), %rax
+	movq	%rax, 208+entry_points(%rip)
+	movq	.refptr.PMC_DivRem_L_X(%rip), %rax
+	movq	%rax, 216+entry_points(%rip)
+	movq	.refptr.PMC_DivRem_X_I(%rip), %rax
+	movq	%rax, 224+entry_points(%rip)
+	movq	.refptr.PMC_DivRem_X_L(%rip), %rax
+	movq	%rax, 232+entry_points(%rip)
+	movq	.refptr.PMC_DivRem_X_X(%rip), %rax
+	movq	%rax, 240+entry_points(%rip)
+	movq	.refptr.PMC_RightShift_X_I(%rip), %rax
+	movq	%rax, 264+entry_points(%rip)
+	movq	.refptr.PMC_RightShift_X_L(%rip), %rax
+	movq	%rax, 272+entry_points(%rip)
+	movq	.refptr.PMC_LeftShift_X_I(%rip), %rax
+	movq	%rax, 248+entry_points(%rip)
+	movq	.refptr.PMC_LeftShift_X_L(%rip), %rax
+	movq	%rax, 256+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseAnd_I_X(%rip), %rax
+	movq	%rax, 280+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseAnd_L_X(%rip), %rax
+	movq	%rax, 288+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseAnd_X_I(%rip), %rax
+	movq	%rax, 296+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseAnd_X_L(%rip), %rax
+	movq	%rax, 304+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseAnd_X_X(%rip), %rax
+	movq	%rax, 312+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseOr_I_X(%rip), %rax
+	movq	%rax, 320+entry_points(%rip)
+	movq	.refptr.PMC_BitwiseOr_L_X(%rip), %rax
 	movq	%rax, 328+entry_points(%rip)
-	movq	.refptr.PMC_GreatestCommonDivisor_X_I(%rip), %rax
+	movq	.refptr.PMC_BitwiseOr_X_I(%rip), %rax
 	movq	%rax, 336+entry_points(%rip)
-	movq	.refptr.PMC_GreatestCommonDivisor_X_L(%rip), %rax
+	movq	.refptr.PMC_BitwiseOr_X_L(%rip), %rax
 	movq	%rax, 344+entry_points(%rip)
-	movq	.refptr.PMC_GreatestCommonDivisor_X_X(%rip), %rax
+	movq	.refptr.PMC_BitwiseOr_X_X(%rip), %rax
 	movq	%rax, 352+entry_points(%rip)
+	movq	.refptr.PMC_ExclusiveOr_I_X(%rip), %rax
+	movq	%rax, 360+entry_points(%rip)
+	movq	.refptr.PMC_ExclusiveOr_L_X(%rip), %rax
+	movq	%rax, 368+entry_points(%rip)
+	movq	.refptr.PMC_ExclusiveOr_X_I(%rip), %rax
+	movq	%rax, 376+entry_points(%rip)
+	movq	.refptr.PMC_ExclusiveOr_X_L(%rip), %rax
+	movq	%rax, 384+entry_points(%rip)
+	movq	.refptr.PMC_ExclusiveOr_X_X(%rip), %rax
+	movq	%rax, 392+entry_points(%rip)
+	movq	.refptr.PMC_Compare_I_X(%rip), %rax
+	movq	%rax, 400+entry_points(%rip)
+	movq	.refptr.PMC_Compare_L_X(%rip), %rax
+	movq	%rax, 408+entry_points(%rip)
+	movq	.refptr.PMC_Compare_X_I(%rip), %rax
+	movq	%rax, 416+entry_points(%rip)
+	movq	.refptr.PMC_Compare_X_L(%rip), %rax
+	movq	%rax, 424+entry_points(%rip)
+	movq	.refptr.PMC_Compare_X_X(%rip), %rax
+	movq	%rax, 432+entry_points(%rip)
+	movq	.refptr.PMC_Equals_I_X(%rip), %rax
+	movq	%rax, 440+entry_points(%rip)
+	movq	.refptr.PMC_Equals_L_X(%rip), %rax
+	movq	%rax, 448+entry_points(%rip)
+	movq	.refptr.PMC_Equals_X_I(%rip), %rax
+	movq	%rax, 456+entry_points(%rip)
+	movq	.refptr.PMC_Equals_X_L(%rip), %rax
+	movq	%rax, 464+entry_points(%rip)
+	movq	.refptr.PMC_Equals_X_X(%rip), %rax
+	movq	%rax, 472+entry_points(%rip)
+	movq	.refptr.PMC_GreatestCommonDivisor_I_X(%rip), %rax
+	movq	%rax, 480+entry_points(%rip)
+	movq	.refptr.PMC_GreatestCommonDivisor_L_X(%rip), %rax
+	movq	%rax, 488+entry_points(%rip)
+	movq	.refptr.PMC_GreatestCommonDivisor_X_I(%rip), %rax
+	movq	%rax, 496+entry_points(%rip)
+	movq	.refptr.PMC_GreatestCommonDivisor_X_L(%rip), %rax
+	movq	%rax, 504+entry_points(%rip)
+	movq	.refptr.PMC_GreatestCommonDivisor_X_X(%rip), %rax
+	movq	%rax, 512+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
 	jmp	.L1
 	.p2align 4,,10
@@ -184,7 +224,7 @@ PMC_Initialize:
 	ret
 	.seh_endproc
 	.comm	configuration_info, 4, 2
-.lcomm entry_points,360,32
+.lcomm entry_points,520,32
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	GetCPUInfo;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
@@ -220,16 +260,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_GreatestCommonDivisor_X_I:
 	.quad	PMC_GreatestCommonDivisor_X_I
-	.section	.rdata$.refptr.PMC_TryParse, "dr"
-	.globl	.refptr.PMC_TryParse
+	.section	.rdata$.refptr.PMC_GreatestCommonDivisor_L_X, "dr"
+	.globl	.refptr.PMC_GreatestCommonDivisor_L_X
 	.linkonce	discard
-.refptr.PMC_TryParse:
-	.quad	PMC_TryParse
-	.section	.rdata$.refptr.PMC_ToString, "dr"
-	.globl	.refptr.PMC_ToString
+.refptr.PMC_GreatestCommonDivisor_L_X:
+	.quad	PMC_GreatestCommonDivisor_L_X
+	.section	.rdata$.refptr.PMC_GreatestCommonDivisor_I_X, "dr"
+	.globl	.refptr.PMC_GreatestCommonDivisor_I_X
 	.linkonce	discard
-.refptr.PMC_ToString:
-	.quad	PMC_ToString
+.refptr.PMC_GreatestCommonDivisor_I_X:
+	.quad	PMC_GreatestCommonDivisor_I_X
 	.section	.rdata$.refptr.PMC_Equals_X_X, "dr"
 	.globl	.refptr.PMC_Equals_X_X
 	.linkonce	discard
@@ -245,6 +285,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_Equals_X_I:
 	.quad	PMC_Equals_X_I
+	.section	.rdata$.refptr.PMC_Equals_L_X, "dr"
+	.globl	.refptr.PMC_Equals_L_X
+	.linkonce	discard
+.refptr.PMC_Equals_L_X:
+	.quad	PMC_Equals_L_X
+	.section	.rdata$.refptr.PMC_Equals_I_X, "dr"
+	.globl	.refptr.PMC_Equals_I_X
+	.linkonce	discard
+.refptr.PMC_Equals_I_X:
+	.quad	PMC_Equals_I_X
 	.section	.rdata$.refptr.PMC_Compare_X_X, "dr"
 	.globl	.refptr.PMC_Compare_X_X
 	.linkonce	discard
@@ -260,6 +310,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_Compare_X_I:
 	.quad	PMC_Compare_X_I
+	.section	.rdata$.refptr.PMC_Compare_L_X, "dr"
+	.globl	.refptr.PMC_Compare_L_X
+	.linkonce	discard
+.refptr.PMC_Compare_L_X:
+	.quad	PMC_Compare_L_X
+	.section	.rdata$.refptr.PMC_Compare_I_X, "dr"
+	.globl	.refptr.PMC_Compare_I_X
+	.linkonce	discard
+.refptr.PMC_Compare_I_X:
+	.quad	PMC_Compare_I_X
 	.section	.rdata$.refptr.PMC_ExclusiveOr_X_X, "dr"
 	.globl	.refptr.PMC_ExclusiveOr_X_X
 	.linkonce	discard
@@ -275,6 +335,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_ExclusiveOr_X_I:
 	.quad	PMC_ExclusiveOr_X_I
+	.section	.rdata$.refptr.PMC_ExclusiveOr_L_X, "dr"
+	.globl	.refptr.PMC_ExclusiveOr_L_X
+	.linkonce	discard
+.refptr.PMC_ExclusiveOr_L_X:
+	.quad	PMC_ExclusiveOr_L_X
+	.section	.rdata$.refptr.PMC_ExclusiveOr_I_X, "dr"
+	.globl	.refptr.PMC_ExclusiveOr_I_X
+	.linkonce	discard
+.refptr.PMC_ExclusiveOr_I_X:
+	.quad	PMC_ExclusiveOr_I_X
 	.section	.rdata$.refptr.PMC_BitwiseOr_X_X, "dr"
 	.globl	.refptr.PMC_BitwiseOr_X_X
 	.linkonce	discard
@@ -290,6 +360,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_BitwiseOr_X_I:
 	.quad	PMC_BitwiseOr_X_I
+	.section	.rdata$.refptr.PMC_BitwiseOr_L_X, "dr"
+	.globl	.refptr.PMC_BitwiseOr_L_X
+	.linkonce	discard
+.refptr.PMC_BitwiseOr_L_X:
+	.quad	PMC_BitwiseOr_L_X
+	.section	.rdata$.refptr.PMC_BitwiseOr_I_X, "dr"
+	.globl	.refptr.PMC_BitwiseOr_I_X
+	.linkonce	discard
+.refptr.PMC_BitwiseOr_I_X:
+	.quad	PMC_BitwiseOr_I_X
 	.section	.rdata$.refptr.PMC_BitwiseAnd_X_X, "dr"
 	.globl	.refptr.PMC_BitwiseAnd_X_X
 	.linkonce	discard
@@ -305,6 +385,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_BitwiseAnd_X_I:
 	.quad	PMC_BitwiseAnd_X_I
+	.section	.rdata$.refptr.PMC_BitwiseAnd_L_X, "dr"
+	.globl	.refptr.PMC_BitwiseAnd_L_X
+	.linkonce	discard
+.refptr.PMC_BitwiseAnd_L_X:
+	.quad	PMC_BitwiseAnd_L_X
+	.section	.rdata$.refptr.PMC_BitwiseAnd_I_X, "dr"
+	.globl	.refptr.PMC_BitwiseAnd_I_X
+	.linkonce	discard
+.refptr.PMC_BitwiseAnd_I_X:
+	.quad	PMC_BitwiseAnd_I_X
 	.section	.rdata$.refptr.PMC_LeftShift_X_L, "dr"
 	.globl	.refptr.PMC_LeftShift_X_L
 	.linkonce	discard
@@ -340,6 +430,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_DivRem_X_I:
 	.quad	PMC_DivRem_X_I
+	.section	.rdata$.refptr.PMC_DivRem_L_X, "dr"
+	.globl	.refptr.PMC_DivRem_L_X
+	.linkonce	discard
+.refptr.PMC_DivRem_L_X:
+	.quad	PMC_DivRem_L_X
+	.section	.rdata$.refptr.PMC_DivRem_I_X, "dr"
+	.globl	.refptr.PMC_DivRem_I_X
+	.linkonce	discard
+.refptr.PMC_DivRem_I_X:
+	.quad	PMC_DivRem_I_X
 	.section	.rdata$.refptr.PMC_Multiply_X_X, "dr"
 	.globl	.refptr.PMC_Multiply_X_X
 	.linkonce	discard
@@ -355,6 +455,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_Multiply_X_I:
 	.quad	PMC_Multiply_X_I
+	.section	.rdata$.refptr.PMC_Multiply_L_X, "dr"
+	.globl	.refptr.PMC_Multiply_L_X
+	.linkonce	discard
+.refptr.PMC_Multiply_L_X:
+	.quad	PMC_Multiply_L_X
+	.section	.rdata$.refptr.PMC_Multiply_I_X, "dr"
+	.globl	.refptr.PMC_Multiply_I_X
+	.linkonce	discard
+.refptr.PMC_Multiply_I_X:
+	.quad	PMC_Multiply_I_X
 	.section	.rdata$.refptr.PMC_Subtruct_X_X, "dr"
 	.globl	.refptr.PMC_Subtruct_X_X
 	.linkonce	discard
@@ -370,6 +480,16 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_Subtruct_X_I:
 	.quad	PMC_Subtruct_X_I
+	.section	.rdata$.refptr.PMC_Subtruct_L_X, "dr"
+	.globl	.refptr.PMC_Subtruct_L_X
+	.linkonce	discard
+.refptr.PMC_Subtruct_L_X:
+	.quad	PMC_Subtruct_L_X
+	.section	.rdata$.refptr.PMC_Subtruct_I_X, "dr"
+	.globl	.refptr.PMC_Subtruct_I_X
+	.linkonce	discard
+.refptr.PMC_Subtruct_I_X:
+	.quad	PMC_Subtruct_I_X
 	.section	.rdata$.refptr.PMC_Add_X_X, "dr"
 	.globl	.refptr.PMC_Add_X_X
 	.linkonce	discard
@@ -385,6 +505,26 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_Add_X_I:
 	.quad	PMC_Add_X_I
+	.section	.rdata$.refptr.PMC_Add_L_X, "dr"
+	.globl	.refptr.PMC_Add_L_X
+	.linkonce	discard
+.refptr.PMC_Add_L_X:
+	.quad	PMC_Add_L_X
+	.section	.rdata$.refptr.PMC_Add_I_X, "dr"
+	.globl	.refptr.PMC_Add_I_X
+	.linkonce	discard
+.refptr.PMC_Add_I_X:
+	.quad	PMC_Add_I_X
+	.section	.rdata$.refptr.PMC_TryParse, "dr"
+	.globl	.refptr.PMC_TryParse
+	.linkonce	discard
+.refptr.PMC_TryParse:
+	.quad	PMC_TryParse
+	.section	.rdata$.refptr.PMC_ToString, "dr"
+	.globl	.refptr.PMC_ToString
+	.linkonce	discard
+.refptr.PMC_ToString:
+	.quad	PMC_ToString
 	.section	.rdata$.refptr.PMC_To_X_B, "dr"
 	.globl	.refptr.PMC_To_X_B
 	.linkonce	discard

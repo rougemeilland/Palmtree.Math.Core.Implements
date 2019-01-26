@@ -68,7 +68,7 @@ u$ = 8
 v$ = 16
 _DIVIDE_CEILING_SIZE PROC				; COMDAT
 
-; 429  :     return ((u + v - 1) / v);
+; 449  :     return ((u + v - 1) / v);
 
 	lea	rax, QWORD PTR [rdx-1]
 	mov	r8, rdx
@@ -76,7 +76,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	xor	edx, edx
 	div	r8
 
-; 430  : }
+; 450  : }
 
 	ret	0
 _DIVIDE_CEILING_SIZE ENDP
@@ -89,14 +89,14 @@ value_high$ = 8
 value_low$ = 16
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 408  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, ecx
 	shl	rax, 32					; 00000020H
 	mov	ecx, edx
 	or	rax, rcx
 
-; 409  : }
+; 429  : }
 
 	ret	0
 _FROMWORDTODWORD ENDP
@@ -110,19 +110,19 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 279  : {
+; 299  : {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 
-; 280  :     __movsb(d, s, count);
+; 300  :     __movsb(d, s, count);
 
 	mov	rdi, rcx
 	mov	rsi, rdx
 	mov	rcx, r8
 	rep movsb
 
-; 281  : }
+; 301  : }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -207,20 +207,20 @@ $LN4@PMC_To_X_B:
 $LN5@PMC_To_X_B:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 280  :     __movsb(d, s, count);
+; 300  :     __movsb(d, s, count);
 
 	mov	rsi, QWORD PTR [rbx+48]
 
-; 429  :     return ((u + v - 1) / v);
+; 449  :     return ((u + v - 1) / v);
 
 	add	rcx, 7
 	shr	rcx, 3
 
-; 280  :     __movsb(d, s, count);
+; 300  :     __movsb(d, s, count);
 
 	rep movsb
 
-; 429  :     return ((u + v - 1) / v);
+; 449  :     return ((u + v - 1) / v);
 
 	mov	rax, QWORD PTR [rbx+8]
 	add	rax, 7

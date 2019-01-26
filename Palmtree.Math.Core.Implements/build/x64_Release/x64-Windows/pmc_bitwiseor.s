@@ -1,12 +1,9 @@
 	.file	"pmc_bitwiseor.c"
 	.text
 	.p2align 4,,15
-	.globl	PMC_BitwiseOr_X_I
-	.def	PMC_BitwiseOr_X_I;	.scl	2;	.type	32;	.endef
-	.seh_proc	PMC_BitwiseOr_X_I
-PMC_BitwiseOr_X_I:
-	pushq	%r12
-	.seh_pushreg	%r12
+	.def	PMC_BitwiseOr_X_I_Imp;	.scl	3;	.type	32;	.endef
+	.seh_proc	PMC_BitwiseOr_X_I_Imp
+PMC_BitwiseOr_X_I_Imp:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -15,66 +12,166 @@ PMC_BitwiseOr_X_I:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$48, %rsp
-	.seh_stackalloc	48
+	subq	$72, %rsp
+	.seh_stackalloc	72
 	.seh_endprologue
-	testq	%r8, %r8
-	movq	%rcx, %rbx
-	movl	%edx, %esi
-	movq	%r8, %r12
-	je	.L10
-	testq	%rcx, %rcx
-	je	.L10
-	call	CheckNumber
-	testl	%eax, %eax
-	movl	%eax, %ebp
-	jne	.L1
-	testb	$2, 32(%rbx)
-	je	.L3
-	testl	%esi, %esi
+	testb	$2, 32(%rcx)
+	movq	%rcx, %rsi
+	movl	%edx, %ebx
+	movq	%r8, %rbp
+	je	.L2
+	testl	%ebx, %ebx
+	jne	.L3
 	movq	.refptr.number_zero(%rip), %rax
-	jne	.L17
-.L4:
-	movq	%rax, (%r12)
+	movq	%rax, (%r8)
+	xorl	%eax, %eax
 .L1:
-	movl	%ebp, %eax
-	addq	$48, %rsp
+	addq	$72, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	popq	%rbp
-	popq	%r12
 	ret
 	.p2align 4,,10
-.L3:
-	testl	%esi, %esi
-	je	.L18
-	leaq	32(%rsp), %rcx
+.L2:
+	testl	%ebx, %ebx
+	jne	.L5
+	movq	%r8, %rdx
+	call	DuplicateNumber
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L5:
+	leaq	56(%rsp), %r8
 	movl	$31, %eax
 /APP
- # 833 "pmc_internal.h" 1
-	bsrl %esi, %edx
+ # 853 "pmc_internal.h" 1
+	bsrl %ebx, %edx
  # 0 "" 2
 /NO_APP
-	leaq	40(%rsp), %r8
 	subl	%edx, %eax
 	movl	$32, %edx
 	subq	%rax, %rdx
-	movq	8(%rbx), %rax
+	movq	8(%rcx), %rax
+	movq	%rbp, %rcx
 	cmpq	%rax, %rdx
 	cmovb	%rax, %rdx
 	addq	$1, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L13
-	movq	32(%rsp), %rax
+	jne	.L1
+	movq	0(%rbp), %rax
+	movq	48(%rax), %rcx
+	movq	(%rsi), %rax
+	movq	48(%rsi), %rsi
+	orq	(%rsi), %rbx
+	cmpq	$1, %rax
+	movq	%rbx, (%rcx)
+	je	.L8
+	leaq	8(%rcx), %rdi
+	addq	$8, %rsi
+	leaq	-1(%rax), %rcx
+/APP
+ # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep movsq
+ # 0 "" 2
+/NO_APP
+	movq	0(%rbp), %rax
+	movq	48(%rax), %rcx
+.L8:
+	movq	56(%rsp), %rdx
+	call	CheckBlockLight
+	testl	%eax, %eax
+	jne	.L1
+	movq	0(%rbp), %rcx
+	movl	%eax, 44(%rsp)
+	call	CommitNumber
+	movl	44(%rsp), %eax
+	jmp	.L1
+	.p2align 4,,10
+.L3:
+	movq	%r8, %rdx
+	movl	%ebx, %ecx
+	call	From_I_Imp
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.seh_endproc
+	.p2align 4,,15
+	.def	PMC_BitwiseOr_X_L_Imp;	.scl	3;	.type	32;	.endef
+	.seh_proc	PMC_BitwiseOr_X_L_Imp
+PMC_BitwiseOr_X_L_Imp:
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$72, %rsp
+	.seh_stackalloc	72
+	.seh_endprologue
+	testb	$2, 32(%rcx)
+	movq	%rcx, %rbx
+	movq	%rdx, %rsi
+	movq	%r8, %rbp
+	je	.L11
+	testq	%rdx, %rdx
+	jne	.L12
+	movq	.refptr.number_zero(%rip), %rax
+	movq	%rax, (%r8)
+	xorl	%eax, %eax
+.L10:
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L11:
+	testq	%rdx, %rdx
+	jne	.L14
+	movq	%r8, %rdx
+	call	DuplicateNumber
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L14:
+/APP
+ # 897 "pmc_internal.h" 1
+	bsrq %rdx, %rdx
+ # 0 "" 2
+/NO_APP
+	leaq	56(%rsp), %r8
+	addq	$1, %rdx
+	cmpq	%rdx, 8(%rcx)
+	cmovnb	8(%rcx), %rdx
+	movq	%rbp, %rcx
+	addq	$1, %rdx
+	call	AllocateNumber
+	testl	%eax, %eax
+	jne	.L10
+	movq	0(%rbp), %rax
 	movq	(%rbx), %rdx
 	movq	48(%rax), %rcx
 	movq	48(%rbx), %rax
 	orq	(%rax), %rsi
 	cmpq	$1, %rdx
 	movq	%rsi, (%rcx)
-	je	.L9
+	je	.L17
 	leaq	8(%rcx), %rdi
 	leaq	8(%rax), %rsi
 	leaq	-1(%rdx), %rcx
@@ -83,170 +180,211 @@ PMC_BitwiseOr_X_I:
 	rep movsq
  # 0 "" 2
 /NO_APP
-	movq	32(%rsp), %rax
+	movq	0(%rbp), %rax
 	movq	48(%rax), %rcx
-.L9:
-	movq	40(%rsp), %rdx
+.L17:
+	movq	56(%rsp), %rdx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L13
-	movq	32(%rsp), %rcx
+	jne	.L10
+	movq	0(%rbp), %rcx
+	movl	%eax, 44(%rsp)
 	call	CommitNumber
-	movq	32(%rsp), %rax
-	jmp	.L4
+	movl	44(%rsp), %eax
+	jmp	.L10
 	.p2align 4,,10
-.L18:
-	leaq	32(%rsp), %rdx
-	movq	%rbx, %rcx
-	call	DuplicateNumber
-	testl	%eax, %eax
-	jne	.L13
-.L15:
-	movq	32(%rsp), %rax
-	jmp	.L4
-	.p2align 4,,10
-.L17:
-	leaq	32(%rsp), %rdx
-	movl	%esi, %ecx
-	call	From_I_Imp
-	testl	%eax, %eax
-	je	.L15
-.L13:
-	movl	%eax, %ebp
-	movl	%ebp, %eax
-	addq	$48, %rsp
+.L12:
+	movq	%r8, %rdx
+	movq	%rsi, %rcx
+	call	From_L_Imp
+	addq	$72, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	popq	%rbp
-	popq	%r12
+	ret
+	.seh_endproc
+	.p2align 4,,15
+	.globl	PMC_BitwiseOr_I_X
+	.def	PMC_BitwiseOr_I_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_BitwiseOr_I_X
+PMC_BitwiseOr_I_X:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	testq	%r8, %r8
+	movl	%ecx, %edi
+	movq	%rdx, %rbx
+	movq	%r8, %rsi
+	je	.L20
+	testq	%rdx, %rdx
+	je	.L20
+	movq	%rdx, %rcx
+	call	CheckNumber
+	testl	%eax, %eax
+	je	.L21
+.L18:
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
 	ret
 	.p2align 4,,10
-.L10:
-	movl	$-1, %ebp
-	jmp	.L1
+.L21:
+	movq	%rsi, %r8
+	movl	%edi, %edx
+	movq	%rbx, %rcx
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	jmp	PMC_BitwiseOr_X_I_Imp
+	.p2align 4,,10
+.L20:
+	movl	$-1, %eax
+	jmp	.L18
+	.seh_endproc
+	.p2align 4,,15
+	.globl	PMC_BitwiseOr_X_I
+	.def	PMC_BitwiseOr_X_I;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_BitwiseOr_X_I
+PMC_BitwiseOr_X_I:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	testq	%r8, %r8
+	movq	%rcx, %rbx
+	movl	%edx, %edi
+	movq	%r8, %rsi
+	je	.L24
+	testq	%rcx, %rcx
+	je	.L24
+	call	CheckNumber
+	testl	%eax, %eax
+	je	.L25
+.L22:
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L25:
+	movq	%rsi, %r8
+	movl	%edi, %edx
+	movq	%rbx, %rcx
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	jmp	PMC_BitwiseOr_X_I_Imp
+	.p2align 4,,10
+.L24:
+	movl	$-1, %eax
+	jmp	.L22
+	.seh_endproc
+	.p2align 4,,15
+	.globl	PMC_BitwiseOr_L_X
+	.def	PMC_BitwiseOr_L_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_BitwiseOr_L_X
+PMC_BitwiseOr_L_X:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	testq	%r8, %r8
+	movq	%rcx, %rdi
+	movq	%rdx, %rbx
+	movq	%r8, %rsi
+	je	.L28
+	testq	%rdx, %rdx
+	je	.L28
+	movq	%rdx, %rcx
+	call	CheckNumber
+	testl	%eax, %eax
+	je	.L29
+.L26:
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L29:
+	movq	%rsi, %r8
+	movq	%rdi, %rdx
+	movq	%rbx, %rcx
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	jmp	PMC_BitwiseOr_X_L_Imp
+	.p2align 4,,10
+.L28:
+	movl	$-1, %eax
+	jmp	.L26
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_BitwiseOr_X_L
 	.def	PMC_BitwiseOr_X_L;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_BitwiseOr_X_L
 PMC_BitwiseOr_X_L:
-	pushq	%r12
-	.seh_pushreg	%r12
-	pushq	%rbp
-	.seh_pushreg	%rbp
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$48, %rsp
-	.seh_stackalloc	48
+	subq	$32, %rsp
+	.seh_stackalloc	32
 	.seh_endprologue
 	testq	%r8, %r8
 	movq	%rcx, %rbx
-	movq	%rdx, %rsi
-	movq	%r8, %r12
-	je	.L28
+	movq	%rdx, %rdi
+	movq	%r8, %rsi
+	je	.L32
 	testq	%rcx, %rcx
-	je	.L28
+	je	.L32
 	call	CheckNumber
 	testl	%eax, %eax
-	movl	%eax, %ebp
-	jne	.L19
-	testb	$2, 32(%rbx)
-	je	.L21
-	testq	%rsi, %rsi
-	movq	.refptr.number_zero(%rip), %rax
-	jne	.L34
-.L22:
-	movq	%rax, (%r12)
-.L19:
-	movl	%ebp, %eax
-	addq	$48, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%rbp
-	popq	%r12
-	ret
-	.p2align 4,,10
-.L21:
-	testq	%rsi, %rsi
-	je	.L35
-/APP
- # 877 "pmc_internal.h" 1
-	bsrq %rsi, %rdx
- # 0 "" 2
-/NO_APP
-	leaq	32(%rsp), %rcx
-	addq	$1, %rdx
-	cmpq	%rdx, 8(%rbx)
-	cmovnb	8(%rbx), %rdx
-	addq	$1, %rdx
-	leaq	40(%rsp), %r8
-	call	AllocateNumber
-	testl	%eax, %eax
-	jne	.L31
-	movq	32(%rsp), %rax
-	movq	(%rbx), %rdx
-	movq	48(%rax), %rcx
-	movq	48(%rbx), %rax
-	orq	(%rax), %rsi
-	cmpq	$1, %rdx
-	movq	%rsi, (%rcx)
-	je	.L27
-	leaq	8(%rcx), %rdi
-	leaq	8(%rax), %rsi
-	leaq	-1(%rdx), %rcx
-/APP
- # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	rep movsq
- # 0 "" 2
-/NO_APP
-	movq	32(%rsp), %rax
-	movq	48(%rax), %rcx
-.L27:
-	movq	40(%rsp), %rdx
-	call	CheckBlockLight
-	testl	%eax, %eax
-	jne	.L31
-	movq	32(%rsp), %rcx
-	call	CommitNumber
-	movq	32(%rsp), %rax
-	jmp	.L22
-	.p2align 4,,10
-.L35:
-	leaq	32(%rsp), %rdx
-	movq	%rbx, %rcx
-	call	DuplicateNumber
-	testl	%eax, %eax
-	jne	.L31
-.L33:
-	movq	32(%rsp), %rax
-	jmp	.L22
-	.p2align 4,,10
-.L34:
-	leaq	32(%rsp), %rdx
-	movq	%rsi, %rcx
-	call	From_L_Imp
-	testl	%eax, %eax
 	je	.L33
-.L31:
-	movl	%eax, %ebp
-	movl	%ebp, %eax
-	addq	$48, %rsp
+.L30:
+	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
-	popq	%rbp
-	popq	%r12
 	ret
 	.p2align 4,,10
-.L28:
-	movl	$-1, %ebp
-	jmp	.L19
+.L33:
+	movq	%rsi, %r8
+	movq	%rdi, %rdx
+	movq	%rbx, %rcx
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	jmp	PMC_BitwiseOr_X_L_Imp
+	.p2align 4,,10
+.L32:
+	movl	$-1, %eax
+	jmp	.L30
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_BitwiseOr_X_X
@@ -276,14 +414,14 @@ PMC_BitwiseOr_X_X:
 	movq	%r8, %r12
 	sete	%al
 	orb	%al, %dl
-	jne	.L51
+	jne	.L49
 	testq	%rcx, %rcx
-	je	.L51
+	je	.L49
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %ebx
-	je	.L73
-.L36:
+	je	.L71
+.L34:
 	movl	%ebx, %eax
 	addq	$56, %rsp
 	popq	%rbx
@@ -294,23 +432,23 @@ PMC_BitwiseOr_X_X:
 	popq	%r13
 	ret
 	.p2align 4,,10
-.L73:
+.L71:
 	movq	%rsi, %rcx
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %ebx
-	jne	.L36
+	jne	.L34
 	testb	$2, 32(%rbp)
-	jne	.L74
+	jne	.L72
 	testb	$2, 32(%rsi)
-	jne	.L75
+	jne	.L73
 	movq	(%rsi), %rax
 	cmpq	%rax, 0(%rbp)
-	jnb	.L41
+	jnb	.L39
 	movq	%rbp, %rax
 	movq	%rsi, %rbp
 	movq	%rax, %rsi
-.L41:
+.L39:
 	movq	8(%rsi), %rdx
 	leaq	32(%rsp), %rcx
 	cmpq	%rdx, 8(%rbp)
@@ -318,7 +456,7 @@ PMC_BitwiseOr_X_X:
 	cmovnb	8(%rbp), %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L53
+	jne	.L51
 	movq	(%rsi), %r13
 	movq	0(%rbp), %rcx
 	movq	32(%rsp), %rax
@@ -329,13 +467,13 @@ PMC_BitwiseOr_X_X:
 	subq	%r13, %rcx
 	testq	%rbp, %rbp
 	movq	48(%rax), %rdi
-	je	.L43
+	je	.L41
 	movq	%rbp, %r10
 	movq	%rdi, %r8
 	movq	%r11, %rdx
 	movq	%rsi, %rax
 	.p2align 4,,10
-.L44:
+.L42:
 	movq	(%rax), %r9
 	orq	(%rdx), %r9
 	movq	%r9, (%r8)
@@ -436,14 +574,14 @@ PMC_BitwiseOr_X_X:
 	addq	$256, %r8
 	movq	%r9, -8(%r8)
 	subq	$1, %r10
-	jne	.L44
+	jne	.L42
 	salq	$8, %rbp
 	addq	%rbp, %rsi
 	addq	%rbp, %r11
 	addq	%rbp, %rdi
-.L43:
+.L41:
 	testb	$16, %r13b
-	je	.L45
+	je	.L43
 	movq	(%rsi), %rax
 	subq	$-128, %r11
 	subq	$-128, %rsi
@@ -495,9 +633,9 @@ PMC_BitwiseOr_X_X:
 	movq	-8(%rsi), %rax
 	orq	-8(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L45:
+.L43:
 	testb	$8, %r13b
-	je	.L46
+	je	.L44
 	movq	(%rsi), %rax
 	addq	$64, %r11
 	addq	$64, %rsi
@@ -525,9 +663,9 @@ PMC_BitwiseOr_X_X:
 	movq	-8(%rsi), %rax
 	orq	-8(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L46:
+.L44:
 	testb	$4, %r13b
-	je	.L47
+	je	.L45
 	movq	(%rsi), %rax
 	addq	$32, %r11
 	addq	$32, %rsi
@@ -543,9 +681,9 @@ PMC_BitwiseOr_X_X:
 	movq	-8(%rsi), %rax
 	orq	-8(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L47:
+.L45:
 	testb	$2, %r13b
-	je	.L48
+	je	.L46
 	movq	(%rsi), %rax
 	addq	$16, %r11
 	addq	$16, %rsi
@@ -555,15 +693,15 @@ PMC_BitwiseOr_X_X:
 	movq	-8(%rsi), %rax
 	orq	-8(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L48:
+.L46:
 	andl	$1, %r13d
-	je	.L49
+	je	.L47
 	movq	(%rsi), %rax
 	addq	$8, %rdi
 	addq	$8, %rsi
 	orq	(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L49:
+.L47:
 /APP
  # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsq
@@ -574,8 +712,8 @@ PMC_BitwiseOr_X_X:
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	je	.L76
-.L53:
+	je	.L74
+.L51:
 	movl	%eax, %ebx
 	movl	%ebx, %eax
 	addq	$56, %rsp
@@ -587,13 +725,13 @@ PMC_BitwiseOr_X_X:
 	popq	%r13
 	ret
 	.p2align 4,,10
-.L75:
+.L73:
 	leaq	32(%rsp), %rdx
 	movq	%rbp, %rcx
 	call	DuplicateNumber
 	testl	%eax, %eax
-	jne	.L53
-.L50:
+	jne	.L51
+.L48:
 	movq	32(%rsp), %rax
 	movq	%rax, (%r12)
 	movl	%ebx, %eax
@@ -606,22 +744,22 @@ PMC_BitwiseOr_X_X:
 	popq	%r13
 	ret
 	.p2align 4,,10
-.L74:
+.L72:
 	leaq	32(%rsp), %rdx
 	movq	%rsi, %rcx
 	call	DuplicateNumber
 	testl	%eax, %eax
-	je	.L50
-	jmp	.L53
+	je	.L48
+	jmp	.L51
 	.p2align 4,,10
-.L76:
+.L74:
 	movq	32(%rsp), %rcx
 	call	CommitNumber
-	jmp	.L50
+	jmp	.L48
 	.p2align 4,,10
-.L51:
+.L49:
 	movl	$-1, %ebx
-	jmp	.L36
+	jmp	.L34
 	.seh_endproc
 	.p2align 4,,15
 	.globl	Initialize_BitwiseOr
@@ -633,13 +771,13 @@ Initialize_BitwiseOr:
 	ret
 	.seh_endproc
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
-	.def	CheckNumber;	.scl	2;	.type	32;	.endef
+	.def	DuplicateNumber;	.scl	2;	.type	32;	.endef
 	.def	AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	CheckBlockLight;	.scl	2;	.type	32;	.endef
 	.def	CommitNumber;	.scl	2;	.type	32;	.endef
-	.def	DuplicateNumber;	.scl	2;	.type	32;	.endef
 	.def	From_I_Imp;	.scl	2;	.type	32;	.endef
 	.def	From_L_Imp;	.scl	2;	.type	32;	.endef
+	.def	CheckNumber;	.scl	2;	.type	32;	.endef
 	.section	.rdata$.refptr.number_zero, "dr"
 	.globl	.refptr.number_zero
 	.linkonce	discard

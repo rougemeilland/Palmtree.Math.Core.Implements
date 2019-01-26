@@ -26,6 +26,8 @@ __4522B509_pmc_internal@h DB 01H
 __AC60EF90_pmc_bitwiseor@c DB 01H
 msvcjmc	ENDS
 PUBLIC	_Initialize_BitwiseOr
+PUBLIC	_PMC_BitwiseOr_I_X@12
+PUBLIC	_PMC_BitwiseOr_L_X@16
 PUBLIC	_PMC_BitwiseOr_X_I@12
 PUBLIC	_PMC_BitwiseOr_X_L@16
 PUBLIC	_PMC_BitwiseOr_X_X@12
@@ -61,6 +63,811 @@ __JustMyCode_Default PROC				; COMDAT
 	pop	ebp
 	ret	0
 __JustMyCode_Default ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseor.c
+_TEXT	SEGMENT
+_nw_light_check_code$1 = -84				; size = 4
+_w_bit_count$2 = -76					; size = 4
+_v_bit_count$3 = -72					; size = 4
+_u_bit_count$4 = -68					; size = 4
+_w_light_check_code$5 = -60				; size = 4
+_w_bit_count$6 = -52					; size = 4
+_v_bit_count$7 = -48					; size = 4
+_w_light_check_code$8 = -40				; size = 4
+_w_bit_count$9 = -32					; size = 4
+_v_bit_count$10 = -28					; size = 4
+_v_lo$11 = -24						; size = 4
+_v_hi$12 = -16						; size = 4
+_u_bit_count$13 = -8					; size = 4
+_result$ = -4						; size = 4
+_u$ = 8							; size = 4
+_v$ = 12						; size = 8
+_w$ = 20						; size = 4
+_PMC_BitwiseOr_X_L_Imp PROC
+
+; 274  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 88					; 00000058H
+	push	edi
+	lea	edi, DWORD PTR [ebp-88]
+	mov	ecx, 22					; 00000016H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, OFFSET __AC60EF90_pmc_bitwiseor@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 275  :     PMC_STATUS_CODE result;
+; 276  :     if (u->IS_ZERO)
+
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+16]
+	shr	ecx, 1
+	and	ecx, 1
+	je	SHORT $LN2@PMC_Bitwis
+
+; 277  :     {
+; 278  :         // u が 0 である場合
+; 279  :         if (v == 0)
+
+	mov	edx, DWORD PTR _v$[ebp]
+	or	edx, DWORD PTR _v$[ebp+4]
+	jne	SHORT $LN4@PMC_Bitwis
+
+; 280  :         {
+; 281  :             // v が 0 である場合
+; 282  :             *w = &number_zero;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], OFFSET _number_zero
+
+; 283  :         }
+
+	jmp	SHORT $LN5@PMC_Bitwis
+$LN4@PMC_Bitwis:
+
+; 284  :         else
+; 285  :         {
+; 286  :             // v が 0 でない場合
+; 287  :             if ((result = From_L_Imp(v, w)) != PMC_STATUS_OK)
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v$[ebp+4]
+	push	edx
+	mov	eax, DWORD PTR _v$[ebp]
+	push	eax
+	call	_From_L_Imp
+	add	esp, 12					; 0000000cH
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN5@PMC_Bitwis
+
+; 288  :                 return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Bitwis
+$LN5@PMC_Bitwis:
+
+; 289  :         }
+; 290  :     }
+
+	jmp	$LN3@PMC_Bitwis
+$LN2@PMC_Bitwis:
+
+; 291  :     else if (v == 0)
+
+	mov	ecx, DWORD PTR _v$[ebp]
+	or	ecx, DWORD PTR _v$[ebp+4]
+	jne	SHORT $LN7@PMC_Bitwis
+
+; 292  :     {
+; 293  :         // v が 0 である場合
+; 294  :         if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
+
+	mov	edx, DWORD PTR _w$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp]
+	push	eax
+	call	_DuplicateNumber
+	add	esp, 8
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN9@PMC_Bitwis
+
+; 295  :             return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Bitwis
+$LN9@PMC_Bitwis:
+
+; 296  :     }
+
+	jmp	$LN3@PMC_Bitwis
+$LN7@PMC_Bitwis:
+
+; 297  :     else
+; 298  :     {
+; 299  :         // u と v がともに 0 ではない場合
+; 300  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+
+	mov	ecx, 1
+	test	ecx, ecx
+	je	$LN10@PMC_Bitwis
+
+; 301  :         {
+; 302  :             // _UINT64_T が 1 ワードで表現しきれない場合
+; 303  :             __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+
+	mov	edx, DWORD PTR _u$[ebp]
+	mov	eax, DWORD PTR [edx+4]
+	mov	DWORD PTR _u_bit_count$13[ebp], eax
+
+; 304  :             _UINT32_T v_hi;
+; 305  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
+
+	lea	ecx, DWORD PTR _v_hi$12[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v$[ebp+4]
+	push	edx
+	mov	eax, DWORD PTR _v$[ebp]
+	push	eax
+	call	__FROMDWORDTOWORD
+	add	esp, 12					; 0000000cH
+	mov	DWORD PTR _v_lo$11[ebp], eax
+
+; 306  :             if (v_hi == 0)
+
+	cmp	DWORD PTR _v_hi$12[ebp], 0
+	jne	$LN12@PMC_Bitwis
+
+; 307  :             {
+; 308  :                 // v の値が 32bit で表現可能な場合
+; 309  :                 __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
+
+	mov	ecx, DWORD PTR _v_lo$11[ebp]
+	push	ecx
+	call	__LZCNT_ALT_32
+	add	esp, 4
+	mov	edx, 32					; 00000020H
+	sub	edx, eax
+	mov	DWORD PTR _v_bit_count$10[ebp], edx
+
+; 310  :                 __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+
+	mov	eax, DWORD PTR _v_bit_count$10[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _u_bit_count$13[ebp]
+	push	ecx
+	call	__MAXIMUM_UNIT
+	add	esp, 8
+	mov	DWORD PTR _w_bit_count$9[ebp], eax
+
+; 311  :                 __UNIT_TYPE w_light_check_code;
+; 312  :                 if ((result = AllocateNumber(w, w_bit_count, &w_light_check_code)) != PMC_STATUS_OK)
+
+	lea	edx, DWORD PTR _w_light_check_code$8[ebp]
+	push	edx
+	mov	eax, DWORD PTR _w_bit_count$9[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _w$[ebp]
+	push	ecx
+	call	_AllocateNumber
+	add	esp, 12					; 0000000cH
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN14@PMC_Bitwis
+
+; 313  :                     return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Bitwis
+$LN14@PMC_Bitwis:
+
+; 314  :                 BitwiseOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, v_lo, (*w)->BLOCK);
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	eax, DWORD PTR [edx]
+	mov	ecx, DWORD PTR [eax+24]
+	push	ecx
+	mov	edx, DWORD PTR _v_lo$11[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	push	ecx
+	mov	edx, DWORD PTR _u$[ebp]
+	mov	eax, DWORD PTR [edx+24]
+	push	eax
+	call	_BitwiseOr_X_1W
+	add	esp, 16					; 00000010H
+
+; 315  :                 if ((result = CheckBlockLight((*w)->BLOCK, w_light_check_code)) != PMC_STATUS_OK)
+
+	mov	ecx, DWORD PTR _w_light_check_code$8[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	eax, DWORD PTR [edx]
+	mov	ecx, DWORD PTR [eax+24]
+	push	ecx
+	call	_CheckBlockLight
+	add	esp, 8
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN15@PMC_Bitwis
+
+; 316  :                     return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Bitwis
+$LN15@PMC_Bitwis:
+
+; 317  :             }
+
+	jmp	$LN13@PMC_Bitwis
+$LN12@PMC_Bitwis:
+
+; 318  :             else
+; 319  :             {
+; 320  :                 // y の値が 32bit では表現できない場合
+; 321  :                 __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
+
+	mov	edx, DWORD PTR _v_hi$12[ebp]
+	push	edx
+	call	__LZCNT_ALT_32
+	add	esp, 4
+	mov	ecx, 64					; 00000040H
+	sub	ecx, eax
+	mov	DWORD PTR _v_bit_count$7[ebp], ecx
+
+; 322  :                 __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+
+	mov	edx, DWORD PTR _v_bit_count$7[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u_bit_count$13[ebp]
+	push	eax
+	call	__MAXIMUM_UNIT
+	add	esp, 8
+	mov	DWORD PTR _w_bit_count$6[ebp], eax
+
+; 323  :                 __UNIT_TYPE w_light_check_code;
+; 324  :                 if ((result = AllocateNumber(w, w_bit_count, &w_light_check_code)) != PMC_STATUS_OK)
+
+	lea	ecx, DWORD PTR _w_light_check_code$5[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _w_bit_count$6[ebp]
+	push	edx
+	mov	eax, DWORD PTR _w$[ebp]
+	push	eax
+	call	_AllocateNumber
+	add	esp, 12					; 0000000cH
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN16@PMC_Bitwis
+
+; 325  :                     return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Bitwis
+$LN16@PMC_Bitwis:
+
+; 326  :                 BitwiseOr_X_2W(u->BLOCK, u->UNIT_WORD_COUNT, v_hi, v_lo, (*w)->BLOCK);
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	mov	eax, DWORD PTR [edx+24]
+	push	eax
+	mov	ecx, DWORD PTR _v_lo$11[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v_hi$12[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	push	ecx
+	mov	edx, DWORD PTR _u$[ebp]
+	mov	eax, DWORD PTR [edx+24]
+	push	eax
+	call	_BitwiseOr_X_2W
+	add	esp, 20					; 00000014H
+
+; 327  :                 if ((result = CheckBlockLight((*w)->BLOCK, w_light_check_code)) != PMC_STATUS_OK)
+
+	mov	ecx, DWORD PTR _w_light_check_code$5[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	eax, DWORD PTR [edx]
+	mov	ecx, DWORD PTR [eax+24]
+	push	ecx
+	call	_CheckBlockLight
+	add	esp, 8
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN13@PMC_Bitwis
+
+; 328  :                     return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Bitwis
+$LN13@PMC_Bitwis:
+
+; 329  :             }
+; 330  :             CommitNumber(*w);
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	eax, DWORD PTR [edx]
+	push	eax
+	call	_CommitNumber
+	add	esp, 4
+
+; 331  :         }
+
+	jmp	$LN3@PMC_Bitwis
+$LN10@PMC_Bitwis:
+
+; 332  :         else
+; 333  :         {
+; 334  :             // _UINT64_T が 1 ワードで表現できる場合
+; 335  : 
+; 336  :             __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+
+	mov	ecx, DWORD PTR _u$[ebp]
+	mov	edx, DWORD PTR [ecx+4]
+	mov	DWORD PTR _u_bit_count$4[ebp], edx
+
+; 337  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
+
+	mov	eax, DWORD PTR _v$[ebp]
+	push	eax
+	call	__LZCNT_ALT_UNIT
+	add	esp, 4
+	mov	ecx, 64					; 00000040H
+	sub	ecx, eax
+	mov	DWORD PTR _v_bit_count$3[ebp], ecx
+
+; 338  :             __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
+
+	mov	edx, DWORD PTR _v_bit_count$3[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u_bit_count$4[ebp]
+	push	eax
+	call	__MAXIMUM_UNIT
+	add	esp, 8
+	add	eax, 1
+	mov	DWORD PTR _w_bit_count$2[ebp], eax
+
+; 339  :             __UNIT_TYPE nw_light_check_code;
+; 340  :             if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+
+	lea	ecx, DWORD PTR _nw_light_check_code$1[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _w_bit_count$2[ebp]
+	push	edx
+	mov	eax, DWORD PTR _w$[ebp]
+	push	eax
+	call	_AllocateNumber
+	add	esp, 12					; 0000000cH
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN18@PMC_Bitwis
+
+; 341  :                 return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN18@PMC_Bitwis:
+
+; 342  :             BitwiseOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, (__UNIT_TYPE)v, (*w)->BLOCK);
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	mov	eax, DWORD PTR [edx+24]
+	push	eax
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _u$[ebp]
+	mov	eax, DWORD PTR [edx]
+	push	eax
+	mov	ecx, DWORD PTR _u$[ebp]
+	mov	edx, DWORD PTR [ecx+24]
+	push	edx
+	call	_BitwiseOr_X_1W
+	add	esp, 16					; 00000010H
+
+; 343  :             if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+
+	mov	eax, DWORD PTR _nw_light_check_code$1[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	mov	eax, DWORD PTR [edx+24]
+	push	eax
+	call	_CheckBlockLight
+	add	esp, 8
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN19@PMC_Bitwis
+
+; 344  :                 return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN19@PMC_Bitwis:
+
+; 345  :             CommitNumber(*w);
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	push	edx
+	call	_CommitNumber
+	add	esp, 4
+$LN3@PMC_Bitwis:
+
+; 346  :         }
+; 347  :     }
+; 348  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Bitwis:
+
+; 349  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN26@PMC_Bitwis
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	pop	edi
+	add	esp, 88					; 00000058H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+	npad	1
+$LN26@PMC_Bitwis:
+	DD	4
+	DD	$LN25@PMC_Bitwis
+$LN25@PMC_Bitwis:
+	DD	-16					; fffffff0H
+	DD	4
+	DD	$LN21@PMC_Bitwis
+	DD	-40					; ffffffd8H
+	DD	4
+	DD	$LN22@PMC_Bitwis
+	DD	-60					; ffffffc4H
+	DD	4
+	DD	$LN23@PMC_Bitwis
+	DD	-84					; ffffffacH
+	DD	4
+	DD	$LN24@PMC_Bitwis
+$LN24@PMC_Bitwis:
+	DB	110					; 0000006eH
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	108					; 0000006cH
+	DB	105					; 00000069H
+	DB	103					; 00000067H
+	DB	104					; 00000068H
+	DB	116					; 00000074H
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	104					; 00000068H
+	DB	101					; 00000065H
+	DB	99					; 00000063H
+	DB	107					; 0000006bH
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	111					; 0000006fH
+	DB	100					; 00000064H
+	DB	101					; 00000065H
+	DB	0
+$LN23@PMC_Bitwis:
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	108					; 0000006cH
+	DB	105					; 00000069H
+	DB	103					; 00000067H
+	DB	104					; 00000068H
+	DB	116					; 00000074H
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	104					; 00000068H
+	DB	101					; 00000065H
+	DB	99					; 00000063H
+	DB	107					; 0000006bH
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	111					; 0000006fH
+	DB	100					; 00000064H
+	DB	101					; 00000065H
+	DB	0
+$LN22@PMC_Bitwis:
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	108					; 0000006cH
+	DB	105					; 00000069H
+	DB	103					; 00000067H
+	DB	104					; 00000068H
+	DB	116					; 00000074H
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	104					; 00000068H
+	DB	101					; 00000065H
+	DB	99					; 00000063H
+	DB	107					; 0000006bH
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	111					; 0000006fH
+	DB	100					; 00000064H
+	DB	101					; 00000065H
+	DB	0
+$LN21@PMC_Bitwis:
+	DB	118					; 00000076H
+	DB	95					; 0000005fH
+	DB	104					; 00000068H
+	DB	105					; 00000069H
+	DB	0
+_PMC_BitwiseOr_X_L_Imp ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseor.c
+_TEXT	SEGMENT
+_nz_check_code$1 = -24					; size = 4
+_w_bit_count$2 = -16					; size = 4
+_v_bit_count$3 = -12					; size = 4
+_u_bit_count$4 = -8					; size = 4
+_result$ = -4						; size = 4
+_u$ = 8							; size = 4
+_v$ = 12						; size = 4
+_w$ = 16						; size = 4
+_PMC_BitwiseOr_X_I_Imp PROC
+
+; 187  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 28					; 0000001cH
+	mov	eax, -858993460				; ccccccccH
+	mov	DWORD PTR [ebp-28], eax
+	mov	DWORD PTR [ebp-24], eax
+	mov	DWORD PTR [ebp-20], eax
+	mov	DWORD PTR [ebp-16], eax
+	mov	DWORD PTR [ebp-12], eax
+	mov	DWORD PTR [ebp-8], eax
+	mov	DWORD PTR [ebp-4], eax
+	mov	ecx, OFFSET __AC60EF90_pmc_bitwiseor@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 188  :     PMC_STATUS_CODE result;
+; 189  :     if (u->IS_ZERO)
+
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+16]
+	shr	ecx, 1
+	and	ecx, 1
+	je	SHORT $LN2@PMC_Bitwis
+
+; 190  :     {
+; 191  :         // u が 0 である場合
+; 192  :         if (v == 0)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN4@PMC_Bitwis
+
+; 193  :         {
+; 194  :             // v が 0 である場合
+; 195  :             *w = &number_zero;
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [edx], OFFSET _number_zero
+
+; 196  :         }
+
+	jmp	SHORT $LN5@PMC_Bitwis
+$LN4@PMC_Bitwis:
+
+; 197  :         else
+; 198  :         {
+; 199  :             // v が 0 でない場合
+; 200  :             if ((result = From_I_Imp(v, w)) != PMC_STATUS_OK)
+
+	mov	eax, DWORD PTR _w$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	call	_From_I_Imp
+	add	esp, 8
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN5@PMC_Bitwis
+
+; 201  :                 return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Bitwis
+$LN5@PMC_Bitwis:
+
+; 202  :         }
+; 203  :     }
+
+	jmp	$LN3@PMC_Bitwis
+$LN2@PMC_Bitwis:
+
+; 204  :     else if (v == 0)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN7@PMC_Bitwis
+
+; 205  :     {
+; 206  :         // v が 0 である場合
+; 207  :         if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
+
+	mov	edx, DWORD PTR _w$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp]
+	push	eax
+	call	_DuplicateNumber
+	add	esp, 8
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN9@PMC_Bitwis
+
+; 208  :             return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Bitwis
+$LN9@PMC_Bitwis:
+
+; 209  :     }
+
+	jmp	$LN3@PMC_Bitwis
+$LN7@PMC_Bitwis:
+
+; 210  :     else
+; 211  :     {
+; 212  :         // x と y がともに 0 ではない場合
+; 213  :         __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+
+	mov	ecx, DWORD PTR _u$[ebp]
+	mov	edx, DWORD PTR [ecx+4]
+	mov	DWORD PTR _u_bit_count$4[ebp], edx
+
+; 214  :         __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
+
+	mov	eax, DWORD PTR _v$[ebp]
+	push	eax
+	call	__LZCNT_ALT_32
+	add	esp, 4
+	mov	ecx, 32					; 00000020H
+	sub	ecx, eax
+	mov	DWORD PTR _v_bit_count$3[ebp], ecx
+
+; 215  :         __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
+
+	mov	edx, DWORD PTR _v_bit_count$3[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u_bit_count$4[ebp]
+	push	eax
+	call	__MAXIMUM_UNIT
+	add	esp, 8
+	add	eax, 1
+	mov	DWORD PTR _w_bit_count$2[ebp], eax
+
+; 216  :         __UNIT_TYPE nz_check_code;
+; 217  :         if ((result = AllocateNumber(w, w_bit_count, &nz_check_code)) != PMC_STATUS_OK)
+
+	lea	ecx, DWORD PTR _nz_check_code$1[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _w_bit_count$2[ebp]
+	push	edx
+	mov	eax, DWORD PTR _w$[ebp]
+	push	eax
+	call	_AllocateNumber
+	add	esp, 12					; 0000000cH
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN10@PMC_Bitwis
+
+; 218  :             return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN10@PMC_Bitwis:
+
+; 219  :         BitwiseOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, v, (*w)->BLOCK);
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	mov	eax, DWORD PTR [edx+24]
+	push	eax
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _u$[ebp]
+	mov	eax, DWORD PTR [edx]
+	push	eax
+	mov	ecx, DWORD PTR _u$[ebp]
+	mov	edx, DWORD PTR [ecx+24]
+	push	edx
+	call	_BitwiseOr_X_1W
+	add	esp, 16					; 00000010H
+
+; 220  :         if ((result = CheckBlockLight((*w)->BLOCK, nz_check_code)) != PMC_STATUS_OK)
+
+	mov	eax, DWORD PTR _nz_check_code$1[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	mov	eax, DWORD PTR [edx+24]
+	push	eax
+	call	_CheckBlockLight
+	add	esp, 8
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN11@PMC_Bitwis
+
+; 221  :             return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN11@PMC_Bitwis:
+
+; 222  :         CommitNumber(*w);
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	push	edx
+	call	_CommitNumber
+	add	esp, 4
+$LN3@PMC_Bitwis:
+
+; 223  :     }
+; 224  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Bitwis:
+
+; 225  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN15@PMC_Bitwis
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	add	esp, 28					; 0000001cH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+	npad	3
+$LN15@PMC_Bitwis:
+	DD	1
+	DD	$LN14@PMC_Bitwis
+$LN14@PMC_Bitwis:
+	DD	-24					; ffffffe8H
+	DD	4
+	DD	$LN13@PMC_Bitwis
+$LN13@PMC_Bitwis:
+	DB	110					; 0000006eH
+	DB	122					; 0000007aH
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	104					; 00000068H
+	DB	101					; 00000065H
+	DB	99					; 00000063H
+	DB	107					; 0000006bH
+	DB	95					; 0000005fH
+	DB	99					; 00000063H
+	DB	111					; 0000006fH
+	DB	100					; 00000064H
+	DB	101					; 00000065H
+	DB	0
+_PMC_BitwiseOr_X_I_Imp ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseor.c
@@ -1462,7 +2269,7 @@ _pos$ = -8						; size = 4
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC
 
-; 859  : {
+; 879  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1473,50 +2280,50 @@ __LZCNT_ALT_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 860  :     if (x == 0)
+; 880  :     if (x == 0)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 861  :         return (sizeof(x) * 8);
+; 881  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 862  : #ifdef _M_IX86
-; 863  :     _UINT32_T pos;
-; 864  : #ifdef _MSC_VER
-; 865  :     _BitScanReverse(&pos, x);
+; 882  : #ifdef _M_IX86
+; 883  :     _UINT32_T pos;
+; 884  : #ifdef _MSC_VER
+; 885  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _pos$[ebp], eax
 
-; 866  : #elif defined(__GNUC__)
-; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 868  : #else
-; 869  : #error unknown compiler
-; 870  : #endif
-; 871  : #elif defined(_M_X64)
-; 872  : #ifdef _MSC_VER
-; 873  :     _UINT32_T pos;
-; 874  :     _BitScanReverse64(&pos, x);
-; 875  : #elif defined(__GNUC__)
-; 876  :     _UINT64_T pos;
-; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 878  : #else
-; 879  : #error unknown compiler
-; 880  : #endif
-; 881  : #else
-; 882  : #error unknown platform
-; 883  : #endif
-; 884  :     return (sizeof(x) * 8 - 1 - pos);
+; 886  : #elif defined(__GNUC__)
+; 887  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 888  : #else
+; 889  : #error unknown compiler
+; 890  : #endif
+; 891  : #elif defined(_M_X64)
+; 892  : #ifdef _MSC_VER
+; 893  :     _UINT32_T pos;
+; 894  :     _BitScanReverse64(&pos, x);
+; 895  : #elif defined(__GNUC__)
+; 896  :     _UINT64_T pos;
+; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 898  : #else
+; 899  : #error unknown compiler
+; 900  : #endif
+; 901  : #else
+; 902  : #error unknown platform
+; 903  : #endif
+; 904  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, DWORD PTR _pos$[ebp]
 $LN1@LZCNT_ALT_:
 
-; 885  : }
+; 905  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -1552,7 +2359,7 @@ _pos$ = -8						; size = 4
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC
 
-; 826  : {
+; 846  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1563,36 +2370,36 @@ __LZCNT_ALT_32 PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 827  :     if (x == 0)
+; 847  :     if (x == 0)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 828  :         return (sizeof(x) * 8);
+; 848  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 829  :     _UINT32_T pos;
-; 830  : #ifdef _MSC_VER
-; 831  :     _BitScanReverse(&pos, x);
+; 849  :     _UINT32_T pos;
+; 850  : #ifdef _MSC_VER
+; 851  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _pos$[ebp], eax
 
-; 832  : #elif defined(__GNUC__)
-; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 834  : #else
-; 835  : #error unknown compiler
-; 836  : #endif
-; 837  :     return (sizeof(x) * 8 - 1 - pos);
+; 852  : #elif defined(__GNUC__)
+; 853  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 854  : #else
+; 855  : #error unknown compiler
+; 856  : #endif
+; 857  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, DWORD PTR _pos$[ebp]
 $LN1@LZCNT_ALT_:
 
-; 838  : }
+; 858  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -1629,7 +2436,7 @@ _x$ = 8							; size = 4
 _y$ = 12						; size = 4
 __MAXIMUM_UNIT PROC
 
-; 433  : {
+; 453  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1638,7 +2445,7 @@ __MAXIMUM_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 434  :     return (x >= y ? x : y);
+; 454  :     return (x >= y ? x : y);
 
 	mov	eax, DWORD PTR _x$[ebp]
 	cmp	eax, DWORD PTR _y$[ebp]
@@ -1652,7 +2459,7 @@ $LN3@MAXIMUM_UN:
 $LN4@MAXIMUM_UN:
 	mov	eax, DWORD PTR tv65[ebp]
 
-; 435  : }
+; 455  : }
 
 	add	esp, 4
 	cmp	ebp, esp
@@ -1669,14 +2476,14 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC
 
-; 412  : {
+; 432  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 413  :     *result_high = (_UINT32_T)(value >> 32);
+; 433  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	edx, DWORD PTR _value$[ebp+4]
@@ -1685,11 +2492,11 @@ __FROMDWORDTOWORD PROC
 	mov	ecx, DWORD PTR _result_high$[ebp]
 	mov	DWORD PTR [ecx], eax
 
-; 414  :     return ((_UINT32_T)value);
+; 434  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 415  : }
+; 435  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1705,7 +2512,7 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC
 
-; 296  : {
+; 316  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1714,20 +2521,20 @@ __COPY_MEMORY_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 297  : #ifdef _M_IX86
-; 298  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 317  : #ifdef _M_IX86
+; 318  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsd
 
-; 299  : #elif defined(_M_X64)
-; 300  :     __movsq(d, s, count);
-; 301  : #else
-; 302  : #error unknown platform
-; 303  : #endif
-; 304  : }
+; 319  : #elif defined(_M_X64)
+; 320  :     __movsq(d, s, count);
+; 321  : #else
+; 322  : #error unknown platform
+; 323  : #endif
+; 324  : }
 
 	pop	edi
 	pop	esi
@@ -1754,7 +2561,7 @@ _v$ = 12						; size = 4
 _w$ = 16						; size = 4
 _PMC_BitwiseOr_X_X@12 PROC
 
-; 343  : {
+; 398  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1767,51 +2574,51 @@ _PMC_BitwiseOr_X_X@12 PROC
 	mov	ecx, OFFSET __AC60EF90_pmc_bitwiseor@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 344  :     if (u == NULL)
+; 399  :     if (u == NULL)
 
 	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN2@PMC_Bitwis
 
-; 345  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 400  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN2@PMC_Bitwis:
 
-; 346  :     if (v == NULL)
+; 401  :     if (v == NULL)
 
 	cmp	DWORD PTR _v$[ebp], 0
 	jne	SHORT $LN3@PMC_Bitwis
 
-; 347  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 402  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN3@PMC_Bitwis:
 
-; 348  :     if (w == NULL)
+; 403  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Bitwis
 
-; 349  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 404  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN4@PMC_Bitwis:
 
-; 350  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 405  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	eax, DWORD PTR _u$[ebp]
 	mov	DWORD PTR _nu$[ebp], eax
 
-; 351  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 406  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
 
 	mov	ecx, DWORD PTR _v$[ebp]
 	mov	DWORD PTR _nv$[ebp], ecx
 
-; 352  :     PMC_STATUS_CODE result;
-; 353  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 407  :     PMC_STATUS_CODE result;
+; 408  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nu$[ebp]
 	push	edx
@@ -1821,13 +2628,13 @@ $LN4@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Bitwis
 
-; 354  :         return (result);
+; 409  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Bitwis
 $LN5@PMC_Bitwis:
 
-; 355  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+; 410  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nv$[ebp]
 	push	eax
@@ -1837,14 +2644,14 @@ $LN5@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN6@PMC_Bitwis
 
-; 356  :         return (result);
+; 411  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Bitwis
 $LN6@PMC_Bitwis:
 
-; 357  :     NUMBER_HEADER* nw;
-; 358  :     if (nu->IS_ZERO)
+; 412  :     NUMBER_HEADER* nw;
+; 413  :     if (nu->IS_ZERO)
 
 	mov	ecx, DWORD PTR _nu$[ebp]
 	mov	edx, DWORD PTR [ecx+16]
@@ -1852,8 +2659,8 @@ $LN6@PMC_Bitwis:
 	and	edx, 1
 	je	SHORT $LN7@PMC_Bitwis
 
-; 359  :     {
-; 360  :         if ((result = DuplicateNumber(nv, &nw)) != PMC_STATUS_OK)
+; 414  :     {
+; 415  :         if ((result = DuplicateNumber(nv, &nw)) != PMC_STATUS_OK)
 
 	lea	eax, DWORD PTR _nw$[ebp]
 	push	eax
@@ -1865,18 +2672,18 @@ $LN6@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN9@PMC_Bitwis
 
-; 361  :             return (result);
+; 416  :             return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Bitwis
 $LN9@PMC_Bitwis:
 
-; 362  :     }
+; 417  :     }
 
 	jmp	$LN8@PMC_Bitwis
 $LN7@PMC_Bitwis:
 
-; 363  :     else if (nv->IS_ZERO)
+; 418  :     else if (nv->IS_ZERO)
 
 	mov	edx, DWORD PTR _nv$[ebp]
 	mov	eax, DWORD PTR [edx+16]
@@ -1884,8 +2691,8 @@ $LN7@PMC_Bitwis:
 	and	eax, 1
 	je	SHORT $LN10@PMC_Bitwis
 
-; 364  :     {
-; 365  :         if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
+; 419  :     {
+; 420  :         if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
 
 	lea	ecx, DWORD PTR _nw$[ebp]
 	push	ecx
@@ -1897,20 +2704,20 @@ $LN7@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN12@PMC_Bitwis
 
-; 366  :             return (result);
+; 421  :             return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Bitwis
 $LN12@PMC_Bitwis:
 
-; 367  :     }
+; 422  :     }
 
 	jmp	$LN8@PMC_Bitwis
 $LN10@PMC_Bitwis:
 
-; 368  :     else
-; 369  :     {
-; 370  :         if (nu->UNIT_WORD_COUNT < nv->UNIT_WORD_COUNT)
+; 423  :     else
+; 424  :     {
+; 425  :         if (nu->UNIT_WORD_COUNT < nv->UNIT_WORD_COUNT)
 
 	mov	eax, DWORD PTR _nu$[ebp]
 	mov	ecx, DWORD PTR _nv$[ebp]
@@ -1918,37 +2725,37 @@ $LN10@PMC_Bitwis:
 	cmp	edx, DWORD PTR [ecx]
 	jae	SHORT $LN13@PMC_Bitwis
 
-; 371  :         {
-; 372  :             NUMBER_HEADER* t = nu;
+; 426  :         {
+; 427  :             NUMBER_HEADER* t = nu;
 
 	mov	eax, DWORD PTR _nu$[ebp]
 	mov	DWORD PTR _t$5[ebp], eax
 
-; 373  :             nu = nv;
+; 428  :             nu = nv;
 
 	mov	ecx, DWORD PTR _nv$[ebp]
 	mov	DWORD PTR _nu$[ebp], ecx
 
-; 374  :             nv = t;
+; 429  :             nv = t;
 
 	mov	edx, DWORD PTR _t$5[ebp]
 	mov	DWORD PTR _nv$[ebp], edx
 $LN13@PMC_Bitwis:
 
-; 375  :         }
-; 376  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 430  :         }
+; 431  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
 	mov	eax, DWORD PTR _nu$[ebp]
 	mov	ecx, DWORD PTR [eax+4]
 	mov	DWORD PTR _u_bit_count$4[ebp], ecx
 
-; 377  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 432  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
 	mov	edx, DWORD PTR _nv$[ebp]
 	mov	eax, DWORD PTR [edx+4]
 	mov	DWORD PTR _v_bit_count$3[ebp], eax
 
-; 378  :         __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+; 433  :         __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
 
 	mov	ecx, DWORD PTR _v_bit_count$3[ebp]
 	push	ecx
@@ -1958,8 +2765,8 @@ $LN13@PMC_Bitwis:
 	add	esp, 8
 	mov	DWORD PTR _w_bit_count$2[ebp], eax
 
-; 379  :         __UNIT_TYPE nw_light_check_code;
-; 380  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+; 434  :         __UNIT_TYPE nw_light_check_code;
+; 435  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	eax, DWORD PTR _nw_light_check_code$1[ebp]
 	push	eax
@@ -1973,13 +2780,13 @@ $LN13@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN14@PMC_Bitwis
 
-; 381  :             return (result);
+; 436  :             return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN14@PMC_Bitwis:
 
-; 382  :         BitwiseOr_X_X(nu->BLOCK, nu->UNIT_WORD_COUNT, nv->BLOCK, nv->UNIT_WORD_COUNT, nw->BLOCK);
+; 437  :         BitwiseOr_X_X(nu->BLOCK, nu->UNIT_WORD_COUNT, nv->BLOCK, nv->UNIT_WORD_COUNT, nw->BLOCK);
 
 	mov	eax, DWORD PTR _nw$[ebp]
 	mov	ecx, DWORD PTR [eax+24]
@@ -1999,7 +2806,7 @@ $LN14@PMC_Bitwis:
 	call	_BitwiseOr_X_X
 	add	esp, 20					; 00000014H
 
-; 383  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+; 438  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _nw_light_check_code$1[ebp]
 	push	ecx
@@ -2012,13 +2819,13 @@ $LN14@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN15@PMC_Bitwis
 
-; 384  :             return (result);
+; 439  :             return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN15@PMC_Bitwis:
 
-; 385  :         CommitNumber(nw);
+; 440  :         CommitNumber(nw);
 
 	mov	ecx, DWORD PTR _nw$[ebp]
 	push	ecx
@@ -2026,15 +2833,15 @@ $LN15@PMC_Bitwis:
 	add	esp, 4
 $LN8@PMC_Bitwis:
 
-; 386  :     }
-; 387  :     *w = nw;
+; 441  :     }
+; 442  :     *w = nw;
 
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	eax, DWORD PTR _nw$[ebp]
 	mov	DWORD PTR [edx], eax
 
-; 388  : #ifdef _DEBUG
-; 389  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 443  : #ifdef _DEBUG
+; 444  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _w$[ebp]
 	mov	edx, DWORD PTR [ecx]
@@ -2045,19 +2852,19 @@ $LN8@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN16@PMC_Bitwis
 
-; 390  :         return (result);
+; 445  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN16@PMC_Bitwis:
 
-; 391  : #endif
-; 392  :     return (PMC_STATUS_OK);
+; 446  : #endif
+; 447  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Bitwis:
 
-; 393  : }
+; 448  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -2114,909 +2921,223 @@ _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseor.c
 _TEXT	SEGMENT
-_nw_light_check_code$1 = -100				; size = 4
-_w_bit_count$2 = -92					; size = 4
-_v_bit_count$3 = -88					; size = 4
-_u_bit_count$4 = -84					; size = 4
-_nw_light_check_code$5 = -76				; size = 4
-_w_bit_count$6 = -68					; size = 4
-_v_bit_count$7 = -64					; size = 4
-_nw_light_check_code$8 = -56				; size = 4
-_w_bit_count$9 = -48					; size = 4
-_v_bit_count$10 = -44					; size = 4
-_v_lo$11 = -40						; size = 4
-_v_hi$12 = -32						; size = 4
-_u_bit_count$13 = -24					; size = 4
-_nw$ = -16						; size = 4
-_result$ = -8						; size = 4
-_nu$ = -4						; size = 4
+_result$ = -4						; size = 4
 _u$ = 8							; size = 4
 _v$ = 12						; size = 8
 _w$ = 20						; size = 4
 _PMC_BitwiseOr_X_L@16 PROC
 
-; 246  : {
+; 375  : {
 
 	push	ebp
 	mov	ebp, esp
-	sub	esp, 104				; 00000068H
-	push	edi
-	lea	edi, DWORD PTR [ebp-104]
-	mov	ecx, 26					; 0000001aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
+	push	ecx
+	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
 	mov	ecx, OFFSET __AC60EF90_pmc_bitwiseor@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 247  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
+; 376  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
 
 	xor	eax, eax
 	je	SHORT $LN2@PMC_Bitwis
 
-; 248  :     {
-; 249  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 250  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 377  :     {
+; 378  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 379  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffff00H
-	jmp	$LN1@PMC_Bitwis
+	jmp	SHORT $LN1@PMC_Bitwis
 $LN2@PMC_Bitwis:
 
-; 251  :     }
-; 252  :     if (u == NULL)
+; 380  :     }
+; 381  :     if (u == NULL)
 
 	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN3@PMC_Bitwis
 
-; 253  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 382  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
-	jmp	$LN1@PMC_Bitwis
+	jmp	SHORT $LN1@PMC_Bitwis
 $LN3@PMC_Bitwis:
 
-; 254  :     if (w == NULL)
+; 383  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Bitwis
 
-; 255  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 384  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
-	jmp	$LN1@PMC_Bitwis
+	jmp	SHORT $LN1@PMC_Bitwis
 $LN4@PMC_Bitwis:
 
-; 256  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 385  :     PMC_STATUS_CODE result;
+; 386  :     if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _u$[ebp]
-	mov	DWORD PTR _nu$[ebp], ecx
-
-; 257  :     PMC_STATUS_CODE result;
-; 258  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
-
-	mov	edx, DWORD PTR _nu$[ebp]
-	push	edx
+	push	ecx
 	call	_CheckNumber
 	add	esp, 4
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Bitwis
 
-; 259  :         return (result);
+; 387  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
+	jmp	SHORT $LN1@PMC_Bitwis
 $LN5@PMC_Bitwis:
 
-; 260  :     NUMBER_HEADER* nw;
-; 261  :     if (nu->IS_ZERO)
-
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
-	shr	ecx, 1
-	and	ecx, 1
-	je	SHORT $LN6@PMC_Bitwis
-
-; 262  :     {
-; 263  :         // x が 0 である場合
-; 264  :         if (v == 0)
-
-	mov	edx, DWORD PTR _v$[ebp]
-	or	edx, DWORD PTR _v$[ebp+4]
-	jne	SHORT $LN8@PMC_Bitwis
-
-; 265  :         {
-; 266  :             // v が 0 である場合
-; 267  :             nw = &number_zero;
-
-	mov	DWORD PTR _nw$[ebp], OFFSET _number_zero
-
-; 268  :         }
-
-	jmp	SHORT $LN9@PMC_Bitwis
-$LN8@PMC_Bitwis:
-
-; 269  :         else
-; 270  :         {
-; 271  :             // v が 0 でない場合
-; 272  :             if ((result = From_L_Imp(v, &nw)) != PMC_STATUS_OK)
-
-	lea	eax, DWORD PTR _nw$[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _v$[ebp+4]
-	push	ecx
-	mov	edx, DWORD PTR _v$[ebp]
-	push	edx
-	call	_From_L_Imp
-	add	esp, 12					; 0000000cH
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN9@PMC_Bitwis
-
-; 273  :                 return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
-$LN9@PMC_Bitwis:
-
-; 274  :         }
-; 275  :     }
-
-	jmp	$LN7@PMC_Bitwis
-$LN6@PMC_Bitwis:
-
-; 276  :     else if (v == 0)
-
-	mov	eax, DWORD PTR _v$[ebp]
-	or	eax, DWORD PTR _v$[ebp+4]
-	jne	SHORT $LN11@PMC_Bitwis
-
-; 277  :     {
-; 278  :         // y が 0 である場合
-; 279  :         if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
-
-	lea	ecx, DWORD PTR _nw$[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _nu$[ebp]
-	push	edx
-	call	_DuplicateNumber
-	add	esp, 8
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN13@PMC_Bitwis
-
-; 280  :             return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
-$LN13@PMC_Bitwis:
-
-; 281  :     }
-
-	jmp	$LN7@PMC_Bitwis
-$LN11@PMC_Bitwis:
-
-; 282  :     else
-; 283  :     {
-; 284  :         // u と v がともに 0 ではない場合
-; 285  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
-
-	mov	eax, 1
-	test	eax, eax
-	je	$LN14@PMC_Bitwis
-
-; 286  :         {
-; 287  :             // _UINT64_T が 1 ワードで表現しきれない場合
-; 288  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-
-	mov	ecx, DWORD PTR _nu$[ebp]
-	mov	edx, DWORD PTR [ecx+4]
-	mov	DWORD PTR _u_bit_count$13[ebp], edx
-
-; 289  :             _UINT32_T v_hi;
-; 290  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
-
-	lea	eax, DWORD PTR _v_hi$12[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _v$[ebp+4]
-	push	ecx
-	mov	edx, DWORD PTR _v$[ebp]
-	push	edx
-	call	__FROMDWORDTOWORD
-	add	esp, 12					; 0000000cH
-	mov	DWORD PTR _v_lo$11[ebp], eax
-
-; 291  :             if (v_hi == 0)
-
-	cmp	DWORD PTR _v_hi$12[ebp], 0
-	jne	$LN16@PMC_Bitwis
-
-; 292  :             {
-; 293  :                 // v の値が 32bit で表現可能な場合
-; 294  :                 __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
-
-	mov	eax, DWORD PTR _v_lo$11[ebp]
-	push	eax
-	call	__LZCNT_ALT_32
-	add	esp, 4
-	mov	ecx, 32					; 00000020H
-	sub	ecx, eax
-	mov	DWORD PTR _v_bit_count$10[ebp], ecx
-
-; 295  :                 __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
-
-	mov	edx, DWORD PTR _v_bit_count$10[ebp]
-	push	edx
-	mov	eax, DWORD PTR _u_bit_count$13[ebp]
-	push	eax
-	call	__MAXIMUM_UNIT
-	add	esp, 8
-	mov	DWORD PTR _w_bit_count$9[ebp], eax
-
-; 296  :                 __UNIT_TYPE nw_light_check_code;
-; 297  :                 if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
-
-	lea	ecx, DWORD PTR _nw_light_check_code$8[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _w_bit_count$9[ebp]
-	push	edx
-	lea	eax, DWORD PTR _nw$[ebp]
-	push	eax
-	call	_AllocateNumber
-	add	esp, 12					; 0000000cH
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN18@PMC_Bitwis
-
-; 298  :                     return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
-$LN18@PMC_Bitwis:
-
-; 299  :                 BitwiseOr_X_1W(nu->BLOCK, nu->UNIT_WORD_COUNT, v_lo, nw->BLOCK);
-
-	mov	ecx, DWORD PTR _nw$[ebp]
-	mov	edx, DWORD PTR [ecx+24]
-	push	edx
-	mov	eax, DWORD PTR _v_lo$11[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _nu$[ebp]
-	mov	edx, DWORD PTR [ecx]
-	push	edx
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	push	ecx
-	call	_BitwiseOr_X_1W
-	add	esp, 16					; 00000010H
-
-; 300  :                 if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
-
-	mov	edx, DWORD PTR _nw_light_check_code$8[ebp]
-	push	edx
-	mov	eax, DWORD PTR _nw$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	push	ecx
-	call	_CheckBlockLight
-	add	esp, 8
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN19@PMC_Bitwis
-
-; 301  :                     return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
-$LN19@PMC_Bitwis:
-
-; 302  :             }
-
-	jmp	$LN17@PMC_Bitwis
-$LN16@PMC_Bitwis:
-
-; 303  :             else
-; 304  :             {
-; 305  :                 // y の値が 32bit では表現できない場合
-; 306  :                 __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
-
-	mov	edx, DWORD PTR _v_hi$12[ebp]
-	push	edx
-	call	__LZCNT_ALT_32
-	add	esp, 4
-	mov	ecx, 64					; 00000040H
-	sub	ecx, eax
-	mov	DWORD PTR _v_bit_count$7[ebp], ecx
-
-; 307  :                 __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
-
-	mov	edx, DWORD PTR _v_bit_count$7[ebp]
-	push	edx
-	mov	eax, DWORD PTR _u_bit_count$13[ebp]
-	push	eax
-	call	__MAXIMUM_UNIT
-	add	esp, 8
-	mov	DWORD PTR _w_bit_count$6[ebp], eax
-
-; 308  :                 __UNIT_TYPE nw_light_check_code;
-; 309  :                 if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
-
-	lea	ecx, DWORD PTR _nw_light_check_code$5[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _w_bit_count$6[ebp]
-	push	edx
-	lea	eax, DWORD PTR _nw$[ebp]
-	push	eax
-	call	_AllocateNumber
-	add	esp, 12					; 0000000cH
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN20@PMC_Bitwis
-
-; 310  :                     return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
-$LN20@PMC_Bitwis:
-
-; 311  :                 BitwiseOr_X_2W(nu->BLOCK, nu->UNIT_WORD_COUNT, v_hi, v_lo, nw->BLOCK);
-
-	mov	ecx, DWORD PTR _nw$[ebp]
-	mov	edx, DWORD PTR [ecx+24]
-	push	edx
-	mov	eax, DWORD PTR _v_lo$11[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _v_hi$12[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _nu$[ebp]
-	mov	eax, DWORD PTR [edx]
-	push	eax
-	mov	ecx, DWORD PTR _nu$[ebp]
-	mov	edx, DWORD PTR [ecx+24]
-	push	edx
-	call	_BitwiseOr_X_2W
-	add	esp, 20					; 00000014H
-
-; 312  :                 if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
-
-	mov	eax, DWORD PTR _nw_light_check_code$5[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _nw$[ebp]
-	mov	edx, DWORD PTR [ecx+24]
-	push	edx
-	call	_CheckBlockLight
-	add	esp, 8
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN17@PMC_Bitwis
-
-; 313  :                     return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
-$LN17@PMC_Bitwis:
-
-; 314  :             }
-; 315  :             CommitNumber(nw);
-
-	mov	eax, DWORD PTR _nw$[ebp]
-	push	eax
-	call	_CommitNumber
-	add	esp, 4
-
-; 316  :         }
-
-	jmp	$LN7@PMC_Bitwis
-$LN14@PMC_Bitwis:
-
-; 317  :         else
-; 318  :         {
-; 319  :             // _UINT64_T が 1 ワードで表現できる場合
-; 320  : 
-; 321  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-
-	mov	ecx, DWORD PTR _nu$[ebp]
-	mov	edx, DWORD PTR [ecx+4]
-	mov	DWORD PTR _u_bit_count$4[ebp], edx
-
-; 322  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
-
-	mov	eax, DWORD PTR _v$[ebp]
-	push	eax
-	call	__LZCNT_ALT_UNIT
-	add	esp, 4
-	mov	ecx, 64					; 00000040H
-	sub	ecx, eax
-	mov	DWORD PTR _v_bit_count$3[ebp], ecx
-
-; 323  :             __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
-
-	mov	edx, DWORD PTR _v_bit_count$3[ebp]
-	push	edx
-	mov	eax, DWORD PTR _u_bit_count$4[ebp]
-	push	eax
-	call	__MAXIMUM_UNIT
-	add	esp, 8
-	add	eax, 1
-	mov	DWORD PTR _w_bit_count$2[ebp], eax
-
-; 324  :             __UNIT_TYPE nw_light_check_code;
-; 325  :             if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
-
-	lea	ecx, DWORD PTR _nw_light_check_code$1[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _w_bit_count$2[ebp]
-	push	edx
-	lea	eax, DWORD PTR _nw$[ebp]
-	push	eax
-	call	_AllocateNumber
-	add	esp, 12					; 0000000cH
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN22@PMC_Bitwis
-
-; 326  :                 return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	SHORT $LN1@PMC_Bitwis
-$LN22@PMC_Bitwis:
-
-; 327  :             BitwiseOr_X_1W(nu->BLOCK, nu->UNIT_WORD_COUNT, (__UNIT_TYPE)v, nw->BLOCK);
-
-	mov	ecx, DWORD PTR _nw$[ebp]
-	mov	edx, DWORD PTR [ecx+24]
-	push	edx
-	mov	eax, DWORD PTR _v$[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _nu$[ebp]
-	mov	edx, DWORD PTR [ecx]
-	push	edx
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	push	ecx
-	call	_BitwiseOr_X_1W
-	add	esp, 16					; 00000010H
-
-; 328  :             if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
-
-	mov	edx, DWORD PTR _nw_light_check_code$1[ebp]
-	push	edx
-	mov	eax, DWORD PTR _nw$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	push	ecx
-	call	_CheckBlockLight
-	add	esp, 8
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN23@PMC_Bitwis
-
-; 329  :                 return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	SHORT $LN1@PMC_Bitwis
-$LN23@PMC_Bitwis:
-
-; 330  :             CommitNumber(nw);
-
-	mov	edx, DWORD PTR _nw$[ebp]
-	push	edx
-	call	_CommitNumber
-	add	esp, 4
-$LN7@PMC_Bitwis:
-
-; 331  :         }
-; 332  : 
-; 333  :     }
-; 334  :     *w = nw;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	ecx, DWORD PTR _nw$[ebp]
-	mov	DWORD PTR [eax], ecx
-
-; 335  : #ifdef _DEBUG
-; 336  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 388  :     if ((result = PMC_BitwiseOr_X_L_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _w$[ebp]
-	mov	eax, DWORD PTR [edx]
+	push	edx
+	mov	eax, DWORD PTR _v$[ebp+4]
 	push	eax
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _u$[ebp]
+	push	edx
+	call	_PMC_BitwiseOr_X_L_Imp
+	add	esp, 16					; 00000010H
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN6@PMC_Bitwis
+
+; 389  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN6@PMC_Bitwis:
+
+; 390  : #ifdef _DEBUG
+; 391  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	push	ecx
 	call	_CheckNumber
 	add	esp, 4
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN24@PMC_Bitwis
+	je	SHORT $LN7@PMC_Bitwis
 
-; 337  :         return (result);
+; 392  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
-$LN24@PMC_Bitwis:
+$LN7@PMC_Bitwis:
 
-; 338  : #endif
-; 339  :     return (PMC_STATUS_OK);
+; 393  : #endif
+; 394  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Bitwis:
 
-; 340  : }
+; 395  : }
 
-	push	edx
-	mov	ecx, ebp
-	push	eax
-	lea	edx, DWORD PTR $LN32@PMC_Bitwis
-	call	@_RTC_CheckStackVars@8
-	pop	eax
-	pop	edx
-	pop	edi
-	add	esp, 104				; 00000068H
+	add	esp, 4
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
 	mov	esp, ebp
 	pop	ebp
 	ret	16					; 00000010H
-$LN32@PMC_Bitwis:
-	DD	5
-	DD	$LN31@PMC_Bitwis
-$LN31@PMC_Bitwis:
-	DD	-16					; fffffff0H
-	DD	4
-	DD	$LN26@PMC_Bitwis
-	DD	-32					; ffffffe0H
-	DD	4
-	DD	$LN27@PMC_Bitwis
-	DD	-56					; ffffffc8H
-	DD	4
-	DD	$LN28@PMC_Bitwis
-	DD	-76					; ffffffb4H
-	DD	4
-	DD	$LN29@PMC_Bitwis
-	DD	-100					; ffffff9cH
-	DD	4
-	DD	$LN30@PMC_Bitwis
-$LN30@PMC_Bitwis:
-	DB	110					; 0000006eH
-	DB	119					; 00000077H
-	DB	95					; 0000005fH
-	DB	108					; 0000006cH
-	DB	105					; 00000069H
-	DB	103					; 00000067H
-	DB	104					; 00000068H
-	DB	116					; 00000074H
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	104					; 00000068H
-	DB	101					; 00000065H
-	DB	99					; 00000063H
-	DB	107					; 0000006bH
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	111					; 0000006fH
-	DB	100					; 00000064H
-	DB	101					; 00000065H
-	DB	0
-$LN29@PMC_Bitwis:
-	DB	110					; 0000006eH
-	DB	119					; 00000077H
-	DB	95					; 0000005fH
-	DB	108					; 0000006cH
-	DB	105					; 00000069H
-	DB	103					; 00000067H
-	DB	104					; 00000068H
-	DB	116					; 00000074H
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	104					; 00000068H
-	DB	101					; 00000065H
-	DB	99					; 00000063H
-	DB	107					; 0000006bH
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	111					; 0000006fH
-	DB	100					; 00000064H
-	DB	101					; 00000065H
-	DB	0
-$LN28@PMC_Bitwis:
-	DB	110					; 0000006eH
-	DB	119					; 00000077H
-	DB	95					; 0000005fH
-	DB	108					; 0000006cH
-	DB	105					; 00000069H
-	DB	103					; 00000067H
-	DB	104					; 00000068H
-	DB	116					; 00000074H
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	104					; 00000068H
-	DB	101					; 00000065H
-	DB	99					; 00000063H
-	DB	107					; 0000006bH
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	111					; 0000006fH
-	DB	100					; 00000064H
-	DB	101					; 00000065H
-	DB	0
-$LN27@PMC_Bitwis:
-	DB	118					; 00000076H
-	DB	95					; 0000005fH
-	DB	104					; 00000068H
-	DB	105					; 00000069H
-	DB	0
-$LN26@PMC_Bitwis:
-	DB	110					; 0000006eH
-	DB	119					; 00000077H
-	DB	0
 _PMC_BitwiseOr_X_L@16 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseor.c
 _TEXT	SEGMENT
-_nz_check_code$1 = -40					; size = 4
-_w_bit_count$2 = -32					; size = 4
-_v_bit_count$3 = -28					; size = 4
-_u_bit_count$4 = -24					; size = 4
-_nw$ = -16						; size = 4
-_result$ = -8						; size = 4
-_nu$ = -4						; size = 4
+_result$ = -4						; size = 4
 _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 _w$ = 16						; size = 4
 _PMC_BitwiseOr_X_I@12 PROC
 
-; 187  : {
+; 251  : {
 
 	push	ebp
 	mov	ebp, esp
-	sub	esp, 44					; 0000002cH
-	push	edi
-	lea	edi, DWORD PTR [ebp-44]
-	mov	ecx, 11					; 0000000bH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
+	push	ecx
+	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
 	mov	ecx, OFFSET __AC60EF90_pmc_bitwiseor@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 188  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 252  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
 
 	xor	eax, eax
 	je	SHORT $LN2@PMC_Bitwis
 
-; 189  :     {
-; 190  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 191  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 253  :     {
+; 254  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 255  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffff00H
-	jmp	$LN1@PMC_Bitwis
+	jmp	SHORT $LN1@PMC_Bitwis
 $LN2@PMC_Bitwis:
 
-; 192  :     }
-; 193  :     if (u == NULL)
+; 256  :     }
+; 257  :     if (u == NULL)
 
 	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN3@PMC_Bitwis
 
-; 194  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 258  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
-	jmp	$LN1@PMC_Bitwis
+	jmp	SHORT $LN1@PMC_Bitwis
 $LN3@PMC_Bitwis:
 
-; 195  :     if (w == NULL)
+; 259  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Bitwis
 
-; 196  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 260  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
-	jmp	$LN1@PMC_Bitwis
+	jmp	SHORT $LN1@PMC_Bitwis
 $LN4@PMC_Bitwis:
 
-; 197  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 261  :     PMC_STATUS_CODE result;
+; 262  :     if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _u$[ebp]
-	mov	DWORD PTR _nu$[ebp], ecx
-
-; 198  :     PMC_STATUS_CODE result;
-; 199  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
-
-	mov	edx, DWORD PTR _nu$[ebp]
-	push	edx
+	push	ecx
 	call	_CheckNumber
 	add	esp, 4
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Bitwis
 
-; 200  :         return (result);
+; 263  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
+	jmp	SHORT $LN1@PMC_Bitwis
 $LN5@PMC_Bitwis:
 
-; 201  :     NUMBER_HEADER* nw;
-; 202  :     if (nu->IS_ZERO)
+; 264  :     if ((result = PMC_BitwiseOr_X_I_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
 
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
-	shr	ecx, 1
-	and	ecx, 1
-	je	SHORT $LN6@PMC_Bitwis
-
-; 203  :     {
-; 204  :         // u が 0 である場合
-; 205  :         if (v == 0)
-
-	cmp	DWORD PTR _v$[ebp], 0
-	jne	SHORT $LN8@PMC_Bitwis
-
-; 206  :         {
-; 207  :             // v が 0 である場合
-; 208  :             nw = &number_zero;
-
-	mov	DWORD PTR _nw$[ebp], OFFSET _number_zero
-
-; 209  :         }
-
-	jmp	SHORT $LN9@PMC_Bitwis
-$LN8@PMC_Bitwis:
-
-; 210  :         else
-; 211  :         {
-; 212  :             // v が 0 でない場合
-; 213  :             if ((result = From_I_Imp(v, &nw)) != PMC_STATUS_OK)
-
-	lea	edx, DWORD PTR _nw$[ebp]
+	mov	edx, DWORD PTR _w$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _v$[ebp]
 	push	eax
-	call	_From_I_Imp
-	add	esp, 8
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN9@PMC_Bitwis
-
-; 214  :                 return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
-$LN9@PMC_Bitwis:
-
-; 215  :         }
-; 216  :     }
-
-	jmp	$LN7@PMC_Bitwis
-$LN6@PMC_Bitwis:
-
-; 217  :     else if (v == 0)
-
-	cmp	DWORD PTR _v$[ebp], 0
-	jne	SHORT $LN11@PMC_Bitwis
-
-; 218  :     {
-; 219  :         // v が 0 である場合
-; 220  :         if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
-
-	lea	ecx, DWORD PTR _nw$[ebp]
+	mov	ecx, DWORD PTR _u$[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _nu$[ebp]
-	push	edx
-	call	_DuplicateNumber
-	add	esp, 8
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN13@PMC_Bitwis
-
-; 221  :             return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Bitwis
-$LN13@PMC_Bitwis:
-
-; 222  :     }
-
-	jmp	$LN7@PMC_Bitwis
-$LN11@PMC_Bitwis:
-
-; 223  :     else
-; 224  :     {
-; 225  :         // x と y がともに 0 ではない場合
-; 226  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+4]
-	mov	DWORD PTR _u_bit_count$4[ebp], ecx
-
-; 227  :         __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
-
-	mov	edx, DWORD PTR _v$[ebp]
-	push	edx
-	call	__LZCNT_ALT_32
-	add	esp, 4
-	mov	ecx, 32					; 00000020H
-	sub	ecx, eax
-	mov	DWORD PTR _v_bit_count$3[ebp], ecx
-
-; 228  :         __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
-
-	mov	edx, DWORD PTR _v_bit_count$3[ebp]
-	push	edx
-	mov	eax, DWORD PTR _u_bit_count$4[ebp]
-	push	eax
-	call	__MAXIMUM_UNIT
-	add	esp, 8
-	add	eax, 1
-	mov	DWORD PTR _w_bit_count$2[ebp], eax
-
-; 229  :         __UNIT_TYPE nz_check_code;
-; 230  :         if ((result = AllocateNumber(&nw, w_bit_count, &nz_check_code)) != PMC_STATUS_OK)
-
-	lea	ecx, DWORD PTR _nz_check_code$1[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _w_bit_count$2[ebp]
-	push	edx
-	lea	eax, DWORD PTR _nw$[ebp]
-	push	eax
-	call	_AllocateNumber
+	call	_PMC_BitwiseOr_X_I_Imp
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN14@PMC_Bitwis
+	je	SHORT $LN6@PMC_Bitwis
 
-; 231  :             return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	SHORT $LN1@PMC_Bitwis
-$LN14@PMC_Bitwis:
-
-; 232  :         BitwiseOr_X_1W(nu->BLOCK, nu->UNIT_WORD_COUNT, v, nw->BLOCK);
-
-	mov	ecx, DWORD PTR _nw$[ebp]
-	mov	edx, DWORD PTR [ecx+24]
-	push	edx
-	mov	eax, DWORD PTR _v$[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _nu$[ebp]
-	mov	edx, DWORD PTR [ecx]
-	push	edx
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	push	ecx
-	call	_BitwiseOr_X_1W
-	add	esp, 16					; 00000010H
-
-; 233  :         if ((result = CheckBlockLight(nw->BLOCK, nz_check_code)) != PMC_STATUS_OK)
-
-	mov	edx, DWORD PTR _nz_check_code$1[ebp]
-	push	edx
-	mov	eax, DWORD PTR _nw$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	push	ecx
-	call	_CheckBlockLight
-	add	esp, 8
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN15@PMC_Bitwis
-
-; 234  :             return (result);
+; 265  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
-$LN15@PMC_Bitwis:
+$LN6@PMC_Bitwis:
 
-; 235  :         CommitNumber(nw);
-
-	mov	edx, DWORD PTR _nw$[ebp]
-	push	edx
-	call	_CommitNumber
-	add	esp, 4
-$LN7@PMC_Bitwis:
-
-; 236  :     }
-; 237  :     *w = nw;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	ecx, DWORD PTR _nw$[ebp]
-	mov	DWORD PTR [eax], ecx
-
-; 238  : #ifdef _DEBUG
-; 239  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 266  : #ifdef _DEBUG
+; 267  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	eax, DWORD PTR [edx]
@@ -3025,67 +3146,281 @@ $LN7@PMC_Bitwis:
 	add	esp, 4
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN16@PMC_Bitwis
+	je	SHORT $LN7@PMC_Bitwis
 
-; 240  :         return (result);
+; 268  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
-$LN16@PMC_Bitwis:
+$LN7@PMC_Bitwis:
 
-; 241  : #endif
-; 242  :     return (PMC_STATUS_OK);
+; 269  : #endif
+; 270  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Bitwis:
 
-; 243  : }
+; 271  : }
 
-	push	edx
-	mov	ecx, ebp
-	push	eax
-	lea	edx, DWORD PTR $LN21@PMC_Bitwis
-	call	@_RTC_CheckStackVars@8
-	pop	eax
-	pop	edx
-	pop	edi
-	add	esp, 44					; 0000002cH
+	add	esp, 4
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
 	mov	esp, ebp
 	pop	ebp
 	ret	12					; 0000000cH
-	npad	1
-$LN21@PMC_Bitwis:
-	DD	2
-	DD	$LN20@PMC_Bitwis
-$LN20@PMC_Bitwis:
-	DD	-16					; fffffff0H
-	DD	4
-	DD	$LN18@PMC_Bitwis
-	DD	-40					; ffffffd8H
-	DD	4
-	DD	$LN19@PMC_Bitwis
-$LN19@PMC_Bitwis:
-	DB	110					; 0000006eH
-	DB	122					; 0000007aH
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	104					; 00000068H
-	DB	101					; 00000065H
-	DB	99					; 00000063H
-	DB	107					; 0000006bH
-	DB	95					; 0000005fH
-	DB	99					; 00000063H
-	DB	111					; 0000006fH
-	DB	100					; 00000064H
-	DB	101					; 00000065H
-	DB	0
-$LN18@PMC_Bitwis:
-	DB	110					; 0000006eH
-	DB	119					; 00000077H
-	DB	0
 _PMC_BitwiseOr_X_I@12 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseor.c
+_TEXT	SEGMENT
+_result$ = -4						; size = 4
+_u$ = 8							; size = 8
+_v$ = 16						; size = 4
+_w$ = 20						; size = 4
+_PMC_BitwiseOr_L_X@16 PROC
+
+; 352  : {
+
+	push	ebp
+	mov	ebp, esp
+	push	ecx
+	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
+	mov	ecx, OFFSET __AC60EF90_pmc_bitwiseor@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 353  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+
+	xor	eax, eax
+	je	SHORT $LN2@PMC_Bitwis
+
+; 354  :     {
+; 355  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 356  :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffff00H
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN2@PMC_Bitwis:
+
+; 357  :     }
+; 358  :     if (v == NULL)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN3@PMC_Bitwis
+
+; 359  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN3@PMC_Bitwis:
+
+; 360  :     if (w == NULL)
+
+	cmp	DWORD PTR _w$[ebp], 0
+	jne	SHORT $LN4@PMC_Bitwis
+
+; 361  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN4@PMC_Bitwis:
+
+; 362  :     PMC_STATUS_CODE result;
+; 363  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	call	_CheckNumber
+	add	esp, 4
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN5@PMC_Bitwis
+
+; 364  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN5@PMC_Bitwis:
+
+; 365  :     if ((result = PMC_BitwiseOr_X_L_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+
+	mov	edx, DWORD PTR _w$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp+4]
+	push	eax
+	mov	ecx, DWORD PTR _u$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v$[ebp]
+	push	edx
+	call	_PMC_BitwiseOr_X_L_Imp
+	add	esp, 16					; 00000010H
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN6@PMC_Bitwis
+
+; 366  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN6@PMC_Bitwis:
+
+; 367  : #ifdef _DEBUG
+; 368  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	ecx, DWORD PTR [eax]
+	push	ecx
+	call	_CheckNumber
+	add	esp, 4
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN7@PMC_Bitwis
+
+; 369  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN7@PMC_Bitwis:
+
+; 370  : #endif
+; 371  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Bitwis:
+
+; 372  : }
+
+	add	esp, 4
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	16					; 00000010H
+_PMC_BitwiseOr_L_X@16 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseor.c
+_TEXT	SEGMENT
+_result$ = -4						; size = 4
+_u$ = 8							; size = 4
+_v$ = 12						; size = 4
+_w$ = 16						; size = 4
+_PMC_BitwiseOr_I_X@12 PROC
+
+; 228  : {
+
+	push	ebp
+	mov	ebp, esp
+	push	ecx
+	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
+	mov	ecx, OFFSET __AC60EF90_pmc_bitwiseor@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 229  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+
+	xor	eax, eax
+	je	SHORT $LN2@PMC_Bitwis
+
+; 230  :     {
+; 231  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 232  :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffff00H
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN2@PMC_Bitwis:
+
+; 233  :     }
+; 234  :     if (v == NULL)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN3@PMC_Bitwis
+
+; 235  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN3@PMC_Bitwis:
+
+; 236  :     if (w == NULL)
+
+	cmp	DWORD PTR _w$[ebp], 0
+	jne	SHORT $LN4@PMC_Bitwis
+
+; 237  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN4@PMC_Bitwis:
+
+; 238  :     PMC_STATUS_CODE result;
+; 239  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	call	_CheckNumber
+	add	esp, 4
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN5@PMC_Bitwis
+
+; 240  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN5@PMC_Bitwis:
+
+; 241  :     if ((result = PMC_BitwiseOr_X_I_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+
+	mov	edx, DWORD PTR _w$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	call	_PMC_BitwiseOr_X_I_Imp
+	add	esp, 12					; 0000000cH
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN6@PMC_Bitwis
+
+; 242  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN6@PMC_Bitwis:
+
+; 243  : #ifdef _DEBUG
+; 244  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	eax, DWORD PTR [edx]
+	push	eax
+	call	_CheckNumber
+	add	esp, 4
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN7@PMC_Bitwis
+
+; 245  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Bitwis
+$LN7@PMC_Bitwis:
+
+; 246  : #endif
+; 247  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Bitwis:
+
+; 248  : }
+
+	add	esp, 4
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	12					; 0000000cH
+_PMC_BitwiseOr_I_X@12 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseor.c
@@ -3093,18 +3428,18 @@ _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_BitwiseOr PROC
 
-; 396  : {
+; 451  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __AC60EF90_pmc_bitwiseor@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 397  :     return (PMC_STATUS_OK);
+; 452  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 398  : }
+; 453  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp

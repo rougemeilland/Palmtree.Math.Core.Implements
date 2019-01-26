@@ -27,6 +27,8 @@ __F5940173_pmc_compare@c DB 01H
 msvcjmc	ENDS
 PUBLIC	_Compare_Imp
 PUBLIC	_Initialize_Compare
+PUBLIC	_PMC_Compare_I_X@12
+PUBLIC	_PMC_Compare_L_X@16
 PUBLIC	_PMC_Compare_X_I@12
 PUBLIC	_PMC_Compare_X_L@16
 PUBLIC	_PMC_Compare_X_X@12
@@ -57,13 +59,717 @@ __JustMyCode_Default PROC				; COMDAT
 __JustMyCode_Default ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
+_TEXT	SEGMENT
+tv252 = -52						; size = 8
+tv240 = -44						; size = 8
+_v_bit_count$1 = -36					; size = 4
+_u_bit_count$2 = -32					; size = 4
+_v_bit_count$3 = -28					; size = 4
+_v_bit_count$4 = -24					; size = 4
+_v_lo$5 = -20						; size = 4
+_v_hi$6 = -12						; size = 4
+_u_bit_count$7 = -4					; size = 4
+_u$ = 8							; size = 4
+_v$ = 12						; size = 8
+_w$ = 20						; size = 4
+_PMC_Compare_X_L_Imp PROC
+
+; 150  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 52					; 00000034H
+	push	edi
+	lea	edi, DWORD PTR [ebp-52]
+	mov	ecx, 13					; 0000000dH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, OFFSET __F5940173_pmc_compare@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 151  :     if (u->IS_ZERO)
+
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+16]
+	shr	ecx, 1
+	and	ecx, 1
+	je	SHORT $LN2@PMC_Compar
+
+; 152  :     {
+; 153  :         // u が 0 である場合
+; 154  :         if (v == 0)
+
+	mov	edx, DWORD PTR _v$[ebp]
+	or	edx, DWORD PTR _v$[ebp+4]
+	jne	SHORT $LN4@PMC_Compar
+
+; 155  :         {
+; 156  :             // v が 0 である場合
+; 157  :             *w = 0;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], 0
+
+; 158  :         }
+
+	jmp	SHORT $LN5@PMC_Compar
+$LN4@PMC_Compar:
+
+; 159  :         else
+; 160  :         {
+; 161  :             // v が 0 でない場合
+; 162  :             *w = -1;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], -1
+$LN5@PMC_Compar:
+
+; 163  :         }
+; 164  :     }
+
+	jmp	$LN1@PMC_Compar
+$LN2@PMC_Compar:
+
+; 165  :     else if (v == 0)
+
+	mov	edx, DWORD PTR _v$[ebp]
+	or	edx, DWORD PTR _v$[ebp+4]
+	jne	SHORT $LN6@PMC_Compar
+
+; 166  :     {
+; 167  :         // v が 0 である場合
+; 168  :         *w = 1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], 1
+
+; 169  :     }
+
+	jmp	$LN1@PMC_Compar
+$LN6@PMC_Compar:
+
+; 170  :     else
+; 171  :     {
+; 172  :         // u と v がともに 0 ではない場合
+; 173  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+
+	mov	ecx, 1
+	test	ecx, ecx
+	je	$LN8@PMC_Compar
+
+; 174  :         {
+; 175  :             // _UINT64_T が 1 ワードで表現しきれない場合
+; 176  :             __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+
+	mov	edx, DWORD PTR _u$[ebp]
+	mov	eax, DWORD PTR [edx+4]
+	mov	DWORD PTR _u_bit_count$7[ebp], eax
+
+; 177  :             _UINT32_T v_hi;
+; 178  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
+
+	lea	ecx, DWORD PTR _v_hi$6[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v$[ebp+4]
+	push	edx
+	mov	eax, DWORD PTR _v$[ebp]
+	push	eax
+	call	__FROMDWORDTOWORD
+	add	esp, 12					; 0000000cH
+	mov	DWORD PTR _v_lo$5[ebp], eax
+
+; 179  :             if (v_hi == 0)
+
+	cmp	DWORD PTR _v_hi$6[ebp], 0
+	jne	$LN10@PMC_Compar
+
+; 180  :             {
+; 181  :                 // v の値が 32bit では表現できる場合
+; 182  :                 __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
+
+	mov	ecx, DWORD PTR _v_lo$5[ebp]
+	push	ecx
+	call	__LZCNT_ALT_32
+	add	esp, 4
+	mov	edx, 32					; 00000020H
+	sub	edx, eax
+	mov	DWORD PTR _v_bit_count$4[ebp], edx
+
+; 183  :                 if (u_bit_count > v_bit_count)
+
+	mov	eax, DWORD PTR _u_bit_count$7[ebp]
+	cmp	eax, DWORD PTR _v_bit_count$4[ebp]
+	jbe	SHORT $LN12@PMC_Compar
+
+; 184  :                 {
+; 185  :                     // 明らかに u > v である場合
+; 186  :                     *w = 1;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], 1
+
+; 187  :                 }
+
+	jmp	SHORT $LN13@PMC_Compar
+$LN12@PMC_Compar:
+
+; 188  :                 else if (u_bit_count < v_bit_count)
+
+	mov	edx, DWORD PTR _u_bit_count$7[ebp]
+	cmp	edx, DWORD PTR _v_bit_count$4[ebp]
+	jae	SHORT $LN14@PMC_Compar
+
+; 189  :                 {
+; 190  :                     // 明らかに u < v である場合
+; 191  :                     *w = -1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], -1
+
+; 192  :                 }
+
+	jmp	SHORT $LN13@PMC_Compar
+$LN14@PMC_Compar:
+
+; 193  :                 else
+; 194  :                 {
+; 195  :                     // u > 0 && v > 0 かつ u のビット長と v のビット長が等しく、かつ v が 1 ワードで表現できる場合
+; 196  :                     // ⇒ u と v はともに 1 ワードで表現できる
+; 197  :                     if (u->BLOCK[0] > v_lo)
+
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [edx+ecx]
+	cmp	edx, DWORD PTR _v_lo$5[ebp]
+	jbe	SHORT $LN16@PMC_Compar
+
+; 198  :                         *w = 1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], 1
+	jmp	SHORT $LN13@PMC_Compar
+$LN16@PMC_Compar:
+
+; 199  :                     else if (u->BLOCK[0] < v_lo)
+
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [edx+ecx]
+	cmp	edx, DWORD PTR _v_lo$5[ebp]
+	jae	SHORT $LN18@PMC_Compar
+
+; 200  :                         *w = -1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], -1
+	jmp	SHORT $LN13@PMC_Compar
+$LN18@PMC_Compar:
+
+; 201  :                     else
+; 202  :                         *w = 0;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], 0
+$LN13@PMC_Compar:
+
+; 203  :                 }
+; 204  :             }
+
+	jmp	$LN11@PMC_Compar
+$LN10@PMC_Compar:
+
+; 205  :             else
+; 206  :             {
+; 207  :                 // v の値が 32bit では表現できない場合
+; 208  :                 __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
+
+	mov	edx, DWORD PTR _v_hi$6[ebp]
+	push	edx
+	call	__LZCNT_ALT_32
+	add	esp, 4
+	mov	ecx, 64					; 00000040H
+	sub	ecx, eax
+	mov	DWORD PTR _v_bit_count$3[ebp], ecx
+
+; 209  :                 if (u_bit_count > v_bit_count)
+
+	mov	edx, DWORD PTR _u_bit_count$7[ebp]
+	cmp	edx, DWORD PTR _v_bit_count$3[ebp]
+	jbe	SHORT $LN20@PMC_Compar
+
+; 210  :                 {
+; 211  :                     // 明らかに u > v である場合
+; 212  :                     *w = 1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], 1
+
+; 213  :                 }
+
+	jmp	$LN11@PMC_Compar
+$LN20@PMC_Compar:
+
+; 214  :                 else if (u_bit_count < v_bit_count)
+
+	mov	ecx, DWORD PTR _u_bit_count$7[ebp]
+	cmp	ecx, DWORD PTR _v_bit_count$3[ebp]
+	jae	SHORT $LN22@PMC_Compar
+
+; 215  :                 {
+; 216  :                     // 明らかに u < v である場合
+; 217  :                     *w = -1;
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [edx], -1
+
+; 218  :                 }
+
+	jmp	$LN11@PMC_Compar
+$LN22@PMC_Compar:
+
+; 219  :                 else
+; 220  :                 {
+; 221  :                     // u > 0 && v > 0 かつ u のビット長と v のビット長が等しく、かつ v が 2 ワードで表現できる場合
+; 222  :                     // ⇒ u と v はともに 2 ワードで表現できる
+; 223  :                     if (u->BLOCK[1] > v_hi)
+
+	mov	eax, 4
+	shl	eax, 0
+	mov	ecx, DWORD PTR _u$[ebp]
+	mov	edx, DWORD PTR [ecx+24]
+	mov	eax, DWORD PTR [eax+edx]
+	cmp	eax, DWORD PTR _v_hi$6[ebp]
+	jbe	SHORT $LN24@PMC_Compar
+
+; 224  :                         *w = 1;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], 1
+	jmp	SHORT $LN11@PMC_Compar
+$LN24@PMC_Compar:
+
+; 225  :                     else if (u->BLOCK[1] < v_hi)
+
+	mov	edx, 4
+	shl	edx, 0
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [edx+ecx]
+	cmp	edx, DWORD PTR _v_hi$6[ebp]
+	jae	SHORT $LN26@PMC_Compar
+
+; 226  :                         *w = -1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], -1
+	jmp	SHORT $LN11@PMC_Compar
+$LN26@PMC_Compar:
+
+; 227  :                     else if (u->BLOCK[0] > v_lo)
+
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [edx+ecx]
+	cmp	edx, DWORD PTR _v_lo$5[ebp]
+	jbe	SHORT $LN28@PMC_Compar
+
+; 228  :                         *w = 1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], 1
+	jmp	SHORT $LN11@PMC_Compar
+$LN28@PMC_Compar:
+
+; 229  :                     else if (u->BLOCK[0] < v_lo)
+
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [edx+ecx]
+	cmp	edx, DWORD PTR _v_lo$5[ebp]
+	jae	SHORT $LN30@PMC_Compar
+
+; 230  :                         *w = -1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], -1
+	jmp	SHORT $LN11@PMC_Compar
+$LN30@PMC_Compar:
+
+; 231  :                     else
+; 232  :                         *w = 0;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], 0
+$LN11@PMC_Compar:
+
+; 233  :                 }
+; 234  :             }
+; 235  :         }
+
+	jmp	$LN1@PMC_Compar
+$LN8@PMC_Compar:
+
+; 236  :         else
+; 237  :         {
+; 238  :             // _UINT64_T が 1 ワードで表現できる場合
+; 239  : 
+; 240  :             __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+
+	mov	edx, DWORD PTR _u$[ebp]
+	mov	eax, DWORD PTR [edx+4]
+	mov	DWORD PTR _u_bit_count$2[ebp], eax
+
+; 241  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
+
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	call	__LZCNT_ALT_UNIT
+	add	esp, 4
+	mov	edx, 64					; 00000040H
+	sub	edx, eax
+	mov	DWORD PTR _v_bit_count$1[ebp], edx
+
+; 242  :             if (u_bit_count > v_bit_count)
+
+	mov	eax, DWORD PTR _u_bit_count$2[ebp]
+	cmp	eax, DWORD PTR _v_bit_count$1[ebp]
+	jbe	SHORT $LN32@PMC_Compar
+
+; 243  :             {
+; 244  :                 // 明らかに u > v である場合
+; 245  :                 *w = 1;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], 1
+
+; 246  :             }
+
+	jmp	$LN1@PMC_Compar
+$LN32@PMC_Compar:
+
+; 247  :             else if (u_bit_count < v_bit_count)
+
+	mov	edx, DWORD PTR _u_bit_count$2[ebp]
+	cmp	edx, DWORD PTR _v_bit_count$1[ebp]
+	jae	SHORT $LN34@PMC_Compar
+
+; 248  :             {
+; 249  :                 // 明らかに u < v である場合
+; 250  :                 *w = -1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], -1
+
+; 251  :             }
+
+	jmp	SHORT $LN1@PMC_Compar
+$LN34@PMC_Compar:
+
+; 252  :             else
+; 253  :             {
+; 254  :                 // u > 0 && v > 0 かつ u のビット長と v のビット長が等しく、かつ v が 1 ワードで表現できる場合
+; 255  :                 // ⇒ u と v はともに 1 ワードで表現できる
+; 256  :                 if (u->BLOCK[0] > v)
+
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [ecx+edx]
+	xor	eax, eax
+	mov	DWORD PTR tv240[ebp], edx
+	mov	DWORD PTR tv240[ebp+4], eax
+	mov	ecx, DWORD PTR tv240[ebp+4]
+	cmp	ecx, DWORD PTR _v$[ebp+4]
+	jb	SHORT $LN36@PMC_Compar
+	ja	SHORT $LN41@PMC_Compar
+	mov	edx, DWORD PTR tv240[ebp]
+	cmp	edx, DWORD PTR _v$[ebp]
+	jbe	SHORT $LN36@PMC_Compar
+$LN41@PMC_Compar:
+
+; 257  :                     *w = 1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], 1
+	jmp	SHORT $LN1@PMC_Compar
+$LN36@PMC_Compar:
+
+; 258  :                 else if (u->BLOCK[0] < v)
+
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [ecx+edx]
+	xor	eax, eax
+	mov	DWORD PTR tv252[ebp], edx
+	mov	DWORD PTR tv252[ebp+4], eax
+	mov	ecx, DWORD PTR tv252[ebp+4]
+	cmp	ecx, DWORD PTR _v$[ebp+4]
+	ja	SHORT $LN38@PMC_Compar
+	jb	SHORT $LN42@PMC_Compar
+	mov	edx, DWORD PTR tv252[ebp]
+	cmp	edx, DWORD PTR _v$[ebp]
+	jae	SHORT $LN38@PMC_Compar
+$LN42@PMC_Compar:
+
+; 259  :                     *w = -1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], -1
+	jmp	SHORT $LN1@PMC_Compar
+$LN38@PMC_Compar:
+
+; 260  :                 else
+; 261  :                     *w = 0;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], 0
+$LN1@PMC_Compar:
+
+; 262  :             }
+; 263  :         }
+; 264  :     }
+; 265  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN45@PMC_Compar
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	pop	edi
+	add	esp, 52					; 00000034H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+$LN45@PMC_Compar:
+	DD	1
+	DD	$LN44@PMC_Compar
+$LN44@PMC_Compar:
+	DD	-12					; fffffff4H
+	DD	4
+	DD	$LN43@PMC_Compar
+$LN43@PMC_Compar:
+	DB	118					; 00000076H
+	DB	95					; 0000005fH
+	DB	104					; 00000068H
+	DB	105					; 00000069H
+	DB	0
+_PMC_Compare_X_L_Imp ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
+_TEXT	SEGMENT
+_v_bit_count$1 = -8					; size = 4
+_u_bit_count$2 = -4					; size = 4
+_u$ = 8							; size = 4
+_v$ = 12						; size = 4
+_w$ = 16						; size = 4
+_PMC_Compare_X_I_Imp PROC
+
+; 60   : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 8
+	mov	DWORD PTR [ebp-8], -858993460		; ccccccccH
+	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
+	mov	ecx, OFFSET __F5940173_pmc_compare@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 61   :     if (u->IS_ZERO)
+
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+16]
+	shr	ecx, 1
+	and	ecx, 1
+	je	SHORT $LN2@PMC_Compar
+
+; 62   :     {
+; 63   :         // u が 0 である場合
+; 64   :         if (v == 0)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN4@PMC_Compar
+
+; 65   :         {
+; 66   :             // v が 0 である場合
+; 67   :             *w = 0;
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [edx], 0
+
+; 68   :         }
+
+	jmp	SHORT $LN5@PMC_Compar
+$LN4@PMC_Compar:
+
+; 69   :         else
+; 70   :         {
+; 71   :             // v が 0 でない場合
+; 72   :             *w = -1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], -1
+$LN5@PMC_Compar:
+
+; 73   :         }
+; 74   :     }
+
+	jmp	$LN1@PMC_Compar
+$LN2@PMC_Compar:
+
+; 75   :     else if (v == 0)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN6@PMC_Compar
+
+; 76   :     {
+; 77   :         // v が 0 である場合
+; 78   :         *w = 1;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], 1
+
+; 79   :     }
+
+	jmp	$LN1@PMC_Compar
+$LN6@PMC_Compar:
+
+; 80   :     else
+; 81   :     {
+; 82   :         // x と y がともに 0 ではない場合
+; 83   :         __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+
+	mov	edx, DWORD PTR _u$[ebp]
+	mov	eax, DWORD PTR [edx+4]
+	mov	DWORD PTR _u_bit_count$2[ebp], eax
+
+; 84   :         __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
+
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	call	__LZCNT_ALT_32
+	add	esp, 4
+	mov	edx, 32					; 00000020H
+	sub	edx, eax
+	mov	DWORD PTR _v_bit_count$1[ebp], edx
+
+; 85   :         if (u_bit_count > v_bit_count)
+
+	mov	eax, DWORD PTR _u_bit_count$2[ebp]
+	cmp	eax, DWORD PTR _v_bit_count$1[ebp]
+	jbe	SHORT $LN8@PMC_Compar
+
+; 86   :         {
+; 87   :             // 明らかに u > v である場合
+; 88   :             *w = 1;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], 1
+
+; 89   :         }
+
+	jmp	SHORT $LN1@PMC_Compar
+$LN8@PMC_Compar:
+
+; 90   :         else if (u_bit_count < v_bit_count)
+
+	mov	edx, DWORD PTR _u_bit_count$2[ebp]
+	cmp	edx, DWORD PTR _v_bit_count$1[ebp]
+	jae	SHORT $LN10@PMC_Compar
+
+; 91   :         {
+; 92   :             // 明らかに u < v である場合
+; 93   :             *w = -1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], -1
+
+; 94   :         }
+
+	jmp	SHORT $LN1@PMC_Compar
+$LN10@PMC_Compar:
+
+; 95   :         else
+; 96   :         {
+; 97   :             // u > 0 && v > 0 かつ u のビット長と v のビット長が等しい場合
+; 98   :             // ⇒ u と v はともに 1 ワードで表現できる
+; 99   :             if (u->BLOCK[0] > v)
+
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [edx+ecx]
+	cmp	edx, DWORD PTR _v$[ebp]
+	jbe	SHORT $LN12@PMC_Compar
+
+; 100  :                 *w = 1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], 1
+	jmp	SHORT $LN1@PMC_Compar
+$LN12@PMC_Compar:
+
+; 101  :             else if (u->BLOCK[0] < v)
+
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [edx+ecx]
+	cmp	edx, DWORD PTR _v$[ebp]
+	jae	SHORT $LN14@PMC_Compar
+
+; 102  :                 *w = -1;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], -1
+	jmp	SHORT $LN1@PMC_Compar
+$LN14@PMC_Compar:
+
+; 103  :             else
+; 104  :                 *w = 0;
+
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], 0
+$LN1@PMC_Compar:
+
+; 105  :         }
+; 106  :     }
+; 107  : }
+
+	add	esp, 8
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+_PMC_Compare_X_I_Imp ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 _TEXT	SEGMENT
 _pos$ = -8						; size = 4
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC
 
-; 859  : {
+; 879  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -74,50 +780,50 @@ __LZCNT_ALT_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 860  :     if (x == 0)
+; 880  :     if (x == 0)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 861  :         return (sizeof(x) * 8);
+; 881  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 862  : #ifdef _M_IX86
-; 863  :     _UINT32_T pos;
-; 864  : #ifdef _MSC_VER
-; 865  :     _BitScanReverse(&pos, x);
+; 882  : #ifdef _M_IX86
+; 883  :     _UINT32_T pos;
+; 884  : #ifdef _MSC_VER
+; 885  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _pos$[ebp], eax
 
-; 866  : #elif defined(__GNUC__)
-; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 868  : #else
-; 869  : #error unknown compiler
-; 870  : #endif
-; 871  : #elif defined(_M_X64)
-; 872  : #ifdef _MSC_VER
-; 873  :     _UINT32_T pos;
-; 874  :     _BitScanReverse64(&pos, x);
-; 875  : #elif defined(__GNUC__)
-; 876  :     _UINT64_T pos;
-; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 878  : #else
-; 879  : #error unknown compiler
-; 880  : #endif
-; 881  : #else
-; 882  : #error unknown platform
-; 883  : #endif
-; 884  :     return (sizeof(x) * 8 - 1 - pos);
+; 886  : #elif defined(__GNUC__)
+; 887  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 888  : #else
+; 889  : #error unknown compiler
+; 890  : #endif
+; 891  : #elif defined(_M_X64)
+; 892  : #ifdef _MSC_VER
+; 893  :     _UINT32_T pos;
+; 894  :     _BitScanReverse64(&pos, x);
+; 895  : #elif defined(__GNUC__)
+; 896  :     _UINT64_T pos;
+; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 898  : #else
+; 899  : #error unknown compiler
+; 900  : #endif
+; 901  : #else
+; 902  : #error unknown platform
+; 903  : #endif
+; 904  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, DWORD PTR _pos$[ebp]
 $LN1@LZCNT_ALT_:
 
-; 885  : }
+; 905  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -153,7 +859,7 @@ _pos$ = -8						; size = 4
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC
 
-; 826  : {
+; 846  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -164,36 +870,36 @@ __LZCNT_ALT_32 PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 827  :     if (x == 0)
+; 847  :     if (x == 0)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 828  :         return (sizeof(x) * 8);
+; 848  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 829  :     _UINT32_T pos;
-; 830  : #ifdef _MSC_VER
-; 831  :     _BitScanReverse(&pos, x);
+; 849  :     _UINT32_T pos;
+; 850  : #ifdef _MSC_VER
+; 851  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _pos$[ebp], eax
 
-; 832  : #elif defined(__GNUC__)
-; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 834  : #else
-; 835  : #error unknown compiler
-; 836  : #endif
-; 837  :     return (sizeof(x) * 8 - 1 - pos);
+; 852  : #elif defined(__GNUC__)
+; 853  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 854  : #else
+; 855  : #error unknown compiler
+; 856  : #endif
+; 857  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, DWORD PTR _pos$[ebp]
 $LN1@LZCNT_ALT_:
 
-; 838  : }
+; 858  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -229,14 +935,14 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC
 
-; 412  : {
+; 432  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 413  :     *result_high = (_UINT32_T)(value >> 32);
+; 433  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	edx, DWORD PTR _value$[ebp+4]
@@ -245,11 +951,11 @@ __FROMDWORDTOWORD PROC
 	mov	ecx, DWORD PTR _result_high$[ebp]
 	mov	DWORD PTR [ecx], eax
 
-; 414  :     return ((_UINT32_T)value);
+; 434  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 415  : }
+; 435  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -271,7 +977,7 @@ _v$ = 12						; size = 4
 _w$ = 16						; size = 4
 _PMC_Compare_X_X@12 PROC
 
-; 257  : {
+; 308  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -286,51 +992,51 @@ _PMC_Compare_X_X@12 PROC
 	mov	ecx, OFFSET __F5940173_pmc_compare@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 258  :     if (u == NULL)
+; 309  :     if (u == NULL)
 
 	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN2@PMC_Compar
 
-; 259  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 310  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Compar
 $LN2@PMC_Compar:
 
-; 260  :     if (v == NULL)
+; 311  :     if (v == NULL)
 
 	cmp	DWORD PTR _v$[ebp], 0
 	jne	SHORT $LN3@PMC_Compar
 
-; 261  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 312  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Compar
 $LN3@PMC_Compar:
 
-; 262  :     if (w == NULL)
+; 313  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Compar
 
-; 263  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 314  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Compar
 $LN4@PMC_Compar:
 
-; 264  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 315  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	eax, DWORD PTR _u$[ebp]
 	mov	DWORD PTR _nu$[ebp], eax
 
-; 265  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 316  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
 
 	mov	ecx, DWORD PTR _v$[ebp]
 	mov	DWORD PTR _nv$[ebp], ecx
 
-; 266  :     PMC_STATUS_CODE result;
-; 267  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 317  :     PMC_STATUS_CODE result;
+; 318  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nu$[ebp]
 	push	edx
@@ -340,13 +1046,13 @@ $LN4@PMC_Compar:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Compar
 
-; 268  :         return (result);
+; 319  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Compar
 $LN5@PMC_Compar:
 
-; 269  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+; 320  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nv$[ebp]
 	push	eax
@@ -356,13 +1062,13 @@ $LN5@PMC_Compar:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN6@PMC_Compar
 
-; 270  :         return (result);
+; 321  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Compar
 $LN6@PMC_Compar:
 
-; 271  :     if (nu->IS_ZERO)
+; 322  :     if (nu->IS_ZERO)
 
 	mov	ecx, DWORD PTR _nu$[ebp]
 	mov	edx, DWORD PTR [ecx+16]
@@ -370,8 +1076,8 @@ $LN6@PMC_Compar:
 	and	edx, 1
 	je	SHORT $LN7@PMC_Compar
 
-; 272  :     {
-; 273  :         *w = nv->IS_ZERO ? 0 : -1;
+; 323  :     {
+; 324  :         *w = nv->IS_ZERO ? 0 : -1;
 
 	mov	eax, DWORD PTR _nv$[ebp]
 	mov	ecx, DWORD PTR [eax+16]
@@ -387,12 +1093,12 @@ $LN17@PMC_Compar:
 	mov	eax, DWORD PTR tv81[ebp]
 	mov	DWORD PTR [edx], eax
 
-; 274  :     }
+; 325  :     }
 
 	jmp	SHORT $LN8@PMC_Compar
 $LN7@PMC_Compar:
 
-; 275  :     else if (nv->IS_ZERO)
+; 326  :     else if (nv->IS_ZERO)
 
 	mov	ecx, DWORD PTR _nv$[ebp]
 	mov	edx, DWORD PTR [ecx+16]
@@ -400,71 +1106,71 @@ $LN7@PMC_Compar:
 	and	edx, 1
 	je	SHORT $LN9@PMC_Compar
 
-; 276  :     {
-; 277  :         *w = 1;
+; 327  :     {
+; 328  :         *w = 1;
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax], 1
 
-; 278  :     }
+; 329  :     }
 
 	jmp	SHORT $LN8@PMC_Compar
 $LN9@PMC_Compar:
 
-; 279  :     else
-; 280  :     {
-; 281  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 330  :     else
+; 331  :     {
+; 332  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
 	mov	ecx, DWORD PTR _nu$[ebp]
 	mov	edx, DWORD PTR [ecx+4]
 	mov	DWORD PTR _u_bit_count$2[ebp], edx
 
-; 282  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 333  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
 	mov	eax, DWORD PTR _nv$[ebp]
 	mov	ecx, DWORD PTR [eax+4]
 	mov	DWORD PTR _v_bit_count$1[ebp], ecx
 
-; 283  :         if (u_bit_count > v_bit_count)
+; 334  :         if (u_bit_count > v_bit_count)
 
 	mov	edx, DWORD PTR _u_bit_count$2[ebp]
 	cmp	edx, DWORD PTR _v_bit_count$1[ebp]
 	jbe	SHORT $LN11@PMC_Compar
 
-; 284  :         {
-; 285  :             // 明らかに u > v である場合
-; 286  :             *w = 1;
+; 335  :         {
+; 336  :             // 明らかに u > v である場合
+; 337  :             *w = 1;
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax], 1
 
-; 287  :         }
+; 338  :         }
 
 	jmp	SHORT $LN8@PMC_Compar
 $LN11@PMC_Compar:
 
-; 288  :         else if (u_bit_count < v_bit_count)
+; 339  :         else if (u_bit_count < v_bit_count)
 
 	mov	ecx, DWORD PTR _u_bit_count$2[ebp]
 	cmp	ecx, DWORD PTR _v_bit_count$1[ebp]
 	jae	SHORT $LN13@PMC_Compar
 
-; 289  :         {
-; 290  :             // 明らかに u < v である場合
-; 291  :             *w = -1;
+; 340  :         {
+; 341  :             // 明らかに u < v である場合
+; 342  :             *w = -1;
 
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx], -1
 
-; 292  :         }
+; 343  :         }
 
 	jmp	SHORT $LN8@PMC_Compar
 $LN13@PMC_Compar:
 
-; 293  :         else
-; 294  :         {
-; 295  :             // u > 0 && v > 0 かつ u のビット長と v のビット長が等しい場合
-; 296  :             *w = Compare_Imp(nu->BLOCK, nv->BLOCK, nu->UNIT_WORD_COUNT);
+; 344  :         else
+; 345  :         {
+; 346  :             // u > 0 && v > 0 かつ u のビット長と v のビット長が等しい場合
+; 347  :             *w = Compare_Imp(nu->BLOCK, nv->BLOCK, nu->UNIT_WORD_COUNT);
 
 	mov	eax, DWORD PTR _nu$[ebp]
 	mov	ecx, DWORD PTR [eax]
@@ -481,14 +1187,14 @@ $LN13@PMC_Compar:
 	mov	DWORD PTR [ecx], eax
 $LN8@PMC_Compar:
 
-; 297  :         }
-; 298  :     }
-; 299  :     return (PMC_STATUS_OK);
+; 348  :         }
+; 349  :     }
+; 350  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Compar:
 
-; 300  : }
+; 351  : }
 
 	add	esp, 24					; 00000018H
 	cmp	ebp, esp
@@ -501,596 +1207,14 @@ _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
 _TEXT	SEGMENT
-tv266 = -60						; size = 8
-tv254 = -52						; size = 8
-_v_bit_count$1 = -44					; size = 4
-_u_bit_count$2 = -40					; size = 4
-_v_bit_count$3 = -36					; size = 4
-_v_bit_count$4 = -32					; size = 4
-_v_lo$5 = -28						; size = 4
-_v_hi$6 = -20						; size = 4
-_u_bit_count$7 = -12					; size = 4
-_result$ = -8						; size = 4
-_nu$ = -4						; size = 4
+_w_temp$ = -12						; size = 4
+_result$ = -4						; size = 4
 _u$ = 8							; size = 4
 _v$ = 12						; size = 8
 _w$ = 20						; size = 4
 _PMC_Compare_X_L@16 PROC
 
-; 124  : {
-
-	push	ebp
-	mov	ebp, esp
-	sub	esp, 60					; 0000003cH
-	push	edi
-	lea	edi, DWORD PTR [ebp-60]
-	mov	ecx, 15					; 0000000fH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	ecx, OFFSET __F5940173_pmc_compare@c
-	call	@__CheckForDebuggerJustMyCode@4
-
-; 125  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
-
-	xor	eax, eax
-	je	SHORT $LN2@PMC_Compar
-
-; 126  :     {
-; 127  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 128  :         return (PMC_STATUS_INTERNAL_ERROR);
-
-	mov	eax, -256				; ffffff00H
-	jmp	$LN1@PMC_Compar
-$LN2@PMC_Compar:
-
-; 129  :     }
-; 130  :     if (u == NULL)
-
-	cmp	DWORD PTR _u$[ebp], 0
-	jne	SHORT $LN3@PMC_Compar
-
-; 131  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	or	eax, -1
-	jmp	$LN1@PMC_Compar
-$LN3@PMC_Compar:
-
-; 132  :     if (w == NULL)
-
-	cmp	DWORD PTR _w$[ebp], 0
-	jne	SHORT $LN4@PMC_Compar
-
-; 133  :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	or	eax, -1
-	jmp	$LN1@PMC_Compar
-$LN4@PMC_Compar:
-
-; 134  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
-
-	mov	ecx, DWORD PTR _u$[ebp]
-	mov	DWORD PTR _nu$[ebp], ecx
-
-; 135  :     PMC_STATUS_CODE result;
-; 136  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
-
-	mov	edx, DWORD PTR _nu$[ebp]
-	push	edx
-	call	_CheckNumber
-	add	esp, 4
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN5@PMC_Compar
-
-; 137  :         return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Compar
-$LN5@PMC_Compar:
-
-; 138  :     if (nu->IS_ZERO)
-
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
-	shr	ecx, 1
-	and	ecx, 1
-	je	SHORT $LN6@PMC_Compar
-
-; 139  :     {
-; 140  :         // u が 0 である場合
-; 141  :         if (v == 0)
-
-	mov	edx, DWORD PTR _v$[ebp]
-	or	edx, DWORD PTR _v$[ebp+4]
-	jne	SHORT $LN8@PMC_Compar
-
-; 142  :         {
-; 143  :             // v が 0 である場合
-; 144  :             *w = 0;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], 0
-
-; 145  :         }
-
-	jmp	SHORT $LN9@PMC_Compar
-$LN8@PMC_Compar:
-
-; 146  :         else
-; 147  :         {
-; 148  :             // v が 0 でない場合
-; 149  :             *w = -1;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], -1
-$LN9@PMC_Compar:
-
-; 150  :         }
-; 151  :     }
-
-	jmp	$LN7@PMC_Compar
-$LN6@PMC_Compar:
-
-; 152  :     else if (v == 0)
-
-	mov	edx, DWORD PTR _v$[ebp]
-	or	edx, DWORD PTR _v$[ebp+4]
-	jne	SHORT $LN10@PMC_Compar
-
-; 153  :     {
-; 154  :         // v が 0 である場合
-; 155  :         *w = 1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], 1
-
-; 156  :     }
-
-	jmp	$LN7@PMC_Compar
-$LN10@PMC_Compar:
-
-; 157  :     else
-; 158  :     {
-; 159  :         // u と v がともに 0 ではない場合
-; 160  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
-
-	mov	ecx, 1
-	test	ecx, ecx
-	je	$LN12@PMC_Compar
-
-; 161  :         {
-; 162  :             // _UINT64_T が 1 ワードで表現しきれない場合
-; 163  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-
-	mov	edx, DWORD PTR _nu$[ebp]
-	mov	eax, DWORD PTR [edx+4]
-	mov	DWORD PTR _u_bit_count$7[ebp], eax
-
-; 164  :             _UINT32_T v_hi;
-; 165  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
-
-	lea	ecx, DWORD PTR _v_hi$6[ebp]
-	push	ecx
-	mov	edx, DWORD PTR _v$[ebp+4]
-	push	edx
-	mov	eax, DWORD PTR _v$[ebp]
-	push	eax
-	call	__FROMDWORDTOWORD
-	add	esp, 12					; 0000000cH
-	mov	DWORD PTR _v_lo$5[ebp], eax
-
-; 166  :             if (v_hi == 0)
-
-	cmp	DWORD PTR _v_hi$6[ebp], 0
-	jne	$LN14@PMC_Compar
-
-; 167  :             {
-; 168  :                 // v の値が 32bit では表現できる場合
-; 169  :                 __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
-
-	mov	ecx, DWORD PTR _v_lo$5[ebp]
-	push	ecx
-	call	__LZCNT_ALT_32
-	add	esp, 4
-	mov	edx, 32					; 00000020H
-	sub	edx, eax
-	mov	DWORD PTR _v_bit_count$4[ebp], edx
-
-; 170  :                 if (u_bit_count > v_bit_count)
-
-	mov	eax, DWORD PTR _u_bit_count$7[ebp]
-	cmp	eax, DWORD PTR _v_bit_count$4[ebp]
-	jbe	SHORT $LN16@PMC_Compar
-
-; 171  :                 {
-; 172  :                     // 明らかに u > v である場合
-; 173  :                     *w = 1;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], 1
-
-; 174  :                 }
-
-	jmp	SHORT $LN17@PMC_Compar
-$LN16@PMC_Compar:
-
-; 175  :                 else if (u_bit_count < v_bit_count)
-
-	mov	edx, DWORD PTR _u_bit_count$7[ebp]
-	cmp	edx, DWORD PTR _v_bit_count$4[ebp]
-	jae	SHORT $LN18@PMC_Compar
-
-; 176  :                 {
-; 177  :                     // 明らかに u < v である場合
-; 178  :                     *w = -1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], -1
-
-; 179  :                 }
-
-	jmp	SHORT $LN17@PMC_Compar
-$LN18@PMC_Compar:
-
-; 180  :                 else
-; 181  :                 {
-; 182  :                     // u > 0 && v > 0 かつ u のビット長と v のビット長が等しく、かつ v が 1 ワードで表現できる場合
-; 183  :                     // ⇒ u と v はともに 1 ワードで表現できる
-; 184  :                     if (nu->BLOCK[0] > v_lo)
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	mov	edx, DWORD PTR [edx+ecx]
-	cmp	edx, DWORD PTR _v_lo$5[ebp]
-	jbe	SHORT $LN20@PMC_Compar
-
-; 185  :                         *w = 1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], 1
-	jmp	SHORT $LN17@PMC_Compar
-$LN20@PMC_Compar:
-
-; 186  :                     else if (nu->BLOCK[0] < v_lo)
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	mov	edx, DWORD PTR [edx+ecx]
-	cmp	edx, DWORD PTR _v_lo$5[ebp]
-	jae	SHORT $LN22@PMC_Compar
-
-; 187  :                         *w = -1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], -1
-	jmp	SHORT $LN17@PMC_Compar
-$LN22@PMC_Compar:
-
-; 188  :                     else
-; 189  :                         *w = 0;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], 0
-$LN17@PMC_Compar:
-
-; 190  :                 }
-; 191  :             }
-
-	jmp	$LN15@PMC_Compar
-$LN14@PMC_Compar:
-
-; 192  :             else
-; 193  :             {
-; 194  :                 // v の値が 32bit では表現できない場合
-; 195  :                 __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
-
-	mov	edx, DWORD PTR _v_hi$6[ebp]
-	push	edx
-	call	__LZCNT_ALT_32
-	add	esp, 4
-	mov	ecx, 64					; 00000040H
-	sub	ecx, eax
-	mov	DWORD PTR _v_bit_count$3[ebp], ecx
-
-; 196  :                 if (u_bit_count > v_bit_count)
-
-	mov	edx, DWORD PTR _u_bit_count$7[ebp]
-	cmp	edx, DWORD PTR _v_bit_count$3[ebp]
-	jbe	SHORT $LN24@PMC_Compar
-
-; 197  :                 {
-; 198  :                     // 明らかに u > v である場合
-; 199  :                     *w = 1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], 1
-
-; 200  :                 }
-
-	jmp	$LN15@PMC_Compar
-$LN24@PMC_Compar:
-
-; 201  :                 else if (u_bit_count < v_bit_count)
-
-	mov	ecx, DWORD PTR _u_bit_count$7[ebp]
-	cmp	ecx, DWORD PTR _v_bit_count$3[ebp]
-	jae	SHORT $LN26@PMC_Compar
-
-; 202  :                 {
-; 203  :                     // 明らかに u < v である場合
-; 204  :                     *w = -1;
-
-	mov	edx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [edx], -1
-
-; 205  :                 }
-
-	jmp	$LN15@PMC_Compar
-$LN26@PMC_Compar:
-
-; 206  :                 else
-; 207  :                 {
-; 208  :                     // u > 0 && v > 0 かつ u のビット長と v のビット長が等しく、かつ v が 2 ワードで表現できる場合
-; 209  :                     // ⇒ u と v はともに 2 ワードで表現できる
-; 210  :                     if (nu->BLOCK[1] > v_hi)
-
-	mov	eax, 4
-	shl	eax, 0
-	mov	ecx, DWORD PTR _nu$[ebp]
-	mov	edx, DWORD PTR [ecx+24]
-	mov	eax, DWORD PTR [eax+edx]
-	cmp	eax, DWORD PTR _v_hi$6[ebp]
-	jbe	SHORT $LN28@PMC_Compar
-
-; 211  :                         *w = 1;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], 1
-	jmp	SHORT $LN15@PMC_Compar
-$LN28@PMC_Compar:
-
-; 212  :                     else if (nu->BLOCK[1] < v_hi)
-
-	mov	edx, 4
-	shl	edx, 0
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	mov	edx, DWORD PTR [edx+ecx]
-	cmp	edx, DWORD PTR _v_hi$6[ebp]
-	jae	SHORT $LN30@PMC_Compar
-
-; 213  :                         *w = -1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], -1
-	jmp	SHORT $LN15@PMC_Compar
-$LN30@PMC_Compar:
-
-; 214  :                     else if (nu->BLOCK[0] > v_lo)
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	mov	edx, DWORD PTR [edx+ecx]
-	cmp	edx, DWORD PTR _v_lo$5[ebp]
-	jbe	SHORT $LN32@PMC_Compar
-
-; 215  :                         *w = 1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], 1
-	jmp	SHORT $LN15@PMC_Compar
-$LN32@PMC_Compar:
-
-; 216  :                     else if (nu->BLOCK[0] < v_lo)
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	mov	edx, DWORD PTR [edx+ecx]
-	cmp	edx, DWORD PTR _v_lo$5[ebp]
-	jae	SHORT $LN34@PMC_Compar
-
-; 217  :                         *w = -1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], -1
-	jmp	SHORT $LN15@PMC_Compar
-$LN34@PMC_Compar:
-
-; 218  :                     else
-; 219  :                         *w = 0;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], 0
-$LN15@PMC_Compar:
-
-; 220  :                 }
-; 221  :             }
-; 222  :         }
-
-	jmp	$LN7@PMC_Compar
-$LN12@PMC_Compar:
-
-; 223  :         else
-; 224  :         {
-; 225  :             // _UINT64_T が 1 ワードで表現できる場合
-; 226  : 
-; 227  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-
-	mov	edx, DWORD PTR _nu$[ebp]
-	mov	eax, DWORD PTR [edx+4]
-	mov	DWORD PTR _u_bit_count$2[ebp], eax
-
-; 228  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
-
-	mov	ecx, DWORD PTR _v$[ebp]
-	push	ecx
-	call	__LZCNT_ALT_UNIT
-	add	esp, 4
-	mov	edx, 64					; 00000040H
-	sub	edx, eax
-	mov	DWORD PTR _v_bit_count$1[ebp], edx
-
-; 229  :             if (u_bit_count > v_bit_count)
-
-	mov	eax, DWORD PTR _u_bit_count$2[ebp]
-	cmp	eax, DWORD PTR _v_bit_count$1[ebp]
-	jbe	SHORT $LN36@PMC_Compar
-
-; 230  :             {
-; 231  :                 // 明らかに u > v である場合
-; 232  :                 *w = 1;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], 1
-
-; 233  :             }
-
-	jmp	$LN7@PMC_Compar
-$LN36@PMC_Compar:
-
-; 234  :             else if (u_bit_count < v_bit_count)
-
-	mov	edx, DWORD PTR _u_bit_count$2[ebp]
-	cmp	edx, DWORD PTR _v_bit_count$1[ebp]
-	jae	SHORT $LN38@PMC_Compar
-
-; 235  :             {
-; 236  :                 // 明らかに u < v である場合
-; 237  :                 *w = -1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], -1
-
-; 238  :             }
-
-	jmp	SHORT $LN7@PMC_Compar
-$LN38@PMC_Compar:
-
-; 239  :             else
-; 240  :             {
-; 241  :                 // u > 0 && v > 0 かつ u のビット長と v のビット長が等しく、かつ v が 1 ワードで表現できる場合
-; 242  :                 // ⇒ u と v はともに 1 ワードで表現できる
-; 243  :                 if (nu->BLOCK[0] > v)
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	mov	edx, DWORD PTR [ecx+edx]
-	xor	eax, eax
-	mov	DWORD PTR tv254[ebp], edx
-	mov	DWORD PTR tv254[ebp+4], eax
-	mov	ecx, DWORD PTR tv254[ebp+4]
-	cmp	ecx, DWORD PTR _v$[ebp+4]
-	jb	SHORT $LN40@PMC_Compar
-	ja	SHORT $LN45@PMC_Compar
-	mov	edx, DWORD PTR tv254[ebp]
-	cmp	edx, DWORD PTR _v$[ebp]
-	jbe	SHORT $LN40@PMC_Compar
-$LN45@PMC_Compar:
-
-; 244  :                     *w = 1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], 1
-	jmp	SHORT $LN7@PMC_Compar
-$LN40@PMC_Compar:
-
-; 245  :                 else if (nu->BLOCK[0] < v)
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	mov	edx, DWORD PTR [ecx+edx]
-	xor	eax, eax
-	mov	DWORD PTR tv266[ebp], edx
-	mov	DWORD PTR tv266[ebp+4], eax
-	mov	ecx, DWORD PTR tv266[ebp+4]
-	cmp	ecx, DWORD PTR _v$[ebp+4]
-	ja	SHORT $LN42@PMC_Compar
-	jb	SHORT $LN46@PMC_Compar
-	mov	edx, DWORD PTR tv266[ebp]
-	cmp	edx, DWORD PTR _v$[ebp]
-	jae	SHORT $LN42@PMC_Compar
-$LN46@PMC_Compar:
-
-; 246  :                     *w = -1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], -1
-	jmp	SHORT $LN7@PMC_Compar
-$LN42@PMC_Compar:
-
-; 247  :                 else
-; 248  :                     *w = 0;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], 0
-$LN7@PMC_Compar:
-
-; 249  :             }
-; 250  :         }
-; 251  : 
-; 252  :     }
-; 253  :     return (PMC_STATUS_OK);
-
-	xor	eax, eax
-$LN1@PMC_Compar:
-
-; 254  : }
-
-	push	edx
-	mov	ecx, ebp
-	push	eax
-	lea	edx, DWORD PTR $LN49@PMC_Compar
-	call	@_RTC_CheckStackVars@8
-	pop	eax
-	pop	edx
-	pop	edi
-	add	esp, 60					; 0000003cH
-	cmp	ebp, esp
-	call	__RTC_CheckEsp
-	mov	esp, ebp
-	pop	ebp
-	ret	16					; 00000010H
-	npad	3
-$LN49@PMC_Compar:
-	DD	1
-	DD	$LN48@PMC_Compar
-$LN48@PMC_Compar:
-	DD	-20					; ffffffecH
-	DD	4
-	DD	$LN47@PMC_Compar
-$LN47@PMC_Compar:
-	DB	118					; 00000076H
-	DB	95					; 0000005fH
-	DB	104					; 00000068H
-	DB	105					; 00000069H
-	DB	0
-_PMC_Compare_X_L@16 ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
-_TEXT	SEGMENT
-_v_bit_count$1 = -16					; size = 4
-_u_bit_count$2 = -12					; size = 4
-_result$ = -8						; size = 4
-_nu$ = -4						; size = 4
-_u$ = 8							; size = 4
-_v$ = 12						; size = 4
-_w$ = 16						; size = 4
-_PMC_Compare_X_I@12 PROC
-
-; 60   : {
+; 288  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1103,239 +1227,516 @@ _PMC_Compare_X_I@12 PROC
 	mov	ecx, OFFSET __F5940173_pmc_compare@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 61   :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 289  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
 
 	xor	eax, eax
 	je	SHORT $LN2@PMC_Compar
 
-; 62   :     {
-; 63   :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 64   :         return (PMC_STATUS_INTERNAL_ERROR);
+; 290  :     {
+; 291  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 292  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffff00H
-	jmp	$LN1@PMC_Compar
+	jmp	SHORT $LN1@PMC_Compar
 $LN2@PMC_Compar:
 
-; 65   :     }
-; 66   :     if (u == NULL)
+; 293  :     }
+; 294  :     if (u == NULL)
 
 	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN3@PMC_Compar
 
-; 67   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 295  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
-	jmp	$LN1@PMC_Compar
+	jmp	SHORT $LN1@PMC_Compar
 $LN3@PMC_Compar:
 
-; 68   :     if (w == NULL)
+; 296  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Compar
 
-; 69   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 297  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
-	jmp	$LN1@PMC_Compar
+	jmp	SHORT $LN1@PMC_Compar
 $LN4@PMC_Compar:
 
-; 70   :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 298  :     PMC_STATUS_CODE result;
+; 299  :     if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _u$[ebp]
-	mov	DWORD PTR _nu$[ebp], ecx
-
-; 71   :     PMC_STATUS_CODE result;
-; 72   :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
-
-	mov	edx, DWORD PTR _nu$[ebp]
-	push	edx
+	push	ecx
 	call	_CheckNumber
 	add	esp, 4
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Compar
 
-; 73   :         return (result);
+; 300  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
-	jmp	$LN1@PMC_Compar
+	jmp	SHORT $LN1@PMC_Compar
 $LN5@PMC_Compar:
 
-; 74   :     if (nu->IS_ZERO)
+; 301  :     _INT32_T w_temp;
+; 302  :     PMC_Compare_X_L_Imp((NUMBER_HEADER*)u, v, &w_temp);
 
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
-	shr	ecx, 1
-	and	ecx, 1
-	je	SHORT $LN6@PMC_Compar
-
-; 75   :     {
-; 76   :         // u が 0 である場合
-; 77   :         if (v == 0)
-
-	cmp	DWORD PTR _v$[ebp], 0
-	jne	SHORT $LN8@PMC_Compar
-
-; 78   :         {
-; 79   :             // v が 0 である場合
-; 80   :             *w = 0;
-
-	mov	edx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [edx], 0
-
-; 81   :         }
-
-	jmp	SHORT $LN9@PMC_Compar
-$LN8@PMC_Compar:
-
-; 82   :         else
-; 83   :         {
-; 84   :             // v が 0 でない場合
-; 85   :             *w = -1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], -1
-$LN9@PMC_Compar:
-
-; 86   :         }
-; 87   :     }
-
-	jmp	$LN7@PMC_Compar
-$LN6@PMC_Compar:
-
-; 88   :     else if (v == 0)
-
-	cmp	DWORD PTR _v$[ebp], 0
-	jne	SHORT $LN10@PMC_Compar
-
-; 89   :     {
-; 90   :         // v が 0 である場合
-; 91   :         *w = 1;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], 1
-
-; 92   :     }
-
-	jmp	$LN7@PMC_Compar
-$LN10@PMC_Compar:
-
-; 93   :     else
-; 94   :     {
-; 95   :         // x と y がともに 0 ではない場合
-; 96   :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-
-	mov	edx, DWORD PTR _nu$[ebp]
-	mov	eax, DWORD PTR [edx+4]
-	mov	DWORD PTR _u_bit_count$2[ebp], eax
-
-; 97   :         __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
-
+	lea	edx, DWORD PTR _w_temp$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _v$[ebp+4]
+	push	eax
 	mov	ecx, DWORD PTR _v$[ebp]
 	push	ecx
-	call	__LZCNT_ALT_32
-	add	esp, 4
-	mov	edx, 32					; 00000020H
-	sub	edx, eax
-	mov	DWORD PTR _v_bit_count$1[ebp], edx
+	mov	edx, DWORD PTR _u$[ebp]
+	push	edx
+	call	_PMC_Compare_X_L_Imp
+	add	esp, 16					; 00000010H
 
-; 98   :         if (u_bit_count > v_bit_count)
-
-	mov	eax, DWORD PTR _u_bit_count$2[ebp]
-	cmp	eax, DWORD PTR _v_bit_count$1[ebp]
-	jbe	SHORT $LN12@PMC_Compar
-
-; 99   :         {
-; 100  :             // 明らかに u > v である場合
-; 101  :             *w = 1;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], 1
-
-; 102  :         }
-
-	jmp	SHORT $LN7@PMC_Compar
-$LN12@PMC_Compar:
-
-; 103  :         else if (u_bit_count < v_bit_count)
-
-	mov	edx, DWORD PTR _u_bit_count$2[ebp]
-	cmp	edx, DWORD PTR _v_bit_count$1[ebp]
-	jae	SHORT $LN14@PMC_Compar
-
-; 104  :         {
-; 105  :             // 明らかに u < v である場合
-; 106  :             *w = -1;
+; 303  :     *w = w_temp;
 
 	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], -1
+	mov	ecx, DWORD PTR _w_temp$[ebp]
+	mov	DWORD PTR [eax], ecx
 
-; 107  :         }
-
-	jmp	SHORT $LN7@PMC_Compar
-$LN14@PMC_Compar:
-
-; 108  :         else
-; 109  :         {
-; 110  :             // u > 0 && v > 0 かつ u のビット長と v のビット長が等しい場合
-; 111  :             // ⇒ u と v はともに 1 ワードで表現できる
-; 112  :             if (nu->BLOCK[0] > v)
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	mov	edx, DWORD PTR [edx+ecx]
-	cmp	edx, DWORD PTR _v$[ebp]
-	jbe	SHORT $LN16@PMC_Compar
-
-; 113  :                 *w = 1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], 1
-	jmp	SHORT $LN7@PMC_Compar
-$LN16@PMC_Compar:
-
-; 114  :             else if (nu->BLOCK[0] < v)
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _nu$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	mov	edx, DWORD PTR [edx+ecx]
-	cmp	edx, DWORD PTR _v$[ebp]
-	jae	SHORT $LN18@PMC_Compar
-
-; 115  :                 *w = -1;
-
-	mov	eax, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [eax], -1
-	jmp	SHORT $LN7@PMC_Compar
-$LN18@PMC_Compar:
-
-; 116  :             else
-; 117  :                 *w = 0;
-
-	mov	ecx, DWORD PTR _w$[ebp]
-	mov	DWORD PTR [ecx], 0
-$LN7@PMC_Compar:
-
-; 118  :         }
-; 119  :     }
-; 120  :     return (PMC_STATUS_OK);
+; 304  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Compar:
 
-; 121  : }
+; 305  : }
 
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN9@PMC_Compar
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	add	esp, 16					; 00000010H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	16					; 00000010H
+	npad	1
+$LN9@PMC_Compar:
+	DD	1
+	DD	$LN8@PMC_Compar
+$LN8@PMC_Compar:
+	DD	-12					; fffffff4H
+	DD	4
+	DD	$LN7@PMC_Compar
+$LN7@PMC_Compar:
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	116					; 00000074H
+	DB	101					; 00000065H
+	DB	109					; 0000006dH
+	DB	112					; 00000070H
+	DB	0
+_PMC_Compare_X_L@16 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
+_TEXT	SEGMENT
+_w_temp$ = -12						; size = 4
+_result$ = -4						; size = 4
+_u$ = 8							; size = 4
+_v$ = 12						; size = 4
+_w$ = 16						; size = 4
+_PMC_Compare_X_I@12 PROC
+
+; 130  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 16					; 00000010H
+	mov	eax, -858993460				; ccccccccH
+	mov	DWORD PTR [ebp-16], eax
+	mov	DWORD PTR [ebp-12], eax
+	mov	DWORD PTR [ebp-8], eax
+	mov	DWORD PTR [ebp-4], eax
+	mov	ecx, OFFSET __F5940173_pmc_compare@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 131  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+
+	xor	eax, eax
+	je	SHORT $LN2@PMC_Compar
+
+; 132  :     {
+; 133  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 134  :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffff00H
+	jmp	SHORT $LN1@PMC_Compar
+$LN2@PMC_Compar:
+
+; 135  :     }
+; 136  :     if (u == NULL)
+
+	cmp	DWORD PTR _u$[ebp], 0
+	jne	SHORT $LN3@PMC_Compar
+
+; 137  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Compar
+$LN3@PMC_Compar:
+
+; 138  :     if (w == NULL)
+
+	cmp	DWORD PTR _w$[ebp], 0
+	jne	SHORT $LN4@PMC_Compar
+
+; 139  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Compar
+$LN4@PMC_Compar:
+
+; 140  :     PMC_STATUS_CODE result;
+; 141  :     if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
+
+	mov	ecx, DWORD PTR _u$[ebp]
+	push	ecx
+	call	_CheckNumber
+	add	esp, 4
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN5@PMC_Compar
+
+; 142  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Compar
+$LN5@PMC_Compar:
+
+; 143  :     _INT32_T w_temp;
+; 144  :     PMC_Compare_X_I_Imp((NUMBER_HEADER*)u, v, &w_temp);
+
+	lea	edx, DWORD PTR _w_temp$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _v$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _u$[ebp]
+	push	ecx
+	call	_PMC_Compare_X_I_Imp
+	add	esp, 12					; 0000000cH
+
+; 145  :     *w = w_temp;
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	eax, DWORD PTR _w_temp$[ebp]
+	mov	DWORD PTR [edx], eax
+
+; 146  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Compar:
+
+; 147  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN9@PMC_Compar
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
 	add	esp, 16					; 00000010H
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
 	mov	esp, ebp
 	pop	ebp
 	ret	12					; 0000000cH
+	npad	1
+$LN9@PMC_Compar:
+	DD	1
+	DD	$LN8@PMC_Compar
+$LN8@PMC_Compar:
+	DD	-12					; fffffff4H
+	DD	4
+	DD	$LN7@PMC_Compar
+$LN7@PMC_Compar:
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	116					; 00000074H
+	DB	101					; 00000065H
+	DB	109					; 0000006dH
+	DB	112					; 00000070H
+	DB	0
 _PMC_Compare_X_I@12 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
+_TEXT	SEGMENT
+_w_temp$ = -12						; size = 4
+_result$ = -4						; size = 4
+_u$ = 8							; size = 8
+_v$ = 16						; size = 4
+_w$ = 20						; size = 4
+_PMC_Compare_L_X@16 PROC
+
+; 268  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 16					; 00000010H
+	mov	eax, -858993460				; ccccccccH
+	mov	DWORD PTR [ebp-16], eax
+	mov	DWORD PTR [ebp-12], eax
+	mov	DWORD PTR [ebp-8], eax
+	mov	DWORD PTR [ebp-4], eax
+	mov	ecx, OFFSET __F5940173_pmc_compare@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 269  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+
+	xor	eax, eax
+	je	SHORT $LN2@PMC_Compar
+
+; 270  :     {
+; 271  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 272  :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffff00H
+	jmp	SHORT $LN1@PMC_Compar
+$LN2@PMC_Compar:
+
+; 273  :     }
+; 274  :     if (v == NULL)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN3@PMC_Compar
+
+; 275  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Compar
+$LN3@PMC_Compar:
+
+; 276  :     if (w == NULL)
+
+	cmp	DWORD PTR _w$[ebp], 0
+	jne	SHORT $LN4@PMC_Compar
+
+; 277  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Compar
+$LN4@PMC_Compar:
+
+; 278  :     PMC_STATUS_CODE result;
+; 279  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	call	_CheckNumber
+	add	esp, 4
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN5@PMC_Compar
+
+; 280  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Compar
+$LN5@PMC_Compar:
+
+; 281  :     _INT32_T w_temp;
+; 282  :     PMC_Compare_X_L_Imp((NUMBER_HEADER*)v, u, &w_temp);
+
+	lea	edx, DWORD PTR _w_temp$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp+4]
+	push	eax
+	mov	ecx, DWORD PTR _u$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v$[ebp]
+	push	edx
+	call	_PMC_Compare_X_L_Imp
+	add	esp, 16					; 00000010H
+
+; 283  :     *w = -w_temp;
+
+	mov	eax, DWORD PTR _w_temp$[ebp]
+	neg	eax
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], eax
+
+; 284  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Compar:
+
+; 285  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN9@PMC_Compar
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	add	esp, 16					; 00000010H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	16					; 00000010H
+	npad	3
+$LN9@PMC_Compar:
+	DD	1
+	DD	$LN8@PMC_Compar
+$LN8@PMC_Compar:
+	DD	-12					; fffffff4H
+	DD	4
+	DD	$LN7@PMC_Compar
+$LN7@PMC_Compar:
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	116					; 00000074H
+	DB	101					; 00000065H
+	DB	109					; 0000006dH
+	DB	112					; 00000070H
+	DB	0
+_PMC_Compare_L_X@16 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
+_TEXT	SEGMENT
+_w_temp$ = -12						; size = 4
+_result$ = -4						; size = 4
+_u$ = 8							; size = 4
+_v$ = 12						; size = 4
+_w$ = 16						; size = 4
+_PMC_Compare_I_X@12 PROC
+
+; 110  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 16					; 00000010H
+	mov	eax, -858993460				; ccccccccH
+	mov	DWORD PTR [ebp-16], eax
+	mov	DWORD PTR [ebp-12], eax
+	mov	DWORD PTR [ebp-8], eax
+	mov	DWORD PTR [ebp-4], eax
+	mov	ecx, OFFSET __F5940173_pmc_compare@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 111  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+
+	xor	eax, eax
+	je	SHORT $LN2@PMC_Compar
+
+; 112  :     {
+; 113  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 114  :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffff00H
+	jmp	SHORT $LN1@PMC_Compar
+$LN2@PMC_Compar:
+
+; 115  :     }
+; 116  :     if (v == NULL)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN3@PMC_Compar
+
+; 117  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Compar
+$LN3@PMC_Compar:
+
+; 118  :     if (w == NULL)
+
+	cmp	DWORD PTR _w$[ebp], 0
+	jne	SHORT $LN4@PMC_Compar
+
+; 119  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	SHORT $LN1@PMC_Compar
+$LN4@PMC_Compar:
+
+; 120  :     PMC_STATUS_CODE result;
+; 121  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	call	_CheckNumber
+	add	esp, 4
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN5@PMC_Compar
+
+; 122  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	SHORT $LN1@PMC_Compar
+$LN5@PMC_Compar:
+
+; 123  :     _INT32_T w_temp;
+; 124  :     PMC_Compare_X_I_Imp((NUMBER_HEADER*)v, u, &w_temp);
+
+	lea	edx, DWORD PTR _w_temp$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	call	_PMC_Compare_X_I_Imp
+	add	esp, 12					; 0000000cH
+
+; 125  :     *w = -w_temp;
+
+	mov	edx, DWORD PTR _w_temp$[ebp]
+	neg	edx
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], edx
+
+; 126  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Compar:
+
+; 127  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN9@PMC_Compar
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	add	esp, 16					; 00000010H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	12					; 0000000cH
+	npad	3
+$LN9@PMC_Compar:
+	DD	1
+	DD	$LN8@PMC_Compar
+$LN8@PMC_Compar:
+	DD	-12					; fffffff4H
+	DD	4
+	DD	$LN7@PMC_Compar
+$LN7@PMC_Compar:
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	116					; 00000074H
+	DB	101					; 00000065H
+	DB	109					; 0000006dH
+	DB	112					; 00000070H
+	DB	0
+_PMC_Compare_I_X@12 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_compare.c
@@ -1343,18 +1744,18 @@ _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_Compare PROC
 
-; 303  : {
+; 354  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __F5940173_pmc_compare@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 304  :     return (PMC_STATUS_OK);
+; 355  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 305  : }
+; 356  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp

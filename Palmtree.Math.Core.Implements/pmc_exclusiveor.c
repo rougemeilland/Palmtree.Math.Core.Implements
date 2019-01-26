@@ -183,6 +183,76 @@ static void ExclusiveOr_X_X(__UNIT_TYPE* u, __UNIT_TYPE u_count, __UNIT_TYPE* v,
     _COPY_MEMORY_UNIT(w, u, cp_count);
 }
 
+static PMC_STATUS_CODE PMC_ExclusiveOr_X_I_Imp(NUMBER_HEADER* u, _UINT32_T v, NUMBER_HEADER** w)
+{
+    PMC_STATUS_CODE result;
+    if (u->IS_ZERO)
+    {
+        // u が 0 である場合
+        if (v == 0)
+        {
+            // v が 0 である場合
+            *w = &number_zero;
+        }
+        else
+        {
+            // v が 0 でない場合
+            if ((result = From_I_Imp(v, w)) != PMC_STATUS_OK)
+                return (result);
+        }
+    }
+    else if (v == 0)
+    {
+        // v が 0 である場合
+        if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
+            return (result);
+    }
+    else
+    {
+        // x と y がともに 0 ではない場合
+        __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+        __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
+        __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
+        __UNIT_TYPE nz_check_code;
+        if ((result = AllocateNumber(w, w_bit_count, &nz_check_code)) != PMC_STATUS_OK)
+            return (result);
+        ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, v, (*w)->BLOCK);
+        if ((result = CheckBlockLight((*w)->BLOCK, nz_check_code)) != PMC_STATUS_OK)
+            return (result);
+        CommitNumber(*w);
+        if ((*w)->IS_ZERO)
+        {
+            DeallocateNumber(*w);
+            *w = &number_zero;
+        }
+    }
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_I_X(_UINT32_T u, HANDLE v, HANDLE* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+    {
+        // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    NUMBER_HEADER* nu = (NUMBER_HEADER*)v;
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+        return (result);
+    if ((result = PMC_ExclusiveOr_X_I_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+        return (result);
+#ifdef _DEBUG
+    if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+        return (result);
+#endif
+    return (PMC_STATUS_OK);
+}
+
 PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w)
 {
     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
@@ -198,48 +268,114 @@ PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w)
     PMC_STATUS_CODE result;
     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
         return (result);
-    NUMBER_HEADER* nw;
-    if (nu->IS_ZERO)
+    if ((result = PMC_ExclusiveOr_X_I_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+        return (result);
+#ifdef _DEBUG
+    if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+        return (result);
+#endif
+    return (PMC_STATUS_OK);
+}
+
+static PMC_STATUS_CODE PMC_ExclusiveOr_X_L_Imp(NUMBER_HEADER* u, _UINT64_T v, NUMBER_HEADER** w)
+{
+    PMC_STATUS_CODE result;
+    if (u->IS_ZERO)
     {
-        // u が 0 である場合
+        // x が 0 である場合
         if (v == 0)
         {
             // v が 0 である場合
-            nw = &number_zero;
+            *w = &number_zero;
         }
         else
         {
             // v が 0 でない場合
-            if ((result = From_I_Imp(v, &nw)) != PMC_STATUS_OK)
+            if ((result = From_L_Imp(v, w)) != PMC_STATUS_OK)
                 return (result);
         }
     }
     else if (v == 0)
     {
-        // v が 0 である場合
-        if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
+        // y が 0 である場合
+        if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
             return (result);
     }
     else
     {
-        // x と y がともに 0 ではない場合
-        __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-        __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
-        __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
-        __UNIT_TYPE nz_check_code;
-        if ((result = AllocateNumber(&nw, w_bit_count, &nz_check_code)) != PMC_STATUS_OK)
-            return (result);
-        ExclusiveOr_X_1W(nu->BLOCK, nu->UNIT_WORD_COUNT, v, nw->BLOCK);
-        if ((result = CheckBlockLight(nw->BLOCK, nz_check_code)) != PMC_STATUS_OK)
-            return (result);
-        CommitNumber(nw);
-        if (nw->IS_ZERO)
+        // u と v がともに 0 ではない場合
+        if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
         {
-            DeallocateNumber(nw);
-            nw = &number_zero;
+            // _UINT64_T が 1 ワードで表現しきれない場合
+            __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+            _UINT32_T v_hi;
+            _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
+            if (v_hi == 0)
+            {
+                // v の値が 32bit で表現可能な場合
+                __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
+                __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+                __UNIT_TYPE nw_light_check_code;
+                if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+                    return (result);
+                ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, v_lo, (*w)->BLOCK);
+                if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+                    return (result);
+            }
+            else
+            {
+                // y の値が 32bit では表現できない場合
+                __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
+                __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+                __UNIT_TYPE nw_light_check_code;
+                if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+                    return (result);
+                ExclusiveOr_X_2W(u->BLOCK, u->UNIT_WORD_COUNT, v_hi, v_lo, (*w)->BLOCK);
+                if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+                    return (result);
+            }
+        }
+        else
+        {
+            // _UINT64_T が 1 ワードで表現できる場合
+
+            __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+            __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
+            __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
+            __UNIT_TYPE nw_light_check_code;
+            if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+                return (result);
+            ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, (__UNIT_TYPE)v, (*w)->BLOCK);
+            if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+                return (result);
+        }
+        CommitNumber(*w);
+        if ((*w)->IS_ZERO)
+        {
+            DeallocateNumber(*w);
+            *w = &number_zero;
         }
     }
-    *w = nw;
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_L_X(_UINT64_T u, HANDLE v, HANDLE* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+    {
+        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    NUMBER_HEADER* nu = (NUMBER_HEADER*)v;
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+        return (result);
+    if ((result = PMC_ExclusiveOr_X_L_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+        return (result);
 #ifdef _DEBUG
     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
         return (result);
@@ -262,84 +398,8 @@ PMC_STATUS_CODE __PMC_CALL PMC_ExclusiveOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w)
     PMC_STATUS_CODE result;
     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
         return (result);
-    NUMBER_HEADER* nw;
-    if (nu->IS_ZERO)
-    {
-        // x が 0 である場合
-        if (v == 0)
-        {
-            // v が 0 である場合
-            nw = &number_zero;
-        }
-        else
-        {
-            // v が 0 でない場合
-            if ((result = From_L_Imp(v, &nw)) != PMC_STATUS_OK)
-                return (result);
-        }
-    }
-    else if (v == 0)
-    {
-        // y が 0 である場合
-        if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
-            return (result);
-    }
-    else
-    {
-        // u と v がともに 0 ではない場合
-        if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
-        {
-            // _UINT64_T が 1 ワードで表現しきれない場合
-            __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-            _UINT32_T v_hi;
-            _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
-            if (v_hi == 0)
-            {
-                // v の値が 32bit で表現可能な場合
-                __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
-                __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
-                __UNIT_TYPE nw_light_check_code;
-                if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
-                    return (result);
-                ExclusiveOr_X_1W(nu->BLOCK, nu->UNIT_WORD_COUNT, v_lo, nw->BLOCK);
-                if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
-                    return (result);
-            }
-            else
-            {
-                // y の値が 32bit では表現できない場合
-                __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
-                __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
-                __UNIT_TYPE nw_light_check_code;
-                if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
-                    return (result);
-                ExclusiveOr_X_2W(nu->BLOCK, nu->UNIT_WORD_COUNT, v_hi, v_lo, nw->BLOCK);
-                if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
-                    return (result);
-            }
-        }
-        else
-        {
-            // _UINT64_T が 1 ワードで表現できる場合
-
-            __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-            __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
-            __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
-            __UNIT_TYPE nw_light_check_code;
-            if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
-                return (result);
-            ExclusiveOr_X_1W(nu->BLOCK, nu->UNIT_WORD_COUNT, (__UNIT_TYPE)v, nw->BLOCK);
-            if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
-                return (result);
-        }
-        CommitNumber(nw);
-        if (nw->IS_ZERO)
-        {
-            DeallocateNumber(nw);
-            nw = &number_zero;
-        }
-    }
-    *w = nw;
+    if ((result = PMC_ExclusiveOr_X_L_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+        return (result);
 #ifdef _DEBUG
     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
         return (result);

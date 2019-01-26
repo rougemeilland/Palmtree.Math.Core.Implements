@@ -53,50 +53,86 @@ extern void TEST_Assert(PMC_DEBUG_ENVIRONMENT *env, const char* test_name, BOOL 
 extern char* FormatTestLabel(const char* format, int n1, int n2);
 extern char* FormatTestMesssage(const char* format, PMC_STATUS_CODE return_value);
 
-extern void TEST_PMC_Add_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_Add_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_Add_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_BitwiseAnd_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned __int32 v, unsigned __int32 desired_w);
-extern void TEST_PMC_BitwiseAnd_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned __int64 v, unsigned __int64 desired_w);
-extern void TEST_PMC_BitwiseAnd_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned char*v_buf, size_t v_buf_size, unsigned char*desired_w_buf, size_t desired_w_buf_size);
-extern void TEST_PMC_BitwiseOr_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned __int32 v, unsigned char*desired_w_buf, size_t desired_w_buf_size);
-extern void TEST_PMC_BitwiseOr_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned __int64 v, unsigned char*desired_w_buf, size_t desired_w_buf_size);
-extern void TEST_PMC_BitwiseOr_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned char*v_buf, size_t v_buf_size, unsigned char*desired_w_buf, size_t desired_w_buf_size);
-extern void TEST_PMC_Compare_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, __int32 desired_z);
-extern void TEST_PMC_Compare_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, __int32 desired_z);
-extern void TEST_PMC_Compare_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, __int32 desired_z);
-extern void TEST_PMC_DivRem_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned __int32 v, PMC_STATUS_CODE desired_return_code, unsigned char*desired_q_buf, size_t desired_q_buf_size, unsigned __int32 desired_r);
-extern void TEST_PMC_DivRem_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned __int64 v, PMC_STATUS_CODE desired_return_code, unsigned char*desired_q_buf, size_t desired_q_buf_size, unsigned __int64 desired_r);
-extern void TEST_PMC_DivRem_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned char*v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_return_code, unsigned char*desired_q_buf, size_t desired_q_buf_size, unsigned char*desired_r_buf, size_t desired_r_buf_size);
-extern void TEST_PMC_Equals_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, __int32 desired_z);
-extern void TEST_PMC_Equals_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, __int32 desired_z);
-extern void TEST_PMC_Equals_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, __int32 desired_z);
-extern void TEST_PMC_ExclusiveOr_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned __int32 v, unsigned char*desired_w_buf, size_t desired_w_buf_size);
-extern void TEST_PMC_ExclusiveOr_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned __int64 v, unsigned char*desired_w_buf, size_t desired_w_buf_size);
-extern void TEST_PMC_ExclusiveOr_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*u_buf, size_t u_buf_size, unsigned char*v_buf, size_t v_buf_size, unsigned char*desired_w_buf, size_t desired_w_buf_size);
-extern void TEST_PMC_From_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 v, unsigned char*buf, size_t buf_size);
-extern void TEST_PMC_From_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 v, unsigned char*buf, size_t buf_size);
-extern void TEST_PMC_To_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int32 desired_rvalue);
-extern void TEST_PMC_To_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int64 desired_rvalue);
-extern void TEST_PMC_Multiply_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_Multiply_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_Multiply_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, unsigned char*desired_z_buf, size_t desired_z_buf_size);
+extern void TEST_PMC_Add_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Add_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Add_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Add_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Add_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+
+extern void TEST_PMC_BitwiseAnd_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, unsigned __int32 desired_w);
+extern void TEST_PMC_BitwiseAnd_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, unsigned __int64 desired_w);
+extern void TEST_PMC_BitwiseAnd_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, unsigned __int32 desired_w);
+extern void TEST_PMC_BitwiseAnd_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, unsigned __int64 desired_w);
+extern void TEST_PMC_BitwiseAnd_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+
+extern void TEST_PMC_BitwiseOr_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_BitwiseOr_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_BitwiseOr_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_BitwiseOr_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_BitwiseOr_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+
+extern void TEST_PMC_Compare_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, __int32 desired_w);
+extern void TEST_PMC_Compare_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, __int32 desired_w);
+extern void TEST_PMC_Compare_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, __int32 desired_w);
+extern void TEST_PMC_Compare_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, __int32 desired_w);
+extern void TEST_PMC_Compare_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, __int32 desired_w);
+
+extern void TEST_PMC_DivRem_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 v, unsigned char* u_buf, size_t u_buf_size, PMC_STATUS_CODE desired_return_code, unsigned __int32 desired_q, unsigned __int32 desired_r);
+extern void TEST_PMC_DivRem_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 v, unsigned char* u_buf, size_t u_buf_size, PMC_STATUS_CODE desired_return_code, unsigned __int64 desired_q, unsigned __int64 desired_r);
+extern void TEST_PMC_DivRem_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, PMC_STATUS_CODE desired_return_code, unsigned char* desired_q_buf, size_t desired_q_buf_size, unsigned __int32 desired_r);
+extern void TEST_PMC_DivRem_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, PMC_STATUS_CODE desired_return_code, unsigned char* desired_q_buf, size_t desired_q_buf_size, unsigned __int64 desired_r);
+extern void TEST_PMC_DivRem_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_return_code, unsigned char* desired_q_buf, size_t desired_q_buf_size, unsigned char* desired_r_buf, size_t desired_r_buf_size);
+
+extern void TEST_PMC_Equals_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, __int32 desired_w);
+extern void TEST_PMC_Equals_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, __int32 desired_w);
+extern void TEST_PMC_Equals_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, __int32 desired_w);
+extern void TEST_PMC_Equals_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, __int32 desired_w);
+extern void TEST_PMC_Equals_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, __int32 desired_w);
+
+extern void TEST_PMC_ExclusiveOr_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_ExclusiveOr_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_ExclusiveOr_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_ExclusiveOr_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_ExclusiveOr_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+
+extern void TEST_PMC_From_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 v, unsigned char* buf, size_t buf_size);
+extern void TEST_PMC_From_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 v, unsigned char* buf, size_t buf_size);
+
+extern void TEST_PMC_GreatestCommonDivisor_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_GreatestCommonDivisor_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_GreatestCommonDivisor_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_GreatestCommonDivisor_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_GreatestCommonDivisor_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+
+extern void TEST_PMC_To_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int32 desired_rvalue);
+extern void TEST_PMC_To_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* buf, size_t buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int64 desired_rvalue);
+
+extern void TEST_PMC_Multiply_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Multiply_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Multiply_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Multiply_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Multiply_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+
 extern void TEST_PMC_ParseDN1(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, wchar_t* str, unsigned int styles, wchar_t* group_separator, wchar_t* decimal_separator, wchar_t* positive_sign, wchar_t* negative_sign, PMC_STATUS_CODE desired_result_code, unsigned char* desired_buf, size_t desired_buf_size);
 extern void TEST_PMC_ParseDN2(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, wchar_t* str, unsigned int styles, PMC_STATUS_CODE desired_result_code, unsigned char* desired_buf, size_t desired_buf_size);
+
 extern void TEST_PMC_ParseX(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, wchar_t* str, unsigned int styles, PMC_STATUS_CODE desired_result_code, unsigned char* desired_buf, size_t desired_buf_size);
-extern void TEST_PMC_RightShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 n, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_RightShift_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 n, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_LeftShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 n, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_LeftShift_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 n, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_Subtruct_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_Subtruct_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_Subtruct_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_ToStringD(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, char format_spec, int min_width, wchar_t* desired_str);
-extern void TEST_PMC_ToStringN(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, char format_spec, int width, wchar_t* group_separator, char* group_sizes, wchar_t* decimal_separator, int decimal_digits, wchar_t* desired_str);
-extern void TEST_PMC_ToStringX(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*buf, size_t buf_size, char format_spec, int min_width, wchar_t* desired_str);
-extern void TEST_PMC_GreatestCommonDivisor_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_GreatestCommonDivisor_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size);
-extern void TEST_PMC_GreatestCommonDivisor_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char*desired_z_buf, size_t desired_z_buf_size);
+
+extern void TEST_PMC_RightShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 n, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_RightShift_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 n, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+
+extern void TEST_PMC_LeftShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 n, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_LeftShift_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 n, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+
+extern void TEST_PMC_Subtruct_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int32 desired_w);
+extern void TEST_PMC_Subtruct_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_result_code, unsigned __int64 desired_w);
+extern void TEST_PMC_Subtruct_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Subtruct_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int64 v, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+extern void TEST_PMC_Subtruct_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned char* v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
+
+extern void TEST_PMC_ToStringD(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* buf, size_t buf_size, char format_spec, int min_width, wchar_t* desired_str);
+extern void TEST_PMC_ToStringN(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* buf, size_t buf_size, char format_spec, int width, wchar_t* group_separator, char* group_sizes, wchar_t* decimal_separator, int decimal_digits, wchar_t* desired_str);
+extern void TEST_PMC_ToStringX(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* buf, size_t buf_size, char format_spec, int min_width, wchar_t* desired_str);
 
 extern void CalculateCriticalDataOfDivision(PMC_DEBUG_ENVIRONMENT *env);
 #endif

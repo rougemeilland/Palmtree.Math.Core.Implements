@@ -25,6 +25,8 @@ __86261D59_stralign@h DB 01H
 __1C66ECB2_pmc_debug@h DB 01H
 __F88242F5_test_op_greatestcommondivisor@c DB 01H
 msvcjmc	ENDS
+PUBLIC	_TEST_PMC_GreatestCommonDivisor_I_X
+PUBLIC	_TEST_PMC_GreatestCommonDivisor_L_X
 PUBLIC	_TEST_PMC_GreatestCommonDivisor_X_I
 PUBLIC	_TEST_PMC_GreatestCommonDivisor_X_L
 PUBLIC	_TEST_PMC_GreatestCommonDivisor_X_X
@@ -48,90 +50,142 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG93929 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+$SG94409 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG93930 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
+$SG94410 DB	'PMC_GreatestCommonDivisor_I_X (%d.%d)', 00H
 	ORG $+2
-$SG93931 DB	'PMC_GreatestCommonDivisor_X_I', 082H, 0ccH, 095H, 09cH, 08bH
+$SG94411 DB	'PMC_GreatestCommonDivisor_I_X', 082H, 0ccH, 095H, 09cH, 08bH
 	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
 	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
 	DB	082H, 0a2H, '(%d)', 00H
-$SG93932 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
+$SG94412 DB	'PMC_GreatestCommonDivisor_I_X (%d.%d)', 00H
 	ORG $+2
-$SG93934 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+$SG94414 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG93935 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
+$SG94415 DB	'PMC_GreatestCommonDivisor_I_X (%d.%d)', 00H
 	ORG $+2
-$SG93936 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94416 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG93937 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
+$SG94417 DB	'PMC_GreatestCommonDivisor_I_X (%d.%d)', 00H
 	ORG $+2
-$SG93966 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+$SG94446 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG93967 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+$SG94447 DB	'PMC_GreatestCommonDivisor_L_X (%d.%d)', 00H
 	ORG $+6
-$SG93968 DB	'PMC_GreatestCommonDivisor_X_L', 082H, 0ccH, 095H, 09cH, 08bH
+$SG94448 DB	'PMC_GreatestCommonDivisor_L_X', 082H, 0ccH, 095H, 09cH, 08bH
 	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
 	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
 	DB	082H, 0a2H, '(%d)', 00H
-$SG93969 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+$SG94449 DB	'PMC_GreatestCommonDivisor_L_X (%d.%d)', 00H
 	ORG $+2
-$SG93971 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+$SG94451 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG93972 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+$SG94452 DB	'PMC_GreatestCommonDivisor_L_X (%d.%d)', 00H
 	ORG $+2
-$SG93973 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94453 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG93974 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+$SG94454 DB	'PMC_GreatestCommonDivisor_L_X (%d.%d)', 00H
 	ORG $+2
-$SG94007 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+$SG94483 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG94008 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
-	ORG $+2
-$SG94009 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-	ORG $+3
-$SG94010 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+$SG94484 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
 	ORG $+6
-$SG94011 DB	'PMC_GreatestCommonDivisor_X_X', 082H, 0ccH, 095H, 09cH, 08bH
+$SG94485 DB	'PMC_GreatestCommonDivisor_X_I', 082H, 0ccH, 095H, 09cH, 08bH
 	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
 	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
 	DB	082H, 0a2H, '(%d)', 00H
-$SG94012 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+$SG94486 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
 	ORG $+2
-$SG94014 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+$SG94488 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG94015 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+$SG94489 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
 	ORG $+2
-$SG94016 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94490 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG94017 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+$SG94491 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
+	ORG $+2
+$SG94520 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
+	DB	'(%d)', 00H
+	ORG $+3
+$SG94521 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+	ORG $+6
+$SG94522 DB	'PMC_GreatestCommonDivisor_X_L', 082H, 0ccH, 095H, 09cH, 08bH
+	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
+	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
+	DB	082H, 0a2H, '(%d)', 00H
+$SG94523 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+	ORG $+2
+$SG94525 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
+	DB	'(%d)', 00H
+	ORG $+3
+$SG94526 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+	ORG $+2
+$SG94527 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
+	DB	082H, 0a2H, 00H
+	ORG $+3
+$SG94528 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+	ORG $+2
+$SG94561 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
+	DB	'(%d)', 00H
+	ORG $+3
+$SG94562 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+	ORG $+2
+$SG94563 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
+	DB	'(%d)', 00H
+	ORG $+3
+$SG94564 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+	ORG $+6
+$SG94565 DB	'PMC_GreatestCommonDivisor_X_X', 082H, 0ccH, 095H, 09cH, 08bH
+	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
+	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
+	DB	082H, 0a2H, '(%d)', 00H
+$SG94566 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+	ORG $+2
+$SG94568 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
+	DB	'(%d)', 00H
+	ORG $+3
+$SG94569 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+	ORG $+2
+$SG94570 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
+	DB	082H, 0a2H, 00H
+	ORG $+3
+$SG94571 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -152,32 +206,32 @@ _buffer2$ = 16						; size = 4
 _count2$ = 20						; size = 4
 __EQUALS_MEMORY PROC
 
-; 109  : {
+; 145  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __1C66ECB2_pmc_debug@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 110  :     if (count1 != count2)
+; 146  :     if (count1 != count2)
 
 	mov	eax, DWORD PTR _count1$[ebp]
 	cmp	eax, DWORD PTR _count2$[ebp]
 	je	SHORT $LN2@EQUALS_MEM
 
-; 111  :         return (-1);
+; 147  :         return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN2@EQUALS_MEM:
 
-; 112  :     while (count1 > 0)
+; 148  :     while (count1 > 0)
 
 	cmp	DWORD PTR _count1$[ebp], 0
 	jbe	SHORT $LN3@EQUALS_MEM
 
-; 113  :     {
-; 114  :         if (*buffer1 != *buffer2)
+; 149  :     {
+; 150  :         if (*buffer1 != *buffer2)
 
 	mov	ecx, DWORD PTR _buffer1$[ebp]
 	movzx	edx, BYTE PTR [ecx]
@@ -186,41 +240,41 @@ $LN2@EQUALS_MEM:
 	cmp	edx, ecx
 	je	SHORT $LN5@EQUALS_MEM
 
-; 115  :             return (-1);
+; 151  :             return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN5@EQUALS_MEM:
 
-; 116  :         ++buffer1;
+; 152  :         ++buffer1;
 
 	mov	edx, DWORD PTR _buffer1$[ebp]
 	add	edx, 1
 	mov	DWORD PTR _buffer1$[ebp], edx
 
-; 117  :         ++buffer2;
+; 153  :         ++buffer2;
 
 	mov	eax, DWORD PTR _buffer2$[ebp]
 	add	eax, 1
 	mov	DWORD PTR _buffer2$[ebp], eax
 
-; 118  :         --count1;
+; 154  :         --count1;
 
 	mov	ecx, DWORD PTR _count1$[ebp]
 	sub	ecx, 1
 	mov	DWORD PTR _count1$[ebp], ecx
 
-; 119  :     }
+; 155  :     }
 
 	jmp	SHORT $LN2@EQUALS_MEM
 $LN3@EQUALS_MEM:
 
-; 120  :     return (0);
+; 156  :     return (0);
 
 	xor	eax, eax
 $LN1@EQUALS_MEM:
 
-; 121  : }
+; 157  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -258,7 +312,7 @@ _desired_z_buf$ = 40					; size = 4
 _desired_z_buf_size$ = 44				; size = 4
 _TEST_PMC_GreatestCommonDivisor_X_X PROC
 
-; 84   : {
+; 128  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -275,16 +329,16 @@ _TEST_PMC_GreatestCommonDivisor_X_X PROC
 	mov	ecx, OFFSET __F88242F5_test_op_greatestcommondivisor@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 85   :     HANDLE x;
-; 86   :     HANDLE y;
-; 87   :     HANDLE z;
-; 88   :     unsigned char actual_z_buf[256];
-; 89   :     size_t actual_z_buf_size;
-; 90   :     PMC_STATUS_CODE result;
-; 91   :     PMC_STATUS_CODE x_result;
-; 92   :     PMC_STATUS_CODE y_result;
-; 93   :     PMC_STATUS_CODE z_result;
-; 94   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 129  :     HANDLE x;
+; 130  :     HANDLE y;
+; 131  :     HANDLE z;
+; 132  :     unsigned char actual_z_buf[256];
+; 133  :     size_t actual_z_buf_size;
+; 134  :     PMC_STATUS_CODE result;
+; 135  :     PMC_STATUS_CODE x_result;
+; 136  :     PMC_STATUS_CODE y_result;
+; 137  :     PMC_STATUS_CODE z_result;
+; 138  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -308,7 +362,7 @@ $LN7@TEST_PMC_G:
 $LN8@TEST_PMC_G:
 	mov	edx, DWORD PTR _x_result$[ebp]
 	push	edx
-	push	OFFSET $SG94007
+	push	OFFSET $SG94561
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -317,7 +371,7 @@ $LN8@TEST_PMC_G:
 	push	1
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94008
+	push	OFFSET $SG94562
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -326,7 +380,7 @@ $LN8@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 95   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", y_result));
+; 139  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", y_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _y$[ebp]
@@ -350,7 +404,7 @@ $LN9@TEST_PMC_G:
 $LN10@TEST_PMC_G:
 	mov	edx, DWORD PTR _y_result$[ebp]
 	push	edx
-	push	OFFSET $SG94009
+	push	OFFSET $SG94563
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -359,7 +413,7 @@ $LN10@TEST_PMC_G:
 	push	2
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94010
+	push	OFFSET $SG94564
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -368,7 +422,7 @@ $LN10@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 96   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 3), (z_result = ep->PMC_GreatestCommonDivisor_X_X(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_X_Xの復帰コードが期待通りではない(%d)", z_result));
+; 140  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 3), (z_result = ep->PMC_GreatestCommonDivisor_X_X(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_X_Xの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -378,7 +432,7 @@ $LN10@TEST_PMC_G:
 	mov	edx, DWORD PTR _x$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+176]
+	mov	ecx, DWORD PTR [eax+256]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -393,7 +447,7 @@ $LN11@TEST_PMC_G:
 $LN12@TEST_PMC_G:
 	mov	eax, DWORD PTR _z_result$[ebp]
 	push	eax
-	push	OFFSET $SG94011
+	push	OFFSET $SG94565
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -402,7 +456,7 @@ $LN12@TEST_PMC_G:
 	push	3
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG94012
+	push	OFFSET $SG94566
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -411,13 +465,13 @@ $LN12@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 97   :     if (desired_result_code == PMC_STATUS_OK)
+; 141  :     if (desired_result_code == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _desired_result_code$[ebp], 0
 	jne	$LN2@TEST_PMC_G
 
-; 98   :     {
-; 99   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 142  :     {
+; 143  :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -442,7 +496,7 @@ $LN13@TEST_PMC_G:
 $LN14@TEST_PMC_G:
 	mov	eax, DWORD PTR _result$[ebp]
 	push	eax
-	push	OFFSET $SG94014
+	push	OFFSET $SG94568
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -451,7 +505,7 @@ $LN14@TEST_PMC_G:
 	push	4
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG94015
+	push	OFFSET $SG94569
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -460,7 +514,7 @@ $LN14@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 100  :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 144  :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	ecx
@@ -479,13 +533,13 @@ $LN14@TEST_PMC_G:
 $LN15@TEST_PMC_G:
 	mov	DWORD PTR tv177[ebp], 0
 $LN16@TEST_PMC_G:
-	push	OFFSET $SG94016
+	push	OFFSET $SG94570
 	mov	edx, DWORD PTR tv177[ebp]
 	push	edx
 	push	5
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG94017
+	push	OFFSET $SG94571
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -495,13 +549,13 @@ $LN16@TEST_PMC_G:
 	add	esp, 16					; 00000010H
 $LN2@TEST_PMC_G:
 
-; 101  :     }
-; 102  :     if (z_result == PMC_STATUS_OK)
+; 145  :     }
+; 146  :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _z_result$[ebp], 0
 	jne	SHORT $LN3@TEST_PMC_G
 
-; 103  :         ep->PMC_Dispose(z);
+; 147  :         ep->PMC_Dispose(z);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _z$[ebp]
@@ -513,12 +567,12 @@ $LN2@TEST_PMC_G:
 	call	__RTC_CheckEsp
 $LN3@TEST_PMC_G:
 
-; 104  :     if (y_result == PMC_STATUS_OK)
+; 148  :     if (y_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _y_result$[ebp], 0
 	jne	SHORT $LN4@TEST_PMC_G
 
-; 105  :         ep->PMC_Dispose(y);
+; 149  :         ep->PMC_Dispose(y);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _y$[ebp]
@@ -530,12 +584,12 @@ $LN3@TEST_PMC_G:
 	call	__RTC_CheckEsp
 $LN4@TEST_PMC_G:
 
-; 106  :     if (x_result == PMC_STATUS_OK)
+; 150  :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_G
 
-; 107  :         ep->PMC_Dispose(x);
+; 151  :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _x$[ebp]
@@ -547,7 +601,7 @@ $LN4@TEST_PMC_G:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_G:
 
-; 108  : }
+; 152  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -657,7 +711,7 @@ _desired_z_buf$ = 40					; size = 4
 _desired_z_buf_size$ = 44				; size = 4
 _TEST_PMC_GreatestCommonDivisor_X_L PROC
 
-; 62   : {
+; 106  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -674,14 +728,14 @@ _TEST_PMC_GreatestCommonDivisor_X_L PROC
 	mov	ecx, OFFSET __F88242F5_test_op_greatestcommondivisor@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 63   :     HANDLE x;
-; 64   :     HANDLE z;
-; 65   :     unsigned char actual_z_buf[256];
-; 66   :     size_t actual_z_buf_size;
-; 67   :     PMC_STATUS_CODE result;
-; 68   :     PMC_STATUS_CODE x_result;
-; 69   :     PMC_STATUS_CODE z_result;
-; 70   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 107  :     HANDLE x;
+; 108  :     HANDLE z;
+; 109  :     unsigned char actual_z_buf[256];
+; 110  :     size_t actual_z_buf_size;
+; 111  :     PMC_STATUS_CODE result;
+; 112  :     PMC_STATUS_CODE x_result;
+; 113  :     PMC_STATUS_CODE z_result;
+; 114  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -705,7 +759,7 @@ $LN6@TEST_PMC_G:
 $LN7@TEST_PMC_G:
 	mov	edx, DWORD PTR _x_result$[ebp]
 	push	edx
-	push	OFFSET $SG93966
+	push	OFFSET $SG94520
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -714,7 +768,7 @@ $LN7@TEST_PMC_G:
 	push	1
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG93967
+	push	OFFSET $SG94521
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -723,7 +777,7 @@ $LN7@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 71   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 2), (z_result = ep->PMC_GreatestCommonDivisor_X_L(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_X_Lの復帰コードが期待通りではない(%d)", z_result));
+; 115  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 2), (z_result = ep->PMC_GreatestCommonDivisor_X_L(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_X_Lの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -735,7 +789,7 @@ $LN7@TEST_PMC_G:
 	mov	eax, DWORD PTR _x$[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _ep$[ebp]
-	mov	edx, DWORD PTR [ecx+172]
+	mov	edx, DWORD PTR [ecx+252]
 	call	edx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -750,7 +804,7 @@ $LN8@TEST_PMC_G:
 $LN9@TEST_PMC_G:
 	mov	ecx, DWORD PTR _z_result$[ebp]
 	push	ecx
-	push	OFFSET $SG93968
+	push	OFFSET $SG94522
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -759,7 +813,7 @@ $LN9@TEST_PMC_G:
 	push	2
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG93969
+	push	OFFSET $SG94523
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -768,13 +822,13 @@ $LN9@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 72   :     if (desired_result_code == PMC_STATUS_OK)
+; 116  :     if (desired_result_code == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _desired_result_code$[ebp], 0
 	jne	$LN2@TEST_PMC_G
 
-; 73   :     {
-; 74   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 117  :     {
+; 118  :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	edx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -799,7 +853,7 @@ $LN10@TEST_PMC_G:
 $LN11@TEST_PMC_G:
 	mov	ecx, DWORD PTR _result$[ebp]
 	push	ecx
-	push	OFFSET $SG93971
+	push	OFFSET $SG94525
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -808,7 +862,7 @@ $LN11@TEST_PMC_G:
 	push	3
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG93972
+	push	OFFSET $SG94526
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -817,7 +871,7 @@ $LN11@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 75   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 119  :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	edx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	edx
@@ -836,13 +890,13 @@ $LN11@TEST_PMC_G:
 $LN12@TEST_PMC_G:
 	mov	DWORD PTR tv159[ebp], 0
 $LN13@TEST_PMC_G:
-	push	OFFSET $SG93973
+	push	OFFSET $SG94527
 	mov	eax, DWORD PTR tv159[ebp]
 	push	eax
 	push	4
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG93974
+	push	OFFSET $SG94528
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -852,13 +906,13 @@ $LN13@TEST_PMC_G:
 	add	esp, 16					; 00000010H
 $LN2@TEST_PMC_G:
 
-; 76   :     }
-; 77   :     if (z_result == PMC_STATUS_OK)
+; 120  :     }
+; 121  :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _z_result$[ebp], 0
 	jne	SHORT $LN3@TEST_PMC_G
 
-; 78   :         ep->PMC_Dispose(z);
+; 122  :         ep->PMC_Dispose(z);
 
 	mov	esi, esp
 	mov	eax, DWORD PTR _z$[ebp]
@@ -870,12 +924,12 @@ $LN2@TEST_PMC_G:
 	call	__RTC_CheckEsp
 $LN3@TEST_PMC_G:
 
-; 79   :     if (x_result == PMC_STATUS_OK)
+; 123  :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_G
 
-; 80   :         ep->PMC_Dispose(x);
+; 124  :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	eax, DWORD PTR _x$[ebp]
@@ -887,7 +941,7 @@ $LN3@TEST_PMC_G:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_G:
 
-; 81   : }
+; 125  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -991,7 +1045,7 @@ _desired_z_buf$ = 36					; size = 4
 _desired_z_buf_size$ = 40				; size = 4
 _TEST_PMC_GreatestCommonDivisor_X_I PROC
 
-; 40   : {
+; 84   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1008,14 +1062,14 @@ _TEST_PMC_GreatestCommonDivisor_X_I PROC
 	mov	ecx, OFFSET __F88242F5_test_op_greatestcommondivisor@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 41   :     HANDLE x;
-; 42   :     HANDLE z;
-; 43   :     unsigned char actual_z_buf[256];
-; 44   :     size_t actual_z_buf_size;
-; 45   :     PMC_STATUS_CODE result;
-; 46   :     PMC_STATUS_CODE x_result;
-; 47   :     PMC_STATUS_CODE z_result;
-; 48   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 85   :     HANDLE x;
+; 86   :     HANDLE z;
+; 87   :     unsigned char actual_z_buf[256];
+; 88   :     size_t actual_z_buf_size;
+; 89   :     PMC_STATUS_CODE result;
+; 90   :     PMC_STATUS_CODE x_result;
+; 91   :     PMC_STATUS_CODE z_result;
+; 92   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -1039,7 +1093,7 @@ $LN6@TEST_PMC_G:
 $LN7@TEST_PMC_G:
 	mov	edx, DWORD PTR _x_result$[ebp]
 	push	edx
-	push	OFFSET $SG93929
+	push	OFFSET $SG94483
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -1048,7 +1102,7 @@ $LN7@TEST_PMC_G:
 	push	1
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG93930
+	push	OFFSET $SG94484
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1057,7 +1111,7 @@ $LN7@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 49   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 2), (z_result = ep->PMC_GreatestCommonDivisor_X_I(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_X_Iの復帰コードが期待通りではない(%d)", z_result));
+; 93   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 2), (z_result = ep->PMC_GreatestCommonDivisor_X_I(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_X_Iの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -1067,7 +1121,7 @@ $LN7@TEST_PMC_G:
 	mov	edx, DWORD PTR _x$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+168]
+	mov	ecx, DWORD PTR [eax+248]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1082,7 +1136,7 @@ $LN8@TEST_PMC_G:
 $LN9@TEST_PMC_G:
 	mov	eax, DWORD PTR _z_result$[ebp]
 	push	eax
-	push	OFFSET $SG93931
+	push	OFFSET $SG94485
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -1091,7 +1145,7 @@ $LN9@TEST_PMC_G:
 	push	2
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG93932
+	push	OFFSET $SG94486
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1100,13 +1154,13 @@ $LN9@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 50   :     if (desired_result_code == PMC_STATUS_OK)
+; 94   :     if (desired_result_code == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _desired_result_code$[ebp], 0
 	jne	$LN2@TEST_PMC_G
 
-; 51   :     {
-; 52   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 95   :     {
+; 96   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -1131,7 +1185,7 @@ $LN10@TEST_PMC_G:
 $LN11@TEST_PMC_G:
 	mov	eax, DWORD PTR _result$[ebp]
 	push	eax
-	push	OFFSET $SG93934
+	push	OFFSET $SG94488
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -1140,7 +1194,7 @@ $LN11@TEST_PMC_G:
 	push	3
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG93935
+	push	OFFSET $SG94489
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1149,7 +1203,7 @@ $LN11@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 53   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 97   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	ecx
@@ -1168,13 +1222,13 @@ $LN11@TEST_PMC_G:
 $LN12@TEST_PMC_G:
 	mov	DWORD PTR tv159[ebp], 0
 $LN13@TEST_PMC_G:
-	push	OFFSET $SG93936
+	push	OFFSET $SG94490
 	mov	edx, DWORD PTR tv159[ebp]
 	push	edx
 	push	4
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG93937
+	push	OFFSET $SG94491
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1184,13 +1238,13 @@ $LN13@TEST_PMC_G:
 	add	esp, 16					; 00000010H
 $LN2@TEST_PMC_G:
 
-; 54   :     }
-; 55   :     if (z_result == PMC_STATUS_OK)
+; 98   :     }
+; 99   :     if (z_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _z_result$[ebp], 0
 	jne	SHORT $LN3@TEST_PMC_G
 
-; 56   :         ep->PMC_Dispose(z);
+; 100  :         ep->PMC_Dispose(z);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _z$[ebp]
@@ -1202,12 +1256,12 @@ $LN2@TEST_PMC_G:
 	call	__RTC_CheckEsp
 $LN3@TEST_PMC_G:
 
-; 57   :     if (x_result == PMC_STATUS_OK)
+; 101  :     if (x_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _x_result$[ebp], 0
 	jne	SHORT $LN1@TEST_PMC_G
 
-; 58   :         ep->PMC_Dispose(x);
+; 102  :         ep->PMC_Dispose(x);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _x$[ebp]
@@ -1219,7 +1273,7 @@ $LN3@TEST_PMC_G:
 	call	__RTC_CheckEsp
 $LN1@TEST_PMC_G:
 
-; 59   : }
+; 103  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -1296,5 +1350,671 @@ $LN14@TEST_PMC_G:
 	DB	120					; 00000078H
 	DB	0
 _TEST_PMC_GreatestCommonDivisor_X_I ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\test_op_greatestcommondivisor.c
+_TEXT	SEGMENT
+tv159 = -332						; size = 4
+tv144 = -328						; size = 4
+tv92 = -324						; size = 4
+tv74 = -320						; size = 4
+_w_result$ = -316					; size = 4
+_v_result$ = -312					; size = 4
+_result$ = -308						; size = 4
+_actual_w_buf_size$ = -300				; size = 4
+_actual_w_buf$ = -288					; size = 256
+_w$ = -24						; size = 4
+_v$ = -12						; size = 4
+__$ArrayPad$ = -4					; size = 4
+_env$ = 8						; size = 4
+_ep$ = 12						; size = 4
+_no$ = 16						; size = 4
+_u$ = 20						; size = 8
+_v_buf$ = 28						; size = 4
+_v_buf_size$ = 32					; size = 4
+_desired_result_code$ = 36				; size = 4
+_desired_w_buf$ = 40					; size = 4
+_desired_w_buf_size$ = 44				; size = 4
+_TEST_PMC_GreatestCommonDivisor_L_X PROC
+
+; 62   : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 332				; 0000014cH
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-332]
+	mov	ecx, 83					; 00000053H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	eax, DWORD PTR ___security_cookie
+	xor	eax, ebp
+	mov	DWORD PTR __$ArrayPad$[ebp], eax
+	mov	ecx, OFFSET __F88242F5_test_op_greatestcommondivisor@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 63   :     HANDLE v;
+; 64   :     HANDLE w;
+; 65   :     unsigned char actual_w_buf[256];
+; 66   :     size_t actual_w_buf_size;
+; 67   :     PMC_STATUS_CODE result;
+; 68   :     PMC_STATUS_CODE v_result;
+; 69   :     PMC_STATUS_CODE w_result;
+; 70   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 1), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
+
+	mov	esi, esp
+	lea	eax, DWORD PTR _v$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _v_buf_size$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v_buf$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _ep$[ebp]
+	mov	ecx, DWORD PTR [eax+16]
+	call	ecx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR _v_result$[ebp], eax
+	cmp	DWORD PTR _v_result$[ebp], 0
+	jne	SHORT $LN6@TEST_PMC_G
+	mov	DWORD PTR tv74[ebp], 1
+	jmp	SHORT $LN7@TEST_PMC_G
+$LN6@TEST_PMC_G:
+	mov	DWORD PTR tv74[ebp], 0
+$LN7@TEST_PMC_G:
+	mov	edx, DWORD PTR _v_result$[ebp]
+	push	edx
+	push	OFFSET $SG94446
+	call	_FormatTestMesssage
+	add	esp, 8
+	push	eax
+	mov	eax, DWORD PTR tv74[ebp]
+	push	eax
+	push	1
+	mov	ecx, DWORD PTR _no$[ebp]
+	push	ecx
+	push	OFFSET $SG94447
+	call	_FormatTestLabel
+	add	esp, 12					; 0000000cH
+	push	eax
+	mov	edx, DWORD PTR _env$[ebp]
+	push	edx
+	call	_TEST_Assert
+	add	esp, 16					; 00000010H
+
+; 71   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 2), (w_result = ep->PMC_GreatestCommonDivisor_L_X(u, v, &w)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_L_Xの復帰コードが期待通りではない(%d)", w_result));
+
+	mov	esi, esp
+	lea	eax, DWORD PTR _w$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _u$[ebp+4]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _ep$[ebp]
+	mov	edx, DWORD PTR [ecx+244]
+	call	edx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR _w_result$[ebp], eax
+	mov	eax, DWORD PTR _w_result$[ebp]
+	cmp	eax, DWORD PTR _desired_result_code$[ebp]
+	jne	SHORT $LN8@TEST_PMC_G
+	mov	DWORD PTR tv92[ebp], 1
+	jmp	SHORT $LN9@TEST_PMC_G
+$LN8@TEST_PMC_G:
+	mov	DWORD PTR tv92[ebp], 0
+$LN9@TEST_PMC_G:
+	mov	ecx, DWORD PTR _w_result$[ebp]
+	push	ecx
+	push	OFFSET $SG94448
+	call	_FormatTestMesssage
+	add	esp, 8
+	push	eax
+	mov	edx, DWORD PTR tv92[ebp]
+	push	edx
+	push	2
+	mov	eax, DWORD PTR _no$[ebp]
+	push	eax
+	push	OFFSET $SG94449
+	call	_FormatTestLabel
+	add	esp, 12					; 0000000cH
+	push	eax
+	mov	ecx, DWORD PTR _env$[ebp]
+	push	ecx
+	call	_TEST_Assert
+	add	esp, 16					; 00000010H
+
+; 72   :     if (desired_result_code == PMC_STATUS_OK)
+
+	cmp	DWORD PTR _desired_result_code$[ebp], 0
+	jne	$LN2@TEST_PMC_G
+
+; 73   :     {
+; 74   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+
+	mov	esi, esp
+	lea	edx, DWORD PTR _actual_w_buf_size$[ebp]
+	push	edx
+	push	256					; 00000100H
+	lea	eax, DWORD PTR _actual_w_buf$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _w$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _ep$[ebp]
+	mov	eax, DWORD PTR [edx+32]
+	call	eax
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	jne	SHORT $LN10@TEST_PMC_G
+	mov	DWORD PTR tv144[ebp], 1
+	jmp	SHORT $LN11@TEST_PMC_G
+$LN10@TEST_PMC_G:
+	mov	DWORD PTR tv144[ebp], 0
+$LN11@TEST_PMC_G:
+	mov	ecx, DWORD PTR _result$[ebp]
+	push	ecx
+	push	OFFSET $SG94451
+	call	_FormatTestMesssage
+	add	esp, 8
+	push	eax
+	mov	edx, DWORD PTR tv144[ebp]
+	push	edx
+	push	3
+	mov	eax, DWORD PTR _no$[ebp]
+	push	eax
+	push	OFFSET $SG94452
+	call	_FormatTestLabel
+	add	esp, 12					; 0000000cH
+	push	eax
+	mov	ecx, DWORD PTR _env$[ebp]
+	push	ecx
+	call	_TEST_Assert
+	add	esp, 16					; 00000010H
+
+; 75   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
+
+	mov	edx, DWORD PTR _desired_w_buf_size$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _desired_w_buf$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _actual_w_buf_size$[ebp]
+	push	ecx
+	lea	edx, DWORD PTR _actual_w_buf$[ebp]
+	push	edx
+	call	__EQUALS_MEMORY
+	add	esp, 16					; 00000010H
+	test	eax, eax
+	jne	SHORT $LN12@TEST_PMC_G
+	mov	DWORD PTR tv159[ebp], 1
+	jmp	SHORT $LN13@TEST_PMC_G
+$LN12@TEST_PMC_G:
+	mov	DWORD PTR tv159[ebp], 0
+$LN13@TEST_PMC_G:
+	push	OFFSET $SG94453
+	mov	eax, DWORD PTR tv159[ebp]
+	push	eax
+	push	4
+	mov	ecx, DWORD PTR _no$[ebp]
+	push	ecx
+	push	OFFSET $SG94454
+	call	_FormatTestLabel
+	add	esp, 12					; 0000000cH
+	push	eax
+	mov	edx, DWORD PTR _env$[ebp]
+	push	edx
+	call	_TEST_Assert
+	add	esp, 16					; 00000010H
+$LN2@TEST_PMC_G:
+
+; 76   :     }
+; 77   :     if (w_result == PMC_STATUS_OK)
+
+	cmp	DWORD PTR _w_result$[ebp], 0
+	jne	SHORT $LN3@TEST_PMC_G
+
+; 78   :         ep->PMC_Dispose(w);
+
+	mov	esi, esp
+	mov	eax, DWORD PTR _w$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _ep$[ebp]
+	mov	edx, DWORD PTR [ecx+20]
+	call	edx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+$LN3@TEST_PMC_G:
+
+; 79   :     if (v_result == PMC_STATUS_OK)
+
+	cmp	DWORD PTR _v_result$[ebp], 0
+	jne	SHORT $LN1@TEST_PMC_G
+
+; 80   :         ep->PMC_Dispose(v);
+
+	mov	esi, esp
+	mov	eax, DWORD PTR _v$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _ep$[ebp]
+	mov	edx, DWORD PTR [ecx+20]
+	call	edx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+$LN1@TEST_PMC_G:
+
+; 81   : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN19@TEST_PMC_G
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	pop	edi
+	pop	esi
+	mov	ecx, DWORD PTR __$ArrayPad$[ebp]
+	xor	ecx, ebp
+	call	@__security_check_cookie@4
+	add	esp, 332				; 0000014cH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+	npad	1
+$LN19@TEST_PMC_G:
+	DD	4
+	DD	$LN18@TEST_PMC_G
+$LN18@TEST_PMC_G:
+	DD	-12					; fffffff4H
+	DD	4
+	DD	$LN14@TEST_PMC_G
+	DD	-24					; ffffffe8H
+	DD	4
+	DD	$LN15@TEST_PMC_G
+	DD	-288					; fffffee0H
+	DD	256					; 00000100H
+	DD	$LN16@TEST_PMC_G
+	DD	-300					; fffffed4H
+	DD	4
+	DD	$LN17@TEST_PMC_G
+$LN17@TEST_PMC_G:
+	DB	97					; 00000061H
+	DB	99					; 00000063H
+	DB	116					; 00000074H
+	DB	117					; 00000075H
+	DB	97					; 00000061H
+	DB	108					; 0000006cH
+	DB	95					; 0000005fH
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	98					; 00000062H
+	DB	117					; 00000075H
+	DB	102					; 00000066H
+	DB	95					; 0000005fH
+	DB	115					; 00000073H
+	DB	105					; 00000069H
+	DB	122					; 0000007aH
+	DB	101					; 00000065H
+	DB	0
+$LN16@TEST_PMC_G:
+	DB	97					; 00000061H
+	DB	99					; 00000063H
+	DB	116					; 00000074H
+	DB	117					; 00000075H
+	DB	97					; 00000061H
+	DB	108					; 0000006cH
+	DB	95					; 0000005fH
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	98					; 00000062H
+	DB	117					; 00000075H
+	DB	102					; 00000066H
+	DB	0
+$LN15@TEST_PMC_G:
+	DB	119					; 00000077H
+	DB	0
+$LN14@TEST_PMC_G:
+	DB	118					; 00000076H
+	DB	0
+_TEST_PMC_GreatestCommonDivisor_L_X ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\test_op_greatestcommondivisor.c
+_TEXT	SEGMENT
+tv159 = -332						; size = 4
+tv144 = -328						; size = 4
+tv92 = -324						; size = 4
+tv74 = -320						; size = 4
+_w_result$ = -316					; size = 4
+_v_result$ = -312					; size = 4
+_result$ = -308						; size = 4
+_actual_w_buf_size$ = -300				; size = 4
+_actual_w_buf$ = -288					; size = 256
+_w$ = -24						; size = 4
+_v$ = -12						; size = 4
+__$ArrayPad$ = -4					; size = 4
+_env$ = 8						; size = 4
+_ep$ = 12						; size = 4
+_no$ = 16						; size = 4
+_u$ = 20						; size = 4
+_v_buf$ = 24						; size = 4
+_v_buf_size$ = 28					; size = 4
+_desired_result_code$ = 32				; size = 4
+_desired_w_buf$ = 36					; size = 4
+_desired_w_buf_size$ = 40				; size = 4
+_TEST_PMC_GreatestCommonDivisor_I_X PROC
+
+; 40   : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 332				; 0000014cH
+	push	esi
+	push	edi
+	lea	edi, DWORD PTR [ebp-332]
+	mov	ecx, 83					; 00000053H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	eax, DWORD PTR ___security_cookie
+	xor	eax, ebp
+	mov	DWORD PTR __$ArrayPad$[ebp], eax
+	mov	ecx, OFFSET __F88242F5_test_op_greatestcommondivisor@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 41   :     HANDLE v;
+; 42   :     HANDLE w;
+; 43   :     unsigned char actual_w_buf[256];
+; 44   :     size_t actual_w_buf_size;
+; 45   :     PMC_STATUS_CODE result;
+; 46   :     PMC_STATUS_CODE v_result;
+; 47   :     PMC_STATUS_CODE w_result;
+; 48   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 1), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
+
+	mov	esi, esp
+	lea	eax, DWORD PTR _v$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _v_buf_size$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _v_buf$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _ep$[ebp]
+	mov	ecx, DWORD PTR [eax+16]
+	call	ecx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR _v_result$[ebp], eax
+	cmp	DWORD PTR _v_result$[ebp], 0
+	jne	SHORT $LN6@TEST_PMC_G
+	mov	DWORD PTR tv74[ebp], 1
+	jmp	SHORT $LN7@TEST_PMC_G
+$LN6@TEST_PMC_G:
+	mov	DWORD PTR tv74[ebp], 0
+$LN7@TEST_PMC_G:
+	mov	edx, DWORD PTR _v_result$[ebp]
+	push	edx
+	push	OFFSET $SG94409
+	call	_FormatTestMesssage
+	add	esp, 8
+	push	eax
+	mov	eax, DWORD PTR tv74[ebp]
+	push	eax
+	push	1
+	mov	ecx, DWORD PTR _no$[ebp]
+	push	ecx
+	push	OFFSET $SG94410
+	call	_FormatTestLabel
+	add	esp, 12					; 0000000cH
+	push	eax
+	mov	edx, DWORD PTR _env$[ebp]
+	push	edx
+	call	_TEST_Assert
+	add	esp, 16					; 00000010H
+
+; 49   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 2), (w_result = ep->PMC_GreatestCommonDivisor_I_X(u, v, &w)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_I_Xの復帰コードが期待通りではない(%d)", w_result));
+
+	mov	esi, esp
+	lea	eax, DWORD PTR _w$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _v$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _u$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _ep$[ebp]
+	mov	ecx, DWORD PTR [eax+240]
+	call	ecx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR _w_result$[ebp], eax
+	mov	edx, DWORD PTR _w_result$[ebp]
+	cmp	edx, DWORD PTR _desired_result_code$[ebp]
+	jne	SHORT $LN8@TEST_PMC_G
+	mov	DWORD PTR tv92[ebp], 1
+	jmp	SHORT $LN9@TEST_PMC_G
+$LN8@TEST_PMC_G:
+	mov	DWORD PTR tv92[ebp], 0
+$LN9@TEST_PMC_G:
+	mov	eax, DWORD PTR _w_result$[ebp]
+	push	eax
+	push	OFFSET $SG94411
+	call	_FormatTestMesssage
+	add	esp, 8
+	push	eax
+	mov	ecx, DWORD PTR tv92[ebp]
+	push	ecx
+	push	2
+	mov	edx, DWORD PTR _no$[ebp]
+	push	edx
+	push	OFFSET $SG94412
+	call	_FormatTestLabel
+	add	esp, 12					; 0000000cH
+	push	eax
+	mov	eax, DWORD PTR _env$[ebp]
+	push	eax
+	call	_TEST_Assert
+	add	esp, 16					; 00000010H
+
+; 50   :     if (desired_result_code == PMC_STATUS_OK)
+
+	cmp	DWORD PTR _desired_result_code$[ebp], 0
+	jne	$LN2@TEST_PMC_G
+
+; 51   :     {
+; 52   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+
+	mov	esi, esp
+	lea	ecx, DWORD PTR _actual_w_buf_size$[ebp]
+	push	ecx
+	push	256					; 00000100H
+	lea	edx, DWORD PTR _actual_w_buf$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _w$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _ep$[ebp]
+	mov	edx, DWORD PTR [ecx+32]
+	call	edx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	jne	SHORT $LN10@TEST_PMC_G
+	mov	DWORD PTR tv144[ebp], 1
+	jmp	SHORT $LN11@TEST_PMC_G
+$LN10@TEST_PMC_G:
+	mov	DWORD PTR tv144[ebp], 0
+$LN11@TEST_PMC_G:
+	mov	eax, DWORD PTR _result$[ebp]
+	push	eax
+	push	OFFSET $SG94414
+	call	_FormatTestMesssage
+	add	esp, 8
+	push	eax
+	mov	ecx, DWORD PTR tv144[ebp]
+	push	ecx
+	push	3
+	mov	edx, DWORD PTR _no$[ebp]
+	push	edx
+	push	OFFSET $SG94415
+	call	_FormatTestLabel
+	add	esp, 12					; 0000000cH
+	push	eax
+	mov	eax, DWORD PTR _env$[ebp]
+	push	eax
+	call	_TEST_Assert
+	add	esp, 16					; 00000010H
+
+; 53   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
+
+	mov	ecx, DWORD PTR _desired_w_buf_size$[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _desired_w_buf$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _actual_w_buf_size$[ebp]
+	push	eax
+	lea	ecx, DWORD PTR _actual_w_buf$[ebp]
+	push	ecx
+	call	__EQUALS_MEMORY
+	add	esp, 16					; 00000010H
+	test	eax, eax
+	jne	SHORT $LN12@TEST_PMC_G
+	mov	DWORD PTR tv159[ebp], 1
+	jmp	SHORT $LN13@TEST_PMC_G
+$LN12@TEST_PMC_G:
+	mov	DWORD PTR tv159[ebp], 0
+$LN13@TEST_PMC_G:
+	push	OFFSET $SG94416
+	mov	edx, DWORD PTR tv159[ebp]
+	push	edx
+	push	4
+	mov	eax, DWORD PTR _no$[ebp]
+	push	eax
+	push	OFFSET $SG94417
+	call	_FormatTestLabel
+	add	esp, 12					; 0000000cH
+	push	eax
+	mov	ecx, DWORD PTR _env$[ebp]
+	push	ecx
+	call	_TEST_Assert
+	add	esp, 16					; 00000010H
+$LN2@TEST_PMC_G:
+
+; 54   :     }
+; 55   :     if (w_result == PMC_STATUS_OK)
+
+	cmp	DWORD PTR _w_result$[ebp], 0
+	jne	SHORT $LN3@TEST_PMC_G
+
+; 56   :         ep->PMC_Dispose(w);
+
+	mov	esi, esp
+	mov	edx, DWORD PTR _w$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _ep$[ebp]
+	mov	ecx, DWORD PTR [eax+20]
+	call	ecx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+$LN3@TEST_PMC_G:
+
+; 57   :     if (v_result == PMC_STATUS_OK)
+
+	cmp	DWORD PTR _v_result$[ebp], 0
+	jne	SHORT $LN1@TEST_PMC_G
+
+; 58   :         ep->PMC_Dispose(v);
+
+	mov	esi, esp
+	mov	edx, DWORD PTR _v$[ebp]
+	push	edx
+	mov	eax, DWORD PTR _ep$[ebp]
+	mov	ecx, DWORD PTR [eax+20]
+	call	ecx
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+$LN1@TEST_PMC_G:
+
+; 59   : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN19@TEST_PMC_G
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	pop	edi
+	pop	esi
+	mov	ecx, DWORD PTR __$ArrayPad$[ebp]
+	xor	ecx, ebp
+	call	@__security_check_cookie@4
+	add	esp, 332				; 0000014cH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+	npad	1
+$LN19@TEST_PMC_G:
+	DD	4
+	DD	$LN18@TEST_PMC_G
+$LN18@TEST_PMC_G:
+	DD	-12					; fffffff4H
+	DD	4
+	DD	$LN14@TEST_PMC_G
+	DD	-24					; ffffffe8H
+	DD	4
+	DD	$LN15@TEST_PMC_G
+	DD	-288					; fffffee0H
+	DD	256					; 00000100H
+	DD	$LN16@TEST_PMC_G
+	DD	-300					; fffffed4H
+	DD	4
+	DD	$LN17@TEST_PMC_G
+$LN17@TEST_PMC_G:
+	DB	97					; 00000061H
+	DB	99					; 00000063H
+	DB	116					; 00000074H
+	DB	117					; 00000075H
+	DB	97					; 00000061H
+	DB	108					; 0000006cH
+	DB	95					; 0000005fH
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	98					; 00000062H
+	DB	117					; 00000075H
+	DB	102					; 00000066H
+	DB	95					; 0000005fH
+	DB	115					; 00000073H
+	DB	105					; 00000069H
+	DB	122					; 0000007aH
+	DB	101					; 00000065H
+	DB	0
+$LN16@TEST_PMC_G:
+	DB	97					; 00000061H
+	DB	99					; 00000063H
+	DB	116					; 00000074H
+	DB	117					; 00000075H
+	DB	97					; 00000061H
+	DB	108					; 0000006cH
+	DB	95					; 0000005fH
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	98					; 00000062H
+	DB	117					; 00000075H
+	DB	102					; 00000066H
+	DB	0
+$LN15@TEST_PMC_G:
+	DB	119					; 00000077H
+	DB	0
+$LN14@TEST_PMC_G:
+	DB	118					; 00000076H
+	DB	0
+_TEST_PMC_GreatestCommonDivisor_I_X ENDP
 _TEXT	ENDS
 END

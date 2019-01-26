@@ -7,7 +7,7 @@
 _COPY_MEMORY_UNIT_DIV:
 .LFB4311:
 	.file 1 "pmc_internal.h"
-	.loc 1 307 1
+	.loc 1 327 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -60,7 +60,7 @@ _COPY_MEMORY_UNIT_DIV:
 	movq	%rax, -24(%rbp)
 .LBE21:
 .LBE20:
-	.loc 1 321 1
+	.loc 1 341 1
 	nop
 	addq	$32, %rsp
 	popq	%rsi
@@ -78,7 +78,7 @@ _COPY_MEMORY_UNIT_DIV:
 	.seh_proc	_ADD_UNIT_DIV
 _ADD_UNIT_DIV:
 .LFB4331:
-	.loc 1 454 1
+	.loc 1 474 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -95,7 +95,7 @@ _ADD_UNIT_DIV:
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
 	movb	%al, 16(%rbp)
-	.loc 1 461 13
+	.loc 1 481 13
 	movzbl	16(%rbp), %eax
 	movzbl	%al, %eax
 	movb	%al, -1(%rbp)
@@ -120,9 +120,9 @@ _ADD_UNIT_DIV:
 	movq	%rax, (%rdx)
 .LBE23:
 .LBE22:
-	.loc 1 461 13
+	.loc 1 481 13
 	movl	%ecx, %eax
-	.loc 1 468 1
+	.loc 1 488 1
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -135,7 +135,7 @@ _ADD_UNIT_DIV:
 	.seh_proc	_ADDX_UNIT_DIV
 _ADDX_UNIT_DIV:
 .LFB4333:
-	.loc 1 482 1
+	.loc 1 502 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -152,7 +152,7 @@ _ADDX_UNIT_DIV:
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
 	movb	%al, 16(%rbp)
-	.loc 1 489 13
+	.loc 1 509 13
 	movzbl	16(%rbp), %eax
 	movzbl	%al, %eax
 	movb	%al, -1(%rbp)
@@ -176,9 +176,9 @@ _ADDX_UNIT_DIV:
 	movq	%rax, (%rdx)
 .LBE25:
 .LBE24:
-	.loc 1 489 13
+	.loc 1 509 13
 	movl	%ecx, %eax
-	.loc 1 496 1
+	.loc 1 516 1
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -191,7 +191,7 @@ _ADDX_UNIT_DIV:
 	.seh_proc	_SUBTRUCT_UNIT_DIV
 _SUBTRUCT_UNIT_DIV:
 .LFB4335:
-	.loc 1 510 1
+	.loc 1 530 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -208,7 +208,7 @@ _SUBTRUCT_UNIT_DIV:
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
 	movb	%al, 16(%rbp)
-	.loc 1 517 13
+	.loc 1 537 13
 	movzbl	16(%rbp), %eax
 	movzbl	%al, %eax
 	movb	%al, -1(%rbp)
@@ -232,9 +232,9 @@ _SUBTRUCT_UNIT_DIV:
 	movq	%rax, (%rdx)
 .LBE27:
 .LBE26:
-	.loc 1 517 13
+	.loc 1 537 13
 	movl	%ecx, %eax
-	.loc 1 524 1
+	.loc 1 544 1
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -247,7 +247,7 @@ _SUBTRUCT_UNIT_DIV:
 	.seh_proc	_MULTIPLY_UNIT_DIV
 _MULTIPLY_UNIT_DIV:
 .LFB4337:
-	.loc 1 546 1
+	.loc 1 566 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -310,7 +310,7 @@ _MULTIPLY_UNIT_DIV:
 	movq	-128(%rbp), %rax
 .LBE29:
 .LBE28:
-	.loc 1 562 1
+	.loc 1 582 1
 	addq	$56, %rsp
 	popq	%r12
 	.cfi_restore 12
@@ -325,7 +325,7 @@ _MULTIPLY_UNIT_DIV:
 	.seh_proc	_MULTIPLYX_UNIT_DIV
 _MULTIPLYX_UNIT_DIV:
 .LFB4339:
-	.loc 1 592 1
+	.loc 1 612 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -340,11 +340,11 @@ _MULTIPLYX_UNIT_DIV:
 	movq	%rcx, 16(%rbp)
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
-	.loc 1 602 5
+	.loc 1 622 5
 	movq	16(%rbp), %rax
 	movq	%rax, %rdx
 /APP
- # 602 "pmc_internal.h" 1
+ # 622 "pmc_internal.h" 1
 	mulxq 24(%rbp), %r8, %rcx
  # 0 "" 2
 /NO_APP
@@ -353,9 +353,9 @@ _MULTIPLYX_UNIT_DIV:
 	movq	32(%rbp), %rdx
 	movq	%rcx, (%rdx)
 	movq	%rax, 16(%rbp)
-	.loc 1 603 12
+	.loc 1 623 12
 	movq	-8(%rbp), %rax
-	.loc 1 610 1
+	.loc 1 630 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -368,7 +368,7 @@ _MULTIPLYX_UNIT_DIV:
 	.seh_proc	_DIVREM_UNIT
 _DIVREM_UNIT:
 .LFB4340:
-	.loc 1 614 1
+	.loc 1 634 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -384,20 +384,20 @@ _DIVREM_UNIT:
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 1 643 9
+	.loc 1 663 9
 	movq	24(%rbp), %rax
 	movq	16(%rbp), %rdx
 /APP
- # 643 "pmc_internal.h" 1
+ # 663 "pmc_internal.h" 1
 	divq 32(%rbp)
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%rbp)
 	movq	40(%rbp), %rax
 	movq	%rdx, (%rax)
-	.loc 1 650 12
+	.loc 1 670 12
 	movq	-8(%rbp), %rax
-	.loc 1 654 1
+	.loc 1 674 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -410,7 +410,7 @@ _DIVREM_UNIT:
 	.seh_proc	_DIVREM_SINGLE_UNIT
 _DIVREM_SINGLE_UNIT:
 .LFB4341:
-	.loc 1 658 1
+	.loc 1 678 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -424,20 +424,20 @@ _DIVREM_SINGLE_UNIT:
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 1 686 9
+	.loc 1 706 9
 	movq	24(%rbp), %rax
 	movq	16(%rbp), %rdx
 /APP
- # 686 "pmc_internal.h" 1
+ # 706 "pmc_internal.h" 1
 	divq 32(%rbp)
  # 0 "" 2
 /NO_APP
 	movq	40(%rbp), %rcx
 	movq	%rax, (%rcx)
 	movq	%rdx, 16(%rbp)
-	.loc 1 693 12
+	.loc 1 713 12
 	movq	16(%rbp), %rax
-	.loc 1 697 1
+	.loc 1 717 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -449,7 +449,7 @@ _DIVREM_SINGLE_UNIT:
 	.seh_proc	_LZCNT_ALT_32
 _LZCNT_ALT_32:
 .LFB4352:
-	.loc 1 826 1
+	.loc 1 846 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -462,25 +462,25 @@ _LZCNT_ALT_32:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movl	%ecx, 16(%rbp)
-	.loc 1 827 8
+	.loc 1 847 8
 	cmpl	$0, 16(%rbp)
 	jne	.L22
-	.loc 1 828 16
+	.loc 1 848 16
 	movl	$32, %eax
 	jmp	.L23
 .L22:
-	.loc 1 833 5
+	.loc 1 853 5
 /APP
- # 833 "pmc_internal.h" 1
+ # 853 "pmc_internal.h" 1
 	bsrl 16(%rbp), %eax
  # 0 "" 2
 /NO_APP
 	movl	%eax, -4(%rbp)
-	.loc 1 837 31
+	.loc 1 857 31
 	movl	$31, %eax
 	subl	-4(%rbp), %eax
 .L23:
-	.loc 1 838 1
+	.loc 1 858 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -493,7 +493,7 @@ _LZCNT_ALT_32:
 	.seh_proc	_LZCNT_ALT_UNIT
 _LZCNT_ALT_UNIT:
 .LFB4354:
-	.loc 1 859 1
+	.loc 1 879 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -506,25 +506,25 @@ _LZCNT_ALT_UNIT:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 1 860 8
+	.loc 1 880 8
 	cmpq	$0, 16(%rbp)
 	jne	.L25
-	.loc 1 861 16
+	.loc 1 881 16
 	movl	$64, %eax
 	jmp	.L26
 .L25:
-	.loc 1 877 5
+	.loc 1 897 5
 /APP
- # 877 "pmc_internal.h" 1
+ # 897 "pmc_internal.h" 1
 	bsrq 16(%rbp), %rax
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%rbp)
-	.loc 1 884 31
+	.loc 1 904 31
 	movl	$63, %eax
 	subq	-8(%rbp), %rax
 .L26:
-	.loc 1 885 1
+	.loc 1 905 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -537,7 +537,7 @@ _LZCNT_ALT_UNIT:
 	.seh_proc	_LZCNT_ALT_UNIT_DIV
 _LZCNT_ALT_UNIT_DIV:
 .LFB4355:
-	.loc 1 888 1
+	.loc 1 908 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -550,25 +550,25 @@ _LZCNT_ALT_UNIT_DIV:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 1 889 8
+	.loc 1 909 8
 	cmpq	$0, 16(%rbp)
 	jne	.L28
-	.loc 1 890 16
+	.loc 1 910 16
 	movl	$64, %eax
 	jmp	.L29
 .L28:
-	.loc 1 906 5
+	.loc 1 926 5
 /APP
- # 906 "pmc_internal.h" 1
+ # 926 "pmc_internal.h" 1
 	bsrq 16(%rbp), %rax
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%rbp)
-	.loc 1 913 31
+	.loc 1 933 31
 	movl	$63, %eax
 	subq	-8(%rbp), %rax
 .L29:
-	.loc 1 914 1
+	.loc 1 934 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -581,7 +581,7 @@ _LZCNT_ALT_UNIT_DIV:
 	.seh_proc	IncrementDIV64Counter
 IncrementDIV64Counter:
 .LFB4360:
-	.loc 1 974 1
+	.loc 1 994 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -604,7 +604,7 @@ IncrementDIV64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE31:
 .LBE30:
-	.loc 1 976 1
+	.loc 1 996 1
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -618,7 +618,7 @@ IncrementDIV64Counter:
 	.seh_proc	IncrementMULTI64Counter
 IncrementMULTI64Counter:
 .LFB4362:
-	.loc 1 986 1
+	.loc 1 1006 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -640,7 +640,7 @@ IncrementMULTI64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE33:
 .LBE32:
-	.loc 1 988 1
+	.loc 1 1008 1
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -654,7 +654,7 @@ IncrementMULTI64Counter:
 	.seh_proc	AddToDIV64Counter
 AddToDIV64Counter:
 .LFB4364:
-	.loc 1 997 1
+	.loc 1 1017 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -680,7 +680,7 @@ AddToDIV64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE35:
 .LBE34:
-	.loc 1 999 1
+	.loc 1 1019 1
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -694,7 +694,7 @@ AddToDIV64Counter:
 	.seh_proc	AddToMULTI64Counter
 AddToMULTI64Counter:
 .LFB4366:
-	.loc 1 1009 1
+	.loc 1 1029 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -719,7 +719,7 @@ AddToMULTI64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE37:
 .LBE36:
-	.loc 1 1011 1
+	.loc 1 1031 1
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -6011,12 +6011,171 @@ DivRem_X_X_using_ADX_MULX:
 	.cfi_endproc
 .LFE4422:
 	.seh_endproc
+	.globl	PMC_DivRem_I_X
+	.def	PMC_DivRem_I_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_DivRem_I_X
+PMC_DivRem_I_X:
+.LFB4423:
+	.loc 5 942 1
+	.cfi_startproc
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.seh_setframe	%rbp, 0
+	.cfi_def_cfa_register 6
+	subq	$80, %rsp
+	.seh_stackalloc	80
+	.seh_endprologue
+	movl	%ecx, 16(%rbp)
+	movq	%rdx, 24(%rbp)
+	movq	%r8, 32(%rbp)
+	movq	%r9, 40(%rbp)
+	.loc 5 948 8
+	cmpq	$0, 24(%rbp)
+	jne	.L167
+	.loc 5 949 16
+	movl	$-1, %eax
+	jmp	.L168
+.L167:
+	.loc 5 950 8
+	cmpq	$0, 32(%rbp)
+	jne	.L169
+	.loc 5 951 16
+	movl	$-1, %eax
+	jmp	.L168
+.L169:
+	.loc 5 952 8
+	cmpq	$0, 40(%rbp)
+	jne	.L170
+	.loc 5 953 16
+	movl	$-1, %eax
+	jmp	.L168
+.L170:
+	.loc 5 954 20
+	movq	24(%rbp), %rax
+	movq	%rax, -8(%rbp)
+	.loc 5 956 19
+	movq	-8(%rbp), %rax
+	movq	%rax, %rcx
+	call	CheckNumber
+	movl	%eax, -12(%rbp)
+	.loc 5 956 8
+	cmpl	$0, -12(%rbp)
+	je	.L171
+	.loc 5 957 16
+	movl	-12(%rbp), %eax
+	jmp	.L168
+.L171:
+	.loc 5 958 9
+	movq	-8(%rbp), %rax
+	movzbl	32(%rax), %eax
+	andl	$2, %eax
+	.loc 5 958 8
+	testb	%al, %al
+	je	.L172
+	.loc 5 963 16
+	movl	$-3, %eax
+	jmp	.L168
+.L172:
+	.loc 5 965 8
+	cmpl	$0, 16(%rbp)
+	jne	.L173
+	.loc 5 970 12
+	movq	32(%rbp), %rax
+	movl	$0, (%rax)
+	.loc 5 971 12
+	movq	40(%rbp), %rax
+	movl	$0, (%rax)
+	jmp	.L174
+.L173:
+	.loc 5 977 13
+	movq	-8(%rbp), %rax
+	movzbl	32(%rax), %eax
+	andl	$4, %eax
+	.loc 5 977 12
+	testb	%al, %al
+	je	.L175
+	.loc 5 982 16
+	movq	32(%rbp), %rax
+	movl	16(%rbp), %edx
+	movl	%edx, (%rax)
+	.loc 5 983 16
+	movq	40(%rbp), %rax
+	movl	$0, (%rax)
+	jmp	.L174
+.L175:
+.LBB42:
+	.loc 5 990 55
+	movl	16(%rbp), %ecx
+	call	_LZCNT_ALT_32
+	movl	%eax, %eax
+	.loc 5 990 25
+	movl	$32, %edx
+	subq	%rax, %rdx
+	movq	%rdx, %rax
+	movq	%rax, -24(%rbp)
+	.loc 5 991 25
+	movq	-8(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, -32(%rbp)
+	.loc 5 992 16
+	movq	-24(%rbp), %rax
+	cmpq	-32(%rbp), %rax
+	jnb	.L176
+	.loc 5 997 20
+	movq	32(%rbp), %rax
+	movl	$0, (%rax)
+	.loc 5 998 20
+	movq	40(%rbp), %rax
+	movl	16(%rbp), %edx
+	movl	%edx, (%rax)
+	jmp	.L174
+.L176:
+.LBB43:
+	.loc 5 1006 60
+	movq	-8(%rbp), %rax
+	movq	48(%rax), %rax
+	.loc 5 1006 22
+	movq	(%rax), %rcx
+	movl	16(%rbp), %eax
+	leaq	-40(%rbp), %rdx
+	movq	%rdx, %r9
+	movq	%rcx, %r8
+	movq	%rax, %rdx
+	movl	$0, %ecx
+	call	_DIVREM_UNIT
+	.loc 5 1006 20
+	movl	%eax, %edx
+	movq	32(%rbp), %rax
+	movl	%edx, (%rax)
+	.loc 5 1007 20
+	movq	-40(%rbp), %rax
+	movl	%eax, %edx
+	movq	40(%rbp), %rax
+	movl	%edx, (%rax)
+.L174:
+.LBE43:
+.LBE42:
+	.loc 5 1011 12
+	movl	$0, %eax
+.L168:
+	.loc 5 1012 1
+	addq	$80, %rsp
+	popq	%rbp
+	.cfi_restore 6
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE4423:
+	.seh_endproc
 	.globl	PMC_DivRem_X_I
 	.def	PMC_DivRem_X_I;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_DivRem_X_I
 PMC_DivRem_X_I:
-.LFB4423:
-	.loc 5 942 1
+.LFB4424:
+	.loc 5 1015 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -6032,127 +6191,127 @@ PMC_DivRem_X_I:
 	movl	%edx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 5 948 8
+	.loc 5 1021 8
 	cmpq	$0, 16(%rbp)
-	jne	.L167
-	.loc 5 949 16
+	jne	.L178
+	.loc 5 1022 16
 	movl	$-1, %eax
-	jmp	.L183
-.L167:
-	.loc 5 950 8
+	jmp	.L194
+.L178:
+	.loc 5 1023 8
 	cmpq	$0, 32(%rbp)
-	jne	.L169
-	.loc 5 951 16
+	jne	.L180
+	.loc 5 1024 16
 	movl	$-1, %eax
-	jmp	.L183
-.L169:
-	.loc 5 952 8
+	jmp	.L194
+.L180:
+	.loc 5 1025 8
 	cmpq	$0, 40(%rbp)
-	jne	.L170
-	.loc 5 953 16
+	jne	.L181
+	.loc 5 1026 16
 	movl	$-1, %eax
-	jmp	.L183
-.L170:
-	.loc 5 954 20
+	jmp	.L194
+.L181:
+	.loc 5 1027 20
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 5 956 19
+	.loc 5 1029 19
 	movq	-8(%rbp), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 5 956 8
+	.loc 5 1029 8
 	cmpl	$0, -12(%rbp)
-	je	.L171
-	.loc 5 957 16
+	je	.L182
+	.loc 5 1030 16
 	movl	-12(%rbp), %eax
-	jmp	.L183
-.L171:
-	.loc 5 958 8
+	jmp	.L194
+.L182:
+	.loc 5 1031 8
 	cmpl	$0, 24(%rbp)
-	jne	.L172
-	.loc 5 963 16
+	jne	.L183
+	.loc 5 1036 16
 	movl	$-3, %eax
-	jmp	.L183
-.L172:
-	.loc 5 966 9
+	jmp	.L194
+.L183:
+	.loc 5 1039 9
 	movq	-8(%rbp), %rax
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
-	.loc 5 966 8
+	.loc 5 1039 8
 	testb	%al, %al
-	je	.L173
-	.loc 5 971 12
+	je	.L184
+	.loc 5 1044 12
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -48(%rbp)
-	.loc 5 972 12
+	.loc 5 1045 12
 	movq	40(%rbp), %rax
 	movl	$0, (%rax)
-	jmp	.L174
-.L173:
-	.loc 5 978 12
+	jmp	.L185
+.L184:
+	.loc 5 1051 12
 	cmpl	$1, 24(%rbp)
-	jne	.L175
-	.loc 5 983 27
+	jne	.L186
+	.loc 5 1056 27
 	leaq	-48(%rbp), %rax
 	movq	-8(%rbp), %rcx
 	movq	%rax, %rdx
 	call	DuplicateNumber
 	movl	%eax, -12(%rbp)
-	.loc 5 983 16
+	.loc 5 1056 16
 	cmpl	$0, -12(%rbp)
-	je	.L176
-	.loc 5 984 24
+	je	.L187
+	.loc 5 1057 24
 	movl	-12(%rbp), %eax
-	jmp	.L183
-.L176:
-	.loc 5 985 16
+	jmp	.L194
+.L187:
+	.loc 5 1058 16
 	movq	40(%rbp), %rax
 	movl	$0, (%rax)
-	jmp	.L174
-.L175:
-.LBB42:
-	.loc 5 992 25
+	jmp	.L185
+.L186:
+.LBB44:
+	.loc 5 1065 25
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 5 993 55
+	.loc 5 1066 55
 	movl	24(%rbp), %eax
 	movl	%eax, %ecx
 	call	_LZCNT_ALT_32
 	movl	%eax, %eax
-	.loc 5 993 25
+	.loc 5 1066 25
 	movl	$32, %edx
 	subq	%rax, %rdx
 	movq	%rdx, %rax
 	movq	%rax, -32(%rbp)
-	.loc 5 994 16
+	.loc 5 1067 16
 	movq	-24(%rbp), %rax
 	cmpq	-32(%rbp), %rax
-	jnb	.L177
-	.loc 5 999 20
+	jnb	.L188
+	.loc 5 1072 20
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -48(%rbp)
-	.loc 5 1000 35
+	.loc 5 1073 35
 	movq	-8(%rbp), %rax
 	movq	48(%rax), %rax
-	.loc 5 1000 42
+	.loc 5 1073 42
 	movq	(%rax), %rax
-	.loc 5 1000 22
+	.loc 5 1073 22
 	movl	%eax, %edx
-	.loc 5 1000 20
+	.loc 5 1073 20
 	movq	40(%rbp), %rax
 	movl	%edx, (%rax)
-	jmp	.L174
-.L177:
-.LBB43:
-	.loc 5 1004 55
+	jmp	.L185
+.L188:
+.LBB45:
+	.loc 5 1077 55
 	movq	-24(%rbp), %rax
 	subq	-32(%rbp), %rax
-	.loc 5 1004 29
+	.loc 5 1077 29
 	addq	$65, %rax
 	movq	%rax, -40(%rbp)
-	.loc 5 1006 31
+	.loc 5 1079 31
 	leaq	-56(%rbp), %rcx
 	movq	-40(%rbp), %rdx
 	leaq	-48(%rbp), %rax
@@ -6160,346 +6319,98 @@ PMC_DivRem_X_I:
 	movq	%rax, %rcx
 	call	AllocateNumber
 	movl	%eax, -12(%rbp)
-	.loc 5 1006 20
+	.loc 5 1079 20
 	cmpl	$0, -12(%rbp)
-	je	.L178
-	.loc 5 1007 28
+	je	.L189
+	.loc 5 1080 28
 	movl	-12(%rbp), %eax
-	jmp	.L183
-.L178:
-	.loc 5 1008 33
+	jmp	.L194
+.L189:
+	.loc 5 1081 33
 	movq	$0, -64(%rbp)
-	.loc 5 1009 150
+	.loc 5 1082 150
 	movq	-48(%rbp), %rax
 	movq	48(%rax), %r9
-	.loc 5 1009 17
+	.loc 5 1082 17
 	movl	24(%rbp), %r8d
-	.loc 5 1009 60
+	.loc 5 1082 60
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rdx
-	.loc 5 1009 17
+	.loc 5 1082 17
 	movabsq	$2305843009213693951, %rax
 	andq	%rax, %rdx
-	.loc 5 1009 49
+	.loc 5 1082 49
 	movq	-8(%rbp), %rax
 	movq	48(%rax), %rcx
-	.loc 5 1009 17
+	.loc 5 1082 17
 	leaq	-64(%rbp), %rax
 	movq	%rax, 32(%rsp)
 	call	DivRem_X_1W
-	.loc 5 1010 31
+	.loc 5 1083 31
 	movq	-56(%rbp), %rdx
-	.loc 5 1010 49
+	.loc 5 1083 49
 	movq	-48(%rbp), %rax
-	.loc 5 1010 31
+	.loc 5 1083 31
 	movq	48(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -12(%rbp)
-	.loc 5 1010 20
+	.loc 5 1083 20
 	cmpl	$0, -12(%rbp)
-	je	.L180
-	.loc 5 1011 28
+	je	.L191
+	.loc 5 1084 28
 	movl	-12(%rbp), %eax
-	jmp	.L183
-.L180:
-	.loc 5 1012 17
+	jmp	.L194
+.L191:
+	.loc 5 1085 17
 	movq	-48(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-	.loc 5 1013 22
+	.loc 5 1086 22
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
-	.loc 5 1013 20
+	.loc 5 1086 20
 	movq	40(%rbp), %rax
 	movl	%edx, (%rax)
-	.loc 5 1014 23
+	.loc 5 1087 23
 	movq	-48(%rbp), %rax
-	.loc 5 1014 21
+	.loc 5 1087 21
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
-	.loc 5 1014 20
+	.loc 5 1087 20
 	testb	%al, %al
-	je	.L174
-	.loc 5 1016 21
+	je	.L185
+	.loc 5 1089 21
 	movq	-48(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
-	.loc 5 1017 24
+	.loc 5 1090 24
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -48(%rbp)
-.L174:
-.LBE43:
-.LBE42:
-	.loc 5 1022 8
+.L185:
+.LBE45:
+.LBE44:
+	.loc 5 1095 8
 	movq	-48(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
-	.loc 5 1024 19
+	.loc 5 1097 19
 	movq	-48(%rbp), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 5 1024 8
+	.loc 5 1097 8
 	cmpl	$0, -12(%rbp)
-	je	.L182
-	.loc 5 1025 16
+	je	.L193
+	.loc 5 1098 16
 	movl	-12(%rbp), %eax
-	jmp	.L183
-.L182:
-	.loc 5 1027 12
-	movl	$0, %eax
-.L183:
-	.loc 5 1028 1 discriminator 1
-	addq	$112, %rsp
-	popq	%rbp
-	.cfi_restore 6
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE4423:
-	.seh_endproc
-	.globl	PMC_DivRem_X_L
-	.def	PMC_DivRem_X_L;	.scl	2;	.type	32;	.endef
-	.seh_proc	PMC_DivRem_X_L
-PMC_DivRem_X_L:
-.LFB4424:
-	.loc 5 1031 1
-	.cfi_startproc
-	pushq	%rbp
-	.seh_pushreg	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.seh_setframe	%rbp, 0
-	.cfi_def_cfa_register 6
-	subq	$208, %rsp
-	.seh_stackalloc	208
-	.seh_endprologue
-	movq	%rcx, 16(%rbp)
-	movq	%rdx, 24(%rbp)
-	movq	%r8, 32(%rbp)
-	movq	%r9, 40(%rbp)
-	.loc 5 1037 8
-	cmpq	$0, 16(%rbp)
-	jne	.L185
-	.loc 5 1038 16
-	movl	$-1, %eax
-	jmp	.L201
-.L185:
-	.loc 5 1039 8
-	cmpq	$0, 32(%rbp)
-	jne	.L187
-	.loc 5 1040 16
-	movl	$-1, %eax
-	jmp	.L201
-.L187:
-	.loc 5 1041 8
-	cmpq	$0, 40(%rbp)
-	jne	.L188
-	.loc 5 1042 16
-	movl	$-1, %eax
-	jmp	.L201
-.L188:
-	.loc 5 1043 20
-	movq	16(%rbp), %rax
-	movq	%rax, -24(%rbp)
-	.loc 5 1045 19
-	movq	-24(%rbp), %rax
-	movq	%rax, %rcx
-	call	CheckNumber
-	movl	%eax, -4(%rbp)
-	.loc 5 1045 8
-	cmpl	$0, -4(%rbp)
-	je	.L189
-	.loc 5 1046 16
-	movl	-4(%rbp), %eax
-	jmp	.L201
-.L189:
-	.loc 5 1047 8
-	cmpq	$0, 24(%rbp)
-	jne	.L190
-	.loc 5 1052 16
-	movl	$-3, %eax
-	jmp	.L201
-.L190:
-	.loc 5 1055 9
-	movq	-24(%rbp), %rax
-	movzbl	32(%rax), %eax
-	andl	$2, %eax
-	.loc 5 1055 8
-	testb	%al, %al
-	je	.L191
-	.loc 5 1060 12
-	movq	.refptr.number_zero(%rip), %rax
-	movq	%rax, -56(%rbp)
-	.loc 5 1061 12
-	movq	40(%rbp), %rax
-	movq	$0, (%rax)
-	jmp	.L192
-.L191:
-	.loc 5 1067 12
-	cmpq	$1, 24(%rbp)
-	jne	.L193
-	.loc 5 1072 27
-	leaq	-56(%rbp), %rax
-	movq	-24(%rbp), %rcx
-	movq	%rax, %rdx
-	call	DuplicateNumber
-	movl	%eax, -4(%rbp)
-	.loc 5 1072 16
-	cmpl	$0, -4(%rbp)
-	je	.L194
-	.loc 5 1073 24
-	movl	-4(%rbp), %eax
-	jmp	.L201
-.L194:
-	.loc 5 1074 16
-	movq	40(%rbp), %rax
-	movq	$0, (%rax)
-	jmp	.L192
+	jmp	.L194
 .L193:
-.LBB44:
-	.loc 5 1081 25
-	movq	-24(%rbp), %rax
-	movq	8(%rax), %rax
-	movq	%rax, -16(%rbp)
-.LBB45:
-	.loc 5 1175 29
-	movq	-24(%rbp), %rax
-	movq	8(%rax), %rax
-	movq	%rax, -32(%rbp)
-	.loc 5 1176 59
-	movq	24(%rbp), %rax
-	movq	%rax, %rcx
-	call	_LZCNT_ALT_UNIT
-	.loc 5 1176 29
-	movl	$64, %edx
-	subq	%rax, %rdx
-	movq	%rdx, %rax
-	movq	%rax, -40(%rbp)
-	.loc 5 1177 20
-	movq	-32(%rbp), %rax
-	cmpq	-40(%rbp), %rax
-	jnb	.L195
-	.loc 5 1182 24
-	movq	.refptr.number_zero(%rip), %rax
-	movq	%rax, -56(%rbp)
-	.loc 5 1183 28
-	movq	-24(%rbp), %rax
-	movq	48(%rax), %rax
-	.loc 5 1183 35
-	movq	(%rax), %rdx
-	.loc 5 1183 24
-	movq	40(%rbp), %rax
-	movq	%rdx, (%rax)
-	jmp	.L192
-.L195:
-.LBB46:
-	.loc 5 1187 59
-	movq	-32(%rbp), %rax
-	subq	-40(%rbp), %rax
-	.loc 5 1187 33
-	addq	$65, %rax
-	movq	%rax, -48(%rbp)
-	.loc 5 1189 35
-	leaq	-152(%rbp), %rcx
-	movq	-48(%rbp), %rdx
-	leaq	-56(%rbp), %rax
-	movq	%rcx, %r8
-	movq	%rax, %rcx
-	call	AllocateNumber
-	movl	%eax, -4(%rbp)
-	.loc 5 1189 24
-	cmpl	$0, -4(%rbp)
-	je	.L196
-	.loc 5 1190 32
-	movl	-4(%rbp), %eax
-	jmp	.L201
-.L196:
-	.loc 5 1191 37
-	movq	$0, -160(%rbp)
-	.loc 5 1192 171
-	movq	-56(%rbp), %rax
-	movq	48(%rax), %r9
-	.loc 5 1192 64
-	movq	-24(%rbp), %rax
-	movq	(%rax), %rdx
-	.loc 5 1192 21
-	movabsq	$2305843009213693951, %rax
-	andq	%rax, %rdx
-	.loc 5 1192 53
-	movq	-24(%rbp), %rax
-	movq	48(%rax), %rcx
-	.loc 5 1192 21
-	movq	24(%rbp), %r8
-	leaq	-160(%rbp), %rax
-	movq	%rax, 32(%rsp)
-	call	DivRem_X_1W
-	.loc 5 1193 35
-	movq	-152(%rbp), %rdx
-	.loc 5 1193 53
-	movq	-56(%rbp), %rax
-	.loc 5 1193 35
-	movq	48(%rax), %rax
-	movq	%rax, %rcx
-	call	CheckBlockLight
-	movl	%eax, -4(%rbp)
-	.loc 5 1193 24
-	cmpl	$0, -4(%rbp)
-	je	.L198
-	.loc 5 1194 32
-	movl	-4(%rbp), %eax
-	jmp	.L201
-.L198:
-	.loc 5 1195 21
-	movq	-56(%rbp), %rax
-	movq	%rax, %rcx
-	call	CommitNumber
-	.loc 5 1196 24
-	movq	-160(%rbp), %rdx
-	movq	40(%rbp), %rax
-	movq	%rdx, (%rax)
-	.loc 5 1197 27
-	movq	-56(%rbp), %rax
-	.loc 5 1197 25
-	movzbl	32(%rax), %eax
-	andl	$2, %eax
-	.loc 5 1197 24
-	testb	%al, %al
-	je	.L192
-	.loc 5 1199 25
-	movq	-56(%rbp), %rax
-	movq	%rax, %rcx
-	call	DeallocateNumber
-	.loc 5 1200 28
-	movq	.refptr.number_zero(%rip), %rax
-	movq	%rax, -56(%rbp)
-.L192:
-.LBE46:
-.LBE45:
-.LBE44:
-	.loc 5 1207 8
-	movq	-56(%rbp), %rdx
-	movq	32(%rbp), %rax
-	movq	%rdx, (%rax)
-	.loc 5 1209 19
-	movq	-56(%rbp), %rax
-	movq	%rax, %rcx
-	call	CheckNumber
-	movl	%eax, -4(%rbp)
-	.loc 5 1209 8
-	cmpl	$0, -4(%rbp)
-	je	.L200
-	.loc 5 1210 16
-	movl	-4(%rbp), %eax
-	jmp	.L201
-.L200:
-	.loc 5 1212 12
+	.loc 5 1100 12
 	movl	$0, %eax
-.L201:
-	.loc 5 1213 1 discriminator 6
-	addq	$208, %rsp
+.L194:
+	.loc 5 1101 1 discriminator 1
+	addq	$112, %rsp
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -6507,12 +6418,169 @@ PMC_DivRem_X_L:
 	.cfi_endproc
 .LFE4424:
 	.seh_endproc
-	.globl	PMC_DivRem_X_X
-	.def	PMC_DivRem_X_X;	.scl	2;	.type	32;	.endef
-	.seh_proc	PMC_DivRem_X_X
-PMC_DivRem_X_X:
+	.globl	PMC_DivRem_L_X
+	.def	PMC_DivRem_L_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_DivRem_L_X
+PMC_DivRem_L_X:
 .LFB4425:
-	.loc 5 1216 1
+	.loc 5 1104 1
+	.cfi_startproc
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	subq	$256, %rsp
+	.seh_stackalloc	256
+	.cfi_def_cfa_offset 272
+	leaq	128(%rsp), %rbp
+	.seh_setframe	%rbp, 128
+	.cfi_def_cfa 6, 144
+	.seh_endprologue
+	movq	%rcx, 144(%rbp)
+	movq	%rdx, 152(%rbp)
+	movq	%r8, 160(%rbp)
+	movq	%r9, 168(%rbp)
+	.loc 5 1110 8
+	cmpq	$0, 152(%rbp)
+	jne	.L196
+	.loc 5 1111 16
+	movl	$-1, %eax
+	jmp	.L197
+.L196:
+	.loc 5 1112 8
+	cmpq	$0, 160(%rbp)
+	jne	.L198
+	.loc 5 1113 16
+	movl	$-1, %eax
+	jmp	.L197
+.L198:
+	.loc 5 1114 8
+	cmpq	$0, 168(%rbp)
+	jne	.L199
+	.loc 5 1115 16
+	movl	$-1, %eax
+	jmp	.L197
+.L199:
+	.loc 5 1116 20
+	movq	152(%rbp), %rax
+	movq	%rax, 112(%rbp)
+	.loc 5 1118 19
+	movq	112(%rbp), %rax
+	movq	%rax, %rcx
+	call	CheckNumber
+	movl	%eax, 124(%rbp)
+	.loc 5 1118 8
+	cmpl	$0, 124(%rbp)
+	je	.L200
+	.loc 5 1119 16
+	movl	124(%rbp), %eax
+	jmp	.L197
+.L200:
+	.loc 5 1120 9
+	movq	112(%rbp), %rax
+	movzbl	32(%rax), %eax
+	andl	$2, %eax
+	.loc 5 1120 8
+	testb	%al, %al
+	je	.L201
+	.loc 5 1125 16
+	movl	$-3, %eax
+	jmp	.L197
+.L201:
+	.loc 5 1127 8
+	cmpq	$0, 144(%rbp)
+	jne	.L202
+	.loc 5 1132 12
+	movq	160(%rbp), %rax
+	movq	$0, (%rax)
+	.loc 5 1133 12
+	movq	168(%rbp), %rax
+	movq	$0, (%rax)
+	jmp	.L203
+.L202:
+	.loc 5 1139 13
+	movq	112(%rbp), %rax
+	movzbl	32(%rax), %eax
+	andl	$4, %eax
+	.loc 5 1139 12
+	testb	%al, %al
+	je	.L204
+	.loc 5 1144 16
+	movq	160(%rbp), %rax
+	movq	144(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 5 1145 16
+	movq	168(%rbp), %rax
+	movq	$0, (%rax)
+	jmp	.L203
+.L204:
+.LBB46:
+	.loc 5 1231 59
+	movq	144(%rbp), %rcx
+	call	_LZCNT_ALT_UNIT
+	.loc 5 1231 29
+	movl	$64, %edx
+	subq	%rax, %rdx
+	movq	%rdx, %rax
+	movq	%rax, 104(%rbp)
+	.loc 5 1232 29
+	movq	112(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, 96(%rbp)
+	.loc 5 1233 20
+	movq	104(%rbp), %rax
+	cmpq	96(%rbp), %rax
+	jnb	.L205
+	.loc 5 1238 24
+	movq	160(%rbp), %rax
+	movq	$0, (%rax)
+	.loc 5 1239 24
+	movq	168(%rbp), %rax
+	movq	144(%rbp), %rdx
+	movq	%rdx, (%rax)
+	jmp	.L203
+.L205:
+.LBB47:
+	.loc 5 1247 81
+	movq	112(%rbp), %rax
+	movq	48(%rax), %rax
+	.loc 5 1247 26
+	movq	(%rax), %rdx
+	leaq	-88(%rbp), %rax
+	movq	%rax, %r9
+	movq	%rdx, %r8
+	movq	144(%rbp), %rdx
+	movl	$0, %ecx
+	call	_DIVREM_UNIT
+	movq	%rax, %rdx
+	.loc 5 1247 24
+	movq	160(%rbp), %rax
+	movq	%rdx, (%rax)
+	.loc 5 1248 24
+	movq	-88(%rbp), %rdx
+	movq	168(%rbp), %rax
+	movq	%rdx, (%rax)
+.L203:
+.LBE47:
+.LBE46:
+	.loc 5 1254 12
+	movl	$0, %eax
+.L197:
+	.loc 5 1255 1
+	addq	$256, %rsp
+	popq	%rbp
+	.cfi_restore 6
+	.cfi_def_cfa 7, -248
+	ret
+	.cfi_endproc
+.LFE4425:
+	.seh_endproc
+	.globl	PMC_DivRem_X_L
+	.def	PMC_DivRem_X_L;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_DivRem_X_L
+PMC_DivRem_X_L:
+.LFB4426:
+	.loc 5 1258 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -6528,155 +6596,403 @@ PMC_DivRem_X_X:
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 5 1217 8
+	.loc 5 1264 8
 	cmpq	$0, 16(%rbp)
-	jne	.L203
-	.loc 5 1218 16
-	movl	$-1, %eax
-	jmp	.L235
-.L203:
-	.loc 5 1219 8
-	cmpq	$0, 24(%rbp)
-	jne	.L205
-	.loc 5 1220 16
-	movl	$-1, %eax
-	jmp	.L235
-.L205:
-	.loc 5 1221 8
-	cmpq	$0, 32(%rbp)
-	jne	.L206
-	.loc 5 1222 16
-	movl	$-1, %eax
-	jmp	.L235
-.L206:
-	.loc 5 1223 8
-	cmpq	$0, 40(%rbp)
 	jne	.L207
-	.loc 5 1224 16
+	.loc 5 1265 16
 	movl	$-1, %eax
-	jmp	.L235
+	jmp	.L223
 .L207:
-	.loc 5 1225 20
+	.loc 5 1266 8
+	cmpq	$0, 32(%rbp)
+	jne	.L209
+	.loc 5 1267 16
+	movl	$-1, %eax
+	jmp	.L223
+.L209:
+	.loc 5 1268 8
+	cmpq	$0, 40(%rbp)
+	jne	.L210
+	.loc 5 1269 16
+	movl	$-1, %eax
+	jmp	.L223
+.L210:
+	.loc 5 1270 20
+	movq	16(%rbp), %rax
+	movq	%rax, -24(%rbp)
+	.loc 5 1272 19
+	movq	-24(%rbp), %rax
+	movq	%rax, %rcx
+	call	CheckNumber
+	movl	%eax, -4(%rbp)
+	.loc 5 1272 8
+	cmpl	$0, -4(%rbp)
+	je	.L211
+	.loc 5 1273 16
+	movl	-4(%rbp), %eax
+	jmp	.L223
+.L211:
+	.loc 5 1274 8
+	cmpq	$0, 24(%rbp)
+	jne	.L212
+	.loc 5 1279 16
+	movl	$-3, %eax
+	jmp	.L223
+.L212:
+	.loc 5 1282 9
+	movq	-24(%rbp), %rax
+	movzbl	32(%rax), %eax
+	andl	$2, %eax
+	.loc 5 1282 8
+	testb	%al, %al
+	je	.L213
+	.loc 5 1287 12
+	movq	.refptr.number_zero(%rip), %rax
+	movq	%rax, -56(%rbp)
+	.loc 5 1288 12
+	movq	40(%rbp), %rax
+	movq	$0, (%rax)
+	jmp	.L214
+.L213:
+	.loc 5 1294 12
+	cmpq	$1, 24(%rbp)
+	jne	.L215
+	.loc 5 1299 27
+	leaq	-56(%rbp), %rax
+	movq	-24(%rbp), %rcx
+	movq	%rax, %rdx
+	call	DuplicateNumber
+	movl	%eax, -4(%rbp)
+	.loc 5 1299 16
+	cmpl	$0, -4(%rbp)
+	je	.L216
+	.loc 5 1300 24
+	movl	-4(%rbp), %eax
+	jmp	.L223
+.L216:
+	.loc 5 1301 16
+	movq	40(%rbp), %rax
+	movq	$0, (%rax)
+	jmp	.L214
+.L215:
+.LBB48:
+	.loc 5 1308 25
+	movq	-24(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, -16(%rbp)
+.LBB49:
+	.loc 5 1402 29
+	movq	-24(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, -32(%rbp)
+	.loc 5 1403 59
+	movq	24(%rbp), %rax
+	movq	%rax, %rcx
+	call	_LZCNT_ALT_UNIT
+	.loc 5 1403 29
+	movl	$64, %edx
+	subq	%rax, %rdx
+	movq	%rdx, %rax
+	movq	%rax, -40(%rbp)
+	.loc 5 1404 20
+	movq	-32(%rbp), %rax
+	cmpq	-40(%rbp), %rax
+	jnb	.L217
+	.loc 5 1409 24
+	movq	.refptr.number_zero(%rip), %rax
+	movq	%rax, -56(%rbp)
+	.loc 5 1410 28
+	movq	-24(%rbp), %rax
+	movq	48(%rax), %rax
+	.loc 5 1410 35
+	movq	(%rax), %rdx
+	.loc 5 1410 24
+	movq	40(%rbp), %rax
+	movq	%rdx, (%rax)
+	jmp	.L214
+.L217:
+.LBB50:
+	.loc 5 1414 59
+	movq	-32(%rbp), %rax
+	subq	-40(%rbp), %rax
+	.loc 5 1414 33
+	addq	$65, %rax
+	movq	%rax, -48(%rbp)
+	.loc 5 1416 35
+	leaq	-152(%rbp), %rcx
+	movq	-48(%rbp), %rdx
+	leaq	-56(%rbp), %rax
+	movq	%rcx, %r8
+	movq	%rax, %rcx
+	call	AllocateNumber
+	movl	%eax, -4(%rbp)
+	.loc 5 1416 24
+	cmpl	$0, -4(%rbp)
+	je	.L218
+	.loc 5 1417 32
+	movl	-4(%rbp), %eax
+	jmp	.L223
+.L218:
+	.loc 5 1418 37
+	movq	$0, -160(%rbp)
+	.loc 5 1419 171
+	movq	-56(%rbp), %rax
+	movq	48(%rax), %r9
+	.loc 5 1419 64
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rdx
+	.loc 5 1419 21
+	movabsq	$2305843009213693951, %rax
+	andq	%rax, %rdx
+	.loc 5 1419 53
+	movq	-24(%rbp), %rax
+	movq	48(%rax), %rcx
+	.loc 5 1419 21
+	movq	24(%rbp), %r8
+	leaq	-160(%rbp), %rax
+	movq	%rax, 32(%rsp)
+	call	DivRem_X_1W
+	.loc 5 1420 35
+	movq	-152(%rbp), %rdx
+	.loc 5 1420 53
+	movq	-56(%rbp), %rax
+	.loc 5 1420 35
+	movq	48(%rax), %rax
+	movq	%rax, %rcx
+	call	CheckBlockLight
+	movl	%eax, -4(%rbp)
+	.loc 5 1420 24
+	cmpl	$0, -4(%rbp)
+	je	.L220
+	.loc 5 1421 32
+	movl	-4(%rbp), %eax
+	jmp	.L223
+.L220:
+	.loc 5 1422 21
+	movq	-56(%rbp), %rax
+	movq	%rax, %rcx
+	call	CommitNumber
+	.loc 5 1423 24
+	movq	-160(%rbp), %rdx
+	movq	40(%rbp), %rax
+	movq	%rdx, (%rax)
+	.loc 5 1424 27
+	movq	-56(%rbp), %rax
+	.loc 5 1424 25
+	movzbl	32(%rax), %eax
+	andl	$2, %eax
+	.loc 5 1424 24
+	testb	%al, %al
+	je	.L214
+	.loc 5 1426 25
+	movq	-56(%rbp), %rax
+	movq	%rax, %rcx
+	call	DeallocateNumber
+	.loc 5 1427 28
+	movq	.refptr.number_zero(%rip), %rax
+	movq	%rax, -56(%rbp)
+.L214:
+.LBE50:
+.LBE49:
+.LBE48:
+	.loc 5 1434 8
+	movq	-56(%rbp), %rdx
+	movq	32(%rbp), %rax
+	movq	%rdx, (%rax)
+	.loc 5 1436 19
+	movq	-56(%rbp), %rax
+	movq	%rax, %rcx
+	call	CheckNumber
+	movl	%eax, -4(%rbp)
+	.loc 5 1436 8
+	cmpl	$0, -4(%rbp)
+	je	.L222
+	.loc 5 1437 16
+	movl	-4(%rbp), %eax
+	jmp	.L223
+.L222:
+	.loc 5 1439 12
+	movl	$0, %eax
+.L223:
+	.loc 5 1440 1 discriminator 6
+	addq	$208, %rsp
+	popq	%rbp
+	.cfi_restore 6
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE4426:
+	.seh_endproc
+	.globl	PMC_DivRem_X_X
+	.def	PMC_DivRem_X_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_DivRem_X_X
+PMC_DivRem_X_X:
+.LFB4427:
+	.loc 5 1443 1
+	.cfi_startproc
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.seh_setframe	%rbp, 0
+	.cfi_def_cfa_register 6
+	subq	$208, %rsp
+	.seh_stackalloc	208
+	.seh_endprologue
+	movq	%rcx, 16(%rbp)
+	movq	%rdx, 24(%rbp)
+	movq	%r8, 32(%rbp)
+	movq	%r9, 40(%rbp)
+	.loc 5 1444 8
+	cmpq	$0, 16(%rbp)
+	jne	.L225
+	.loc 5 1445 16
+	movl	$-1, %eax
+	jmp	.L257
+.L225:
+	.loc 5 1446 8
+	cmpq	$0, 24(%rbp)
+	jne	.L227
+	.loc 5 1447 16
+	movl	$-1, %eax
+	jmp	.L257
+.L227:
+	.loc 5 1448 8
+	cmpq	$0, 32(%rbp)
+	jne	.L228
+	.loc 5 1449 16
+	movl	$-1, %eax
+	jmp	.L257
+.L228:
+	.loc 5 1450 8
+	cmpq	$0, 40(%rbp)
+	jne	.L229
+	.loc 5 1451 16
+	movl	$-1, %eax
+	jmp	.L257
+.L229:
+	.loc 5 1452 20
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 5 1226 20
+	.loc 5 1453 20
 	movq	24(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	.loc 5 1228 19
+	.loc 5 1455 19
 	movq	-8(%rbp), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1228 8
+	.loc 5 1455 8
 	cmpl	$0, -20(%rbp)
-	je	.L208
-	.loc 5 1229 16
+	je	.L230
+	.loc 5 1456 16
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L208:
-	.loc 5 1230 19
+	jmp	.L257
+.L230:
+	.loc 5 1457 19
 	movq	-16(%rbp), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1230 8
+	.loc 5 1457 8
 	cmpl	$0, -20(%rbp)
-	je	.L209
-	.loc 5 1231 16
+	je	.L231
+	.loc 5 1458 16
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L209:
-	.loc 5 1232 9
+	jmp	.L257
+.L231:
+	.loc 5 1459 9
 	movq	-16(%rbp), %rax
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
-	.loc 5 1232 8
+	.loc 5 1459 8
 	testb	%al, %al
-	je	.L210
-	.loc 5 1237 16
+	je	.L232
+	.loc 5 1464 16
 	movl	$-3, %eax
-	jmp	.L235
-.L210:
-	.loc 5 1241 9
+	jmp	.L257
+.L232:
+	.loc 5 1468 9
 	movq	-8(%rbp), %rax
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
-	.loc 5 1241 8
+	.loc 5 1468 8
 	testb	%al, %al
-	je	.L211
-	.loc 5 1246 12
+	je	.L233
+	.loc 5 1473 12
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -88(%rbp)
-	.loc 5 1247 12
+	.loc 5 1474 12
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -96(%rbp)
-	jmp	.L212
-.L211:
-	.loc 5 1253 13
+	jmp	.L234
+.L233:
+	.loc 5 1480 13
 	movq	-16(%rbp), %rax
 	movzbl	32(%rax), %eax
 	andl	$4, %eax
-	.loc 5 1253 12
+	.loc 5 1480 12
 	testb	%al, %al
-	je	.L213
-	.loc 5 1258 27
+	je	.L235
+	.loc 5 1485 27
 	leaq	-88(%rbp), %rax
 	movq	-8(%rbp), %rcx
 	movq	%rax, %rdx
 	call	DuplicateNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1258 16
+	.loc 5 1485 16
 	cmpl	$0, -20(%rbp)
-	je	.L214
-	.loc 5 1259 24
+	je	.L236
+	.loc 5 1486 24
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L214:
-	.loc 5 1260 16
+	jmp	.L257
+.L236:
+	.loc 5 1487 16
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -96(%rbp)
-	jmp	.L212
-.L213:
-.LBB47:
-	.loc 5 1267 25
+	jmp	.L234
+.L235:
+.LBB51:
+	.loc 5 1494 25
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, -32(%rbp)
-	.loc 5 1268 25
+	.loc 5 1495 25
 	movq	-16(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, -40(%rbp)
-	.loc 5 1269 16
+	.loc 5 1496 16
 	movq	-32(%rbp), %rax
 	cmpq	-40(%rbp), %rax
-	jnb	.L215
-	.loc 5 1274 20
+	jnb	.L237
+	.loc 5 1501 20
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -88(%rbp)
-	.loc 5 1275 31
+	.loc 5 1502 31
 	leaq	-96(%rbp), %rax
 	movq	-8(%rbp), %rcx
 	movq	%rax, %rdx
 	call	DuplicateNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1275 20
+	.loc 5 1502 20
 	cmpl	$0, -20(%rbp)
-	je	.L212
-	.loc 5 1276 28
+	je	.L234
+	.loc 5 1503 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L215:
-	.loc 5 1278 21
+	jmp	.L257
+.L237:
+	.loc 5 1505 21
 	cmpq	$64, -40(%rbp)
-	ja	.L216
-.LBB48:
-	.loc 5 1282 55
+	ja	.L238
+.LBB52:
+	.loc 5 1509 55
 	movq	-32(%rbp), %rax
 	subq	-40(%rbp), %rax
-	.loc 5 1282 29
+	.loc 5 1509 29
 	addq	$65, %rax
 	movq	%rax, -48(%rbp)
-	.loc 5 1284 31
+	.loc 5 1511 31
 	leaq	-104(%rbp), %rcx
 	movq	-48(%rbp), %rdx
 	leaq	-88(%rbp), %rax
@@ -6684,16 +7000,16 @@ PMC_DivRem_X_X:
 	movq	%rax, %rcx
 	call	AllocateNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1284 20
+	.loc 5 1511 20
 	cmpl	$0, -20(%rbp)
-	je	.L217
-	.loc 5 1285 28
+	je	.L239
+	.loc 5 1512 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L217:
-	.loc 5 1286 29
+	jmp	.L257
+.L239:
+	.loc 5 1513 29
 	movq	$64, -56(%rbp)
-	.loc 5 1288 31
+	.loc 5 1515 31
 	leaq	-112(%rbp), %rcx
 	movq	-56(%rbp), %rdx
 	leaq	-96(%rbp), %rax
@@ -6701,127 +7017,127 @@ PMC_DivRem_X_X:
 	movq	%rax, %rcx
 	call	AllocateNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1288 20
+	.loc 5 1515 20
 	cmpl	$0, -20(%rbp)
-	je	.L219
-	.loc 5 1290 21
+	je	.L241
+	.loc 5 1517 21
 	movq	-88(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
-	.loc 5 1291 28
+	.loc 5 1518 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L219:
-	.loc 5 1293 207
+	jmp	.L257
+.L241:
+	.loc 5 1520 207
 	movq	-96(%rbp), %rax
 	movq	48(%rax), %rcx
-	.loc 5 1293 178
+	.loc 5 1520 178
 	movq	-88(%rbp), %rax
 	movq	48(%rax), %r9
-	.loc 5 1293 146
+	.loc 5 1520 146
 	movq	-16(%rbp), %rax
 	movq	48(%rax), %rax
-	.loc 5 1293 17
+	.loc 5 1520 17
 	movq	(%rax), %r8
-	.loc 5 1293 60
+	.loc 5 1520 60
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rdx
-	.loc 5 1293 17
+	.loc 5 1520 17
 	movabsq	$2305843009213693951, %rax
 	andq	%rax, %rdx
-	.loc 5 1293 49
+	.loc 5 1520 49
 	movq	-8(%rbp), %rax
 	movq	48(%rax), %rax
-	.loc 5 1293 17
+	.loc 5 1520 17
 	movq	%rcx, 32(%rsp)
 	movq	%rax, %rcx
 	call	DivRem_X_1W
-	.loc 5 1294 31
+	.loc 5 1521 31
 	movq	-104(%rbp), %rdx
-	.loc 5 1294 49
+	.loc 5 1521 49
 	movq	-88(%rbp), %rax
-	.loc 5 1294 31
+	.loc 5 1521 31
 	movq	48(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -20(%rbp)
-	.loc 5 1294 20
+	.loc 5 1521 20
 	cmpl	$0, -20(%rbp)
-	je	.L220
-	.loc 5 1295 28
+	je	.L242
+	.loc 5 1522 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L220:
-	.loc 5 1296 31
+	jmp	.L257
+.L242:
+	.loc 5 1523 31
 	movq	-112(%rbp), %rdx
-	.loc 5 1296 49
+	.loc 5 1523 49
 	movq	-96(%rbp), %rax
-	.loc 5 1296 31
+	.loc 5 1523 31
 	movq	48(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -20(%rbp)
-	.loc 5 1296 20
+	.loc 5 1523 20
 	cmpl	$0, -20(%rbp)
-	je	.L221
-	.loc 5 1297 28
+	je	.L243
+	.loc 5 1524 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L221:
-	.loc 5 1298 17
+	jmp	.L257
+.L243:
+	.loc 5 1525 17
 	movq	-88(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-	.loc 5 1299 17
+	.loc 5 1526 17
 	movq	-96(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-	.loc 5 1300 23
+	.loc 5 1527 23
 	movq	-88(%rbp), %rax
-	.loc 5 1300 21
+	.loc 5 1527 21
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
-	.loc 5 1300 20
+	.loc 5 1527 20
 	testb	%al, %al
-	je	.L222
-	.loc 5 1302 21
+	je	.L244
+	.loc 5 1529 21
 	movq	-88(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
-	.loc 5 1303 24
+	.loc 5 1530 24
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -88(%rbp)
-.L222:
-	.loc 5 1305 23
+.L244:
+	.loc 5 1532 23
 	movq	-96(%rbp), %rax
-	.loc 5 1305 21
+	.loc 5 1532 21
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
-	.loc 5 1305 20
+	.loc 5 1532 20
 	testb	%al, %al
-	je	.L212
-	.loc 5 1307 21
+	je	.L234
+	.loc 5 1534 21
 	movq	-96(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
-	.loc 5 1308 24
+	.loc 5 1535 24
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -96(%rbp)
-	jmp	.L212
-.L216:
-.LBE48:
-.LBB49:
-	.loc 5 1314 55
+	jmp	.L234
+.L238:
+.LBE52:
+.LBB53:
+	.loc 5 1541 55
 	movq	-32(%rbp), %rax
 	subq	-40(%rbp), %rax
-	.loc 5 1314 29
+	.loc 5 1541 29
 	addq	$65, %rax
 	movq	%rax, -64(%rbp)
-	.loc 5 1315 29
+	.loc 5 1542 29
 	movq	-32(%rbp), %rax
 	addq	$64, %rax
 	movq	%rax, -72(%rbp)
-	.loc 5 1317 31
+	.loc 5 1544 31
 	leaq	-120(%rbp), %rcx
 	movq	-64(%rbp), %rdx
 	leaq	-88(%rbp), %rax
@@ -6829,14 +7145,14 @@ PMC_DivRem_X_X:
 	movq	%rax, %rcx
 	call	AllocateNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1317 20
+	.loc 5 1544 20
 	cmpl	$0, -20(%rbp)
-	je	.L224
-	.loc 5 1318 28
+	je	.L246
+	.loc 5 1545 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L224:
-	.loc 5 1320 31
+	jmp	.L257
+.L246:
+	.loc 5 1547 31
 	leaq	-128(%rbp), %rcx
 	movq	-72(%rbp), %rdx
 	leaq	-96(%rbp), %rax
@@ -6844,21 +7160,21 @@ PMC_DivRem_X_X:
 	movq	%rax, %rcx
 	call	AllocateNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1320 20
+	.loc 5 1547 20
 	cmpl	$0, -20(%rbp)
-	je	.L226
-	.loc 5 1322 21
+	je	.L248
+	.loc 5 1549 21
 	movq	-88(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
-	.loc 5 1323 28
+	.loc 5 1550 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L226:
-	.loc 5 1327 81
+	jmp	.L257
+.L248:
+	.loc 5 1554 81
 	movq	-16(%rbp), %rax
 	movq	(%rax), %rax
-	.loc 5 1327 65
+	.loc 5 1554 65
 	salq	$6, %rax
 	movq	%rax, %rcx
 	leaq	-136(%rbp), %rdx
@@ -6867,45 +7183,45 @@ PMC_DivRem_X_X:
 	movq	%rax, %rdx
 	call	AllocateBlock
 	movq	%rax, -80(%rbp)
-	.loc 5 1328 20
+	.loc 5 1555 20
 	cmpq	$0, -80(%rbp)
-	jne	.L227
-	.loc 5 1330 21
+	jne	.L249
+	.loc 5 1557 21
 	movq	-88(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
-	.loc 5 1331 28
+	.loc 5 1558 28
 	movl	$-5, %eax
-	jmp	.L235
-.L227:
-	.loc 5 1334 18
+	jmp	.L257
+.L249:
+	.loc 5 1561 18
 	movq	fp_DivRem_X_X(%rip), %rax
-	.loc 5 1334 291
+	.loc 5 1561 291
 	movq	-96(%rbp), %rdx
 	movq	48(%rdx), %r9
-	.loc 5 1334 262
+	.loc 5 1561 262
 	movq	-88(%rbp), %rdx
 	movq	48(%rdx), %r8
-	.loc 5 1334 163
+	.loc 5 1561 163
 	movq	-16(%rbp), %rdx
 	movq	(%rdx), %rcx
-	.loc 5 1334 18
+	.loc 5 1561 18
 	movabsq	$2305843009213693951, %rdx
 	andq	%rdx, %rcx
 	movq	%rcx, %r11
-	.loc 5 1334 152
+	.loc 5 1561 152
 	movq	-16(%rbp), %rdx
 	movq	48(%rdx), %r10
-	.loc 5 1334 65
+	.loc 5 1561 65
 	movq	-8(%rbp), %rdx
 	movq	(%rdx), %rcx
-	.loc 5 1334 18
+	.loc 5 1561 18
 	movabsq	$2305843009213693951, %rdx
 	andq	%rcx, %rdx
-	.loc 5 1334 54
+	.loc 5 1561 54
 	movq	-8(%rbp), %rcx
 	movq	48(%rcx), %rcx
-	.loc 5 1334 18
+	.loc 5 1561 18
 	movq	%r9, 48(%rsp)
 	movq	%r8, 40(%rsp)
 	movq	-80(%rbp), %r8
@@ -6914,150 +7230,150 @@ PMC_DivRem_X_X:
 	movq	%r10, %r8
 	call	*%rax
 .LVL0:
-	.loc 5 1335 31
+	.loc 5 1562 31
 	movq	-136(%rbp), %rdx
 	movq	-80(%rbp), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -20(%rbp)
-	.loc 5 1335 20
+	.loc 5 1562 20
 	cmpl	$0, -20(%rbp)
-	je	.L228
-	.loc 5 1336 28
+	je	.L250
+	.loc 5 1563 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L228:
-	.loc 5 1337 31
+	jmp	.L257
+.L250:
+	.loc 5 1564 31
 	movq	-120(%rbp), %rdx
-	.loc 5 1337 49
+	.loc 5 1564 49
 	movq	-88(%rbp), %rax
-	.loc 5 1337 31
+	.loc 5 1564 31
 	movq	48(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -20(%rbp)
-	.loc 5 1337 20
+	.loc 5 1564 20
 	cmpl	$0, -20(%rbp)
-	je	.L229
-	.loc 5 1338 28
+	je	.L251
+	.loc 5 1565 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L229:
-	.loc 5 1339 31
+	jmp	.L257
+.L251:
+	.loc 5 1566 31
 	movq	-120(%rbp), %rdx
-	.loc 5 1339 49
+	.loc 5 1566 49
 	movq	-88(%rbp), %rax
-	.loc 5 1339 31
+	.loc 5 1566 31
 	movq	48(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -20(%rbp)
-	.loc 5 1339 20
+	.loc 5 1566 20
 	cmpl	$0, -20(%rbp)
-	je	.L230
-	.loc 5 1340 28
+	je	.L252
+	.loc 5 1567 28
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L230:
-	.loc 5 1341 17
+	jmp	.L257
+.L252:
+	.loc 5 1568 17
 	movq	-144(%rbp), %rdx
 	movq	-80(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateBlock
-	.loc 5 1342 17
+	.loc 5 1569 17
 	movq	-88(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-	.loc 5 1343 17
+	.loc 5 1570 17
 	movq	-96(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-	.loc 5 1344 23
+	.loc 5 1571 23
 	movq	-88(%rbp), %rax
-	.loc 5 1344 21
+	.loc 5 1571 21
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
-	.loc 5 1344 20
+	.loc 5 1571 20
 	testb	%al, %al
-	je	.L231
-	.loc 5 1346 21
+	je	.L253
+	.loc 5 1573 21
 	movq	-88(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
-	.loc 5 1347 24
+	.loc 5 1574 24
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -88(%rbp)
-.L231:
-	.loc 5 1349 23
+.L253:
+	.loc 5 1576 23
 	movq	-96(%rbp), %rax
-	.loc 5 1349 21
+	.loc 5 1576 21
 	movzbl	32(%rax), %eax
 	andl	$2, %eax
-	.loc 5 1349 20
+	.loc 5 1576 20
 	testb	%al, %al
-	je	.L212
-	.loc 5 1351 21
+	je	.L234
+	.loc 5 1578 21
 	movq	-96(%rbp), %rax
 	movq	%rax, %rcx
 	call	DeallocateNumber
-	.loc 5 1352 24
+	.loc 5 1579 24
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, -96(%rbp)
-.L212:
-.LBE49:
-.LBE47:
-	.loc 5 1357 8
+.L234:
+.LBE53:
+.LBE51:
+	.loc 5 1584 8
 	movq	-88(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
-	.loc 5 1358 8
+	.loc 5 1585 8
 	movq	-96(%rbp), %rdx
 	movq	40(%rbp), %rax
 	movq	%rdx, (%rax)
-	.loc 5 1360 19
+	.loc 5 1587 19
 	movq	32(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1360 8
+	.loc 5 1587 8
 	cmpl	$0, -20(%rbp)
-	je	.L233
-	.loc 5 1361 16
+	je	.L255
+	.loc 5 1588 16
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L233:
-	.loc 5 1362 19
+	jmp	.L257
+.L255:
+	.loc 5 1589 19
 	movq	40(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -20(%rbp)
-	.loc 5 1362 8
+	.loc 5 1589 8
 	cmpl	$0, -20(%rbp)
-	je	.L234
-	.loc 5 1363 16
+	je	.L256
+	.loc 5 1590 16
 	movl	-20(%rbp), %eax
-	jmp	.L235
-.L234:
-	.loc 5 1365 12
+	jmp	.L257
+.L256:
+	.loc 5 1592 12
 	movl	$0, %eax
-.L235:
-	.loc 5 1366 1 discriminator 2
+.L257:
+	.loc 5 1593 1 discriminator 2
 	addq	$208, %rsp
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4425:
+.LFE4427:
 	.seh_endproc
 	.globl	Initialize_DivRem
 	.def	Initialize_DivRem;	.scl	2;	.type	32;	.endef
 	.seh_proc	Initialize_DivRem
 Initialize_DivRem:
-.LFB4426:
-	.loc 5 1369 1
+.LFB4428:
+	.loc 5 1596 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -7068,37 +7384,37 @@ Initialize_DivRem:
 	.cfi_def_cfa_register 6
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 5 1370 21
+	.loc 5 1597 21
 	movq	16(%rbp), %rax
 	movzbl	(%rax), %eax
 	andl	$2, %eax
-	.loc 5 1370 115
+	.loc 5 1597 115
 	testb	%al, %al
-	je	.L237
-	.loc 5 1370 52 discriminator 1
+	je	.L259
+	.loc 5 1597 52 discriminator 1
 	movq	16(%rbp), %rax
 	movzbl	(%rax), %eax
 	andl	$8, %eax
 	testb	%al, %al
-	je	.L237
-	.loc 5 1370 115 discriminator 3
+	je	.L259
+	.loc 5 1597 115 discriminator 3
 	leaq	DivRem_X_X_using_ADX_MULX(%rip), %rax
-	jmp	.L238
-.L237:
-	.loc 5 1370 115 is_stmt 0 discriminator 4
+	jmp	.L260
+.L259:
+	.loc 5 1597 115 is_stmt 0 discriminator 4
 	leaq	DivRem_X_X_using_ADC_MUL(%rip), %rax
-.L238:
-	.loc 5 1370 19 is_stmt 1 discriminator 6
+.L260:
+	.loc 5 1597 19 is_stmt 1 discriminator 6
 	movq	%rax, fp_DivRem_X_X(%rip)
-	.loc 5 1371 12 discriminator 6
+	.loc 5 1598 12 discriminator 6
 	movl	$0, %eax
-	.loc 5 1372 1 discriminator 6
+	.loc 5 1599 1 discriminator 6
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4426:
+.LFE4428:
 	.seh_endproc
 .Letext0:
 	.file 6 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h"
@@ -7133,7 +7449,7 @@ Initialize_DivRem:
 	.file 35 "pmc_cpuid.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
-	.long	0x6ffe
+	.long	0x728d
 	.word	0x4
 	.secrel32	.Ldebug_abbrev0
 	.byte	0x8
@@ -11453,18 +11769,18 @@ Initialize_DivRem:
 	.uleb128 0x1f
 	.ascii "Initialize_DivRem\0"
 	.byte	0x5
-	.word	0x558
+	.word	0x63b
 	.byte	0x11
 	.long	0x4d38
-	.quad	.LFB4426
-	.quad	.LFE4426-.LFB4426
+	.quad	.LFB4428
+	.quad	.LFE4428-.LFB4428
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5124
 	.uleb128 0x20
 	.ascii "feature\0"
 	.byte	0x5
-	.word	0x558
+	.word	0x63b
 	.byte	0x37
 	.long	0x5124
 	.uleb128 0x2
@@ -11477,18 +11793,18 @@ Initialize_DivRem:
 	.uleb128 0x21
 	.ascii "PMC_DivRem_X_X\0"
 	.byte	0x5
-	.word	0x4bf
+	.word	0x5a2
 	.byte	0x11
 	.long	0x4d38
-	.quad	.LFB4425
-	.quad	.LFE4425-.LFB4425
+	.quad	.LFB4427
+	.quad	.LFE4427-.LFB4427
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x530c
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x5
-	.word	0x4bf
+	.word	0x5a2
 	.byte	0x27
 	.long	0x767
 	.uleb128 0x2
@@ -11497,7 +11813,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x5
-	.word	0x4bf
+	.word	0x5a2
 	.byte	0x31
 	.long	0x767
 	.uleb128 0x2
@@ -11506,7 +11822,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "q\0"
 	.byte	0x5
-	.word	0x4bf
+	.word	0x5a2
 	.byte	0x3c
 	.long	0x777
 	.uleb128 0x2
@@ -11515,7 +11831,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "r\0"
 	.byte	0x5
-	.word	0x4bf
+	.word	0x5a2
 	.byte	0x47
 	.long	0x777
 	.uleb128 0x2
@@ -11524,7 +11840,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "nu\0"
 	.byte	0x5
-	.word	0x4c9
+	.word	0x5ac
 	.byte	0x14
 	.long	0x530c
 	.uleb128 0x2
@@ -11533,7 +11849,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "nv\0"
 	.byte	0x5
-	.word	0x4ca
+	.word	0x5ad
 	.byte	0x14
 	.long	0x530c
 	.uleb128 0x2
@@ -11542,7 +11858,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF1
 	.byte	0x5
-	.word	0x4cb
+	.word	0x5ae
 	.byte	0x15
 	.long	0x4d38
 	.uleb128 0x2
@@ -11551,7 +11867,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "nq\0"
 	.byte	0x5
-	.word	0x4d7
+	.word	0x5ba
 	.byte	0x14
 	.long	0x530c
 	.uleb128 0x3
@@ -11560,19 +11876,19 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "nr\0"
 	.byte	0x5
-	.word	0x4d8
+	.word	0x5bb
 	.byte	0x14
 	.long	0x530c
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -112
 	.uleb128 0x24
-	.quad	.LBB47
-	.quad	.LBE47-.LBB47
+	.quad	.LBB51
+	.quad	.LBE51-.LBB51
 	.uleb128 0x23
 	.secrel32	.LASF2
 	.byte	0x5
-	.word	0x4f3
+	.word	0x5d6
 	.byte	0x19
 	.long	0x4ee0
 	.uleb128 0x2
@@ -11581,20 +11897,20 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF3
 	.byte	0x5
-	.word	0x4f4
+	.word	0x5d7
 	.byte	0x19
 	.long	0x4ee0
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x25
-	.quad	.LBB48
-	.quad	.LBE48-.LBB48
+	.quad	.LBB52
+	.quad	.LBE52-.LBB52
 	.long	0x5268
 	.uleb128 0x23
 	.secrel32	.LASF4
 	.byte	0x5
-	.word	0x502
+	.word	0x5e5
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x2
@@ -11603,7 +11919,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF5
 	.byte	0x5
-	.word	0x503
+	.word	0x5e6
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11612,7 +11928,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF6
 	.byte	0x5
-	.word	0x506
+	.word	0x5e9
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11621,7 +11937,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF7
 	.byte	0x5
-	.word	0x507
+	.word	0x5ea
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11629,12 +11945,12 @@ Initialize_DivRem:
 	.sleb128 -128
 	.byte	0
 	.uleb128 0x24
-	.quad	.LBB49
-	.quad	.LBE49-.LBB49
+	.quad	.LBB53
+	.quad	.LBE53-.LBB53
 	.uleb128 0x23
 	.secrel32	.LASF4
 	.byte	0x5
-	.word	0x522
+	.word	0x605
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11643,7 +11959,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF6
 	.byte	0x5
-	.word	0x523
+	.word	0x606
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11652,7 +11968,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF5
 	.byte	0x5
-	.word	0x524
+	.word	0x607
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11661,7 +11977,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF7
 	.byte	0x5
-	.word	0x527
+	.word	0x60a
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11670,7 +11986,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "work_v_buf_code\0"
 	.byte	0x5
-	.word	0x52d
+	.word	0x610
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11679,7 +11995,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "work_v_buf_words\0"
 	.byte	0x5
-	.word	0x52e
+	.word	0x611
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11688,7 +12004,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF8
 	.byte	0x5
-	.word	0x52f
+	.word	0x612
 	.byte	0x22
 	.long	0x50b2
 	.uleb128 0x3
@@ -11703,18 +12019,18 @@ Initialize_DivRem:
 	.uleb128 0x21
 	.ascii "PMC_DivRem_X_L\0"
 	.byte	0x5
-	.word	0x406
+	.word	0x4e9
 	.byte	0x11
 	.long	0x4d38
-	.quad	.LFB4424
-	.quad	.LFE4424-.LFB4424
+	.quad	.LFB4426
+	.quad	.LFE4426-.LFB4426
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5548
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x5
-	.word	0x406
+	.word	0x4e9
 	.byte	0x27
 	.long	0x767
 	.uleb128 0x2
@@ -11723,7 +12039,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x5
-	.word	0x406
+	.word	0x4e9
 	.byte	0x34
 	.long	0x4cb8
 	.uleb128 0x2
@@ -11732,7 +12048,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "q\0"
 	.byte	0x5
-	.word	0x406
+	.word	0x4e9
 	.byte	0x3f
 	.long	0x777
 	.uleb128 0x2
@@ -11741,7 +12057,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "r\0"
 	.byte	0x5
-	.word	0x406
+	.word	0x4e9
 	.byte	0x4d
 	.long	0x4dee
 	.uleb128 0x2
@@ -11750,7 +12066,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "nu\0"
 	.byte	0x5
-	.word	0x413
+	.word	0x4f6
 	.byte	0x14
 	.long	0x530c
 	.uleb128 0x2
@@ -11759,7 +12075,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF1
 	.byte	0x5
-	.word	0x414
+	.word	0x4f7
 	.byte	0x15
 	.long	0x4d38
 	.uleb128 0x2
@@ -11768,19 +12084,19 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "nq\0"
 	.byte	0x5
-	.word	0x41e
+	.word	0x501
 	.byte	0x14
 	.long	0x530c
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -72
 	.uleb128 0x24
-	.quad	.LBB44
-	.quad	.LBE44-.LBB44
+	.quad	.LBB48
+	.quad	.LBE48-.LBB48
 	.uleb128 0x23
 	.secrel32	.LASF2
 	.byte	0x5
-	.word	0x439
+	.word	0x51c
 	.byte	0x19
 	.long	0x4ee0
 	.uleb128 0x2
@@ -11791,13 +12107,13 @@ Initialize_DivRem:
 	.uleb128 0x27
 	.ascii "v_hi\0"
 	.byte	0x5
-	.word	0x43d
+	.word	0x520
 	.byte	0x1b
 	.long	0x4ca6
 	.uleb128 0x27
 	.ascii "v_lo\0"
 	.byte	0x5
-	.word	0x43e
+	.word	0x521
 	.byte	0x1b
 	.long	0x4ca6
 	.uleb128 0x26
@@ -11805,26 +12121,26 @@ Initialize_DivRem:
 	.uleb128 0x28
 	.secrel32	.LASF3
 	.byte	0x5
-	.word	0x442
+	.word	0x525
 	.byte	0x21
 	.long	0x4ee0
 	.uleb128 0x29
 	.uleb128 0x28
 	.secrel32	.LASF4
 	.byte	0x5
-	.word	0x44d
+	.word	0x530
 	.byte	0x25
 	.long	0x4ee0
 	.uleb128 0x28
 	.secrel32	.LASF5
 	.byte	0x5
-	.word	0x44e
+	.word	0x531
 	.byte	0x25
 	.long	0x4ee0
 	.uleb128 0x28
 	.secrel32	.LASF9
 	.byte	0x5
-	.word	0x451
+	.word	0x534
 	.byte	0x29
 	.long	0x4ef4
 	.byte	0
@@ -11833,7 +12149,7 @@ Initialize_DivRem:
 	.uleb128 0x28
 	.secrel32	.LASF3
 	.byte	0x5
-	.word	0x461
+	.word	0x544
 	.byte	0x21
 	.long	0x4ee0
 	.uleb128 0x26
@@ -11841,13 +12157,13 @@ Initialize_DivRem:
 	.uleb128 0x27
 	.ascii "r_lo\0"
 	.byte	0x5
-	.word	0x46c
+	.word	0x54f
 	.byte	0x29
 	.long	0x4ee0
 	.uleb128 0x27
 	.ascii "r_hi\0"
 	.byte	0x5
-	.word	0x46d
+	.word	0x550
 	.byte	0x29
 	.long	0x4ee0
 	.byte	0
@@ -11855,61 +12171,61 @@ Initialize_DivRem:
 	.uleb128 0x28
 	.secrel32	.LASF4
 	.byte	0x5
-	.word	0x473
+	.word	0x556
 	.byte	0x25
 	.long	0x4ee0
 	.uleb128 0x28
 	.secrel32	.LASF6
 	.byte	0x5
-	.word	0x474
+	.word	0x557
 	.byte	0x25
 	.long	0x4ee0
 	.uleb128 0x28
 	.secrel32	.LASF5
 	.byte	0x5
-	.word	0x475
+	.word	0x558
 	.byte	0x25
 	.long	0x4ee0
 	.uleb128 0x28
 	.secrel32	.LASF10
 	.byte	0x5
-	.word	0x478
+	.word	0x55b
 	.byte	0x29
 	.long	0x5548
 	.uleb128 0x28
 	.secrel32	.LASF8
 	.byte	0x5
-	.word	0x479
+	.word	0x55c
 	.byte	0x29
 	.long	0x5548
 	.uleb128 0x27
 	.ascii "r_buf_code\0"
 	.byte	0x5
-	.word	0x47a
+	.word	0x55d
 	.byte	0x25
 	.long	0x4ee0
 	.uleb128 0x27
 	.ascii "r_buf_words\0"
 	.byte	0x5
-	.word	0x47b
+	.word	0x55e
 	.byte	0x25
 	.long	0x4ee0
 	.uleb128 0x28
 	.secrel32	.LASF9
 	.byte	0x5
-	.word	0x47c
+	.word	0x55f
 	.byte	0x2a
 	.long	0x50b2
 	.byte	0
 	.byte	0
 	.byte	0
 	.uleb128 0x24
-	.quad	.LBB45
-	.quad	.LBE45-.LBB45
+	.quad	.LBB49
+	.quad	.LBE49-.LBB49
 	.uleb128 0x23
 	.secrel32	.LASF2
 	.byte	0x5
-	.word	0x497
+	.word	0x57a
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x2
@@ -11918,19 +12234,19 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF3
 	.byte	0x5
-	.word	0x498
+	.word	0x57b
 	.byte	0x1d
 	.long	0x4ee0
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x24
-	.quad	.LBB46
-	.quad	.LBE46-.LBB46
+	.quad	.LBB50
+	.quad	.LBE50-.LBB50
 	.uleb128 0x23
 	.secrel32	.LASF4
 	.byte	0x5
-	.word	0x4a3
+	.word	0x586
 	.byte	0x21
 	.long	0x4ee0
 	.uleb128 0x2
@@ -11939,7 +12255,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF5
 	.byte	0x5
-	.word	0x4a4
+	.word	0x587
 	.byte	0x21
 	.long	0x4ee0
 	.uleb128 0x3
@@ -11948,7 +12264,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF9
 	.byte	0x5
-	.word	0x4a7
+	.word	0x58a
 	.byte	0x25
 	.long	0x4ef4
 	.uleb128 0x3
@@ -11966,20 +12282,227 @@ Initialize_DivRem:
 	.byte	0x1
 	.byte	0
 	.uleb128 0x21
-	.ascii "PMC_DivRem_X_I\0"
+	.ascii "PMC_DivRem_L_X\0"
 	.byte	0x5
-	.word	0x3ad
+	.word	0x44f
 	.byte	0x11
 	.long	0x4d38
-	.quad	.LFB4423
-	.quad	.LFE4423-.LFB4423
+	.quad	.LFB4425
+	.quad	.LFE4425-.LFB4425
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5663
+	.long	0x5703
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x5
-	.word	0x3ad
+	.word	0x44f
+	.byte	0x2a
+	.long	0x4cb8
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 0
+	.uleb128 0x20
+	.ascii "v\0"
+	.byte	0x5
+	.word	0x44f
+	.byte	0x34
+	.long	0x767
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 8
+	.uleb128 0x20
+	.ascii "q\0"
+	.byte	0x5
+	.word	0x44f
+	.byte	0x42
+	.long	0x4dee
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 16
+	.uleb128 0x20
+	.ascii "r\0"
+	.byte	0x5
+	.word	0x44f
+	.byte	0x50
+	.long	0x4dee
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 24
+	.uleb128 0x22
+	.ascii "nv\0"
+	.byte	0x5
+	.word	0x45c
+	.byte	0x14
+	.long	0x530c
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -32
+	.uleb128 0x23
+	.secrel32	.LASF1
+	.byte	0x5
+	.word	0x45d
+	.byte	0x15
+	.long	0x4d38
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -20
+	.uleb128 0x26
+	.long	0x56ad
+	.uleb128 0x27
+	.ascii "u_hi\0"
+	.byte	0x5
+	.word	0x483
+	.byte	0x1b
+	.long	0x4ca6
+	.uleb128 0x27
+	.ascii "u_lo\0"
+	.byte	0x5
+	.word	0x484
+	.byte	0x1b
+	.long	0x4ca6
+	.uleb128 0x26
+	.long	0x562d
+	.uleb128 0x28
+	.secrel32	.LASF2
+	.byte	0x5
+	.word	0x488
+	.byte	0x21
+	.long	0x4ee0
+	.uleb128 0x28
+	.secrel32	.LASF3
+	.byte	0x5
+	.word	0x489
+	.byte	0x21
+	.long	0x4ee0
+	.uleb128 0x29
+	.uleb128 0x28
+	.secrel32	.LASF11
+	.byte	0x5
+	.word	0x497
+	.byte	0x29
+	.long	0x4ef4
+	.byte	0
+	.byte	0
+	.uleb128 0x29
+	.uleb128 0x28
+	.secrel32	.LASF2
+	.byte	0x5
+	.word	0x49f
+	.byte	0x21
+	.long	0x4ee0
+	.uleb128 0x28
+	.secrel32	.LASF3
+	.byte	0x5
+	.word	0x4a0
+	.byte	0x21
+	.long	0x4ee0
+	.uleb128 0x26
+	.long	0x5675
+	.uleb128 0x28
+	.secrel32	.LASF12
+	.byte	0x5
+	.word	0x4b1
+	.byte	0x2d
+	.long	0x5548
+	.uleb128 0x28
+	.secrel32	.LASF13
+	.byte	0x5
+	.word	0x4b2
+	.byte	0x2d
+	.long	0x5703
+	.uleb128 0x28
+	.secrel32	.LASF9
+	.byte	0x5
+	.word	0x4b3
+	.byte	0x2d
+	.long	0x4ef4
+	.byte	0
+	.uleb128 0x29
+	.uleb128 0x28
+	.secrel32	.LASF12
+	.byte	0x5
+	.word	0x4bf
+	.byte	0x2d
+	.long	0x5548
+	.uleb128 0x28
+	.secrel32	.LASF13
+	.byte	0x5
+	.word	0x4c0
+	.byte	0x2d
+	.long	0x5703
+	.uleb128 0x28
+	.secrel32	.LASF9
+	.byte	0x5
+	.word	0x4c1
+	.byte	0x2d
+	.long	0x5703
+	.uleb128 0x28
+	.secrel32	.LASF8
+	.byte	0x5
+	.word	0x4c2
+	.byte	0x2d
+	.long	0x5548
+	.byte	0
+	.byte	0
+	.byte	0
+	.uleb128 0x24
+	.quad	.LBB46
+	.quad	.LBE46-.LBB46
+	.uleb128 0x23
+	.secrel32	.LASF2
+	.byte	0x5
+	.word	0x4cf
+	.byte	0x1d
+	.long	0x4ee0
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -40
+	.uleb128 0x23
+	.secrel32	.LASF3
+	.byte	0x5
+	.word	0x4d0
+	.byte	0x1d
+	.long	0x4ee0
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -48
+	.uleb128 0x24
+	.quad	.LBB47
+	.quad	.LBE47-.LBB47
+	.uleb128 0x23
+	.secrel32	.LASF11
+	.byte	0x5
+	.word	0x4de
+	.byte	0x25
+	.long	0x4ef4
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -232
+	.byte	0
+	.byte	0
+	.byte	0
+	.uleb128 0xf
+	.long	0x4ef4
+	.long	0x5713
+	.uleb128 0x10
+	.long	0xd8
+	.byte	0x2
+	.byte	0
+	.uleb128 0x21
+	.ascii "PMC_DivRem_X_I\0"
+	.byte	0x5
+	.word	0x3f6
+	.byte	0x11
+	.long	0x4d38
+	.quad	.LFB4424
+	.quad	.LFE4424-.LFB4424
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x581e
+	.uleb128 0x20
+	.ascii "u\0"
+	.byte	0x5
+	.word	0x3f6
 	.byte	0x27
 	.long	0x767
 	.uleb128 0x2
@@ -11988,7 +12511,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x5
-	.word	0x3ad
+	.word	0x3f6
 	.byte	0x34
 	.long	0x4ca6
 	.uleb128 0x2
@@ -11997,7 +12520,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "q\0"
 	.byte	0x5
-	.word	0x3ad
+	.word	0x3f6
 	.byte	0x3f
 	.long	0x777
 	.uleb128 0x2
@@ -12006,7 +12529,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "r\0"
 	.byte	0x5
-	.word	0x3ad
+	.word	0x3f6
 	.byte	0x4d
 	.long	0x4de8
 	.uleb128 0x2
@@ -12014,6 +12537,134 @@ Initialize_DivRem:
 	.sleb128 24
 	.uleb128 0x22
 	.ascii "nu\0"
+	.byte	0x5
+	.word	0x403
+	.byte	0x14
+	.long	0x530c
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -24
+	.uleb128 0x23
+	.secrel32	.LASF1
+	.byte	0x5
+	.word	0x404
+	.byte	0x15
+	.long	0x4d38
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -28
+	.uleb128 0x22
+	.ascii "nq\0"
+	.byte	0x5
+	.word	0x40e
+	.byte	0x14
+	.long	0x530c
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -64
+	.uleb128 0x24
+	.quad	.LBB44
+	.quad	.LBE44-.LBB44
+	.uleb128 0x23
+	.secrel32	.LASF2
+	.byte	0x5
+	.word	0x429
+	.byte	0x19
+	.long	0x4ee0
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -40
+	.uleb128 0x23
+	.secrel32	.LASF3
+	.byte	0x5
+	.word	0x42a
+	.byte	0x19
+	.long	0x4ee0
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -48
+	.uleb128 0x24
+	.quad	.LBB45
+	.quad	.LBE45-.LBB45
+	.uleb128 0x23
+	.secrel32	.LASF4
+	.byte	0x5
+	.word	0x435
+	.byte	0x1d
+	.long	0x4ee0
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -56
+	.uleb128 0x23
+	.secrel32	.LASF5
+	.byte	0x5
+	.word	0x436
+	.byte	0x1d
+	.long	0x4ee0
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -72
+	.uleb128 0x23
+	.secrel32	.LASF9
+	.byte	0x5
+	.word	0x439
+	.byte	0x21
+	.long	0x4ef4
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -80
+	.byte	0
+	.byte	0
+	.byte	0
+	.uleb128 0x21
+	.ascii "PMC_DivRem_I_X\0"
+	.byte	0x5
+	.word	0x3ad
+	.byte	0x11
+	.long	0x4d38
+	.quad	.LFB4423
+	.quad	.LFE4423-.LFB4423
+	.uleb128 0x1
+	.byte	0x9c
+	.long	0x58f8
+	.uleb128 0x20
+	.ascii "u\0"
+	.byte	0x5
+	.word	0x3ad
+	.byte	0x2a
+	.long	0x4ca6
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 0
+	.uleb128 0x20
+	.ascii "v\0"
+	.byte	0x5
+	.word	0x3ad
+	.byte	0x34
+	.long	0x767
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 8
+	.uleb128 0x20
+	.ascii "q\0"
+	.byte	0x5
+	.word	0x3ad
+	.byte	0x42
+	.long	0x4de8
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 16
+	.uleb128 0x20
+	.ascii "r\0"
+	.byte	0x5
+	.word	0x3ad
+	.byte	0x50
+	.long	0x4de8
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 24
+	.uleb128 0x22
+	.ascii "nv\0"
 	.byte	0x5
 	.word	0x3ba
 	.byte	0x14
@@ -12030,22 +12681,13 @@ Initialize_DivRem:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -28
-	.uleb128 0x22
-	.ascii "nq\0"
-	.byte	0x5
-	.word	0x3c5
-	.byte	0x14
-	.long	0x530c
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -64
 	.uleb128 0x24
 	.quad	.LBB42
 	.quad	.LBE42-.LBB42
 	.uleb128 0x23
 	.secrel32	.LASF2
 	.byte	0x5
-	.word	0x3e0
+	.word	0x3de
 	.byte	0x19
 	.long	0x4ee0
 	.uleb128 0x2
@@ -12054,7 +12696,7 @@ Initialize_DivRem:
 	.uleb128 0x23
 	.secrel32	.LASF3
 	.byte	0x5
-	.word	0x3e1
+	.word	0x3df
 	.byte	0x19
 	.long	0x4ee0
 	.uleb128 0x2
@@ -12064,32 +12706,14 @@ Initialize_DivRem:
 	.quad	.LBB43
 	.quad	.LBE43-.LBB43
 	.uleb128 0x23
-	.secrel32	.LASF4
+	.secrel32	.LASF11
 	.byte	0x5
-	.word	0x3ec
-	.byte	0x1d
-	.long	0x4ee0
+	.word	0x3ed
+	.byte	0x21
+	.long	0x4ef4
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
-	.uleb128 0x23
-	.secrel32	.LASF5
-	.byte	0x5
-	.word	0x3ed
-	.byte	0x1d
-	.long	0x4ee0
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -72
-	.uleb128 0x23
-	.secrel32	.LASF9
-	.byte	0x5
-	.word	0x3f0
-	.byte	0x21
-	.long	0x4ef4
-	.uleb128 0x3
-	.byte	0x91
-	.sleb128 -80
 	.byte	0
 	.byte	0
 	.byte	0
@@ -12102,9 +12726,9 @@ Initialize_DivRem:
 	.quad	.LFE4422-.LFB4422
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5750
+	.long	0x59e3
 	.uleb128 0x2b
-	.secrel32	.LASF11
+	.secrel32	.LASF12
 	.byte	0x5
 	.word	0x375
 	.byte	0x38
@@ -12113,7 +12737,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x2b
-	.secrel32	.LASF12
+	.secrel32	.LASF14
 	.byte	0x5
 	.word	0x375
 	.byte	0x4b
@@ -12131,7 +12755,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x2b
-	.secrel32	.LASF13
+	.secrel32	.LASF15
 	.byte	0x5
 	.word	0x375
 	.byte	0x7a
@@ -12148,8 +12772,8 @@ Initialize_DivRem:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 32
-	.uleb128 0x20
-	.ascii "q_buf\0"
+	.uleb128 0x2b
+	.secrel32	.LASF13
 	.byte	0x5
 	.word	0x375
 	.byte	0xb3
@@ -12167,7 +12791,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 48
 	.uleb128 0x23
-	.secrel32	.LASF14
+	.secrel32	.LASF16
 	.byte	0x5
 	.word	0x387
 	.byte	0x15
@@ -12176,7 +12800,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0x23
-	.secrel32	.LASF15
+	.secrel32	.LASF17
 	.byte	0x5
 	.word	0x394
 	.byte	0x16
@@ -12185,7 +12809,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x23
-	.secrel32	.LASF16
+	.secrel32	.LASF18
 	.byte	0x5
 	.word	0x395
 	.byte	0x11
@@ -12215,9 +12839,9 @@ Initialize_DivRem:
 	.quad	.LFE4421-.LFB4421
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x583c
+	.long	0x5acd
 	.uleb128 0x2b
-	.secrel32	.LASF11
+	.secrel32	.LASF12
 	.byte	0x5
 	.word	0x33d
 	.byte	0x37
@@ -12226,7 +12850,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x2b
-	.secrel32	.LASF12
+	.secrel32	.LASF14
 	.byte	0x5
 	.word	0x33d
 	.byte	0x4a
@@ -12244,7 +12868,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x2b
-	.secrel32	.LASF13
+	.secrel32	.LASF15
 	.byte	0x5
 	.word	0x33d
 	.byte	0x79
@@ -12261,8 +12885,8 @@ Initialize_DivRem:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 32
-	.uleb128 0x20
-	.ascii "q_buf\0"
+	.uleb128 0x2b
+	.secrel32	.LASF13
 	.byte	0x5
 	.word	0x33d
 	.byte	0xb2
@@ -12280,7 +12904,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 48
 	.uleb128 0x23
-	.secrel32	.LASF14
+	.secrel32	.LASF16
 	.byte	0x5
 	.word	0x34f
 	.byte	0x15
@@ -12289,7 +12913,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0x23
-	.secrel32	.LASF15
+	.secrel32	.LASF17
 	.byte	0x5
 	.word	0x35c
 	.byte	0x16
@@ -12298,7 +12922,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x23
-	.secrel32	.LASF16
+	.secrel32	.LASF18
 	.byte	0x5
 	.word	0x35d
 	.byte	0x11
@@ -12328,9 +12952,9 @@ Initialize_DivRem:
 	.quad	.LFE4420-.LFB4420
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5902
+	.long	0x5b93
 	.uleb128 0x2b
-	.secrel32	.LASF11
+	.secrel32	.LASF12
 	.byte	0x5
 	.word	0x2fb
 	.byte	0x2a
@@ -12339,7 +12963,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x2b
-	.secrel32	.LASF12
+	.secrel32	.LASF14
 	.byte	0x5
 	.word	0x2fb
 	.byte	0x3d
@@ -12357,7 +12981,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x2b
-	.secrel32	.LASF13
+	.secrel32	.LASF15
 	.byte	0x5
 	.word	0x2fb
 	.byte	0x6c
@@ -12366,7 +12990,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 24
 	.uleb128 0x2b
-	.secrel32	.LASF16
+	.secrel32	.LASF18
 	.byte	0x5
 	.word	0x2fb
 	.byte	0x83
@@ -12375,7 +12999,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 32
 	.uleb128 0x23
-	.secrel32	.LASF17
+	.secrel32	.LASF19
 	.byte	0x5
 	.word	0x2fd
 	.byte	0x16
@@ -12384,7 +13008,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x23
-	.secrel32	.LASF18
+	.secrel32	.LASF20
 	.byte	0x5
 	.word	0x2fe
 	.byte	0x16
@@ -12393,7 +13017,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x23
-	.secrel32	.LASF19
+	.secrel32	.LASF21
 	.byte	0x5
 	.word	0x2ff
 	.byte	0x11
@@ -12411,7 +13035,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -33
 	.uleb128 0x23
-	.secrel32	.LASF20
+	.secrel32	.LASF22
 	.byte	0x5
 	.word	0x303
 	.byte	0x11
@@ -12429,9 +13053,9 @@ Initialize_DivRem:
 	.quad	.LFE4419-.LFB4419
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x59c7
+	.long	0x5c58
 	.uleb128 0x2b
-	.secrel32	.LASF11
+	.secrel32	.LASF12
 	.byte	0x5
 	.word	0x2b9
 	.byte	0x29
@@ -12440,7 +13064,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x2b
-	.secrel32	.LASF12
+	.secrel32	.LASF14
 	.byte	0x5
 	.word	0x2b9
 	.byte	0x3c
@@ -12458,7 +13082,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x2b
-	.secrel32	.LASF13
+	.secrel32	.LASF15
 	.byte	0x5
 	.word	0x2b9
 	.byte	0x6b
@@ -12467,7 +13091,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 24
 	.uleb128 0x2b
-	.secrel32	.LASF16
+	.secrel32	.LASF18
 	.byte	0x5
 	.word	0x2b9
 	.byte	0x82
@@ -12476,7 +13100,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 32
 	.uleb128 0x23
-	.secrel32	.LASF17
+	.secrel32	.LASF19
 	.byte	0x5
 	.word	0x2bb
 	.byte	0x16
@@ -12485,7 +13109,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x23
-	.secrel32	.LASF18
+	.secrel32	.LASF20
 	.byte	0x5
 	.word	0x2bc
 	.byte	0x16
@@ -12494,7 +13118,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x23
-	.secrel32	.LASF19
+	.secrel32	.LASF21
 	.byte	0x5
 	.word	0x2bd
 	.byte	0x11
@@ -12512,7 +13136,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -33
 	.uleb128 0x23
-	.secrel32	.LASF20
+	.secrel32	.LASF22
 	.byte	0x5
 	.word	0x2c1
 	.byte	0x11
@@ -12530,7 +13154,7 @@ Initialize_DivRem:
 	.quad	.LFE4418-.LFB4418
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5a19
+	.long	0x5caa
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x5
@@ -12541,7 +13165,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x2b
-	.secrel32	.LASF17
+	.secrel32	.LASF19
 	.byte	0x5
 	.word	0x29c
 	.byte	0x2e
@@ -12550,7 +13174,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x2b
-	.secrel32	.LASF21
+	.secrel32	.LASF23
 	.byte	0x5
 	.word	0x29c
 	.byte	0x41
@@ -12569,9 +13193,9 @@ Initialize_DivRem:
 	.quad	.LFE4417-.LFB4417
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5b05
+	.long	0x5d96
 	.uleb128 0x2b
-	.secrel32	.LASF11
+	.secrel32	.LASF12
 	.byte	0x5
 	.word	0x205
 	.byte	0x2f
@@ -12580,7 +13204,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x2b
-	.secrel32	.LASF12
+	.secrel32	.LASF14
 	.byte	0x5
 	.word	0x205
 	.byte	0x42
@@ -12598,7 +13222,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x2b
-	.secrel32	.LASF13
+	.secrel32	.LASF15
 	.byte	0x5
 	.word	0x205
 	.byte	0x71
@@ -12607,7 +13231,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 24
 	.uleb128 0x2b
-	.secrel32	.LASF16
+	.secrel32	.LASF18
 	.byte	0x5
 	.word	0x205
 	.byte	0x88
@@ -12625,7 +13249,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 40
 	.uleb128 0x23
-	.secrel32	.LASF17
+	.secrel32	.LASF19
 	.byte	0x5
 	.word	0x207
 	.byte	0x16
@@ -12634,7 +13258,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x23
-	.secrel32	.LASF18
+	.secrel32	.LASF20
 	.byte	0x5
 	.word	0x208
 	.byte	0x16
@@ -12643,7 +13267,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x23
-	.secrel32	.LASF19
+	.secrel32	.LASF21
 	.byte	0x5
 	.word	0x209
 	.byte	0x11
@@ -12670,7 +13294,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -33
 	.uleb128 0x23
-	.secrel32	.LASF20
+	.secrel32	.LASF22
 	.byte	0x5
 	.word	0x20d
 	.byte	0x11
@@ -12689,9 +13313,9 @@ Initialize_DivRem:
 	.quad	.LFE4416-.LFB4416
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5bf0
+	.long	0x5e81
 	.uleb128 0x2b
-	.secrel32	.LASF11
+	.secrel32	.LASF12
 	.byte	0x5
 	.word	0x16e
 	.byte	0x2e
@@ -12700,7 +13324,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x2b
-	.secrel32	.LASF12
+	.secrel32	.LASF14
 	.byte	0x5
 	.word	0x16e
 	.byte	0x41
@@ -12718,7 +13342,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x2b
-	.secrel32	.LASF13
+	.secrel32	.LASF15
 	.byte	0x5
 	.word	0x16e
 	.byte	0x70
@@ -12727,7 +13351,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 24
 	.uleb128 0x2b
-	.secrel32	.LASF16
+	.secrel32	.LASF18
 	.byte	0x5
 	.word	0x16e
 	.byte	0x87
@@ -12745,7 +13369,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 40
 	.uleb128 0x23
-	.secrel32	.LASF17
+	.secrel32	.LASF19
 	.byte	0x5
 	.word	0x170
 	.byte	0x16
@@ -12754,7 +13378,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x23
-	.secrel32	.LASF18
+	.secrel32	.LASF20
 	.byte	0x5
 	.word	0x171
 	.byte	0x16
@@ -12763,7 +13387,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x23
-	.secrel32	.LASF19
+	.secrel32	.LASF21
 	.byte	0x5
 	.word	0x172
 	.byte	0x11
@@ -12790,7 +13414,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -33
 	.uleb128 0x23
-	.secrel32	.LASF20
+	.secrel32	.LASF22
 	.byte	0x5
 	.word	0x176
 	.byte	0x11
@@ -12809,7 +13433,7 @@ Initialize_DivRem:
 	.quad	.LFE4415-.LFB4415
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5c95
+	.long	0x5f26
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x5
@@ -12884,7 +13508,7 @@ Initialize_DivRem:
 	.quad	.LFE4414-.LFB4414
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5d39
+	.long	0x5fca
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x5
@@ -12959,7 +13583,7 @@ Initialize_DivRem:
 	.quad	.LFE4413-.LFB4413
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5d9d
+	.long	0x602e
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x5
@@ -12988,7 +13612,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x2b
-	.secrel32	.LASF21
+	.secrel32	.LASF23
 	.byte	0x5
 	.word	0x12f
 	.byte	0x52
@@ -13007,9 +13631,9 @@ Initialize_DivRem:
 	.quad	.LFE4412-.LFB4412
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5e7d
+	.long	0x610e
 	.uleb128 0x2b
-	.secrel32	.LASF11
+	.secrel32	.LASF12
 	.byte	0x5
 	.word	0x11d
 	.byte	0x36
@@ -13027,7 +13651,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x2b
-	.secrel32	.LASF13
+	.secrel32	.LASF15
 	.byte	0x5
 	.word	0x11d
 	.byte	0x61
@@ -13036,7 +13660,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x2b
-	.secrel32	.LASF16
+	.secrel32	.LASF18
 	.byte	0x5
 	.word	0x11d
 	.byte	0x78
@@ -13118,9 +13742,9 @@ Initialize_DivRem:
 	.quad	.LFE4411-.LFB4411
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5f5c
+	.long	0x61ed
 	.uleb128 0x2b
-	.secrel32	.LASF11
+	.secrel32	.LASF12
 	.byte	0x5
 	.word	0x10b
 	.byte	0x3e
@@ -13138,7 +13762,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x2b
-	.secrel32	.LASF13
+	.secrel32	.LASF15
 	.byte	0x5
 	.word	0x10b
 	.byte	0x69
@@ -13147,7 +13771,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x2b
-	.secrel32	.LASF16
+	.secrel32	.LASF18
 	.byte	0x5
 	.word	0x10b
 	.byte	0x80
@@ -13229,7 +13853,7 @@ Initialize_DivRem:
 	.quad	.LFE4410-.LFB4410
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6054
+	.long	0x62e5
 	.uleb128 0x2f
 	.ascii "q_\0"
 	.byte	0x5
@@ -13358,7 +13982,7 @@ Initialize_DivRem:
 	.quad	.LFE4409-.LFB4409
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x614b
+	.long	0x63dc
 	.uleb128 0x2f
 	.ascii "q_\0"
 	.byte	0x5
@@ -13487,7 +14111,7 @@ Initialize_DivRem:
 	.quad	.LFE4408-.LFB4408
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x61b8
+	.long	0x6449
 	.uleb128 0x2f
 	.ascii "uj\0"
 	.byte	0x5
@@ -13543,9 +14167,9 @@ Initialize_DivRem:
 	.quad	.LFE4407-.LFB4407
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6271
+	.long	0x6500
 	.uleb128 0x31
-	.secrel32	.LASF11
+	.secrel32	.LASF12
 	.byte	0x5
 	.byte	0x29
 	.byte	0x23
@@ -13554,7 +14178,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x31
-	.secrel32	.LASF12
+	.secrel32	.LASF14
 	.byte	0x5
 	.byte	0x29
 	.byte	0x36
@@ -13571,8 +14195,8 @@ Initialize_DivRem:
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
-	.uleb128 0x2f
-	.ascii "q_buf\0"
+	.uleb128 0x31
+	.secrel32	.LASF13
 	.byte	0x5
 	.byte	0x29
 	.byte	0x65
@@ -13608,7 +14232,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x32
-	.secrel32	.LASF21
+	.secrel32	.LASF23
 	.byte	0x5
 	.byte	0x2e
 	.byte	0x11
@@ -13626,7 +14250,7 @@ Initialize_DivRem:
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0x32
-	.secrel32	.LASF20
+	.secrel32	.LASF22
 	.byte	0x5
 	.byte	0x39
 	.byte	0x11
@@ -13645,7 +14269,7 @@ Initialize_DivRem:
 	.quad	.LFE4404-.LFB4404
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x62e1
+	.long	0x6570
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -13693,7 +14317,7 @@ Initialize_DivRem:
 	.quad	.LFE4403-.LFB4403
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6350
+	.long	0x65df
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -13741,7 +14365,7 @@ Initialize_DivRem:
 	.quad	.LFE4396-.LFB4396
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x63c0
+	.long	0x664f
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -13789,7 +14413,7 @@ Initialize_DivRem:
 	.quad	.LFE4395-.LFB4395
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x642f
+	.long	0x66be
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -13837,7 +14461,7 @@ Initialize_DivRem:
 	.quad	.LFE4388-.LFB4388
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x649f
+	.long	0x672e
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -13885,7 +14509,7 @@ Initialize_DivRem:
 	.quad	.LFE4387-.LFB4387
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x650e
+	.long	0x679d
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -13933,7 +14557,7 @@ Initialize_DivRem:
 	.quad	.LFE4380-.LFB4380
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x657f
+	.long	0x680e
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -13981,7 +14605,7 @@ Initialize_DivRem:
 	.quad	.LFE4379-.LFB4379
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x65ef
+	.long	0x687e
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -14029,7 +14653,7 @@ Initialize_DivRem:
 	.quad	.LFE4372-.LFB4372
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6660
+	.long	0x68ef
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -14077,7 +14701,7 @@ Initialize_DivRem:
 	.quad	.LFE4371-.LFB4371
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x66d0
+	.long	0x695f
 	.uleb128 0x20
 	.ascii "c\0"
 	.byte	0x4
@@ -14118,36 +14742,36 @@ Initialize_DivRem:
 	.uleb128 0x34
 	.ascii "AddToMULTI64Counter\0"
 	.byte	0x1
-	.word	0x3f0
+	.word	0x404
 	.byte	0x16
 	.quad	.LFB4366
 	.quad	.LFE4366-.LFB4366
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x673c
+	.long	0x69cb
 	.uleb128 0x20
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x3f0
+	.word	0x404
 	.byte	0x33
 	.long	0x4c95
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x35
-	.long	0x6f6e
+	.long	0x71fd
 	.quad	.LBB36
 	.quad	.LBE36-.LBB36
 	.byte	0x1
-	.word	0x3f2
+	.word	0x406
 	.byte	0x5
 	.uleb128 0x36
-	.long	0x6fa4
+	.long	0x7233
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -28
 	.uleb128 0x36
-	.long	0x6f94
+	.long	0x7223
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -14156,36 +14780,36 @@ Initialize_DivRem:
 	.uleb128 0x34
 	.ascii "AddToDIV64Counter\0"
 	.byte	0x1
-	.word	0x3e4
+	.word	0x3f8
 	.byte	0x16
 	.quad	.LFB4364
 	.quad	.LFE4364-.LFB4364
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x67a6
+	.long	0x6a35
 	.uleb128 0x20
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x3e4
+	.word	0x3f8
 	.byte	0x31
 	.long	0x4c95
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x35
-	.long	0x6f6e
+	.long	0x71fd
 	.quad	.LBB34
 	.quad	.LBE34-.LBB34
 	.byte	0x1
-	.word	0x3e6
+	.word	0x3fa
 	.byte	0x5
 	.uleb128 0x36
-	.long	0x6fa4
+	.long	0x7233
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -28
 	.uleb128 0x36
-	.long	0x6f94
+	.long	0x7223
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -14194,22 +14818,22 @@ Initialize_DivRem:
 	.uleb128 0x34
 	.ascii "IncrementMULTI64Counter\0"
 	.byte	0x1
-	.word	0x3d9
+	.word	0x3ed
 	.byte	0x16
 	.quad	.LFB4362
 	.quad	.LFE4362-.LFB4362
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x67fc
+	.long	0x6a8b
 	.uleb128 0x35
-	.long	0x6f33
+	.long	0x71c2
 	.quad	.LBB32
 	.quad	.LBE32-.LBB32
 	.byte	0x1
-	.word	0x3db
+	.word	0x3ef
 	.byte	0x5
 	.uleb128 0x36
-	.long	0x6f57
+	.long	0x71e6
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -14218,22 +14842,22 @@ Initialize_DivRem:
 	.uleb128 0x34
 	.ascii "IncrementDIV64Counter\0"
 	.byte	0x1
-	.word	0x3cd
+	.word	0x3e1
 	.byte	0x16
 	.quad	.LFB4360
 	.quad	.LFE4360-.LFB4360
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6850
+	.long	0x6adf
 	.uleb128 0x35
-	.long	0x6f33
+	.long	0x71c2
 	.quad	.LBB30
 	.quad	.LBE30-.LBB30
 	.byte	0x1
-	.word	0x3cf
+	.word	0x3e3
 	.byte	0x5
 	.uleb128 0x36
-	.long	0x6f57
+	.long	0x71e6
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -14242,18 +14866,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_LZCNT_ALT_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x377
+	.word	0x38b
 	.byte	0x21
 	.long	0x4ef4
 	.quad	.LFB4355
 	.quad	.LFE4355-.LFB4355
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x68a2
+	.long	0x6b31
 	.uleb128 0x20
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x377
+	.word	0x38b
 	.byte	0x45
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14262,7 +14886,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x389
+	.word	0x39d
 	.byte	0xf
 	.long	0x4cb8
 	.uleb128 0x2
@@ -14272,18 +14896,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_LZCNT_ALT_UNIT\0"
 	.byte	0x1
-	.word	0x35a
+	.word	0x36e
 	.byte	0x1d
 	.long	0x4ee0
 	.quad	.LFB4354
 	.quad	.LFE4354-.LFB4354
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x68f0
+	.long	0x6b7f
 	.uleb128 0x20
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x35a
+	.word	0x36e
 	.byte	0x39
 	.long	0x4ee0
 	.uleb128 0x2
@@ -14292,7 +14916,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x36c
+	.word	0x380
 	.byte	0xf
 	.long	0x4cb8
 	.uleb128 0x2
@@ -14302,18 +14926,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_LZCNT_ALT_32\0"
 	.byte	0x1
-	.word	0x339
+	.word	0x34d
 	.byte	0x1b
 	.long	0x4ca6
 	.quad	.LFB4352
 	.quad	.LFE4352-.LFB4352
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x693c
+	.long	0x6bcb
 	.uleb128 0x20
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x339
+	.word	0x34d
 	.byte	0x33
 	.long	0x4ca6
 	.uleb128 0x2
@@ -14322,7 +14946,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x33d
+	.word	0x351
 	.byte	0xf
 	.long	0x4ca6
 	.uleb128 0x2
@@ -14332,18 +14956,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_DIVREM_SINGLE_UNIT\0"
 	.byte	0x1
-	.word	0x291
+	.word	0x2a5
 	.byte	0x21
 	.long	0x4ef4
 	.quad	.LFB4341
 	.quad	.LFE4341-.LFB4341
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x69a8
+	.long	0x6c37
 	.uleb128 0x20
 	.ascii "r\0"
 	.byte	0x1
-	.word	0x291
+	.word	0x2a5
 	.byte	0x45
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14352,7 +14976,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x291
+	.word	0x2a5
 	.byte	0x58
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14361,7 +14985,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x291
+	.word	0x2a5
 	.byte	0x6b
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14370,7 +14994,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "q\0"
 	.byte	0x1
-	.word	0x291
+	.word	0x2a5
 	.byte	0x7f
 	.long	0x50b2
 	.uleb128 0x2
@@ -14380,18 +15004,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_DIVREM_UNIT\0"
 	.byte	0x1
-	.word	0x265
+	.word	0x279
 	.byte	0x21
 	.long	0x4ef4
 	.quad	.LFB4340
 	.quad	.LFE4340-.LFB4340
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6a24
+	.long	0x6cb3
 	.uleb128 0x20
 	.ascii "u_high\0"
 	.byte	0x1
-	.word	0x265
+	.word	0x279
 	.byte	0x3e
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14400,7 +15024,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "u_low\0"
 	.byte	0x1
-	.word	0x265
+	.word	0x279
 	.byte	0x56
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14409,7 +15033,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x265
+	.word	0x279
 	.byte	0x6d
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14418,7 +15042,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "r\0"
 	.byte	0x1
-	.word	0x265
+	.word	0x279
 	.byte	0x81
 	.long	0x50b2
 	.uleb128 0x2
@@ -14427,7 +15051,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "q\0"
 	.byte	0x1
-	.word	0x27f
+	.word	0x293
 	.byte	0x11
 	.long	0x4ee0
 	.uleb128 0x2
@@ -14437,18 +15061,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_MULTIPLYX_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x24f
+	.word	0x263
 	.byte	0x21
 	.long	0x4ef4
 	.quad	.LFB4339
 	.quad	.LFE4339-.LFB4339
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6a96
+	.long	0x6d25
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x24f
+	.word	0x263
 	.byte	0x45
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14457,7 +15081,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x24f
+	.word	0x263
 	.byte	0x58
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14466,7 +15090,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "w_hi\0"
 	.byte	0x1
-	.word	0x24f
+	.word	0x263
 	.byte	0x6c
 	.long	0x50b2
 	.uleb128 0x2
@@ -14475,7 +15099,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "w_lo\0"
 	.byte	0x1
-	.word	0x259
+	.word	0x26d
 	.byte	0xf
 	.long	0x4cb8
 	.uleb128 0x2
@@ -14485,18 +15109,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_MULTIPLY_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x221
+	.word	0x235
 	.byte	0x21
 	.long	0x4ef4
 	.quad	.LFB4337
 	.quad	.LFE4337-.LFB4337
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6b43
+	.long	0x6dd2
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x221
+	.word	0x235
 	.byte	0x44
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14505,7 +15129,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x221
+	.word	0x235
 	.byte	0x57
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14514,31 +15138,31 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "w_hi\0"
 	.byte	0x1
-	.word	0x221
+	.word	0x235
 	.byte	0x6b
 	.long	0x50b2
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x35
-	.long	0x6dcc
+	.long	0x705b
 	.quad	.LBB28
 	.quad	.LBE28-.LBB28
 	.byte	0x1
-	.word	0x22b
+	.word	0x23f
 	.byte	0xd
 	.uleb128 0x36
-	.long	0x6df9
+	.long	0x7088
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x36
-	.long	0x6dee
+	.long	0x707d
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x36
-	.long	0x6de3
+	.long	0x7072
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -14546,7 +15170,7 @@ Initialize_DivRem:
 	.quad	.LBB29
 	.quad	.LBE29-.LBB29
 	.uleb128 0x37
-	.long	0x6e27
+	.long	0x70b6
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -80
@@ -14556,18 +15180,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_SUBTRUCT_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x1fd
+	.word	0x211
 	.byte	0x16
 	.long	0xc1
 	.quad	.LFB4335
 	.quad	.LFE4335-.LFB4335
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6bed
+	.long	0x6e7c
 	.uleb128 0x20
 	.ascii "borrow\0"
 	.byte	0x1
-	.word	0x1fd
+	.word	0x211
 	.byte	0x2e
 	.long	0xc1
 	.uleb128 0x2
@@ -14576,7 +15200,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x1fd
+	.word	0x211
 	.byte	0x46
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14585,7 +15209,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x1fd
+	.word	0x211
 	.byte	0x59
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14594,36 +15218,36 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "w\0"
 	.byte	0x1
-	.word	0x1fd
+	.word	0x211
 	.byte	0x6d
 	.long	0x50b2
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
 	.uleb128 0x35
-	.long	0x6ee5
+	.long	0x7174
 	.quad	.LBB26
 	.quad	.LBE26-.LBB26
 	.byte	0x1
-	.word	0x205
+	.word	0x219
 	.byte	0xd
 	.uleb128 0x36
-	.long	0x6f26
+	.long	0x71b5
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x36
-	.long	0x6f1a
+	.long	0x71a9
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0x36
-	.long	0x6f0e
+	.long	0x719d
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x36
-	.long	0x6f01
+	.long	0x7190
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -17
@@ -14632,18 +15256,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_ADDX_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x1e1
+	.word	0x1f5
 	.byte	0x16
 	.long	0xc1
 	.quad	.LFB4333
 	.quad	.LFE4333-.LFB4333
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6c92
+	.long	0x6f21
 	.uleb128 0x20
 	.ascii "carry\0"
 	.byte	0x1
-	.word	0x1e1
+	.word	0x1f5
 	.byte	0x2a
 	.long	0xc1
 	.uleb128 0x2
@@ -14652,7 +15276,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x1e1
+	.word	0x1f5
 	.byte	0x41
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14661,7 +15285,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x1e1
+	.word	0x1f5
 	.byte	0x54
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14670,36 +15294,36 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "w\0"
 	.byte	0x1
-	.word	0x1e1
+	.word	0x1f5
 	.byte	0x68
 	.long	0x50b2
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
 	.uleb128 0x35
-	.long	0x6e4a
+	.long	0x70d9
 	.quad	.LBB24
 	.quad	.LBE24-.LBB24
 	.byte	0x1
-	.word	0x1e9
+	.word	0x1fd
 	.byte	0xd
 	.uleb128 0x36
-	.long	0x6e8b
+	.long	0x711a
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x36
-	.long	0x6e7f
+	.long	0x710e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0x36
-	.long	0x6e73
+	.long	0x7102
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x36
-	.long	0x6e66
+	.long	0x70f5
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -17
@@ -14708,18 +15332,18 @@ Initialize_DivRem:
 	.uleb128 0x33
 	.ascii "_ADD_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x1c5
+	.word	0x1d9
 	.byte	0x16
 	.long	0xc1
 	.quad	.LFB4331
 	.quad	.LFE4331-.LFB4331
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6d36
+	.long	0x6fc5
 	.uleb128 0x20
 	.ascii "carry\0"
 	.byte	0x1
-	.word	0x1c5
+	.word	0x1d9
 	.byte	0x29
 	.long	0xc1
 	.uleb128 0x2
@@ -14728,7 +15352,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x1c5
+	.word	0x1d9
 	.byte	0x40
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14737,7 +15361,7 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x1c5
+	.word	0x1d9
 	.byte	0x53
 	.long	0x4ef4
 	.uleb128 0x2
@@ -14746,36 +15370,36 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "w\0"
 	.byte	0x1
-	.word	0x1c5
+	.word	0x1d9
 	.byte	0x67
 	.long	0x50b2
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
 	.uleb128 0x35
-	.long	0x6e98
+	.long	0x7127
 	.quad	.LBB22
 	.quad	.LBE22-.LBB22
 	.byte	0x1
-	.word	0x1cd
+	.word	0x1e1
 	.byte	0xd
 	.uleb128 0x36
-	.long	0x6ed8
+	.long	0x7167
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x36
-	.long	0x6ecc
+	.long	0x715b
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0x36
-	.long	0x6ec0
+	.long	0x714f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x36
-	.long	0x6eb3
+	.long	0x7142
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -17
@@ -14784,17 +15408,17 @@ Initialize_DivRem:
 	.uleb128 0x34
 	.ascii "_COPY_MEMORY_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x132
+	.word	0x146
 	.byte	0x16
 	.quad	.LFB4311
 	.quad	.LFE4311-.LFB4311
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6dc6
+	.long	0x7055
 	.uleb128 0x20
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x132
+	.word	0x146
 	.byte	0x3d
 	.long	0x50b2
 	.uleb128 0x2
@@ -14803,40 +15427,40 @@ Initialize_DivRem:
 	.uleb128 0x20
 	.ascii "s\0"
 	.byte	0x1
-	.word	0x132
+	.word	0x146
 	.byte	0x57
-	.long	0x6dc6
+	.long	0x7055
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x2b
-	.secrel32	.LASF20
+	.secrel32	.LASF22
 	.byte	0x1
-	.word	0x132
+	.word	0x146
 	.byte	0x66
 	.long	0x4ee0
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x35
-	.long	0x6fb4
+	.long	0x7243
 	.quad	.LBB20
 	.quad	.LBE20-.LBB20
 	.byte	0x1
-	.word	0x13a
+	.word	0x14e
 	.byte	0x5
 	.uleb128 0x36
-	.long	0x6feb
+	.long	0x727a
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x36
-	.long	0x6fdb
+	.long	0x726a
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x36
-	.long	0x6fc6
+	.long	0x7255
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -14852,7 +15476,7 @@ Initialize_DivRem:
 	.byte	0x14
 	.long	0xd8
 	.byte	0x3
-	.long	0x6e35
+	.long	0x70c4
 	.uleb128 0x39
 	.ascii "a\0"
 	.byte	0x2
@@ -14876,13 +15500,13 @@ Initialize_DivRem:
 	.byte	0x2
 	.word	0x3c3
 	.byte	0x12
-	.long	0x6e27
+	.long	0x70b6
 	.uleb128 0x3b
 	.ascii "v\0"
 	.byte	0x2
 	.word	0x3c3
 	.byte	0x2c
-	.long	0x6e35
+	.long	0x70c4
 	.uleb128 0x3b
 	.ascii "sv\0"
 	.byte	0x2
@@ -14895,7 +15519,7 @@ Initialize_DivRem:
 	.byte	0x2
 	.word	0x3c3
 	.byte	0x4b
-	.long	0x6e05
+	.long	0x7094
 	.byte	0
 	.uleb128 0x2
 	.byte	0x10
@@ -14908,7 +15532,7 @@ Initialize_DivRem:
 	.byte	0x1
 	.long	0x4d4
 	.byte	0x3
-	.long	0x6e98
+	.long	0x7127
 	.uleb128 0x3d
 	.ascii "__CF\0"
 	.byte	0x3
@@ -14941,7 +15565,7 @@ Initialize_DivRem:
 	.byte	0x1
 	.long	0x4d4
 	.byte	0x3
-	.long	0x6ee5
+	.long	0x7174
 	.uleb128 0x3d
 	.ascii "__CF\0"
 	.byte	0x3
@@ -14974,7 +15598,7 @@ Initialize_DivRem:
 	.byte	0x1
 	.long	0x4d4
 	.byte	0x3
-	.long	0x6f33
+	.long	0x71c2
 	.uleb128 0x3d
 	.ascii "__CF\0"
 	.byte	0x3
@@ -15007,13 +15631,13 @@ Initialize_DivRem:
 	.byte	0x6
 	.long	0x13a
 	.byte	0x3
-	.long	0x6f68
+	.long	0x71f7
 	.uleb128 0x39
 	.ascii "Addend\0"
 	.byte	0x2
 	.word	0x53e
 	.byte	0x2b
-	.long	0x6f68
+	.long	0x71f7
 	.byte	0
 	.uleb128 0x7
 	.byte	0x8
@@ -15025,13 +15649,13 @@ Initialize_DivRem:
 	.byte	0x6
 	.long	0x13a
 	.byte	0x3
-	.long	0x6fb4
+	.long	0x7243
 	.uleb128 0x39
 	.ascii "Addend\0"
 	.byte	0x2
 	.word	0x528
 	.byte	0x2d
-	.long	0x6f68
+	.long	0x71f7
 	.uleb128 0x39
 	.ascii "Value\0"
 	.byte	0x2
@@ -15045,7 +15669,7 @@ Initialize_DivRem:
 	.word	0x3b8
 	.byte	0x6
 	.byte	0x3
-	.long	0x6ffb
+	.long	0x728a
 	.uleb128 0x39
 	.ascii "Destination\0"
 	.byte	0x2
@@ -15057,7 +15681,7 @@ Initialize_DivRem:
 	.byte	0x2
 	.word	0x3b8
 	.byte	0x49
-	.long	0x6ffb
+	.long	0x728a
 	.uleb128 0x39
 	.ascii "Count\0"
 	.byte	0x2
@@ -16079,50 +16703,54 @@ Initialize_DivRem:
 	.section	.debug_line,"dr"
 .Ldebug_line0:
 	.section	.debug_str,"dr"
-.LASF15:
-	.ascii "work_u_buf\0"
+.LASF20:
+	.ascii "v_ptr\0"
+.LASF4:
+	.ascii "q_bit_count\0"
+.LASF3:
+	.ascii "v_bit_count\0"
+.LASF1:
+	.ascii "result\0"
+.LASF21:
+	.ascii "v_count\0"
+.LASF2:
+	.ascii "u_bit_count\0"
+.LASF0:
+	.ascii "refcount\0"
 .LASF7:
 	.ascii "nr_light_check_code\0"
+.LASF5:
+	.ascii "nq_light_check_code\0"
+.LASF9:
+	.ascii "r_buf\0"
+.LASF12:
+	.ascii "u_buf\0"
+.LASF11:
+	.ascii "temp_r\0"
+.LASF13:
+	.ascii "q_buf\0"
+.LASF18:
+	.ascii "q_index\0"
+.LASF23:
+	.ascii "u_count\0"
+.LASF14:
+	.ascii "u_buf_len\0"
+.LASF19:
+	.ascii "u_ptr\0"
+.LASF15:
+	.ascii "v_buf_len\0"
+.LASF17:
+	.ascii "work_u_buf\0"
+.LASF16:
+	.ascii "d_factor\0"
+.LASF22:
+	.ascii "count\0"
 .LASF10:
 	.ascii "v_buf\0"
 .LASF8:
 	.ascii "work_v_buf\0"
-.LASF21:
-	.ascii "u_count\0"
-.LASF3:
-	.ascii "v_bit_count\0"
-.LASF17:
-	.ascii "u_ptr\0"
-.LASF0:
-	.ascii "refcount\0"
-.LASF2:
-	.ascii "u_bit_count\0"
-.LASF16:
-	.ascii "q_index\0"
-.LASF5:
-	.ascii "nq_light_check_code\0"
-.LASF1:
-	.ascii "result\0"
-.LASF18:
-	.ascii "v_ptr\0"
-.LASF14:
-	.ascii "d_factor\0"
-.LASF13:
-	.ascii "v_buf_len\0"
-.LASF9:
-	.ascii "r_buf\0"
-.LASF20:
-	.ascii "count\0"
-.LASF12:
-	.ascii "u_buf_len\0"
-.LASF4:
-	.ascii "q_bit_count\0"
-.LASF19:
-	.ascii "v_count\0"
 .LASF6:
 	.ascii "r_bit_count\0"
-.LASF11:
-	.ascii "u_buf\0"
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	LeftShift_Imp_DIV;	.scl	2;	.type	32;	.endef
 	.def	RightShift_Imp_DIV;	.scl	2;	.type	32;	.endef

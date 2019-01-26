@@ -5,7 +5,7 @@ Ltext0:
 __ZERO_MEMORY_BYTE:
 LFB4186:
 	.file 1 "pmc_internal.h"
-	.loc 1 324 1
+	.loc 1 344 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -43,7 +43,7 @@ LBB9:
 	movl	%edx, -20(%ebp)
 LBE9:
 LBE8:
-	.loc 1 326 1
+	.loc 1 346 1
 	nop
 	addl	$16, %esp
 	popl	%ebx
@@ -4756,7 +4756,7 @@ Ldebug_info0:
 	.uleb128 0x1f
 	.ascii "_ZERO_MEMORY_BYTE\0"
 	.byte	0x1
-	.word	0x143
+	.word	0x157
 	.byte	0x16
 	.long	LFB4186
 	.long	LFE4186-LFB4186
@@ -4766,7 +4766,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x143
+	.word	0x157
 	.byte	0x2e
 	.long	0x790
 	.uleb128 0x2
@@ -4775,7 +4775,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "count\0"
 	.byte	0x1
-	.word	0x143
+	.word	0x157
 	.byte	0x38
 	.long	0xbc
 	.uleb128 0x2
@@ -4786,7 +4786,7 @@ Ldebug_info0:
 	.long	LBB8
 	.long	LBE8-LBB8
 	.byte	0x1
-	.word	0x145
+	.word	0x159
 	.byte	0x5
 	.uleb128 0x1e
 	.long	0x502f

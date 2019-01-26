@@ -71,7 +71,7 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_UNIT_DIV PROC
 
-; 357  : {
+; 377  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -79,26 +79,26 @@ __ZERO_MEMORY_UNIT_DIV PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 358  : #ifdef _M_IX86
-; 359  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 378  : #ifdef _M_IX86
+; 379  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	xor	eax, eax
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosd
 
-; 360  : #elif defined(_M_X64)
-; 361  : #ifdef _MSC_VER
-; 362  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 363  : #elif defined(__GNUC__)
-; 364  :     __stosq(d, 0, count);
-; 365  : #else
-; 366  : #error unknown compiler
-; 367  : #endif
-; 368  : #else
-; 369  : #error unknown platform
-; 370  : #endif
-; 371  : }
+; 380  : #elif defined(_M_X64)
+; 381  : #ifdef _MSC_VER
+; 382  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 383  : #elif defined(__GNUC__)
+; 384  :     __stosq(d, 0, count);
+; 385  : #else
+; 386  : #error unknown compiler
+; 387  : #endif
+; 388  : #else
+; 389  : #error unknown platform
+; 390  : #endif
+; 391  : }
 
 	pop	edi
 	cmp	ebp, esp
@@ -114,7 +114,7 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_UNIT PROC
 
-; 346  : {
+; 366  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -122,20 +122,20 @@ __ZERO_MEMORY_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 347  : #ifdef _M_IX86
-; 348  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 367  : #ifdef _M_IX86
+; 368  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	xor	eax, eax
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosd
 
-; 349  : #elif defined(_M_X64)
-; 350  :     __stosq(d, 0, count);
-; 351  : #else
-; 352  : #error unknown platform
-; 353  : #endif
-; 354  : }
+; 369  : #elif defined(_M_X64)
+; 370  :     __stosq(d, 0, count);
+; 371  : #else
+; 372  : #error unknown platform
+; 373  : #endif
+; 374  : }
 
 	pop	edi
 	cmp	ebp, esp
@@ -152,7 +152,7 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT_DIV PROC
 
-; 307  : {
+; 327  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -161,26 +161,26 @@ __COPY_MEMORY_UNIT_DIV PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 308  : #ifdef _M_IX86
-; 309  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 328  : #ifdef _M_IX86
+; 329  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsd
 
-; 310  : #elif defined(_M_X64)
-; 311  : #ifdef _MSC_VER
-; 312  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 313  : #elif defined(__GNUC__)
-; 314  :     __movsq(d, s, count);
-; 315  : #else
-; 316  : #error unknown compiler
-; 317  : #endif
-; 318  : #else
-; 319  : #error unknown platform
-; 320  : #endif
-; 321  : }
+; 330  : #elif defined(_M_X64)
+; 331  : #ifdef _MSC_VER
+; 332  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 333  : #elif defined(__GNUC__)
+; 334  :     __movsq(d, s, count);
+; 335  : #else
+; 336  : #error unknown compiler
+; 337  : #endif
+; 338  : #else
+; 339  : #error unknown platform
+; 340  : #endif
+; 341  : }
 
 	pop	edi
 	pop	esi
@@ -198,7 +198,7 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC
 
-; 296  : {
+; 316  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -207,20 +207,20 @@ __COPY_MEMORY_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 297  : #ifdef _M_IX86
-; 298  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 317  : #ifdef _M_IX86
+; 318  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsd
 
-; 299  : #elif defined(_M_X64)
-; 300  :     __movsq(d, s, count);
-; 301  : #else
-; 302  : #error unknown platform
-; 303  : #endif
-; 304  : }
+; 319  : #elif defined(_M_X64)
+; 320  :     __movsq(d, s, count);
+; 321  : #else
+; 322  : #error unknown platform
+; 323  : #endif
+; 324  : }
 
 	pop	edi
 	pop	esi

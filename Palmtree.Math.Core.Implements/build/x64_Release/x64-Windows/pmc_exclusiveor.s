@@ -1,12 +1,9 @@
 	.file	"pmc_exclusiveor.c"
 	.text
 	.p2align 4,,15
-	.globl	PMC_ExclusiveOr_X_I
-	.def	PMC_ExclusiveOr_X_I;	.scl	2;	.type	32;	.endef
-	.seh_proc	PMC_ExclusiveOr_X_I
-PMC_ExclusiveOr_X_I:
-	pushq	%r12
-	.seh_pushreg	%r12
+	.def	PMC_ExclusiveOr_X_I_Imp;	.scl	3;	.type	32;	.endef
+	.seh_proc	PMC_ExclusiveOr_X_I_Imp
+PMC_ExclusiveOr_X_I_Imp:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -15,66 +12,173 @@ PMC_ExclusiveOr_X_I:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$48, %rsp
-	.seh_stackalloc	48
+	subq	$72, %rsp
+	.seh_stackalloc	72
 	.seh_endprologue
-	testq	%r8, %r8
-	movq	%rcx, %rbx
-	movl	%edx, %esi
-	movq	%r8, %r12
-	je	.L11
-	testq	%rcx, %rcx
-	je	.L11
-	call	CheckNumber
-	testl	%eax, %eax
-	movl	%eax, %ebp
-	jne	.L1
-	testb	$2, 32(%rbx)
-	je	.L3
-	testl	%esi, %esi
-	movq	.refptr.number_zero(%rip), %rcx
-	jne	.L21
-.L4:
-	movq	%rcx, (%r12)
+	testb	$2, 32(%rcx)
+	movq	%rcx, %rsi
+	movl	%edx, %ebx
+	movq	%r8, %rbp
+	je	.L2
+	testl	%ebx, %ebx
+	jne	.L3
+	movq	.refptr.number_zero(%rip), %rax
+	movq	%rax, (%r8)
+	xorl	%eax, %eax
 .L1:
-	movl	%ebp, %eax
-	addq	$48, %rsp
+	addq	$72, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	popq	%rbp
-	popq	%r12
 	ret
 	.p2align 4,,10
-.L3:
-	testl	%esi, %esi
-	je	.L22
-	leaq	32(%rsp), %rcx
+.L2:
+	testl	%ebx, %ebx
+	jne	.L5
+	movq	%r8, %rdx
+	call	DuplicateNumber
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L5:
+	leaq	56(%rsp), %r8
 	movl	$31, %eax
 /APP
- # 833 "pmc_internal.h" 1
-	bsrl %esi, %edx
+ # 853 "pmc_internal.h" 1
+	bsrl %ebx, %edx
  # 0 "" 2
 /NO_APP
-	leaq	40(%rsp), %r8
 	subl	%edx, %eax
 	movl	$32, %edx
 	subq	%rax, %rdx
-	movq	8(%rbx), %rax
+	movq	8(%rcx), %rax
+	movq	%rbp, %rcx
 	cmpq	%rax, %rdx
 	cmovb	%rax, %rdx
 	addq	$1, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
+	jne	.L1
+	movq	0(%rbp), %rax
+	movq	48(%rax), %rcx
+	movq	(%rsi), %rax
+	movq	48(%rsi), %rsi
+	xorq	(%rsi), %rbx
+	cmpq	$1, %rax
+	movq	%rbx, (%rcx)
+	je	.L8
+	leaq	8(%rcx), %rdi
+	addq	$8, %rsi
+	leaq	-1(%rax), %rcx
+/APP
+ # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep movsq
+ # 0 "" 2
+/NO_APP
+	movq	0(%rbp), %rax
+	movq	48(%rax), %rcx
+.L8:
+	movq	56(%rsp), %rdx
+	call	CheckBlockLight
+	testl	%eax, %eax
+	jne	.L1
+	movq	0(%rbp), %rcx
+	movl	%eax, 44(%rsp)
+	call	CommitNumber
+	movq	0(%rbp), %rcx
+	movl	44(%rsp), %eax
+	testb	$2, 32(%rcx)
+	je	.L1
+	call	DeallocateNumber
+	movq	.refptr.number_zero(%rip), %rdx
+	movl	44(%rsp), %eax
+	movq	%rdx, 0(%rbp)
+	jmp	.L1
+	.p2align 4,,10
+.L3:
+	movq	%r8, %rdx
+	movl	%ebx, %ecx
+	call	From_I_Imp
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.seh_endproc
+	.p2align 4,,15
+	.def	PMC_ExclusiveOr_X_L_Imp;	.scl	3;	.type	32;	.endef
+	.seh_proc	PMC_ExclusiveOr_X_L_Imp
+PMC_ExclusiveOr_X_L_Imp:
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$72, %rsp
+	.seh_stackalloc	72
+	.seh_endprologue
+	testb	$2, 32(%rcx)
+	movq	%rcx, %rbx
+	movq	%rdx, %rsi
+	movq	%r8, %rbp
+	je	.L15
+	testq	%rdx, %rdx
+	jne	.L16
+	movq	.refptr.number_zero(%rip), %rax
+	movq	%rax, (%r8)
+	xorl	%eax, %eax
+.L14:
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L15:
+	testq	%rdx, %rdx
+	jne	.L18
+	movq	%r8, %rdx
+	call	DuplicateNumber
+	addq	$72, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L18:
+/APP
+ # 897 "pmc_internal.h" 1
+	bsrq %rdx, %rdx
+ # 0 "" 2
+/NO_APP
+	leaq	56(%rsp), %r8
+	addq	$1, %rdx
+	cmpq	%rdx, 8(%rcx)
+	cmovnb	8(%rcx), %rdx
+	movq	%rbp, %rcx
+	addq	$1, %rdx
+	call	AllocateNumber
+	testl	%eax, %eax
 	jne	.L14
-	movq	32(%rsp), %rax
+	movq	0(%rbp), %rax
 	movq	(%rbx), %rdx
 	movq	48(%rax), %rcx
 	movq	48(%rbx), %rax
 	xorq	(%rax), %rsi
 	cmpq	$1, %rdx
 	movq	%rsi, (%rcx)
-	je	.L9
+	je	.L21
 	leaq	8(%rcx), %rdi
 	leaq	8(%rax), %rsi
 	leaq	-1(%rdx), %rcx
@@ -83,178 +187,218 @@ PMC_ExclusiveOr_X_I:
 	rep movsq
  # 0 "" 2
 /NO_APP
-	movq	32(%rsp), %rax
+	movq	0(%rbp), %rax
 	movq	48(%rax), %rcx
-.L9:
-	movq	40(%rsp), %rdx
+.L21:
+	movq	56(%rsp), %rdx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L14
-	movq	32(%rsp), %rcx
+	movq	0(%rbp), %rcx
+	movl	%eax, 44(%rsp)
 	call	CommitNumber
-	movq	32(%rsp), %rcx
+	movq	0(%rbp), %rcx
+	movl	44(%rsp), %eax
 	testb	$2, 32(%rcx)
-	je	.L4
+	je	.L14
 	call	DeallocateNumber
-	movq	.refptr.number_zero(%rip), %rcx
-	jmp	.L4
+	movq	.refptr.number_zero(%rip), %rdx
+	movl	44(%rsp), %eax
+	movq	%rdx, 0(%rbp)
+	jmp	.L14
 	.p2align 4,,10
-.L22:
-	leaq	32(%rsp), %rdx
-	movq	%rbx, %rcx
-	call	DuplicateNumber
-	testl	%eax, %eax
-	jne	.L14
-.L19:
-	movq	32(%rsp), %rcx
-	jmp	.L4
-	.p2align 4,,10
-.L21:
-	leaq	32(%rsp), %rdx
-	movl	%esi, %ecx
-	call	From_I_Imp
-	testl	%eax, %eax
-	je	.L19
-.L14:
-	movl	%eax, %ebp
-	movl	%ebp, %eax
-	addq	$48, %rsp
+.L16:
+	movq	%r8, %rdx
+	movq	%rsi, %rcx
+	call	From_L_Imp
+	addq	$72, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	popq	%rbp
-	popq	%r12
+	ret
+	.seh_endproc
+	.p2align 4,,15
+	.globl	PMC_ExclusiveOr_I_X
+	.def	PMC_ExclusiveOr_I_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_ExclusiveOr_I_X
+PMC_ExclusiveOr_I_X:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	testq	%r8, %r8
+	movl	%ecx, %edi
+	movq	%rdx, %rbx
+	movq	%r8, %rsi
+	je	.L25
+	testq	%rdx, %rdx
+	je	.L25
+	movq	%rdx, %rcx
+	call	CheckNumber
+	testl	%eax, %eax
+	je	.L26
+.L23:
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
 	ret
 	.p2align 4,,10
-.L11:
-	movl	$-1, %ebp
-	jmp	.L1
+.L26:
+	movq	%rsi, %r8
+	movl	%edi, %edx
+	movq	%rbx, %rcx
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	jmp	PMC_ExclusiveOr_X_I_Imp
+	.p2align 4,,10
+.L25:
+	movl	$-1, %eax
+	jmp	.L23
+	.seh_endproc
+	.p2align 4,,15
+	.globl	PMC_ExclusiveOr_X_I
+	.def	PMC_ExclusiveOr_X_I;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_ExclusiveOr_X_I
+PMC_ExclusiveOr_X_I:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	testq	%r8, %r8
+	movq	%rcx, %rbx
+	movl	%edx, %edi
+	movq	%r8, %rsi
+	je	.L29
+	testq	%rcx, %rcx
+	je	.L29
+	call	CheckNumber
+	testl	%eax, %eax
+	je	.L30
+.L27:
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L30:
+	movq	%rsi, %r8
+	movl	%edi, %edx
+	movq	%rbx, %rcx
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	jmp	PMC_ExclusiveOr_X_I_Imp
+	.p2align 4,,10
+.L29:
+	movl	$-1, %eax
+	jmp	.L27
+	.seh_endproc
+	.p2align 4,,15
+	.globl	PMC_ExclusiveOr_L_X
+	.def	PMC_ExclusiveOr_L_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_ExclusiveOr_L_X
+PMC_ExclusiveOr_L_X:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	testq	%r8, %r8
+	movq	%rcx, %rdi
+	movq	%rdx, %rbx
+	movq	%r8, %rsi
+	je	.L33
+	testq	%rdx, %rdx
+	je	.L33
+	movq	%rdx, %rcx
+	call	CheckNumber
+	testl	%eax, %eax
+	je	.L34
+.L31:
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L34:
+	movq	%rsi, %r8
+	movq	%rdi, %rdx
+	movq	%rbx, %rcx
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	jmp	PMC_ExclusiveOr_X_L_Imp
+	.p2align 4,,10
+.L33:
+	movl	$-1, %eax
+	jmp	.L31
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_ExclusiveOr_X_L
 	.def	PMC_ExclusiveOr_X_L;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_ExclusiveOr_X_L
 PMC_ExclusiveOr_X_L:
-	pushq	%r12
-	.seh_pushreg	%r12
-	pushq	%rbp
-	.seh_pushreg	%rbp
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$48, %rsp
-	.seh_stackalloc	48
+	subq	$32, %rsp
+	.seh_stackalloc	32
 	.seh_endprologue
 	testq	%r8, %r8
 	movq	%rcx, %rbx
-	movq	%rdx, %rsi
-	movq	%r8, %r12
-	je	.L32
+	movq	%rdx, %rdi
+	movq	%r8, %rsi
+	je	.L37
 	testq	%rcx, %rcx
-	je	.L32
+	je	.L37
 	call	CheckNumber
 	testl	%eax, %eax
-	movl	%eax, %ebp
-	jne	.L23
-	testb	$2, 32(%rbx)
-	je	.L25
-	testq	%rsi, %rsi
-	movq	.refptr.number_zero(%rip), %rcx
-	jne	.L38
-.L26:
-	movq	%rcx, (%r12)
-.L23:
-	movl	%ebp, %eax
-	addq	$48, %rsp
+	je	.L38
+.L35:
+	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
-	popq	%rbp
-	popq	%r12
 	ret
-	.p2align 4,,10
-.L25:
-	testq	%rsi, %rsi
-	je	.L39
-/APP
- # 877 "pmc_internal.h" 1
-	bsrq %rsi, %rdx
- # 0 "" 2
-/NO_APP
-	leaq	32(%rsp), %rcx
-	addq	$1, %rdx
-	cmpq	%rdx, 8(%rbx)
-	cmovnb	8(%rbx), %rdx
-	addq	$1, %rdx
-	leaq	40(%rsp), %r8
-	call	AllocateNumber
-	testl	%eax, %eax
-	jne	.L35
-	movq	32(%rsp), %rax
-	movq	(%rbx), %rdx
-	movq	48(%rax), %rcx
-	movq	48(%rbx), %rax
-	xorq	(%rax), %rsi
-	cmpq	$1, %rdx
-	movq	%rsi, (%rcx)
-	je	.L30
-	leaq	8(%rcx), %rdi
-	leaq	8(%rax), %rsi
-	leaq	-1(%rdx), %rcx
-/APP
- # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	rep movsq
- # 0 "" 2
-/NO_APP
-	movq	32(%rsp), %rax
-	movq	48(%rax), %rcx
-.L30:
-	movq	40(%rsp), %rdx
-	call	CheckBlockLight
-	testl	%eax, %eax
-	jne	.L35
-	movq	32(%rsp), %rcx
-	call	CommitNumber
-	movq	32(%rsp), %rcx
-	testb	$2, 32(%rcx)
-	je	.L26
-	call	DeallocateNumber
-	movq	.refptr.number_zero(%rip), %rcx
-	jmp	.L26
-	.p2align 4,,10
-.L39:
-	leaq	32(%rsp), %rdx
-	movq	%rbx, %rcx
-	call	DuplicateNumber
-	testl	%eax, %eax
-	jne	.L35
-.L37:
-	movq	32(%rsp), %rcx
-	jmp	.L26
 	.p2align 4,,10
 .L38:
-	leaq	32(%rsp), %rdx
-	movq	%rsi, %rcx
-	call	From_L_Imp
-	testl	%eax, %eax
-	je	.L37
-.L35:
-	movl	%eax, %ebp
-	movl	%ebp, %eax
-	addq	$48, %rsp
+	movq	%rsi, %r8
+	movq	%rdi, %rdx
+	movq	%rbx, %rcx
+	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
-	popq	%rbp
-	popq	%r12
-	ret
+	jmp	PMC_ExclusiveOr_X_L_Imp
 	.p2align 4,,10
-.L32:
-	movl	$-1, %ebp
-	jmp	.L23
+.L37:
+	movl	$-1, %eax
+	jmp	.L35
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_ExclusiveOr_X_X
@@ -284,14 +428,14 @@ PMC_ExclusiveOr_X_X:
 	movq	%r8, %r12
 	sete	%al
 	orb	%al, %dl
-	jne	.L56
+	jne	.L55
 	testq	%rcx, %rcx
-	je	.L56
+	je	.L55
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %ebx
-	je	.L82
-.L40:
+	je	.L81
+.L39:
 	movl	%ebx, %eax
 	addq	$56, %rsp
 	popq	%rbx
@@ -302,23 +446,23 @@ PMC_ExclusiveOr_X_X:
 	popq	%r13
 	ret
 	.p2align 4,,10
-.L82:
+.L81:
 	movq	%rsi, %rcx
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %ebx
-	jne	.L40
+	jne	.L39
 	testb	$2, 32(%rbp)
-	jne	.L83
+	jne	.L82
 	testb	$2, 32(%rsi)
-	jne	.L84
+	jne	.L83
 	movq	(%rsi), %rax
 	cmpq	%rax, 0(%rbp)
-	jnb	.L46
+	jnb	.L45
 	movq	%rbp, %rax
 	movq	%rsi, %rbp
 	movq	%rax, %rsi
-.L46:
+.L45:
 	movq	8(%rsi), %rdx
 	leaq	32(%rsp), %rcx
 	cmpq	%rdx, 8(%rbp)
@@ -326,7 +470,7 @@ PMC_ExclusiveOr_X_X:
 	cmovnb	8(%rbp), %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L58
+	jne	.L57
 	movq	(%rsi), %r13
 	movq	0(%rbp), %rcx
 	movq	32(%rsp), %rax
@@ -337,13 +481,13 @@ PMC_ExclusiveOr_X_X:
 	subq	%r13, %rcx
 	testq	%rbp, %rbp
 	movq	48(%rax), %rdi
-	je	.L48
+	je	.L47
 	movq	%rbp, %r10
 	movq	%rdi, %r8
 	movq	%r11, %rdx
 	movq	%rsi, %rax
 	.p2align 4,,10
-.L49:
+.L48:
 	movq	(%rax), %r9
 	xorq	(%rdx), %r9
 	movq	%r9, (%r8)
@@ -444,14 +588,14 @@ PMC_ExclusiveOr_X_X:
 	addq	$256, %r8
 	movq	%r9, -8(%r8)
 	subq	$1, %r10
-	jne	.L49
+	jne	.L48
 	salq	$8, %rbp
 	addq	%rbp, %rsi
 	addq	%rbp, %r11
 	addq	%rbp, %rdi
-.L48:
+.L47:
 	testb	$16, %r13b
-	je	.L50
+	je	.L49
 	movq	(%rsi), %rax
 	subq	$-128, %r11
 	subq	$-128, %rsi
@@ -503,9 +647,9 @@ PMC_ExclusiveOr_X_X:
 	movq	-8(%rsi), %rax
 	xorq	-8(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L50:
+.L49:
 	testb	$8, %r13b
-	je	.L51
+	je	.L50
 	movq	(%rsi), %rax
 	addq	$64, %r11
 	addq	$64, %rsi
@@ -533,9 +677,9 @@ PMC_ExclusiveOr_X_X:
 	movq	-8(%rsi), %rax
 	xorq	-8(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L51:
+.L50:
 	testb	$4, %r13b
-	je	.L52
+	je	.L51
 	movq	(%rsi), %rax
 	addq	$32, %r11
 	addq	$32, %rsi
@@ -551,9 +695,9 @@ PMC_ExclusiveOr_X_X:
 	movq	-8(%rsi), %rax
 	xorq	-8(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L52:
+.L51:
 	testb	$2, %r13b
-	je	.L53
+	je	.L52
 	movq	(%rsi), %rax
 	addq	$16, %r11
 	addq	$16, %rsi
@@ -563,15 +707,15 @@ PMC_ExclusiveOr_X_X:
 	movq	-8(%rsi), %rax
 	xorq	-8(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L53:
+.L52:
 	andl	$1, %r13d
-	je	.L54
+	je	.L53
 	movq	(%rsi), %rax
 	addq	$8, %rdi
 	addq	$8, %rsi
 	xorq	(%r11), %rax
 	movq	%rax, -8(%rdi)
-.L54:
+.L53:
 /APP
  # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsq
@@ -582,31 +726,11 @@ PMC_ExclusiveOr_X_X:
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	je	.L85
-.L58:
+	je	.L84
+.L57:
 	movl	%eax, %ebx
-.L86:
+.L85:
 	movl	%ebx, %eax
-	addq	$56, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%rbp
-	popq	%r12
-	popq	%r13
-	ret
-	.p2align 4,,10
-.L84:
-	leaq	32(%rsp), %rdx
-	movq	%rbp, %rcx
-	call	DuplicateNumber
-	testl	%eax, %eax
-	jne	.L58
-.L81:
-	movq	32(%rsp), %rcx
-.L45:
-	movl	%ebx, %eax
-	movq	%rcx, (%r12)
 	addq	$56, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -618,26 +742,46 @@ PMC_ExclusiveOr_X_X:
 	.p2align 4,,10
 .L83:
 	leaq	32(%rsp), %rdx
+	movq	%rbp, %rcx
+	call	DuplicateNumber
+	testl	%eax, %eax
+	jne	.L57
+.L80:
+	movq	32(%rsp), %rcx
+.L44:
+	movl	%ebx, %eax
+	movq	%rcx, (%r12)
+	addq	$56, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	popq	%r12
+	popq	%r13
+	ret
+	.p2align 4,,10
+.L82:
+	leaq	32(%rsp), %rdx
 	movq	%rsi, %rcx
 	call	DuplicateNumber
 	testl	%eax, %eax
-	je	.L81
+	je	.L80
 	movl	%eax, %ebx
-	jmp	.L86
+	jmp	.L85
 	.p2align 4,,10
-.L85:
+.L84:
 	movq	32(%rsp), %rcx
 	call	CommitNumber
 	movq	32(%rsp), %rcx
 	testb	$2, 32(%rcx)
-	je	.L45
+	je	.L44
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
-	jmp	.L45
+	jmp	.L44
 	.p2align 4,,10
-.L56:
+.L55:
 	movl	$-1, %ebx
-	jmp	.L40
+	jmp	.L39
 	.seh_endproc
 	.p2align 4,,15
 	.globl	Initialize_ExclusiveOr
@@ -649,14 +793,14 @@ Initialize_ExclusiveOr:
 	ret
 	.seh_endproc
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
-	.def	CheckNumber;	.scl	2;	.type	32;	.endef
+	.def	DuplicateNumber;	.scl	2;	.type	32;	.endef
 	.def	AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	CheckBlockLight;	.scl	2;	.type	32;	.endef
 	.def	CommitNumber;	.scl	2;	.type	32;	.endef
 	.def	DeallocateNumber;	.scl	2;	.type	32;	.endef
-	.def	DuplicateNumber;	.scl	2;	.type	32;	.endef
 	.def	From_I_Imp;	.scl	2;	.type	32;	.endef
 	.def	From_L_Imp;	.scl	2;	.type	32;	.endef
+	.def	CheckNumber;	.scl	2;	.type	32;	.endef
 	.section	.rdata$.refptr.number_zero, "dr"
 	.globl	.refptr.number_zero
 	.linkonce	discard

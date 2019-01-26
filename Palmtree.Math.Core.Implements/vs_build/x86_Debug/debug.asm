@@ -58,28 +58,28 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG94832 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 'J', 08eH, 'n', 0aH
+$SG95456 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 'J', 08eH, 'n', 0aH
 	DB	00H
-$SG94855 DB	'x86', 00H
-$SG94837 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 0aeH, 097H, 0b9H, 081H
+$SG95479 DB	'x86', 00H
+$SG95461 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 0aeH, 097H, 0b9H, 081H
 	DB	'B', 08dH, 080H, 096H, 0daH, 090H, 094H, '=%d, OK', 08dH, 080H
 	DB	096H, 0daH, 090H, 094H, '=%d, NG', 08dH, 080H, 096H, 0daH, 090H
 	DB	094H, '=%d, OK', 097H, 0a6H, '=%d%%, NG', 097H, 0a6H, '=%d%%', 0aH
 	DB	00H
 	ORG $+1
-$SG94854 DB	'PMC_Initialize failed', 00H
+$SG95478 DB	'PMC_Initialize failed', 00H
 	ORG $+2
-$SG94856 DB	'MSC', 00H
-$SG94857 DB	'PLATFORM: %s', 0aH, 00H
+$SG95480 DB	'MSC', 00H
+$SG95481 DB	'PLATFORM: %s', 0aH, 00H
 	ORG $+2
-$SG94858 DB	'COMPILER: %s', 0aH, 00H
+$SG95482 DB	'COMPILER: %s', 0aH, 00H
 	ORG $+2
-$SG94859 DB	'CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d', 0aH
+$SG95483 DB	'CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d', 0aH
 	DB	00H
 	ORG $+1
-$SG94871 DB	'***NG***', 00H
+$SG95495 DB	'***NG***', 00H
 	ORG $+3
-$SG94872 DB	083H, 'e', 083H, 'X', 083H, 'g No.%d: %s => %s (%s)', 0aH
+$SG95496 DB	083H, 'e', 083H, 'X', 083H, 'g No.%d: %s => %s (%s)', 0aH
 	DB	00H
 _DATA	ENDS
 ; Function compile flags: /Odt
@@ -142,7 +142,7 @@ _DoDebug@4 PROC
 ; 77   :          env->log("PMC_Initialize failed");
 
 	mov	esi, esp
-	push	OFFSET $SG94854
+	push	OFFSET $SG95478
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -159,7 +159,7 @@ $LN2@DoDebug:
 ; 80   : #ifdef _M_IX86
 ; 81   :     char* platform = "x86";
 
-	mov	DWORD PTR _platform$[ebp], OFFSET $SG94855
+	mov	DWORD PTR _platform$[ebp], OFFSET $SG95479
 
 ; 82   : #elif defined(_M_IX64)
 ; 83   :     char* platform = "x64";
@@ -169,7 +169,7 @@ $LN2@DoDebug:
 ; 87   : #ifdef _MSC_VER
 ; 88   :     char* compiler = "MSC";
 
-	mov	DWORD PTR _compiler$[ebp], OFFSET $SG94856
+	mov	DWORD PTR _compiler$[ebp], OFFSET $SG95480
 
 ; 89   : #elif defined(__GNUC__)
 ; 90   :     char* compiler = "GNUC";
@@ -182,7 +182,7 @@ $LN2@DoDebug:
 	mov	esi, esp
 	mov	ecx, DWORD PTR _platform$[ebp]
 	push	ecx
-	push	OFFSET $SG94857
+	push	OFFSET $SG95481
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -195,7 +195,7 @@ $LN2@DoDebug:
 	mov	esi, esp
 	mov	ecx, DWORD PTR _compiler$[ebp]
 	push	ecx
-	push	OFFSET $SG94858
+	push	OFFSET $SG95482
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -230,7 +230,7 @@ $LN2@DoDebug:
 	mov	ecx, DWORD PTR [eax]
 	and	ecx, 1
 	push	ecx
-	push	OFFSET $SG94859
+	push	OFFSET $SG95483
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -366,7 +366,7 @@ _TEST_End PROC
 	push	edx
 	mov	eax, DWORD PTR _test_total_count
 	push	eax
-	push	OFFSET $SG94837
+	push	OFFSET $SG95461
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx
@@ -413,7 +413,7 @@ _TEST_Start PROC
 ; 48   :     env->log("テスト開始\n");
 
 	mov	esi, esp
-	push	OFFSET $SG94832
+	push	OFFSET $SG95456
 	mov	eax, DWORD PTR _env$[ebp]
 	mov	ecx, DWORD PTR [eax]
 	call	ecx
@@ -559,13 +559,13 @@ $LN2@TEST_Asser:
 	mov	esi, esp
 	mov	ecx, DWORD PTR _reason$[ebp]
 	push	ecx
-	push	OFFSET $SG94871
+	push	OFFSET $SG95495
 	mov	edx, DWORD PTR _test_name$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _test_total_count
 	add	eax, 1
 	push	eax
-	push	OFFSET $SG94872
+	push	OFFSET $SG95496
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx

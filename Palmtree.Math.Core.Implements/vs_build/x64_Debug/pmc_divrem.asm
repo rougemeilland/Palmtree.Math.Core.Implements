@@ -24,6 +24,8 @@ __62F961D6_pmc_divrem@c DB 01H
 msvcjmc	ENDS
 PUBLIC	DivRem_X_1W
 PUBLIC	Initialize_DivRem
+PUBLIC	PMC_DivRem_I_X
+PUBLIC	PMC_DivRem_L_X
 PUBLIC	PMC_DivRem_X_I
 PUBLIC	PMC_DivRem_X_L
 PUBLIC	PMC_DivRem_X_X
@@ -42,8 +44,11 @@ EXTRN	_RTC_CheckStackVars:PROC
 EXTRN	_RTC_InitBase:PROC
 EXTRN	_RTC_Shutdown:PROC
 EXTRN	__CheckForDebuggerJustMyCode:PROC
+EXTRN	__GSHandlerCheck:PROC
+EXTRN	__security_check_cookie:PROC
 EXTRN	number_zero:BYTE
 EXTRN	statistics_info:BYTE
+EXTRN	__security_cookie:QWORD
 _BSS	SEGMENT
 fp_DivRem_X_X DQ 01H DUP (?)
 _BSS	ENDS
@@ -58,6 +63,18 @@ pdata	SEGMENT
 $pdata$Initialize_DivRem DD imagerel $LN5
 	DD	imagerel $LN5+147
 	DD	imagerel $unwind$Initialize_DivRem
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$PMC_DivRem_I_X DD imagerel $LN15
+	DD	imagerel $LN15+475
+	DD	imagerel $unwind$PMC_DivRem_I_X
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$PMC_DivRem_L_X DD imagerel $LN25
+	DD	imagerel $LN25+1298
+	DD	imagerel $unwind$PMC_DivRem_L_X
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -1302,6 +1319,153 @@ PMC_DivRem_X_I$rtcVarDesc DD 0114H
 	DD	078H
 	DD	08H
 	DQ	FLAT:PMC_DivRem_X_I$rtcName$0
+CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_DivRem_L_X DD 045054a19H
+	DD	011d4322H
+	DD	07016008bH
+	DD	05015H
+	DD	imagerel __GSHandlerCheck
+	DD	0448H
+xdata	ENDS
+;	COMDAT CONST
+CONST	SEGMENT
+PMC_DivRem_L_X$rtcName$0 DB 075H
+	DB	05fH
+	DB	068H
+	DB	069H
+	DB	00H
+	ORG $+3
+PMC_DivRem_L_X$rtcName$1 DB 074H
+	DB	065H
+	DB	06dH
+	DB	070H
+	DB	05fH
+	DB	072H
+	DB	00H
+	ORG $+1
+PMC_DivRem_L_X$rtcName$2 DB 075H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	00H
+	ORG $+2
+PMC_DivRem_L_X$rtcName$3 DB 071H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	00H
+	ORG $+2
+PMC_DivRem_L_X$rtcName$4 DB 072H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	00H
+	ORG $+2
+PMC_DivRem_L_X$rtcName$5 DB 075H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	00H
+	ORG $+2
+PMC_DivRem_L_X$rtcName$6 DB 071H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	00H
+	ORG $+2
+PMC_DivRem_L_X$rtcName$7 DB 072H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	00H
+	ORG $+2
+PMC_DivRem_L_X$rtcName$8 DB 077H
+	DB	06fH
+	DB	072H
+	DB	06bH
+	DB	05fH
+	DB	076H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	00H
+	ORG $+1
+PMC_DivRem_L_X$rtcName$9 DB 074H
+	DB	065H
+	DB	06dH
+	DB	070H
+	DB	05fH
+	DB	072H
+	DB	00H
+	ORG $+5
+PMC_DivRem_L_X$rtcFrameData DD 0aH
+	DD	00H
+	DQ	FLAT:PMC_DivRem_L_X$rtcVarDesc
+	ORG $+8
+PMC_DivRem_L_X$rtcVarDesc DD 02b4H
+	DD	04H
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$9
+	DD	0258H
+	DD	08H
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$8
+	DD	0228H
+	DD	0cH
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$7
+	DD	01f8H
+	DD	0cH
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$6
+	DD	01d8H
+	DD	08H
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$5
+	DD	01b4H
+	DD	04H
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$4
+	DD	0188H
+	DD	0cH
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$3
+	DD	0168H
+	DD	08H
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$2
+	DD	0104H
+	DD	04H
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$1
+	DD	084H
+	DD	04H
+	DQ	FLAT:PMC_DivRem_L_X$rtcName$0
+CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_DivRem_I_X DD 025053701H
+	DD	011c2321H
+	DD	070150031H
+	DD	05014H
+xdata	ENDS
+;	COMDAT CONST
+CONST	SEGMENT
+PMC_DivRem_I_X$rtcName$0 DB 074H
+	DB	065H
+	DB	06dH
+	DB	070H
+	DB	05fH
+	DB	072H
+	DB	00H
+	ORG $+9
+PMC_DivRem_I_X$rtcVarDesc DD 0a4H
+	DD	04H
+	DQ	FLAT:PMC_DivRem_I_X$rtcName$0
+	ORG $+48
+PMC_DivRem_I_X$rtcFrameData DD 01H
+	DD	00H
+	DQ	FLAT:PMC_DivRem_I_X$rtcVarDesc
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -10787,7 +10951,7 @@ _TEXT	SEGMENT
 value$ = 224
 AddToMULTI64Counter PROC				; COMDAT
 
-; 1009 : {
+; 1029 : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -10802,13 +10966,13 @@ AddToMULTI64Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1010 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+; 1030 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
 
 	lea	rax, OFFSET FLAT:statistics_info
 	mov	ecx, DWORD PTR value$[rbp]
 	lock add DWORD PTR [rax], ecx
 
-; 1011 : }
+; 1031 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -10823,7 +10987,7 @@ _TEXT	SEGMENT
 value$ = 224
 AddToMULTI32Counter PROC				; COMDAT
 
-; 1003 : {
+; 1023 : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -10838,13 +11002,13 @@ AddToMULTI32Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1004 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+; 1024 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
 
 	lea	rax, OFFSET FLAT:statistics_info+4
 	mov	ecx, DWORD PTR value$[rbp]
 	lock add DWORD PTR [rax], ecx
 
-; 1005 : }
+; 1025 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -10859,7 +11023,7 @@ _TEXT	SEGMENT
 value$ = 224
 AddToDIV64Counter PROC					; COMDAT
 
-; 997  : {
+; 1017 : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -10874,13 +11038,13 @@ AddToDIV64Counter PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 998  :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
+; 1018 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
 
 	lea	rax, OFFSET FLAT:statistics_info+8
 	mov	ecx, DWORD PTR value$[rbp]
 	lock add DWORD PTR [rax], ecx
 
-; 999  : }
+; 1019 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -10895,7 +11059,7 @@ _TEXT	SEGMENT
 value$ = 224
 AddToDIV32Counter PROC					; COMDAT
 
-; 991  : {
+; 1011 : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -10910,13 +11074,13 @@ AddToDIV32Counter PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 992  :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+; 1012 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
 
 	lea	rax, OFFSET FLAT:statistics_info+12
 	mov	ecx, DWORD PTR value$[rbp]
 	lock add DWORD PTR [rax], ecx
 
-; 993  : }
+; 1013 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -10930,7 +11094,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 IncrementMULTI64Counter PROC				; COMDAT
 
-; 986  : {
+; 1006 : {
 
 	push	rbp
 	push	rdi
@@ -10943,12 +11107,12 @@ IncrementMULTI64Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 987  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
+; 1007 :     _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
 
 	lea	rax, OFFSET FLAT:statistics_info
 	lock inc DWORD PTR [rax]
 
-; 988  : }
+; 1008 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -10962,7 +11126,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 IncrementMULTI32Counter PROC				; COMDAT
 
-; 980  : {
+; 1000 : {
 
 	push	rbp
 	push	rdi
@@ -10975,12 +11139,12 @@ IncrementMULTI32Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 981  :     _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+; 1001 :     _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
 
 	lea	rax, OFFSET FLAT:statistics_info+4
 	lock inc DWORD PTR [rax]
 
-; 982  : }
+; 1002 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -10994,7 +11158,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 IncrementDIV64Counter PROC				; COMDAT
 
-; 974  : {
+; 994  : {
 
 	push	rbp
 	push	rdi
@@ -11007,12 +11171,12 @@ IncrementDIV64Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 975  :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+; 995  :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
 
 	lea	rax, OFFSET FLAT:statistics_info+8
 	lock inc DWORD PTR [rax]
 
-; 976  : }
+; 996  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -11026,7 +11190,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 IncrementDIV32Counter PROC				; COMDAT
 
-; 968  : {
+; 988  : {
 
 	push	rbp
 	push	rdi
@@ -11039,12 +11203,12 @@ IncrementDIV32Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 969  :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+; 989  :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
 
 	lea	rax, OFFSET FLAT:statistics_info+12
 	lock inc DWORD PTR [rax]
 
-; 970  : }
+; 990  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -11060,7 +11224,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_UNIT_DIV PROC				; COMDAT
 
-; 888  : {
+; 908  : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -11075,45 +11239,45 @@ _LZCNT_ALT_UNIT_DIV PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 889  :     if (x == 0)
+; 909  :     if (x == 0)
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 890  :         return (sizeof(x) * 8);
+; 910  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 891  : #ifdef _M_IX86
-; 892  :     _UINT32_T pos;
-; 893  : #ifdef _MSC_VER
-; 894  :     _BitScanReverse(&pos, x);
-; 895  : #elif defined(__GNUC__)
-; 896  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 897  : #else
-; 898  : #error unknown compiler
-; 899  : #endif
-; 900  : #elif defined(_M_X64)
-; 901  : #ifdef _MSC_VER
-; 902  :     _UINT32_T pos;
-; 903  :     _BitScanReverse(&pos, x);
+; 911  : #ifdef _M_IX86
+; 912  :     _UINT32_T pos;
+; 913  : #ifdef _MSC_VER
+; 914  :     _BitScanReverse(&pos, x);
+; 915  : #elif defined(__GNUC__)
+; 916  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 917  : #else
+; 918  : #error unknown compiler
+; 919  : #endif
+; 920  : #elif defined(_M_X64)
+; 921  : #ifdef _MSC_VER
+; 922  :     _UINT32_T pos;
+; 923  :     _BitScanReverse(&pos, x);
 
 	mov	eax, DWORD PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 904  : #elif defined(__GNUC__)
-; 905  :     _UINT64_T pos;
-; 906  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 907  : #else
-; 908  : #error unknown compiler
-; 909  : #endif
-; 910  : #else
-; 911  : #error unknown platform
-; 912  : #endif
-; 913  :     return (sizeof(x) * 8 - 1 - pos);
+; 924  : #elif defined(__GNUC__)
+; 925  :     _UINT64_T pos;
+; 926  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 927  : #else
+; 928  : #error unknown compiler
+; 929  : #endif
+; 930  : #else
+; 931  : #error unknown platform
+; 932  : #endif
+; 933  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 31
@@ -11121,7 +11285,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 914  : }
+; 934  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -11142,7 +11306,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 859  : {
+; 879  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -11157,45 +11321,45 @@ _LZCNT_ALT_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 860  :     if (x == 0)
+; 880  :     if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 861  :         return (sizeof(x) * 8);
+; 881  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 862  : #ifdef _M_IX86
-; 863  :     _UINT32_T pos;
-; 864  : #ifdef _MSC_VER
-; 865  :     _BitScanReverse(&pos, x);
-; 866  : #elif defined(__GNUC__)
-; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 868  : #else
-; 869  : #error unknown compiler
-; 870  : #endif
-; 871  : #elif defined(_M_X64)
-; 872  : #ifdef _MSC_VER
-; 873  :     _UINT32_T pos;
-; 874  :     _BitScanReverse64(&pos, x);
+; 882  : #ifdef _M_IX86
+; 883  :     _UINT32_T pos;
+; 884  : #ifdef _MSC_VER
+; 885  :     _BitScanReverse(&pos, x);
+; 886  : #elif defined(__GNUC__)
+; 887  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 888  : #else
+; 889  : #error unknown compiler
+; 890  : #endif
+; 891  : #elif defined(_M_X64)
+; 892  : #ifdef _MSC_VER
+; 893  :     _UINT32_T pos;
+; 894  :     _BitScanReverse64(&pos, x);
 
 	mov	rax, QWORD PTR x$[rbp]
 	bsr	rax, rax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 875  : #elif defined(__GNUC__)
-; 876  :     _UINT64_T pos;
-; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 878  : #else
-; 879  : #error unknown compiler
-; 880  : #endif
-; 881  : #else
-; 882  : #error unknown platform
-; 883  : #endif
-; 884  :     return (sizeof(x) * 8 - 1 - pos);
+; 895  : #elif defined(__GNUC__)
+; 896  :     _UINT64_T pos;
+; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 898  : #else
+; 899  : #error unknown compiler
+; 900  : #endif
+; 901  : #else
+; 902  : #error unknown platform
+; 903  : #endif
+; 904  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 63					; 0000003fH
@@ -11203,7 +11367,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 885  : }
+; 905  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -11224,7 +11388,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 826  : {
+; 846  : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -11239,31 +11403,31 @@ _LZCNT_ALT_32 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 827  :     if (x == 0)
+; 847  :     if (x == 0)
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 828  :         return (sizeof(x) * 8);
+; 848  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 829  :     _UINT32_T pos;
-; 830  : #ifdef _MSC_VER
-; 831  :     _BitScanReverse(&pos, x);
+; 849  :     _UINT32_T pos;
+; 850  : #ifdef _MSC_VER
+; 851  :     _BitScanReverse(&pos, x);
 
 	mov	eax, DWORD PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 832  : #elif defined(__GNUC__)
-; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 834  : #else
-; 835  : #error unknown compiler
-; 836  : #endif
-; 837  :     return (sizeof(x) * 8 - 1 - pos);
+; 852  : #elif defined(__GNUC__)
+; 853  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 854  : #else
+; 855  : #error unknown compiler
+; 856  : #endif
+; 857  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 31
@@ -11271,7 +11435,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 838  : }
+; 858  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -11297,7 +11461,7 @@ v$ = 272
 q$ = 280
 _DIVREM_SINGLE_UNIT PROC				; COMDAT
 
-; 658  : {
+; 678  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	DWORD PTR [rsp+24], r8d
@@ -11315,23 +11479,23 @@ _DIVREM_SINGLE_UNIT PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 659  : #ifdef _MSC_VER
-; 660  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 679  : #ifdef _MSC_VER
+; 680  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN2@DIVREM_SIN
 
-; 661  :     {
-; 662  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
-; 663  :         _UINT64_T t = _FROMWORDTODWORD(r, u);
+; 681  :     {
+; 682  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
+; 683  :         _UINT64_T t = _FROMWORDTODWORD(r, u);
 
 	mov	edx, DWORD PTR u$[rbp]
 	mov	ecx, DWORD PTR r$[rbp]
 	call	_FROMWORDTODWORD
 	mov	QWORD PTR t$1[rbp], rax
 
-; 664  :         *q = (_UINT32_T)(t / v);
+; 684  :         *q = (_UINT32_T)(t / v);
 
 	mov	eax, DWORD PTR v$[rbp]
 	mov	QWORD PTR tv68[rbp], rax
@@ -11342,7 +11506,7 @@ _DIVREM_SINGLE_UNIT PROC				; COMDAT
 	mov	rcx, QWORD PTR q$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 665  :         return ((_UINT32_T)(t % v));
+; 685  :         return ((_UINT32_T)(t % v));
 
 	mov	eax, DWORD PTR v$[rbp]
 	mov	QWORD PTR tv71[rbp], rax
@@ -11353,69 +11517,69 @@ _DIVREM_SINGLE_UNIT PROC				; COMDAT
 	mov	rax, rdx
 	jmp	SHORT $LN1@DIVREM_SIN
 
-; 666  :     }
+; 686  :     }
 
 	jmp	SHORT $LN3@DIVREM_SIN
 $LN2@DIVREM_SIN:
 
-; 667  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 687  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN4@DIVREM_SIN
 
-; 668  :     {
-; 669  :         // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
-; 670  :         // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
-; 671  :         // ・128bit 整数のデータ型が用意されていない。
-; 672  :         // ・x64 ではインラインアセンブラがサポートされていない。
-; 673  :         *q = 0;
+; 688  :     {
+; 689  :         // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
+; 690  :         // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
+; 691  :         // ・128bit 整数のデータ型が用意されていない。
+; 692  :         // ・x64 ではインラインアセンブラがサポートされていない。
+; 693  :         *q = 0;
 
 	mov	rax, QWORD PTR q$[rbp]
 	mov	DWORD PTR [rax], 0
 
-; 674  :         return (0);
+; 694  :         return (0);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@DIVREM_SIN
 
-; 675  :     }
+; 695  :     }
 
 	jmp	SHORT $LN5@DIVREM_SIN
 $LN4@DIVREM_SIN:
 
-; 676  :     else
-; 677  :     {
-; 678  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 679  :         *q = 0;
+; 696  :     else
+; 697  :     {
+; 698  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 699  :         *q = 0;
 
 	mov	rax, QWORD PTR q$[rbp]
 	mov	DWORD PTR [rax], 0
 
-; 680  :         return (0);
+; 700  :         return (0);
 
 	xor	eax, eax
 $LN5@DIVREM_SIN:
 $LN3@DIVREM_SIN:
 $LN1@DIVREM_SIN:
 
-; 681  :     }
-; 682  : #elif defined(__GNUC__)
-; 683  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-; 684  :         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
-; 685  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
-; 686  :         __asm__("divq %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
-; 687  :     else
-; 688  :     {
-; 689  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 690  :         *q = 0;
-; 691  :         r = 0;
-; 692  :     }
-; 693  :     return (r);
-; 694  : #else
-; 695  : #error unknown compiler
-; 696  : #endif
-; 697  : }
+; 701  :     }
+; 702  : #elif defined(__GNUC__)
+; 703  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 704  :         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
+; 705  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 706  :         __asm__("divq %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
+; 707  :     else
+; 708  :     {
+; 709  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 710  :         *q = 0;
+; 711  :         r = 0;
+; 712  :     }
+; 713  :     return (r);
+; 714  : #else
+; 715  : #error unknown compiler
+; 716  : #endif
+; 717  : }
 
 	lea	rsp, QWORD PTR [rbp+232]
 	pop	rdi
@@ -11436,7 +11600,7 @@ v$ = 272
 r$ = 280
 _DIVREM_UNIT PROC					; COMDAT
 
-; 614  : {
+; 634  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	DWORD PTR [rsp+24], r8d
@@ -11454,23 +11618,23 @@ _DIVREM_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 615  : #ifdef _MSC_VER
-; 616  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 635  : #ifdef _MSC_VER
+; 636  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN2@DIVREM_UNI
 
-; 617  :     {
-; 618  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
-; 619  :         _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
+; 637  :     {
+; 638  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
+; 639  :         _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
 
 	mov	edx, DWORD PTR u_low$[rbp]
 	mov	ecx, DWORD PTR u_high$[rbp]
 	call	_FROMWORDTODWORD
 	mov	QWORD PTR t$1[rbp], rax
 
-; 620  :         *r = (_UINT32_T)(t % v);
+; 640  :         *r = (_UINT32_T)(t % v);
 
 	mov	eax, DWORD PTR v$[rbp]
 	mov	QWORD PTR tv68[rbp], rax
@@ -11482,7 +11646,7 @@ _DIVREM_UNIT PROC					; COMDAT
 	mov	rcx, QWORD PTR r$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 621  :         return ((_UINT32_T)(t / v));
+; 641  :         return ((_UINT32_T)(t / v));
 
 	mov	eax, DWORD PTR v$[rbp]
 	mov	QWORD PTR tv71[rbp], rax
@@ -11492,70 +11656,70 @@ _DIVREM_UNIT PROC					; COMDAT
 	div	rcx
 	jmp	SHORT $LN1@DIVREM_UNI
 
-; 622  :     }
+; 642  :     }
 
 	jmp	SHORT $LN3@DIVREM_UNI
 $LN2@DIVREM_UNI:
 
-; 623  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 643  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN4@DIVREM_UNI
 
-; 624  :     {
-; 625  :         // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
-; 626  :         // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
-; 627  :         // ・128bit 整数のデータ型が用意されていない。
-; 628  :         // ・x64 ではインラインアセンブラがサポートされていない。
-; 629  :         *r = 0;
+; 644  :     {
+; 645  :         // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
+; 646  :         // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
+; 647  :         // ・128bit 整数のデータ型が用意されていない。
+; 648  :         // ・x64 ではインラインアセンブラがサポートされていない。
+; 649  :         *r = 0;
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	DWORD PTR [rax], 0
 
-; 630  :         return (0);
+; 650  :         return (0);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@DIVREM_UNI
 
-; 631  :     }
+; 651  :     }
 
 	jmp	SHORT $LN5@DIVREM_UNI
 $LN4@DIVREM_UNI:
 
-; 632  :     else
-; 633  :     {
-; 634  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 635  :         *r = 0;
+; 652  :     else
+; 653  :     {
+; 654  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 655  :         *r = 0;
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	DWORD PTR [rax], 0
 
-; 636  :         return (0);
+; 656  :         return (0);
 
 	xor	eax, eax
 $LN5@DIVREM_UNI:
 $LN3@DIVREM_UNI:
 $LN1@DIVREM_UNI:
 
-; 637  :     }
-; 638  : #elif defined(__GNUC__)
-; 639  :     __UNIT_TYPE q;
-; 640  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-; 641  :         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-; 642  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
-; 643  :         __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-; 644  :     else
-; 645  :     {
-; 646  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 647  :         *r = 0;
-; 648  :         q = 0;
-; 649  :     }
-; 650  :     return (q);
-; 651  : #else
-; 652  : #error unknown compiler
-; 653  : #endif
-; 654  : }
+; 657  :     }
+; 658  : #elif defined(__GNUC__)
+; 659  :     __UNIT_TYPE q;
+; 660  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 661  :         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+; 662  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 663  :         __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+; 664  :     else
+; 665  :     {
+; 666  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 667  :         *r = 0;
+; 668  :         q = 0;
+; 669  :     }
+; 670  :     return (q);
+; 671  : #else
+; 672  : #error unknown compiler
+; 673  : #endif
+; 674  : }
 
 	lea	rsp, QWORD PTR [rbp+232]
 	pop	rdi
@@ -11572,7 +11736,7 @@ v$ = 232
 w_hi$ = 240
 _MULTIPLYX_UNIT_DIV PROC				; COMDAT
 
-; 592  : {
+; 612  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	DWORD PTR [rsp+16], edx
@@ -11589,8 +11753,8 @@ _MULTIPLYX_UNIT_DIV PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 593  : #ifdef _MSC_VER
-; 594  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
+; 613  : #ifdef _MSC_VER
+; 614  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
 
 	mov	eax, DWORD PTR u$[rbp]
 	mov	ecx, DWORD PTR v$[rbp]
@@ -11599,22 +11763,22 @@ _MULTIPLYX_UNIT_DIV PROC				; COMDAT
 	mov	rcx, rax
 	call	_FROMDWORDTOWORD
 
-; 595  : #elif defined(__GNUC__)
-; 596  : #ifdef _M_IX86
-; 597  :     _UINT32_T w_lo;
-; 598  :     __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
-; 599  :     return (w_lo);
-; 600  : #elif defined(_M_X64)
-; 601  :     _UINT64_T w_lo;
-; 602  :     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
-; 603  :     return (w_lo);
-; 604  : #else
-; 605  : #error unknown platform
-; 606  : #endif
-; 607  : #else
-; 608  : #error unknown compiler
-; 609  : #endif
-; 610  : }
+; 615  : #elif defined(__GNUC__)
+; 616  : #ifdef _M_IX86
+; 617  :     _UINT32_T w_lo;
+; 618  :     __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+; 619  :     return (w_lo);
+; 620  : #elif defined(_M_X64)
+; 621  :     _UINT64_T w_lo;
+; 622  :     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+; 623  :     return (w_lo);
+; 624  : #else
+; 625  : #error unknown platform
+; 626  : #endif
+; 627  : #else
+; 628  : #error unknown compiler
+; 629  : #endif
+; 630  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -11631,7 +11795,7 @@ v$ = 232
 w_hi$ = 240
 _MULTIPLY_UNIT_DIV PROC					; COMDAT
 
-; 546  : {
+; 566  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	DWORD PTR [rsp+16], edx
@@ -11648,8 +11812,8 @@ _MULTIPLY_UNIT_DIV PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 547  : #ifdef _MSC_VER
-; 548  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
+; 567  : #ifdef _MSC_VER
+; 568  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
 
 	mov	eax, DWORD PTR u$[rbp]
 	mov	ecx, DWORD PTR v$[rbp]
@@ -11658,20 +11822,20 @@ _MULTIPLY_UNIT_DIV PROC					; COMDAT
 	mov	rcx, rax
 	call	_FROMDWORDTOWORD
 
-; 549  : #elif defined(__GNUC__)
-; 550  : #ifdef _M_IX86
-; 551  :     _UINT32_T w_lo;
-; 552  :     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
-; 553  :     return (w_lo);
-; 554  : #elif defined(_M_X64)
-; 555  :     return (_umul128(u, v, w_hi));
-; 556  : #else
-; 557  : #error unknown platform
-; 558  : #endif
-; 559  : #else
-; 560  : #error unknown compiler
-; 561  : #endif
-; 562  : }
+; 569  : #elif defined(__GNUC__)
+; 570  : #ifdef _M_IX86
+; 571  :     _UINT32_T w_lo;
+; 572  :     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
+; 573  :     return (w_lo);
+; 574  : #elif defined(_M_X64)
+; 575  :     return (_umul128(u, v, w_hi));
+; 576  : #else
+; 577  : #error unknown platform
+; 578  : #endif
+; 579  : #else
+; 580  : #error unknown compiler
+; 581  : #endif
+; 582  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -11689,7 +11853,7 @@ v$ = 240
 w$ = 248
 _SUBTRUCT_UNIT_DIV PROC					; COMDAT
 
-; 510  : {
+; 530  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	DWORD PTR [rsp+24], r8d
@@ -11707,8 +11871,8 @@ _SUBTRUCT_UNIT_DIV PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 511  : #ifdef _MSC_VER
-; 512  :     return (_subborrow_u32(borrow, u, v, w));
+; 531  : #ifdef _MSC_VER
+; 532  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	eax, DWORD PTR u$[rbp]
 	movzx	ecx, BYTE PTR borrow$[rbp]
@@ -11719,18 +11883,18 @@ _SUBTRUCT_UNIT_DIV PROC					; COMDAT
 	mov	DWORD PTR [rdx], eax
 	movzx	eax, cl
 
-; 513  : #elif defined(__GNUC__)
-; 514  : #ifdef _M_IX86
-; 515  :     return (_subborrow_u32(borrow, u, v, w));
-; 516  : #elif defined(_M_X64)
-; 517  :     return (_subborrow_u64(borrow, u, v, w));
-; 518  : #else
-; 519  : #error unknown platform
-; 520  : #endif
-; 521  : #else
-; 522  : #error unknown compiler
-; 523  : #endif
-; 524  : }
+; 533  : #elif defined(__GNUC__)
+; 534  : #ifdef _M_IX86
+; 535  :     return (_subborrow_u32(borrow, u, v, w));
+; 536  : #elif defined(_M_X64)
+; 537  :     return (_subborrow_u64(borrow, u, v, w));
+; 538  : #else
+; 539  : #error unknown platform
+; 540  : #endif
+; 541  : #else
+; 542  : #error unknown compiler
+; 543  : #endif
+; 544  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -11748,7 +11912,7 @@ v$ = 240
 w$ = 248
 _ADDX_UNIT_DIV PROC					; COMDAT
 
-; 482  : {
+; 502  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	DWORD PTR [rsp+24], r8d
@@ -11766,8 +11930,8 @@ _ADDX_UNIT_DIV PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 483  : #ifdef _MSC_VER
-; 484  :     return (_addcarryx_u32(carry, u, v, w));
+; 503  : #ifdef _MSC_VER
+; 504  :     return (_addcarryx_u32(carry, u, v, w));
 
 	mov	eax, DWORD PTR u$[rbp]
 	movzx	ecx, BYTE PTR carry$[rbp]
@@ -11778,18 +11942,18 @@ _ADDX_UNIT_DIV PROC					; COMDAT
 	mov	DWORD PTR [rdx], eax
 	movzx	eax, cl
 
-; 485  : #elif defined(__GNUC__)
-; 486  : #ifdef _M_IX86
-; 487  :     return (_addcarryx_u32(carry, u, v, w));
-; 488  : #elif defined(_M_X64)
-; 489  :     return (_addcarryx_u64(carry, u, v, w));
-; 490  : #else
-; 491  : #error unknown platform
-; 492  : #endif
-; 493  : #else
-; 494  : #error unknown compiler
-; 495  : #endif
-; 496  : }
+; 505  : #elif defined(__GNUC__)
+; 506  : #ifdef _M_IX86
+; 507  :     return (_addcarryx_u32(carry, u, v, w));
+; 508  : #elif defined(_M_X64)
+; 509  :     return (_addcarryx_u64(carry, u, v, w));
+; 510  : #else
+; 511  : #error unknown platform
+; 512  : #endif
+; 513  : #else
+; 514  : #error unknown compiler
+; 515  : #endif
+; 516  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -11807,7 +11971,7 @@ v$ = 240
 w$ = 248
 _ADD_UNIT_DIV PROC					; COMDAT
 
-; 454  : {
+; 474  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	DWORD PTR [rsp+24], r8d
@@ -11825,8 +11989,8 @@ _ADD_UNIT_DIV PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 455  : #ifdef _MSC_VER
-; 456  :     return (_addcarry_u32(carry, u, v, w));
+; 475  : #ifdef _MSC_VER
+; 476  :     return (_addcarry_u32(carry, u, v, w));
 
 	mov	eax, DWORD PTR u$[rbp]
 	movzx	ecx, BYTE PTR carry$[rbp]
@@ -11837,18 +12001,18 @@ _ADD_UNIT_DIV PROC					; COMDAT
 	mov	DWORD PTR [rdx], eax
 	movzx	eax, cl
 
-; 457  : #elif defined(__GNUC__)
-; 458  : #ifdef _M_IX86
-; 459  :     return (_addcarry_u32(carry, u, v, w));
-; 460  : #elif defined(_M_X64)
-; 461  :     return (_addcarry_u64(carry, u, v, w));
-; 462  : #else
-; 463  : #error unknown platform
-; 464  : #endif
-; 465  : #else
-; 466  : #error unknown compiler
-; 467  : #endif
-; 468  : }
+; 477  : #elif defined(__GNUC__)
+; 478  : #ifdef _M_IX86
+; 479  :     return (_addcarry_u32(carry, u, v, w));
+; 480  : #elif defined(_M_X64)
+; 481  :     return (_addcarry_u64(carry, u, v, w));
+; 482  : #else
+; 483  : #error unknown platform
+; 484  : #endif
+; 485  : #else
+; 486  : #error unknown compiler
+; 487  : #endif
+; 488  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -11864,7 +12028,7 @@ value$ = 224
 result_high$ = 232
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 412  : {
+; 432  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -11880,18 +12044,18 @@ _FROMDWORDTOWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 413  :     *result_high = (_UINT32_T)(value >> 32);
+; 433  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, QWORD PTR value$[rbp]
 	shr	rax, 32					; 00000020H
 	mov	rcx, QWORD PTR result_high$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 414  :     return ((_UINT32_T)value);
+; 434  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR value$[rbp]
 
-; 415  : }
+; 435  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -11907,7 +12071,7 @@ value_high$ = 224
 value_low$ = 232
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 407  : {
+; 427  : {
 
 	mov	DWORD PTR [rsp+16], edx
 	mov	DWORD PTR [rsp+8], ecx
@@ -11923,14 +12087,14 @@ _FROMWORDTODWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 408  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, DWORD PTR value_high$[rbp]
 	shl	rax, 32					; 00000020H
 	mov	ecx, DWORD PTR value_low$[rbp]
 	or	rax, rcx
 
-; 409  : }
+; 429  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -11947,7 +12111,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 307  : {
+; 327  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -11965,11 +12129,11 @@ _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 308  : #ifdef _M_IX86
-; 309  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 310  : #elif defined(_M_X64)
-; 311  : #ifdef _MSC_VER
-; 312  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 328  : #ifdef _M_IX86
+; 329  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 330  : #elif defined(_M_X64)
+; 331  : #ifdef _MSC_VER
+; 332  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	eax, DWORD PTR count$[rbp]
 	mov	rdi, QWORD PTR d$[rbp]
@@ -11977,15 +12141,15 @@ _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 	mov	ecx, eax
 	rep movsd
 
-; 313  : #elif defined(__GNUC__)
-; 314  :     __movsq(d, s, count);
-; 315  : #else
-; 316  : #error unknown compiler
-; 317  : #endif
-; 318  : #else
-; 319  : #error unknown platform
-; 320  : #endif
-; 321  : }
+; 333  : #elif defined(__GNUC__)
+; 334  :     __movsq(d, s, count);
+; 335  : #else
+; 336  : #error unknown compiler
+; 337  : #endif
+; 338  : #else
+; 339  : #error unknown platform
+; 340  : #endif
+; 341  : }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi
@@ -12025,7 +12189,7 @@ q$ = 1024
 r$ = 1032
 PMC_DivRem_X_X PROC					; COMDAT
 
-; 1216 : {
+; 1443 : {
 
 $LN36:
 	mov	QWORD PTR [rsp+32], r9
@@ -12044,62 +12208,62 @@ $LN36:
 	lea	rcx, OFFSET FLAT:__62F961D6_pmc_divrem@c
 	call	__CheckForDebuggerJustMyCode
 
-; 1217 :     if (u == NULL)
+; 1444 :     if (u == NULL)
 
 	cmp	QWORD PTR u$[rbp], 0
 	jne	SHORT $LN2@PMC_DivRem
 
-; 1218 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1445 :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_DivRem
 $LN2@PMC_DivRem:
 
-; 1219 :     if (v == NULL)
+; 1446 :     if (v == NULL)
 
 	cmp	QWORD PTR v$[rbp], 0
 	jne	SHORT $LN3@PMC_DivRem
 
-; 1220 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1447 :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_DivRem
 $LN3@PMC_DivRem:
 
-; 1221 :     if (q == NULL)
+; 1448 :     if (q == NULL)
 
 	cmp	QWORD PTR q$[rbp], 0
 	jne	SHORT $LN4@PMC_DivRem
 
-; 1222 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1449 :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_DivRem
 $LN4@PMC_DivRem:
 
-; 1223 :     if (r == NULL)
+; 1450 :     if (r == NULL)
 
 	cmp	QWORD PTR r$[rbp], 0
 	jne	SHORT $LN5@PMC_DivRem
 
-; 1224 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1451 :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_DivRem
 $LN5@PMC_DivRem:
 
-; 1225 :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 1452 :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	QWORD PTR nu$[rbp], rax
 
-; 1226 :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 1453 :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
 
 	mov	rax, QWORD PTR v$[rbp]
 	mov	QWORD PTR nv$[rbp], rax
 
-; 1227 :     PMC_STATUS_CODE result;
-; 1228 :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 1454 :     PMC_STATUS_CODE result;
+; 1455 :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nu$[rbp]
 	call	CheckNumber
@@ -12107,13 +12271,13 @@ $LN5@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_DivRem
 
-; 1229 :         return (result);
+; 1456 :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN6@PMC_DivRem:
 
-; 1230 :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+; 1457 :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nv$[rbp]
 	call	CheckNumber
@@ -12121,13 +12285,13 @@ $LN6@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN7@PMC_DivRem
 
-; 1231 :         return (result);
+; 1458 :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN7@PMC_DivRem:
 
-; 1232 :     if (nv->IS_ZERO)
+; 1459 :     if (nv->IS_ZERO)
 
 	mov	rax, QWORD PTR nv$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -12136,20 +12300,20 @@ $LN7@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN8@PMC_DivRem
 
-; 1233 :     {
-; 1234 :         // v が 0 である場合
-; 1235 : 
-; 1236 :         // 0 による除算はエラーで返す
-; 1237 :         return (PMC_STATUS_DIVISION_BY_ZERO);
+; 1460 :     {
+; 1461 :         // v が 0 である場合
+; 1462 : 
+; 1463 :         // 0 による除算はエラーで返す
+; 1464 :         return (PMC_STATUS_DIVISION_BY_ZERO);
 
 	mov	eax, -3
 	jmp	$LN1@PMC_DivRem
 $LN8@PMC_DivRem:
 
-; 1238 :     }
-; 1239 :     NUMBER_HEADER* nq;
-; 1240 :     NUMBER_HEADER* nr;
-; 1241 :     if (nu->IS_ZERO)
+; 1465 :     }
+; 1466 :     NUMBER_HEADER* nq;
+; 1467 :     NUMBER_HEADER* nr;
+; 1468 :     if (nu->IS_ZERO)
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -12158,30 +12322,30 @@ $LN8@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN9@PMC_DivRem
 
-; 1242 :     {
-; 1243 :         // u が 0 である場合
-; 1244 : 
-; 1245 :         // q = 0, r = 0 を返す
-; 1246 :         nq = &number_zero;
+; 1469 :     {
+; 1470 :         // u が 0 である場合
+; 1471 : 
+; 1472 :         // q = 0, r = 0 を返す
+; 1473 :         nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
 
-; 1247 :         nr = &number_zero;
+; 1474 :         nr = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nr$[rbp], rax
 
-; 1248 :     }
+; 1475 :     }
 
 	jmp	$LN10@PMC_DivRem
 $LN9@PMC_DivRem:
 
-; 1249 :     else
-; 1250 :     {
-; 1251 :         // u が 0 ではない場合
-; 1252 : 
-; 1253 :         if (nv->IS_ONE)
+; 1476 :     else
+; 1477 :     {
+; 1478 :         // u が 0 ではない場合
+; 1479 : 
+; 1480 :         if (nv->IS_ONE)
 
 	mov	rax, QWORD PTR nv$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -12190,11 +12354,11 @@ $LN9@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN11@PMC_DivRem
 
-; 1254 :         {
-; 1255 :             // v が 1 である場合
-; 1256 : 
-; 1257 :             // q = u, r = 0 を返す
-; 1258 :             if ((result = DuplicateNumber(nu, &nq)) != PMC_STATUS_OK)
+; 1481 :         {
+; 1482 :             // v が 1 である場合
+; 1483 : 
+; 1484 :             // q = u, r = 0 を返す
+; 1485 :             if ((result = DuplicateNumber(nu, &nq)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR nq$[rbp]
 	mov	rcx, QWORD PTR nu$[rbp]
@@ -12203,55 +12367,55 @@ $LN9@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN13@PMC_DivRem
 
-; 1259 :                 return (result);
+; 1486 :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN13@PMC_DivRem:
 
-; 1260 :             nr = &number_zero;
+; 1487 :             nr = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nr$[rbp], rax
 
-; 1261 :         }
+; 1488 :         }
 
 	jmp	$LN12@PMC_DivRem
 $LN11@PMC_DivRem:
 
-; 1262 :         else
-; 1263 :         {
-; 1264 :             // u > 0 かつ v > 1 である場合
-; 1265 : 
-; 1266 :             // x と y の商・剰余を計算する
-; 1267 :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 1489 :         else
+; 1490 :         {
+; 1491 :             // u > 0 かつ v > 1 である場合
+; 1492 : 
+; 1493 :             // x と y の商・剰余を計算する
+; 1494 :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR u_bit_count$11[rbp], rax
 
-; 1268 :             __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 1495 :             __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nv$[rbp]
 	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR v_bit_count$12[rbp], rax
 
-; 1269 :             if (u_bit_count < v_bit_count)
+; 1496 :             if (u_bit_count < v_bit_count)
 
 	mov	rax, QWORD PTR v_bit_count$12[rbp]
 	cmp	QWORD PTR u_bit_count$11[rbp], rax
 	jae	SHORT $LN14@PMC_DivRem
 
-; 1270 :             {
-; 1271 :                 // 明らかに u < v である場合
-; 1272 : 
-; 1273 :                 // q = 0, r = u を返す。
-; 1274 :                 nq = &number_zero;
+; 1497 :             {
+; 1498 :                 // 明らかに u < v である場合
+; 1499 : 
+; 1500 :                 // q = 0, r = u を返す。
+; 1501 :                 nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
 
-; 1275 :                 if ((result = DuplicateNumber(nu, &nr)) != PMC_STATUS_OK)
+; 1502 :                 if ((result = DuplicateNumber(nu, &nr)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR nr$[rbp]
 	mov	rcx, QWORD PTR nu$[rbp]
@@ -12260,26 +12424,26 @@ $LN11@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN16@PMC_DivRem
 
-; 1276 :                     return (result);
+; 1503 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN16@PMC_DivRem:
 
-; 1277 :             }
+; 1504 :             }
 
 	jmp	$LN15@PMC_DivRem
 $LN14@PMC_DivRem:
 
-; 1278 :             else if (v_bit_count <= sizeof(__UNIT_TYPE_DIV) * 8)
+; 1505 :             else if (v_bit_count <= sizeof(__UNIT_TYPE_DIV) * 8)
 
 	cmp	QWORD PTR v_bit_count$12[rbp], 32	; 00000020H
 	ja	$LN17@PMC_DivRem
 
-; 1279 :             {
-; 1280 :                 // 除数が 1 ワードで表現できる場合
-; 1281 : 
-; 1282 :                 __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+; 1506 :             {
+; 1507 :                 // 除数が 1 ワードで表現できる場合
+; 1508 : 
+; 1509 :                 __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
 
 	mov	rax, QWORD PTR v_bit_count$12[rbp]
 	mov	rcx, QWORD PTR u_bit_count$11[rbp]
@@ -12288,8 +12452,8 @@ $LN14@PMC_DivRem:
 	add	rax, 65					; 00000041H
 	mov	QWORD PTR q_bit_count$13[rbp], rax
 
-; 1283 :                 __UNIT_TYPE nq_light_check_code;
-; 1284 :                 if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
+; 1510 :                 __UNIT_TYPE nq_light_check_code;
+; 1511 :                 if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nq_light_check_code$14[rbp]
 	mov	rdx, QWORD PTR q_bit_count$13[rbp]
@@ -12299,18 +12463,18 @@ $LN14@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN19@PMC_DivRem
 
-; 1285 :                     return (result);
+; 1512 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN19@PMC_DivRem:
 
-; 1286 :                 __UNIT_TYPE r_bit_count = sizeof(__UNIT_TYPE_DIV) * 8;
+; 1513 :                 __UNIT_TYPE r_bit_count = sizeof(__UNIT_TYPE_DIV) * 8;
 
 	mov	QWORD PTR r_bit_count$15[rbp], 32	; 00000020H
 
-; 1287 :                 __UNIT_TYPE nr_light_check_code;
-; 1288 :                 if ((result = AllocateNumber(&nr, r_bit_count, &nr_light_check_code)) != PMC_STATUS_OK)
+; 1514 :                 __UNIT_TYPE nr_light_check_code;
+; 1515 :                 if ((result = AllocateNumber(&nr, r_bit_count, &nr_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nr_light_check_code$16[rbp]
 	mov	rdx, QWORD PTR r_bit_count$15[rbp]
@@ -12320,20 +12484,20 @@ $LN19@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN20@PMC_DivRem
 
-; 1289 :                 {
-; 1290 :                     DeallocateNumber(nq);
+; 1516 :                 {
+; 1517 :                     DeallocateNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	DeallocateNumber
 
-; 1291 :                     return (result);
+; 1518 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN20@PMC_DivRem:
 
-; 1292 :                 }
-; 1293 :                 DivRem_X_1W((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), (__UNIT_TYPE_DIV)nv->BLOCK[0], (__UNIT_TYPE_DIV*)nq->BLOCK, (__UNIT_TYPE_DIV*)nr->BLOCK);
+; 1519 :                 }
+; 1520 :                 DivRem_X_1W((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), (__UNIT_TYPE_DIV)nv->BLOCK[0], (__UNIT_TYPE_DIV*)nq->BLOCK, (__UNIT_TYPE_DIV*)nr->BLOCK);
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -12361,7 +12525,7 @@ $LN20@PMC_DivRem:
 	mov	rcx, QWORD PTR [rax+48]
 	call	DivRem_X_1W
 
-; 1294 :                 if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
+; 1521 :                 if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nq_light_check_code$14[rbp]
 	mov	rax, QWORD PTR nq$[rbp]
@@ -12371,13 +12535,13 @@ $LN20@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN21@PMC_DivRem
 
-; 1295 :                     return (result);
+; 1522 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN21@PMC_DivRem:
 
-; 1296 :                 if ((result = CheckBlockLight(nr->BLOCK, nr_light_check_code)) != PMC_STATUS_OK)
+; 1523 :                 if ((result = CheckBlockLight(nr->BLOCK, nr_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nr_light_check_code$16[rbp]
 	mov	rax, QWORD PTR nr$[rbp]
@@ -12387,23 +12551,23 @@ $LN21@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN22@PMC_DivRem
 
-; 1297 :                     return (result);
+; 1524 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN22@PMC_DivRem:
 
-; 1298 :                 CommitNumber(nq);
+; 1525 :                 CommitNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	CommitNumber
 
-; 1299 :                 CommitNumber(nr);
+; 1526 :                 CommitNumber(nr);
 
 	mov	rcx, QWORD PTR nr$[rbp]
 	call	CommitNumber
 
-; 1300 :                 if (nq->IS_ZERO)
+; 1527 :                 if (nq->IS_ZERO)
 
 	mov	rax, QWORD PTR nq$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -12412,20 +12576,20 @@ $LN22@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN23@PMC_DivRem
 
-; 1301 :                 {
-; 1302 :                     DeallocateNumber(nq);
+; 1528 :                 {
+; 1529 :                     DeallocateNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	DeallocateNumber
 
-; 1303 :                     nq = &number_zero;
+; 1530 :                     nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
 $LN23@PMC_DivRem:
 
-; 1304 :                 }
-; 1305 :                 if (nr->IS_ZERO)
+; 1531 :                 }
+; 1532 :                 if (nr->IS_ZERO)
 
 	mov	rax, QWORD PTR nr$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -12434,28 +12598,28 @@ $LN23@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN24@PMC_DivRem
 
-; 1306 :                 {
-; 1307 :                     DeallocateNumber(nr);
+; 1533 :                 {
+; 1534 :                     DeallocateNumber(nr);
 
 	mov	rcx, QWORD PTR nr$[rbp]
 	call	DeallocateNumber
 
-; 1308 :                     nr = &number_zero;
+; 1535 :                     nr = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nr$[rbp], rax
 $LN24@PMC_DivRem:
 
-; 1309 :                 }
-; 1310 :             }
+; 1536 :                 }
+; 1537 :             }
 
 	jmp	$LN18@PMC_DivRem
 $LN17@PMC_DivRem:
 
-; 1311 :             else
-; 1312 :             {
-; 1313 :                 // 除数を表現するのに 2 ワード以上必要な場合
-; 1314 :                 __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+; 1538 :             else
+; 1539 :             {
+; 1540 :                 // 除数を表現するのに 2 ワード以上必要な場合
+; 1541 :                 __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
 
 	mov	rax, QWORD PTR v_bit_count$12[rbp]
 	mov	rcx, QWORD PTR u_bit_count$11[rbp]
@@ -12464,14 +12628,14 @@ $LN17@PMC_DivRem:
 	add	rax, 65					; 00000041H
 	mov	QWORD PTR q_bit_count$17[rbp], rax
 
-; 1315 :                 __UNIT_TYPE r_bit_count = u_bit_count + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには v_bit_count だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+; 1542 :                 __UNIT_TYPE r_bit_count = u_bit_count + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには v_bit_count だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
 
 	mov	rax, QWORD PTR u_bit_count$11[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR r_bit_count$18[rbp], rax
 
-; 1316 :                 __UNIT_TYPE nq_light_check_code;
-; 1317 :                 if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
+; 1543 :                 __UNIT_TYPE nq_light_check_code;
+; 1544 :                 if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nq_light_check_code$19[rbp]
 	mov	rdx, QWORD PTR q_bit_count$17[rbp]
@@ -12481,14 +12645,14 @@ $LN17@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN25@PMC_DivRem
 
-; 1318 :                     return (result);
+; 1545 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN25@PMC_DivRem:
 
-; 1319 :                 __UNIT_TYPE nr_light_check_code;
-; 1320 :                 if ((result = AllocateNumber(&nr, r_bit_count, &nr_light_check_code)) != PMC_STATUS_OK)
+; 1546 :                 __UNIT_TYPE nr_light_check_code;
+; 1547 :                 if ((result = AllocateNumber(&nr, r_bit_count, &nr_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nr_light_check_code$20[rbp]
 	mov	rdx, QWORD PTR r_bit_count$18[rbp]
@@ -12498,22 +12662,22 @@ $LN25@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN26@PMC_DivRem
 
-; 1321 :                 {
-; 1322 :                     DeallocateNumber(nq);
+; 1548 :                 {
+; 1549 :                     DeallocateNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	DeallocateNumber
 
-; 1323 :                     return (result);
+; 1550 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN26@PMC_DivRem:
 
-; 1324 :                 }
-; 1325 :                 __UNIT_TYPE work_v_buf_code;
-; 1326 :                 __UNIT_TYPE work_v_buf_words;
-; 1327 :                 __UNIT_TYPE_DIV* work_v_buf = (__UNIT_TYPE_DIV*)AllocateBlock(nv->UNIT_WORD_COUNT * __UNIT_TYPE_BIT_COUNT, &work_v_buf_words, &work_v_buf_code);
+; 1551 :                 }
+; 1552 :                 __UNIT_TYPE work_v_buf_code;
+; 1553 :                 __UNIT_TYPE work_v_buf_words;
+; 1554 :                 __UNIT_TYPE_DIV* work_v_buf = (__UNIT_TYPE_DIV*)AllocateBlock(nv->UNIT_WORD_COUNT * __UNIT_TYPE_BIT_COUNT, &work_v_buf_words, &work_v_buf_code);
 
 	mov	rax, QWORD PTR nv$[rbp]
 	imul	rax, QWORD PTR [rax], 64		; 00000040H
@@ -12523,26 +12687,26 @@ $LN26@PMC_DivRem:
 	call	AllocateBlock
 	mov	QWORD PTR work_v_buf$23[rbp], rax
 
-; 1328 :                 if (work_v_buf == NULL)
+; 1555 :                 if (work_v_buf == NULL)
 
 	cmp	QWORD PTR work_v_buf$23[rbp], 0
 	jne	SHORT $LN27@PMC_DivRem
 
-; 1329 :                 {
-; 1330 :                     DeallocateNumber(nq);
+; 1556 :                 {
+; 1557 :                     DeallocateNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	DeallocateNumber
 
-; 1331 :                     return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 1558 :                     return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	$LN1@PMC_DivRem
 $LN27@PMC_DivRem:
 
-; 1332 :                 }
-; 1333 : 
-; 1334 :                 (*fp_DivRem_X_X)((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), (__UNIT_TYPE_DIV*)nv->BLOCK, nv->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), work_v_buf, (__UNIT_TYPE_DIV*)nq->BLOCK, (__UNIT_TYPE_DIV*)nr->BLOCK);
+; 1559 :                 }
+; 1560 : 
+; 1561 :                 (*fp_DivRem_X_X)((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), (__UNIT_TYPE_DIV*)nv->BLOCK, nv->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), work_v_buf, (__UNIT_TYPE_DIV*)nq->BLOCK, (__UNIT_TYPE_DIV*)nr->BLOCK);
 
 	mov	rax, QWORD PTR nv$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -12575,7 +12739,7 @@ $LN27@PMC_DivRem:
 	mov	rcx, QWORD PTR [rax+48]
 	call	QWORD PTR fp_DivRem_X_X
 
-; 1335 :                 if ((result = CheckBlockLight((__UNIT_TYPE*)work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
+; 1562 :                 if ((result = CheckBlockLight((__UNIT_TYPE*)work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_v_buf_code$21[rbp]
 	mov	rcx, QWORD PTR work_v_buf$23[rbp]
@@ -12584,13 +12748,13 @@ $LN27@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN28@PMC_DivRem
 
-; 1336 :                     return (result);
+; 1563 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN28@PMC_DivRem:
 
-; 1337 :                 if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
+; 1564 :                 if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nq_light_check_code$19[rbp]
 	mov	rax, QWORD PTR nq$[rbp]
@@ -12600,13 +12764,13 @@ $LN28@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN29@PMC_DivRem
 
-; 1338 :                     return (result);
+; 1565 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN29@PMC_DivRem:
 
-; 1339 :                 if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
+; 1566 :                 if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nq_light_check_code$19[rbp]
 	mov	rax, QWORD PTR nq$[rbp]
@@ -12616,29 +12780,29 @@ $LN29@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN30@PMC_DivRem
 
-; 1340 :                     return (result);
+; 1567 :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN30@PMC_DivRem:
 
-; 1341 :                 DeallocateBlock((__UNIT_TYPE*)work_v_buf, work_v_buf_words);
+; 1568 :                 DeallocateBlock((__UNIT_TYPE*)work_v_buf, work_v_buf_words);
 
 	mov	rdx, QWORD PTR work_v_buf_words$22[rbp]
 	mov	rcx, QWORD PTR work_v_buf$23[rbp]
 	call	DeallocateBlock
 
-; 1342 :                 CommitNumber(nq);
+; 1569 :                 CommitNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	CommitNumber
 
-; 1343 :                 CommitNumber(nr);
+; 1570 :                 CommitNumber(nr);
 
 	mov	rcx, QWORD PTR nr$[rbp]
 	call	CommitNumber
 
-; 1344 :                 if (nq->IS_ZERO)
+; 1571 :                 if (nq->IS_ZERO)
 
 	mov	rax, QWORD PTR nq$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -12647,20 +12811,20 @@ $LN30@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN31@PMC_DivRem
 
-; 1345 :                 {
-; 1346 :                     DeallocateNumber(nq);
+; 1572 :                 {
+; 1573 :                     DeallocateNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	DeallocateNumber
 
-; 1347 :                     nq = &number_zero;
+; 1574 :                     nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
 $LN31@PMC_DivRem:
 
-; 1348 :                 }
-; 1349 :                 if (nr->IS_ZERO)
+; 1575 :                 }
+; 1576 :                 if (nr->IS_ZERO)
 
 	mov	rax, QWORD PTR nr$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -12669,13 +12833,13 @@ $LN31@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN32@PMC_DivRem
 
-; 1350 :                 {
-; 1351 :                     DeallocateNumber(nr);
+; 1577 :                 {
+; 1578 :                     DeallocateNumber(nr);
 
 	mov	rcx, QWORD PTR nr$[rbp]
 	call	DeallocateNumber
 
-; 1352 :                     nr = &number_zero;
+; 1579 :                     nr = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nr$[rbp], rax
@@ -12685,24 +12849,24 @@ $LN15@PMC_DivRem:
 $LN12@PMC_DivRem:
 $LN10@PMC_DivRem:
 
-; 1353 :                 }
-; 1354 :             }
-; 1355 :         }
-; 1356 :     }
-; 1357 :     *q = nq;
+; 1580 :                 }
+; 1581 :             }
+; 1582 :         }
+; 1583 :     }
+; 1584 :     *q = nq;
 
 	mov	rax, QWORD PTR q$[rbp]
 	mov	rcx, QWORD PTR nq$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 1358 :     *r = nr;
+; 1585 :     *r = nr;
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	rcx, QWORD PTR nr$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 1359 : #ifdef _DEBUG
-; 1360 :     if ((result = CheckNumber(*q)) != PMC_STATUS_OK)
+; 1586 : #ifdef _DEBUG
+; 1587 :     if ((result = CheckNumber(*q)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR q$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -12711,13 +12875,13 @@ $LN10@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN33@PMC_DivRem
 
-; 1361 :         return (result);
+; 1588 :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_DivRem
 $LN33@PMC_DivRem:
 
-; 1362 :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
+; 1589 :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -12726,19 +12890,19 @@ $LN33@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN34@PMC_DivRem
 
-; 1363 :         return (result);
+; 1590 :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_DivRem
 $LN34@PMC_DivRem:
 
-; 1364 : #endif
-; 1365 :     return (PMC_STATUS_OK);
+; 1591 : #endif
+; 1592 :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_DivRem:
 
-; 1366 : }
+; 1593 : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-64]
@@ -12788,7 +12952,7 @@ q$ = 1264
 r$ = 1272
 PMC_DivRem_X_L PROC					; COMDAT
 
-; 1031 : {
+; 1258 : {
 
 $LN40:
 	mov	QWORD PTR [rsp+32], r9
@@ -12807,61 +12971,61 @@ $LN40:
 	lea	rcx, OFFSET FLAT:__62F961D6_pmc_divrem@c
 	call	__CheckForDebuggerJustMyCode
 
-; 1032 :     if (sizeof(__UNIT_TYPE_DIV) * 2 < sizeof(v))
+; 1259 :     if (sizeof(__UNIT_TYPE_DIV) * 2 < sizeof(v))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_DivRem
 
-; 1033 :     {
-; 1034 :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 1035 :         return (PMC_STATUS_INTERNAL_ERROR);
+; 1260 :     {
+; 1261 :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 1262 :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	$LN1@PMC_DivRem
 $LN2@PMC_DivRem:
 
-; 1036 :     }
-; 1037 :     if (u == NULL)
+; 1263 :     }
+; 1264 :     if (u == NULL)
 
 	cmp	QWORD PTR u$[rbp], 0
 	jne	SHORT $LN3@PMC_DivRem
 
-; 1038 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1265 :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_DivRem
 $LN3@PMC_DivRem:
 
-; 1039 :     if (q == NULL)
+; 1266 :     if (q == NULL)
 
 	cmp	QWORD PTR q$[rbp], 0
 	jne	SHORT $LN4@PMC_DivRem
 
-; 1040 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1267 :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_DivRem
 $LN4@PMC_DivRem:
 
-; 1041 :     if (r == NULL)
+; 1268 :     if (r == NULL)
 
 	cmp	QWORD PTR r$[rbp], 0
 	jne	SHORT $LN5@PMC_DivRem
 
-; 1042 :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 1269 :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_DivRem
 $LN5@PMC_DivRem:
 
-; 1043 :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 1270 :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	QWORD PTR nu$[rbp], rax
 
-; 1044 :     PMC_STATUS_CODE result;
-; 1045 :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 1271 :     PMC_STATUS_CODE result;
+; 1272 :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nu$[rbp]
 	call	CheckNumber
@@ -12869,30 +13033,30 @@ $LN5@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_DivRem
 
-; 1046 :         return (result);
+; 1273 :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN6@PMC_DivRem:
 
-; 1047 :     if (v == 0)
+; 1274 :     if (v == 0)
 
 	cmp	QWORD PTR v$[rbp], 0
 	jne	SHORT $LN7@PMC_DivRem
 
-; 1048 :     {
-; 1049 :         // v が 0 である場合
-; 1050 : 
-; 1051 :         // 0 による除算はエラーで返す
-; 1052 :         return (PMC_STATUS_DIVISION_BY_ZERO);
+; 1275 :     {
+; 1276 :         // v が 0 である場合
+; 1277 : 
+; 1278 :         // 0 による除算はエラーで返す
+; 1279 :         return (PMC_STATUS_DIVISION_BY_ZERO);
 
 	mov	eax, -3
 	jmp	$LN1@PMC_DivRem
 $LN7@PMC_DivRem:
 
-; 1053 :     }
-; 1054 :     NUMBER_HEADER* nq;
-; 1055 :     if (nu->IS_ZERO)
+; 1280 :     }
+; 1281 :     NUMBER_HEADER* nq;
+; 1282 :     if (nu->IS_ZERO)
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -12901,39 +13065,39 @@ $LN7@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN8@PMC_DivRem
 
-; 1056 :     {
-; 1057 :         // x が 0 である場合
-; 1058 : 
-; 1059 :         // q = 0, r = 0 を返す
-; 1060 :         nq = &number_zero;
+; 1283 :     {
+; 1284 :         // x が 0 である場合
+; 1285 : 
+; 1286 :         // q = 0, r = 0 を返す
+; 1287 :         nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
 
-; 1061 :         *r = 0;
+; 1288 :         *r = 0;
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	QWORD PTR [rax], 0
 
-; 1062 :     }
+; 1289 :     }
 
 	jmp	$LN9@PMC_DivRem
 $LN8@PMC_DivRem:
 
-; 1063 :     else
-; 1064 :     {
-; 1065 :         // u が 0 ではない場合
-; 1066 : 
-; 1067 :         if (v == 1)
+; 1290 :     else
+; 1291 :     {
+; 1292 :         // u が 0 ではない場合
+; 1293 : 
+; 1294 :         if (v == 1)
 
 	cmp	QWORD PTR v$[rbp], 1
 	jne	SHORT $LN10@PMC_DivRem
 
-; 1068 :         {
-; 1069 :             // v が 1 である場合
-; 1070 : 
-; 1071 :             // q = u, r = 0 を返す
-; 1072 :             if ((result = DuplicateNumber(nu, &nq)) != PMC_STATUS_OK)
+; 1295 :         {
+; 1296 :             // v が 1 である場合
+; 1297 : 
+; 1298 :             // q = u, r = 0 を返す
+; 1299 :             if ((result = DuplicateNumber(nu, &nq)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR nq$[rbp]
 	mov	rcx, QWORD PTR nu$[rbp]
@@ -12942,57 +13106,57 @@ $LN8@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN12@PMC_DivRem
 
-; 1073 :                 return (result);
+; 1300 :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN12@PMC_DivRem:
 
-; 1074 :             *r = 0;
+; 1301 :             *r = 0;
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	QWORD PTR [rax], 0
 
-; 1075 :         }
+; 1302 :         }
 
 	jmp	$LN11@PMC_DivRem
 $LN10@PMC_DivRem:
 
-; 1076 :         else
-; 1077 :         {
-; 1078 :             // u > 0 かつ v > 1 である場合
-; 1079 : 
-; 1080 :             // u と v の商・剰余を計算する
-; 1081 :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 1303 :         else
+; 1304 :         {
+; 1305 :             // u > 0 かつ v > 1 である場合
+; 1306 : 
+; 1307 :             // u と v の商・剰余を計算する
+; 1308 :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR u_bit_count$14[rbp], rax
 
-; 1082 :             if (sizeof(__UNIT_TYPE_DIV) < sizeof(v))
+; 1309 :             if (sizeof(__UNIT_TYPE_DIV) < sizeof(v))
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	$LN13@PMC_DivRem
 
-; 1083 :             {
-; 1084 :                 // _UINT64_T が 1 ワードで表現しきれない場合
-; 1085 :                 _UINT32_T v_hi;
-; 1086 :                 _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
+; 1310 :             {
+; 1311 :                 // _UINT64_T が 1 ワードで表現しきれない場合
+; 1312 :                 _UINT32_T v_hi;
+; 1313 :                 _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
 
 	lea	rdx, QWORD PTR v_hi$15[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
 	call	_FROMDWORDTOWORD
 	mov	DWORD PTR v_lo$16[rbp], eax
 
-; 1087 :                 if (v_hi == 0)
+; 1314 :                 if (v_hi == 0)
 
 	cmp	DWORD PTR v_hi$15[rbp], 0
 	jne	$LN15@PMC_DivRem
 
-; 1088 :                 {
-; 1089 :                     // v の値が 32bit で表現可能な場合
-; 1090 :                     __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
+; 1315 :                 {
+; 1316 :                     // v の値が 32bit で表現可能な場合
+; 1317 :                     __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
 
 	mov	ecx, DWORD PTR v_lo$16[rbp]
 	call	_LZCNT_ALT_32
@@ -13002,22 +13166,22 @@ $LN10@PMC_DivRem:
 	mov	rax, rcx
 	mov	QWORD PTR v_bit_count$17[rbp], rax
 
-; 1091 :                     if (u_bit_count < v_bit_count)
+; 1318 :                     if (u_bit_count < v_bit_count)
 
 	mov	rax, QWORD PTR v_bit_count$17[rbp]
 	cmp	QWORD PTR u_bit_count$14[rbp], rax
 	jae	SHORT $LN17@PMC_DivRem
 
-; 1092 :                     {
-; 1093 :                         // 明らかに u < v である場合
-; 1094 : 
-; 1095 :                         // q = 0, r = u を返す。
-; 1096 :                         nq = &number_zero;
+; 1319 :                     {
+; 1320 :                         // 明らかに u < v である場合
+; 1321 : 
+; 1322 :                         // q = 0, r = u を返す。
+; 1323 :                         nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
 
-; 1097 :                         *r = nu->BLOCK[0];
+; 1324 :                         *r = nu->BLOCK[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -13027,14 +13191,14 @@ $LN10@PMC_DivRem:
 	mov	rax, QWORD PTR [rax+rcx]
 	mov	QWORD PTR [rdx], rax
 
-; 1098 :                     }
+; 1325 :                     }
 
 	jmp	$LN18@PMC_DivRem
 $LN17@PMC_DivRem:
 
-; 1099 :                     else
-; 1100 :                     {
-; 1101 :                         __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+; 1326 :                     else
+; 1327 :                     {
+; 1328 :                         __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
 
 	mov	rax, QWORD PTR v_bit_count$17[rbp]
 	mov	rcx, QWORD PTR u_bit_count$14[rbp]
@@ -13043,8 +13207,8 @@ $LN17@PMC_DivRem:
 	add	rax, 65					; 00000041H
 	mov	QWORD PTR q_bit_count$18[rbp], rax
 
-; 1102 :                         __UNIT_TYPE nq_light_check_code;
-; 1103 :                         if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
+; 1329 :                         __UNIT_TYPE nq_light_check_code;
+; 1330 :                         if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nq_light_check_code$19[rbp]
 	mov	rdx, QWORD PTR q_bit_count$18[rbp]
@@ -13054,17 +13218,17 @@ $LN17@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN19@PMC_DivRem
 
-; 1104 :                             return (result);
+; 1331 :                             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN19@PMC_DivRem:
 
-; 1105 :                         __UNIT_TYPE_DIV r_buf = 0;
+; 1332 :                         __UNIT_TYPE_DIV r_buf = 0;
 
 	mov	DWORD PTR r_buf$20[rbp], 0
 
-; 1106 :                         DivRem_X_1W((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), v_lo, (__UNIT_TYPE_DIV*)nq->BLOCK, &r_buf);
+; 1333 :                         DivRem_X_1W((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), v_lo, (__UNIT_TYPE_DIV*)nq->BLOCK, &r_buf);
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -13082,7 +13246,7 @@ $LN19@PMC_DivRem:
 	mov	rcx, QWORD PTR [rax+48]
 	call	DivRem_X_1W
 
-; 1107 :                         if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
+; 1334 :                         if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nq_light_check_code$19[rbp]
 	mov	rax, QWORD PTR nq$[rbp]
@@ -13092,24 +13256,24 @@ $LN19@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN20@PMC_DivRem
 
-; 1108 :                             return (result);
+; 1335 :                             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN20@PMC_DivRem:
 
-; 1109 :                         CommitNumber(nq);
+; 1336 :                         CommitNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	CommitNumber
 
-; 1110 :                         *r = r_buf;
+; 1337 :                         *r = r_buf;
 
 	mov	eax, DWORD PTR r_buf$20[rbp]
 	mov	rcx, QWORD PTR r$[rbp]
 	mov	QWORD PTR [rcx], rax
 
-; 1111 :                         if (nq->IS_ZERO)
+; 1338 :                         if (nq->IS_ZERO)
 
 	mov	rax, QWORD PTR nq$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -13118,30 +13282,30 @@ $LN20@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN21@PMC_DivRem
 
-; 1112 :                         {
-; 1113 :                             DeallocateNumber(nq);
+; 1339 :                         {
+; 1340 :                             DeallocateNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	DeallocateNumber
 
-; 1114 :                             nq = &number_zero;
+; 1341 :                             nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
 $LN21@PMC_DivRem:
 $LN18@PMC_DivRem:
 
-; 1115 :                         }
-; 1116 :                     }
-; 1117 :                 }
+; 1342 :                         }
+; 1343 :                     }
+; 1344 :                 }
 
 	jmp	$LN16@PMC_DivRem
 $LN15@PMC_DivRem:
 
-; 1118 :                 else
-; 1119 :                 {
-; 1120 :                     // v の値が 32bit では表現できない場合
-; 1121 :                     __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
+; 1345 :                 else
+; 1346 :                 {
+; 1347 :                     // v の値が 32bit では表現できない場合
+; 1348 :                     __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
 
 	mov	ecx, DWORD PTR v_hi$15[rbp]
 	call	_LZCNT_ALT_32
@@ -13151,28 +13315,28 @@ $LN15@PMC_DivRem:
 	mov	rax, rcx
 	mov	QWORD PTR v_bit_count$21[rbp], rax
 
-; 1122 :                     if (u_bit_count < v_bit_count)
+; 1349 :                     if (u_bit_count < v_bit_count)
 
 	mov	rax, QWORD PTR v_bit_count$21[rbp]
 	cmp	QWORD PTR u_bit_count$14[rbp], rax
 	jae	$LN22@PMC_DivRem
 
-; 1123 :                     {
-; 1124 :                         // 明らかに u < v である場合
-; 1125 : 
-; 1126 :                         // q = 0, r = u を返す。
-; 1127 :                         nq = &number_zero;
+; 1350 :                     {
+; 1351 :                         // 明らかに u < v である場合
+; 1352 : 
+; 1353 :                         // q = 0, r = u を返す。
+; 1354 :                         nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
 
-; 1128 :                         if (sizeof(v) == sizeof(__UNIT_TYPE))
+; 1355 :                         if (sizeof(v) == sizeof(__UNIT_TYPE))
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN24@PMC_DivRem
 
-; 1129 :                             *r = nu->BLOCK[0];
+; 1356 :                             *r = nu->BLOCK[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -13184,9 +13348,9 @@ $LN15@PMC_DivRem:
 	jmp	SHORT $LN25@PMC_DivRem
 $LN24@PMC_DivRem:
 
-; 1130 :                         else
-; 1131 :                         {
-; 1132 :                             __UNIT_TYPE r_lo = nu->BLOCK[0];
+; 1357 :                         else
+; 1358 :                         {
+; 1359 :                             __UNIT_TYPE r_lo = nu->BLOCK[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -13195,7 +13359,7 @@ $LN24@PMC_DivRem:
 	mov	rax, QWORD PTR [rax+rcx]
 	mov	QWORD PTR r_lo$22[rbp], rax
 
-; 1133 :                             __UNIT_TYPE r_hi = nu->UNIT_WORD_COUNT > 1 ? nu->BLOCK[1] : 0;
+; 1360 :                             __UNIT_TYPE r_hi = nu->UNIT_WORD_COUNT > 1 ? nu->BLOCK[1] : 0;
 
 	mov	rax, QWORD PTR nu$[rbp]
 	cmp	QWORD PTR [rax], 1
@@ -13213,7 +13377,7 @@ $LN39@PMC_DivRem:
 	mov	rax, QWORD PTR tv174[rbp]
 	mov	QWORD PTR r_hi$23[rbp], rax
 
-; 1134 :                             *r = _FROMWORDTODWORD((_UINT32_T)r_hi, (_UINT32_T)r_lo);
+; 1361 :                             *r = _FROMWORDTODWORD((_UINT32_T)r_hi, (_UINT32_T)r_lo);
 
 	mov	edx, DWORD PTR r_lo$22[rbp]
 	mov	ecx, DWORD PTR r_hi$23[rbp]
@@ -13222,15 +13386,15 @@ $LN39@PMC_DivRem:
 	mov	QWORD PTR [rcx], rax
 $LN25@PMC_DivRem:
 
-; 1135 :                         }
-; 1136 :                     }
+; 1362 :                         }
+; 1363 :                     }
 
 	jmp	$LN23@PMC_DivRem
 $LN22@PMC_DivRem:
 
-; 1137 :                     else
-; 1138 :                     {
-; 1139 :                         __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+; 1364 :                     else
+; 1365 :                     {
+; 1366 :                         __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
 
 	mov	rax, QWORD PTR v_bit_count$21[rbp]
 	mov	rcx, QWORD PTR u_bit_count$14[rbp]
@@ -13239,14 +13403,14 @@ $LN22@PMC_DivRem:
 	add	rax, 65					; 00000041H
 	mov	QWORD PTR q_bit_count$24[rbp], rax
 
-; 1140 :                         __UNIT_TYPE r_bit_count = u_bit_count + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには v_bit_count だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+; 1367 :                         __UNIT_TYPE r_bit_count = u_bit_count + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには v_bit_count だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
 
 	mov	rax, QWORD PTR u_bit_count$14[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR r_bit_count$25[rbp], rax
 
-; 1141 :                         __UNIT_TYPE nq_light_check_code;
-; 1142 :                         if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
+; 1368 :                         __UNIT_TYPE nq_light_check_code;
+; 1369 :                         if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nq_light_check_code$26[rbp]
 	mov	rdx, QWORD PTR q_bit_count$24[rbp]
@@ -13256,27 +13420,27 @@ $LN22@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN26@PMC_DivRem
 
-; 1143 :                             return (result);
+; 1370 :                             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN26@PMC_DivRem:
 
-; 1144 :                         __UNIT_TYPE_DIV v_buf[] = { v_lo, v_hi };
+; 1371 :                         __UNIT_TYPE_DIV v_buf[] = { v_lo, v_hi };
 
 	mov	eax, DWORD PTR v_lo$16[rbp]
 	mov	DWORD PTR v_buf$27[rbp], eax
 	mov	eax, DWORD PTR v_hi$15[rbp]
 	mov	DWORD PTR v_buf$27[rbp+4], eax
 
-; 1145 :                         __UNIT_TYPE_DIV work_v_buf[] = { 0, 0 };
+; 1372 :                         __UNIT_TYPE_DIV work_v_buf[] = { 0, 0 };
 
 	mov	DWORD PTR work_v_buf$28[rbp], 0
 	mov	DWORD PTR work_v_buf$28[rbp+4], 0
 
-; 1146 :                         __UNIT_TYPE r_buf_code;
-; 1147 :                         __UNIT_TYPE r_buf_words;
-; 1148 :                         __UNIT_TYPE_DIV* r_buf = (__UNIT_TYPE_DIV*)AllocateBlock(r_bit_count, &r_buf_words, &r_buf_code);
+; 1373 :                         __UNIT_TYPE r_buf_code;
+; 1374 :                         __UNIT_TYPE r_buf_words;
+; 1375 :                         __UNIT_TYPE_DIV* r_buf = (__UNIT_TYPE_DIV*)AllocateBlock(r_bit_count, &r_buf_words, &r_buf_code);
 
 	lea	r8, QWORD PTR r_buf_code$29[rbp]
 	lea	rdx, QWORD PTR r_buf_words$30[rbp]
@@ -13284,25 +13448,25 @@ $LN26@PMC_DivRem:
 	call	AllocateBlock
 	mov	QWORD PTR r_buf$31[rbp], rax
 
-; 1149 :                         if (r_buf == NULL)
+; 1376 :                         if (r_buf == NULL)
 
 	cmp	QWORD PTR r_buf$31[rbp], 0
 	jne	SHORT $LN27@PMC_DivRem
 
-; 1150 :                         {
-; 1151 :                             DeallocateNumber(nq);
+; 1377 :                         {
+; 1378 :                             DeallocateNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	DeallocateNumber
 
-; 1152 :                             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 1379 :                             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	$LN1@PMC_DivRem
 $LN27@PMC_DivRem:
 
-; 1153 :                         }
-; 1154 :                         (*fp_DivRem_X_X)((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), v_buf, sizeof(v_buf) / sizeof(v_buf[0]), work_v_buf, (__UNIT_TYPE_DIV*)nq->BLOCK, r_buf);
+; 1380 :                         }
+; 1381 :                         (*fp_DivRem_X_X)((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), v_buf, sizeof(v_buf) / sizeof(v_buf[0]), work_v_buf, (__UNIT_TYPE_DIV*)nq->BLOCK, r_buf);
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -13324,7 +13488,7 @@ $LN27@PMC_DivRem:
 	mov	rcx, QWORD PTR [rax+48]
 	call	QWORD PTR fp_DivRem_X_X
 
-; 1155 :                         if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
+; 1382 :                         if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nq_light_check_code$26[rbp]
 	mov	rax, QWORD PTR nq$[rbp]
@@ -13334,13 +13498,13 @@ $LN27@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN28@PMC_DivRem
 
-; 1156 :                             return (result);
+; 1383 :                             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN28@PMC_DivRem:
 
-; 1157 :                         if ((result = CheckBlockLight((__UNIT_TYPE*)r_buf, r_buf_code)) != PMC_STATUS_OK)
+; 1384 :                         if ((result = CheckBlockLight((__UNIT_TYPE*)r_buf, r_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR r_buf_code$29[rbp]
 	mov	rcx, QWORD PTR r_buf$31[rbp]
@@ -13349,18 +13513,18 @@ $LN28@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN29@PMC_DivRem
 
-; 1158 :                             return (result);
+; 1385 :                             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN29@PMC_DivRem:
 
-; 1159 :                         CommitNumber(nq);
+; 1386 :                         CommitNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	CommitNumber
 
-; 1160 :                         *r = _FROMWORDTODWORD((_UINT32_T)r_buf[1], (_UINT32_T)r_buf[0]);
+; 1387 :                         *r = _FROMWORDTODWORD((_UINT32_T)r_buf[1], (_UINT32_T)r_buf[0]);
 
 	mov	eax, 4
 	imul	rax, rax, 0
@@ -13374,13 +13538,13 @@ $LN29@PMC_DivRem:
 	mov	rcx, QWORD PTR r$[rbp]
 	mov	QWORD PTR [rcx], rax
 
-; 1161 :                         DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
+; 1388 :                         DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
 
 	mov	rdx, QWORD PTR r_buf_words$30[rbp]
 	mov	rcx, QWORD PTR r_buf$31[rbp]
 	call	DeallocateBlock
 
-; 1162 :                         if (nq->IS_ZERO)
+; 1389 :                         if (nq->IS_ZERO)
 
 	mov	rax, QWORD PTR nq$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -13389,13 +13553,13 @@ $LN29@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN30@PMC_DivRem
 
-; 1163 :                         {
-; 1164 :                             DeallocateNumber(nq);
+; 1390 :                         {
+; 1391 :                             DeallocateNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	DeallocateNumber
 
-; 1165 :                             nq = &number_zero;
+; 1392 :                             nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
@@ -13403,26 +13567,26 @@ $LN30@PMC_DivRem:
 $LN23@PMC_DivRem:
 $LN16@PMC_DivRem:
 
-; 1166 :                         }
-; 1167 :                     }
-; 1168 :                 }
-; 1169 :             }
+; 1393 :                         }
+; 1394 :                     }
+; 1395 :                 }
+; 1396 :             }
 
 	jmp	$LN14@PMC_DivRem
 $LN13@PMC_DivRem:
 
-; 1170 :             else
-; 1171 :             {
-; 1172 :                 // _UINT64_T が 1 ワードで表現できる場合
-; 1173 : 
-; 1174 :                 // x と y の商・剰余を計算する
-; 1175 :                 __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 1397 :             else
+; 1398 :             {
+; 1399 :                 // _UINT64_T が 1 ワードで表現できる場合
+; 1400 : 
+; 1401 :                 // x と y の商・剰余を計算する
+; 1402 :                 __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR u_bit_count$32[rbp], rax
 
-; 1176 :                 __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
+; 1403 :                 __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
 
 	mov	rcx, QWORD PTR v$[rbp]
 	call	_LZCNT_ALT_UNIT
@@ -13431,22 +13595,22 @@ $LN13@PMC_DivRem:
 	mov	rax, rcx
 	mov	QWORD PTR v_bit_count$33[rbp], rax
 
-; 1177 :                 if (u_bit_count < v_bit_count)
+; 1404 :                 if (u_bit_count < v_bit_count)
 
 	mov	rax, QWORD PTR v_bit_count$33[rbp]
 	cmp	QWORD PTR u_bit_count$32[rbp], rax
 	jae	SHORT $LN31@PMC_DivRem
 
-; 1178 :                 {
-; 1179 :                     // 明らかに u < v である場合
-; 1180 : 
-; 1181 :                     // q = 0, r = u を返す。
-; 1182 :                     nq = &number_zero;
+; 1405 :                 {
+; 1406 :                     // 明らかに u < v である場合
+; 1407 : 
+; 1408 :                     // q = 0, r = u を返す。
+; 1409 :                     nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
 
-; 1183 :                     *r = nu->BLOCK[0];
+; 1410 :                     *r = nu->BLOCK[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -13456,14 +13620,14 @@ $LN13@PMC_DivRem:
 	mov	rax, QWORD PTR [rax+rcx]
 	mov	QWORD PTR [rdx], rax
 
-; 1184 :                 }
+; 1411 :                 }
 
 	jmp	$LN32@PMC_DivRem
 $LN31@PMC_DivRem:
 
-; 1185 :                 else
-; 1186 :                 {
-; 1187 :                     __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+; 1412 :                 else
+; 1413 :                 {
+; 1414 :                     __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
 
 	mov	rax, QWORD PTR v_bit_count$33[rbp]
 	mov	rcx, QWORD PTR u_bit_count$32[rbp]
@@ -13472,8 +13636,8 @@ $LN31@PMC_DivRem:
 	add	rax, 65					; 00000041H
 	mov	QWORD PTR q_bit_count$34[rbp], rax
 
-; 1188 :                     __UNIT_TYPE nq_light_check_code;
-; 1189 :                     if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
+; 1415 :                     __UNIT_TYPE nq_light_check_code;
+; 1416 :                     if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nq_light_check_code$35[rbp]
 	mov	rdx, QWORD PTR q_bit_count$34[rbp]
@@ -13483,17 +13647,17 @@ $LN31@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN33@PMC_DivRem
 
-; 1190 :                         return (result);
+; 1417 :                         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_DivRem
 $LN33@PMC_DivRem:
 
-; 1191 :                     __UNIT_TYPE_DIV r_buf = 0;
+; 1418 :                     __UNIT_TYPE_DIV r_buf = 0;
 
 	mov	DWORD PTR r_buf$36[rbp], 0
 
-; 1192 :                     DivRem_X_1W((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), (__UNIT_TYPE_DIV)v, (__UNIT_TYPE_DIV*)nq->BLOCK, &r_buf);
+; 1419 :                     DivRem_X_1W((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), (__UNIT_TYPE_DIV)v, (__UNIT_TYPE_DIV*)nq->BLOCK, &r_buf);
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -13511,7 +13675,7 @@ $LN33@PMC_DivRem:
 	mov	rcx, QWORD PTR [rax+48]
 	call	DivRem_X_1W
 
-; 1193 :                     if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
+; 1420 :                     if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nq_light_check_code$35[rbp]
 	mov	rax, QWORD PTR nq$[rbp]
@@ -13521,24 +13685,24 @@ $LN33@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN34@PMC_DivRem
 
-; 1194 :                         return (result);
+; 1421 :                         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_DivRem
 $LN34@PMC_DivRem:
 
-; 1195 :                     CommitNumber(nq);
+; 1422 :                     CommitNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	CommitNumber
 
-; 1196 :                     *r = r_buf;
+; 1423 :                     *r = r_buf;
 
 	mov	eax, DWORD PTR r_buf$36[rbp]
 	mov	rcx, QWORD PTR r$[rbp]
 	mov	QWORD PTR [rcx], rax
 
-; 1197 :                     if (nq->IS_ZERO)
+; 1424 :                     if (nq->IS_ZERO)
 
 	mov	rax, QWORD PTR nq$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -13547,13 +13711,13 @@ $LN34@PMC_DivRem:
 	test	eax, eax
 	je	SHORT $LN35@PMC_DivRem
 
-; 1198 :                     {
-; 1199 :                         DeallocateNumber(nq);
+; 1425 :                     {
+; 1426 :                         DeallocateNumber(nq);
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	DeallocateNumber
 
-; 1200 :                         nq = &number_zero;
+; 1427 :                         nq = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nq$[rbp], rax
@@ -13563,20 +13727,20 @@ $LN14@PMC_DivRem:
 $LN11@PMC_DivRem:
 $LN9@PMC_DivRem:
 
-; 1201 :                     }
-; 1202 :                 }
-; 1203 :             }
-; 1204 : 
-; 1205 :         }
-; 1206 :     }
-; 1207 :     *q = nq;
+; 1428 :                     }
+; 1429 :                 }
+; 1430 :             }
+; 1431 : 
+; 1432 :         }
+; 1433 :     }
+; 1434 :     *q = nq;
 
 	mov	rax, QWORD PTR q$[rbp]
 	mov	rcx, QWORD PTR nq$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 1208 : #ifdef _DEBUG
-; 1209 :     if ((result = CheckNumber(nq)) != PMC_STATUS_OK)
+; 1435 : #ifdef _DEBUG
+; 1436 :     if ((result = CheckNumber(nq)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nq$[rbp]
 	call	CheckNumber
@@ -13584,19 +13748,19 @@ $LN9@PMC_DivRem:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN36@PMC_DivRem
 
-; 1210 :         return (result);
+; 1437 :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_DivRem
 $LN36@PMC_DivRem:
 
-; 1211 : #endif
-; 1212 :     return (PMC_STATUS_OK);
+; 1438 : #endif
+; 1439 :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_DivRem:
 
-; 1213 : }
+; 1440 : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-64]
@@ -13627,7 +13791,7 @@ q$ = 496
 r$ = 504
 PMC_DivRem_X_I PROC					; COMDAT
 
-; 942  : {
+; 1015 : {
 
 $LN20:
 	mov	QWORD PTR [rsp+32], r9
@@ -13646,7 +13810,988 @@ $LN20:
 	lea	rcx, OFFSET FLAT:__62F961D6_pmc_divrem@c
 	call	__CheckForDebuggerJustMyCode
 
-; 943  :     if (sizeof(__UNIT_TYPE_DIV) < sizeof(v))
+; 1016 :     if (sizeof(__UNIT_TYPE_DIV) < sizeof(v))
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN2@PMC_DivRem
+
+; 1017 :     {
+; 1018 :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 1019 :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffffffffffff00H
+	jmp	$LN1@PMC_DivRem
+$LN2@PMC_DivRem:
+
+; 1020 :     }
+; 1021 :     if (u == NULL)
+
+	cmp	QWORD PTR u$[rbp], 0
+	jne	SHORT $LN3@PMC_DivRem
+
+; 1022 :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_DivRem
+$LN3@PMC_DivRem:
+
+; 1023 :     if (q == NULL)
+
+	cmp	QWORD PTR q$[rbp], 0
+	jne	SHORT $LN4@PMC_DivRem
+
+; 1024 :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_DivRem
+$LN4@PMC_DivRem:
+
+; 1025 :     if (r == NULL)
+
+	cmp	QWORD PTR r$[rbp], 0
+	jne	SHORT $LN5@PMC_DivRem
+
+; 1026 :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_DivRem
+$LN5@PMC_DivRem:
+
+; 1027 :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+
+	mov	rax, QWORD PTR u$[rbp]
+	mov	QWORD PTR nu$[rbp], rax
+
+; 1028 :     PMC_STATUS_CODE result;
+; 1029 :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR nu$[rbp]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN6@PMC_DivRem
+
+; 1030 :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_DivRem
+$LN6@PMC_DivRem:
+
+; 1031 :     if (v == 0)
+
+	cmp	DWORD PTR v$[rbp], 0
+	jne	SHORT $LN7@PMC_DivRem
+
+; 1032 :     {
+; 1033 :         // v が 0 である場合
+; 1034 : 
+; 1035 :         // 0 による除算はエラーで返す
+; 1036 :         return (PMC_STATUS_DIVISION_BY_ZERO);
+
+	mov	eax, -3
+	jmp	$LN1@PMC_DivRem
+$LN7@PMC_DivRem:
+
+; 1037 :     }
+; 1038 :     NUMBER_HEADER* nq;
+; 1039 :     if (nu->IS_ZERO)
+
+	mov	rax, QWORD PTR nu$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN8@PMC_DivRem
+
+; 1040 :     {
+; 1041 :         // u が 0 である場合
+; 1042 : 
+; 1043 :         // q = 0, r = 0 を返す
+; 1044 :         nq = &number_zero;
+
+	lea	rax, OFFSET FLAT:number_zero
+	mov	QWORD PTR nq$[rbp], rax
+
+; 1045 :         *r = 0;
+
+	mov	rax, QWORD PTR r$[rbp]
+	mov	DWORD PTR [rax], 0
+
+; 1046 :     }
+
+	jmp	$LN9@PMC_DivRem
+$LN8@PMC_DivRem:
+
+; 1047 :     else
+; 1048 :     {
+; 1049 :         // u が 0 ではない場合
+; 1050 : 
+; 1051 :         if (v == 1)
+
+	cmp	DWORD PTR v$[rbp], 1
+	jne	SHORT $LN10@PMC_DivRem
+
+; 1052 :         {
+; 1053 :             // v が 1 である場合
+; 1054 : 
+; 1055 :             // q = u, r = 0 を返す
+; 1056 :             if ((result = DuplicateNumber(nu, &nq)) != PMC_STATUS_OK)
+
+	lea	rdx, QWORD PTR nq$[rbp]
+	mov	rcx, QWORD PTR nu$[rbp]
+	call	DuplicateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN12@PMC_DivRem
+
+; 1057 :                 return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_DivRem
+$LN12@PMC_DivRem:
+
+; 1058 :             *r = 0;
+
+	mov	rax, QWORD PTR r$[rbp]
+	mov	DWORD PTR [rax], 0
+
+; 1059 :         }
+
+	jmp	$LN11@PMC_DivRem
+$LN10@PMC_DivRem:
+
+; 1060 :         else
+; 1061 :         {
+; 1062 :             // u と v がともに 0 ではない場合
+; 1063 : 
+; 1064 :             // x と y の商・剰余を計算する
+; 1065 :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR nu$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR u_bit_count$6[rbp], rax
+
+; 1066 :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
+
+	mov	ecx, DWORD PTR v$[rbp]
+	call	_LZCNT_ALT_32
+	mov	eax, eax
+	mov	ecx, 32					; 00000020H
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR v_bit_count$7[rbp], rax
+
+; 1067 :             if (u_bit_count < v_bit_count)
+
+	mov	rax, QWORD PTR v_bit_count$7[rbp]
+	cmp	QWORD PTR u_bit_count$6[rbp], rax
+	jae	SHORT $LN13@PMC_DivRem
+
+; 1068 :             {
+; 1069 :                 // 明らかに u < v である場合
+; 1070 : 
+; 1071 :                 // q = 0, r = u を返す。
+; 1072 :                 nq = &number_zero;
+
+	lea	rax, OFFSET FLAT:number_zero
+	mov	QWORD PTR nq$[rbp], rax
+
+; 1073 :                 *r = (_UINT32_T)nu->BLOCK[0];
+
+	mov	eax, 8
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR nu$[rbp]
+	mov	rcx, QWORD PTR [rcx+48]
+	mov	rdx, QWORD PTR r$[rbp]
+	mov	eax, DWORD PTR [rax+rcx]
+	mov	DWORD PTR [rdx], eax
+
+; 1074 :             }
+
+	jmp	$LN14@PMC_DivRem
+$LN13@PMC_DivRem:
+
+; 1075 :             else
+; 1076 :             {
+; 1077 :                 __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+
+	mov	rax, QWORD PTR v_bit_count$7[rbp]
+	mov	rcx, QWORD PTR u_bit_count$6[rbp]
+	sub	rcx, rax
+	mov	rax, rcx
+	add	rax, 65					; 00000041H
+	mov	QWORD PTR q_bit_count$8[rbp], rax
+
+; 1078 :                 __UNIT_TYPE nq_light_check_code;
+; 1079 :                 if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
+
+	lea	r8, QWORD PTR nq_light_check_code$9[rbp]
+	mov	rdx, QWORD PTR q_bit_count$8[rbp]
+	lea	rcx, QWORD PTR nq$[rbp]
+	call	AllocateNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN15@PMC_DivRem
+
+; 1080 :                     return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_DivRem
+$LN15@PMC_DivRem:
+
+; 1081 :                 __UNIT_TYPE_DIV r_buf = 0;
+
+	mov	DWORD PTR r_buf$10[rbp], 0
+
+; 1082 :                 DivRem_X_1W((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), v, (__UNIT_TYPE_DIV*)nq->BLOCK, &r_buf);
+
+	mov	rax, QWORD PTR nu$[rbp]
+	mov	rax, QWORD PTR [rax]
+	shl	rax, 3
+	xor	edx, edx
+	mov	ecx, 4
+	div	rcx
+	lea	rcx, QWORD PTR r_buf$10[rbp]
+	mov	QWORD PTR [rsp+32], rcx
+	mov	rcx, QWORD PTR nq$[rbp]
+	mov	r9, QWORD PTR [rcx+48]
+	mov	r8d, DWORD PTR v$[rbp]
+	mov	rdx, rax
+	mov	rax, QWORD PTR nu$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	DivRem_X_1W
+
+; 1083 :                 if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
+
+	mov	rdx, QWORD PTR nq_light_check_code$9[rbp]
+	mov	rax, QWORD PTR nq$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
+	call	CheckBlockLight
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN16@PMC_DivRem
+
+; 1084 :                     return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_DivRem
+$LN16@PMC_DivRem:
+
+; 1085 :                 CommitNumber(nq);
+
+	mov	rcx, QWORD PTR nq$[rbp]
+	call	CommitNumber
+
+; 1086 :                 *r = (_UINT32_T)r_buf;
+
+	mov	rax, QWORD PTR r$[rbp]
+	mov	ecx, DWORD PTR r_buf$10[rbp]
+	mov	DWORD PTR [rax], ecx
+
+; 1087 :                 if (nq->IS_ZERO)
+
+	mov	rax, QWORD PTR nq$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN17@PMC_DivRem
+
+; 1088 :                 {
+; 1089 :                     DeallocateNumber(nq);
+
+	mov	rcx, QWORD PTR nq$[rbp]
+	call	DeallocateNumber
+
+; 1090 :                     nq = &number_zero;
+
+	lea	rax, OFFSET FLAT:number_zero
+	mov	QWORD PTR nq$[rbp], rax
+$LN17@PMC_DivRem:
+$LN14@PMC_DivRem:
+$LN11@PMC_DivRem:
+$LN9@PMC_DivRem:
+
+; 1091 :                 }
+; 1092 :             }
+; 1093 :         }
+; 1094 :     }
+; 1095 :     *q = nq;
+
+	mov	rax, QWORD PTR q$[rbp]
+	mov	rcx, QWORD PTR nq$[rbp]
+	mov	QWORD PTR [rax], rcx
+
+; 1096 : #ifdef _DEBUG
+; 1097 :     if ((result = CheckNumber(nq)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR nq$[rbp]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN18@PMC_DivRem
+
+; 1098 :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	SHORT $LN1@PMC_DivRem
+$LN18@PMC_DivRem:
+
+; 1099 : #endif
+; 1100 :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_DivRem:
+
+; 1101 : }
+
+	mov	rdi, rax
+	lea	rcx, QWORD PTR [rbp-48]
+	lea	rdx, OFFSET FLAT:PMC_DivRem_X_I$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rax, rdi
+	lea	rsp, QWORD PTR [rbp+456]
+	pop	rdi
+	pop	rbp
+	ret	0
+PMC_DivRem_X_I ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_divrem.c
+;	COMDAT PMC_DivRem_L_X
+_TEXT	SEGMENT
+nv$ = 8
+result$ = 36
+u_hi$13 = 68
+u_lo$14 = 100
+u_bit_count$15 = 136
+v_bit_count$16 = 168
+temp_r$17 = 196
+u_bit_count$18 = 232
+v_bit_count$19 = 264
+u_buf$20 = 296
+q_buf$21 = 328
+r_buf$22 = 372
+u_buf$23 = 408
+q_buf$24 = 440
+r_buf$25 = 488
+work_v_buf$26 = 536
+u_bit_count$27 = 568
+v_bit_count$28 = 600
+temp_r$29 = 628
+__$ArrayPad$ = 1032
+u$ = 1072
+v$ = 1080
+q$ = 1088
+r$ = 1096
+PMC_DivRem_L_X PROC					; COMDAT
+
+; 1104 : {
+
+$LN25:
+	mov	QWORD PTR [rsp+32], r9
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 1112				; 00000458H
+	lea	rbp, QWORD PTR [rsp+64]
+	mov	rdi, rsp
+	mov	ecx, 278				; 00000116H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+1144]
+	mov	rax, QWORD PTR __security_cookie
+	xor	rax, rbp
+	mov	QWORD PTR __$ArrayPad$[rbp], rax
+	lea	rcx, OFFSET FLAT:__62F961D6_pmc_divrem@c
+	call	__CheckForDebuggerJustMyCode
+
+; 1105 :     if (sizeof(__UNIT_TYPE_DIV) * 2 < sizeof(u))
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN2@PMC_DivRem
+
+; 1106 :     {
+; 1107 :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 1108 :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffffffffffff00H
+	jmp	$LN1@PMC_DivRem
+$LN2@PMC_DivRem:
+
+; 1109 :     }
+; 1110 :     if (v == NULL)
+
+	cmp	QWORD PTR v$[rbp], 0
+	jne	SHORT $LN3@PMC_DivRem
+
+; 1111 :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_DivRem
+$LN3@PMC_DivRem:
+
+; 1112 :     if (q == NULL)
+
+	cmp	QWORD PTR q$[rbp], 0
+	jne	SHORT $LN4@PMC_DivRem
+
+; 1113 :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_DivRem
+$LN4@PMC_DivRem:
+
+; 1114 :     if (r == NULL)
+
+	cmp	QWORD PTR r$[rbp], 0
+	jne	SHORT $LN5@PMC_DivRem
+
+; 1115 :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_DivRem
+$LN5@PMC_DivRem:
+
+; 1116 :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+
+	mov	rax, QWORD PTR v$[rbp]
+	mov	QWORD PTR nv$[rbp], rax
+
+; 1117 :     PMC_STATUS_CODE result;
+; 1118 :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR nv$[rbp]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN6@PMC_DivRem
+
+; 1119 :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_DivRem
+$LN6@PMC_DivRem:
+
+; 1120 :     if (nv->IS_ZERO)
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN7@PMC_DivRem
+
+; 1121 :     {
+; 1122 :         // v が 0 である場合
+; 1123 : 
+; 1124 :         // 0 による除算はエラーで返す
+; 1125 :         return (PMC_STATUS_DIVISION_BY_ZERO);
+
+	mov	eax, -3
+	jmp	$LN1@PMC_DivRem
+$LN7@PMC_DivRem:
+
+; 1126 :     }
+; 1127 :     if (u == 0)
+
+	cmp	QWORD PTR u$[rbp], 0
+	jne	SHORT $LN8@PMC_DivRem
+
+; 1128 :     {
+; 1129 :         // x が 0 である場合
+; 1130 : 
+; 1131 :         // q = 0, r = 0 を返す
+; 1132 :         *q = 0;
+
+	mov	rax, QWORD PTR q$[rbp]
+	mov	QWORD PTR [rax], 0
+
+; 1133 :         *r = 0;
+
+	mov	rax, QWORD PTR r$[rbp]
+	mov	QWORD PTR [rax], 0
+
+; 1134 :     }
+
+	jmp	$LN9@PMC_DivRem
+$LN8@PMC_DivRem:
+
+; 1135 :     else
+; 1136 :     {
+; 1137 :         // u が 0 ではない場合
+; 1138 : 
+; 1139 :         if (nv->IS_ONE)
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 2
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN10@PMC_DivRem
+
+; 1140 :         {
+; 1141 :             // v が 1 である場合
+; 1142 : 
+; 1143 :             // q = u, r = 0 を返す
+; 1144 :             *q = u;
+
+	mov	rax, QWORD PTR q$[rbp]
+	mov	rcx, QWORD PTR u$[rbp]
+	mov	QWORD PTR [rax], rcx
+
+; 1145 :             *r = 0;
+
+	mov	rax, QWORD PTR r$[rbp]
+	mov	QWORD PTR [rax], 0
+
+; 1146 :         }
+
+	jmp	$LN11@PMC_DivRem
+$LN10@PMC_DivRem:
+
+; 1147 :         else
+; 1148 :         {
+; 1149 :             // u > 0 かつ v > 1 である場合
+; 1150 : 
+; 1151 :             // u と v の商・剰余を計算する
+; 1152 :             if (sizeof(__UNIT_TYPE_DIV) < sizeof(u))
+
+	xor	eax, eax
+	cmp	eax, 1
+	je	$LN12@PMC_DivRem
+
+; 1153 :             {
+; 1154 :                 // _UINT64_T が 1 ワードで表現しきれない場合
+; 1155 :                 _UINT32_T u_hi;
+; 1156 :                 _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
+
+	lea	rdx, QWORD PTR u_hi$13[rbp]
+	mov	rcx, QWORD PTR u$[rbp]
+	call	_FROMDWORDTOWORD
+	mov	DWORD PTR u_lo$14[rbp], eax
+
+; 1157 :                 if (u_hi == 0)
+
+	cmp	DWORD PTR u_hi$13[rbp], 0
+	jne	$LN14@PMC_DivRem
+
+; 1158 :                 {
+; 1159 :                     // u の値が 32bit で表現可能な場合
+; 1160 :                     __UNIT_TYPE u_bit_count = sizeof(u_lo) * 8 - _LZCNT_ALT_32(u_lo);
+
+	mov	ecx, DWORD PTR u_lo$14[rbp]
+	call	_LZCNT_ALT_32
+	mov	eax, eax
+	mov	ecx, 32					; 00000020H
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR u_bit_count$15[rbp], rax
+
+; 1161 :                     __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR v_bit_count$16[rbp], rax
+
+; 1162 :                     if (u_bit_count < v_bit_count)
+
+	mov	rax, QWORD PTR v_bit_count$16[rbp]
+	cmp	QWORD PTR u_bit_count$15[rbp], rax
+	jae	SHORT $LN16@PMC_DivRem
+
+; 1163 :                     {
+; 1164 :                         // 明らかに u < v である場合
+; 1165 : 
+; 1166 :                         // q = 0, r = u を返す。
+; 1167 :                         *q = 0;
+
+	mov	rax, QWORD PTR q$[rbp]
+	mov	QWORD PTR [rax], 0
+
+; 1168 :                         *r = u_lo;
+
+	mov	eax, DWORD PTR u_lo$14[rbp]
+	mov	rcx, QWORD PTR r$[rbp]
+	mov	QWORD PTR [rcx], rax
+
+; 1169 :                     }
+
+	jmp	SHORT $LN17@PMC_DivRem
+$LN16@PMC_DivRem:
+
+; 1170 :                     else
+; 1171 :                     {
+; 1172 :                         // u のビット数が v のビット数以上である場合
+; 1173 : 
+; 1174 :                         // u は 32bit で表現できるので、v も 32bit で表現できる。
+; 1175 :                         __UNIT_TYPE_DIV temp_r;
+; 1176 :                         *q = _DIVREM_UNIT(0, u_lo, (__UNIT_TYPE_DIV)nv->BLOCK[0], &temp_r);
+
+	mov	eax, 8
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR nv$[rbp]
+	mov	rcx, QWORD PTR [rcx+48]
+	lea	r9, QWORD PTR temp_r$17[rbp]
+	mov	r8d, DWORD PTR [rcx+rax]
+	mov	edx, DWORD PTR u_lo$14[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	eax, eax
+	mov	rcx, QWORD PTR q$[rbp]
+	mov	QWORD PTR [rcx], rax
+
+; 1177 :                         *r = temp_r;
+
+	mov	eax, DWORD PTR temp_r$17[rbp]
+	mov	rcx, QWORD PTR r$[rbp]
+	mov	QWORD PTR [rcx], rax
+$LN17@PMC_DivRem:
+
+; 1178 :                     }
+; 1179 :                 }
+
+	jmp	$LN15@PMC_DivRem
+$LN14@PMC_DivRem:
+
+; 1180 :                 else
+; 1181 :                 {
+; 1182 :                     // v の値が 32bit では表現できない場合
+; 1183 :                     __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u_hi);
+
+	mov	ecx, DWORD PTR u_hi$13[rbp]
+	call	_LZCNT_ALT_32
+	mov	eax, eax
+	mov	ecx, 64					; 00000040H
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR u_bit_count$18[rbp], rax
+
+; 1184 :                     __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR v_bit_count$19[rbp], rax
+
+; 1185 :                     if (u_bit_count < v_bit_count)
+
+	mov	rax, QWORD PTR v_bit_count$19[rbp]
+	cmp	QWORD PTR u_bit_count$18[rbp], rax
+	jae	SHORT $LN18@PMC_DivRem
+
+; 1186 :                     {
+; 1187 :                         // 明らかに u < v である場合
+; 1188 : 
+; 1189 :                         // q = 0, r = u を返す。
+; 1190 :                         *q = 0;
+
+	mov	rax, QWORD PTR q$[rbp]
+	mov	QWORD PTR [rax], 0
+
+; 1191 :                         *r = u;
+
+	mov	rax, QWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR u$[rbp]
+	mov	QWORD PTR [rax], rcx
+
+; 1192 :                     }
+
+	jmp	$LN19@PMC_DivRem
+$LN18@PMC_DivRem:
+
+; 1193 :                     else
+; 1194 :                     {
+; 1195 :                         // u のビット長が 33 以上 64 以下であり、かつ、u のビット長が v のビット長以上(v のビット長は多くとも64以下)である場合
+; 1196 : 
+; 1197 :                         if (nv->UNIT_BIT_COUNT <= sizeof(__UNIT_TYPE_DIV) * 8)
+
+	mov	rax, QWORD PTR nv$[rbp]
+	cmp	QWORD PTR [rax+8], 32			; 00000020H
+	ja	$LN20@PMC_DivRem
+
+; 1198 :                         {
+; 1199 :                             // v が 32bit で表現できる場合
+; 1200 : 
+; 1201 :                             __UNIT_TYPE_DIV u_buf[] = { u_lo, u_hi };
+
+	mov	eax, DWORD PTR u_lo$14[rbp]
+	mov	DWORD PTR u_buf$20[rbp], eax
+	mov	eax, DWORD PTR u_hi$13[rbp]
+	mov	DWORD PTR u_buf$20[rbp+4], eax
+
+; 1202 :                             __UNIT_TYPE_DIV q_buf[] = { 0, 0, 0 };
+
+	mov	DWORD PTR q_buf$21[rbp], 0
+	mov	DWORD PTR q_buf$21[rbp+4], 0
+	mov	DWORD PTR q_buf$21[rbp+8], 0
+
+; 1203 :                             __UNIT_TYPE_DIV r_buf;
+; 1204 : 
+; 1205 :                             DivRem_X_1W(u_buf, countof(u_buf), (__UNIT_TYPE_DIV)nv->BLOCK[0], q_buf, &r_buf);
+
+	mov	eax, 8
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR nv$[rbp]
+	mov	rcx, QWORD PTR [rcx+48]
+	lea	rdx, QWORD PTR r_buf$22[rbp]
+	mov	QWORD PTR [rsp+32], rdx
+	lea	r9, QWORD PTR q_buf$21[rbp]
+	mov	r8d, DWORD PTR [rcx+rax]
+	mov	edx, 2
+	lea	rcx, QWORD PTR u_buf$20[rbp]
+	call	DivRem_X_1W
+
+; 1206 : 
+; 1207 :                             *q = _FROMWORDTODWORD(q_buf[1], q_buf[0]);
+
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	ecx, 4
+	imul	rcx, rcx, 1
+	mov	edx, DWORD PTR q_buf$21[rbp+rax]
+	mov	ecx, DWORD PTR q_buf$21[rbp+rcx]
+	call	_FROMWORDTODWORD
+	mov	rcx, QWORD PTR q$[rbp]
+	mov	QWORD PTR [rcx], rax
+
+; 1208 :                             *r = r_buf;
+
+	mov	eax, DWORD PTR r_buf$22[rbp]
+	mov	rcx, QWORD PTR r$[rbp]
+	mov	QWORD PTR [rcx], rax
+
+; 1209 :                         }
+
+	jmp	$LN21@PMC_DivRem
+$LN20@PMC_DivRem:
+
+; 1210 :                         else
+; 1211 :                         {
+; 1212 :                             // v が 32bit では表現できない場合
+; 1213 : 
+; 1214 :                             // この場合、2 ワード / 2 ワード の除算となるため、_DIVREM_UNIT 単発では計算できない。
+; 1215 :                             __UNIT_TYPE_DIV u_buf[] = { u_lo, u_hi };
+
+	mov	eax, DWORD PTR u_lo$14[rbp]
+	mov	DWORD PTR u_buf$23[rbp], eax
+	mov	eax, DWORD PTR u_hi$13[rbp]
+	mov	DWORD PTR u_buf$23[rbp+4], eax
+
+; 1216 :                             __UNIT_TYPE_DIV q_buf[] = { 0, 0, 0 };// 演算結果を格納するためには u のビット数 - v のビット数 + 1 ビットだけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+
+	mov	DWORD PTR q_buf$24[rbp], 0
+	mov	DWORD PTR q_buf$24[rbp+4], 0
+	mov	DWORD PTR q_buf$24[rbp+8], 0
+
+; 1217 :                             __UNIT_TYPE_DIV r_buf[] = { 0, 0, 0 }; // 演算結果を格納するためには v と同じ大きさだけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
+
+	mov	DWORD PTR r_buf$25[rbp], 0
+	mov	DWORD PTR r_buf$25[rbp+4], 0
+	mov	DWORD PTR r_buf$25[rbp+8], 0
+
+; 1218 :                             __UNIT_TYPE_DIV work_v_buf[] = { 0, 0 };
+
+	mov	DWORD PTR work_v_buf$26[rbp], 0
+	mov	DWORD PTR work_v_buf$26[rbp+4], 0
+
+; 1219 :                             (*fp_DivRem_X_X)(u_buf, countof(u_buf), (__UNIT_TYPE_DIV*)nv->BLOCK, nv->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), work_v_buf, q_buf, r_buf);
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	rax, QWORD PTR [rax]
+	shl	rax, 3
+	xor	edx, edx
+	mov	ecx, 4
+	div	rcx
+	lea	rcx, QWORD PTR r_buf$25[rbp]
+	mov	QWORD PTR [rsp+48], rcx
+	lea	rcx, QWORD PTR q_buf$24[rbp]
+	mov	QWORD PTR [rsp+40], rcx
+	lea	rcx, QWORD PTR work_v_buf$26[rbp]
+	mov	QWORD PTR [rsp+32], rcx
+	mov	r9, rax
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	r8, QWORD PTR [rax+48]
+	mov	edx, 2
+	lea	rcx, QWORD PTR u_buf$23[rbp]
+	call	QWORD PTR fp_DivRem_X_X
+
+; 1220 :                             *q = _FROMWORDTODWORD((_UINT32_T)q_buf[1], (_UINT32_T)q_buf[0]);
+
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	ecx, 4
+	imul	rcx, rcx, 1
+	mov	edx, DWORD PTR q_buf$24[rbp+rax]
+	mov	ecx, DWORD PTR q_buf$24[rbp+rcx]
+	call	_FROMWORDTODWORD
+	mov	rcx, QWORD PTR q$[rbp]
+	mov	QWORD PTR [rcx], rax
+
+; 1221 :                             *r = _FROMWORDTODWORD((_UINT32_T)r_buf[1], (_UINT32_T)r_buf[0]);
+
+	mov	eax, 4
+	imul	rax, rax, 0
+	mov	ecx, 4
+	imul	rcx, rcx, 1
+	mov	edx, DWORD PTR r_buf$25[rbp+rax]
+	mov	ecx, DWORD PTR r_buf$25[rbp+rcx]
+	call	_FROMWORDTODWORD
+	mov	rcx, QWORD PTR r$[rbp]
+	mov	QWORD PTR [rcx], rax
+$LN21@PMC_DivRem:
+$LN19@PMC_DivRem:
+$LN15@PMC_DivRem:
+
+; 1222 :                         }
+; 1223 :                     }
+; 1224 :                 }
+; 1225 :             }
+
+	jmp	$LN13@PMC_DivRem
+$LN12@PMC_DivRem:
+
+; 1226 :             else
+; 1227 :             {
+; 1228 :                 // _UINT64_T が 1 ワードで表現できる場合
+; 1229 : 
+; 1230 :                 // x と y の商・剰余を計算する
+; 1231 :                 __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)u);
+
+	mov	rcx, QWORD PTR u$[rbp]
+	call	_LZCNT_ALT_UNIT
+	mov	ecx, 64					; 00000040H
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR u_bit_count$27[rbp], rax
+
+; 1232 :                 __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR v_bit_count$28[rbp], rax
+
+; 1233 :                 if (u_bit_count < v_bit_count)
+
+	mov	rax, QWORD PTR v_bit_count$28[rbp]
+	cmp	QWORD PTR u_bit_count$27[rbp], rax
+	jae	SHORT $LN22@PMC_DivRem
+
+; 1234 :                 {
+; 1235 :                     // 明らかに u < v である場合
+; 1236 : 
+; 1237 :                     // q = 0, r = u を返す。
+; 1238 :                     *q = 0;
+
+	mov	rax, QWORD PTR q$[rbp]
+	mov	QWORD PTR [rax], 0
+
+; 1239 :                     *r = u;
+
+	mov	rax, QWORD PTR r$[rbp]
+	mov	rcx, QWORD PTR u$[rbp]
+	mov	QWORD PTR [rax], rcx
+
+; 1240 :                 }
+
+	jmp	SHORT $LN23@PMC_DivRem
+$LN22@PMC_DivRem:
+
+; 1241 :                 else
+; 1242 :                 {
+; 1243 :                     // u のビット数が v のビット数以上である場合
+; 1244 : 
+; 1245 :                     // u は 1 ワードで表現できるので、v も 1 ワードで表現できる。
+; 1246 :                     __UNIT_TYPE_DIV temp_r;
+; 1247 :                     *q = _DIVREM_UNIT(0, (__UNIT_TYPE_DIV)u, (__UNIT_TYPE_DIV)nv->BLOCK[0], &temp_r);
+
+	mov	eax, 8
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR nv$[rbp]
+	mov	rcx, QWORD PTR [rcx+48]
+	lea	r9, QWORD PTR temp_r$29[rbp]
+	mov	r8d, DWORD PTR [rcx+rax]
+	mov	edx, DWORD PTR u$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	eax, eax
+	mov	rcx, QWORD PTR q$[rbp]
+	mov	QWORD PTR [rcx], rax
+
+; 1248 :                     *r = temp_r;
+
+	mov	eax, DWORD PTR temp_r$29[rbp]
+	mov	rcx, QWORD PTR r$[rbp]
+	mov	QWORD PTR [rcx], rax
+$LN23@PMC_DivRem:
+$LN13@PMC_DivRem:
+$LN11@PMC_DivRem:
+$LN9@PMC_DivRem:
+
+; 1249 :                 }
+; 1250 :             }
+; 1251 : 
+; 1252 :         }
+; 1253 :     }
+; 1254 :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_DivRem:
+
+; 1255 : }
+
+	mov	rdi, rax
+	lea	rcx, QWORD PTR [rbp-64]
+	lea	rdx, OFFSET FLAT:PMC_DivRem_L_X$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rax, rdi
+	mov	rcx, QWORD PTR __$ArrayPad$[rbp]
+	xor	rcx, rbp
+	call	__security_check_cookie
+	lea	rsp, QWORD PTR [rbp+1048]
+	pop	rdi
+	pop	rbp
+	ret	0
+PMC_DivRem_L_X ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_divrem.c
+;	COMDAT PMC_DivRem_I_X
+_TEXT	SEGMENT
+nv$ = 8
+result$ = 36
+u_bit_count$4 = 72
+v_bit_count$5 = 104
+temp_r$6 = 132
+u$ = 384
+v$ = 392
+q$ = 400
+r$ = 408
+PMC_DivRem_I_X PROC					; COMDAT
+
+; 942  : {
+
+$LN15:
+	mov	QWORD PTR [rsp+32], r9
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	DWORD PTR [rsp+8], ecx
+	push	rbp
+	push	rdi
+	sub	rsp, 392				; 00000188H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 98					; 00000062H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, DWORD PTR [rsp+424]
+	lea	rcx, OFFSET FLAT:__62F961D6_pmc_divrem@c
+	call	__CheckForDebuggerJustMyCode
+
+; 943  :     if (sizeof(__UNIT_TYPE_DIV) < sizeof(u))
 
 	xor	eax, eax
 	test	eax, eax
@@ -13661,9 +14806,9 @@ $LN20:
 $LN2@PMC_DivRem:
 
 ; 947  :     }
-; 948  :     if (u == NULL)
+; 948  :     if (v == NULL)
 
-	cmp	QWORD PTR u$[rbp], 0
+	cmp	QWORD PTR v$[rbp], 0
 	jne	SHORT $LN3@PMC_DivRem
 
 ; 949  :         return (PMC_STATUS_ARGUMENT_ERROR);
@@ -13694,15 +14839,15 @@ $LN4@PMC_DivRem:
 	jmp	$LN1@PMC_DivRem
 $LN5@PMC_DivRem:
 
-; 954  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 954  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
 
-	mov	rax, QWORD PTR u$[rbp]
-	mov	QWORD PTR nu$[rbp], rax
+	mov	rax, QWORD PTR v$[rbp]
+	mov	QWORD PTR nv$[rbp], rax
 
 ; 955  :     PMC_STATUS_CODE result;
-; 956  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 956  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
-	mov	rcx, QWORD PTR nu$[rbp]
+	mov	rcx, QWORD PTR nv$[rbp]
 	call	CheckNumber
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
@@ -13714,10 +14859,14 @@ $LN5@PMC_DivRem:
 	jmp	$LN1@PMC_DivRem
 $LN6@PMC_DivRem:
 
-; 958  :     if (v == 0)
+; 958  :     if (nv->IS_ZERO)
 
-	cmp	DWORD PTR v$[rbp], 0
-	jne	SHORT $LN7@PMC_DivRem
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN7@PMC_DivRem
 
 ; 959  :     {
 ; 960  :         // v が 0 である場合
@@ -13730,268 +14879,159 @@ $LN6@PMC_DivRem:
 $LN7@PMC_DivRem:
 
 ; 964  :     }
-; 965  :     NUMBER_HEADER* nq;
-; 966  :     if (nu->IS_ZERO)
+; 965  :     if (u == 0)
 
-	mov	rax, QWORD PTR nu$[rbp]
-	mov	eax, DWORD PTR [rax+32]
-	shr	eax, 1
-	and	eax, 1
-	test	eax, eax
-	je	SHORT $LN8@PMC_DivRem
+	cmp	DWORD PTR u$[rbp], 0
+	jne	SHORT $LN8@PMC_DivRem
 
-; 967  :     {
-; 968  :         // u が 0 である場合
-; 969  : 
-; 970  :         // q = 0, r = 0 を返す
-; 971  :         nq = &number_zero;
+; 966  :     {
+; 967  :         // u が 0 である場合
+; 968  : 
+; 969  :         // q = 0, r = 0 を返す
+; 970  :         *q = 0;
 
-	lea	rax, OFFSET FLAT:number_zero
-	mov	QWORD PTR nq$[rbp], rax
+	mov	rax, QWORD PTR q$[rbp]
+	mov	DWORD PTR [rax], 0
 
-; 972  :         *r = 0;
+; 971  :         *r = 0;
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	DWORD PTR [rax], 0
 
-; 973  :     }
+; 972  :     }
 
 	jmp	$LN9@PMC_DivRem
 $LN8@PMC_DivRem:
 
-; 974  :     else
-; 975  :     {
-; 976  :         // u が 0 ではない場合
-; 977  : 
-; 978  :         if (v == 1)
+; 973  :     else
+; 974  :     {
+; 975  :         // u が 0 ではない場合
+; 976  : 
+; 977  :         if (nv->IS_ONE)
 
-	cmp	DWORD PTR v$[rbp], 1
-	jne	SHORT $LN10@PMC_DivRem
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 2
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN10@PMC_DivRem
 
-; 979  :         {
-; 980  :             // v が 1 である場合
-; 981  : 
-; 982  :             // q = u, r = 0 を返す
-; 983  :             if ((result = DuplicateNumber(nu, &nq)) != PMC_STATUS_OK)
+; 978  :         {
+; 979  :             // v が 1 である場合
+; 980  : 
+; 981  :             // q = u, r = 0 を返す
+; 982  :             *q = u;
 
-	lea	rdx, QWORD PTR nq$[rbp]
-	mov	rcx, QWORD PTR nu$[rbp]
-	call	DuplicateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN12@PMC_DivRem
+	mov	rax, QWORD PTR q$[rbp]
+	mov	ecx, DWORD PTR u$[rbp]
+	mov	DWORD PTR [rax], ecx
 
-; 984  :                 return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_DivRem
-$LN12@PMC_DivRem:
-
-; 985  :             *r = 0;
+; 983  :             *r = 0;
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	DWORD PTR [rax], 0
 
-; 986  :         }
+; 984  :         }
 
 	jmp	$LN11@PMC_DivRem
 $LN10@PMC_DivRem:
 
-; 987  :         else
-; 988  :         {
-; 989  :             // u と v がともに 0 ではない場合
-; 990  : 
-; 991  :             // x と y の商・剰余を計算する
-; 992  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 985  :         else
+; 986  :         {
+; 987  :             // u と v がともに 0 ではない場合
+; 988  : 
+; 989  :             // x と y の商・剰余を計算する
+; 990  :             __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u);
 
-	mov	rax, QWORD PTR nu$[rbp]
-	mov	rax, QWORD PTR [rax+8]
-	mov	QWORD PTR u_bit_count$6[rbp], rax
-
-; 993  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
-
-	mov	ecx, DWORD PTR v$[rbp]
+	mov	ecx, DWORD PTR u$[rbp]
 	call	_LZCNT_ALT_32
 	mov	eax, eax
 	mov	ecx, 32					; 00000020H
 	sub	rcx, rax
 	mov	rax, rcx
-	mov	QWORD PTR v_bit_count$7[rbp], rax
+	mov	QWORD PTR u_bit_count$4[rbp], rax
 
-; 994  :             if (u_bit_count < v_bit_count)
+; 991  :             __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
-	mov	rax, QWORD PTR v_bit_count$7[rbp]
-	cmp	QWORD PTR u_bit_count$6[rbp], rax
-	jae	SHORT $LN13@PMC_DivRem
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR v_bit_count$5[rbp], rax
 
-; 995  :             {
-; 996  :                 // 明らかに u < v である場合
-; 997  : 
-; 998  :                 // q = 0, r = u を返す。
-; 999  :                 nq = &number_zero;
+; 992  :             if (u_bit_count < v_bit_count)
 
-	lea	rax, OFFSET FLAT:number_zero
-	mov	QWORD PTR nq$[rbp], rax
+	mov	rax, QWORD PTR v_bit_count$5[rbp]
+	cmp	QWORD PTR u_bit_count$4[rbp], rax
+	jae	SHORT $LN12@PMC_DivRem
 
-; 1000 :                 *r = (_UINT32_T)nu->BLOCK[0];
+; 993  :             {
+; 994  :                 // 明らかに u < v である場合
+; 995  : 
+; 996  :                 // q = 0, r = u を返す。
+; 997  :                 *q = 0;
+
+	mov	rax, QWORD PTR q$[rbp]
+	mov	DWORD PTR [rax], 0
+
+; 998  :                 *r = u;
+
+	mov	rax, QWORD PTR r$[rbp]
+	mov	ecx, DWORD PTR u$[rbp]
+	mov	DWORD PTR [rax], ecx
+
+; 999  :             }
+
+	jmp	SHORT $LN13@PMC_DivRem
+$LN12@PMC_DivRem:
+
+; 1000 :             else
+; 1001 :             {
+; 1002 :                 // u のビット数が v のビット数以上である場合
+; 1003 :                 
+; 1004 :                 // u は 1 ワードで表現できるので、v も 1 ワードで表現できる。
+; 1005 :                 __UNIT_TYPE_DIV temp_r;
+; 1006 :                 *q = _DIVREM_UNIT(0, u, (__UNIT_TYPE_DIV)nv->BLOCK[0], &temp_r);
 
 	mov	eax, 8
 	imul	rax, rax, 0
-	mov	rcx, QWORD PTR nu$[rbp]
+	mov	rcx, QWORD PTR nv$[rbp]
 	mov	rcx, QWORD PTR [rcx+48]
-	mov	rdx, QWORD PTR r$[rbp]
-	mov	eax, DWORD PTR [rax+rcx]
-	mov	DWORD PTR [rdx], eax
+	lea	r9, QWORD PTR temp_r$6[rbp]
+	mov	r8d, DWORD PTR [rcx+rax]
+	mov	edx, DWORD PTR u$[rbp]
+	xor	ecx, ecx
+	call	_DIVREM_UNIT
+	mov	rcx, QWORD PTR q$[rbp]
+	mov	DWORD PTR [rcx], eax
 
-; 1001 :             }
-
-	jmp	$LN14@PMC_DivRem
-$LN13@PMC_DivRem:
-
-; 1002 :             else
-; 1003 :             {
-; 1004 :                 __UNIT_TYPE q_bit_count = u_bit_count - v_bit_count + 1 + __UNIT_TYPE_BIT_COUNT; // 演算結果を格納するためには u_bit_count - v_bit_count + 1 だけあれば十分であるが、除算の作業用バッファも兼ねているので余分にとっている。
-
-	mov	rax, QWORD PTR v_bit_count$7[rbp]
-	mov	rcx, QWORD PTR u_bit_count$6[rbp]
-	sub	rcx, rax
-	mov	rax, rcx
-	add	rax, 65					; 00000041H
-	mov	QWORD PTR q_bit_count$8[rbp], rax
-
-; 1005 :                 __UNIT_TYPE nq_light_check_code;
-; 1006 :                 if ((result = AllocateNumber(&nq, q_bit_count, &nq_light_check_code)) != PMC_STATUS_OK)
-
-	lea	r8, QWORD PTR nq_light_check_code$9[rbp]
-	mov	rdx, QWORD PTR q_bit_count$8[rbp]
-	lea	rcx, QWORD PTR nq$[rbp]
-	call	AllocateNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN15@PMC_DivRem
-
-; 1007 :                     return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_DivRem
-$LN15@PMC_DivRem:
-
-; 1008 :                 __UNIT_TYPE_DIV r_buf = 0;
-
-	mov	DWORD PTR r_buf$10[rbp], 0
-
-; 1009 :                 DivRem_X_1W((__UNIT_TYPE_DIV*)nu->BLOCK, nu->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), v, (__UNIT_TYPE_DIV*)nq->BLOCK, &r_buf);
-
-	mov	rax, QWORD PTR nu$[rbp]
-	mov	rax, QWORD PTR [rax]
-	shl	rax, 3
-	xor	edx, edx
-	mov	ecx, 4
-	div	rcx
-	lea	rcx, QWORD PTR r_buf$10[rbp]
-	mov	QWORD PTR [rsp+32], rcx
-	mov	rcx, QWORD PTR nq$[rbp]
-	mov	r9, QWORD PTR [rcx+48]
-	mov	r8d, DWORD PTR v$[rbp]
-	mov	rdx, rax
-	mov	rax, QWORD PTR nu$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	DivRem_X_1W
-
-; 1010 :                 if ((result = CheckBlockLight(nq->BLOCK, nq_light_check_code)) != PMC_STATUS_OK)
-
-	mov	rdx, QWORD PTR nq_light_check_code$9[rbp]
-	mov	rax, QWORD PTR nq$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
-	call	CheckBlockLight
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN16@PMC_DivRem
-
-; 1011 :                     return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_DivRem
-$LN16@PMC_DivRem:
-
-; 1012 :                 CommitNumber(nq);
-
-	mov	rcx, QWORD PTR nq$[rbp]
-	call	CommitNumber
-
-; 1013 :                 *r = (_UINT32_T)r_buf;
+; 1007 :                 *r = temp_r;
 
 	mov	rax, QWORD PTR r$[rbp]
-	mov	ecx, DWORD PTR r_buf$10[rbp]
+	mov	ecx, DWORD PTR temp_r$6[rbp]
 	mov	DWORD PTR [rax], ecx
-
-; 1014 :                 if (nq->IS_ZERO)
-
-	mov	rax, QWORD PTR nq$[rbp]
-	mov	eax, DWORD PTR [rax+32]
-	shr	eax, 1
-	and	eax, 1
-	test	eax, eax
-	je	SHORT $LN17@PMC_DivRem
-
-; 1015 :                 {
-; 1016 :                     DeallocateNumber(nq);
-
-	mov	rcx, QWORD PTR nq$[rbp]
-	call	DeallocateNumber
-
-; 1017 :                     nq = &number_zero;
-
-	lea	rax, OFFSET FLAT:number_zero
-	mov	QWORD PTR nq$[rbp], rax
-$LN17@PMC_DivRem:
-$LN14@PMC_DivRem:
+$LN13@PMC_DivRem:
 $LN11@PMC_DivRem:
 $LN9@PMC_DivRem:
 
-; 1018 :                 }
-; 1019 :             }
-; 1020 :         }
-; 1021 :     }
-; 1022 :     *q = nq;
-
-	mov	rax, QWORD PTR q$[rbp]
-	mov	rcx, QWORD PTR nq$[rbp]
-	mov	QWORD PTR [rax], rcx
-
-; 1023 : #ifdef _DEBUG
-; 1024 :     if ((result = CheckNumber(nq)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR nq$[rbp]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN18@PMC_DivRem
-
-; 1025 :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	SHORT $LN1@PMC_DivRem
-$LN18@PMC_DivRem:
-
-; 1026 : #endif
-; 1027 :     return (PMC_STATUS_OK);
+; 1008 :             }
+; 1009 :         }
+; 1010 :     }
+; 1011 :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_DivRem:
 
-; 1028 : }
+; 1012 : }
 
 	mov	rdi, rax
-	lea	rcx, QWORD PTR [rbp-48]
-	lea	rdx, OFFSET FLAT:PMC_DivRem_X_I$rtcFrameData
+	lea	rcx, QWORD PTR [rbp-32]
+	lea	rdx, OFFSET FLAT:PMC_DivRem_I_X$rtcFrameData
 	call	_RTC_CheckStackVars
 	mov	rax, rdi
-	lea	rsp, QWORD PTR [rbp+456]
+	lea	rsp, QWORD PTR [rbp+360]
 	pop	rdi
 	pop	rbp
 	ret	0
-PMC_DivRem_X_I ENDP
+PMC_DivRem_I_X ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_divrem.c
@@ -14001,7 +15041,7 @@ tv72 = 192
 feature$ = 240
 Initialize_DivRem PROC					; COMDAT
 
-; 1369 : {
+; 1596 : {
 
 $LN5:
 	mov	QWORD PTR [rsp+8], rcx
@@ -14017,7 +15057,7 @@ $LN5:
 	lea	rcx, OFFSET FLAT:__62F961D6_pmc_divrem@c
 	call	__CheckForDebuggerJustMyCode
 
-; 1370 :     fp_DivRem_X_X = feature->PROCESSOR_FEATURE_ADX && feature->PROCESSOR_FEATURE_BMI2 ? DivRem_X_X_using_ADX_MULX : DivRem_X_X_using_ADC_MUL;
+; 1597 :     fp_DivRem_X_X = feature->PROCESSOR_FEATURE_ADX && feature->PROCESSOR_FEATURE_BMI2 ? DivRem_X_X_using_ADX_MULX : DivRem_X_X_using_ADC_MUL;
 
 	mov	rax, QWORD PTR feature$[rbp]
 	mov	eax, DWORD PTR [rax]
@@ -14041,11 +15081,11 @@ $LN4@Initialize:
 	mov	rax, QWORD PTR tv72[rbp]
 	mov	QWORD PTR fp_DivRem_X_X, rax
 
-; 1371 :     return (PMC_STATUS_OK);
+; 1598 :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 1372 : }
+; 1599 : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi

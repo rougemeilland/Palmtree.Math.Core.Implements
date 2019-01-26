@@ -21,16 +21,22 @@ __86261D59_stralign@h DB 01H
 __1C66ECB2_pmc_debug@h DB 01H
 __A14D6924_test_op_bitwiseor@c DB 01H
 msvcjmc	ENDS
+PUBLIC	TEST_PMC_BitwiseOr_I_X
+PUBLIC	TEST_PMC_BitwiseOr_L_X
 PUBLIC	TEST_PMC_BitwiseOr_X_I
 PUBLIC	TEST_PMC_BitwiseOr_X_L
 PUBLIC	TEST_PMC_BitwiseOr_X_X
 PUBLIC	__JustMyCode_Default
 PUBLIC	??_C@_0CN@LDAEIIBE@PMC_From_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@ ; `string'
+PUBLIC	??_C@_0BK@NAPOCDP@PMC_BitwiseOr_I_X?5?$CI?$CFd?4?$CFd?$CJ@ ; `string'
+PUBLIC	??_C@_0DE@OEJOGHEP@PMC_BitwiseOr_I_X?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@ ; `string'
+PUBLIC	??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@ ; `string'
+PUBLIC	??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ ; `string'
+PUBLIC	??_C@_0BK@JFKMJFCP@PMC_BitwiseOr_L_X?5?$CI?$CFd?4?$CFd?$CJ@ ; `string'
+PUBLIC	??_C@_0DE@DCKGGHOG@PMC_BitwiseOr_L_X?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@ ; `string'
 PUBLIC	??_C@_0BK@FCNOKJHK@PMC_BitwiseOr_X_I?5?$CI?$CFd?4?$CFd?$CJ@ ; `string'
 PUBLIC	??_C@_0DE@KIJFNPAJ@PMC_BitwiseOr_X_I?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@ ; `string'
-PUBLIC	??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@ ; `string'
 PUBLIC	??_C@_0BK@JKLCEDKM@PMC_BitwiseOr_X_X?5?$CI?$CFd?4?$CFd?$CJ@ ; `string'
-PUBLIC	??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ ; `string'
 PUBLIC	??_C@_0BK@LEPHGCDO@PMC_BitwiseOr_X_L?5?$CI?$CFd?4?$CFd?$CJ@ ; `string'
 PUBLIC	??_C@_0DE@FLFFDAL@PMC_BitwiseOr_X_L?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@ ; `string'
 PUBLIC	??_C@_0DE@NMKEGJMA@PMC_BitwiseOr_X_X?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@ ; `string'
@@ -44,6 +50,18 @@ EXTRN	__CheckForDebuggerJustMyCode:PROC
 EXTRN	__GSHandlerCheck:PROC
 EXTRN	__security_check_cookie:PROC
 EXTRN	__security_cookie:QWORD
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$TEST_PMC_BitwiseOr_I_X DD imagerel $LN13
+	DD	imagerel $LN13+722
+	DD	imagerel $unwind$TEST_PMC_BitwiseOr_I_X
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$TEST_PMC_BitwiseOr_L_X DD imagerel $LN13
+	DD	imagerel $LN13+723
+	DD	imagerel $unwind$TEST_PMC_BitwiseOr_L_X
+pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$TEST_PMC_BitwiseOr_X_I DD imagerel $LN13
@@ -97,25 +115,10 @@ CONST	SEGMENT
 ??_C@_0BK@LEPHGCDO@PMC_BitwiseOr_X_L?5?$CI?$CFd?4?$CFd?$CJ@ DB 'PMC_Bitwi'
 	DB	'seOr_X_L (%d.%d)', 00H			; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
-CONST	SEGMENT
-??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ DB 083H
-	DB	'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H
-	DB	0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H, 082H, 0a2H
-	DB	00H						; `string'
-CONST	ENDS
 ;	COMDAT ??_C@_0BK@JKLCEDKM@PMC_BitwiseOr_X_X?5?$CI?$CFd?4?$CFd?$CJ@
 CONST	SEGMENT
 ??_C@_0BK@JKLCEDKM@PMC_BitwiseOr_X_X?5?$CI?$CFd?4?$CFd?$CJ@ DB 'PMC_Bitwi'
 	DB	'seOr_X_X (%d.%d)', 00H			; `string'
-CONST	ENDS
-;	COMDAT ??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
-CONST	SEGMENT
-??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@ DB 'P'
-	DB	'MC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R', 081H
-	DB	'[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H, 0caH
-	DB	082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H, '('
-	DB	'%d)', 00H					; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0DE@KIJFNPAJ@PMC_BitwiseOr_X_I?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@
 CONST	SEGMENT
@@ -129,6 +132,47 @@ CONST	ENDS
 CONST	SEGMENT
 ??_C@_0BK@FCNOKJHK@PMC_BitwiseOr_X_I?5?$CI?$CFd?4?$CFd?$CJ@ DB 'PMC_Bitwi'
 	DB	'seOr_X_I (%d.%d)', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0DE@DCKGGHOG@PMC_BitwiseOr_L_X?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@
+CONST	SEGMENT
+??_C@_0DE@DCKGGHOG@PMC_BitwiseOr_L_X?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@ DB 'P'
+	DB	'MC_BitwiseOr_L_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
+	DB	'(%d)', 00H					; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BK@JFKMJFCP@PMC_BitwiseOr_L_X?5?$CI?$CFd?4?$CFd?$CJ@
+CONST	SEGMENT
+??_C@_0BK@JFKMJFCP@PMC_BitwiseOr_L_X?5?$CI?$CFd?4?$CFd?$CJ@ DB 'PMC_Bitwi'
+	DB	'seOr_L_X (%d.%d)', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
+CONST	SEGMENT
+??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ DB 083H
+	DB	'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H
+	DB	0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H, 082H, 0a2H
+	DB	00H						; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
+CONST	SEGMENT
+??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@ DB 'P'
+	DB	'MC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R', 081H
+	DB	'[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H, 0caH
+	DB	082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H, '('
+	DB	'%d)', 00H					; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0DE@OEJOGHEP@PMC_BitwiseOr_I_X?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@
+CONST	SEGMENT
+??_C@_0DE@OEJOGHEP@PMC_BitwiseOr_I_X?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@ DB 'P'
+	DB	'MC_BitwiseOr_I_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
+	DB	'(%d)', 00H					; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BK@NAPOCDP@PMC_BitwiseOr_I_X?5?$CI?$CFd?4?$CFd?$CJ@
+CONST	SEGMENT
+??_C@_0BK@NAPOCDP@PMC_BitwiseOr_I_X?5?$CI?$CFd?4?$CFd?$CJ@ DB 'PMC_Bitwis'
+	DB	'eOr_I_X (%d.%d)', 00H			; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0CN@LDAEIIBE@PMC_From_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
 CONST	SEGMENT
@@ -352,6 +396,140 @@ TEST_PMC_BitwiseOr_X_I$rtcFrameData DD 04H
 	DD	00H
 	DQ	FLAT:TEST_PMC_BitwiseOr_X_I$rtcVarDesc
 CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$TEST_PMC_BitwiseOr_L_X DD 025054a19H
+	DD	011d2322H
+	DD	07016005bH
+	DD	05015H
+	DD	imagerel __GSHandlerCheck
+	DD	02c0H
+xdata	ENDS
+;	COMDAT CONST
+CONST	SEGMENT
+TEST_PMC_BitwiseOr_L_X$rtcName$0 DB 076H
+	DB	00H
+	ORG $+2
+TEST_PMC_BitwiseOr_L_X$rtcName$1 DB 077H
+	DB	00H
+	ORG $+2
+TEST_PMC_BitwiseOr_L_X$rtcName$2 DB 061H
+	DB	063H
+	DB	074H
+	DB	075H
+	DB	061H
+	DB	06cH
+	DB	05fH
+	DB	077H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	00H
+	ORG $+3
+TEST_PMC_BitwiseOr_L_X$rtcName$3 DB 061H
+	DB	063H
+	DB	074H
+	DB	075H
+	DB	061H
+	DB	06cH
+	DB	05fH
+	DB	077H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	05fH
+	DB	073H
+	DB	069H
+	DB	07aH
+	DB	065H
+	DB	00H
+	ORG $+6
+TEST_PMC_BitwiseOr_L_X$rtcVarDesc DD 0188H
+	DD	08H
+	DQ	FLAT:TEST_PMC_BitwiseOr_L_X$rtcName$3
+	DD	070H
+	DD	0100H
+	DQ	FLAT:TEST_PMC_BitwiseOr_L_X$rtcName$2
+	DD	048H
+	DD	08H
+	DQ	FLAT:TEST_PMC_BitwiseOr_L_X$rtcName$1
+	DD	028H
+	DD	08H
+	DQ	FLAT:TEST_PMC_BitwiseOr_L_X$rtcName$0
+	ORG $+192
+TEST_PMC_BitwiseOr_L_X$rtcFrameData DD 04H
+	DD	00H
+	DQ	FLAT:TEST_PMC_BitwiseOr_L_X$rtcVarDesc
+CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$TEST_PMC_BitwiseOr_I_X DD 025054a19H
+	DD	011d2322H
+	DD	07016005bH
+	DD	05015H
+	DD	imagerel __GSHandlerCheck
+	DD	02c0H
+xdata	ENDS
+;	COMDAT CONST
+CONST	SEGMENT
+TEST_PMC_BitwiseOr_I_X$rtcName$0 DB 076H
+	DB	00H
+	ORG $+2
+TEST_PMC_BitwiseOr_I_X$rtcName$1 DB 077H
+	DB	00H
+	ORG $+2
+TEST_PMC_BitwiseOr_I_X$rtcName$2 DB 061H
+	DB	063H
+	DB	074H
+	DB	075H
+	DB	061H
+	DB	06cH
+	DB	05fH
+	DB	077H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	00H
+	ORG $+3
+TEST_PMC_BitwiseOr_I_X$rtcName$3 DB 061H
+	DB	063H
+	DB	074H
+	DB	075H
+	DB	061H
+	DB	06cH
+	DB	05fH
+	DB	077H
+	DB	05fH
+	DB	062H
+	DB	075H
+	DB	066H
+	DB	05fH
+	DB	073H
+	DB	069H
+	DB	07aH
+	DB	065H
+	DB	00H
+	ORG $+6
+TEST_PMC_BitwiseOr_I_X$rtcVarDesc DD 0188H
+	DD	08H
+	DQ	FLAT:TEST_PMC_BitwiseOr_I_X$rtcName$3
+	DD	070H
+	DD	0100H
+	DQ	FLAT:TEST_PMC_BitwiseOr_I_X$rtcName$2
+	DD	048H
+	DD	08H
+	DQ	FLAT:TEST_PMC_BitwiseOr_I_X$rtcName$1
+	DD	028H
+	DD	08H
+	DQ	FLAT:TEST_PMC_BitwiseOr_I_X$rtcName$0
+	ORG $+192
+TEST_PMC_BitwiseOr_I_X$rtcFrameData DD 04H
+	DD	00H
+	DQ	FLAT:TEST_PMC_BitwiseOr_I_X$rtcVarDesc
+CONST	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
 _TEXT	SEGMENT
@@ -369,7 +547,7 @@ buffer2$ = 240
 count2$ = 248
 _EQUALS_MEMORY PROC					; COMDAT
 
-; 109  : {
+; 145  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -387,26 +565,26 @@ _EQUALS_MEMORY PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__1C66ECB2_pmc_debug@h
 	call	__CheckForDebuggerJustMyCode
 
-; 110  :     if (count1 != count2)
+; 146  :     if (count1 != count2)
 
 	mov	rax, QWORD PTR count2$[rbp]
 	cmp	QWORD PTR count1$[rbp], rax
 	je	SHORT $LN4@EQUALS_MEM
 
-; 111  :         return (-1);
+; 147  :         return (-1);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN4@EQUALS_MEM:
 $LN2@EQUALS_MEM:
 
-; 112  :     while (count1 > 0)
+; 148  :     while (count1 > 0)
 
 	cmp	QWORD PTR count1$[rbp], 0
 	jbe	SHORT $LN3@EQUALS_MEM
 
-; 113  :     {
-; 114  :         if (*buffer1 != *buffer2)
+; 149  :     {
+; 150  :         if (*buffer1 != *buffer2)
 
 	mov	rax, QWORD PTR buffer1$[rbp]
 	movzx	eax, BYTE PTR [rax]
@@ -415,41 +593,41 @@ $LN2@EQUALS_MEM:
 	cmp	eax, ecx
 	je	SHORT $LN5@EQUALS_MEM
 
-; 115  :             return (-1);
+; 151  :             return (-1);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN5@EQUALS_MEM:
 
-; 116  :         ++buffer1;
+; 152  :         ++buffer1;
 
 	mov	rax, QWORD PTR buffer1$[rbp]
 	inc	rax
 	mov	QWORD PTR buffer1$[rbp], rax
 
-; 117  :         ++buffer2;
+; 153  :         ++buffer2;
 
 	mov	rax, QWORD PTR buffer2$[rbp]
 	inc	rax
 	mov	QWORD PTR buffer2$[rbp], rax
 
-; 118  :         --count1;
+; 154  :         --count1;
 
 	mov	rax, QWORD PTR count1$[rbp]
 	dec	rax
 	mov	QWORD PTR count1$[rbp], rax
 
-; 119  :     }
+; 155  :     }
 
 	jmp	SHORT $LN2@EQUALS_MEM
 $LN3@EQUALS_MEM:
 
-; 120  :     return (0);
+; 156  :     return (0);
 
 	xor	eax, eax
 $LN1@EQUALS_MEM:
 
-; 121  : }
+; 157  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -491,7 +669,7 @@ desired_w_buf$ = 1032
 desired_w_buf_size$ = 1040
 TEST_PMC_BitwiseOr_X_X PROC				; COMDAT
 
-; 78   : {
+; 116  : {
 
 $LN16:
 	mov	QWORD PTR [rsp+32], r9
@@ -513,16 +691,16 @@ $LN16:
 	lea	rcx, OFFSET FLAT:__A14D6924_test_op_bitwiseor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 79   :     HANDLE u;
-; 80   :     HANDLE v;
-; 81   :     HANDLE w;
-; 82   :     unsigned char actual_w_buf[256];
-; 83   :     size_t actual_w_buf_size;
-; 84   :     PMC_STATUS_CODE result;
-; 85   :     PMC_STATUS_CODE u_result;
-; 86   :     PMC_STATUS_CODE v_result;
-; 87   :     PMC_STATUS_CODE w_result;
-; 88   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 1), (u_result = ep->PMC_From_B(u_buf, u_buf_size, &u)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", u_result));
+; 117  :     HANDLE u;
+; 118  :     HANDLE v;
+; 119  :     HANDLE w;
+; 120  :     unsigned char actual_w_buf[256];
+; 121  :     size_t actual_w_buf_size;
+; 122  :     PMC_STATUS_CODE result;
+; 123  :     PMC_STATUS_CODE u_result;
+; 124  :     PMC_STATUS_CODE v_result;
+; 125  :     PMC_STATUS_CODE w_result;
+; 126  :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 1), (u_result = ep->PMC_From_B(u_buf, u_buf_size, &u)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", u_result));
 
 	lea	r8, QWORD PTR u$[rbp]
 	mov	rdx, QWORD PTR u_buf_size$[rbp]
@@ -552,7 +730,7 @@ $LN7@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 89   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 2), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
+; 127  :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 2), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
 
 	lea	r8, QWORD PTR v$[rbp]
 	mov	rdx, QWORD PTR v_buf_size$[rbp]
@@ -582,13 +760,13 @@ $LN9@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 90   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 3), (w_result = ep->PMC_BitwiseOr_X_X(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_BitwiseOr_X_Xの復帰コードが期待通りではない(%d)", w_result));
+; 128  :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 3), (w_result = ep->PMC_BitwiseOr_X_X(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_BitwiseOr_X_Xの復帰コードが期待通りではない(%d)", w_result));
 
 	lea	r8, QWORD PTR w$[rbp]
 	mov	rdx, QWORD PTR v$[rbp]
 	mov	rcx, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+240]
+	call	QWORD PTR [rax+352]
 	mov	DWORD PTR w_result$[rbp], eax
 	cmp	DWORD PTR w_result$[rbp], 0
 	jne	SHORT $LN10@TEST_PMC_B
@@ -612,7 +790,7 @@ $LN11@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 91   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 129  :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	lea	r9, QWORD PTR actual_w_buf_size$[rbp]
 	mov	r8d, 256				; 00000100H
@@ -643,7 +821,7 @@ $LN13@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 92   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
+; 130  :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_w_buf_size$[rbp]
 	mov	r8, QWORD PTR desired_w_buf$[rbp]
@@ -667,43 +845,43 @@ $LN15@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 93   :     if (w_result == PMC_STATUS_OK)
+; 131  :     if (w_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR w_result$[rbp], 0
 	jne	SHORT $LN2@TEST_PMC_B
 
-; 94   :         ep->PMC_Dispose(w);
+; 132  :         ep->PMC_Dispose(w);
 
 	mov	rcx, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN2@TEST_PMC_B:
 
-; 95   :     if (v_result == PMC_STATUS_OK)
+; 133  :     if (v_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR v_result$[rbp], 0
 	jne	SHORT $LN3@TEST_PMC_B
 
-; 96   :         ep->PMC_Dispose(v);
+; 134  :         ep->PMC_Dispose(v);
 
 	mov	rcx, QWORD PTR v$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN3@TEST_PMC_B:
 
-; 97   :     if (u_result == PMC_STATUS_OK)
+; 135  :     if (u_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR u_result$[rbp], 0
 	jne	SHORT $LN4@TEST_PMC_B
 
-; 98   :         ep->PMC_Dispose(u);
+; 136  :         ep->PMC_Dispose(u);
 
 	mov	rcx, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN4@TEST_PMC_B:
 
-; 99   : }
+; 137  : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:TEST_PMC_BitwiseOr_X_X$rtcFrameData
@@ -746,7 +924,7 @@ desired_w_buf$ = 768
 desired_w_buf_size$ = 776
 TEST_PMC_BitwiseOr_X_L PROC				; COMDAT
 
-; 59   : {
+; 97   : {
 
 $LN13:
 	mov	QWORD PTR [rsp+32], r9
@@ -768,14 +946,14 @@ $LN13:
 	lea	rcx, OFFSET FLAT:__A14D6924_test_op_bitwiseor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 60   :     HANDLE u;
-; 61   :     HANDLE w;
-; 62   :     unsigned char actual_w_buf[256];
-; 63   :     size_t actual_w_buf_size;
-; 64   :     PMC_STATUS_CODE result;
-; 65   :     PMC_STATUS_CODE u_result;
-; 66   :     PMC_STATUS_CODE w_result;
-; 67   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_L (%d.%d)", no, 1), (u_result = ep->PMC_From_B(u_buf, u_buf_size, &u)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", u_result));
+; 98   :     HANDLE u;
+; 99   :     HANDLE w;
+; 100  :     unsigned char actual_w_buf[256];
+; 101  :     size_t actual_w_buf_size;
+; 102  :     PMC_STATUS_CODE result;
+; 103  :     PMC_STATUS_CODE u_result;
+; 104  :     PMC_STATUS_CODE w_result;
+; 105  :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_L (%d.%d)", no, 1), (u_result = ep->PMC_From_B(u_buf, u_buf_size, &u)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", u_result));
 
 	lea	r8, QWORD PTR u$[rbp]
 	mov	rdx, QWORD PTR u_buf_size$[rbp]
@@ -805,13 +983,13 @@ $LN6@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 68   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_L (%d.%d)", no, 2), (w_result = ep->PMC_BitwiseOr_X_L(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_BitwiseOr_X_Lの復帰コードが期待通りではない(%d)", w_result));
+; 106  :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_L (%d.%d)", no, 2), (w_result = ep->PMC_BitwiseOr_X_L(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_BitwiseOr_X_Lの復帰コードが期待通りではない(%d)", w_result));
 
 	lea	r8, QWORD PTR w$[rbp]
 	mov	rdx, QWORD PTR v$[rbp]
 	mov	rcx, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+232]
+	call	QWORD PTR [rax+344]
 	mov	DWORD PTR w_result$[rbp], eax
 	cmp	DWORD PTR w_result$[rbp], 0
 	jne	SHORT $LN7@TEST_PMC_B
@@ -835,7 +1013,7 @@ $LN8@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 69   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 107  :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	lea	r9, QWORD PTR actual_w_buf_size$[rbp]
 	mov	r8d, 256				; 00000100H
@@ -866,7 +1044,7 @@ $LN10@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 70   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
+; 108  :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_w_buf_size$[rbp]
 	mov	r8, QWORD PTR desired_w_buf$[rbp]
@@ -890,31 +1068,31 @@ $LN12@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 71   :     if (w_result == PMC_STATUS_OK)
+; 109  :     if (w_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR w_result$[rbp], 0
 	jne	SHORT $LN2@TEST_PMC_B
 
-; 72   :         ep->PMC_Dispose(w);
+; 110  :         ep->PMC_Dispose(w);
 
 	mov	rcx, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN2@TEST_PMC_B:
 
-; 73   :     if (u_result == PMC_STATUS_OK)
+; 111  :     if (u_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR u_result$[rbp], 0
 	jne	SHORT $LN3@TEST_PMC_B
 
-; 74   :         ep->PMC_Dispose(u);
+; 112  :         ep->PMC_Dispose(u);
 
 	mov	rcx, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN3@TEST_PMC_B:
 
-; 75   : }
+; 113  : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:TEST_PMC_BitwiseOr_X_L$rtcFrameData
@@ -957,7 +1135,7 @@ desired_w_buf$ = 768
 desired_w_buf_size$ = 776
 TEST_PMC_BitwiseOr_X_I PROC				; COMDAT
 
-; 40   : {
+; 78   : {
 
 $LN13:
 	mov	QWORD PTR [rsp+32], r9
@@ -979,14 +1157,14 @@ $LN13:
 	lea	rcx, OFFSET FLAT:__A14D6924_test_op_bitwiseor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 41   :     HANDLE u;
-; 42   :     HANDLE w;
-; 43   :     unsigned char actual_w_buf[256];
-; 44   :     size_t actual_w_buf_size;
-; 45   :     PMC_STATUS_CODE result;
-; 46   :     PMC_STATUS_CODE u_result;
-; 47   :     PMC_STATUS_CODE w_result;
-; 48   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_I (%d.%d)", no, 1), (u_result = ep->PMC_From_B(u_buf, u_buf_size, &u)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", u_result));
+; 79   :     HANDLE u;
+; 80   :     HANDLE w;
+; 81   :     unsigned char actual_w_buf[256];
+; 82   :     size_t actual_w_buf_size;
+; 83   :     PMC_STATUS_CODE result;
+; 84   :     PMC_STATUS_CODE u_result;
+; 85   :     PMC_STATUS_CODE w_result;
+; 86   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_I (%d.%d)", no, 1), (u_result = ep->PMC_From_B(u_buf, u_buf_size, &u)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", u_result));
 
 	lea	r8, QWORD PTR u$[rbp]
 	mov	rdx, QWORD PTR u_buf_size$[rbp]
@@ -1016,13 +1194,13 @@ $LN6@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 49   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_I (%d.%d)", no, 2), (w_result = ep->PMC_BitwiseOr_X_I(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_BitwiseOr_X_Iの復帰コードが期待通りではない(%d)", w_result));
+; 87   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_I (%d.%d)", no, 2), (w_result = ep->PMC_BitwiseOr_X_I(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_BitwiseOr_X_Iの復帰コードが期待通りではない(%d)", w_result));
 
 	lea	r8, QWORD PTR w$[rbp]
 	mov	edx, DWORD PTR v$[rbp]
 	mov	rcx, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+224]
+	call	QWORD PTR [rax+336]
 	mov	DWORD PTR w_result$[rbp], eax
 	cmp	DWORD PTR w_result$[rbp], 0
 	jne	SHORT $LN7@TEST_PMC_B
@@ -1046,7 +1224,7 @@ $LN8@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 50   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 88   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
 
 	lea	r9, QWORD PTR actual_w_buf_size$[rbp]
 	mov	r8d, 256				; 00000100H
@@ -1077,7 +1255,7 @@ $LN10@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 51   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
+; 89   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_w_buf_size$[rbp]
 	mov	r8, QWORD PTR desired_w_buf$[rbp]
@@ -1101,31 +1279,31 @@ $LN12@TEST_PMC_B:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 52   :     if (w_result == PMC_STATUS_OK)
+; 90   :     if (w_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR w_result$[rbp], 0
 	jne	SHORT $LN2@TEST_PMC_B
 
-; 53   :         ep->PMC_Dispose(w);
+; 91   :         ep->PMC_Dispose(w);
 
 	mov	rcx, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN2@TEST_PMC_B:
 
-; 54   :     if (u_result == PMC_STATUS_OK)
+; 92   :     if (u_result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR u_result$[rbp], 0
 	jne	SHORT $LN3@TEST_PMC_B
 
-; 55   :         ep->PMC_Dispose(u);
+; 93   :         ep->PMC_Dispose(u);
 
 	mov	rcx, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
 	call	QWORD PTR [rax+40]
 $LN3@TEST_PMC_B:
 
-; 56   : }
+; 94   : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:TEST_PMC_BitwiseOr_X_I$rtcFrameData
@@ -1138,5 +1316,427 @@ $LN3@TEST_PMC_B:
 	pop	rbp
 	ret	0
 TEST_PMC_BitwiseOr_X_I ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\test_op_bitwiseor.c
+;	COMDAT TEST_PMC_BitwiseOr_L_X
+_TEXT	SEGMENT
+v$ = 8
+w$ = 40
+actual_w_buf$ = 80
+actual_w_buf_size$ = 360
+result$ = 388
+v_result$ = 420
+w_result$ = 452
+tv158 = 660
+tv143 = 660
+tv92 = 660
+tv74 = 660
+tv132 = 664
+tv82 = 664
+tv64 = 664
+__$ArrayPad$ = 672
+env$ = 720
+ep$ = 728
+no$ = 736
+u$ = 744
+v_buf$ = 752
+v_buf_size$ = 760
+desired_w_buf$ = 768
+desired_w_buf_size$ = 776
+TEST_PMC_BitwiseOr_L_X PROC				; COMDAT
+
+; 59   : {
+
+$LN13:
+	mov	QWORD PTR [rsp+32], r9
+	mov	DWORD PTR [rsp+24], r8d
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 728				; 000002d8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 182				; 000000b6H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+760]
+	mov	rax, QWORD PTR __security_cookie
+	xor	rax, rbp
+	mov	QWORD PTR __$ArrayPad$[rbp], rax
+	lea	rcx, OFFSET FLAT:__A14D6924_test_op_bitwiseor@c
+	call	__CheckForDebuggerJustMyCode
+
+; 60   :     HANDLE v;
+; 61   :     HANDLE w;
+; 62   :     unsigned char actual_w_buf[256];
+; 63   :     size_t actual_w_buf_size;
+; 64   :     PMC_STATUS_CODE result;
+; 65   :     PMC_STATUS_CODE v_result;
+; 66   :     PMC_STATUS_CODE w_result;
+; 67   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_L_X (%d.%d)", no, 1), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
+
+	lea	r8, QWORD PTR v$[rbp]
+	mov	rdx, QWORD PTR v_buf_size$[rbp]
+	mov	rcx, QWORD PTR v_buf$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+32]
+	mov	DWORD PTR v_result$[rbp], eax
+	cmp	DWORD PTR v_result$[rbp], 0
+	jne	SHORT $LN5@TEST_PMC_B
+	mov	DWORD PTR tv74[rbp], 1
+	jmp	SHORT $LN6@TEST_PMC_B
+$LN5@TEST_PMC_B:
+	mov	DWORD PTR tv74[rbp], 0
+$LN6@TEST_PMC_B:
+	mov	edx, DWORD PTR v_result$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0CN@LDAEIIBE@PMC_From_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
+	call	FormatTestMesssage
+	mov	QWORD PTR tv64[rbp], rax
+	mov	r8d, 1
+	mov	edx, DWORD PTR no$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0BK@JFKMJFCP@PMC_BitwiseOr_L_X?5?$CI?$CFd?4?$CFd?$CJ@
+	call	FormatTestLabel
+	mov	rcx, QWORD PTR tv64[rbp]
+	mov	r9, rcx
+	mov	r8d, DWORD PTR tv74[rbp]
+	mov	rdx, rax
+	mov	rcx, QWORD PTR env$[rbp]
+	call	TEST_Assert
+
+; 68   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_L_X (%d.%d)", no, 2), (w_result = ep->PMC_BitwiseOr_L_X(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_BitwiseOr_L_Xの復帰コードが期待通りではない(%d)", w_result));
+
+	lea	r8, QWORD PTR w$[rbp]
+	mov	rdx, QWORD PTR v$[rbp]
+	mov	rcx, QWORD PTR u$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+328]
+	mov	DWORD PTR w_result$[rbp], eax
+	cmp	DWORD PTR w_result$[rbp], 0
+	jne	SHORT $LN7@TEST_PMC_B
+	mov	DWORD PTR tv92[rbp], 1
+	jmp	SHORT $LN8@TEST_PMC_B
+$LN7@TEST_PMC_B:
+	mov	DWORD PTR tv92[rbp], 0
+$LN8@TEST_PMC_B:
+	mov	edx, DWORD PTR w_result$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0DE@DCKGGHOG@PMC_BitwiseOr_L_X?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@
+	call	FormatTestMesssage
+	mov	QWORD PTR tv82[rbp], rax
+	mov	r8d, 2
+	mov	edx, DWORD PTR no$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0BK@JFKMJFCP@PMC_BitwiseOr_L_X?5?$CI?$CFd?4?$CFd?$CJ@
+	call	FormatTestLabel
+	mov	rcx, QWORD PTR tv82[rbp]
+	mov	r9, rcx
+	mov	r8d, DWORD PTR tv92[rbp]
+	mov	rdx, rax
+	mov	rcx, QWORD PTR env$[rbp]
+	call	TEST_Assert
+
+; 69   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_L_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+
+	lea	r9, QWORD PTR actual_w_buf_size$[rbp]
+	mov	r8d, 256				; 00000100H
+	lea	rdx, QWORD PTR actual_w_buf$[rbp]
+	mov	rcx, QWORD PTR w$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+64]
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	jne	SHORT $LN9@TEST_PMC_B
+	mov	DWORD PTR tv143[rbp], 1
+	jmp	SHORT $LN10@TEST_PMC_B
+$LN9@TEST_PMC_B:
+	mov	DWORD PTR tv143[rbp], 0
+$LN10@TEST_PMC_B:
+	mov	edx, DWORD PTR result$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
+	call	FormatTestMesssage
+	mov	QWORD PTR tv132[rbp], rax
+	mov	r8d, 3
+	mov	edx, DWORD PTR no$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0BK@JFKMJFCP@PMC_BitwiseOr_L_X?5?$CI?$CFd?4?$CFd?$CJ@
+	call	FormatTestLabel
+	mov	rcx, QWORD PTR tv132[rbp]
+	mov	r9, rcx
+	mov	r8d, DWORD PTR tv143[rbp]
+	mov	rdx, rax
+	mov	rcx, QWORD PTR env$[rbp]
+	call	TEST_Assert
+
+; 70   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_L_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
+
+	mov	r9, QWORD PTR desired_w_buf_size$[rbp]
+	mov	r8, QWORD PTR desired_w_buf$[rbp]
+	mov	rdx, QWORD PTR actual_w_buf_size$[rbp]
+	lea	rcx, QWORD PTR actual_w_buf$[rbp]
+	call	_EQUALS_MEMORY
+	test	eax, eax
+	jne	SHORT $LN11@TEST_PMC_B
+	mov	DWORD PTR tv158[rbp], 1
+	jmp	SHORT $LN12@TEST_PMC_B
+$LN11@TEST_PMC_B:
+	mov	DWORD PTR tv158[rbp], 0
+$LN12@TEST_PMC_B:
+	mov	r8d, 4
+	mov	edx, DWORD PTR no$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0BK@JFKMJFCP@PMC_BitwiseOr_L_X?5?$CI?$CFd?4?$CFd?$CJ@
+	call	FormatTestLabel
+	lea	r9, OFFSET FLAT:??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
+	mov	r8d, DWORD PTR tv158[rbp]
+	mov	rdx, rax
+	mov	rcx, QWORD PTR env$[rbp]
+	call	TEST_Assert
+
+; 71   :     if (w_result == PMC_STATUS_OK)
+
+	cmp	DWORD PTR w_result$[rbp], 0
+	jne	SHORT $LN2@TEST_PMC_B
+
+; 72   :         ep->PMC_Dispose(w);
+
+	mov	rcx, QWORD PTR w$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+40]
+$LN2@TEST_PMC_B:
+
+; 73   :     if (v_result == PMC_STATUS_OK)
+
+	cmp	DWORD PTR v_result$[rbp], 0
+	jne	SHORT $LN3@TEST_PMC_B
+
+; 74   :         ep->PMC_Dispose(v);
+
+	mov	rcx, QWORD PTR v$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+40]
+$LN3@TEST_PMC_B:
+
+; 75   : }
+
+	lea	rcx, QWORD PTR [rbp-32]
+	lea	rdx, OFFSET FLAT:TEST_PMC_BitwiseOr_L_X$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rcx, QWORD PTR __$ArrayPad$[rbp]
+	xor	rcx, rbp
+	call	__security_check_cookie
+	lea	rsp, QWORD PTR [rbp+696]
+	pop	rdi
+	pop	rbp
+	ret	0
+TEST_PMC_BitwiseOr_L_X ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\test_op_bitwiseor.c
+;	COMDAT TEST_PMC_BitwiseOr_I_X
+_TEXT	SEGMENT
+v$ = 8
+w$ = 40
+actual_w_buf$ = 80
+actual_w_buf_size$ = 360
+result$ = 388
+v_result$ = 420
+w_result$ = 452
+tv158 = 660
+tv143 = 660
+tv92 = 660
+tv74 = 660
+tv132 = 664
+tv82 = 664
+tv64 = 664
+__$ArrayPad$ = 672
+env$ = 720
+ep$ = 728
+no$ = 736
+u$ = 744
+v_buf$ = 752
+v_buf_size$ = 760
+desired_w_buf$ = 768
+desired_w_buf_size$ = 776
+TEST_PMC_BitwiseOr_I_X PROC				; COMDAT
+
+; 40   : {
+
+$LN13:
+	mov	DWORD PTR [rsp+32], r9d
+	mov	DWORD PTR [rsp+24], r8d
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 728				; 000002d8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 182				; 000000b6H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+760]
+	mov	rax, QWORD PTR __security_cookie
+	xor	rax, rbp
+	mov	QWORD PTR __$ArrayPad$[rbp], rax
+	lea	rcx, OFFSET FLAT:__A14D6924_test_op_bitwiseor@c
+	call	__CheckForDebuggerJustMyCode
+
+; 41   :     HANDLE v;
+; 42   :     HANDLE w;
+; 43   :     unsigned char actual_w_buf[256];
+; 44   :     size_t actual_w_buf_size;
+; 45   :     PMC_STATUS_CODE result;
+; 46   :     PMC_STATUS_CODE v_result;
+; 47   :     PMC_STATUS_CODE w_result;
+; 48   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_I_X (%d.%d)", no, 1), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
+
+	lea	r8, QWORD PTR v$[rbp]
+	mov	rdx, QWORD PTR v_buf_size$[rbp]
+	mov	rcx, QWORD PTR v_buf$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+32]
+	mov	DWORD PTR v_result$[rbp], eax
+	cmp	DWORD PTR v_result$[rbp], 0
+	jne	SHORT $LN5@TEST_PMC_B
+	mov	DWORD PTR tv74[rbp], 1
+	jmp	SHORT $LN6@TEST_PMC_B
+$LN5@TEST_PMC_B:
+	mov	DWORD PTR tv74[rbp], 0
+$LN6@TEST_PMC_B:
+	mov	edx, DWORD PTR v_result$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0CN@LDAEIIBE@PMC_From_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
+	call	FormatTestMesssage
+	mov	QWORD PTR tv64[rbp], rax
+	mov	r8d, 1
+	mov	edx, DWORD PTR no$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0BK@NAPOCDP@PMC_BitwiseOr_I_X?5?$CI?$CFd?4?$CFd?$CJ@
+	call	FormatTestLabel
+	mov	rcx, QWORD PTR tv64[rbp]
+	mov	r9, rcx
+	mov	r8d, DWORD PTR tv74[rbp]
+	mov	rdx, rax
+	mov	rcx, QWORD PTR env$[rbp]
+	call	TEST_Assert
+
+; 49   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_I_X (%d.%d)", no, 2), (w_result = ep->PMC_BitwiseOr_I_X(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_BitwiseOr_I_Xの復帰コードが期待通りではない(%d)", w_result));
+
+	lea	r8, QWORD PTR w$[rbp]
+	mov	rdx, QWORD PTR v$[rbp]
+	mov	ecx, DWORD PTR u$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+320]
+	mov	DWORD PTR w_result$[rbp], eax
+	cmp	DWORD PTR w_result$[rbp], 0
+	jne	SHORT $LN7@TEST_PMC_B
+	mov	DWORD PTR tv92[rbp], 1
+	jmp	SHORT $LN8@TEST_PMC_B
+$LN7@TEST_PMC_B:
+	mov	DWORD PTR tv92[rbp], 0
+$LN8@TEST_PMC_B:
+	mov	edx, DWORD PTR w_result$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0DE@OEJOGHEP@PMC_BitwiseOr_I_X?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK@
+	call	FormatTestMesssage
+	mov	QWORD PTR tv82[rbp], rax
+	mov	r8d, 2
+	mov	edx, DWORD PTR no$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0BK@NAPOCDP@PMC_BitwiseOr_I_X?5?$CI?$CFd?4?$CFd?$CJ@
+	call	FormatTestLabel
+	mov	rcx, QWORD PTR tv82[rbp]
+	mov	r9, rcx
+	mov	r8d, DWORD PTR tv92[rbp]
+	mov	rdx, rax
+	mov	rcx, QWORD PTR env$[rbp]
+	call	TEST_Assert
+
+; 50   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_I_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+
+	lea	r9, QWORD PTR actual_w_buf_size$[rbp]
+	mov	r8d, 256				; 00000100H
+	lea	rdx, QWORD PTR actual_w_buf$[rbp]
+	mov	rcx, QWORD PTR w$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+64]
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	jne	SHORT $LN9@TEST_PMC_B
+	mov	DWORD PTR tv143[rbp], 1
+	jmp	SHORT $LN10@TEST_PMC_B
+$LN9@TEST_PMC_B:
+	mov	DWORD PTR tv143[rbp], 0
+$LN10@TEST_PMC_B:
+	mov	edx, DWORD PTR result$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
+	call	FormatTestMesssage
+	mov	QWORD PTR tv132[rbp], rax
+	mov	r8d, 3
+	mov	edx, DWORD PTR no$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0BK@NAPOCDP@PMC_BitwiseOr_I_X?5?$CI?$CFd?4?$CFd?$CJ@
+	call	FormatTestLabel
+	mov	rcx, QWORD PTR tv132[rbp]
+	mov	r9, rcx
+	mov	r8d, DWORD PTR tv143[rbp]
+	mov	rdx, rax
+	mov	rcx, QWORD PTR env$[rbp]
+	call	TEST_Assert
+
+; 51   :     TEST_Assert(env, FormatTestLabel("PMC_BitwiseOr_I_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
+
+	mov	r9, QWORD PTR desired_w_buf_size$[rbp]
+	mov	r8, QWORD PTR desired_w_buf$[rbp]
+	mov	rdx, QWORD PTR actual_w_buf_size$[rbp]
+	lea	rcx, QWORD PTR actual_w_buf$[rbp]
+	call	_EQUALS_MEMORY
+	test	eax, eax
+	jne	SHORT $LN11@TEST_PMC_B
+	mov	DWORD PTR tv158[rbp], 1
+	jmp	SHORT $LN12@TEST_PMC_B
+$LN11@TEST_PMC_B:
+	mov	DWORD PTR tv158[rbp], 0
+$LN12@TEST_PMC_B:
+	mov	r8d, 4
+	mov	edx, DWORD PTR no$[rbp]
+	lea	rcx, OFFSET FLAT:??_C@_0BK@NAPOCDP@PMC_BitwiseOr_I_X?5?$CI?$CFd?4?$CFd?$CJ@
+	call	FormatTestLabel
+	lea	r9, OFFSET FLAT:??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
+	mov	r8d, DWORD PTR tv158[rbp]
+	mov	rdx, rax
+	mov	rcx, QWORD PTR env$[rbp]
+	call	TEST_Assert
+
+; 52   :     if (w_result == PMC_STATUS_OK)
+
+	cmp	DWORD PTR w_result$[rbp], 0
+	jne	SHORT $LN2@TEST_PMC_B
+
+; 53   :         ep->PMC_Dispose(w);
+
+	mov	rcx, QWORD PTR w$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+40]
+$LN2@TEST_PMC_B:
+
+; 54   :     if (v_result == PMC_STATUS_OK)
+
+	cmp	DWORD PTR v_result$[rbp], 0
+	jne	SHORT $LN3@TEST_PMC_B
+
+; 55   :         ep->PMC_Dispose(v);
+
+	mov	rcx, QWORD PTR v$[rbp]
+	mov	rax, QWORD PTR ep$[rbp]
+	call	QWORD PTR [rax+40]
+$LN3@TEST_PMC_B:
+
+; 56   : }
+
+	lea	rcx, QWORD PTR [rbp-32]
+	lea	rdx, OFFSET FLAT:TEST_PMC_BitwiseOr_I_X$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rcx, QWORD PTR __$ArrayPad$[rbp]
+	xor	rcx, rbp
+	call	__security_check_cookie
+	lea	rsp, QWORD PTR [rbp+696]
+	pop	rdi
+	pop	rbp
+	ret	0
+TEST_PMC_BitwiseOr_I_X ENDP
 _TEXT	ENDS
 END

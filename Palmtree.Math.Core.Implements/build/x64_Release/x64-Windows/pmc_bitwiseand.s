@@ -1,10 +1,10 @@
 	.file	"pmc_bitwiseand.c"
 	.text
 	.p2align 4,,15
-	.globl	PMC_BitwiseAnd_X_I
-	.def	PMC_BitwiseAnd_X_I;	.scl	2;	.type	32;	.endef
-	.seh_proc	PMC_BitwiseAnd_X_I
-PMC_BitwiseAnd_X_I:
+	.globl	PMC_BitwiseAnd_I_X
+	.def	PMC_BitwiseAnd_I_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_BitwiseAnd_I_X
+PMC_BitwiseAnd_I_X:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -14,13 +14,14 @@ PMC_BitwiseAnd_X_I:
 	subq	$32, %rsp
 	.seh_stackalloc	32
 	.seh_endprologue
-	testq	%rcx, %rcx
-	movq	%rcx, %rbx
-	movl	%edx, %edi
+	testq	%rdx, %rdx
+	movl	%ecx, %edi
+	movq	%rdx, %rbx
 	movq	%r8, %rsi
 	je	.L5
 	testq	%r8, %r8
 	je	.L5
+	movq	%rdx, %rcx
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L1
@@ -52,6 +53,109 @@ PMC_BitwiseAnd_X_I:
 	jmp	.L1
 	.seh_endproc
 	.p2align 4,,15
+	.globl	PMC_BitwiseAnd_X_I
+	.def	PMC_BitwiseAnd_X_I;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_BitwiseAnd_X_I
+PMC_BitwiseAnd_X_I:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	testq	%rcx, %rcx
+	movq	%rcx, %rbx
+	movl	%edx, %edi
+	movq	%r8, %rsi
+	je	.L14
+	testq	%r8, %r8
+	je	.L14
+	call	CheckNumber
+	testl	%eax, %eax
+	jne	.L10
+	testb	$2, 32(%rbx)
+	je	.L12
+.L13:
+	movl	$0, (%rsi)
+.L10:
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L12:
+	testl	%edi, %edi
+	je	.L13
+	movq	48(%rbx), %rdx
+	andl	(%rdx), %edi
+	movl	%edi, (%rsi)
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L14:
+	movl	$-1, %eax
+	jmp	.L10
+	.seh_endproc
+	.p2align 4,,15
+	.globl	PMC_BitwiseAnd_L_X
+	.def	PMC_BitwiseAnd_L_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	PMC_BitwiseAnd_L_X
+PMC_BitwiseAnd_L_X:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	testq	%rdx, %rdx
+	movq	%rcx, %rdi
+	movq	%rdx, %rbx
+	movq	%r8, %rsi
+	je	.L22
+	testq	%r8, %r8
+	je	.L22
+	movq	%rdx, %rcx
+	call	CheckNumber
+	testl	%eax, %eax
+	jne	.L18
+	testb	$2, 32(%rbx)
+	je	.L20
+.L21:
+	movq	$0, (%rsi)
+.L18:
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L20:
+	testq	%rdi, %rdi
+	je	.L21
+	movq	48(%rbx), %rdx
+	andq	(%rdx), %rdi
+	movq	%rdi, (%rsi)
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L22:
+	movl	$-1, %eax
+	jmp	.L18
+	.seh_endproc
+	.p2align 4,,15
 	.globl	PMC_BitwiseAnd_X_L
 	.def	PMC_BitwiseAnd_X_L;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_BitwiseAnd_X_L
@@ -69,26 +173,26 @@ PMC_BitwiseAnd_X_L:
 	movq	%rcx, %rbx
 	movq	%rdx, %rdi
 	movq	%r8, %rsi
-	je	.L14
+	je	.L30
 	testq	%r8, %r8
-	je	.L14
+	je	.L30
 	call	CheckNumber
 	testl	%eax, %eax
-	jne	.L10
+	jne	.L26
 	testb	$2, 32(%rbx)
-	je	.L12
-.L13:
+	je	.L28
+.L29:
 	movq	$0, (%rsi)
-.L10:
+.L26:
 	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	ret
 	.p2align 4,,10
-.L12:
+.L28:
 	testq	%rdi, %rdi
-	je	.L13
+	je	.L29
 	movq	48(%rbx), %rdx
 	andq	(%rdx), %rdi
 	movq	%rdi, (%rsi)
@@ -98,9 +202,9 @@ PMC_BitwiseAnd_X_L:
 	popq	%rdi
 	ret
 	.p2align 4,,10
-.L14:
+.L30:
 	movl	$-1, %eax
-	jmp	.L10
+	jmp	.L26
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_BitwiseAnd_X_X
@@ -126,13 +230,13 @@ PMC_BitwiseAnd_X_X:
 	movq	%r8, %rdi
 	sete	%al
 	orb	%al, %dl
-	jne	.L31
+	jne	.L47
 	testq	%rcx, %rcx
-	je	.L31
+	je	.L47
 	call	CheckNumber
 	testl	%eax, %eax
-	je	.L52
-.L18:
+	je	.L68
+.L34:
 	addq	$72, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -140,15 +244,15 @@ PMC_BitwiseAnd_X_X:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L52:
+.L68:
 	movq	%rsi, %rcx
 	call	CheckNumber
 	testl	%eax, %eax
-	jne	.L18
+	jne	.L34
 	testb	$2, 32(%rbx)
-	jne	.L21
+	jne	.L37
 	testb	$2, 32(%rsi)
-	jne	.L21
+	jne	.L37
 	movq	8(%rsi), %rdx
 	leaq	48(%rsp), %rcx
 	cmpq	%rdx, 8(%rbx)
@@ -157,7 +261,7 @@ PMC_BitwiseAnd_X_X:
 	movq	%rdx, %rbp
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L18
+	jne	.L34
 	movq	48(%rsp), %rax
 	leaq	63(%rbp), %r9
 	movq	%r9, %r11
@@ -167,13 +271,13 @@ PMC_BitwiseAnd_X_X:
 	testq	%r9, %r9
 	movq	48(%rax), %rcx
 	movq	48(%rbx), %rax
-	je	.L32
+	je	.L48
 	salq	$8, %r9
 	movq	%rcx, %r8
 	movq	%rsi, %rdx
 	leaq	(%rax,%r9), %rbx
 	.p2align 4,,10
-.L24:
+.L40:
 	movq	(%rax), %r10
 	andq	(%rdx), %r10
 	movq	%r10, (%r8)
@@ -274,12 +378,12 @@ PMC_BitwiseAnd_X_X:
 	addq	$256, %r8
 	movq	%r10, -8(%r8)
 	cmpq	%rbx, %rax
-	jne	.L24
+	jne	.L40
 	addq	%r9, %rsi
 	addq	%rcx, %r9
-.L23:
+.L39:
 	testb	$16, %r11b
-	je	.L25
+	je	.L41
 	movq	(%rbx), %rax
 	subq	$-128, %rsi
 	subq	$-128, %rbx
@@ -331,9 +435,9 @@ PMC_BitwiseAnd_X_X:
 	movq	-8(%rbx), %rax
 	andq	-8(%rsi), %rax
 	movq	%rax, -8(%r9)
-.L25:
+.L41:
 	testb	$8, %r11b
-	je	.L26
+	je	.L42
 	movq	(%rbx), %rax
 	addq	$64, %rsi
 	addq	$64, %rbx
@@ -361,9 +465,9 @@ PMC_BitwiseAnd_X_X:
 	movq	-8(%rbx), %rax
 	andq	-8(%rsi), %rax
 	movq	%rax, -8(%r9)
-.L26:
+.L42:
 	testb	$4, %r11b
-	je	.L27
+	je	.L43
 	movq	(%rbx), %rax
 	addq	$32, %rsi
 	addq	$32, %rbx
@@ -379,9 +483,9 @@ PMC_BitwiseAnd_X_X:
 	movq	-8(%rbx), %rax
 	andq	-8(%rsi), %rax
 	movq	%rax, -8(%r9)
-.L27:
+.L43:
 	testb	$2, %r11b
-	je	.L28
+	je	.L44
 	movq	(%rbx), %rax
 	addq	$16, %rsi
 	addq	$16, %rbx
@@ -391,29 +495,29 @@ PMC_BitwiseAnd_X_X:
 	movq	-8(%rbx), %rax
 	andq	-8(%rsi), %rax
 	movq	%rax, -8(%r9)
-.L28:
+.L44:
 	andl	$1, %r11d
-	je	.L29
+	je	.L45
 	movq	(%rbx), %rax
 	andq	(%rsi), %rax
 	movq	%rax, (%r9)
-.L29:
+.L45:
 	movq	56(%rsp), %rdx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L18
+	jne	.L34
 	movq	48(%rsp), %rcx
 	movl	%eax, 44(%rsp)
 	call	CommitNumber
 	movq	48(%rsp), %rcx
 	movl	44(%rsp), %eax
 	testb	$2, 32(%rcx)
-	jne	.L53
-.L30:
+	jne	.L69
+.L46:
 	movq	%rcx, (%rdi)
-	jmp	.L18
+	jmp	.L34
 	.p2align 4,,10
-.L21:
+.L37:
 	movq	.refptr.number_zero(%rip), %rdx
 	movq	%rdx, (%rdi)
 	addq	$72, %rsp
@@ -423,18 +527,18 @@ PMC_BitwiseAnd_X_X:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L31:
+.L47:
 	movl	$-1, %eax
-	jmp	.L18
-.L53:
+	jmp	.L34
+.L69:
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
 	movl	44(%rsp), %eax
-	jmp	.L30
-.L32:
+	jmp	.L46
+.L48:
 	movq	%rcx, %r9
 	movq	%rax, %rbx
-	jmp	.L23
+	jmp	.L39
 	.seh_endproc
 	.p2align 4,,15
 	.globl	Initialize_BitwiseAnd

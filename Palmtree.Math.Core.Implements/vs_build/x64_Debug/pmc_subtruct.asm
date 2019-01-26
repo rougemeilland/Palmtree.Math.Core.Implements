@@ -24,6 +24,8 @@ __1898920A_pmc_subtruct@c DB 01H
 msvcjmc	ENDS
 PUBLIC	Subtruct_Imp
 PUBLIC	Initialize_Subtruct
+PUBLIC	PMC_Subtruct_I_X
+PUBLIC	PMC_Subtruct_L_X
 PUBLIC	PMC_Subtruct_X_I
 PUBLIC	PMC_Subtruct_X_L
 PUBLIC	PMC_Subtruct_X_X
@@ -53,14 +55,26 @@ $pdata$Initialize_Subtruct DD imagerel $LN3
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
+$pdata$PMC_Subtruct_I_X DD imagerel $LN17
+	DD	imagerel $LN17+421
+	DD	imagerel $unwind$PMC_Subtruct_I_X
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$PMC_Subtruct_L_X DD imagerel $LN31
+	DD	imagerel $LN31+907
+	DD	imagerel $unwind$PMC_Subtruct_L_X
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
 $pdata$PMC_Subtruct_X_I DD imagerel $LN22
-	DD	imagerel $LN22+609
+	DD	imagerel $LN22+638
 	DD	imagerel $unwind$PMC_Subtruct_X_I
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_Subtruct_X_L DD imagerel $LN38
-	DD	imagerel $LN38+1142
+	DD	imagerel $LN38+1233
 	DD	imagerel $unwind$PMC_Subtruct_X_L
 pdata	ENDS
 ;	COMDAT pdata
@@ -68,6 +82,12 @@ pdata	SEGMENT
 $pdata$PMC_Subtruct_X_X DD imagerel $LN22
 	DD	imagerel $LN22+662
 	DD	imagerel $unwind$PMC_Subtruct_X_X
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$_FROMWORDTODWORD DD imagerel _FROMWORDTODWORD
+	DD	imagerel _FROMWORDTODWORD+85
+	DD	imagerel $unwind$_FROMWORDTODWORD
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -132,13 +152,13 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$Subtruct_X_1W DD imagerel Subtruct_X_1W
-	DD	imagerel Subtruct_X_1W+289
+	DD	imagerel Subtruct_X_1W+253
 	DD	imagerel $unwind$Subtruct_X_1W
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$Subtruct_X_2W DD imagerel Subtruct_X_2W
-	DD	imagerel Subtruct_X_2W+406
+	DD	imagerel Subtruct_X_2W+380
 	DD	imagerel $unwind$Subtruct_X_2W
 pdata	ENDS
 ;	COMDAT rtc$TMZ
@@ -153,15 +173,15 @@ rtc$IMZ	ENDS
 xdata	SEGMENT
 $unwind$Subtruct_X_2W DD 035053901H
 	DD	011d3322H
-	DD	070160035H
+	DD	070160025H
 	DD	05015H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$Subtruct_X_1W DD 035053401H
-	DD	0118331dH
-	DD	070110035H
-	DD	05010H
+$unwind$Subtruct_X_1W DD 035053901H
+	DD	011d3322H
+	DD	070160025H
+	DD	05015H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -265,6 +285,13 @@ $unwind$_FROMDWORDTOWORD DD 025052f01H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$_FROMWORDTODWORD DD 025052c01H
+	DD	01112316H
+	DD	0700a001dH
+	DD	05009H
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$PMC_Subtruct_X_X DD 035053401H
 	DD	0118331dH
 	DD	07011003fH
@@ -310,9 +337,9 @@ PMC_Subtruct_X_X$rtcFrameData DD 02H
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$PMC_Subtruct_X_L DD 025053401H
-	DD	0118231dH
-	DD	07011005dH
+$unwind$PMC_Subtruct_X_L DD 035053401H
+	DD	0118331dH
+	DD	07011005fH
 	DD	05010H
 xdata	ENDS
 ;	COMDAT CONST
@@ -390,19 +417,19 @@ PMC_Subtruct_X_L$rtcName$4 DB 06eH
 	DB	065H
 	DB	00H
 	ORG $+12
-PMC_Subtruct_X_L$rtcVarDesc DD 0208H
+PMC_Subtruct_X_L$rtcVarDesc DD 0218H
 	DD	08H
 	DQ	FLAT:PMC_Subtruct_X_L$rtcName$4
-	DD	0188H
+	DD	0198H
 	DD	08H
 	DQ	FLAT:PMC_Subtruct_X_L$rtcName$3
-	DD	0128H
+	DD	0138H
 	DD	08H
 	DQ	FLAT:PMC_Subtruct_X_L$rtcName$2
-	DD	0a4H
+	DD	0b4H
 	DD	04H
 	DQ	FLAT:PMC_Subtruct_X_L$rtcName$1
-	DD	068H
+	DD	078H
 	DD	08H
 	DQ	FLAT:PMC_Subtruct_X_L$rtcName$0
 	ORG $+240
@@ -412,19 +439,18 @@ PMC_Subtruct_X_L$rtcFrameData DD 05H
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$PMC_Subtruct_X_I DD 025053301H
-	DD	0117231cH
-	DD	070100039H
+$unwind$PMC_Subtruct_X_I DD 035053301H
+	DD	0117331cH
+	DD	07010003bH
 	DD	0500fH
 xdata	ENDS
 ;	COMDAT CONST
 CONST	SEGMENT
 PMC_Subtruct_X_I$rtcName$0 DB 06eH
-	DB	07aH
+	DB	077H
 	DB	00H
 	ORG $+5
-PMC_Subtruct_X_I$rtcName$1 DB 06eH
-	DB	07aH
+PMC_Subtruct_X_I$rtcName$1 DB 077H
 	DB	05fH
 	DB	06cH
 	DB	069H
@@ -443,17 +469,115 @@ PMC_Subtruct_X_I$rtcName$1 DB 06eH
 	DB	064H
 	DB	065H
 	DB	00H
-	ORG $+4
-PMC_Subtruct_X_I$rtcVarDesc DD 0e8H
+	ORG $+5
+PMC_Subtruct_X_I$rtcVarDesc DD 0f8H
 	DD	08H
 	DQ	FLAT:PMC_Subtruct_X_I$rtcName$1
-	DD	068H
+	DD	078H
 	DD	08H
 	DQ	FLAT:PMC_Subtruct_X_I$rtcName$0
 	ORG $+96
 PMC_Subtruct_X_I$rtcFrameData DD 02H
 	DD	00H
 	DQ	FLAT:PMC_Subtruct_X_I$rtcVarDesc
+CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_Subtruct_L_X DD 025053401H
+	DD	0118231dH
+	DD	070110079H
+	DD	05010H
+xdata	ENDS
+;	COMDAT CONST
+CONST	SEGMENT
+PMC_Subtruct_L_X$rtcName$0 DB 075H
+	DB	05fH
+	DB	068H
+	DB	069H
+	DB	00H
+	ORG $+3
+PMC_Subtruct_L_X$rtcName$1 DB 074H
+	DB	065H
+	DB	06dH
+	DB	070H
+	DB	05fH
+	DB	077H
+	DB	00H
+	ORG $+1
+PMC_Subtruct_L_X$rtcName$2 DB 074H
+	DB	065H
+	DB	06dH
+	DB	070H
+	DB	05fH
+	DB	077H
+	DB	05fH
+	DB	068H
+	DB	069H
+	DB	00H
+	ORG $+6
+PMC_Subtruct_L_X$rtcName$3 DB 074H
+	DB	065H
+	DB	06dH
+	DB	070H
+	DB	05fH
+	DB	077H
+	DB	05fH
+	DB	06cH
+	DB	06fH
+	DB	00H
+	ORG $+2
+PMC_Subtruct_L_X$rtcName$4 DB 074H
+	DB	065H
+	DB	06dH
+	DB	070H
+	DB	05fH
+	DB	077H
+	DB	00H
+	ORG $+5
+PMC_Subtruct_L_X$rtcFrameData DD 05H
+	DD	00H
+	DQ	FLAT:PMC_Subtruct_L_X$rtcVarDesc
+	ORG $+8
+PMC_Subtruct_L_X$rtcVarDesc DD 0208H
+	DD	08H
+	DQ	FLAT:PMC_Subtruct_L_X$rtcName$4
+	DD	0188H
+	DD	08H
+	DQ	FLAT:PMC_Subtruct_L_X$rtcName$3
+	DD	0168H
+	DD	08H
+	DQ	FLAT:PMC_Subtruct_L_X$rtcName$2
+	DD	0e8H
+	DD	08H
+	DQ	FLAT:PMC_Subtruct_L_X$rtcName$1
+	DD	064H
+	DD	04H
+	DQ	FLAT:PMC_Subtruct_L_X$rtcName$0
+CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$PMC_Subtruct_I_X DD 025053201H
+	DD	0117231cH
+	DD	070100035H
+	DD	0500fH
+xdata	ENDS
+;	COMDAT CONST
+CONST	SEGMENT
+PMC_Subtruct_I_X$rtcName$0 DB 074H
+	DB	065H
+	DB	06dH
+	DB	070H
+	DB	05fH
+	DB	077H
+	DB	00H
+	ORG $+9
+PMC_Subtruct_I_X$rtcVarDesc DD 0a8H
+	DD	08H
+	DQ	FLAT:PMC_Subtruct_I_X$rtcName$0
+	ORG $+48
+PMC_Subtruct_I_X$rtcFrameData DD 01H
+	DD	00H
+	DQ	FLAT:PMC_Subtruct_I_X$rtcVarDesc
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -480,22 +604,20 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ;	COMDAT Subtruct_X_2W
 _TEXT	SEGMENT
-x_count$ = 8
-z_count$ = 40
-xp$ = 72
-zp$ = 104
-c$ = 132
-tv84 = 344
-tv75 = 344
-tv88 = 352
-tv79 = 352
-x$ = 400
-y_hi$ = 408
-y_lo$ = 416
-z$ = 424
+c$1 = 4
+tv76 = 216
+tv67 = 216
+tv80 = 224
+tv71 = 224
+up$ = 272
+u_count$ = 280
+v_hi$ = 288
+v_lo$ = 296
+wp$ = 304
+w_count$ = 312
 Subtruct_X_2W PROC					; COMDAT
 
-; 105  : {
+; 97   : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -503,142 +625,112 @@ Subtruct_X_2W PROC					; COMDAT
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
 	push	rdi
-	sub	rsp, 424				; 000001a8H
+	sub	rsp, 296				; 00000128H
 	lea	rbp, QWORD PTR [rsp+48]
 	mov	rdi, rsp
-	mov	ecx, 106				; 0000006aH
+	mov	ecx, 74					; 0000004aH
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
-	mov	rcx, QWORD PTR [rsp+456]
+	mov	rcx, QWORD PTR [rsp+328]
 	lea	rcx, OFFSET FLAT:__1898920A_pmc_subtruct@c
 	call	__CheckForDebuggerJustMyCode
 
-; 106  :     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
+; 98   :     if (u_count < 2)
 
-	mov	rax, QWORD PTR x$[rbp]
-	mov	rax, QWORD PTR [rax]
-	mov	QWORD PTR x_count$[rbp], rax
-
-; 107  :     __UNIT_TYPE z_count = z->BLOCK_COUNT;
-
-	mov	rax, QWORD PTR z$[rbp]
-	mov	rax, QWORD PTR [rax+40]
-	mov	QWORD PTR z_count$[rbp], rax
-
-; 108  :     __UNIT_TYPE* xp = &x->BLOCK[0];
-
-	mov	eax, 8
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR x$[rbp]
-	add	rax, QWORD PTR [rcx+48]
-	mov	QWORD PTR xp$[rbp], rax
-
-; 109  :     __UNIT_TYPE* zp = &z->BLOCK[0];
-
-	mov	eax, 8
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR z$[rbp]
-	add	rax, QWORD PTR [rcx+48]
-	mov	QWORD PTR zp$[rbp], rax
-
-; 110  :     char c;
-; 111  : 
-; 112  :     if (x_count < 2)
-
-	cmp	QWORD PTR x_count$[rbp], 2
+	cmp	QWORD PTR u_count$[rbp], 2
 	jae	SHORT $LN2@Subtruct_X
 
-; 113  :     {
-; 114  :         // x が 1 ワードしかなかった場合
-; 115  : 
-; 116  :         // 明らかに演算結果が負になるのでエラーを通知する。
-; 117  :         return (PMC_STATUS_INTERNAL_BORROW);
+; 99   :     {
+; 100  :         // u が 1 ワードしかなかった場合
+; 101  : 
+; 102  :         // 明らかに演算結果が負になるのでエラーを通知する。
+; 103  :         return (PMC_STATUS_INTERNAL_BORROW);
 
 	mov	eax, -258				; fffffffffffffefeH
 	jmp	$LN1@Subtruct_X
 
-; 118  :     }
+; 104  :     }
 
 	jmp	$LN3@Subtruct_X
 $LN2@Subtruct_X:
 
-; 119  :     else
-; 120  :     {
-; 121  :         // x が 2 ワード以上あった場合
-; 122  : 
-; 123  :         // 最下位のワードの減算をする
-; 124  :         c = _SUBTRUCT_UNIT(0, *xp++, y_lo, zp++);
+; 105  :     else
+; 106  :     {
+; 107  :         // x が 2 ワード以上あった場合
+; 108  : 
+; 109  :         // 最下位のワードの減算をする
+; 110  :         char c = _SUBTRUCT_UNIT(0, *up++, v_lo, wp++);
 
-	mov	rax, QWORD PTR zp$[rbp]
-	mov	QWORD PTR tv75[rbp], rax
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
+	mov	QWORD PTR tv67[rbp], rax
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 8
-	mov	QWORD PTR zp$[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	QWORD PTR wp$[rbp], rax
+	mov	rax, QWORD PTR up$[rbp]
 	mov	rax, QWORD PTR [rax]
-	mov	QWORD PTR tv79[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	QWORD PTR tv71[rbp], rax
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 8
-	mov	QWORD PTR xp$[rbp], rax
-	mov	r9, QWORD PTR tv75[rbp]
-	mov	r8, QWORD PTR y_lo$[rbp]
-	mov	rdx, QWORD PTR tv79[rbp]
+	mov	QWORD PTR up$[rbp], rax
+	mov	r9, QWORD PTR tv67[rbp]
+	mov	r8, QWORD PTR v_lo$[rbp]
+	mov	rdx, QWORD PTR tv71[rbp]
 	xor	ecx, ecx
 	call	_SUBTRUCT_UNIT
-	mov	BYTE PTR c$[rbp], al
+	mov	BYTE PTR c$1[rbp], al
 
-; 125  : 
-; 126  :         // 最下位から 2 番目のワードの減算をする。
-; 127  :         c = _SUBTRUCT_UNIT(c, *xp++, y_hi, zp++);
+; 111  : 
+; 112  :         // 最下位から 2 番目のワードの減算をする。
+; 113  :         c = _SUBTRUCT_UNIT(c, *up++, v_hi, wp++);
 
-	mov	rax, QWORD PTR zp$[rbp]
-	mov	QWORD PTR tv84[rbp], rax
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
+	mov	QWORD PTR tv76[rbp], rax
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 8
-	mov	QWORD PTR zp$[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	QWORD PTR wp$[rbp], rax
+	mov	rax, QWORD PTR up$[rbp]
 	mov	rax, QWORD PTR [rax]
-	mov	QWORD PTR tv88[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	QWORD PTR tv80[rbp], rax
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 8
-	mov	QWORD PTR xp$[rbp], rax
-	mov	r9, QWORD PTR tv84[rbp]
-	mov	r8, QWORD PTR y_hi$[rbp]
-	mov	rdx, QWORD PTR tv88[rbp]
-	movzx	ecx, BYTE PTR c$[rbp]
+	mov	QWORD PTR up$[rbp], rax
+	mov	r9, QWORD PTR tv76[rbp]
+	mov	r8, QWORD PTR v_hi$[rbp]
+	mov	rdx, QWORD PTR tv80[rbp]
+	movzx	ecx, BYTE PTR c$1[rbp]
 	call	_SUBTRUCT_UNIT
-	mov	BYTE PTR c$[rbp], al
+	mov	BYTE PTR c$1[rbp], al
 
-; 128  :         x_count -= 2;
+; 114  :         u_count -= 2;
 
-	mov	rax, QWORD PTR x_count$[rbp]
+	mov	rax, QWORD PTR u_count$[rbp]
 	sub	rax, 2
-	mov	QWORD PTR x_count$[rbp], rax
+	mov	QWORD PTR u_count$[rbp], rax
 
-; 129  :         z_count -= 2;
+; 115  :         w_count -= 2;
 
-	mov	rax, QWORD PTR z_count$[rbp]
+	mov	rax, QWORD PTR w_count$[rbp]
 	sub	rax, 2
-	mov	QWORD PTR z_count$[rbp], rax
+	mov	QWORD PTR w_count$[rbp], rax
 
-; 130  : 
-; 131  :         // 残りの桁の繰り上がりを計算し、復帰する。
-; 132  :         return (DoBorrow(c, xp, x_count, zp, z_count));
+; 116  : 
+; 117  :         // 残りの桁の繰り上がりを計算し、復帰する。
+; 118  :         return (DoBorrow(c, up, u_count, wp, w_count));
 
-	mov	rax, QWORD PTR z_count$[rbp]
+	mov	rax, QWORD PTR w_count$[rbp]
 	mov	QWORD PTR [rsp+32], rax
-	mov	r9, QWORD PTR zp$[rbp]
-	mov	r8, QWORD PTR x_count$[rbp]
-	mov	rdx, QWORD PTR xp$[rbp]
-	movzx	ecx, BYTE PTR c$[rbp]
+	mov	r9, QWORD PTR wp$[rbp]
+	mov	r8, QWORD PTR u_count$[rbp]
+	mov	rdx, QWORD PTR up$[rbp]
+	movzx	ecx, BYTE PTR c$1[rbp]
 	call	DoBorrow
 $LN3@Subtruct_X:
 $LN1@Subtruct_X:
 
-; 133  :     }
-; 134  : }
+; 119  :     }
+; 120  : }
 
-	lea	rsp, QWORD PTR [rbp+376]
+	lea	rsp, QWORD PTR [rbp+248]
 	pop	rdi
 	pop	rbp
 	ret	0
@@ -648,115 +740,82 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ;	COMDAT Subtruct_X_1W
 _TEXT	SEGMENT
-x_count$ = 8
-z_count$ = 40
-xp$ = 72
-zp$ = 104
-c$ = 132
-tv74 = 344
-tv78 = 352
-x$ = 400
-y$ = 408
-z$ = 416
+c$ = 4
+tv66 = 216
+tv70 = 224
+up$ = 272
+u_count$ = 280
+v$ = 288
+wp$ = 296
+w_count$ = 304
 Subtruct_X_1W PROC					; COMDAT
 
 ; 85   : {
 
+	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
 	push	rdi
-	sub	rsp, 424				; 000001a8H
+	sub	rsp, 296				; 00000128H
 	lea	rbp, QWORD PTR [rsp+48]
 	mov	rdi, rsp
-	mov	ecx, 106				; 0000006aH
+	mov	ecx, 74					; 0000004aH
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
-	mov	rcx, QWORD PTR [rsp+456]
+	mov	rcx, QWORD PTR [rsp+328]
 	lea	rcx, OFFSET FLAT:__1898920A_pmc_subtruct@c
 	call	__CheckForDebuggerJustMyCode
 
-; 86   :     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
+; 86   :     // 最下桁の減算を行う
+; 87   :     char c = _SUBTRUCT_UNIT(0, *up++, v, wp++);
 
-	mov	rax, QWORD PTR x$[rbp]
-	mov	rax, QWORD PTR [rax]
-	mov	QWORD PTR x_count$[rbp], rax
-
-; 87   :     __UNIT_TYPE z_count = z->BLOCK_COUNT;
-
-	mov	rax, QWORD PTR z$[rbp]
-	mov	rax, QWORD PTR [rax+40]
-	mov	QWORD PTR z_count$[rbp], rax
-
-; 88   :     __UNIT_TYPE* xp = &x->BLOCK[0];
-
-	mov	eax, 8
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR x$[rbp]
-	add	rax, QWORD PTR [rcx+48]
-	mov	QWORD PTR xp$[rbp], rax
-
-; 89   :     __UNIT_TYPE* zp = &z->BLOCK[0];
-
-	mov	eax, 8
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR z$[rbp]
-	add	rax, QWORD PTR [rcx+48]
-	mov	QWORD PTR zp$[rbp], rax
-
-; 90   :     char c;
-; 91   : 
-; 92   : 
-; 93   : 
-; 94   :     // 最下桁の減算を行う
-; 95   :     c = _SUBTRUCT_UNIT(0, *xp++, y, zp++);
-
-	mov	rax, QWORD PTR zp$[rbp]
-	mov	QWORD PTR tv74[rbp], rax
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
+	mov	QWORD PTR tv66[rbp], rax
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 8
-	mov	QWORD PTR zp$[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	QWORD PTR wp$[rbp], rax
+	mov	rax, QWORD PTR up$[rbp]
 	mov	rax, QWORD PTR [rax]
-	mov	QWORD PTR tv78[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	QWORD PTR tv70[rbp], rax
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 8
-	mov	QWORD PTR xp$[rbp], rax
-	mov	r9, QWORD PTR tv74[rbp]
-	mov	r8, QWORD PTR y$[rbp]
-	mov	rdx, QWORD PTR tv78[rbp]
+	mov	QWORD PTR up$[rbp], rax
+	mov	r9, QWORD PTR tv66[rbp]
+	mov	r8, QWORD PTR v$[rbp]
+	mov	rdx, QWORD PTR tv70[rbp]
 	xor	ecx, ecx
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 96   :     --x_count;
+; 88   :     --u_count;
 
-	mov	rax, QWORD PTR x_count$[rbp]
+	mov	rax, QWORD PTR u_count$[rbp]
 	dec	rax
-	mov	QWORD PTR x_count$[rbp], rax
+	mov	QWORD PTR u_count$[rbp], rax
 
-; 97   :     --z_count;
+; 89   :     --w_count;
 
-	mov	rax, QWORD PTR z_count$[rbp]
+	mov	rax, QWORD PTR w_count$[rbp]
 	dec	rax
-	mov	QWORD PTR z_count$[rbp], rax
+	mov	QWORD PTR w_count$[rbp], rax
 
-; 98   : 
-; 99   :     // 残りの桁の繰上りを行い復帰する。
-; 100  :     return (DoBorrow(c, xp, x_count, zp, z_count));
+; 90   : 
+; 91   :     // 残りの桁の繰上りを行い復帰する。
+; 92   :     return (DoBorrow(c, up, u_count, wp, w_count));
 
-	mov	rax, QWORD PTR z_count$[rbp]
+	mov	rax, QWORD PTR w_count$[rbp]
 	mov	QWORD PTR [rsp+32], rax
-	mov	r9, QWORD PTR zp$[rbp]
-	mov	r8, QWORD PTR x_count$[rbp]
-	mov	rdx, QWORD PTR xp$[rbp]
+	mov	r9, QWORD PTR wp$[rbp]
+	mov	r8, QWORD PTR u_count$[rbp]
+	mov	rdx, QWORD PTR up$[rbp]
 	movzx	ecx, BYTE PTR c$[rbp]
 	call	DoBorrow
 
-; 101  : }
+; 93   : }
 
-	lea	rsp, QWORD PTR [rbp+376]
+	lea	rsp, QWORD PTR [rbp+248]
 	pop	rdi
 	pop	rbp
 	ret	0
@@ -769,10 +828,10 @@ _TEXT	SEGMENT
 tv71 = 192
 tv75 = 200
 c$ = 240
-xp$ = 248
-x_count$ = 256
-op$ = 264
-o_count$ = 272
+up$ = 248
+u_count$ = 256
+wp$ = 264
+w_count$ = 272
 DoBorrow PROC						; COMDAT
 
 ; 39   : {
@@ -797,9 +856,9 @@ $LN2@DoBorrow:
 ; 40   :     // 桁借りを続く限り行う
 ; 41   :     for (;;)
 ; 42   :     {
-; 43   :         if (x_count <= 0)
+; 43   :         if (u_count <= 0)
 
-	cmp	QWORD PTR x_count$[rbp], 0
+	cmp	QWORD PTR u_count$[rbp], 0
 	ja	SHORT $LN7@DoBorrow
 
 ; 44   :         {
@@ -845,19 +904,19 @@ $LN7@DoBorrow:
 ; 61   :             // xの最上位に達しておらず、かつボローが立っている場合
 ; 62   : 
 ; 63   :             // 桁借りを継続する
-; 64   :             c = _SUBTRUCT_UNIT(c, *xp++, 0, op++);
+; 64   :             c = _SUBTRUCT_UNIT(c, *up++, 0, wp++);
 
-	mov	rax, QWORD PTR op$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	mov	QWORD PTR tv71[rbp], rax
-	mov	rax, QWORD PTR op$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 8
-	mov	QWORD PTR op$[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	QWORD PTR wp$[rbp], rax
+	mov	rax, QWORD PTR up$[rbp]
 	mov	rax, QWORD PTR [rax]
 	mov	QWORD PTR tv75[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 8
-	mov	QWORD PTR xp$[rbp], rax
+	mov	QWORD PTR up$[rbp], rax
 	mov	r9, QWORD PTR tv71[rbp]
 	xor	r8d, r8d
 	mov	rdx, QWORD PTR tv75[rbp]
@@ -865,17 +924,17 @@ $LN7@DoBorrow:
 	call	_SUBTRUCT_UNIT
 	mov	BYTE PTR c$[rbp], al
 
-; 65   :             --x_count;
+; 65   :             --u_count;
 
-	mov	rax, QWORD PTR x_count$[rbp]
+	mov	rax, QWORD PTR u_count$[rbp]
 	dec	rax
-	mov	QWORD PTR x_count$[rbp], rax
+	mov	QWORD PTR u_count$[rbp], rax
 
-; 66   :             --o_count;
+; 66   :             --w_count;
 
-	mov	rax, QWORD PTR o_count$[rbp]
+	mov	rax, QWORD PTR w_count$[rbp]
 	dec	rax
-	mov	QWORD PTR o_count$[rbp], rax
+	mov	QWORD PTR w_count$[rbp], rax
 
 ; 67   :         }
 
@@ -888,36 +947,36 @@ $LN5@DoBorrow:
 ; 70   :             // xの最上位に達しておらず、かつボローが立っていない場合
 ; 71   : 
 ; 72   :             // 桁借りを中断し、xの残りのデータをzにそのまま複写し、正常復帰する。
-; 73   :             while (x_count > 0)
+; 73   :             while (u_count > 0)
 
-	cmp	QWORD PTR x_count$[rbp], 0
+	cmp	QWORD PTR u_count$[rbp], 0
 	jbe	SHORT $LN6@DoBorrow
 
 ; 74   :             {
-; 75   :                 *op++ = *xp++;
+; 75   :                 *wp++ = *up++;
 
-	mov	rax, QWORD PTR op$[rbp]
-	mov	rcx, QWORD PTR xp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
+	mov	rcx, QWORD PTR up$[rbp]
 	mov	rcx, QWORD PTR [rcx]
 	mov	QWORD PTR [rax], rcx
-	mov	rax, QWORD PTR op$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 8
-	mov	QWORD PTR op$[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	QWORD PTR wp$[rbp], rax
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 8
-	mov	QWORD PTR xp$[rbp], rax
+	mov	QWORD PTR up$[rbp], rax
 
-; 76   :                 --x_count;
+; 76   :                 --u_count;
 
-	mov	rax, QWORD PTR x_count$[rbp]
+	mov	rax, QWORD PTR u_count$[rbp]
 	dec	rax
-	mov	QWORD PTR x_count$[rbp], rax
+	mov	QWORD PTR u_count$[rbp], rax
 
-; 77   :                 --o_count;
+; 77   :                 --w_count;
 
-	mov	rax, QWORD PTR o_count$[rbp]
+	mov	rax, QWORD PTR w_count$[rbp]
 	dec	rax
-	mov	QWORD PTR o_count$[rbp], rax
+	mov	QWORD PTR w_count$[rbp], rax
 
 ; 78   :             }
 
@@ -2885,7 +2944,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 859  : {
+; 879  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -2900,45 +2959,45 @@ _LZCNT_ALT_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 860  :     if (x == 0)
+; 880  :     if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 861  :         return (sizeof(x) * 8);
+; 881  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 862  : #ifdef _M_IX86
-; 863  :     _UINT32_T pos;
-; 864  : #ifdef _MSC_VER
-; 865  :     _BitScanReverse(&pos, x);
-; 866  : #elif defined(__GNUC__)
-; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 868  : #else
-; 869  : #error unknown compiler
-; 870  : #endif
-; 871  : #elif defined(_M_X64)
-; 872  : #ifdef _MSC_VER
-; 873  :     _UINT32_T pos;
-; 874  :     _BitScanReverse64(&pos, x);
+; 882  : #ifdef _M_IX86
+; 883  :     _UINT32_T pos;
+; 884  : #ifdef _MSC_VER
+; 885  :     _BitScanReverse(&pos, x);
+; 886  : #elif defined(__GNUC__)
+; 887  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 888  : #else
+; 889  : #error unknown compiler
+; 890  : #endif
+; 891  : #elif defined(_M_X64)
+; 892  : #ifdef _MSC_VER
+; 893  :     _UINT32_T pos;
+; 894  :     _BitScanReverse64(&pos, x);
 
 	mov	rax, QWORD PTR x$[rbp]
 	bsr	rax, rax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 875  : #elif defined(__GNUC__)
-; 876  :     _UINT64_T pos;
-; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 878  : #else
-; 879  : #error unknown compiler
-; 880  : #endif
-; 881  : #else
-; 882  : #error unknown platform
-; 883  : #endif
-; 884  :     return (sizeof(x) * 8 - 1 - pos);
+; 895  : #elif defined(__GNUC__)
+; 896  :     _UINT64_T pos;
+; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 898  : #else
+; 899  : #error unknown compiler
+; 900  : #endif
+; 901  : #else
+; 902  : #error unknown platform
+; 903  : #endif
+; 904  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 63					; 0000003fH
@@ -2946,7 +3005,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 885  : }
+; 905  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -2967,7 +3026,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 826  : {
+; 846  : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -2982,31 +3041,31 @@ _LZCNT_ALT_32 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 827  :     if (x == 0)
+; 847  :     if (x == 0)
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 828  :         return (sizeof(x) * 8);
+; 848  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 829  :     _UINT32_T pos;
-; 830  : #ifdef _MSC_VER
-; 831  :     _BitScanReverse(&pos, x);
+; 849  :     _UINT32_T pos;
+; 850  : #ifdef _MSC_VER
+; 851  :     _BitScanReverse(&pos, x);
 
 	mov	eax, DWORD PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 832  : #elif defined(__GNUC__)
-; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 834  : #else
-; 835  : #error unknown compiler
-; 836  : #endif
-; 837  :     return (sizeof(x) * 8 - 1 - pos);
+; 852  : #elif defined(__GNUC__)
+; 853  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 854  : #else
+; 855  : #error unknown compiler
+; 856  : #endif
+; 857  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 31
@@ -3014,7 +3073,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 838  : }
+; 858  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -3037,7 +3096,7 @@ v$ = 240
 w$ = 248
 _SUBTRUCT_UNIT PROC					; COMDAT
 
-; 499  : {
+; 519  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -3055,10 +3114,10 @@ _SUBTRUCT_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 500  : #ifdef _M_IX86
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
-; 502  : #elif defined(_M_X64)
-; 503  :     return (_subborrow_u64(borrow, u, v, w));
+; 520  : #ifdef _M_IX86
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
+; 522  : #elif defined(_M_X64)
+; 523  :     return (_subborrow_u64(borrow, u, v, w));
 
 	mov	rax, QWORD PTR u$[rbp]
 	movzx	ecx, BYTE PTR borrow$[rbp]
@@ -3069,10 +3128,10 @@ _SUBTRUCT_UNIT PROC					; COMDAT
 	mov	QWORD PTR [rdx], rax
 	movzx	eax, cl
 
-; 504  : #else
-; 505  : #error unknown platform
-; 506  : #endif
-; 507  : }
+; 524  : #else
+; 525  : #error unknown platform
+; 526  : #endif
+; 527  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3088,7 +3147,7 @@ value$ = 224
 result_high$ = 232
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 412  : {
+; 432  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -3104,24 +3163,63 @@ _FROMDWORDTOWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 413  :     *result_high = (_UINT32_T)(value >> 32);
+; 433  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, QWORD PTR value$[rbp]
 	shr	rax, 32					; 00000020H
 	mov	rcx, QWORD PTR result_high$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 414  :     return ((_UINT32_T)value);
+; 434  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR value$[rbp]
 
-; 415  : }
+; 435  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
 	pop	rbp
 	ret	0
 _FROMDWORDTOWORD ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _FROMWORDTODWORD
+_TEXT	SEGMENT
+value_high$ = 224
+value_low$ = 232
+_FROMWORDTODWORD PROC					; COMDAT
+
+; 427  : {
+
+	mov	DWORD PTR [rsp+16], edx
+	mov	DWORD PTR [rsp+8], ecx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, DWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
+
+	mov	eax, DWORD PTR value_high$[rbp]
+	shl	rax, 32					; 00000020H
+	mov	ecx, DWORD PTR value_low$[rbp]
+	or	rax, rcx
+
+; 429  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+_FROMWORDTODWORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
@@ -3141,7 +3239,7 @@ y$ = 488
 o$ = 496
 PMC_Subtruct_X_X PROC					; COMDAT
 
-; 429  : {
+; 664  : {
 
 $LN22:
 	mov	QWORD PTR [rsp+24], r8
@@ -3159,51 +3257,51 @@ $LN22:
 	lea	rcx, OFFSET FLAT:__1898920A_pmc_subtruct@c
 	call	__CheckForDebuggerJustMyCode
 
-; 430  :     if (x == NULL)
+; 665  :     if (x == NULL)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@PMC_Subtru
 
-; 431  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 666  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN2@PMC_Subtru:
 
-; 432  :     if (y == NULL)
+; 667  :     if (y == NULL)
 
 	cmp	QWORD PTR y$[rbp], 0
 	jne	SHORT $LN3@PMC_Subtru
 
-; 433  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 668  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN3@PMC_Subtru:
 
-; 434  :     if (o == NULL)
+; 669  :     if (o == NULL)
 
 	cmp	QWORD PTR o$[rbp], 0
 	jne	SHORT $LN4@PMC_Subtru
 
-; 435  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 670  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN4@PMC_Subtru:
 
-; 436  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 671  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	QWORD PTR nx$[rbp], rax
 
-; 437  :     NUMBER_HEADER* ny = (NUMBER_HEADER*)y;
+; 672  :     NUMBER_HEADER* ny = (NUMBER_HEADER*)y;
 
 	mov	rax, QWORD PTR y$[rbp]
 	mov	QWORD PTR ny$[rbp], rax
 
-; 438  :     PMC_STATUS_CODE result;
-; 439  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 673  :     PMC_STATUS_CODE result;
+; 674  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nx$[rbp]
 	call	CheckNumber
@@ -3211,13 +3309,13 @@ $LN4@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_Subtru
 
-; 440  :         return (result);
+; 675  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN5@PMC_Subtru:
 
-; 441  :     if ((result = CheckNumber(ny)) != PMC_STATUS_OK)
+; 676  :     if ((result = CheckNumber(ny)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR ny$[rbp]
 	call	CheckNumber
@@ -3225,14 +3323,14 @@ $LN5@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_Subtru
 
-; 442  :         return (result);
+; 677  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN6@PMC_Subtru:
 
-; 443  :     NUMBER_HEADER* nz;
-; 444  :     if (nx->IS_ZERO)
+; 678  :     NUMBER_HEADER* nz;
+; 679  :     if (nx->IS_ZERO)
 
 	mov	rax, QWORD PTR nx$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3241,8 +3339,8 @@ $LN6@PMC_Subtru:
 	test	eax, eax
 	je	SHORT $LN7@PMC_Subtru
 
-; 445  :     {
-; 446  :         if (ny->IS_ZERO)
+; 680  :     {
+; 681  :         if (ny->IS_ZERO)
 
 	mov	rax, QWORD PTR ny$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3251,43 +3349,43 @@ $LN6@PMC_Subtru:
 	test	eax, eax
 	je	SHORT $LN9@PMC_Subtru
 
-; 447  :         {
-; 448  :             // y が 0 である場合
-; 449  : 
-; 450  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
-; 451  :             *o = &number_zero;
+; 682  :         {
+; 683  :             // y が 0 である場合
+; 684  : 
+; 685  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 686  :             *o = &number_zero;
 
 	mov	rax, QWORD PTR o$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
 	mov	QWORD PTR [rax], rcx
 
-; 452  :         }
+; 687  :         }
 
 	jmp	SHORT $LN10@PMC_Subtru
 $LN9@PMC_Subtru:
 
-; 453  :         else
-; 454  :         {
-; 455  :             // y が 0 ではない場合
-; 456  : 
-; 457  :             // 演算結果は負となってしまうのでエラーを返す。
-; 458  :             return (PMC_STATUS_OVERFLOW);
+; 688  :         else
+; 689  :         {
+; 690  :             // y が 0 ではない場合
+; 691  : 
+; 692  :             // 演算結果は負となってしまうのでエラーを返す。
+; 693  :             return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	$LN1@PMC_Subtru
 $LN10@PMC_Subtru:
 
-; 459  :         }
-; 460  :     }
+; 694  :         }
+; 695  :     }
 
 	jmp	$LN8@PMC_Subtru
 $LN7@PMC_Subtru:
 
-; 461  :     else
-; 462  :     {
-; 463  :         // x が 0 ではない場合
-; 464  : 
-; 465  :         if (ny->IS_ZERO)
+; 696  :     else
+; 697  :     {
+; 698  :         // x が 0 ではない場合
+; 699  : 
+; 700  :         if (ny->IS_ZERO)
 
 	mov	rax, QWORD PTR ny$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3296,11 +3394,11 @@ $LN7@PMC_Subtru:
 	test	eax, eax
 	je	SHORT $LN11@PMC_Subtru
 
-; 466  :         {
-; 467  :             // y が 0 である場合
-; 468  : 
-; 469  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-; 470  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+; 701  :         {
+; 702  :             // y が 0 である場合
+; 703  : 
+; 704  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 705  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR nz$[rbp]
 	mov	rcx, QWORD PTR nx$[rbp]
@@ -3309,56 +3407,56 @@ $LN7@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN13@PMC_Subtru
 
-; 471  :                 return (result);
+; 706  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN13@PMC_Subtru:
 
-; 472  :         }
+; 707  :         }
 
 	jmp	$LN12@PMC_Subtru
 $LN11@PMC_Subtru:
 
-; 473  :         else
-; 474  :         {
-; 475  :             // x と y がともに 0 ではない場合
-; 476  : 
-; 477  :             // x と y の差を計算する
-; 478  :             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 708  :         else
+; 709  :         {
+; 710  :             // x と y がともに 0 ではない場合
+; 711  : 
+; 712  :             // x と y の差を計算する
+; 713  :             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nx$[rbp]
 	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR x_bit_count$5[rbp], rax
 
-; 479  :             __UNIT_TYPE y_bit_count = ny->UNIT_BIT_COUNT;
+; 714  :             __UNIT_TYPE y_bit_count = ny->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR ny$[rbp]
 	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR y_bit_count$6[rbp], rax
 
-; 480  :             if (x_bit_count < y_bit_count)
+; 715  :             if (x_bit_count < y_bit_count)
 
 	mov	rax, QWORD PTR y_bit_count$6[rbp]
 	cmp	QWORD PTR x_bit_count$5[rbp], rax
 	jae	SHORT $LN14@PMC_Subtru
 
-; 481  :             {
-; 482  :                 // 演算結果は負となってしまうのでエラーを返す。
-; 483  :                 return (PMC_STATUS_OVERFLOW);
+; 716  :             {
+; 717  :                 // 演算結果は負となってしまうのでエラーを返す。
+; 718  :                 return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	$LN1@PMC_Subtru
 $LN14@PMC_Subtru:
 
-; 484  :             }
-; 485  :             __UNIT_TYPE z_bit_count = x_bit_count;
+; 719  :             }
+; 720  :             __UNIT_TYPE z_bit_count = x_bit_count;
 
 	mov	rax, QWORD PTR x_bit_count$5[rbp]
 	mov	QWORD PTR z_bit_count$7[rbp], rax
 
-; 486  :             __UNIT_TYPE nz_light_check_code;
-; 487  :             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 721  :             __UNIT_TYPE nz_light_check_code;
+; 722  :             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nz_light_check_code$8[rbp]
 	mov	rdx, QWORD PTR z_bit_count$7[rbp]
@@ -3368,13 +3466,13 @@ $LN14@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN15@PMC_Subtru
 
-; 488  :                 return (result);
+; 723  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN15@PMC_Subtru:
 
-; 489  :             if ((result = Subtruct_Imp(nx->BLOCK, nx->UNIT_WORD_COUNT, ny->BLOCK, ny->UNIT_WORD_COUNT, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
+; 724  :             if ((result = Subtruct_Imp(nx->BLOCK, nx->UNIT_WORD_COUNT, ny->BLOCK, ny->UNIT_WORD_COUNT, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR nz$[rbp]
 	mov	rax, QWORD PTR [rax+40]
@@ -3395,13 +3493,13 @@ $LN15@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN16@PMC_Subtru
 
-; 490  :             {
-; 491  :                 DeallocateNumber(nz);
+; 725  :             {
+; 726  :                 DeallocateNumber(nz);
 
 	mov	rcx, QWORD PTR nz$[rbp]
 	call	DeallocateNumber
 
-; 492  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 727  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR result$[rbp], -258		; fffffffffffffefeH
 	jne	SHORT $LN20@PMC_Subtru
@@ -3415,8 +3513,8 @@ $LN21@PMC_Subtru:
 	jmp	SHORT $LN1@PMC_Subtru
 $LN16@PMC_Subtru:
 
-; 493  :             }
-; 494  :             if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 728  :             }
+; 729  :             if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nz_light_check_code$8[rbp]
 	mov	rax, QWORD PTR nz$[rbp]
@@ -3426,29 +3524,29 @@ $LN16@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN17@PMC_Subtru
 
-; 495  :                 return (result);
+; 730  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN17@PMC_Subtru:
 
-; 496  :             CommitNumber(nz);
+; 731  :             CommitNumber(nz);
 
 	mov	rcx, QWORD PTR nz$[rbp]
 	call	CommitNumber
 $LN12@PMC_Subtru:
 
-; 497  :         }
-; 498  :         *o = nz;
+; 732  :         }
+; 733  :         *o = nz;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR nz$[rbp]
 	mov	QWORD PTR [rax], rcx
 $LN8@PMC_Subtru:
 
-; 499  :     }
-; 500  : #ifdef _DEBUG
-; 501  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 734  :     }
+; 735  : #ifdef _DEBUG
+; 736  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -3457,19 +3555,19 @@ $LN8@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN18@PMC_Subtru
 
-; 502  :         return (result);
+; 737  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN18@PMC_Subtru:
 
-; 503  : #endif
-; 504  :     return (PMC_STATUS_OK);
+; 738  : #endif
+; 739  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Subtru:
 
-; 505  : }
+; 740  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-48]
@@ -3502,15 +3600,15 @@ x_bit_count$17 = 392
 y_bit_count$18 = 424
 z_bit_count$19 = 456
 nz_light_check_code$20 = 488
-tv185 = 692
-tv162 = 692
-tv136 = 692
+tv203 = 692
+tv174 = 692
+tv142 = 692
 x$ = 736
 y$ = 744
 o$ = 752
 PMC_Subtruct_X_L PROC					; COMDAT
 
-; 288  : {
+; 523  : {
 
 $LN38:
 	mov	QWORD PTR [rsp+24], r8
@@ -3518,60 +3616,60 @@ $LN38:
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
 	push	rdi
-	sub	rsp, 744				; 000002e8H
-	lea	rbp, QWORD PTR [rsp+32]
+	sub	rsp, 760				; 000002f8H
+	lea	rbp, QWORD PTR [rsp+48]
 	mov	rdi, rsp
-	mov	ecx, 186				; 000000baH
+	mov	ecx, 190				; 000000beH
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
-	mov	rcx, QWORD PTR [rsp+776]
+	mov	rcx, QWORD PTR [rsp+792]
 	lea	rcx, OFFSET FLAT:__1898920A_pmc_subtruct@c
 	call	__CheckForDebuggerJustMyCode
 
-; 289  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(y) * 8)
+; 524  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(y) * 8)
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_Subtru
 
-; 290  :     {
-; 291  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 292  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 525  :     {
+; 526  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 527  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	$LN1@PMC_Subtru
 $LN2@PMC_Subtru:
 
-; 293  :     }
-; 294  :     if (x == NULL)
+; 528  :     }
+; 529  :     if (x == NULL)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN3@PMC_Subtru
 
-; 295  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 530  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN3@PMC_Subtru:
 
-; 296  :     if (o == NULL)
+; 531  :     if (o == NULL)
 
 	cmp	QWORD PTR o$[rbp], 0
 	jne	SHORT $LN4@PMC_Subtru
 
-; 297  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 532  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN4@PMC_Subtru:
 
-; 298  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 533  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	QWORD PTR nx$[rbp], rax
 
-; 299  :     PMC_STATUS_CODE result;
-; 300  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 534  :     PMC_STATUS_CODE result;
+; 535  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nx$[rbp]
 	call	CheckNumber
@@ -3579,14 +3677,14 @@ $LN4@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_Subtru
 
-; 301  :         return (result);
+; 536  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN5@PMC_Subtru:
 
-; 302  :     NUMBER_HEADER* nz;
-; 303  :     if (nx->IS_ZERO)
+; 537  :     NUMBER_HEADER* nz;
+; 538  :     if (nx->IS_ZERO)
 
 	mov	rax, QWORD PTR nx$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3595,60 +3693,60 @@ $LN5@PMC_Subtru:
 	test	eax, eax
 	je	SHORT $LN6@PMC_Subtru
 
-; 304  :     {
-; 305  :         // x が 0 である場合
-; 306  : 
-; 307  :         if (y == 0)
+; 539  :     {
+; 540  :         // x が 0 である場合
+; 541  : 
+; 542  :         if (y == 0)
 
 	cmp	QWORD PTR y$[rbp], 0
 	jne	SHORT $LN8@PMC_Subtru
 
-; 308  :         {
-; 309  :             // y が 0 である場合
-; 310  : 
-; 311  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
-; 312  :             *o = &number_zero;
+; 543  :         {
+; 544  :             // y が 0 である場合
+; 545  : 
+; 546  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 547  :             *o = &number_zero;
 
 	mov	rax, QWORD PTR o$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
 	mov	QWORD PTR [rax], rcx
 
-; 313  :         }
+; 548  :         }
 
 	jmp	SHORT $LN9@PMC_Subtru
 $LN8@PMC_Subtru:
 
-; 314  :         else
-; 315  :         {
-; 316  :             // y が 0 ではない場合
-; 317  : 
-; 318  :             // 演算結果は負となってしまうのでエラーを返す。
-; 319  :             return (PMC_STATUS_OVERFLOW);
+; 549  :         else
+; 550  :         {
+; 551  :             // y が 0 ではない場合
+; 552  : 
+; 553  :             // 演算結果は負となってしまうのでエラーを返す。
+; 554  :             return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	$LN1@PMC_Subtru
 $LN9@PMC_Subtru:
 
-; 320  :         }
-; 321  :     }
+; 555  :         }
+; 556  :     }
 
 	jmp	$LN7@PMC_Subtru
 $LN6@PMC_Subtru:
 
-; 322  :     else
-; 323  :     {
-; 324  :         // x が 0 ではない場合
-; 325  : 
-; 326  :         if (y == 0)
+; 557  :     else
+; 558  :     {
+; 559  :         // x が 0 ではない場合
+; 560  : 
+; 561  :         if (y == 0)
 
 	cmp	QWORD PTR y$[rbp], 0
 	jne	SHORT $LN10@PMC_Subtru
 
-; 327  :         {
-; 328  :             // y が 0 である場合
-; 329  : 
-; 330  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-; 331  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+; 562  :         {
+; 563  :             // y が 0 である場合
+; 564  : 
+; 565  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 566  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR nz$[rbp]
 	mov	rcx, QWORD PTR nx$[rbp]
@@ -3657,53 +3755,53 @@ $LN6@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN12@PMC_Subtru
 
-; 332  :                 return (result);
+; 567  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN12@PMC_Subtru:
 
-; 333  :         }
+; 568  :         }
 
 	jmp	$LN11@PMC_Subtru
 $LN10@PMC_Subtru:
 
-; 334  :         else
-; 335  :         {
-; 336  :             // x と y がともに 0 ではない場合
-; 337  : 
-; 338  :             // x と y の差を計算する
-; 339  :             if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
+; 569  :         else
+; 570  :         {
+; 571  :             // x と y がともに 0 ではない場合
+; 572  : 
+; 573  :             // x と y の差を計算する
+; 574  :             if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
 
 	xor	eax, eax
 	test	eax, eax
 	je	$LN13@PMC_Subtru
 
-; 340  :             {
-; 341  :                 // _UINT64_T が 1 ワードで表現しきれない場合
-; 342  : 
-; 343  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 575  :             {
+; 576  :                 // _UINT64_T が 1 ワードで表現しきれない場合
+; 577  : 
+; 578  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nx$[rbp]
 	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR x_bit_count$8[rbp], rax
 
-; 344  :                 _UINT32_T y_hi;
-; 345  :                 _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
+; 579  :                 _UINT32_T y_hi;
+; 580  :                 _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
 
 	lea	rdx, QWORD PTR y_hi$9[rbp]
 	mov	rcx, QWORD PTR y$[rbp]
 	call	_FROMDWORDTOWORD
 	mov	DWORD PTR y_lo$10[rbp], eax
 
-; 346  :                 if (y_hi == 0)
+; 581  :                 if (y_hi == 0)
 
 	cmp	DWORD PTR y_hi$9[rbp], 0
 	jne	$LN15@PMC_Subtru
 
-; 347  :                 {
-; 348  :                     // y の値が 32bit で表現可能な場合
-; 349  :                     __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
+; 582  :                 {
+; 583  :                     // y の値が 32bit で表現可能な場合
+; 584  :                     __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
 
 	mov	ecx, DWORD PTR y_lo$10[rbp]
 	call	_LZCNT_ALT_32
@@ -3713,28 +3811,28 @@ $LN10@PMC_Subtru:
 	mov	rax, rcx
 	mov	QWORD PTR y_bit_count$11[rbp], rax
 
-; 350  :                     if (x_bit_count < y_bit_count)
+; 585  :                     if (x_bit_count < y_bit_count)
 
 	mov	rax, QWORD PTR y_bit_count$11[rbp]
 	cmp	QWORD PTR x_bit_count$8[rbp], rax
 	jae	SHORT $LN17@PMC_Subtru
 
-; 351  :                     {
-; 352  :                         // 演算結果は負となってしまうのでエラーを返す。
-; 353  :                         return (PMC_STATUS_OVERFLOW);
+; 586  :                     {
+; 587  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 588  :                         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	$LN1@PMC_Subtru
 $LN17@PMC_Subtru:
 
-; 354  :                     }
-; 355  :                     __UNIT_TYPE z_bit_count = x_bit_count;
+; 589  :                     }
+; 590  :                     __UNIT_TYPE z_bit_count = x_bit_count;
 
 	mov	rax, QWORD PTR x_bit_count$8[rbp]
 	mov	QWORD PTR z_bit_count$12[rbp], rax
 
-; 356  :                     __UNIT_TYPE nz_light_check_code;
-; 357  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 591  :                     __UNIT_TYPE nz_light_check_code;
+; 592  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nz_light_check_code$13[rbp]
 	mov	rdx, QWORD PTR z_bit_count$12[rbp]
@@ -3744,45 +3842,52 @@ $LN17@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN18@PMC_Subtru
 
-; 358  :                         return (result);
+; 593  :                         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN18@PMC_Subtru:
 
-; 359  :                     if ((result = Subtruct_X_1W(nx, y_lo, nz)) != PMC_STATUS_OK)
+; 594  :                     if ((result = Subtruct_X_1W(nx->BLOCK, nx->UNIT_WORD_COUNT, y_lo, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR y_lo$10[rbp]
-	mov	r8, QWORD PTR nz$[rbp]
-	mov	edx, eax
-	mov	rcx, QWORD PTR nx$[rbp]
+	mov	rcx, QWORD PTR nz$[rbp]
+	mov	rcx, QWORD PTR [rcx+40]
+	mov	QWORD PTR [rsp+32], rcx
+	mov	rcx, QWORD PTR nz$[rbp]
+	mov	r9, QWORD PTR [rcx+48]
+	mov	r8d, eax
+	mov	rax, QWORD PTR nx$[rbp]
+	mov	rdx, QWORD PTR [rax]
+	mov	rax, QWORD PTR nx$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
 	call	Subtruct_X_1W
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN19@PMC_Subtru
 
-; 360  :                     {
-; 361  :                         DeallocateNumber(nz);
+; 595  :                     {
+; 596  :                         DeallocateNumber(nz);
 
 	mov	rcx, QWORD PTR nz$[rbp]
 	call	DeallocateNumber
 
-; 362  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 597  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR result$[rbp], -258		; fffffffffffffefeH
 	jne	SHORT $LN32@PMC_Subtru
-	mov	DWORD PTR tv136[rbp], -2
+	mov	DWORD PTR tv142[rbp], -2
 	jmp	SHORT $LN33@PMC_Subtru
 $LN32@PMC_Subtru:
 	mov	eax, DWORD PTR result$[rbp]
-	mov	DWORD PTR tv136[rbp], eax
+	mov	DWORD PTR tv142[rbp], eax
 $LN33@PMC_Subtru:
-	mov	eax, DWORD PTR tv136[rbp]
+	mov	eax, DWORD PTR tv142[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN19@PMC_Subtru:
 
-; 363  :                     }
-; 364  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 598  :                     }
+; 599  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nz_light_check_code$13[rbp]
 	mov	rax, QWORD PTR nz$[rbp]
@@ -3792,21 +3897,21 @@ $LN19@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN20@PMC_Subtru
 
-; 365  :                         return (result);
+; 600  :                         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN20@PMC_Subtru:
 
-; 366  :                 }
+; 601  :                 }
 
 	jmp	$LN16@PMC_Subtru
 $LN15@PMC_Subtru:
 
-; 367  :                 else
-; 368  :                 {
-; 369  :                     // y の値が 32bit では表現できない場合
-; 370  :                     __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
+; 602  :                 else
+; 603  :                 {
+; 604  :                     // y の値が 32bit では表現できない場合
+; 605  :                     __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
 
 	mov	ecx, DWORD PTR y_hi$9[rbp]
 	call	_LZCNT_ALT_32
@@ -3816,28 +3921,28 @@ $LN15@PMC_Subtru:
 	mov	rax, rcx
 	mov	QWORD PTR y_bit_count$14[rbp], rax
 
-; 371  :                     if (x_bit_count < y_bit_count)
+; 606  :                     if (x_bit_count < y_bit_count)
 
 	mov	rax, QWORD PTR y_bit_count$14[rbp]
 	cmp	QWORD PTR x_bit_count$8[rbp], rax
 	jae	SHORT $LN21@PMC_Subtru
 
-; 372  :                     {
-; 373  :                         // 演算結果は負となってしまうのでエラーを返す。
-; 374  :                         return (PMC_STATUS_OVERFLOW);
+; 607  :                     {
+; 608  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 609  :                         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	$LN1@PMC_Subtru
 $LN21@PMC_Subtru:
 
-; 375  :                     }
-; 376  :                     __UNIT_TYPE z_bit_count = x_bit_count;
+; 610  :                     }
+; 611  :                     __UNIT_TYPE z_bit_count = x_bit_count;
 
 	mov	rax, QWORD PTR x_bit_count$8[rbp]
 	mov	QWORD PTR z_bit_count$15[rbp], rax
 
-; 377  :                     __UNIT_TYPE nz_light_check_code;
-; 378  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 612  :                     __UNIT_TYPE nz_light_check_code;
+; 613  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nz_light_check_code$16[rbp]
 	mov	rdx, QWORD PTR z_bit_count$15[rbp]
@@ -3847,47 +3952,55 @@ $LN21@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN22@PMC_Subtru
 
-; 379  :                         return (result);
+; 614  :                         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN22@PMC_Subtru:
 
-; 380  :                     if ((result = Subtruct_X_2W(nx, y_hi, y_lo, nz)) != PMC_STATUS_OK)
+; 615  :                     if ((result = Subtruct_X_2W(nx->BLOCK, nx->UNIT_WORD_COUNT, y_hi, y_lo, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR y_lo$10[rbp]
 	mov	ecx, DWORD PTR y_hi$9[rbp]
-	mov	r9, QWORD PTR nz$[rbp]
-	mov	r8d, eax
-	mov	edx, ecx
-	mov	rcx, QWORD PTR nx$[rbp]
+	mov	rdx, QWORD PTR nz$[rbp]
+	mov	rdx, QWORD PTR [rdx+40]
+	mov	QWORD PTR [rsp+40], rdx
+	mov	rdx, QWORD PTR nz$[rbp]
+	mov	rdx, QWORD PTR [rdx+48]
+	mov	QWORD PTR [rsp+32], rdx
+	mov	r9d, eax
+	mov	r8d, ecx
+	mov	rax, QWORD PTR nx$[rbp]
+	mov	rdx, QWORD PTR [rax]
+	mov	rax, QWORD PTR nx$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
 	call	Subtruct_X_2W
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN23@PMC_Subtru
 
-; 381  :                     {
-; 382  :                         DeallocateNumber(nz);
+; 616  :                     {
+; 617  :                         DeallocateNumber(nz);
 
 	mov	rcx, QWORD PTR nz$[rbp]
 	call	DeallocateNumber
 
-; 383  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 618  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR result$[rbp], -258		; fffffffffffffefeH
 	jne	SHORT $LN34@PMC_Subtru
-	mov	DWORD PTR tv162[rbp], -2
+	mov	DWORD PTR tv174[rbp], -2
 	jmp	SHORT $LN35@PMC_Subtru
 $LN34@PMC_Subtru:
 	mov	eax, DWORD PTR result$[rbp]
-	mov	DWORD PTR tv162[rbp], eax
+	mov	DWORD PTR tv174[rbp], eax
 $LN35@PMC_Subtru:
-	mov	eax, DWORD PTR tv162[rbp]
+	mov	eax, DWORD PTR tv174[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN23@PMC_Subtru:
 
-; 384  :                     }
-; 385  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 619  :                     }
+; 620  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nz_light_check_code$16[rbp]
 	mov	rax, QWORD PTR nz$[rbp]
@@ -3897,30 +4010,30 @@ $LN23@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN24@PMC_Subtru
 
-; 386  :                         return (result);
+; 621  :                         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN24@PMC_Subtru:
 $LN16@PMC_Subtru:
 
-; 387  :                 }
-; 388  :             }
+; 622  :                 }
+; 623  :             }
 
 	jmp	$LN14@PMC_Subtru
 $LN13@PMC_Subtru:
 
-; 389  :             else
-; 390  :             {
-; 391  :                 // _UINT64_T が 1 ワードで表現できる場合
-; 392  : 
-; 393  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 624  :             else
+; 625  :             {
+; 626  :                 // _UINT64_T が 1 ワードで表現できる場合
+; 627  : 
+; 628  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nx$[rbp]
 	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR x_bit_count$17[rbp], rax
 
-; 394  :                 __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
+; 629  :                 __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
 
 	mov	rcx, QWORD PTR y$[rbp]
 	call	_LZCNT_ALT_UNIT
@@ -3929,28 +4042,28 @@ $LN13@PMC_Subtru:
 	mov	rax, rcx
 	mov	QWORD PTR y_bit_count$18[rbp], rax
 
-; 395  :                 if (x_bit_count < y_bit_count)
+; 630  :                 if (x_bit_count < y_bit_count)
 
 	mov	rax, QWORD PTR y_bit_count$18[rbp]
 	cmp	QWORD PTR x_bit_count$17[rbp], rax
 	jae	SHORT $LN25@PMC_Subtru
 
-; 396  :                 {
-; 397  :                     // 演算結果は負となってしまうのでエラーを返す。
-; 398  :                     return (PMC_STATUS_OVERFLOW);
+; 631  :                 {
+; 632  :                     // 演算結果は負となってしまうのでエラーを返す。
+; 633  :                     return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	$LN1@PMC_Subtru
 $LN25@PMC_Subtru:
 
-; 399  :                 }
-; 400  :                 __UNIT_TYPE z_bit_count = x_bit_count;
+; 634  :                 }
+; 635  :                 __UNIT_TYPE z_bit_count = x_bit_count;
 
 	mov	rax, QWORD PTR x_bit_count$17[rbp]
 	mov	QWORD PTR z_bit_count$19[rbp], rax
 
-; 401  :                 __UNIT_TYPE nz_light_check_code;
-; 402  :                 if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 636  :                 __UNIT_TYPE nz_light_check_code;
+; 637  :                 if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nz_light_check_code$20[rbp]
 	mov	rdx, QWORD PTR z_bit_count$19[rbp]
@@ -3960,44 +4073,51 @@ $LN25@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN26@PMC_Subtru
 
-; 403  :                     return (result);
+; 638  :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN26@PMC_Subtru:
 
-; 404  :                 if ((result = Subtruct_X_1W(nx, (__UNIT_TYPE)y, nz)) != PMC_STATUS_OK)
+; 639  :                 if ((result = Subtruct_X_1W(nx->BLOCK, nx->UNIT_WORD_COUNT, (__UNIT_TYPE)y, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
-	mov	r8, QWORD PTR nz$[rbp]
-	mov	rdx, QWORD PTR y$[rbp]
-	mov	rcx, QWORD PTR nx$[rbp]
+	mov	rax, QWORD PTR nz$[rbp]
+	mov	rax, QWORD PTR [rax+40]
+	mov	QWORD PTR [rsp+32], rax
+	mov	rax, QWORD PTR nz$[rbp]
+	mov	r9, QWORD PTR [rax+48]
+	mov	r8, QWORD PTR y$[rbp]
+	mov	rax, QWORD PTR nx$[rbp]
+	mov	rdx, QWORD PTR [rax]
+	mov	rax, QWORD PTR nx$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
 	call	Subtruct_X_1W
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN27@PMC_Subtru
 
-; 405  :                 {
-; 406  :                     DeallocateNumber(nz);
+; 640  :                 {
+; 641  :                     DeallocateNumber(nz);
 
 	mov	rcx, QWORD PTR nz$[rbp]
 	call	DeallocateNumber
 
-; 407  :                     return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 642  :                     return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR result$[rbp], -258		; fffffffffffffefeH
 	jne	SHORT $LN36@PMC_Subtru
-	mov	DWORD PTR tv185[rbp], -2
+	mov	DWORD PTR tv203[rbp], -2
 	jmp	SHORT $LN37@PMC_Subtru
 $LN36@PMC_Subtru:
 	mov	eax, DWORD PTR result$[rbp]
-	mov	DWORD PTR tv185[rbp], eax
+	mov	DWORD PTR tv203[rbp], eax
 $LN37@PMC_Subtru:
-	mov	eax, DWORD PTR tv185[rbp]
+	mov	eax, DWORD PTR tv203[rbp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN27@PMC_Subtru:
 
-; 408  :                 }
-; 409  :                 if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 643  :                 }
+; 644  :                 if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nz_light_check_code$20[rbp]
 	mov	rax, QWORD PTR nz$[rbp]
@@ -4007,20 +4127,20 @@ $LN27@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN28@PMC_Subtru
 
-; 410  :                     return (result);
+; 645  :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN28@PMC_Subtru:
 $LN14@PMC_Subtru:
 
-; 411  :             }
-; 412  :             CommitNumber(nz);
+; 646  :             }
+; 647  :             CommitNumber(nz);
 
 	mov	rcx, QWORD PTR nz$[rbp]
 	call	CommitNumber
 
-; 413  :             if (nz->IS_ZERO)
+; 648  :             if (nz->IS_ZERO)
 
 	mov	rax, QWORD PTR nz$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -4029,31 +4149,31 @@ $LN14@PMC_Subtru:
 	test	eax, eax
 	je	SHORT $LN29@PMC_Subtru
 
-; 414  :             {
-; 415  :                 DeallocateNumber(nz);
+; 649  :             {
+; 650  :                 DeallocateNumber(nz);
 
 	mov	rcx, QWORD PTR nz$[rbp]
 	call	DeallocateNumber
 
-; 416  :                 nz = &number_zero;
+; 651  :                 nz = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nz$[rbp], rax
 $LN29@PMC_Subtru:
 $LN11@PMC_Subtru:
 
-; 417  :             }
-; 418  :         }
-; 419  :         *o = nz;
+; 652  :             }
+; 653  :         }
+; 654  :         *o = nz;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR nz$[rbp]
 	mov	QWORD PTR [rax], rcx
 $LN7@PMC_Subtru:
 
-; 420  :     }
-; 421  : #ifdef _DEBUG
-; 422  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 655  :     }
+; 656  : #ifdef _DEBUG
+; 657  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -4062,22 +4182,22 @@ $LN7@PMC_Subtru:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN30@PMC_Subtru
 
-; 423  :         return (result);
+; 658  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN30@PMC_Subtru:
 
-; 424  : #endif
-; 425  :     return (PMC_STATUS_OK);
+; 659  : #endif
+; 660  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Subtru:
 
-; 426  : }
+; 661  : }
 
 	mov	rdi, rax
-	lea	rcx, QWORD PTR [rbp-32]
+	lea	rcx, QWORD PTR [rbp-48]
 	lea	rdx, OFFSET FLAT:PMC_Subtruct_X_L$rtcFrameData
 	call	_RTC_CheckStackVars
 	mov	rax, rdi
@@ -4091,20 +4211,20 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ;	COMDAT PMC_Subtruct_X_I
 _TEXT	SEGMENT
-nx$ = 8
+nu$ = 8
 result$ = 36
-nz$ = 72
-x_bit_count$5 = 104
-y_bit_count$6 = 136
-z_bit_count$7 = 168
-nz_light_check_code$8 = 200
-tv131 = 404
-x$ = 448
-y$ = 456
-o$ = 464
+nw$ = 72
+u_bit_count$5 = 104
+v_bit_count$6 = 136
+w_bit_count$7 = 168
+w_light_check_code$8 = 200
+tv137 = 404
+u$ = 448
+v$ = 456
+w$ = 464
 PMC_Subtruct_X_I PROC					; COMDAT
 
-; 202  : {
+; 268  : {
 
 $LN22:
 	mov	QWORD PTR [rsp+24], r8
@@ -4112,325 +4232,332 @@ $LN22:
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
 	push	rdi
-	sub	rsp, 456				; 000001c8H
-	lea	rbp, QWORD PTR [rsp+32]
+	sub	rsp, 472				; 000001d8H
+	lea	rbp, QWORD PTR [rsp+48]
 	mov	rdi, rsp
-	mov	ecx, 114				; 00000072H
+	mov	ecx, 118				; 00000076H
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
-	mov	rcx, QWORD PTR [rsp+488]
+	mov	rcx, QWORD PTR [rsp+504]
 	lea	rcx, OFFSET FLAT:__1898920A_pmc_subtruct@c
 	call	__CheckForDebuggerJustMyCode
 
-; 203  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
+; 269  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_Subtru
 
-; 204  :     {
-; 205  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 206  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 270  :     {
+; 271  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 272  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	$LN1@PMC_Subtru
 $LN2@PMC_Subtru:
 
-; 207  :     }
-; 208  :     if (x == NULL)
+; 273  :     }
+; 274  :     if (u == NULL)
 
-	cmp	QWORD PTR x$[rbp], 0
+	cmp	QWORD PTR u$[rbp], 0
 	jne	SHORT $LN3@PMC_Subtru
 
-; 209  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 275  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN3@PMC_Subtru:
 
-; 210  :     if (o == NULL)
+; 276  :     if (w == NULL)
 
-	cmp	QWORD PTR o$[rbp], 0
+	cmp	QWORD PTR w$[rbp], 0
 	jne	SHORT $LN4@PMC_Subtru
 
-; 211  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 277  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN4@PMC_Subtru:
 
-; 212  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 278  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
-	mov	rax, QWORD PTR x$[rbp]
-	mov	QWORD PTR nx$[rbp], rax
+	mov	rax, QWORD PTR u$[rbp]
+	mov	QWORD PTR nu$[rbp], rax
 
-; 213  :     PMC_STATUS_CODE result;
-; 214  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 279  :     PMC_STATUS_CODE result;
+; 280  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
-	mov	rcx, QWORD PTR nx$[rbp]
+	mov	rcx, QWORD PTR nu$[rbp]
 	call	CheckNumber
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_Subtru
 
-; 215  :         return (result);
+; 281  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN5@PMC_Subtru:
 
-; 216  :     NUMBER_HEADER* nz;
-; 217  :     if (nx->IS_ZERO)
+; 282  :     NUMBER_HEADER* nw;
+; 283  :     if (nu->IS_ZERO)
 
-	mov	rax, QWORD PTR nx$[rbp]
+	mov	rax, QWORD PTR nu$[rbp]
 	mov	eax, DWORD PTR [rax+32]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
 	je	SHORT $LN6@PMC_Subtru
 
-; 218  :     {
-; 219  :         // x が 0 である場合
-; 220  : 
-; 221  :         if (y == 0)
+; 284  :     {
+; 285  :         // u が 0 である場合
+; 286  : 
+; 287  :         if (v == 0)
 
-	cmp	DWORD PTR y$[rbp], 0
+	cmp	DWORD PTR v$[rbp], 0
 	jne	SHORT $LN8@PMC_Subtru
 
-; 222  :         {
-; 223  :             // y が 0 である場合
-; 224  : 
-; 225  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
-; 226  :             *o = &number_zero;
+; 288  :         {
+; 289  :             // v が 0 である場合
+; 290  : 
+; 291  :             // u と v がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 292  :             *w = &number_zero;
 
-	mov	rax, QWORD PTR o$[rbp]
+	mov	rax, QWORD PTR w$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
 	mov	QWORD PTR [rax], rcx
 
-; 227  :         }
+; 293  :         }
 
 	jmp	SHORT $LN9@PMC_Subtru
 $LN8@PMC_Subtru:
 
-; 228  :         else
-; 229  :         {
-; 230  :             // y が 0 ではない場合
-; 231  : 
-; 232  :             // 演算結果は負となってしまうのでエラーを返す。
-; 233  :             return (PMC_STATUS_OVERFLOW);
+; 294  :         else
+; 295  :         {
+; 296  :             // v が 0 ではない場合
+; 297  : 
+; 298  :             // 演算結果は負となってしまうのでエラーを返す。
+; 299  :             return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	$LN1@PMC_Subtru
 $LN9@PMC_Subtru:
 
-; 234  :         }
-; 235  :     }
+; 300  :         }
+; 301  :     }
 
 	jmp	$LN7@PMC_Subtru
 $LN6@PMC_Subtru:
 
-; 236  :     else
-; 237  :     {
-; 238  :         // x が 0 ではない場合
-; 239  : 
-; 240  :         if (y == 0)
+; 302  :     else
+; 303  :     {
+; 304  :         // u が 0 ではない場合
+; 305  : 
+; 306  :         if (v == 0)
 
-	cmp	DWORD PTR y$[rbp], 0
+	cmp	DWORD PTR v$[rbp], 0
 	jne	SHORT $LN10@PMC_Subtru
 
-; 241  :         {
-; 242  :             // y が 0 である場合
-; 243  : 
-; 244  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-; 245  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+; 307  :         {
+; 308  :             // v が 0 である場合
+; 309  : 
+; 310  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 311  :             if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
 
-	lea	rdx, QWORD PTR nz$[rbp]
-	mov	rcx, QWORD PTR nx$[rbp]
+	lea	rdx, QWORD PTR nw$[rbp]
+	mov	rcx, QWORD PTR nu$[rbp]
 	call	DuplicateNumber
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN12@PMC_Subtru
 
-; 246  :                 return (result);
+; 312  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN12@PMC_Subtru:
 
-; 247  :         }
+; 313  :         }
 
 	jmp	$LN11@PMC_Subtru
 $LN10@PMC_Subtru:
 
-; 248  :         else
-; 249  :         {
-; 250  :             // x と y がともに 0 ではない場合
-; 251  : 
-; 252  :             // x と y の差を計算する
-; 253  :             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 314  :         else
+; 315  :         {
+; 316  :             // u と v がともに 0 ではない場合
+; 317  : 
+; 318  :             // u と v の差を計算する
+; 319  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
-	mov	rax, QWORD PTR nx$[rbp]
+	mov	rax, QWORD PTR nu$[rbp]
 	mov	rax, QWORD PTR [rax+8]
-	mov	QWORD PTR x_bit_count$5[rbp], rax
+	mov	QWORD PTR u_bit_count$5[rbp], rax
 
-; 254  :             __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y);
+; 320  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
 
-	mov	ecx, DWORD PTR y$[rbp]
+	mov	ecx, DWORD PTR v$[rbp]
 	call	_LZCNT_ALT_32
 	mov	eax, eax
 	mov	ecx, 32					; 00000020H
 	sub	rcx, rax
 	mov	rax, rcx
-	mov	QWORD PTR y_bit_count$6[rbp], rax
+	mov	QWORD PTR v_bit_count$6[rbp], rax
 
-; 255  :             if (x_bit_count < y_bit_count)
+; 321  :             if (u_bit_count < v_bit_count)
 
-	mov	rax, QWORD PTR y_bit_count$6[rbp]
-	cmp	QWORD PTR x_bit_count$5[rbp], rax
+	mov	rax, QWORD PTR v_bit_count$6[rbp]
+	cmp	QWORD PTR u_bit_count$5[rbp], rax
 	jae	SHORT $LN13@PMC_Subtru
 
-; 256  :             {
-; 257  :                 // 演算結果は負となってしまうのでエラーを返す。
-; 258  :                 return (PMC_STATUS_OVERFLOW);
+; 322  :             {
+; 323  :                 // 演算結果は負となってしまうのでエラーを返す。
+; 324  :                 return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	$LN1@PMC_Subtru
 $LN13@PMC_Subtru:
 
-; 259  :             }
-; 260  :             __UNIT_TYPE z_bit_count = x_bit_count;
+; 325  :             }
+; 326  :             __UNIT_TYPE w_bit_count = u_bit_count;
 
-	mov	rax, QWORD PTR x_bit_count$5[rbp]
-	mov	QWORD PTR z_bit_count$7[rbp], rax
+	mov	rax, QWORD PTR u_bit_count$5[rbp]
+	mov	QWORD PTR w_bit_count$7[rbp], rax
 
-; 261  :             __UNIT_TYPE nz_light_check_code;
-; 262  :             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 327  :             __UNIT_TYPE w_light_check_code;
+; 328  :             if ((result = AllocateNumber(&nw, w_bit_count, &w_light_check_code)) != PMC_STATUS_OK)
 
-	lea	r8, QWORD PTR nz_light_check_code$8[rbp]
-	mov	rdx, QWORD PTR z_bit_count$7[rbp]
-	lea	rcx, QWORD PTR nz$[rbp]
+	lea	r8, QWORD PTR w_light_check_code$8[rbp]
+	mov	rdx, QWORD PTR w_bit_count$7[rbp]
+	lea	rcx, QWORD PTR nw$[rbp]
 	call	AllocateNumber
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN14@PMC_Subtru
 
-; 263  :                 return (result);
+; 329  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Subtru
 $LN14@PMC_Subtru:
 
-; 264  :             if ((result = Subtruct_X_1W(nx, y, nz)) != PMC_STATUS_OK)
+; 330  :             if ((result = Subtruct_X_1W(nu->BLOCK, nu->UNIT_WORD_COUNT, v, nw->BLOCK, nw->BLOCK_COUNT)) != PMC_STATUS_OK)
 
-	mov	eax, DWORD PTR y$[rbp]
-	mov	r8, QWORD PTR nz$[rbp]
-	mov	edx, eax
-	mov	rcx, QWORD PTR nx$[rbp]
+	mov	eax, DWORD PTR v$[rbp]
+	mov	rcx, QWORD PTR nw$[rbp]
+	mov	rcx, QWORD PTR [rcx+40]
+	mov	QWORD PTR [rsp+32], rcx
+	mov	rcx, QWORD PTR nw$[rbp]
+	mov	r9, QWORD PTR [rcx+48]
+	mov	r8d, eax
+	mov	rax, QWORD PTR nu$[rbp]
+	mov	rdx, QWORD PTR [rax]
+	mov	rax, QWORD PTR nu$[rbp]
+	mov	rcx, QWORD PTR [rax+48]
 	call	Subtruct_X_1W
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN15@PMC_Subtru
 
-; 265  :             {
-; 266  :                 DeallocateNumber(nz);
+; 331  :             {
+; 332  :                 DeallocateNumber(nw);
 
-	mov	rcx, QWORD PTR nz$[rbp]
+	mov	rcx, QWORD PTR nw$[rbp]
 	call	DeallocateNumber
 
-; 267  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 333  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR result$[rbp], -258		; fffffffffffffefeH
 	jne	SHORT $LN20@PMC_Subtru
-	mov	DWORD PTR tv131[rbp], -2
+	mov	DWORD PTR tv137[rbp], -2
 	jmp	SHORT $LN21@PMC_Subtru
 $LN20@PMC_Subtru:
 	mov	eax, DWORD PTR result$[rbp]
-	mov	DWORD PTR tv131[rbp], eax
+	mov	DWORD PTR tv137[rbp], eax
 $LN21@PMC_Subtru:
-	mov	eax, DWORD PTR tv131[rbp]
+	mov	eax, DWORD PTR tv137[rbp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN15@PMC_Subtru:
 
-; 268  :             }
-; 269  :             if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 334  :             }
+; 335  :             if ((result = CheckBlockLight(nw->BLOCK, w_light_check_code)) != PMC_STATUS_OK)
 
-	mov	rdx, QWORD PTR nz_light_check_code$8[rbp]
-	mov	rax, QWORD PTR nz$[rbp]
+	mov	rdx, QWORD PTR w_light_check_code$8[rbp]
+	mov	rax, QWORD PTR nw$[rbp]
 	mov	rcx, QWORD PTR [rax+48]
 	call	CheckBlockLight
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN16@PMC_Subtru
 
-; 270  :                 return (result);
+; 336  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN16@PMC_Subtru:
 
-; 271  :             CommitNumber(nz);
+; 337  :             CommitNumber(nw);
 
-	mov	rcx, QWORD PTR nz$[rbp]
+	mov	rcx, QWORD PTR nw$[rbp]
 	call	CommitNumber
 
-; 272  :             if (nz->IS_ZERO)
+; 338  :             if (nw->IS_ZERO)
 
-	mov	rax, QWORD PTR nz$[rbp]
+	mov	rax, QWORD PTR nw$[rbp]
 	mov	eax, DWORD PTR [rax+32]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
 	je	SHORT $LN17@PMC_Subtru
 
-; 273  :             {
-; 274  :                 DeallocateNumber(nz);
+; 339  :             {
+; 340  :                 DeallocateNumber(nw);
 
-	mov	rcx, QWORD PTR nz$[rbp]
+	mov	rcx, QWORD PTR nw$[rbp]
 	call	DeallocateNumber
 
-; 275  :                 nz = &number_zero;
+; 341  :                 nw = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
-	mov	QWORD PTR nz$[rbp], rax
+	mov	QWORD PTR nw$[rbp], rax
 $LN17@PMC_Subtru:
 $LN11@PMC_Subtru:
 
-; 276  :             }
-; 277  :         }
-; 278  :         *o = nz;
+; 342  :             }
+; 343  :         }
+; 344  :         *w = nw;
 
-	mov	rax, QWORD PTR o$[rbp]
-	mov	rcx, QWORD PTR nz$[rbp]
+	mov	rax, QWORD PTR w$[rbp]
+	mov	rcx, QWORD PTR nw$[rbp]
 	mov	QWORD PTR [rax], rcx
 $LN7@PMC_Subtru:
 
-; 279  :     }
-; 280  : #ifdef _DEBUG
-; 281  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 345  :     }
+; 346  : #ifdef _DEBUG
+; 347  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
-	mov	rax, QWORD PTR o$[rbp]
+	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
 	call	CheckNumber
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN18@PMC_Subtru
 
-; 282  :         return (result);
+; 348  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN18@PMC_Subtru:
 
-; 283  : #endif
-; 284  :     return (PMC_STATUS_OK);
+; 349  : #endif
+; 350  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Subtru:
 
-; 285  : }
+; 351  : }
 
 	mov	rdi, rax
-	lea	rcx, QWORD PTR [rbp-32]
+	lea	rcx, QWORD PTR [rbp-48]
 	lea	rdx, OFFSET FLAT:PMC_Subtruct_X_I$rtcFrameData
 	call	_RTC_CheckStackVars
 	mov	rax, rdi
@@ -4442,12 +4569,841 @@ PMC_Subtruct_X_I ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+;	COMDAT PMC_Subtruct_L_X
+_TEXT	SEGMENT
+nv$ = 8
+result$ = 36
+u_hi$8 = 68
+u_lo$9 = 100
+u_bit_count$10 = 136
+v_bit_count$11 = 168
+temp_w$12 = 200
+borrow$13 = 228
+u_bit_count$14 = 264
+v_bit_count$15 = 296
+temp_w_hi$16 = 328
+temp_w_lo$17 = 360
+borrow$18 = 388
+u_bit_count$19 = 424
+v_bit_count$20 = 456
+temp_w$21 = 488
+borrow$22 = 516
+u$ = 960
+v$ = 968
+w$ = 976
+PMC_Subtruct_L_X PROC					; COMDAT
+
+; 354  : {
+
+$LN31:
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 968				; 000003c8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 242				; 000000f2H
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+1000]
+	lea	rcx, OFFSET FLAT:__1898920A_pmc_subtruct@c
+	call	__CheckForDebuggerJustMyCode
+
+; 355  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN2@PMC_Subtru
+
+; 356  :     {
+; 357  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 358  :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffffffffffff00H
+	jmp	$LN1@PMC_Subtru
+$LN2@PMC_Subtru:
+
+; 359  :     }
+; 360  :     if (v == NULL)
+
+	cmp	QWORD PTR v$[rbp], 0
+	jne	SHORT $LN3@PMC_Subtru
+
+; 361  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_Subtru
+$LN3@PMC_Subtru:
+
+; 362  :     if (w == NULL)
+
+	cmp	QWORD PTR w$[rbp], 0
+	jne	SHORT $LN4@PMC_Subtru
+
+; 363  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_Subtru
+$LN4@PMC_Subtru:
+
+; 364  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+
+	mov	rax, QWORD PTR v$[rbp]
+	mov	QWORD PTR nv$[rbp], rax
+
+; 365  :     PMC_STATUS_CODE result;
+; 366  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR nv$[rbp]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN5@PMC_Subtru
+
+; 367  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_Subtru
+$LN5@PMC_Subtru:
+
+; 368  :     if (u == 0)
+
+	cmp	QWORD PTR u$[rbp], 0
+	jne	SHORT $LN6@PMC_Subtru
+
+; 369  :     {
+; 370  :         // u が 0 である場合
+; 371  : 
+; 372  :         if (nv->IS_ZERO)
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN8@PMC_Subtru
+
+; 373  :         {
+; 374  :             // v が 0 である場合
+; 375  : 
+; 376  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 377  :             *w = 0;
+
+	mov	rax, QWORD PTR w$[rbp]
+	mov	QWORD PTR [rax], 0
+
+; 378  :         }
+
+	jmp	SHORT $LN9@PMC_Subtru
+$LN8@PMC_Subtru:
+
+; 379  :         else
+; 380  :         {
+; 381  :             // v が 0 ではない場合
+; 382  : 
+; 383  :             // 演算結果は負となってしまうのでエラーを返す。
+; 384  :             return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	$LN1@PMC_Subtru
+$LN9@PMC_Subtru:
+
+; 385  :         }
+; 386  :     }
+
+	jmp	$LN7@PMC_Subtru
+$LN6@PMC_Subtru:
+
+; 387  :     else
+; 388  :     {
+; 389  :         // u が 0 ではない場合
+; 390  : 
+; 391  :         if (nv->IS_ZERO)
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN10@PMC_Subtru
+
+; 392  :         {
+; 393  :             // v が 0 である場合
+; 394  : 
+; 395  :             // 演算結果となる u の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 396  :             *w = u;
+
+	mov	rax, QWORD PTR w$[rbp]
+	mov	rcx, QWORD PTR u$[rbp]
+	mov	QWORD PTR [rax], rcx
+
+; 397  :         }
+
+	jmp	$LN11@PMC_Subtru
+$LN10@PMC_Subtru:
+
+; 398  :         else
+; 399  :         {
+; 400  :             // u と v がともに 0 ではない場合
+; 401  : 
+; 402  :             // u と v の差を計算する
+; 403  :             if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+
+	xor	eax, eax
+	test	eax, eax
+	je	$LN12@PMC_Subtru
+
+; 404  :             {
+; 405  :                 // _UINT64_T が 1 ワードで表現しきれない場合
+; 406  : 
+; 407  :                 _UINT32_T u_hi;
+; 408  :                 _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
+
+	lea	rdx, QWORD PTR u_hi$8[rbp]
+	mov	rcx, QWORD PTR u$[rbp]
+	call	_FROMDWORDTOWORD
+	mov	DWORD PTR u_lo$9[rbp], eax
+
+; 409  :                 if (u_hi == 0)
+
+	cmp	DWORD PTR u_hi$8[rbp], 0
+	jne	$LN14@PMC_Subtru
+
+; 410  :                 {
+; 411  :                     // u の値が 32bit で表現可能な場合
+; 412  :                     __UNIT_TYPE u_bit_count = sizeof(u_lo) * 8 - _LZCNT_ALT_32(u_lo);
+
+	mov	ecx, DWORD PTR u_lo$9[rbp]
+	call	_LZCNT_ALT_32
+	mov	eax, eax
+	mov	ecx, 32					; 00000020H
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR u_bit_count$10[rbp], rax
+
+; 413  :                     __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR v_bit_count$11[rbp], rax
+
+; 414  :                     if (u_bit_count < v_bit_count)
+
+	mov	rax, QWORD PTR v_bit_count$11[rbp]
+	cmp	QWORD PTR u_bit_count$10[rbp], rax
+	jae	SHORT $LN16@PMC_Subtru
+
+; 415  :                     {
+; 416  :                         // 明らかに u < v である場合
+; 417  : 
+; 418  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 419  :                         return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	$LN1@PMC_Subtru
+
+; 420  :                     }
+
+	jmp	SHORT $LN17@PMC_Subtru
+$LN16@PMC_Subtru:
+
+; 421  :                     else
+; 422  :                     {
+; 423  :                         // u のビット長が v のビット長以上である場合
+; 424  : 
+; 425  :                         // u が32bit 整数で表現できるので v も 32bit 整数で表現できる
+; 426  : 
+; 427  :                         __UNIT_TYPE temp_w;
+; 428  :                         char borrow = _SUBTRUCT_UNIT(0, u_lo, nv->BLOCK[0], &temp_w);
+
+	mov	eax, 8
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR nv$[rbp]
+	mov	rcx, QWORD PTR [rcx+48]
+	mov	edx, DWORD PTR u_lo$9[rbp]
+	lea	r9, QWORD PTR temp_w$12[rbp]
+	mov	r8, QWORD PTR [rcx+rax]
+	xor	ecx, ecx
+	call	_SUBTRUCT_UNIT
+	mov	BYTE PTR borrow$13[rbp], al
+
+; 429  :                         if (borrow)
+
+	movsx	eax, BYTE PTR borrow$13[rbp]
+	test	eax, eax
+	je	SHORT $LN18@PMC_Subtru
+
+; 430  :                         {
+; 431  :                             // ボローが発生した場合は演算結果が負なのでエラーとする
+; 432  :                             return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	$LN1@PMC_Subtru
+
+; 433  :                         }
+
+	jmp	SHORT $LN19@PMC_Subtru
+$LN18@PMC_Subtru:
+
+; 434  :                         else
+; 435  :                         {
+; 436  :                             *w = temp_w;
+
+	mov	rax, QWORD PTR w$[rbp]
+	mov	rcx, QWORD PTR temp_w$12[rbp]
+	mov	QWORD PTR [rax], rcx
+$LN19@PMC_Subtru:
+$LN17@PMC_Subtru:
+
+; 437  :                         }
+; 438  :                     }
+; 439  :                 }
+
+	jmp	$LN15@PMC_Subtru
+$LN14@PMC_Subtru:
+
+; 440  :                 else
+; 441  :                 {
+; 442  :                     // u の値が 32bit では表現できない場合
+; 443  :                     __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u_hi);
+
+	mov	ecx, DWORD PTR u_hi$8[rbp]
+	call	_LZCNT_ALT_32
+	mov	eax, eax
+	mov	ecx, 64					; 00000040H
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR u_bit_count$14[rbp], rax
+
+; 444  :                     __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR v_bit_count$15[rbp], rax
+
+; 445  :                     if (u_bit_count < v_bit_count)
+
+	mov	rax, QWORD PTR v_bit_count$15[rbp]
+	cmp	QWORD PTR u_bit_count$14[rbp], rax
+	jae	SHORT $LN20@PMC_Subtru
+
+; 446  :                     {
+; 447  :                         // 明らかに u < v である場合
+; 448  : 
+; 449  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 450  :                         return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	$LN1@PMC_Subtru
+
+; 451  :                     }
+
+	jmp	$LN21@PMC_Subtru
+$LN20@PMC_Subtru:
+
+; 452  :                     else
+; 453  :                     {
+; 454  :                         // u のビット長が v のビット長以上である場合
+; 455  : 
+; 456  :                         // この時点では u は 33 ～ 64bit 整数であり、v は 1 ～ 64bit整数である
+; 457  : 
+; 458  :                         __UNIT_TYPE temp_w_hi;
+; 459  :                         __UNIT_TYPE temp_w_lo;
+; 460  :                         char borrow;
+; 461  :                         borrow = _SUBTRUCT_UNIT(0, u_lo, nv->BLOCK[0], &temp_w_lo);
+
+	mov	eax, 8
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR nv$[rbp]
+	mov	rcx, QWORD PTR [rcx+48]
+	mov	edx, DWORD PTR u_lo$9[rbp]
+	lea	r9, QWORD PTR temp_w_lo$17[rbp]
+	mov	r8, QWORD PTR [rcx+rax]
+	xor	ecx, ecx
+	call	_SUBTRUCT_UNIT
+	mov	BYTE PTR borrow$18[rbp], al
+
+; 462  :                         if (nv->UNIT_WORD_COUNT <= 1)
+
+	mov	rax, QWORD PTR nv$[rbp]
+	cmp	QWORD PTR [rax], 1
+	ja	SHORT $LN22@PMC_Subtru
+
+; 463  :                         {
+; 464  :                             // v が 1 ワードで表現できる場合(1 ～ 32bit 整数)
+; 465  :                             borrow = _SUBTRUCT_UNIT(borrow, u_hi, 0, &temp_w_hi);
+
+	mov	eax, DWORD PTR u_hi$8[rbp]
+	lea	r9, QWORD PTR temp_w_hi$16[rbp]
+	xor	r8d, r8d
+	mov	edx, eax
+	movzx	ecx, BYTE PTR borrow$18[rbp]
+	call	_SUBTRUCT_UNIT
+	mov	BYTE PTR borrow$18[rbp], al
+
+; 466  :                         }
+
+	jmp	SHORT $LN23@PMC_Subtru
+$LN22@PMC_Subtru:
+
+; 467  :                         else
+; 468  :                         {
+; 469  :                             // v が 1 ワードで表現できない場合(33 ～ 64bit 整数)
+; 470  :                             borrow = _SUBTRUCT_UNIT(borrow, u_hi, nv->BLOCK[1], &temp_w_hi);
+
+	mov	eax, 8
+	imul	rax, rax, 1
+	mov	rcx, QWORD PTR nv$[rbp]
+	mov	rcx, QWORD PTR [rcx+48]
+	mov	edx, DWORD PTR u_hi$8[rbp]
+	lea	r9, QWORD PTR temp_w_hi$16[rbp]
+	mov	r8, QWORD PTR [rcx+rax]
+	movzx	ecx, BYTE PTR borrow$18[rbp]
+	call	_SUBTRUCT_UNIT
+	mov	BYTE PTR borrow$18[rbp], al
+$LN23@PMC_Subtru:
+
+; 471  :                         }
+; 472  :                         if (borrow)
+
+	movsx	eax, BYTE PTR borrow$18[rbp]
+	test	eax, eax
+	je	SHORT $LN24@PMC_Subtru
+
+; 473  :                         {
+; 474  :                             // ボローが発生した場合は演算結果が負なのでエラーとする
+; 475  :                             return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	$LN1@PMC_Subtru
+
+; 476  :                         }
+
+	jmp	SHORT $LN25@PMC_Subtru
+$LN24@PMC_Subtru:
+
+; 477  :                         else
+; 478  :                         {
+; 479  :                             *w = _FROMWORDTODWORD((_UINT32_T)temp_w_hi, (_UINT32_T)temp_w_lo);
+
+	mov	edx, DWORD PTR temp_w_lo$17[rbp]
+	mov	ecx, DWORD PTR temp_w_hi$16[rbp]
+	call	_FROMWORDTODWORD
+	mov	rcx, QWORD PTR w$[rbp]
+	mov	QWORD PTR [rcx], rax
+$LN25@PMC_Subtru:
+$LN21@PMC_Subtru:
+$LN15@PMC_Subtru:
+
+; 480  :                         }
+; 481  : 
+; 482  :                     }
+; 483  :                 }
+; 484  :             }
+
+	jmp	$LN13@PMC_Subtru
+$LN12@PMC_Subtru:
+
+; 485  :             else
+; 486  :             {
+; 487  :                 // _UINT64_T が 1 ワードで表現できる場合
+; 488  : 
+; 489  :                 __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)u);
+
+	mov	rcx, QWORD PTR u$[rbp]
+	call	_LZCNT_ALT_UNIT
+	mov	ecx, 64					; 00000040H
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR u_bit_count$19[rbp], rax
+
+; 490  :                 __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR v_bit_count$20[rbp], rax
+
+; 491  :                 if (u_bit_count < v_bit_count)
+
+	mov	rax, QWORD PTR v_bit_count$20[rbp]
+	cmp	QWORD PTR u_bit_count$19[rbp], rax
+	jae	SHORT $LN26@PMC_Subtru
+
+; 492  :                 {
+; 493  :                     // 明らかに u < v である場合
+; 494  : 
+; 495  :                     // 演算結果は負となってしまうのでエラーを返す。
+; 496  :                     return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	SHORT $LN1@PMC_Subtru
+
+; 497  :                 }
+
+	jmp	SHORT $LN27@PMC_Subtru
+$LN26@PMC_Subtru:
+
+; 498  :                 else
+; 499  :                 {
+; 500  :                     // u のビット長が v のビット長以上である場合
+; 501  : 
+; 502  :                     // u が 64bit 整数で表現できるので v も 64bit 整数で表現できる
+; 503  : 
+; 504  :                     __UNIT_TYPE temp_w;
+; 505  :                     char borrow = _SUBTRUCT_UNIT(0, (__UNIT_TYPE)u, nv->BLOCK[0], &temp_w);
+
+	mov	eax, 8
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR nv$[rbp]
+	mov	rcx, QWORD PTR [rcx+48]
+	lea	r9, QWORD PTR temp_w$21[rbp]
+	mov	r8, QWORD PTR [rcx+rax]
+	mov	rdx, QWORD PTR u$[rbp]
+	xor	ecx, ecx
+	call	_SUBTRUCT_UNIT
+	mov	BYTE PTR borrow$22[rbp], al
+
+; 506  :                     if (borrow)
+
+	movsx	eax, BYTE PTR borrow$22[rbp]
+	test	eax, eax
+	je	SHORT $LN28@PMC_Subtru
+
+; 507  :                     {
+; 508  :                         // ボローが発生した場合は演算結果が負なのでエラーとする
+; 509  :                         return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	SHORT $LN1@PMC_Subtru
+
+; 510  :                     }
+
+	jmp	SHORT $LN29@PMC_Subtru
+$LN28@PMC_Subtru:
+
+; 511  :                     else
+; 512  :                     {
+; 513  :                         *w = temp_w;
+
+	mov	rax, QWORD PTR w$[rbp]
+	mov	rcx, QWORD PTR temp_w$21[rbp]
+	mov	QWORD PTR [rax], rcx
+$LN29@PMC_Subtru:
+$LN27@PMC_Subtru:
+$LN13@PMC_Subtru:
+$LN11@PMC_Subtru:
+$LN7@PMC_Subtru:
+
+; 514  :                     }
+; 515  :                 }
+; 516  :             }
+; 517  :         }
+; 518  :     }
+; 519  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Subtru:
+
+; 520  : }
+
+	mov	rdi, rax
+	lea	rcx, QWORD PTR [rbp-32]
+	lea	rdx, OFFSET FLAT:PMC_Subtruct_L_X$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rax, rdi
+	lea	rsp, QWORD PTR [rbp+936]
+	pop	rdi
+	pop	rbp
+	ret	0
+PMC_Subtruct_L_X ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+;	COMDAT PMC_Subtruct_I_X
+_TEXT	SEGMENT
+nv$ = 8
+result$ = 36
+u_bit_count$4 = 72
+v_bit_count$5 = 104
+temp_w$6 = 136
+borrow$7 = 164
+u$ = 416
+v$ = 424
+w$ = 432
+PMC_Subtruct_I_X PROC					; COMDAT
+
+; 188  : {
+
+$LN17:
+	mov	QWORD PTR [rsp+24], r8
+	mov	QWORD PTR [rsp+16], rdx
+	mov	DWORD PTR [rsp+8], ecx
+	push	rbp
+	push	rdi
+	sub	rsp, 424				; 000001a8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 106				; 0000006aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, DWORD PTR [rsp+456]
+	lea	rcx, OFFSET FLAT:__1898920A_pmc_subtruct@c
+	call	__CheckForDebuggerJustMyCode
+
+; 189  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+
+	xor	eax, eax
+	test	eax, eax
+	je	SHORT $LN2@PMC_Subtru
+
+; 190  :     {
+; 191  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 192  :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffffffffffff00H
+	jmp	$LN1@PMC_Subtru
+$LN2@PMC_Subtru:
+
+; 193  :     }
+; 194  :     if (v == NULL)
+
+	cmp	QWORD PTR v$[rbp], 0
+	jne	SHORT $LN3@PMC_Subtru
+
+; 195  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_Subtru
+$LN3@PMC_Subtru:
+
+; 196  :     if (w == NULL)
+
+	cmp	QWORD PTR w$[rbp], 0
+	jne	SHORT $LN4@PMC_Subtru
+
+; 197  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	mov	eax, -1
+	jmp	$LN1@PMC_Subtru
+$LN4@PMC_Subtru:
+
+; 198  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+
+	mov	rax, QWORD PTR v$[rbp]
+	mov	QWORD PTR nv$[rbp], rax
+
+; 199  :     PMC_STATUS_CODE result;
+; 200  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+
+	mov	rcx, QWORD PTR nv$[rbp]
+	call	CheckNumber
+	mov	DWORD PTR result$[rbp], eax
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN5@PMC_Subtru
+
+; 201  :         return (result);
+
+	mov	eax, DWORD PTR result$[rbp]
+	jmp	$LN1@PMC_Subtru
+$LN5@PMC_Subtru:
+
+; 202  :     if (u == 0)
+
+	cmp	DWORD PTR u$[rbp], 0
+	jne	SHORT $LN6@PMC_Subtru
+
+; 203  :     {
+; 204  :         // u が 0 である場合
+; 205  : 
+; 206  :         if (nv->IS_ZERO)
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN8@PMC_Subtru
+
+; 207  :         {
+; 208  :             // v が 0 である場合
+; 209  : 
+; 210  :             // u と v がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 211  :             *w = 0;
+
+	mov	rax, QWORD PTR w$[rbp]
+	mov	DWORD PTR [rax], 0
+
+; 212  :         }
+
+	jmp	SHORT $LN9@PMC_Subtru
+$LN8@PMC_Subtru:
+
+; 213  :         else
+; 214  :         {
+; 215  :             // v が 0 ではない場合
+; 216  : 
+; 217  :             // 演算結果は負となってしまうのでエラーを返す。
+; 218  :             return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	$LN1@PMC_Subtru
+$LN9@PMC_Subtru:
+
+; 219  :         }
+; 220  :     }
+
+	jmp	$LN7@PMC_Subtru
+$LN6@PMC_Subtru:
+
+; 221  :     else
+; 222  :     {
+; 223  :         // u が 0 ではない場合
+; 224  : 
+; 225  :         if (nv->IS_ZERO)
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	eax, DWORD PTR [rax+32]
+	shr	eax, 1
+	and	eax, 1
+	test	eax, eax
+	je	SHORT $LN10@PMC_Subtru
+
+; 226  :         {
+; 227  :             // v が 0 である場合
+; 228  : 
+; 229  :             // 演算結果となる u の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 230  :             *w = u;
+
+	mov	rax, QWORD PTR w$[rbp]
+	mov	ecx, DWORD PTR u$[rbp]
+	mov	DWORD PTR [rax], ecx
+
+; 231  :         }
+
+	jmp	$LN11@PMC_Subtru
+$LN10@PMC_Subtru:
+
+; 232  :         else
+; 233  :         {
+; 234  :             // u と v がともに 0 ではない場合
+; 235  : 
+; 236  :             // x と y の差を計算する
+; 237  :             __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u);
+
+	mov	ecx, DWORD PTR u$[rbp]
+	call	_LZCNT_ALT_32
+	mov	eax, eax
+	mov	ecx, 32					; 00000020H
+	sub	rcx, rax
+	mov	rax, rcx
+	mov	QWORD PTR u_bit_count$4[rbp], rax
+
+; 238  :             __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	rax, QWORD PTR nv$[rbp]
+	mov	rax, QWORD PTR [rax+8]
+	mov	QWORD PTR v_bit_count$5[rbp], rax
+
+; 239  :             if (u_bit_count < v_bit_count)
+
+	mov	rax, QWORD PTR v_bit_count$5[rbp]
+	cmp	QWORD PTR u_bit_count$4[rbp], rax
+	jae	SHORT $LN12@PMC_Subtru
+
+; 240  :             {
+; 241  :                 // 明らかに u < v である場合
+; 242  :                 // 演算結果は負となってしまうのでエラーを返す。
+; 243  :                 return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	SHORT $LN1@PMC_Subtru
+
+; 244  :             }
+
+	jmp	SHORT $LN13@PMC_Subtru
+$LN12@PMC_Subtru:
+
+; 245  :             else
+; 246  :             {
+; 247  :                 // u のビット長が v のビット長以上である場合
+; 248  : 
+; 249  :                 // u が 32bit 整数なので、v も32bit 整数で表現できる
+; 250  :                 __UNIT_TYPE temp_w;
+; 251  :                 char borrow = _SUBTRUCT_UNIT(0, u, nv->BLOCK[0], &temp_w);
+
+	mov	eax, 8
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR nv$[rbp]
+	mov	rcx, QWORD PTR [rcx+48]
+	mov	edx, DWORD PTR u$[rbp]
+	lea	r9, QWORD PTR temp_w$6[rbp]
+	mov	r8, QWORD PTR [rcx+rax]
+	xor	ecx, ecx
+	call	_SUBTRUCT_UNIT
+	mov	BYTE PTR borrow$7[rbp], al
+
+; 252  :                 if (borrow)
+
+	movsx	eax, BYTE PTR borrow$7[rbp]
+	test	eax, eax
+	je	SHORT $LN14@PMC_Subtru
+
+; 253  :                 {
+; 254  :                     // ボローが発生した場合は演算結果が負なのでエラーとする
+; 255  :                     return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2
+	jmp	SHORT $LN1@PMC_Subtru
+
+; 256  :                 }
+
+	jmp	SHORT $LN15@PMC_Subtru
+$LN14@PMC_Subtru:
+
+; 257  :                 else
+; 258  :                 {
+; 259  :                     *w = (_UINT32_T)temp_w;
+
+	mov	rax, QWORD PTR w$[rbp]
+	mov	ecx, DWORD PTR temp_w$6[rbp]
+	mov	DWORD PTR [rax], ecx
+$LN15@PMC_Subtru:
+$LN13@PMC_Subtru:
+$LN11@PMC_Subtru:
+$LN7@PMC_Subtru:
+
+; 260  :                 }
+; 261  :             }
+; 262  :         }
+; 263  :     }
+; 264  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Subtru:
+
+; 265  : }
+
+	mov	rdi, rax
+	lea	rcx, QWORD PTR [rbp-32]
+	lea	rdx, OFFSET FLAT:PMC_Subtruct_I_X$rtcFrameData
+	call	_RTC_CheckStackVars
+	mov	rax, rdi
+	lea	rsp, QWORD PTR [rbp+392]
+	pop	rdi
+	pop	rbp
+	ret	0
+PMC_Subtruct_I_X ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 ;	COMDAT Initialize_Subtruct
 _TEXT	SEGMENT
 feature$ = 224
 Initialize_Subtruct PROC				; COMDAT
 
-; 508  : {
+; 743  : {
 
 $LN3:
 	mov	QWORD PTR [rsp+8], rcx
@@ -4463,11 +5419,11 @@ $LN3:
 	lea	rcx, OFFSET FLAT:__1898920A_pmc_subtruct@c
 	call	__CheckForDebuggerJustMyCode
 
-; 509  :     return (PMC_STATUS_OK);
+; 744  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 510  : }
+; 745  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -4484,15 +5440,15 @@ count$ = 40
 tv151 = 248
 tv154 = 256
 tv157 = 264
-xp$ = 304
-x_count$ = 312
-yp$ = 320
-y_count$ = 328
-zp$ = 336
-z_count$ = 344
+up$ = 304
+u_count$ = 312
+vp$ = 320
+v_count$ = 328
+wp$ = 336
+w_count$ = 344
 Subtruct_Imp PROC					; COMDAT
 
-; 138  : {
+; 124  : {
 
 $LN10:
 	mov	QWORD PTR [rsp+32], r9
@@ -4511,252 +5467,252 @@ $LN10:
 	lea	rcx, OFFSET FLAT:__1898920A_pmc_subtruct@c
 	call	__CheckForDebuggerJustMyCode
 
-; 139  :     char c = 0;
+; 125  :     char c = 0;
 
 	mov	BYTE PTR c$[rbp], 0
 
-; 140  : 
-; 141  :     // まず 32 ワードずつ減算をする。
-; 142  :     __UNIT_TYPE count = y_count >> 5;
+; 126  : 
+; 127  :     // まず 32 ワードずつ減算をする。
+; 128  :     __UNIT_TYPE count = v_count >> 5;
 
-	mov	rax, QWORD PTR y_count$[rbp]
+	mov	rax, QWORD PTR v_count$[rbp]
 	shr	rax, 5
 	mov	QWORD PTR count$[rbp], rax
 $LN2@Subtruct_I:
 
-; 143  :     while (count != 0)
+; 129  :     while (count != 0)
 
 	cmp	QWORD PTR count$[rbp], 0
 	je	SHORT $LN3@Subtruct_I
 
-; 144  :     {
-; 145  :         c= _SUBTRUCT_32WORDS_SBB(c, xp, yp, zp);
+; 130  :     {
+; 131  :         c= _SUBTRUCT_32WORDS_SBB(c, up, vp, wp);
 
-	mov	r9, QWORD PTR zp$[rbp]
-	mov	r8, QWORD PTR yp$[rbp]
-	mov	rdx, QWORD PTR xp$[rbp]
+	mov	r9, QWORD PTR wp$[rbp]
+	mov	r8, QWORD PTR vp$[rbp]
+	mov	rdx, QWORD PTR up$[rbp]
 	movzx	ecx, BYTE PTR c$[rbp]
 	call	_SUBTRUCT_32WORDS_SBB
 	mov	BYTE PTR c$[rbp], al
 
-; 146  :         xp += 32;
+; 132  :         up += 32;
 
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 256				; 00000100H
-	mov	QWORD PTR xp$[rbp], rax
+	mov	QWORD PTR up$[rbp], rax
 
-; 147  :         yp += 32;
+; 133  :         vp += 32;
 
-	mov	rax, QWORD PTR yp$[rbp]
+	mov	rax, QWORD PTR vp$[rbp]
 	add	rax, 256				; 00000100H
-	mov	QWORD PTR yp$[rbp], rax
+	mov	QWORD PTR vp$[rbp], rax
 
-; 148  :         zp += 32;
+; 134  :         wp += 32;
 
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 256				; 00000100H
-	mov	QWORD PTR zp$[rbp], rax
+	mov	QWORD PTR wp$[rbp], rax
 
-; 149  :         --count;
+; 135  :         --count;
 
 	mov	rax, QWORD PTR count$[rbp]
 	dec	rax
 	mov	QWORD PTR count$[rbp], rax
 
-; 150  :     }
+; 136  :     }
 
 	jmp	SHORT $LN2@Subtruct_I
 $LN3@Subtruct_I:
 
-; 151  :     // この時点で未処理の桁は 32 ワード未満のはず
-; 152  : 
-; 153  :     // 未処理の桁が 16 ワード以上あるなら 16 ワード減算を行う。
-; 154  :     if (y_count & 0x10)
+; 137  :     // この時点で未処理の桁は 32 ワード未満のはず
+; 138  : 
+; 139  :     // 未処理の桁が 16 ワード以上あるなら 16 ワード減算を行う。
+; 140  :     if (v_count & 0x10)
 
-	mov	rax, QWORD PTR y_count$[rbp]
+	mov	rax, QWORD PTR v_count$[rbp]
 	and	rax, 16
 	test	rax, rax
 	je	SHORT $LN4@Subtruct_I
 
-; 155  :     {
-; 156  :         c = _SUBTRUCT_16WORDS_SBB(c, xp, yp, zp);
+; 141  :     {
+; 142  :         c = _SUBTRUCT_16WORDS_SBB(c, up, vp, wp);
 
-	mov	r9, QWORD PTR zp$[rbp]
-	mov	r8, QWORD PTR yp$[rbp]
-	mov	rdx, QWORD PTR xp$[rbp]
+	mov	r9, QWORD PTR wp$[rbp]
+	mov	r8, QWORD PTR vp$[rbp]
+	mov	rdx, QWORD PTR up$[rbp]
 	movzx	ecx, BYTE PTR c$[rbp]
 	call	_SUBTRUCT_16WORDS_SBB
 	mov	BYTE PTR c$[rbp], al
 
-; 157  :         xp += 16;
+; 143  :         up += 16;
 
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 128				; 00000080H
-	mov	QWORD PTR xp$[rbp], rax
+	mov	QWORD PTR up$[rbp], rax
 
-; 158  :         yp += 16;
+; 144  :         vp += 16;
 
-	mov	rax, QWORD PTR yp$[rbp]
+	mov	rax, QWORD PTR vp$[rbp]
 	add	rax, 128				; 00000080H
-	mov	QWORD PTR yp$[rbp], rax
+	mov	QWORD PTR vp$[rbp], rax
 
-; 159  :         zp += 16;
+; 145  :         wp += 16;
 
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 128				; 00000080H
-	mov	QWORD PTR zp$[rbp], rax
+	mov	QWORD PTR wp$[rbp], rax
 $LN4@Subtruct_I:
 
-; 160  :     }
-; 161  :     // この時点で未処理の桁は 16 ワード未満のはず
-; 162  : 
-; 163  :     // 未処理の桁が 8 ワード以上あるなら 8 ワード減算を行う。
-; 164  :     if (y_count & 0x8)
+; 146  :     }
+; 147  :     // この時点で未処理の桁は 16 ワード未満のはず
+; 148  : 
+; 149  :     // 未処理の桁が 8 ワード以上あるなら 8 ワード減算を行う。
+; 150  :     if (v_count & 0x8)
 
-	mov	rax, QWORD PTR y_count$[rbp]
+	mov	rax, QWORD PTR v_count$[rbp]
 	and	rax, 8
 	test	rax, rax
 	je	SHORT $LN5@Subtruct_I
 
-; 165  :     {
-; 166  :         c = _SUBTRUCT_8WORDS_SBB(c, xp, yp, zp);
+; 151  :     {
+; 152  :         c = _SUBTRUCT_8WORDS_SBB(c, up, vp, wp);
 
-	mov	r9, QWORD PTR zp$[rbp]
-	mov	r8, QWORD PTR yp$[rbp]
-	mov	rdx, QWORD PTR xp$[rbp]
+	mov	r9, QWORD PTR wp$[rbp]
+	mov	r8, QWORD PTR vp$[rbp]
+	mov	rdx, QWORD PTR up$[rbp]
 	movzx	ecx, BYTE PTR c$[rbp]
 	call	_SUBTRUCT_8WORDS_SBB
 	mov	BYTE PTR c$[rbp], al
 
-; 167  :         xp += 8;
+; 153  :         up += 8;
 
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 64					; 00000040H
-	mov	QWORD PTR xp$[rbp], rax
+	mov	QWORD PTR up$[rbp], rax
 
-; 168  :         yp += 8;
+; 154  :         vp += 8;
 
-	mov	rax, QWORD PTR yp$[rbp]
+	mov	rax, QWORD PTR vp$[rbp]
 	add	rax, 64					; 00000040H
-	mov	QWORD PTR yp$[rbp], rax
+	mov	QWORD PTR vp$[rbp], rax
 
-; 169  :         zp += 8;
+; 155  :         wp += 8;
 
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 64					; 00000040H
-	mov	QWORD PTR zp$[rbp], rax
+	mov	QWORD PTR wp$[rbp], rax
 $LN5@Subtruct_I:
 
-; 170  :     }
-; 171  :     // この時点で未処理の桁は 8 ワード未満のはず
-; 172  : 
-; 173  :     // 未処理の桁が 4 ワード以上あるなら 4 ワード減算を行う。
-; 174  :     if (y_count & 0x4)
+; 156  :     }
+; 157  :     // この時点で未処理の桁は 8 ワード未満のはず
+; 158  : 
+; 159  :     // 未処理の桁が 4 ワード以上あるなら 4 ワード減算を行う。
+; 160  :     if (v_count & 0x4)
 
-	mov	rax, QWORD PTR y_count$[rbp]
+	mov	rax, QWORD PTR v_count$[rbp]
 	and	rax, 4
 	test	rax, rax
 	je	SHORT $LN6@Subtruct_I
 
-; 175  :     {
-; 176  :         c = _SUBTRUCT_4WORDS_SBB(c, xp, yp, zp);
+; 161  :     {
+; 162  :         c = _SUBTRUCT_4WORDS_SBB(c, up, vp, wp);
 
-	mov	r9, QWORD PTR zp$[rbp]
-	mov	r8, QWORD PTR yp$[rbp]
-	mov	rdx, QWORD PTR xp$[rbp]
+	mov	r9, QWORD PTR wp$[rbp]
+	mov	r8, QWORD PTR vp$[rbp]
+	mov	rdx, QWORD PTR up$[rbp]
 	movzx	ecx, BYTE PTR c$[rbp]
 	call	_SUBTRUCT_4WORDS_SBB
 	mov	BYTE PTR c$[rbp], al
 
-; 177  :         xp += 4;
+; 163  :         up += 4;
 
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 32					; 00000020H
-	mov	QWORD PTR xp$[rbp], rax
+	mov	QWORD PTR up$[rbp], rax
 
-; 178  :         yp += 4;
+; 164  :         vp += 4;
 
-	mov	rax, QWORD PTR yp$[rbp]
+	mov	rax, QWORD PTR vp$[rbp]
 	add	rax, 32					; 00000020H
-	mov	QWORD PTR yp$[rbp], rax
+	mov	QWORD PTR vp$[rbp], rax
 
-; 179  :         zp += 4;
+; 165  :         wp += 4;
 
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 32					; 00000020H
-	mov	QWORD PTR zp$[rbp], rax
+	mov	QWORD PTR wp$[rbp], rax
 $LN6@Subtruct_I:
 
-; 180  :     }
-; 181  :     // この時点で未処理の桁は 4 ワード未満のはず
-; 182  : 
-; 183  :     // 未処理の桁が 2 ワード以上あるなら 2 ワード減算を行う。
-; 184  :     if (y_count & 0x2)
+; 166  :     }
+; 167  :     // この時点で未処理の桁は 4 ワード未満のはず
+; 168  : 
+; 169  :     // 未処理の桁が 2 ワード以上あるなら 2 ワード減算を行う。
+; 170  :     if (v_count & 0x2)
 
-	mov	rax, QWORD PTR y_count$[rbp]
+	mov	rax, QWORD PTR v_count$[rbp]
 	and	rax, 2
 	test	rax, rax
 	je	SHORT $LN7@Subtruct_I
 
-; 185  :     {
-; 186  :         c = _SUBTRUCT_2WORDS_SBB(c, xp, yp, zp);
+; 171  :     {
+; 172  :         c = _SUBTRUCT_2WORDS_SBB(c, up, vp, wp);
 
-	mov	r9, QWORD PTR zp$[rbp]
-	mov	r8, QWORD PTR yp$[rbp]
-	mov	rdx, QWORD PTR xp$[rbp]
+	mov	r9, QWORD PTR wp$[rbp]
+	mov	r8, QWORD PTR vp$[rbp]
+	mov	rdx, QWORD PTR up$[rbp]
 	movzx	ecx, BYTE PTR c$[rbp]
 	call	_SUBTRUCT_2WORDS_SBB
 	mov	BYTE PTR c$[rbp], al
 
-; 187  :         xp += 2;
+; 173  :         up += 2;
 
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 16
-	mov	QWORD PTR xp$[rbp], rax
+	mov	QWORD PTR up$[rbp], rax
 
-; 188  :         yp += 2;
+; 174  :         vp += 2;
 
-	mov	rax, QWORD PTR yp$[rbp]
+	mov	rax, QWORD PTR vp$[rbp]
 	add	rax, 16
-	mov	QWORD PTR yp$[rbp], rax
+	mov	QWORD PTR vp$[rbp], rax
 
-; 189  :         zp += 2;
+; 175  :         wp += 2;
 
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 16
-	mov	QWORD PTR zp$[rbp], rax
+	mov	QWORD PTR wp$[rbp], rax
 $LN7@Subtruct_I:
 
-; 190  :     }
-; 191  :     // この時点で未処理の桁は 2 ワード未満のはず
-; 192  : 
-; 193  :     // 未処理の桁が 1 ワード以上あるなら 1 ワード減算を行う。
-; 194  :     if (y_count & 1)
+; 176  :     }
+; 177  :     // この時点で未処理の桁は 2 ワード未満のはず
+; 178  : 
+; 179  :     // 未処理の桁が 1 ワード以上あるなら 1 ワード減算を行う。
+; 180  :     if (v_count & 1)
 
-	mov	rax, QWORD PTR y_count$[rbp]
+	mov	rax, QWORD PTR v_count$[rbp]
 	and	rax, 1
 	test	rax, rax
 	je	$LN8@Subtruct_I
 
-; 195  :         c = _SUBTRUCT_UNIT(c, *xp++, *yp++, zp++);
+; 181  :         c = _SUBTRUCT_UNIT(c, *up++, *vp++, wp++);
 
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	mov	QWORD PTR tv151[rbp], rax
-	mov	rax, QWORD PTR zp$[rbp]
+	mov	rax, QWORD PTR wp$[rbp]
 	add	rax, 8
-	mov	QWORD PTR zp$[rbp], rax
-	mov	rax, QWORD PTR yp$[rbp]
+	mov	QWORD PTR wp$[rbp], rax
+	mov	rax, QWORD PTR vp$[rbp]
 	mov	rax, QWORD PTR [rax]
 	mov	QWORD PTR tv154[rbp], rax
-	mov	rax, QWORD PTR yp$[rbp]
+	mov	rax, QWORD PTR vp$[rbp]
 	add	rax, 8
-	mov	QWORD PTR yp$[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	QWORD PTR vp$[rbp], rax
+	mov	rax, QWORD PTR up$[rbp]
 	mov	rax, QWORD PTR [rax]
 	mov	QWORD PTR tv157[rbp], rax
-	mov	rax, QWORD PTR xp$[rbp]
+	mov	rax, QWORD PTR up$[rbp]
 	add	rax, 8
-	mov	QWORD PTR xp$[rbp], rax
+	mov	QWORD PTR up$[rbp], rax
 	mov	r9, QWORD PTR tv151[rbp]
 	mov	r8, QWORD PTR tv154[rbp]
 	mov	rdx, QWORD PTR tv157[rbp]
@@ -4765,26 +5721,26 @@ $LN7@Subtruct_I:
 	mov	BYTE PTR c$[rbp], al
 $LN8@Subtruct_I:
 
-; 196  : 
-; 197  :     // 残りの桁の繰り上がりを計算し、復帰する。
-; 198  :     return (DoBorrow(c, xp, x_count - y_count, zp, z_count - y_count));
+; 182  : 
+; 183  :     // 残りの桁の繰り上がりを計算し、復帰する。
+; 184  :     return (DoBorrow(c, up, u_count - v_count, wp, w_count - v_count));
 
-	mov	rax, QWORD PTR y_count$[rbp]
-	mov	rcx, QWORD PTR z_count$[rbp]
+	mov	rax, QWORD PTR v_count$[rbp]
+	mov	rcx, QWORD PTR w_count$[rbp]
 	sub	rcx, rax
 	mov	rax, rcx
-	mov	rcx, QWORD PTR y_count$[rbp]
-	mov	rdx, QWORD PTR x_count$[rbp]
+	mov	rcx, QWORD PTR v_count$[rbp]
+	mov	rdx, QWORD PTR u_count$[rbp]
 	sub	rdx, rcx
 	mov	rcx, rdx
 	mov	QWORD PTR [rsp+32], rax
-	mov	r9, QWORD PTR zp$[rbp]
+	mov	r9, QWORD PTR wp$[rbp]
 	mov	r8, rcx
-	mov	rdx, QWORD PTR xp$[rbp]
+	mov	rdx, QWORD PTR up$[rbp]
 	movzx	ecx, BYTE PTR c$[rbp]
 	call	DoBorrow
 
-; 199  : }
+; 185  : }
 
 	lea	rsp, QWORD PTR [rbp+280]
 	pop	rdi

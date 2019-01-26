@@ -51,7 +51,7 @@ _BSS	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$TEST_PMC_ToStringD DD imagerel $LN10
-	DD	imagerel $LN10+644
+	DD	imagerel $LN10+641
 	DD	imagerel $unwind$TEST_PMC_ToStringD
 pdata	ENDS
 ;	COMDAT rtc$TMZ
@@ -273,7 +273,7 @@ $LN5@TEST_PMC_T:
 	lea	rdx, OFFSET FLAT:?actual_str_buffer@?1??TEST_PMC_ToStringD@@9@9
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+320]
+	call	QWORD PTR [rax+72]
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	jne	SHORT $LN6@TEST_PMC_T

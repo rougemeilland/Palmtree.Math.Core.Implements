@@ -100252,21 +100252,35 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
 
-    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
-    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
-    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_Add_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
 
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_TryParse)(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
 
 
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_I)(HANDLE p, _UINT32_T x, HANDLE* o);
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_L)(HANDLE p, _UINT64_T x, HANDLE* o);
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_X)(HANDLE p1, HANDLE p2, HANDLE* o);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Add_I_X)(_UINT32_T u, HANDLE v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Add_L_X)(_UINT64_T u, HANDLE v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Add_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Add_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Add_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 
 
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_I_X)(_UINT32_T u, HANDLE v, _UINT32_T* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_L_X)(_UINT64_T u, HANDLE v, _UINT64_T* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Subtruct_X_X)(HANDLE u, HANDLE v, HANDLE* w);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_I_X)(_UINT32_T u, HANDLE v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_L_X)(_UINT64_T u, HANDLE v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Multiply_X_X)(HANDLE u, HANDLE v, HANDLE* w);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_DivRem_I_X)(_UINT32_T u, HANDLE v, _UINT32_T* q, _UINT32_T* r);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_DivRem_L_X)(_UINT64_T u, HANDLE v, _UINT64_T* q, _UINT64_T* r);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_DivRem_X_I)(HANDLE u, _UINT32_T v, HANDLE* q, _UINT32_T* r);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_DivRem_X_L)(HANDLE u, _UINT64_T v, HANDLE* q, _UINT64_T* r);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_DivRem_X_X)(HANDLE u, HANDLE v, HANDLE* q, HANDLE* r);
@@ -100280,40 +100294,46 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_RightShift_X_L)(HANDLE p, _UINT64_T n, HANDLE* o);
 
 
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseAnd_I_X)(_UINT32_T u, HANDLE v, _UINT32_T* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseAnd_L_X)(_UINT64_T u, HANDLE v, _UINT64_T* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseAnd_X_I)(HANDLE u, _UINT32_T v, _UINT32_T* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseAnd_X_L)(HANDLE u, _UINT64_T v, _UINT64_T* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseAnd_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 
 
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseOr_I_X)(_UINT32_T u, HANDLE v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseOr_L_X)(_UINT64_T u, HANDLE v, HANDLE* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseOr_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseOr_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_BitwiseOr_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 
 
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ExclusiveOr_I_X)(_UINT32_T u, HANDLE v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ExclusiveOr_L_X)(_UINT64_T u, HANDLE v, HANDLE* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ExclusiveOr_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ExclusiveOr_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ExclusiveOr_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 
 
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Compare_I_X)(_UINT32_T u, HANDLE v, _INT32_T* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Compare_L_X)(_UINT64_T u, HANDLE v, _INT32_T* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Compare_X_I)(HANDLE u, _UINT32_T v, _INT32_T* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Compare_X_L)(HANDLE u, _UINT64_T v, _INT32_T* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Compare_X_X)(HANDLE u, HANDLE v, _INT32_T* w);
 
 
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Equals_I_X)(_UINT32_T u, HANDLE v, _INT32_T* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Equals_L_X)(_UINT64_T u, HANDLE v, _INT32_T* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Equals_X_I)(HANDLE u, _UINT32_T v, _INT32_T* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Equals_X_L)(HANDLE u, _UINT64_T v, _INT32_T* w);
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Equals_X_X)(HANDLE u, HANDLE v, _INT32_T* w);
 
 
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
-
-
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_TryParse)(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
-
-
-    PMC_STATUS_CODE( __attribute__((__stdcall__)) * PMC_GreatestCommonDivisor_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
-    PMC_STATUS_CODE( __attribute__((__stdcall__)) * PMC_GreatestCommonDivisor_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
-    PMC_STATUS_CODE( __attribute__((__stdcall__)) * PMC_GreatestCommonDivisor_X_X)(HANDLE u, HANDLE v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_GreatestCommonDivisor_I_X)(_UINT32_T u, HANDLE v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_GreatestCommonDivisor_L_X)(_UINT64_T u, HANDLE v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_GreatestCommonDivisor_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_GreatestCommonDivisor_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_GreatestCommonDivisor_X_X)(HANDLE u, HANDLE v, HANDLE* w);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -100448,7 +100468,7 @@ extern void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UN
 extern void LeftShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
 
 
-extern PMC_STATUS_CODE Subtruct_Imp(__UNIT_TYPE* xp, __UNIT_TYPE x_count, __UNIT_TYPE* yp, __UNIT_TYPE y_count, __UNIT_TYPE* zp, __UNIT_TYPE z_count);
+extern PMC_STATUS_CODE Subtruct_Imp(__UNIT_TYPE* up, __UNIT_TYPE u_count, __UNIT_TYPE* vp, __UNIT_TYPE v_count, __UNIT_TYPE* wp, __UNIT_TYPE w_count);
 
 
 extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
@@ -100518,18 +100538,30 @@ extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_I(HANDLE p, _UINT32
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_L(HANDLE p, _UINT64_T* o);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_TryParse(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_I(HANDLE p, _UINT32_T x, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_L(HANDLE p, _UINT64_T x, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_X(HANDLE p1, HANDLE p2, HANDLE* o);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_I_X(_UINT32_T u, HANDLE v, _UINT32_T* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_L_X(_UINT64_T u, HANDLE v, _UINT64_T* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_X(HANDLE u, HANDLE v, HANDLE* w);
+
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_X(HANDLE u, HANDLE v, HANDLE* w);
+
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_I_X(_UINT32_T u, HANDLE v, _UINT32_T* q, _UINT32_T* r);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_L_X(_UINT64_T u, HANDLE v, _UINT64_T* q, _UINT64_T* r);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_X_I(HANDLE u, _UINT32_T v, HANDLE* q, _UINT32_T* r);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_X_L(HANDLE u, _UINT64_T v, HANDLE* q, _UINT64_T* r);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_X_X(HANDLE u, HANDLE v, HANDLE* q, HANDLE* r);
@@ -100540,30 +100572,38 @@ extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_RightShift_X_L(HANDLE p,
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_LeftShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
 
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_I_X(_UINT32_T u, HANDLE v, _UINT32_T* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_L_X(_UINT64_T u, HANDLE v, _UINT64_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_X_I(HANDLE u, _UINT32_T v, _UINT32_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_X_L(HANDLE u, _UINT64_T v, _UINT64_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_I_X(_UINT32_T u, HANDLE v, _INT32_T* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_L_X(_UINT64_T u, HANDLE v, _INT32_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_I_X(_UINT32_T u, HANDLE v, _INT32_T* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_L_X(_UINT64_T u, HANDLE v, _INT32_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
-
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_TryParse(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
-
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w);
@@ -100580,7 +100620,7 @@ __inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T
 {
     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 }
-# 295 "pmc_internal.h"
+# 315 "pmc_internal.h"
 __inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
 {
 
@@ -100596,7 +100636,7 @@ __inline static void _COPY_MEMORY_UNIT_DIV(__UNIT_TYPE_DIV* d, const __UNIT_TYPE
 {
 
     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-# 321 "pmc_internal.h"
+# 341 "pmc_internal.h"
 }
 
 __inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
@@ -100613,7 +100653,7 @@ __inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
 {
     __stosd((unsigned long*)d, 0, count);
 }
-# 345 "pmc_internal.h"
+# 365 "pmc_internal.h"
 __inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
 {
 
@@ -100629,7 +100669,7 @@ __inline static void _ZERO_MEMORY_UNIT_DIV(__UNIT_TYPE_DIV* d, __UNIT_TYPE count
 {
 
     __stosd((unsigned long*)d, 0, (unsigned long)count);
-# 371 "pmc_internal.h"
+# 391 "pmc_internal.h"
 }
 
 __inline static void _FILL_MEMORY_BYTE(void* d, unsigned char x, size_t count)
@@ -100646,7 +100686,7 @@ __inline static void _FILL_MEMORY_32(_UINT32_T* d, _UINT32_T x, size_t count)
 {
     __stosd(( unsigned long*)d, x, count);
 }
-# 395 "pmc_internal.h"
+# 415 "pmc_internal.h"
 __inline static void _FILL_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE x, __UNIT_TYPE count)
 {
 
@@ -100712,7 +100752,7 @@ __inline static char _ADD_UNIT_DIV(char carry, __UNIT_TYPE_DIV u, __UNIT_TYPE_DI
 
 
     return (_addcarry_u32(carry, u, v, w));
-# 468 "pmc_internal.h"
+# 488 "pmc_internal.h"
 }
 
 __inline static char _ADDX_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
@@ -100733,7 +100773,7 @@ __inline static char _ADDX_UNIT_DIV(char carry, __UNIT_TYPE_DIV u, __UNIT_TYPE_D
 
 
     return (_addcarryx_u32(carry, u, v, w));
-# 496 "pmc_internal.h"
+# 516 "pmc_internal.h"
 }
 
 __inline static char _SUBTRUCT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
@@ -100754,7 +100794,7 @@ __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_T
 
 
     return (_subborrow_u32(borrow, u, v, w));
-# 524 "pmc_internal.h"
+# 544 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
@@ -100766,7 +100806,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
     _UINT32_T w_lo;
     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
     return (w_lo);
-# 543 "pmc_internal.h"
+# 563 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
@@ -100778,16 +100818,16 @@ __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYP
     _UINT32_T w_lo;
     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
     return (w_lo);
-# 562 "pmc_internal.h"
+# 582 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 576 "pmc_internal.h"
+# 596 "pmc_internal.h"
     _UINT32_T w_lo;
     __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
-# 589 "pmc_internal.h"
+# 609 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
@@ -100799,13 +100839,13 @@ __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TY
     _UINT32_T w_lo;
     __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
-# 610 "pmc_internal.h"
+# 630 "pmc_internal.h"
 }
 
 
 __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
 {
-# 639 "pmc_internal.h"
+# 659 "pmc_internal.h"
     __UNIT_TYPE q;
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -100826,7 +100866,7 @@ __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE
 
 __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
 {
-# 683 "pmc_internal.h"
+# 703 "pmc_internal.h"
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
@@ -100858,17 +100898,17 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 713 "pmc_internal.h" 3
+# 733 "pmc_internal.h" 3
            __rold((
-# 713 "pmc_internal.h"
+# 733 "pmc_internal.h"
            x
-# 713 "pmc_internal.h" 3
+# 733 "pmc_internal.h" 3
            ), (
-# 713 "pmc_internal.h"
+# 733 "pmc_internal.h"
            count
-# 713 "pmc_internal.h" 3
+# 733 "pmc_internal.h" 3
            ))
-# 713 "pmc_internal.h"
+# 733 "pmc_internal.h"
                           );
 
 
@@ -100881,17 +100921,17 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 724 "pmc_internal.h" 3
+# 744 "pmc_internal.h" 3
            __rord((
-# 724 "pmc_internal.h"
+# 744 "pmc_internal.h"
            x
-# 724 "pmc_internal.h" 3
+# 744 "pmc_internal.h" 3
            ), (
-# 724 "pmc_internal.h"
+# 744 "pmc_internal.h"
            count
-# 724 "pmc_internal.h" 3
+# 744 "pmc_internal.h" 3
            ))
-# 724 "pmc_internal.h"
+# 744 "pmc_internal.h"
                           );
 
 
@@ -100919,7 +100959,7 @@ __inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
     x = (x & 0x0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f);
     x = (x & 0x00ff00ff) + ((x >> 8) & 0x00ff00ff);
     x = (x & 0x0000ffff) + ((x >> 16) & 0x0000ffff);
-# 761 "pmc_internal.h"
+# 781 "pmc_internal.h"
     return(x);
 }
 
@@ -100927,7 +100967,7 @@ __inline static _UINT32_T _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
-# 776 "pmc_internal.h"
+# 796 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
@@ -100941,9 +100981,9 @@ __inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
 
 __inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
 {
-# 799 "pmc_internal.h"
+# 819 "pmc_internal.h"
     return (_lzcnt_u32(value));
-# 808 "pmc_internal.h"
+# 828 "pmc_internal.h"
 }
 
 __inline static unsigned char _LZCNT_ALT_8(unsigned char x)
@@ -100975,7 +101015,7 @@ __inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
 
     return (sizeof(x) * 8 - 1 - pos);
 }
-# 858 "pmc_internal.h"
+# 878 "pmc_internal.h"
 __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
@@ -100986,7 +101026,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 884 "pmc_internal.h"
+# 904 "pmc_internal.h"
     return (sizeof(x) * 8 - 1 - pos);
 }
 
@@ -101000,7 +101040,7 @@ __inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 913 "pmc_internal.h"
+# 933 "pmc_internal.h"
     return (sizeof(x) * 8 - 1 - pos);
 }
 
@@ -101036,7 +101076,7 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-# 964 "pmc_internal.h"
+# 984 "pmc_internal.h"
     return (pos);
 }
 
@@ -103219,7 +103259,7 @@ __inline static char _SUBTRUCT_2WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNI
 # 36 "pmc_greatestcommondivisor.c" 2
 
 
-static void GreatestCommonDivisor(__UNIT_TYPE* p1_buf, __UNIT_TYPE* p2_buf, __UNIT_TYPE word_count, __UNIT_TYPE *w_buf, __UNIT_TYPE *w_buf_count)
+static void GreatestCommonDivisor_Imp(__UNIT_TYPE* p1_buf, __UNIT_TYPE* p2_buf, __UNIT_TYPE word_count, __UNIT_TYPE *w_buf, __UNIT_TYPE *w_buf_count)
 {
     __UNIT_TYPE* u = p1_buf;
     __UNIT_TYPE* v = p2_buf;
@@ -103253,40 +103293,21 @@ static void GreatestCommonDivisor(__UNIT_TYPE* p1_buf, __UNIT_TYPE* p2_buf, __UN
 
         Subtruct_Imp(u, word_count, v, word_count, u, word_count);
 
+
+
         while ((*u & 1) == 0)
             RightShift_Imp(u, word_count, 1, u, 
-# 73 "pmc_greatestcommondivisor.c" 3
+# 75 "pmc_greatestcommondivisor.c" 3
                                                1
-# 73 "pmc_greatestcommondivisor.c"
+# 75 "pmc_greatestcommondivisor.c"
                                                    );
     }
 }
 
-PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDLE u, _UINT32_T v, HANDLE* w)
+static PMC_STATUS_CODE PMC_GreatestCommonDivisor_X_I_Imp(NUMBER_HEADER* u, _UINT32_T v, NUMBER_HEADER** w)
 {
-    if ((sizeof(__UNIT_TYPE) * 8) < sizeof(v) * 8)
-    {
-
-        return ((-256));
-    }
-    if (u == 
-# 84 "pmc_greatestcommondivisor.c" 3 4
-            ((void *)0)
-# 84 "pmc_greatestcommondivisor.c"
-                )
-        return ((-1));
-    if (w == 
-# 86 "pmc_greatestcommondivisor.c" 3 4
-            ((void *)0)
-# 86 "pmc_greatestcommondivisor.c"
-                )
-        return ((-1));
-    NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
     PMC_STATUS_CODE result;
-    if ((result = CheckNumber(nu)) != (0))
-        return (result);
-    NUMBER_HEADER* nw;
-    if (nu->IS_ZERO)
+    if (u->IS_ZERO)
     {
 
 
@@ -103302,9 +103323,8 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDL
 
 
 
-            if ((result = From_I_Imp(v, &nw)) != (0))
+            if ((result = From_I_Imp(v, w)) != (0))
                 return (result);
-            *w = nw;
         }
     }
     else
@@ -103316,16 +103336,15 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDL
 
 
 
-            if ((result = DuplicateNumber(nu, &nw)) != (0))
+            if ((result = DuplicateNumber(u, w)) != (0))
                 return (result);
-            *w = nw;
         }
         else
         {
 
 
 
-            __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+            __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
             __UNIT_TYPE work_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
 
@@ -103333,9 +103352,9 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDL
             __UNIT_TYPE work_u_buf_words;
             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
             if (work_u_buf == 
-# 139 "pmc_greatestcommondivisor.c" 3 4
+# 126 "pmc_greatestcommondivisor.c" 3 4
                              ((void *)0)
-# 139 "pmc_greatestcommondivisor.c"
+# 126 "pmc_greatestcommondivisor.c"
                                  )
                 return ((-5));
 
@@ -103343,9 +103362,9 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDL
             __UNIT_TYPE work_v_buf_words;
             __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
             if (work_v_buf == 
-# 145 "pmc_greatestcommondivisor.c" 3 4
+# 132 "pmc_greatestcommondivisor.c" 3 4
                              ((void *)0)
-# 145 "pmc_greatestcommondivisor.c"
+# 132 "pmc_greatestcommondivisor.c"
                                  )
             {
                 DeallocateBlock(work_u_buf, work_u_buf_words);
@@ -103353,48 +103372,408 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDL
             }
 
             __UNIT_TYPE nw_check_code;
-            if ((result = AllocateNumber(&nw, work_bit_count, &nw_check_code)) != (0))
+            if ((result = AllocateNumber(w, work_bit_count, &nw_check_code)) != (0))
             {
                 DeallocateBlock(work_v_buf, work_v_buf_words);
                 DeallocateBlock(work_u_buf, work_u_buf_words);
                 return (result);
             }
 
-            __UNIT_TYPE u_tzcnt = nu->TRAILING_ZERO_BITS_COUNT;
+            __UNIT_TYPE u_tzcnt = u->TRAILING_ZERO_BITS_COUNT;
             __UNIT_TYPE v_tzcnt = _TZCNT_ALT_UNIT(v);
             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
             if (u_tzcnt > 0)
-                RightShift_Imp(nu->BLOCK, nu->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, 
-# 163 "pmc_greatestcommondivisor.c" 3
-                                                                                   0
-# 163 "pmc_greatestcommondivisor.c"
-                                                                                        );
+                RightShift_Imp(u->BLOCK, u->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, 
+# 150 "pmc_greatestcommondivisor.c" 3
+                                                                                 0
+# 150 "pmc_greatestcommondivisor.c"
+                                                                                      );
             else
-                _COPY_MEMORY_UNIT(work_u_buf, nu->BLOCK, nu->UNIT_WORD_COUNT);
+                _COPY_MEMORY_UNIT(work_u_buf, u->BLOCK, u->UNIT_WORD_COUNT);
             work_v_buf[0] = v >> v_tzcnt;
 
             __UNIT_TYPE w_buf_count;
-            GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), nw->BLOCK, &w_buf_count);
+            GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), (*w)->BLOCK, &w_buf_count);
             if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != (0))
                 return (result);
             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != (0))
                 return (result);
-            if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != (0))
+            if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != (0))
                 return (result);
             DeallocateBlock(work_v_buf, work_v_buf_words);
             DeallocateBlock(work_u_buf, work_u_buf_words);
 
-            LeftShift_Imp(nw->BLOCK, w_buf_count, k, nw->BLOCK, 
-# 179 "pmc_greatestcommondivisor.c" 3
-                                                               1
-# 179 "pmc_greatestcommondivisor.c"
-                                                                   );
-            if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != (0))
+            LeftShift_Imp((*w)->BLOCK, w_buf_count, k, (*w)->BLOCK, 
+# 166 "pmc_greatestcommondivisor.c" 3
+                                                                   1
+# 166 "pmc_greatestcommondivisor.c"
+                                                                       );
+            if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != (0))
                 return (result);
-            CommitNumber(nw);
-            *w = nw;
+            CommitNumber(*w);
         }
     }
+    return ((0));
+}
+
+PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_I_X(_UINT32_T u, HANDLE v, HANDLE* w)
+{
+    if ((sizeof(__UNIT_TYPE) * 8) < sizeof(u) * 8)
+    {
+
+        return ((-256));
+    }
+    if (v == 
+# 182 "pmc_greatestcommondivisor.c" 3 4
+            ((void *)0)
+# 182 "pmc_greatestcommondivisor.c"
+                )
+        return ((-1));
+    if (w == 
+# 184 "pmc_greatestcommondivisor.c" 3 4
+            ((void *)0)
+# 184 "pmc_greatestcommondivisor.c"
+                )
+        return ((-1));
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber((NUMBER_HEADER*)v)) != (0))
+        return (result);
+    if ((result = PMC_GreatestCommonDivisor_X_I_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != (0))
+        return (result);
+
+
+
+
+    return ((0));
+}
+
+PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDLE u, _UINT32_T v, HANDLE* w)
+{
+    if ((sizeof(__UNIT_TYPE) * 8) < sizeof(v) * 8)
+    {
+
+        return ((-256));
+    }
+    if (u == 
+# 205 "pmc_greatestcommondivisor.c" 3 4
+            ((void *)0)
+# 205 "pmc_greatestcommondivisor.c"
+                )
+        return ((-1));
+    if (w == 
+# 207 "pmc_greatestcommondivisor.c" 3 4
+            ((void *)0)
+# 207 "pmc_greatestcommondivisor.c"
+                )
+        return ((-1));
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber((NUMBER_HEADER*)u)) != (0))
+        return (result);
+    if ((result = PMC_GreatestCommonDivisor_X_I_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != (0))
+        return (result);
+
+
+
+
+    return ((0));
+}
+
+static PMC_STATUS_CODE PMC_GreatestCommonDivisor_X_L_Imp(NUMBER_HEADER* u, _UINT64_T v, NUMBER_HEADER** w)
+{
+    PMC_STATUS_CODE result;
+    if (u->IS_ZERO)
+    {
+
+
+        if (v == 0)
+        {
+
+
+
+            return ((-1));
+        }
+        else
+        {
+
+
+
+            if ((result = From_L_Imp(v, w)) != (0))
+                return (result);
+        }
+    }
+    else
+    {
+
+
+        if (v == 0)
+        {
+
+
+
+            if ((result = DuplicateNumber(u, w)) != (0))
+                return (result);
+        }
+        else
+        {
+
+
+
+            if ((sizeof(__UNIT_TYPE) * 8) < sizeof(v) * 8)
+            {
+
+
+                __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+                _UINT32_T v_hi;
+                _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
+                if (v_hi == 0)
+                {
+
+                    __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
+                    __UNIT_TYPE work_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+
+                    __UNIT_TYPE work_u_buf_code;
+                    __UNIT_TYPE work_u_buf_words;
+                    __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+                    if (work_u_buf == 
+# 277 "pmc_greatestcommondivisor.c" 3 4
+                                     ((void *)0)
+# 277 "pmc_greatestcommondivisor.c"
+                                         )
+                        return ((-5));
+
+                    __UNIT_TYPE work_v_buf_code;
+                    __UNIT_TYPE work_v_buf_words;
+                    __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
+                    if (work_v_buf == 
+# 283 "pmc_greatestcommondivisor.c" 3 4
+                                     ((void *)0)
+# 283 "pmc_greatestcommondivisor.c"
+                                         )
+                    {
+                        DeallocateBlock(work_u_buf, work_u_buf_words);
+                        return ((-5));
+                    }
+
+                    __UNIT_TYPE nw_check_code;
+                    if ((result = AllocateNumber(w, work_bit_count, &nw_check_code)) != (0))
+                    {
+                        DeallocateBlock(work_v_buf, work_v_buf_words);
+                        DeallocateBlock(work_u_buf, work_u_buf_words);
+                        return (result);
+                    }
+
+                    __UNIT_TYPE u_tzcnt = u->TRAILING_ZERO_BITS_COUNT;
+                    __UNIT_TYPE v_tzcnt = _TZCNT_ALT_UNIT(v_lo);
+                    __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
+                    if (u_tzcnt > 0)
+                        RightShift_Imp(u->BLOCK, u->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, 
+# 301 "pmc_greatestcommondivisor.c" 3
+                                                                                         0
+# 301 "pmc_greatestcommondivisor.c"
+                                                                                              );
+                    else
+                        _COPY_MEMORY_UNIT(work_u_buf, u->BLOCK, u->UNIT_WORD_COUNT);
+                    work_v_buf[0] = v_lo >> v_tzcnt;
+
+                    __UNIT_TYPE w_buf_count;
+                    GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), (*w)->BLOCK, &w_buf_count);
+                    if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != (0))
+                        return (result);
+                    if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != (0))
+                        return (result);
+                    if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != (0))
+                        return (result);
+                    DeallocateBlock(work_v_buf, work_v_buf_words);
+                    DeallocateBlock(work_u_buf, work_u_buf_words);
+
+                    LeftShift_Imp((*w)->BLOCK, w_buf_count, k, (*w)->BLOCK, 
+# 317 "pmc_greatestcommondivisor.c" 3
+                                                                           1
+# 317 "pmc_greatestcommondivisor.c"
+                                                                               );
+                    if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != (0))
+                        return (result);
+                    CommitNumber(*w);
+                }
+                else
+                {
+
+                    __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
+                    __UNIT_TYPE work_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+
+                    __UNIT_TYPE work_u_buf_code;
+                    __UNIT_TYPE work_u_buf_words;
+                    __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+                    if (work_u_buf == 
+# 331 "pmc_greatestcommondivisor.c" 3 4
+                                     ((void *)0)
+# 331 "pmc_greatestcommondivisor.c"
+                                         )
+                        return ((-5));
+
+                    __UNIT_TYPE work_v_buf_code;
+                    __UNIT_TYPE work_v_buf_words;
+                    __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
+                    if (work_v_buf == 
+# 337 "pmc_greatestcommondivisor.c" 3 4
+                                     ((void *)0)
+# 337 "pmc_greatestcommondivisor.c"
+                                         )
+                    {
+                        DeallocateBlock(work_u_buf, work_u_buf_words);
+                        return ((-5));
+                    }
+
+                    __UNIT_TYPE nw_check_code;
+                    if ((result = AllocateNumber(w, work_bit_count, &nw_check_code)) != (0))
+                    {
+                        DeallocateBlock(work_v_buf, work_v_buf_words);
+                        DeallocateBlock(work_u_buf, work_u_buf_words);
+                        return (result);
+                    }
+
+                    __UNIT_TYPE u_tzcnt = u->TRAILING_ZERO_BITS_COUNT;
+                    __UNIT_TYPE v_tzcnt = v_lo == 0 ? 32 + _TZCNT_ALT_UNIT(v_hi) : _TZCNT_ALT_UNIT(v_lo);
+                    __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
+                    if (u_tzcnt > 0)
+                        RightShift_Imp(u->BLOCK, u->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, 
+# 355 "pmc_greatestcommondivisor.c" 3
+                                                                                         0
+# 355 "pmc_greatestcommondivisor.c"
+                                                                                              );
+                    else
+                        _COPY_MEMORY_UNIT(work_u_buf, u->BLOCK, u->UNIT_WORD_COUNT);
+                    work_v_buf[0] = v_lo;
+                    work_v_buf[1] = v_hi;
+                    if (v_tzcnt > 0)
+                        RightShift_Imp(work_v_buf, 2, v_tzcnt, work_v_buf, 
+# 361 "pmc_greatestcommondivisor.c" 3
+                                                                          1
+# 361 "pmc_greatestcommondivisor.c"
+                                                                              );
+
+                    __UNIT_TYPE w_buf_count;
+                    GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), (*w)->BLOCK, &w_buf_count);
+                    if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != (0))
+                        return (result);
+                    if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != (0))
+                        return (result);
+                    if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != (0))
+                        return (result);
+                    DeallocateBlock(work_v_buf, work_v_buf_words);
+                    DeallocateBlock(work_u_buf, work_u_buf_words);
+
+                    LeftShift_Imp((*w)->BLOCK, w_buf_count, k, (*w)->BLOCK, 
+# 374 "pmc_greatestcommondivisor.c" 3
+                                                                           1
+# 374 "pmc_greatestcommondivisor.c"
+                                                                               );
+                    if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != (0))
+                        return (result);
+                    CommitNumber(*w);
+                }
+            }
+            else
+            {
+
+
+                __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+                __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
+                __UNIT_TYPE work_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+
+                __UNIT_TYPE work_u_buf_code;
+                __UNIT_TYPE work_u_buf_words;
+                __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
+                if (work_u_buf == 
+# 391 "pmc_greatestcommondivisor.c" 3 4
+                                 ((void *)0)
+# 391 "pmc_greatestcommondivisor.c"
+                                     )
+                    return ((-5));
+
+                __UNIT_TYPE work_v_buf_code;
+                __UNIT_TYPE work_v_buf_words;
+                __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
+                if (work_v_buf == 
+# 397 "pmc_greatestcommondivisor.c" 3 4
+                                 ((void *)0)
+# 397 "pmc_greatestcommondivisor.c"
+                                     )
+                {
+                    DeallocateBlock(work_u_buf, work_u_buf_words);
+                    return ((-5));
+                }
+
+                __UNIT_TYPE nw_check_code;
+                if ((result = AllocateNumber(w, work_bit_count, &nw_check_code)) != (0))
+                {
+                    DeallocateBlock(work_v_buf, work_v_buf_words);
+                    DeallocateBlock(work_u_buf, work_u_buf_words);
+                    return (result);
+                }
+
+                __UNIT_TYPE u_tzcnt = u->TRAILING_ZERO_BITS_COUNT;
+                __UNIT_TYPE v_tzcnt = _TZCNT_ALT_UNIT((__UNIT_TYPE)v);
+                __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
+                if (u_tzcnt > 0)
+                    RightShift_Imp(u->BLOCK, u->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, 
+# 415 "pmc_greatestcommondivisor.c" 3
+                                                                                     0
+# 415 "pmc_greatestcommondivisor.c"
+                                                                                          );
+                else
+                    _COPY_MEMORY_UNIT(work_u_buf, u->BLOCK, u->UNIT_WORD_COUNT);
+                work_v_buf[0] = (__UNIT_TYPE)(v >> v_tzcnt);
+
+                __UNIT_TYPE w_buf_count;
+                GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), (*w)->BLOCK, &w_buf_count);
+                if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != (0))
+                    return (result);
+                if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != (0))
+                    return (result);
+                if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != (0))
+                    return (result);
+                DeallocateBlock(work_v_buf, work_v_buf_words);
+                DeallocateBlock(work_u_buf, work_u_buf_words);
+
+                LeftShift_Imp((*w)->BLOCK, w_buf_count, k, (*w)->BLOCK, 
+# 431 "pmc_greatestcommondivisor.c" 3
+                                                                       1
+# 431 "pmc_greatestcommondivisor.c"
+                                                                           );
+                if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != (0))
+                    return (result);
+                CommitNumber(*w);
+            }
+        }
+    }
+    return ((0));
+}
+
+PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_L_X(_UINT64_T u, HANDLE v, HANDLE* w)
+{
+    if ((sizeof(__UNIT_TYPE) * 8) * 2 < sizeof(u) * 8)
+    {
+
+        return ((-256));
+    }
+    if (v == 
+# 448 "pmc_greatestcommondivisor.c" 3 4
+            ((void *)0)
+# 448 "pmc_greatestcommondivisor.c"
+                )
+        return ((-1));
+    if (w == 
+# 450 "pmc_greatestcommondivisor.c" 3 4
+            ((void *)0)
+# 450 "pmc_greatestcommondivisor.c"
+                )
+        return ((-1));
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber((NUMBER_HEADER*)v)) != (0))
+        return (result);
+    if ((result = PMC_GreatestCommonDivisor_X_L_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != (0))
+        return (result);
 
 
 
@@ -103410,293 +103789,22 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_L(HANDL
         return ((-256));
     }
     if (u == 
-# 200 "pmc_greatestcommondivisor.c" 3 4
+# 471 "pmc_greatestcommondivisor.c" 3 4
             ((void *)0)
-# 200 "pmc_greatestcommondivisor.c"
+# 471 "pmc_greatestcommondivisor.c"
                 )
         return ((-1));
     if (w == 
-# 202 "pmc_greatestcommondivisor.c" 3 4
+# 473 "pmc_greatestcommondivisor.c" 3 4
             ((void *)0)
-# 202 "pmc_greatestcommondivisor.c"
+# 473 "pmc_greatestcommondivisor.c"
                 )
         return ((-1));
-    NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
     PMC_STATUS_CODE result;
-    if ((result = CheckNumber(nu)) != (0))
+    if ((result = CheckNumber((NUMBER_HEADER*)u)) != (0))
         return (result);
-    NUMBER_HEADER* nw;
-    if (nu->IS_ZERO)
-    {
-
-
-        if (v == 0)
-        {
-
-
-
-            return ((-1));
-        }
-        else
-        {
-
-
-
-            if ((result = From_L_Imp(v, &nw)) != (0))
-                return (result);
-            *w = nw;
-        }
-    }
-    else
-    {
-
-
-        if (v == 0)
-        {
-
-
-
-            if ((result = DuplicateNumber(nu, &nw)) != (0))
-                return (result);
-            *w = nw;
-        }
-        else
-        {
-
-
-
-            if ((sizeof(__UNIT_TYPE) * 8) < sizeof(v) * 8)
-            {
-
-
-                __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-                _UINT32_T v_hi;
-                _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
-                if (v_hi == 0)
-                {
-
-                    __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
-                    __UNIT_TYPE work_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
-
-                    __UNIT_TYPE work_u_buf_code;
-                    __UNIT_TYPE work_u_buf_words;
-                    __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
-                    if (work_u_buf == 
-# 264 "pmc_greatestcommondivisor.c" 3 4
-                                     ((void *)0)
-# 264 "pmc_greatestcommondivisor.c"
-                                         )
-                        return ((-5));
-
-                    __UNIT_TYPE work_v_buf_code;
-                    __UNIT_TYPE work_v_buf_words;
-                    __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
-                    if (work_v_buf == 
-# 270 "pmc_greatestcommondivisor.c" 3 4
-                                     ((void *)0)
-# 270 "pmc_greatestcommondivisor.c"
-                                         )
-                    {
-                        DeallocateBlock(work_u_buf, work_u_buf_words);
-                        return ((-5));
-                    }
-
-                    __UNIT_TYPE nw_check_code;
-                    if ((result = AllocateNumber(&nw, work_bit_count, &nw_check_code)) != (0))
-                    {
-                        DeallocateBlock(work_v_buf, work_v_buf_words);
-                        DeallocateBlock(work_u_buf, work_u_buf_words);
-                        return (result);
-                    }
-
-                    __UNIT_TYPE u_tzcnt = nu->TRAILING_ZERO_BITS_COUNT;
-                    __UNIT_TYPE v_tzcnt = _TZCNT_ALT_UNIT(v_lo);
-                    __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
-                    if (u_tzcnt > 0)
-                        RightShift_Imp(nu->BLOCK, nu->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, 
-# 288 "pmc_greatestcommondivisor.c" 3
-                                                                                           0
-# 288 "pmc_greatestcommondivisor.c"
-                                                                                                );
-                    else
-                        _COPY_MEMORY_UNIT(work_u_buf, nu->BLOCK, nu->UNIT_WORD_COUNT);
-                    work_v_buf[0] = v_lo >> v_tzcnt;
-
-                    __UNIT_TYPE w_buf_count;
-                    GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), nw->BLOCK, &w_buf_count);
-                    if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != (0))
-                        return (result);
-                    if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != (0))
-                        return (result);
-                    if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != (0))
-                        return (result);
-                    DeallocateBlock(work_v_buf, work_v_buf_words);
-                    DeallocateBlock(work_u_buf, work_u_buf_words);
-
-                    LeftShift_Imp(nw->BLOCK, w_buf_count, k, nw->BLOCK, 
-# 304 "pmc_greatestcommondivisor.c" 3
-                                                                       1
-# 304 "pmc_greatestcommondivisor.c"
-                                                                           );
-                    if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != (0))
-                        return (result);
-                    CommitNumber(nw);
-                    *w = nw;
-                }
-                else
-                {
-
-                    __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
-                    __UNIT_TYPE work_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
-
-                    __UNIT_TYPE work_u_buf_code;
-                    __UNIT_TYPE work_u_buf_words;
-                    __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
-                    if (work_u_buf == 
-# 319 "pmc_greatestcommondivisor.c" 3 4
-                                     ((void *)0)
-# 319 "pmc_greatestcommondivisor.c"
-                                         )
-                        return ((-5));
-
-                    __UNIT_TYPE work_v_buf_code;
-                    __UNIT_TYPE work_v_buf_words;
-                    __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
-                    if (work_v_buf == 
-# 325 "pmc_greatestcommondivisor.c" 3 4
-                                     ((void *)0)
-# 325 "pmc_greatestcommondivisor.c"
-                                         )
-                    {
-                        DeallocateBlock(work_u_buf, work_u_buf_words);
-                        return ((-5));
-                    }
-
-                    __UNIT_TYPE nw_check_code;
-                    if ((result = AllocateNumber(&nw, work_bit_count, &nw_check_code)) != (0))
-                    {
-                        DeallocateBlock(work_v_buf, work_v_buf_words);
-                        DeallocateBlock(work_u_buf, work_u_buf_words);
-                        return (result);
-                    }
-
-                    __UNIT_TYPE u_tzcnt = nu->TRAILING_ZERO_BITS_COUNT;
-                    __UNIT_TYPE v_tzcnt = v_lo == 0 ? 32 + _TZCNT_ALT_UNIT(v_hi) : _TZCNT_ALT_UNIT(v_lo);
-                    __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
-                    if (u_tzcnt > 0)
-                        RightShift_Imp(nu->BLOCK, nu->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, 
-# 343 "pmc_greatestcommondivisor.c" 3
-                                                                                           0
-# 343 "pmc_greatestcommondivisor.c"
-                                                                                                );
-                    else
-                        _COPY_MEMORY_UNIT(work_u_buf, nu->BLOCK, nu->UNIT_WORD_COUNT);
-                    work_v_buf[0] = v_lo;
-                    work_v_buf[1] = v_hi;
-                    if (v_tzcnt > 0)
-                        RightShift_Imp(work_v_buf, 2, v_tzcnt, work_v_buf, 
-# 349 "pmc_greatestcommondivisor.c" 3
-                                                                          1
-# 349 "pmc_greatestcommondivisor.c"
-                                                                              );
-
-                    __UNIT_TYPE w_buf_count;
-                    GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), nw->BLOCK, &w_buf_count);
-                    if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != (0))
-                        return (result);
-                    if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != (0))
-                        return (result);
-                    if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != (0))
-                        return (result);
-                    DeallocateBlock(work_v_buf, work_v_buf_words);
-                    DeallocateBlock(work_u_buf, work_u_buf_words);
-
-                    LeftShift_Imp(nw->BLOCK, w_buf_count, k, nw->BLOCK, 
-# 362 "pmc_greatestcommondivisor.c" 3
-                                                                       1
-# 362 "pmc_greatestcommondivisor.c"
-                                                                           );
-                    if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != (0))
-                        return (result);
-                    CommitNumber(nw);
-                    *w = nw;
-                }
-            }
-            else
-            {
-
-
-                __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
-                __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
-                __UNIT_TYPE work_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
-
-                __UNIT_TYPE work_u_buf_code;
-                __UNIT_TYPE work_u_buf_words;
-                __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
-                if (work_u_buf == 
-# 380 "pmc_greatestcommondivisor.c" 3 4
-                                 ((void *)0)
-# 380 "pmc_greatestcommondivisor.c"
-                                     )
-                    return ((-5));
-
-                __UNIT_TYPE work_v_buf_code;
-                __UNIT_TYPE work_v_buf_words;
-                __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
-                if (work_v_buf == 
-# 386 "pmc_greatestcommondivisor.c" 3 4
-                                 ((void *)0)
-# 386 "pmc_greatestcommondivisor.c"
-                                     )
-                {
-                    DeallocateBlock(work_u_buf, work_u_buf_words);
-                    return ((-5));
-                }
-
-                __UNIT_TYPE nw_check_code;
-                if ((result = AllocateNumber(&nw, work_bit_count, &nw_check_code)) != (0))
-                {
-                    DeallocateBlock(work_v_buf, work_v_buf_words);
-                    DeallocateBlock(work_u_buf, work_u_buf_words);
-                    return (result);
-                }
-
-                __UNIT_TYPE u_tzcnt = nu->TRAILING_ZERO_BITS_COUNT;
-                __UNIT_TYPE v_tzcnt = _TZCNT_ALT_UNIT((__UNIT_TYPE)v);
-                __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
-                if (u_tzcnt > 0)
-                    RightShift_Imp(nu->BLOCK, nu->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, 
-# 404 "pmc_greatestcommondivisor.c" 3
-                                                                                       0
-# 404 "pmc_greatestcommondivisor.c"
-                                                                                            );
-                else
-                    _COPY_MEMORY_UNIT(work_u_buf, nu->BLOCK, nu->UNIT_WORD_COUNT);
-                work_v_buf[0] = (__UNIT_TYPE)(v >> v_tzcnt);
-
-                __UNIT_TYPE w_buf_count;
-                GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), nw->BLOCK, &w_buf_count);
-                if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != (0))
-                    return (result);
-                if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != (0))
-                    return (result);
-                if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != (0))
-                    return (result);
-                DeallocateBlock(work_v_buf, work_v_buf_words);
-                DeallocateBlock(work_u_buf, work_u_buf_words);
-
-                LeftShift_Imp(nw->BLOCK, w_buf_count, k, nw->BLOCK, 
-# 420 "pmc_greatestcommondivisor.c" 3
-                                                                   1
-# 420 "pmc_greatestcommondivisor.c"
-                                                                       );
-                if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != (0))
-                    return (result);
-                CommitNumber(nw);
-                *w = nw;
-            }
-        }
-    }
+    if ((result = PMC_GreatestCommonDivisor_X_L_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != (0))
+        return (result);
 
 
 
@@ -103707,21 +103815,21 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_L(HANDL
 PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w)
 {
     if (u == 
-# 437 "pmc_greatestcommondivisor.c" 3 4
+# 489 "pmc_greatestcommondivisor.c" 3 4
             ((void *)0)
-# 437 "pmc_greatestcommondivisor.c"
+# 489 "pmc_greatestcommondivisor.c"
                 )
         return ((-1));
     if (v == 
-# 439 "pmc_greatestcommondivisor.c" 3 4
+# 491 "pmc_greatestcommondivisor.c" 3 4
             ((void *)0)
-# 439 "pmc_greatestcommondivisor.c"
+# 491 "pmc_greatestcommondivisor.c"
                 )
         return ((-1));
     if (w == 
-# 441 "pmc_greatestcommondivisor.c" 3 4
+# 493 "pmc_greatestcommondivisor.c" 3 4
             ((void *)0)
-# 441 "pmc_greatestcommondivisor.c"
+# 493 "pmc_greatestcommondivisor.c"
                 )
         return ((-1));
     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
@@ -103779,9 +103887,9 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_X(HANDL
             __UNIT_TYPE work_u_buf_words;
             __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
             if (work_u_buf == 
-# 497 "pmc_greatestcommondivisor.c" 3 4
+# 549 "pmc_greatestcommondivisor.c" 3 4
                              ((void *)0)
-# 497 "pmc_greatestcommondivisor.c"
+# 549 "pmc_greatestcommondivisor.c"
                                  )
                 return ((-5));
 
@@ -103789,9 +103897,9 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_X(HANDL
             __UNIT_TYPE work_v_buf_words;
             __UNIT_TYPE* work_v_buf = AllocateBlock(work_bit_count, &work_v_buf_words, &work_v_buf_code);
             if (work_v_buf == 
-# 503 "pmc_greatestcommondivisor.c" 3 4
+# 555 "pmc_greatestcommondivisor.c" 3 4
                              ((void *)0)
-# 503 "pmc_greatestcommondivisor.c"
+# 555 "pmc_greatestcommondivisor.c"
                                  )
             {
                 DeallocateBlock(work_u_buf, work_u_buf_words);
@@ -103811,23 +103919,23 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_X(HANDL
             __UNIT_TYPE k = _MINIMUM_UNIT(u_tzcnt, v_tzcnt);
             if (u_tzcnt > 0)
                 RightShift_Imp(nu->BLOCK, nu->UNIT_WORD_COUNT, u_tzcnt, work_u_buf, 
-# 521 "pmc_greatestcommondivisor.c" 3
+# 573 "pmc_greatestcommondivisor.c" 3
                                                                                    0
-# 521 "pmc_greatestcommondivisor.c"
+# 573 "pmc_greatestcommondivisor.c"
                                                                                         );
             else
                 _COPY_MEMORY_UNIT(work_u_buf, nu->BLOCK, nu->UNIT_WORD_COUNT);
             if (v_tzcnt > 0)
                 RightShift_Imp(nv->BLOCK, nv->UNIT_WORD_COUNT, v_tzcnt, work_v_buf, 
-# 525 "pmc_greatestcommondivisor.c" 3
+# 577 "pmc_greatestcommondivisor.c" 3
                                                                                    0
-# 525 "pmc_greatestcommondivisor.c"
+# 577 "pmc_greatestcommondivisor.c"
                                                                                         );
             else
                 _COPY_MEMORY_UNIT(work_v_buf, nv->BLOCK, nv->UNIT_WORD_COUNT);
 
             __UNIT_TYPE w_buf_count;
-            GreatestCommonDivisor(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), nw->BLOCK, &w_buf_count);
+            GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, (sizeof(__UNIT_TYPE) * 8)), nw->BLOCK, &w_buf_count);
             if ((result = CheckBlockLight(work_u_buf, work_u_buf_code)) != (0))
                 return (result);
             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != (0))
@@ -103838,9 +103946,9 @@ PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_X(HANDL
             DeallocateBlock(work_u_buf, work_u_buf_words);
 
             LeftShift_Imp(nw->BLOCK, w_buf_count, k, nw->BLOCK, 
-# 540 "pmc_greatestcommondivisor.c" 3
+# 592 "pmc_greatestcommondivisor.c" 3
                                                                1
-# 540 "pmc_greatestcommondivisor.c"
+# 592 "pmc_greatestcommondivisor.c"
                                                                    );
             if ((result = CheckBlockLight(nw->BLOCK, nw_check_code)) != (0))
                 return (result);

@@ -28,6 +28,8 @@ __1898920A_pmc_subtruct@c DB 01H
 msvcjmc	ENDS
 PUBLIC	_Subtruct_Imp
 PUBLIC	_Initialize_Subtruct
+PUBLIC	_PMC_Subtruct_I_X@12
+PUBLIC	_PMC_Subtruct_L_X@16
 PUBLIC	_PMC_Subtruct_X_I@12
 PUBLIC	_PMC_Subtruct_X_L@16
 PUBLIC	_PMC_Subtruct_X_X@12
@@ -43,6 +45,7 @@ EXTRN	@__CheckForDebuggerJustMyCode@4:PROC
 EXTRN	__RTC_CheckEsp:PROC
 EXTRN	__RTC_InitBase:PROC
 EXTRN	__RTC_Shutdown:PROC
+EXTRN	__allshl:PROC
 EXTRN	__aullshr:PROC
 EXTRN	_number_zero:BYTE
 ;	COMDAT rtc$TMZ
@@ -66,31 +69,25 @@ _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 _TEXT	SEGMENT
-tv88 = -36						; size = 4
-tv84 = -32						; size = 4
-tv79 = -28						; size = 4
-tv75 = -24						; size = 4
-_c$ = -17						; size = 1
-_zp$ = -16						; size = 4
-_xp$ = -12						; size = 4
-_z_count$ = -8						; size = 4
-_x_count$ = -4						; size = 4
-_x$ = 8							; size = 4
-_y_hi$ = 12						; size = 4
-_y_lo$ = 16						; size = 4
-_z$ = 20						; size = 4
+tv80 = -20						; size = 4
+tv76 = -16						; size = 4
+tv71 = -12						; size = 4
+tv67 = -8						; size = 4
+_c$1 = -1						; size = 1
+_up$ = 8						; size = 4
+_u_count$ = 12						; size = 4
+_v_hi$ = 16						; size = 4
+_v_lo$ = 20						; size = 4
+_wp$ = 24						; size = 4
+_w_count$ = 28						; size = 4
 _Subtruct_X_2W PROC
 
-; 105  : {
+; 97   : {
 
 	push	ebp
 	mov	ebp, esp
-	sub	esp, 36					; 00000024H
+	sub	esp, 20					; 00000014H
 	mov	eax, -858993460				; ccccccccH
-	mov	DWORD PTR [ebp-36], eax
-	mov	DWORD PTR [ebp-32], eax
-	mov	DWORD PTR [ebp-28], eax
-	mov	DWORD PTR [ebp-24], eax
 	mov	DWORD PTR [ebp-20], eax
 	mov	DWORD PTR [ebp-16], eax
 	mov	DWORD PTR [ebp-12], eax
@@ -99,145 +96,115 @@ _Subtruct_X_2W PROC
 	mov	ecx, OFFSET __1898920A_pmc_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 106  :     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
+; 98   :     if (u_count < 2)
 
-	mov	eax, DWORD PTR _x$[ebp]
-	mov	ecx, DWORD PTR [eax]
-	mov	DWORD PTR _x_count$[ebp], ecx
-
-; 107  :     __UNIT_TYPE z_count = z->BLOCK_COUNT;
-
-	mov	edx, DWORD PTR _z$[ebp]
-	mov	eax, DWORD PTR [edx+20]
-	mov	DWORD PTR _z_count$[ebp], eax
-
-; 108  :     __UNIT_TYPE* xp = &x->BLOCK[0];
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _x$[ebp]
-	add	edx, DWORD PTR [eax+24]
-	mov	DWORD PTR _xp$[ebp], edx
-
-; 109  :     __UNIT_TYPE* zp = &z->BLOCK[0];
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _z$[ebp]
-	add	edx, DWORD PTR [eax+24]
-	mov	DWORD PTR _zp$[ebp], edx
-
-; 110  :     char c;
-; 111  : 
-; 112  :     if (x_count < 2)
-
-	cmp	DWORD PTR _x_count$[ebp], 2
+	cmp	DWORD PTR _u_count$[ebp], 2
 	jae	SHORT $LN2@Subtruct_X
 
-; 113  :     {
-; 114  :         // x が 1 ワードしかなかった場合
-; 115  : 
-; 116  :         // 明らかに演算結果が負になるのでエラーを通知する。
-; 117  :         return (PMC_STATUS_INTERNAL_BORROW);
+; 99   :     {
+; 100  :         // u が 1 ワードしかなかった場合
+; 101  : 
+; 102  :         // 明らかに演算結果が負になるのでエラーを通知する。
+; 103  :         return (PMC_STATUS_INTERNAL_BORROW);
 
 	mov	eax, -258				; fffffefeH
 	jmp	$LN1@Subtruct_X
 
-; 118  :     }
+; 104  :     }
 
 	jmp	$LN1@Subtruct_X
 $LN2@Subtruct_X:
 
-; 119  :     else
-; 120  :     {
-; 121  :         // x が 2 ワード以上あった場合
-; 122  : 
-; 123  :         // 最下位のワードの減算をする
-; 124  :         c = _SUBTRUCT_UNIT(0, *xp++, y_lo, zp++);
+; 105  :     else
+; 106  :     {
+; 107  :         // x が 2 ワード以上あった場合
+; 108  : 
+; 109  :         // 最下位のワードの減算をする
+; 110  :         char c = _SUBTRUCT_UNIT(0, *up++, v_lo, wp++);
 
-	mov	ecx, DWORD PTR _zp$[ebp]
-	mov	DWORD PTR tv75[ebp], ecx
-	mov	edx, DWORD PTR _zp$[ebp]
-	add	edx, 4
-	mov	DWORD PTR _zp$[ebp], edx
-	mov	eax, DWORD PTR _xp$[ebp]
-	mov	ecx, DWORD PTR [eax]
-	mov	DWORD PTR tv79[ebp], ecx
-	mov	edx, DWORD PTR _xp$[ebp]
-	add	edx, 4
-	mov	DWORD PTR _xp$[ebp], edx
-	mov	eax, DWORD PTR tv75[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _y_lo$[ebp]
-	push	ecx
-	mov	edx, DWORD PTR tv79[ebp]
+	mov	eax, DWORD PTR _wp$[ebp]
+	mov	DWORD PTR tv67[ebp], eax
+	mov	ecx, DWORD PTR _wp$[ebp]
+	add	ecx, 4
+	mov	DWORD PTR _wp$[ebp], ecx
+	mov	edx, DWORD PTR _up$[ebp]
+	mov	eax, DWORD PTR [edx]
+	mov	DWORD PTR tv71[ebp], eax
+	mov	ecx, DWORD PTR _up$[ebp]
+	add	ecx, 4
+	mov	DWORD PTR _up$[ebp], ecx
+	mov	edx, DWORD PTR tv67[ebp]
 	push	edx
+	mov	eax, DWORD PTR _v_lo$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR tv71[ebp]
+	push	ecx
 	push	0
 	call	__SUBTRUCT_UNIT
 	add	esp, 16					; 00000010H
-	mov	BYTE PTR _c$[ebp], al
+	mov	BYTE PTR _c$1[ebp], al
 
-; 125  : 
-; 126  :         // 最下位から 2 番目のワードの減算をする。
-; 127  :         c = _SUBTRUCT_UNIT(c, *xp++, y_hi, zp++);
+; 111  : 
+; 112  :         // 最下位から 2 番目のワードの減算をする。
+; 113  :         c = _SUBTRUCT_UNIT(c, *up++, v_hi, wp++);
 
-	mov	eax, DWORD PTR _zp$[ebp]
-	mov	DWORD PTR tv84[ebp], eax
-	mov	ecx, DWORD PTR _zp$[ebp]
-	add	ecx, 4
-	mov	DWORD PTR _zp$[ebp], ecx
-	mov	edx, DWORD PTR _xp$[ebp]
-	mov	eax, DWORD PTR [edx]
-	mov	DWORD PTR tv88[ebp], eax
-	mov	ecx, DWORD PTR _xp$[ebp]
-	add	ecx, 4
-	mov	DWORD PTR _xp$[ebp], ecx
-	mov	edx, DWORD PTR tv84[ebp]
-	push	edx
-	mov	eax, DWORD PTR _y_hi$[ebp]
-	push	eax
-	mov	ecx, DWORD PTR tv88[ebp]
+	mov	edx, DWORD PTR _wp$[ebp]
+	mov	DWORD PTR tv76[ebp], edx
+	mov	eax, DWORD PTR _wp$[ebp]
+	add	eax, 4
+	mov	DWORD PTR _wp$[ebp], eax
+	mov	ecx, DWORD PTR _up$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	mov	DWORD PTR tv80[ebp], edx
+	mov	eax, DWORD PTR _up$[ebp]
+	add	eax, 4
+	mov	DWORD PTR _up$[ebp], eax
+	mov	ecx, DWORD PTR tv76[ebp]
 	push	ecx
-	movzx	edx, BYTE PTR _c$[ebp]
+	mov	edx, DWORD PTR _v_hi$[ebp]
 	push	edx
+	mov	eax, DWORD PTR tv80[ebp]
+	push	eax
+	movzx	ecx, BYTE PTR _c$1[ebp]
+	push	ecx
 	call	__SUBTRUCT_UNIT
 	add	esp, 16					; 00000010H
-	mov	BYTE PTR _c$[ebp], al
+	mov	BYTE PTR _c$1[ebp], al
 
-; 128  :         x_count -= 2;
+; 114  :         u_count -= 2;
 
-	mov	eax, DWORD PTR _x_count$[ebp]
+	mov	edx, DWORD PTR _u_count$[ebp]
+	sub	edx, 2
+	mov	DWORD PTR _u_count$[ebp], edx
+
+; 115  :         w_count -= 2;
+
+	mov	eax, DWORD PTR _w_count$[ebp]
 	sub	eax, 2
-	mov	DWORD PTR _x_count$[ebp], eax
+	mov	DWORD PTR _w_count$[ebp], eax
 
-; 129  :         z_count -= 2;
+; 116  : 
+; 117  :         // 残りの桁の繰り上がりを計算し、復帰する。
+; 118  :         return (DoBorrow(c, up, u_count, wp, w_count));
 
-	mov	ecx, DWORD PTR _z_count$[ebp]
-	sub	ecx, 2
-	mov	DWORD PTR _z_count$[ebp], ecx
-
-; 130  : 
-; 131  :         // 残りの桁の繰り上がりを計算し、復帰する。
-; 132  :         return (DoBorrow(c, xp, x_count, zp, z_count));
-
-	mov	edx, DWORD PTR _z_count$[ebp]
-	push	edx
-	mov	eax, DWORD PTR _zp$[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _x_count$[ebp]
+	mov	ecx, DWORD PTR _w_count$[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _xp$[ebp]
+	mov	edx, DWORD PTR _wp$[ebp]
 	push	edx
-	movzx	eax, BYTE PTR _c$[ebp]
+	mov	eax, DWORD PTR _u_count$[ebp]
 	push	eax
+	mov	ecx, DWORD PTR _up$[ebp]
+	push	ecx
+	movzx	edx, BYTE PTR _c$1[ebp]
+	push	edx
 	call	_DoBorrow
 	add	esp, 20					; 00000014H
 $LN1@Subtruct_X:
 
-; 133  :     }
-; 134  : }
+; 119  :     }
+; 120  : }
 
-	add	esp, 36					; 00000024H
+	add	esp, 20					; 00000014H
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
 	mov	esp, ebp
@@ -248,123 +215,84 @@ _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 _TEXT	SEGMENT
-tv78 = -28						; size = 4
-tv74 = -24						; size = 4
-_c$ = -17						; size = 1
-_zp$ = -16						; size = 4
-_xp$ = -12						; size = 4
-_z_count$ = -8						; size = 4
-_x_count$ = -4						; size = 4
-_x$ = 8							; size = 4
-_y$ = 12						; size = 4
-_z$ = 16						; size = 4
+tv70 = -12						; size = 4
+tv66 = -8						; size = 4
+_c$ = -1						; size = 1
+_up$ = 8						; size = 4
+_u_count$ = 12						; size = 4
+_v$ = 16						; size = 4
+_wp$ = 20						; size = 4
+_w_count$ = 24						; size = 4
 _Subtruct_X_1W PROC
 
 ; 85   : {
 
 	push	ebp
 	mov	ebp, esp
-	sub	esp, 28					; 0000001cH
-	mov	eax, -858993460				; ccccccccH
-	mov	DWORD PTR [ebp-28], eax
-	mov	DWORD PTR [ebp-24], eax
-	mov	DWORD PTR [ebp-20], eax
-	mov	DWORD PTR [ebp-16], eax
-	mov	DWORD PTR [ebp-12], eax
-	mov	DWORD PTR [ebp-8], eax
-	mov	DWORD PTR [ebp-4], eax
+	sub	esp, 12					; 0000000cH
+	mov	DWORD PTR [ebp-12], -858993460		; ccccccccH
+	mov	DWORD PTR [ebp-8], -858993460		; ccccccccH
+	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
 	mov	ecx, OFFSET __1898920A_pmc_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 86   :     __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
+; 86   :     // 最下桁の減算を行う
+; 87   :     char c = _SUBTRUCT_UNIT(0, *up++, v, wp++);
 
-	mov	eax, DWORD PTR _x$[ebp]
-	mov	ecx, DWORD PTR [eax]
-	mov	DWORD PTR _x_count$[ebp], ecx
-
-; 87   :     __UNIT_TYPE z_count = z->BLOCK_COUNT;
-
-	mov	edx, DWORD PTR _z$[ebp]
-	mov	eax, DWORD PTR [edx+20]
-	mov	DWORD PTR _z_count$[ebp], eax
-
-; 88   :     __UNIT_TYPE* xp = &x->BLOCK[0];
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _x$[ebp]
-	add	edx, DWORD PTR [eax+24]
-	mov	DWORD PTR _xp$[ebp], edx
-
-; 89   :     __UNIT_TYPE* zp = &z->BLOCK[0];
-
-	mov	ecx, 4
-	imul	edx, ecx, 0
-	mov	eax, DWORD PTR _z$[ebp]
-	add	edx, DWORD PTR [eax+24]
-	mov	DWORD PTR _zp$[ebp], edx
-
-; 90   :     char c;
-; 91   : 
-; 92   : 
-; 93   : 
-; 94   :     // 最下桁の減算を行う
-; 95   :     c = _SUBTRUCT_UNIT(0, *xp++, y, zp++);
-
-	mov	ecx, DWORD PTR _zp$[ebp]
-	mov	DWORD PTR tv74[ebp], ecx
-	mov	edx, DWORD PTR _zp$[ebp]
-	add	edx, 4
-	mov	DWORD PTR _zp$[ebp], edx
-	mov	eax, DWORD PTR _xp$[ebp]
-	mov	ecx, DWORD PTR [eax]
-	mov	DWORD PTR tv78[ebp], ecx
-	mov	edx, DWORD PTR _xp$[ebp]
-	add	edx, 4
-	mov	DWORD PTR _xp$[ebp], edx
-	mov	eax, DWORD PTR tv74[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _y$[ebp]
-	push	ecx
-	mov	edx, DWORD PTR tv78[ebp]
+	mov	eax, DWORD PTR _wp$[ebp]
+	mov	DWORD PTR tv66[ebp], eax
+	mov	ecx, DWORD PTR _wp$[ebp]
+	add	ecx, 4
+	mov	DWORD PTR _wp$[ebp], ecx
+	mov	edx, DWORD PTR _up$[ebp]
+	mov	eax, DWORD PTR [edx]
+	mov	DWORD PTR tv70[ebp], eax
+	mov	ecx, DWORD PTR _up$[ebp]
+	add	ecx, 4
+	mov	DWORD PTR _up$[ebp], ecx
+	mov	edx, DWORD PTR tv66[ebp]
 	push	edx
+	mov	eax, DWORD PTR _v$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR tv70[ebp]
+	push	ecx
 	push	0
 	call	__SUBTRUCT_UNIT
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 96   :     --x_count;
+; 88   :     --u_count;
 
-	mov	eax, DWORD PTR _x_count$[ebp]
+	mov	edx, DWORD PTR _u_count$[ebp]
+	sub	edx, 1
+	mov	DWORD PTR _u_count$[ebp], edx
+
+; 89   :     --w_count;
+
+	mov	eax, DWORD PTR _w_count$[ebp]
 	sub	eax, 1
-	mov	DWORD PTR _x_count$[ebp], eax
+	mov	DWORD PTR _w_count$[ebp], eax
 
-; 97   :     --z_count;
+; 90   : 
+; 91   :     // 残りの桁の繰上りを行い復帰する。
+; 92   :     return (DoBorrow(c, up, u_count, wp, w_count));
 
-	mov	ecx, DWORD PTR _z_count$[ebp]
-	sub	ecx, 1
-	mov	DWORD PTR _z_count$[ebp], ecx
-
-; 98   : 
-; 99   :     // 残りの桁の繰上りを行い復帰する。
-; 100  :     return (DoBorrow(c, xp, x_count, zp, z_count));
-
-	mov	edx, DWORD PTR _z_count$[ebp]
-	push	edx
-	mov	eax, DWORD PTR _zp$[ebp]
-	push	eax
-	mov	ecx, DWORD PTR _x_count$[ebp]
+	mov	ecx, DWORD PTR _w_count$[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _xp$[ebp]
+	mov	edx, DWORD PTR _wp$[ebp]
 	push	edx
-	movzx	eax, BYTE PTR _c$[ebp]
+	mov	eax, DWORD PTR _u_count$[ebp]
 	push	eax
+	mov	ecx, DWORD PTR _up$[ebp]
+	push	ecx
+	movzx	edx, BYTE PTR _c$[ebp]
+	push	edx
 	call	_DoBorrow
 	add	esp, 20					; 00000014H
 
-; 101  : }
+; 93   : }
 
-	add	esp, 28					; 0000001cH
+	add	esp, 12					; 0000000cH
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
 	mov	esp, ebp
@@ -378,10 +306,10 @@ _TEXT	SEGMENT
 tv75 = -8						; size = 4
 tv71 = -4						; size = 4
 _c$ = 8							; size = 1
-_xp$ = 12						; size = 4
-_x_count$ = 16						; size = 4
-_op$ = 20						; size = 4
-_o_count$ = 24						; size = 4
+_up$ = 12						; size = 4
+_u_count$ = 16						; size = 4
+_wp$ = 20						; size = 4
+_w_count$ = 24						; size = 4
 _DoBorrow PROC
 
 ; 39   : {
@@ -398,9 +326,9 @@ $LN4@DoBorrow:
 ; 40   :     // 桁借りを続く限り行う
 ; 41   :     for (;;)
 ; 42   :     {
-; 43   :         if (x_count <= 0)
+; 43   :         if (u_count <= 0)
 
-	cmp	DWORD PTR _x_count$[ebp], 0
+	cmp	DWORD PTR _u_count$[ebp], 0
 	ja	SHORT $LN7@DoBorrow
 
 ; 44   :         {
@@ -446,19 +374,19 @@ $LN7@DoBorrow:
 ; 61   :             // xの最上位に達しておらず、かつボローが立っている場合
 ; 62   : 
 ; 63   :             // 桁借りを継続する
-; 64   :             c = _SUBTRUCT_UNIT(c, *xp++, 0, op++);
+; 64   :             c = _SUBTRUCT_UNIT(c, *up++, 0, wp++);
 
-	mov	edx, DWORD PTR _op$[ebp]
+	mov	edx, DWORD PTR _wp$[ebp]
 	mov	DWORD PTR tv71[ebp], edx
-	mov	eax, DWORD PTR _op$[ebp]
+	mov	eax, DWORD PTR _wp$[ebp]
 	add	eax, 4
-	mov	DWORD PTR _op$[ebp], eax
-	mov	ecx, DWORD PTR _xp$[ebp]
+	mov	DWORD PTR _wp$[ebp], eax
+	mov	ecx, DWORD PTR _up$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	mov	DWORD PTR tv75[ebp], edx
-	mov	eax, DWORD PTR _xp$[ebp]
+	mov	eax, DWORD PTR _up$[ebp]
 	add	eax, 4
-	mov	DWORD PTR _xp$[ebp], eax
+	mov	DWORD PTR _up$[ebp], eax
 	mov	ecx, DWORD PTR tv71[ebp]
 	push	ecx
 	push	0
@@ -470,17 +398,17 @@ $LN7@DoBorrow:
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 65   :             --x_count;
+; 65   :             --u_count;
 
-	mov	ecx, DWORD PTR _x_count$[ebp]
+	mov	ecx, DWORD PTR _u_count$[ebp]
 	sub	ecx, 1
-	mov	DWORD PTR _x_count$[ebp], ecx
+	mov	DWORD PTR _u_count$[ebp], ecx
 
-; 66   :             --o_count;
+; 66   :             --w_count;
 
-	mov	edx, DWORD PTR _o_count$[ebp]
+	mov	edx, DWORD PTR _w_count$[ebp]
 	sub	edx, 1
-	mov	DWORD PTR _o_count$[ebp], edx
+	mov	DWORD PTR _w_count$[ebp], edx
 
 ; 67   :         }
 
@@ -492,36 +420,36 @@ $LN5@DoBorrow:
 ; 70   :             // xの最上位に達しておらず、かつボローが立っていない場合
 ; 71   : 
 ; 72   :             // 桁借りを中断し、xの残りのデータをzにそのまま複写し、正常復帰する。
-; 73   :             while (x_count > 0)
+; 73   :             while (u_count > 0)
 
-	cmp	DWORD PTR _x_count$[ebp], 0
+	cmp	DWORD PTR _u_count$[ebp], 0
 	jbe	SHORT $LN6@DoBorrow
 
 ; 74   :             {
-; 75   :                 *op++ = *xp++;
+; 75   :                 *wp++ = *up++;
 
-	mov	eax, DWORD PTR _op$[ebp]
-	mov	ecx, DWORD PTR _xp$[ebp]
+	mov	eax, DWORD PTR _wp$[ebp]
+	mov	ecx, DWORD PTR _up$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	mov	DWORD PTR [eax], edx
-	mov	eax, DWORD PTR _op$[ebp]
+	mov	eax, DWORD PTR _wp$[ebp]
 	add	eax, 4
-	mov	DWORD PTR _op$[ebp], eax
-	mov	ecx, DWORD PTR _xp$[ebp]
+	mov	DWORD PTR _wp$[ebp], eax
+	mov	ecx, DWORD PTR _up$[ebp]
 	add	ecx, 4
-	mov	DWORD PTR _xp$[ebp], ecx
+	mov	DWORD PTR _up$[ebp], ecx
 
-; 76   :                 --x_count;
+; 76   :                 --u_count;
 
-	mov	edx, DWORD PTR _x_count$[ebp]
+	mov	edx, DWORD PTR _u_count$[ebp]
 	sub	edx, 1
-	mov	DWORD PTR _x_count$[ebp], edx
+	mov	DWORD PTR _u_count$[ebp], edx
 
-; 77   :                 --o_count;
+; 77   :                 --w_count;
 
-	mov	eax, DWORD PTR _o_count$[ebp]
+	mov	eax, DWORD PTR _w_count$[ebp]
 	sub	eax, 1
-	mov	DWORD PTR _o_count$[ebp], eax
+	mov	DWORD PTR _w_count$[ebp], eax
 
 ; 78   :             }
 
@@ -2553,7 +2481,7 @@ _pos$ = -8						; size = 4
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC
 
-; 859  : {
+; 879  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2564,50 +2492,50 @@ __LZCNT_ALT_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 860  :     if (x == 0)
+; 880  :     if (x == 0)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 861  :         return (sizeof(x) * 8);
+; 881  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 862  : #ifdef _M_IX86
-; 863  :     _UINT32_T pos;
-; 864  : #ifdef _MSC_VER
-; 865  :     _BitScanReverse(&pos, x);
+; 882  : #ifdef _M_IX86
+; 883  :     _UINT32_T pos;
+; 884  : #ifdef _MSC_VER
+; 885  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _pos$[ebp], eax
 
-; 866  : #elif defined(__GNUC__)
-; 867  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 868  : #else
-; 869  : #error unknown compiler
-; 870  : #endif
-; 871  : #elif defined(_M_X64)
-; 872  : #ifdef _MSC_VER
-; 873  :     _UINT32_T pos;
-; 874  :     _BitScanReverse64(&pos, x);
-; 875  : #elif defined(__GNUC__)
-; 876  :     _UINT64_T pos;
-; 877  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 878  : #else
-; 879  : #error unknown compiler
-; 880  : #endif
-; 881  : #else
-; 882  : #error unknown platform
-; 883  : #endif
-; 884  :     return (sizeof(x) * 8 - 1 - pos);
+; 886  : #elif defined(__GNUC__)
+; 887  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 888  : #else
+; 889  : #error unknown compiler
+; 890  : #endif
+; 891  : #elif defined(_M_X64)
+; 892  : #ifdef _MSC_VER
+; 893  :     _UINT32_T pos;
+; 894  :     _BitScanReverse64(&pos, x);
+; 895  : #elif defined(__GNUC__)
+; 896  :     _UINT64_T pos;
+; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 898  : #else
+; 899  : #error unknown compiler
+; 900  : #endif
+; 901  : #else
+; 902  : #error unknown platform
+; 903  : #endif
+; 904  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, DWORD PTR _pos$[ebp]
 $LN1@LZCNT_ALT_:
 
-; 885  : }
+; 905  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -2643,7 +2571,7 @@ _pos$ = -8						; size = 4
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC
 
-; 826  : {
+; 846  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2654,36 +2582,36 @@ __LZCNT_ALT_32 PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 827  :     if (x == 0)
+; 847  :     if (x == 0)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 828  :         return (sizeof(x) * 8);
+; 848  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 829  :     _UINT32_T pos;
-; 830  : #ifdef _MSC_VER
-; 831  :     _BitScanReverse(&pos, x);
+; 849  :     _UINT32_T pos;
+; 850  : #ifdef _MSC_VER
+; 851  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _pos$[ebp], eax
 
-; 832  : #elif defined(__GNUC__)
-; 833  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 834  : #else
-; 835  : #error unknown compiler
-; 836  : #endif
-; 837  :     return (sizeof(x) * 8 - 1 - pos);
+; 852  : #elif defined(__GNUC__)
+; 853  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 854  : #else
+; 855  : #error unknown compiler
+; 856  : #endif
+; 857  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, DWORD PTR _pos$[ebp]
 $LN1@LZCNT_ALT_:
 
-; 838  : }
+; 858  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -2721,7 +2649,7 @@ _v$ = 16						; size = 4
 _w$ = 20						; size = 4
 __SUBTRUCT_UNIT PROC
 
-; 499  : {
+; 519  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2729,8 +2657,8 @@ __SUBTRUCT_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 500  : #ifdef _M_IX86
-; 501  :     return (_subborrow_u32(borrow, u, v, w));
+; 520  : #ifdef _M_IX86
+; 521  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	ecx, DWORD PTR _v$[ebp]
@@ -2742,12 +2670,12 @@ __SUBTRUCT_UNIT PROC
 	mov	DWORD PTR [eax], edx
 	mov	al, cl
 
-; 502  : #elif defined(_M_X64)
-; 503  :     return (_subborrow_u64(borrow, u, v, w));
-; 504  : #else
-; 505  : #error unknown platform
-; 506  : #endif
-; 507  : }
+; 522  : #elif defined(_M_X64)
+; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 524  : #else
+; 525  : #error unknown platform
+; 526  : #endif
+; 527  : }
 
 	pop	ebx
 	cmp	ebp, esp
@@ -2763,14 +2691,14 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC
 
-; 412  : {
+; 432  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 413  :     *result_high = (_UINT32_T)(value >> 32);
+; 433  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	edx, DWORD PTR _value$[ebp+4]
@@ -2779,17 +2707,49 @@ __FROMDWORDTOWORD PROC
 	mov	ecx, DWORD PTR _result_high$[ebp]
 	mov	DWORD PTR [ecx], eax
 
-; 414  :     return ((_UINT32_T)value);
+; 434  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 415  : }
+; 435  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
 	pop	ebp
 	ret	0
 __FROMDWORDTOWORD ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+_TEXT	SEGMENT
+_value_high$ = 8					; size = 4
+_value_low$ = 12					; size = 4
+__FROMWORDTODWORD PROC
+
+; 427  : {
+
+	push	ebp
+	mov	ebp, esp
+	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
+
+	xor	edx, edx
+	mov	eax, DWORD PTR _value_high$[ebp]
+	mov	cl, 32					; 00000020H
+	call	__allshl
+	xor	ecx, ecx
+	or	eax, DWORD PTR _value_low$[ebp]
+	or	edx, ecx
+
+; 429  : }
+
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	pop	ebp
+	ret	0
+__FROMWORDTODWORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
@@ -2808,7 +2768,7 @@ _y$ = 12						; size = 4
 _o$ = 16						; size = 4
 _PMC_Subtruct_X_X@12 PROC
 
-; 429  : {
+; 664  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2821,51 +2781,51 @@ _PMC_Subtruct_X_X@12 PROC
 	mov	ecx, OFFSET __1898920A_pmc_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 430  :     if (x == NULL)
+; 665  :     if (x == NULL)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@PMC_Subtru
 
-; 431  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 666  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN2@PMC_Subtru:
 
-; 432  :     if (y == NULL)
+; 667  :     if (y == NULL)
 
 	cmp	DWORD PTR _y$[ebp], 0
 	jne	SHORT $LN3@PMC_Subtru
 
-; 433  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 668  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN3@PMC_Subtru:
 
-; 434  :     if (o == NULL)
+; 669  :     if (o == NULL)
 
 	cmp	DWORD PTR _o$[ebp], 0
 	jne	SHORT $LN4@PMC_Subtru
 
-; 435  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 670  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN4@PMC_Subtru:
 
-; 436  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 671  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
 
 	mov	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _nx$[ebp], eax
 
-; 437  :     NUMBER_HEADER* ny = (NUMBER_HEADER*)y;
+; 672  :     NUMBER_HEADER* ny = (NUMBER_HEADER*)y;
 
 	mov	ecx, DWORD PTR _y$[ebp]
 	mov	DWORD PTR _ny$[ebp], ecx
 
-; 438  :     PMC_STATUS_CODE result;
-; 439  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 673  :     PMC_STATUS_CODE result;
+; 674  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nx$[ebp]
 	push	edx
@@ -2875,13 +2835,13 @@ $LN4@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Subtru
 
-; 440  :         return (result);
+; 675  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN5@PMC_Subtru:
 
-; 441  :     if ((result = CheckNumber(ny)) != PMC_STATUS_OK)
+; 676  :     if ((result = CheckNumber(ny)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _ny$[ebp]
 	push	eax
@@ -2891,14 +2851,14 @@ $LN5@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN6@PMC_Subtru
 
-; 442  :         return (result);
+; 677  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN6@PMC_Subtru:
 
-; 443  :     NUMBER_HEADER* nz;
-; 444  :     if (nx->IS_ZERO)
+; 678  :     NUMBER_HEADER* nz;
+; 679  :     if (nx->IS_ZERO)
 
 	mov	ecx, DWORD PTR _nx$[ebp]
 	mov	edx, DWORD PTR [ecx+16]
@@ -2906,8 +2866,8 @@ $LN6@PMC_Subtru:
 	and	edx, 1
 	je	SHORT $LN7@PMC_Subtru
 
-; 445  :     {
-; 446  :         if (ny->IS_ZERO)
+; 680  :     {
+; 681  :         if (ny->IS_ZERO)
 
 	mov	eax, DWORD PTR _ny$[ebp]
 	mov	ecx, DWORD PTR [eax+16]
@@ -2915,42 +2875,42 @@ $LN6@PMC_Subtru:
 	and	ecx, 1
 	je	SHORT $LN9@PMC_Subtru
 
-; 447  :         {
-; 448  :             // y が 0 である場合
-; 449  : 
-; 450  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
-; 451  :             *o = &number_zero;
+; 682  :         {
+; 683  :             // y が 0 である場合
+; 684  : 
+; 685  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 686  :             *o = &number_zero;
 
 	mov	edx, DWORD PTR _o$[ebp]
 	mov	DWORD PTR [edx], OFFSET _number_zero
 
-; 452  :         }
+; 687  :         }
 
 	jmp	SHORT $LN10@PMC_Subtru
 $LN9@PMC_Subtru:
 
-; 453  :         else
-; 454  :         {
-; 455  :             // y が 0 ではない場合
-; 456  : 
-; 457  :             // 演算結果は負となってしまうのでエラーを返す。
-; 458  :             return (PMC_STATUS_OVERFLOW);
+; 688  :         else
+; 689  :         {
+; 690  :             // y が 0 ではない場合
+; 691  : 
+; 692  :             // 演算結果は負となってしまうのでエラーを返す。
+; 693  :             return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	jmp	$LN1@PMC_Subtru
 $LN10@PMC_Subtru:
 
-; 459  :         }
-; 460  :     }
+; 694  :         }
+; 695  :     }
 
 	jmp	$LN8@PMC_Subtru
 $LN7@PMC_Subtru:
 
-; 461  :     else
-; 462  :     {
-; 463  :         // x が 0 ではない場合
-; 464  : 
-; 465  :         if (ny->IS_ZERO)
+; 696  :     else
+; 697  :     {
+; 698  :         // x が 0 ではない場合
+; 699  : 
+; 700  :         if (ny->IS_ZERO)
 
 	mov	eax, DWORD PTR _ny$[ebp]
 	mov	ecx, DWORD PTR [eax+16]
@@ -2958,11 +2918,11 @@ $LN7@PMC_Subtru:
 	and	ecx, 1
 	je	SHORT $LN11@PMC_Subtru
 
-; 466  :         {
-; 467  :             // y が 0 である場合
-; 468  : 
-; 469  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-; 470  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+; 701  :         {
+; 702  :             // y が 0 である場合
+; 703  : 
+; 704  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 705  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
 
 	lea	edx, DWORD PTR _nz$[ebp]
 	push	edx
@@ -2974,56 +2934,56 @@ $LN7@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN13@PMC_Subtru
 
-; 471  :                 return (result);
+; 706  :                 return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN13@PMC_Subtru:
 
-; 472  :         }
+; 707  :         }
 
 	jmp	$LN12@PMC_Subtru
 $LN11@PMC_Subtru:
 
-; 473  :         else
-; 474  :         {
-; 475  :             // x と y がともに 0 ではない場合
-; 476  : 
-; 477  :             // x と y の差を計算する
-; 478  :             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 708  :         else
+; 709  :         {
+; 710  :             // x と y がともに 0 ではない場合
+; 711  : 
+; 712  :             // x と y の差を計算する
+; 713  :             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
 
 	mov	ecx, DWORD PTR _nx$[ebp]
 	mov	edx, DWORD PTR [ecx+4]
 	mov	DWORD PTR _x_bit_count$4[ebp], edx
 
-; 479  :             __UNIT_TYPE y_bit_count = ny->UNIT_BIT_COUNT;
+; 714  :             __UNIT_TYPE y_bit_count = ny->UNIT_BIT_COUNT;
 
 	mov	eax, DWORD PTR _ny$[ebp]
 	mov	ecx, DWORD PTR [eax+4]
 	mov	DWORD PTR _y_bit_count$3[ebp], ecx
 
-; 480  :             if (x_bit_count < y_bit_count)
+; 715  :             if (x_bit_count < y_bit_count)
 
 	mov	edx, DWORD PTR _x_bit_count$4[ebp]
 	cmp	edx, DWORD PTR _y_bit_count$3[ebp]
 	jae	SHORT $LN14@PMC_Subtru
 
-; 481  :             {
-; 482  :                 // 演算結果は負となってしまうのでエラーを返す。
-; 483  :                 return (PMC_STATUS_OVERFLOW);
+; 716  :             {
+; 717  :                 // 演算結果は負となってしまうのでエラーを返す。
+; 718  :                 return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	jmp	$LN1@PMC_Subtru
 $LN14@PMC_Subtru:
 
-; 484  :             }
-; 485  :             __UNIT_TYPE z_bit_count = x_bit_count;
+; 719  :             }
+; 720  :             __UNIT_TYPE z_bit_count = x_bit_count;
 
 	mov	eax, DWORD PTR _x_bit_count$4[ebp]
 	mov	DWORD PTR _z_bit_count$2[ebp], eax
 
-; 486  :             __UNIT_TYPE nz_light_check_code;
-; 487  :             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 721  :             __UNIT_TYPE nz_light_check_code;
+; 722  :             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	ecx, DWORD PTR _nz_light_check_code$1[ebp]
 	push	ecx
@@ -3037,13 +2997,13 @@ $LN14@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN15@PMC_Subtru
 
-; 488  :                 return (result);
+; 723  :                 return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN15@PMC_Subtru:
 
-; 489  :             if ((result = Subtruct_Imp(nx->BLOCK, nx->UNIT_WORD_COUNT, ny->BLOCK, ny->UNIT_WORD_COUNT, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
+; 724  :             if ((result = Subtruct_Imp(nx->BLOCK, nx->UNIT_WORD_COUNT, ny->BLOCK, ny->UNIT_WORD_COUNT, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _nz$[ebp]
 	mov	edx, DWORD PTR [ecx+20]
@@ -3069,15 +3029,15 @@ $LN15@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN16@PMC_Subtru
 
-; 490  :             {
-; 491  :                 DeallocateNumber(nz);
+; 725  :             {
+; 726  :                 DeallocateNumber(nz);
 
 	mov	ecx, DWORD PTR _nz$[ebp]
 	push	ecx
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 492  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 727  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR _result$[ebp], -258		; fffffefeH
 	jne	SHORT $LN20@PMC_Subtru
@@ -3091,8 +3051,8 @@ $LN21@PMC_Subtru:
 	jmp	SHORT $LN1@PMC_Subtru
 $LN16@PMC_Subtru:
 
-; 493  :             }
-; 494  :             if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 728  :             }
+; 729  :             if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nz_light_check_code$1[ebp]
 	push	eax
@@ -3105,13 +3065,13 @@ $LN16@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN17@PMC_Subtru
 
-; 495  :                 return (result);
+; 730  :                 return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN17@PMC_Subtru:
 
-; 496  :             CommitNumber(nz);
+; 731  :             CommitNumber(nz);
 
 	mov	eax, DWORD PTR _nz$[ebp]
 	push	eax
@@ -3119,17 +3079,17 @@ $LN17@PMC_Subtru:
 	add	esp, 4
 $LN12@PMC_Subtru:
 
-; 497  :         }
-; 498  :         *o = nz;
+; 732  :         }
+; 733  :         *o = nz;
 
 	mov	ecx, DWORD PTR _o$[ebp]
 	mov	edx, DWORD PTR _nz$[ebp]
 	mov	DWORD PTR [ecx], edx
 $LN8@PMC_Subtru:
 
-; 499  :     }
-; 500  : #ifdef _DEBUG
-; 501  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 734  :     }
+; 735  : #ifdef _DEBUG
+; 736  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _o$[ebp]
 	mov	ecx, DWORD PTR [eax]
@@ -3140,19 +3100,19 @@ $LN8@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN18@PMC_Subtru
 
-; 502  :         return (result);
+; 737  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN18@PMC_Subtru:
 
-; 503  : #endif
-; 504  :     return (PMC_STATUS_OK);
+; 738  : #endif
+; 739  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Subtru:
 
-; 505  : }
+; 740  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -3209,9 +3169,9 @@ _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 _TEXT	SEGMENT
-tv182 = -116						; size = 4
-tv157 = -112						; size = 4
-tv134 = -108						; size = 4
+tv200 = -116						; size = 4
+tv169 = -112						; size = 4
+tv140 = -108						; size = 4
 _nz_light_check_code$1 = -100				; size = 4
 _z_bit_count$2 = -92					; size = 4
 _y_bit_count$3 = -88					; size = 4
@@ -3233,7 +3193,7 @@ _y$ = 12						; size = 8
 _o$ = 20						; size = 4
 _PMC_Subtruct_X_L@16 PROC
 
-; 288  : {
+; 523  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3246,49 +3206,49 @@ _PMC_Subtruct_X_L@16 PROC
 	mov	ecx, OFFSET __1898920A_pmc_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 289  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(y) * 8)
+; 524  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(y) * 8)
 
 	xor	eax, eax
 	je	SHORT $LN2@PMC_Subtru
 
-; 290  :     {
-; 291  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 292  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 525  :     {
+; 526  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 527  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffff00H
 	jmp	$LN1@PMC_Subtru
 $LN2@PMC_Subtru:
 
-; 293  :     }
-; 294  :     if (x == NULL)
+; 528  :     }
+; 529  :     if (x == NULL)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN3@PMC_Subtru
 
-; 295  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 530  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN3@PMC_Subtru:
 
-; 296  :     if (o == NULL)
+; 531  :     if (o == NULL)
 
 	cmp	DWORD PTR _o$[ebp], 0
 	jne	SHORT $LN4@PMC_Subtru
 
-; 297  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 532  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN4@PMC_Subtru:
 
-; 298  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 533  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
 
 	mov	ecx, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _nx$[ebp], ecx
 
-; 299  :     PMC_STATUS_CODE result;
-; 300  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 534  :     PMC_STATUS_CODE result;
+; 535  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nx$[ebp]
 	push	edx
@@ -3298,14 +3258,14 @@ $LN4@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Subtru
 
-; 301  :         return (result);
+; 536  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN5@PMC_Subtru:
 
-; 302  :     NUMBER_HEADER* nz;
-; 303  :     if (nx->IS_ZERO)
+; 537  :     NUMBER_HEADER* nz;
+; 538  :     if (nx->IS_ZERO)
 
 	mov	eax, DWORD PTR _nx$[ebp]
 	mov	ecx, DWORD PTR [eax+16]
@@ -3313,61 +3273,61 @@ $LN5@PMC_Subtru:
 	and	ecx, 1
 	je	SHORT $LN6@PMC_Subtru
 
-; 304  :     {
-; 305  :         // x が 0 である場合
-; 306  : 
-; 307  :         if (y == 0)
+; 539  :     {
+; 540  :         // x が 0 である場合
+; 541  : 
+; 542  :         if (y == 0)
 
 	mov	edx, DWORD PTR _y$[ebp]
 	or	edx, DWORD PTR _y$[ebp+4]
 	jne	SHORT $LN8@PMC_Subtru
 
-; 308  :         {
-; 309  :             // y が 0 である場合
-; 310  : 
-; 311  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
-; 312  :             *o = &number_zero;
+; 543  :         {
+; 544  :             // y が 0 である場合
+; 545  : 
+; 546  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 547  :             *o = &number_zero;
 
 	mov	eax, DWORD PTR _o$[ebp]
 	mov	DWORD PTR [eax], OFFSET _number_zero
 
-; 313  :         }
+; 548  :         }
 
 	jmp	SHORT $LN9@PMC_Subtru
 $LN8@PMC_Subtru:
 
-; 314  :         else
-; 315  :         {
-; 316  :             // y が 0 ではない場合
-; 317  : 
-; 318  :             // 演算結果は負となってしまうのでエラーを返す。
-; 319  :             return (PMC_STATUS_OVERFLOW);
+; 549  :         else
+; 550  :         {
+; 551  :             // y が 0 ではない場合
+; 552  : 
+; 553  :             // 演算結果は負となってしまうのでエラーを返す。
+; 554  :             return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	jmp	$LN1@PMC_Subtru
 $LN9@PMC_Subtru:
 
-; 320  :         }
-; 321  :     }
+; 555  :         }
+; 556  :     }
 
 	jmp	$LN7@PMC_Subtru
 $LN6@PMC_Subtru:
 
-; 322  :     else
-; 323  :     {
-; 324  :         // x が 0 ではない場合
-; 325  : 
-; 326  :         if (y == 0)
+; 557  :     else
+; 558  :     {
+; 559  :         // x が 0 ではない場合
+; 560  : 
+; 561  :         if (y == 0)
 
 	mov	ecx, DWORD PTR _y$[ebp]
 	or	ecx, DWORD PTR _y$[ebp+4]
 	jne	SHORT $LN10@PMC_Subtru
 
-; 327  :         {
-; 328  :             // y が 0 である場合
-; 329  : 
-; 330  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-; 331  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+; 562  :         {
+; 563  :             // y が 0 である場合
+; 564  : 
+; 565  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 566  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
 
 	lea	edx, DWORD PTR _nz$[ebp]
 	push	edx
@@ -3379,39 +3339,39 @@ $LN6@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN12@PMC_Subtru
 
-; 332  :                 return (result);
+; 567  :                 return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN12@PMC_Subtru:
 
-; 333  :         }
+; 568  :         }
 
 	jmp	$LN11@PMC_Subtru
 $LN10@PMC_Subtru:
 
-; 334  :         else
-; 335  :         {
-; 336  :             // x と y がともに 0 ではない場合
-; 337  : 
-; 338  :             // x と y の差を計算する
-; 339  :             if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
+; 569  :         else
+; 570  :         {
+; 571  :             // x と y がともに 0 ではない場合
+; 572  : 
+; 573  :             // x と y の差を計算する
+; 574  :             if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
 
 	mov	ecx, 1
 	test	ecx, ecx
 	je	$LN13@PMC_Subtru
 
-; 340  :             {
-; 341  :                 // _UINT64_T が 1 ワードで表現しきれない場合
-; 342  : 
-; 343  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 575  :             {
+; 576  :                 // _UINT64_T が 1 ワードで表現しきれない場合
+; 577  : 
+; 578  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
 
 	mov	edx, DWORD PTR _nx$[ebp]
 	mov	eax, DWORD PTR [edx+4]
 	mov	DWORD PTR _x_bit_count$13[ebp], eax
 
-; 344  :                 _UINT32_T y_hi;
-; 345  :                 _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
+; 579  :                 _UINT32_T y_hi;
+; 580  :                 _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
 
 	lea	ecx, DWORD PTR _y_hi$12[ebp]
 	push	ecx
@@ -3423,14 +3383,14 @@ $LN10@PMC_Subtru:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _y_lo$11[ebp], eax
 
-; 346  :                 if (y_hi == 0)
+; 581  :                 if (y_hi == 0)
 
 	cmp	DWORD PTR _y_hi$12[ebp], 0
 	jne	$LN15@PMC_Subtru
 
-; 347  :                 {
-; 348  :                     // y の値が 32bit で表現可能な場合
-; 349  :                     __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
+; 582  :                 {
+; 583  :                     // y の値が 32bit で表現可能な場合
+; 584  :                     __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
 
 	mov	ecx, DWORD PTR _y_lo$11[ebp]
 	push	ecx
@@ -3440,28 +3400,28 @@ $LN10@PMC_Subtru:
 	sub	edx, eax
 	mov	DWORD PTR _y_bit_count$10[ebp], edx
 
-; 350  :                     if (x_bit_count < y_bit_count)
+; 585  :                     if (x_bit_count < y_bit_count)
 
 	mov	eax, DWORD PTR _x_bit_count$13[ebp]
 	cmp	eax, DWORD PTR _y_bit_count$10[ebp]
 	jae	SHORT $LN17@PMC_Subtru
 
-; 351  :                     {
-; 352  :                         // 演算結果は負となってしまうのでエラーを返す。
-; 353  :                         return (PMC_STATUS_OVERFLOW);
+; 586  :                     {
+; 587  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 588  :                         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	jmp	$LN1@PMC_Subtru
 $LN17@PMC_Subtru:
 
-; 354  :                     }
-; 355  :                     __UNIT_TYPE z_bit_count = x_bit_count;
+; 589  :                     }
+; 590  :                     __UNIT_TYPE z_bit_count = x_bit_count;
 
 	mov	ecx, DWORD PTR _x_bit_count$13[ebp]
 	mov	DWORD PTR _z_bit_count$9[ebp], ecx
 
-; 356  :                     __UNIT_TYPE nz_light_check_code;
-; 357  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 591  :                     __UNIT_TYPE nz_light_check_code;
+; 592  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	edx, DWORD PTR _nz_light_check_code$8[ebp]
 	push	edx
@@ -3475,50 +3435,58 @@ $LN17@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN18@PMC_Subtru
 
-; 358  :                         return (result);
+; 593  :                         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN18@PMC_Subtru:
 
-; 359  :                     if ((result = Subtruct_X_1W(nx, y_lo, nz)) != PMC_STATUS_OK)
+; 594  :                     if ((result = Subtruct_X_1W(nx->BLOCK, nx->UNIT_WORD_COUNT, y_lo, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nz$[ebp]
+	mov	eax, DWORD PTR [edx+20]
+	push	eax
+	mov	ecx, DWORD PTR _nz$[ebp]
+	mov	edx, DWORD PTR [ecx+24]
 	push	edx
 	mov	eax, DWORD PTR _y_lo$11[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _nx$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	push	edx
+	mov	eax, DWORD PTR _nx$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
 	push	ecx
 	call	_Subtruct_X_1W
-	add	esp, 12					; 0000000cH
+	add	esp, 20					; 00000014H
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN19@PMC_Subtru
 
-; 360  :                     {
-; 361  :                         DeallocateNumber(nz);
+; 595  :                     {
+; 596  :                         DeallocateNumber(nz);
 
 	mov	edx, DWORD PTR _nz$[ebp]
 	push	edx
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 362  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 597  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR _result$[ebp], -258		; fffffefeH
 	jne	SHORT $LN32@PMC_Subtru
-	mov	DWORD PTR tv134[ebp], -2		; fffffffeH
+	mov	DWORD PTR tv140[ebp], -2		; fffffffeH
 	jmp	SHORT $LN33@PMC_Subtru
 $LN32@PMC_Subtru:
 	mov	eax, DWORD PTR _result$[ebp]
-	mov	DWORD PTR tv134[ebp], eax
+	mov	DWORD PTR tv140[ebp], eax
 $LN33@PMC_Subtru:
-	mov	eax, DWORD PTR tv134[ebp]
+	mov	eax, DWORD PTR tv140[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN19@PMC_Subtru:
 
-; 363  :                     }
-; 364  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 598  :                     }
+; 599  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _nz_light_check_code$8[ebp]
 	push	ecx
@@ -3531,21 +3499,21 @@ $LN19@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN20@PMC_Subtru
 
-; 365  :                         return (result);
+; 600  :                         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN20@PMC_Subtru:
 
-; 366  :                 }
+; 601  :                 }
 
 	jmp	$LN16@PMC_Subtru
 $LN15@PMC_Subtru:
 
-; 367  :                 else
-; 368  :                 {
-; 369  :                     // y の値が 32bit では表現できない場合
-; 370  :                     __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
+; 602  :                 else
+; 603  :                 {
+; 604  :                     // y の値が 32bit では表現できない場合
+; 605  :                     __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
 
 	mov	ecx, DWORD PTR _y_hi$12[ebp]
 	push	ecx
@@ -3555,28 +3523,28 @@ $LN15@PMC_Subtru:
 	sub	edx, eax
 	mov	DWORD PTR _y_bit_count$7[ebp], edx
 
-; 371  :                     if (x_bit_count < y_bit_count)
+; 606  :                     if (x_bit_count < y_bit_count)
 
 	mov	eax, DWORD PTR _x_bit_count$13[ebp]
 	cmp	eax, DWORD PTR _y_bit_count$7[ebp]
 	jae	SHORT $LN21@PMC_Subtru
 
-; 372  :                     {
-; 373  :                         // 演算結果は負となってしまうのでエラーを返す。
-; 374  :                         return (PMC_STATUS_OVERFLOW);
+; 607  :                     {
+; 608  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 609  :                         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	jmp	$LN1@PMC_Subtru
 $LN21@PMC_Subtru:
 
-; 375  :                     }
-; 376  :                     __UNIT_TYPE z_bit_count = x_bit_count;
+; 610  :                     }
+; 611  :                     __UNIT_TYPE z_bit_count = x_bit_count;
 
 	mov	ecx, DWORD PTR _x_bit_count$13[ebp]
 	mov	DWORD PTR _z_bit_count$6[ebp], ecx
 
-; 377  :                     __UNIT_TYPE nz_light_check_code;
-; 378  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 612  :                     __UNIT_TYPE nz_light_check_code;
+; 613  :                     if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	edx, DWORD PTR _nz_light_check_code$5[ebp]
 	push	edx
@@ -3590,52 +3558,60 @@ $LN21@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN22@PMC_Subtru
 
-; 379  :                         return (result);
+; 614  :                         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN22@PMC_Subtru:
 
-; 380  :                     if ((result = Subtruct_X_2W(nx, y_hi, y_lo, nz)) != PMC_STATUS_OK)
+; 615  :                     if ((result = Subtruct_X_2W(nx->BLOCK, nx->UNIT_WORD_COUNT, y_hi, y_lo, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nz$[ebp]
+	mov	eax, DWORD PTR [edx+20]
+	push	eax
+	mov	ecx, DWORD PTR _nz$[ebp]
+	mov	edx, DWORD PTR [ecx+24]
 	push	edx
 	mov	eax, DWORD PTR _y_lo$11[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _y_hi$12[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _nx$[ebp]
+	mov	eax, DWORD PTR [edx]
+	push	eax
+	mov	ecx, DWORD PTR _nx$[ebp]
+	mov	edx, DWORD PTR [ecx+24]
 	push	edx
 	call	_Subtruct_X_2W
-	add	esp, 16					; 00000010H
+	add	esp, 24					; 00000018H
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN23@PMC_Subtru
 
-; 381  :                     {
-; 382  :                         DeallocateNumber(nz);
+; 616  :                     {
+; 617  :                         DeallocateNumber(nz);
 
 	mov	eax, DWORD PTR _nz$[ebp]
 	push	eax
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 383  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 618  :                         return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR _result$[ebp], -258		; fffffefeH
 	jne	SHORT $LN34@PMC_Subtru
-	mov	DWORD PTR tv157[ebp], -2		; fffffffeH
+	mov	DWORD PTR tv169[ebp], -2		; fffffffeH
 	jmp	SHORT $LN35@PMC_Subtru
 $LN34@PMC_Subtru:
 	mov	ecx, DWORD PTR _result$[ebp]
-	mov	DWORD PTR tv157[ebp], ecx
+	mov	DWORD PTR tv169[ebp], ecx
 $LN35@PMC_Subtru:
-	mov	eax, DWORD PTR tv157[ebp]
+	mov	eax, DWORD PTR tv169[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN23@PMC_Subtru:
 
-; 384  :                     }
-; 385  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 619  :                     }
+; 620  :                     if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nz_light_check_code$5[ebp]
 	push	edx
@@ -3648,29 +3624,29 @@ $LN23@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN16@PMC_Subtru
 
-; 386  :                         return (result);
+; 621  :                         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN16@PMC_Subtru:
 
-; 387  :                 }
-; 388  :             }
+; 622  :                 }
+; 623  :             }
 
 	jmp	$LN14@PMC_Subtru
 $LN13@PMC_Subtru:
 
-; 389  :             else
-; 390  :             {
-; 391  :                 // _UINT64_T が 1 ワードで表現できる場合
-; 392  : 
-; 393  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 624  :             else
+; 625  :             {
+; 626  :                 // _UINT64_T が 1 ワードで表現できる場合
+; 627  : 
+; 628  :                 __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
 
 	mov	edx, DWORD PTR _nx$[ebp]
 	mov	eax, DWORD PTR [edx+4]
 	mov	DWORD PTR _x_bit_count$4[ebp], eax
 
-; 394  :                 __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
+; 629  :                 __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
 
 	mov	ecx, DWORD PTR _y$[ebp]
 	push	ecx
@@ -3680,28 +3656,28 @@ $LN13@PMC_Subtru:
 	sub	edx, eax
 	mov	DWORD PTR _y_bit_count$3[ebp], edx
 
-; 395  :                 if (x_bit_count < y_bit_count)
+; 630  :                 if (x_bit_count < y_bit_count)
 
 	mov	eax, DWORD PTR _x_bit_count$4[ebp]
 	cmp	eax, DWORD PTR _y_bit_count$3[ebp]
 	jae	SHORT $LN25@PMC_Subtru
 
-; 396  :                 {
-; 397  :                     // 演算結果は負となってしまうのでエラーを返す。
-; 398  :                     return (PMC_STATUS_OVERFLOW);
+; 631  :                 {
+; 632  :                     // 演算結果は負となってしまうのでエラーを返す。
+; 633  :                     return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	jmp	$LN1@PMC_Subtru
 $LN25@PMC_Subtru:
 
-; 399  :                 }
-; 400  :                 __UNIT_TYPE z_bit_count = x_bit_count;
+; 634  :                 }
+; 635  :                 __UNIT_TYPE z_bit_count = x_bit_count;
 
 	mov	ecx, DWORD PTR _x_bit_count$4[ebp]
 	mov	DWORD PTR _z_bit_count$2[ebp], ecx
 
-; 401  :                 __UNIT_TYPE nz_light_check_code;
-; 402  :                 if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 636  :                 __UNIT_TYPE nz_light_check_code;
+; 637  :                 if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
 
 	lea	edx, DWORD PTR _nz_light_check_code$1[ebp]
 	push	edx
@@ -3715,50 +3691,58 @@ $LN25@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN26@PMC_Subtru
 
-; 403  :                     return (result);
+; 638  :                     return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN26@PMC_Subtru:
 
-; 404  :                 if ((result = Subtruct_X_1W(nx, (__UNIT_TYPE)y, nz)) != PMC_STATUS_OK)
+; 639  :                 if ((result = Subtruct_X_1W(nx->BLOCK, nx->UNIT_WORD_COUNT, (__UNIT_TYPE)y, nz->BLOCK, nz->BLOCK_COUNT)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nz$[ebp]
+	mov	eax, DWORD PTR [edx+20]
+	push	eax
+	mov	ecx, DWORD PTR _nz$[ebp]
+	mov	edx, DWORD PTR [ecx+24]
 	push	edx
 	mov	eax, DWORD PTR _y$[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _nx$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	push	edx
+	mov	eax, DWORD PTR _nx$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
 	push	ecx
 	call	_Subtruct_X_1W
-	add	esp, 12					; 0000000cH
+	add	esp, 20					; 00000014H
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN27@PMC_Subtru
 
-; 405  :                 {
-; 406  :                     DeallocateNumber(nz);
+; 640  :                 {
+; 641  :                     DeallocateNumber(nz);
 
 	mov	edx, DWORD PTR _nz$[ebp]
 	push	edx
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 407  :                     return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 642  :                     return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR _result$[ebp], -258		; fffffefeH
 	jne	SHORT $LN36@PMC_Subtru
-	mov	DWORD PTR tv182[ebp], -2		; fffffffeH
+	mov	DWORD PTR tv200[ebp], -2		; fffffffeH
 	jmp	SHORT $LN37@PMC_Subtru
 $LN36@PMC_Subtru:
 	mov	eax, DWORD PTR _result$[ebp]
-	mov	DWORD PTR tv182[ebp], eax
+	mov	DWORD PTR tv200[ebp], eax
 $LN37@PMC_Subtru:
-	mov	eax, DWORD PTR tv182[ebp]
+	mov	eax, DWORD PTR tv200[ebp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN27@PMC_Subtru:
 
-; 408  :                 }
-; 409  :                 if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 643  :                 }
+; 644  :                 if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _nz_light_check_code$1[ebp]
 	push	ecx
@@ -3771,21 +3755,21 @@ $LN27@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN14@PMC_Subtru
 
-; 410  :                     return (result);
+; 645  :                     return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN14@PMC_Subtru:
 
-; 411  :             }
-; 412  :             CommitNumber(nz);
+; 646  :             }
+; 647  :             CommitNumber(nz);
 
 	mov	ecx, DWORD PTR _nz$[ebp]
 	push	ecx
 	call	_CommitNumber
 	add	esp, 4
 
-; 413  :             if (nz->IS_ZERO)
+; 648  :             if (nz->IS_ZERO)
 
 	mov	edx, DWORD PTR _nz$[ebp]
 	mov	eax, DWORD PTR [edx+16]
@@ -3793,31 +3777,31 @@ $LN14@PMC_Subtru:
 	and	eax, 1
 	je	SHORT $LN11@PMC_Subtru
 
-; 414  :             {
-; 415  :                 DeallocateNumber(nz);
+; 649  :             {
+; 650  :                 DeallocateNumber(nz);
 
 	mov	ecx, DWORD PTR _nz$[ebp]
 	push	ecx
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 416  :                 nz = &number_zero;
+; 651  :                 nz = &number_zero;
 
 	mov	DWORD PTR _nz$[ebp], OFFSET _number_zero
 $LN11@PMC_Subtru:
 
-; 417  :             }
-; 418  :         }
-; 419  :         *o = nz;
+; 652  :             }
+; 653  :         }
+; 654  :         *o = nz;
 
 	mov	edx, DWORD PTR _o$[ebp]
 	mov	eax, DWORD PTR _nz$[ebp]
 	mov	DWORD PTR [edx], eax
 $LN7@PMC_Subtru:
 
-; 420  :     }
-; 421  : #ifdef _DEBUG
-; 422  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 655  :     }
+; 656  : #ifdef _DEBUG
+; 657  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _o$[ebp]
 	mov	edx, DWORD PTR [ecx]
@@ -3828,19 +3812,19 @@ $LN7@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN30@PMC_Subtru
 
-; 423  :         return (result);
+; 658  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN30@PMC_Subtru:
 
-; 424  : #endif
-; 425  :     return (PMC_STATUS_OK);
+; 659  : #endif
+; 660  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Subtru:
 
-; 426  : }
+; 661  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -3856,7 +3840,7 @@ $LN1@PMC_Subtru:
 	mov	esp, ebp
 	pop	ebp
 	ret	16					; 00000010H
-	npad	2
+	npad	1
 $LN44@PMC_Subtru:
 	DD	5
 	DD	$LN43@PMC_Subtru
@@ -3954,20 +3938,20 @@ _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
 _TEXT	SEGMENT
-tv129 = -48						; size = 4
-_nz_light_check_code$1 = -40				; size = 4
-_z_bit_count$2 = -32					; size = 4
-_y_bit_count$3 = -28					; size = 4
-_x_bit_count$4 = -24					; size = 4
-_nz$ = -16						; size = 4
+tv135 = -48						; size = 4
+_w_light_check_code$1 = -40				; size = 4
+_w_bit_count$2 = -32					; size = 4
+_v_bit_count$3 = -28					; size = 4
+_u_bit_count$4 = -24					; size = 4
+_nw$ = -16						; size = 4
 _result$ = -8						; size = 4
-_nx$ = -4						; size = 4
-_x$ = 8							; size = 4
-_y$ = 12						; size = 4
-_o$ = 16						; size = 4
+_nu$ = -4						; size = 4
+_u$ = 8							; size = 4
+_v$ = 12						; size = 4
+_w$ = 16						; size = 4
 _PMC_Subtruct_X_I@12 PROC
 
-; 202  : {
+; 268  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3980,51 +3964,51 @@ _PMC_Subtruct_X_I@12 PROC
 	mov	ecx, OFFSET __1898920A_pmc_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 203  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
+; 269  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
 
 	xor	eax, eax
 	je	SHORT $LN2@PMC_Subtru
 
-; 204  :     {
-; 205  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 206  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 270  :     {
+; 271  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 272  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffff00H
 	jmp	$LN1@PMC_Subtru
 $LN2@PMC_Subtru:
 
-; 207  :     }
-; 208  :     if (x == NULL)
+; 273  :     }
+; 274  :     if (u == NULL)
 
-	cmp	DWORD PTR _x$[ebp], 0
+	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN3@PMC_Subtru
 
-; 209  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 275  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN3@PMC_Subtru:
 
-; 210  :     if (o == NULL)
+; 276  :     if (w == NULL)
 
-	cmp	DWORD PTR _o$[ebp], 0
+	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Subtru
 
-; 211  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 277  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Subtru
 $LN4@PMC_Subtru:
 
-; 212  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 278  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
-	mov	ecx, DWORD PTR _x$[ebp]
-	mov	DWORD PTR _nx$[ebp], ecx
+	mov	ecx, DWORD PTR _u$[ebp]
+	mov	DWORD PTR _nu$[ebp], ecx
 
-; 213  :     PMC_STATUS_CODE result;
-; 214  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 279  :     PMC_STATUS_CODE result;
+; 280  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
-	mov	edx, DWORD PTR _nx$[ebp]
+	mov	edx, DWORD PTR _nu$[ebp]
 	push	edx
 	call	_CheckNumber
 	add	esp, 4
@@ -4032,78 +4016,78 @@ $LN4@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Subtru
 
-; 215  :         return (result);
+; 281  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN5@PMC_Subtru:
 
-; 216  :     NUMBER_HEADER* nz;
-; 217  :     if (nx->IS_ZERO)
+; 282  :     NUMBER_HEADER* nw;
+; 283  :     if (nu->IS_ZERO)
 
-	mov	eax, DWORD PTR _nx$[ebp]
+	mov	eax, DWORD PTR _nu$[ebp]
 	mov	ecx, DWORD PTR [eax+16]
 	shr	ecx, 1
 	and	ecx, 1
 	je	SHORT $LN6@PMC_Subtru
 
-; 218  :     {
-; 219  :         // x が 0 である場合
-; 220  : 
-; 221  :         if (y == 0)
+; 284  :     {
+; 285  :         // u が 0 である場合
+; 286  : 
+; 287  :         if (v == 0)
 
-	cmp	DWORD PTR _y$[ebp], 0
+	cmp	DWORD PTR _v$[ebp], 0
 	jne	SHORT $LN8@PMC_Subtru
 
-; 222  :         {
-; 223  :             // y が 0 である場合
-; 224  : 
-; 225  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
-; 226  :             *o = &number_zero;
+; 288  :         {
+; 289  :             // v が 0 である場合
+; 290  : 
+; 291  :             // u と v がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 292  :             *w = &number_zero;
 
-	mov	edx, DWORD PTR _o$[ebp]
+	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx], OFFSET _number_zero
 
-; 227  :         }
+; 293  :         }
 
 	jmp	SHORT $LN9@PMC_Subtru
 $LN8@PMC_Subtru:
 
-; 228  :         else
-; 229  :         {
-; 230  :             // y が 0 ではない場合
-; 231  : 
-; 232  :             // 演算結果は負となってしまうのでエラーを返す。
-; 233  :             return (PMC_STATUS_OVERFLOW);
+; 294  :         else
+; 295  :         {
+; 296  :             // v が 0 ではない場合
+; 297  : 
+; 298  :             // 演算結果は負となってしまうのでエラーを返す。
+; 299  :             return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	jmp	$LN1@PMC_Subtru
 $LN9@PMC_Subtru:
 
-; 234  :         }
-; 235  :     }
+; 300  :         }
+; 301  :     }
 
 	jmp	$LN7@PMC_Subtru
 $LN6@PMC_Subtru:
 
-; 236  :     else
-; 237  :     {
-; 238  :         // x が 0 ではない場合
-; 239  : 
-; 240  :         if (y == 0)
+; 302  :     else
+; 303  :     {
+; 304  :         // u が 0 ではない場合
+; 305  : 
+; 306  :         if (v == 0)
 
-	cmp	DWORD PTR _y$[ebp], 0
+	cmp	DWORD PTR _v$[ebp], 0
 	jne	SHORT $LN10@PMC_Subtru
 
-; 241  :         {
-; 242  :             // y が 0 である場合
-; 243  : 
-; 244  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-; 245  :             if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+; 307  :         {
+; 308  :             // v が 0 である場合
+; 309  : 
+; 310  :             // 演算結果となる x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 311  :             if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
 
-	lea	eax, DWORD PTR _nz$[ebp]
+	lea	eax, DWORD PTR _nw$[ebp]
 	push	eax
-	mov	ecx, DWORD PTR _nx$[ebp]
+	mov	ecx, DWORD PTR _nu$[ebp]
 	push	ecx
 	call	_DuplicateNumber
 	add	esp, 8
@@ -4111,66 +4095,66 @@ $LN6@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN12@PMC_Subtru
 
-; 246  :                 return (result);
+; 312  :                 return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN12@PMC_Subtru:
 
-; 247  :         }
+; 313  :         }
 
 	jmp	$LN11@PMC_Subtru
 $LN10@PMC_Subtru:
 
-; 248  :         else
-; 249  :         {
-; 250  :             // x と y がともに 0 ではない場合
-; 251  : 
-; 252  :             // x と y の差を計算する
-; 253  :             __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+; 314  :         else
+; 315  :         {
+; 316  :             // u と v がともに 0 ではない場合
+; 317  : 
+; 318  :             // u と v の差を計算する
+; 319  :             __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
-	mov	edx, DWORD PTR _nx$[ebp]
+	mov	edx, DWORD PTR _nu$[ebp]
 	mov	eax, DWORD PTR [edx+4]
-	mov	DWORD PTR _x_bit_count$4[ebp], eax
+	mov	DWORD PTR _u_bit_count$4[ebp], eax
 
-; 254  :             __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y);
+; 320  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
 
-	mov	ecx, DWORD PTR _y$[ebp]
+	mov	ecx, DWORD PTR _v$[ebp]
 	push	ecx
 	call	__LZCNT_ALT_32
 	add	esp, 4
 	mov	edx, 32					; 00000020H
 	sub	edx, eax
-	mov	DWORD PTR _y_bit_count$3[ebp], edx
+	mov	DWORD PTR _v_bit_count$3[ebp], edx
 
-; 255  :             if (x_bit_count < y_bit_count)
+; 321  :             if (u_bit_count < v_bit_count)
 
-	mov	eax, DWORD PTR _x_bit_count$4[ebp]
-	cmp	eax, DWORD PTR _y_bit_count$3[ebp]
+	mov	eax, DWORD PTR _u_bit_count$4[ebp]
+	cmp	eax, DWORD PTR _v_bit_count$3[ebp]
 	jae	SHORT $LN13@PMC_Subtru
 
-; 256  :             {
-; 257  :                 // 演算結果は負となってしまうのでエラーを返す。
-; 258  :                 return (PMC_STATUS_OVERFLOW);
+; 322  :             {
+; 323  :                 // 演算結果は負となってしまうのでエラーを返す。
+; 324  :                 return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	jmp	$LN1@PMC_Subtru
 $LN13@PMC_Subtru:
 
-; 259  :             }
-; 260  :             __UNIT_TYPE z_bit_count = x_bit_count;
+; 325  :             }
+; 326  :             __UNIT_TYPE w_bit_count = u_bit_count;
 
-	mov	ecx, DWORD PTR _x_bit_count$4[ebp]
-	mov	DWORD PTR _z_bit_count$2[ebp], ecx
+	mov	ecx, DWORD PTR _u_bit_count$4[ebp]
+	mov	DWORD PTR _w_bit_count$2[ebp], ecx
 
-; 261  :             __UNIT_TYPE nz_light_check_code;
-; 262  :             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+; 327  :             __UNIT_TYPE w_light_check_code;
+; 328  :             if ((result = AllocateNumber(&nw, w_bit_count, &w_light_check_code)) != PMC_STATUS_OK)
 
-	lea	edx, DWORD PTR _nz_light_check_code$1[ebp]
+	lea	edx, DWORD PTR _w_light_check_code$1[ebp]
 	push	edx
-	mov	eax, DWORD PTR _z_bit_count$2[ebp]
+	mov	eax, DWORD PTR _w_bit_count$2[ebp]
 	push	eax
-	lea	ecx, DWORD PTR _nz$[ebp]
+	lea	ecx, DWORD PTR _nw$[ebp]
 	push	ecx
 	call	_AllocateNumber
 	add	esp, 12					; 0000000cH
@@ -4178,54 +4162,62 @@ $LN13@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN14@PMC_Subtru
 
-; 263  :                 return (result);
+; 329  :                 return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Subtru
 $LN14@PMC_Subtru:
 
-; 264  :             if ((result = Subtruct_X_1W(nx, y, nz)) != PMC_STATUS_OK)
+; 330  :             if ((result = Subtruct_X_1W(nu->BLOCK, nu->UNIT_WORD_COUNT, v, nw->BLOCK, nw->BLOCK_COUNT)) != PMC_STATUS_OK)
 
-	mov	edx, DWORD PTR _nz$[ebp]
-	push	edx
-	mov	eax, DWORD PTR _y$[ebp]
+	mov	edx, DWORD PTR _nw$[ebp]
+	mov	eax, DWORD PTR [edx+20]
 	push	eax
-	mov	ecx, DWORD PTR _nx$[ebp]
+	mov	ecx, DWORD PTR _nw$[ebp]
+	mov	edx, DWORD PTR [ecx+24]
+	push	edx
+	mov	eax, DWORD PTR _v$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _nu$[ebp]
+	mov	edx, DWORD PTR [ecx]
+	push	edx
+	mov	eax, DWORD PTR _nu$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
 	push	ecx
 	call	_Subtruct_X_1W
-	add	esp, 12					; 0000000cH
+	add	esp, 20					; 00000014H
 	mov	DWORD PTR _result$[ebp], eax
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN15@PMC_Subtru
 
-; 265  :             {
-; 266  :                 DeallocateNumber(nz);
+; 331  :             {
+; 332  :                 DeallocateNumber(nw);
 
-	mov	edx, DWORD PTR _nz$[ebp]
+	mov	edx, DWORD PTR _nw$[ebp]
 	push	edx
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 267  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
+; 333  :                 return (result == PMC_STATUS_INTERNAL_BORROW ? PMC_STATUS_OVERFLOW : result);
 
 	cmp	DWORD PTR _result$[ebp], -258		; fffffefeH
 	jne	SHORT $LN20@PMC_Subtru
-	mov	DWORD PTR tv129[ebp], -2		; fffffffeH
+	mov	DWORD PTR tv135[ebp], -2		; fffffffeH
 	jmp	SHORT $LN21@PMC_Subtru
 $LN20@PMC_Subtru:
 	mov	eax, DWORD PTR _result$[ebp]
-	mov	DWORD PTR tv129[ebp], eax
+	mov	DWORD PTR tv135[ebp], eax
 $LN21@PMC_Subtru:
-	mov	eax, DWORD PTR tv129[ebp]
+	mov	eax, DWORD PTR tv135[ebp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN15@PMC_Subtru:
 
-; 268  :             }
-; 269  :             if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+; 334  :             }
+; 335  :             if ((result = CheckBlockLight(nw->BLOCK, w_light_check_code)) != PMC_STATUS_OK)
 
-	mov	ecx, DWORD PTR _nz_light_check_code$1[ebp]
+	mov	ecx, DWORD PTR _w_light_check_code$1[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _nz$[ebp]
+	mov	edx, DWORD PTR _nw$[ebp]
 	mov	eax, DWORD PTR [edx+24]
 	push	eax
 	call	_CheckBlockLight
@@ -4234,54 +4226,54 @@ $LN15@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN16@PMC_Subtru
 
-; 270  :                 return (result);
+; 336  :                 return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN16@PMC_Subtru:
 
-; 271  :             CommitNumber(nz);
+; 337  :             CommitNumber(nw);
 
-	mov	ecx, DWORD PTR _nz$[ebp]
+	mov	ecx, DWORD PTR _nw$[ebp]
 	push	ecx
 	call	_CommitNumber
 	add	esp, 4
 
-; 272  :             if (nz->IS_ZERO)
+; 338  :             if (nw->IS_ZERO)
 
-	mov	edx, DWORD PTR _nz$[ebp]
+	mov	edx, DWORD PTR _nw$[ebp]
 	mov	eax, DWORD PTR [edx+16]
 	shr	eax, 1
 	and	eax, 1
 	je	SHORT $LN11@PMC_Subtru
 
-; 273  :             {
-; 274  :                 DeallocateNumber(nz);
+; 339  :             {
+; 340  :                 DeallocateNumber(nw);
 
-	mov	ecx, DWORD PTR _nz$[ebp]
+	mov	ecx, DWORD PTR _nw$[ebp]
 	push	ecx
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 275  :                 nz = &number_zero;
+; 341  :                 nw = &number_zero;
 
-	mov	DWORD PTR _nz$[ebp], OFFSET _number_zero
+	mov	DWORD PTR _nw$[ebp], OFFSET _number_zero
 $LN11@PMC_Subtru:
 
-; 276  :             }
-; 277  :         }
-; 278  :         *o = nz;
+; 342  :             }
+; 343  :         }
+; 344  :         *w = nw;
 
-	mov	edx, DWORD PTR _o$[ebp]
-	mov	eax, DWORD PTR _nz$[ebp]
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	eax, DWORD PTR _nw$[ebp]
 	mov	DWORD PTR [edx], eax
 $LN7@PMC_Subtru:
 
-; 279  :     }
-; 280  : #ifdef _DEBUG
-; 281  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 345  :     }
+; 346  : #ifdef _DEBUG
+; 347  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
-	mov	ecx, DWORD PTR _o$[ebp]
+	mov	ecx, DWORD PTR _w$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	push	edx
 	call	_CheckNumber
@@ -4290,19 +4282,19 @@ $LN7@PMC_Subtru:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN18@PMC_Subtru
 
-; 282  :         return (result);
+; 348  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN18@PMC_Subtru:
 
-; 283  : #endif
-; 284  :     return (PMC_STATUS_OK);
+; 349  : #endif
+; 350  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Subtru:
 
-; 285  : }
+; 351  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -4318,7 +4310,6 @@ $LN1@PMC_Subtru:
 	mov	esp, ebp
 	pop	ebp
 	ret	12					; 0000000cH
-	npad	3
 $LN25@PMC_Subtru:
 	DD	2
 	DD	$LN24@PMC_Subtru
@@ -4330,8 +4321,7 @@ $LN24@PMC_Subtru:
 	DD	4
 	DD	$LN23@PMC_Subtru
 $LN23@PMC_Subtru:
-	DB	110					; 0000006eH
-	DB	122					; 0000007aH
+	DB	119					; 00000077H
 	DB	95					; 0000005fH
 	DB	108					; 0000006cH
 	DB	105					; 00000069H
@@ -4352,9 +4342,949 @@ $LN23@PMC_Subtru:
 	DB	0
 $LN22@PMC_Subtru:
 	DB	110					; 0000006eH
-	DB	122					; 0000007aH
+	DB	119					; 00000077H
 	DB	0
 _PMC_Subtruct_X_I@12 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+_TEXT	SEGMENT
+_borrow$1 = -105					; size = 1
+_temp_w$2 = -100					; size = 4
+_v_bit_count$3 = -92					; size = 4
+_u_bit_count$4 = -88					; size = 4
+_borrow$5 = -81						; size = 1
+_temp_w_lo$6 = -76					; size = 4
+_temp_w_hi$7 = -64					; size = 4
+_v_bit_count$8 = -56					; size = 4
+_u_bit_count$9 = -52					; size = 4
+_borrow$10 = -45					; size = 1
+_temp_w$11 = -40					; size = 4
+_v_bit_count$12 = -32					; size = 4
+_u_bit_count$13 = -28					; size = 4
+_u_lo$14 = -24						; size = 4
+_u_hi$15 = -16						; size = 4
+_result$ = -8						; size = 4
+_nv$ = -4						; size = 4
+_u$ = 8							; size = 8
+_v$ = 16						; size = 4
+_w$ = 20						; size = 4
+_PMC_Subtruct_L_X@16 PROC
+
+; 354  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 108				; 0000006cH
+	push	edi
+	lea	edi, DWORD PTR [ebp-108]
+	mov	ecx, 27					; 0000001bH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	ecx, OFFSET __1898920A_pmc_subtruct@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 355  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+
+	xor	eax, eax
+	je	SHORT $LN2@PMC_Subtru
+
+; 356  :     {
+; 357  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 358  :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffff00H
+	jmp	$LN1@PMC_Subtru
+$LN2@PMC_Subtru:
+
+; 359  :     }
+; 360  :     if (v == NULL)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN3@PMC_Subtru
+
+; 361  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	$LN1@PMC_Subtru
+$LN3@PMC_Subtru:
+
+; 362  :     if (w == NULL)
+
+	cmp	DWORD PTR _w$[ebp], 0
+	jne	SHORT $LN4@PMC_Subtru
+
+; 363  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	$LN1@PMC_Subtru
+$LN4@PMC_Subtru:
+
+; 364  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+
+	mov	ecx, DWORD PTR _v$[ebp]
+	mov	DWORD PTR _nv$[ebp], ecx
+
+; 365  :     PMC_STATUS_CODE result;
+; 366  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+
+	mov	edx, DWORD PTR _nv$[ebp]
+	push	edx
+	call	_CheckNumber
+	add	esp, 4
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN5@PMC_Subtru
+
+; 367  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Subtru
+$LN5@PMC_Subtru:
+
+; 368  :     if (u == 0)
+
+	mov	eax, DWORD PTR _u$[ebp]
+	or	eax, DWORD PTR _u$[ebp+4]
+	jne	SHORT $LN6@PMC_Subtru
+
+; 369  :     {
+; 370  :         // u が 0 である場合
+; 371  : 
+; 372  :         if (nv->IS_ZERO)
+
+	mov	ecx, DWORD PTR _nv$[ebp]
+	mov	edx, DWORD PTR [ecx+16]
+	shr	edx, 1
+	and	edx, 1
+	je	SHORT $LN8@PMC_Subtru
+
+; 373  :         {
+; 374  :             // v が 0 である場合
+; 375  : 
+; 376  :             // x と y がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 377  :             *w = 0;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], 0
+	mov	DWORD PTR [eax+4], 0
+
+; 378  :         }
+
+	jmp	SHORT $LN9@PMC_Subtru
+$LN8@PMC_Subtru:
+
+; 379  :         else
+; 380  :         {
+; 381  :             // v が 0 ではない場合
+; 382  : 
+; 383  :             // 演算結果は負となってしまうのでエラーを返す。
+; 384  :             return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	$LN1@PMC_Subtru
+$LN9@PMC_Subtru:
+
+; 385  :         }
+; 386  :     }
+
+	jmp	$LN7@PMC_Subtru
+$LN6@PMC_Subtru:
+
+; 387  :     else
+; 388  :     {
+; 389  :         // u が 0 ではない場合
+; 390  : 
+; 391  :         if (nv->IS_ZERO)
+
+	mov	ecx, DWORD PTR _nv$[ebp]
+	mov	edx, DWORD PTR [ecx+16]
+	shr	edx, 1
+	and	edx, 1
+	je	SHORT $LN10@PMC_Subtru
+
+; 392  :         {
+; 393  :             // v が 0 である場合
+; 394  : 
+; 395  :             // 演算結果となる u の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 396  :             *w = u;
+
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	ecx, DWORD PTR _u$[ebp]
+	mov	DWORD PTR [eax], ecx
+	mov	edx, DWORD PTR _u$[ebp+4]
+	mov	DWORD PTR [eax+4], edx
+
+; 397  :         }
+
+	jmp	$LN7@PMC_Subtru
+$LN10@PMC_Subtru:
+
+; 398  :         else
+; 399  :         {
+; 400  :             // u と v がともに 0 ではない場合
+; 401  : 
+; 402  :             // u と v の差を計算する
+; 403  :             if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+
+	mov	eax, 1
+	test	eax, eax
+	je	$LN12@PMC_Subtru
+
+; 404  :             {
+; 405  :                 // _UINT64_T が 1 ワードで表現しきれない場合
+; 406  : 
+; 407  :                 _UINT32_T u_hi;
+; 408  :                 _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
+
+	lea	ecx, DWORD PTR _u_hi$15[ebp]
+	push	ecx
+	mov	edx, DWORD PTR _u$[ebp+4]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp]
+	push	eax
+	call	__FROMDWORDTOWORD
+	add	esp, 12					; 0000000cH
+	mov	DWORD PTR _u_lo$14[ebp], eax
+
+; 409  :                 if (u_hi == 0)
+
+	cmp	DWORD PTR _u_hi$15[ebp], 0
+	jne	$LN14@PMC_Subtru
+
+; 410  :                 {
+; 411  :                     // u の値が 32bit で表現可能な場合
+; 412  :                     __UNIT_TYPE u_bit_count = sizeof(u_lo) * 8 - _LZCNT_ALT_32(u_lo);
+
+	mov	ecx, DWORD PTR _u_lo$14[ebp]
+	push	ecx
+	call	__LZCNT_ALT_32
+	add	esp, 4
+	mov	edx, 32					; 00000020H
+	sub	edx, eax
+	mov	DWORD PTR _u_bit_count$13[ebp], edx
+
+; 413  :                     __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	eax, DWORD PTR _nv$[ebp]
+	mov	ecx, DWORD PTR [eax+4]
+	mov	DWORD PTR _v_bit_count$12[ebp], ecx
+
+; 414  :                     if (u_bit_count < v_bit_count)
+
+	mov	edx, DWORD PTR _u_bit_count$13[ebp]
+	cmp	edx, DWORD PTR _v_bit_count$12[ebp]
+	jae	SHORT $LN16@PMC_Subtru
+
+; 415  :                     {
+; 416  :                         // 明らかに u < v である場合
+; 417  : 
+; 418  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 419  :                         return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	$LN1@PMC_Subtru
+
+; 420  :                     }
+
+	jmp	SHORT $LN17@PMC_Subtru
+$LN16@PMC_Subtru:
+
+; 421  :                     else
+; 422  :                     {
+; 423  :                         // u のビット長が v のビット長以上である場合
+; 424  : 
+; 425  :                         // u が32bit 整数で表現できるので v も 32bit 整数で表現できる
+; 426  : 
+; 427  :                         __UNIT_TYPE temp_w;
+; 428  :                         char borrow = _SUBTRUCT_UNIT(0, u_lo, nv->BLOCK[0], &temp_w);
+
+	lea	eax, DWORD PTR _temp_w$11[ebp]
+	push	eax
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _nv$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [ecx+edx]
+	push	edx
+	mov	eax, DWORD PTR _u_lo$14[ebp]
+	push	eax
+	push	0
+	call	__SUBTRUCT_UNIT
+	add	esp, 16					; 00000010H
+	mov	BYTE PTR _borrow$10[ebp], al
+
+; 429  :                         if (borrow)
+
+	movsx	ecx, BYTE PTR _borrow$10[ebp]
+	test	ecx, ecx
+	je	SHORT $LN18@PMC_Subtru
+
+; 430  :                         {
+; 431  :                             // ボローが発生した場合は演算結果が負なのでエラーとする
+; 432  :                             return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	$LN1@PMC_Subtru
+
+; 433  :                         }
+
+	jmp	SHORT $LN17@PMC_Subtru
+$LN18@PMC_Subtru:
+
+; 434  :                         else
+; 435  :                         {
+; 436  :                             *w = temp_w;
+
+	mov	edx, DWORD PTR _temp_w$11[ebp]
+	xor	eax, eax
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], edx
+	mov	DWORD PTR [ecx+4], eax
+$LN17@PMC_Subtru:
+
+; 437  :                         }
+; 438  :                     }
+; 439  :                 }
+
+	jmp	$LN15@PMC_Subtru
+$LN14@PMC_Subtru:
+
+; 440  :                 else
+; 441  :                 {
+; 442  :                     // u の値が 32bit では表現できない場合
+; 443  :                     __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u_hi);
+
+	mov	edx, DWORD PTR _u_hi$15[ebp]
+	push	edx
+	call	__LZCNT_ALT_32
+	add	esp, 4
+	mov	ecx, 64					; 00000040H
+	sub	ecx, eax
+	mov	DWORD PTR _u_bit_count$9[ebp], ecx
+
+; 444  :                     __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	edx, DWORD PTR _nv$[ebp]
+	mov	eax, DWORD PTR [edx+4]
+	mov	DWORD PTR _v_bit_count$8[ebp], eax
+
+; 445  :                     if (u_bit_count < v_bit_count)
+
+	mov	ecx, DWORD PTR _u_bit_count$9[ebp]
+	cmp	ecx, DWORD PTR _v_bit_count$8[ebp]
+	jae	SHORT $LN20@PMC_Subtru
+
+; 446  :                     {
+; 447  :                         // 明らかに u < v である場合
+; 448  : 
+; 449  :                         // 演算結果は負となってしまうのでエラーを返す。
+; 450  :                         return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	$LN1@PMC_Subtru
+
+; 451  :                     }
+
+	jmp	$LN15@PMC_Subtru
+$LN20@PMC_Subtru:
+
+; 452  :                     else
+; 453  :                     {
+; 454  :                         // u のビット長が v のビット長以上である場合
+; 455  : 
+; 456  :                         // この時点では u は 33 ～ 64bit 整数であり、v は 1 ～ 64bit整数である
+; 457  : 
+; 458  :                         __UNIT_TYPE temp_w_hi;
+; 459  :                         __UNIT_TYPE temp_w_lo;
+; 460  :                         char borrow;
+; 461  :                         borrow = _SUBTRUCT_UNIT(0, u_lo, nv->BLOCK[0], &temp_w_lo);
+
+	lea	edx, DWORD PTR _temp_w_lo$6[ebp]
+	push	edx
+	mov	eax, 4
+	imul	ecx, eax, 0
+	mov	edx, DWORD PTR _nv$[ebp]
+	mov	eax, DWORD PTR [edx+24]
+	mov	ecx, DWORD PTR [eax+ecx]
+	push	ecx
+	mov	edx, DWORD PTR _u_lo$14[ebp]
+	push	edx
+	push	0
+	call	__SUBTRUCT_UNIT
+	add	esp, 16					; 00000010H
+	mov	BYTE PTR _borrow$5[ebp], al
+
+; 462  :                         if (nv->UNIT_WORD_COUNT <= 1)
+
+	mov	eax, DWORD PTR _nv$[ebp]
+	cmp	DWORD PTR [eax], 1
+	ja	SHORT $LN22@PMC_Subtru
+
+; 463  :                         {
+; 464  :                             // v が 1 ワードで表現できる場合(1 ～ 32bit 整数)
+; 465  :                             borrow = _SUBTRUCT_UNIT(borrow, u_hi, 0, &temp_w_hi);
+
+	lea	ecx, DWORD PTR _temp_w_hi$7[ebp]
+	push	ecx
+	push	0
+	mov	edx, DWORD PTR _u_hi$15[ebp]
+	push	edx
+	movzx	eax, BYTE PTR _borrow$5[ebp]
+	push	eax
+	call	__SUBTRUCT_UNIT
+	add	esp, 16					; 00000010H
+	mov	BYTE PTR _borrow$5[ebp], al
+
+; 466  :                         }
+
+	jmp	SHORT $LN23@PMC_Subtru
+$LN22@PMC_Subtru:
+
+; 467  :                         else
+; 468  :                         {
+; 469  :                             // v が 1 ワードで表現できない場合(33 ～ 64bit 整数)
+; 470  :                             borrow = _SUBTRUCT_UNIT(borrow, u_hi, nv->BLOCK[1], &temp_w_hi);
+
+	lea	ecx, DWORD PTR _temp_w_hi$7[ebp]
+	push	ecx
+	mov	edx, 4
+	shl	edx, 0
+	mov	eax, DWORD PTR _nv$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [ecx+edx]
+	push	edx
+	mov	eax, DWORD PTR _u_hi$15[ebp]
+	push	eax
+	movzx	ecx, BYTE PTR _borrow$5[ebp]
+	push	ecx
+	call	__SUBTRUCT_UNIT
+	add	esp, 16					; 00000010H
+	mov	BYTE PTR _borrow$5[ebp], al
+$LN23@PMC_Subtru:
+
+; 471  :                         }
+; 472  :                         if (borrow)
+
+	movsx	edx, BYTE PTR _borrow$5[ebp]
+	test	edx, edx
+	je	SHORT $LN24@PMC_Subtru
+
+; 473  :                         {
+; 474  :                             // ボローが発生した場合は演算結果が負なのでエラーとする
+; 475  :                             return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	$LN1@PMC_Subtru
+
+; 476  :                         }
+
+	jmp	SHORT $LN15@PMC_Subtru
+$LN24@PMC_Subtru:
+
+; 477  :                         else
+; 478  :                         {
+; 479  :                             *w = _FROMWORDTODWORD((_UINT32_T)temp_w_hi, (_UINT32_T)temp_w_lo);
+
+	mov	eax, DWORD PTR _temp_w_lo$6[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _temp_w_hi$7[ebp]
+	push	ecx
+	call	__FROMWORDTODWORD
+	add	esp, 8
+	mov	ecx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [ecx], eax
+	mov	DWORD PTR [ecx+4], edx
+$LN15@PMC_Subtru:
+
+; 480  :                         }
+; 481  : 
+; 482  :                     }
+; 483  :                 }
+; 484  :             }
+
+	jmp	SHORT $LN7@PMC_Subtru
+$LN12@PMC_Subtru:
+
+; 485  :             else
+; 486  :             {
+; 487  :                 // _UINT64_T が 1 ワードで表現できる場合
+; 488  : 
+; 489  :                 __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)u);
+
+	mov	edx, DWORD PTR _u$[ebp]
+	push	edx
+	call	__LZCNT_ALT_UNIT
+	add	esp, 4
+	mov	ecx, 64					; 00000040H
+	sub	ecx, eax
+	mov	DWORD PTR _u_bit_count$4[ebp], ecx
+
+; 490  :                 __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	edx, DWORD PTR _nv$[ebp]
+	mov	eax, DWORD PTR [edx+4]
+	mov	DWORD PTR _v_bit_count$3[ebp], eax
+
+; 491  :                 if (u_bit_count < v_bit_count)
+
+	mov	ecx, DWORD PTR _u_bit_count$4[ebp]
+	cmp	ecx, DWORD PTR _v_bit_count$3[ebp]
+	jae	SHORT $LN26@PMC_Subtru
+
+; 492  :                 {
+; 493  :                     // 明らかに u < v である場合
+; 494  : 
+; 495  :                     // 演算結果は負となってしまうのでエラーを返す。
+; 496  :                     return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	SHORT $LN1@PMC_Subtru
+
+; 497  :                 }
+
+	jmp	SHORT $LN7@PMC_Subtru
+$LN26@PMC_Subtru:
+
+; 498  :                 else
+; 499  :                 {
+; 500  :                     // u のビット長が v のビット長以上である場合
+; 501  : 
+; 502  :                     // u が 64bit 整数で表現できるので v も 64bit 整数で表現できる
+; 503  : 
+; 504  :                     __UNIT_TYPE temp_w;
+; 505  :                     char borrow = _SUBTRUCT_UNIT(0, (__UNIT_TYPE)u, nv->BLOCK[0], &temp_w);
+
+	lea	edx, DWORD PTR _temp_w$2[ebp]
+	push	edx
+	mov	eax, 4
+	imul	ecx, eax, 0
+	mov	edx, DWORD PTR _nv$[ebp]
+	mov	eax, DWORD PTR [edx+24]
+	mov	ecx, DWORD PTR [eax+ecx]
+	push	ecx
+	mov	edx, DWORD PTR _u$[ebp]
+	push	edx
+	push	0
+	call	__SUBTRUCT_UNIT
+	add	esp, 16					; 00000010H
+	mov	BYTE PTR _borrow$1[ebp], al
+
+; 506  :                     if (borrow)
+
+	movsx	eax, BYTE PTR _borrow$1[ebp]
+	test	eax, eax
+	je	SHORT $LN28@PMC_Subtru
+
+; 507  :                     {
+; 508  :                         // ボローが発生した場合は演算結果が負なのでエラーとする
+; 509  :                         return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	SHORT $LN1@PMC_Subtru
+
+; 510  :                     }
+
+	jmp	SHORT $LN7@PMC_Subtru
+$LN28@PMC_Subtru:
+
+; 511  :                     else
+; 512  :                     {
+; 513  :                         *w = temp_w;
+
+	mov	ecx, DWORD PTR _temp_w$2[ebp]
+	xor	edx, edx
+	mov	eax, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [eax], ecx
+	mov	DWORD PTR [eax+4], edx
+$LN7@PMC_Subtru:
+
+; 514  :                     }
+; 515  :                 }
+; 516  :             }
+; 517  :         }
+; 518  :     }
+; 519  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Subtru:
+
+; 520  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN37@PMC_Subtru
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	pop	edi
+	add	esp, 108				; 0000006cH
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	16					; 00000010H
+	npad	1
+$LN37@PMC_Subtru:
+	DD	5
+	DD	$LN36@PMC_Subtru
+$LN36@PMC_Subtru:
+	DD	-16					; fffffff0H
+	DD	4
+	DD	$LN31@PMC_Subtru
+	DD	-40					; ffffffd8H
+	DD	4
+	DD	$LN32@PMC_Subtru
+	DD	-64					; ffffffc0H
+	DD	4
+	DD	$LN33@PMC_Subtru
+	DD	-76					; ffffffb4H
+	DD	4
+	DD	$LN34@PMC_Subtru
+	DD	-100					; ffffff9cH
+	DD	4
+	DD	$LN35@PMC_Subtru
+$LN35@PMC_Subtru:
+	DB	116					; 00000074H
+	DB	101					; 00000065H
+	DB	109					; 0000006dH
+	DB	112					; 00000070H
+	DB	95					; 0000005fH
+	DB	119					; 00000077H
+	DB	0
+$LN34@PMC_Subtru:
+	DB	116					; 00000074H
+	DB	101					; 00000065H
+	DB	109					; 0000006dH
+	DB	112					; 00000070H
+	DB	95					; 0000005fH
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	108					; 0000006cH
+	DB	111					; 0000006fH
+	DB	0
+$LN33@PMC_Subtru:
+	DB	116					; 00000074H
+	DB	101					; 00000065H
+	DB	109					; 0000006dH
+	DB	112					; 00000070H
+	DB	95					; 0000005fH
+	DB	119					; 00000077H
+	DB	95					; 0000005fH
+	DB	104					; 00000068H
+	DB	105					; 00000069H
+	DB	0
+$LN32@PMC_Subtru:
+	DB	116					; 00000074H
+	DB	101					; 00000065H
+	DB	109					; 0000006dH
+	DB	112					; 00000070H
+	DB	95					; 0000005fH
+	DB	119					; 00000077H
+	DB	0
+$LN31@PMC_Subtru:
+	DB	117					; 00000075H
+	DB	95					; 0000005fH
+	DB	104					; 00000068H
+	DB	105					; 00000069H
+	DB	0
+_PMC_Subtruct_L_X@16 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
+_TEXT	SEGMENT
+_borrow$1 = -29						; size = 1
+_temp_w$2 = -24						; size = 4
+_v_bit_count$3 = -16					; size = 4
+_u_bit_count$4 = -12					; size = 4
+_result$ = -8						; size = 4
+_nv$ = -4						; size = 4
+_u$ = 8							; size = 4
+_v$ = 12						; size = 4
+_w$ = 16						; size = 4
+_PMC_Subtruct_I_X@12 PROC
+
+; 188  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 32					; 00000020H
+	mov	eax, -858993460				; ccccccccH
+	mov	DWORD PTR [ebp-32], eax
+	mov	DWORD PTR [ebp-28], eax
+	mov	DWORD PTR [ebp-24], eax
+	mov	DWORD PTR [ebp-20], eax
+	mov	DWORD PTR [ebp-16], eax
+	mov	DWORD PTR [ebp-12], eax
+	mov	DWORD PTR [ebp-8], eax
+	mov	DWORD PTR [ebp-4], eax
+	mov	ecx, OFFSET __1898920A_pmc_subtruct@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 189  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+
+	xor	eax, eax
+	je	SHORT $LN2@PMC_Subtru
+
+; 190  :     {
+; 191  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 192  :         return (PMC_STATUS_INTERNAL_ERROR);
+
+	mov	eax, -256				; ffffff00H
+	jmp	$LN1@PMC_Subtru
+$LN2@PMC_Subtru:
+
+; 193  :     }
+; 194  :     if (v == NULL)
+
+	cmp	DWORD PTR _v$[ebp], 0
+	jne	SHORT $LN3@PMC_Subtru
+
+; 195  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	$LN1@PMC_Subtru
+$LN3@PMC_Subtru:
+
+; 196  :     if (w == NULL)
+
+	cmp	DWORD PTR _w$[ebp], 0
+	jne	SHORT $LN4@PMC_Subtru
+
+; 197  :         return (PMC_STATUS_ARGUMENT_ERROR);
+
+	or	eax, -1
+	jmp	$LN1@PMC_Subtru
+$LN4@PMC_Subtru:
+
+; 198  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+
+	mov	ecx, DWORD PTR _v$[ebp]
+	mov	DWORD PTR _nv$[ebp], ecx
+
+; 199  :     PMC_STATUS_CODE result;
+; 200  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+
+	mov	edx, DWORD PTR _nv$[ebp]
+	push	edx
+	call	_CheckNumber
+	add	esp, 4
+	mov	DWORD PTR _result$[ebp], eax
+	cmp	DWORD PTR _result$[ebp], 0
+	je	SHORT $LN5@PMC_Subtru
+
+; 201  :         return (result);
+
+	mov	eax, DWORD PTR _result$[ebp]
+	jmp	$LN1@PMC_Subtru
+$LN5@PMC_Subtru:
+
+; 202  :     if (u == 0)
+
+	cmp	DWORD PTR _u$[ebp], 0
+	jne	SHORT $LN6@PMC_Subtru
+
+; 203  :     {
+; 204  :         // u が 0 である場合
+; 205  : 
+; 206  :         if (nv->IS_ZERO)
+
+	mov	eax, DWORD PTR _nv$[ebp]
+	mov	ecx, DWORD PTR [eax+16]
+	shr	ecx, 1
+	and	ecx, 1
+	je	SHORT $LN8@PMC_Subtru
+
+; 207  :         {
+; 208  :             // v が 0 である場合
+; 209  : 
+; 210  :             // u と v がともに 0 であるので、演算結果の 0 を呼び出し元に返す。
+; 211  :             *w = 0;
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	DWORD PTR [edx], 0
+
+; 212  :         }
+
+	jmp	SHORT $LN9@PMC_Subtru
+$LN8@PMC_Subtru:
+
+; 213  :         else
+; 214  :         {
+; 215  :             // v が 0 ではない場合
+; 216  : 
+; 217  :             // 演算結果は負となってしまうのでエラーを返す。
+; 218  :             return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	$LN1@PMC_Subtru
+$LN9@PMC_Subtru:
+
+; 219  :         }
+; 220  :     }
+
+	jmp	$LN7@PMC_Subtru
+$LN6@PMC_Subtru:
+
+; 221  :     else
+; 222  :     {
+; 223  :         // u が 0 ではない場合
+; 224  : 
+; 225  :         if (nv->IS_ZERO)
+
+	mov	eax, DWORD PTR _nv$[ebp]
+	mov	ecx, DWORD PTR [eax+16]
+	shr	ecx, 1
+	and	ecx, 1
+	je	SHORT $LN10@PMC_Subtru
+
+; 226  :         {
+; 227  :             // v が 0 である場合
+; 228  : 
+; 229  :             // 演算結果となる u の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+; 230  :             *w = u;
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	eax, DWORD PTR _u$[ebp]
+	mov	DWORD PTR [edx], eax
+
+; 231  :         }
+
+	jmp	SHORT $LN7@PMC_Subtru
+$LN10@PMC_Subtru:
+
+; 232  :         else
+; 233  :         {
+; 234  :             // u と v がともに 0 ではない場合
+; 235  : 
+; 236  :             // x と y の差を計算する
+; 237  :             __UNIT_TYPE u_bit_count = sizeof(u) * 8 - _LZCNT_ALT_32(u);
+
+	mov	ecx, DWORD PTR _u$[ebp]
+	push	ecx
+	call	__LZCNT_ALT_32
+	add	esp, 4
+	mov	edx, 32					; 00000020H
+	sub	edx, eax
+	mov	DWORD PTR _u_bit_count$4[ebp], edx
+
+; 238  :             __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+
+	mov	eax, DWORD PTR _nv$[ebp]
+	mov	ecx, DWORD PTR [eax+4]
+	mov	DWORD PTR _v_bit_count$3[ebp], ecx
+
+; 239  :             if (u_bit_count < v_bit_count)
+
+	mov	edx, DWORD PTR _u_bit_count$4[ebp]
+	cmp	edx, DWORD PTR _v_bit_count$3[ebp]
+	jae	SHORT $LN12@PMC_Subtru
+
+; 240  :             {
+; 241  :                 // 明らかに u < v である場合
+; 242  :                 // 演算結果は負となってしまうのでエラーを返す。
+; 243  :                 return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	SHORT $LN1@PMC_Subtru
+
+; 244  :             }
+
+	jmp	SHORT $LN7@PMC_Subtru
+$LN12@PMC_Subtru:
+
+; 245  :             else
+; 246  :             {
+; 247  :                 // u のビット長が v のビット長以上である場合
+; 248  : 
+; 249  :                 // u が 32bit 整数なので、v も32bit 整数で表現できる
+; 250  :                 __UNIT_TYPE temp_w;
+; 251  :                 char borrow = _SUBTRUCT_UNIT(0, u, nv->BLOCK[0], &temp_w);
+
+	lea	eax, DWORD PTR _temp_w$2[ebp]
+	push	eax
+	mov	ecx, 4
+	imul	edx, ecx, 0
+	mov	eax, DWORD PTR _nv$[ebp]
+	mov	ecx, DWORD PTR [eax+24]
+	mov	edx, DWORD PTR [ecx+edx]
+	push	edx
+	mov	eax, DWORD PTR _u$[ebp]
+	push	eax
+	push	0
+	call	__SUBTRUCT_UNIT
+	add	esp, 16					; 00000010H
+	mov	BYTE PTR _borrow$1[ebp], al
+
+; 252  :                 if (borrow)
+
+	movsx	ecx, BYTE PTR _borrow$1[ebp]
+	test	ecx, ecx
+	je	SHORT $LN14@PMC_Subtru
+
+; 253  :                 {
+; 254  :                     // ボローが発生した場合は演算結果が負なのでエラーとする
+; 255  :                     return (PMC_STATUS_OVERFLOW);
+
+	mov	eax, -2					; fffffffeH
+	jmp	SHORT $LN1@PMC_Subtru
+
+; 256  :                 }
+
+	jmp	SHORT $LN7@PMC_Subtru
+$LN14@PMC_Subtru:
+
+; 257  :                 else
+; 258  :                 {
+; 259  :                     *w = (_UINT32_T)temp_w;
+
+	mov	edx, DWORD PTR _w$[ebp]
+	mov	eax, DWORD PTR _temp_w$2[ebp]
+	mov	DWORD PTR [edx], eax
+$LN7@PMC_Subtru:
+
+; 260  :                 }
+; 261  :             }
+; 262  :         }
+; 263  :     }
+; 264  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+$LN1@PMC_Subtru:
+
+; 265  : }
+
+	push	edx
+	mov	ecx, ebp
+	push	eax
+	lea	edx, DWORD PTR $LN19@PMC_Subtru
+	call	@_RTC_CheckStackVars@8
+	pop	eax
+	pop	edx
+	add	esp, 32					; 00000020H
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	12					; 0000000cH
+	npad	3
+$LN19@PMC_Subtru:
+	DD	1
+	DD	$LN18@PMC_Subtru
+$LN18@PMC_Subtru:
+	DD	-24					; ffffffe8H
+	DD	4
+	DD	$LN17@PMC_Subtru
+$LN17@PMC_Subtru:
+	DB	116					; 00000074H
+	DB	101					; 00000065H
+	DB	109					; 0000006dH
+	DB	112					; 00000070H
+	DB	95					; 0000005fH
+	DB	119					; 00000077H
+	DB	0
+_PMC_Subtruct_I_X@12 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
@@ -4362,18 +5292,18 @@ _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_Subtruct PROC
 
-; 508  : {
+; 743  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __1898920A_pmc_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 509  :     return (PMC_STATUS_OK);
+; 744  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 510  : }
+; 745  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -4389,15 +5319,15 @@ tv154 = -16						; size = 4
 tv151 = -12						; size = 4
 _count$ = -8						; size = 4
 _c$ = -1						; size = 1
-_xp$ = 8						; size = 4
-_x_count$ = 12						; size = 4
-_yp$ = 16						; size = 4
-_y_count$ = 20						; size = 4
-_zp$ = 24						; size = 4
-_z_count$ = 28						; size = 4
+_up$ = 8						; size = 4
+_u_count$ = 12						; size = 4
+_vp$ = 16						; size = 4
+_v_count$ = 20						; size = 4
+_wp$ = 24						; size = 4
+_w_count$ = 28						; size = 4
 _Subtruct_Imp PROC
 
-; 138  : {
+; 124  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -4411,32 +5341,32 @@ _Subtruct_Imp PROC
 	mov	ecx, OFFSET __1898920A_pmc_subtruct@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 139  :     char c = 0;
+; 125  :     char c = 0;
 
 	mov	BYTE PTR _c$[ebp], 0
 
-; 140  : 
-; 141  :     // まず 32 ワードずつ減算をする。
-; 142  :     __UNIT_TYPE count = y_count >> 5;
+; 126  : 
+; 127  :     // まず 32 ワードずつ減算をする。
+; 128  :     __UNIT_TYPE count = v_count >> 5;
 
-	mov	eax, DWORD PTR _y_count$[ebp]
+	mov	eax, DWORD PTR _v_count$[ebp]
 	shr	eax, 5
 	mov	DWORD PTR _count$[ebp], eax
 $LN2@Subtruct_I:
 
-; 143  :     while (count != 0)
+; 129  :     while (count != 0)
 
 	cmp	DWORD PTR _count$[ebp], 0
 	je	SHORT $LN3@Subtruct_I
 
-; 144  :     {
-; 145  :         c= _SUBTRUCT_32WORDS_SBB(c, xp, yp, zp);
+; 130  :     {
+; 131  :         c= _SUBTRUCT_32WORDS_SBB(c, up, vp, wp);
 
-	mov	ecx, DWORD PTR _zp$[ebp]
+	mov	ecx, DWORD PTR _wp$[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _yp$[ebp]
+	mov	edx, DWORD PTR _vp$[ebp]
 	push	edx
-	mov	eax, DWORD PTR _xp$[ebp]
+	mov	eax, DWORD PTR _up$[ebp]
 	push	eax
 	movzx	ecx, BYTE PTR _c$[ebp]
 	push	ecx
@@ -4444,52 +5374,52 @@ $LN2@Subtruct_I:
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 146  :         xp += 32;
+; 132  :         up += 32;
 
-	mov	edx, DWORD PTR _xp$[ebp]
+	mov	edx, DWORD PTR _up$[ebp]
 	add	edx, 128				; 00000080H
-	mov	DWORD PTR _xp$[ebp], edx
+	mov	DWORD PTR _up$[ebp], edx
 
-; 147  :         yp += 32;
+; 133  :         vp += 32;
 
-	mov	eax, DWORD PTR _yp$[ebp]
+	mov	eax, DWORD PTR _vp$[ebp]
 	add	eax, 128				; 00000080H
-	mov	DWORD PTR _yp$[ebp], eax
+	mov	DWORD PTR _vp$[ebp], eax
 
-; 148  :         zp += 32;
+; 134  :         wp += 32;
 
-	mov	ecx, DWORD PTR _zp$[ebp]
+	mov	ecx, DWORD PTR _wp$[ebp]
 	add	ecx, 128				; 00000080H
-	mov	DWORD PTR _zp$[ebp], ecx
+	mov	DWORD PTR _wp$[ebp], ecx
 
-; 149  :         --count;
+; 135  :         --count;
 
 	mov	edx, DWORD PTR _count$[ebp]
 	sub	edx, 1
 	mov	DWORD PTR _count$[ebp], edx
 
-; 150  :     }
+; 136  :     }
 
 	jmp	SHORT $LN2@Subtruct_I
 $LN3@Subtruct_I:
 
-; 151  :     // この時点で未処理の桁は 32 ワード未満のはず
-; 152  : 
-; 153  :     // 未処理の桁が 16 ワード以上あるなら 16 ワード減算を行う。
-; 154  :     if (y_count & 0x10)
+; 137  :     // この時点で未処理の桁は 32 ワード未満のはず
+; 138  : 
+; 139  :     // 未処理の桁が 16 ワード以上あるなら 16 ワード減算を行う。
+; 140  :     if (v_count & 0x10)
 
-	mov	eax, DWORD PTR _y_count$[ebp]
+	mov	eax, DWORD PTR _v_count$[ebp]
 	and	eax, 16					; 00000010H
 	je	SHORT $LN4@Subtruct_I
 
-; 155  :     {
-; 156  :         c = _SUBTRUCT_16WORDS_SBB(c, xp, yp, zp);
+; 141  :     {
+; 142  :         c = _SUBTRUCT_16WORDS_SBB(c, up, vp, wp);
 
-	mov	ecx, DWORD PTR _zp$[ebp]
+	mov	ecx, DWORD PTR _wp$[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _yp$[ebp]
+	mov	edx, DWORD PTR _vp$[ebp]
 	push	edx
-	mov	eax, DWORD PTR _xp$[ebp]
+	mov	eax, DWORD PTR _up$[ebp]
 	push	eax
 	movzx	ecx, BYTE PTR _c$[ebp]
 	push	ecx
@@ -4497,43 +5427,43 @@ $LN3@Subtruct_I:
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 157  :         xp += 16;
+; 143  :         up += 16;
 
-	mov	edx, DWORD PTR _xp$[ebp]
+	mov	edx, DWORD PTR _up$[ebp]
 	add	edx, 64					; 00000040H
-	mov	DWORD PTR _xp$[ebp], edx
+	mov	DWORD PTR _up$[ebp], edx
 
-; 158  :         yp += 16;
+; 144  :         vp += 16;
 
-	mov	eax, DWORD PTR _yp$[ebp]
+	mov	eax, DWORD PTR _vp$[ebp]
 	add	eax, 64					; 00000040H
-	mov	DWORD PTR _yp$[ebp], eax
+	mov	DWORD PTR _vp$[ebp], eax
 
-; 159  :         zp += 16;
+; 145  :         wp += 16;
 
-	mov	ecx, DWORD PTR _zp$[ebp]
+	mov	ecx, DWORD PTR _wp$[ebp]
 	add	ecx, 64					; 00000040H
-	mov	DWORD PTR _zp$[ebp], ecx
+	mov	DWORD PTR _wp$[ebp], ecx
 $LN4@Subtruct_I:
 
-; 160  :     }
-; 161  :     // この時点で未処理の桁は 16 ワード未満のはず
-; 162  : 
-; 163  :     // 未処理の桁が 8 ワード以上あるなら 8 ワード減算を行う。
-; 164  :     if (y_count & 0x8)
+; 146  :     }
+; 147  :     // この時点で未処理の桁は 16 ワード未満のはず
+; 148  : 
+; 149  :     // 未処理の桁が 8 ワード以上あるなら 8 ワード減算を行う。
+; 150  :     if (v_count & 0x8)
 
-	mov	edx, DWORD PTR _y_count$[ebp]
+	mov	edx, DWORD PTR _v_count$[ebp]
 	and	edx, 8
 	je	SHORT $LN5@Subtruct_I
 
-; 165  :     {
-; 166  :         c = _SUBTRUCT_8WORDS_SBB(c, xp, yp, zp);
+; 151  :     {
+; 152  :         c = _SUBTRUCT_8WORDS_SBB(c, up, vp, wp);
 
-	mov	eax, DWORD PTR _zp$[ebp]
+	mov	eax, DWORD PTR _wp$[ebp]
 	push	eax
-	mov	ecx, DWORD PTR _yp$[ebp]
+	mov	ecx, DWORD PTR _vp$[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _xp$[ebp]
+	mov	edx, DWORD PTR _up$[ebp]
 	push	edx
 	movzx	eax, BYTE PTR _c$[ebp]
 	push	eax
@@ -4541,43 +5471,43 @@ $LN4@Subtruct_I:
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 167  :         xp += 8;
+; 153  :         up += 8;
 
-	mov	ecx, DWORD PTR _xp$[ebp]
+	mov	ecx, DWORD PTR _up$[ebp]
 	add	ecx, 32					; 00000020H
-	mov	DWORD PTR _xp$[ebp], ecx
+	mov	DWORD PTR _up$[ebp], ecx
 
-; 168  :         yp += 8;
+; 154  :         vp += 8;
 
-	mov	edx, DWORD PTR _yp$[ebp]
+	mov	edx, DWORD PTR _vp$[ebp]
 	add	edx, 32					; 00000020H
-	mov	DWORD PTR _yp$[ebp], edx
+	mov	DWORD PTR _vp$[ebp], edx
 
-; 169  :         zp += 8;
+; 155  :         wp += 8;
 
-	mov	eax, DWORD PTR _zp$[ebp]
+	mov	eax, DWORD PTR _wp$[ebp]
 	add	eax, 32					; 00000020H
-	mov	DWORD PTR _zp$[ebp], eax
+	mov	DWORD PTR _wp$[ebp], eax
 $LN5@Subtruct_I:
 
-; 170  :     }
-; 171  :     // この時点で未処理の桁は 8 ワード未満のはず
-; 172  : 
-; 173  :     // 未処理の桁が 4 ワード以上あるなら 4 ワード減算を行う。
-; 174  :     if (y_count & 0x4)
+; 156  :     }
+; 157  :     // この時点で未処理の桁は 8 ワード未満のはず
+; 158  : 
+; 159  :     // 未処理の桁が 4 ワード以上あるなら 4 ワード減算を行う。
+; 160  :     if (v_count & 0x4)
 
-	mov	ecx, DWORD PTR _y_count$[ebp]
+	mov	ecx, DWORD PTR _v_count$[ebp]
 	and	ecx, 4
 	je	SHORT $LN6@Subtruct_I
 
-; 175  :     {
-; 176  :         c = _SUBTRUCT_4WORDS_SBB(c, xp, yp, zp);
+; 161  :     {
+; 162  :         c = _SUBTRUCT_4WORDS_SBB(c, up, vp, wp);
 
-	mov	edx, DWORD PTR _zp$[ebp]
+	mov	edx, DWORD PTR _wp$[ebp]
 	push	edx
-	mov	eax, DWORD PTR _yp$[ebp]
+	mov	eax, DWORD PTR _vp$[ebp]
 	push	eax
-	mov	ecx, DWORD PTR _xp$[ebp]
+	mov	ecx, DWORD PTR _up$[ebp]
 	push	ecx
 	movzx	edx, BYTE PTR _c$[ebp]
 	push	edx
@@ -4585,43 +5515,43 @@ $LN5@Subtruct_I:
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 177  :         xp += 4;
+; 163  :         up += 4;
 
-	mov	eax, DWORD PTR _xp$[ebp]
+	mov	eax, DWORD PTR _up$[ebp]
 	add	eax, 16					; 00000010H
-	mov	DWORD PTR _xp$[ebp], eax
+	mov	DWORD PTR _up$[ebp], eax
 
-; 178  :         yp += 4;
+; 164  :         vp += 4;
 
-	mov	ecx, DWORD PTR _yp$[ebp]
+	mov	ecx, DWORD PTR _vp$[ebp]
 	add	ecx, 16					; 00000010H
-	mov	DWORD PTR _yp$[ebp], ecx
+	mov	DWORD PTR _vp$[ebp], ecx
 
-; 179  :         zp += 4;
+; 165  :         wp += 4;
 
-	mov	edx, DWORD PTR _zp$[ebp]
+	mov	edx, DWORD PTR _wp$[ebp]
 	add	edx, 16					; 00000010H
-	mov	DWORD PTR _zp$[ebp], edx
+	mov	DWORD PTR _wp$[ebp], edx
 $LN6@Subtruct_I:
 
-; 180  :     }
-; 181  :     // この時点で未処理の桁は 4 ワード未満のはず
-; 182  : 
-; 183  :     // 未処理の桁が 2 ワード以上あるなら 2 ワード減算を行う。
-; 184  :     if (y_count & 0x2)
+; 166  :     }
+; 167  :     // この時点で未処理の桁は 4 ワード未満のはず
+; 168  : 
+; 169  :     // 未処理の桁が 2 ワード以上あるなら 2 ワード減算を行う。
+; 170  :     if (v_count & 0x2)
 
-	mov	eax, DWORD PTR _y_count$[ebp]
+	mov	eax, DWORD PTR _v_count$[ebp]
 	and	eax, 2
 	je	SHORT $LN7@Subtruct_I
 
-; 185  :     {
-; 186  :         c = _SUBTRUCT_2WORDS_SBB(c, xp, yp, zp);
+; 171  :     {
+; 172  :         c = _SUBTRUCT_2WORDS_SBB(c, up, vp, wp);
 
-	mov	ecx, DWORD PTR _zp$[ebp]
+	mov	ecx, DWORD PTR _wp$[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _yp$[ebp]
+	mov	edx, DWORD PTR _vp$[ebp]
 	push	edx
-	mov	eax, DWORD PTR _xp$[ebp]
+	mov	eax, DWORD PTR _up$[ebp]
 	push	eax
 	movzx	ecx, BYTE PTR _c$[ebp]
 	push	ecx
@@ -4629,54 +5559,54 @@ $LN6@Subtruct_I:
 	add	esp, 16					; 00000010H
 	mov	BYTE PTR _c$[ebp], al
 
-; 187  :         xp += 2;
+; 173  :         up += 2;
 
-	mov	edx, DWORD PTR _xp$[ebp]
+	mov	edx, DWORD PTR _up$[ebp]
 	add	edx, 8
-	mov	DWORD PTR _xp$[ebp], edx
+	mov	DWORD PTR _up$[ebp], edx
 
-; 188  :         yp += 2;
+; 174  :         vp += 2;
 
-	mov	eax, DWORD PTR _yp$[ebp]
+	mov	eax, DWORD PTR _vp$[ebp]
 	add	eax, 8
-	mov	DWORD PTR _yp$[ebp], eax
+	mov	DWORD PTR _vp$[ebp], eax
 
-; 189  :         zp += 2;
+; 175  :         wp += 2;
 
-	mov	ecx, DWORD PTR _zp$[ebp]
+	mov	ecx, DWORD PTR _wp$[ebp]
 	add	ecx, 8
-	mov	DWORD PTR _zp$[ebp], ecx
+	mov	DWORD PTR _wp$[ebp], ecx
 $LN7@Subtruct_I:
 
-; 190  :     }
-; 191  :     // この時点で未処理の桁は 2 ワード未満のはず
-; 192  : 
-; 193  :     // 未処理の桁が 1 ワード以上あるなら 1 ワード減算を行う。
-; 194  :     if (y_count & 1)
+; 176  :     }
+; 177  :     // この時点で未処理の桁は 2 ワード未満のはず
+; 178  : 
+; 179  :     // 未処理の桁が 1 ワード以上あるなら 1 ワード減算を行う。
+; 180  :     if (v_count & 1)
 
-	mov	edx, DWORD PTR _y_count$[ebp]
+	mov	edx, DWORD PTR _v_count$[ebp]
 	and	edx, 1
 	je	SHORT $LN8@Subtruct_I
 
-; 195  :         c = _SUBTRUCT_UNIT(c, *xp++, *yp++, zp++);
+; 181  :         c = _SUBTRUCT_UNIT(c, *up++, *vp++, wp++);
 
-	mov	eax, DWORD PTR _zp$[ebp]
+	mov	eax, DWORD PTR _wp$[ebp]
 	mov	DWORD PTR tv151[ebp], eax
-	mov	ecx, DWORD PTR _zp$[ebp]
+	mov	ecx, DWORD PTR _wp$[ebp]
 	add	ecx, 4
-	mov	DWORD PTR _zp$[ebp], ecx
-	mov	edx, DWORD PTR _yp$[ebp]
+	mov	DWORD PTR _wp$[ebp], ecx
+	mov	edx, DWORD PTR _vp$[ebp]
 	mov	eax, DWORD PTR [edx]
 	mov	DWORD PTR tv154[ebp], eax
-	mov	ecx, DWORD PTR _yp$[ebp]
+	mov	ecx, DWORD PTR _vp$[ebp]
 	add	ecx, 4
-	mov	DWORD PTR _yp$[ebp], ecx
-	mov	edx, DWORD PTR _xp$[ebp]
+	mov	DWORD PTR _vp$[ebp], ecx
+	mov	edx, DWORD PTR _up$[ebp]
 	mov	eax, DWORD PTR [edx]
 	mov	DWORD PTR tv157[ebp], eax
-	mov	ecx, DWORD PTR _xp$[ebp]
+	mov	ecx, DWORD PTR _up$[ebp]
 	add	ecx, 4
-	mov	DWORD PTR _xp$[ebp], ecx
+	mov	DWORD PTR _up$[ebp], ecx
 	mov	edx, DWORD PTR tv151[ebp]
 	push	edx
 	mov	eax, DWORD PTR tv154[ebp]
@@ -4690,26 +5620,26 @@ $LN7@Subtruct_I:
 	mov	BYTE PTR _c$[ebp], al
 $LN8@Subtruct_I:
 
-; 196  : 
-; 197  :     // 残りの桁の繰り上がりを計算し、復帰する。
-; 198  :     return (DoBorrow(c, xp, x_count - y_count, zp, z_count - y_count));
+; 182  : 
+; 183  :     // 残りの桁の繰り上がりを計算し、復帰する。
+; 184  :     return (DoBorrow(c, up, u_count - v_count, wp, w_count - v_count));
 
-	mov	eax, DWORD PTR _z_count$[ebp]
-	sub	eax, DWORD PTR _y_count$[ebp]
+	mov	eax, DWORD PTR _w_count$[ebp]
+	sub	eax, DWORD PTR _v_count$[ebp]
 	push	eax
-	mov	ecx, DWORD PTR _zp$[ebp]
+	mov	ecx, DWORD PTR _wp$[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _x_count$[ebp]
-	sub	edx, DWORD PTR _y_count$[ebp]
+	mov	edx, DWORD PTR _u_count$[ebp]
+	sub	edx, DWORD PTR _v_count$[ebp]
 	push	edx
-	mov	eax, DWORD PTR _xp$[ebp]
+	mov	eax, DWORD PTR _up$[ebp]
 	push	eax
 	movzx	ecx, BYTE PTR _c$[ebp]
 	push	ecx
 	call	_DoBorrow
 	add	esp, 20					; 00000014H
 
-; 199  : }
+; 185  : }
 
 	add	esp, 20					; 00000014H
 	cmp	ebp, esp

@@ -61,14 +61,14 @@ _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_SIZE PROC
 
-; 428  : {
+; 448  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 429  :     return ((u + v - 1) / v);
+; 449  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _v$[ebp]
 	mov	ecx, DWORD PTR _u$[ebp]
@@ -76,7 +76,7 @@ __DIVIDE_CEILING_SIZE PROC
 	xor	edx, edx
 	div	DWORD PTR _v$[ebp]
 
-; 430  : }
+; 450  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -91,14 +91,14 @@ _value_high$ = 8					; size = 4
 _value_low$ = 12					; size = 4
 __FROMWORDTODWORD PROC
 
-; 407  : {
+; 427  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 408  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	edx, edx
 	mov	eax, DWORD PTR _value_high$[ebp]
@@ -108,7 +108,7 @@ __FROMWORDTODWORD PROC
 	or	eax, DWORD PTR _value_low$[ebp]
 	or	edx, ecx
 
-; 409  : }
+; 429  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -124,7 +124,7 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_BYTE PROC
 
-; 279  : {
+; 299  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -133,14 +133,14 @@ __COPY_MEMORY_BYTE PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 280  :     __movsb(d, s, count);
+; 300  :     __movsb(d, s, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsb
 
-; 281  : }
+; 301  : }
 
 	pop	edi
 	pop	esi

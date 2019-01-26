@@ -48,22 +48,9 @@ _INT32_T Equals_X_X(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count)
 }
 
 
-PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w)
+static PMC_STATUS_CODE PMC_Equals_X_I_Imp(NUMBER_HEADER* u, _UINT32_T v, _INT32_T* w)
 {
-    if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
-    {
-        // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-        return (PMC_STATUS_INTERNAL_ERROR);
-    }
-    if (u == NULL)
-        return (PMC_STATUS_ARGUMENT_ERROR);
-    if (w == NULL)
-        return (PMC_STATUS_ARGUMENT_ERROR);
-    NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
-    PMC_STATUS_CODE result;
-    if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
-        return (result);
-    if (nu->IS_ZERO)
+    if (u->IS_ZERO)
     {
         // u が 0 である場合
         if (v == 0)
@@ -85,7 +72,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w)
     else
     {
         // x と y がともに 0 ではない場合
-        __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+        __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
         __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
         if (u_bit_count != v_bit_count)
         {
@@ -96,28 +83,53 @@ PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w)
         {
             // u > 0 && v > 0 かつ u のビット長と v のビット長が等しい場合
             // ⇒ u と v はともに 1 ワードで表現できる
-            *w = nu->BLOCK[0] == v;
+            *w = u->BLOCK[0] == v;
         }
     }
     return (PMC_STATUS_OK);
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w)
+PMC_STATUS_CODE __PMC_CALL PMC_Equals_I_X(_UINT32_T u, HANDLE v, _INT32_T* w)
 {
-    if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
+    if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
     {
-        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+        // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+        return (result);
+    if ((result = PMC_Equals_X_I_Imp((NUMBER_HEADER*)v, u, w)) != PMC_STATUS_OK)
+        return (result);
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+    {
+        // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
         return (PMC_STATUS_INTERNAL_ERROR);
     }
     if (u == NULL)
         return (PMC_STATUS_ARGUMENT_ERROR);
     if (w == NULL)
         return (PMC_STATUS_ARGUMENT_ERROR);
-    NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
     PMC_STATUS_CODE result;
-    if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+    if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
         return (result);
-    if (nu->IS_ZERO)
+    if ((result = PMC_Equals_X_I_Imp((NUMBER_HEADER*)u, v, w)) != PMC_STATUS_OK)
+        return (result);
+    return (PMC_STATUS_OK);
+}
+
+static PMC_STATUS_CODE PMC_Equals_X_L_Imp(NUMBER_HEADER* u, _UINT64_T v, _INT32_T* w)
+{
+    if (u->IS_ZERO)
     {
         // u が 0 である場合
         if (v == 0)
@@ -142,7 +154,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w)
         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
         {
             // _UINT64_T が 1 ワードで表現しきれない場合
-            __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+            __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
             _UINT32_T v_hi;
             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
             if (v_hi == 0)
@@ -158,7 +170,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w)
                 {
                     // u > 0 && v > 0 かつ u のビット長と v のビット長が等しく、かつ v が 1 ワードで表現できる場合
                     // ⇒ u と v はともに 1 ワードで表現できる
-                    *w = nu->BLOCK[0] == v_lo;
+                    *w = u->BLOCK[0] == v_lo;
                 }
             }
             else
@@ -174,7 +186,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w)
                 {
                     // u > 0 && v > 0 かつ u のビット長と v のビット長が等しく、かつ v が 2 ワードで表現できる場合
                     // ⇒ u と v はともに 2 ワードで表現できる
-                    *w = nu->BLOCK[1] == v_hi && nu->BLOCK[0] == v_lo;
+                    *w = u->BLOCK[1] == v_hi && u->BLOCK[0] == v_lo;
                 }
             }
         }
@@ -182,7 +194,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w)
         {
             // _UINT64_T が 1 ワードで表現できる場合
 
-            __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+            __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
             if (u_bit_count != v_bit_count)
             {
@@ -193,11 +205,48 @@ PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w)
             {
                 // u > 0 && v > 0 かつ u のビット長と v のビット長が等しく、かつ v が 1 ワードで表現できる場合
                 // ⇒ u と v はともに 1 ワードで表現できる
-                *w = nu->BLOCK[0] == v;
+                *w = u->BLOCK[0] == v;
             }
         }
-
     }
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_Equals_L_X(_UINT64_T u, HANDLE v, _INT32_T* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+    {
+        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+        return (result);
+    if ((result = PMC_Equals_X_L_Imp((NUMBER_HEADER*)v, u, w)) != PMC_STATUS_OK)
+        return (result);
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
+    {
+        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (u == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
+        return (result);
+    if ((result = PMC_Equals_X_L_Imp((NUMBER_HEADER*)u, v, w)) != PMC_STATUS_OK)
+        return (result);
     return (PMC_STATUS_OK);
 }
 

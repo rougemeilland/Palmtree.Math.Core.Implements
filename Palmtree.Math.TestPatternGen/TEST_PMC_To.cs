@@ -9,14 +9,14 @@ namespace Palmtree.Math.TestPatternGen
         : TestPatternBase
     {
         private string _id;
-        private string _id_i;
-        private string _id_l;
+        private string _id_x_i;
+        private string _id_x_l;
 
         public TEST_PMC_To()
         {
             _id = "PMC_To";
-            _id_i = _id + "_X_I";
-            _id_l = _id + "_X_L";
+            _id_x_i = _id + "_X_I";
+            _id_x_l = _id + "_X_L";
         }
 
         protected override string Id
@@ -40,12 +40,12 @@ namespace Palmtree.Math.TestPatternGen
                     })
                     .Zip(Enumerable.Range(1, int.MaxValue),
                          (item, index) => new { index, item.u, item.desired_status, item.desired_w })
-                    .Select(item => new TestTerm(_id_i,
+                    .Select(item => new TestTerm(_id_x_i,
                                                  item.index,
                                                  new[] { item.u },
                                                  new[] { item.desired_w },
                                                  string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4});",
-                                                               _id_i, item.index,
+                                                               _id_x_i, item.index,
                                                                item.u.BufferParam,
                                                                item.desired_status.PMC_STATUS_CODEValue,
                                                                item.desired_w.BigIntegerValue.ToImmediateHex32String())))
@@ -58,12 +58,12 @@ namespace Palmtree.Math.TestPatternGen
                          })
                          .Zip(Enumerable.Range(1, int.MaxValue),
                               (item, index) => new { index, item.u, item.desired_status, item.desired_w })
-                         .Select(item => new TestTerm(_id_l,
+                         .Select(item => new TestTerm(_id_x_l,
                                                       item.index,
                                                       new[] { item.u },
                                                       new[] { item.desired_w },
                                                       string.Format("TEST_{0}(env, ep, {1}, {2}, {3}, {4});",
-                                                                    _id_l, item.index,
+                                                                    _id_x_l, item.index,
                                                                     item.u.BufferParam,
                                                                     item.desired_status.PMC_STATUS_CODEValue,
                                                                     item.desired_w.BigIntegerValue.ToImmediateHex64String())))));

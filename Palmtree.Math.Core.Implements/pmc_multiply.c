@@ -34,9 +34,9 @@
 #include "pmc_internal.h"
 
 
-static PMC_STATUS_CODE (*fp_Multiply_X_1W)(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* z);
-static PMC_STATUS_CODE (*fp_Multiply_X_2W)(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE y_lo, NUMBER_HEADER* z);
-static PMC_STATUS_CODE (*fp_Multiply_X_X)(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z);
+static PMC_STATUS_CODE (*fp_Multiply_X_1W)(NUMBER_HEADER* u, __UNIT_TYPE v, NUMBER_HEADER* w);
+static PMC_STATUS_CODE (*fp_Multiply_X_2W)(NUMBER_HEADER* u, __UNIT_TYPE v_hi, __UNIT_TYPE v_lo, NUMBER_HEADER* w);
+static PMC_STATUS_CODE (*fp_Multiply_X_X)(NUMBER_HEADER* u, NUMBER_HEADER* v, NUMBER_HEADER* w);
 
 
 __inline static __UNIT_TYPE _MULTIPLY_DIGIT_UNIT(__UNIT_TYPE k, __UNIT_TYPE* up, __UNIT_TYPE v, __UNIT_TYPE* wp)
@@ -358,252 +358,250 @@ __inline static PMC_STATUS_CODE Multiply_WORD_using_MULX_ADCX(__UNIT_TYPE* up, _
 }
 
 
-__inline static PMC_STATUS_CODE Multiply_X_1W_using_MUL_ADC(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* z)
+__inline static PMC_STATUS_CODE Multiply_X_1W_using_MUL_ADC(NUMBER_HEADER* u, __UNIT_TYPE v, NUMBER_HEADER* w)
 {
-    Multiply_WORD_using_MUL_ADC(&x->BLOCK[0], x->UNIT_WORD_COUNT, y, &z->BLOCK[0]);
+    Multiply_WORD_using_MUL_ADC(&u->BLOCK[0], u->UNIT_WORD_COUNT, v, &w->BLOCK[0]);
     return (PMC_STATUS_OK);
 }
 
-__inline static PMC_STATUS_CODE Multiply_X_1W_using_MULX_ADCX(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* z)
+__inline static PMC_STATUS_CODE Multiply_X_1W_using_MULX_ADCX(NUMBER_HEADER* u, __UNIT_TYPE v, NUMBER_HEADER* w)
 {
-    Multiply_WORD_using_MULX_ADCX(&x->BLOCK[0], x->UNIT_WORD_COUNT, y, &z->BLOCK[0]);
+    Multiply_WORD_using_MULX_ADCX(&u->BLOCK[0], u->UNIT_WORD_COUNT, v, &w->BLOCK[0]);
     return (PMC_STATUS_OK);
 }
 
-__inline static PMC_STATUS_CODE Multiply_X_1W(NUMBER_HEADER* x, __UNIT_TYPE y, NUMBER_HEADER* z)
+__inline static PMC_STATUS_CODE Multiply_X_2W_using_MUL_ADC(NUMBER_HEADER* u, __UNIT_TYPE v_hi, __UNIT_TYPE v_lo, NUMBER_HEADER* w)
 {
-    return ((*fp_Multiply_X_1W)(x, y, z));
-}
-
-__inline static PMC_STATUS_CODE Multiply_X_2W_using_MUL_ADC(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE y_lo, NUMBER_HEADER* z)
-{
-    Multiply_WORD_using_MUL_ADC(&x->BLOCK[0], x->UNIT_WORD_COUNT, y_lo, &z->BLOCK[0]);
-    Multiply_WORD_using_MUL_ADC(&x->BLOCK[0], x->UNIT_WORD_COUNT, y_hi, &z->BLOCK[1]);
+    Multiply_WORD_using_MUL_ADC(&u->BLOCK[0], u->UNIT_WORD_COUNT, v_lo, &w->BLOCK[0]);
+    Multiply_WORD_using_MUL_ADC(&u->BLOCK[0], u->UNIT_WORD_COUNT, v_hi, &w->BLOCK[1]);
     return (PMC_STATUS_OK);
 }
 
-__inline static PMC_STATUS_CODE Multiply_X_2W_using_MULX_ADCX(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE y_lo, NUMBER_HEADER* z)
+__inline static PMC_STATUS_CODE Multiply_X_2W_using_MULX_ADCX(NUMBER_HEADER* u, __UNIT_TYPE v_hi, __UNIT_TYPE w_lo, NUMBER_HEADER* z)
 {
-    Multiply_WORD_using_MULX_ADCX(&x->BLOCK[0], x->UNIT_WORD_COUNT, y_lo, &z->BLOCK[0]);
-    Multiply_WORD_using_MULX_ADCX(&x->BLOCK[0], x->UNIT_WORD_COUNT, y_hi, &z->BLOCK[1]);
+    Multiply_WORD_using_MULX_ADCX(&u->BLOCK[0], u->UNIT_WORD_COUNT, w_lo, &z->BLOCK[0]);
+    Multiply_WORD_using_MULX_ADCX(&u->BLOCK[0], u->UNIT_WORD_COUNT, v_hi, &z->BLOCK[1]);
     return (PMC_STATUS_OK);
 }
 
-__inline static PMC_STATUS_CODE Multiply_X_2W(NUMBER_HEADER* x, __UNIT_TYPE y_hi, __UNIT_TYPE y_lo, NUMBER_HEADER* z)
-{
-    return ((*fp_Multiply_X_2W)(x, y_hi, y_lo, z));
-}
-
-__inline static PMC_STATUS_CODE Multiply_X_X_using_MUL_ADC(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z)
+__inline static PMC_STATUS_CODE Multiply_X_X_using_MUL_ADC(NUMBER_HEADER* u, NUMBER_HEADER* v, NUMBER_HEADER* w)
 {
     // x のワード長が y のワード長以上であるようにする
-    if (x->UNIT_WORD_COUNT < y->UNIT_WORD_COUNT)
+    if (u->UNIT_WORD_COUNT < v->UNIT_WORD_COUNT)
     {
-        NUMBER_HEADER* t = x;
-        x = y;
-        y = t;
+        NUMBER_HEADER* t = u;
+        u = v;
+        v = t;
     }
-    __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
-    __UNIT_TYPE y_count = y->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->BLOCK_COUNT;
-    __UNIT_TYPE* xp = &x->BLOCK[0];
-    __UNIT_TYPE* yp = &y->BLOCK[0];
-    __UNIT_TYPE* zp = &z->BLOCK[0];
+    __UNIT_TYPE u_count = u->UNIT_WORD_COUNT;
+    __UNIT_TYPE v_count = v->UNIT_WORD_COUNT;
+    __UNIT_TYPE w_count = w->BLOCK_COUNT;
+    __UNIT_TYPE* up = &u->BLOCK[0];
+    __UNIT_TYPE* vp = &v->BLOCK[0];
+    __UNIT_TYPE* wp = &w->BLOCK[0];
 
     do
     {
-        Multiply_WORD_using_MUL_ADC(xp, x_count, *yp, zp);
-        ++yp;
-        ++zp;
-        --y_count;
-    } while (y_count != 0);
+        Multiply_WORD_using_MUL_ADC(up, u_count, *vp, wp);
+        ++vp;
+        ++wp;
+        --v_count;
+    } while (v_count != 0);
 
     return (PMC_STATUS_OK);
 }
 
-__inline static PMC_STATUS_CODE Multiply_X_X_using_MULX_ADCX(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z)
+__inline static PMC_STATUS_CODE Multiply_X_X_using_MULX_ADCX(NUMBER_HEADER* u, NUMBER_HEADER* v, NUMBER_HEADER* w)
 {
     // x のワード長が y のワード長以上であるようにする
-    if (x->UNIT_WORD_COUNT < y->UNIT_WORD_COUNT)
+    if (u->UNIT_WORD_COUNT < v->UNIT_WORD_COUNT)
     {
-        NUMBER_HEADER* t = x;
-        x = y;
-        y = t;
+        NUMBER_HEADER* t = u;
+        u = v;
+        v = t;
     }
-    __UNIT_TYPE x_count = x->UNIT_WORD_COUNT;
-    __UNIT_TYPE y_count = y->UNIT_WORD_COUNT;
-    __UNIT_TYPE z_count = z->BLOCK_COUNT;
-    __UNIT_TYPE* xp = &x->BLOCK[0];
-    __UNIT_TYPE* yp = &y->BLOCK[0];
-    __UNIT_TYPE* zp = &z->BLOCK[0];
+    __UNIT_TYPE u_count = u->UNIT_WORD_COUNT;
+    __UNIT_TYPE v_count = v->UNIT_WORD_COUNT;
+    __UNIT_TYPE w_count = w->BLOCK_COUNT;
+    __UNIT_TYPE* up = &u->BLOCK[0];
+    __UNIT_TYPE* vp = &v->BLOCK[0];
+    __UNIT_TYPE* wp = &w->BLOCK[0];
 
     do
     {
-        Multiply_WORD_using_MULX_ADCX(xp, x_count, *yp, zp);
-        ++yp;
-        ++zp;
-        --y_count;
-    } while (y_count != 0);
+        Multiply_WORD_using_MULX_ADCX(up, u_count, *vp, wp);
+        ++vp;
+        ++wp;
+        --v_count;
+    } while (v_count != 0);
 
     return (PMC_STATUS_OK);
 }
 
-static PMC_STATUS_CODE Multiply_X_X(NUMBER_HEADER* x, NUMBER_HEADER* y, NUMBER_HEADER* z)
+static PMC_STATUS_CODE PMC_Multiply_X_I_Imp(NUMBER_HEADER* u, _UINT32_T v, NUMBER_HEADER** w)
 {
-    return ((*fp_Multiply_X_X)(x, y, z));
-}
-
-PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_I(HANDLE x, _UINT32_T y, HANDLE* o)
-{
-    if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
-    {
-        // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-        return (PMC_STATUS_INTERNAL_ERROR);
-    }
-    if (x == NULL)
-        return (PMC_STATUS_ARGUMENT_ERROR);
-    if (o == NULL)
-        return (PMC_STATUS_ARGUMENT_ERROR);
-    NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
     PMC_STATUS_CODE result;
-    if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
-        return (result);
-    NUMBER_HEADER* nz;
-    if (nx->IS_ZERO)
+    if (u->IS_ZERO)
     {
-        // x が 0 である場合
+        // u が 0 である場合
 
-        // y の値にかかわらず 0 を返す。
-        *o = &number_zero;
+        // v の値にかかわらず 0 を返す。
+        *w = &number_zero;
     }
-    else if (nx->IS_ONE)
+    else if (u->IS_ONE)
     {
-        // x が 1 である場合
-        if (y == 0)
+        // u が 1 である場合
+        if (v == 0)
         {
-            // y が 0 である場合
+            // v が 0 である場合
 
             //  0  を返す。
-            *o = &number_zero;
+            *w = &number_zero;
         }
         else
         {
             // y が 0 ではない場合
 
-            // 乗算結果は y に等しいため、y の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-            if ((result = From_I_Imp(y, &nz)) != PMC_STATUS_OK)
+            // 乗算結果は v に等しいため、v の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+            if ((result = From_I_Imp(v, w)) != PMC_STATUS_OK)
                 return (result);
-            *o = nz;
         }
     }
     else
     {
-        // x が 0 と 1 のどちらでもない場合
+        // u が 0 と 1 のどちらでもない場合
 
-        if (y == 0)
+        if (v == 0)
         {
-            // y が 0 である場合
+            // v が 0 である場合
 
             //  0  を返す。
-            nz = &number_zero;
+            *w = &number_zero;
         }
-        else if (y == 1)
+        else if (v == 1)
         {
-            // y が 1 である場合
+            // v が 1 である場合
 
-            // 乗算結果は x に等しいため、x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-            if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+            // 乗算結果は u に等しいため、u の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
+            if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
                 return (result);
         }
         else
         {
-            // x と y がともに 0 、1 のどちらでもない場合
+            // u と v がともに 0 、1 のどちらでもない場合
 
-            // x と y の積を計算する
-            __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
-            __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y);
-            __UNIT_TYPE z_bit_count = x_bit_count + y_bit_count;
-            __UNIT_TYPE nz_light_check_code;
-            if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+            // u と v の積を計算する
+            __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+            __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
+            __UNIT_TYPE w_bit_count = u_bit_count + v_bit_count;
+            __UNIT_TYPE w_light_check_code;
+            if ((result = AllocateNumber(w, w_bit_count, &w_light_check_code)) != PMC_STATUS_OK)
                 return (result);
-            if ((result = Multiply_X_1W(nx, y, nz)) != PMC_STATUS_OK)
+            if ((result = (*fp_Multiply_X_1W)(u, v, *w)) != PMC_STATUS_OK)
             {
-                DeallocateNumber(nz);
+                DeallocateNumber(*w);
                 return (result);
             }
-            if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+            if ((result = CheckBlockLight((*w)->BLOCK, w_light_check_code)) != PMC_STATUS_OK)
                 return (result);
-            CommitNumber(nz);
+            CommitNumber(*w);
         }
-        *o = nz;
     }
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_Multiply_I_X(_UINT32_T u, HANDLE v, HANDLE* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+    {
+        // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+        return (result);
+    if ((result = PMC_Multiply_X_I_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+        return (result);
 #ifdef _DEBUG
-    if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+    if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
         return (result);
 #endif
     return (PMC_STATUS_OK);
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
+PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_I(HANDLE u, _UINT32_T v, HANDLE* w)
 {
-    if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(y) * 8)
+    if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
     {
-        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+        // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
         return (PMC_STATUS_INTERNAL_ERROR);
     }
-    if (x == NULL)
+    if (u == NULL)
         return (PMC_STATUS_ARGUMENT_ERROR);
-    if (o == NULL)
+    if (w == NULL)
         return (PMC_STATUS_ARGUMENT_ERROR);
-    NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
     PMC_STATUS_CODE result;
-    if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+    if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
         return (result);
-    NUMBER_HEADER* nz;
-    if (nx->IS_ZERO)
+    if ((result = PMC_Multiply_X_I_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+        return (result);
+#ifdef _DEBUG
+    if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+        return (result);
+#endif
+    return (PMC_STATUS_OK);
+}
+
+static PMC_STATUS_CODE PMC_Multiply_X_L_Imp(NUMBER_HEADER* u, _UINT64_T v, NUMBER_HEADER** w)
+{
+    PMC_STATUS_CODE result;
+    if (u->IS_ZERO)
     {
         // x が 0 である場合
 
         // y の値にかかわらず 0 を返す。
-        *o = &number_zero;
+        *w = &number_zero;
     }
-    else if (nx->IS_ONE)
+    else if (u->IS_ONE)
     {
         // x が 1 である場合
-        if (y == 0)
+        if (v == 0)
         {
             // y が 0 である場合
 
             //  0  を返す。
-            *o = &number_zero;
+            *w = &number_zero;
         }
         else
         {
             // y が 0 ではない場合
 
             // 乗算結果は y に等しいため、y の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-            if ((result = From_L_Imp(y, &nz)) != PMC_STATUS_OK)
+            if ((result = From_L_Imp(v, w)) != PMC_STATUS_OK)
                 return (result);
-            *o = nz;
         }
     }
     else
     {
         // x が 0 と 1 のどちらでもない場合
 
-        if (y == 0)
+        if (v == 0)
         {
             // y が 0 である場合
 
             //  0  を返す。
-            nz = &number_zero;
+            *w = &number_zero;
         }
-        else if (y == 1)
+        else if (v == 1)
         {
             // y が 1 である場合
 
             // 乗算結果は x に等しいため、x の値を持つ NUMBER_HEADER 構造体を獲得し、呼び出し元へ返す。
-            if ((result = DuplicateNumber(nx, &nz)) != PMC_STATUS_OK)
+            if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
                 return (result);
         }
         else
@@ -611,72 +609,112 @@ PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_L(HANDLE x, _UINT64_T y, HANDLE* o)
             // x と y がともに 0 、1 のどちらでもない場合
 
             // x と y の積を計算する
-            if (__UNIT_TYPE_BIT_COUNT < sizeof(y) * 8)
+            if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
             {
                 // _UINT64_T が 1 ワードで表現しきれない場合
 
-                __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
+                __UNIT_TYPE x_bit_count = u->UNIT_BIT_COUNT;
                 _UINT32_T y_hi;
-                _UINT32_T y_lo = _FROMDWORDTOWORD(y, &y_hi);
+                _UINT32_T y_lo = _FROMDWORDTOWORD(v, &y_hi);
                 if (y_hi == 0)
                 {
                     // y の値が 32bit で表現可能な場合
                     __UNIT_TYPE y_bit_count = sizeof(y_lo) * 8 - _LZCNT_ALT_32(y_lo);
                     __UNIT_TYPE z_bit_count = x_bit_count + y_bit_count;
                     __UNIT_TYPE nz_light_check_code;
-                    if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+                    if ((result = AllocateNumber(w, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                         return (result);
-                    if ((result = Multiply_X_1W(nx, y_lo, nz)) != PMC_STATUS_OK)
+                    if ((result = (*fp_Multiply_X_1W)(u, y_lo, *w)) != PMC_STATUS_OK)
                     {
-                        DeallocateNumber(nz);
+                        DeallocateNumber(*w);
                         return (result);
                     }
-                    if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                    if ((result = CheckBlockLight((*w)->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
                         return (result);
                 }
                 else
                 {
                     // y の値が 32bit では表現できない場合
-                    __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_32(y_hi);
+                    __UNIT_TYPE y_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(y_hi);
                     __UNIT_TYPE z_bit_count = x_bit_count + y_bit_count;
                     __UNIT_TYPE nz_light_check_code;
-                    if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+                    if ((result = AllocateNumber(w, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                         return (result);
-                    if ((result = Multiply_X_2W(nx, y_hi, y_lo, nz)) != PMC_STATUS_OK)
+                    if ((result = (*fp_Multiply_X_2W)(u, y_hi, y_lo, *w)) != PMC_STATUS_OK)
                     {
-                        DeallocateNumber(nz);
+                        DeallocateNumber(*w);
                         return (result);
                     }
-                    if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                    if ((result = CheckBlockLight((*w)->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
                         return (result);
                 }
-                CommitNumber(nz);
+                CommitNumber(*w);
             }
             else
             {
                 // _UINT64_T が 1 ワードで表現できる場合
 
-                __UNIT_TYPE x_bit_count = nx->UNIT_BIT_COUNT;
-                __UNIT_TYPE y_bit_count = sizeof(y) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)y);
+                __UNIT_TYPE x_bit_count = u->UNIT_BIT_COUNT;
+                __UNIT_TYPE y_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
                 __UNIT_TYPE z_bit_count = x_bit_count + y_bit_count;
                 __UNIT_TYPE nz_light_check_code;
-                if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
+                if ((result = AllocateNumber(w, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                     return (result);
-                if ((result = Multiply_X_1W(nx, (__UNIT_TYPE)y, nz)) != PMC_STATUS_OK)
+                if ((result = (*fp_Multiply_X_1W)(u, (__UNIT_TYPE)v, *w)) != PMC_STATUS_OK)
                 {
-                    DeallocateNumber(nz);
+                    DeallocateNumber(*w);
                     return (result);
                 }
-                if ((result = CheckBlockLight(nz->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
+                if ((result = CheckBlockLight((*w)->BLOCK, nz_light_check_code)) != PMC_STATUS_OK)
                     return (result);
-                CommitNumber(nz);
+                CommitNumber(*w);
             }
-
         }
-        *o = nz;
     }
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_Multiply_L_X(_UINT64_T u, HANDLE v, HANDLE* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+    {
+        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (v == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+        return (result);
+    if ((result = PMC_Multiply_X_L_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+        return (result);
 #ifdef _DEBUG
-    if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+    if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+        return (result);
+#endif
+    return (PMC_STATUS_OK);
+}
+
+PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_L(HANDLE u, _UINT64_T v, HANDLE* w)
+{
+    if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
+    {
+        // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+        return (PMC_STATUS_INTERNAL_ERROR);
+    }
+    if (u == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    if (w == NULL)
+        return (PMC_STATUS_ARGUMENT_ERROR);
+    PMC_STATUS_CODE result;
+    if ((result = CheckNumber((NUMBER_HEADER*)u)) != PMC_STATUS_OK)
+        return (result);
+    if ((result = PMC_Multiply_X_L_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+        return (result);
+#ifdef _DEBUG
+    if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
         return (result);
 #endif
     return (PMC_STATUS_OK);
@@ -755,7 +793,7 @@ PMC_STATUS_CODE __PMC_CALL PMC_Multiply_X_X(HANDLE x, HANDLE y, HANDLE* o)
             __UNIT_TYPE nz_light_check_code;
             if ((result = AllocateNumber(&nz, z_bit_count, &nz_light_check_code)) != PMC_STATUS_OK)
                 return (result);
-            if ((result = Multiply_X_X(nx, ny, nz)) != PMC_STATUS_OK)
+            if ((result = (*fp_Multiply_X_X)(nx, ny, nz)) != PMC_STATUS_OK)
             {
                 DeallocateNumber(nz);
                 return (result);
