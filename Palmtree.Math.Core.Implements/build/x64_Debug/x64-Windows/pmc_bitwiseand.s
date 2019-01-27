@@ -7,7 +7,7 @@
 _DIVIDE_CEILING_UNIT:
 .LFB4326:
 	.file 1 "pmc_internal.h"
-	.loc 1 443 1
+	.loc 1 452 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -19,16 +19,16 @@ _DIVIDE_CEILING_UNIT:
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
 	movq	%rdx, 24(%rbp)
-	.loc 1 444 16
+	.loc 1 453 16
 	movq	16(%rbp), %rdx
 	movq	24(%rbp), %rax
 	addq	%rdx, %rax
-	.loc 1 444 20
+	.loc 1 453 20
 	subq	$1, %rax
-	.loc 1 444 25
+	.loc 1 453 25
 	movl	$0, %edx
 	divq	24(%rbp)
-	.loc 1 445 1
+	.loc 1 454 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -40,7 +40,7 @@ _DIVIDE_CEILING_UNIT:
 	.seh_proc	_MINIMUM_UNIT
 _MINIMUM_UNIT:
 .LFB4329:
-	.loc 1 458 1
+	.loc 1 467 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -52,11 +52,11 @@ _MINIMUM_UNIT:
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
 	movq	%rdx, 24(%rbp)
-	.loc 1 459 24
+	.loc 1 468 24
 	movq	24(%rbp), %rax
 	cmpq	%rax, 16(%rbp)
 	cmovbe	16(%rbp), %rax
-	.loc 1 460 1
+	.loc 1 469 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -67,7 +67,7 @@ _MINIMUM_UNIT:
 	.def	BitwiseAnd_X_X;	.scl	3;	.type	32;	.endef
 	.seh_proc	BitwiseAnd_X_X
 BitwiseAnd_X_X:
-.LFB4367:
+.LFB4370:
 	.file 2 "pmc_bitwiseand.c"
 	.loc 2 38 1
 	.cfi_startproc
@@ -1098,13 +1098,13 @@ BitwiseAnd_X_X:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4367:
+.LFE4370:
 	.seh_endproc
 	.globl	PMC_BitwiseAnd_I_X
 	.def	PMC_BitwiseAnd_I_X;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_BitwiseAnd_I_X
 PMC_BitwiseAnd_I_X:
-.LFB4368:
+.LFB4371:
 	.loc 2 148 1
 	.cfi_startproc
 	pushq	%rbp
@@ -1190,13 +1190,13 @@ PMC_BitwiseAnd_I_X:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4368:
+.LFE4371:
 	.seh_endproc
 	.globl	PMC_BitwiseAnd_X_I
 	.def	PMC_BitwiseAnd_X_I;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_BitwiseAnd_X_I
 PMC_BitwiseAnd_X_I:
-.LFB4369:
+.LFB4372:
 	.loc 2 183 1
 	.cfi_startproc
 	pushq	%rbp
@@ -1282,13 +1282,13 @@ PMC_BitwiseAnd_X_I:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4369:
+.LFE4372:
 	.seh_endproc
 	.globl	PMC_BitwiseAnd_L_X
 	.def	PMC_BitwiseAnd_L_X;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_BitwiseAnd_L_X
 PMC_BitwiseAnd_L_X:
-.LFB4370:
+.LFB4373:
 	.loc 2 218 1
 	.cfi_startproc
 	pushq	%rbp
@@ -1374,13 +1374,13 @@ PMC_BitwiseAnd_L_X:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4370:
+.LFE4373:
 	.seh_endproc
 	.globl	PMC_BitwiseAnd_X_L
 	.def	PMC_BitwiseAnd_X_L;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_BitwiseAnd_X_L
 PMC_BitwiseAnd_X_L:
-.LFB4371:
+.LFB4374:
 	.loc 2 267 1
 	.cfi_startproc
 	pushq	%rbp
@@ -1466,13 +1466,13 @@ PMC_BitwiseAnd_X_L:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4371:
+.LFE4374:
 	.seh_endproc
 	.globl	PMC_BitwiseAnd_X_X
 	.def	PMC_BitwiseAnd_X_X;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_BitwiseAnd_X_X
 PMC_BitwiseAnd_X_X:
-.LFB4372:
+.LFB4375:
 	.loc 2 316 1
 	.cfi_startproc
 	pushq	%rbp
@@ -1679,13 +1679,13 @@ PMC_BitwiseAnd_X_X:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4372:
+.LFE4375:
 	.seh_endproc
 	.globl	Initialize_BitwiseAnd
 	.def	Initialize_BitwiseAnd;	.scl	2;	.type	32;	.endef
 	.seh_proc	Initialize_BitwiseAnd
 Initialize_BitwiseAnd:
-.LFB4373:
+.LFB4376:
 	.loc 2 364 1
 	.cfi_startproc
 	pushq	%rbp
@@ -1705,7 +1705,7 @@ Initialize_BitwiseAnd:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4373:
+.LFE4376:
 	.seh_endproc
 .Letext0:
 	.file 3 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h"
@@ -5811,8 +5811,8 @@ Initialize_BitwiseAnd:
 	.word	0x16b
 	.byte	0x11
 	.long	0x4a2a
-	.quad	.LFB4373
-	.quad	.LFE4373-.LFB4373
+	.quad	.LFB4376
+	.quad	.LFE4376-.LFB4376
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4da8
@@ -5835,8 +5835,8 @@ Initialize_BitwiseAnd:
 	.word	0x13b
 	.byte	0x11
 	.long	0x4a2a
-	.quad	.LFB4372
-	.quad	.LFE4372-.LFB4372
+	.quad	.LFB4375
+	.quad	.LFE4375-.LFB4375
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4ede
@@ -5962,8 +5962,8 @@ Initialize_BitwiseAnd:
 	.word	0x10a
 	.byte	0x11
 	.long	0x4a2a
-	.quad	.LFB4371
-	.quad	.LFE4371-.LFB4371
+	.quad	.LFB4374
+	.quad	.LFE4374-.LFB4374
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4f9a
@@ -6045,8 +6045,8 @@ Initialize_BitwiseAnd:
 	.byte	0xd9
 	.byte	0x11
 	.long	0x4a2a
-	.quad	.LFB4370
-	.quad	.LFE4370-.LFB4370
+	.quad	.LFB4373
+	.quad	.LFE4373-.LFB4373
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5046
@@ -6128,8 +6128,8 @@ Initialize_BitwiseAnd:
 	.byte	0xb6
 	.byte	0x11
 	.long	0x4a2a
-	.quad	.LFB4369
-	.quad	.LFE4369-.LFB4369
+	.quad	.LFB4372
+	.quad	.LFE4372-.LFB4372
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x50bc
@@ -6185,8 +6185,8 @@ Initialize_BitwiseAnd:
 	.byte	0x93
 	.byte	0x11
 	.long	0x4a2a
-	.quad	.LFB4368
-	.quad	.LFE4368-.LFB4368
+	.quad	.LFB4371
+	.quad	.LFE4371-.LFB4371
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5132
@@ -6241,8 +6241,8 @@ Initialize_BitwiseAnd:
 	.byte	0x2
 	.byte	0x25
 	.byte	0xd
-	.quad	.LFB4367
-	.quad	.LFE4367-.LFB4367
+	.quad	.LFB4370
+	.quad	.LFE4370-.LFB4370
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x51a7
@@ -6295,7 +6295,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x27
 	.ascii "_MINIMUM_UNIT\0"
 	.byte	0x1
-	.word	0x1c9
+	.word	0x1d2
 	.byte	0x1d
 	.long	0x4bd2
 	.quad	.LFB4329
@@ -6306,7 +6306,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x1a
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x1c9
+	.word	0x1d2
 	.byte	0x37
 	.long	0x4bd2
 	.uleb128 0x2
@@ -6315,7 +6315,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x1a
 	.ascii "y\0"
 	.byte	0x1
-	.word	0x1c9
+	.word	0x1d2
 	.byte	0x46
 	.long	0x4bd2
 	.uleb128 0x2
@@ -6325,7 +6325,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x28
 	.ascii "_DIVIDE_CEILING_UNIT\0"
 	.byte	0x1
-	.word	0x1ba
+	.word	0x1c3
 	.byte	0x1d
 	.long	0x4bd2
 	.quad	.LFB4326
@@ -6335,7 +6335,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x1a
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x1ba
+	.word	0x1c3
 	.byte	0x3e
 	.long	0x4bd2
 	.uleb128 0x2
@@ -6344,7 +6344,7 @@ Initialize_BitwiseAnd:
 	.uleb128 0x1a
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x1ba
+	.word	0x1c3
 	.byte	0x4d
 	.long	0x4bd2
 	.uleb128 0x2

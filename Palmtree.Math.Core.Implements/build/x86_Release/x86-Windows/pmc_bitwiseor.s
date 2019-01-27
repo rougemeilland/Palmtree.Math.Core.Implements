@@ -3,7 +3,7 @@
 	.p2align 4,,15
 	.def	_PMC_BitwiseOr_X_L_Imp;	.scl	3;	.type	32;	.endef
 _PMC_BitwiseOr_X_L_Imp:
-LFB5491:
+LFB5493:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -58,7 +58,7 @@ L2:
 	testl	%edx, %edx
 	je	L7
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -168,7 +168,7 @@ L21:
 L6:
 	.cfi_restore_state
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP
@@ -219,11 +219,11 @@ L22:
 	movl	%ecx, 4(%eax)
 	jmp	L14
 	.cfi_endproc
-LFE5491:
+LFE5493:
 	.p2align 4,,15
 	.def	_PMC_BitwiseOr_X_I_Imp;	.scl	3;	.type	32;	.endef
 _PMC_BitwiseOr_X_I_Imp:
-LFB5488:
+LFB5490:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -294,7 +294,7 @@ L27:
 	leal	44(%esp), %ecx
 	movl	%edx, 28(%esp)
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %edx, %eax
  # 0 "" 2
 /NO_APP
@@ -361,12 +361,12 @@ L25:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5488:
+LFE5490:
 	.p2align 4,,15
 	.globl	_PMC_BitwiseOr_I_X@12
 	.def	_PMC_BitwiseOr_I_X@12;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseOr_I_X@12:
-LFB5489:
+LFB5491:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -407,12 +407,12 @@ L34:
 	movl	$-1, %eax
 	jmp	L32
 	.cfi_endproc
-LFE5489:
+LFE5491:
 	.p2align 4,,15
 	.globl	_PMC_BitwiseOr_X_I@12
 	.def	_PMC_BitwiseOr_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseOr_X_I@12:
-LFB5490:
+LFB5492:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -453,12 +453,12 @@ L38:
 	movl	$-1, %eax
 	jmp	L36
 	.cfi_endproc
-LFE5490:
+LFE5492:
 	.p2align 4,,15
 	.globl	_PMC_BitwiseOr_L_X@16
 	.def	_PMC_BitwiseOr_L_X@16;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseOr_L_X@16:
-LFB5492:
+LFB5494:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -504,12 +504,12 @@ L42:
 	movl	$-1, %eax
 	jmp	L40
 	.cfi_endproc
-LFE5492:
+LFE5494:
 	.p2align 4,,15
 	.globl	_PMC_BitwiseOr_X_L@16
 	.def	_PMC_BitwiseOr_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseOr_X_L@16:
-LFB5493:
+LFB5495:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -555,12 +555,12 @@ L46:
 	movl	$-1, %eax
 	jmp	L44
 	.cfi_endproc
-LFE5493:
+LFE5495:
 	.p2align 4,,15
 	.globl	_PMC_BitwiseOr_X_X@12
 	.def	_PMC_BitwiseOr_X_X@12;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseOr_X_X@12:
-LFB5494:
+LFB5496:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -982,17 +982,17 @@ L63:
 	movl	$-1, %ebx
 	jmp	L48
 	.cfi_endproc
-LFE5494:
+LFE5496:
 	.p2align 4,,15
 	.globl	_Initialize_BitwiseOr
 	.def	_Initialize_BitwiseOr;	.scl	2;	.type	32;	.endef
 _Initialize_BitwiseOr:
-LFB5495:
+LFB5497:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5495:
+LFE5497:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	_CheckBlockLight;	.scl	2;	.type	32;	.endef

@@ -151,8 +151,11 @@ extern void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UN
 // 指定されたワード列を左にシフトして指定された領域に格納する。シフト数は 0 であってはならない。
 extern void LeftShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
 
-// 多倍長整数の減算を行う。x と y はどちらも 0 であってはならない。また、x のワード長は y のワード長以上でなければならない。
+// 多倍長整数の減算を行う。u と v はどちらも 0 であってはならない。また、x のワード長は y のワード長以上でなければならない。
 extern PMC_STATUS_CODE Subtruct_Imp(__UNIT_TYPE* up, __UNIT_TYPE u_count, __UNIT_TYPE* vp, __UNIT_TYPE v_count, __UNIT_TYPE* wp, __UNIT_TYPE w_count);
+
+// 多倍長整数の乗算を行う。u と v はどちらも 0 であってはならない。
+extern void Multiply_X_X_Imp(__UNIT_TYPE* u, __UNIT_TYPE u_count, __UNIT_TYPE* v, __UNIT_TYPE v_count, __UNIT_TYPE* w);
 
 // 多倍長整数を 1 ワードで除算を行う。
 extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
@@ -208,8 +211,12 @@ extern PMC_STATUS_CODE Initialize_Parse(PROCESSOR_FEATURES* feature);
 // 最大公約数の計算の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_GreatestCommonDivisor(PROCESSOR_FEATURES* feature);
 
-// エントリポイントに登録される関数群
+// べき乗計算の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_Pow(PROCESSOR_FEATURES* feature);
 
+//
+// エントリポイントに登録される関数群
+//
 extern void __PMC_CALL PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
 extern PMC_STATUS_CODE __PMC_CALL PMC_From_I(_UINT32_T x, HANDLE* o);
@@ -291,6 +298,8 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_GreatestCommonDivisor_L_X(_UINT64_T u, HAN
 extern PMC_STATUS_CODE __PMC_CALL PMC_GreatestCommonDivisor_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_GreatestCommonDivisor_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_Pow_X_I(HANDLE x, _UINT32_T n, HANDLE* z);
 #pragma endregion
 
 
@@ -982,6 +991,53 @@ __inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 #error unknown platform
 #endif
     return (pos);
+}
+
+// bit の並びを逆順にする
+__inline static _UINT32_T _REVERSE_BIT_ORDER_32(_UINT32_T x)
+{
+    x = ((x & 0x55555555U) << 1) | ((x & 0xaaaaaaaaU) >> 1);
+    x = ((x & 0x33333333U) << 2) | ((x & 0xccccccccU) >> 2);
+    x = ((x & 0x0f0f0f0fU) << 4) | ((x & 0xf0f0f0f0U) >> 4);
+    x = ((x & 0x00ff00ffU) << 8) | ((x & 0xff00ff00U) >> 8);
+    x = (x << 16) | (x >> 16);
+    return (x);
+}
+
+#ifdef _M_IX64
+// bit の並びを逆順にする
+__inline static _UINT64_T _REVERSE_BIT_ORDER_64(_UINT64_T x)
+{
+    x = ((x & 0x5555555555555555UL) << 1) | ((x & 0xaaaaaaaaaaaaaaaaUL) >> 1);
+    x = ((x & 0x3333333333333333UL) << 2) | ((x & 0xccccccccccccccccUL) >> 2);
+    x = ((x & 0x0f0f0f0f0f0f0f0fUL) << 4) | ((x & 0xf0f0f0f0f0f0f0f0UL) >> 4);
+    x = ((x & 0x00ff00ff00ff00ffUL) << 8) | ((x & 0xff00ff00ff00ff00UL) >> 8);
+    x = ((x & 0x0000ffff0000ffffUL) << 16) | ((x & 0xffff0000ffff0000UL) >> 16);
+    x = (x << 32) | (x >> 32);
+    return (x);
+}
+#endif
+
+// bit の並びを逆順にする
+__inline static __UNIT_TYPE _REVERSE_BIT_ORDER_UNIT(__UNIT_TYPE x)
+{
+#ifdef _M_IX86
+    x = ((x & 0x55555555U) << 1) | ((x & 0xaaaaaaaaU) >> 1);
+    x = ((x & 0x33333333U) << 2) | ((x & 0xccccccccU) >> 2);
+    x = ((x & 0x0f0f0f0fU) << 4) | ((x & 0xf0f0f0f0U) >> 4);
+    x = ((x & 0x00ff00ffU) << 8) | ((x & 0xff00ff00U) >> 8);
+    x = (x << 16) | (x >> 16);
+#elif defined(_M_IX64)
+    x = ((x & 0x5555555555555555UL) << 1) | ((x & 0xaaaaaaaaaaaaaaaaUL) >> 1);
+    x = ((x & 0x3333333333333333UL) << 2) | ((x & 0xccccccccccccccccUL) >> 2);
+    x = ((x & 0x0f0f0f0f0f0f0f0fUL) << 4) | ((x & 0xf0f0f0f0f0f0f0f0UL) >> 4);
+    x = ((x & 0x00ff00ff00ff00ffUL) << 8) | ((x & 0xff00ff00ff00ff00UL) >> 8);
+    x = ((x & 0x0000ffff0000ffffUL) << 16) | ((x & 0xffff0000ffff0000UL) >> 16);
+    x = (x << 32) | (x >> 32);
+#else
+#error unknown platform
+#endif
+    return (x);
 }
 
 __inline static void IncrementDIV32Counter(void)

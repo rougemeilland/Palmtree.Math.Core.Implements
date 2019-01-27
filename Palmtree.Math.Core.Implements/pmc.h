@@ -231,6 +231,9 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__PMC_CALL * PMC_GreatestCommonDivisor_X_I)(HANDLE u, _UINT32_T v, HANDLE* w);
     PMC_STATUS_CODE(__PMC_CALL * PMC_GreatestCommonDivisor_X_L)(HANDLE u, _UINT64_T v, HANDLE* w);
     PMC_STATUS_CODE(__PMC_CALL * PMC_GreatestCommonDivisor_X_X)(HANDLE u, HANDLE v, HANDLE* w);
+
+    // べき乗の計算
+    PMC_STATUS_CODE(__PMC_CALL * PMC_Pow_X_I)(HANDLE x, _UINT32_T n, HANDLE* z);
 } PMC_ENTRY_POINTS;
 #pragma endregion
 

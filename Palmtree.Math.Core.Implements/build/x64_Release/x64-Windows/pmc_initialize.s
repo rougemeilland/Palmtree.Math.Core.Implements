@@ -79,6 +79,10 @@ PMC_Initialize:
 	call	Initialize_GreatestCommonDivisor
 	testl	%eax, %eax
 	jne	.L4
+	movq	%rbx, %rcx
+	call	Initialize_Pow
+	testl	%eax, %eax
+	jne	.L4
 	movzbl	entry_points(%rip), %eax
 	movzbl	44(%rsp), %edx
 	andl	$-32, %eax
@@ -213,6 +217,8 @@ PMC_Initialize:
 	movq	%rax, 504+entry_points(%rip)
 	movq	.refptr.PMC_GreatestCommonDivisor_X_X(%rip), %rax
 	movq	%rax, 512+entry_points(%rip)
+	movq	.refptr.PMC_Pow_X_I(%rip), %rax
+	movq	%rax, 520+entry_points(%rip)
 	leaq	entry_points(%rip), %rax
 	jmp	.L1
 	.p2align 4,,10
@@ -224,7 +230,7 @@ PMC_Initialize:
 	ret
 	.seh_endproc
 	.comm	configuration_info, 4, 2
-.lcomm entry_points,520,32
+.lcomm entry_points,528,32
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	GetCPUInfo;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Memory;	.scl	2;	.type	32;	.endef
@@ -243,8 +249,14 @@ PMC_Initialize:
 	.def	Initialize_ToString;	.scl	2;	.type	32;	.endef
 	.def	Initialize_Parse;	.scl	2;	.type	32;	.endef
 	.def	Initialize_GreatestCommonDivisor;	.scl	2;	.type	32;	.endef
+	.def	Initialize_Pow;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize\""
+	.section	.rdata$.refptr.PMC_Pow_X_I, "dr"
+	.globl	.refptr.PMC_Pow_X_I
+	.linkonce	discard
+.refptr.PMC_Pow_X_I:
+	.quad	PMC_Pow_X_I
 	.section	.rdata$.refptr.PMC_GreatestCommonDivisor_X_X, "dr"
 	.globl	.refptr.PMC_GreatestCommonDivisor_X_X
 	.linkonce	discard

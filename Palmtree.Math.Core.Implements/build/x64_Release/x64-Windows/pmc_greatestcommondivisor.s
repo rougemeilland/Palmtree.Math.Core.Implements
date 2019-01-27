@@ -147,7 +147,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	movl	$32, %ebp
 	movl	$-5, %edi
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -179,7 +179,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	movq	24(%rsi), %rax
 	movl	%ebx, %r14d
 /APP
- # 977 "pmc_internal.h" 1
+ # 986 "pmc_internal.h" 1
 	bsfq %r14, %r14
  # 0 "" 2
 /NO_APP
@@ -334,7 +334,7 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	.p2align 4,,10
 .L34:
 /APP
- # 897 "pmc_internal.h" 1
+ # 906 "pmc_internal.h" 1
 	bsrq %rdx, %rbp
  # 0 "" 2
 /NO_APP
@@ -365,7 +365,7 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	jne	.L44
 	movq	24(%rsi), %r14
 /APP
- # 977 "pmc_internal.h" 1
+ # 986 "pmc_internal.h" 1
 	bsfq %rbx, %rax
  # 0 "" 2
 /NO_APP

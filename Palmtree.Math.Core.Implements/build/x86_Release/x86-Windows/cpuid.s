@@ -4,7 +4,7 @@
 	.globl	_GetCPUInfo
 	.def	_GetCPUInfo;	.scl	2;	.type	32;	.endef
 _GetCPUInfo:
-LFB5487:
+LFB5489:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -114,5 +114,5 @@ L1:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5487:
+LFE5489:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"

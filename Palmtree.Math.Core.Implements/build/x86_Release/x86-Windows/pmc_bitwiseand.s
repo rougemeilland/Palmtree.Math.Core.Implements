@@ -4,7 +4,7 @@
 	.globl	_PMC_BitwiseAnd_I_X@12
 	.def	_PMC_BitwiseAnd_I_X@12;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseAnd_I_X@12:
-LFB5486:
+LFB5488:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -65,12 +65,12 @@ L5:
 	movl	$-1, %eax
 	jmp	L1
 	.cfi_endproc
-LFE5486:
+LFE5488:
 	.p2align 4,,15
 	.globl	_PMC_BitwiseAnd_X_I@12
 	.def	_PMC_BitwiseAnd_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseAnd_X_I@12:
-LFB5487:
+LFB5489:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -131,12 +131,12 @@ L15:
 	movl	$-1, %eax
 	jmp	L11
 	.cfi_endproc
-LFE5487:
+LFE5489:
 	.p2align 4,,15
 	.globl	_PMC_BitwiseAnd_L_X@16
 	.def	_PMC_BitwiseAnd_L_X@16;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseAnd_L_X@16:
-LFB5488:
+LFB5490:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -224,12 +224,12 @@ L25:
 	movl	$-1, %eax
 	jmp	L20
 	.cfi_endproc
-LFE5488:
+LFE5490:
 	.p2align 4,,15
 	.globl	_PMC_BitwiseAnd_X_L@16
 	.def	_PMC_BitwiseAnd_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseAnd_X_L@16:
-LFB5489:
+LFB5491:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -317,12 +317,12 @@ L36:
 	movl	$-1, %eax
 	jmp	L31
 	.cfi_endproc
-LFE5489:
+LFE5491:
 	.p2align 4,,15
 	.globl	_PMC_BitwiseAnd_X_X@12
 	.def	_PMC_BitwiseAnd_X_X@12;	.scl	2;	.type	32;	.endef
 _PMC_BitwiseAnd_X_X@12:
-LFB5490:
+LFB5492:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -689,17 +689,17 @@ L56:
 	movl	%eax, %edi
 	jmp	L47
 	.cfi_endproc
-LFE5490:
+LFE5492:
 	.p2align 4,,15
 	.globl	_Initialize_BitwiseAnd
 	.def	_Initialize_BitwiseAnd;	.scl	2;	.type	32;	.endef
 _Initialize_BitwiseAnd:
-LFB5491:
+LFB5493:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5491:
+LFE5493:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef
 	.def	_AllocateNumber;	.scl	2;	.type	32;	.endef

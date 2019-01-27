@@ -5,7 +5,7 @@ Ltext0:
 __COPY_MEMORY_UNIT:
 LFB4184:
 	.file 1 "pmc_internal.h"
-	.loc 1 316 1
+	.loc 1 325 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -49,7 +49,7 @@ LBB5:
 	movl	%eax, -24(%ebp)
 LBE5:
 LBE4:
-	.loc 1 324 1
+	.loc 1 333 1
 	nop
 	addl	$16, %esp
 	popl	%ebx
@@ -67,7 +67,7 @@ LFE4184:
 	.def	__FROMDWORDTOWORD;	.scl	3;	.type	32;	.endef
 __FROMDWORDTOWORD:
 LFB4196:
-	.loc 1 432 1
+	.loc 1 441 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -81,21 +81,21 @@ LFB4196:
 	movl	%eax, -16(%ebp)
 	movl	12(%ebp), %eax
 	movl	%eax, -12(%ebp)
-	.loc 1 433 38
+	.loc 1 442 38
 	movl	-16(%ebp), %eax
 	movl	-12(%ebp), %edx
 	movl	%edx, %eax
 	xorl	%edx, %edx
 	movl	%eax, %ecx
 	movl	%edx, %ebx
-	.loc 1 433 20
+	.loc 1 442 20
 	movl	%ecx, %edx
-	.loc 1 433 18
+	.loc 1 442 18
 	movl	16(%ebp), %eax
 	movl	%edx, (%eax)
-	.loc 1 434 13
+	.loc 1 443 13
 	movl	-16(%ebp), %eax
-	.loc 1 435 1
+	.loc 1 444 1
 	addl	$12, %esp
 	popl	%ebx
 	.cfi_restore 3
@@ -108,23 +108,23 @@ LFE4196:
 	.def	__DIVIDE_CEILING_UNIT;	.scl	3;	.type	32;	.endef
 __DIVIDE_CEILING_UNIT:
 LFB4198:
-	.loc 1 443 1
+	.loc 1 452 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
 	.cfi_offset 5, -8
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
-	.loc 1 444 16
+	.loc 1 453 16
 	movl	8(%ebp), %edx
 	movl	12(%ebp), %eax
 	addl	%edx, %eax
-	.loc 1 444 20
+	.loc 1 453 20
 	subl	$1, %eax
-	.loc 1 444 25
+	.loc 1 453 25
 	movl	$0, %edx
 	divl	12(%ebp)
-	.loc 1 445 1
+	.loc 1 454 1
 	popl	%ebp
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -134,18 +134,18 @@ LFE4198:
 	.def	__MAXIMUM_UNIT;	.scl	3;	.type	32;	.endef
 __MAXIMUM_UNIT:
 LFB4200:
-	.loc 1 453 1
+	.loc 1 462 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
 	.cfi_offset 5, -8
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
-	.loc 1 454 24
+	.loc 1 463 24
 	movl	12(%ebp), %eax
 	cmpl	%eax, 8(%ebp)
 	cmovnb	8(%ebp), %eax
-	.loc 1 455 1
+	.loc 1 464 1
 	popl	%ebp
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -155,18 +155,18 @@ LFE4200:
 	.def	__MINIMUM_UNIT;	.scl	3;	.type	32;	.endef
 __MINIMUM_UNIT:
 LFB4201:
-	.loc 1 458 1
+	.loc 1 467 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
 	.cfi_offset 5, -8
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
-	.loc 1 459 24
+	.loc 1 468 24
 	movl	12(%ebp), %eax
 	cmpl	%eax, 8(%ebp)
 	cmovbe	8(%ebp), %eax
-	.loc 1 460 1
+	.loc 1 469 1
 	popl	%ebp
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -176,7 +176,7 @@ LFE4201:
 	.def	__LZCNT_ALT_32;	.scl	3;	.type	32;	.endef
 __LZCNT_ALT_32:
 LFB4223:
-	.loc 1 846 1
+	.loc 1 855 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -184,25 +184,25 @@ LFB4223:
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
 	subl	$16, %esp
-	.loc 1 847 8
+	.loc 1 856 8
 	cmpl	$0, 8(%ebp)
 	jne	L11
-	.loc 1 848 16
+	.loc 1 857 16
 	movl	$32, %eax
 	jmp	L12
 L11:
-	.loc 1 853 5
+	.loc 1 862 5
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl 8(%ebp), %eax
  # 0 "" 2
 /NO_APP
 	movl	%eax, -4(%ebp)
-	.loc 1 857 31
+	.loc 1 866 31
 	movl	$31, %eax
 	subl	-4(%ebp), %eax
 L12:
-	.loc 1 858 1
+	.loc 1 867 1
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -212,7 +212,7 @@ LFE4223:
 	.def	__TZCNT_ALT_UNIT;	.scl	3;	.type	32;	.endef
 __TZCNT_ALT_UNIT:
 LFB4228:
-	.loc 1 959 1
+	.loc 1 968 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -220,24 +220,24 @@ LFB4228:
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
 	subl	$16, %esp
-	.loc 1 960 8
+	.loc 1 969 8
 	cmpl	$0, 8(%ebp)
 	jne	L14
-	.loc 1 961 16
+	.loc 1 970 16
 	movl	$32, %eax
 	jmp	L15
 L14:
-	.loc 1 967 5
+	.loc 1 976 5
 /APP
- # 967 "pmc_internal.h" 1
+ # 976 "pmc_internal.h" 1
 	bsfl 8(%ebp), %eax
  # 0 "" 2
 /NO_APP
 	movl	%eax, -4(%ebp)
-	.loc 1 984 12
+	.loc 1 993 12
 	movl	-4(%ebp), %eax
 L15:
-	.loc 1 985 1
+	.loc 1 994 1
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -246,7 +246,7 @@ L15:
 LFE4228:
 	.def	_GreatestCommonDivisor_Imp;	.scl	3;	.type	32;	.endef
 _GreatestCommonDivisor_Imp:
-LFB4277:
+LFB4279:
 	.file 3 "pmc_greatestcommondivisor.c"
 	.loc 3 39 1
 	.cfi_startproc
@@ -392,10 +392,10 @@ L27:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE4277:
+LFE4279:
 	.def	_PMC_GreatestCommonDivisor_X_I_Imp;	.scl	3;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_I_Imp:
-LFB4278:
+LFB4280:
 	.loc 3 80 1
 	.cfi_startproc
 	pushl	%ebp
@@ -725,11 +725,11 @@ L31:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE4278:
+LFE4280:
 	.globl	_PMC_GreatestCommonDivisor_I_X@12
 	.def	_PMC_GreatestCommonDivisor_I_X@12;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_I_X@12:
-LFB4279:
+LFB4281:
 	.loc 3 176 1
 	.cfi_startproc
 	pushl	%ebp
@@ -802,11 +802,11 @@ L46:
 	.cfi_def_cfa 4, 4
 	ret	$12
 	.cfi_endproc
-LFE4279:
+LFE4281:
 	.globl	_PMC_GreatestCommonDivisor_X_I@12
 	.def	_PMC_GreatestCommonDivisor_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_I@12:
-LFB4280:
+LFB4282:
 	.loc 3 199 1
 	.cfi_startproc
 	pushl	%ebp
@@ -879,10 +879,10 @@ L53:
 	.cfi_def_cfa 4, 4
 	ret	$12
 	.cfi_endproc
-LFE4280:
+LFE4282:
 	.def	_PMC_GreatestCommonDivisor_X_L_Imp;	.scl	3;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_L_Imp:
-LFB4281:
+LFB4283:
 	.loc 3 222 1
 	.cfi_startproc
 	pushl	%ebp
@@ -1544,11 +1544,11 @@ L61:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE4281:
+LFE4283:
 	.globl	_PMC_GreatestCommonDivisor_L_X@16
 	.def	_PMC_GreatestCommonDivisor_L_X@16;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_L_X@16:
-LFB4282:
+LFB4284:
 	.loc 3 442 1
 	.cfi_startproc
 	pushl	%ebp
@@ -1627,11 +1627,11 @@ L92:
 	.cfi_def_cfa 4, 4
 	ret	$16
 	.cfi_endproc
-LFE4282:
+LFE4284:
 	.globl	_PMC_GreatestCommonDivisor_X_L@16
 	.def	_PMC_GreatestCommonDivisor_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_L@16:
-LFB4283:
+LFB4285:
 	.loc 3 465 1
 	.cfi_startproc
 	pushl	%ebp
@@ -1710,11 +1710,11 @@ L99:
 	.cfi_def_cfa 4, 4
 	ret	$16
 	.cfi_endproc
-LFE4283:
+LFE4285:
 	.globl	_PMC_GreatestCommonDivisor_X_X@12
 	.def	_PMC_GreatestCommonDivisor_X_X@12;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_X@12:
-LFB4284:
+LFB4286:
 	.loc 3 488 1
 	.cfi_startproc
 	pushl	%ebp
@@ -2143,11 +2143,11 @@ L130:
 	.cfi_def_cfa 4, 4
 	ret	$12
 	.cfi_endproc
-LFE4284:
+LFE4286:
 	.globl	_Initialize_GreatestCommonDivisor
 	.def	_Initialize_GreatestCommonDivisor;	.scl	2;	.type	32;	.endef
 _Initialize_GreatestCommonDivisor:
-LFB4285:
+LFB4287:
 	.loc 3 607 1
 	.cfi_startproc
 	.loc 3 608 12
@@ -2155,7 +2155,7 @@ LFB4285:
 	.loc 3 609 1
 	ret
 	.cfi_endproc
-LFE4285:
+LFE4287:
 Letext0:
 	.file 4 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/crtdefs.h"
 	.file 5 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/excpt.h"
@@ -6264,8 +6264,8 @@ Ldebug_info0:
 	.word	0x25e
 	.byte	0x11
 	.long	0x4a2b
-	.long	LFB4285
-	.long	LFE4285-LFB4285
+	.long	LFB4287
+	.long	LFE4287-LFB4287
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4dab
@@ -6289,8 +6289,8 @@ Ldebug_info0:
 	.byte	0x2e
 	.ascii "PMC_GreatestCommonDivisor_X_X@12\0"
 	.long	0x4a2b
-	.long	LFB4284
-	.long	LFE4284-LFB4284
+	.long	LFB4286
+	.long	LFE4286-LFB4286
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4f5d
@@ -6498,8 +6498,8 @@ Ldebug_info0:
 	.byte	0x2e
 	.ascii "PMC_GreatestCommonDivisor_X_L@16\0"
 	.long	0x4a2b
-	.long	LFB4283
-	.long	LFE4283-LFB4283
+	.long	LFB4285
+	.long	LFE4285-LFB4285
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4ff4
@@ -6547,8 +6547,8 @@ Ldebug_info0:
 	.byte	0x2e
 	.ascii "PMC_GreatestCommonDivisor_L_X@16\0"
 	.long	0x4a2b
-	.long	LFB4282
-	.long	LFE4282-LFB4282
+	.long	LFB4284
+	.long	LFE4284-LFB4284
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5085
@@ -6595,8 +6595,8 @@ Ldebug_info0:
 	.byte	0xdd
 	.byte	0x18
 	.long	0x4a2b
-	.long	LFB4281
-	.long	LFE4281-LFB4281
+	.long	LFB4283
+	.long	LFE4283-LFB4283
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x53b1
@@ -7008,8 +7008,8 @@ Ldebug_info0:
 	.byte	0x2e
 	.ascii "PMC_GreatestCommonDivisor_X_I@12\0"
 	.long	0x4a2b
-	.long	LFB4280
-	.long	LFE4280-LFB4280
+	.long	LFB4282
+	.long	LFE4282-LFB4282
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5443
@@ -7057,8 +7057,8 @@ Ldebug_info0:
 	.byte	0x2e
 	.ascii "PMC_GreatestCommonDivisor_I_X@12\0"
 	.long	0x4a2b
-	.long	LFB4279
-	.long	LFE4279-LFB4279
+	.long	LFB4281
+	.long	LFE4281-LFB4281
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x54cf
@@ -7105,8 +7105,8 @@ Ldebug_info0:
 	.byte	0x4f
 	.byte	0x18
 	.long	0x4a2b
-	.long	LFB4278
-	.long	LFE4278-LFB4278
+	.long	LFB4280
+	.long	LFE4280-LFB4280
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x561b
@@ -7282,8 +7282,8 @@ Ldebug_info0:
 	.byte	0x3
 	.byte	0x26
 	.byte	0xd
-	.long	LFB4277
-	.long	LFE4277-LFB4277
+	.long	LFB4279
+	.long	LFE4279-LFB4279
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x56eb
@@ -7380,7 +7380,7 @@ Ldebug_info0:
 	.uleb128 0x28
 	.ascii "_TZCNT_ALT_UNIT\0"
 	.byte	0x1
-	.word	0x3be
+	.word	0x3c7
 	.byte	0x1d
 	.long	0x4bcd
 	.long	LFB4228
@@ -7391,7 +7391,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x3be
+	.word	0x3c7
 	.byte	0x39
 	.long	0x4bcd
 	.uleb128 0x2
@@ -7400,7 +7400,7 @@ Ldebug_info0:
 	.uleb128 0x1a
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x3c3
+	.word	0x3cc
 	.byte	0xf
 	.long	0x4999
 	.uleb128 0x2
@@ -7410,7 +7410,7 @@ Ldebug_info0:
 	.uleb128 0x28
 	.ascii "_LZCNT_ALT_32\0"
 	.byte	0x1
-	.word	0x34d
+	.word	0x356
 	.byte	0x1b
 	.long	0x4999
 	.long	LFB4223
@@ -7421,7 +7421,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x34d
+	.word	0x356
 	.byte	0x33
 	.long	0x4999
 	.uleb128 0x2
@@ -7430,7 +7430,7 @@ Ldebug_info0:
 	.uleb128 0x1a
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x351
+	.word	0x35a
 	.byte	0xf
 	.long	0x4999
 	.uleb128 0x2
@@ -7440,7 +7440,7 @@ Ldebug_info0:
 	.uleb128 0x28
 	.ascii "_MINIMUM_UNIT\0"
 	.byte	0x1
-	.word	0x1c9
+	.word	0x1d2
 	.byte	0x1d
 	.long	0x4bcd
 	.long	LFB4201
@@ -7451,7 +7451,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x1c9
+	.word	0x1d2
 	.byte	0x37
 	.long	0x4bcd
 	.uleb128 0x2
@@ -7460,7 +7460,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "y\0"
 	.byte	0x1
-	.word	0x1c9
+	.word	0x1d2
 	.byte	0x46
 	.long	0x4bcd
 	.uleb128 0x2
@@ -7470,7 +7470,7 @@ Ldebug_info0:
 	.uleb128 0x28
 	.ascii "_MAXIMUM_UNIT\0"
 	.byte	0x1
-	.word	0x1c4
+	.word	0x1cd
 	.byte	0x1d
 	.long	0x4bcd
 	.long	LFB4200
@@ -7481,7 +7481,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x1c4
+	.word	0x1cd
 	.byte	0x37
 	.long	0x4bcd
 	.uleb128 0x2
@@ -7490,7 +7490,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "y\0"
 	.byte	0x1
-	.word	0x1c4
+	.word	0x1cd
 	.byte	0x46
 	.long	0x4bcd
 	.uleb128 0x2
@@ -7500,7 +7500,7 @@ Ldebug_info0:
 	.uleb128 0x28
 	.ascii "_DIVIDE_CEILING_UNIT\0"
 	.byte	0x1
-	.word	0x1ba
+	.word	0x1c3
 	.byte	0x1d
 	.long	0x4bcd
 	.long	LFB4198
@@ -7511,7 +7511,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x1ba
+	.word	0x1c3
 	.byte	0x3e
 	.long	0x4bcd
 	.uleb128 0x2
@@ -7520,7 +7520,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x1ba
+	.word	0x1c3
 	.byte	0x4d
 	.long	0x4bcd
 	.uleb128 0x2
@@ -7530,7 +7530,7 @@ Ldebug_info0:
 	.uleb128 0x28
 	.ascii "_FROMDWORDTOWORD\0"
 	.byte	0x1
-	.word	0x1af
+	.word	0x1b8
 	.byte	0x1b
 	.long	0x4999
 	.long	LFB4196
@@ -7541,7 +7541,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x1af
+	.word	0x1b8
 	.byte	0x36
 	.long	0x49ab
 	.uleb128 0x2
@@ -7550,7 +7550,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "result_high\0"
 	.byte	0x1
-	.word	0x1af
+	.word	0x1b8
 	.byte	0x48
 	.long	0x4adb
 	.uleb128 0x2
@@ -7560,7 +7560,7 @@ Ldebug_info0:
 	.uleb128 0x29
 	.ascii "_COPY_MEMORY_UNIT\0"
 	.byte	0x1
-	.word	0x13b
+	.word	0x144
 	.byte	0x16
 	.long	LFB4184
 	.long	LFE4184-LFB4184
@@ -7570,7 +7570,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x13b
+	.word	0x144
 	.byte	0x35
 	.long	0x4cfb
 	.uleb128 0x2
@@ -7579,7 +7579,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "s\0"
 	.byte	0x1
-	.word	0x13b
+	.word	0x144
 	.byte	0x4b
 	.long	0x5913
 	.uleb128 0x2
@@ -7588,7 +7588,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "count\0"
 	.byte	0x1
-	.word	0x13b
+	.word	0x144
 	.byte	0x5a
 	.long	0x4bcd
 	.uleb128 0x2
@@ -7599,7 +7599,7 @@ Ldebug_info0:
 	.long	LBB4
 	.long	LBE4-LBB4
 	.byte	0x1
-	.word	0x13e
+	.word	0x147
 	.byte	0x5
 	.uleb128 0x2b
 	.long	0x5950

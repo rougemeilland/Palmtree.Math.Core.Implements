@@ -25,7 +25,7 @@ PMC_Equals_X_I_Imp:
 	je	.L3
 	movl	$31, %r9d
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %edx, %eax
  # 0 "" 2
 /NO_APP
@@ -66,7 +66,7 @@ PMC_Equals_X_L_Imp:
 	testq	%rdx, %rdx
 	je	.L12
 /APP
- # 897 "pmc_internal.h" 1
+ # 906 "pmc_internal.h" 1
 	bsrq %rdx, %rax
  # 0 "" 2
 /NO_APP

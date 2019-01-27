@@ -7,7 +7,7 @@
 _COPY_MEMORY_UNIT:
 .LFB4310:
 	.file 1 "pmc_internal.h"
-	.loc 1 316 1
+	.loc 1 325 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -60,7 +60,7 @@ _COPY_MEMORY_UNIT:
 	movq	%rax, -24(%rbp)
 .LBE11:
 .LBE10:
-	.loc 1 324 1
+	.loc 1 333 1
 	nop
 	addq	$32, %rsp
 	popq	%rsi
@@ -78,7 +78,7 @@ _COPY_MEMORY_UNIT:
 	.seh_proc	_COPY_MEMORY_UNIT_DIV
 _COPY_MEMORY_UNIT_DIV:
 .LFB4311:
-	.loc 1 327 1
+	.loc 1 336 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -130,7 +130,7 @@ _COPY_MEMORY_UNIT_DIV:
 	movq	%rax, -24(%rbp)
 .LBE13:
 .LBE12:
-	.loc 1 341 1
+	.loc 1 350 1
 	nop
 	addq	$32, %rsp
 	popq	%rsi
@@ -148,7 +148,7 @@ _COPY_MEMORY_UNIT_DIV:
 	.seh_proc	_ZERO_MEMORY_UNIT
 _ZERO_MEMORY_UNIT:
 .LFB4316:
-	.loc 1 366 1
+	.loc 1 375 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -192,7 +192,7 @@ _ZERO_MEMORY_UNIT:
 	movq	%rdx, -120(%rbp)
 .LBE15:
 .LBE14:
-	.loc 1 374 1
+	.loc 1 383 1
 	nop
 	addq	$40, %rsp
 	popq	%rdi
@@ -208,7 +208,7 @@ _ZERO_MEMORY_UNIT:
 	.seh_proc	_ZERO_MEMORY_UNIT_DIV
 _ZERO_MEMORY_UNIT_DIV:
 .LFB4317:
-	.loc 1 377 1
+	.loc 1 386 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -252,7 +252,7 @@ _ZERO_MEMORY_UNIT_DIV:
 	movq	%rdx, -120(%rbp)
 .LBE17:
 .LBE16:
-	.loc 1 391 1
+	.loc 1 400 1
 	nop
 	addq	$40, %rsp
 	popq	%rdi
@@ -268,7 +268,7 @@ _ZERO_MEMORY_UNIT_DIV:
 	.def	RightShift_Imp;	.scl	2;	.type	32;	.endef
 	.seh_proc	RightShift_Imp
 RightShift_Imp:
-.LFB4367:
+.LFB4370:
 	.file 3 "pmc_shift.c"
 	.loc 3 38 1
 	.cfi_startproc
@@ -2099,13 +2099,13 @@ RightShift_Imp:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4367:
+.LFE4370:
 	.seh_endproc
 	.globl	RightShift_Imp_DIV
 	.def	RightShift_Imp_DIV;	.scl	2;	.type	32;	.endef
 	.seh_proc	RightShift_Imp_DIV
 RightShift_Imp_DIV:
-.LFB4368:
+.LFB4371:
 	.loc 3 173 1
 	.cfi_startproc
 	pushq	%rbp
@@ -3935,13 +3935,13 @@ RightShift_Imp_DIV:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4368:
+.LFE4371:
 	.seh_endproc
 	.globl	LeftShift_Imp
 	.def	LeftShift_Imp;	.scl	2;	.type	32;	.endef
 	.seh_proc	LeftShift_Imp
 LeftShift_Imp:
-.LFB4369:
+.LFB4372:
 	.loc 3 308 1
 	.cfi_startproc
 	pushq	%rbp
@@ -5771,13 +5771,13 @@ LeftShift_Imp:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4369:
+.LFE4372:
 	.seh_endproc
 	.globl	LeftShift_Imp_DIV
 	.def	LeftShift_Imp_DIV;	.scl	2;	.type	32;	.endef
 	.seh_proc	LeftShift_Imp_DIV
 LeftShift_Imp_DIV:
-.LFB4370:
+.LFB4373:
 	.loc 3 443 1
 	.cfi_startproc
 	pushq	%rbp
@@ -7607,13 +7607,13 @@ LeftShift_Imp_DIV:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4370:
+.LFE4373:
 	.seh_endproc
 	.globl	PMC_RightShift_X_I
 	.def	PMC_RightShift_X_I;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_RightShift_X_I
 PMC_RightShift_X_I:
-.LFB4371:
+.LFB4374:
 	.loc 3 578 1
 	.cfi_startproc
 	pushq	%rbp
@@ -7796,13 +7796,13 @@ PMC_RightShift_X_I:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4371:
+.LFE4374:
 	.seh_endproc
 	.globl	PMC_RightShift_X_L
 	.def	PMC_RightShift_X_L;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_RightShift_X_L
 PMC_RightShift_X_L:
-.LFB4372:
+.LFB4375:
 	.loc 3 627 1
 	.cfi_startproc
 	pushq	%rbp
@@ -7981,13 +7981,13 @@ PMC_RightShift_X_L:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4372:
+.LFE4375:
 	.seh_endproc
 	.globl	PMC_LeftShift_X_I
 	.def	PMC_LeftShift_X_I;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_LeftShift_X_I
 PMC_LeftShift_X_I:
-.LFB4373:
+.LFB4376:
 	.loc 3 676 1
 	.cfi_startproc
 	pushq	%rbp
@@ -8156,13 +8156,13 @@ PMC_LeftShift_X_I:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4373:
+.LFE4376:
 	.seh_endproc
 	.globl	PMC_LeftShift_X_L
 	.def	PMC_LeftShift_X_L;	.scl	2;	.type	32;	.endef
 	.seh_proc	PMC_LeftShift_X_L
 PMC_LeftShift_X_L:
-.LFB4374:
+.LFB4377:
 	.loc 3 720 1
 	.cfi_startproc
 	pushq	%rbp
@@ -8330,13 +8330,13 @@ PMC_LeftShift_X_L:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4374:
+.LFE4377:
 	.seh_endproc
 	.globl	Initialize_Shift
 	.def	Initialize_Shift;	.scl	2;	.type	32;	.endef
 	.seh_proc	Initialize_Shift
 Initialize_Shift:
-.LFB4375:
+.LFB4378:
 	.loc 3 764 1
 	.cfi_startproc
 	pushq	%rbp
@@ -8356,7 +8356,7 @@ Initialize_Shift:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4375:
+.LFE4378:
 	.seh_endproc
 .Letext0:
 	.file 4 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h"
@@ -12477,8 +12477,8 @@ Initialize_Shift:
 	.word	0x2fb
 	.byte	0x11
 	.long	0x4a3d
-	.quad	.LFB4375
-	.quad	.LFE4375-.LFB4375
+	.quad	.LFB4378
+	.quad	.LFE4378-.LFB4378
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4dcc
@@ -12501,8 +12501,8 @@ Initialize_Shift:
 	.word	0x2cf
 	.byte	0x11
 	.long	0x4a3d
-	.quad	.LFB4374
-	.quad	.LFE4374-.LFB4374
+	.quad	.LFB4377
+	.quad	.LFE4377-.LFB4377
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4e9e
@@ -12601,8 +12601,8 @@ Initialize_Shift:
 	.word	0x2a3
 	.byte	0x11
 	.long	0x4a3d
-	.quad	.LFB4373
-	.quad	.LFE4373-.LFB4373
+	.quad	.LFB4376
+	.quad	.LFE4376-.LFB4376
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4f70
@@ -12698,8 +12698,8 @@ Initialize_Shift:
 	.word	0x272
 	.byte	0x11
 	.long	0x4a3d
-	.quad	.LFB4372
-	.quad	.LFE4372-.LFB4372
+	.quad	.LFB4375
+	.quad	.LFE4375-.LFB4375
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x504f
@@ -12799,8 +12799,8 @@ Initialize_Shift:
 	.word	0x241
 	.byte	0x11
 	.long	0x4a3d
-	.quad	.LFB4371
-	.quad	.LFE4371-.LFB4371
+	.quad	.LFB4374
+	.quad	.LFE4374-.LFB4374
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x512e
@@ -12899,8 +12899,8 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x1ba
 	.byte	0x6
-	.quad	.LFB4370
-	.quad	.LFE4370-.LFB4370
+	.quad	.LFB4373
+	.quad	.LFE4373-.LFB4373
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x524b
@@ -13043,8 +13043,8 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x133
 	.byte	0x6
-	.quad	.LFB4369
-	.quad	.LFE4369-.LFB4369
+	.quad	.LFB4372
+	.quad	.LFE4372-.LFB4372
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x536a
@@ -13184,8 +13184,8 @@ Initialize_Shift:
 	.byte	0x3
 	.byte	0xac
 	.byte	0x6
-	.quad	.LFB4368
-	.quad	.LFE4368-.LFB4368
+	.quad	.LFB4371
+	.quad	.LFE4371-.LFB4371
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x548d
@@ -13334,8 +13334,8 @@ Initialize_Shift:
 	.byte	0x3
 	.byte	0x25
 	.byte	0x6
-	.quad	.LFB4367
-	.quad	.LFE4367-.LFB4367
+	.quad	.LFB4370
+	.quad	.LFE4370-.LFB4370
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x55ac
@@ -13482,7 +13482,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "_ZERO_MEMORY_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x178
+	.word	0x181
 	.byte	0x16
 	.quad	.LFB4317
 	.quad	.LFE4317-.LFB4317
@@ -13492,7 +13492,7 @@ Initialize_Shift:
 	.uleb128 0x1a
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x178
+	.word	0x181
 	.byte	0x3d
 	.long	0x524b
 	.uleb128 0x2
@@ -13501,7 +13501,7 @@ Initialize_Shift:
 	.uleb128 0x20
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x178
+	.word	0x181
 	.byte	0x4c
 	.long	0x4bd9
 	.uleb128 0x2
@@ -13512,7 +13512,7 @@ Initialize_Shift:
 	.quad	.LBB16
 	.quad	.LBE16-.LBB16
 	.byte	0x1
-	.word	0x180
+	.word	0x189
 	.byte	0x5
 	.uleb128 0x28
 	.long	0x584b
@@ -13534,7 +13534,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "_ZERO_MEMORY_UNIT\0"
 	.byte	0x1
-	.word	0x16d
+	.word	0x176
 	.byte	0x16
 	.quad	.LFB4316
 	.quad	.LFE4316-.LFB4316
@@ -13544,7 +13544,7 @@ Initialize_Shift:
 	.uleb128 0x1a
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x16d
+	.word	0x176
 	.byte	0x35
 	.long	0x4d24
 	.uleb128 0x2
@@ -13553,7 +13553,7 @@ Initialize_Shift:
 	.uleb128 0x20
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x16d
+	.word	0x176
 	.byte	0x44
 	.long	0x4bd9
 	.uleb128 0x2
@@ -13564,7 +13564,7 @@ Initialize_Shift:
 	.quad	.LBB14
 	.quad	.LBE14-.LBB14
 	.byte	0x1
-	.word	0x172
+	.word	0x17b
 	.byte	0x5
 	.uleb128 0x28
 	.long	0x584b
@@ -13586,7 +13586,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "_COPY_MEMORY_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x146
+	.word	0x14f
 	.byte	0x16
 	.quad	.LFB4311
 	.quad	.LFE4311-.LFB4311
@@ -13596,7 +13596,7 @@ Initialize_Shift:
 	.uleb128 0x1a
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x146
+	.word	0x14f
 	.byte	0x3d
 	.long	0x524b
 	.uleb128 0x2
@@ -13605,7 +13605,7 @@ Initialize_Shift:
 	.uleb128 0x1a
 	.ascii "s\0"
 	.byte	0x1
-	.word	0x146
+	.word	0x14f
 	.byte	0x57
 	.long	0x573c
 	.uleb128 0x2
@@ -13614,7 +13614,7 @@ Initialize_Shift:
 	.uleb128 0x20
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x146
+	.word	0x14f
 	.byte	0x66
 	.long	0x4bd9
 	.uleb128 0x2
@@ -13625,7 +13625,7 @@ Initialize_Shift:
 	.quad	.LBB12
 	.quad	.LBE12-.LBB12
 	.byte	0x1
-	.word	0x14e
+	.word	0x157
 	.byte	0x5
 	.uleb128 0x28
 	.long	0x580b
@@ -13650,7 +13650,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "_COPY_MEMORY_UNIT\0"
 	.byte	0x1
-	.word	0x13b
+	.word	0x144
 	.byte	0x16
 	.quad	.LFB4310
 	.quad	.LFE4310-.LFB4310
@@ -13660,7 +13660,7 @@ Initialize_Shift:
 	.uleb128 0x1a
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x13b
+	.word	0x144
 	.byte	0x35
 	.long	0x4d24
 	.uleb128 0x2
@@ -13669,7 +13669,7 @@ Initialize_Shift:
 	.uleb128 0x1a
 	.ascii "s\0"
 	.byte	0x1
-	.word	0x13b
+	.word	0x144
 	.byte	0x4b
 	.long	0x57ce
 	.uleb128 0x2
@@ -13678,7 +13678,7 @@ Initialize_Shift:
 	.uleb128 0x20
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x13b
+	.word	0x144
 	.byte	0x5a
 	.long	0x4bd9
 	.uleb128 0x2
@@ -13689,7 +13689,7 @@ Initialize_Shift:
 	.quad	.LBB10
 	.quad	.LBE10-.LBB10
 	.byte	0x1
-	.word	0x140
+	.word	0x149
 	.byte	0x5
 	.uleb128 0x28
 	.long	0x580b

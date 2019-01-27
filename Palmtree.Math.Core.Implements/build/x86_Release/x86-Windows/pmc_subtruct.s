@@ -3,7 +3,7 @@
 	.p2align 4,,15
 	.def	_Subtruct_X_1W.isra.0;	.scl	3;	.type	32;	.endef
 _Subtruct_X_1W.isra.0:
-LFB5535:
+LFB5537:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -82,12 +82,12 @@ L9:
 	movl	$-258, %eax
 	jmp	L1
 	.cfi_endproc
-LFE5535:
+LFE5537:
 	.p2align 4,,15
 	.globl	_Subtruct_Imp
 	.def	_Subtruct_Imp;	.scl	2;	.type	32;	.endef
 _Subtruct_Imp:
-LFB5528:
+LFB5530:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -467,12 +467,12 @@ L41:
 	movl	$-258, %eax
 	jmp	L25
 	.cfi_endproc
-LFE5528:
+LFE5530:
 	.p2align 4,,15
 	.globl	_PMC_Subtruct_I_X@12
 	.def	_PMC_Subtruct_I_X@12;	.scl	2;	.type	32;	.endef
 _PMC_Subtruct_I_X@12:
-LFB5529:
+LFB5531:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -523,7 +523,7 @@ L79:
 	testb	%dl, %dl
 	jne	L81
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP
@@ -557,12 +557,12 @@ L82:
 	movl	$-1, %eax
 	jmp	L77
 	.cfi_endproc
-LFE5529:
+LFE5531:
 	.p2align 4,,15
 	.globl	_PMC_Subtruct_X_I@12
 	.def	_PMC_Subtruct_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_Subtruct_X_I@12:
-LFB5530:
+LFB5532:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -615,7 +615,7 @@ L88:
 	je	L107
 	movl	4(%ebx), %edx
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl 52(%esp), %eax
  # 0 "" 2
 /NO_APP
@@ -722,12 +722,12 @@ L96:
 	movl	$-1, %esi
 	jmp	L86
 	.cfi_endproc
-LFE5530:
+LFE5532:
 	.p2align 4,,15
 	.globl	_PMC_Subtruct_L_X@16
 	.def	_PMC_Subtruct_L_X@16;	.scl	2;	.type	32;	.endef
 _PMC_Subtruct_L_X@16:
-LFB5531:
+LFB5533:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -793,7 +793,7 @@ L112:
 	testl	%edi, %edi
 	je	L115
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP
@@ -833,7 +833,7 @@ L127:
 L114:
 	.cfi_restore_state
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
@@ -874,12 +874,12 @@ L124:
 	movl	$-2, %eax
 	jmp	L110
 	.cfi_endproc
-LFE5531:
+LFE5533:
 	.p2align 4,,15
 	.globl	_PMC_Subtruct_X_L@16
 	.def	_PMC_Subtruct_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_Subtruct_X_L@16:
-LFB5532:
+LFB5534:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -944,7 +944,7 @@ L131:
 	testl	%esi, %esi
 	je	L135
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %esi, %edx
  # 0 "" 2
 /NO_APP
@@ -974,7 +974,7 @@ L181:
 L134:
 	.cfi_restore_state
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP
@@ -1141,12 +1141,12 @@ L141:
 	call	_DeallocateNumber
 	jmp	L181
 	.cfi_endproc
-LFE5532:
+LFE5534:
 	.p2align 4,,15
 	.globl	_PMC_Subtruct_X_X@12
 	.def	_PMC_Subtruct_X_X@12;	.scl	2;	.type	32;	.endef
 _PMC_Subtruct_X_X@12:
-LFB5533:
+LFB5535:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -1306,17 +1306,17 @@ L195:
 	movl	$-1, %ebx
 	jmp	L187
 	.cfi_endproc
-LFE5533:
+LFE5535:
 	.p2align 4,,15
 	.globl	_Initialize_Subtruct
 	.def	_Initialize_Subtruct;	.scl	2;	.type	32;	.endef
 _Initialize_Subtruct:
-LFB5534:
+LFB5536:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5534:
+LFE5536:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef
 	.def	_AllocateNumber;	.scl	2;	.type	32;	.endef

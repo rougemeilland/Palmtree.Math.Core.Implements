@@ -22,12 +22,12 @@ _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_SIZE PROC				; COMDAT
 
-; 448  : {
+; 457  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 449  :     return ((u + v - 1) / v);
+; 458  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _u$[ebp]
 	xor	edx, edx
@@ -35,7 +35,7 @@ __DIVIDE_CEILING_SIZE PROC				; COMDAT
 	add	eax, DWORD PTR _v$[ebp]
 	div	DWORD PTR _v$[ebp]
 
-; 450  : }
+; 459  : }
 
 	pop	ebp
 	ret	0
@@ -49,18 +49,18 @@ _value_high$ = 8					; size = 4
 _value_low$ = 12					; size = 4
 __FROMWORDTODWORD PROC					; COMDAT
 
-; 427  : {
+; 436  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 437  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edx, DWORD PTR _value_high$[ebp]
 	xor	eax, eax
 	or	eax, DWORD PTR _value_low$[ebp]
 
-; 429  : }
+; 438  : }
 
 	pop	ebp
 	ret	0
@@ -75,12 +75,12 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 299  : {
+; 308  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 300  :     __movsb(d, s, count);
+; 309  :     __movsb(d, s, count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	push	esi
@@ -91,7 +91,7 @@ __COPY_MEMORY_BYTE PROC					; COMDAT
 	pop	edi
 	pop	esi
 
-; 301  : }
+; 310  : }
 
 	pop	ebp
 	ret	0
@@ -193,18 +193,18 @@ $LN5@PMC_To_X_B:
 	mov	eax, DWORD PTR _count$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 449  :     return ((u + v - 1) / v);
+; 458  :     return ((u + v - 1) / v);
 
 	add	ecx, 7
 	shr	ecx, 3
 	push	esi
 
-; 300  :     __movsb(d, s, count);
+; 309  :     __movsb(d, s, count);
 
 	mov	esi, DWORD PTR [ebx+24]
 	rep movsb
 
-; 449  :     return ((u + v - 1) / v);
+; 458  :     return ((u + v - 1) / v);
 
 	mov	ecx, DWORD PTR [ebx+4]
 	add	ecx, 7
@@ -217,7 +217,7 @@ $LN5@PMC_To_X_B:
 	xor	eax, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 449  :     return ((u + v - 1) / v);
+; 458  :     return ((u + v - 1) / v);
 
 	pop	esi
 $LN14@PMC_To_X_B:
@@ -339,7 +339,7 @@ $LN5@PMC_To_X_L:
 $LN6@PMC_To_X_L:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 437  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edx, DWORD PTR [eax+4]
 	xor	ecx, ecx

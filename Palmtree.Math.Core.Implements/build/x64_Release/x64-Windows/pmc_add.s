@@ -817,7 +817,7 @@ PMC_Add_X_I_Imp:
 	leaq	72(%rsp), %r8
 	movl	$31, %eax
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %ebx, %edx
  # 0 "" 2
 /NO_APP
@@ -921,7 +921,7 @@ PMC_Add_X_L_Imp:
 	.p2align 4,,10
 .L94:
 /APP
- # 897 "pmc_internal.h" 1
+ # 906 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP

@@ -7,7 +7,7 @@
 _ADD_UNIT_DIV:
 .LFB4331:
 	.file 1 "pmc_internal.h"
-	.loc 1 474 1
+	.loc 1 483 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -24,7 +24,7 @@ _ADD_UNIT_DIV:
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
 	movb	%al, 16(%rbp)
-	.loc 1 481 13
+	.loc 1 490 13
 	movzbl	16(%rbp), %eax
 	movzbl	%al, %eax
 	movb	%al, -1(%rbp)
@@ -49,9 +49,9 @@ _ADD_UNIT_DIV:
 	movq	%rax, (%rdx)
 .LBE13:
 .LBE12:
-	.loc 1 481 13
+	.loc 1 490 13
 	movl	%ecx, %eax
-	.loc 1 488 1
+	.loc 1 497 1
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -64,7 +64,7 @@ _ADD_UNIT_DIV:
 	.seh_proc	_SUBTRUCT_UNIT_DIV
 _SUBTRUCT_UNIT_DIV:
 .LFB4335:
-	.loc 1 530 1
+	.loc 1 539 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -81,7 +81,7 @@ _SUBTRUCT_UNIT_DIV:
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
 	movb	%al, 16(%rbp)
-	.loc 1 537 13
+	.loc 1 546 13
 	movzbl	16(%rbp), %eax
 	movzbl	%al, %eax
 	movb	%al, -1(%rbp)
@@ -105,9 +105,9 @@ _SUBTRUCT_UNIT_DIV:
 	movq	%rax, (%rdx)
 .LBE15:
 .LBE14:
-	.loc 1 537 13
+	.loc 1 546 13
 	movl	%ecx, %eax
-	.loc 1 544 1
+	.loc 1 553 1
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -120,7 +120,7 @@ _SUBTRUCT_UNIT_DIV:
 	.seh_proc	_MULTIPLY_UNIT_DIV
 _MULTIPLY_UNIT_DIV:
 .LFB4337:
-	.loc 1 566 1
+	.loc 1 575 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -184,7 +184,7 @@ _MULTIPLY_UNIT_DIV:
 	movq	-128(%rbp), %rax
 .LBE17:
 .LBE16:
-	.loc 1 582 1
+	.loc 1 591 1
 	addq	$56, %rsp
 	popq	%r12
 	.cfi_restore 12
@@ -199,7 +199,7 @@ _MULTIPLY_UNIT_DIV:
 	.seh_proc	_DIVREM_UNIT
 _DIVREM_UNIT:
 .LFB4340:
-	.loc 1 634 1
+	.loc 1 643 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -215,20 +215,20 @@ _DIVREM_UNIT:
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 1 663 9
+	.loc 1 672 9
 	movq	24(%rbp), %rax
 	movq	16(%rbp), %rdx
 /APP
- # 663 "pmc_internal.h" 1
+ # 672 "pmc_internal.h" 1
 	divq 32(%rbp)
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%rbp)
 	movq	40(%rbp), %rax
 	movq	%rdx, (%rax)
-	.loc 1 670 12
+	.loc 1 679 12
 	movq	-8(%rbp), %rax
-	.loc 1 674 1
+	.loc 1 683 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -240,8 +240,8 @@ _DIVREM_UNIT:
 	.def	IncrementDIV64Counter;	.scl	3;	.type	32;	.endef
 	.seh_proc	IncrementDIV64Counter
 IncrementDIV64Counter:
-.LFB4360:
-	.loc 1 994 1
+.LFB4363:
+	.loc 1 1050 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -264,7 +264,7 @@ IncrementDIV64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE19:
 .LBE18:
-	.loc 1 996 1
+	.loc 1 1052 1
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -272,13 +272,13 @@ IncrementDIV64Counter:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4360:
+.LFE4363:
 	.seh_endproc
 	.def	AddToMULTI64Counter;	.scl	3;	.type	32;	.endef
 	.seh_proc	AddToMULTI64Counter
 AddToMULTI64Counter:
-.LFB4366:
-	.loc 1 1029 1
+.LFB4369:
+	.loc 1 1085 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -303,7 +303,7 @@ AddToMULTI64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE21:
 .LBE20:
-	.loc 1 1031 1
+	.loc 1 1087 1
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -311,12 +311,12 @@ AddToMULTI64Counter:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4366:
+.LFE4369:
 	.seh_endproc
 	.def	ADD_3W_UNIT;	.scl	3;	.type	32;	.endef
 	.seh_proc	ADD_3W_UNIT
 ADD_3W_UNIT:
-.LFB4368:
+.LFB4371:
 	.file 4 "CALC_divrem_critical.c"
 	.loc 4 40 1
 	.cfi_startproc
@@ -384,12 +384,12 @@ ADD_3W_UNIT:
 	.cfi_def_cfa 7, 24
 	ret
 	.cfi_endproc
-.LFE4368:
+.LFE4371:
 	.seh_endproc
 	.def	ADD_4W_UNIT;	.scl	3;	.type	32;	.endef
 	.seh_proc	ADD_4W_UNIT
 ADD_4W_UNIT:
-.LFB4369:
+.LFB4372:
 	.loc 4 45 1
 	.cfi_startproc
 	pushq	%rbp
@@ -474,12 +474,12 @@ ADD_4W_UNIT:
 	.cfi_def_cfa 7, -8
 	ret
 	.cfi_endproc
-.LFE4369:
+.LFE4372:
 	.seh_endproc
 	.def	SUBTRUCT_3W_UNIT;	.scl	3;	.type	32;	.endef
 	.seh_proc	SUBTRUCT_3W_UNIT
 SUBTRUCT_3W_UNIT:
-.LFB4370:
+.LFB4373:
 	.loc 4 50 1
 	.cfi_startproc
 	pushq	%rbp
@@ -546,12 +546,12 @@ SUBTRUCT_3W_UNIT:
 	.cfi_def_cfa 7, 24
 	ret
 	.cfi_endproc
-.LFE4370:
+.LFE4373:
 	.seh_endproc
 	.def	SUBTRUCT_4W_UNIT;	.scl	3;	.type	32;	.endef
 	.seh_proc	SUBTRUCT_4W_UNIT
 SUBTRUCT_4W_UNIT:
-.LFB4371:
+.LFB4374:
 	.loc 4 55 1
 	.cfi_startproc
 	pushq	%rbp
@@ -636,12 +636,12 @@ SUBTRUCT_4W_UNIT:
 	.cfi_def_cfa 7, -8
 	ret
 	.cfi_endproc
-.LFE4371:
+.LFE4374:
 	.seh_endproc
 	.def	AsumeQ_;	.scl	3;	.type	32;	.endef
 	.seh_proc	AsumeQ_
 AsumeQ_:
-.LFB4372:
+.LFB4375:
 	.loc 4 60 1
 	.cfi_startproc
 	pushq	%rbp
@@ -687,12 +687,12 @@ AsumeQ_:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE4372:
+.LFE4375:
 	.seh_endproc
 	.def	CheckQ_;	.scl	3;	.type	32;	.endef
 	.seh_proc	CheckQ_
 CheckQ_:
-.LFB4373:
+.LFB4376:
 	.loc 4 75 1
 	.cfi_startproc
 	pushq	%rbp
@@ -811,7 +811,7 @@ CheckQ_:
 	.cfi_def_cfa 7, -72
 	ret
 	.cfi_endproc
-.LFE4373:
+.LFE4376:
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
@@ -822,7 +822,7 @@ CheckQ_:
 	.def	CalculateCriticalDataOfDivision;	.scl	2;	.type	32;	.endef
 	.seh_proc	CalculateCriticalDataOfDivision
 CalculateCriticalDataOfDivision:
-.LFB4374:
+.LFB4377:
 	.loc 4 102 1
 	.cfi_startproc
 	pushq	%rbp
@@ -1187,7 +1187,7 @@ CalculateCriticalDataOfDivision:
 	.cfi_def_cfa 7, -280
 	ret
 	.cfi_endproc
-.LFE4374:
+.LFE4377:
 	.seh_endproc
 .Letext0:
 	.file 5 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h"
@@ -5280,8 +5280,8 @@ CalculateCriticalDataOfDivision:
 	.byte	0x4
 	.byte	0x65
 	.byte	0x6
-	.quad	.LFB4374
-	.quad	.LFE4374-.LFB4374
+	.quad	.LFB4377
+	.quad	.LFE4377-.LFB4377
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x4fb9
@@ -5599,8 +5599,8 @@ CalculateCriticalDataOfDivision:
 	.byte	0x4a
 	.byte	0x16
 	.long	0x5f2
-	.quad	.LFB4373
-	.quad	.LFE4373-.LFB4373
+	.quad	.LFB4376
+	.quad	.LFE4376-.LFB4376
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x50a2
@@ -5719,8 +5719,8 @@ CalculateCriticalDataOfDivision:
 	.byte	0x3b
 	.byte	0x21
 	.long	0x4af8
-	.quad	.LFB4372
-	.quad	.LFE4372-.LFB4372
+	.quad	.LFB4375
+	.quad	.LFE4375-.LFB4375
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x510d
@@ -5776,8 +5776,8 @@ CalculateCriticalDataOfDivision:
 	.byte	0x36
 	.byte	0x16
 	.long	0xcb
-	.quad	.LFB4371
-	.quad	.LFE4371-.LFB4371
+	.quad	.LFB4374
+	.quad	.LFE4374-.LFB4374
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5182
@@ -5836,8 +5836,8 @@ CalculateCriticalDataOfDivision:
 	.byte	0x31
 	.byte	0x16
 	.long	0xcb
-	.quad	.LFB4370
-	.quad	.LFE4370-.LFB4370
+	.quad	.LFB4373
+	.quad	.LFE4373-.LFB4373
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x51ef
@@ -5884,8 +5884,8 @@ CalculateCriticalDataOfDivision:
 	.byte	0x2c
 	.byte	0x16
 	.long	0xcb
-	.quad	.LFB4369
-	.quad	.LFE4369-.LFB4369
+	.quad	.LFB4372
+	.quad	.LFE4372-.LFB4372
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x525f
@@ -5941,8 +5941,8 @@ CalculateCriticalDataOfDivision:
 	.byte	0x27
 	.byte	0x16
 	.long	0xcb
-	.quad	.LFB4368
-	.quad	.LFE4368-.LFB4368
+	.quad	.LFB4371
+	.quad	.LFE4371-.LFB4371
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x52c1
@@ -5986,17 +5986,17 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x23
 	.ascii "AddToMULTI64Counter\0"
 	.byte	0x1
-	.word	0x404
+	.word	0x43c
 	.byte	0x16
-	.quad	.LFB4366
-	.quad	.LFE4366-.LFB4366
+	.quad	.LFB4369
+	.quad	.LFE4369-.LFB4369
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x532d
 	.uleb128 0x24
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x404
+	.word	0x43c
 	.byte	0x33
 	.long	0x49bb
 	.uleb128 0x2
@@ -6007,7 +6007,7 @@ CalculateCriticalDataOfDivision:
 	.quad	.LBB20
 	.quad	.LBE20-.LBB20
 	.byte	0x1
-	.word	0x406
+	.word	0x43e
 	.byte	0x5
 	.uleb128 0x26
 	.long	0x577e
@@ -6024,10 +6024,10 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x23
 	.ascii "IncrementDIV64Counter\0"
 	.byte	0x1
-	.word	0x3e1
+	.word	0x419
 	.byte	0x16
-	.quad	.LFB4360
-	.quad	.LFE4360-.LFB4360
+	.quad	.LFB4363
+	.quad	.LFE4363-.LFB4363
 	.uleb128 0x1
 	.byte	0x9c
 	.long	0x5381
@@ -6036,7 +6036,7 @@ CalculateCriticalDataOfDivision:
 	.quad	.LBB18
 	.quad	.LBE18-.LBB18
 	.byte	0x1
-	.word	0x3e3
+	.word	0x41b
 	.byte	0x5
 	.uleb128 0x26
 	.long	0x5735
@@ -6048,7 +6048,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x27
 	.ascii "_DIVREM_UNIT\0"
 	.byte	0x1
-	.word	0x279
+	.word	0x282
 	.byte	0x21
 	.long	0x4af8
 	.quad	.LFB4340
@@ -6059,7 +6059,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "u_high\0"
 	.byte	0x1
-	.word	0x279
+	.word	0x282
 	.byte	0x3e
 	.long	0x4af8
 	.uleb128 0x2
@@ -6068,7 +6068,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "u_low\0"
 	.byte	0x1
-	.word	0x279
+	.word	0x282
 	.byte	0x56
 	.long	0x4af8
 	.uleb128 0x2
@@ -6077,7 +6077,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x279
+	.word	0x282
 	.byte	0x6d
 	.long	0x4af8
 	.uleb128 0x2
@@ -6086,7 +6086,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "r\0"
 	.byte	0x1
-	.word	0x279
+	.word	0x282
 	.byte	0x81
 	.long	0x5182
 	.uleb128 0x2
@@ -6095,7 +6095,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x28
 	.ascii "q\0"
 	.byte	0x1
-	.word	0x293
+	.word	0x29c
 	.byte	0x11
 	.long	0x4ae4
 	.uleb128 0x2
@@ -6105,7 +6105,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x27
 	.ascii "_MULTIPLY_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x235
+	.word	0x23e
 	.byte	0x21
 	.long	0x4af8
 	.quad	.LFB4337
@@ -6116,7 +6116,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x235
+	.word	0x23e
 	.byte	0x44
 	.long	0x4af8
 	.uleb128 0x2
@@ -6125,7 +6125,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x235
+	.word	0x23e
 	.byte	0x57
 	.long	0x4af8
 	.uleb128 0x2
@@ -6134,7 +6134,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "w_hi\0"
 	.byte	0x1
-	.word	0x235
+	.word	0x23e
 	.byte	0x6b
 	.long	0x5182
 	.uleb128 0x2
@@ -6145,7 +6145,7 @@ CalculateCriticalDataOfDivision:
 	.quad	.LBB16
 	.quad	.LBE16-.LBB16
 	.byte	0x1
-	.word	0x23f
+	.word	0x248
 	.byte	0xd
 	.uleb128 0x26
 	.long	0x5625
@@ -6176,7 +6176,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x27
 	.ascii "_SUBTRUCT_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x211
+	.word	0x21a
 	.byte	0x16
 	.long	0xcb
 	.quad	.LFB4335
@@ -6187,7 +6187,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "borrow\0"
 	.byte	0x1
-	.word	0x211
+	.word	0x21a
 	.byte	0x2e
 	.long	0xcb
 	.uleb128 0x2
@@ -6196,7 +6196,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x211
+	.word	0x21a
 	.byte	0x46
 	.long	0x4af8
 	.uleb128 0x2
@@ -6205,7 +6205,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x211
+	.word	0x21a
 	.byte	0x59
 	.long	0x4af8
 	.uleb128 0x2
@@ -6214,7 +6214,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "w\0"
 	.byte	0x1
-	.word	0x211
+	.word	0x21a
 	.byte	0x6d
 	.long	0x5182
 	.uleb128 0x2
@@ -6225,7 +6225,7 @@ CalculateCriticalDataOfDivision:
 	.quad	.LBB14
 	.quad	.LBE14-.LBB14
 	.byte	0x1
-	.word	0x219
+	.word	0x222
 	.byte	0xd
 	.uleb128 0x26
 	.long	0x5704
@@ -6252,7 +6252,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x27
 	.ascii "_ADD_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x1d9
+	.word	0x1e2
 	.byte	0x16
 	.long	0xcb
 	.quad	.LFB4331
@@ -6263,7 +6263,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "carry\0"
 	.byte	0x1
-	.word	0x1d9
+	.word	0x1e2
 	.byte	0x29
 	.long	0xcb
 	.uleb128 0x2
@@ -6272,7 +6272,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x1d9
+	.word	0x1e2
 	.byte	0x40
 	.long	0x4af8
 	.uleb128 0x2
@@ -6281,7 +6281,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x1d9
+	.word	0x1e2
 	.byte	0x53
 	.long	0x4af8
 	.uleb128 0x2
@@ -6290,7 +6290,7 @@ CalculateCriticalDataOfDivision:
 	.uleb128 0x24
 	.ascii "w\0"
 	.byte	0x1
-	.word	0x1d9
+	.word	0x1e2
 	.byte	0x67
 	.long	0x5182
 	.uleb128 0x2
@@ -6301,7 +6301,7 @@ CalculateCriticalDataOfDivision:
 	.quad	.LBB12
 	.quad	.LBE12-.LBB12
 	.byte	0x1
-	.word	0x1e1
+	.word	0x1ea
 	.byte	0xd
 	.uleb128 0x26
 	.long	0x56b6

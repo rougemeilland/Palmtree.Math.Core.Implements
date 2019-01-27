@@ -3,7 +3,7 @@
 	.p2align 4,,15
 	.def	_PMC_Equals_X_I_Imp;	.scl	3;	.type	32;	.endef
 _PMC_Equals_X_I_Imp:
-LFB5486:
+LFB5488:
 	.cfi_startproc
 	testb	$2, 16(%eax)
 	je	L2
@@ -26,7 +26,7 @@ L2:
 	.cfi_def_cfa_offset 8
 	.cfi_offset 3, -8
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %edx, %ebx
  # 0 "" 2
 /NO_APP
@@ -51,11 +51,11 @@ L15:
 	movl	%eax, (%ecx)
 	jmp	L4
 	.cfi_endproc
-LFE5486:
+LFE5488:
 	.p2align 4,,15
 	.def	_PMC_Equals_X_L_Imp.part.1;	.scl	3;	.type	32;	.endef
 _PMC_Equals_X_L_Imp.part.1:
-LFB5495:
+LFB5497:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -69,7 +69,7 @@ LFB5495:
 	testl	%edx, %edx
 	je	L18
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %edx, %ecx
  # 0 "" 2
 /NO_APP
@@ -92,7 +92,7 @@ L21:
 L17:
 	.cfi_restore_state
 /APP
- # 853 "pmc_internal.h" 1
+ # 862 "pmc_internal.h" 1
 	bsrl %ecx, %esi
  # 0 "" 2
 /NO_APP
@@ -134,12 +134,12 @@ L19:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5495:
+LFE5497:
 	.p2align 4,,15
 	.globl	_Equals_X_X
 	.def	_Equals_X_X;	.scl	2;	.type	32;	.endef
 _Equals_X_X:
-LFB5485:
+LFB5487:
 	.cfi_startproc
 	pushl	%ebx
 	.cfi_def_cfa_offset 8
@@ -175,12 +175,12 @@ L31:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5485:
+LFE5487:
 	.p2align 4,,15
 	.globl	_PMC_Equals_I_X@12
 	.def	_PMC_Equals_I_X@12;	.scl	2;	.type	32;	.endef
 _PMC_Equals_I_X@12:
-LFB5487:
+LFB5489:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -221,12 +221,12 @@ L39:
 	movl	$-1, %eax
 	jmp	L37
 	.cfi_endproc
-LFE5487:
+LFE5489:
 	.p2align 4,,15
 	.globl	_PMC_Equals_X_I@12
 	.def	_PMC_Equals_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_Equals_X_I@12:
-LFB5488:
+LFB5490:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -267,12 +267,12 @@ L43:
 	movl	$-1, %eax
 	jmp	L41
 	.cfi_endproc
-LFE5488:
+LFE5490:
 	.p2align 4,,15
 	.globl	_PMC_Equals_L_X@16
 	.def	_PMC_Equals_L_X@16;	.scl	2;	.type	32;	.endef
 _PMC_Equals_L_X@16:
-LFB5490:
+LFB5492:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -403,12 +403,12 @@ L49:
 	movl	$-1, %esi
 	jmp	L45
 	.cfi_endproc
-LFE5490:
+LFE5492:
 	.p2align 4,,15
 	.globl	_PMC_Equals_X_L@16
 	.def	_PMC_Equals_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_Equals_X_L@16:
-LFB5491:
+LFB5493:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -539,12 +539,12 @@ L60:
 	movl	$-1, %esi
 	jmp	L56
 	.cfi_endproc
-LFE5491:
+LFE5493:
 	.p2align 4,,15
 	.globl	_PMC_Equals_X_X@12
 	.def	_PMC_Equals_X_X@12;	.scl	2;	.type	32;	.endef
 _PMC_Equals_X_X@12:
-LFB5492:
+LFB5494:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -671,16 +671,16 @@ L78:
 	movl	%edx, (%edi)
 	jmp	L67
 	.cfi_endproc
-LFE5492:
+LFE5494:
 	.p2align 4,,15
 	.globl	_Initialize_Equals
 	.def	_Initialize_Equals;	.scl	2;	.type	32;	.endef
 _Initialize_Equals:
-LFB5493:
+LFB5495:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5493:
+LFE5495:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef

@@ -49,6 +49,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/TEST_op_Multiply.o \
 	${OBJECTDIR}/TEST_op_ParseDN.o \
 	${OBJECTDIR}/TEST_op_ParseX.o \
+	${OBJECTDIR}/TEST_op_Pow.o \
 	${OBJECTDIR}/TEST_op_Shift.o \
 	${OBJECTDIR}/TEST_op_Subtruct.o \
 	${OBJECTDIR}/TEST_op_ToStringD.o \
@@ -70,6 +71,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/pmc_initialize.o \
 	${OBJECTDIR}/pmc_multiply.o \
 	${OBJECTDIR}/pmc_parse.o \
+	${OBJECTDIR}/pmc_pow.o \
 	${OBJECTDIR}/pmc_shift.o \
 	${OBJECTDIR}/pmc_statistics.o \
 	${OBJECTDIR}/pmc_subtruct.o \
@@ -170,6 +172,11 @@ ${OBJECTDIR}/TEST_op_ParseX.o: TEST_op_ParseX.c nbproject/Makefile-${CND_CONF}.m
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_ParseX.o TEST_op_ParseX.c
+
+${OBJECTDIR}/TEST_op_Pow.o: TEST_op_Pow.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Pow.o TEST_op_Pow.c
 
 ${OBJECTDIR}/TEST_op_Shift.o: TEST_op_Shift.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
@@ -275,6 +282,11 @@ ${OBJECTDIR}/pmc_parse.o: pmc_parse.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_parse.o pmc_parse.c
+
+${OBJECTDIR}/pmc_pow.o: pmc_pow.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_pow.o pmc_pow.c
 
 ${OBJECTDIR}/pmc_shift.o: pmc_shift.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

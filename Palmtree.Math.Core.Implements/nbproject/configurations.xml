@@ -16,6 +16,7 @@
       <itemPath>TEST_op_Multiply.c</itemPath>
       <itemPath>TEST_op_ParseDN.c</itemPath>
       <itemPath>TEST_op_ParseX.c</itemPath>
+      <itemPath>TEST_op_Pow.c</itemPath>
       <itemPath>TEST_op_Shift.c</itemPath>
       <itemPath>TEST_op_Subtruct.c</itemPath>
       <itemPath>TEST_op_ToStringD.c</itemPath>
@@ -37,6 +38,7 @@
       <itemPath>pmc_initialize.c</itemPath>
       <itemPath>pmc_multiply.c</itemPath>
       <itemPath>pmc_parse.c</itemPath>
+      <itemPath>pmc_pow.c</itemPath>
       <itemPath>pmc_shift.c</itemPath>
       <itemPath>pmc_statistics.c</itemPath>
       <itemPath>pmc_subtruct.c</itemPath>
@@ -128,6 +130,8 @@
       </item>
       <item path="TEST_op_ParseX.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_Pow.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_Shift.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Subtruct.c" ex="false" tool="0" flavor2="0">
@@ -179,6 +183,8 @@
       <item path="pmc_multiply.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_parse.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_pow.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_shift.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -260,6 +266,8 @@
       </item>
       <item path="TEST_op_ParseX.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_Pow.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_Shift.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Subtruct.c" ex="false" tool="0" flavor2="0">
@@ -311,6 +319,8 @@
       <item path="pmc_multiply.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_parse.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_pow.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_shift.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -385,6 +395,8 @@
       </item>
       <item path="TEST_op_ParseX.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_Pow.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_Shift.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Subtruct.c" ex="false" tool="0" flavor2="0">
@@ -436,6 +448,8 @@
       <item path="pmc_multiply.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_parse.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_pow.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_shift.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -518,6 +532,8 @@
       </item>
       <item path="TEST_op_ParseX.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_Pow.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_Shift.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_Subtruct.c" ex="false" tool="0" flavor2="0">
@@ -569,6 +585,8 @@
       <item path="pmc_multiply.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_parse.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_pow.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_shift.c" ex="false" tool="0" flavor2="0">
       </item>

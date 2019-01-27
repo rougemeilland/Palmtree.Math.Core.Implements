@@ -155,7 +155,7 @@ $LN2@Subtruct_X:
 	mov	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	mov	rdx, QWORD PTR wp$[rsp]
 	sub	rax, r11
@@ -169,7 +169,7 @@ $LN2@Subtruct_X:
 	mov	rax, QWORD PTR [r9+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, r8
 	mov	QWORD PTR [rdx+8], rax
@@ -180,7 +180,7 @@ $LN2@Subtruct_X:
 	lea	rax, QWORD PTR [rdx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	setb	r8b
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
@@ -218,7 +218,7 @@ $LL10@Subtruct_X:
 	mov	rcx, QWORD PTR [r9]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	r8b, -1
 	sbb	rcx, 0
@@ -315,7 +315,7 @@ Subtruct_X_1W PROC					; COMDAT
 	mov	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sub	rax, r8
 	mov	QWORD PTR [r9], rax
@@ -326,7 +326,7 @@ Subtruct_X_1W PROC					; COMDAT
 	lea	rax, QWORD PTR [r9+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	setb	r8b
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
@@ -366,7 +366,7 @@ $LL6@Subtruct_X:
 	mov	rcx, QWORD PTR [r9]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	r8b, -1
 	sbb	rcx, 0
@@ -470,7 +470,7 @@ $LL2@DoBorrow:
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, 0
@@ -573,7 +573,7 @@ _SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -585,7 +585,7 @@ _SUBTRUCT_2WORDS_SBB PROC				; COMDAT
 	mov	rcx, QWORD PTR [rdx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rcx, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rcx
@@ -621,7 +621,7 @@ _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -633,7 +633,7 @@ _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
@@ -644,7 +644,7 @@ _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
@@ -655,7 +655,7 @@ _SUBTRUCT_4WORDS_SBB PROC				; COMDAT
 	mov	rcx, QWORD PTR [rdx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rcx, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rcx
@@ -699,7 +699,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -711,7 +711,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
@@ -722,7 +722,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
@@ -733,7 +733,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
@@ -744,7 +744,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
@@ -755,7 +755,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
@@ -766,7 +766,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
@@ -777,7 +777,7 @@ _SUBTRUCT_8WORDS_SBB PROC				; COMDAT
 	mov	rcx, QWORD PTR [rdx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rcx, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rcx
@@ -837,7 +837,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -849,7 +849,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
@@ -860,7 +860,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
@@ -871,7 +871,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
@@ -882,7 +882,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
@@ -893,7 +893,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
@@ -904,7 +904,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
@@ -915,7 +915,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rax
@@ -926,7 +926,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+64]
 	mov	QWORD PTR [r9+64], rax
@@ -937,7 +937,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+72]
 	mov	QWORD PTR [r9+72], rax
@@ -948,7 +948,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+80]
 	mov	QWORD PTR [r9+80], rax
@@ -959,7 +959,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+88]
 	mov	QWORD PTR [r9+88], rax
@@ -970,7 +970,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+96]
 	mov	QWORD PTR [r9+96], rax
@@ -981,7 +981,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+104]
 	mov	QWORD PTR [r9+104], rax
@@ -992,7 +992,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+112]
 	mov	QWORD PTR [r9+112], rax
@@ -1003,7 +1003,7 @@ _SUBTRUCT_16WORDS_SBB PROC				; COMDAT
 	mov	rcx, QWORD PTR [rdx+120]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rcx, QWORD PTR [r8+120]
 	mov	QWORD PTR [r9+120], rcx
@@ -1095,7 +1095,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -1107,7 +1107,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
@@ -1118,7 +1118,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
@@ -1129,7 +1129,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
@@ -1140,7 +1140,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
@@ -1151,7 +1151,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
@@ -1162,7 +1162,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
@@ -1173,7 +1173,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rax
@@ -1184,7 +1184,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+64]
 	mov	QWORD PTR [r9+64], rax
@@ -1195,7 +1195,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+72]
 	mov	QWORD PTR [r9+72], rax
@@ -1206,7 +1206,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+80]
 	mov	QWORD PTR [r9+80], rax
@@ -1217,7 +1217,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+88]
 	mov	QWORD PTR [r9+88], rax
@@ -1228,7 +1228,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+96]
 	mov	QWORD PTR [r9+96], rax
@@ -1239,7 +1239,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+104]
 	mov	QWORD PTR [r9+104], rax
@@ -1250,7 +1250,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+112]
 	mov	QWORD PTR [r9+112], rax
@@ -1261,7 +1261,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+120]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+120]
 	mov	QWORD PTR [r9+120], rax
@@ -1272,7 +1272,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+128]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+128]
 	mov	QWORD PTR [r9+128], rax
@@ -1283,7 +1283,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+136]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+136]
 	mov	QWORD PTR [r9+136], rax
@@ -1294,7 +1294,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+144]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+144]
 	mov	QWORD PTR [r9+144], rax
@@ -1305,7 +1305,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+152]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+152]
 	mov	QWORD PTR [r9+152], rax
@@ -1316,7 +1316,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+160]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+160]
 	mov	QWORD PTR [r9+160], rax
@@ -1327,7 +1327,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+168]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+168]
 	mov	QWORD PTR [r9+168], rax
@@ -1338,7 +1338,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+176]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+176]
 	mov	QWORD PTR [r9+176], rax
@@ -1349,7 +1349,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+184]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+184]
 	mov	QWORD PTR [r9+184], rax
@@ -1360,7 +1360,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+192]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+192]
 	mov	QWORD PTR [r9+192], rax
@@ -1371,7 +1371,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+200]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+200]
 	mov	QWORD PTR [r9+200], rax
@@ -1382,7 +1382,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+208]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+208]
 	mov	QWORD PTR [r9+208], rax
@@ -1393,7 +1393,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+216]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+216]
 	mov	QWORD PTR [r9+216], rax
@@ -1404,7 +1404,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+224]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+224]
 	mov	QWORD PTR [r9+224], rax
@@ -1415,7 +1415,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+232]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+232]
 	mov	QWORD PTR [r9+232], rax
@@ -1426,7 +1426,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rax, QWORD PTR [rdx+240]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+240]
 	mov	QWORD PTR [r9+240], rax
@@ -1437,7 +1437,7 @@ _SUBTRUCT_32WORDS_SBB PROC				; COMDAT
 	mov	rcx, QWORD PTR [rdx+248]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rcx, QWORD PTR [r8+248]
 	mov	QWORD PTR [r9+248], rcx
@@ -1456,51 +1456,51 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 880  :     if (x == 0)
+; 889  :     if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 881  :         return (sizeof(x) * 8);
+; 890  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 
-; 905  : }
+; 914  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 882  : #ifdef _M_IX86
-; 883  :     _UINT32_T pos;
-; 884  : #ifdef _MSC_VER
-; 885  :     _BitScanReverse(&pos, x);
-; 886  : #elif defined(__GNUC__)
-; 887  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 888  : #else
-; 889  : #error unknown compiler
-; 890  : #endif
-; 891  : #elif defined(_M_X64)
-; 892  : #ifdef _MSC_VER
-; 893  :     _UINT32_T pos;
-; 894  :     _BitScanReverse64(&pos, x);
+; 891  : #ifdef _M_IX86
+; 892  :     _UINT32_T pos;
+; 893  : #ifdef _MSC_VER
+; 894  :     _BitScanReverse(&pos, x);
+; 895  : #elif defined(__GNUC__)
+; 896  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 897  : #else
+; 898  : #error unknown compiler
+; 899  : #endif
+; 900  : #elif defined(_M_X64)
+; 901  : #ifdef _MSC_VER
+; 902  :     _UINT32_T pos;
+; 903  :     _BitScanReverse64(&pos, x);
 
 	bsr	rcx, rcx
 
-; 895  : #elif defined(__GNUC__)
-; 896  :     _UINT64_T pos;
-; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 898  : #else
-; 899  : #error unknown compiler
-; 900  : #endif
-; 901  : #else
-; 902  : #error unknown platform
-; 903  : #endif
-; 904  :     return (sizeof(x) * 8 - 1 - pos);
+; 904  : #elif defined(__GNUC__)
+; 905  :     _UINT64_T pos;
+; 906  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 907  : #else
+; 908  : #error unknown compiler
+; 909  : #endif
+; 910  : #else
+; 911  : #error unknown platform
+; 912  : #endif
+; 913  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 63					; 0000003fH
 	sub	rax, rcx
 
-; 905  : }
+; 914  : }
 
 	ret	0
 _LZCNT_ALT_UNIT ENDP
@@ -1512,37 +1512,37 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 847  :     if (x == 0)
+; 856  :     if (x == 0)
 
 	test	ecx, ecx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 848  :         return (sizeof(x) * 8);
+; 857  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 858  : }
+; 867  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 849  :     _UINT32_T pos;
-; 850  : #ifdef _MSC_VER
-; 851  :     _BitScanReverse(&pos, x);
+; 858  :     _UINT32_T pos;
+; 859  : #ifdef _MSC_VER
+; 860  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, ecx
 
-; 852  : #elif defined(__GNUC__)
-; 853  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 854  : #else
-; 855  : #error unknown compiler
-; 856  : #endif
-; 857  :     return (sizeof(x) * 8 - 1 - pos);
+; 861  : #elif defined(__GNUC__)
+; 862  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 863  : #else
+; 864  : #error unknown compiler
+; 865  : #endif
+; 866  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31
 	sub	eax, ecx
 
-; 858  : }
+; 867  : }
 
 	ret	0
 _LZCNT_ALT_32 ENDP
@@ -1557,20 +1557,20 @@ v$ = 24
 w$ = 32
 _SUBTRUCT_UNIT PROC					; COMDAT
 
-; 520  : #ifdef _M_IX86
-; 521  :     return (_subborrow_u32(borrow, u, v, w));
-; 522  : #elif defined(_M_X64)
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 529  : #ifdef _M_IX86
+; 530  :     return (_subborrow_u32(borrow, u, v, w));
+; 531  : #elif defined(_M_X64)
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rdx, r8
 	mov	QWORD PTR [r9], rdx
 	setb	al
 
-; 524  : #else
-; 525  : #error unknown platform
-; 526  : #endif
-; 527  : }
+; 533  : #else
+; 534  : #error unknown platform
+; 535  : #endif
+; 536  : }
 
 	ret	0
 _SUBTRUCT_UNIT ENDP
@@ -1583,17 +1583,17 @@ value$ = 8
 result_high$ = 16
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 433  :     *result_high = (_UINT32_T)(value >> 32);
+; 442  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, rcx
 	shr	rax, 32					; 00000020H
 	mov	DWORD PTR [rdx], eax
 
-; 434  :     return ((_UINT32_T)value);
+; 443  :     return ((_UINT32_T)value);
 
 	mov	eax, ecx
 
-; 435  : }
+; 444  : }
 
 	ret	0
 _FROMDWORDTOWORD ENDP
@@ -1606,14 +1606,14 @@ value_high$ = 8
 value_low$ = 16
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 428  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 437  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, ecx
 	shl	rax, 32					; 00000020H
 	mov	ecx, edx
 	or	rax, rcx
 
-; 429  : }
+; 438  : }
 
 	ret	0
 _FROMWORDTODWORD ENDP
@@ -2104,20 +2104,20 @@ $LN10@PMC_Subtru:
 	mov	rdx, QWORD PTR [rbx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 894  :     _BitScanReverse64(&pos, x);
+; 903  :     _BitScanReverse64(&pos, x);
 
 	bsr	rcx, rdi
 
-; 895  : #elif defined(__GNUC__)
-; 896  :     _UINT64_T pos;
-; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 898  : #else
-; 899  : #error unknown compiler
-; 900  : #endif
-; 901  : #else
-; 902  : #error unknown platform
-; 903  : #endif
-; 904  :     return (sizeof(x) * 8 - 1 - pos);
+; 904  : #elif defined(__GNUC__)
+; 905  :     _UINT64_T pos;
+; 906  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 907  : #else
+; 908  : #error unknown compiler
+; 909  : #endif
+; 910  : #else
+; 911  : #error unknown platform
+; 912  : #endif
+; 913  :     return (sizeof(x) * 8 - 1 - pos);
 
 	inc	rcx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
@@ -2416,7 +2416,7 @@ $LN10@PMC_Subtru:
 	mov	rdx, QWORD PTR [rbx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 857  :     return (sizeof(x) * 8 - 1 - pos);
+; 866  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31
 	bsr	eax, edi
@@ -2678,20 +2678,20 @@ $LN6@PMC_Subtru:
 	jne	SHORT $LN56@PMC_Subtru
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 894  :     _BitScanReverse64(&pos, x);
+; 903  :     _BitScanReverse64(&pos, x);
 
 	bsr	rcx, rbx
 
-; 895  : #elif defined(__GNUC__)
-; 896  :     _UINT64_T pos;
-; 897  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 898  : #else
-; 899  : #error unknown compiler
-; 900  : #endif
-; 901  : #else
-; 902  : #error unknown platform
-; 903  : #endif
-; 904  :     return (sizeof(x) * 8 - 1 - pos);
+; 904  : #elif defined(__GNUC__)
+; 905  :     _UINT64_T pos;
+; 906  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 907  : #else
+; 908  : #error unknown compiler
+; 909  : #endif
+; 910  : #else
+; 911  : #error unknown platform
+; 912  : #endif
+; 913  :     return (sizeof(x) * 8 - 1 - pos);
 
 	inc	rcx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_subtruct.c
@@ -2719,7 +2719,7 @@ $LN6@PMC_Subtru:
 	mov	rax, QWORD PTR [rsi+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sub	rbx, QWORD PTR [rax]
 	setb	al
@@ -2917,16 +2917,16 @@ $LN6@PMC_Subtru:
 $LN10@PMC_Subtru:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 851  :     _BitScanReverse(&pos, x);
+; 860  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, esi
 
-; 852  : #elif defined(__GNUC__)
-; 853  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 854  : #else
-; 855  : #error unknown compiler
-; 856  : #endif
-; 857  :     return (sizeof(x) * 8 - 1 - pos);
+; 861  : #elif defined(__GNUC__)
+; 862  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 863  : #else
+; 864  : #error unknown compiler
+; 865  : #endif
+; 866  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31
 	sub	ecx, eax
@@ -2961,7 +2961,7 @@ $LN10@PMC_Subtru:
 	mov	rcx, rsi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sub	rcx, QWORD PTR [rax]
 	setb	al
@@ -3185,7 +3185,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -3197,7 +3197,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
@@ -3208,7 +3208,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
@@ -3219,7 +3219,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
@@ -3230,7 +3230,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
@@ -3241,7 +3241,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
@@ -3252,7 +3252,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
@@ -3263,7 +3263,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rax
@@ -3274,7 +3274,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+64]
 	mov	QWORD PTR [r9+64], rax
@@ -3285,7 +3285,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+72]
 	mov	QWORD PTR [r9+72], rax
@@ -3296,7 +3296,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+80]
 	mov	QWORD PTR [r9+80], rax
@@ -3307,7 +3307,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+88]
 	mov	QWORD PTR [r9+88], rax
@@ -3318,7 +3318,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+96]
 	mov	QWORD PTR [r9+96], rax
@@ -3329,7 +3329,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+104]
 	mov	QWORD PTR [r9+104], rax
@@ -3340,7 +3340,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+112]
 	mov	QWORD PTR [r9+112], rax
@@ -3351,7 +3351,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+120]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+120]
 	mov	QWORD PTR [r9+120], rax
@@ -3362,7 +3362,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+128]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+128]
 	mov	QWORD PTR [r9+128], rax
@@ -3373,7 +3373,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+136]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+136]
 	mov	QWORD PTR [r9+136], rax
@@ -3384,7 +3384,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+144]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+144]
 	mov	QWORD PTR [r9+144], rax
@@ -3395,7 +3395,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+152]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+152]
 	mov	QWORD PTR [r9+152], rax
@@ -3406,7 +3406,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+160]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+160]
 	mov	QWORD PTR [r9+160], rax
@@ -3417,7 +3417,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+168]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+168]
 	mov	QWORD PTR [r9+168], rax
@@ -3428,7 +3428,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+176]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+176]
 	mov	QWORD PTR [r9+176], rax
@@ -3439,7 +3439,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+184]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+184]
 	mov	QWORD PTR [r9+184], rax
@@ -3450,7 +3450,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+192]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+192]
 	mov	QWORD PTR [r9+192], rax
@@ -3461,7 +3461,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+200]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+200]
 	mov	QWORD PTR [r9+200], rax
@@ -3472,7 +3472,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+208]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+208]
 	mov	QWORD PTR [r9+208], rax
@@ -3483,7 +3483,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+216]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+216]
 	mov	QWORD PTR [r9+216], rax
@@ -3494,7 +3494,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+224]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+224]
 	mov	QWORD PTR [r9+224], rax
@@ -3505,7 +3505,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+232]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+232]
 	mov	QWORD PTR [r9+232], rax
@@ -3516,7 +3516,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+240]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+240]
 	mov	QWORD PTR [r9+240], rax
@@ -3527,7 +3527,7 @@ $LL2@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+248]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+248]
 	mov	QWORD PTR [r9+248], rax
@@ -3595,7 +3595,7 @@ $LN4@Subtruct_I:
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -3607,7 +3607,7 @@ $LN4@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
@@ -3618,7 +3618,7 @@ $LN4@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
@@ -3629,7 +3629,7 @@ $LN4@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
@@ -3640,7 +3640,7 @@ $LN4@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
@@ -3651,7 +3651,7 @@ $LN4@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
@@ -3662,7 +3662,7 @@ $LN4@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
@@ -3673,7 +3673,7 @@ $LN4@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rax
@@ -3708,7 +3708,7 @@ $LN5@Subtruct_I:
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -3720,7 +3720,7 @@ $LN5@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
@@ -3731,7 +3731,7 @@ $LN5@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
@@ -3742,7 +3742,7 @@ $LN5@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
@@ -3777,7 +3777,7 @@ $LN6@Subtruct_I:
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -3789,7 +3789,7 @@ $LN6@Subtruct_I:
 	mov	rax, QWORD PTR [rdx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	sbb	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
@@ -3823,7 +3823,7 @@ $LN7@Subtruct_I:
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, QWORD PTR [r8]
@@ -3869,7 +3869,7 @@ $LL113@Subtruct_I:
 	mov	rax, QWORD PTR [rdx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 523  :     return (_subborrow_u64(borrow, u, v, w));
+; 532  :     return (_subborrow_u64(borrow, u, v, w));
 
 	add	cl, -1
 	sbb	rax, 0

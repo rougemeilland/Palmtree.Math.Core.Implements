@@ -500,7 +500,7 @@ CommitNumber:
 	je	.L88
 	movl	$63, %eax
 /APP
- # 897 "pmc_internal.h" 1
+ # 906 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
@@ -584,7 +584,7 @@ CommitNumber:
 	.p2align 4,,10
 .L94:
 /APP
- # 977 "pmc_internal.h" 1
+ # 986 "pmc_internal.h" 1
 	bsfq %rcx, %rcx
  # 0 "" 2
 /NO_APP

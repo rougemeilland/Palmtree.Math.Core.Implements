@@ -4,7 +4,7 @@
 	.globl	_RightShift_Imp_DIV
 	.def	_RightShift_Imp_DIV;	.scl	2;	.type	32;	.endef
 _RightShift_Imp_DIV:
-LFB5486:
+LFB5488:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -728,21 +728,21 @@ L13:
 	movl	60(%esp), %ebx
 	jmp	L5
 	.cfi_endproc
-LFE5486:
+LFE5488:
 	.p2align 4,,15
 	.globl	_RightShift_Imp
 	.def	_RightShift_Imp;	.scl	2;	.type	32;	.endef
 _RightShift_Imp:
-LFB5495:
+LFB5497:
 	.cfi_startproc
 	jmp	_RightShift_Imp_DIV
 	.cfi_endproc
-LFE5495:
+LFE5497:
 	.p2align 4,,15
 	.globl	_LeftShift_Imp_DIV
 	.def	_LeftShift_Imp_DIV;	.scl	2;	.type	32;	.endef
 _LeftShift_Imp_DIV:
-LFB5488:
+LFB5490:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -1488,21 +1488,21 @@ L50:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5488:
+LFE5490:
 	.p2align 4,,15
 	.globl	_LeftShift_Imp
 	.def	_LeftShift_Imp;	.scl	2;	.type	32;	.endef
 _LeftShift_Imp:
-LFB5497:
+LFB5499:
 	.cfi_startproc
 	jmp	_LeftShift_Imp_DIV
 	.cfi_endproc
-LFE5497:
+LFE5499:
 	.p2align 4,,15
 	.globl	_PMC_RightShift_X_I@12
 	.def	_PMC_RightShift_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_RightShift_X_I@12:
-LFB5489:
+LFB5491:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -1598,22 +1598,22 @@ L85:
 	movl	$-1, %eax
 	jmp	L79
 	.cfi_endproc
-LFE5489:
+LFE5491:
 	.p2align 4,,15
 	.globl	_PMC_RightShift_X_L@16
 	.def	_PMC_RightShift_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_RightShift_X_L@16:
-LFB5490:
+LFB5492:
 	.cfi_startproc
 	movl	$-6, %eax
 	ret	$16
 	.cfi_endproc
-LFE5490:
+LFE5492:
 	.p2align 4,,15
 	.globl	_PMC_LeftShift_X_I@12
 	.def	_PMC_LeftShift_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_LeftShift_X_I@12:
-LFB5491:
+LFB5493:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -1716,27 +1716,27 @@ L95:
 	movl	$-1, %eax
 	jmp	L90
 	.cfi_endproc
-LFE5491:
+LFE5493:
 	.p2align 4,,15
 	.globl	_PMC_LeftShift_X_L@16
 	.def	_PMC_LeftShift_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_LeftShift_X_L@16:
-LFB5499:
+LFB5501:
 	.cfi_startproc
 	movl	$-6, %eax
 	ret	$16
 	.cfi_endproc
-LFE5499:
+LFE5501:
 	.p2align 4,,15
 	.globl	_Initialize_Shift
 	.def	_Initialize_Shift;	.scl	2;	.type	32;	.endef
 _Initialize_Shift:
-LFB5493:
+LFB5495:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5493:
+LFE5495:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef
 	.def	_AllocateNumber;	.scl	2;	.type	32;	.endef

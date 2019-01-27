@@ -4,7 +4,7 @@ Ltext0:
 	.globl	_DllMain@12
 	.def	_DllMain@12;	.scl	2;	.type	32;	.endef
 _DllMain@12:
-LFB4237:
+LFB4239:
 	.file 1 "dllmain.c"
 	.loc 1 42 1
 	.cfi_startproc
@@ -65,7 +65,7 @@ L8:
 	.cfi_def_cfa 4, 4
 	ret	$12
 	.cfi_endproc
-LFE4237:
+LFE4239:
 Letext0:
 	.file 2 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/crtdefs.h"
 	.file 3 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/excpt.h"
@@ -4110,8 +4110,8 @@ Ldebug_info0:
 	.byte	0x23
 	.ascii "DllMain@12\0"
 	.long	0x5ac
-	.long	LFB4237
-	.long	LFE4237-LFB4237
+	.long	LFB4239
+	.long	LFE4239-LFB4239
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x18
