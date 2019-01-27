@@ -47,11 +47,10 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG94436 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94436 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
 $SG94437 DB	'PMC_Pow_X_I (%d.%d)', 00H
 $SG94438 DB	'PMC_Pow_X_I', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
@@ -59,11 +58,11 @@ $SG94438 DB	'PMC_Pow_X_I', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	'(%d)', 00H
 	ORG $+2
 $SG94439 DB	'PMC_Pow_X_I (%d.%d)', 00H
-$SG94441 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94441 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
+	ORG $+2
 $SG94442 DB	'PMC_Pow_X_I (%d.%d)', 00H
 $SG94443 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
@@ -211,7 +210,7 @@ _TEST_PMC_Pow_X_I PROC
 ; 45   :     PMC_STATUS_CODE result;
 ; 46   :     PMC_STATUS_CODE x_result;
 ; 47   :     PMC_STATUS_CODE z_result;
-; 48   :     TEST_Assert(env, FormatTestLabel("PMC_Pow_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 48   :     TEST_Assert(env, FormatTestLabel("PMC_Pow_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -221,7 +220,7 @@ _TEST_PMC_Pow_X_I PROC
 	mov	edx, DWORD PTR _x_buf$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
+	mov	ecx, DWORD PTR [eax+20]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -302,7 +301,7 @@ $LN9@TEST_PMC_P:
 	jne	$LN2@TEST_PMC_P
 
 ; 51   :     {
-; 52   :         TEST_Assert(env, FormatTestLabel("PMC_Pow_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 52   :         TEST_Assert(env, FormatTestLabel("PMC_Pow_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -312,7 +311,7 @@ $LN9@TEST_PMC_P:
 	mov	edx, DWORD PTR _z$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+32]
+	mov	ecx, DWORD PTR [eax+24]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -390,7 +389,7 @@ $LN2@TEST_PMC_P:
 	mov	eax, DWORD PTR _z$[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _ep$[ebp]
-	mov	edx, DWORD PTR [ecx+20]
+	mov	edx, DWORD PTR [ecx+16]
 	call	edx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -407,7 +406,7 @@ $LN3@TEST_PMC_P:
 	mov	eax, DWORD PTR _x$[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _ep$[ebp]
-	mov	edx, DWORD PTR [ecx+20]
+	mov	edx, DWORD PTR [ecx+16]
 	call	edx
 	cmp	esi, esp
 	call	__RTC_CheckEsp

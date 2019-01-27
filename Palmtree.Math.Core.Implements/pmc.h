@@ -137,16 +137,16 @@ typedef struct __tag_PMC_ENTRY_POINTS
     // コンストラクタ(64bit整数により初期化)
     PMC_STATUS_CODE (__PMC_CALL * PMC_From_L)(_UINT64_T x, HANDLE* pp);
 
-    // コンストラクタ(バイト列により初期化)
-    PMC_STATUS_CODE(__PMC_CALL * PMC_From_B)(unsigned char* buffer, size_t count, HANDLE* pp);
-
     // デストラクタ
     void  (__PMC_CALL * PMC_Dispose)(HANDLE p);
+
+    // バイト操作
+    PMC_STATUS_CODE(__PMC_CALL * PMC_FromByteArray)(unsigned char* buffer, size_t count, HANDLE* pp);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_ToByteArray)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
     // To 演算子
     PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
     PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
-    PMC_STATUS_CODE (__PMC_CALL * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
     // 文字列化
     PMC_STATUS_CODE(__PMC_CALL * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);

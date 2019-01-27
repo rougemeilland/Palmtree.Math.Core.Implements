@@ -50,11 +50,10 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG94433 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94433 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
 $SG94434 DB	'PMC_Multiply_I_X (%d.%d)', 00H
 	ORG $+3
 $SG94435 DB	'PMC_Multiply_I_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
@@ -64,11 +63,11 @@ $SG94435 DB	'PMC_Multiply_I_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	ORG $+1
 $SG94436 DB	'PMC_Multiply_I_X (%d.%d)', 00H
 	ORG $+3
-$SG94437 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94437 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
+	ORG $+2
 $SG94438 DB	'PMC_Multiply_I_X (%d.%d)', 00H
 	ORG $+3
 $SG94439 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
@@ -77,11 +76,10 @@ $SG94439 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	ORG $+3
 $SG94440 DB	'PMC_Multiply_I_X (%d.%d)', 00H
 	ORG $+3
-$SG94467 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94467 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
 $SG94468 DB	'PMC_Multiply_L_X (%d.%d)', 00H
 	ORG $+3
 $SG94469 DB	'PMC_Multiply_L_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
@@ -91,11 +89,11 @@ $SG94469 DB	'PMC_Multiply_L_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	ORG $+1
 $SG94470 DB	'PMC_Multiply_L_X (%d.%d)', 00H
 	ORG $+3
-$SG94471 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94471 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
+	ORG $+2
 $SG94472 DB	'PMC_Multiply_L_X (%d.%d)', 00H
 	ORG $+3
 $SG94473 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
@@ -104,11 +102,10 @@ $SG94473 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	ORG $+3
 $SG94474 DB	'PMC_Multiply_L_X (%d.%d)', 00H
 	ORG $+3
-$SG94501 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94501 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
 $SG94502 DB	'PMC_Multiply_X_I (%d.%d)', 00H
 	ORG $+3
 $SG94503 DB	'PMC_Multiply_X_I', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
@@ -118,11 +115,11 @@ $SG94503 DB	'PMC_Multiply_X_I', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	ORG $+1
 $SG94504 DB	'PMC_Multiply_X_I (%d.%d)', 00H
 	ORG $+3
-$SG94505 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94505 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
+	ORG $+2
 $SG94506 DB	'PMC_Multiply_X_I (%d.%d)', 00H
 	ORG $+3
 $SG94507 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
@@ -131,11 +128,10 @@ $SG94507 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	ORG $+3
 $SG94508 DB	'PMC_Multiply_X_I (%d.%d)', 00H
 	ORG $+3
-$SG94535 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94535 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
 $SG94536 DB	'PMC_Multiply_X_L (%d.%d)', 00H
 	ORG $+3
 $SG94537 DB	'PMC_Multiply_X_L', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
@@ -145,11 +141,11 @@ $SG94537 DB	'PMC_Multiply_X_L', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	ORG $+1
 $SG94538 DB	'PMC_Multiply_X_L (%d.%d)', 00H
 	ORG $+3
-$SG94539 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94539 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
+	ORG $+2
 $SG94540 DB	'PMC_Multiply_X_L (%d.%d)', 00H
 	ORG $+3
 $SG94541 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
@@ -158,18 +154,16 @@ $SG94541 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	ORG $+3
 $SG94542 DB	'PMC_Multiply_X_L (%d.%d)', 00H
 	ORG $+3
-$SG94573 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94573 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
 $SG94574 DB	'PMC_Multiply_X_X (%d.%d)', 00H
 	ORG $+3
-$SG94575 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94575 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
 $SG94576 DB	'PMC_Multiply_X_X (%d.%d)', 00H
 	ORG $+3
 $SG94577 DB	'PMC_Multiply_X_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
@@ -179,11 +173,11 @@ $SG94577 DB	'PMC_Multiply_X_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	ORG $+1
 $SG94578 DB	'PMC_Multiply_X_X (%d.%d)', 00H
 	ORG $+3
-$SG94579 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94579 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
+	ORG $+2
 $SG94580 DB	'PMC_Multiply_X_X (%d.%d)', 00H
 	ORG $+3
 $SG94581 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
@@ -342,7 +336,7 @@ _TEST_PMC_Multiply_X_X PROC
 ; 123  :     PMC_STATUS_CODE x_result;
 ; 124  :     PMC_STATUS_CODE y_result;
 ; 125  :     PMC_STATUS_CODE z_result;
-; 126  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 126  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -352,7 +346,7 @@ _TEST_PMC_Multiply_X_X PROC
 	mov	edx, DWORD PTR _x_buf$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
+	mov	ecx, DWORD PTR [eax+20]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -384,7 +378,7 @@ $LN7@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 127  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", y_result));
+; 127  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 2), (y_result = ep->PMC_FromByteArray(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", y_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _y$[ebp]
@@ -394,7 +388,7 @@ $LN7@TEST_PMC_M:
 	mov	edx, DWORD PTR _y_buf$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
+	mov	ecx, DWORD PTR [eax+20]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -468,7 +462,7 @@ $LN11@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 129  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 129  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 4), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _actual_z_buf_size$[ebp]
@@ -479,7 +473,7 @@ $LN11@TEST_PMC_M:
 	mov	edx, DWORD PTR _z$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+32]
+	mov	ecx, DWORD PTR [eax+24]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -556,7 +550,7 @@ $LN15@TEST_PMC_M:
 	mov	ecx, DWORD PTR _z$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+20]
+	mov	eax, DWORD PTR [edx+16]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -573,7 +567,7 @@ $LN2@TEST_PMC_M:
 	mov	ecx, DWORD PTR _y$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+20]
+	mov	eax, DWORD PTR [edx+16]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -590,7 +584,7 @@ $LN3@TEST_PMC_M:
 	mov	ecx, DWORD PTR _x$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+20]
+	mov	eax, DWORD PTR [edx+16]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -728,7 +722,7 @@ _TEST_PMC_Multiply_X_L PROC
 ; 102  :     PMC_STATUS_CODE result;
 ; 103  :     PMC_STATUS_CODE x_result;
 ; 104  :     PMC_STATUS_CODE z_result;
-; 105  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 105  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -738,7 +732,7 @@ _TEST_PMC_Multiply_X_L PROC
 	mov	edx, DWORD PTR _x_buf$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
+	mov	ecx, DWORD PTR [eax+20]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -814,7 +808,7 @@ $LN8@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 107  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 107  :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -825,7 +819,7 @@ $LN8@TEST_PMC_M:
 	mov	eax, DWORD PTR _z$[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _ep$[ebp]
-	mov	edx, DWORD PTR [ecx+32]
+	mov	edx, DWORD PTR [ecx+24]
 	call	edx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -902,7 +896,7 @@ $LN12@TEST_PMC_M:
 	mov	edx, DWORD PTR _z$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+20]
+	mov	ecx, DWORD PTR [eax+16]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -919,7 +913,7 @@ $LN2@TEST_PMC_M:
 	mov	edx, DWORD PTR _x$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+20]
+	mov	ecx, DWORD PTR [eax+16]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1051,7 +1045,7 @@ _TEST_PMC_Multiply_X_I PROC
 ; 83   :     PMC_STATUS_CODE result;
 ; 84   :     PMC_STATUS_CODE x_result;
 ; 85   :     PMC_STATUS_CODE z_result;
-; 86   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 86   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -1061,7 +1055,7 @@ _TEST_PMC_Multiply_X_I PROC
 	mov	edx, DWORD PTR _x_buf$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
+	mov	ecx, DWORD PTR [eax+20]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1135,7 +1129,7 @@ $LN8@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 88   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 88   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _actual_z_buf_size$[ebp]
@@ -1146,7 +1140,7 @@ $LN8@TEST_PMC_M:
 	mov	edx, DWORD PTR _z$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+32]
+	mov	ecx, DWORD PTR [eax+24]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1223,7 +1217,7 @@ $LN12@TEST_PMC_M:
 	mov	ecx, DWORD PTR _z$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+20]
+	mov	eax, DWORD PTR [edx+16]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1240,7 +1234,7 @@ $LN2@TEST_PMC_M:
 	mov	ecx, DWORD PTR _x$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+20]
+	mov	eax, DWORD PTR [edx+16]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1372,7 +1366,7 @@ _TEST_PMC_Multiply_L_X PROC
 ; 64   :     PMC_STATUS_CODE result;
 ; 65   :     PMC_STATUS_CODE v_result;
 ; 66   :     PMC_STATUS_CODE w_result;
-; 67   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 1), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
+; 67   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _v$[ebp]
@@ -1382,7 +1376,7 @@ _TEST_PMC_Multiply_L_X PROC
 	mov	edx, DWORD PTR _v_buf$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
+	mov	ecx, DWORD PTR [eax+20]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1458,7 +1452,7 @@ $LN8@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 69   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 69   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_w_buf_size$[ebp]
@@ -1469,7 +1463,7 @@ $LN8@TEST_PMC_M:
 	mov	eax, DWORD PTR _w$[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _ep$[ebp]
-	mov	edx, DWORD PTR [ecx+32]
+	mov	edx, DWORD PTR [ecx+24]
 	call	edx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1546,7 +1540,7 @@ $LN12@TEST_PMC_M:
 	mov	edx, DWORD PTR _w$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+20]
+	mov	ecx, DWORD PTR [eax+16]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1563,7 +1557,7 @@ $LN2@TEST_PMC_M:
 	mov	edx, DWORD PTR _v$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+20]
+	mov	ecx, DWORD PTR [eax+16]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1695,7 +1689,7 @@ _TEST_PMC_Multiply_I_X PROC
 ; 45   :     PMC_STATUS_CODE result;
 ; 46   :     PMC_STATUS_CODE v_result;
 ; 47   :     PMC_STATUS_CODE w_result;
-; 48   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 1), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
+; 48   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _v$[ebp]
@@ -1705,7 +1699,7 @@ _TEST_PMC_Multiply_I_X PROC
 	mov	edx, DWORD PTR _v_buf$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
+	mov	ecx, DWORD PTR [eax+20]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1779,7 +1773,7 @@ $LN8@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 50   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 50   :     TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _actual_w_buf_size$[ebp]
@@ -1790,7 +1784,7 @@ $LN8@TEST_PMC_M:
 	mov	edx, DWORD PTR _w$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+32]
+	mov	ecx, DWORD PTR [eax+24]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1867,7 +1861,7 @@ $LN12@TEST_PMC_M:
 	mov	ecx, DWORD PTR _w$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+20]
+	mov	eax, DWORD PTR [edx+16]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -1884,7 +1878,7 @@ $LN2@TEST_PMC_M:
 	mov	ecx, DWORD PTR _v$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+20]
+	mov	eax, DWORD PTR [edx+16]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp

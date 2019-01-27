@@ -151,12 +151,12 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_BYTE PROC					; COMDAT
 
-; 353  : {
+; 354  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 354  :     __stosb(d, 0, count);
+; 355  :     __stosb(d, 0, count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	xor	al, al
@@ -165,7 +165,7 @@ __ZERO_MEMORY_BYTE PROC					; COMDAT
 	rep stosb
 	pop	edi
 
-; 355  : }
+; 356  : }
 
 	pop	ebp
 	ret	0
@@ -210,7 +210,7 @@ _GetCPUInfo PROC					; COMDAT
 	mov	DWORD PTR [edi], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 354  :     __stosb(d, 0, count);
+; 355  :     __stosb(d, 0, count);
 
 	xor	al, al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\cpuid.c
@@ -221,7 +221,7 @@ _GetCPUInfo PROC					; COMDAT
 	mov	DWORD PTR [edi+8], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 354  :     __stosb(d, 0, count);
+; 355  :     __stosb(d, 0, count);
 
 	mov	ecx, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\cpuid.c
@@ -231,7 +231,7 @@ _GetCPUInfo PROC					; COMDAT
 	mov	DWORD PTR [edi+12], edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 354  :     __stosb(d, 0, count);
+; 355  :     __stosb(d, 0, count);
 
 	mov	edi, DWORD PTR _feature$[ebp]
 	rep stosb

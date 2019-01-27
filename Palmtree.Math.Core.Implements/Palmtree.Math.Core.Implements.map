@@ -93,6 +93,7 @@ LOAD build/x86_Release/x86-Windows/memory.o
 LOAD build/x86_Release/x86-Windows/pmc_add.o
 LOAD build/x86_Release/x86-Windows/pmc_bitwiseand.o
 LOAD build/x86_Release/x86-Windows/pmc_bitwiseor.o
+LOAD build/x86_Release/x86-Windows/pmc_bytes.o
 LOAD build/x86_Release/x86-Windows/pmc_compare.o
 LOAD build/x86_Release/x86-Windows/pmc_divrem.o
 LOAD build/x86_Release/x86-Windows/pmc_equals.o
@@ -178,116 +179,117 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
                 0x656831b0                PMC_BitwiseOr_X_L@16
                 0x65683210                PMC_BitwiseOr_X_X@12
                 0x65683650                Initialize_BitwiseOr
- .text          0x65683660      0x470 build/x86_Release/x86-Windows/pmc_compare.o
-                0x65683760                Compare_Imp
-                0x656837d0                PMC_Compare_I_X@12
-                0x65683830                PMC_Compare_X_I@12
-                0x65683880                PMC_Compare_L_X@16
-                0x65683910                PMC_Compare_X_L@16
-                0x656839a0                PMC_Compare_X_X@12
-                0x65683ac0                Initialize_Compare
- .text          0x65683ad0     0x3a40 build/x86_Release/x86-Windows/pmc_divrem.o
-                0x65686590                DivRem_X_1W
-                0x656868e0                PMC_DivRem_I_X@16
-                0x656869a0                PMC_DivRem_X_I@16
-                0x65686b30                PMC_DivRem_L_X@20
-                0x65686de0                PMC_DivRem_X_L@20
-                0x65687140                PMC_DivRem_X_X@16
-                0x656874e0                Initialize_DivRem
- .text          0x65687510      0x3f0 build/x86_Release/x86-Windows/pmc_equals.o
-                0x656875d0                Equals_X_X
-                0x65687610                PMC_Equals_I_X@12
-                0x65687660                PMC_Equals_X_I@12
-                0x656876b0                PMC_Equals_L_X@16
-                0x65687760                PMC_Equals_X_L@16
-                0x65687810                PMC_Equals_X_X@12
-                0x656878f0                Initialize_Equals
- .text          0x65687900      0x870 build/x86_Release/x86-Windows/pmc_exclusiveor.o
-                0x65687bb0                PMC_ExclusiveOr_I_X@12
-                0x65687c00                PMC_ExclusiveOr_X_I@12
-                0x65687c50                PMC_ExclusiveOr_L_X@16
-                0x65687cb0                PMC_ExclusiveOr_X_L@16
-                0x65687d10                PMC_ExclusiveOr_X_X@12
-                0x65688160                Initialize_ExclusiveOr
- .text          0x65688170      0x240 build/x86_Release/x86-Windows/pmc_from.o
-                0x65688170                From_I_Imp
-                0x656881c0                From_L_Imp
-                0x65688240                PMC_From_I@8
-                0x65688290                PMC_From_L@12
-                0x656882e0                PMC_From_B@12
-                0x656883a0                Initialize_From
- .text          0x656883b0      0xcc0 build/x86_Release/x86-Windows/pmc_greatestcommondivisor.o
-                0x65688bf0                PMC_GreatestCommonDivisor_I_X@12
-                0x65688c40                PMC_GreatestCommonDivisor_X_I@12
-                0x65688c90                PMC_GreatestCommonDivisor_L_X@16
-                0x65688cf0                PMC_GreatestCommonDivisor_X_L@16
-                0x65688d50                PMC_GreatestCommonDivisor_X_X@12
-                0x65689060                Initialize_GreatestCommonDivisor
- .text          0x65689070      0x3e0 build/x86_Release/x86-Windows/pmc_initialize.o
-                0x65689070                PMC_Initialize@4
- .text          0x65689450     0x1ad0 build/x86_Release/x86-Windows/pmc_multiply.o
-                0x6568abb0                Multiply_X_X_Imp
-                0x6568abc0                PMC_Multiply_I_X@12
-                0x6568ac10                PMC_Multiply_X_I@12
-                0x6568ac60                PMC_Multiply_L_X@16
-                0x6568acc0                PMC_Multiply_X_L@16
-                0x6568ad20                PMC_Multiply_X_X@12
-                0x6568aec0                Initialize_Multiply
- .text          0x6568af20     0x21e0 build/x86_Release/x86-Windows/pmc_parse.o
-                0x6568bf00                PMC_TryParse@16
-                0x6568d050                Initialize_Parse
- .text          0x6568d100      0x300 build/x86_Release/x86-Windows/pmc_pow.o
-                0x6568d100                PMC_Pow_X_I@12
-                0x6568d3f0                Initialize_Pow
- .text          0x6568d400     0x1040 build/x86_Release/x86-Windows/pmc_shift.o
-                0x6568d400                RightShift_Imp_DIV
-                0x6568dac0                RightShift_Imp
-                0x6568dad0                LeftShift_Imp_DIV
-                0x6568e1e0                LeftShift_Imp
-                0x6568e1f0                PMC_RightShift_X_I@12
-                0x6568e300                PMC_RightShift_X_L@16
-                0x6568e310                PMC_LeftShift_X_I@12
-                0x6568e420                PMC_LeftShift_X_L@16
-                0x6568e430                Initialize_Shift
- .text          0x6568e440       0x30 build/x86_Release/x86-Windows/pmc_statistics.o
-                0x6568e440                PMC_GetStatisticsInfo@4
- .text          0x6568e470      0xb10 build/x86_Release/x86-Windows/pmc_subtruct.o
-                0x6568e4f0                Subtruct_Imp
-                0x6568e8a0                PMC_Subtruct_I_X@12
-                0x6568e920                PMC_Subtruct_X_I@12
-                0x6568ea80                PMC_Subtruct_L_X@16
-                0x6568eba0                PMC_Subtruct_X_L@16
-                0x6568ee00                PMC_Subtruct_X_X@12
-                0x6568ef70                Initialize_Subtruct
- .text          0x6568ef80      0x170 build/x86_Release/x86-Windows/pmc_to.o
-                0x6568ef80                PMC_To_X_I@8
-                0x6568efd0                PMC_To_X_L@8
-                0x6568f050                PMC_To_X_B@16
-                0x6568f0e0                Initialize_To
- .text          0x6568f0f0      0xd20 build/x86_Release/x86-Windows/pmc_tostring.o
-                0x6568fc60                PMC_ToString@24
-                0x6568fd80                Initialize_ToString
- .text          0x6568fe10        0x0 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzch.o)
- .text          0x6568fe10        0x0 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzct.o)
+ .text          0x65683660      0x140 build/x86_Release/x86-Windows/pmc_bytes.o
+                0x65683660                PMC_FromByteArray@12
+                0x65683720                PMC_ToByteArray@16
+ .text          0x656837a0      0x470 build/x86_Release/x86-Windows/pmc_compare.o
+                0x656838a0                Compare_Imp
+                0x65683910                PMC_Compare_I_X@12
+                0x65683970                PMC_Compare_X_I@12
+                0x656839c0                PMC_Compare_L_X@16
+                0x65683a50                PMC_Compare_X_L@16
+                0x65683ae0                PMC_Compare_X_X@12
+                0x65683c00                Initialize_Compare
+ .text          0x65683c10     0x3a40 build/x86_Release/x86-Windows/pmc_divrem.o
+                0x656866d0                DivRem_X_1W
+                0x65686a20                PMC_DivRem_I_X@16
+                0x65686ae0                PMC_DivRem_X_I@16
+                0x65686c70                PMC_DivRem_L_X@20
+                0x65686f20                PMC_DivRem_X_L@20
+                0x65687280                PMC_DivRem_X_X@16
+                0x65687620                Initialize_DivRem
+ .text          0x65687650      0x3f0 build/x86_Release/x86-Windows/pmc_equals.o
+                0x65687710                Equals_X_X
+                0x65687750                PMC_Equals_I_X@12
+                0x656877a0                PMC_Equals_X_I@12
+                0x656877f0                PMC_Equals_L_X@16
+                0x656878a0                PMC_Equals_X_L@16
+                0x65687950                PMC_Equals_X_X@12
+                0x65687a30                Initialize_Equals
+ .text          0x65687a40      0x870 build/x86_Release/x86-Windows/pmc_exclusiveor.o
+                0x65687cf0                PMC_ExclusiveOr_I_X@12
+                0x65687d40                PMC_ExclusiveOr_X_I@12
+                0x65687d90                PMC_ExclusiveOr_L_X@16
+                0x65687df0                PMC_ExclusiveOr_X_L@16
+                0x65687e50                PMC_ExclusiveOr_X_X@12
+                0x656882a0                Initialize_ExclusiveOr
+ .text          0x656882b0      0x180 build/x86_Release/x86-Windows/pmc_from.o
+                0x656882b0                From_I_Imp
+                0x65688300                From_L_Imp
+                0x65688380                PMC_From_I@8
+                0x656883d0                PMC_From_L@12
+                0x65688420                Initialize_From
+ .text          0x65688430      0xcc0 build/x86_Release/x86-Windows/pmc_greatestcommondivisor.o
+                0x65688c70                PMC_GreatestCommonDivisor_I_X@12
+                0x65688cc0                PMC_GreatestCommonDivisor_X_I@12
+                0x65688d10                PMC_GreatestCommonDivisor_L_X@16
+                0x65688d70                PMC_GreatestCommonDivisor_X_L@16
+                0x65688dd0                PMC_GreatestCommonDivisor_X_X@12
+                0x656890e0                Initialize_GreatestCommonDivisor
+ .text          0x656890f0      0x3e0 build/x86_Release/x86-Windows/pmc_initialize.o
+                0x656890f0                PMC_Initialize@4
+ .text          0x656894d0     0x1ad0 build/x86_Release/x86-Windows/pmc_multiply.o
+                0x6568ac30                Multiply_X_X_Imp
+                0x6568ac40                PMC_Multiply_I_X@12
+                0x6568ac90                PMC_Multiply_X_I@12
+                0x6568ace0                PMC_Multiply_L_X@16
+                0x6568ad40                PMC_Multiply_X_L@16
+                0x6568ada0                PMC_Multiply_X_X@12
+                0x6568af40                Initialize_Multiply
+ .text          0x6568afa0     0x21e0 build/x86_Release/x86-Windows/pmc_parse.o
+                0x6568bf80                PMC_TryParse@16
+                0x6568d0d0                Initialize_Parse
+ .text          0x6568d180      0x300 build/x86_Release/x86-Windows/pmc_pow.o
+                0x6568d180                PMC_Pow_X_I@12
+                0x6568d470                Initialize_Pow
+ .text          0x6568d480     0x1040 build/x86_Release/x86-Windows/pmc_shift.o
+                0x6568d480                RightShift_Imp_DIV
+                0x6568db40                RightShift_Imp
+                0x6568db50                LeftShift_Imp_DIV
+                0x6568e260                LeftShift_Imp
+                0x6568e270                PMC_RightShift_X_I@12
+                0x6568e380                PMC_RightShift_X_L@16
+                0x6568e390                PMC_LeftShift_X_I@12
+                0x6568e4a0                PMC_LeftShift_X_L@16
+                0x6568e4b0                Initialize_Shift
+ .text          0x6568e4c0       0x30 build/x86_Release/x86-Windows/pmc_statistics.o
+                0x6568e4c0                PMC_GetStatisticsInfo@4
+ .text          0x6568e4f0      0xb10 build/x86_Release/x86-Windows/pmc_subtruct.o
+                0x6568e570                Subtruct_Imp
+                0x6568e920                PMC_Subtruct_I_X@12
+                0x6568e9a0                PMC_Subtruct_X_I@12
+                0x6568eb00                PMC_Subtruct_L_X@16
+                0x6568ec20                PMC_Subtruct_X_L@16
+                0x6568ee80                PMC_Subtruct_X_X@12
+                0x6568eff0                Initialize_Subtruct
+ .text          0x6568f000       0xe0 build/x86_Release/x86-Windows/pmc_to.o
+                0x6568f000                PMC_To_X_I@8
+                0x6568f050                PMC_To_X_L@8
+                0x6568f0d0                Initialize_To
+ .text          0x6568f0e0      0xd20 build/x86_Release/x86-Windows/pmc_tostring.o
+                0x6568fc50                PMC_ToString@24
+                0x6568fd70                Initialize_ToString
+ .text          0x6568fe00        0x0 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzch.o)
+ .text          0x6568fe00        0x0 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzct.o)
  *(SORT_BY_NAME(.text$*))
  *(.text.*)
  *(.gnu.linkonce.t.*)
  *(.glue_7t)
  *(.glue_7)
-                0x6568fe10                ___CTOR_LIST__ = .
-                0x6568fe10                __CTOR_LIST__ = .
-                0x6568fe10        0x4 LONG 0xffffffff
+                0x6568fe00                ___CTOR_LIST__ = .
+                0x6568fe00                __CTOR_LIST__ = .
+                0x6568fe00        0x4 LONG 0xffffffff
  *(.ctors)
  *(.ctor)
  *(SORT_BY_NAME(.ctors.*))
-                0x6568fe14        0x4 LONG 0x0
-                0x6568fe18                ___DTOR_LIST__ = .
-                0x6568fe18                __DTOR_LIST__ = .
-                0x6568fe18        0x4 LONG 0xffffffff
+                0x6568fe04        0x4 LONG 0x0
+                0x6568fe08                ___DTOR_LIST__ = .
+                0x6568fe08                __DTOR_LIST__ = .
+                0x6568fe08        0x4 LONG 0xffffffff
  *(.dtors)
  *(.dtor)
  *(SORT_BY_NAME(.dtors.*))
-                0x6568fe1c        0x4 LONG 0x0
+                0x6568fe0c        0x4 LONG 0x0
  *(.fini)
  *(.gcc_exc)
                 [!provide]                PROVIDE (etext = .)
@@ -324,6 +326,7 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
  .data          0x65690000        0x0 build/x86_Release/x86-Windows/pmc_add.o
  .data          0x65690000        0x0 build/x86_Release/x86-Windows/pmc_bitwiseand.o
  .data          0x65690000        0x0 build/x86_Release/x86-Windows/pmc_bitwiseor.o
+ .data          0x65690000        0x0 build/x86_Release/x86-Windows/pmc_bytes.o
  .data          0x65690000        0x0 build/x86_Release/x86-Windows/pmc_compare.o
  .data          0x65690000        0x0 build/x86_Release/x86-Windows/pmc_divrem.o
  .data          0x65690000        0x0 build/x86_Release/x86-Windows/pmc_equals.o
@@ -386,29 +389,30 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
  .rdata$zzz     0x65691fac       0x40 build/x86_Release/x86-Windows/pmc_add.o
  .rdata$zzz     0x65691fec       0x40 build/x86_Release/x86-Windows/pmc_bitwiseand.o
  .rdata$zzz     0x6569202c       0x40 build/x86_Release/x86-Windows/pmc_bitwiseor.o
- .rdata$zzz     0x6569206c       0x40 build/x86_Release/x86-Windows/pmc_compare.o
- .rdata$zzz     0x656920ac       0x40 build/x86_Release/x86-Windows/pmc_divrem.o
- .rdata$zzz     0x656920ec       0x40 build/x86_Release/x86-Windows/pmc_equals.o
- .rdata$zzz     0x6569212c       0x40 build/x86_Release/x86-Windows/pmc_exclusiveor.o
- .rdata$zzz     0x6569216c       0x40 build/x86_Release/x86-Windows/pmc_from.o
- .rdata$zzz     0x656921ac       0x40 build/x86_Release/x86-Windows/pmc_greatestcommondivisor.o
- .rdata$zzz     0x656921ec       0x40 build/x86_Release/x86-Windows/pmc_initialize.o
- .rdata$zzz     0x6569222c       0x40 build/x86_Release/x86-Windows/pmc_multiply.o
- .rdata$zzz     0x6569226c       0x40 build/x86_Release/x86-Windows/pmc_parse.o
- .rdata$zzz     0x656922ac       0x40 build/x86_Release/x86-Windows/pmc_pow.o
- .rdata$zzz     0x656922ec       0x40 build/x86_Release/x86-Windows/pmc_shift.o
- .rdata$zzz     0x6569232c       0x40 build/x86_Release/x86-Windows/pmc_statistics.o
- .rdata$zzz     0x6569236c       0x40 build/x86_Release/x86-Windows/pmc_subtruct.o
- .rdata$zzz     0x656923ac       0x40 build/x86_Release/x86-Windows/pmc_to.o
- .rdata$zzz     0x656923ec       0x40 build/x86_Release/x86-Windows/pmc_tostring.o
-                0x6569242c                __rt_psrelocs_start = .
+ .rdata$zzz     0x6569206c       0x40 build/x86_Release/x86-Windows/pmc_bytes.o
+ .rdata$zzz     0x656920ac       0x40 build/x86_Release/x86-Windows/pmc_compare.o
+ .rdata$zzz     0x656920ec       0x40 build/x86_Release/x86-Windows/pmc_divrem.o
+ .rdata$zzz     0x6569212c       0x40 build/x86_Release/x86-Windows/pmc_equals.o
+ .rdata$zzz     0x6569216c       0x40 build/x86_Release/x86-Windows/pmc_exclusiveor.o
+ .rdata$zzz     0x656921ac       0x40 build/x86_Release/x86-Windows/pmc_from.o
+ .rdata$zzz     0x656921ec       0x40 build/x86_Release/x86-Windows/pmc_greatestcommondivisor.o
+ .rdata$zzz     0x6569222c       0x40 build/x86_Release/x86-Windows/pmc_initialize.o
+ .rdata$zzz     0x6569226c       0x40 build/x86_Release/x86-Windows/pmc_multiply.o
+ .rdata$zzz     0x656922ac       0x40 build/x86_Release/x86-Windows/pmc_parse.o
+ .rdata$zzz     0x656922ec       0x40 build/x86_Release/x86-Windows/pmc_pow.o
+ .rdata$zzz     0x6569232c       0x40 build/x86_Release/x86-Windows/pmc_shift.o
+ .rdata$zzz     0x6569236c       0x40 build/x86_Release/x86-Windows/pmc_statistics.o
+ .rdata$zzz     0x656923ac       0x40 build/x86_Release/x86-Windows/pmc_subtruct.o
+ .rdata$zzz     0x656923ec       0x40 build/x86_Release/x86-Windows/pmc_to.o
+ .rdata$zzz     0x6569242c       0x40 build/x86_Release/x86-Windows/pmc_tostring.o
+                0x6569246c                __rt_psrelocs_start = .
  *(.rdata_runtime_pseudo_reloc)
-                0x6569242c                __rt_psrelocs_end = .
+                0x6569246c                __rt_psrelocs_end = .
                 0x00000000                __rt_psrelocs_size = (__rt_psrelocs_end - __rt_psrelocs_start)
-                0x6569242c                ___RUNTIME_PSEUDO_RELOC_LIST_END__ = .
-                0x6569242c                __RUNTIME_PSEUDO_RELOC_LIST_END__ = .
-                0x6569242c                ___RUNTIME_PSEUDO_RELOC_LIST__ = (. - __rt_psrelocs_size)
-                0x6569242c                __RUNTIME_PSEUDO_RELOC_LIST__ = (. - __rt_psrelocs_size)
+                0x6569246c                ___RUNTIME_PSEUDO_RELOC_LIST_END__ = .
+                0x6569246c                __RUNTIME_PSEUDO_RELOC_LIST_END__ = .
+                0x6569246c                ___RUNTIME_PSEUDO_RELOC_LIST__ = (. - __rt_psrelocs_size)
+                0x6569246c                __RUNTIME_PSEUDO_RELOC_LIST__ = (. - __rt_psrelocs_size)
 
 .eh_frame       0x65693000     0x2600
  *(.eh_frame*)
@@ -419,21 +423,22 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
  .eh_frame      0x65693390      0x2dc build/x86_Release/x86-Windows/pmc_add.o
  .eh_frame      0x6569366c      0x1a4 build/x86_Release/x86-Windows/pmc_bitwiseand.o
  .eh_frame      0x65693810      0x23c build/x86_Release/x86-Windows/pmc_bitwiseor.o
- .eh_frame      0x65693a4c      0x250 build/x86_Release/x86-Windows/pmc_compare.o
- .eh_frame      0x65693c9c      0x374 build/x86_Release/x86-Windows/pmc_divrem.o
- .eh_frame      0x65694010      0x260 build/x86_Release/x86-Windows/pmc_equals.o
- .eh_frame      0x65694270      0x224 build/x86_Release/x86-Windows/pmc_exclusiveor.o
- .eh_frame      0x65694494      0x128 build/x86_Release/x86-Windows/pmc_from.o
- .eh_frame      0x656945bc      0x228 build/x86_Release/x86-Windows/pmc_greatestcommondivisor.o
- .eh_frame      0x656947e4       0x3c build/x86_Release/x86-Windows/pmc_initialize.o
- .eh_frame      0x65694820      0x35c build/x86_Release/x86-Windows/pmc_multiply.o
- .eh_frame      0x65694b7c      0x240 build/x86_Release/x86-Windows/pmc_parse.o
- .eh_frame      0x65694dbc       0x84 build/x86_Release/x86-Windows/pmc_pow.o
- .eh_frame      0x65694e40      0x194 build/x86_Release/x86-Windows/pmc_shift.o
- .eh_frame      0x65694fd4       0x2c build/x86_Release/x86-Windows/pmc_statistics.o
- .eh_frame      0x65695000      0x268 build/x86_Release/x86-Windows/pmc_subtruct.o
- .eh_frame      0x65695268       0xdc build/x86_Release/x86-Windows/pmc_to.o
- .eh_frame      0x65695344      0x1e0 build/x86_Release/x86-Windows/pmc_tostring.o
+ .eh_frame      0x65693a4c       0xa8 build/x86_Release/x86-Windows/pmc_bytes.o
+ .eh_frame      0x65693af4      0x250 build/x86_Release/x86-Windows/pmc_compare.o
+ .eh_frame      0x65693d44      0x374 build/x86_Release/x86-Windows/pmc_divrem.o
+ .eh_frame      0x656940b8      0x260 build/x86_Release/x86-Windows/pmc_equals.o
+ .eh_frame      0x65694318      0x224 build/x86_Release/x86-Windows/pmc_exclusiveor.o
+ .eh_frame      0x6569453c       0xd0 build/x86_Release/x86-Windows/pmc_from.o
+ .eh_frame      0x6569460c      0x228 build/x86_Release/x86-Windows/pmc_greatestcommondivisor.o
+ .eh_frame      0x65694834       0x3c build/x86_Release/x86-Windows/pmc_initialize.o
+ .eh_frame      0x65694870      0x35c build/x86_Release/x86-Windows/pmc_multiply.o
+ .eh_frame      0x65694bcc      0x240 build/x86_Release/x86-Windows/pmc_parse.o
+ .eh_frame      0x65694e0c       0x84 build/x86_Release/x86-Windows/pmc_pow.o
+ .eh_frame      0x65694e90      0x194 build/x86_Release/x86-Windows/pmc_shift.o
+ .eh_frame      0x65695024       0x2c build/x86_Release/x86-Windows/pmc_statistics.o
+ .eh_frame      0x65695050      0x268 build/x86_Release/x86-Windows/pmc_subtruct.o
+ .eh_frame      0x656952b8       0x94 build/x86_Release/x86-Windows/pmc_to.o
+ .eh_frame      0x6569534c      0x1e0 build/x86_Release/x86-Windows/pmc_tostring.o
 
 .pdata
  *(.pdata*)
@@ -468,6 +473,7 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
  .bss           0x65696000        0x4 build/x86_Release/x86-Windows/pmc_add.o
  .bss           0x65696004        0x0 build/x86_Release/x86-Windows/pmc_bitwiseand.o
  .bss           0x65696004        0x0 build/x86_Release/x86-Windows/pmc_bitwiseor.o
+ .bss           0x65696004        0x0 build/x86_Release/x86-Windows/pmc_bytes.o
  .bss           0x65696004        0x0 build/x86_Release/x86-Windows/pmc_compare.o
  .bss           0x65696004        0x4 build/x86_Release/x86-Windows/pmc_divrem.o
  .bss           0x65696008        0x0 build/x86_Release/x86-Windows/pmc_equals.o
@@ -610,7 +616,7 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
 
 .reloc          0x65699000      0x800
  *(.reloc)
- .reloc         0x65699000      0x7dc dll stuff
+ .reloc         0x65699000      0x7e4 dll stuff
 
 .stab
  *(.stab)

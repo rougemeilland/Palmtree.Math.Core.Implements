@@ -53,11 +53,11 @@ EXTRN	_Initialize_Pow:PROC
 EXTRN	_PMC_GetStatisticsInfo@4:PROC
 EXTRN	_PMC_From_I@8:PROC
 EXTRN	_PMC_From_L@12:PROC
-EXTRN	_PMC_From_B@12:PROC
 EXTRN	_PMC_Dispose@4:PROC
+EXTRN	_PMC_FromByteArray@12:PROC
+EXTRN	_PMC_ToByteArray@16:PROC
 EXTRN	_PMC_To_X_I@8:PROC
 EXTRN	_PMC_To_X_L@8:PROC
-EXTRN	_PMC_To_X_B@16:PROC
 EXTRN	_PMC_ToString@24:PROC
 EXTRN	_PMC_TryParse@16:PROC
 EXTRN	_PMC_Add_I_X@12:PROC
@@ -500,25 +500,25 @@ $LN18@PMC_Initia:
 
 	mov	DWORD PTR _entry_points+12, OFFSET _PMC_From_L@12
 
-; 94   :     entry_points.PMC_From_B = PMC_From_B;
+; 94   :     entry_points.PMC_FromByteArray = PMC_FromByteArray;
 
-	mov	DWORD PTR _entry_points+16, OFFSET _PMC_From_B@12
+	mov	DWORD PTR _entry_points+20, OFFSET _PMC_FromByteArray@12
 
 ; 95   :     entry_points.PMC_Dispose = PMC_Dispose;
 
-	mov	DWORD PTR _entry_points+20, OFFSET _PMC_Dispose@4
+	mov	DWORD PTR _entry_points+16, OFFSET _PMC_Dispose@4
 
 ; 96   :     entry_points.PMC_To_X_I = PMC_To_X_I;
 
-	mov	DWORD PTR _entry_points+24, OFFSET _PMC_To_X_I@8
+	mov	DWORD PTR _entry_points+28, OFFSET _PMC_To_X_I@8
 
 ; 97   : 	entry_points.PMC_To_X_L = PMC_To_X_L;
 
-	mov	DWORD PTR _entry_points+28, OFFSET _PMC_To_X_L@8
+	mov	DWORD PTR _entry_points+32, OFFSET _PMC_To_X_L@8
 
-; 98   :     entry_points.PMC_To_X_B = PMC_To_X_B;
+; 98   :     entry_points.PMC_ToByteArray = PMC_ToByteArray;
 
-	mov	DWORD PTR _entry_points+32, OFFSET _PMC_To_X_B@16
+	mov	DWORD PTR _entry_points+24, OFFSET _PMC_ToByteArray@16
 
 ; 99   :     entry_points.PMC_ToString = PMC_ToString;
 

@@ -613,7 +613,7 @@ L93:
 	je	L95
 	movl	$31, %eax
 /APP
- # 896 "pmc_internal.h" 1
+ # 897 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -715,7 +715,7 @@ L122:
 	.p2align 4,,10
 L101:
 /APP
- # 976 "pmc_internal.h" 1
+ # 977 "pmc_internal.h" 1
 	bsfl %edx, %ebx
  # 0 "" 2
 /NO_APP

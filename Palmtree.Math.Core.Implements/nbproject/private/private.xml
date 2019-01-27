@@ -8,6 +8,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_compare.c</file>
+            <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_bytes.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/TEST_op_From_To.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_parse.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/TEST_op_ToStringX.c</file>
@@ -15,6 +16,8 @@
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/CALC_divrem_critical.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/TEST_op_ParseDN.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_greatestcommondivisor.c</file>
+            <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_pow.c</file>
+            <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/TEST_op_Pow.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_internal.h</file>
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/TEST_op_DivRem.c</file>
             <file>file:/Z:/Sources/Lunor/Repos/rougemeilland/Palmtree.Math.Core.Implements/Palmtree.Math.Core.Implements/pmc_tostring.c</file>

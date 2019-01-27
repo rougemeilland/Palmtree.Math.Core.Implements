@@ -292,7 +292,7 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_BYTE PROC
 
-; 353  : {
+; 354  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -300,14 +300,14 @@ __ZERO_MEMORY_BYTE PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 354  :     __stosb(d, 0, count);
+; 355  :     __stosb(d, 0, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	xor	al, al
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosb
 
-; 355  : }
+; 356  : }
 
 	pop	edi
 	cmp	ebp, esp

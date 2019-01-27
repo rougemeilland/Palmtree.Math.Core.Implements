@@ -24,7 +24,6 @@ msvcjmc	ENDS
 PUBLIC	Initialize_To
 PUBLIC	PMC_To_X_I
 PUBLIC	PMC_To_X_L
-PUBLIC	PMC_To_X_B
 PUBLIC	__JustMyCode_Default
 EXTRN	CheckNumber:PROC
 EXTRN	_RTC_InitBase:PROC
@@ -50,27 +49,9 @@ $pdata$PMC_To_X_L DD imagerel $LN11
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$PMC_To_X_B DD imagerel $LN8
-	DD	imagerel $LN8+287
-	DD	imagerel $unwind$PMC_To_X_B
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$_COPY_MEMORY_BYTE DD imagerel _COPY_MEMORY_BYTE
-	DD	imagerel _COPY_MEMORY_BYTE+99
-	DD	imagerel $unwind$_COPY_MEMORY_BYTE
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
 $pdata$_FROMWORDTODWORD DD imagerel _FROMWORDTODWORD
 	DD	imagerel _FROMWORDTODWORD+85
 	DD	imagerel $unwind$_FROMWORDTODWORD
-pdata	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$_DIVIDE_CEILING_SIZE DD imagerel _DIVIDE_CEILING_SIZE
-	DD	imagerel _DIVIDE_CEILING_SIZE+97
-	DD	imagerel $unwind$_DIVIDE_CEILING_SIZE
 pdata	ENDS
 ;	COMDAT rtc$TMZ
 rtc$TMZ	SEGMENT
@@ -82,31 +63,10 @@ _RTC_InitBase.rtc$IMZ DQ FLAT:_RTC_InitBase
 rtc$IMZ	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$_DIVIDE_CEILING_SIZE DD 025052f01H
-	DD	01132318H
-	DD	0700c001dH
-	DD	0500bH
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
 $unwind$_FROMWORDTODWORD DD 025052c01H
 	DD	01112316H
 	DD	0700a001dH
 	DD	05009H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$_COPY_MEMORY_BYTE DD 025063501H
-	DD	0119231eH
-	DD	07012001cH
-	DD	050106011H
-xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$PMC_To_X_B DD 025053901H
-	DD	011d2322H
-	DD	070160025H
-	DD	05015H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -138,53 +98,13 @@ __JustMyCode_Default ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT _DIVIDE_CEILING_SIZE
-_TEXT	SEGMENT
-u$ = 224
-v$ = 232
-_DIVIDE_CEILING_SIZE PROC				; COMDAT
-
-; 457  : {
-
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 232				; 000000e8H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 58					; 0000003aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
-	call	__CheckForDebuggerJustMyCode
-
-; 458  :     return ((u + v - 1) / v);
-
-	mov	rax, QWORD PTR u$[rbp]
-	mov	rcx, QWORD PTR v$[rbp]
-	lea	rax, QWORD PTR [rax+rcx-1]
-	xor	edx, edx
-	div	QWORD PTR v$[rbp]
-
-; 459  : }
-
-	lea	rsp, QWORD PTR [rbp+200]
-	pop	rdi
-	pop	rbp
-	ret	0
-_DIVIDE_CEILING_SIZE ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ;	COMDAT _FROMWORDTODWORD
 _TEXT	SEGMENT
 value_high$ = 224
 value_low$ = 232
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 436  : {
+; 437  : {
 
 	mov	DWORD PTR [rsp+16], edx
 	mov	DWORD PTR [rsp+8], ecx
@@ -200,204 +120,20 @@ _FROMWORDTODWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 437  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 438  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, DWORD PTR value_high$[rbp]
 	shl	rax, 32					; 00000020H
 	mov	ecx, DWORD PTR value_low$[rbp]
 	or	rax, rcx
 
-; 438  : }
+; 439  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
 	pop	rbp
 	ret	0
 _FROMWORDTODWORD ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT _COPY_MEMORY_BYTE
-_TEXT	SEGMENT
-d$ = 224
-s$ = 232
-count$ = 240
-_COPY_MEMORY_BYTE PROC					; COMDAT
-
-; 308  : {
-
-	mov	QWORD PTR [rsp+24], r8
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rsi
-	push	rdi
-	sub	rsp, 224				; 000000e0H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 56					; 00000038H
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
-	call	__CheckForDebuggerJustMyCode
-
-; 309  :     __movsb(d, s, count);
-
-	mov	rdi, QWORD PTR d$[rbp]
-	mov	rsi, QWORD PTR s$[rbp]
-	mov	rcx, QWORD PTR count$[rbp]
-	rep movsb
-
-; 310  : }
-
-	lea	rsp, QWORD PTR [rbp+192]
-	pop	rdi
-	pop	rsi
-	pop	rbp
-	ret	0
-_COPY_MEMORY_BYTE ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_to.c
-;	COMDAT PMC_To_X_B
-_TEXT	SEGMENT
-np$ = 8
-result$ = 36
-p$ = 288
-buffer$ = 296
-buffer_size$ = 304
-count$ = 312
-PMC_To_X_B PROC						; COMDAT
-
-; 92   : {
-
-$LN8:
-	mov	QWORD PTR [rsp+32], r9
-	mov	QWORD PTR [rsp+24], r8
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 296				; 00000128H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 74					; 0000004aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+328]
-	lea	rcx, OFFSET FLAT:__83853269_pmc_to@c
-	call	__CheckForDebuggerJustMyCode
-
-; 93   :     if (buffer == NULL)
-
-	cmp	QWORD PTR buffer$[rbp], 0
-	jne	SHORT $LN2@PMC_To_X_B
-
-; 94   :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	mov	eax, -1
-	jmp	$LN1@PMC_To_X_B
-$LN2@PMC_To_X_B:
-
-; 95   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-
-	mov	rax, QWORD PTR p$[rbp]
-	mov	QWORD PTR np$[rbp], rax
-
-; 96   :     PMC_STATUS_CODE result;
-; 97   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
-
-	mov	rcx, QWORD PTR np$[rbp]
-	call	CheckNumber
-	mov	DWORD PTR result$[rbp], eax
-	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN3@PMC_To_X_B
-
-; 98   :         return (result);
-
-	mov	eax, DWORD PTR result$[rbp]
-	jmp	$LN1@PMC_To_X_B
-$LN3@PMC_To_X_B:
-
-; 99   :     if (np->UNIT_BIT_COUNT > sizeof(*buffer) * 8 * buffer_size)
-
-	mov	rax, QWORD PTR buffer_size$[rbp]
-	shl	rax, 3
-	mov	rcx, QWORD PTR np$[rbp]
-	cmp	QWORD PTR [rcx+8], rax
-	jbe	SHORT $LN4@PMC_To_X_B
-
-; 100  :         return (PMC_STATUS_INSUFFICIENT_BUFFER);
-
-	mov	eax, -4
-	jmp	SHORT $LN1@PMC_To_X_B
-$LN4@PMC_To_X_B:
-
-; 101  :     if (np->IS_ZERO)
-
-	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
-	shr	eax, 1
-	and	eax, 1
-	test	eax, eax
-	je	SHORT $LN5@PMC_To_X_B
-
-; 102  :     {
-; 103  :         buffer[0] = 0;
-
-	mov	eax, 1
-	imul	rax, rax, 0
-	mov	rcx, QWORD PTR buffer$[rbp]
-	mov	BYTE PTR [rcx+rax], 0
-
-; 104  :         *count = 1;
-
-	mov	rax, QWORD PTR count$[rbp]
-	mov	QWORD PTR [rax], 1
-
-; 105  :     }
-
-	jmp	SHORT $LN6@PMC_To_X_B
-$LN5@PMC_To_X_B:
-
-; 106  :     else
-; 107  :     {
-; 108  :         _COPY_MEMORY_BYTE(buffer, np->BLOCK, _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8));
-
-	mov	edx, 8
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+8]
-	call	_DIVIDE_CEILING_SIZE
-	mov	r8, rax
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax+48]
-	mov	rcx, QWORD PTR buffer$[rbp]
-	call	_COPY_MEMORY_BYTE
-
-; 109  :         *count = _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8);
-
-	mov	edx, 8
-	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+8]
-	call	_DIVIDE_CEILING_SIZE
-	mov	rcx, QWORD PTR count$[rbp]
-	mov	QWORD PTR [rcx], rax
-$LN6@PMC_To_X_B:
-
-; 110  :     }
-; 111  :     return (PMC_STATUS_OK);
-
-	xor	eax, eax
-$LN1@PMC_To_X_B:
-
-; 112  : }
-
-	lea	rsp, QWORD PTR [rbp+264]
-	pop	rdi
-	pop	rbp
-	ret	0
-PMC_To_X_B ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_to.c
@@ -698,7 +434,7 @@ _TEXT	SEGMENT
 feature$ = 224
 Initialize_To PROC					; COMDAT
 
-; 115  : {
+; 92   : {
 
 $LN3:
 	mov	QWORD PTR [rsp+8], rcx
@@ -714,11 +450,11 @@ $LN3:
 	lea	rcx, OFFSET FLAT:__83853269_pmc_to@c
 	call	__CheckForDebuggerJustMyCode
 
-; 116  :     return (PMC_STATUS_OK);
+; 93   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 117  : }
+; 94   : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi

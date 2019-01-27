@@ -48,11 +48,11 @@ EXTRN	Initialize_Pow:PROC
 EXTRN	PMC_GetStatisticsInfo:PROC
 EXTRN	PMC_From_I:PROC
 EXTRN	PMC_From_L:PROC
-EXTRN	PMC_From_B:PROC
 EXTRN	PMC_Dispose:PROC
+EXTRN	PMC_FromByteArray:PROC
+EXTRN	PMC_ToByteArray:PROC
 EXTRN	PMC_To_X_I:PROC
 EXTRN	PMC_To_X_L:PROC
-EXTRN	PMC_To_X_B:PROC
 EXTRN	PMC_ToString:PROC
 EXTRN	PMC_TryParse:PROC
 EXTRN	PMC_Add_I_X:PROC
@@ -501,30 +501,30 @@ $LN18@PMC_Initia:
 	lea	rax, OFFSET FLAT:PMC_From_L
 	mov	QWORD PTR entry_points+24, rax
 
-; 94   :     entry_points.PMC_From_B = PMC_From_B;
+; 94   :     entry_points.PMC_FromByteArray = PMC_FromByteArray;
 
-	lea	rax, OFFSET FLAT:PMC_From_B
-	mov	QWORD PTR entry_points+32, rax
+	lea	rax, OFFSET FLAT:PMC_FromByteArray
+	mov	QWORD PTR entry_points+40, rax
 
 ; 95   :     entry_points.PMC_Dispose = PMC_Dispose;
 
 	lea	rax, OFFSET FLAT:PMC_Dispose
-	mov	QWORD PTR entry_points+40, rax
+	mov	QWORD PTR entry_points+32, rax
 
 ; 96   :     entry_points.PMC_To_X_I = PMC_To_X_I;
 
 	lea	rax, OFFSET FLAT:PMC_To_X_I
-	mov	QWORD PTR entry_points+48, rax
+	mov	QWORD PTR entry_points+56, rax
 
 ; 97   : 	entry_points.PMC_To_X_L = PMC_To_X_L;
 
 	lea	rax, OFFSET FLAT:PMC_To_X_L
-	mov	QWORD PTR entry_points+56, rax
-
-; 98   :     entry_points.PMC_To_X_B = PMC_To_X_B;
-
-	lea	rax, OFFSET FLAT:PMC_To_X_B
 	mov	QWORD PTR entry_points+64, rax
+
+; 98   :     entry_points.PMC_ToByteArray = PMC_ToByteArray;
+
+	lea	rax, OFFSET FLAT:PMC_ToByteArray
+	mov	QWORD PTR entry_points+48, rax
 
 ; 99   :     entry_points.PMC_ToString = PMC_ToString;
 

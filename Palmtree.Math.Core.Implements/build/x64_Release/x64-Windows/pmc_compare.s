@@ -18,7 +18,7 @@ PMC_Compare_X_I_Imp:
 	je	.L6
 	movl	$31, %r9d
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl %edx, %eax
  # 0 "" 2
 /NO_APP
@@ -58,7 +58,7 @@ PMC_Compare_X_L_Imp:
 	testq	%rdx, %rdx
 	je	.L14
 /APP
- # 906 "pmc_internal.h" 1
+ # 907 "pmc_internal.h" 1
 	bsrq %rdx, %rax
  # 0 "" 2
 /NO_APP

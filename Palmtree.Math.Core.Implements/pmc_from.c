@@ -33,6 +33,7 @@
 #include <windows.h>
 #include "pmc_internal.h"
 
+
 PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o)
 {
     PMC_STATUS_CODE result;
@@ -121,46 +122,6 @@ PMC_STATUS_CODE __PMC_CALL PMC_From_L(_UINT64_T x, HANDLE* o)
     {
         if ((result = From_L_Imp(x, &p)) != PMC_STATUS_OK)
             return (result);
-        *o = p;
-    }
-#ifdef _DEBUG
-    if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-        return (result);
-#endif
-    return (PMC_STATUS_OK);
-}
-
-static __UNIT_TYPE CountActualBitsFromBuffer(unsigned char* p, size_t count)
-{
-    p += count;
-    while (count > 0)
-    {
-        --p;
-        if (*p != 0)
-            return (count * 8 - _LZCNT_ALT_8(*p));
-        --count;
-    }
-    return (0);
-}
-
-
-PMC_STATUS_CODE __PMC_CALL PMC_From_B(unsigned char* buffer, size_t count, HANDLE* o)
-{
-    PMC_STATUS_CODE result;
-    if (buffer == NULL)
-        return (PMC_STATUS_ARGUMENT_ERROR);
-    if (o == NULL)
-        return (PMC_STATUS_ARGUMENT_ERROR);
-    __UNIT_TYPE bit_count = CountActualBitsFromBuffer(buffer, count);
-    if (bit_count == 0)
-        *o = &number_zero;
-    else
-    {
-        NUMBER_HEADER* p;
-        if ((result = AllocateNumber(&p, bit_count, NULL)) != PMC_STATUS_OK)
-            return (result);
-        _COPY_MEMORY_BYTE(p->BLOCK, buffer, _DIVIDE_CEILING_SIZE(bit_count, 8));
-        CommitNumber(p);
         *o = p;
     }
 #ifdef _DEBUG

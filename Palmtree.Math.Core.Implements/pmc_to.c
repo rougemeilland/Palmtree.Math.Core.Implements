@@ -88,29 +88,6 @@ PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o)
         return (PMC_STATUS_ARGUMENT_ERROR);
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_To_X_B(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count)
-{
-    if (buffer == NULL)
-        return (PMC_STATUS_ARGUMENT_ERROR);
-    NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-    PMC_STATUS_CODE result;
-    if ((result = CheckNumber(np)) != PMC_STATUS_OK)
-        return (result);
-    if (np->UNIT_BIT_COUNT > sizeof(*buffer) * 8 * buffer_size)
-        return (PMC_STATUS_INSUFFICIENT_BUFFER);
-    if (np->IS_ZERO)
-    {
-        buffer[0] = 0;
-        *count = 1;
-    }
-    else
-    {
-        _COPY_MEMORY_BYTE(buffer, np->BLOCK, _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8));
-        *count = _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8);
-    }
-    return (PMC_STATUS_OK);
-}
-
 PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature)
 {
     return (PMC_STATUS_OK);

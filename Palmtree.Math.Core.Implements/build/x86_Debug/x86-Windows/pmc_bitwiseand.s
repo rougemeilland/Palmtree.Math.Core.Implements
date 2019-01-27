@@ -5,7 +5,7 @@ Ltext0:
 __FROMWORDTODWORD:
 LFB4195:
 	.file 1 "pmc_internal.h"
-	.loc 1 436 1
+	.loc 1 437 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -19,13 +19,13 @@ LFB4195:
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	.loc 1 437 14
+	.loc 1 438 14
 	movl	8(%ebp), %eax
 	movl	$0, %edx
-	.loc 1 437 36
+	.loc 1 438 36
 	movl	%eax, %edx
 	movl	$0, %eax
-	.loc 1 437 43
+	.loc 1 438 43
 	movl	12(%ebp), %esi
 	movl	$0, %edi
 	movl	%eax, -24(%ebp)
@@ -37,7 +37,7 @@ LFB4195:
 	movl	%eax, %ebx
 	movl	%ecx, %eax
 	movl	%ebx, %edx
-	.loc 1 438 1
+	.loc 1 439 1
 	addl	$12, %esp
 	popl	%ebx
 	.cfi_restore 3
@@ -54,7 +54,7 @@ LFE4195:
 	.def	__FROMDWORDTOWORD;	.scl	3;	.type	32;	.endef
 __FROMDWORDTOWORD:
 LFB4196:
-	.loc 1 441 1
+	.loc 1 442 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -68,21 +68,21 @@ LFB4196:
 	movl	%eax, -16(%ebp)
 	movl	12(%ebp), %eax
 	movl	%eax, -12(%ebp)
-	.loc 1 442 38
+	.loc 1 443 38
 	movl	-16(%ebp), %eax
 	movl	-12(%ebp), %edx
 	movl	%edx, %eax
 	xorl	%edx, %edx
 	movl	%eax, %ecx
 	movl	%edx, %ebx
-	.loc 1 442 20
+	.loc 1 443 20
 	movl	%ecx, %edx
-	.loc 1 442 18
+	.loc 1 443 18
 	movl	16(%ebp), %eax
 	movl	%edx, (%eax)
-	.loc 1 443 13
+	.loc 1 444 13
 	movl	-16(%ebp), %eax
-	.loc 1 444 1
+	.loc 1 445 1
 	addl	$12, %esp
 	popl	%ebx
 	.cfi_restore 3
@@ -95,23 +95,23 @@ LFE4196:
 	.def	__DIVIDE_CEILING_UNIT;	.scl	3;	.type	32;	.endef
 __DIVIDE_CEILING_UNIT:
 LFB4198:
-	.loc 1 452 1
+	.loc 1 453 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
 	.cfi_offset 5, -8
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
-	.loc 1 453 16
+	.loc 1 454 16
 	movl	8(%ebp), %edx
 	movl	12(%ebp), %eax
 	addl	%edx, %eax
-	.loc 1 453 20
+	.loc 1 454 20
 	subl	$1, %eax
-	.loc 1 453 25
+	.loc 1 454 25
 	movl	$0, %edx
 	divl	12(%ebp)
-	.loc 1 454 1
+	.loc 1 455 1
 	popl	%ebp
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -121,18 +121,18 @@ LFE4198:
 	.def	__MINIMUM_UNIT;	.scl	3;	.type	32;	.endef
 __MINIMUM_UNIT:
 LFB4201:
-	.loc 1 467 1
+	.loc 1 468 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
 	.cfi_offset 5, -8
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
-	.loc 1 468 24
+	.loc 1 469 24
 	movl	12(%ebp), %eax
 	cmpl	%eax, 8(%ebp)
 	cmovbe	8(%ebp), %eax
-	.loc 1 469 1
+	.loc 1 470 1
 	popl	%ebp
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -6466,7 +6466,7 @@ Ldebug_info0:
 	.uleb128 0x22
 	.ascii "_MINIMUM_UNIT\0"
 	.byte	0x1
-	.word	0x1d2
+	.word	0x1d3
 	.byte	0x1d
 	.long	0x4bbd
 	.long	LFB4201
@@ -6477,7 +6477,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x1d2
+	.word	0x1d3
 	.byte	0x37
 	.long	0x4bbd
 	.uleb128 0x2
@@ -6486,7 +6486,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "y\0"
 	.byte	0x1
-	.word	0x1d2
+	.word	0x1d3
 	.byte	0x46
 	.long	0x4bbd
 	.uleb128 0x2
@@ -6496,7 +6496,7 @@ Ldebug_info0:
 	.uleb128 0x22
 	.ascii "_DIVIDE_CEILING_UNIT\0"
 	.byte	0x1
-	.word	0x1c3
+	.word	0x1c4
 	.byte	0x1d
 	.long	0x4bbd
 	.long	LFB4198
@@ -6507,7 +6507,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x1c3
+	.word	0x1c4
 	.byte	0x3e
 	.long	0x4bbd
 	.uleb128 0x2
@@ -6516,7 +6516,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x1c3
+	.word	0x1c4
 	.byte	0x4d
 	.long	0x4bbd
 	.uleb128 0x2
@@ -6526,7 +6526,7 @@ Ldebug_info0:
 	.uleb128 0x22
 	.ascii "_FROMDWORDTOWORD\0"
 	.byte	0x1
-	.word	0x1b8
+	.word	0x1b9
 	.byte	0x1b
 	.long	0x4983
 	.long	LFB4196
@@ -6537,7 +6537,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x1b8
+	.word	0x1b9
 	.byte	0x36
 	.long	0x4995
 	.uleb128 0x2
@@ -6546,7 +6546,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "result_high\0"
 	.byte	0x1
-	.word	0x1b8
+	.word	0x1b9
 	.byte	0x48
 	.long	0x4ac5
 	.uleb128 0x2
@@ -6556,7 +6556,7 @@ Ldebug_info0:
 	.uleb128 0x23
 	.ascii "_FROMWORDTODWORD\0"
 	.byte	0x1
-	.word	0x1b3
+	.word	0x1b4
 	.byte	0x1b
 	.long	0x4995
 	.long	LFB4195
@@ -6566,7 +6566,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "value_high\0"
 	.byte	0x1
-	.word	0x1b3
+	.word	0x1b4
 	.byte	0x36
 	.long	0x4983
 	.uleb128 0x2
@@ -6575,7 +6575,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "value_low\0"
 	.byte	0x1
-	.word	0x1b3
+	.word	0x1b4
 	.byte	0x4c
 	.long	0x4983
 	.uleb128 0x2

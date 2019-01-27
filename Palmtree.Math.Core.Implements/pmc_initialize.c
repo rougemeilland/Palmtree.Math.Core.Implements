@@ -91,11 +91,11 @@ PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* c
 	entry_points.PMC_GetStatisticsInfo = PMC_GetStatisticsInfo;
 	entry_points.PMC_From_I = PMC_From_I;
 	entry_points.PMC_From_L = PMC_From_L;
-    entry_points.PMC_From_B = PMC_From_B;
+    entry_points.PMC_FromByteArray = PMC_FromByteArray;
     entry_points.PMC_Dispose = PMC_Dispose;
     entry_points.PMC_To_X_I = PMC_To_X_I;
 	entry_points.PMC_To_X_L = PMC_To_X_L;
-    entry_points.PMC_To_X_B = PMC_To_X_B;
+    entry_points.PMC_ToByteArray = PMC_ToByteArray;
     entry_points.PMC_ToString = PMC_ToString;
     entry_points.PMC_TryParse = PMC_TryParse;
     entry_points.PMC_Add_I_X = PMC_Add_I_X;

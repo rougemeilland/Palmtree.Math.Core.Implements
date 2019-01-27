@@ -175,6 +175,7 @@
     <ClCompile Include="pmc_add.c" />
     <ClCompile Include="pmc_bitwiseand.c" />
     <ClCompile Include="pmc_bitwiseor.c" />
+    <ClCompile Include="pmc_bytes.c" />
     <ClCompile Include="pmc_compare.c" />
     <ClCompile Include="pmc_divrem.c" />
     <ClCompile Include="pmc_equals.c" />

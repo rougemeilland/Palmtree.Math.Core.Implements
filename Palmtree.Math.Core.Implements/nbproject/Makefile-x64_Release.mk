@@ -62,6 +62,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/pmc_add.o \
 	${OBJECTDIR}/pmc_bitwiseand.o \
 	${OBJECTDIR}/pmc_bitwiseor.o \
+	${OBJECTDIR}/pmc_bytes.o \
 	${OBJECTDIR}/pmc_compare.o \
 	${OBJECTDIR}/pmc_divrem.o \
 	${OBJECTDIR}/pmc_equals.o \
@@ -237,6 +238,11 @@ ${OBJECTDIR}/pmc_bitwiseor.o: pmc_bitwiseor.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_bitwiseor.o pmc_bitwiseor.c
+
+${OBJECTDIR}/pmc_bytes.o: pmc_bytes.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_bytes.o pmc_bytes.c
 
 ${OBJECTDIR}/pmc_compare.o: pmc_compare.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

@@ -45,9 +45,9 @@ void TEST_PMC_Multiply_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE v_result;
     PMC_STATUS_CODE w_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 1), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 2), (w_result = ep->PMC_Multiply_I_X(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_I_Xの復帰コードが期待通りではない(%d)", w_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_I_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
     if (w_result == PMC_STATUS_OK)
         ep->PMC_Dispose(w);
@@ -64,9 +64,9 @@ void TEST_PMC_Multiply_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE v_result;
     PMC_STATUS_CODE w_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 1), (v_result = ep->PMC_From_B(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", v_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 2), (w_result = ep->PMC_Multiply_L_X(u, v, &w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_L_Xの復帰コードが期待通りではない(%d)", w_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 3), (result = ep->PMC_To_X_B(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_L_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
     if (w_result == PMC_STATUS_OK)
         ep->PMC_Dispose(w);
@@ -83,9 +83,9 @@ void TEST_PMC_Multiply_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
     PMC_STATUS_CODE z_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 2), (z_result = ep->PMC_Multiply_X_I(x, y, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_X_Iの復帰コードが期待通りではない(%d)", z_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
     if (z_result == PMC_STATUS_OK)
         ep->PMC_Dispose(z);
@@ -102,9 +102,9 @@ void TEST_PMC_Multiply_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
     PMC_STATUS_CODE z_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 2), (z_result = ep->PMC_Multiply_X_L(x, y, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_X_Lの復帰コードが期待通りではない(%d)", z_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
     if (z_result == PMC_STATUS_OK)
         ep->PMC_Dispose(z);
@@ -123,10 +123,10 @@ void TEST_PMC_Multiply_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int
     PMC_STATUS_CODE x_result;
     PMC_STATUS_CODE y_result;
     PMC_STATUS_CODE z_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 2), (y_result = ep->PMC_From_B(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", y_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 2), (y_result = ep->PMC_FromByteArray(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", y_result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 3), (z_result = ep->PMC_Multiply_X_X(x, y, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Multiply_X_Xの復帰コードが期待通りではない(%d)", z_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 4), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 4), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_Multiply_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
     if (z_result == PMC_STATUS_OK)
         ep->PMC_Dispose(z);

@@ -5,7 +5,7 @@ Ltext0:
 __FROMDWORDTOWORD:
 LFB4196:
 	.file 1 "pmc_internal.h"
-	.loc 1 441 1
+	.loc 1 442 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -19,21 +19,21 @@ LFB4196:
 	movl	%eax, -16(%ebp)
 	movl	12(%ebp), %eax
 	movl	%eax, -12(%ebp)
-	.loc 1 442 38
+	.loc 1 443 38
 	movl	-16(%ebp), %eax
 	movl	-12(%ebp), %edx
 	movl	%edx, %eax
 	xorl	%edx, %edx
 	movl	%eax, %ecx
 	movl	%edx, %ebx
-	.loc 1 442 20
+	.loc 1 443 20
 	movl	%ecx, %edx
-	.loc 1 442 18
+	.loc 1 443 18
 	movl	16(%ebp), %eax
 	movl	%edx, (%eax)
-	.loc 1 443 13
+	.loc 1 444 13
 	movl	-16(%ebp), %eax
-	.loc 1 444 1
+	.loc 1 445 1
 	addl	$12, %esp
 	popl	%ebx
 	.cfi_restore 3
@@ -46,7 +46,7 @@ LFE4196:
 	.def	__LZCNT_ALT_32;	.scl	3;	.type	32;	.endef
 __LZCNT_ALT_32:
 LFB4223:
-	.loc 1 855 1
+	.loc 1 856 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -54,25 +54,25 @@ LFB4223:
 	movl	%esp, %ebp
 	.cfi_def_cfa_register 5
 	subl	$16, %esp
-	.loc 1 856 8
+	.loc 1 857 8
 	cmpl	$0, 8(%ebp)
 	jne	L4
-	.loc 1 857 16
+	.loc 1 858 16
 	movl	$32, %eax
 	jmp	L5
 L4:
-	.loc 1 862 5
+	.loc 1 863 5
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl 8(%ebp), %eax
  # 0 "" 2
 /NO_APP
 	movl	%eax, -4(%ebp)
-	.loc 1 866 31
+	.loc 1 867 31
 	movl	$31, %eax
 	subl	-4(%ebp), %eax
 L5:
-	.loc 1 867 1
+	.loc 1 868 1
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
@@ -5449,7 +5449,7 @@ Ldebug_info0:
 	.uleb128 0x25
 	.ascii "_LZCNT_ALT_32\0"
 	.byte	0x1
-	.word	0x356
+	.word	0x357
 	.byte	0x1b
 	.long	0x499a
 	.long	LFB4223
@@ -5460,7 +5460,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x356
+	.word	0x357
 	.byte	0x33
 	.long	0x499a
 	.uleb128 0x2
@@ -5469,7 +5469,7 @@ Ldebug_info0:
 	.uleb128 0x1b
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x35a
+	.word	0x35b
 	.byte	0xf
 	.long	0x499a
 	.uleb128 0x2
@@ -5479,7 +5479,7 @@ Ldebug_info0:
 	.uleb128 0x26
 	.ascii "_FROMDWORDTOWORD\0"
 	.byte	0x1
-	.word	0x1b8
+	.word	0x1b9
 	.byte	0x1b
 	.long	0x499a
 	.long	LFB4196
@@ -5489,7 +5489,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x1b8
+	.word	0x1b9
 	.byte	0x36
 	.long	0x49ac
 	.uleb128 0x2
@@ -5498,7 +5498,7 @@ Ldebug_info0:
 	.uleb128 0x18
 	.ascii "result_high\0"
 	.byte	0x1
-	.word	0x1b8
+	.word	0x1b9
 	.byte	0x48
 	.long	0x4adc
 	.uleb128 0x2

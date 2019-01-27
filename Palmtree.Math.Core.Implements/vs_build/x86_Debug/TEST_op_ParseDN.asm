@@ -64,11 +64,11 @@ $SG94443 DB	'PMC_TryParse', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	ORG $+1
 $SG94444 DB	'PMC_ParseDN1 (%d.%d)', 00H
 	ORG $+3
-$SG94446 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94446 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
+	ORG $+2
 $SG94447 DB	'PMC_ParseDN1 (%d.%d)', 00H
 	ORG $+3
 $SG94448 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
@@ -90,11 +90,11 @@ $SG94481 DB	'PMC_TryParse', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	ORG $+1
 $SG94482 DB	'PMC_ParseDN2 (%d.%d)', 00H
 	ORG $+3
-$SG94484 DB	'PMC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94484 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
+	ORG $+2
 $SG94485 DB	'PMC_ParseDN2 (%d.%d)', 00H
 	ORG $+3
 $SG94486 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
@@ -347,7 +347,7 @@ $LN6@TEST_PMC_P:
 	jne	$LN2@TEST_PMC_P
 
 ; 79   :     {
-; 80   :         TEST_Assert(env, FormatTestLabel("PMC_ParseDN2 (%d.%d)", no, 2), (result = ep->PMC_To_X_B(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 80   :         TEST_Assert(env, FormatTestLabel("PMC_ParseDN2 (%d.%d)", no, 2), (result = ep->PMC_ToByteArray(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	push	OFFSET ?actual_buf_size@?1??TEST_PMC_ParseDN2@@9@9
@@ -356,7 +356,7 @@ $LN6@TEST_PMC_P:
 	mov	ecx, DWORD PTR _x$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+32]
+	mov	eax, DWORD PTR [edx+24]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -434,7 +434,7 @@ $LN2@TEST_PMC_P:
 	mov	edx, DWORD PTR _x$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+20]
+	mov	ecx, DWORD PTR [eax+16]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -637,7 +637,7 @@ $LN6@TEST_PMC_P:
 	jne	$LN2@TEST_PMC_P
 
 ; 55   :     {
-; 56   :         TEST_Assert(env, FormatTestLabel("PMC_ParseDN1 (%d.%d)", no, 2), (result = ep->PMC_To_X_B(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 56   :         TEST_Assert(env, FormatTestLabel("PMC_ParseDN1 (%d.%d)", no, 2), (result = ep->PMC_ToByteArray(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	push	OFFSET ?actual_buf_size@?1??TEST_PMC_ParseDN1@@9@9
@@ -646,7 +646,7 @@ $LN6@TEST_PMC_P:
 	mov	edx, DWORD PTR _x$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _ep$[ebp]
-	mov	ecx, DWORD PTR [eax+32]
+	mov	ecx, DWORD PTR [eax+24]
 	call	ecx
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -724,7 +724,7 @@ $LN2@TEST_PMC_P:
 	mov	eax, DWORD PTR _x$[ebp]
 	push	eax
 	mov	ecx, DWORD PTR _ep$[ebp]
-	mov	edx, DWORD PTR [ecx+20]
+	mov	edx, DWORD PTR [ecx+16]
 	call	edx
 	cmp	esi, esp
 	call	__RTC_CheckEsp

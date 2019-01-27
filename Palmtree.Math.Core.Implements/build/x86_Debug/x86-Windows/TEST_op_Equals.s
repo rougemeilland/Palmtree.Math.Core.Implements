@@ -4,7 +4,7 @@ Ltext0:
 	.section .rdata,"dr"
 	.align 4
 LC0:
-	.ascii "PMC_From_B\343\201\256\345\276\251\345\270\260\343\202\263\343\203\274\343\203\211\343\201\214\346\234\237\345\276\205\351\200\232\343\202\212\343\201\247\343\201\257\343\201\252\343\201\204(%d)\0"
+	.ascii "PMC_FromByteArray\343\201\256\345\276\251\345\270\260\343\202\263\343\203\274\343\203\211\343\201\214\346\234\237\345\276\205\351\200\232\343\202\212\343\201\247\343\201\257\343\201\252\343\201\204(%d)\0"
 LC1:
 	.ascii "PMC_Equals_I_X (%d.%d)\0"
 	.align 4
@@ -31,7 +31,7 @@ LFB72:
 	subl	$32, %esp
 	.cfi_offset 6, -12
 	.cfi_offset 3, -16
-	.loc 1 45 131
+	.loc 1 45 138
 	movl	-12(%ebp), %eax
 	movl	%eax, 4(%esp)
 	movl	$LC0, (%esp)
@@ -39,7 +39,7 @@ LFB72:
 	movl	%eax, %esi
 	.loc 1 45 86
 	movl	12(%ebp), %eax
-	movl	16(%eax), %eax
+	movl	20(%eax), %eax
 	.loc 1 45 84
 	leal	-20(%ebp), %edx
 	movl	%edx, 8(%esp)
@@ -128,7 +128,7 @@ LVL1:
 	jne	L3
 	.loc 1 49 11
 	movl	12(%ebp), %eax
-	movl	20(%eax), %eax
+	movl	16(%eax), %eax
 	.loc 1 49 9
 	movl	-20(%ebp), %edx
 	movl	%edx, (%esp)
@@ -176,7 +176,7 @@ LFB73:
 	movl	%eax, -32(%ebp)
 	movl	24(%ebp), %eax
 	movl	%eax, -28(%ebp)
-	.loc 1 58 131
+	.loc 1 58 138
 	movl	-12(%ebp), %eax
 	movl	%eax, 4(%esp)
 	movl	$LC0, (%esp)
@@ -184,7 +184,7 @@ LFB73:
 	movl	%eax, %esi
 	.loc 1 58 86
 	movl	12(%ebp), %eax
-	movl	16(%eax), %eax
+	movl	20(%eax), %eax
 	.loc 1 58 84
 	leal	-20(%ebp), %edx
 	movl	%edx, 8(%esp)
@@ -275,7 +275,7 @@ LVL4:
 	jne	L6
 	.loc 1 62 11
 	movl	12(%ebp), %eax
-	movl	20(%eax), %eax
+	movl	16(%eax), %eax
 	.loc 1 62 9
 	movl	-20(%ebp), %edx
 	movl	%edx, (%esp)
@@ -319,7 +319,7 @@ LFB74:
 	subl	$32, %esp
 	.cfi_offset 6, -12
 	.cfi_offset 3, -16
-	.loc 1 71 131
+	.loc 1 71 138
 	movl	-12(%ebp), %eax
 	movl	%eax, 4(%esp)
 	movl	$LC0, (%esp)
@@ -327,7 +327,7 @@ LFB74:
 	movl	%eax, %esi
 	.loc 1 71 86
 	movl	12(%ebp), %eax
-	movl	16(%eax), %eax
+	movl	20(%eax), %eax
 	.loc 1 71 84
 	leal	-20(%ebp), %edx
 	movl	%edx, 8(%esp)
@@ -416,7 +416,7 @@ LVL7:
 	jne	L9
 	.loc 1 75 11
 	movl	12(%ebp), %eax
-	movl	20(%eax), %eax
+	movl	16(%eax), %eax
 	.loc 1 75 9
 	movl	-20(%ebp), %edx
 	movl	%edx, (%esp)
@@ -464,7 +464,7 @@ LFB75:
 	movl	%eax, -32(%ebp)
 	movl	32(%ebp), %eax
 	movl	%eax, -28(%ebp)
-	.loc 1 84 131
+	.loc 1 84 138
 	movl	-12(%ebp), %eax
 	movl	%eax, 4(%esp)
 	movl	$LC0, (%esp)
@@ -472,7 +472,7 @@ LFB75:
 	movl	%eax, %esi
 	.loc 1 84 86
 	movl	12(%ebp), %eax
-	movl	16(%eax), %eax
+	movl	20(%eax), %eax
 	.loc 1 84 84
 	leal	-20(%ebp), %edx
 	movl	%edx, 8(%esp)
@@ -563,7 +563,7 @@ LVL10:
 	jne	L12
 	.loc 1 88 11
 	movl	12(%ebp), %eax
-	movl	20(%eax), %eax
+	movl	16(%eax), %eax
 	.loc 1 88 9
 	movl	-20(%ebp), %edx
 	movl	%edx, (%esp)
@@ -607,7 +607,7 @@ LFB76:
 	subl	$48, %esp
 	.cfi_offset 6, -12
 	.cfi_offset 3, -16
-	.loc 1 99 131
+	.loc 1 99 138
 	movl	-12(%ebp), %eax
 	movl	%eax, 4(%esp)
 	movl	$LC0, (%esp)
@@ -615,7 +615,7 @@ LFB76:
 	movl	%eax, %esi
 	.loc 1 99 86
 	movl	12(%ebp), %eax
-	movl	16(%eax), %eax
+	movl	20(%eax), %eax
 	.loc 1 99 84
 	leal	-24(%ebp), %edx
 	movl	%edx, 8(%esp)
@@ -644,7 +644,7 @@ LVL12:
 	movl	8(%ebp), %eax
 	movl	%eax, (%esp)
 	call	_TEST_Assert
-	.loc 1 100 131
+	.loc 1 100 138
 	movl	-16(%ebp), %eax
 	movl	%eax, 4(%esp)
 	movl	$LC0, (%esp)
@@ -652,7 +652,7 @@ LVL12:
 	movl	%eax, %esi
 	.loc 1 100 86
 	movl	12(%ebp), %eax
-	movl	16(%eax), %eax
+	movl	20(%eax), %eax
 	.loc 1 100 84
 	leal	-28(%ebp), %edx
 	movl	%edx, 8(%esp)
@@ -741,7 +741,7 @@ LVL14:
 	jne	L14
 	.loc 1 104 11
 	movl	12(%ebp), %eax
-	movl	20(%eax), %eax
+	movl	16(%eax), %eax
 	.loc 1 104 9
 	movl	-28(%ebp), %edx
 	movl	%edx, (%esp)
@@ -754,7 +754,7 @@ L14:
 	jne	L16
 	.loc 1 106 11
 	movl	12(%ebp), %eax
-	movl	20(%eax), %eax
+	movl	16(%eax), %eax
 	.loc 1 106 9
 	movl	-24(%ebp), %edx
 	movl	%edx, (%esp)
@@ -807,7 +807,7 @@ Letext0:
 	.file 30 "pmc_debug.h"
 	.section	.debug_info,"dr"
 Ldebug_info0:
-	.long	0x5b5f
+	.long	0x5b6b
 	.word	0x4
 	.secrel32	Ldebug_abbrev0
 	.byte	0x4
@@ -4747,7 +4747,7 @@ Ldebug_info0:
 	.byte	0x1d
 	.byte	0x7a
 	.byte	0x10
-	.long	0x52f9
+	.long	0x5305
 	.uleb128 0x18
 	.ascii "PROCESSOR_FEATURE_POPCNT\0"
 	.byte	0x1d
@@ -4803,471 +4803,471 @@ Ldebug_info0:
 	.byte	0x1d
 	.byte	0x84
 	.byte	0x2a
-	.long	0x530a
+	.long	0x5316
 	.byte	0x4
 	.uleb128 0x11
 	.ascii "PMC_From_I\0"
 	.byte	0x1d
 	.byte	0x87
 	.byte	0x35
-	.long	0x5324
+	.long	0x5330
 	.byte	0x8
 	.uleb128 0x11
 	.ascii "PMC_From_L\0"
 	.byte	0x1d
 	.byte	0x8a
 	.byte	0x35
-	.long	0x533e
+	.long	0x534a
 	.byte	0xc
-	.uleb128 0x11
-	.ascii "PMC_From_B\0"
-	.byte	0x1d
-	.byte	0x8d
-	.byte	0x34
-	.long	0x535d
-	.byte	0x10
 	.uleb128 0x11
 	.ascii "PMC_Dispose\0"
 	.byte	0x1d
-	.byte	0x90
+	.byte	0x8d
 	.byte	0x2a
-	.long	0x536e
+	.long	0x535b
+	.byte	0x10
+	.uleb128 0x11
+	.ascii "PMC_FromByteArray\0"
+	.byte	0x1d
+	.byte	0x90
+	.byte	0x34
+	.long	0x537a
 	.byte	0x14
+	.uleb128 0x11
+	.ascii "PMC_ToByteArray\0"
+	.byte	0x1d
+	.byte	0x91
+	.byte	0x34
+	.long	0x53a4
+	.byte	0x18
 	.uleb128 0x11
 	.ascii "PMC_To_X_I\0"
 	.byte	0x1d
-	.byte	0x93
+	.byte	0x94
 	.byte	0x35
-	.long	0x538e
-	.byte	0x18
+	.long	0x53c4
+	.byte	0x1c
 	.uleb128 0x11
 	.ascii "PMC_To_X_L\0"
 	.byte	0x1d
-	.byte	0x94
-	.byte	0x35
-	.long	0x53ae
-	.byte	0x1c
-	.uleb128 0x11
-	.ascii "PMC_To_X_B\0"
-	.byte	0x1d
 	.byte	0x95
 	.byte	0x35
-	.long	0x53d8
+	.long	0x53e4
 	.byte	0x20
 	.uleb128 0x11
 	.ascii "PMC_ToString\0"
 	.byte	0x1d
 	.byte	0x98
 	.byte	0x34
-	.long	0x540c
+	.long	0x5418
 	.byte	0x24
 	.uleb128 0x11
 	.ascii "PMC_TryParse\0"
 	.byte	0x1d
 	.byte	0x9b
 	.byte	0x34
-	.long	0x5430
+	.long	0x543c
 	.byte	0x28
 	.uleb128 0x11
 	.ascii "PMC_Add_I_X\0"
 	.byte	0x1d
 	.byte	0x9e
 	.byte	0x34
-	.long	0x544f
+	.long	0x545b
 	.byte	0x2c
 	.uleb128 0x11
 	.ascii "PMC_Add_L_X\0"
 	.byte	0x1d
 	.byte	0x9f
 	.byte	0x34
-	.long	0x546e
+	.long	0x547a
 	.byte	0x30
 	.uleb128 0x11
 	.ascii "PMC_Add_X_I\0"
 	.byte	0x1d
 	.byte	0xa0
 	.byte	0x34
-	.long	0x548d
+	.long	0x5499
 	.byte	0x34
 	.uleb128 0x11
 	.ascii "PMC_Add_X_L\0"
 	.byte	0x1d
 	.byte	0xa1
 	.byte	0x34
-	.long	0x54ac
+	.long	0x54b8
 	.byte	0x38
 	.uleb128 0x11
 	.ascii "PMC_Add_X_X\0"
 	.byte	0x1d
 	.byte	0xa2
 	.byte	0x34
-	.long	0x54cb
+	.long	0x54d7
 	.byte	0x3c
 	.uleb128 0x11
 	.ascii "PMC_Subtruct_I_X\0"
 	.byte	0x1d
 	.byte	0xa5
 	.byte	0x34
-	.long	0x54ea
+	.long	0x54f6
 	.byte	0x40
 	.uleb128 0x11
 	.ascii "PMC_Subtruct_L_X\0"
 	.byte	0x1d
 	.byte	0xa6
 	.byte	0x34
-	.long	0x5509
+	.long	0x5515
 	.byte	0x44
 	.uleb128 0x11
 	.ascii "PMC_Subtruct_X_I\0"
 	.byte	0x1d
 	.byte	0xa7
 	.byte	0x34
-	.long	0x548d
+	.long	0x5499
 	.byte	0x48
 	.uleb128 0x11
 	.ascii "PMC_Subtruct_X_L\0"
 	.byte	0x1d
 	.byte	0xa8
 	.byte	0x34
-	.long	0x54ac
+	.long	0x54b8
 	.byte	0x4c
 	.uleb128 0x11
 	.ascii "PMC_Subtruct_X_X\0"
 	.byte	0x1d
 	.byte	0xa9
 	.byte	0x34
-	.long	0x54cb
+	.long	0x54d7
 	.byte	0x50
 	.uleb128 0x11
 	.ascii "PMC_Multiply_I_X\0"
 	.byte	0x1d
 	.byte	0xac
 	.byte	0x34
-	.long	0x544f
+	.long	0x545b
 	.byte	0x54
 	.uleb128 0x11
 	.ascii "PMC_Multiply_L_X\0"
 	.byte	0x1d
 	.byte	0xad
 	.byte	0x34
-	.long	0x546e
+	.long	0x547a
 	.byte	0x58
 	.uleb128 0x11
 	.ascii "PMC_Multiply_X_I\0"
 	.byte	0x1d
 	.byte	0xae
 	.byte	0x34
-	.long	0x548d
+	.long	0x5499
 	.byte	0x5c
 	.uleb128 0x11
 	.ascii "PMC_Multiply_X_L\0"
 	.byte	0x1d
 	.byte	0xaf
 	.byte	0x34
-	.long	0x54ac
+	.long	0x54b8
 	.byte	0x60
 	.uleb128 0x11
 	.ascii "PMC_Multiply_X_X\0"
 	.byte	0x1d
 	.byte	0xb0
 	.byte	0x34
-	.long	0x54cb
+	.long	0x54d7
 	.byte	0x64
 	.uleb128 0x11
 	.ascii "PMC_DivRem_I_X\0"
 	.byte	0x1d
 	.byte	0xb3
 	.byte	0x34
-	.long	0x552d
+	.long	0x5539
 	.byte	0x68
 	.uleb128 0x11
 	.ascii "PMC_DivRem_L_X\0"
 	.byte	0x1d
 	.byte	0xb4
 	.byte	0x34
-	.long	0x5551
+	.long	0x555d
 	.byte	0x6c
 	.uleb128 0x11
 	.ascii "PMC_DivRem_X_I\0"
 	.byte	0x1d
 	.byte	0xb5
 	.byte	0x34
-	.long	0x5575
+	.long	0x5581
 	.byte	0x70
 	.uleb128 0x11
 	.ascii "PMC_DivRem_X_L\0"
 	.byte	0x1d
 	.byte	0xb6
 	.byte	0x34
-	.long	0x5599
+	.long	0x55a5
 	.byte	0x74
 	.uleb128 0x11
 	.ascii "PMC_DivRem_X_X\0"
 	.byte	0x1d
 	.byte	0xb7
 	.byte	0x34
-	.long	0x55bd
+	.long	0x55c9
 	.byte	0x78
 	.uleb128 0x11
 	.ascii "PMC_LeftShift_X_I\0"
 	.byte	0x1d
 	.byte	0xba
 	.byte	0x34
-	.long	0x548d
+	.long	0x5499
 	.byte	0x7c
 	.uleb128 0x11
 	.ascii "PMC_LeftShift_X_L\0"
 	.byte	0x1d
 	.byte	0xbb
 	.byte	0x34
-	.long	0x54ac
+	.long	0x54b8
 	.byte	0x80
 	.uleb128 0x11
 	.ascii "PMC_RightShift_X_I\0"
 	.byte	0x1d
 	.byte	0xbe
 	.byte	0x34
-	.long	0x548d
+	.long	0x5499
 	.byte	0x84
 	.uleb128 0x11
 	.ascii "PMC_RightShift_X_L\0"
 	.byte	0x1d
 	.byte	0xbf
 	.byte	0x34
-	.long	0x54ac
+	.long	0x54b8
 	.byte	0x88
 	.uleb128 0x11
 	.ascii "PMC_BitwiseAnd_I_X\0"
 	.byte	0x1d
 	.byte	0xc2
 	.byte	0x34
-	.long	0x54ea
+	.long	0x54f6
 	.byte	0x8c
 	.uleb128 0x11
 	.ascii "PMC_BitwiseAnd_L_X\0"
 	.byte	0x1d
 	.byte	0xc3
 	.byte	0x34
-	.long	0x5509
+	.long	0x5515
 	.byte	0x90
 	.uleb128 0x11
 	.ascii "PMC_BitwiseAnd_X_I\0"
 	.byte	0x1d
 	.byte	0xc4
 	.byte	0x34
-	.long	0x55dc
+	.long	0x55e8
 	.byte	0x94
 	.uleb128 0x11
 	.ascii "PMC_BitwiseAnd_X_L\0"
 	.byte	0x1d
 	.byte	0xc5
 	.byte	0x34
-	.long	0x55fb
+	.long	0x5607
 	.byte	0x98
 	.uleb128 0x11
 	.ascii "PMC_BitwiseAnd_X_X\0"
 	.byte	0x1d
 	.byte	0xc6
 	.byte	0x34
-	.long	0x54cb
+	.long	0x54d7
 	.byte	0x9c
 	.uleb128 0x11
 	.ascii "PMC_BitwiseOr_I_X\0"
 	.byte	0x1d
 	.byte	0xc9
 	.byte	0x34
-	.long	0x544f
+	.long	0x545b
 	.byte	0xa0
 	.uleb128 0x11
 	.ascii "PMC_BitwiseOr_L_X\0"
 	.byte	0x1d
 	.byte	0xca
 	.byte	0x34
-	.long	0x546e
+	.long	0x547a
 	.byte	0xa4
 	.uleb128 0x11
 	.ascii "PMC_BitwiseOr_X_I\0"
 	.byte	0x1d
 	.byte	0xcb
 	.byte	0x34
-	.long	0x548d
+	.long	0x5499
 	.byte	0xa8
 	.uleb128 0x11
 	.ascii "PMC_BitwiseOr_X_L\0"
 	.byte	0x1d
 	.byte	0xcc
 	.byte	0x34
-	.long	0x54ac
+	.long	0x54b8
 	.byte	0xac
 	.uleb128 0x11
 	.ascii "PMC_BitwiseOr_X_X\0"
 	.byte	0x1d
 	.byte	0xcd
 	.byte	0x34
-	.long	0x54cb
+	.long	0x54d7
 	.byte	0xb0
 	.uleb128 0x11
 	.ascii "PMC_ExclusiveOr_I_X\0"
 	.byte	0x1d
 	.byte	0xd0
 	.byte	0x34
-	.long	0x544f
+	.long	0x545b
 	.byte	0xb4
 	.uleb128 0x11
 	.ascii "PMC_ExclusiveOr_L_X\0"
 	.byte	0x1d
 	.byte	0xd1
 	.byte	0x34
-	.long	0x546e
+	.long	0x547a
 	.byte	0xb8
 	.uleb128 0x11
 	.ascii "PMC_ExclusiveOr_X_I\0"
 	.byte	0x1d
 	.byte	0xd2
 	.byte	0x34
-	.long	0x548d
+	.long	0x5499
 	.byte	0xbc
 	.uleb128 0x11
 	.ascii "PMC_ExclusiveOr_X_L\0"
 	.byte	0x1d
 	.byte	0xd3
 	.byte	0x34
-	.long	0x54ac
+	.long	0x54b8
 	.byte	0xc0
 	.uleb128 0x11
 	.ascii "PMC_ExclusiveOr_X_X\0"
 	.byte	0x1d
 	.byte	0xd4
 	.byte	0x34
-	.long	0x54cb
+	.long	0x54d7
 	.byte	0xc4
 	.uleb128 0x11
 	.ascii "PMC_Compare_I_X\0"
 	.byte	0x1d
 	.byte	0xd7
 	.byte	0x34
-	.long	0x5620
+	.long	0x562c
 	.byte	0xc8
 	.uleb128 0x11
 	.ascii "PMC_Compare_L_X\0"
 	.byte	0x1d
 	.byte	0xd8
 	.byte	0x34
-	.long	0x563f
+	.long	0x564b
 	.byte	0xcc
 	.uleb128 0x11
 	.ascii "PMC_Compare_X_I\0"
 	.byte	0x1d
 	.byte	0xd9
 	.byte	0x34
-	.long	0x565e
+	.long	0x566a
 	.byte	0xd0
 	.uleb128 0x11
 	.ascii "PMC_Compare_X_L\0"
 	.byte	0x1d
 	.byte	0xda
 	.byte	0x34
-	.long	0x567d
+	.long	0x5689
 	.byte	0xd4
 	.uleb128 0x11
 	.ascii "PMC_Compare_X_X\0"
 	.byte	0x1d
 	.byte	0xdb
 	.byte	0x34
-	.long	0x569c
+	.long	0x56a8
 	.byte	0xd8
 	.uleb128 0x11
 	.ascii "PMC_Equals_I_X\0"
 	.byte	0x1d
 	.byte	0xde
 	.byte	0x34
-	.long	0x5620
+	.long	0x562c
 	.byte	0xdc
 	.uleb128 0x11
 	.ascii "PMC_Equals_L_X\0"
 	.byte	0x1d
 	.byte	0xdf
 	.byte	0x34
-	.long	0x563f
+	.long	0x564b
 	.byte	0xe0
 	.uleb128 0x11
 	.ascii "PMC_Equals_X_I\0"
 	.byte	0x1d
 	.byte	0xe0
 	.byte	0x34
-	.long	0x565e
+	.long	0x566a
 	.byte	0xe4
 	.uleb128 0x11
 	.ascii "PMC_Equals_X_L\0"
 	.byte	0x1d
 	.byte	0xe1
 	.byte	0x34
-	.long	0x567d
+	.long	0x5689
 	.byte	0xe8
 	.uleb128 0x11
 	.ascii "PMC_Equals_X_X\0"
 	.byte	0x1d
 	.byte	0xe2
 	.byte	0x34
-	.long	0x569c
+	.long	0x56a8
 	.byte	0xec
 	.uleb128 0x11
 	.ascii "PMC_GreatestCommonDivisor_I_X\0"
 	.byte	0x1d
 	.byte	0xe5
 	.byte	0x34
-	.long	0x544f
+	.long	0x545b
 	.byte	0xf0
 	.uleb128 0x11
 	.ascii "PMC_GreatestCommonDivisor_L_X\0"
 	.byte	0x1d
 	.byte	0xe6
 	.byte	0x34
-	.long	0x546e
+	.long	0x547a
 	.byte	0xf4
 	.uleb128 0x11
 	.ascii "PMC_GreatestCommonDivisor_X_I\0"
 	.byte	0x1d
 	.byte	0xe7
 	.byte	0x34
-	.long	0x548d
+	.long	0x5499
 	.byte	0xf8
 	.uleb128 0x11
 	.ascii "PMC_GreatestCommonDivisor_X_L\0"
 	.byte	0x1d
 	.byte	0xe8
 	.byte	0x34
-	.long	0x54ac
+	.long	0x54b8
 	.byte	0xfc
 	.uleb128 0x19
 	.ascii "PMC_GreatestCommonDivisor_X_X\0"
 	.byte	0x1d
 	.byte	0xe9
 	.byte	0x34
-	.long	0x54cb
+	.long	0x54d7
 	.word	0x100
 	.uleb128 0x19
 	.ascii "PMC_Pow_X_I\0"
 	.byte	0x1d
 	.byte	0xec
 	.byte	0x34
-	.long	0x548d
+	.long	0x5499
 	.word	0x104
 	.byte	0
 	.uleb128 0xe
-	.long	0x5304
+	.long	0x5310
 	.uleb128 0xf
-	.long	0x5304
+	.long	0x5310
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
 	.long	0x4a7b
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x52f9
+	.long	0x5305
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x5324
+	.long	0x5330
 	.uleb128 0xf
 	.long	0x49c3
 	.uleb128 0xf
@@ -5275,10 +5275,10 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5310
+	.long	0x531c
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x533e
+	.long	0x534a
 	.uleb128 0xf
 	.long	0x49d5
 	.uleb128 0xf
@@ -5286,59 +5286,31 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x532a
-	.uleb128 0x1a
-	.long	0x49e7
-	.long	0x535d
-	.uleb128 0xf
-	.long	0x724
-	.uleb128 0xf
-	.long	0xca
-	.uleb128 0xf
-	.long	0x754
-	.byte	0
-	.uleb128 0x6
-	.byte	0x4
-	.long	0x5344
+	.long	0x5336
 	.uleb128 0xe
-	.long	0x536e
+	.long	0x535b
 	.uleb128 0xf
 	.long	0x744
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5363
+	.long	0x5350
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x5388
+	.long	0x537a
 	.uleb128 0xf
-	.long	0x744
+	.long	0x724
 	.uleb128 0xf
-	.long	0x5388
+	.long	0xca
+	.uleb128 0xf
+	.long	0x754
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x49c3
-	.uleb128 0x6
-	.byte	0x4
-	.long	0x5374
+	.long	0x5361
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x53a8
-	.uleb128 0xf
-	.long	0x744
-	.uleb128 0xf
-	.long	0x53a8
-	.byte	0
-	.uleb128 0x6
-	.byte	0x4
-	.long	0x49d5
-	.uleb128 0x6
-	.byte	0x4
-	.long	0x5394
-	.uleb128 0x1a
-	.long	0x49e7
-	.long	0x53d2
+	.long	0x539e
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
@@ -5346,17 +5318,45 @@ Ldebug_info0:
 	.uleb128 0xf
 	.long	0xca
 	.uleb128 0xf
-	.long	0x53d2
+	.long	0x539e
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
 	.long	0xca
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x53b4
+	.long	0x5380
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x5406
+	.long	0x53be
+	.uleb128 0xf
+	.long	0x744
+	.uleb128 0xf
+	.long	0x53be
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.long	0x49c3
+	.uleb128 0x6
+	.byte	0x4
+	.long	0x53aa
+	.uleb128 0x1a
+	.long	0x49e7
+	.long	0x53de
+	.uleb128 0xf
+	.long	0x744
+	.uleb128 0xf
+	.long	0x53de
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.long	0x49d5
+	.uleb128 0x6
+	.byte	0x4
+	.long	0x53ca
+	.uleb128 0x1a
+	.long	0x49e7
+	.long	0x5412
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
@@ -5368,32 +5368,32 @@ Ldebug_info0:
 	.uleb128 0xf
 	.long	0xe9
 	.uleb128 0xf
-	.long	0x5406
+	.long	0x5412
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
 	.long	0x4b69
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x53de
+	.long	0x53ea
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x5430
+	.long	0x543c
 	.uleb128 0xf
 	.long	0x434
 	.uleb128 0xf
 	.long	0x49c3
 	.uleb128 0xf
-	.long	0x5406
-	.uleb128 0xf
-	.long	0x754
-	.byte	0
-	.uleb128 0x6
-	.byte	0x4
 	.long	0x5412
+	.uleb128 0xf
+	.long	0x754
+	.byte	0
+	.uleb128 0x6
+	.byte	0x4
+	.long	0x541e
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x544f
+	.long	0x545b
 	.uleb128 0xf
 	.long	0x49c3
 	.uleb128 0xf
@@ -5403,10 +5403,10 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5436
+	.long	0x5442
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x546e
+	.long	0x547a
 	.uleb128 0xf
 	.long	0x49d5
 	.uleb128 0xf
@@ -5416,10 +5416,10 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5455
+	.long	0x5461
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x548d
+	.long	0x5499
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
@@ -5429,10 +5429,10 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5474
+	.long	0x5480
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x54ac
+	.long	0x54b8
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
@@ -5442,10 +5442,10 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5493
+	.long	0x549f
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x54cb
+	.long	0x54d7
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
@@ -5455,66 +5455,66 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x54b2
+	.long	0x54be
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x54ea
+	.long	0x54f6
 	.uleb128 0xf
 	.long	0x49c3
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
-	.long	0x5388
+	.long	0x53be
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x54d1
+	.long	0x54dd
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x5509
+	.long	0x5515
 	.uleb128 0xf
 	.long	0x49d5
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
-	.long	0x53a8
+	.long	0x53de
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x54f0
+	.long	0x54fc
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x552d
+	.long	0x5539
 	.uleb128 0xf
 	.long	0x49c3
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
-	.long	0x5388
+	.long	0x53be
 	.uleb128 0xf
-	.long	0x5388
+	.long	0x53be
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x550f
+	.long	0x551b
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x5551
+	.long	0x555d
 	.uleb128 0xf
 	.long	0x49d5
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
-	.long	0x53a8
+	.long	0x53de
 	.uleb128 0xf
-	.long	0x53a8
+	.long	0x53de
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5533
+	.long	0x553f
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x5575
+	.long	0x5581
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
@@ -5522,14 +5522,14 @@ Ldebug_info0:
 	.uleb128 0xf
 	.long	0x754
 	.uleb128 0xf
-	.long	0x5388
+	.long	0x53be
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5557
+	.long	0x5563
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x5599
+	.long	0x55a5
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
@@ -5537,14 +5537,14 @@ Ldebug_info0:
 	.uleb128 0xf
 	.long	0x754
 	.uleb128 0xf
-	.long	0x53a8
+	.long	0x53de
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x557b
+	.long	0x5587
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x55bd
+	.long	0x55c9
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
@@ -5556,101 +5556,101 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x559f
+	.long	0x55ab
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x55dc
+	.long	0x55e8
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
 	.long	0x49c3
 	.uleb128 0xf
-	.long	0x5388
+	.long	0x53be
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x55c3
+	.long	0x55cf
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x55fb
+	.long	0x5607
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
 	.long	0x49d5
 	.uleb128 0xf
-	.long	0x53a8
+	.long	0x53de
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x55e2
+	.long	0x55ee
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x561a
+	.long	0x5626
 	.uleb128 0xf
 	.long	0x49c3
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
-	.long	0x561a
+	.long	0x5626
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
 	.long	0x49b2
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5601
+	.long	0x560d
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x563f
+	.long	0x564b
 	.uleb128 0xf
 	.long	0x49d5
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
-	.long	0x561a
+	.long	0x5626
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5626
+	.long	0x5632
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x565e
+	.long	0x566a
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
 	.long	0x49c3
 	.uleb128 0xf
-	.long	0x561a
+	.long	0x5626
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5645
+	.long	0x5651
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x567d
+	.long	0x5689
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
 	.long	0x49d5
 	.uleb128 0xf
-	.long	0x561a
+	.long	0x5626
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5664
+	.long	0x5670
 	.uleb128 0x1a
 	.long	0x49e7
-	.long	0x569c
+	.long	0x56a8
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
 	.long	0x744
 	.uleb128 0xf
-	.long	0x561a
+	.long	0x5626
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5683
+	.long	0x568f
 	.uleb128 0x4
 	.ascii "PMC_ENTRY_POINTS\0"
 	.byte	0x1d
@@ -5663,13 +5663,13 @@ Ldebug_info0:
 	.byte	0x1e
 	.byte	0x29
 	.byte	0x10
-	.long	0x56fd
+	.long	0x5709
 	.uleb128 0x11
 	.ascii "log\0"
 	.byte	0x1e
 	.byte	0x2b
 	.byte	0x27
-	.long	0x5713
+	.long	0x571f
 	.byte	0
 	.uleb128 0x11
 	.ascii "pause\0"
@@ -5681,9 +5681,9 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x1a
 	.long	0xe9
-	.long	0x570d
+	.long	0x5719
 	.uleb128 0xf
-	.long	0x570d
+	.long	0x5719
 	.uleb128 0x1b
 	.byte	0
 	.uleb128 0x6
@@ -5691,13 +5691,13 @@ Ldebug_info0:
 	.long	0xc5
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x56fd
+	.long	0x5709
 	.uleb128 0x4
 	.ascii "PMC_DEBUG_ENVIRONMENT\0"
 	.byte	0x1e
 	.byte	0x2d
 	.byte	0x3
-	.long	0x56bb
+	.long	0x56c7
 	.uleb128 0x1c
 	.ascii "TEST_PMC_Equals_X_X\0"
 	.byte	0x1
@@ -5707,13 +5707,13 @@ Ldebug_info0:
 	.long	LFE76-LFB76
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x583a
+	.long	0x5846
 	.uleb128 0x1d
 	.ascii "env\0"
 	.byte	0x1
 	.byte	0x5b
 	.byte	0x31
-	.long	0x583a
+	.long	0x5846
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -5722,7 +5722,7 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x5b
 	.byte	0x48
-	.long	0x5840
+	.long	0x584c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
@@ -5837,10 +5837,10 @@ Ldebug_info0:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x5719
+	.long	0x5725
 	.uleb128 0x6
 	.byte	0x4
-	.long	0x56a2
+	.long	0x56ae
 	.uleb128 0x1c
 	.ascii "TEST_PMC_Equals_X_L\0"
 	.byte	0x1
@@ -5850,13 +5850,13 @@ Ldebug_info0:
 	.long	LFE75-LFB75
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x590e
+	.long	0x591a
 	.uleb128 0x1d
 	.ascii "env\0"
 	.byte	0x1
 	.byte	0x4e
 	.byte	0x31
-	.long	0x583a
+	.long	0x5846
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -5865,7 +5865,7 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x4e
 	.byte	0x48
-	.long	0x5840
+	.long	0x584c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
@@ -5960,13 +5960,13 @@ Ldebug_info0:
 	.long	LFE74-LFB74
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x59d6
+	.long	0x59e2
 	.uleb128 0x1d
 	.ascii "env\0"
 	.byte	0x1
 	.byte	0x41
 	.byte	0x31
-	.long	0x583a
+	.long	0x5846
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -5975,7 +5975,7 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x41
 	.byte	0x48
-	.long	0x5840
+	.long	0x584c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
@@ -6070,13 +6070,13 @@ Ldebug_info0:
 	.long	LFE73-LFB73
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5a9e
+	.long	0x5aaa
 	.uleb128 0x1d
 	.ascii "env\0"
 	.byte	0x1
 	.byte	0x34
 	.byte	0x31
-	.long	0x583a
+	.long	0x5846
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -6085,7 +6085,7 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x34
 	.byte	0x48
-	.long	0x5840
+	.long	0x584c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4
@@ -6185,7 +6185,7 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x27
 	.byte	0x31
-	.long	0x583a
+	.long	0x5846
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -6194,7 +6194,7 @@ Ldebug_info0:
 	.byte	0x1
 	.byte	0x27
 	.byte	0x48
-	.long	0x5840
+	.long	0x584c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 4

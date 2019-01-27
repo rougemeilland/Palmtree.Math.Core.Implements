@@ -92,14 +92,14 @@ LFB5487:
 	andl	$-32, %eax
 	andl	$31, %edx
 	movl	$_PMC_From_L@12, _entry_points+12
-	movl	$_PMC_From_B@12, _entry_points+16
+	movl	$_PMC_FromByteArray@12, _entry_points+20
 	orl	%edx, %eax
 	movb	%al, _entry_points
 	movl	$_entry_points, %eax
-	movl	$_PMC_Dispose@4, _entry_points+20
-	movl	$_PMC_To_X_I@8, _entry_points+24
-	movl	$_PMC_To_X_L@8, _entry_points+28
-	movl	$_PMC_To_X_B@16, _entry_points+32
+	movl	$_PMC_Dispose@4, _entry_points+16
+	movl	$_PMC_To_X_I@8, _entry_points+28
+	movl	$_PMC_To_X_L@8, _entry_points+32
+	movl	$_PMC_ToByteArray@16, _entry_points+24
 	movl	$_PMC_ToString@24, _entry_points+36
 	movl	$_PMC_TryParse@16, _entry_points+40
 	movl	$_PMC_Add_I_X@12, _entry_points+44
@@ -194,11 +194,11 @@ LFE5487:
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_L@12;	.scl	2;	.type	32;	.endef
-	.def	_PMC_From_B@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_FromByteArray@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Dispose@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_To_X_I@8;	.scl	2;	.type	32;	.endef
 	.def	_PMC_To_X_L@8;	.scl	2;	.type	32;	.endef
-	.def	_PMC_To_X_B@16;	.scl	2;	.type	32;	.endef
+	.def	_PMC_ToByteArray@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_ToString@24;	.scl	2;	.type	32;	.endef
 	.def	_PMC_TryParse@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Add_I_X@12;	.scl	2;	.type	32;	.endef

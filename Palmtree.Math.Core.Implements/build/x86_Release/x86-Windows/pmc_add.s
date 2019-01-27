@@ -951,7 +951,7 @@ L90:
 	leal	44(%esp), %ecx
 	movl	%edx, 28(%esp)
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl %edx, %eax
  # 0 "" 2
 /NO_APP
@@ -1088,7 +1088,7 @@ L96:
 	testl	%edx, %edx
 	je	L101
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -1186,7 +1186,7 @@ L119:
 L100:
 	.cfi_restore_state
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP

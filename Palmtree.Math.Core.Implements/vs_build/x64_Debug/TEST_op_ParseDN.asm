@@ -27,7 +27,7 @@ PUBLIC	__JustMyCode_Default
 PUBLIC	??_C@_01EKENIIDA@3@				; `string'
 PUBLIC	??_C@_0CP@JCNEMHLF@PMC_TryParse?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC@ ; `string'
 PUBLIC	??_C@_0BF@IMADJABL@PMC_ParseDN1?5?$CI?$CFd?4?$CFd?$CJ@ ; `string'
-PUBLIC	??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@ ; `string'
+PUBLIC	??_C@_0DC@JBMEDBHF@PMC_ToByteArray?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z@ ; `string'
 PUBLIC	??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ ; `string'
 PUBLIC	??_C@_13DEFPDAGF@?$AA?0@			; `string'
 PUBLIC	??_C@_13JOFGPIOO@?$AA?4@			; `string'
@@ -106,10 +106,10 @@ CONST	SEGMENT
 	DB	0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H, 082H, 0a2H
 	DB	00H						; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
+;	COMDAT ??_C@_0DC@JBMEDBHF@PMC_ToByteArray?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z@
 CONST	SEGMENT
-??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@ DB 'P'
-	DB	'MC_To_X_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R', 081H
+??_C@_0DC@JBMEDBHF@PMC_ToByteArray?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z@ DB 'P'
+	DB	'MC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R', 081H
 	DB	'[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H, 0caH
 	DB	082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H, '('
 	DB	'%d)', 00H					; `string'
@@ -427,14 +427,14 @@ $LN6@TEST_PMC_P:
 	jne	$LN2@TEST_PMC_P
 
 ; 79   :     {
-; 80   :         TEST_Assert(env, FormatTestLabel("PMC_ParseDN2 (%d.%d)", no, 2), (result = ep->PMC_To_X_B(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 80   :         TEST_Assert(env, FormatTestLabel("PMC_ParseDN2 (%d.%d)", no, 2), (result = ep->PMC_ToByteArray(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	lea	r9, OFFSET FLAT:?actual_buf_size@?1??TEST_PMC_ParseDN2@@9@9
 	mov	r8d, 256				; 00000100H
 	lea	rdx, OFFSET FLAT:?actual_buf@?1??TEST_PMC_ParseDN2@@9@9
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+64]
+	call	QWORD PTR [rax+48]
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	jne	SHORT $LN7@TEST_PMC_P
@@ -444,7 +444,7 @@ $LN7@TEST_PMC_P:
 	mov	DWORD PTR tv137[rbp], 0
 $LN8@TEST_PMC_P:
 	mov	edx, DWORD PTR result$[rbp]
-	lea	rcx, OFFSET FLAT:??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
+	lea	rcx, OFFSET FLAT:??_C@_0DC@JBMEDBHF@PMC_ToByteArray?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z@
 	call	FormatTestMesssage
 	mov	QWORD PTR tv94[rbp], rax
 	mov	r8d, 2
@@ -493,7 +493,7 @@ $LN2@TEST_PMC_P:
 
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+40]
+	call	QWORD PTR [rax+32]
 $LN3@TEST_PMC_P:
 
 ; 85   : }
@@ -638,14 +638,14 @@ $LN6@TEST_PMC_P:
 	jne	$LN2@TEST_PMC_P
 
 ; 55   :     {
-; 56   :         TEST_Assert(env, FormatTestLabel("PMC_ParseDN1 (%d.%d)", no, 2), (result = ep->PMC_To_X_B(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+; 56   :         TEST_Assert(env, FormatTestLabel("PMC_ParseDN1 (%d.%d)", no, 2), (result = ep->PMC_ToByteArray(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	lea	r9, OFFSET FLAT:?actual_buf_size@?1??TEST_PMC_ParseDN1@@9@9
 	mov	r8d, 256				; 00000100H
 	lea	rdx, OFFSET FLAT:?actual_buf@?1??TEST_PMC_ParseDN1@@9@9
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+64]
+	call	QWORD PTR [rax+48]
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	jne	SHORT $LN7@TEST_PMC_P
@@ -655,7 +655,7 @@ $LN7@TEST_PMC_P:
 	mov	DWORD PTR tv137[rbp], 0
 $LN8@TEST_PMC_P:
 	mov	edx, DWORD PTR result$[rbp]
-	lea	rcx, OFFSET FLAT:??_C@_0CN@JELPCGPD@PMC_To_X_B?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z?$JB?R?$JC?J?$IC@
+	lea	rcx, OFFSET FLAT:??_C@_0DC@JBMEDBHF@PMC_ToByteArray?$IC?L?$JF?$JM?$ILA?$IDR?$IB?$FL?$IDh?$IC?$KK?$IK?z@
 	call	FormatTestMesssage
 	mov	QWORD PTR tv94[rbp], rax
 	mov	r8d, 2
@@ -704,7 +704,7 @@ $LN2@TEST_PMC_P:
 
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+40]
+	call	QWORD PTR [rax+32]
 $LN3@TEST_PMC_P:
 
 ; 61   : }

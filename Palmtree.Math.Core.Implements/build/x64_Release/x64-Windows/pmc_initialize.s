@@ -95,16 +95,16 @@ PMC_Initialize:
 	movq	%rax, 16+entry_points(%rip)
 	movq	.refptr.PMC_From_L(%rip), %rax
 	movq	%rax, 24+entry_points(%rip)
-	movq	.refptr.PMC_From_B(%rip), %rax
-	movq	%rax, 32+entry_points(%rip)
-	movq	.refptr.PMC_Dispose(%rip), %rax
+	movq	.refptr.PMC_FromByteArray(%rip), %rax
 	movq	%rax, 40+entry_points(%rip)
+	movq	.refptr.PMC_Dispose(%rip), %rax
+	movq	%rax, 32+entry_points(%rip)
 	movq	.refptr.PMC_To_X_I(%rip), %rax
-	movq	%rax, 48+entry_points(%rip)
-	movq	.refptr.PMC_To_X_L(%rip), %rax
 	movq	%rax, 56+entry_points(%rip)
-	movq	.refptr.PMC_To_X_B(%rip), %rax
+	movq	.refptr.PMC_To_X_L(%rip), %rax
 	movq	%rax, 64+entry_points(%rip)
+	movq	.refptr.PMC_ToByteArray(%rip), %rax
+	movq	%rax, 48+entry_points(%rip)
 	movq	.refptr.PMC_ToString(%rip), %rax
 	movq	%rax, 72+entry_points(%rip)
 	movq	.refptr.PMC_TryParse(%rip), %rax
@@ -537,11 +537,11 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_ToString:
 	.quad	PMC_ToString
-	.section	.rdata$.refptr.PMC_To_X_B, "dr"
-	.globl	.refptr.PMC_To_X_B
+	.section	.rdata$.refptr.PMC_ToByteArray, "dr"
+	.globl	.refptr.PMC_ToByteArray
 	.linkonce	discard
-.refptr.PMC_To_X_B:
-	.quad	PMC_To_X_B
+.refptr.PMC_ToByteArray:
+	.quad	PMC_ToByteArray
 	.section	.rdata$.refptr.PMC_To_X_L, "dr"
 	.globl	.refptr.PMC_To_X_L
 	.linkonce	discard
@@ -557,11 +557,11 @@ PMC_Initialize:
 	.linkonce	discard
 .refptr.PMC_Dispose:
 	.quad	PMC_Dispose
-	.section	.rdata$.refptr.PMC_From_B, "dr"
-	.globl	.refptr.PMC_From_B
+	.section	.rdata$.refptr.PMC_FromByteArray, "dr"
+	.globl	.refptr.PMC_FromByteArray
 	.linkonce	discard
-.refptr.PMC_From_B:
-	.quad	PMC_From_B
+.refptr.PMC_FromByteArray:
+	.quad	PMC_FromByteArray
 	.section	.rdata$.refptr.PMC_From_L, "dr"
 	.globl	.refptr.PMC_From_L
 	.linkonce	discard

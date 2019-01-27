@@ -26,7 +26,7 @@ L2:
 	.cfi_def_cfa_offset 8
 	.cfi_offset 3, -8
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl %edx, %ebx
  # 0 "" 2
 /NO_APP
@@ -69,7 +69,7 @@ LFB5497:
 	testl	%edx, %edx
 	je	L18
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl %edx, %ecx
  # 0 "" 2
 /NO_APP
@@ -92,7 +92,7 @@ L21:
 L17:
 	.cfi_restore_state
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl %ecx, %esi
  # 0 "" 2
 /NO_APP

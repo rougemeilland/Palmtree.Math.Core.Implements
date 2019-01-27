@@ -48818,15 +48818,15 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_From_L)(_UINT64_T x, HANDLE* pp);
 
 
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_From_B)(unsigned char* buffer, size_t count, HANDLE* pp);
-
-
     void (__attribute__((__stdcall__)) * PMC_Dispose)(HANDLE p);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_FromByteArray)(unsigned char* buffer, size_t count, HANDLE* pp);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ToByteArray)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
 
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
-    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
 
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
@@ -49347,9 +49347,9 @@ void TEST_PMC_RightShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, i
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
     PMC_STATUS_CODE z_result;
-    TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == (0), FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == (0), FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_RightShift_X_I(x, n, &z)) == (0), FormatTestMesssage("PMC_RightShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
-    TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == (0), FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == (0), FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
     if (z_result == (0))
         ep->PMC_Dispose(z);
@@ -49379,9 +49379,9 @@ void TEST_PMC_LeftShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
     PMC_STATUS_CODE z_result;
-    TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_From_B(x_buf, x_buf_size, &x)) == (0), FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == (0), FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_LeftShift_X_I(x, n, &z)) == (0), FormatTestMesssage("PMC_LeftShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
-    TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 3), (result = ep->PMC_To_X_B(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == (0), FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == (0), FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
     if (z_result == (0))
         ep->PMC_Dispose(z);

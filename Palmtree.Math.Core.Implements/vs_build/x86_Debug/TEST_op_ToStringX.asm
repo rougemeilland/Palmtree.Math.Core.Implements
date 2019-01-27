@@ -58,11 +58,10 @@ $SG94433 DB	'3', 00H
 $SG94434 DB	'.', 00H, 00H, 00H
 $SG94435 DB	'+', 00H, 00H, 00H
 $SG94436 DB	'-', 00H, 00H, 00H
-$SG94437 DB	'PMC_From_B', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
+$SG94437 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-	ORG $+3
 $SG94438 DB	'ToStringX (%d.%d)', 00H
 	ORG $+2
 $SG94439 DB	'PMC_ToString', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
@@ -185,7 +184,7 @@ _TEST_PMC_ToStringX PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 52   :     TEST_Assert(env, FormatTestLabel("ToStringX (%d.%d)", no, 1), (x_result = ep->PMC_From_B(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_From_Bの復帰コードが期待通りではない(%d)", x_result));
+; 52   :     TEST_Assert(env, FormatTestLabel("ToStringX (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	edx, DWORD PTR _x$[ebp]
@@ -195,7 +194,7 @@ _TEST_PMC_ToStringX PROC
 	mov	ecx, DWORD PTR _buf$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+16]
+	mov	eax, DWORD PTR [edx+20]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp
@@ -315,7 +314,7 @@ $LN9@TEST_PMC_T:
 	mov	ecx, DWORD PTR _x$[ebp]
 	push	ecx
 	mov	edx, DWORD PTR _ep$[ebp]
-	mov	eax, DWORD PTR [edx+20]
+	mov	eax, DWORD PTR [edx+16]
 	call	eax
 	cmp	esi, esp
 	call	__RTC_CheckEsp

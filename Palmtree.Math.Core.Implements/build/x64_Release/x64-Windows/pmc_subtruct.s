@@ -477,7 +477,7 @@ PMC_Subtruct_I_X:
 	jne	.L76
 	movl	$31, %ecx
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl %esi, %edx
  # 0 "" 2
 /NO_APP
@@ -552,7 +552,7 @@ PMC_Subtruct_X_I:
 	movq	8(%rbx), %rdx
 	movl	$31, %ecx
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl %ebp, %eax
  # 0 "" 2
 /NO_APP
@@ -677,7 +677,7 @@ PMC_Subtruct_L_X:
 	testb	%dl, %dl
 	jne	.L107
 /APP
- # 906 "pmc_internal.h" 1
+ # 907 "pmc_internal.h" 1
 	bsrq %rdi, %rdx
  # 0 "" 2
 /NO_APP
@@ -749,7 +749,7 @@ PMC_Subtruct_X_L:
 	je	.L126
 	movq	8(%rbx), %rdx
 /APP
- # 906 "pmc_internal.h" 1
+ # 907 "pmc_internal.h" 1
 	bsrq %rbp, %rax
  # 0 "" 2
 /NO_APP

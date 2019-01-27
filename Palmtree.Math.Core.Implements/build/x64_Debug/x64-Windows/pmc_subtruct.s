@@ -7,7 +7,7 @@
 _SUBTRUCT_UNIT:
 .LFB4334:
 	.file 1 "pmc_internal.h"
-	.loc 1 528 1
+	.loc 1 529 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -24,7 +24,7 @@ _SUBTRUCT_UNIT:
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
 	movb	%al, 16(%rbp)
-	.loc 1 532 13
+	.loc 1 533 13
 	movzbl	16(%rbp), %eax
 	movzbl	%al, %eax
 	movb	%al, -1(%rbp)
@@ -49,9 +49,9 @@ _SUBTRUCT_UNIT:
 	movq	%rax, (%rdx)
 .LBE5:
 .LBE4:
-	.loc 1 532 13
+	.loc 1 533 13
 	movl	%ecx, %eax
-	.loc 1 536 1
+	.loc 1 537 1
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -64,7 +64,7 @@ _SUBTRUCT_UNIT:
 	.seh_proc	_LZCNT_ALT_32
 _LZCNT_ALT_32:
 .LFB4352:
-	.loc 1 855 1
+	.loc 1 856 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -77,25 +77,25 @@ _LZCNT_ALT_32:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movl	%ecx, 16(%rbp)
-	.loc 1 856 8
+	.loc 1 857 8
 	cmpl	$0, 16(%rbp)
 	jne	.L5
-	.loc 1 857 16
+	.loc 1 858 16
 	movl	$32, %eax
 	jmp	.L6
 .L5:
-	.loc 1 862 5
+	.loc 1 863 5
 /APP
- # 862 "pmc_internal.h" 1
+ # 863 "pmc_internal.h" 1
 	bsrl 16(%rbp), %eax
  # 0 "" 2
 /NO_APP
 	movl	%eax, -4(%rbp)
-	.loc 1 866 31
+	.loc 1 867 31
 	movl	$31, %eax
 	subl	-4(%rbp), %eax
 .L6:
-	.loc 1 867 1
+	.loc 1 868 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -108,7 +108,7 @@ _LZCNT_ALT_32:
 	.seh_proc	_LZCNT_ALT_UNIT
 _LZCNT_ALT_UNIT:
 .LFB4354:
-	.loc 1 888 1
+	.loc 1 889 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -121,25 +121,25 @@ _LZCNT_ALT_UNIT:
 	.seh_stackalloc	16
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 1 889 8
+	.loc 1 890 8
 	cmpq	$0, 16(%rbp)
 	jne	.L8
-	.loc 1 890 16
+	.loc 1 891 16
 	movl	$64, %eax
 	jmp	.L9
 .L8:
-	.loc 1 906 5
+	.loc 1 907 5
 /APP
- # 906 "pmc_internal.h" 1
+ # 907 "pmc_internal.h" 1
 	bsrq 16(%rbp), %rax
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%rbp)
-	.loc 1 913 31
+	.loc 1 914 31
 	movl	$63, %eax
 	subq	-8(%rbp), %rax
 .L9:
-	.loc 1 914 1
+	.loc 1 915 1
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -7342,7 +7342,7 @@ Initialize_Subtruct:
 	.uleb128 0x29
 	.ascii "_LZCNT_ALT_UNIT\0"
 	.byte	0x1
-	.word	0x377
+	.word	0x378
 	.byte	0x1d
 	.long	0x4bd6
 	.quad	.LFB4354
@@ -7353,7 +7353,7 @@ Initialize_Subtruct:
 	.uleb128 0x1a
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x377
+	.word	0x378
 	.byte	0x39
 	.long	0x4bd6
 	.uleb128 0x2
@@ -7362,7 +7362,7 @@ Initialize_Subtruct:
 	.uleb128 0x1c
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x389
+	.word	0x38a
 	.byte	0xf
 	.long	0x49ae
 	.uleb128 0x2
@@ -7372,7 +7372,7 @@ Initialize_Subtruct:
 	.uleb128 0x29
 	.ascii "_LZCNT_ALT_32\0"
 	.byte	0x1
-	.word	0x356
+	.word	0x357
 	.byte	0x1b
 	.long	0x499c
 	.quad	.LFB4352
@@ -7383,7 +7383,7 @@ Initialize_Subtruct:
 	.uleb128 0x1a
 	.ascii "x\0"
 	.byte	0x1
-	.word	0x356
+	.word	0x357
 	.byte	0x33
 	.long	0x499c
 	.uleb128 0x2
@@ -7392,7 +7392,7 @@ Initialize_Subtruct:
 	.uleb128 0x1c
 	.ascii "pos\0"
 	.byte	0x1
-	.word	0x35a
+	.word	0x35b
 	.byte	0xf
 	.long	0x499c
 	.uleb128 0x2
@@ -7402,7 +7402,7 @@ Initialize_Subtruct:
 	.uleb128 0x29
 	.ascii "_SUBTRUCT_UNIT\0"
 	.byte	0x1
-	.word	0x20f
+	.word	0x210
 	.byte	0x16
 	.long	0xc3
 	.quad	.LFB4334
@@ -7413,7 +7413,7 @@ Initialize_Subtruct:
 	.uleb128 0x2a
 	.secrel32	.LASF9
 	.byte	0x1
-	.word	0x20f
+	.word	0x210
 	.byte	0x2a
 	.long	0xc3
 	.uleb128 0x2
@@ -7422,7 +7422,7 @@ Initialize_Subtruct:
 	.uleb128 0x1a
 	.ascii "u\0"
 	.byte	0x1
-	.word	0x20f
+	.word	0x210
 	.byte	0x3e
 	.long	0x4bd6
 	.uleb128 0x2
@@ -7431,7 +7431,7 @@ Initialize_Subtruct:
 	.uleb128 0x1a
 	.ascii "v\0"
 	.byte	0x1
-	.word	0x20f
+	.word	0x210
 	.byte	0x4d
 	.long	0x4bd6
 	.uleb128 0x2
@@ -7440,7 +7440,7 @@ Initialize_Subtruct:
 	.uleb128 0x1a
 	.ascii "w\0"
 	.byte	0x1
-	.word	0x20f
+	.word	0x210
 	.byte	0x5d
 	.long	0x4cff
 	.uleb128 0x2
@@ -7451,7 +7451,7 @@ Initialize_Subtruct:
 	.quad	.LBB4
 	.quad	.LBE4-.LBB4
 	.byte	0x1
-	.word	0x214
+	.word	0x215
 	.byte	0xd
 	.uleb128 0x2c
 	.long	0x593f

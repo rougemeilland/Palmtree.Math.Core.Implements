@@ -28,7 +28,6 @@ msvcjmc	ENDS
 PUBLIC	_Initialize_To
 PUBLIC	_PMC_To_X_I@8
 PUBLIC	_PMC_To_X_L@8
-PUBLIC	_PMC_To_X_B@16
 PUBLIC	__JustMyCode_Default
 EXTRN	_CheckNumber:PROC
 EXTRN	@__CheckForDebuggerJustMyCode@4:PROC
@@ -57,48 +56,18 @@ _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 _TEXT	SEGMENT
-_u$ = 8							; size = 4
-_v$ = 12						; size = 4
-__DIVIDE_CEILING_SIZE PROC
-
-; 457  : {
-
-	push	ebp
-	mov	ebp, esp
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
-	call	@__CheckForDebuggerJustMyCode@4
-
-; 458  :     return ((u + v - 1) / v);
-
-	mov	eax, DWORD PTR _v$[ebp]
-	mov	ecx, DWORD PTR _u$[ebp]
-	lea	eax, DWORD PTR [ecx+eax-1]
-	xor	edx, edx
-	div	DWORD PTR _v$[ebp]
-
-; 459  : }
-
-	cmp	ebp, esp
-	call	__RTC_CheckEsp
-	pop	ebp
-	ret	0
-__DIVIDE_CEILING_SIZE ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-_TEXT	SEGMENT
 _value_high$ = 8					; size = 4
 _value_low$ = 12					; size = 4
 __FROMWORDTODWORD PROC
 
-; 436  : {
+; 437  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 437  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 438  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	edx, edx
 	mov	eax, DWORD PTR _value_high$[ebp]
@@ -108,188 +77,13 @@ __FROMWORDTODWORD PROC
 	or	eax, DWORD PTR _value_low$[ebp]
 	or	edx, ecx
 
-; 438  : }
+; 439  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
 	pop	ebp
 	ret	0
 __FROMWORDTODWORD ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-_TEXT	SEGMENT
-_d$ = 8							; size = 4
-_s$ = 12						; size = 4
-_count$ = 16						; size = 4
-__COPY_MEMORY_BYTE PROC
-
-; 308  : {
-
-	push	ebp
-	mov	ebp, esp
-	push	esi
-	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
-	call	@__CheckForDebuggerJustMyCode@4
-
-; 309  :     __movsb(d, s, count);
-
-	mov	edi, DWORD PTR _d$[ebp]
-	mov	esi, DWORD PTR _s$[ebp]
-	mov	ecx, DWORD PTR _count$[ebp]
-	rep movsb
-
-; 310  : }
-
-	pop	edi
-	pop	esi
-	cmp	ebp, esp
-	call	__RTC_CheckEsp
-	pop	ebp
-	ret	0
-__COPY_MEMORY_BYTE ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_to.c
-_TEXT	SEGMENT
-_result$ = -8						; size = 4
-_np$ = -4						; size = 4
-_p$ = 8							; size = 4
-_buffer$ = 12						; size = 4
-_buffer_size$ = 16					; size = 4
-_count$ = 20						; size = 4
-_PMC_To_X_B@16 PROC
-
-; 92   : {
-
-	push	ebp
-	mov	ebp, esp
-	sub	esp, 8
-	mov	DWORD PTR [ebp-8], -858993460		; ccccccccH
-	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
-	mov	ecx, OFFSET __83853269_pmc_to@c
-	call	@__CheckForDebuggerJustMyCode@4
-
-; 93   :     if (buffer == NULL)
-
-	cmp	DWORD PTR _buffer$[ebp], 0
-	jne	SHORT $LN2@PMC_To_X_B
-
-; 94   :         return (PMC_STATUS_ARGUMENT_ERROR);
-
-	or	eax, -1
-	jmp	$LN1@PMC_To_X_B
-$LN2@PMC_To_X_B:
-
-; 95   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-
-	mov	eax, DWORD PTR _p$[ebp]
-	mov	DWORD PTR _np$[ebp], eax
-
-; 96   :     PMC_STATUS_CODE result;
-; 97   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
-
-	mov	ecx, DWORD PTR _np$[ebp]
-	push	ecx
-	call	_CheckNumber
-	add	esp, 4
-	mov	DWORD PTR _result$[ebp], eax
-	cmp	DWORD PTR _result$[ebp], 0
-	je	SHORT $LN3@PMC_To_X_B
-
-; 98   :         return (result);
-
-	mov	eax, DWORD PTR _result$[ebp]
-	jmp	SHORT $LN1@PMC_To_X_B
-$LN3@PMC_To_X_B:
-
-; 99   :     if (np->UNIT_BIT_COUNT > sizeof(*buffer) * 8 * buffer_size)
-
-	mov	edx, DWORD PTR _buffer_size$[ebp]
-	shl	edx, 3
-	mov	eax, DWORD PTR _np$[ebp]
-	cmp	DWORD PTR [eax+4], edx
-	jbe	SHORT $LN4@PMC_To_X_B
-
-; 100  :         return (PMC_STATUS_INSUFFICIENT_BUFFER);
-
-	mov	eax, -4					; fffffffcH
-	jmp	SHORT $LN1@PMC_To_X_B
-$LN4@PMC_To_X_B:
-
-; 101  :     if (np->IS_ZERO)
-
-	mov	ecx, DWORD PTR _np$[ebp]
-	mov	edx, DWORD PTR [ecx+16]
-	shr	edx, 1
-	and	edx, 1
-	je	SHORT $LN5@PMC_To_X_B
-
-; 102  :     {
-; 103  :         buffer[0] = 0;
-
-	mov	eax, 1
-	imul	ecx, eax, 0
-	mov	edx, DWORD PTR _buffer$[ebp]
-	mov	BYTE PTR [edx+ecx], 0
-
-; 104  :         *count = 1;
-
-	mov	eax, DWORD PTR _count$[ebp]
-	mov	DWORD PTR [eax], 1
-
-; 105  :     }
-
-	jmp	SHORT $LN6@PMC_To_X_B
-$LN5@PMC_To_X_B:
-
-; 106  :     else
-; 107  :     {
-; 108  :         _COPY_MEMORY_BYTE(buffer, np->BLOCK, _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8));
-
-	push	8
-	mov	ecx, DWORD PTR _np$[ebp]
-	mov	edx, DWORD PTR [ecx+4]
-	push	edx
-	call	__DIVIDE_CEILING_SIZE
-	add	esp, 8
-	push	eax
-	mov	eax, DWORD PTR _np$[ebp]
-	mov	ecx, DWORD PTR [eax+24]
-	push	ecx
-	mov	edx, DWORD PTR _buffer$[ebp]
-	push	edx
-	call	__COPY_MEMORY_BYTE
-	add	esp, 12					; 0000000cH
-
-; 109  :         *count = _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8);
-
-	push	8
-	mov	eax, DWORD PTR _np$[ebp]
-	mov	ecx, DWORD PTR [eax+4]
-	push	ecx
-	call	__DIVIDE_CEILING_SIZE
-	add	esp, 8
-	mov	edx, DWORD PTR _count$[ebp]
-	mov	DWORD PTR [edx], eax
-$LN6@PMC_To_X_B:
-
-; 110  :     }
-; 111  :     return (PMC_STATUS_OK);
-
-	xor	eax, eax
-$LN1@PMC_To_X_B:
-
-; 112  : }
-
-	add	esp, 8
-	cmp	ebp, esp
-	call	__RTC_CheckEsp
-	mov	esp, ebp
-	pop	ebp
-	ret	16					; 00000010H
-_PMC_To_X_B@16 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_to.c
@@ -579,18 +373,18 @@ _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_To PROC
 
-; 115  : {
+; 92   : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __83853269_pmc_to@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 116  :     return (PMC_STATUS_OK);
+; 93   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 117  : }
+; 94   : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp

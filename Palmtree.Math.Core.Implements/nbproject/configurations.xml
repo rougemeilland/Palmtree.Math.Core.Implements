@@ -29,6 +29,7 @@
       <itemPath>pmc_add.c</itemPath>
       <itemPath>pmc_bitwiseand.c</itemPath>
       <itemPath>pmc_bitwiseor.c</itemPath>
+      <itemPath>pmc_bytes.c</itemPath>
       <itemPath>pmc_compare.c</itemPath>
       <itemPath>pmc_divrem.c</itemPath>
       <itemPath>pmc_equals.c</itemPath>
@@ -159,6 +160,8 @@
       <item path="pmc_bitwiseand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_bitwiseor.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_bytes.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_compare.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -296,6 +299,8 @@
       </item>
       <item path="pmc_bitwiseor.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="pmc_bytes.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="pmc_compare.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_cpuid.h" ex="false" tool="3" flavor2="0">
@@ -424,6 +429,8 @@
       <item path="pmc_bitwiseand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_bitwiseor.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_bytes.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_compare.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -561,6 +568,8 @@
       <item path="pmc_bitwiseand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_bitwiseor.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_bytes.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_compare.c" ex="false" tool="0" flavor2="0">
       </item>

@@ -48818,15 +48818,15 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_From_L)(_UINT64_T x, HANDLE* pp);
 
 
-    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_From_B)(unsigned char* buffer, size_t count, HANDLE* pp);
-
-
     void (__attribute__((__stdcall__)) * PMC_Dispose)(HANDLE p);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_FromByteArray)(unsigned char* buffer, size_t count, HANDLE* pp);
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ToByteArray)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
 
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
-    PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_B)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
 
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
@@ -49355,7 +49355,7 @@ void TEST_PMC_ParseX(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, w
     TEST_Assert(env, FormatTestLabel("PMC_ParseX (%d.%d)", no, 1), (x_result = ep->PMC_TryParse(str, styles, &opt, &x)) == desired_result_code, FormatTestMesssage("PMC_TryParseの復帰コードが期待通りではない(%d)", x_result));
     if (desired_result_code == (0))
     {
-        TEST_Assert(env, FormatTestLabel("PMC_ParseX (%d.%d)", no, 2), (result = ep->PMC_To_X_B(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == (0), FormatTestMesssage("PMC_To_X_Bの復帰コードが期待通りではない(%d)", result));
+        TEST_Assert(env, FormatTestLabel("PMC_ParseX (%d.%d)", no, 2), (result = ep->PMC_ToByteArray(x, actual_buf, sizeof(actual_buf), &actual_buf_size)) == (0), FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
         TEST_Assert(env, FormatTestLabel("PMC_ParseX (%d.%d)", no, 3), _EQUALS_MEMORY(actual_buf, actual_buf_size, desired_buf, desired_buf_size) == 0, "データの内容が一致しない");
     }
     if (x_result == (0))
