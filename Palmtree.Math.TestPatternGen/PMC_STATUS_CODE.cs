@@ -13,7 +13,7 @@
             PMC_STATUS_PARSING_ERROR = new PMC_STATUS_CODE("PMC_STATUS_PARSING_ERROR");
         }
 
-        public PMC_STATUS_CODE(string name)
+        private PMC_STATUS_CODE(string name)
         {
             _name = name;
         }

@@ -60,6 +60,11 @@ extern "C" {
 #define PMC_STATUS_BAD_BUFFER (-257)
 #define PMC_STATUS_INTERNAL_BORROW (-258)
 
+#define PMC_PROPERTY_IS_EVEN            (1)
+#define PMC_PROPERTY_IS_ONE             (2)
+#define PMC_PROPERTY_IS_POWER_OF_TWO    (3)
+#define PMC_PROPERTY_IS_ZERO            (4)
+
 #define PMC_NUMBER_STYLE_NONE                   (0x0000)    // スタイル要素 (先行する空白、後続の空白、桁区切り記号、小数点の記号など) を解析対象の文字列に含めることができないことを示す。
 #define PMC_NUMBER_STYLE_ALLOW_LEADING_WHITE    (0x0001)    // 先行する空白文字を解析対象の文字列に使用できることを示す。有効な空白文字の Unicode 値は、U+0009、U+000A、U+000B、U+000C、U+000D、および U+0020 である。
 #define PMC_NUMBER_STYLE_ALLOW_TRAILING_WHITE   (0x0002)    // 末尾の空白文字を解析対象の文字列に使用できることを示す。有効な空白文字の Unicode 値は、U+0009、U+000A、U+000B、U+000C、U+000D、および U+0020 である。
@@ -101,6 +106,10 @@ typedef struct __tag_PMC_CONFIGURATION_INFO
 
 typedef int PMC_STATUS_CODE;
 
+typedef int PMC_PROPERTY_CODE;
+
+typedef int PMC_NUMBER_STYLE_CODE;
+
 typedef struct __tag_PMC_STATISTICS_INFO
 {
     long COUNT_MULTI64;                  // 32bit * 32bit => 64bitの乗算の回数
@@ -140,6 +149,9 @@ typedef struct __tag_PMC_ENTRY_POINTS
     // デストラクタ
     void  (__PMC_CALL * PMC_Dispose)(HANDLE p);
 
+    // プロパティ値取得
+    PMC_STATUS_CODE(__PMC_CALL * PMC_GetPropertyValue_X_I)(HANDLE x, PMC_PROPERTY_CODE function_code, _INT32_T* o);
+
     // バイト操作
     PMC_STATUS_CODE(__PMC_CALL * PMC_FromByteArray)(unsigned char* buffer, size_t count, HANDLE* pp);
     PMC_STATUS_CODE(__PMC_CALL * PMC_ToByteArray)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
@@ -152,7 +164,7 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE(__PMC_CALL * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
     // 文字列の解析
-    PMC_STATUS_CODE(__PMC_CALL * PMC_TryParse)(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
+    PMC_STATUS_CODE(__PMC_CALL * PMC_TryParse)(wchar_t* source, PMC_NUMBER_STYLE_CODE number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
 
     // Add 演算子
     PMC_STATUS_CODE(__PMC_CALL * PMC_Add_I_X)(_UINT32_T u, HANDLE v, HANDLE* w);

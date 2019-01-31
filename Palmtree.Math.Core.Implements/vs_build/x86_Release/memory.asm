@@ -92,7 +92,7 @@ $LN3@GetTrailin:
 $LN10@GetTrailin:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 991  :     _BitScanForward(&pos, x);
+; 996  :     _BitScanForward(&pos, x);
 
 	bsf	eax, esi
 	pop	esi
@@ -191,12 +191,12 @@ $LN11@GetEffecti:
 	mov	eax, DWORD PTR [ecx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 906  :     if (x == 0)
+; 911  :     if (x == 0)
 
 	test	eax, eax
 	jne	SHORT $LN8@GetEffecti
 
-; 907  :         return (sizeof(x) * 8);
+; 912  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -214,11 +214,11 @@ $LN11@GetEffecti:
 $LN8@GetEffecti:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 911  :     _BitScanReverse(&pos, x);
+; 916  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 930  :     return (sizeof(x) * 8 - 1 - pos);
+; 935  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -228,7 +228,7 @@ $LN8@GetEffecti:
 	shl	edx, 5
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 930  :     return (sizeof(x) * 8 - 1 - pos);
+; 935  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	eax, ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -298,7 +298,7 @@ _CleanUpNumber PROC					; COMDAT
 	add	ecx, 2
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	mov	edi, edx
 	mov	eax, -858993460				; ccccccccH
@@ -309,7 +309,7 @@ _CleanUpNumber PROC					; COMDAT
 	push	0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -400,7 +400,7 @@ _InitializeNumber PROC					; COMDAT
 	je	SHORT $LN2@Initialize
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 470  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	lea	edi, DWORD PTR [ebx+31]
 	shr	edi, 5
@@ -868,7 +868,7 @@ _CalculateCheckCode PROC				; COMDAT
 $LL2@CalculateC:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -878,7 +878,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -888,7 +888,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -898,7 +898,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -908,7 +908,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -918,7 +918,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -928,7 +928,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+20]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -938,7 +938,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -948,7 +948,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+28]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -958,7 +958,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -968,7 +968,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+36]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -978,7 +978,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -988,7 +988,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+44]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -998,7 +998,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1008,7 +1008,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+52]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1018,7 +1018,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1028,7 +1028,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+60]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1038,7 +1038,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1048,7 +1048,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+68]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1058,7 +1058,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1068,7 +1068,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+76]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1078,7 +1078,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1088,7 +1088,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+84]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1098,7 +1098,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1108,7 +1108,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+92]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1118,7 +1118,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1128,7 +1128,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+100]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1138,7 +1138,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1148,7 +1148,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+108]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1158,7 +1158,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1168,7 +1168,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+116]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1178,7 +1178,7 @@ $LL2@CalculateC:
 	xor	eax, DWORD PTR [ecx+120]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1205,7 +1205,7 @@ $LN3@CalculateC:
 	je	SHORT $LN4@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1215,7 +1215,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1225,7 +1225,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1235,7 +1235,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1245,7 +1245,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1255,7 +1255,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1265,7 +1265,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+20]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1275,7 +1275,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1285,7 +1285,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+28]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1295,7 +1295,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1305,7 +1305,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+36]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1315,7 +1315,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1325,7 +1325,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+44]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1335,7 +1335,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1345,7 +1345,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+52]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1355,7 +1355,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1377,7 +1377,7 @@ $LN4@CalculateC:
 	je	SHORT $LN5@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1387,7 +1387,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1397,7 +1397,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1407,7 +1407,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1417,7 +1417,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1427,7 +1427,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1437,7 +1437,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+20]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1447,7 +1447,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1469,7 +1469,7 @@ $LN5@CalculateC:
 	je	SHORT $LN6@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1479,7 +1479,7 @@ $LN5@CalculateC:
 	xor	eax, DWORD PTR [ecx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1489,7 +1489,7 @@ $LN5@CalculateC:
 	xor	eax, DWORD PTR [ecx+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1499,7 +1499,7 @@ $LN5@CalculateC:
 	xor	eax, DWORD PTR [ecx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1521,7 +1521,7 @@ $LN6@CalculateC:
 	je	SHORT $LN7@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1531,7 +1531,7 @@ $LN6@CalculateC:
 	xor	eax, DWORD PTR [ecx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1554,7 +1554,7 @@ $LN7@CalculateC:
 	je	SHORT $LN8@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 759  :     return (_rotl(x, count));
+; 764  :     return (_rotl(x, count));
 
 	rol	eax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1579,73 +1579,73 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __TZCNT_ALT_UNIT PROC					; COMDAT
 
-; 985  : {
+; 990  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 986  :     if (x == 0)
+; 991  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@TZCNT_ALT_
 
-; 987  :         return (sizeof(x) * 8);
+; 992  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 992  : #elif defined(__GNUC__)
-; 993  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-; 994  : #else
-; 995  : #error unknown compiler
-; 996  : #endif
-; 997  : #elif defined(_M_X64)
-; 998  : #ifdef _MSC_VER
-; 999  :     _UINT32_T pos;
-; 1000 :     _BitScanForward64(&pos, x);
-; 1001 : #elif defined(__GNUC__)
-; 1002 :     _UINT64_T pos;
-; 1003 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
-; 1004 : #else
-; 1005 : #error unknown compiler
-; 1006 : #endif
-; 1007 : #else
-; 1008 : #error unknown platform
-; 1009 : #endif
-; 1010 :     return (pos);
-; 1011 : }
+; 997  : #elif defined(__GNUC__)
+; 998  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+; 999  : #else
+; 1000 : #error unknown compiler
+; 1001 : #endif
+; 1002 : #elif defined(_M_X64)
+; 1003 : #ifdef _MSC_VER
+; 1004 :     _UINT32_T pos;
+; 1005 :     _BitScanForward64(&pos, x);
+; 1006 : #elif defined(__GNUC__)
+; 1007 :     _UINT64_T pos;
+; 1008 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 1009 : #else
+; 1010 : #error unknown compiler
+; 1011 : #endif
+; 1012 : #else
+; 1013 : #error unknown platform
+; 1014 : #endif
+; 1015 :     return (pos);
+; 1016 : }
 
 	pop	ebp
 	ret	0
 $LN2@TZCNT_ALT_:
 
-; 988  : #ifdef _M_IX86
-; 989  :     _UINT32_T pos;
-; 990  : #ifdef _MSC_VER
-; 991  :     _BitScanForward(&pos, x);
+; 993  : #ifdef _M_IX86
+; 994  :     _UINT32_T pos;
+; 995  : #ifdef _MSC_VER
+; 996  :     _BitScanForward(&pos, x);
 
 	bsf	eax, eax
 
-; 992  : #elif defined(__GNUC__)
-; 993  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-; 994  : #else
-; 995  : #error unknown compiler
-; 996  : #endif
-; 997  : #elif defined(_M_X64)
-; 998  : #ifdef _MSC_VER
-; 999  :     _UINT32_T pos;
-; 1000 :     _BitScanForward64(&pos, x);
-; 1001 : #elif defined(__GNUC__)
-; 1002 :     _UINT64_T pos;
-; 1003 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
-; 1004 : #else
-; 1005 : #error unknown compiler
-; 1006 : #endif
-; 1007 : #else
-; 1008 : #error unknown platform
-; 1009 : #endif
-; 1010 :     return (pos);
-; 1011 : }
+; 997  : #elif defined(__GNUC__)
+; 998  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+; 999  : #else
+; 1000 : #error unknown compiler
+; 1001 : #endif
+; 1002 : #elif defined(_M_X64)
+; 1003 : #ifdef _MSC_VER
+; 1004 :     _UINT32_T pos;
+; 1005 :     _BitScanForward64(&pos, x);
+; 1006 : #elif defined(__GNUC__)
+; 1007 :     _UINT64_T pos;
+; 1008 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 1009 : #else
+; 1010 : #error unknown compiler
+; 1011 : #endif
+; 1012 : #else
+; 1013 : #error unknown platform
+; 1014 : #endif
+; 1015 :     return (pos);
+; 1016 : }
 
 	pop	ebp
 	ret	0
@@ -1658,58 +1658,58 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 905  : {
+; 910  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 906  :     if (x == 0)
+; 911  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 907  :         return (sizeof(x) * 8);
+; 912  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 931  : }
+; 936  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 908  : #ifdef _M_IX86
-; 909  :     _UINT32_T pos;
-; 910  : #ifdef _MSC_VER
-; 911  :     _BitScanReverse(&pos, x);
+; 913  : #ifdef _M_IX86
+; 914  :     _UINT32_T pos;
+; 915  : #ifdef _MSC_VER
+; 916  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 912  : #elif defined(__GNUC__)
-; 913  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 914  : #else
-; 915  : #error unknown compiler
-; 916  : #endif
-; 917  : #elif defined(_M_X64)
-; 918  : #ifdef _MSC_VER
-; 919  :     _UINT32_T pos;
-; 920  :     _BitScanReverse64(&pos, x);
-; 921  : #elif defined(__GNUC__)
-; 922  :     _UINT64_T pos;
-; 923  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #else
-; 928  : #error unknown platform
-; 929  : #endif
-; 930  :     return (sizeof(x) * 8 - 1 - pos);
+; 917  : #elif defined(__GNUC__)
+; 918  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 919  : #else
+; 920  : #error unknown compiler
+; 921  : #endif
+; 922  : #elif defined(_M_X64)
+; 923  : #ifdef _MSC_VER
+; 924  :     _UINT32_T pos;
+; 925  :     _BitScanReverse64(&pos, x);
+; 926  : #elif defined(__GNUC__)
+; 927  :     _UINT64_T pos;
+; 928  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 929  : #else
+; 930  : #error unknown compiler
+; 931  : #endif
+; 932  : #else
+; 933  : #error unknown platform
+; 934  : #endif
+; 935  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 931  : }
+; 936  : }
 
 	pop	ebp
 	ret	0
@@ -1723,24 +1723,24 @@ _x$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ROTATE_L_UNIT PROC					; COMDAT
 
-; 757  : {
+; 762  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 758  : #ifdef _M_IX86
-; 759  :     return (_rotl(x, count));
+; 763  : #ifdef _M_IX86
+; 764  :     return (_rotl(x, count));
 
 	mov	eax, DWORD PTR _x$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rol	eax, cl
 
-; 760  : #elif defined(_M_X64)
-; 761  :     return (_rotl64(x, count));
-; 762  : #else
-; 763  : #error unknown platform
-; 764  : #endif
-; 765  : }
+; 765  : #elif defined(_M_X64)
+; 766  :     return (_rotl64(x, count));
+; 767  : #else
+; 768  : #error unknown platform
+; 769  : #endif
+; 770  : }
 
 	pop	ebp
 	ret	0
@@ -1754,12 +1754,12 @@ _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 469  : {
+; 474  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 470  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _u$[ebp]
 	xor	edx, edx
@@ -1767,7 +1767,7 @@ __DIVIDE_CEILING_UNIT PROC				; COMDAT
 	add	eax, DWORD PTR _v$[ebp]
 	div	DWORD PTR _v$[ebp]
 
-; 471  : }
+; 476  : }
 
 	pop	ebp
 	ret	0
@@ -1782,13 +1782,13 @@ _x$ = 12						; size = 4
 _count$ = 16						; size = 4
 __FILL_MEMORY_UNIT PROC					; COMDAT
 
-; 442  : {
+; 447  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 443  : #ifdef _M_IX86
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 448  : #ifdef _M_IX86
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	mov	eax, DWORD PTR _x$[ebp]
@@ -1797,12 +1797,12 @@ __FILL_MEMORY_UNIT PROC					; COMDAT
 	rep stosd
 	pop	edi
 
-; 445  : #elif defined(_M_X64)
-; 446  :     __stosq(d, x, count);
-; 447  : #else
-; 448  : #error unknown platform
-; 449  : #endif
-; 450  : }
+; 450  : #elif defined(_M_X64)
+; 451  :     __stosq(d, x, count);
+; 452  : #else
+; 453  : #error unknown platform
+; 454  : #endif
+; 455  : }
 
 	pop	ebp
 	ret	0
@@ -1817,12 +1817,12 @@ _x$ = 12						; size = 4
 _count$ = 16						; size = 4
 __FILL_MEMORY_32 PROC					; COMDAT
 
-; 430  : {
+; 435  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 431  :     __stosd(( unsigned long*)d, x, count);
+; 436  :     __stosd(( unsigned long*)d, x, count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	mov	eax, DWORD PTR _x$[ebp]
@@ -1831,7 +1831,7 @@ __FILL_MEMORY_32 PROC					; COMDAT
 	rep stosd
 	pop	edi
 
-; 432  : }
+; 437  : }
 
 	pop	ebp
 	ret	0
@@ -1846,12 +1846,12 @@ _x$ = 12						; size = 2
 _count$ = 16						; size = 4
 __FILL_MEMORY_16 PROC					; COMDAT
 
-; 425  : {
+; 430  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 426  :     __stosw(d, x, count);
+; 431  :     __stosw(d, x, count);
 
 	mov	ax, WORD PTR _x$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
@@ -1860,7 +1860,7 @@ __FILL_MEMORY_16 PROC					; COMDAT
 	rep stosw
 	pop	edi
 
-; 427  : }
+; 432  : }
 
 	pop	ebp
 	ret	0
@@ -1875,12 +1875,12 @@ _x$ = 12						; size = 1
 _count$ = 16						; size = 4
 __FILL_MEMORY_BYTE PROC					; COMDAT
 
-; 420  : {
+; 425  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 421  :     __stosb(d, x, count);
+; 426  :     __stosb(d, x, count);
 
 	mov	al, BYTE PTR _x$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
@@ -1889,7 +1889,7 @@ __FILL_MEMORY_BYTE PROC					; COMDAT
 	rep stosb
 	pop	edi
 
-; 422  : }
+; 427  : }
 
 	pop	ebp
 	ret	0
@@ -1903,12 +1903,12 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_32 PROC					; COMDAT
 
-; 380  : {
+; 385  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 381  :     __stosd((unsigned long*)d, 0, count);
+; 386  :     __stosd((unsigned long*)d, 0, count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	xor	eax, eax
@@ -1917,7 +1917,7 @@ __ZERO_MEMORY_32 PROC					; COMDAT
 	rep stosd
 	pop	edi
 
-; 382  : }
+; 387  : }
 
 	pop	ebp
 	ret	0
@@ -1931,12 +1931,12 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_16 PROC					; COMDAT
 
-; 375  : {
+; 380  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 376  :     __stosw(d, 0, count);
+; 381  :     __stosw(d, 0, count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	xor	eax, eax
@@ -1945,7 +1945,7 @@ __ZERO_MEMORY_16 PROC					; COMDAT
 	rep stosw
 	pop	edi
 
-; 377  : }
+; 382  : }
 
 	pop	ebp
 	ret	0
@@ -1959,12 +1959,12 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_BYTE PROC					; COMDAT
 
-; 370  : {
+; 375  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 371  :     __stosb(d, 0, count);
+; 376  :     __stosb(d, 0, count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	xor	al, al
@@ -1973,7 +1973,7 @@ __ZERO_MEMORY_BYTE PROC					; COMDAT
 	rep stosb
 	pop	edi
 
-; 372  : }
+; 377  : }
 
 	pop	ebp
 	ret	0
@@ -1988,13 +1988,13 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 342  : {
+; 347  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 343  : #ifdef _M_IX86
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 348  : #ifdef _M_IX86
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	push	esi
@@ -2005,12 +2005,12 @@ __COPY_MEMORY_UNIT PROC					; COMDAT
 	pop	edi
 	pop	esi
 
-; 345  : #elif defined(_M_X64)
-; 346  :     __movsq(d, s, count);
-; 347  : #else
-; 348  : #error unknown platform
-; 349  : #endif
-; 350  : }
+; 350  : #elif defined(_M_X64)
+; 351  :     __movsq(d, s, count);
+; 352  : #else
+; 353  : #error unknown platform
+; 354  : #endif
+; 355  : }
 
 	pop	ebp
 	ret	0
@@ -2077,7 +2077,7 @@ _PMC_Dispose@4 PROC					; COMDAT
 	add	ecx, 2
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	mov	edi, edx
 	mov	eax, -858993460				; ccccccccH
@@ -2088,7 +2088,7 @@ _PMC_Dispose@4 PROC					; COMDAT
 	push	0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -2410,7 +2410,7 @@ $LN5@Initialize:
 	lea	ecx, DWORD PTR [edi+2]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	mov	eax, -858993460				; ccccccccH
 	mov	edi, edx
@@ -2421,7 +2421,7 @@ $LN5@Initialize:
 	push	0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -2468,7 +2468,7 @@ $LN68@Initialize:
 	lea	ecx, DWORD PTR [edi+2]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	mov	eax, -858993460				; ccccccccH
 	mov	edi, edx
@@ -2479,7 +2479,7 @@ $LN68@Initialize:
 	push	0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -2633,20 +2633,20 @@ $LN7@DuplicateN:
 	and	DWORD PTR [ebx+16], -2			; fffffffeH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 470  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	lea	ecx, DWORD PTR [edi+31]
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR [ebx+24]
 	mov	esi, DWORD PTR [esi+24]
 
-; 470  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	shr	ecx, 5
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -2838,12 +2838,12 @@ $LN29@CommitNumb:
 	mov	eax, DWORD PTR [eax]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 906  :     if (x == 0)
+; 911  :     if (x == 0)
 
 	test	eax, eax
 	jne	SHORT $LN17@CommitNumb
 
-; 907  :         return (sizeof(x) * 8);
+; 912  :         return (sizeof(x) * 8);
 
 	mov	ecx, 32					; 00000020H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -2856,11 +2856,11 @@ $LN29@CommitNumb:
 $LN17@CommitNumb:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 911  :     _BitScanReverse(&pos, x);
+; 916  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, eax
 
-; 930  :     return (sizeof(x) * 8 - 1 - pos);
+; 935  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -2870,7 +2870,7 @@ $LN17@CommitNumb:
 	shl	esi, 5
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 930  :     return (sizeof(x) * 8 - 1 - pos);
+; 935  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -3020,7 +3020,7 @@ $LN19@CommitNumb:
 $LN30@CommitNumb:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 991  :     _BitScanForward(&pos, x);
+; 996  :     _BitScanForward(&pos, x);
 
 	bsf	eax, esi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -3092,7 +3092,7 @@ _DeallocateNumber PROC					; COMDAT
 	add	ecx, 2
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	mov	edi, edx
 	mov	eax, -858993460				; ccccccccH
@@ -3103,7 +3103,7 @@ _DeallocateNumber PROC					; COMDAT
 	push	0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -3228,7 +3228,7 @@ _DetatchNumber PROC					; COMDAT
 	add	ecx, 2
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	mov	edi, edx
 	mov	eax, -858993460				; ccccccccH
@@ -3239,7 +3239,7 @@ _DetatchNumber PROC					; COMDAT
 	push	0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -3457,7 +3457,7 @@ _DeallocateBlock PROC					; COMDAT
 	add	ecx, 2
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	mov	edi, edx
 	mov	eax, -858993460				; ccccccccH
@@ -3468,7 +3468,7 @@ _DeallocateBlock PROC					; COMDAT
 	push	0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -3506,7 +3506,7 @@ _AllocateBlock PROC					; COMDAT
 	push	esi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 470  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	mov	esi, DWORD PTR _bits$[ebp]
 	lea	esi, DWORD PTR [esi+31]

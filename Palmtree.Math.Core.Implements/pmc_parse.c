@@ -995,7 +995,7 @@ static PMC_STATUS_CODE TryParseX(wchar_t* source, _UINT32_T number_styles, PMC_N
     return (PMC_STATUS_OK);
 }
 
-PMC_STATUS_CODE __PMC_CALL PMC_TryParse(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o)
+PMC_STATUS_CODE __PMC_CALL PMC_TryParse(wchar_t* source, PMC_NUMBER_STYLE_CODE number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o)
 {
     PMC_STATUS_CODE result;
     if (source == NULL)

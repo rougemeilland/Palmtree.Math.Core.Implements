@@ -5,7 +5,7 @@ Ltext0:
 __FROMWORDTODWORD:
 LFB4195:
 	.file 1 "pmc_internal.h"
-	.loc 1 453 1
+	.loc 1 458 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -19,13 +19,13 @@ LFB4195:
 	.cfi_offset 7, -12
 	.cfi_offset 6, -16
 	.cfi_offset 3, -20
-	.loc 1 454 14
+	.loc 1 459 14
 	movl	8(%ebp), %eax
 	movl	$0, %edx
-	.loc 1 454 36
+	.loc 1 459 36
 	movl	%eax, %edx
 	movl	$0, %eax
-	.loc 1 454 43
+	.loc 1 459 43
 	movl	12(%ebp), %esi
 	movl	$0, %edi
 	movl	%eax, -24(%ebp)
@@ -37,7 +37,7 @@ LFB4195:
 	movl	%eax, %ebx
 	movl	%ecx, %eax
 	movl	%ebx, %edx
-	.loc 1 455 1
+	.loc 1 460 1
 	addl	$12, %esp
 	popl	%ebx
 	.cfi_restore 3
@@ -4056,26 +4056,26 @@ Ldebug_info0:
 	.uleb128 0x4
 	.ascii "_UINT32_T\0"
 	.byte	0x1e
-	.byte	0x5a
+	.byte	0x5f
 	.byte	0x12
 	.long	0x4958
 	.uleb128 0x4
 	.ascii "_UINT64_T\0"
 	.byte	0x1e
-	.byte	0x5b
+	.byte	0x60
 	.byte	0x12
 	.long	0x4969
 	.uleb128 0x10
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1e
-	.byte	0x60
+	.byte	0x65
 	.byte	0x10
 	.long	0x49ed
 	.uleb128 0x16
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1e
-	.byte	0x62
+	.byte	0x67
 	.byte	0xe
 	.long	0xd1
 	.byte	0x4
@@ -4086,47 +4086,47 @@ Ldebug_info0:
 	.uleb128 0x4
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1e
-	.byte	0x63
+	.byte	0x68
 	.byte	0x3
 	.long	0x499e
 	.uleb128 0x4
 	.ascii "PMC_STATUS_CODE\0"
 	.byte	0x1e
-	.byte	0x66
+	.byte	0x6b
 	.byte	0xd
 	.long	0xe1
 	.uleb128 0x10
 	.ascii "__tag_PMC_STATISTICS_INFO\0"
 	.byte	0x10
 	.byte	0x1e
-	.byte	0x68
+	.byte	0x71
 	.byte	0x10
 	.long	0x4aa0
 	.uleb128 0x11
 	.ascii "COUNT_MULTI64\0"
 	.byte	0x1e
-	.byte	0x6a
+	.byte	0x73
 	.byte	0xa
 	.long	0x113
 	.byte	0
 	.uleb128 0x11
 	.ascii "COUNT_MULTI32\0"
 	.byte	0x1e
-	.byte	0x6b
+	.byte	0x74
 	.byte	0xa
 	.long	0x113
 	.byte	0x4
 	.uleb128 0x11
 	.ascii "COUNT_DIV64\0"
 	.byte	0x1e
-	.byte	0x6c
+	.byte	0x75
 	.byte	0xa
 	.long	0x113
 	.byte	0x8
 	.uleb128 0x11
 	.ascii "COUNT_DIV32\0"
 	.byte	0x1e
-	.byte	0x6d
+	.byte	0x76
 	.byte	0xa
 	.long	0x113
 	.byte	0xc
@@ -4134,7 +4134,7 @@ Ldebug_info0:
 	.uleb128 0x4
 	.ascii "PMC_STATISTICS_INFO\0"
 	.byte	0x1e
-	.byte	0x6e
+	.byte	0x77
 	.byte	0x3
 	.long	0x4a24
 	.uleb128 0x6
@@ -4359,7 +4359,7 @@ Ldebug_info0:
 	.uleb128 0x15
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1
-	.word	0x13d
+	.word	0x142
 	.byte	0x29
 	.long	0x4d7e
 	.uleb128 0x6
@@ -4493,7 +4493,7 @@ Ldebug_info0:
 	.uleb128 0x1d
 	.ascii "_FROMWORDTODWORD\0"
 	.byte	0x1
-	.word	0x1c4
+	.word	0x1c9
 	.byte	0x1b
 	.long	0x498c
 	.long	LFB4195
@@ -4503,7 +4503,7 @@ Ldebug_info0:
 	.uleb128 0x1e
 	.ascii "value_high\0"
 	.byte	0x1
-	.word	0x1c4
+	.word	0x1c9
 	.byte	0x36
 	.long	0x497a
 	.uleb128 0x2
@@ -4512,7 +4512,7 @@ Ldebug_info0:
 	.uleb128 0x1e
 	.ascii "value_low\0"
 	.byte	0x1
-	.word	0x1c4
+	.word	0x1c9
 	.byte	0x4c
 	.long	0x497a
 	.uleb128 0x2

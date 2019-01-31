@@ -360,7 +360,7 @@ $LN29@PMC_ModPow:
 	mov	DWORD PTR [edi], 0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR [eax]
 	mov	esi, DWORD PTR [ebx+24]
@@ -806,7 +806,7 @@ $LN13@ModulePowe:
 	lea	edx, DWORD PTR [ecx+ecx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 480  :     return (x >= y ? x : y);
+; 485  :     return (x >= y ? x : y);
 
 	cmp	DWORD PTR [esi+4], edx
 	cmovae	edx, DWORD PTR [esi+4]
@@ -1200,7 +1200,7 @@ $LN18@ModulePowe:
 	mov	eax, DWORD PTR _v$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _v_2_buf$1$[ebp]
 	rep movsd
@@ -1232,43 +1232,43 @@ $LN19@ModulePowe:
 	mov	eax, DWORD PTR [eax+ecx*4-4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 906  :     if (x == 0)
+; 911  :     if (x == 0)
 
 	test	eax, eax
 	jne	SHORT $LN58@ModulePowe
 
-; 907  :         return (sizeof(x) * 8);
+; 912  :         return (sizeof(x) * 8);
 
 	lea	ecx, DWORD PTR [eax+32]
 	jmp	SHORT $LN57@ModulePowe
 $LN58@ModulePowe:
 
-; 908  : #ifdef _M_IX86
-; 909  :     _UINT32_T pos;
-; 910  : #ifdef _MSC_VER
-; 911  :     _BitScanReverse(&pos, x);
+; 913  : #ifdef _M_IX86
+; 914  :     _UINT32_T pos;
+; 915  : #ifdef _MSC_VER
+; 916  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, eax
 
-; 912  : #elif defined(__GNUC__)
-; 913  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 914  : #else
-; 915  : #error unknown compiler
-; 916  : #endif
-; 917  : #elif defined(_M_X64)
-; 918  : #ifdef _MSC_VER
-; 919  :     _UINT32_T pos;
-; 920  :     _BitScanReverse64(&pos, x);
-; 921  : #elif defined(__GNUC__)
-; 922  :     _UINT64_T pos;
-; 923  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #else
-; 928  : #error unknown platform
-; 929  : #endif
-; 930  :     return (sizeof(x) * 8 - 1 - pos);
+; 917  : #elif defined(__GNUC__)
+; 918  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 919  : #else
+; 920  : #error unknown compiler
+; 921  : #endif
+; 922  : #elif defined(_M_X64)
+; 923  : #ifdef _MSC_VER
+; 924  :     _UINT32_T pos;
+; 925  :     _BitScanReverse64(&pos, x);
+; 926  : #elif defined(__GNUC__)
+; 927  :     _UINT64_T pos;
+; 928  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 929  : #else
+; 930  : #error unknown compiler
+; 931  : #endif
+; 932  : #else
+; 933  : #error unknown platform
+; 934  : #endif
+; 935  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
@@ -1284,7 +1284,7 @@ $LN57@ModulePowe:
 	shr	edi, cl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
@@ -1296,7 +1296,7 @@ $LN57@ModulePowe:
 	mov	DWORD PTR _e_mask$1$[ebp], edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _work_1_buf$1$[ebp]
 	rep movsd
@@ -1350,7 +1350,7 @@ $LL4@ModulePowe:
 	je	$LN5@ModulePowe
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _work_1_buf_words$[ebp]
 	xor	eax, eax
@@ -1444,7 +1444,7 @@ $LL4@ModulePowe:
 	jb	$LN123@ModulePowe
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _work_v_buf_words$[ebp]
 	xor	eax, eax
@@ -1645,7 +1645,7 @@ $LN7@ModulePowe:
 	je	$LN122@ModulePowe
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	edi, ecx
 	xor	eax, eax
@@ -1742,7 +1742,7 @@ $LN7@ModulePowe:
 	jb	$LL4@ModulePowe
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _work_v_buf_words$[ebp]
 	xor	eax, eax
@@ -1901,7 +1901,7 @@ $LN124@ModulePowe:
 $LN5@ModulePowe:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	eax, DWORD PTR _r$[ebp]
 	mov	esi, edx
@@ -2160,7 +2160,7 @@ $LN7@Remainder:
 	mov	DWORD PTR [esi], 0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR [eax]
 	mov	esi, DWORD PTR [ebx+24]
@@ -2364,58 +2364,58 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 905  : {
+; 910  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 906  :     if (x == 0)
+; 911  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 907  :         return (sizeof(x) * 8);
+; 912  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 931  : }
+; 936  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 908  : #ifdef _M_IX86
-; 909  :     _UINT32_T pos;
-; 910  : #ifdef _MSC_VER
-; 911  :     _BitScanReverse(&pos, x);
+; 913  : #ifdef _M_IX86
+; 914  :     _UINT32_T pos;
+; 915  : #ifdef _MSC_VER
+; 916  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 912  : #elif defined(__GNUC__)
-; 913  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 914  : #else
-; 915  : #error unknown compiler
-; 916  : #endif
-; 917  : #elif defined(_M_X64)
-; 918  : #ifdef _MSC_VER
-; 919  :     _UINT32_T pos;
-; 920  :     _BitScanReverse64(&pos, x);
-; 921  : #elif defined(__GNUC__)
-; 922  :     _UINT64_T pos;
-; 923  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #else
-; 928  : #error unknown platform
-; 929  : #endif
-; 930  :     return (sizeof(x) * 8 - 1 - pos);
+; 917  : #elif defined(__GNUC__)
+; 918  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 919  : #else
+; 920  : #error unknown compiler
+; 921  : #endif
+; 922  : #elif defined(_M_X64)
+; 923  : #ifdef _MSC_VER
+; 924  :     _UINT32_T pos;
+; 925  :     _BitScanReverse64(&pos, x);
+; 926  : #elif defined(__GNUC__)
+; 927  :     _UINT64_T pos;
+; 928  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 929  : #else
+; 930  : #error unknown compiler
+; 931  : #endif
+; 932  : #else
+; 933  : #error unknown platform
+; 934  : #endif
+; 935  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 931  : }
+; 936  : }
 
 	pop	ebp
 	ret	0
@@ -2429,18 +2429,18 @@ _x$ = 8							; size = 4
 _y$ = 12						; size = 4
 __MAXIMUM_UNIT PROC					; COMDAT
 
-; 479  : {
+; 484  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 480  :     return (x >= y ? x : y);
+; 485  :     return (x >= y ? x : y);
 
 	mov	eax, DWORD PTR _y$[ebp]
 	cmp	DWORD PTR _x$[ebp], eax
 	cmovae	eax, DWORD PTR _x$[ebp]
 
-; 481  : }
+; 486  : }
 
 	pop	ebp
 	ret	0
@@ -2454,13 +2454,13 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_UNIT PROC					; COMDAT
 
-; 392  : {
+; 397  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 393  : #ifdef _M_IX86
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 398  : #ifdef _M_IX86
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	xor	eax, eax
@@ -2469,12 +2469,12 @@ __ZERO_MEMORY_UNIT PROC					; COMDAT
 	rep stosd
 	pop	edi
 
-; 395  : #elif defined(_M_X64)
-; 396  :     __stosq(d, 0, count);
-; 397  : #else
-; 398  : #error unknown platform
-; 399  : #endif
-; 400  : }
+; 400  : #elif defined(_M_X64)
+; 401  :     __stosq(d, 0, count);
+; 402  : #else
+; 403  : #error unknown platform
+; 404  : #endif
+; 405  : }
 
 	pop	ebp
 	ret	0
@@ -2489,13 +2489,13 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 342  : {
+; 347  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 343  : #ifdef _M_IX86
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 348  : #ifdef _M_IX86
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	push	esi
@@ -2506,12 +2506,12 @@ __COPY_MEMORY_UNIT PROC					; COMDAT
 	pop	edi
 	pop	esi
 
-; 345  : #elif defined(_M_X64)
-; 346  :     __movsq(d, s, count);
-; 347  : #else
-; 348  : #error unknown platform
-; 349  : #endif
-; 350  : }
+; 350  : #elif defined(_M_X64)
+; 351  :     __movsq(d, s, count);
+; 352  : #else
+; 353  : #error unknown platform
+; 354  : #endif
+; 355  : }
 
 	pop	ebp
 	ret	0

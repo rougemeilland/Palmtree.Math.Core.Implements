@@ -47,6 +47,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/TEST_op_Equals.o \
 	${OBJECTDIR}/TEST_op_ExclusiveOr.o \
 	${OBJECTDIR}/TEST_op_From_To.o \
+	${OBJECTDIR}/TEST_op_GetPropertyValue.o \
 	${OBJECTDIR}/TEST_op_GreatestCommonDivisor.o \
 	${OBJECTDIR}/TEST_op_ModPow.o \
 	${OBJECTDIR}/TEST_op_Multiply.o \
@@ -71,6 +72,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/pmc_equals.o \
 	${OBJECTDIR}/pmc_exclusiveor.o \
 	${OBJECTDIR}/pmc_from.o \
+	${OBJECTDIR}/pmc_getpropertyvalue.o \
 	${OBJECTDIR}/pmc_greatestcommondivisor.o \
 	${OBJECTDIR}/pmc_initialize.o \
 	${OBJECTDIR}/pmc_modpow.o \
@@ -167,6 +169,11 @@ ${OBJECTDIR}/TEST_op_From_To.o: TEST_op_From_To.c nbproject/Makefile-${CND_CONF}
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_From_To.o TEST_op_From_To.c
+
+${OBJECTDIR}/TEST_op_GetPropertyValue.o: TEST_op_GetPropertyValue.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_GetPropertyValue.o TEST_op_GetPropertyValue.c
 
 ${OBJECTDIR}/TEST_op_GreatestCommonDivisor.o: TEST_op_GreatestCommonDivisor.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
@@ -287,6 +294,11 @@ ${OBJECTDIR}/pmc_from.o: pmc_from.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_from.o pmc_from.c
+
+${OBJECTDIR}/pmc_getpropertyvalue.o: pmc_getpropertyvalue.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Werror -DENABLED_PERFORMANCE_COUNTER -D_DEBUG -D_M_IX86  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_getpropertyvalue.o pmc_getpropertyvalue.c
 
 ${OBJECTDIR}/pmc_greatestcommondivisor.o: pmc_greatestcommondivisor.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

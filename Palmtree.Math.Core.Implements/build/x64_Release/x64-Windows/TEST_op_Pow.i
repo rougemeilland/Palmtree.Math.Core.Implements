@@ -100689,14 +100689,14 @@ __extension__ typedef unsigned long long uintmax_t;
 
 
 #pragma region マクロの定義
-# 72 "pmc.h"
+# 77 "pmc.h"
 #pragma endregion
 
 
 #pragma region 型の定義
-# 85 "pmc.h"
+# 90 "pmc.h"
 
-# 85 "pmc.h"
+# 90 "pmc.h"
 typedef int16_t _INT16_T;
 typedef int32_t _INT32_T;
 typedef int64_t _INT64_T;
@@ -100715,6 +100715,10 @@ typedef struct __tag_PMC_CONFIGURATION_INFO
 
 
 typedef int PMC_STATUS_CODE;
+
+typedef int PMC_PROPERTY_CODE;
+
+typedef int PMC_NUMBER_STYLE_CODE;
 
 typedef struct __tag_PMC_STATISTICS_INFO
 {
@@ -100756,6 +100760,9 @@ typedef struct __tag_PMC_ENTRY_POINTS
     void ( * PMC_Dispose)(HANDLE p);
 
 
+    PMC_STATUS_CODE( * PMC_GetPropertyValue_X_I)(HANDLE x, PMC_PROPERTY_CODE function_code, _INT32_T* o);
+
+
     PMC_STATUS_CODE( * PMC_FromByteArray)(unsigned char* buffer, size_t count, HANDLE* pp);
     PMC_STATUS_CODE( * PMC_ToByteArray)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
@@ -100767,7 +100774,7 @@ typedef struct __tag_PMC_ENTRY_POINTS
     PMC_STATUS_CODE( * PMC_ToString)(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
 
-    PMC_STATUS_CODE( * PMC_TryParse)(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
+    PMC_STATUS_CODE( * PMC_TryParse)(wchar_t* source, PMC_NUMBER_STYLE_CODE number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
 
 
     PMC_STATUS_CODE( * PMC_Add_I_X)(_UINT32_T u, HANDLE v, HANDLE* w);
@@ -100873,11 +100880,11 @@ typedef struct __tag_PMC_DEBUG_ENVIRONMENT
 
 
 #pragma region 宣言
-# 147 "pmc_debug.h"
+# 149 "pmc_debug.h"
 #pragma endregion
 
 
 #pragma region インライン関数の定義
-# 167 "pmc_debug.h"
+# 169 "pmc_debug.h"
 #pragma endregion
 # 36 "TEST_op_Pow.c" 2

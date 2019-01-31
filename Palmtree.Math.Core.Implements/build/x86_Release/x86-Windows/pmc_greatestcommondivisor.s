@@ -177,7 +177,7 @@ L18:
 L20:
 	.cfi_restore_state
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl %edx, %ebx
  # 0 "" 2
 /NO_APP
@@ -217,7 +217,7 @@ L20:
 	jne	L31
 	movl	12(%esi), %eax
 /APP
- # 993 "pmc_internal.h" 1
+ # 998 "pmc_internal.h" 1
 	bsfl %edx, %ecx
  # 0 "" 2
 /NO_APP
@@ -402,7 +402,7 @@ L34:
 	testl	%ebx, %ebx
 	je	L38
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -444,7 +444,7 @@ L38:
 	testl	%ebx, %ebx
 	je	L42
 /APP
- # 993 "pmc_internal.h" 1
+ # 998 "pmc_internal.h" 1
 	bsfl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -546,7 +546,7 @@ L71:
 L37:
 	.cfi_restore_state
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl %ecx, %eax
  # 0 "" 2
 /NO_APP
@@ -590,7 +590,7 @@ L37:
 	testl	%ebx, %ebx
 	jne	L48
 /APP
- # 993 "pmc_internal.h" 1
+ # 998 "pmc_internal.h" 1
 	bsfl %edx, %eax
  # 0 "" 2
 /NO_APP
@@ -730,7 +730,7 @@ L72:
 	.p2align 4,,10
 L48:
 /APP
- # 993 "pmc_internal.h" 1
+ # 998 "pmc_internal.h" 1
 	bsfl %ebx, %eax
  # 0 "" 2
 /NO_APP

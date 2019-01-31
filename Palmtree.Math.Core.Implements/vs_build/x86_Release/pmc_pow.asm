@@ -303,7 +303,7 @@ $LN16@PMC_Pow_X_:
 	mov	eax, DWORD PTR [esi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 883  :     return (sizeof(x) * 8 - 1 - pos);
+; 888  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	edx, 31					; 0000001fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -326,11 +326,11 @@ $LN16@PMC_Pow_X_:
 	mov	DWORD PTR _v_buf$1$[ebp], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	esi, DWORD PTR _v_buf$1$[ebp]
 
-; 877  :     _BitScanReverse(&pos, x);
+; 882  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -340,11 +340,11 @@ $LN16@PMC_Pow_X_:
 	mov	ebx, DWORD PTR _v_buf_count$1$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, ebx
 
-; 883  :     return (sizeof(x) * 8 - 1 - pos);
+; 888  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	edx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -354,7 +354,7 @@ $LN16@PMC_Pow_X_:
 	mov	eax, DWORD PTR _work1_buf$1$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -364,7 +364,7 @@ $LN16@PMC_Pow_X_:
 	mov	DWORD PTR _u_ptr$1$[ebp], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -396,7 +396,7 @@ $LL22@PMC_Pow_X_:
 	mov	DWORD PTR tv414[ebp], esi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	edi, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -407,7 +407,7 @@ $LL22@PMC_Pow_X_:
 	lea	esi, DWORD PTR [ebx+ebx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 	mov	ecx, esi
@@ -445,7 +445,7 @@ $LL22@PMC_Pow_X_:
 	mov	esi, DWORD PTR _v_buf_count$1$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -455,7 +455,7 @@ $LL22@PMC_Pow_X_:
 	add	esi, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, esi
 	rep stosd
@@ -514,7 +514,7 @@ $LN26@PMC_Pow_X_:
 $LN23@PMC_Pow_X_:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _r_buf$1$[ebp]
 	mov	esi, eax
@@ -656,7 +656,7 @@ _Pow_Imp PROC						; COMDAT
 	mov	ebp, esp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 873  :     if (x == 0)
+; 878  :     if (x == 0)
 
 	mov	eax, DWORD PTR _e$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -666,29 +666,29 @@ _Pow_Imp PROC						; COMDAT
 	sub	esp, 8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 873  :     if (x == 0)
+; 878  :     if (x == 0)
 
 	test	eax, eax
 	jne	SHORT $LN10@Pow_Imp
 
-; 874  :         return (sizeof(x) * 8);
+; 879  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN9@Pow_Imp
 $LN10@Pow_Imp:
 
-; 875  :     _UINT32_T pos;
-; 876  : #ifdef _MSC_VER
-; 877  :     _BitScanReverse(&pos, x);
+; 880  :     _UINT32_T pos;
+; 881  : #ifdef _MSC_VER
+; 882  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, eax
 
-; 878  : #elif defined(__GNUC__)
-; 879  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 880  : #else
-; 881  : #error unknown compiler
-; 882  : #endif
-; 883  :     return (sizeof(x) * 8 - 1 - pos);
+; 883  : #elif defined(__GNUC__)
+; 884  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 885  : #else
+; 886  : #error unknown compiler
+; 887  : #endif
+; 888  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
@@ -705,7 +705,7 @@ $LN9@Pow_Imp:
 	push	esi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	esi, DWORD PTR _v_buf$[ebp]
 	push	edi
@@ -717,7 +717,7 @@ $LN9@Pow_Imp:
 	mov	DWORD PTR _u_count$2$[ebp], edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -750,7 +750,7 @@ $LL2@Pow_Imp:
 	mov	DWORD PTR tv282[ebp], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 	mov	ecx, esi
@@ -791,7 +791,7 @@ $LL2@Pow_Imp:
 	mov	esi, DWORD PTR _v_buf_count$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -803,7 +803,7 @@ $LL2@Pow_Imp:
 	add	esi, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	edi, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
@@ -813,7 +813,7 @@ $LL2@Pow_Imp:
 	push	DWORD PTR _v_buf$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, esi
 	rep stosd
@@ -868,7 +868,7 @@ $LN6@Pow_Imp:
 $LN3@Pow_Imp:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _r_buf$[ebp]
 	mov	esi, ebx
@@ -893,44 +893,44 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC					; COMDAT
 
-; 872  : {
+; 877  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 873  :     if (x == 0)
+; 878  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 874  :         return (sizeof(x) * 8);
+; 879  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 884  : }
+; 889  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 875  :     _UINT32_T pos;
-; 876  : #ifdef _MSC_VER
-; 877  :     _BitScanReverse(&pos, x);
+; 880  :     _UINT32_T pos;
+; 881  : #ifdef _MSC_VER
+; 882  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 878  : #elif defined(__GNUC__)
-; 879  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 880  : #else
-; 881  : #error unknown compiler
-; 882  : #endif
-; 883  :     return (sizeof(x) * 8 - 1 - pos);
+; 883  : #elif defined(__GNUC__)
+; 884  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 885  : #else
+; 886  : #error unknown compiler
+; 887  : #endif
+; 888  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 884  : }
+; 889  : }
 
 	pop	ebp
 	ret	0
@@ -944,13 +944,13 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_UNIT PROC					; COMDAT
 
-; 392  : {
+; 397  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 393  : #ifdef _M_IX86
-; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 398  : #ifdef _M_IX86
+; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	xor	eax, eax
@@ -959,12 +959,12 @@ __ZERO_MEMORY_UNIT PROC					; COMDAT
 	rep stosd
 	pop	edi
 
-; 395  : #elif defined(_M_X64)
-; 396  :     __stosq(d, 0, count);
-; 397  : #else
-; 398  : #error unknown platform
-; 399  : #endif
-; 400  : }
+; 400  : #elif defined(_M_X64)
+; 401  :     __stosq(d, 0, count);
+; 402  : #else
+; 403  : #error unknown platform
+; 404  : #endif
+; 405  : }
 
 	pop	ebp
 	ret	0
@@ -979,13 +979,13 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 342  : {
+; 347  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 343  : #ifdef _M_IX86
-; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 348  : #ifdef _M_IX86
+; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	push	esi
@@ -996,12 +996,12 @@ __COPY_MEMORY_UNIT PROC					; COMDAT
 	pop	edi
 	pop	esi
 
-; 345  : #elif defined(_M_X64)
-; 346  :     __movsq(d, s, count);
-; 347  : #else
-; 348  : #error unknown platform
-; 349  : #endif
-; 350  : }
+; 350  : #elif defined(_M_X64)
+; 351  :     __movsq(d, s, count);
+; 352  : #else
+; 353  : #error unknown platform
+; 354  : #endif
+; 355  : }
 
 	pop	ebp
 	ret	0

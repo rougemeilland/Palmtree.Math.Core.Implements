@@ -5,7 +5,7 @@ Ltext0:
 __ZERO_MEMORY_BYTE:
 LFB4186:
 	.file 1 "pmc_internal.h"
-	.loc 1 370 1
+	.loc 1 375 1
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -43,7 +43,7 @@ LBB9:
 	movl	%edx, -20(%ebp)
 LBE9:
 LBE8:
-	.loc 1 372 1
+	.loc 1 377 1
 	nop
 	addl	$16, %esp
 	popl	%ebx
@@ -4213,20 +4213,20 @@ Ldebug_info0:
 	.uleb128 0x4
 	.ascii "_UINT32_T\0"
 	.byte	0x1f
-	.byte	0x5a
+	.byte	0x5f
 	.byte	0x12
 	.long	0x494d
 	.uleb128 0x12
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1f
-	.byte	0x60
+	.byte	0x65
 	.byte	0x10
 	.long	0x49bf
 	.uleb128 0x16
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1f
-	.byte	0x62
+	.byte	0x67
 	.byte	0xe
 	.long	0xd0
 	.byte	0x4
@@ -4237,41 +4237,41 @@ Ldebug_info0:
 	.uleb128 0x4
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1f
-	.byte	0x63
+	.byte	0x68
 	.byte	0x3
 	.long	0x4970
 	.uleb128 0x12
 	.ascii "__tag_PMC_STATISTICS_INFO\0"
 	.byte	0x10
 	.byte	0x1f
-	.byte	0x68
+	.byte	0x71
 	.byte	0x10
 	.long	0x4a5a
 	.uleb128 0x13
 	.ascii "COUNT_MULTI64\0"
 	.byte	0x1f
-	.byte	0x6a
+	.byte	0x73
 	.byte	0xa
 	.long	0x112
 	.byte	0
 	.uleb128 0x13
 	.ascii "COUNT_MULTI32\0"
 	.byte	0x1f
-	.byte	0x6b
+	.byte	0x74
 	.byte	0xa
 	.long	0x112
 	.byte	0x4
 	.uleb128 0x13
 	.ascii "COUNT_DIV64\0"
 	.byte	0x1f
-	.byte	0x6c
+	.byte	0x75
 	.byte	0xa
 	.long	0x112
 	.byte	0x8
 	.uleb128 0x13
 	.ascii "COUNT_DIV32\0"
 	.byte	0x1f
-	.byte	0x6d
+	.byte	0x76
 	.byte	0xa
 	.long	0x112
 	.byte	0xc
@@ -4279,7 +4279,7 @@ Ldebug_info0:
 	.uleb128 0x4
 	.ascii "PMC_STATISTICS_INFO\0"
 	.byte	0x1f
-	.byte	0x6e
+	.byte	0x77
 	.byte	0x3
 	.long	0x49de
 	.uleb128 0x6
@@ -4501,7 +4501,7 @@ Ldebug_info0:
 	.uleb128 0xf
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1
-	.word	0x13d
+	.word	0x142
 	.byte	0x29
 	.long	0x4d32
 	.uleb128 0x6
@@ -4783,7 +4783,7 @@ Ldebug_info0:
 	.uleb128 0x21
 	.ascii "_ZERO_MEMORY_BYTE\0"
 	.byte	0x1
-	.word	0x171
+	.word	0x176
 	.byte	0x16
 	.long	LFB4186
 	.long	LFE4186-LFB4186
@@ -4793,7 +4793,7 @@ Ldebug_info0:
 	.uleb128 0x22
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x171
+	.word	0x176
 	.byte	0x2e
 	.long	0x795
 	.uleb128 0x2
@@ -4802,7 +4802,7 @@ Ldebug_info0:
 	.uleb128 0x22
 	.ascii "count\0"
 	.byte	0x1
-	.word	0x171
+	.word	0x176
 	.byte	0x38
 	.long	0xc1
 	.uleb128 0x2
@@ -4813,7 +4813,7 @@ Ldebug_info0:
 	.long	LBB8
 	.long	LBE8-LBB8
 	.byte	0x1
-	.word	0x173
+	.word	0x178
 	.byte	0x5
 	.uleb128 0x20
 	.long	0x5078

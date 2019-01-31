@@ -4034,20 +4034,20 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x4
 	.ascii "_UINT64_T\0"
 	.byte	0x1e
-	.byte	0x5b
+	.byte	0x60
 	.byte	0x12
 	.long	0x4c29
 	.uleb128 0x12
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1e
-	.byte	0x60
+	.byte	0x65
 	.byte	0x10
 	.long	0x4c9b
 	.uleb128 0x1c
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1e
-	.byte	0x62
+	.byte	0x67
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
@@ -4058,41 +4058,41 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x4
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1e
-	.byte	0x63
+	.byte	0x68
 	.byte	0x3
 	.long	0x4c4c
 	.uleb128 0x12
 	.ascii "__tag_PMC_STATISTICS_INFO\0"
 	.byte	0x10
 	.byte	0x1e
-	.byte	0x68
+	.byte	0x71
 	.byte	0x10
 	.long	0x4d36
 	.uleb128 0x13
 	.ascii "COUNT_MULTI64\0"
 	.byte	0x1e
-	.byte	0x6a
+	.byte	0x73
 	.byte	0xa
 	.long	0x13e
 	.byte	0
 	.uleb128 0x13
 	.ascii "COUNT_MULTI32\0"
 	.byte	0x1e
-	.byte	0x6b
+	.byte	0x74
 	.byte	0xa
 	.long	0x13e
 	.byte	0x4
 	.uleb128 0x13
 	.ascii "COUNT_DIV64\0"
 	.byte	0x1e
-	.byte	0x6c
+	.byte	0x75
 	.byte	0xa
 	.long	0x13e
 	.byte	0x8
 	.uleb128 0x13
 	.ascii "COUNT_DIV32\0"
 	.byte	0x1e
-	.byte	0x6d
+	.byte	0x76
 	.byte	0xa
 	.long	0x13e
 	.byte	0xc
@@ -4100,7 +4100,7 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x4
 	.ascii "PMC_STATISTICS_INFO\0"
 	.byte	0x1e
-	.byte	0x6e
+	.byte	0x77
 	.byte	0x3
 	.long	0x4cba
 	.uleb128 0x6
@@ -4258,7 +4258,7 @@ PMC_GetStatisticsInfo:
 	.uleb128 0x17
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1f
-	.word	0x13d
+	.word	0x142
 	.byte	0x29
 	.long	0x4f22
 	.uleb128 0x6

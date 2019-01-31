@@ -294,7 +294,7 @@ buffer2$ = 240
 count2$ = 248
 _EQUALS_MEMORY PROC					; COMDAT
 
-; 153  : {
+; 155  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -312,26 +312,26 @@ _EQUALS_MEMORY PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__1C66ECB2_pmc_debug@h
 	call	__CheckForDebuggerJustMyCode
 
-; 154  :     if (count1 != count2)
+; 156  :     if (count1 != count2)
 
 	mov	rax, QWORD PTR count2$[rbp]
 	cmp	QWORD PTR count1$[rbp], rax
 	je	SHORT $LN4@EQUALS_MEM
 
-; 155  :         return (-1);
+; 157  :         return (-1);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN4@EQUALS_MEM:
 $LN2@EQUALS_MEM:
 
-; 156  :     while (count1 > 0)
+; 158  :     while (count1 > 0)
 
 	cmp	QWORD PTR count1$[rbp], 0
 	jbe	SHORT $LN3@EQUALS_MEM
 
-; 157  :     {
-; 158  :         if (*buffer1 != *buffer2)
+; 159  :     {
+; 160  :         if (*buffer1 != *buffer2)
 
 	mov	rax, QWORD PTR buffer1$[rbp]
 	movzx	eax, BYTE PTR [rax]
@@ -340,41 +340,41 @@ $LN2@EQUALS_MEM:
 	cmp	eax, ecx
 	je	SHORT $LN5@EQUALS_MEM
 
-; 159  :             return (-1);
+; 161  :             return (-1);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN5@EQUALS_MEM:
 
-; 160  :         ++buffer1;
+; 162  :         ++buffer1;
 
 	mov	rax, QWORD PTR buffer1$[rbp]
 	inc	rax
 	mov	QWORD PTR buffer1$[rbp], rax
 
-; 161  :         ++buffer2;
+; 163  :         ++buffer2;
 
 	mov	rax, QWORD PTR buffer2$[rbp]
 	inc	rax
 	mov	QWORD PTR buffer2$[rbp], rax
 
-; 162  :         --count1;
+; 164  :         --count1;
 
 	mov	rax, QWORD PTR count1$[rbp]
 	dec	rax
 	mov	QWORD PTR count1$[rbp], rax
 
-; 163  :     }
+; 165  :     }
 
 	jmp	SHORT $LN2@EQUALS_MEM
 $LN3@EQUALS_MEM:
 
-; 164  :     return (0);
+; 166  :     return (0);
 
 	xor	eax, eax
 $LN1@EQUALS_MEM:
 
-; 165  : }
+; 167  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -659,7 +659,7 @@ u$ = 224
 v$ = 232
 _DIVIDE_CEILING_SIZE PROC				; COMDAT
 
-; 474  : {
+; 479  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -675,7 +675,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
@@ -683,7 +683,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	xor	edx, edx
 	div	QWORD PTR v$[rbp]
 
-; 476  : }
+; 481  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -700,7 +700,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 325  : {
+; 330  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -718,14 +718,14 @@ _COPY_MEMORY_BYTE PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 326  :     __movsb(d, s, count);
+; 331  :     __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rsi, QWORD PTR s$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep movsb
 
-; 327  : }
+; 332  : }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi

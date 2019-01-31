@@ -142,7 +142,7 @@ _pos$ = -8						; size = 4
 _x$ = 8							; size = 1
 __LZCNT_ALT_8 PROC
 
-; 857  : {
+; 862  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -153,39 +153,39 @@ __LZCNT_ALT_8 PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 858  :     if (x == 0)
+; 863  :     if (x == 0)
 
 	movzx	eax, BYTE PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 859  :         return (sizeof(x) * 8);
+; 864  :         return (sizeof(x) * 8);
 
 	mov	eax, 8
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 860  :     _UINT32_T pos;
-; 861  : #ifdef _MSC_VER
-; 862  :     _BitScanReverse(&pos, x);
+; 865  :     _UINT32_T pos;
+; 866  : #ifdef _MSC_VER
+; 867  :     _BitScanReverse(&pos, x);
 
 	movzx	ecx, BYTE PTR _x$[ebp]
 	bsr	edx, ecx
 	mov	DWORD PTR _pos$[ebp], edx
 
-; 863  : #elif defined(__GNUC__)
-; 864  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-; 865  : #else
-; 866  : #error unknown compiler
-; 867  : #endif
-; 868  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 868  : #elif defined(__GNUC__)
+; 869  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+; 870  : #else
+; 871  : #error unknown compiler
+; 872  : #endif
+; 873  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	eax, 7
 	sub	eax, DWORD PTR _pos$[ebp]
 	movzx	eax, al
 $LN1@LZCNT_ALT_:
 
-; 869  : }
+; 874  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -221,14 +221,14 @@ _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_SIZE PROC
 
-; 474  : {
+; 479  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _v$[ebp]
 	mov	ecx, DWORD PTR _u$[ebp]
@@ -236,7 +236,7 @@ __DIVIDE_CEILING_SIZE PROC
 	xor	edx, edx
 	div	DWORD PTR _v$[ebp]
 
-; 476  : }
+; 481  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -252,7 +252,7 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_BYTE PROC
 
-; 325  : {
+; 330  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -261,14 +261,14 @@ __COPY_MEMORY_BYTE PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 326  :     __movsb(d, s, count);
+; 331  :     __movsb(d, s, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsb
 
-; 327  : }
+; 332  : }
 
 	pop	edi
 	pop	esi

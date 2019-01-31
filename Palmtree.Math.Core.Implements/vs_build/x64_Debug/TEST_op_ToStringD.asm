@@ -238,7 +238,7 @@ $LN10:
 	mov	rdx, QWORD PTR buf_size$[rbp]
 	mov	rcx, QWORD PTR buf$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+40]
+	call	QWORD PTR [rax+48]
 	mov	DWORD PTR x_result$[rbp], eax
 	cmp	DWORD PTR x_result$[rbp], 0
 	jne	SHORT $LN4@TEST_PMC_T
@@ -273,7 +273,7 @@ $LN5@TEST_PMC_T:
 	lea	rdx, OFFSET FLAT:?actual_str_buffer@?1??TEST_PMC_ToStringD@@9@9
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+72]
+	call	QWORD PTR [rax+80]
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	jne	SHORT $LN6@TEST_PMC_T

@@ -14,6 +14,7 @@
       <itemPath>TEST_op_Equals.c</itemPath>
       <itemPath>TEST_op_ExclusiveOr.c</itemPath>
       <itemPath>TEST_op_From_To.c</itemPath>
+      <itemPath>TEST_op_GetPropertyValue.c</itemPath>
       <itemPath>TEST_op_GreatestCommonDivisor.c</itemPath>
       <itemPath>TEST_op_ModPow.c</itemPath>
       <itemPath>TEST_op_Multiply.c</itemPath>
@@ -38,6 +39,7 @@
       <itemPath>pmc_equals.c</itemPath>
       <itemPath>pmc_exclusiveor.c</itemPath>
       <itemPath>pmc_from.c</itemPath>
+      <itemPath>pmc_getpropertyvalue.c</itemPath>
       <itemPath>pmc_greatestcommondivisor.c</itemPath>
       <itemPath>pmc_initialize.c</itemPath>
       <itemPath>pmc_modpow.c</itemPath>
@@ -131,6 +133,8 @@
       </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_GetPropertyValue.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_GreatestCommonDivisor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_ModPow.c" ex="false" tool="0" flavor2="0">
@@ -186,6 +190,8 @@
       <item path="pmc_exclusiveor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_getpropertyvalue.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_greatestcommondivisor.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -277,6 +283,8 @@
       </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_GetPropertyValue.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_GreatestCommonDivisor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_ModPow.c" ex="false" tool="0" flavor2="0">
@@ -332,6 +340,8 @@
       <item path="pmc_exclusiveor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_getpropertyvalue.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_greatestcommondivisor.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -416,6 +426,8 @@
       </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_GetPropertyValue.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_GreatestCommonDivisor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_ModPow.c" ex="false" tool="0" flavor2="0">
@@ -471,6 +483,8 @@
       <item path="pmc_exclusiveor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_getpropertyvalue.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_greatestcommondivisor.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -563,6 +577,8 @@
       </item>
       <item path="TEST_op_From_To.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_GetPropertyValue.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_GreatestCommonDivisor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_ModPow.c" ex="false" tool="0" flavor2="0">
@@ -618,6 +634,8 @@
       <item path="pmc_exclusiveor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_from.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_getpropertyvalue.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_greatestcommondivisor.c" ex="false" tool="0" flavor2="0">
       </item>

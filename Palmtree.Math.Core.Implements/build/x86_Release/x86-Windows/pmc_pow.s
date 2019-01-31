@@ -130,7 +130,7 @@ L5:
 	movl	%eax, %esi
 	movl	%eax, 52(%esp)
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl 132(%esp), %eax
  # 0 "" 2
  # 1773 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1

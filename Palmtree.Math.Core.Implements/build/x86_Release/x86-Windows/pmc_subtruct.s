@@ -523,7 +523,7 @@ L79:
 	testb	%dl, %dl
 	jne	L81
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP
@@ -615,7 +615,7 @@ L88:
 	je	L107
 	movl	4(%ebx), %edx
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl 52(%esp), %eax
  # 0 "" 2
 /NO_APP
@@ -793,7 +793,7 @@ L112:
 	testl	%edi, %edi
 	je	L115
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP
@@ -833,7 +833,7 @@ L127:
 L114:
 	.cfi_restore_state
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
@@ -944,7 +944,7 @@ L131:
 	testl	%esi, %esi
 	je	L135
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl %esi, %edx
  # 0 "" 2
 /NO_APP
@@ -974,7 +974,7 @@ L181:
 L134:
 	.cfi_restore_state
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl %edi, %edx
  # 0 "" 2
 /NO_APP

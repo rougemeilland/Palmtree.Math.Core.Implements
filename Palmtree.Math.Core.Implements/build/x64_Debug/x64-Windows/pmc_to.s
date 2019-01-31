@@ -7,7 +7,7 @@
 _FROMWORDTODWORD:
 .LFB4323:
 	.file 1 "pmc_internal.h"
-	.loc 1 453 1
+	.loc 1 458 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -19,15 +19,15 @@ _FROMWORDTODWORD:
 	.seh_endprologue
 	movl	%ecx, 16(%rbp)
 	movl	%edx, 24(%rbp)
-	.loc 1 454 14
+	.loc 1 459 14
 	movl	16(%rbp), %eax
-	.loc 1 454 36
+	.loc 1 459 36
 	salq	$32, %rax
 	movq	%rax, %rdx
-	.loc 1 454 43
+	.loc 1 459 43
 	movl	24(%rbp), %eax
 	orq	%rdx, %rax
-	.loc 1 455 1
+	.loc 1 460 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -4072,26 +4072,26 @@ Initialize_To:
 	.uleb128 0x4
 	.ascii "_UINT32_T\0"
 	.byte	0x1e
-	.byte	0x5a
+	.byte	0x5f
 	.byte	0x12
 	.long	0x496d
 	.uleb128 0x4
 	.ascii "_UINT64_T\0"
 	.byte	0x1e
-	.byte	0x5b
+	.byte	0x60
 	.byte	0x12
 	.long	0x497e
 	.uleb128 0x12
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1e
-	.byte	0x60
+	.byte	0x65
 	.byte	0x10
 	.long	0x4a02
 	.uleb128 0x18
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1e
-	.byte	0x62
+	.byte	0x67
 	.byte	0xe
 	.long	0x457
 	.byte	0x4
@@ -4102,47 +4102,47 @@ Initialize_To:
 	.uleb128 0x4
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1e
-	.byte	0x63
+	.byte	0x68
 	.byte	0x3
 	.long	0x49b3
 	.uleb128 0x4
 	.ascii "PMC_STATUS_CODE\0"
 	.byte	0x1e
-	.byte	0x66
+	.byte	0x6b
 	.byte	0xd
 	.long	0x12f
 	.uleb128 0x12
 	.ascii "__tag_PMC_STATISTICS_INFO\0"
 	.byte	0x10
 	.byte	0x1e
-	.byte	0x68
+	.byte	0x71
 	.byte	0x10
 	.long	0x4ab5
 	.uleb128 0x13
 	.ascii "COUNT_MULTI64\0"
 	.byte	0x1e
-	.byte	0x6a
+	.byte	0x73
 	.byte	0xa
 	.long	0x136
 	.byte	0
 	.uleb128 0x13
 	.ascii "COUNT_MULTI32\0"
 	.byte	0x1e
-	.byte	0x6b
+	.byte	0x74
 	.byte	0xa
 	.long	0x136
 	.byte	0x4
 	.uleb128 0x13
 	.ascii "COUNT_DIV64\0"
 	.byte	0x1e
-	.byte	0x6c
+	.byte	0x75
 	.byte	0xa
 	.long	0x136
 	.byte	0x8
 	.uleb128 0x13
 	.ascii "COUNT_DIV32\0"
 	.byte	0x1e
-	.byte	0x6d
+	.byte	0x76
 	.byte	0xa
 	.long	0x136
 	.byte	0xc
@@ -4150,7 +4150,7 @@ Initialize_To:
 	.uleb128 0x4
 	.ascii "PMC_STATISTICS_INFO\0"
 	.byte	0x1e
-	.byte	0x6e
+	.byte	0x77
 	.byte	0x3
 	.long	0x4a39
 	.uleb128 0x6
@@ -4375,7 +4375,7 @@ Initialize_To:
 	.uleb128 0x17
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1
-	.word	0x13d
+	.word	0x142
 	.byte	0x29
 	.long	0x4d93
 	.uleb128 0x6
@@ -4507,7 +4507,7 @@ Initialize_To:
 	.uleb128 0x1f
 	.ascii "_FROMWORDTODWORD\0"
 	.byte	0x1
-	.word	0x1c4
+	.word	0x1c9
 	.byte	0x1b
 	.long	0x49a1
 	.quad	.LFB4323
@@ -4517,7 +4517,7 @@ Initialize_To:
 	.uleb128 0x20
 	.ascii "value_high\0"
 	.byte	0x1
-	.word	0x1c4
+	.word	0x1c9
 	.byte	0x36
 	.long	0x498f
 	.uleb128 0x2
@@ -4526,7 +4526,7 @@ Initialize_To:
 	.uleb128 0x20
 	.ascii "value_low\0"
 	.byte	0x1
-	.word	0x1c4
+	.word	0x1c9
 	.byte	0x4c
 	.long	0x498f
 	.uleb128 0x2

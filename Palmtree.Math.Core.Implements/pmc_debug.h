@@ -102,6 +102,8 @@ extern void TEST_PMC_ExclusiveOr_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINT
 extern void TEST_PMC_From_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 v, unsigned char* buf, size_t buf_size);
 extern void TEST_PMC_From_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 v, unsigned char* buf, size_t buf_size);
 
+extern void TEST_PMC_GetPropertyValue_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, PMC_PROPERTY_CODE function_code, _INT32_T desired_value);
+
 extern void TEST_PMC_GreatestCommonDivisor_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char* v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
 extern void TEST_PMC_GreatestCommonDivisor_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char* v_buf, size_t v_buf_size, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);
 extern void TEST_PMC_GreatestCommonDivisor_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u_buf, size_t u_buf_size, unsigned __int32 v, PMC_STATUS_CODE desired_result_code, unsigned char* desired_w_buf, size_t desired_w_buf_size);

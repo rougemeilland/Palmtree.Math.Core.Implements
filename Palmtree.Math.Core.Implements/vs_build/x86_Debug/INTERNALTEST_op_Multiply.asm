@@ -48,17 +48,17 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95692 DB	'actual_w_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
+$SG95726 DB	'actual_w_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
 	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
 	DB	0e9H, 00H
 	ORG $+3
-$SG95693 DB	'Multiply_X_X_Imp (%d.%d)', 00H
+$SG95727 DB	'Multiply_X_X_Imp (%d.%d)', 00H
 	ORG $+3
-$SG95694 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG95728 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG95695 DB	'Multiply_X_X_Imp (%d.%d)', 00H
+$SG95729 DB	'Multiply_X_X_Imp (%d.%d)', 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -79,32 +79,32 @@ _buffer2$ = 16						; size = 4
 _count2$ = 20						; size = 4
 __EQUALS_MEMORY PROC
 
-; 153  : {
+; 155  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __1C66ECB2_pmc_debug@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 154  :     if (count1 != count2)
+; 156  :     if (count1 != count2)
 
 	mov	eax, DWORD PTR _count1$[ebp]
 	cmp	eax, DWORD PTR _count2$[ebp]
 	je	SHORT $LN2@EQUALS_MEM
 
-; 155  :         return (-1);
+; 157  :         return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN2@EQUALS_MEM:
 
-; 156  :     while (count1 > 0)
+; 158  :     while (count1 > 0)
 
 	cmp	DWORD PTR _count1$[ebp], 0
 	jbe	SHORT $LN3@EQUALS_MEM
 
-; 157  :     {
-; 158  :         if (*buffer1 != *buffer2)
+; 159  :     {
+; 160  :         if (*buffer1 != *buffer2)
 
 	mov	ecx, DWORD PTR _buffer1$[ebp]
 	movzx	edx, BYTE PTR [ecx]
@@ -113,41 +113,41 @@ $LN2@EQUALS_MEM:
 	cmp	edx, ecx
 	je	SHORT $LN5@EQUALS_MEM
 
-; 159  :             return (-1);
+; 161  :             return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN5@EQUALS_MEM:
 
-; 160  :         ++buffer1;
+; 162  :         ++buffer1;
 
 	mov	edx, DWORD PTR _buffer1$[ebp]
 	add	edx, 1
 	mov	DWORD PTR _buffer1$[ebp], edx
 
-; 161  :         ++buffer2;
+; 163  :         ++buffer2;
 
 	mov	eax, DWORD PTR _buffer2$[ebp]
 	add	eax, 1
 	mov	DWORD PTR _buffer2$[ebp], eax
 
-; 162  :         --count1;
+; 164  :         --count1;
 
 	mov	ecx, DWORD PTR _count1$[ebp]
 	sub	ecx, 1
 	mov	DWORD PTR _count1$[ebp], ecx
 
-; 163  :     }
+; 165  :     }
 
 	jmp	SHORT $LN2@EQUALS_MEM
 $LN3@EQUALS_MEM:
 
-; 164  :     return (0);
+; 166  :     return (0);
 
 	xor	eax, eax
 $LN1@EQUALS_MEM:
 
-; 165  : }
+; 167  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -379,13 +379,13 @@ $LN4@INTERNALTE:
 $LN6@INTERNALTE:
 	mov	DWORD PTR tv151[ebp], 0
 $LN7@INTERNALTE:
-	push	OFFSET $SG95692
+	push	OFFSET $SG95726
 	mov	ecx, DWORD PTR tv151[ebp]
 	push	ecx
 	push	1
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG95693
+	push	OFFSET $SG95727
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -413,13 +413,13 @@ $LN7@INTERNALTE:
 $LN8@INTERNALTE:
 	mov	DWORD PTR tv166[ebp], 0
 $LN9@INTERNALTE:
-	push	OFFSET $SG95694
+	push	OFFSET $SG95728
 	mov	edx, DWORD PTR tv166[ebp]
 	push	edx
 	push	2
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG95695
+	push	OFFSET $SG95729
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -650,14 +650,14 @@ _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_SIZE PROC
 
-; 474  : {
+; 479  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _v$[ebp]
 	mov	ecx, DWORD PTR _u$[ebp]
@@ -665,7 +665,7 @@ __DIVIDE_CEILING_SIZE PROC
 	xor	edx, edx
 	div	DWORD PTR _v$[ebp]
 
-; 476  : }
+; 481  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -681,7 +681,7 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_BYTE PROC
 
-; 325  : {
+; 330  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -690,14 +690,14 @@ __COPY_MEMORY_BYTE PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 326  :     __movsb(d, s, count);
+; 331  :     __movsb(d, s, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsb
 
-; 327  : }
+; 332  : }
 
 	pop	edi
 	pop	esi

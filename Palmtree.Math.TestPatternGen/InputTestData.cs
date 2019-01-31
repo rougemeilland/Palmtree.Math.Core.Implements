@@ -51,7 +51,26 @@ namespace Palmtree.Math.TestPatternGen
             this.Index = index;
             this.Name = string.Format("{0}_in_data_{1}", id, index);
         }
+
         public InputTestData(string id, bool enabled, int value, int index)
+        {
+            this._id = id;
+            this.IsAvailableAsTestData = enabled;
+            this._value = value;
+            this.Index = index;
+            this.Name = string.Format("{0}_in_data_{1}", id, index);
+        }
+
+        public InputTestData(string id, PMC_PROPERTY_CODE value, int index)
+        {
+            this._id = id;
+            this.IsAvailableAsTestData = false;
+            this._value = value;
+            this.Index = index;
+            this.Name = string.Format("{0}_in_data_{1}", id, index);
+        }
+
+        public InputTestData(string id, bool enabled, PMC_PROPERTY_CODE value, int index)
         {
             this._id = id;
             this.IsAvailableAsTestData = enabled;
@@ -101,6 +120,16 @@ namespace Palmtree.Math.TestPatternGen
                 if (!(_value is int))
                     throw new ApplicationException();
                 return ((int)_value);
+            }
+        }
+
+        public PMC_PROPERTY_CODE PMC_PROPERTY_CODEValue
+        {
+            get
+            {
+                if (!(_value is PMC_PROPERTY_CODE))
+                    throw new ApplicationException();
+                return ((PMC_PROPERTY_CODE)_value);
             }
         }
 

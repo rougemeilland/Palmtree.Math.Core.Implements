@@ -206,7 +206,7 @@ PMC_ModPow_X_X_X:
 	je	.L32
 	movl	$63, %ecx
 /APP
- # 923 "pmc_internal.h" 1
+ # 928 "pmc_internal.h" 1
 	bsrq %rax, %rax
  # 0 "" 2
 /NO_APP

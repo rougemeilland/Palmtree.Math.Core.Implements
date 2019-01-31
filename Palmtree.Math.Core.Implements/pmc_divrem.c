@@ -386,7 +386,7 @@ static __UNIT_TYPE_DIV CalculateQ_X(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE_DIV* v_b
     return (q_);
 }
 
-static BOOL DoBorrow(char c, __UNIT_TYPE_DIV k, __UNIT_TYPE_DIV* up, __UNIT_TYPE u_count)
+static BOOL DoBorrow(char c, __UNIT_TYPE_DIV* up, __UNIT_TYPE u_count)
 {
     // 桁借りを続く限り行う
     for (;;)
@@ -412,8 +412,7 @@ static BOOL DoBorrow(char c, __UNIT_TYPE_DIV k, __UNIT_TYPE_DIV* up, __UNIT_TYPE
             // u の最上位に達しておらず、かつボローが立っている場合
 
             // 桁借りを継続する
-            c = _SUBTRUCT_UNIT_DIV(c, *up, k, up);
-            k = 0;
+            c = _SUBTRUCT_UNIT_DIV(c, *up, 0, up);
             ++up;
             --u_count;
         }
@@ -595,10 +594,9 @@ static BOOL SubtructOneLine(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNI
     }
 
     c = _SUBTRUCT_UNIT_DIV(c, *u_ptr, k, u_ptr);
-    k = 0;
     u_ptr += 1;
 
-    return (DoBorrow(c, k, u_ptr, u_buf + u_buf_len + 1 - u_ptr));
+    return (DoBorrow(c, u_ptr, u_buf + u_buf_len + 1 - u_ptr));
 }
 
 static BOOL SubtructOneLineX(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV* v_buf, __UNIT_TYPE v_buf_len, __UNIT_TYPE q_index, __UNIT_TYPE_DIV q_)
@@ -747,10 +745,9 @@ static BOOL SubtructOneLineX(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UN
     }
 
     c = _SUBTRUCT_UNIT_DIV(c, *u_ptr, k, u_ptr);
-    k = 0;
     u_ptr += 1;
 
-    return (DoBorrow(c, k, u_ptr, u_buf + u_buf_len + 1 - u_ptr));
+    return (DoBorrow(c, u_ptr, u_buf + u_buf_len + 1 - u_ptr));
 }
 
 static void DoCarry(char c, __UNIT_TYPE_DIV* u_ptr, __UNIT_TYPE u_count)

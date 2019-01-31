@@ -253,7 +253,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_8 PROC					; COMDAT
 
-; 857  : {
+; 862  : {
 
 	mov	BYTE PTR [rsp+8], cl
 	push	rbp
@@ -268,32 +268,32 @@ _LZCNT_ALT_8 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 858  :     if (x == 0)
+; 863  :     if (x == 0)
 
 	movzx	eax, BYTE PTR x$[rbp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 859  :         return (sizeof(x) * 8);
+; 864  :         return (sizeof(x) * 8);
 
 	mov	eax, 8
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 860  :     _UINT32_T pos;
-; 861  : #ifdef _MSC_VER
-; 862  :     _BitScanReverse(&pos, x);
+; 865  :     _UINT32_T pos;
+; 866  : #ifdef _MSC_VER
+; 867  :     _BitScanReverse(&pos, x);
 
 	movzx	eax, BYTE PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 863  : #elif defined(__GNUC__)
-; 864  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-; 865  : #else
-; 866  : #error unknown compiler
-; 867  : #endif
-; 868  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 868  : #elif defined(__GNUC__)
+; 869  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+; 870  : #else
+; 871  : #error unknown compiler
+; 872  : #endif
+; 873  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 7
@@ -302,7 +302,7 @@ $LN2@LZCNT_ALT_:
 	movzx	eax, al
 $LN1@LZCNT_ALT_:
 
-; 869  : }
+; 874  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -323,7 +323,7 @@ u$ = 224
 v$ = 232
 _DIVIDE_CEILING_SIZE PROC				; COMDAT
 
-; 474  : {
+; 479  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -339,7 +339,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
@@ -347,7 +347,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	xor	edx, edx
 	div	QWORD PTR v$[rbp]
 
-; 476  : }
+; 481  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -364,7 +364,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 325  : {
+; 330  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -382,14 +382,14 @@ _COPY_MEMORY_BYTE PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 326  :     __movsb(d, s, count);
+; 331  :     __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rsi, QWORD PTR s$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep movsb
 
-; 327  : }
+; 332  : }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi

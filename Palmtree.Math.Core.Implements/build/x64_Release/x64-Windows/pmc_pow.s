@@ -105,7 +105,7 @@ PMC_Pow_X_I:
 	movq	%rax, %rsi
 	movq	%rax, 56(%rsp)
 /APP
- # 879 "pmc_internal.h" 1
+ # 884 "pmc_internal.h" 1
 	bsrl %ebp, %eax
  # 0 "" 2
  # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1

@@ -142,6 +142,12 @@
     <ClCompile Include="INTERNALTEST_op_Multiply.c">
       <Filter>ソース ファイル\テスト</Filter>
     </ClCompile>
+    <ClCompile Include="pmc_getpropertyvalue.c">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="TEST_op_GetPropertyValue.c">
+      <Filter>ソース ファイル\テスト</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pmc.h">

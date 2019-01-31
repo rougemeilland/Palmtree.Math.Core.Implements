@@ -51,6 +51,7 @@
     <Compile Include="ITestData.cs" />
     <Compile Include="ITestPattern.cs" />
     <Compile Include="OutputTestData.cs" />
+    <Compile Include="PMC_PROPERTY_CODE.cs" />
     <Compile Include="PMC_STATUS_CODE.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="TEST_PMC_ParseDN1.cs" />
     <Compile Include="TEST_PMC_ParseDN2.cs" />
     <Compile Include="TEST_PMC_GreatestCommonDivisor.cs" />
+    <Compile Include="TEST_PMC_GetPropertyValue.cs" />
     <Compile Include="TEST_PMC_ToStringN.cs" />
     <Compile Include="TEST_PMC_ToStringD.cs" />
     <Compile Include="TEST_PMC_ParseX.cs" />

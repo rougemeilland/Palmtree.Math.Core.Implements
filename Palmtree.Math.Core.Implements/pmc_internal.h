@@ -178,6 +178,9 @@ extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
 // Toの実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
+// GetPropertyValue の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_GetPropertyValue(PROCESSOR_FEATURES* feature);
+
 // 加算演算子の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
 
@@ -233,6 +236,8 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_From_L(_UINT64_T x, HANDLE* o);
 
 extern void __PMC_CALL PMC_Dispose(HANDLE p);
 
+extern PMC_STATUS_CODE __PMC_CALL PMC_GetPropertyValue_X_I(HANDLE x, PMC_PROPERTY_CODE function_code, _INT32_T* o);
+
 extern PMC_STATUS_CODE __PMC_CALL PMC_FromByteArray(unsigned char* buffer, size_t count, HANDLE* o);
 extern PMC_STATUS_CODE __PMC_CALL PMC_ToByteArray(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
@@ -241,7 +246,7 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o);
 
 extern PMC_STATUS_CODE __PMC_CALL PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
-extern PMC_STATUS_CODE __PMC_CALL PMC_TryParse(wchar_t* source, _UINT32_T number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
+extern PMC_STATUS_CODE __PMC_CALL PMC_TryParse(wchar_t* source, PMC_NUMBER_STYLE_CODE number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
 
 extern PMC_STATUS_CODE __PMC_CALL PMC_Add_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
 extern PMC_STATUS_CODE __PMC_CALL PMC_Add_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
