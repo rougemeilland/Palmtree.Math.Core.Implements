@@ -88655,6 +88655,10 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
 
     PMC_STATUS_CODE( * PMC_Pow_X_I)(HANDLE x, _UINT32_T n, HANDLE* z);
+
+
+    PMC_STATUS_CODE( * PMC_ModPow_X_X_X)(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
+
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -88734,6 +88738,9 @@ extern PMC_CONFIGURATION_INFO configuration_info;
 extern NUMBER_HEADER number_zero;
 
 
+extern NUMBER_HEADER number_one;
+
+
 extern PMC_STATISTICS_INFO statistics_info;
 
 
@@ -88800,6 +88807,9 @@ extern void Multiply_X_X_Imp(__UNIT_TYPE* u, __UNIT_TYPE u_count, __UNIT_TYPE* v
 extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
 
 
+extern void DivRem_X_X(__UNIT_TYPE* u_buf, __UNIT_TYPE u_count, __UNIT_TYPE* v_buf, __UNIT_TYPE v_count, __UNIT_TYPE* work_v_buf, __UNIT_TYPE* q_buf, __UNIT_TYPE* r_buf);
+
+
 extern _INT32_T Compare_Imp(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count);
 
 
@@ -88852,6 +88862,9 @@ extern PMC_STATUS_CODE Initialize_GreatestCommonDivisor(PROCESSOR_FEATURES* feat
 
 
 extern PMC_STATUS_CODE Initialize_Pow(PROCESSOR_FEATURES* feature);
+
+
+extern PMC_STATUS_CODE Initialize_ModPow(PROCESSOR_FEATURES* feature);
 
 
 
@@ -88940,6 +88953,13 @@ extern PMC_STATUS_CODE PMC_GreatestCommonDivisor_X_L(HANDLE u, _UINT64_T v, HAND
 extern PMC_STATUS_CODE PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
 extern PMC_STATUS_CODE PMC_Pow_X_I(HANDLE x, _UINT32_T n, HANDLE* z);
+
+extern PMC_STATUS_CODE PMC_ModPow_X_X_X(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
+
+
+extern int(__attribute__((__cdecl__)) * __DEBUG_LOG)(const char*, ...);
+extern void DumpBinary_UNIT(__UNIT_TYPE* buf, __UNIT_TYPE count);
+
 #pragma endregion
 
 
@@ -89194,7 +89214,7 @@ __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_T
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 569 "pmc_internal.h"
+# 585 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89203,7 +89223,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 585 "pmc_internal.h"
+# 601 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89215,7 +89235,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYP
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 610 "pmc_internal.h"
+# 626 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89229,7 +89249,7 @@ __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 
 __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 631 "pmc_internal.h"
+# 647 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89244,7 +89264,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TY
 
 __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
 {
-# 669 "pmc_internal.h"
+# 685 "pmc_internal.h"
     __UNIT_TYPE q;
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -89265,7 +89285,7 @@ __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE
 
 __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
 {
-# 713 "pmc_internal.h"
+# 729 "pmc_internal.h"
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
@@ -89299,9 +89319,9 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 745 "pmc_internal.h" 3
+# 761 "pmc_internal.h" 3
            __rolq
-# 745 "pmc_internal.h"
+# 761 "pmc_internal.h"
                   (x, count));
 
 
@@ -89314,16 +89334,16 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 756 "pmc_internal.h" 3
+# 772 "pmc_internal.h" 3
            __rorq
-# 756 "pmc_internal.h"
+# 772 "pmc_internal.h"
                   (x, count));
 
 
 
 }
 
-__inline static __UNIT_TYPE _POPCNT_UNIT(__UNIT_TYPE value)
+__inline static int _POPCNT_UNIT(__UNIT_TYPE value)
 {
 
 
@@ -89334,7 +89354,7 @@ __inline static __UNIT_TYPE _POPCNT_UNIT(__UNIT_TYPE value)
 
 }
 
-__inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
+__inline static int _POPCNT_ALT_UNIT(__UNIT_TYPE x)
 {
 
 
@@ -89352,45 +89372,45 @@ __inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
 
-    return(x);
+    return((int)x);
 }
 
-__inline static _UINT32_T _LZCNT_32(_UINT32_T value)
+__inline static int _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
 
 
-__inline static _UINT64_T _LZCNT_64(_UINT64_T value)
+__inline static int _LZCNT_64(_UINT64_T value)
 {
-    return (_lzcnt_u64(value));
+    return ((int)_lzcnt_u64(value));
 }
 
 
-__inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
+__inline static int _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
 
 
-    return (_lzcnt_u64(value));
-
-
-
-}
-
-__inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
-{
-# 831 "pmc_internal.h"
-    return (_lzcnt_u64(value));
-
-
-
+    return ((int)_lzcnt_u64(value));
 
 
 
 }
 
-__inline static unsigned char _LZCNT_ALT_8(unsigned char x)
+__inline static int _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
+{
+# 847 "pmc_internal.h"
+    return (_lzcnt_u64(value));
+
+
+
+
+
+
+}
+
+__inline static int _LZCNT_ALT_8(unsigned char x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -89405,7 +89425,7 @@ __inline static unsigned char _LZCNT_ALT_8(unsigned char x)
     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 }
 
-__inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
+__inline static int _LZCNT_ALT_32(_UINT32_T x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -89421,7 +89441,7 @@ __inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
 }
 
 
-__inline static _UINT64_T _LZCNT_ALT_64(_UINT64_T x)
+__inline static int _LZCNT_ALT_64(_UINT64_T x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -89438,11 +89458,11 @@ __inline static _UINT64_T _LZCNT_ALT_64(_UINT64_T x)
 }
 
 
-__inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
+__inline static int _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 906 "pmc_internal.h"
+# 922 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89454,11 +89474,11 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
     return (sizeof(x) * 8 - 1 - pos);
 }
 
-__inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
+__inline static int _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 935 "pmc_internal.h"
+# 951 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89470,33 +89490,33 @@ __inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
     return (sizeof(x) * 8 - 1 - pos);
 }
 
-__inline static __UNIT_TYPE _TZCNT_UNIT(__UNIT_TYPE x)
+__inline static int _TZCNT_UNIT(__UNIT_TYPE x)
 {
 
 
 
-    return (_tzcnt_u64(x));
+    return ((int)_tzcnt_u64(x));
 
 
 
 }
 
-__inline static __UNIT_TYPE _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
+__inline static int _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
 {
 
 
 
-    return(__popcnt64(~x & (x - 1)));
+    return((int)__popcnt64(~x & (x - 1)));
 
 
 
 }
 
-__inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
+__inline static int _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 986 "pmc_internal.h"
+# 1002 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89599,6 +89619,58 @@ __inline static void AddToMULTI32Counter(_INT32_T value)
 __inline static void AddToMULTI64Counter(_INT32_T value)
 {
     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+}
+
+__inline static void ReportLabel(char* label)
+{
+
+    if (__DEBUG_LOG != 
+# 1109 "pmc_internal.h" 3 4
+                      ((void *)0)
+# 1109 "pmc_internal.h"
+                          )
+    {
+        (*__DEBUG_LOG)("%s\n", label);
+    }
+
+}
+
+__inline static void ReportDump(char* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
+{
+
+    if (__DEBUG_LOG != 
+# 1119 "pmc_internal.h" 3 4
+                      ((void *)0)
+# 1119 "pmc_internal.h"
+                          )
+    {
+        (*__DEBUG_LOG)("  %s: ", name);
+        DumpBinary_UNIT(buf, count);
+        (*__DEBUG_LOG)("\n");
+    }
+
+}
+
+__inline static void ReportVar(char* name, __UNIT_TYPE x)
+{
+
+    if (__DEBUG_LOG != 
+# 1131 "pmc_internal.h" 3 4
+                      ((void *)0)
+# 1131 "pmc_internal.h"
+                          )
+    {
+        (*__DEBUG_LOG)("  %s: ", name);
+        if (sizeof(__UNIT_TYPE) == sizeof(unsigned 
+# 1134 "pmc_internal.h" 3
+                                                  long long
+# 1134 "pmc_internal.h"
+                                                         ))
+            (*__DEBUG_LOG)("0x%016llx\n", x);
+        else
+            (*__DEBUG_LOG)("0x%08lx\n", x);
+    }
+
 }
 #pragma endregion
 # 35 "pmc_divrem.c" 2
@@ -91854,8 +91926,58 @@ __inline static char _SUBTRUCT_2WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNI
 # 36 "pmc_divrem.c" 2
 
 
+
+
+
 static void(*fp_DivRem_X_X)(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV* v_buf, __UNIT_TYPE v_buf_len, __UNIT_TYPE_DIV* work_v_buf, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
 
+
+void DivRem_X_X(__UNIT_TYPE* u_buf, __UNIT_TYPE u_count, __UNIT_TYPE* v_buf, __UNIT_TYPE v_count, __UNIT_TYPE* work_v_buf, __UNIT_TYPE* q_buf, __UNIT_TYPE* r_buf)
+{
+    __UNIT_TYPE_DIV* u_buf_2 = (__UNIT_TYPE_DIV*)u_buf;
+    __UNIT_TYPE u_count_2 = u_count * (sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV));
+    __UNIT_TYPE_DIV* v_buf_2 = (__UNIT_TYPE_DIV*)v_buf;
+    __UNIT_TYPE v_count_2 = v_count * (sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV));
+    if (sizeof(__UNIT_TYPE) != sizeof(__UNIT_TYPE_DIV))
+    {
+        if (u_buf_2[u_count_2 - 1] == 0)
+            --u_count_2;
+        if (v_buf_2[v_count_2 - 1] == 0)
+            --v_count_2;
+    }
+    if (v_count_2 == 1)
+    {
+        if (u_count_2 == 1)
+        {
+            __UNIT_TYPE_DIV r;
+            __UNIT_TYPE_DIV q = _DIVREM_UNIT(0, u_buf_2[0], v_buf_2[0], &r);
+            q_buf[0] = q;
+            r_buf[0] = r;
+
+            if (sizeof(r) == sizeof(_UINT64_T))
+                IncrementDIV64Counter();
+            else
+                IncrementDIV32Counter();
+
+        }
+        else
+        {
+            __UNIT_TYPE_DIV r;
+            DivRem_X_1W(u_buf_2, u_count_2, v_buf_2[0], (__UNIT_TYPE_DIV*)q_buf, &r);
+            r_buf[0] = r;
+        }
+    }
+    else
+    {
+        if (u_count_2 < v_count_2)
+        {
+            q_buf[0] = 0;
+            _COPY_MEMORY_UNIT(r_buf, u_buf, u_count);
+        }
+        else
+            (*fp_DivRem_X_X)(u_buf_2, u_count_2, v_buf_2, v_count_2, (__UNIT_TYPE_DIV*)work_v_buf, (__UNIT_TYPE_DIV*)q_buf, (__UNIT_TYPE_DIV*)r_buf);
+    }
+}
 
 void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf)
 {
@@ -92047,21 +92169,21 @@ __inline static BOOL CheckQ_(__UNIT_TYPE_DIV q_, __UNIT_TYPE_DIV uj, __UNIT_TYPE
 
     if (rh_hi > 0)
         return (
-# 230 "pmc_divrem.c" 3
+# 280 "pmc_divrem.c" 3
                0
-# 230 "pmc_divrem.c"
+# 280 "pmc_divrem.c"
                     );
     else if (lh_mi > rh_mi)
         return (
-# 232 "pmc_divrem.c" 3
+# 282 "pmc_divrem.c" 3
                1
-# 232 "pmc_divrem.c"
+# 282 "pmc_divrem.c"
                    );
     else if (lh_mi < rh_mi)
         return (
-# 234 "pmc_divrem.c" 3
+# 284 "pmc_divrem.c" 3
                0
-# 234 "pmc_divrem.c"
+# 284 "pmc_divrem.c"
                     );
     else
         return (lh_lo > rh_lo);
@@ -92069,6 +92191,7 @@ __inline static BOOL CheckQ_(__UNIT_TYPE_DIV q_, __UNIT_TYPE_DIV uj, __UNIT_TYPE
 
 __inline static BOOL CheckQ_X(__UNIT_TYPE_DIV q_, __UNIT_TYPE_DIV uj, __UNIT_TYPE_DIV uj_1, __UNIT_TYPE_DIV uj_2, __UNIT_TYPE_DIV v1, __UNIT_TYPE_DIV v2)
 {
+# 300 "pmc_divrem.c"
     __UNIT_TYPE_DIV lh_mi;
     __UNIT_TYPE_DIV lh_lo = _MULTIPLYX_UNIT_DIV(v2, q_, &lh_mi);
     __UNIT_TYPE_DIV rh_hi;
@@ -92086,25 +92209,45 @@ __inline static BOOL CheckQ_X(__UNIT_TYPE_DIV q_, __UNIT_TYPE_DIV uj, __UNIT_TYP
         AddToMULTI32Counter(2);
 
     if (rh_hi > 0)
+    {
+
+
+
         return (
-# 258 "pmc_divrem.c" 3
+# 321 "pmc_divrem.c" 3
                0
-# 258 "pmc_divrem.c"
+# 321 "pmc_divrem.c"
                     );
+    }
     else if (lh_mi > rh_mi)
+    {
+
+
+
         return (
-# 260 "pmc_divrem.c" 3
+# 328 "pmc_divrem.c" 3
                1
-# 260 "pmc_divrem.c"
+# 328 "pmc_divrem.c"
                    );
+    }
     else if (lh_mi < rh_mi)
+    {
+
+
+
         return (
-# 262 "pmc_divrem.c" 3
+# 335 "pmc_divrem.c" 3
                0
-# 262 "pmc_divrem.c"
+# 335 "pmc_divrem.c"
                     );
+    }
     else
+    {
+
+
+
         return (lh_lo > rh_lo);
+    }
 }
 
 __inline static __UNIT_TYPE_DIV CalculateQ_(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE_DIV* v_buf, __UNIT_TYPE v_buf_len, __UNIT_TYPE q_index)
@@ -92134,6 +92277,13 @@ static __UNIT_TYPE_DIV CalculateQ_X(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE_DIV* v_b
     __UNIT_TYPE_DIV v1 = v_buf[v_buf_len - 1];
     __UNIT_TYPE_DIV v2 = v_buf[v_buf_len - 2];
     __UNIT_TYPE_DIV q_ = AsumeQ_(uj, uj_1, v1);
+
+
+
+
+
+
+
     if (!CheckQ_X(q_, uj, uj_1, uj_2, v1, v2))
         return (q_);
     --q_;
@@ -92158,18 +92308,18 @@ static BOOL DoBorrow(char c, __UNIT_TYPE_DIV k, __UNIT_TYPE_DIV* up, __UNIT_TYPE
 
 
                 return (
-# 317 "pmc_divrem.c" 3
+# 403 "pmc_divrem.c" 3
                        1
-# 317 "pmc_divrem.c"
+# 403 "pmc_divrem.c"
                            );
             }
 
 
 
             return (
-# 322 "pmc_divrem.c" 3
+# 408 "pmc_divrem.c" 3
                    0
-# 322 "pmc_divrem.c"
+# 408 "pmc_divrem.c"
                         );
         }
         else if (c)
@@ -92188,9 +92338,9 @@ static BOOL DoBorrow(char c, __UNIT_TYPE_DIV k, __UNIT_TYPE_DIV* up, __UNIT_TYPE
 
 
             return (
-# 339 "pmc_divrem.c" 3
+# 425 "pmc_divrem.c" 3
                    0
-# 339 "pmc_divrem.c"
+# 425 "pmc_divrem.c"
                         );
         }
     }
@@ -92364,6 +92514,7 @@ static BOOL SubtructOneLine(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNI
     }
 
     c = _SUBTRUCT_UNIT_DIV(c, *u_ptr, k, u_ptr);
+    k = 0;
     u_ptr += 1;
 
     return (DoBorrow(c, k, u_ptr, u_buf + u_buf_len + 1 - u_ptr));
@@ -92515,6 +92666,7 @@ static BOOL SubtructOneLineX(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UN
     }
 
     c = _SUBTRUCT_UNIT_DIV(c, *u_ptr, k, u_ptr);
+    k = 0;
     u_ptr += 1;
 
     return (DoBorrow(c, k, u_ptr, u_buf + u_buf_len + 1 - u_ptr));
@@ -92709,14 +92861,14 @@ static void DivRem_X_X_using_ADC_MUL(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_l
     else
     {
         LeftShift_Imp_DIV(u_buf, u_buf_len, d_factor, r_buf, 
-# 856 "pmc_divrem.c" 3
+# 944 "pmc_divrem.c" 3
                                                             0
-# 856 "pmc_divrem.c"
+# 944 "pmc_divrem.c"
                                                                  );
         LeftShift_Imp_DIV(v_buf, v_buf_len, d_factor, work_v_buf, 
-# 857 "pmc_divrem.c" 3
+# 945 "pmc_divrem.c" 3
                                                                  0
-# 857 "pmc_divrem.c"
+# 945 "pmc_divrem.c"
                                                                       );
     }
 
@@ -92743,9 +92895,9 @@ static void DivRem_X_X_using_ADC_MUL(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_l
 
     if (d_factor > 0)
         RightShift_Imp_DIV(work_u_buf, u_buf_len + 1, d_factor, work_u_buf, 
-# 882 "pmc_divrem.c" 3
+# 970 "pmc_divrem.c" 3
                                                                            0
-# 882 "pmc_divrem.c"
+# 970 "pmc_divrem.c"
                                                                                 );
 }
 
@@ -92765,8 +92917,7 @@ static void DivRem_X_X_using_ADX_MULX(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_
     {
         ;
     }
-
-
+# 997 "pmc_divrem.c"
     __UNIT_TYPE_DIV d_factor = _LZCNT_ALT_UNIT_DIV(v_buf[v_buf_len - 1]);
     if (d_factor == 0)
     {
@@ -92777,16 +92928,20 @@ static void DivRem_X_X_using_ADX_MULX(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_
     else
     {
         LeftShift_Imp_DIV(u_buf, u_buf_len, d_factor, r_buf, 
-# 912 "pmc_divrem.c" 3
+# 1006 "pmc_divrem.c" 3
                                                             0
-# 912 "pmc_divrem.c"
+# 1006 "pmc_divrem.c"
                                                                  );
         LeftShift_Imp_DIV(v_buf, v_buf_len, d_factor, work_v_buf, 
-# 913 "pmc_divrem.c" 3
+# 1007 "pmc_divrem.c" 3
                                                                  0
-# 913 "pmc_divrem.c"
+# 1007 "pmc_divrem.c"
                                                                       );
     }
+
+
+
+
 
     __UNIT_TYPE_DIV* work_u_buf = r_buf;
     __UNIT_TYPE q_index = u_buf_len - v_buf_len;
@@ -92796,14 +92951,35 @@ static void DivRem_X_X_using_ADX_MULX(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_
         __UNIT_TYPE_DIV q_ = CalculateQ_X(work_u_buf, work_v_buf, v_buf_len, q_index);
 
 
+
+
+
+
+
         if (SubtructOneLineX(work_u_buf, u_buf_len, work_v_buf, v_buf_len, q_index, q_))
         {
-
+# 1038 "pmc_divrem.c"
             --q_;
             AddOneLineX(work_u_buf, u_buf_len, work_v_buf, v_buf_len, q_index);
+
+
+
+
+        }
+        else
+        {
+
+
+
         }
 
         q_buf[q_index] = q_;
+
+
+
+
+
+
         if (q_index == 0)
             break;
         --q_index;
@@ -92811,10 +92987,16 @@ static void DivRem_X_X_using_ADX_MULX(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_
 
     if (d_factor > 0)
         RightShift_Imp_DIV(work_u_buf, u_buf_len + 1, d_factor, work_u_buf, 
-# 938 "pmc_divrem.c" 3
+# 1065 "pmc_divrem.c" 3
                                                                            0
-# 938 "pmc_divrem.c"
+# 1065 "pmc_divrem.c"
                                                                                 );
+
+
+
+
+
+
 }
 
 PMC_STATUS_CODE PMC_DivRem_I_X(_UINT32_T u, HANDLE v, _UINT32_T* q, _UINT32_T* r)
@@ -92825,21 +93007,21 @@ PMC_STATUS_CODE PMC_DivRem_I_X(_UINT32_T u, HANDLE v, _UINT32_T* q, _UINT32_T* r
         return ((-256));
     }
     if (v == 
-# 948 "pmc_divrem.c" 3 4
+# 1081 "pmc_divrem.c" 3 4
             ((void *)0)
-# 948 "pmc_divrem.c"
+# 1081 "pmc_divrem.c"
                 )
         return ((-1));
     if (q == 
-# 950 "pmc_divrem.c" 3 4
+# 1083 "pmc_divrem.c" 3 4
             ((void *)0)
-# 950 "pmc_divrem.c"
+# 1083 "pmc_divrem.c"
                 )
         return ((-1));
     if (r == 
-# 952 "pmc_divrem.c" 3 4
+# 1085 "pmc_divrem.c" 3 4
             ((void *)0)
-# 952 "pmc_divrem.c"
+# 1085 "pmc_divrem.c"
                 )
         return ((-1));
     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
@@ -92896,6 +93078,12 @@ PMC_STATUS_CODE PMC_DivRem_I_X(_UINT32_T u, HANDLE v, _UINT32_T* q, _UINT32_T* r
                 __UNIT_TYPE_DIV temp_r;
                 *q = _DIVREM_UNIT(0, u, (__UNIT_TYPE_DIV)nv->BLOCK[0], &temp_r);
                 *r = temp_r;
+
+                if (sizeof(r) == sizeof(_UINT64_T))
+                    IncrementDIV64Counter();
+                else
+                    IncrementDIV32Counter();
+
             }
         }
     }
@@ -92910,21 +93098,21 @@ PMC_STATUS_CODE PMC_DivRem_X_I(HANDLE u, _UINT32_T v, HANDLE* q, _UINT32_T* r)
         return ((-256));
     }
     if (u == 
-# 1021 "pmc_divrem.c" 3 4
+# 1160 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1021 "pmc_divrem.c"
+# 1160 "pmc_divrem.c"
                 )
         return ((-1));
     if (q == 
-# 1023 "pmc_divrem.c" 3 4
+# 1162 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1023 "pmc_divrem.c"
+# 1162 "pmc_divrem.c"
                 )
         return ((-1));
     if (r == 
-# 1025 "pmc_divrem.c" 3 4
+# 1164 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1025 "pmc_divrem.c"
+# 1164 "pmc_divrem.c"
                 )
         return ((-1));
     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
@@ -93011,21 +93199,21 @@ PMC_STATUS_CODE PMC_DivRem_L_X(_UINT64_T u, HANDLE v, _UINT64_T* q, _UINT64_T* r
         return ((-256));
     }
     if (v == 
-# 1110 "pmc_divrem.c" 3 4
+# 1249 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1110 "pmc_divrem.c"
+# 1249 "pmc_divrem.c"
                 )
         return ((-1));
     if (q == 
-# 1112 "pmc_divrem.c" 3 4
+# 1251 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1112 "pmc_divrem.c"
+# 1251 "pmc_divrem.c"
                 )
         return ((-1));
     if (r == 
-# 1114 "pmc_divrem.c" 3 4
+# 1253 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1114 "pmc_divrem.c"
+# 1253 "pmc_divrem.c"
                 )
         return ((-1));
     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
@@ -93090,6 +93278,12 @@ PMC_STATUS_CODE PMC_DivRem_L_X(_UINT64_T u, HANDLE v, _UINT64_T* q, _UINT64_T* r
                         __UNIT_TYPE_DIV temp_r;
                         *q = _DIVREM_UNIT(0, u_lo, (__UNIT_TYPE_DIV)nv->BLOCK[0], &temp_r);
                         *r = temp_r;
+
+                        if (sizeof(r) == sizeof(_UINT64_T))
+                            IncrementDIV64Counter();
+                        else
+                            IncrementDIV32Counter();
+
                     }
                 }
                 else
@@ -93161,6 +93355,12 @@ PMC_STATUS_CODE PMC_DivRem_L_X(_UINT64_T u, HANDLE v, _UINT64_T* q, _UINT64_T* r
                     __UNIT_TYPE_DIV temp_r;
                     *q = _DIVREM_UNIT(0, (__UNIT_TYPE_DIV)u, (__UNIT_TYPE_DIV)nv->BLOCK[0], &temp_r);
                     *r = temp_r;
+
+                    if (sizeof(r) == sizeof(_UINT64_T))
+                        IncrementDIV64Counter();
+                    else
+                        IncrementDIV32Counter();
+
                 }
             }
 
@@ -93177,21 +93377,21 @@ PMC_STATUS_CODE PMC_DivRem_X_L(HANDLE u, _UINT64_T v, HANDLE* q, _UINT64_T* r)
         return ((-256));
     }
     if (u == 
-# 1264 "pmc_divrem.c" 3 4
+# 1415 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1264 "pmc_divrem.c"
+# 1415 "pmc_divrem.c"
                 )
         return ((-1));
     if (q == 
-# 1266 "pmc_divrem.c" 3 4
+# 1417 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1266 "pmc_divrem.c"
+# 1417 "pmc_divrem.c"
                 )
         return ((-1));
     if (r == 
-# 1268 "pmc_divrem.c" 3 4
+# 1419 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1268 "pmc_divrem.c"
+# 1419 "pmc_divrem.c"
                 )
         return ((-1));
     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
@@ -93301,9 +93501,9 @@ PMC_STATUS_CODE PMC_DivRem_X_L(HANDLE u, _UINT64_T v, HANDLE* q, _UINT64_T* r)
                         __UNIT_TYPE r_buf_words;
                         __UNIT_TYPE_DIV* r_buf = (__UNIT_TYPE_DIV*)AllocateBlock(r_bit_count, &r_buf_words, &r_buf_code);
                         if (r_buf == 
-# 1376 "pmc_divrem.c" 3 4
+# 1527 "pmc_divrem.c" 3 4
                                     ((void *)0)
-# 1376 "pmc_divrem.c"
+# 1527 "pmc_divrem.c"
                                         )
                         {
                             DeallocateNumber(nq);
@@ -93373,27 +93573,27 @@ PMC_STATUS_CODE PMC_DivRem_X_L(HANDLE u, _UINT64_T v, HANDLE* q, _UINT64_T* r)
 PMC_STATUS_CODE PMC_DivRem_X_X(HANDLE u, HANDLE v, HANDLE* q, HANDLE* r)
 {
     if (u == 
-# 1444 "pmc_divrem.c" 3 4
+# 1595 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1444 "pmc_divrem.c"
+# 1595 "pmc_divrem.c"
                 )
         return ((-1));
     if (v == 
-# 1446 "pmc_divrem.c" 3 4
+# 1597 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1446 "pmc_divrem.c"
+# 1597 "pmc_divrem.c"
                 )
         return ((-1));
     if (q == 
-# 1448 "pmc_divrem.c" 3 4
+# 1599 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1448 "pmc_divrem.c"
+# 1599 "pmc_divrem.c"
                 )
         return ((-1));
     if (r == 
-# 1450 "pmc_divrem.c" 3 4
+# 1601 "pmc_divrem.c" 3 4
             ((void *)0)
-# 1450 "pmc_divrem.c"
+# 1601 "pmc_divrem.c"
                 )
         return ((-1));
     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
@@ -93500,9 +93700,9 @@ PMC_STATUS_CODE PMC_DivRem_X_X(HANDLE u, HANDLE v, HANDLE* q, HANDLE* r)
                 __UNIT_TYPE work_v_buf_words;
                 __UNIT_TYPE_DIV* work_v_buf = (__UNIT_TYPE_DIV*)AllocateBlock(nv->UNIT_WORD_COUNT * (sizeof(__UNIT_TYPE) * 8), &work_v_buf_words, &work_v_buf_code);
                 if (work_v_buf == 
-# 1555 "pmc_divrem.c" 3 4
+# 1706 "pmc_divrem.c" 3 4
                                  ((void *)0)
-# 1555 "pmc_divrem.c"
+# 1706 "pmc_divrem.c"
                                      )
                 {
                     DeallocateNumber(nq);

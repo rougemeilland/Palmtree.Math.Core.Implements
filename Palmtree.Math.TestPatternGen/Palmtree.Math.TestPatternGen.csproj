@@ -47,6 +47,7 @@
     <Compile Include="BigIntegerExtensions.cs" />
     <Compile Include="DirectoryInfoExtensions.cs" />
     <Compile Include="InputTestData.cs" />
+    <Compile Include="INTERNALTEST_DivRem.cs" />
     <Compile Include="ITestData.cs" />
     <Compile Include="ITestPattern.cs" />
     <Compile Include="OutputTestData.cs" />
@@ -60,6 +61,8 @@
     <Compile Include="TEST_PMC_Compare.cs" />
     <Compile Include="TEST_PMC_ExclusiveOr.cs" />
     <Compile Include="TEST_PMC_From.cs" />
+    <Compile Include="TEST_PMC_ModPow.cs" />
+    <Compile Include="INTERNALTEST_Multiply.cs" />
     <Compile Include="TEST_PMC_Pow.cs" />
     <Compile Include="TEST_PMC_ParseDN1.cs" />
     <Compile Include="TEST_PMC_ParseDN2.cs" />

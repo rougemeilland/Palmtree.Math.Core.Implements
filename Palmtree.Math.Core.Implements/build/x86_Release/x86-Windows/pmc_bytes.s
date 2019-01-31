@@ -4,7 +4,7 @@
 	.globl	_PMC_FromByteArray@12
 	.def	_PMC_FromByteArray@12;	.scl	2;	.type	32;	.endef
 _PMC_FromByteArray@12:
-LFB5488:
+LFB5491:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -68,7 +68,7 @@ L4:
 	movl	$7, %ecx
 	sall	$3, %eax
 /APP
- # 848 "pmc_internal.h" 1
+ # 864 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -121,12 +121,12 @@ L9:
 	movl	$-1, %eax
 	jmp	L1
 	.cfi_endproc
-LFE5488:
+LFE5491:
 	.p2align 4,,15
 	.globl	_PMC_ToByteArray@16
 	.def	_PMC_ToByteArray@16;	.scl	2;	.type	32;	.endef
 _PMC_ToByteArray@16:
-LFB5489:
+LFB5492:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -199,7 +199,7 @@ L28:
 	movl	$-4, %eax
 	jmp	L21
 	.cfi_endproc
-LFE5489:
+LFE5492:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	_CommitNumber;	.scl	2;	.type	32;	.endef

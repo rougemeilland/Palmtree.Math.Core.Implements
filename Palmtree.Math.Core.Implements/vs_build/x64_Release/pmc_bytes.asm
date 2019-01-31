@@ -94,8 +94,6 @@ xdata	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bytes.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bytes.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bytes.c
 ;	COMDAT CountActualBitsFromBuffer
 _TEXT	SEGMENT
 p$ = 8
@@ -105,13 +103,12 @@ CountActualBitsFromBuffer PROC				; COMDAT
 ; 39   :     p += count;
 
 	add	rcx, rdx
-	mov	r8, rdx
 
 ; 40   :     while (count > 0)
 
 	test	rdx, rdx
 	je	SHORT $LN3@CountActua
-	npad	5
+	npad	8
 $LL2@CountActua:
 
 ; 41   :     {
@@ -125,7 +122,7 @@ $LL2@CountActua:
 
 ; 45   :         --count;
 
-	sub	r8, 1
+	sub	rdx, 1
 	jne	SHORT $LL2@CountActua
 $LN3@CountActua:
 
@@ -140,29 +137,26 @@ $LN3@CountActua:
 $LN10@CountActua:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 846  :     _BitScanReverse(&pos, x);
+; 862  :     _BitScanReverse(&pos, x);
 
 	movzx	eax, al
-
-; 852  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
-
-	mov	edx, 7
 	bsr	ecx, eax
+
+; 863  : #elif defined(__GNUC__)
+; 864  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+; 865  : #else
+; 866  : #error unknown compiler
+; 867  : #endif
+; 868  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+
+	mov	eax, 7
+	sub	al, cl
+	movzx	ecx, al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bytes.c
 
 ; 44   :             return (count * 8 - _LZCNT_ALT_8(*p));
 
-	lea	rax, QWORD PTR [r8*8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 852  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
-
-	sub	dl, cl
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bytes.c
-
-; 44   :             return (count * 8 - _LZCNT_ALT_8(*p));
-
-	movzx	ecx, dl
+	lea	rax, QWORD PTR [rdx*8]
 	sub	rax, rcx
 
 ; 48   : }
@@ -177,38 +171,39 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_8 PROC					; COMDAT
 
-; 842  :     if (x == 0)
+; 858  :     if (x == 0)
 
 	test	cl, cl
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 843  :         return (sizeof(x) * 8);
+; 859  :         return (sizeof(x) * 8);
 
-	mov	al, 8
+	mov	eax, 8
 
-; 853  : }
+; 869  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 844  :     _UINT32_T pos;
-; 845  : #ifdef _MSC_VER
-; 846  :     _BitScanReverse(&pos, x);
+; 860  :     _UINT32_T pos;
+; 861  : #ifdef _MSC_VER
+; 862  :     _BitScanReverse(&pos, x);
 
 	movzx	eax, cl
 	bsr	ecx, eax
 
-; 847  : #elif defined(__GNUC__)
-; 848  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-; 849  : #else
-; 850  : #error unknown compiler
-; 851  : #endif
-; 852  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 863  : #elif defined(__GNUC__)
+; 864  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+; 865  : #else
+; 866  : #error unknown compiler
+; 867  : #endif
+; 868  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	eax, 7
 	sub	al, cl
+	movzx	eax, al
 
-; 853  : }
+; 869  : }
 
 	ret	0
 _LZCNT_ALT_8 ENDP
@@ -221,7 +216,7 @@ u$ = 8
 v$ = 16
 _DIVIDE_CEILING_SIZE PROC				; COMDAT
 
-; 459  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	lea	rax, QWORD PTR [rdx-1]
 	mov	r8, rdx
@@ -229,7 +224,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	xor	edx, edx
 	div	r8
 
-; 460  : }
+; 476  : }
 
 	ret	0
 _DIVIDE_CEILING_SIZE ENDP
@@ -243,19 +238,19 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 309  : {
+; 325  : {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 
-; 310  :     __movsb(d, s, count);
+; 326  :     __movsb(d, s, count);
 
 	mov	rdi, rcx
 	mov	rsi, rdx
 	mov	rcx, r8
 	rep movsb
 
-; 311  : }
+; 327  : }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -319,7 +314,7 @@ $LN2@PMC_ToByte:
 $LN9@PMC_ToByte:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 459  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	mov	rdx, QWORD PTR [rsi+8]
 	add	rdx, 7
@@ -357,7 +352,7 @@ $LN5@PMC_ToByte:
 $LN6@PMC_ToByte:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 310  :     __movsb(d, s, count);
+; 326  :     __movsb(d, s, count);
 
 	mov	rsi, QWORD PTR [rsi+48]
 	mov	rcx, rdx
@@ -472,7 +467,7 @@ $LN27@PMC_FromBy:
 $LN21@PMC_FromBy:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 846  :     _BitScanReverse(&pos, x);
+; 862  :     _BitScanReverse(&pos, x);
 
 	movzx	eax, cl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bytes.c
@@ -482,25 +477,25 @@ $LN21@PMC_FromBy:
 	lea	rdi, QWORD PTR [rdx*8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 846  :     _BitScanReverse(&pos, x);
+; 862  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 847  : #elif defined(__GNUC__)
-; 848  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-; 849  : #else
-; 850  : #error unknown compiler
-; 851  : #endif
-; 852  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 863  : #elif defined(__GNUC__)
+; 864  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+; 865  : #else
+; 866  : #error unknown compiler
+; 867  : #endif
+; 868  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	eax, 7
 	sub	al, cl
+	movzx	ecx, al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bytes.c
 
 ; 44   :             return (count * 8 - _LZCNT_ALT_8(*p));
 
-	movzx	eax, al
-	sub	rdi, rax
+	sub	rdi, rcx
 
 ; 57   :         return (PMC_STATUS_ARGUMENT_ERROR);
 ; 58   :     __UNIT_TYPE bit_count = CountActualBitsFromBuffer(buffer, count);
@@ -521,19 +516,19 @@ $LN21@PMC_FromBy:
 	jne	SHORT $LN27@PMC_FromBy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 459  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	lea	rcx, QWORD PTR [rdi+7]
 
-; 310  :     __movsb(d, s, count);
+; 326  :     __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR p$1[rsp]
 
-; 459  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	shr	rcx, 3
 
-; 310  :     __movsb(d, s, count);
+; 326  :     __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR [rdi+48]
 	rep movsb

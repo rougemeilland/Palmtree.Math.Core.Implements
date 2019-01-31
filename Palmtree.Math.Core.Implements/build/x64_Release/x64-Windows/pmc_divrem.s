@@ -602,19 +602,19 @@ SubtructOneLine:
 .L2:
 	leaq	8(%r12), %rcx
 	testb	$16, %r9b
-	jne	.L45
+	jne	.L44
 .L4:
 	testb	$8, %r9b
-	jne	.L46
+	jne	.L45
 .L5:
 	testb	$4, %r9b
-	jne	.L47
+	jne	.L46
 .L6:
 	testb	$2, %r9b
-	jne	.L48
+	jne	.L47
 .L7:
 	andl	$1, %r9d
-	jne	.L49
+	jne	.L48
 .L8:
 	movq	(%r12), %rax
 	movl	%r15d, %esi
@@ -628,25 +628,24 @@ SubtructOneLine:
 	subq	%rcx, %r8
 	sarq	$3, %r8
 	testq	%r8, %r8
-	jne	.L43
-	jmp	.L9
+	je	.L9
+	xorl	%r9d, %r9d
+	testb	%al, %al
+	jne	.L10
+	jmp	.L11
 	.p2align 4,,10
-.L50:
+.L41:
+	testb	%al, %al
+	je	.L11
+.L10:
 	movq	(%rcx), %rdx
 	addb	$-1, %al
-	sbbq	%rbp, %rdx
+	sbbq	%r9, %rdx
 	movq	%rdx, (%rcx)
 	setc	%al
 	addq	$8, %rcx
 	subq	$1, %r8
-	je	.L9
-	xorl	%ebp, %ebp
-.L43:
-	testb	%al, %al
-	jne	.L50
-	xorl	%eax, %eax
-	jmp	.L1
-	.p2align 4,,10
+	jne	.L41
 .L9:
 	andl	$1, %eax
 .L1:
@@ -661,7 +660,11 @@ SubtructOneLine:
 	popq	%r15
 	ret
 	.p2align 4,,10
-.L49:
+.L11:
+	xorl	%eax, %eax
+	jmp	.L1
+	.p2align 4,,10
+.L48:
 	movq	%rbx, %rax
 	movl	%r15d, %edi
 	mulq	(%r8)
@@ -686,7 +689,7 @@ SubtructOneLine:
 	addq	$8, %rcx
 	jmp	.L8
 	.p2align 4,,10
-.L48:
+.L47:
 	movq	%rbx, %rax
 	movl	%r15d, %edi
 	mulq	(%r8)
@@ -725,7 +728,7 @@ SubtructOneLine:
 	movq	%rdx, %r12
 	jmp	.L7
 	.p2align 4,,10
-.L47:
+.L46:
 	movq	%rbx, %rax
 	movl	%r15d, %edi
 	mulq	(%r8)
@@ -790,7 +793,7 @@ SubtructOneLine:
 	movq	%rdx, %r12
 	jmp	.L6
 	.p2align 4,,10
-.L46:
+.L45:
 	movq	%rbx, %rax
 	movl	%r15d, %edi
 	mulq	(%r8)
@@ -907,7 +910,7 @@ SubtructOneLine:
 	movq	%rdx, %r12
 	jmp	.L5
 	.p2align 4,,10
-.L45:
+.L44:
 	movq	%rbx, %rax
 	movl	%r15d, %edi
 	mulq	(%r8)
@@ -1166,26 +1169,26 @@ SubtructOneLineX:
 	movq	%r9, 136(%rsp)
 	movq	%r14, 8(%rsp)
 	leaq	(%rcx,%rdx,8), %r13
-	je	.L64
+	je	.L62
 	movq	.refptr.statistics_info(%rip), %r15
 	movq	%r8, %r10
 	movq	%r13, %r9
-	xorl	%esi, %esi
+	xorl	%edi, %edi
 	leaq	24(%rsp), %rbx
 	xorl	%ebp, %ebp
 	xorl	%ecx, %ecx
 	leaq	16(%rsp), %r11
 	.p2align 4,,10
-.L53:
+.L51:
 	movq	(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
-	mulxq %rax, %rdi, %r12
+ # 648 "pmc_internal.h" 1
+	mulxq %rax, %rsi, %r12
  # 0 "" 2
 /NO_APP
-	addq	%rsi, %rdi
+	addq	%rdi, %rsi
 	setc	%dl
-	movq	%rdi, (%rbx)
+	movq	%rsi, (%rbx)
 	addb	$-1, %dl
 	adcq	%rcx, %r12
 	addb	$-1, %bpl
@@ -1196,7 +1199,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	8(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1213,7 +1216,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	16(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1230,7 +1233,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	24(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1247,7 +1250,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	32(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1264,7 +1267,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	40(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1281,7 +1284,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	48(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1298,7 +1301,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	56(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1315,7 +1318,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	64(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1332,7 +1335,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	72(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1349,7 +1352,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	80(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1366,7 +1369,7 @@ SubtructOneLineX:
 	movq	%rdx, 80(%r9)
 	movq	88(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1383,7 +1386,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	96(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1400,7 +1403,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	104(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1417,7 +1420,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	112(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1434,7 +1437,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	120(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1451,7 +1454,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	128(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1468,7 +1471,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	136(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1485,7 +1488,7 @@ SubtructOneLineX:
 	movq	%rdx, 136(%r9)
 	movq	144(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1502,7 +1505,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	152(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1519,7 +1522,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	160(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1536,7 +1539,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	168(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1553,7 +1556,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	176(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1570,7 +1573,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	184(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1587,7 +1590,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	192(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1604,7 +1607,7 @@ SubtructOneLineX:
 	movq	%rdx, 192(%r9)
 	movq	200(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1621,7 +1624,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	208(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1638,7 +1641,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	216(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1655,7 +1658,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	224(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1672,7 +1675,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	232(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1689,7 +1692,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	240(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1706,7 +1709,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	248(%r10), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1720,40 +1723,40 @@ SubtructOneLineX:
 	movq	248(%r9), %rdx
 	sbbq	24(%rsp), %rdx
 	movq	%rdx, 248(%r9)
-	movq	16(%rsp), %rsi
+	movq	16(%rsp), %rdi
 	setc	%bpl
 	addq	$256, %r9
 	addq	$256, %r10
 	subq	$1, %r14
 	lock addl	$32, (%r15)
 	testq	%r14, %r14
-	jne	.L53
+	jne	.L51
 	movq	8(%rsp), %rdx
 	movzbl	%bpl, %ebp
 	salq	$8, %rdx
 	addq	%rdx, %r13
 	addq	%rdx, %r8
-.L52:
+.L50:
 	testb	$16, 136(%rsp)
 	leaq	8(%r13), %rcx
-	jne	.L94
-.L54:
+	jne	.L91
+.L52:
 	testb	$8, 136(%rsp)
-	jne	.L95
-.L55:
+	jne	.L92
+.L53:
 	testb	$4, 136(%rsp)
-	jne	.L96
-.L56:
+	jne	.L93
+.L54:
 	testb	$2, 136(%rsp)
-	jne	.L97
-.L57:
+	jne	.L94
+.L55:
 	testb	$1, 136(%rsp)
-	jne	.L98
-.L58:
+	jne	.L95
+.L56:
 	movq	0(%r13), %rax
 	movl	%ebp, %ebx
 	addb	$-1, %bl
-	sbbq	%rsi, %rax
+	sbbq	%rdi, %rax
 	movq	%rax, 0(%r13)
 	movq	112(%rsp), %rbx
 	setc	%al
@@ -1762,28 +1765,27 @@ SubtructOneLineX:
 	subq	%rcx, %r8
 	sarq	$3, %r8
 	testq	%r8, %r8
-	jne	.L93
+	je	.L57
+	xorl	%r9d, %r9d
+	testb	%al, %al
+	jne	.L58
 	jmp	.L59
 	.p2align 4,,10
-.L99:
+.L89:
+	testb	%al, %al
+	je	.L59
+.L58:
 	movq	(%rcx), %rdx
 	addb	$-1, %al
-	sbbq	%rsi, %rdx
+	sbbq	%r9, %rdx
 	movq	%rdx, (%rcx)
 	setc	%al
 	addq	$8, %rcx
 	subq	$1, %r8
-	je	.L59
-	xorl	%esi, %esi
-.L93:
-	testb	%al, %al
-	jne	.L99
-	xorl	%eax, %eax
-	jmp	.L51
-	.p2align 4,,10
-.L59:
+	jne	.L89
+.L57:
 	andl	$1, %eax
-.L51:
+.L49:
 	addq	$40, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -1795,15 +1797,19 @@ SubtructOneLineX:
 	popq	%r15
 	ret
 	.p2align 4,,10
-.L98:
+.L59:
+	xorl	%eax, %eax
+	jmp	.L49
+	.p2align 4,,10
+.L95:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rax, %r8
  # 0 "" 2
 /NO_APP
-	addq	%rsi, %rax
+	addq	%rdi, %rax
 	setc	%dl
 	movq	%rax, 24(%rsp)
 	addb	$-1, %dl
@@ -1814,37 +1820,37 @@ SubtructOneLineX:
 	sbbq	%rax, %rdx
 	movq	.refptr.statistics_info(%rip), %rax
 	movq	%rdx, 0(%r13)
-	movq	16(%rsp), %rsi
+	movq	16(%rsp), %rdi
 	setc	%bpl
 	lock addl	$1, (%rax)
 	movq	%rcx, %r13
 	movzbl	%bpl, %ebp
 	addq	$8, %rcx
-	jmp	.L58
+	jmp	.L56
 	.p2align 4,,10
-.L97:
+.L94:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 632 "pmc_internal.h" 1
-	mulxq %rax, %r9, %r11
+ # 648 "pmc_internal.h" 1
+	mulxq %rax, %rsi, %r9
  # 0 "" 2
 /NO_APP
-	addq	%r9, %rsi
+	addq	%rdi, %rsi
 	setc	%dl
 	xorl	%r10d, %r10d
 	movq	%rsi, 24(%rsp)
 	addb	$-1, %dl
-	adcq	%r10, %r11
+	adcq	%r10, %r9
 	addb	$-1, %bl
-	movq	%r11, 16(%rsp)
+	movq	%r9, 16(%rsp)
 	movq	0(%r13), %rdx
 	sbbq	%rsi, %rdx
 	movq	%rdx, 0(%r13)
 	setc	%bl
 	movq	8(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r11
  # 0 "" 2
 /NO_APP
@@ -1858,7 +1864,7 @@ SubtructOneLineX:
 	movq	8(%r13), %rdx
 	sbbq	%r9, %rdx
 	movq	%rdx, (%rcx)
-	movq	16(%rsp), %rsi
+	movq	16(%rsp), %rdi
 	leaq	16(%r13), %r9
 	setc	%bpl
 	movq	.refptr.statistics_info(%rip), %rdx
@@ -1867,17 +1873,17 @@ SubtructOneLineX:
 	leaq	24(%r13), %rcx
 	movzbl	%bpl, %ebp
 	movq	%r9, %r13
-	jmp	.L57
+	jmp	.L55
 	.p2align 4,,10
-.L96:
+.L93:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 632 "pmc_internal.h" 1
-	mulxq %rax, %r9, %r10
+ # 648 "pmc_internal.h" 1
+	mulxq %rax, %rsi, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r9, %rsi
+	addq	%rdi, %rsi
 	setc	%dl
 	xorl	%r9d, %r9d
 	movq	%rsi, 24(%rsp)
@@ -1891,7 +1897,7 @@ SubtructOneLineX:
 	setc	%bl
 	movq	8(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r10, %r11
  # 0 "" 2
 /NO_APP
@@ -1908,7 +1914,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	16(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -1925,7 +1931,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	24(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -1943,22 +1949,22 @@ SubtructOneLineX:
 	movq	.refptr.statistics_info(%rip), %rdx
 	setc	%bpl
 	addq	$32, %r8
-	movq	16(%rsp), %rsi
+	movq	16(%rsp), %rdi
 	lock addl	$4, (%rdx)
 	leaq	40(%r13), %rcx
 	movzbl	%bpl, %ebp
 	movq	%r9, %r13
-	jmp	.L56
+	jmp	.L54
 	.p2align 4,,10
-.L95:
+.L92:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 632 "pmc_internal.h" 1
-	mulxq %rax, %r9, %r10
+ # 648 "pmc_internal.h" 1
+	mulxq %rax, %rsi, %r10
  # 0 "" 2
 /NO_APP
-	addq	%r9, %rsi
+	addq	%rdi, %rsi
 	setc	%dl
 	xorl	%r9d, %r9d
 	movq	%rsi, 24(%rsp)
@@ -1972,7 +1978,7 @@ SubtructOneLineX:
 	setc	%bl
 	movq	8(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r10, %r11
  # 0 "" 2
 /NO_APP
@@ -1989,7 +1995,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	16(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2006,7 +2012,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	24(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2023,7 +2029,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	32(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2040,7 +2046,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	40(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2057,7 +2063,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	48(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2074,7 +2080,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	56(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2092,22 +2098,22 @@ SubtructOneLineX:
 	movq	.refptr.statistics_info(%rip), %rdx
 	setc	%bpl
 	addq	$64, %r8
-	movq	16(%rsp), %rsi
+	movq	16(%rsp), %rdi
 	lock addl	$8, (%rdx)
 	leaq	72(%r13), %rcx
 	movzbl	%bpl, %ebp
 	movq	%r9, %r13
-	jmp	.L55
+	jmp	.L53
 	.p2align 4,,10
-.L94:
+.L91:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 632 "pmc_internal.h" 1
-	mulxq %rax, %rcx, %r9
+ # 648 "pmc_internal.h" 1
+	mulxq %rax, %rsi, %r9
  # 0 "" 2
 /NO_APP
-	addq	%rcx, %rsi
+	addq	%rdi, %rsi
 	setc	%dl
 	xorl	%ecx, %ecx
 	movq	%rsi, 24(%rsp)
@@ -2121,7 +2127,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	8(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2138,7 +2144,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	16(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2155,7 +2161,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	24(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2172,7 +2178,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	32(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2189,7 +2195,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	40(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2206,7 +2212,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	48(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2223,7 +2229,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	56(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2240,7 +2246,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	64(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2257,7 +2263,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	72(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2274,7 +2280,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	80(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2291,7 +2297,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	88(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2308,7 +2314,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	96(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2325,7 +2331,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	104(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2342,7 +2348,7 @@ SubtructOneLineX:
 	movq	%rdx, 104(%r13)
 	movq	112(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2359,7 +2365,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	120(%r8), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2376,18 +2382,18 @@ SubtructOneLineX:
 	movq	.refptr.statistics_info(%rip), %rdx
 	setc	%bpl
 	subq	$-128, %r8
-	movq	16(%rsp), %rsi
+	movq	16(%rsp), %rdi
 	leaq	128(%r13), %r9
 	lock addl	$16, (%rdx)
 	leaq	136(%r13), %rcx
 	movzbl	%bpl, %ebp
 	movq	%r9, %r13
-	jmp	.L54
-	.p2align 4,,10
-.L64:
-	xorl	%ebp, %ebp
-	xorl	%esi, %esi
 	jmp	.L52
+	.p2align 4,,10
+.L62:
+	xorl	%ebp, %ebp
+	xorl	%edi, %edi
+	jmp	.L50
 	.seh_endproc
 	.p2align 4,,15
 	.def	DivRem_X_X_using_ADX_MULX;	.scl	3;	.type	32;	.endef
@@ -2413,57 +2419,62 @@ DivRem_X_X_using_ADX_MULX:
 	.seh_stackalloc	184
 	.seh_endprologue
 	movq	304(%rsp), %r15
-	leaq	0(,%r9,8), %rbx
+	leaq	0(,%r9,8), %r12
 	movq	%rdx, 264(%rsp)
-	movq	%r8, %r14
+	movq	%r8, %rbx
 	movq	%r9, %rbp
-	movq	-8(%r8,%rbx), %rax
-	leaq	0(,%rdx,8), %r12
-	leaq	-8(%rbx), %r13
-	addq	%r12, %r15
+	movq	-8(%r8,%r12), %rax
+	leaq	0(,%rdx,8), %r13
+	leaq	-8(%r12), %r14
+	addq	%r13, %r15
 	testq	%rax, %rax
-	je	.L125
-	movl	$63, %edx
+	je	.L121
+	movl	$63, %r9d
 /APP
- # 936 "pmc_internal.h" 1
+ # 952 "pmc_internal.h" 1
 	bsrq %rax, %rax
  # 0 "" 2
 /NO_APP
-	subq	%rax, %rdx
-	movq	%rdx, 144(%rsp)
-	je	.L158
-.L101:
-	movq	144(%rsp), %rdi
-	movl	$0, 32(%rsp)
-	movq	304(%rsp), %r9
-	movq	264(%rsp), %rdx
-	movq	%rdi, %r8
-	call	LeftShift_Imp_DIV
-	movq	%rdi, %r8
-	movq	%rbp, %rdx
-	movq	%r14, %rcx
-	movq	288(%rsp), %r9
-	movl	$0, 32(%rsp)
-	call	LeftShift_Imp_DIV
-	movq	(%r15), %r8
-.L102:
+	subl	%eax, %r9d
+	movslq	%r9d, %r9
+	testq	%r9, %r9
+	jne	.L122
+	movq	%rcx, %rsi
+	movq	304(%rsp), %rdi
+	movq	%rdx, %rcx
+/APP
+ # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep movsq
+ # 0 "" 2
+/NO_APP
+	movq	288(%rsp), %rdi
+	movq	%r8, %rsi
+	movq	%rbp, %rcx
+/APP
+ # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep movsq
+ # 0 "" 2
+/NO_APP
+	movq	$0, (%r15)
+	movq	$0, 144(%rsp)
+.L98:
 	movq	264(%rsp), %rdi
 	movq	%rbp, %rax
+	movq	264(%rsp), %rbx
 	shrq	$5, %rax
-	movq	264(%rsp), %rsi
 	movq	%rax, 88(%rsp)
 	salq	$8, %rax
-	addq	288(%rsp), %r13
+	movq	264(%rsp), %rsi
+	addq	288(%rsp), %r14
 	addq	$1, %rdi
 	movq	%rdi, 152(%rsp)
 	movq	304(%rsp), %rdi
 	subq	%rbp, %rsi
-	movq	%r13, 72(%rsp)
-	leaq	8(%rdi,%r12), %rdi
+	movq	%r14, 72(%rsp)
+	leaq	8(%rdi,%r13), %rdi
 	movq	%rdi, 96(%rsp)
 	movq	288(%rsp), %rdi
-	leaq	-16(%rdi,%rbx), %rdi
-	movq	264(%rsp), %rbx
+	leaq	-16(%rdi,%r12), %rdi
 	movq	%rdi, 80(%rsp)
 	movq	304(%rsp), %rdi
 	leaq	(%rdi,%rbx,8), %r12
@@ -2486,56 +2497,56 @@ DivRem_X_X_using_ADX_MULX:
 	movq	%rbp, %rax
 	andl	$4, %eax
 	movq	%rax, 120(%rsp)
-	jmp	.L123
+	jmp	.L119
 	.p2align 4,,10
-.L113:
+.L109:
 	movq	296(%rsp), %rax
 	subq	$8, %r12
 	testq	%rsi, %rsi
 	movq	%rbx, (%rax,%rsi,8)
-	je	.L122
-	movq	(%r12), %r8
+	je	.L118
+	movq	(%r12), %r9
 	subq	$1, %rsi
-.L123:
+.L119:
 	movq	72(%rsp), %rax
 	movq	$-1, %rbx
-	movq	-8(%r12), %r9
+	movq	-8(%r12), %r8
 	movq	-16(%r12), %r13
 	movq	(%rax), %rcx
 	movq	80(%rsp), %rax
-	cmpq	%r8, %rcx
+	cmpq	%r9, %rcx
 	movq	(%rax), %r10
-	je	.L103
-	movq	%r9, %rax
-	movq	%r8, %rdx
+	je	.L99
+	movq	%r8, %rax
+	movq	%r9, %rdx
 /APP
- # 673 "pmc_internal.h" 1
+ # 689 "pmc_internal.h" 1
 	divq %rcx
  # 0 "" 2
 /NO_APP
 	movq	%rax, %rbx
 	lock addl	$1, 8(%rdi)
-.L103:
+.L99:
 	movq	%r10, %rdx
 	movq	56(%rsp), %r15
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rbx, %rax, %r14
  # 0 "" 2
 /NO_APP
 	movq	%rbx, %rdx
 	movq	%rax, 64(%rsp)
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rcx, %r11, %rax
  # 0 "" 2
 /NO_APP
-	movq	%r9, %rdx
+	movq	%r8, %rdx
 	subq	%r11, %rdx
 	movq	%rdx, %r11
 	setb	%dl
 	addb	$-1, %dl
-	movq	%r8, %rdx
+	movq	%r9, %rdx
 	movq	%r11, (%r15)
 	sbbq	%rax, %rdx
 	movq	%rdx, %rax
@@ -2543,45 +2554,45 @@ DivRem_X_X_using_ADX_MULX:
 	movq	%rax, (%rdx)
 	lock addl	$2, (%rdi)
 	cmpq	$0, 160(%rsp)
-	jne	.L105
+	jne	.L101
 	cmpq	168(%rsp), %r14
-	ja	.L107
-	jb	.L105
+	ja	.L103
+	jb	.L101
 	cmpq	64(%rsp), %r13
-	jnb	.L105
-.L107:
+	jnb	.L101
+.L103:
 	leaq	-1(%rbx), %rax
 	movq	%r10, %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rax, %r14, %r11
  # 0 "" 2
 /NO_APP
 	movq	%rax, %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 648 "pmc_internal.h" 1
 	mulxq %rcx, %rcx, %r10
  # 0 "" 2
 /NO_APP
-	subq	%rcx, %r9
+	subq	%rcx, %r8
 	movq	56(%rsp), %rcx
 	setb	%dl
 	addb	$-1, %dl
-	sbbq	%r10, %r8
-	movq	%r9, (%rcx)
-	movq	48(%rsp), %rcx
+	sbbq	%r10, %r9
 	movq	%r8, (%rcx)
+	movq	48(%rsp), %rcx
+	movq	%r9, (%rcx)
 	lock addl	$2, (%rdi)
 	cmpq	$0, 160(%rsp)
-	jne	.L127
+	jne	.L124
 	cmpq	168(%rsp), %r11
-	ja	.L111
-	jb	.L127
+	ja	.L107
+	jb	.L124
 	cmpq	%r14, %r13
-	jnb	.L127
-.L111:
+	jnb	.L124
+.L107:
 	subq	$2, %rbx
-.L105:
+.L101:
 	movq	288(%rsp), %r8
 	movq	%rbx, 40(%rsp)
 	movq	%rbp, %r9
@@ -2590,18 +2601,18 @@ DivRem_X_X_using_ADX_MULX:
 	movq	304(%rsp), %rcx
 	call	SubtructOneLineX
 	testl	%eax, %eax
-	je	.L113
+	je	.L109
 	movq	304(%rsp), %rdx
 	leaq	0(,%rsi,8), %r14
 	subq	$1, %rbx
 	movq	88(%rsp), %r11
 	addq	%r14, %rdx
 	testq	%r11, %r11
-	je	.L128
+	je	.L125
 	movq	288(%rsp), %r10
 	xorl	%eax, %eax
 	.p2align 4,,10
-.L115:
+.L111:
 	movq	%rdx, %r8
 	movq	%r10, %r9
 	movq	%rdx, %r15
@@ -2710,19 +2721,19 @@ DivRem_X_X_using_ADX_MULX:
 	addq	$256, %rdx
 	addq	$256, %r10
 	subq	$1, %r11
-	jne	.L115
+	jne	.L111
 	movq	136(%rsp), %rcx
 	movq	128(%rsp), %r8
 	leaq	(%rcx,%r14), %rdx
-.L114:
+.L110:
 	cmpq	$0, 104(%rsp)
-	jne	.L159
-.L116:
+	jne	.L155
+.L112:
 	cmpq	$0, 112(%rsp)
-	jne	.L160
-.L117:
+	jne	.L156
+.L113:
 	cmpq	$0, 120(%rsp)
-	je	.L118
+	je	.L114
 	movq	%rdx, %r9
 	movq	%r8, %r10
 	movq	%rdx, %r15
@@ -2746,29 +2757,29 @@ DivRem_X_X_using_ADX_MULX:
 /NO_APP
 	addq	$32, %rdx
 	addq	$32, %r8
-.L118:
+.L114:
 	testb	$2, %bpl
-	je	.L119
+	je	.L115
 	movq	%rdx, %r9
 	movq	%r8, %r10
-	movq	%rdx, %r14
+	movq	%rdx, %r15
 /APP
  # 4568 "autogenerated_inline_func.h" 1
 	addb	$-1, %al
 	movq	(%r9), %rcx
 	adcxq	(%r10), %rcx
-	movq	%rcx, (%r14)
+	movq	%rcx, (%r15)
 	movq	8(%r9), %rcx
 	adcxq	8(%r10), %rcx
-	movq	%rcx, 8(%r14)
+	movq	%rcx, 8(%r15)
 	setc	%al
  # 0 "" 2
 /NO_APP
 	addq	$16, %rdx
 	addq	$16, %r8
-.L119:
+.L115:
 	testb	$1, %bpl
-	je	.L120
+	je	.L116
 	movq	(%r8), %rcx
 	addb	$-1, %al
 	movq	%rcx, %rax
@@ -2776,17 +2787,17 @@ DivRem_X_X_using_ADX_MULX:
 	movq	%rax, (%rdx)
 	setc	%al
 	addq	$8, %rdx
-.L120:
+.L116:
 	movq	96(%rsp), %r8
 	subq	%rdx, %r8
 	sarq	$3, %r8
-	testb	%al, %al
-	je	.L113
 	testq	%r8, %r8
-	je	.L113
+	je	.L109
+	testb	%al, %al
+	je	.L109
 	xorl	%r9d, %r9d
 	.p2align 4,,10
-.L121:
+.L117:
 	movq	(%rdx), %rcx
 	addb	$-1, %al
 	adcq	%r9, %rcx
@@ -2796,17 +2807,17 @@ DivRem_X_X_using_ADX_MULX:
 	subq	$1, %r8
 	setne	%cl
 	testb	%al, %cl
-	jne	.L121
-	jmp	.L113
+	jne	.L117
+	jmp	.L109
 	.p2align 4,,10
-.L127:
+.L124:
 	movq	%rax, %rbx
-	jmp	.L105
+	jmp	.L101
 	.p2align 4,,10
-.L122:
+.L118:
 	cmpq	$0, 144(%rsp)
-	jne	.L161
-.L100:
+	jne	.L157
+.L96:
 	addq	$184, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -2818,7 +2829,7 @@ DivRem_X_X_using_ADX_MULX:
 	popq	%r15
 	ret
 	.p2align 4,,10
-.L160:
+.L156:
 	movq	%rdx, %r9
 	movq	%r8, %r10
 	movq	%rdx, %r14
@@ -2854,108 +2865,105 @@ DivRem_X_X_using_ADX_MULX:
 /NO_APP
 	addq	$64, %rdx
 	addq	$64, %r8
-	jmp	.L117
+	jmp	.L113
 	.p2align 4,,10
-.L159:
+.L155:
 	movq	%rdx, %r9
 	movq	%r8, %r10
-	movq	%rdx, %r15
+	movq	%rdx, %r14
 /APP
  # 2850 "autogenerated_inline_func.h" 1
 	addb	$-1, %al
 	movq	(%r9), %rcx
 	adcxq	(%r10), %rcx
-	movq	%rcx, (%r15)
+	movq	%rcx, (%r14)
 	movq	8(%r9), %rcx
 	adcxq	8(%r10), %rcx
-	movq	%rcx, 8(%r15)
+	movq	%rcx, 8(%r14)
 	movq	16(%r9), %rcx
 	adcxq	16(%r10), %rcx
-	movq	%rcx, 16(%r15)
+	movq	%rcx, 16(%r14)
 	movq	24(%r9), %rcx
 	adcxq	24(%r10), %rcx
-	movq	%rcx, 24(%r15)
+	movq	%rcx, 24(%r14)
 	movq	32(%r9), %rcx
 	adcxq	32(%r10), %rcx
-	movq	%rcx, 32(%r15)
+	movq	%rcx, 32(%r14)
 	movq	40(%r9), %rcx
 	adcxq	40(%r10), %rcx
-	movq	%rcx, 40(%r15)
+	movq	%rcx, 40(%r14)
 	movq	48(%r9), %rcx
 	adcxq	48(%r10), %rcx
-	movq	%rcx, 48(%r15)
+	movq	%rcx, 48(%r14)
 	movq	56(%r9), %rcx
 	adcxq	56(%r10), %rcx
-	movq	%rcx, 56(%r15)
+	movq	%rcx, 56(%r14)
 	movq	64(%r9), %rcx
 	adcxq	64(%r10), %rcx
-	movq	%rcx, 64(%r15)
+	movq	%rcx, 64(%r14)
 	movq	72(%r9), %rcx
 	adcxq	72(%r10), %rcx
-	movq	%rcx, 72(%r15)
+	movq	%rcx, 72(%r14)
 	movq	80(%r9), %rcx
 	adcxq	80(%r10), %rcx
-	movq	%rcx, 80(%r15)
+	movq	%rcx, 80(%r14)
 	movq	88(%r9), %rcx
 	adcxq	88(%r10), %rcx
-	movq	%rcx, 88(%r15)
+	movq	%rcx, 88(%r14)
 	movq	96(%r9), %rcx
 	adcxq	96(%r10), %rcx
-	movq	%rcx, 96(%r15)
+	movq	%rcx, 96(%r14)
 	movq	104(%r9), %rcx
 	adcxq	104(%r10), %rcx
-	movq	%rcx, 104(%r15)
+	movq	%rcx, 104(%r14)
 	movq	112(%r9), %rcx
 	adcxq	112(%r10), %rcx
-	movq	%rcx, 112(%r15)
+	movq	%rcx, 112(%r14)
 	movq	120(%r9), %rcx
 	adcxq	120(%r10), %rcx
-	movq	%rcx, 120(%r15)
+	movq	%rcx, 120(%r14)
 	setc	%al
  # 0 "" 2
 /NO_APP
 	subq	$-128, %rdx
 	subq	$-128, %r8
-	jmp	.L116
+	jmp	.L112
 	.p2align 4,,10
-.L158:
-	movq	%rcx, %rsi
-	movq	304(%rsp), %rdi
-	movq	264(%rsp), %rcx
-/APP
- # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	rep movsq
- # 0 "" 2
-/NO_APP
-	movq	288(%rsp), %rdi
-	movq	%r8, %rsi
-	movq	%r9, %rcx
-/APP
- # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	rep movsq
- # 0 "" 2
-/NO_APP
-	xorl	%r8d, %r8d
-	movq	$0, (%r15)
-	jmp	.L102
+.L125:
+	movq	288(%rsp), %r8
+	xorl	%eax, %eax
+	jmp	.L110
 	.p2align 4,,10
-.L161:
+.L157:
 	movq	304(%rsp), %r9
 	movl	$0, 32(%rsp)
 	movq	144(%rsp), %r8
 	movq	152(%rsp), %rdx
 	movq	%r9, %rcx
 	call	RightShift_Imp_DIV
-	jmp	.L100
+	jmp	.L96
 	.p2align 4,,10
-.L128:
-	movq	288(%rsp), %r8
-	xorl	%eax, %eax
-	jmp	.L114
-	.p2align 4,,10
-.L125:
+.L121:
 	movq	$64, 144(%rsp)
-	jmp	.L101
+.L97:
+	movq	144(%rsp), %rdi
+	movl	$0, 32(%rsp)
+	movq	304(%rsp), %r9
+	movq	264(%rsp), %rdx
+	movq	%rdi, %r8
+	call	LeftShift_Imp_DIV
+	movq	%rdi, %r8
+	movq	%rbp, %rdx
+	movq	%rbx, %rcx
+	movq	288(%rsp), %r9
+	movl	$0, 32(%rsp)
+	call	LeftShift_Imp_DIV
+	movq	(%r15), %r9
+	jmp	.L98
+	.p2align 4,,10
+.L122:
+	movq	%r9, 144(%rsp)
+	jmp	.L97
 	.seh_endproc
 	.p2align 4,,15
 	.def	DivRem_X_X_using_ADC_MUL;	.scl	3;	.type	32;	.endef
@@ -2981,62 +2989,67 @@ DivRem_X_X_using_ADC_MUL:
 	.seh_stackalloc	184
 	.seh_endprologue
 	movq	304(%rsp), %r15
-	leaq	0(,%r9,8), %rbx
+	leaq	0(,%r9,8), %r12
 	movq	%rdx, 264(%rsp)
-	movq	%r8, %r14
+	movq	%r8, %rbx
 	movq	%r9, %rbp
-	movq	-8(%r8,%rbx), %rax
-	leaq	0(,%rdx,8), %r12
-	leaq	-8(%rbx), %r13
-	addq	%r12, %r15
+	movq	-8(%r8,%r12), %rax
+	leaq	0(,%rdx,8), %r13
+	leaq	-8(%r12), %r14
+	addq	%r13, %r15
 	testq	%rax, %rax
-	je	.L187
-	movl	$63, %edx
+	je	.L183
+	movl	$63, %r9d
 /APP
- # 936 "pmc_internal.h" 1
+ # 952 "pmc_internal.h" 1
 	bsrq %rax, %rax
  # 0 "" 2
 /NO_APP
-	subq	%rax, %rdx
-	movq	%rdx, 144(%rsp)
-	je	.L220
-.L163:
-	movq	144(%rsp), %rsi
-	movl	$0, 32(%rsp)
-	movq	304(%rsp), %r9
-	movq	264(%rsp), %rdx
-	movq	%rsi, %r8
-	call	LeftShift_Imp_DIV
-	movq	%r14, %rcx
-	movq	%rsi, %r8
-	movq	%rbp, %rdx
-	movq	288(%rsp), %r9
-	movl	$0, 32(%rsp)
-	call	LeftShift_Imp_DIV
-	movq	(%r15), %rcx
-.L164:
+	subl	%eax, %r9d
+	movslq	%r9d, %r9
+	testq	%r9, %r9
+	jne	.L184
+	movq	%rcx, %rsi
+	movq	304(%rsp), %rdi
+	movq	%rdx, %rcx
+/APP
+ # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep movsq
+ # 0 "" 2
+/NO_APP
+	movq	288(%rsp), %rdi
+	movq	%r8, %rsi
+	movq	%rbp, %rcx
+/APP
+ # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep movsq
+ # 0 "" 2
+/NO_APP
+	movq	$0, (%r15)
+	movq	$0, 144(%rsp)
+.L160:
 	movq	264(%rsp), %rdi
 	movq	%rbp, %rax
+	movq	304(%rsp), %rbx
 	shrq	$5, %rax
-	addq	288(%rsp), %r13
 	movq	%rax, 96(%rsp)
 	salq	$8, %rax
+	addq	288(%rsp), %r14
 	movq	264(%rsp), %rsi
-	leaq	168(%rsp), %r14
 	addq	$1, %rdi
 	movq	%rdi, 152(%rsp)
 	movq	304(%rsp), %rdi
-	movq	%r13, 80(%rsp)
+	movq	%r14, 80(%rsp)
+	leaq	168(%rsp), %r14
 	subq	%rbp, %rsi
+	leaq	8(%rdi,%r13), %rdi
 	movq	.refptr.statistics_info(%rip), %r13
-	leaq	8(%rdi,%r12), %rdi
 	movq	%rdi, 104(%rsp)
 	movq	288(%rsp), %rdi
-	leaq	-16(%rdi,%rbx), %rdi
-	movq	264(%rsp), %rbx
+	leaq	-16(%rdi,%r12), %rdi
 	movq	%rdi, 88(%rsp)
-	movq	304(%rsp), %rdi
-	leaq	(%rdi,%rbx,8), %rdi
+	movq	264(%rsp), %rdi
+	leaq	(%rbx,%rdi,8), %rdi
 	movq	304(%rsp), %rbx
 	addq	%rax, %rbx
 	addq	288(%rsp), %rax
@@ -3050,38 +3063,38 @@ DivRem_X_X_using_ADC_MUL:
 	movq	%rbp, %rax
 	andl	$8, %eax
 	movq	%rax, 120(%rsp)
-	jmp	.L185
+	jmp	.L181
 	.p2align 4,,10
-.L175:
+.L171:
 	movq	296(%rsp), %rax
 	subq	$8, %rdi
 	testq	%rsi, %rsi
 	movq	%rbx, (%rax,%rsi,8)
-	je	.L184
-	movq	(%rdi), %rcx
+	je	.L180
+	movq	(%rdi), %r9
 	subq	$1, %rsi
-.L185:
+.L181:
 	movq	80(%rsp), %rax
-	movq	-8(%rdi), %r8
+	movq	-8(%rdi), %rcx
 	movq	-16(%rdi), %r10
 	movq	(%rax), %r11
 	movq	88(%rsp), %rax
-	cmpq	%rcx, %r11
-	movq	(%rax), %r9
-	je	.L188
-	movq	%r8, %rax
-	movq	%rcx, %rdx
+	cmpq	%r9, %r11
+	movq	(%rax), %r8
+	je	.L185
+	movq	%rcx, %rax
+	movq	%r9, %rdx
 /APP
- # 673 "pmc_internal.h" 1
+ # 689 "pmc_internal.h" 1
 	divq %r11
  # 0 "" 2
 /NO_APP
 	movq	%rax, %rbx
 	lock addl	$1, 8(%r13)
 	movq	%rax, %r12
-.L165:
+.L161:
 	movq	%r11, %rax
-	movq	%r8, %r15
+	movq	%rcx, %r15
 	mulq	%r12
 	movq	%rax, 48(%rsp)
 	subq	48(%rsp), %r15
@@ -3090,45 +3103,45 @@ DivRem_X_X_using_ADC_MUL:
 	movq	%r15, (%r14)
 	movq	72(%rsp), %rdx
 	addb	$-1, %al
-	movq	%rcx, %rax
+	movq	%r9, %rax
 	sbbq	56(%rsp), %rax
 	movq	%rax, (%rdx)
 	lock addl	$2, 0(%r13)
 	cmpq	$0, 160(%rsp)
-	jne	.L167
+	jne	.L163
 	movq	%r12, %rax
-	mulq	%r9
+	mulq	%r8
 	cmpq	168(%rsp), %rdx
-	ja	.L169
-	jb	.L167
+	ja	.L165
+	jb	.L163
 	cmpq	%rax, %r10
-	jnb	.L167
-.L169:
+	jnb	.L163
+.L165:
 	leaq	-1(%rbx), %r12
 	movq	%r11, %rax
 	mulq	%r12
 	movq	%rax, 48(%rsp)
-	subq	48(%rsp), %r8
+	subq	48(%rsp), %rcx
 	movq	%rdx, 56(%rsp)
 	setb	%al
-	movq	%r8, (%r14)
+	movq	%rcx, (%r14)
 	addb	$-1, %al
 	movq	72(%rsp), %rax
-	sbbq	56(%rsp), %rcx
-	movq	%rcx, (%rax)
+	sbbq	56(%rsp), %r9
+	movq	%r9, (%rax)
 	lock addl	$2, 0(%r13)
 	cmpq	$0, 160(%rsp)
-	jne	.L189
-	movq	%r9, %rax
+	jne	.L186
+	movq	%r8, %rax
 	mulq	%r12
 	cmpq	168(%rsp), %rdx
-	ja	.L173
-	jb	.L189
+	ja	.L169
+	jb	.L186
 	cmpq	%rax, %r10
-	jnb	.L189
-.L173:
+	jnb	.L186
+.L169:
 	subq	$2, %rbx
-.L167:
+.L163:
 	movq	288(%rsp), %r8
 	movq	%rbx, 40(%rsp)
 	movq	%rbp, %r9
@@ -3137,18 +3150,18 @@ DivRem_X_X_using_ADC_MUL:
 	movq	304(%rsp), %rcx
 	call	SubtructOneLine
 	testl	%eax, %eax
-	je	.L175
+	je	.L171
 	movq	304(%rsp), %rdx
 	leaq	0(,%rsi,8), %r15
 	subq	$1, %rbx
 	movq	96(%rsp), %r11
 	addq	%r15, %rdx
 	testq	%r11, %r11
-	je	.L190
+	je	.L187
 	movq	288(%rsp), %r10
 	xorl	%eax, %eax
 	.p2align 4,,10
-.L177:
+.L173:
 	movq	%rdx, %r8
 	movq	%r10, %r9
 	movq	%rdx, %r12
@@ -3257,19 +3270,19 @@ DivRem_X_X_using_ADC_MUL:
 	addq	$256, %rdx
 	addq	$256, %r10
 	subq	$1, %r11
-	jne	.L177
+	jne	.L173
 	movq	136(%rsp), %rcx
 	movq	128(%rsp), %r8
 	leaq	(%rcx,%r15), %rdx
-.L176:
+.L172:
 	cmpq	$0, 112(%rsp)
-	jne	.L221
-.L178:
+	jne	.L217
+.L174:
 	cmpq	$0, 120(%rsp)
-	jne	.L222
-.L179:
+	jne	.L218
+.L175:
 	testb	$4, %bpl
-	je	.L180
+	je	.L176
 	movq	%rdx, %r9
 	movq	%r8, %r10
 	movq	%rdx, %r15
@@ -3293,9 +3306,9 @@ DivRem_X_X_using_ADC_MUL:
 /NO_APP
 	addq	$32, %rdx
 	addq	$32, %r8
-.L180:
+.L176:
 	testb	$2, %bpl
-	je	.L181
+	je	.L177
 	movq	%rdx, %r9
 	movq	%r8, %r10
 	movq	%rdx, %r11
@@ -3313,9 +3326,9 @@ DivRem_X_X_using_ADC_MUL:
 /NO_APP
 	addq	$16, %rdx
 	addq	$16, %r8
-.L181:
+.L177:
 	testb	$1, %bpl
-	je	.L182
+	je	.L178
 	movq	(%r8), %rcx
 	addb	$-1, %al
 	movq	%rcx, %rax
@@ -3323,17 +3336,17 @@ DivRem_X_X_using_ADC_MUL:
 	movq	%rax, (%rdx)
 	setc	%al
 	addq	$8, %rdx
-.L182:
+.L178:
 	movq	104(%rsp), %r8
 	subq	%rdx, %r8
 	sarq	$3, %r8
-	testb	%al, %al
-	je	.L175
 	testq	%r8, %r8
-	je	.L175
+	je	.L171
+	testb	%al, %al
+	je	.L171
 	xorl	%r9d, %r9d
 	.p2align 4,,10
-.L183:
+.L179:
 	movq	(%rdx), %rcx
 	addb	$-1, %al
 	adcq	%r9, %rcx
@@ -3343,22 +3356,22 @@ DivRem_X_X_using_ADC_MUL:
 	subq	$1, %r8
 	setne	%cl
 	testb	%al, %cl
-	jne	.L183
-	jmp	.L175
+	jne	.L179
+	jmp	.L171
 	.p2align 4,,10
-.L189:
+.L186:
 	movq	%r12, %rbx
-	jmp	.L167
+	jmp	.L163
 	.p2align 4,,10
-.L188:
+.L185:
 	movq	$-1, %r12
 	movq	%r12, %rbx
-	jmp	.L165
+	jmp	.L161
 	.p2align 4,,10
-.L184:
+.L180:
 	cmpq	$0, 144(%rsp)
-	jne	.L223
-.L162:
+	jne	.L219
+.L158:
 	addq	$184, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -3370,7 +3383,7 @@ DivRem_X_X_using_ADC_MUL:
 	popq	%r15
 	ret
 	.p2align 4,,10
-.L222:
+.L218:
 	movq	%rdx, %r9
 	movq	%r8, %r10
 	movq	%rdx, %r11
@@ -3406,9 +3419,9 @@ DivRem_X_X_using_ADC_MUL:
 /NO_APP
 	addq	$64, %rdx
 	addq	$64, %r8
-	jmp	.L179
+	jmp	.L175
 	.p2align 4,,10
-.L221:
+.L217:
 	movq	%rdx, %r9
 	movq	%r8, %r10
 	movq	%rdx, %r15
@@ -3468,46 +3481,43 @@ DivRem_X_X_using_ADC_MUL:
 /NO_APP
 	subq	$-128, %rdx
 	subq	$-128, %r8
-	jmp	.L178
+	jmp	.L174
 	.p2align 4,,10
-.L220:
-	movq	%rcx, %rsi
-	movq	304(%rsp), %rdi
-	movq	264(%rsp), %rcx
-/APP
- # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	rep movsq
- # 0 "" 2
-/NO_APP
-	movq	288(%rsp), %rdi
-	movq	%r8, %rsi
-	movq	%r9, %rcx
-/APP
- # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
-	rep movsq
- # 0 "" 2
-/NO_APP
-	xorl	%ecx, %ecx
-	movq	$0, (%r15)
-	jmp	.L164
+.L187:
+	movq	288(%rsp), %r8
+	xorl	%eax, %eax
+	jmp	.L172
 	.p2align 4,,10
-.L223:
+.L219:
 	movq	304(%rsp), %r9
 	movl	$0, 32(%rsp)
 	movq	144(%rsp), %r8
 	movq	152(%rsp), %rdx
 	movq	%r9, %rcx
 	call	RightShift_Imp_DIV
-	jmp	.L162
+	jmp	.L158
 	.p2align 4,,10
-.L190:
-	movq	288(%rsp), %r8
-	xorl	%eax, %eax
-	jmp	.L176
-	.p2align 4,,10
-.L187:
+.L183:
 	movq	$64, 144(%rsp)
-	jmp	.L163
+.L159:
+	movq	144(%rsp), %rsi
+	movl	$0, 32(%rsp)
+	movq	304(%rsp), %r9
+	movq	264(%rsp), %rdx
+	movq	%rsi, %r8
+	call	LeftShift_Imp_DIV
+	movq	%rsi, %r8
+	movq	%rbp, %rdx
+	movq	%rbx, %rcx
+	movq	288(%rsp), %r9
+	movl	$0, 32(%rsp)
+	call	LeftShift_Imp_DIV
+	movq	(%r15), %r9
+	jmp	.L160
+	.p2align 4,,10
+.L184:
+	movq	%r9, 144(%rsp)
+	jmp	.L159
 	.seh_endproc
 	.p2align 4,,15
 	.globl	DivRem_X_1W
@@ -3530,234 +3540,234 @@ DivRem_X_1W:
 	shrq	$5, %rbp
 	addq	%rax, %r9
 	testq	%rbp, %rbp
-	je	.L232
+	je	.L228
 	movq	.refptr.statistics_info(%rip), %rdi
 	movq	%rbp, %rcx
 	movq	%r9, %r11
 	movq	%rbx, %r10
 	xorl	%edx, %edx
 	.p2align 4,,10
-.L226:
+.L222:
 	movq	(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, (%r11)
 	movq	-8(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%r11)
 	movq	-16(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -16(%r11)
 	movq	-24(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -24(%r11)
 	movq	-32(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -32(%r11)
 	movq	-40(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -40(%r11)
 	movq	-48(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -48(%r11)
 	movq	-56(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -56(%r11)
 	movq	-64(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -64(%r11)
 	movq	-72(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -72(%r11)
 	movq	-80(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -80(%r11)
 	movq	-88(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -88(%r11)
 	movq	-96(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -96(%r11)
 	movq	-104(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -104(%r11)
 	movq	-112(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -112(%r11)
 	movq	-120(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -120(%r11)
 	movq	-128(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -128(%r11)
 	movq	-136(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -136(%r11)
 	movq	-144(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -144(%r11)
 	movq	-152(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -152(%r11)
 	movq	-160(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -160(%r11)
 	movq	-168(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -168(%r11)
 	movq	-176(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -176(%r11)
 	movq	-184(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -184(%r11)
 	movq	-192(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -192(%r11)
 	movq	-200(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -200(%r11)
 	movq	-208(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -208(%r11)
 	movq	-216(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -216(%r11)
 	movq	-224(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -224(%r11)
 	movq	-232(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -232(%r11)
 	movq	-240(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -240(%r11)
 	movq	-248(%r10), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -3767,26 +3777,26 @@ DivRem_X_1W:
 	subq	$256, %r11
 	lock addl	$32, 8(%rdi)
 	testq	%rcx, %rcx
-	jne	.L226
+	jne	.L222
 	negq	%rbp
 	salq	$8, %rbp
 	addq	%rbp, %rbx
 	addq	%rbp, %r9
-.L225:
+.L221:
 	testb	$16, %sil
-	jne	.L249
+	jne	.L245
 	testb	$8, %sil
-	jne	.L250
-.L228:
+	jne	.L246
+.L224:
 	testb	$4, %sil
-	jne	.L251
-.L229:
+	jne	.L247
+.L225:
 	testb	$2, %sil
-	jne	.L252
-.L230:
+	jne	.L248
+.L226:
 	andl	$1, %esi
-	jne	.L253
-.L231:
+	jne	.L249
+.L227:
 	movq	72(%rsp), %rax
 	movq	%rdx, (%rax)
 	popq	%rbx
@@ -3795,117 +3805,117 @@ DivRem_X_1W:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L249:
+.L245:
 	movq	(%rbx), %rax
 	addq	$-128, %r9
 	addq	$-128, %rbx
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 128(%r9)
 	movq	120(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 120(%r9)
 	movq	112(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 112(%r9)
 	movq	104(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 104(%r9)
 	movq	96(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 96(%r9)
 	movq	88(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 88(%r9)
 	movq	80(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 80(%r9)
 	movq	72(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 72(%r9)
 	movq	64(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 64(%r9)
 	movq	56(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 56(%r9)
 	movq	48(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 48(%r9)
 	movq	40(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 40(%r9)
 	movq	32(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 32(%r9)
 	movq	24(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 24(%r9)
 	movq	16(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 16(%r9)
 	movq	8(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -3913,62 +3923,62 @@ DivRem_X_1W:
 	movq	.refptr.statistics_info(%rip), %rax
 	lock addl	$16, 8(%rax)
 	testb	$8, %sil
-	je	.L228
-.L250:
+	je	.L224
+.L246:
 	movq	(%rbx), %rax
 	subq	$64, %r9
 	subq	$64, %rbx
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 64(%r9)
 	movq	56(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 56(%r9)
 	movq	48(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 48(%r9)
 	movq	40(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 40(%r9)
 	movq	32(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 32(%r9)
 	movq	24(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 24(%r9)
 	movq	16(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 16(%r9)
 	movq	8(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -3976,34 +3986,34 @@ DivRem_X_1W:
 	movq	.refptr.statistics_info(%rip), %rax
 	lock addl	$8, 8(%rax)
 	testb	$4, %sil
-	je	.L229
-.L251:
+	je	.L225
+.L247:
 	movq	(%rbx), %rax
 	subq	$32, %r9
 	subq	$32, %rbx
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 32(%r9)
 	movq	24(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 24(%r9)
 	movq	16(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 16(%r9)
 	movq	8(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -4011,20 +4021,20 @@ DivRem_X_1W:
 	movq	.refptr.statistics_info(%rip), %rax
 	lock addl	$4, 8(%rax)
 	testb	$2, %sil
-	je	.L230
-.L252:
+	je	.L226
+.L248:
 	movq	(%rbx), %rax
 	subq	$16, %r9
 	subq	$16, %rbx
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 16(%r9)
 	movq	8(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -4032,11 +4042,11 @@ DivRem_X_1W:
 	movq	.refptr.statistics_info(%rip), %rax
 	lock addl	$2, 8(%rax)
 	andl	$1, %esi
-	je	.L231
-.L253:
+	je	.L227
+.L249:
 	movq	(%rbx), %rax
 /APP
- # 716 "pmc_internal.h" 1
+ # 732 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -4051,9 +4061,89 @@ DivRem_X_1W:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L232:
+.L228:
 	xorl	%edx, %edx
-	jmp	.L225
+	jmp	.L221
+	.seh_endproc
+	.p2align 4,,15
+	.globl	DivRem_X_X
+	.def	DivRem_X_X;	.scl	2;	.type	32;	.endef
+	.seh_proc	DivRem_X_X
+DivRem_X_X:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	subq	$88, %rsp
+	.seh_stackalloc	88
+	.seh_endprologue
+	cmpq	$1, %r9
+	je	.L255
+	cmpq	%r9, %rdx
+	jb	.L256
+	movq	160(%rsp), %rax
+	movq	%rax, 48(%rsp)
+	movq	152(%rsp), %rax
+	movq	%rax, 40(%rsp)
+	movq	144(%rsp), %rax
+	movq	%rax, 32(%rsp)
+	call	*fp_DivRem_X_X(%rip)
+	nop
+	addq	$88, %rsp
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L256:
+	movq	152(%rsp), %rax
+	movq	%rcx, %rsi
+	movq	%rdx, %rcx
+	movq	160(%rsp), %rdi
+	movq	$0, (%rax)
+/APP
+ # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
+	rep movsq
+ # 0 "" 2
+/NO_APP
+	addq	$88, %rsp
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L255:
+	cmpq	$1, %rdx
+	movq	(%r8), %r8
+	je	.L257
+	movq	152(%rsp), %r9
+	leaq	72(%rsp), %rax
+	movq	%rax, 32(%rsp)
+	call	DivRem_X_1W
+	movq	72(%rsp), %rax
+	movq	160(%rsp), %rsi
+	movq	%rax, (%rsi)
+	addq	$88, %rsp
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+.L257:
+	movq	152(%rsp), %rdi
+	xorl	%edx, %edx
+	movq	(%rcx), %rax
+/APP
+ # 689 "pmc_internal.h" 1
+	divq %r8
+ # 0 "" 2
+/NO_APP
+	movq	%rax, (%rdi)
+	movq	160(%rsp), %rax
+	movq	%rdx, (%rax)
+	movq	.refptr.statistics_info(%rip), %rax
+	lock addl	$1, 8(%rax)
+	addq	$88, %rsp
+	popq	%rsi
+	popq	%rdi
+	ret
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_DivRem_I_X
@@ -4073,29 +4163,29 @@ PMC_DivRem_I_X:
 	.seh_endprologue
 	testq	%r9, %r9
 	movq	%rdx, %rbx
-	movl	%ecx, %esi
+	movl	%ecx, %ebp
 	sete	%dl
 	testq	%r8, %r8
-	movq	%r8, %rbp
+	movq	%r8, %rdi
 	sete	%al
-	movq	%r9, %rdi
+	movq	%r9, %rsi
 	orb	%al, %dl
-	jne	.L259
+	jne	.L263
 	testq	%rbx, %rbx
-	je	.L259
+	je	.L263
 	movq	%rbx, %rcx
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %r10d
-	jne	.L254
+	jne	.L258
 	movzbl	32(%rbx), %eax
 	testb	$2, %al
+	jne	.L264
+	testl	%ebp, %ebp
 	jne	.L260
-	testl	%esi, %esi
-	jne	.L256
-	movl	$0, 0(%rbp)
 	movl	$0, (%rdi)
-.L254:
+	movl	$0, (%rsi)
+.L258:
 	movl	%r10d, %eax
 	addq	$40, %rsp
 	popq	%rbx
@@ -4104,28 +4194,24 @@ PMC_DivRem_I_X:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L256:
+.L260:
 	testb	$4, %al
-	jne	.L261
-	movl	$31, %edx
+	jne	.L265
+	movl	$31, %eax
 /APP
- # 863 "pmc_internal.h" 1
-	bsrl %esi, %eax
+ # 879 "pmc_internal.h" 1
+	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
-	subl	%eax, %edx
-	movl	$32, %eax
-	subq	%rdx, %rax
-	cmpq	8(%rbx), %rax
-	jnb	.L258
-	movl	$0, 0(%rbp)
-	movl	%esi, (%rdi)
-	jmp	.L254
-	.p2align 4,,10
-.L261:
+	subl	%edx, %eax
+	movl	$32, %edx
+	cltq
+	subq	%rax, %rdx
+	cmpq	8(%rbx), %rdx
+	jnb	.L262
 	movl	%r10d, %eax
-	movl	%esi, 0(%rbp)
 	movl	$0, (%rdi)
+	movl	%ebp, (%rsi)
 	addq	$40, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -4133,25 +4219,38 @@ PMC_DivRem_I_X:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L258:
+.L265:
+	movl	%r10d, %eax
+	movl	%ebp, (%rdi)
+	movl	$0, (%rsi)
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
+	.p2align 4,,10
+.L262:
 	movq	48(%rbx), %rcx
-	movl	%esi, %eax
+	movl	%ebp, %eax
 	xorl	%edx, %edx
 /APP
- # 673 "pmc_internal.h" 1
+ # 689 "pmc_internal.h" 1
 	divq (%rcx)
  # 0 "" 2
 /NO_APP
-	movl	%eax, 0(%rbp)
-	movl	%edx, (%rdi)
-	jmp	.L254
+	movl	%eax, (%rdi)
+	movq	.refptr.statistics_info(%rip), %rax
+	movl	%edx, (%rsi)
+	lock addl	$1, 8(%rax)
+	jmp	.L258
 	.p2align 4,,10
-.L259:
+.L263:
 	movl	$-1, %r10d
-	jmp	.L254
-.L260:
+	jmp	.L258
+.L264:
 	movl	$-3, %r10d
-	jmp	.L254
+	jmp	.L258
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_DivRem_X_I
@@ -4180,22 +4279,22 @@ PMC_DivRem_X_I:
 	sete	%al
 	movq	%r9, %rbp
 	orb	%al, %dl
-	jne	.L270
+	jne	.L274
 	testq	%rcx, %rcx
-	je	.L270
+	je	.L274
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %esi
-	jne	.L262
+	jne	.L266
 	testl	%r12d, %r12d
-	je	.L271
+	je	.L275
 	testb	$2, 32(%rbx)
-	je	.L264
+	je	.L268
 	movq	.refptr.number_zero(%rip), %rcx
 	movl	$0, 0(%rbp)
-.L265:
+.L269:
 	movq	%rcx, (%rdi)
-.L262:
+.L266:
 	movl	%esi, %eax
 	addq	$80, %rsp
 	popq	%rbx
@@ -4205,49 +4304,50 @@ PMC_DivRem_X_I:
 	popq	%r12
 	ret
 	.p2align 4,,10
-.L264:
+.L268:
 	cmpl	$1, %r12d
-	je	.L276
+	je	.L280
 	movq	8(%rbx), %rcx
 	movl	$31, %eax
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %r12d, %edx
  # 0 "" 2
 /NO_APP
 	subl	%edx, %eax
 	movl	$32, %edx
+	cltq
 	subq	%rax, %rdx
 	cmpq	%rdx, %rcx
-	jnb	.L267
+	jnb	.L271
 	movq	48(%rbx), %rax
 	movq	.refptr.number_zero(%rip), %rcx
 	movq	(%rax), %rax
 	movl	%eax, 0(%rbp)
-	jmp	.L265
+	jmp	.L269
 	.p2align 4,,10
-.L267:
+.L271:
 	leaq	33(%rax,%rcx), %rdx
 	leaq	64(%rsp), %r8
 	leaq	56(%rsp), %rcx
 	call	AllocateNumber
 	testl	%eax, %eax
-	je	.L277
-.L272:
-	movl	%eax, %esi
-	jmp	.L262
-	.p2align 4,,10
+	je	.L281
 .L276:
+	movl	%eax, %esi
+	jmp	.L266
+	.p2align 4,,10
+.L280:
 	leaq	56(%rsp), %rdx
 	movq	%rbx, %rcx
 	call	DuplicateNumber
 	testl	%eax, %eax
-	jne	.L272
+	jne	.L276
 	movl	$0, 0(%rbp)
 	movq	56(%rsp), %rcx
-	jmp	.L265
+	jmp	.L269
 	.p2align 4,,10
-.L277:
+.L281:
 	movq	56(%rsp), %rax
 	movl	%r12d, %r8d
 	movabsq	$2305843009213693951, %rdx
@@ -4263,24 +4363,24 @@ PMC_DivRem_X_I:
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L272
+	jne	.L276
 	movq	56(%rsp), %rcx
 	call	CommitNumber
 	movq	56(%rsp), %rcx
 	movq	72(%rsp), %rax
 	testb	$2, 32(%rcx)
 	movl	%eax, 0(%rbp)
-	je	.L265
+	je	.L269
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
-	jmp	.L265
+	jmp	.L269
 	.p2align 4,,10
-.L270:
+.L274:
 	movl	$-1, %esi
-	jmp	.L262
-.L271:
+	jmp	.L266
+.L275:
 	movl	$-3, %esi
-	jmp	.L262
+	jmp	.L266
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_DivRem_L_X
@@ -4298,31 +4398,31 @@ PMC_DivRem_L_X:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
+	testq	%rdx, %rdx
 	movq	%rdx, %rbx
-	testq	%r8, %r8
 	movq	%rcx, %rbp
 	sete	%dl
-	testq	%rbx, %rbx
+	testq	%r8, %r8
 	movq	%r8, %rsi
 	sete	%al
 	movq	%r9, %rdi
 	orb	%al, %dl
-	jne	.L283
+	jne	.L287
 	testq	%r9, %r9
-	je	.L283
+	je	.L287
 	movq	%rbx, %rcx
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %r10d
-	jne	.L278
+	jne	.L282
 	movzbl	32(%rbx), %eax
 	testb	$2, %al
-	jne	.L284
+	jne	.L288
 	testq	%rbp, %rbp
-	jne	.L280
+	jne	.L284
 	movq	$0, (%rsi)
 	movq	$0, (%rdi)
-.L278:
+.L282:
 	movl	%r10d, %eax
 	addq	$40, %rsp
 	popq	%rbx
@@ -4331,22 +4431,32 @@ PMC_DivRem_L_X:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L280:
+.L284:
 	testb	$4, %al
-	jne	.L285
+	jne	.L289
+	movl	$63, %eax
 /APP
- # 907 "pmc_internal.h" 1
-	bsrq %rbp, %rax
+ # 923 "pmc_internal.h" 1
+	bsrq %rbp, %rdx
  # 0 "" 2
 /NO_APP
-	addq	$1, %rax
-	cmpq	8(%rbx), %rax
-	jnb	.L282
+	subl	%edx, %eax
+	movl	$64, %edx
+	cltq
+	subq	%rax, %rdx
+	cmpq	8(%rbx), %rdx
+	jnb	.L286
+	movl	%r10d, %eax
 	movq	$0, (%rsi)
 	movq	%rbp, (%rdi)
-	jmp	.L278
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	popq	%rbp
+	ret
 	.p2align 4,,10
-.L285:
+.L289:
 	movl	%r10d, %eax
 	movq	%rbp, (%rsi)
 	movq	$0, (%rdi)
@@ -4357,25 +4467,27 @@ PMC_DivRem_L_X:
 	popq	%rbp
 	ret
 	.p2align 4,,10
-.L282:
+.L286:
 	movq	48(%rbx), %rcx
 	movq	%rbp, %rax
 	xorl	%edx, %edx
 /APP
- # 673 "pmc_internal.h" 1
+ # 689 "pmc_internal.h" 1
 	divq (%rcx)
  # 0 "" 2
 /NO_APP
 	movq	%rax, (%rsi)
+	movq	.refptr.statistics_info(%rip), %rax
 	movq	%rdx, (%rdi)
-	jmp	.L278
+	lock addl	$1, 8(%rax)
+	jmp	.L282
 	.p2align 4,,10
-.L283:
+.L287:
 	movl	$-1, %r10d
-	jmp	.L278
-.L284:
+	jmp	.L282
+.L288:
 	movl	$-3, %r10d
-	jmp	.L278
+	jmp	.L282
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_DivRem_X_L
@@ -4395,31 +4507,31 @@ PMC_DivRem_X_L:
 	subq	$80, %rsp
 	.seh_stackalloc	80
 	.seh_endprologue
-	testq	%rcx, %rcx
+	testq	%r9, %r9
 	movq	%rdx, %r12
 	movq	%rcx, %rbx
 	sete	%dl
-	testq	%r9, %r9
+	testq	%rcx, %rcx
 	movq	%r8, %rbp
 	sete	%al
 	movq	%r9, %rdi
 	orb	%al, %dl
-	jne	.L294
+	jne	.L298
 	testq	%r8, %r8
-	je	.L294
+	je	.L298
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %esi
-	jne	.L286
+	jne	.L290
 	testq	%r12, %r12
-	je	.L295
+	je	.L299
 	testb	$2, 32(%rbx)
-	je	.L288
+	je	.L292
 	movq	.refptr.number_zero(%rip), %rcx
 	movq	$0, (%rdi)
-.L289:
+.L293:
 	movq	%rcx, 0(%rbp)
-.L286:
+.L290:
 	movl	%esi, %eax
 	addq	$80, %rsp
 	popq	%rbx
@@ -4429,47 +4541,50 @@ PMC_DivRem_X_L:
 	popq	%r12
 	ret
 	.p2align 4,,10
-.L288:
+.L292:
 	cmpq	$1, %r12
-	je	.L300
-	movq	8(%rbx), %rdx
+	je	.L304
+	movq	8(%rbx), %rcx
+	movl	$63, %eax
 /APP
- # 907 "pmc_internal.h" 1
-	bsrq %r12, %rax
+ # 923 "pmc_internal.h" 1
+	bsrq %r12, %rdx
  # 0 "" 2
 /NO_APP
-	leaq	1(%rax), %rcx
-	cmpq	%rcx, %rdx
-	jnb	.L291
+	subl	%edx, %eax
+	movl	$64, %edx
+	cltq
+	subq	%rax, %rdx
+	cmpq	%rdx, %rcx
+	jnb	.L295
 	movq	48(%rbx), %rax
 	movq	.refptr.number_zero(%rip), %rcx
 	movq	(%rax), %rax
 	movq	%rax, (%rdi)
-	jmp	.L289
+	jmp	.L293
 	.p2align 4,,10
-.L291:
-	leaq	56(%rsp), %rcx
-	notq	%rax
-	leaq	65(%rdx,%rax), %rdx
+.L295:
+	leaq	1(%rcx,%rax), %rdx
 	leaq	64(%rsp), %r8
+	leaq	56(%rsp), %rcx
 	call	AllocateNumber
 	testl	%eax, %eax
-	je	.L301
-.L296:
-	movl	%eax, %esi
-	jmp	.L286
-	.p2align 4,,10
+	je	.L305
 .L300:
+	movl	%eax, %esi
+	jmp	.L290
+	.p2align 4,,10
+.L304:
 	leaq	56(%rsp), %rdx
 	movq	%rbx, %rcx
 	call	DuplicateNumber
 	testl	%eax, %eax
-	jne	.L296
+	jne	.L300
 	movq	$0, (%rdi)
 	movq	56(%rsp), %rcx
-	jmp	.L289
+	jmp	.L293
 	.p2align 4,,10
-.L301:
+.L305:
 	movq	56(%rsp), %rax
 	movq	%r12, %r8
 	movabsq	$2305843009213693951, %rdx
@@ -4485,24 +4600,24 @@ PMC_DivRem_X_L:
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L296
+	jne	.L300
 	movq	56(%rsp), %rcx
 	call	CommitNumber
 	movq	72(%rsp), %rax
 	movq	56(%rsp), %rcx
 	movq	%rax, (%rdi)
 	testb	$2, 32(%rcx)
-	je	.L289
+	je	.L293
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
-	jmp	.L289
+	jmp	.L293
 	.p2align 4,,10
-.L294:
+.L298:
 	movl	$-1, %esi
-	jmp	.L286
-.L295:
+	jmp	.L290
+.L299:
 	movl	$-3, %esi
-	jmp	.L286
+	jmp	.L290
 	.seh_endproc
 	.p2align 4,,15
 	.globl	PMC_DivRem_X_X
@@ -4536,14 +4651,14 @@ PMC_DivRem_X_X:
 	testq	%rdi, %rdi
 	sete	%dl
 	orb	%dl, %al
-	jne	.L318
+	jne	.L322
 	testq	%rcx, %rcx
-	je	.L318
+	je	.L322
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %ebx
-	je	.L343
-.L302:
+	je	.L347
+.L306:
 	movl	%ebx, %eax
 	addq	$136, %rsp
 	popq	%rbx
@@ -4554,39 +4669,39 @@ PMC_DivRem_X_X:
 	popq	%r13
 	ret
 	.p2align 4,,10
-.L343:
+.L347:
 	movq	%rdi, %rcx
 	call	CheckNumber
 	testl	%eax, %eax
 	movl	%eax, %ebx
-	jne	.L302
+	jne	.L306
 	movzbl	32(%rdi), %eax
 	testb	$2, %al
-	jne	.L319
+	jne	.L323
 	testb	$2, 32(%rsi)
-	jne	.L320
+	jne	.L324
 	testb	$4, %al
-	jne	.L344
+	jne	.L348
 	movq	8(%rsi), %r13
 	movq	8(%rdi), %rax
 	cmpq	%rax, %r13
-	jb	.L345
+	jb	.L349
 	leaq	80(%rsp), %rcx
 	movq	%r13, %rdx
 	subq	%rax, %rdx
 	addq	$65, %rdx
 	cmpq	$64, %rax
-	jbe	.L346
+	jbe	.L350
 	leaq	96(%rsp), %r8
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L322
+	jne	.L326
 	leaq	64(%r13), %rdx
 	leaq	88(%rsp), %rcx
 	leaq	104(%rsp), %r8
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L337
+	jne	.L341
 	movq	(%rdi), %rcx
 	leaq	120(%rsp), %rdx
 	leaq	112(%rsp), %r8
@@ -4594,7 +4709,7 @@ PMC_DivRem_X_X:
 	call	AllocateBlock
 	testq	%rax, %rax
 	movq	%rax, %r13
-	je	.L347
+	je	.L351
 	movabsq	$2305843009213693951, %r9
 	movq	88(%rsp), %rax
 	movq	(%rsi), %rdx
@@ -4613,77 +4728,77 @@ PMC_DivRem_X_X:
 	movq	%r13, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L322
+	jne	.L326
 	movq	80(%rsp), %rax
 	movq	96(%rsp), %rdx
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L322
+	jne	.L326
 	movq	80(%rsp), %rax
 	movq	96(%rsp), %rdx
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L322
+	jne	.L326
 	movq	120(%rsp), %rdx
 	movq	%r13, %rcx
 	call	DeallocateBlock
-.L341:
+.L345:
 	movq	80(%rsp), %rcx
 	call	CommitNumber
 	movq	88(%rsp), %rcx
 	call	CommitNumber
 	movq	80(%rsp), %rcx
 	testb	$2, 32(%rcx)
-	jne	.L348
-.L316:
-	movq	88(%rsp), %rcx
-	testb	$2, 32(%rcx)
-	jne	.L349
-.L317:
-	movq	80(%rsp), %rax
-	jmp	.L304
-	.p2align 4,,10
+	jne	.L352
 .L320:
+	movq	88(%rsp), %rcx
+	testb	$2, 32(%rcx)
+	jne	.L353
+.L321:
+	movq	80(%rsp), %rax
+	jmp	.L308
+	.p2align 4,,10
+.L324:
 	movq	.refptr.number_zero(%rip), %rcx
 	movq	%rcx, %rax
-.L304:
+.L308:
 	movq	%rax, (%r12)
 	movq	%rcx, 0(%rbp)
-	jmp	.L302
+	jmp	.L306
 	.p2align 4,,10
-.L344:
+.L348:
 	leaq	80(%rsp), %rdx
 	movq	%rsi, %rcx
 	call	DuplicateNumber
 	testl	%eax, %eax
-	jne	.L322
+	jne	.L326
 	movq	80(%rsp), %rax
 	movq	.refptr.number_zero(%rip), %rcx
-	jmp	.L304
+	jmp	.L308
 	.p2align 4,,10
-.L337:
+.L341:
 	movq	80(%rsp), %rcx
 	movl	%eax, 76(%rsp)
 	call	DeallocateNumber
 	movl	76(%rsp), %eax
 	.p2align 4,,10
-.L322:
+.L326:
 	movl	%eax, %ebx
-	jmp	.L302
+	jmp	.L306
 	.p2align 4,,10
-.L346:
+.L350:
 	leaq	112(%rsp), %r8
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L322
+	jne	.L326
 	leaq	88(%rsp), %rcx
 	movl	$64, %edx
 	leaq	120(%rsp), %r8
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L337
+	jne	.L341
 	movabsq	$2305843009213693951, %rdx
 	movq	80(%rsp), %rax
 	movq	88(%rsp), %r8
@@ -4700,49 +4815,49 @@ PMC_DivRem_X_X:
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	jne	.L322
+	jne	.L326
 	movq	88(%rsp), %rax
 	movq	120(%rsp), %rdx
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	je	.L341
+	je	.L345
 	movl	%eax, %ebx
-	jmp	.L302
+	jmp	.L306
 	.p2align 4,,10
-.L345:
+.L349:
 	movq	.refptr.number_zero(%rip), %rax
 	leaq	88(%rsp), %rdx
 	movq	%rsi, %rcx
 	movq	%rax, 80(%rsp)
 	call	DuplicateNumber
 	testl	%eax, %eax
-	jne	.L322
+	jne	.L326
 	movq	80(%rsp), %rax
 	movq	88(%rsp), %rcx
-	jmp	.L304
+	jmp	.L308
 	.p2align 4,,10
-.L318:
+.L322:
 	movl	$-1, %ebx
-	jmp	.L302
-.L319:
+	jmp	.L306
+.L323:
 	movl	$-3, %ebx
-	jmp	.L302
-.L349:
+	jmp	.L306
+.L353:
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
-	jmp	.L317
-.L348:
+	jmp	.L321
+.L352:
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rax
 	movq	%rax, 80(%rsp)
-	jmp	.L316
-.L347:
+	jmp	.L320
+.L351:
 	movq	80(%rsp), %rcx
 	call	DeallocateNumber
 	movl	$-5, %eax
 	movl	%eax, %ebx
-	jmp	.L302
+	jmp	.L306
 	.seh_endproc
 	.p2align 4,,15
 	.globl	Initialize_DivRem
@@ -4762,8 +4877,8 @@ Initialize_DivRem:
 	.seh_endproc
 .lcomm fp_DivRem_X_X,8,8
 	.ident	"GCC: (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0"
-	.def	LeftShift_Imp_DIV;	.scl	2;	.type	32;	.endef
 	.def	RightShift_Imp_DIV;	.scl	2;	.type	32;	.endef
+	.def	LeftShift_Imp_DIV;	.scl	2;	.type	32;	.endef
 	.def	CheckNumber;	.scl	2;	.type	32;	.endef
 	.def	AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	DuplicateNumber;	.scl	2;	.type	32;	.endef

@@ -62,7 +62,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_Subtruct_L_X DD imagerel $LN31
-	DD	imagerel $LN31+907
+	DD	imagerel $LN31+909
 	DD	imagerel $unwind$PMC_Subtruct_L_X
 pdata	ENDS
 ;	COMDAT pdata
@@ -74,7 +74,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_Subtruct_X_L DD imagerel $LN38
-	DD	imagerel $LN38+1233
+	DD	imagerel $LN38+1235
 	DD	imagerel $unwind$PMC_Subtruct_X_L
 pdata	ENDS
 ;	COMDAT pdata
@@ -2944,7 +2944,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 889  : {
+; 905  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -2959,45 +2959,45 @@ _LZCNT_ALT_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 890  :     if (x == 0)
+; 906  :     if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 891  :         return (sizeof(x) * 8);
+; 907  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 892  : #ifdef _M_IX86
-; 893  :     _UINT32_T pos;
-; 894  : #ifdef _MSC_VER
-; 895  :     _BitScanReverse(&pos, x);
-; 896  : #elif defined(__GNUC__)
-; 897  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 898  : #else
-; 899  : #error unknown compiler
-; 900  : #endif
-; 901  : #elif defined(_M_X64)
-; 902  : #ifdef _MSC_VER
-; 903  :     _UINT32_T pos;
-; 904  :     _BitScanReverse64(&pos, x);
+; 908  : #ifdef _M_IX86
+; 909  :     _UINT32_T pos;
+; 910  : #ifdef _MSC_VER
+; 911  :     _BitScanReverse(&pos, x);
+; 912  : #elif defined(__GNUC__)
+; 913  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 914  : #else
+; 915  : #error unknown compiler
+; 916  : #endif
+; 917  : #elif defined(_M_X64)
+; 918  : #ifdef _MSC_VER
+; 919  :     _UINT32_T pos;
+; 920  :     _BitScanReverse64(&pos, x);
 
 	mov	rax, QWORD PTR x$[rbp]
 	bsr	rax, rax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 905  : #elif defined(__GNUC__)
-; 906  :     _UINT64_T pos;
-; 907  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 908  : #else
-; 909  : #error unknown compiler
-; 910  : #endif
-; 911  : #else
-; 912  : #error unknown platform
-; 913  : #endif
-; 914  :     return (sizeof(x) * 8 - 1 - pos);
+; 921  : #elif defined(__GNUC__)
+; 922  :     _UINT64_T pos;
+; 923  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 924  : #else
+; 925  : #error unknown compiler
+; 926  : #endif
+; 927  : #else
+; 928  : #error unknown platform
+; 929  : #endif
+; 930  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 63					; 0000003fH
@@ -3005,7 +3005,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 915  : }
+; 931  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -3026,7 +3026,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 856  : {
+; 872  : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -3041,31 +3041,31 @@ _LZCNT_ALT_32 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 857  :     if (x == 0)
+; 873  :     if (x == 0)
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 858  :         return (sizeof(x) * 8);
+; 874  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 859  :     _UINT32_T pos;
-; 860  : #ifdef _MSC_VER
-; 861  :     _BitScanReverse(&pos, x);
+; 875  :     _UINT32_T pos;
+; 876  : #ifdef _MSC_VER
+; 877  :     _BitScanReverse(&pos, x);
 
 	mov	eax, DWORD PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 862  : #elif defined(__GNUC__)
-; 863  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 864  : #else
-; 865  : #error unknown compiler
-; 866  : #endif
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 878  : #elif defined(__GNUC__)
+; 879  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 880  : #else
+; 881  : #error unknown compiler
+; 882  : #endif
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 31
@@ -3073,7 +3073,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 868  : }
+; 884  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -3096,7 +3096,7 @@ v$ = 240
 w$ = 248
 _SUBTRUCT_UNIT PROC					; COMDAT
 
-; 529  : {
+; 545  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -3114,10 +3114,10 @@ _SUBTRUCT_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 530  : #ifdef _M_IX86
-; 531  :     return (_subborrow_u32(borrow, u, v, w));
-; 532  : #elif defined(_M_X64)
-; 533  :     return (_subborrow_u64(borrow, u, v, w));
+; 546  : #ifdef _M_IX86
+; 547  :     return (_subborrow_u32(borrow, u, v, w));
+; 548  : #elif defined(_M_X64)
+; 549  :     return (_subborrow_u64(borrow, u, v, w));
 
 	mov	rax, QWORD PTR u$[rbp]
 	movzx	ecx, BYTE PTR borrow$[rbp]
@@ -3128,10 +3128,10 @@ _SUBTRUCT_UNIT PROC					; COMDAT
 	mov	QWORD PTR [rdx], rax
 	movzx	eax, cl
 
-; 534  : #else
-; 535  : #error unknown platform
-; 536  : #endif
-; 537  : }
+; 550  : #else
+; 551  : #error unknown platform
+; 552  : #endif
+; 553  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3147,7 +3147,7 @@ value$ = 224
 result_high$ = 232
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 442  : {
+; 458  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -3163,18 +3163,18 @@ _FROMDWORDTOWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 443  :     *result_high = (_UINT32_T)(value >> 32);
+; 459  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, QWORD PTR value$[rbp]
 	shr	rax, 32					; 00000020H
 	mov	rcx, QWORD PTR result_high$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 444  :     return ((_UINT32_T)value);
+; 460  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR value$[rbp]
 
-; 445  : }
+; 461  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3190,7 +3190,7 @@ value_high$ = 224
 value_low$ = 232
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 437  : {
+; 453  : {
 
 	mov	DWORD PTR [rsp+16], edx
 	mov	DWORD PTR [rsp+8], ecx
@@ -3206,14 +3206,14 @@ _FROMWORDTODWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 438  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 454  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, DWORD PTR value_high$[rbp]
 	shl	rax, 32					; 00000020H
 	mov	ecx, DWORD PTR value_low$[rbp]
 	or	rax, rcx
 
-; 439  : }
+; 455  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3600,7 +3600,7 @@ x_bit_count$17 = 392
 y_bit_count$18 = 424
 z_bit_count$19 = 456
 nz_light_check_code$20 = 488
-tv203 = 692
+tv204 = 692
 tv174 = 692
 tv142 = 692
 x$ = 736
@@ -3805,7 +3805,7 @@ $LN10@PMC_Subtru:
 
 	mov	ecx, DWORD PTR y_lo$10[rbp]
 	call	_LZCNT_ALT_32
-	mov	eax, eax
+	cdqe
 	mov	ecx, 32					; 00000020H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -3915,7 +3915,7 @@ $LN15@PMC_Subtru:
 
 	mov	ecx, DWORD PTR y_hi$9[rbp]
 	call	_LZCNT_ALT_32
-	mov	eax, eax
+	cdqe
 	mov	ecx, 64					; 00000040H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -4037,6 +4037,7 @@ $LN13@PMC_Subtru:
 
 	mov	rcx, QWORD PTR y$[rbp]
 	call	_LZCNT_ALT_UNIT
+	cdqe
 	mov	ecx, 64					; 00000040H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -4106,13 +4107,13 @@ $LN26@PMC_Subtru:
 
 	cmp	DWORD PTR result$[rbp], -258		; fffffffffffffefeH
 	jne	SHORT $LN36@PMC_Subtru
-	mov	DWORD PTR tv203[rbp], -2
+	mov	DWORD PTR tv204[rbp], -2
 	jmp	SHORT $LN37@PMC_Subtru
 $LN36@PMC_Subtru:
 	mov	eax, DWORD PTR result$[rbp]
-	mov	DWORD PTR tv203[rbp], eax
+	mov	DWORD PTR tv204[rbp], eax
 $LN37@PMC_Subtru:
-	mov	eax, DWORD PTR tv203[rbp]
+	mov	eax, DWORD PTR tv204[rbp]
 	jmp	SHORT $LN1@PMC_Subtru
 $LN27@PMC_Subtru:
 
@@ -4397,7 +4398,7 @@ $LN10@PMC_Subtru:
 
 	mov	ecx, DWORD PTR v$[rbp]
 	call	_LZCNT_ALT_32
-	mov	eax, eax
+	cdqe
 	mov	ecx, 32					; 00000020H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -4777,7 +4778,7 @@ $LN10@PMC_Subtru:
 
 	mov	ecx, DWORD PTR u_lo$9[rbp]
 	call	_LZCNT_ALT_32
-	mov	eax, eax
+	cdqe
 	mov	ecx, 32					; 00000020H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -4871,7 +4872,7 @@ $LN14@PMC_Subtru:
 
 	mov	ecx, DWORD PTR u_hi$8[rbp]
 	call	_LZCNT_ALT_32
-	mov	eax, eax
+	cdqe
 	mov	ecx, 64					; 00000040H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -5014,6 +5015,7 @@ $LN12@PMC_Subtru:
 
 	mov	rcx, QWORD PTR u$[rbp]
 	call	_LZCNT_ALT_UNIT
+	cdqe
 	mov	ecx, 64					; 00000040H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -5294,7 +5296,7 @@ $LN10@PMC_Subtru:
 
 	mov	ecx, DWORD PTR u$[rbp]
 	call	_LZCNT_ALT_32
-	mov	eax, eax
+	cdqe
 	mov	ecx, 32					; 00000020H
 	sub	rcx, rax
 	mov	rax, rcx

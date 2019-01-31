@@ -49,12 +49,13 @@ PMC_BitwiseOr_X_I_Imp:
 	leaq	56(%rsp), %r8
 	movl	$31, %eax
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %ebx, %edx
  # 0 "" 2
 /NO_APP
 	subl	%edx, %eax
 	movl	$32, %edx
+	cltq
 	subq	%rax, %rdx
 	movq	8(%rcx), %rax
 	movq	%rbp, %rcx
@@ -120,8 +121,8 @@ PMC_BitwiseOr_X_L_Imp:
 	.seh_stackalloc	72
 	.seh_endprologue
 	testb	$2, 32(%rcx)
-	movq	%rcx, %rbx
-	movq	%rdx, %rsi
+	movq	%rcx, %rsi
+	movq	%rdx, %rbx
 	movq	%r8, %rbp
 	je	.L11
 	testq	%rdx, %rdx
@@ -150,31 +151,36 @@ PMC_BitwiseOr_X_L_Imp:
 	ret
 	.p2align 4,,10
 .L14:
+	leaq	56(%rsp), %r8
+	movl	$63, %eax
 /APP
- # 907 "pmc_internal.h" 1
+ # 923 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
-	leaq	56(%rsp), %r8
-	addq	$1, %rdx
-	cmpq	%rdx, 8(%rcx)
-	cmovnb	8(%rcx), %rdx
+	subl	%edx, %eax
+	movl	$64, %edx
+	cltq
+	subq	%rax, %rdx
+	movq	8(%rcx), %rax
 	movq	%rbp, %rcx
+	cmpq	%rax, %rdx
+	cmovb	%rax, %rdx
 	addq	$1, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
 	jne	.L10
 	movq	0(%rbp), %rax
-	movq	(%rbx), %rdx
 	movq	48(%rax), %rcx
-	movq	48(%rbx), %rax
-	orq	(%rax), %rsi
-	cmpq	$1, %rdx
-	movq	%rsi, (%rcx)
+	movq	(%rsi), %rax
+	movq	48(%rsi), %rsi
+	orq	(%rsi), %rbx
+	cmpq	$1, %rax
+	movq	%rbx, (%rcx)
 	je	.L17
 	leaq	8(%rcx), %rdi
-	leaq	8(%rax), %rsi
-	leaq	-1(%rdx), %rcx
+	addq	$8, %rsi
+	leaq	-1(%rax), %rcx
 /APP
  # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsq
@@ -195,7 +201,7 @@ PMC_BitwiseOr_X_L_Imp:
 	.p2align 4,,10
 .L12:
 	movq	%r8, %rdx
-	movq	%rsi, %rcx
+	movq	%rbx, %rcx
 	call	From_L_Imp
 	addq	$72, %rsp
 	popq	%rbx

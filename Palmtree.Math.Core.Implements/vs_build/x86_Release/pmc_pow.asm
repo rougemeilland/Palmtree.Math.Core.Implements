@@ -17,9 +17,10 @@ EXTRN	_CheckBlockLight:PROC
 EXTRN	_AllocateNumber:PROC
 EXTRN	_CommitNumber:PROC
 EXTRN	_CheckNumber:PROC
-EXTRN	_From_I_Imp:PROC
+EXTRN	_DuplicateNumber:PROC
 EXTRN	_Multiply_X_X_Imp:PROC
 EXTRN	_number_zero:BYTE
+EXTRN	_number_one:BYTE
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
@@ -44,26 +45,26 @@ EXTRN	_number_zero:BYTE
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 ;	COMDAT _PMC_Pow_X_I_Imp
 _TEXT	SEGMENT
-_z_check_code$1 = -52					; size = 4
+_r_check_code$1 = -52					; size = 4
 _work2_buf_code$2 = -48					; size = 4
 _work1_buf_code$3 = -44					; size = 4
-_z_buf$1$ = -40						; size = 4
-tv363 = -36						; size = 4
+_r_buf$1$ = -40						; size = 4
+tv414 = -36						; size = 4
 _work2_buf_words$4 = -32				; size = 4
 _work1_buf_words$5 = -28				; size = 4
-_x_buf$1$ = -24						; size = 4
+_v_buf$1$ = -24						; size = 4
 _work2_buf$1$ = -20					; size = 4
 _work1_buf$1$ = -16					; size = 4
-_n_mask$1$ = -12					; size = 4
+_e_mask$1$ = -12					; size = 4
 _u_ptr$1$ = -8						; size = 4
 _w_ptr$1$ = -4						; size = 4
-_x_buf_count$1$ = 8					; size = 4
-_x$ = 8							; size = 4
-_n$ = 12						; size = 4
-_z$ = 16						; size = 4
+_v_buf_count$1$ = 8					; size = 4
+_v$ = 8							; size = 4
+_e$ = 12						; size = 4
+_r$ = 16						; size = 4
 _PMC_Pow_X_I_Imp PROC					; COMDAT
 
-; 85   : {
+; 83   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -72,22 +73,23 @@ _PMC_Pow_X_I_Imp PROC					; COMDAT
 	push	esi
 	push	edi
 
-; 86   :     PMC_STATUS_CODE result;
-; 87   :     if (x->IS_ZERO)
+; 84   :     PMC_STATUS_CODE result;
+; 85   :     if (v->IS_ZERO)
 
-	mov	edi, DWORD PTR _x$[ebp]
-	test	BYTE PTR [edi+16], 2
+	mov	edi, DWORD PTR _v$[ebp]
+	mov	eax, DWORD PTR [edi+16]
+	test	al, 2
 	je	SHORT $LN2@PMC_Pow_X_
 
-; 88   :     {
-; 89   :         // x が 0 である場合
-; 90   : 
-; 91   :         if (n == 0)
+; 86   :     {
+; 87   :         // v が 0 である場合
+; 88   : 
+; 89   :         if (e == 0)
 
-	cmp	DWORD PTR _n$[ebp], 0
+	cmp	DWORD PTR _e$[ebp], 0
 	jne	SHORT $LN4@PMC_Pow_X_
 
-; 167  : }
+; 179  : }
 
 	pop	edi
 	pop	esi
@@ -98,22 +100,22 @@ _PMC_Pow_X_I_Imp PROC					; COMDAT
 	ret	0
 $LN4@PMC_Pow_X_:
 
-; 92   :         {
-; 93   :             // n が 0 である場合
-; 94   : 
-; 95   :             // 0 の 0 乗となるので、エラーを返す
-; 96   :             return (PMC_STATUS_ARGUMENT_ERROR);
-; 97   :         }
-; 98   :         else
-; 99   :         {
-; 100  :             // n が 0 ではない場合
-; 101  : 
-; 102  :             *z = &number_zero;
+; 90   :         {
+; 91   :             // e が 0 である場合
+; 92   : 
+; 93   :             // 0 の 0 乗となるので、エラーを返す
+; 94   :             return (PMC_STATUS_ARGUMENT_ERROR);
+; 95   :         }
+; 96   :         else
+; 97   :         {
+; 98   :             // e が 0 ではない場合
+; 99   : 
+; 100  :             *r = &number_zero;
 
-	mov	eax, DWORD PTR _z$[ebp]
+	mov	eax, DWORD PTR _r$[ebp]
 	pop	edi
 
-; 167  : }
+; 179  : }
 
 	pop	esi
 	pop	ebx
@@ -124,32 +126,49 @@ $LN4@PMC_Pow_X_:
 	ret	0
 $LN2@PMC_Pow_X_:
 
-; 103  :         }
-; 104  :     }
-; 105  :     else
-; 106  :     {
-; 107  :         // x が 0 ではない場合
-; 108  : 
-; 109  :         if (n == 0)
+; 101  :         }
+; 102  :     }
+; 103  :     else if (v->IS_ONE)
 
-	mov	ebx, DWORD PTR _n$[ebp]
+	test	al, 4
+	jne	$LN44@PMC_Pow_X_
+
+; 104  :     {
+; 105  :         // v が 1 である場合
+; 106  :         
+; 107  :         // e が何であってもべき乗は 1 となる。
+; 108  :         *r = &number_one;
+; 109  :     }
+; 110  :     else
+; 111  :     {
+; 112  :         // v が 2 以上である場合
+; 113  : 
+; 114  :         if (e == 0)
+
+	mov	ebx, DWORD PTR _e$[ebp]
 	test	ebx, ebx
-	jne	SHORT $LN6@PMC_Pow_X_
+	je	$LN44@PMC_Pow_X_
 
-; 110  :         {
-; 111  :             // n が 0 である場合
-; 112  : 
-; 113  :             // 計算結果の 1 を返す
-; 114  :             if ((result = From_I_Imp(1, z)) != PMC_STATUS_OK)
+; 120  :         }
+; 121  :         else if (e == 1)
 
-	push	DWORD PTR _z$[ebp]
-	push	1
-	call	_From_I_Imp
+	cmp	ebx, 1
+	jne	SHORT $LN10@PMC_Pow_X_
+
+; 122  :         {
+; 123  :             // e が 1 である場合
+; 124  : 
+; 125  :             // 計算結果の v を返す
+; 126  :             if ((result = DuplicateNumber(v, r)) != PMC_STATUS_OK)
+
+	push	DWORD PTR _r$[ebp]
+	push	edi
+	call	_DuplicateNumber
 	add	esp, 8
 	test	eax, eax
-	je	$LN7@PMC_Pow_X_
+	je	$LN11@PMC_Pow_X_
 
-; 167  : }
+; 179  : }
 
 	pop	edi
 	pop	esi
@@ -157,28 +176,28 @@ $LN2@PMC_Pow_X_:
 	mov	esp, ebp
 	pop	ebp
 	ret	0
-$LN6@PMC_Pow_X_:
+$LN10@PMC_Pow_X_:
 
-; 115  :                 return (result);
-; 116  :         }
-; 117  :         else
-; 118  :         {
-; 119  :             // x と n がともに 0 ではない場合
-; 120  : 
-; 121  :             // x の n 乗を計算する
-; 122  :             __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
-; 123  : 
-; 124  :             // べき乗の計算結果のビット長が論理的な限界を超えると思われる場合、エラーを返す
-; 125  :             if (x_bit_count > ((__UNIT_TYPE)-1 - __UNIT_TYPE_BIT_COUNT) / n)
+; 127  :                 return (result);
+; 128  :         }
+; 129  :         else
+; 130  :         {
+; 131  :             // v と e がともに 2 以上である場合
+; 132  : 
+; 133  :             // v の e 乗を計算する
+; 134  :             __UNIT_TYPE v_bit_count = v->UNIT_BIT_COUNT;
+; 135  : 
+; 136  :             // べき乗の計算結果のビット長が論理的な限界を超えると思われる場合、エラーを返す
+; 137  :             if (v_bit_count > ((__UNIT_TYPE)-1 - __UNIT_TYPE_BIT_COUNT) / e)
 
 	xor	edx, edx
 	mov	esi, DWORD PTR [edi+4]
 	mov	eax, -33				; ffffffdfH
 	div	ebx
 	cmp	esi, eax
-	jbe	SHORT $LN9@PMC_Pow_X_
+	jbe	SHORT $LN13@PMC_Pow_X_
 
-; 167  : }
+; 179  : }
 
 	pop	edi
 	pop	esi
@@ -187,18 +206,18 @@ $LN6@PMC_Pow_X_:
 	mov	esp, ebp
 	pop	ebp
 	ret	0
-$LN9@PMC_Pow_X_:
+$LN13@PMC_Pow_X_:
 
-; 126  :                 return (PMC_STATUS_OVERFLOW);
-; 127  : 
-; 128  :             __UNIT_TYPE work_bit_count = x_bit_count * n + __UNIT_TYPE_BIT_COUNT;
+; 138  :                 return (PMC_STATUS_OVERFLOW);
+; 139  : 
+; 140  :             __UNIT_TYPE work_bit_count = v_bit_count * e + __UNIT_TYPE_BIT_COUNT;
 
 	imul	esi, ebx
 
-; 129  : 
-; 130  :             __UNIT_TYPE work1_buf_code;
-; 131  :             __UNIT_TYPE work1_buf_words;
-; 132  :             __UNIT_TYPE* work1_buf = AllocateBlock(work_bit_count, &work1_buf_words, &work1_buf_code);
+; 141  : 
+; 142  :             __UNIT_TYPE work1_buf_code;
+; 143  :             __UNIT_TYPE work1_buf_words;
+; 144  :             __UNIT_TYPE* work1_buf = AllocateBlock(work_bit_count, &work1_buf_words, &work1_buf_code);
 
 	lea	eax, DWORD PTR _work1_buf_code$3[ebp]
 	push	eax
@@ -210,17 +229,17 @@ $LN9@PMC_Pow_X_:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _work1_buf$1$[ebp], eax
 
-; 133  :             if (work1_buf == NULL)
+; 145  :             if (work1_buf == NULL)
 
 	test	eax, eax
-	je	SHORT $LN40@PMC_Pow_X_
+	je	SHORT $LN45@PMC_Pow_X_
 
-; 134  :             {
-; 135  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 136  :             }
-; 137  :             __UNIT_TYPE work2_buf_code;
-; 138  :             __UNIT_TYPE work2_buf_words;
-; 139  :             __UNIT_TYPE* work2_buf = AllocateBlock(work_bit_count, &work2_buf_words, &work2_buf_code);
+; 146  :             {
+; 147  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 148  :             }
+; 149  :             __UNIT_TYPE work2_buf_code;
+; 150  :             __UNIT_TYPE work2_buf_words;
+; 151  :             __UNIT_TYPE* work2_buf = AllocateBlock(work_bit_count, &work2_buf_words, &work2_buf_code);
 
 	lea	eax, DWORD PTR _work2_buf_code$2[ebp]
 	push	eax
@@ -230,42 +249,42 @@ $LN9@PMC_Pow_X_:
 	call	_AllocateBlock
 	mov	DWORD PTR _work2_buf$1$[ebp], eax
 
-; 140  :             if (work1_buf == NULL)
-; 141  :             {
-; 142  :                 DeallocateBlock(work1_buf, work1_buf_words);
-; 143  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 144  :             }
-; 145  :             __UNIT_TYPE z_check_code;
-; 146  :             if ((result = AllocateNumber(z, work_bit_count, &z_check_code)) != PMC_STATUS_OK)
+; 152  :             if (work1_buf == NULL)
+; 153  :             {
+; 154  :                 DeallocateBlock(work1_buf, work1_buf_words);
+; 155  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 156  :             }
+; 157  :             __UNIT_TYPE r_check_code;
+; 158  :             if ((result = AllocateNumber(r, work_bit_count, &r_check_code)) != PMC_STATUS_OK)
 
-	lea	eax, DWORD PTR _z_check_code$1[ebp]
+	lea	eax, DWORD PTR _r_check_code$1[ebp]
 	push	eax
 	push	esi
-	mov	esi, DWORD PTR _z$[ebp]
+	mov	esi, DWORD PTR _r$[ebp]
 	push	esi
 	call	_AllocateNumber
 	add	esp, 24					; 00000018H
 	test	eax, eax
-	je	SHORT $LN12@PMC_Pow_X_
+	je	SHORT $LN16@PMC_Pow_X_
 
-; 147  :             {
-; 148  :                 DeallocateBlock(work1_buf, work1_buf_words);
+; 159  :             {
+; 160  :                 DeallocateBlock(work1_buf, work1_buf_words);
 
 	push	DWORD PTR _work1_buf_words$5[ebp]
 	mov	esi, DWORD PTR _work1_buf$1$[ebp]
 	push	esi
 	call	_DeallocateBlock
 
-; 149  :                 DeallocateBlock(work2_buf, work2_buf_words);
+; 161  :                 DeallocateBlock(work2_buf, work2_buf_words);
 
 	push	DWORD PTR _work2_buf_words$4[ebp]
 	mov	esi, DWORD PTR _work2_buf$1$[ebp]
 	push	esi
 	call	_DeallocateBlock
 	add	esp, 16					; 00000010H
-$LN40@PMC_Pow_X_:
+$LN45@PMC_Pow_X_:
 
-; 167  : }
+; 179  : }
 
 	pop	edi
 	pop	esi
@@ -274,128 +293,128 @@ $LN40@PMC_Pow_X_:
 	mov	esp, ebp
 	pop	ebp
 	ret	0
-$LN12@PMC_Pow_X_:
+$LN16@PMC_Pow_X_:
 
-; 150  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 151  :             }
-; 152  : 
-; 153  :             Pow_Imp(x->BLOCK, x->UNIT_WORD_COUNT, n, work1_buf, work2_buf, (*z)->BLOCK);
+; 162  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 163  :             }
+; 164  : 
+; 165  :             Pow_Imp(v->BLOCK, v->UNIT_WORD_COUNT, e, work1_buf, work2_buf, (*r)->BLOCK);
 
 	mov	eax, DWORD PTR [esi]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	edx, 31					; 0000001fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 47   :     __UNIT_TYPE* w_ptr = work2_buf;
+; 45   :     __UNIT_TYPE* w_ptr = work2_buf;
 
 	mov	esi, DWORD PTR _work2_buf$1$[ebp]
 	mov	DWORD PTR _w_ptr$1$[ebp], esi
 
-; 150  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 151  :             }
-; 152  : 
-; 153  :             Pow_Imp(x->BLOCK, x->UNIT_WORD_COUNT, n, work1_buf, work2_buf, (*z)->BLOCK);
+; 162  :                 return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 163  :             }
+; 164  : 
+; 165  :             Pow_Imp(v->BLOCK, v->UNIT_WORD_COUNT, e, work1_buf, work2_buf, (*r)->BLOCK);
 
 	mov	eax, DWORD PTR [eax+24]
-	mov	DWORD PTR _z_buf$1$[ebp], eax
+	mov	DWORD PTR _r_buf$1$[ebp], eax
 	mov	eax, DWORD PTR [edi]
-	mov	DWORD PTR _x_buf_count$1$[ebp], eax
+	mov	DWORD PTR _v_buf_count$1$[ebp], eax
 	mov	eax, DWORD PTR [edi+24]
-	mov	DWORD PTR _x_buf$1$[ebp], eax
+	mov	DWORD PTR _v_buf$1$[ebp], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
-	mov	esi, DWORD PTR _x_buf$1$[ebp]
+	mov	esi, DWORD PTR _v_buf$1$[ebp]
 
-; 861  :     _BitScanReverse(&pos, x);
+; 877  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 48   :     __UNIT_TYPE u_count = x_buf_count;
+; 46   :     __UNIT_TYPE u_count = v_buf_count;
 
-	mov	ebx, DWORD PTR _x_buf_count$1$[ebp]
+	mov	ebx, DWORD PTR _v_buf_count$1$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, ebx
 
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	edx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 45   :     __UNIT_TYPE* u_ptr = work1_buf;
+; 43   :     __UNIT_TYPE* u_ptr = work1_buf;
 
 	mov	eax, DWORD PTR _work1_buf$1$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 45   :     __UNIT_TYPE* u_ptr = work1_buf;
+; 43   :     __UNIT_TYPE* u_ptr = work1_buf;
 
 	mov	DWORD PTR _u_ptr$1$[ebp], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 41   :     n_mask = _rotr(n_mask, _LZCNT_ALT_32(n) + 1);
+; 39   :     _UINT32_T e_mask = _rotr(1, _LZCNT_ALT_32(e) + 1);
 
 	lea	ecx, DWORD PTR [edx+1]
 	mov	esi, 1
 	ror	esi, cl
 
-; 49   :     __UNIT_TYPE v_count = x_buf_count;
-; 50   :     _COPY_MEMORY_UNIT(work1_buf, x_buf, x_buf_count);
-; 51   :     n_mask >>= 1;
+; 47   :     __UNIT_TYPE v_count = v_buf_count;
+; 48   :     _COPY_MEMORY_UNIT(work1_buf, v_buf, v_buf_count);
+; 49   :     e_mask >>= 1;
 
 	shr	esi, 1
-	mov	DWORD PTR _n_mask$1$[ebp], esi
+	mov	DWORD PTR _e_mask$1$[ebp], esi
 
-; 52   :     while (n_mask != 0)
+; 50   :     while (e_mask != 0)
 
-	je	$LN19@PMC_Pow_X_
+	je	$LN23@PMC_Pow_X_
 	mov	edx, DWORD PTR _w_ptr$1$[ebp]
-	npad	5
-$LL18@PMC_Pow_X_:
+	npad	4
+$LL22@PMC_Pow_X_:
 
-; 53   :     {
-; 54   :         // u を自乗して w に格納する
-; 55   :         _ZERO_MEMORY_UNIT(w_ptr, u_count * 2);
+; 51   :     {
+; 52   :         // u を自乗して w に格納する
+; 53   :         _ZERO_MEMORY_UNIT(w_ptr, u_count * 2);
 
-	mov	DWORD PTR tv363[ebp], esi
+	mov	DWORD PTR tv414[ebp], esi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 378  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	edi, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 56   :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
+; 54   :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
 
 	push	edx
 	lea	esi, DWORD PTR [ebx+ebx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 378  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 	mov	ecx, esi
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 56   :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
+; 54   :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
 
 	mov	edi, DWORD PTR _u_ptr$1$[ebp]
 	push	ebx
@@ -404,106 +423,106 @@ $LL18@PMC_Pow_X_:
 	push	edi
 	call	_Multiply_X_X_Imp
 
-; 57   :         u_count *= 2;
-; 58   :         if (w_ptr[u_count - 1] == 0)
-; 59   :             --u_count;
-; 60   : 
-; 61   :         // n の該当桁の bit を調べる
-; 62   :         if (n & n_mask)
+; 55   :         u_count *= 2;
+; 56   :         if (w_ptr[u_count - 1] == 0)
+; 57   :             --u_count;
+; 58   : 
+; 59   :         // e の該当桁の bit を調べる
+; 60   :         if (e & e_mask)
 
 	mov	edx, DWORD PTR _w_ptr$1$[ebp]
 	lea	eax, DWORD PTR [esi-1]
 	add	esp, 20					; 00000014H
 	cmp	DWORD PTR [edx+ebx*8-4], 0
 	cmovne	eax, esi
-	mov	esi, DWORD PTR _n_mask$1$[ebp]
+	mov	esi, DWORD PTR _e_mask$1$[ebp]
 	mov	ebx, eax
-	test	esi, DWORD PTR _n$[ebp]
-	je	SHORT $LN21@PMC_Pow_X_
+	test	esi, DWORD PTR _e$[ebp]
+	je	SHORT $LN25@PMC_Pow_X_
 
-; 65   :             _ZERO_MEMORY_UNIT(u_ptr, u_count + v_count);
+; 63   :             _ZERO_MEMORY_UNIT(u_ptr, u_count + v_count);
 
-	mov	esi, DWORD PTR _x_buf_count$1$[ebp]
+	mov	esi, DWORD PTR _v_buf_count$1$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 378  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 65   :             _ZERO_MEMORY_UNIT(u_ptr, u_count + v_count);
+; 63   :             _ZERO_MEMORY_UNIT(u_ptr, u_count + v_count);
 
 	add	esi, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 378  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, esi
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 66   :             Multiply_X_X_Imp(w_ptr, u_count, v_ptr, v_count, u_ptr);
+; 64   :             Multiply_X_X_Imp(w_ptr, u_count, v_ptr, v_count, u_ptr);
 
 	mov	edi, DWORD PTR _u_ptr$1$[ebp]
 	push	edi
-	push	DWORD PTR _x_buf_count$1$[ebp]
-	push	DWORD PTR _x_buf$1$[ebp]
+	push	DWORD PTR _v_buf_count$1$[ebp]
+	push	DWORD PTR _v_buf$1$[ebp]
 	push	ebx
 	push	edx
 	call	_Multiply_X_X_Imp
 
-; 67   :             u_count += v_count;
-; 68   :             if (u_ptr[u_count - 1] == 0)
-; 69   :                 --u_count;
-; 70   :         }
+; 65   :             u_count += v_count;
+; 66   :             if (u_ptr[u_count - 1] == 0)
+; 67   :                 --u_count;
+; 68   :         }
 
 	mov	edx, DWORD PTR _w_ptr$1$[ebp]
 	lea	ebx, DWORD PTR [esi-1]
 	add	esp, 20					; 00000014H
 	cmp	DWORD PTR [edi+esi*4-4], 0
 	cmovne	ebx, esi
-	mov	esi, DWORD PTR _n_mask$1$[ebp]
-	jmp	SHORT $LN22@PMC_Pow_X_
-$LN21@PMC_Pow_X_:
+	mov	esi, DWORD PTR _e_mask$1$[ebp]
+	jmp	SHORT $LN26@PMC_Pow_X_
+$LN25@PMC_Pow_X_:
 
-; 71   :         else
-; 72   :         {
-; 73   :             // u と w を交換する
-; 74   :             __UNIT_TYPE* t_ptr = u_ptr;
+; 69   :         else
+; 70   :         {
+; 71   :             // u と w を交換する
+; 72   :             __UNIT_TYPE* t_ptr = u_ptr;
 
 	mov	eax, edi
 
-; 75   :             u_ptr = w_ptr;
+; 73   :             u_ptr = w_ptr;
 
 	mov	DWORD PTR _u_ptr$1$[ebp], edx
 
-; 76   :             w_ptr = t_ptr;
+; 74   :             w_ptr = t_ptr;
 
 	mov	edx, eax
 	mov	DWORD PTR _w_ptr$1$[ebp], edx
-$LN22@PMC_Pow_X_:
+$LN26@PMC_Pow_X_:
 
-; 77   :         }
-; 78   : 
-; 79   :         n_mask >>= 1;
+; 75   :         }
+; 76   : 
+; 77   :         e_mask >>= 1;
 
 	shr	esi, 1
-	cmp	DWORD PTR tv363[ebp], 2
-	mov	DWORD PTR _n_mask$1$[ebp], esi
-	jae	SHORT $LL18@PMC_Pow_X_
+	cmp	DWORD PTR tv414[ebp], 2
+	mov	DWORD PTR _e_mask$1$[ebp], esi
+	jae	SHORT $LL22@PMC_Pow_X_
 	mov	eax, DWORD PTR _u_ptr$1$[ebp]
-$LN19@PMC_Pow_X_:
+$LN23@PMC_Pow_X_:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
-	mov	edi, DWORD PTR _z_buf$1$[ebp]
+	mov	edi, DWORD PTR _r_buf$1$[ebp]
 	mov	esi, eax
 	mov	ecx, ebx
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 155  :             if ((result = CheckBlockLight(work1_buf, work1_buf_code)) != PMC_STATUS_OK)
+; 167  :             if ((result = CheckBlockLight(work1_buf, work1_buf_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _work1_buf_code$3[ebp]
 	mov	esi, DWORD PTR _work1_buf$1$[ebp]
@@ -513,8 +532,8 @@ $LN19@PMC_Pow_X_:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Pow_X_
 
-; 156  :                 return (result);
-; 157  :             if ((result = CheckBlockLight(work2_buf, work2_buf_code)) != PMC_STATUS_OK)
+; 168  :                 return (result);
+; 169  :             if ((result = CheckBlockLight(work2_buf, work2_buf_code)) != PMC_STATUS_OK)
 
 	push	DWORD PTR _work2_buf_code$2[ebp]
 	mov	ebx, DWORD PTR _work2_buf$1$[ebp]
@@ -524,11 +543,11 @@ $LN19@PMC_Pow_X_:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Pow_X_
 
-; 158  :                 return (result);
-; 159  :             if ((result = CheckBlockLight((*z)->BLOCK, z_check_code)) != PMC_STATUS_OK)
+; 170  :                 return (result);
+; 171  :             if ((result = CheckBlockLight((*r)->BLOCK, r_check_code)) != PMC_STATUS_OK)
 
-	mov	edi, DWORD PTR _z$[ebp]
-	push	DWORD PTR _z_check_code$1[ebp]
+	mov	edi, DWORD PTR _r$[ebp]
+	push	DWORD PTR _r_check_code$1[ebp]
 	mov	eax, DWORD PTR [edi]
 	push	DWORD PTR [eax+24]
 	call	_CheckBlockLight
@@ -536,35 +555,60 @@ $LN19@PMC_Pow_X_:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Pow_X_
 
-; 160  :                 return (result);
-; 161  :             DeallocateBlock(work1_buf, work1_buf_words);
+; 172  :                 return (result);
+; 173  :             DeallocateBlock(work1_buf, work1_buf_words);
 
 	push	DWORD PTR _work1_buf_words$5[ebp]
 	push	esi
 	call	_DeallocateBlock
 
-; 162  :             DeallocateBlock(work2_buf, work2_buf_words);
+; 174  :             DeallocateBlock(work2_buf, work2_buf_words);
 
 	push	DWORD PTR _work2_buf_words$4[ebp]
 	push	ebx
 	call	_DeallocateBlock
 
-; 163  :             CommitNumber(*z);
+; 175  :             CommitNumber(*r);
 
 	push	DWORD PTR [edi]
 	call	_CommitNumber
 	add	esp, 20					; 00000014H
-$LN7@PMC_Pow_X_:
 
-; 164  :         }
-; 165  :     }
-; 166  :     return (PMC_STATUS_OK);
+; 176  :         }
+; 177  :     }
+; 178  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+	pop	edi
+
+; 179  : }
+
+	pop	esi
+	pop	ebx
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+$LN44@PMC_Pow_X_:
+
+; 115  :         {
+; 116  :             // e が 0 である場合
+; 117  : 
+; 118  :             // 計算結果の 1 を返す
+; 119  :             *r = &number_one;
+
+	mov	eax, DWORD PTR _r$[ebp]
+	mov	DWORD PTR [eax], OFFSET _number_one
+$LN11@PMC_Pow_X_:
+
+; 176  :         }
+; 177  :     }
+; 178  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Pow_X_:
 	pop	edi
 
-; 167  : }
+; 179  : }
 
 	pop	esi
 	pop	ebx
@@ -596,55 +640,55 @@ _TEXT	ENDS
 ;	COMDAT _Pow_Imp
 _TEXT	SEGMENT
 tv282 = -8						; size = 4
-_n_mask$1$ = -4						; size = 4
-_x_buf$ = 8						; size = 4
-_x_buf_count$ = 12					; size = 4
-_n$ = 16						; size = 4
+_e_mask$1$ = -4						; size = 4
+_v_buf$ = 8						; size = 4
+_v_buf_count$ = 12					; size = 4
+_e$ = 16						; size = 4
 _u_count$2$ = 20					; size = 4
 _work1_buf$ = 20					; size = 4
 _work2_buf$ = 24					; size = 4
-_z_buf$ = 28						; size = 4
+_r_buf$ = 28						; size = 4
 _Pow_Imp PROC						; COMDAT
 
-; 39   : {
+; 38   : {
 
 	push	ebp
 	mov	ebp, esp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 857  :     if (x == 0)
+; 873  :     if (x == 0)
 
-	mov	eax, DWORD PTR _n$[ebp]
+	mov	eax, DWORD PTR _e$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 39   : {
+; 38   : {
 
 	sub	esp, 8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 857  :     if (x == 0)
+; 873  :     if (x == 0)
 
 	test	eax, eax
 	jne	SHORT $LN10@Pow_Imp
 
-; 858  :         return (sizeof(x) * 8);
+; 874  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN9@Pow_Imp
 $LN10@Pow_Imp:
 
-; 859  :     _UINT32_T pos;
-; 860  : #ifdef _MSC_VER
-; 861  :     _BitScanReverse(&pos, x);
+; 875  :     _UINT32_T pos;
+; 876  : #ifdef _MSC_VER
+; 877  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, eax
 
-; 862  : #elif defined(__GNUC__)
-; 863  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 864  : #else
-; 865  : #error unknown compiler
-; 866  : #endif
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 878  : #elif defined(__GNUC__)
+; 879  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 880  : #else
+; 881  : #error unknown compiler
+; 882  : #endif
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
@@ -652,68 +696,68 @@ $LN10@Pow_Imp:
 $LN9@Pow_Imp:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 48   :     __UNIT_TYPE u_count = x_buf_count;
+; 46   :     __UNIT_TYPE u_count = v_buf_count;
 
-	mov	ecx, DWORD PTR _x_buf_count$[ebp]
+	mov	ecx, DWORD PTR _v_buf_count$[ebp]
 	mov	edx, ecx
 	push	ebx
 	mov	ebx, DWORD PTR _work1_buf$[ebp]
 	push	esi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
-	mov	esi, DWORD PTR _x_buf$[ebp]
+	mov	esi, DWORD PTR _v_buf$[ebp]
 	push	edi
 	mov	edi, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 48   :     __UNIT_TYPE u_count = x_buf_count;
+; 46   :     __UNIT_TYPE u_count = v_buf_count;
 
 	mov	DWORD PTR _u_count$2$[ebp], edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 41   :     n_mask = _rotr(n_mask, _LZCNT_ALT_32(n) + 1);
+; 39   :     _UINT32_T e_mask = _rotr(1, _LZCNT_ALT_32(e) + 1);
 
 	lea	ecx, DWORD PTR [eax+1]
 	mov	eax, 1
 	ror	eax, cl
 
-; 49   :     __UNIT_TYPE v_count = x_buf_count;
-; 50   :     _COPY_MEMORY_UNIT(work1_buf, x_buf, x_buf_count);
-; 51   :     n_mask >>= 1;
+; 47   :     __UNIT_TYPE v_count = v_buf_count;
+; 48   :     _COPY_MEMORY_UNIT(work1_buf, v_buf, v_buf_count);
+; 49   :     e_mask >>= 1;
 
 	shr	eax, 1
-	mov	DWORD PTR _n_mask$1$[ebp], eax
+	mov	DWORD PTR _e_mask$1$[ebp], eax
 
-; 52   :     while (n_mask != 0)
+; 50   :     while (e_mask != 0)
 
 	je	$LN3@Pow_Imp
 	mov	edi, DWORD PTR _work2_buf$[ebp]
 	npad	3
 $LL2@Pow_Imp:
 
-; 53   :     {
-; 54   :         // u を自乗して w に格納する
-; 55   :         _ZERO_MEMORY_UNIT(w_ptr, u_count * 2);
+; 51   :     {
+; 52   :         // u を自乗して w に格納する
+; 53   :         _ZERO_MEMORY_UNIT(w_ptr, u_count * 2);
 
 	lea	esi, DWORD PTR [edx+edx]
 	mov	DWORD PTR tv282[ebp], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 378  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 	mov	ecx, esi
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 56   :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
+; 54   :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
 
 	mov	edi, DWORD PTR _work2_buf$[ebp]
 	push	edi
@@ -723,59 +767,59 @@ $LL2@Pow_Imp:
 	push	ebx
 	call	_Multiply_X_X_Imp
 
-; 57   :         u_count *= 2;
-; 58   :         if (w_ptr[u_count - 1] == 0)
-; 59   :             --u_count;
-; 60   : 
-; 61   :         // n の該当桁の bit を調べる
-; 62   :         if (n & n_mask)
+; 55   :         u_count *= 2;
+; 56   :         if (w_ptr[u_count - 1] == 0)
+; 57   :             --u_count;
+; 58   : 
+; 59   :         // e の該当桁の bit を調べる
+; 60   :         if (e & e_mask)
 
 	mov	ecx, DWORD PTR _u_count$2$[ebp]
 	lea	edx, DWORD PTR [esi-1]
-	mov	eax, DWORD PTR _n$[ebp]
+	mov	eax, DWORD PTR _e$[ebp]
 	add	esp, 20					; 00000014H
 	cmp	DWORD PTR [edi+ecx*8-4], 0
 	cmovne	edx, esi
 	mov	DWORD PTR _u_count$2$[ebp], edx
-	test	DWORD PTR _n_mask$1$[ebp], eax
+	test	DWORD PTR _e_mask$1$[ebp], eax
 	je	SHORT $LN5@Pow_Imp
 
-; 63   :         {
-; 64   :             // bit が立っていたら u = w * v とする
-; 65   :             _ZERO_MEMORY_UNIT(u_ptr, u_count + v_count);
+; 61   :         {
+; 62   :             // bit が立っていたら u = w * v とする
+; 63   :             _ZERO_MEMORY_UNIT(u_ptr, u_count + v_count);
 
-	mov	esi, DWORD PTR _x_buf_count$[ebp]
+	mov	esi, DWORD PTR _v_buf_count$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 378  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 66   :             Multiply_X_X_Imp(w_ptr, u_count, v_ptr, v_count, u_ptr);
+; 64   :             Multiply_X_X_Imp(w_ptr, u_count, v_ptr, v_count, u_ptr);
 
 	push	ebx
-	push	DWORD PTR _x_buf_count$[ebp]
+	push	DWORD PTR _v_buf_count$[ebp]
 	add	esi, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 378  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	edi, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 66   :             Multiply_X_X_Imp(w_ptr, u_count, v_ptr, v_count, u_ptr);
+; 64   :             Multiply_X_X_Imp(w_ptr, u_count, v_ptr, v_count, u_ptr);
 
-	push	DWORD PTR _x_buf$[ebp]
+	push	DWORD PTR _v_buf$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 378  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, esi
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 66   :             Multiply_X_X_Imp(w_ptr, u_count, v_ptr, v_count, u_ptr);
+; 64   :             Multiply_X_X_Imp(w_ptr, u_count, v_ptr, v_count, u_ptr);
 
 	mov	edi, DWORD PTR _work2_buf$[ebp]
 	push	edx
@@ -783,10 +827,10 @@ $LL2@Pow_Imp:
 	call	_Multiply_X_X_Imp
 	add	esp, 20					; 00000014H
 
-; 67   :             u_count += v_count;
-; 68   :             if (u_ptr[u_count - 1] == 0)
-; 69   :                 --u_count;
-; 70   :         }
+; 65   :             u_count += v_count;
+; 66   :             if (u_ptr[u_count - 1] == 0)
+; 67   :                 --u_count;
+; 68   :         }
 
 	lea	edx, DWORD PTR [esi-1]
 	cmp	DWORD PTR [ebx+esi*4-4], 0
@@ -795,38 +839,38 @@ $LL2@Pow_Imp:
 	jmp	SHORT $LN6@Pow_Imp
 $LN5@Pow_Imp:
 
-; 71   :         else
-; 72   :         {
-; 73   :             // u と w を交換する
-; 74   :             __UNIT_TYPE* t_ptr = u_ptr;
+; 69   :         else
+; 70   :         {
+; 71   :             // u と w を交換する
+; 72   :             __UNIT_TYPE* t_ptr = u_ptr;
 
 	mov	eax, ebx
 
-; 75   :             u_ptr = w_ptr;
+; 73   :             u_ptr = w_ptr;
 
 	mov	ebx, edi
 
-; 76   :             w_ptr = t_ptr;
+; 74   :             w_ptr = t_ptr;
 
 	mov	edi, eax
 	mov	DWORD PTR _work2_buf$[ebp], edi
 $LN6@Pow_Imp:
 
-; 77   :         }
-; 78   : 
-; 79   :         n_mask >>= 1;
+; 75   :         }
+; 76   : 
+; 77   :         e_mask >>= 1;
 
-	mov	eax, DWORD PTR _n_mask$1$[ebp]
+	mov	eax, DWORD PTR _e_mask$1$[ebp]
 	shr	eax, 1
 	cmp	DWORD PTR tv282[ebp], 2
-	mov	DWORD PTR _n_mask$1$[ebp], eax
+	mov	DWORD PTR _e_mask$1$[ebp], eax
 	jae	SHORT $LL2@Pow_Imp
 $LN3@Pow_Imp:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
-	mov	edi, DWORD PTR _z_buf$[ebp]
+	mov	edi, DWORD PTR _r_buf$[ebp]
 	mov	esi, ebx
 	mov	ecx, edx
 	rep movsd
@@ -835,7 +879,7 @@ $LN3@Pow_Imp:
 	pop	ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 
-; 82   : }
+; 80   : }
 
 	mov	esp, ebp
 	pop	ebp
@@ -849,44 +893,44 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC					; COMDAT
 
-; 856  : {
+; 872  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 857  :     if (x == 0)
+; 873  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 858  :         return (sizeof(x) * 8);
+; 874  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 868  : }
+; 884  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 859  :     _UINT32_T pos;
-; 860  : #ifdef _MSC_VER
-; 861  :     _BitScanReverse(&pos, x);
+; 875  :     _UINT32_T pos;
+; 876  : #ifdef _MSC_VER
+; 877  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 862  : #elif defined(__GNUC__)
-; 863  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 864  : #else
-; 865  : #error unknown compiler
-; 866  : #endif
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 878  : #elif defined(__GNUC__)
+; 879  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 880  : #else
+; 881  : #error unknown compiler
+; 882  : #endif
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 868  : }
+; 884  : }
 
 	pop	ebp
 	ret	0
@@ -900,13 +944,13 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_UNIT PROC					; COMDAT
 
-; 376  : {
+; 392  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 377  : #ifdef _M_IX86
-; 378  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 393  : #ifdef _M_IX86
+; 394  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	xor	eax, eax
@@ -915,12 +959,12 @@ __ZERO_MEMORY_UNIT PROC					; COMDAT
 	rep stosd
 	pop	edi
 
-; 379  : #elif defined(_M_X64)
-; 380  :     __stosq(d, 0, count);
-; 381  : #else
-; 382  : #error unknown platform
-; 383  : #endif
-; 384  : }
+; 395  : #elif defined(_M_X64)
+; 396  :     __stosq(d, 0, count);
+; 397  : #else
+; 398  : #error unknown platform
+; 399  : #endif
+; 400  : }
 
 	pop	ebp
 	ret	0
@@ -935,13 +979,13 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 326  : {
+; 342  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 327  : #ifdef _M_IX86
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 343  : #ifdef _M_IX86
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	push	esi
@@ -952,12 +996,12 @@ __COPY_MEMORY_UNIT PROC					; COMDAT
 	pop	edi
 	pop	esi
 
-; 329  : #elif defined(_M_X64)
-; 330  :     __movsq(d, s, count);
-; 331  : #else
-; 332  : #error unknown platform
-; 333  : #endif
-; 334  : }
+; 345  : #elif defined(_M_X64)
+; 346  :     __movsq(d, s, count);
+; 347  : #else
+; 348  : #error unknown platform
+; 349  : #endif
+; 350  : }
 
 	pop	ebp
 	ret	0
@@ -967,36 +1011,36 @@ _TEXT	ENDS
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_pow.c
 ;	COMDAT _PMC_Pow_X_I@12
 _TEXT	SEGMENT
-_x$ = 8							; size = 4
-_n$ = 12						; size = 4
-_z$ = 16						; size = 4
+_v$ = 8							; size = 4
+_e$ = 12						; size = 4
+_r$ = 16						; size = 4
 _PMC_Pow_X_I@12 PROC					; COMDAT
 
-; 170  : {
+; 182  : {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 
-; 171  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
-; 172  :     {
-; 173  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 174  :         return (PMC_STATUS_INTERNAL_ERROR);
-; 175  :     }
-; 176  :     if (x == NULL)
+; 183  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(e) * 8)
+; 184  :     {
+; 185  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 186  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 187  :     }
+; 188  :     if (v == NULL)
 
-	mov	esi, DWORD PTR _x$[ebp]
+	mov	esi, DWORD PTR _v$[ebp]
 	test	esi, esi
 	je	SHORT $LN8@PMC_Pow_X_
 
-; 177  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 178  :     if (z == NULL)
+; 189  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 190  :     if (r == NULL)
 
-	cmp	DWORD PTR _z$[ebp], 0
+	cmp	DWORD PTR _r$[ebp], 0
 	je	SHORT $LN8@PMC_Pow_X_
 
-; 180  :     PMC_STATUS_CODE result;
-; 181  :     if ((result = CheckNumber((NUMBER_HEADER*)x)) != PMC_STATUS_OK)
+; 192  :     PMC_STATUS_CODE result;
+; 193  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
 
 	push	esi
 	call	_CheckNumber
@@ -1004,41 +1048,41 @@ _PMC_Pow_X_I@12 PROC					; COMDAT
 	test	eax, eax
 	jne	SHORT $LN6@PMC_Pow_X_
 
-; 182  :         return (result);
-; 183  :     if ((result = PMC_Pow_X_I_Imp((NUMBER_HEADER*)x, n, (NUMBER_HEADER**)z)) != PMC_STATUS_OK)
+; 194  :         return (result);
+; 195  :     if ((result = PMC_Pow_X_I_Imp((NUMBER_HEADER*)v, e, (NUMBER_HEADER**)r)) != PMC_STATUS_OK)
 
-	push	DWORD PTR _z$[ebp]
-	push	DWORD PTR _n$[ebp]
+	push	DWORD PTR _r$[ebp]
+	push	DWORD PTR _e$[ebp]
 	push	esi
 	call	_PMC_Pow_X_I_Imp
 	add	esp, 12					; 0000000cH
 	pop	esi
 
-; 184  :         return (result);
-; 185  : #ifdef _DEBUG
-; 186  :     if ((result = CheckNumber(*z)) != PMC_STATUS_OK)
-; 187  :         return (result);
-; 188  : #endif
-; 189  :     return (PMC_STATUS_OK);
-; 190  : }
+; 196  :         return (result);
+; 197  : #ifdef _DEBUG
+; 198  :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
+; 199  :         return (result);
+; 200  : #endif
+; 201  :     return (PMC_STATUS_OK);
+; 202  : }
 
 	pop	ebp
 	ret	12					; 0000000cH
 $LN8@PMC_Pow_X_:
 
-; 179  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 191  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 $LN6@PMC_Pow_X_:
 	pop	esi
 
-; 184  :         return (result);
-; 185  : #ifdef _DEBUG
-; 186  :     if ((result = CheckNumber(*z)) != PMC_STATUS_OK)
-; 187  :         return (result);
-; 188  : #endif
-; 189  :     return (PMC_STATUS_OK);
-; 190  : }
+; 196  :         return (result);
+; 197  : #ifdef _DEBUG
+; 198  :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
+; 199  :         return (result);
+; 200  : #endif
+; 201  :     return (PMC_STATUS_OK);
+; 202  : }
 
 	pop	ebp
 	ret	12					; 0000000cH
@@ -1051,11 +1095,11 @@ _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_Pow PROC					; COMDAT
 
-; 194  :     return (PMC_STATUS_OK);
+; 206  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 195  : }
+; 207  : }
 
 	ret	0
 _Initialize_Pow ENDP

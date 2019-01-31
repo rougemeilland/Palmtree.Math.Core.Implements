@@ -100849,6 +100849,10 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
 
     PMC_STATUS_CODE( * PMC_Pow_X_I)(HANDLE x, _UINT32_T n, HANDLE* z);
+
+
+    PMC_STATUS_CODE( * PMC_ModPow_X_X_X)(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
+
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -100869,11 +100873,11 @@ typedef struct __tag_PMC_DEBUG_ENVIRONMENT
 
 
 #pragma region 宣言
-# 141 "pmc_debug.h"
+# 147 "pmc_debug.h"
 #pragma endregion
 
 
 #pragma region インライン関数の定義
-# 161 "pmc_debug.h"
+# 167 "pmc_debug.h"
 #pragma endregion
 # 35 "TEST_op_Compare.c" 2

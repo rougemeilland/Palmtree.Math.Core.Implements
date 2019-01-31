@@ -23,16 +23,17 @@ PMC_Equals_X_I_Imp:
 .L2:
 	testl	%edx, %edx
 	je	.L3
-	movl	$31, %r9d
+	movl	$31, %eax
 /APP
- # 863 "pmc_internal.h" 1
-	bsrl %edx, %eax
+ # 879 "pmc_internal.h" 1
+	bsrl %edx, %r9d
  # 0 "" 2
 /NO_APP
-	subl	%eax, %r9d
-	movl	$32, %eax
-	subq	%r9, %rax
-	cmpq	%rax, 8(%rcx)
+	subl	%r9d, %eax
+	movl	$32, %r9d
+	cltq
+	subq	%rax, %r9
+	cmpq	%r9, 8(%rcx)
 	jne	.L3
 	movq	48(%rcx), %rax
 	movl	%edx, %edx
@@ -65,13 +66,17 @@ PMC_Equals_X_L_Imp:
 .L11:
 	testq	%rdx, %rdx
 	je	.L12
+	movl	$63, %eax
 /APP
- # 907 "pmc_internal.h" 1
-	bsrq %rdx, %rax
+ # 923 "pmc_internal.h" 1
+	bsrq %rdx, %r9
  # 0 "" 2
 /NO_APP
-	addq	$1, %rax
-	cmpq	%rax, 8(%rcx)
+	subl	%r9d, %eax
+	movl	$64, %r9d
+	cltq
+	subq	%rax, %r9
+	cmpq	%r9, 8(%rcx)
 	jne	.L12
 	movq	48(%rcx), %rax
 	cmpq	%rdx, (%rax)

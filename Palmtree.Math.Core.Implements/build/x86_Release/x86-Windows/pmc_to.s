@@ -4,7 +4,7 @@
 	.globl	_PMC_To_X_I@8
 	.def	_PMC_To_X_I@8;	.scl	2;	.type	32;	.endef
 _PMC_To_X_I@8:
-LFB5487:
+LFB5490:
 	.cfi_startproc
 	pushl	%ebx
 	.cfi_def_cfa_offset 8
@@ -49,12 +49,12 @@ L4:
 	movl	$-2, %eax
 	jmp	L1
 	.cfi_endproc
-LFE5487:
+LFE5490:
 	.p2align 4,,15
 	.globl	_PMC_To_X_L@8
 	.def	_PMC_To_X_L@8;	.scl	2;	.type	32;	.endef
 _PMC_To_X_L@8:
-LFB5488:
+LFB5491:
 	.cfi_startproc
 	pushl	%ebx
 	.cfi_def_cfa_offset 8
@@ -119,16 +119,16 @@ L11:
 	movl	$-2, %eax
 	jmp	L7
 	.cfi_endproc
-LFE5488:
+LFE5491:
 	.p2align 4,,15
 	.globl	_Initialize_To
 	.def	_Initialize_To;	.scl	2;	.type	32;	.endef
 _Initialize_To:
-LFB5489:
+LFB5492:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5489:
+LFE5492:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef

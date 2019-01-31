@@ -41,14 +41,14 @@ value_high$ = 8
 value_low$ = 16
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 438  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 454  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, ecx
 	shl	rax, 32					; 00000020H
 	mov	ecx, edx
 	or	rax, rcx
 
-; 439  : }
+; 455  : }
 
 	ret	0
 _FROMWORDTODWORD ENDP

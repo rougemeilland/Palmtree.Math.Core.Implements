@@ -19,12 +19,13 @@ From_I_Imp:
 	je	.L2
 	movl	$31, %eax
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP
 	subl	%edx, %eax
 	movl	$32, %edx
+	cltq
 	subq	%rax, %rdx
 .L2:
 	xorl	%r8d, %r8d
@@ -62,12 +63,16 @@ From_L_Imp:
 	testq	%rcx, %rcx
 	movq	%rcx, %rbx
 	je	.L8
+	movl	$63, %eax
 /APP
- # 907 "pmc_internal.h" 1
+ # 923 "pmc_internal.h" 1
 	bsrq %rcx, %rdx
  # 0 "" 2
 /NO_APP
-	addq	$1, %rdx
+	subl	%edx, %eax
+	movl	$64, %edx
+	cltq
+	subq	%rax, %rdx
 .L8:
 	xorl	%r8d, %r8d
 	movq	%rsi, %rcx

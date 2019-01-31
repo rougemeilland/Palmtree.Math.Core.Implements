@@ -52,31 +52,31 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG94434 DB	',', 00H, 00H, 00H
-$SG94435 DB	'3', 00H
+$SG94510 DB	',', 00H, 00H, 00H
+$SG94511 DB	'3', 00H
 	ORG $+2
-$SG94436 DB	'.', 00H, 00H, 00H
-$SG94437 DB	'+', 00H, 00H, 00H
-$SG94438 DB	'-', 00H, 00H, 00H
-$SG94439 DB	'PMC_TryParse', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
+$SG94512 DB	'.', 00H, 00H, 00H
+$SG94513 DB	'+', 00H, 00H, 00H
+$SG94514 DB	'-', 00H, 00H, 00H
+$SG94515 DB	'PMC_TryParse', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
 	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+1
-$SG94440 DB	'PMC_ParseX (%d.%d)', 00H
+$SG94516 DB	'PMC_ParseX (%d.%d)', 00H
 	ORG $+1
-$SG94442 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94518 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+2
-$SG94443 DB	'PMC_ParseX (%d.%d)', 00H
+$SG94519 DB	'PMC_ParseX (%d.%d)', 00H
 	ORG $+1
-$SG94444 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94520 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG94445 DB	'PMC_ParseX (%d.%d)', 00H
+$SG94521 DB	'PMC_ParseX (%d.%d)', 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -97,32 +97,32 @@ _buffer2$ = 16						; size = 4
 _count2$ = 20						; size = 4
 __EQUALS_MEMORY PROC
 
-; 147  : {
+; 153  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __1C66ECB2_pmc_debug@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 148  :     if (count1 != count2)
+; 154  :     if (count1 != count2)
 
 	mov	eax, DWORD PTR _count1$[ebp]
 	cmp	eax, DWORD PTR _count2$[ebp]
 	je	SHORT $LN2@EQUALS_MEM
 
-; 149  :         return (-1);
+; 155  :         return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN2@EQUALS_MEM:
 
-; 150  :     while (count1 > 0)
+; 156  :     while (count1 > 0)
 
 	cmp	DWORD PTR _count1$[ebp], 0
 	jbe	SHORT $LN3@EQUALS_MEM
 
-; 151  :     {
-; 152  :         if (*buffer1 != *buffer2)
+; 157  :     {
+; 158  :         if (*buffer1 != *buffer2)
 
 	mov	ecx, DWORD PTR _buffer1$[ebp]
 	movzx	edx, BYTE PTR [ecx]
@@ -131,41 +131,41 @@ $LN2@EQUALS_MEM:
 	cmp	edx, ecx
 	je	SHORT $LN5@EQUALS_MEM
 
-; 153  :             return (-1);
+; 159  :             return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN5@EQUALS_MEM:
 
-; 154  :         ++buffer1;
+; 160  :         ++buffer1;
 
 	mov	edx, DWORD PTR _buffer1$[ebp]
 	add	edx, 1
 	mov	DWORD PTR _buffer1$[ebp], edx
 
-; 155  :         ++buffer2;
+; 161  :         ++buffer2;
 
 	mov	eax, DWORD PTR _buffer2$[ebp]
 	add	eax, 1
 	mov	DWORD PTR _buffer2$[ebp], eax
 
-; 156  :         --count1;
+; 162  :         --count1;
 
 	mov	ecx, DWORD PTR _count1$[ebp]
 	sub	ecx, 1
 	mov	DWORD PTR _count1$[ebp], ecx
 
-; 157  :     }
+; 163  :     }
 
 	jmp	SHORT $LN2@EQUALS_MEM
 $LN3@EQUALS_MEM:
 
-; 158  :     return (0);
+; 164  :     return (0);
 
 	xor	eax, eax
 $LN1@EQUALS_MEM:
 
-; 159  : }
+; 165  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -220,7 +220,7 @@ _TEST_PMC_ParseX PROC
 ; 47   :     lstrcpyW(opt.GroupSeparator, L",");
 
 	mov	esi, esp
-	push	OFFSET $SG94434
+	push	OFFSET $SG94510
 	lea	eax, DWORD PTR _opt$[ebp+4]
 	push	eax
 	call	DWORD PTR __imp__lstrcpyW@8
@@ -230,7 +230,7 @@ _TEST_PMC_ParseX PROC
 ; 48   :     lstrcpy(opt.GroupSizes, "3");
 
 	mov	esi, esp
-	push	OFFSET $SG94435
+	push	OFFSET $SG94511
 	lea	ecx, DWORD PTR _opt$[ebp+28]
 	push	ecx
 	call	DWORD PTR __imp__lstrcpyA@8
@@ -240,7 +240,7 @@ _TEST_PMC_ParseX PROC
 ; 49   :     lstrcpyW(opt.DecimalSeparator, L".");
 
 	mov	esi, esp
-	push	OFFSET $SG94436
+	push	OFFSET $SG94512
 	lea	edx, DWORD PTR _opt$[ebp+10]
 	push	edx
 	call	DWORD PTR __imp__lstrcpyW@8
@@ -254,7 +254,7 @@ _TEST_PMC_ParseX PROC
 ; 51   :     lstrcpyW(opt.PositiveSign, L"+");
 
 	mov	esi, esp
-	push	OFFSET $SG94437
+	push	OFFSET $SG94513
 	lea	eax, DWORD PTR _opt$[ebp+16]
 	push	eax
 	call	DWORD PTR __imp__lstrcpyW@8
@@ -264,7 +264,7 @@ _TEST_PMC_ParseX PROC
 ; 52   :     lstrcpyW(opt.NegativeSign, L"-");
 
 	mov	esi, esp
-	push	OFFSET $SG94438
+	push	OFFSET $SG94514
 	lea	ecx, DWORD PTR _opt$[ebp+22]
 	push	ecx
 	call	DWORD PTR __imp__lstrcpyW@8
@@ -298,7 +298,7 @@ $LN5@TEST_PMC_P:
 $LN6@TEST_PMC_P:
 	mov	eax, DWORD PTR _x_result$[ebp]
 	push	eax
-	push	OFFSET $SG94439
+	push	OFFSET $SG94515
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -307,7 +307,7 @@ $LN6@TEST_PMC_P:
 	push	1
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG94440
+	push	OFFSET $SG94516
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -345,7 +345,7 @@ $LN7@TEST_PMC_P:
 $LN8@TEST_PMC_P:
 	mov	ecx, DWORD PTR _result$[ebp]
 	push	ecx
-	push	OFFSET $SG94442
+	push	OFFSET $SG94518
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -354,7 +354,7 @@ $LN8@TEST_PMC_P:
 	push	2
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG94443
+	push	OFFSET $SG94519
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -381,13 +381,13 @@ $LN8@TEST_PMC_P:
 $LN9@TEST_PMC_P:
 	mov	DWORD PTR tv152[ebp], 0
 $LN10@TEST_PMC_P:
-	push	OFFSET $SG94444
+	push	OFFSET $SG94520
 	mov	edx, DWORD PTR tv152[ebp]
 	push	edx
 	push	3
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG94445
+	push	OFFSET $SG94521
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax

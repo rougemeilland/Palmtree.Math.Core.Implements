@@ -49,6 +49,7 @@
 #pragma region 静的変数の定義
 HANDLE hLocalHeap;
 NUMBER_HEADER number_zero;
+NUMBER_HEADER number_one;
 #pragma endregion
 
 
@@ -549,6 +550,7 @@ PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature)
     PMC_STATUS_CODE result = PMC_STATUS_OK;
 
     BOOL number_zero_ok = TRUE;
+    BOOL number_one_ok = TRUE;
     if (result == PMC_STATUS_OK)
     {
         result = AttatchNumber(&number_zero, 0);
@@ -559,10 +561,23 @@ PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature)
         }
     }
 
+    if (result == PMC_STATUS_OK)
+    {
+        result = AttatchNumber(&number_one, 1);
+        if (result == PMC_STATUS_OK)
+        {
+            number_one.BLOCK[0] = 1;
+            CommitNumber(&number_one);
+            number_one_ok = TRUE;
+        }
+    }
+
     if (result != PMC_STATUS_OK)
     {
         if (number_zero_ok)
             DetatchNumber(&number_zero);
+        if (number_one_ok)
+            DetatchNumber(&number_one);
     }
 
     return (result);

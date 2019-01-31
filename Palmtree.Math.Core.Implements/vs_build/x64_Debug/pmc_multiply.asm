@@ -224,7 +224,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_Multiply_X_L_Imp DD imagerel PMC_Multiply_X_L_Imp
-	DD	imagerel PMC_Multiply_X_L_Imp+990
+	DD	imagerel PMC_Multiply_X_L_Imp+992
 	DD	imagerel $unwind$PMC_Multiply_X_L_Imp
 pdata	ENDS
 ;	COMDAT rtc$TMZ
@@ -902,7 +902,7 @@ $LN11@PMC_Multip:
 
 	mov	ecx, DWORD PTR y_lo$9[rbp]
 	call	_LZCNT_ALT_32
-	mov	eax, eax
+	cdqe
 	mov	ecx, 32					; 00000020H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -975,7 +975,7 @@ $LN16@PMC_Multip:
 
 	mov	ecx, DWORD PTR y_hi$8[rbp]
 	call	_LZCNT_ALT_32
-	mov	eax, eax
+	cdqe
 	mov	ecx, 64					; 00000040H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -1066,6 +1066,7 @@ $LN14@PMC_Multip:
 
 	mov	rcx, QWORD PTR v$[rbp]
 	call	_LZCNT_ALT_UNIT
+	cdqe
 	mov	ecx, 64					; 00000040H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -1339,7 +1340,7 @@ $LN11@PMC_Multip:
 
 	mov	ecx, DWORD PTR v$[rbp]
 	call	_LZCNT_ALT_32
-	mov	eax, eax
+	cdqe
 	mov	ecx, 32					; 00000020H
 	sub	rcx, rax
 	mov	rax, rcx
@@ -5187,7 +5188,7 @@ _TEXT	SEGMENT
 value$ = 224
 AddToMULTI64Counter PROC				; COMDAT
 
-; 1086 : {
+; 1102 : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -5202,13 +5203,13 @@ AddToMULTI64Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1087 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+; 1103 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
 
 	lea	rax, OFFSET FLAT:statistics_info
 	mov	ecx, DWORD PTR value$[rbp]
 	lock add DWORD PTR [rax], ecx
 
-; 1088 : }
+; 1104 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -5223,7 +5224,7 @@ _TEXT	SEGMENT
 value$ = 224
 AddToMULTI32Counter PROC				; COMDAT
 
-; 1080 : {
+; 1096 : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -5238,13 +5239,13 @@ AddToMULTI32Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1081 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+; 1097 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
 
 	lea	rax, OFFSET FLAT:statistics_info+4
 	mov	ecx, DWORD PTR value$[rbp]
 	lock add DWORD PTR [rax], ecx
 
-; 1082 : }
+; 1098 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -5258,7 +5259,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 IncrementMULTI64Counter PROC				; COMDAT
 
-; 1063 : {
+; 1079 : {
 
 	push	rbp
 	push	rdi
@@ -5271,12 +5272,12 @@ IncrementMULTI64Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1064 :     _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
+; 1080 :     _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
 
 	lea	rax, OFFSET FLAT:statistics_info
 	lock inc DWORD PTR [rax]
 
-; 1065 : }
+; 1081 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -5290,7 +5291,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 IncrementMULTI32Counter PROC				; COMDAT
 
-; 1057 : {
+; 1073 : {
 
 	push	rbp
 	push	rdi
@@ -5303,12 +5304,12 @@ IncrementMULTI32Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1058 :     _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+; 1074 :     _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
 
 	lea	rax, OFFSET FLAT:statistics_info+4
 	lock inc DWORD PTR [rax]
 
-; 1059 : }
+; 1075 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -5324,7 +5325,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 889  : {
+; 905  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -5339,45 +5340,45 @@ _LZCNT_ALT_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 890  :     if (x == 0)
+; 906  :     if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 891  :         return (sizeof(x) * 8);
+; 907  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 892  : #ifdef _M_IX86
-; 893  :     _UINT32_T pos;
-; 894  : #ifdef _MSC_VER
-; 895  :     _BitScanReverse(&pos, x);
-; 896  : #elif defined(__GNUC__)
-; 897  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 898  : #else
-; 899  : #error unknown compiler
-; 900  : #endif
-; 901  : #elif defined(_M_X64)
-; 902  : #ifdef _MSC_VER
-; 903  :     _UINT32_T pos;
-; 904  :     _BitScanReverse64(&pos, x);
+; 908  : #ifdef _M_IX86
+; 909  :     _UINT32_T pos;
+; 910  : #ifdef _MSC_VER
+; 911  :     _BitScanReverse(&pos, x);
+; 912  : #elif defined(__GNUC__)
+; 913  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 914  : #else
+; 915  : #error unknown compiler
+; 916  : #endif
+; 917  : #elif defined(_M_X64)
+; 918  : #ifdef _MSC_VER
+; 919  :     _UINT32_T pos;
+; 920  :     _BitScanReverse64(&pos, x);
 
 	mov	rax, QWORD PTR x$[rbp]
 	bsr	rax, rax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 905  : #elif defined(__GNUC__)
-; 906  :     _UINT64_T pos;
-; 907  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 908  : #else
-; 909  : #error unknown compiler
-; 910  : #endif
-; 911  : #else
-; 912  : #error unknown platform
-; 913  : #endif
-; 914  :     return (sizeof(x) * 8 - 1 - pos);
+; 921  : #elif defined(__GNUC__)
+; 922  :     _UINT64_T pos;
+; 923  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 924  : #else
+; 925  : #error unknown compiler
+; 926  : #endif
+; 927  : #else
+; 928  : #error unknown platform
+; 929  : #endif
+; 930  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 63					; 0000003fH
@@ -5385,7 +5386,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 915  : }
+; 931  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -5406,7 +5407,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 856  : {
+; 872  : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -5421,31 +5422,31 @@ _LZCNT_ALT_32 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 857  :     if (x == 0)
+; 873  :     if (x == 0)
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 858  :         return (sizeof(x) * 8);
+; 874  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 859  :     _UINT32_T pos;
-; 860  : #ifdef _MSC_VER
-; 861  :     _BitScanReverse(&pos, x);
+; 875  :     _UINT32_T pos;
+; 876  : #ifdef _MSC_VER
+; 877  :     _BitScanReverse(&pos, x);
 
 	mov	eax, DWORD PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 862  : #elif defined(__GNUC__)
-; 863  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 864  : #else
-; 865  : #error unknown compiler
-; 866  : #endif
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 878  : #elif defined(__GNUC__)
+; 879  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 880  : #else
+; 881  : #error unknown compiler
+; 882  : #endif
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 31
@@ -5453,7 +5454,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 868  : }
+; 884  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -5475,7 +5476,7 @@ v$ = 232
 w_hi$ = 240
 _MULTIPLYX_UNIT PROC					; COMDAT
 
-; 595  : {
+; 611  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -5492,11 +5493,11 @@ _MULTIPLYX_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 596  : #ifdef _MSC_VER
-; 597  : #ifdef _M_IX86
-; 598  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
-; 599  : #elif defined(_M_X64)
-; 600  :     return (_mulx_u64(u, v, w_hi));
+; 612  : #ifdef _MSC_VER
+; 613  : #ifdef _M_IX86
+; 614  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
+; 615  : #elif defined(_M_X64)
+; 616  :     return (_mulx_u64(u, v, w_hi));
 
 	mov	rdx, QWORD PTR v$[rbp]
 	mulx	rax, rcx, QWORD PTR u$[rbp]
@@ -5504,25 +5505,25 @@ _MULTIPLYX_UNIT PROC					; COMDAT
 	mov	QWORD PTR [rdx], rax
 	mov	rax, rcx
 
-; 601  : #else
-; 602  : #error unknown platform
-; 603  : #endif
-; 604  : #elif defined(__GNUC__)
-; 605  : #ifdef _M_IX86
-; 606  :     _UINT32_T w_lo;
-; 607  :     __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
-; 608  :     return (w_lo);
-; 609  : #elif defined(_M_X64)
-; 610  :     _UINT64_T w_lo;
-; 611  :     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
-; 612  :     return (w_lo);
-; 613  : #else
-; 614  : #error unknown platform
-; 615  : #endif
-; 616  : #else
-; 617  : #error unknown compiler
-; 618  : #endif
-; 619  : }
+; 617  : #else
+; 618  : #error unknown platform
+; 619  : #endif
+; 620  : #elif defined(__GNUC__)
+; 621  : #ifdef _M_IX86
+; 622  :     _UINT32_T w_lo;
+; 623  :     __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+; 624  :     return (w_lo);
+; 625  : #elif defined(_M_X64)
+; 626  :     _UINT64_T w_lo;
+; 627  :     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+; 628  :     return (w_lo);
+; 629  : #else
+; 630  : #error unknown platform
+; 631  : #endif
+; 632  : #else
+; 633  : #error unknown compiler
+; 634  : #endif
+; 635  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -5540,7 +5541,7 @@ v$ = 248
 w_hi$ = 256
 _MULTIPLY_UNIT PROC					; COMDAT
 
-; 557  : {
+; 573  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -5557,18 +5558,18 @@ _MULTIPLY_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 558  : #ifdef _M_IX86
-; 559  : #ifdef _MSC_VER
-; 560  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
-; 561  : #elif defined(__GNUC__)
-; 562  :     _UINT32_T w_lo;
-; 563  :     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
-; 564  :     return (w_lo);
-; 565  : #else
-; 566  : #error unknown compiler
-; 567  : #endif
-; 568  : #elif defined(_M_X64)
-; 569  :     return (_umul128(u, v, w_hi));
+; 574  : #ifdef _M_IX86
+; 575  : #ifdef _MSC_VER
+; 576  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
+; 577  : #elif defined(__GNUC__)
+; 578  :     _UINT32_T w_lo;
+; 579  :     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
+; 580  :     return (w_lo);
+; 581  : #else
+; 582  : #error unknown compiler
+; 583  : #endif
+; 584  : #elif defined(_M_X64)
+; 585  :     return (_umul128(u, v, w_hi));
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	QWORD PTR tv69[rbp], rax
@@ -5579,10 +5580,10 @@ _MULTIPLY_UNIT PROC					; COMDAT
 	mov	rcx, QWORD PTR w_hi$[rbp]
 	mov	QWORD PTR [rcx], rdx
 
-; 570  : #else
-; 571  : #error unknown platform
-; 572  : #endif
-; 573  : }
+; 586  : #else
+; 587  : #error unknown platform
+; 588  : #endif
+; 589  : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -5600,7 +5601,7 @@ v$ = 240
 w$ = 248
 _ADDX_UNIT PROC						; COMDAT
 
-; 501  : {
+; 517  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -5618,10 +5619,10 @@ _ADDX_UNIT PROC						; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 502  : #ifdef _M_IX86
-; 503  :     return (_addcarryx_u32(carry, u, v, w));
-; 504  : #elif defined(_M_X64)
-; 505  :     return (_addcarryx_u64(carry, u, v, w));
+; 518  : #ifdef _M_IX86
+; 519  :     return (_addcarryx_u32(carry, u, v, w));
+; 520  : #elif defined(_M_X64)
+; 521  :     return (_addcarryx_u64(carry, u, v, w));
 
 	mov	rax, QWORD PTR u$[rbp]
 	movzx	ecx, BYTE PTR carry$[rbp]
@@ -5632,10 +5633,10 @@ _ADDX_UNIT PROC						; COMDAT
 	mov	QWORD PTR [rdx], rax
 	movzx	eax, cl
 
-; 506  : #else
-; 507  : #error unknown platform
-; 508  : #endif
-; 509  : }
+; 522  : #else
+; 523  : #error unknown platform
+; 524  : #endif
+; 525  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -5653,7 +5654,7 @@ v$ = 240
 w$ = 248
 _ADD_UNIT PROC						; COMDAT
 
-; 473  : {
+; 489  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -5671,10 +5672,10 @@ _ADD_UNIT PROC						; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 474  : #ifdef _M_IX86
-; 475  :     return (_addcarry_u32(carry, u, v, w));
-; 476  : #elif defined(_M_X64)
-; 477  :     return (_addcarry_u64(carry, u, v, w));
+; 490  : #ifdef _M_IX86
+; 491  :     return (_addcarry_u32(carry, u, v, w));
+; 492  : #elif defined(_M_X64)
+; 493  :     return (_addcarry_u64(carry, u, v, w));
 
 	mov	rax, QWORD PTR u$[rbp]
 	movzx	ecx, BYTE PTR carry$[rbp]
@@ -5685,10 +5686,10 @@ _ADD_UNIT PROC						; COMDAT
 	mov	QWORD PTR [rdx], rax
 	movzx	eax, cl
 
-; 478  : #else
-; 479  : #error unknown platform
-; 480  : #endif
-; 481  : }
+; 494  : #else
+; 495  : #error unknown platform
+; 496  : #endif
+; 497  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -5704,7 +5705,7 @@ value$ = 224
 result_high$ = 232
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 442  : {
+; 458  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -5720,18 +5721,18 @@ _FROMDWORDTOWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 443  :     *result_high = (_UINT32_T)(value >> 32);
+; 459  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, QWORD PTR value$[rbp]
 	shr	rax, 32					; 00000020H
 	mov	rcx, QWORD PTR result_high$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 444  :     return ((_UINT32_T)value);
+; 460  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR value$[rbp]
 
-; 445  : }
+; 461  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi

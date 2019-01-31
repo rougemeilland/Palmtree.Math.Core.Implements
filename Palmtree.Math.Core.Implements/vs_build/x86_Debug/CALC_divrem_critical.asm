@@ -47,10 +47,10 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95651 DB	'found: u0=0x%08x, u1=0x%08x, u2=0x%08x, u3=0x%08x, v1=0x'
+$SG95797 DB	'found: u0=0x%08x, u1=0x%08x, u2=0x%08x, u3=0x%08x, v1=0x'
 	DB	'%08x, v2=0x%08x, v3=0x%08x', 0aH, 00H
 	ORG $+4
-$SG95652 DB	'found: u0=0x%016llx, u1=0x%016llx, u2=0x%016llx, u3=0x%0'
+$SG95798 DB	'found: u0=0x%016llx, u1=0x%016llx, u2=0x%016llx, u3=0x%0'
 	DB	'16llx, v1=0x%016llx, v2=0x%016llx, v3=0x%016llx', 0aH, 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
@@ -1081,7 +1081,7 @@ $LN13@CalculateC:
 	push	edx
 	mov	eax, DWORD PTR _u0$[ebp]
 	push	eax
-	push	OFFSET $SG95651
+	push	OFFSET $SG95797
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx
@@ -1109,7 +1109,7 @@ $LN14@CalculateC:
 	push	edx
 	mov	eax, DWORD PTR _u0$[ebp]
 	push	eax
-	push	OFFSET $SG95652
+	push	OFFSET $SG95798
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx
@@ -1451,20 +1451,20 @@ _TEXT	SEGMENT
 _value$ = 8						; size = 4
 _AddToMULTI64Counter PROC
 
-; 1086 : {
+; 1102 : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 1087 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+; 1103 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	ecx, OFFSET _statistics_info
 	lock	 xadd	 DWORD PTR [ecx], eax
 
-; 1088 : }
+; 1104 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1478,20 +1478,20 @@ _TEXT	SEGMENT
 _value$ = 8						; size = 4
 _AddToMULTI32Counter PROC
 
-; 1080 : {
+; 1096 : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 1081 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+; 1097 :     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	ecx, OFFSET _statistics_info+4
 	lock	 xadd	 DWORD PTR [ecx], eax
 
-; 1082 : }
+; 1098 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1504,18 +1504,18 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 _IncrementDIV64Counter PROC
 
-; 1051 : {
+; 1067 : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 1052 :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+; 1068 :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
 
 	lock	 inc	 (null) PTR _statistics_info+8
 
-; 1053 : }
+; 1069 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1528,18 +1528,18 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 _IncrementDIV32Counter PROC
 
-; 1045 : {
+; 1061 : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 1046 :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+; 1062 :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
 
 	lock	 inc	 (null) PTR _statistics_info+12
 
-; 1047 : }
+; 1063 : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1557,7 +1557,7 @@ _v$ = 16						; size = 4
 _r$ = 20						; size = 4
 __DIVREM_UNIT PROC
 
-; 644  : {
+; 660  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1567,16 +1567,16 @@ __DIVREM_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 645  : #ifdef _MSC_VER
-; 646  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 661  : #ifdef _MSC_VER
+; 662  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
 
 	mov	eax, 1
 	test	eax, eax
 	je	SHORT $LN2@DIVREM_UNI
 
-; 647  :     {
-; 648  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
-; 649  :         _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
+; 663  :     {
+; 664  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
+; 665  :         _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
 
 	mov	ecx, DWORD PTR _u_low$[ebp]
 	push	ecx
@@ -1587,7 +1587,7 @@ __DIVREM_UNIT PROC
 	mov	DWORD PTR _t$1[ebp], eax
 	mov	DWORD PTR _t$1[ebp+4], edx
 
-; 650  :         *r = (_UINT32_T)(t % v);
+; 666  :         *r = (_UINT32_T)(t % v);
 
 	mov	eax, DWORD PTR _v$[ebp]
 	xor	ecx, ecx
@@ -1601,7 +1601,7 @@ __DIVREM_UNIT PROC
 	mov	ecx, DWORD PTR _r$[ebp]
 	mov	DWORD PTR [ecx], eax
 
-; 651  :         return ((_UINT32_T)(t / v));
+; 667  :         return ((_UINT32_T)(t / v));
 
 	mov	edx, DWORD PTR _v$[ebp]
 	xor	eax, eax
@@ -1614,67 +1614,67 @@ __DIVREM_UNIT PROC
 	call	__aulldiv
 	jmp	SHORT $LN1@DIVREM_UNI
 
-; 652  :     }
+; 668  :     }
 
 	jmp	SHORT $LN1@DIVREM_UNI
 $LN2@DIVREM_UNI:
 
-; 653  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 669  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
 
 	xor	eax, eax
 	je	SHORT $LN4@DIVREM_UNI
 
-; 654  :     {
-; 655  :         // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
-; 656  :         // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
-; 657  :         // ・128bit 整数のデータ型が用意されていない。
-; 658  :         // ・x64 ではインラインアセンブラがサポートされていない。
-; 659  :         *r = 0;
+; 670  :     {
+; 671  :         // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
+; 672  :         // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
+; 673  :         // ・128bit 整数のデータ型が用意されていない。
+; 674  :         // ・x64 ではインラインアセンブラがサポートされていない。
+; 675  :         *r = 0;
 
 	mov	ecx, DWORD PTR _r$[ebp]
 	mov	DWORD PTR [ecx], 0
 
-; 660  :         return (0);
+; 676  :         return (0);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@DIVREM_UNI
 
-; 661  :     }
+; 677  :     }
 
 	jmp	SHORT $LN1@DIVREM_UNI
 $LN4@DIVREM_UNI:
 
-; 662  :     else
-; 663  :     {
-; 664  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 665  :         *r = 0;
+; 678  :     else
+; 679  :     {
+; 680  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 681  :         *r = 0;
 
 	mov	edx, DWORD PTR _r$[ebp]
 	mov	DWORD PTR [edx], 0
 
-; 666  :         return (0);
+; 682  :         return (0);
 
 	xor	eax, eax
 $LN1@DIVREM_UNI:
 
-; 667  :     }
-; 668  : #elif defined(__GNUC__)
-; 669  :     __UNIT_TYPE q;
-; 670  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-; 671  :         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-; 672  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
-; 673  :         __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-; 674  :     else
-; 675  :     {
-; 676  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 677  :         *r = 0;
-; 678  :         q = 0;
-; 679  :     }
-; 680  :     return (q);
-; 681  : #else
-; 682  : #error unknown compiler
-; 683  : #endif
-; 684  : }
+; 683  :     }
+; 684  : #elif defined(__GNUC__)
+; 685  :     __UNIT_TYPE q;
+; 686  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 687  :         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+; 688  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 689  :         __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+; 690  :     else
+; 691  :     {
+; 692  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 693  :         *r = 0;
+; 694  :         q = 0;
+; 695  :     }
+; 696  :     return (q);
+; 697  : #else
+; 698  : #error unknown compiler
+; 699  : #endif
+; 700  : }
 
 	add	esp, 8
 	cmp	ebp, esp
@@ -1692,15 +1692,15 @@ _v$ = 12						; size = 4
 _w_hi$ = 16						; size = 4
 __MULTIPLY_UNIT_DIV PROC
 
-; 576  : {
+; 592  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 577  : #ifdef _MSC_VER
-; 578  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
+; 593  : #ifdef _MSC_VER
+; 594  :     return (_FROMDWORDTOWORD((_UINT64_T)u * v, w_hi));
 
 	mov	eax, DWORD PTR _w_hi$[ebp]
 	push	eax
@@ -1711,20 +1711,20 @@ __MULTIPLY_UNIT_DIV PROC
 	call	__FROMDWORDTOWORD
 	add	esp, 12					; 0000000cH
 
-; 579  : #elif defined(__GNUC__)
-; 580  : #ifdef _M_IX86
-; 581  :     _UINT32_T w_lo;
-; 582  :     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
-; 583  :     return (w_lo);
-; 584  : #elif defined(_M_X64)
-; 585  :     return (_umul128(u, v, w_hi));
-; 586  : #else
-; 587  : #error unknown platform
-; 588  : #endif
-; 589  : #else
-; 590  : #error unknown compiler
-; 591  : #endif
-; 592  : }
+; 595  : #elif defined(__GNUC__)
+; 596  : #ifdef _M_IX86
+; 597  :     _UINT32_T w_lo;
+; 598  :     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
+; 599  :     return (w_lo);
+; 600  : #elif defined(_M_X64)
+; 601  :     return (_umul128(u, v, w_hi));
+; 602  : #else
+; 603  : #error unknown platform
+; 604  : #endif
+; 605  : #else
+; 606  : #error unknown compiler
+; 607  : #endif
+; 608  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1741,7 +1741,7 @@ _v$ = 16						; size = 4
 _w$ = 20						; size = 4
 __SUBTRUCT_UNIT_DIV PROC
 
-; 540  : {
+; 556  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1749,8 +1749,8 @@ __SUBTRUCT_UNIT_DIV PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 541  : #ifdef _MSC_VER
-; 542  :     return (_subborrow_u32(borrow, u, v, w));
+; 557  : #ifdef _MSC_VER
+; 558  :     return (_subborrow_u32(borrow, u, v, w));
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	ecx, DWORD PTR _v$[ebp]
@@ -1762,18 +1762,18 @@ __SUBTRUCT_UNIT_DIV PROC
 	mov	DWORD PTR [eax], edx
 	mov	al, cl
 
-; 543  : #elif defined(__GNUC__)
-; 544  : #ifdef _M_IX86
-; 545  :     return (_subborrow_u32(borrow, u, v, w));
-; 546  : #elif defined(_M_X64)
-; 547  :     return (_subborrow_u64(borrow, u, v, w));
-; 548  : #else
-; 549  : #error unknown platform
-; 550  : #endif
-; 551  : #else
-; 552  : #error unknown compiler
-; 553  : #endif
-; 554  : }
+; 559  : #elif defined(__GNUC__)
+; 560  : #ifdef _M_IX86
+; 561  :     return (_subborrow_u32(borrow, u, v, w));
+; 562  : #elif defined(_M_X64)
+; 563  :     return (_subborrow_u64(borrow, u, v, w));
+; 564  : #else
+; 565  : #error unknown platform
+; 566  : #endif
+; 567  : #else
+; 568  : #error unknown compiler
+; 569  : #endif
+; 570  : }
 
 	pop	ebx
 	cmp	ebp, esp
@@ -1791,7 +1791,7 @@ _v$ = 16						; size = 4
 _w$ = 20						; size = 4
 __ADD_UNIT_DIV PROC
 
-; 484  : {
+; 500  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1799,8 +1799,8 @@ __ADD_UNIT_DIV PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 485  : #ifdef _MSC_VER
-; 486  :     return (_addcarry_u32(carry, u, v, w));
+; 501  : #ifdef _MSC_VER
+; 502  :     return (_addcarry_u32(carry, u, v, w));
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	ecx, DWORD PTR _v$[ebp]
@@ -1812,18 +1812,18 @@ __ADD_UNIT_DIV PROC
 	mov	DWORD PTR [eax], edx
 	mov	al, cl
 
-; 487  : #elif defined(__GNUC__)
-; 488  : #ifdef _M_IX86
-; 489  :     return (_addcarry_u32(carry, u, v, w));
-; 490  : #elif defined(_M_X64)
-; 491  :     return (_addcarry_u64(carry, u, v, w));
-; 492  : #else
-; 493  : #error unknown platform
-; 494  : #endif
-; 495  : #else
-; 496  : #error unknown compiler
-; 497  : #endif
-; 498  : }
+; 503  : #elif defined(__GNUC__)
+; 504  : #ifdef _M_IX86
+; 505  :     return (_addcarry_u32(carry, u, v, w));
+; 506  : #elif defined(_M_X64)
+; 507  :     return (_addcarry_u64(carry, u, v, w));
+; 508  : #else
+; 509  : #error unknown platform
+; 510  : #endif
+; 511  : #else
+; 512  : #error unknown compiler
+; 513  : #endif
+; 514  : }
 
 	pop	ebx
 	cmp	ebp, esp
@@ -1839,14 +1839,14 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC
 
-; 442  : {
+; 458  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 443  :     *result_high = (_UINT32_T)(value >> 32);
+; 459  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	edx, DWORD PTR _value$[ebp+4]
@@ -1855,11 +1855,11 @@ __FROMDWORDTOWORD PROC
 	mov	ecx, DWORD PTR _result_high$[ebp]
 	mov	DWORD PTR [ecx], eax
 
-; 444  :     return ((_UINT32_T)value);
+; 460  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 445  : }
+; 461  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1874,14 +1874,14 @@ _value_high$ = 8					; size = 4
 _value_low$ = 12					; size = 4
 __FROMWORDTODWORD PROC
 
-; 437  : {
+; 453  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 438  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 454  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	edx, edx
 	mov	eax, DWORD PTR _value_high$[ebp]
@@ -1891,7 +1891,7 @@ __FROMWORDTODWORD PROC
 	or	eax, DWORD PTR _value_low$[ebp]
 	or	edx, ecx
 
-; 439  : }
+; 455  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp

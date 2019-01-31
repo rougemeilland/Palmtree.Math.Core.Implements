@@ -88655,6 +88655,10 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
 
     PMC_STATUS_CODE( * PMC_Pow_X_I)(HANDLE x, _UINT32_T n, HANDLE* z);
+
+
+    PMC_STATUS_CODE( * PMC_ModPow_X_X_X)(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
+
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -88734,6 +88738,9 @@ extern PMC_CONFIGURATION_INFO configuration_info;
 extern NUMBER_HEADER number_zero;
 
 
+extern NUMBER_HEADER number_one;
+
+
 extern PMC_STATISTICS_INFO statistics_info;
 
 
@@ -88800,6 +88807,9 @@ extern void Multiply_X_X_Imp(__UNIT_TYPE* u, __UNIT_TYPE u_count, __UNIT_TYPE* v
 extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
 
 
+extern void DivRem_X_X(__UNIT_TYPE* u_buf, __UNIT_TYPE u_count, __UNIT_TYPE* v_buf, __UNIT_TYPE v_count, __UNIT_TYPE* work_v_buf, __UNIT_TYPE* q_buf, __UNIT_TYPE* r_buf);
+
+
 extern _INT32_T Compare_Imp(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count);
 
 
@@ -88852,6 +88862,9 @@ extern PMC_STATUS_CODE Initialize_GreatestCommonDivisor(PROCESSOR_FEATURES* feat
 
 
 extern PMC_STATUS_CODE Initialize_Pow(PROCESSOR_FEATURES* feature);
+
+
+extern PMC_STATUS_CODE Initialize_ModPow(PROCESSOR_FEATURES* feature);
 
 
 
@@ -88940,6 +88953,13 @@ extern PMC_STATUS_CODE PMC_GreatestCommonDivisor_X_L(HANDLE u, _UINT64_T v, HAND
 extern PMC_STATUS_CODE PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
 extern PMC_STATUS_CODE PMC_Pow_X_I(HANDLE x, _UINT32_T n, HANDLE* z);
+
+extern PMC_STATUS_CODE PMC_ModPow_X_X_X(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
+
+
+extern int(__attribute__((__cdecl__)) * __DEBUG_LOG)(const char*, ...);
+extern void DumpBinary_UNIT(__UNIT_TYPE* buf, __UNIT_TYPE count);
+
 #pragma endregion
 
 
@@ -89194,7 +89214,7 @@ __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_T
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 569 "pmc_internal.h"
+# 585 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89203,7 +89223,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
 
 __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 585 "pmc_internal.h"
+# 601 "pmc_internal.h"
     return (_umul128(u, v, w_hi));
 
 
@@ -89215,7 +89235,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYP
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 610 "pmc_internal.h"
+# 626 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89229,7 +89249,7 @@ __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT
 
 __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
 {
-# 631 "pmc_internal.h"
+# 647 "pmc_internal.h"
     _UINT64_T w_lo;
     __asm__("mulxq %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
@@ -89244,7 +89264,7 @@ __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TY
 
 __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
 {
-# 669 "pmc_internal.h"
+# 685 "pmc_internal.h"
     __UNIT_TYPE q;
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -89265,7 +89285,7 @@ __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE
 
 __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
 {
-# 713 "pmc_internal.h"
+# 729 "pmc_internal.h"
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
@@ -89299,9 +89319,9 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 745 "pmc_internal.h" 3
+# 761 "pmc_internal.h" 3
            __rolq
-# 745 "pmc_internal.h"
+# 761 "pmc_internal.h"
                   (x, count));
 
 
@@ -89314,16 +89334,16 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 
 
     return (
-# 756 "pmc_internal.h" 3
+# 772 "pmc_internal.h" 3
            __rorq
-# 756 "pmc_internal.h"
+# 772 "pmc_internal.h"
                   (x, count));
 
 
 
 }
 
-__inline static __UNIT_TYPE _POPCNT_UNIT(__UNIT_TYPE value)
+__inline static int _POPCNT_UNIT(__UNIT_TYPE value)
 {
 
 
@@ -89334,7 +89354,7 @@ __inline static __UNIT_TYPE _POPCNT_UNIT(__UNIT_TYPE value)
 
 }
 
-__inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
+__inline static int _POPCNT_ALT_UNIT(__UNIT_TYPE x)
 {
 
 
@@ -89352,45 +89372,45 @@ __inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
 
-    return(x);
+    return((int)x);
 }
 
-__inline static _UINT32_T _LZCNT_32(_UINT32_T value)
+__inline static int _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
 
 
-__inline static _UINT64_T _LZCNT_64(_UINT64_T value)
+__inline static int _LZCNT_64(_UINT64_T value)
 {
-    return (_lzcnt_u64(value));
+    return ((int)_lzcnt_u64(value));
 }
 
 
-__inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
+__inline static int _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
 
 
-    return (_lzcnt_u64(value));
-
-
-
-}
-
-__inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
-{
-# 831 "pmc_internal.h"
-    return (_lzcnt_u64(value));
-
-
-
+    return ((int)_lzcnt_u64(value));
 
 
 
 }
 
-__inline static unsigned char _LZCNT_ALT_8(unsigned char x)
+__inline static int _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
+{
+# 847 "pmc_internal.h"
+    return (_lzcnt_u64(value));
+
+
+
+
+
+
+}
+
+__inline static int _LZCNT_ALT_8(unsigned char x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -89405,7 +89425,7 @@ __inline static unsigned char _LZCNT_ALT_8(unsigned char x)
     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 }
 
-__inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
+__inline static int _LZCNT_ALT_32(_UINT32_T x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -89421,7 +89441,7 @@ __inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
 }
 
 
-__inline static _UINT64_T _LZCNT_ALT_64(_UINT64_T x)
+__inline static int _LZCNT_ALT_64(_UINT64_T x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -89438,11 +89458,11 @@ __inline static _UINT64_T _LZCNT_ALT_64(_UINT64_T x)
 }
 
 
-__inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
+__inline static int _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 906 "pmc_internal.h"
+# 922 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89454,11 +89474,11 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
     return (sizeof(x) * 8 - 1 - pos);
 }
 
-__inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
+__inline static int _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 935 "pmc_internal.h"
+# 951 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89470,33 +89490,33 @@ __inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
     return (sizeof(x) * 8 - 1 - pos);
 }
 
-__inline static __UNIT_TYPE _TZCNT_UNIT(__UNIT_TYPE x)
+__inline static int _TZCNT_UNIT(__UNIT_TYPE x)
 {
 
 
 
-    return (_tzcnt_u64(x));
+    return ((int)_tzcnt_u64(x));
 
 
 
 }
 
-__inline static __UNIT_TYPE _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
+__inline static int _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
 {
 
 
 
-    return(__popcnt64(~x & (x - 1)));
+    return((int)__popcnt64(~x & (x - 1)));
 
 
 
 }
 
-__inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
+__inline static int _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
-# 986 "pmc_internal.h"
+# 1002 "pmc_internal.h"
     _UINT64_T pos;
     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
 
@@ -89600,2287 +89620,88 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
 {
     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
 }
+
+__inline static void ReportLabel(char* label)
+{
+
+    if (__DEBUG_LOG != 
+# 1109 "pmc_internal.h" 3 4
+                      ((void *)0)
+# 1109 "pmc_internal.h"
+                          )
+    {
+        (*__DEBUG_LOG)("%s\n", label);
+    }
+
+}
+
+__inline static void ReportDump(char* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
+{
+
+    if (__DEBUG_LOG != 
+# 1119 "pmc_internal.h" 3 4
+                      ((void *)0)
+# 1119 "pmc_internal.h"
+                          )
+    {
+        (*__DEBUG_LOG)("  %s: ", name);
+        DumpBinary_UNIT(buf, count);
+        (*__DEBUG_LOG)("\n");
+    }
+
+}
+
+__inline static void ReportVar(char* name, __UNIT_TYPE x)
+{
+
+    if (__DEBUG_LOG != 
+# 1131 "pmc_internal.h" 3 4
+                      ((void *)0)
+# 1131 "pmc_internal.h"
+                          )
+    {
+        (*__DEBUG_LOG)("  %s: ", name);
+        if (sizeof(__UNIT_TYPE) == sizeof(unsigned 
+# 1134 "pmc_internal.h" 3
+                                                  long long
+# 1134 "pmc_internal.h"
+                                                         ))
+            (*__DEBUG_LOG)("0x%016llx\n", x);
+        else
+            (*__DEBUG_LOG)("0x%08lx\n", x);
+    }
+
+}
 #pragma endregion
 # 35 "pmc_pow.c" 2
-# 1 "autogenerated_inline_func.h" 1
-# 44 "autogenerated_inline_func.h"
-__inline static char _ADD_32WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
+
+
+static void Pow_Imp(__UNIT_TYPE* v_buf, __UNIT_TYPE v_buf_count, _UINT32_T e, __UNIT_TYPE* work1_buf, __UNIT_TYPE* work2_buf, __UNIT_TYPE* r_buf)
 {
-# 185 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adcq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adcq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adcq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adcq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adcq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adcq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adcq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adcq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "movq\t128(%1), %%rcx\n\t"
-        "adcq\t128(%2), %%rcx\n\t"
-        "movq\t%%rcx, 128(%3)\n\t"
-        "movq\t136(%1), %%rcx\n\t"
-        "adcq\t136(%2), %%rcx\n\t"
-        "movq\t%%rcx, 136(%3)\n\t"
-        "movq\t144(%1), %%rcx\n\t"
-        "adcq\t144(%2), %%rcx\n\t"
-        "movq\t%%rcx, 144(%3)\n\t"
-        "movq\t152(%1), %%rcx\n\t"
-        "adcq\t152(%2), %%rcx\n\t"
-        "movq\t%%rcx, 152(%3)\n\t"
-        "movq\t160(%1), %%rcx\n\t"
-        "adcq\t160(%2), %%rcx\n\t"
-        "movq\t%%rcx, 160(%3)\n\t"
-        "movq\t168(%1), %%rcx\n\t"
-        "adcq\t168(%2), %%rcx\n\t"
-        "movq\t%%rcx, 168(%3)\n\t"
-        "movq\t176(%1), %%rcx\n\t"
-        "adcq\t176(%2), %%rcx\n\t"
-        "movq\t%%rcx, 176(%3)\n\t"
-        "movq\t184(%1), %%rcx\n\t"
-        "adcq\t184(%2), %%rcx\n\t"
-        "movq\t%%rcx, 184(%3)\n\t"
-        "movq\t192(%1), %%rcx\n\t"
-        "adcq\t192(%2), %%rcx\n\t"
-        "movq\t%%rcx, 192(%3)\n\t"
-        "movq\t200(%1), %%rcx\n\t"
-        "adcq\t200(%2), %%rcx\n\t"
-        "movq\t%%rcx, 200(%3)\n\t"
-        "movq\t208(%1), %%rcx\n\t"
-        "adcq\t208(%2), %%rcx\n\t"
-        "movq\t%%rcx, 208(%3)\n\t"
-        "movq\t216(%1), %%rcx\n\t"
-        "adcq\t216(%2), %%rcx\n\t"
-        "movq\t%%rcx, 216(%3)\n\t"
-        "movq\t224(%1), %%rcx\n\t"
-        "adcq\t224(%2), %%rcx\n\t"
-        "movq\t%%rcx, 224(%3)\n\t"
-        "movq\t232(%1), %%rcx\n\t"
-        "adcq\t232(%2), %%rcx\n\t"
-        "movq\t%%rcx, 232(%3)\n\t"
-        "movq\t240(%1), %%rcx\n\t"
-        "adcq\t240(%2), %%rcx\n\t"
-        "movq\t%%rcx, 240(%3)\n\t"
-        "movq\t248(%1), %%rcx\n\t"
-        "adcq\t248(%2), %%rcx\n\t"
-        "movq\t%%rcx, 248(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_32WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 438 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adcxq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adcxq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adcxq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adcxq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adcxq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adcxq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adcxq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adcxq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "movq\t128(%1), %%rcx\n\t"
-        "adcxq\t128(%2), %%rcx\n\t"
-        "movq\t%%rcx, 128(%3)\n\t"
-        "movq\t136(%1), %%rcx\n\t"
-        "adcxq\t136(%2), %%rcx\n\t"
-        "movq\t%%rcx, 136(%3)\n\t"
-        "movq\t144(%1), %%rcx\n\t"
-        "adcxq\t144(%2), %%rcx\n\t"
-        "movq\t%%rcx, 144(%3)\n\t"
-        "movq\t152(%1), %%rcx\n\t"
-        "adcxq\t152(%2), %%rcx\n\t"
-        "movq\t%%rcx, 152(%3)\n\t"
-        "movq\t160(%1), %%rcx\n\t"
-        "adcxq\t160(%2), %%rcx\n\t"
-        "movq\t%%rcx, 160(%3)\n\t"
-        "movq\t168(%1), %%rcx\n\t"
-        "adcxq\t168(%2), %%rcx\n\t"
-        "movq\t%%rcx, 168(%3)\n\t"
-        "movq\t176(%1), %%rcx\n\t"
-        "adcxq\t176(%2), %%rcx\n\t"
-        "movq\t%%rcx, 176(%3)\n\t"
-        "movq\t184(%1), %%rcx\n\t"
-        "adcxq\t184(%2), %%rcx\n\t"
-        "movq\t%%rcx, 184(%3)\n\t"
-        "movq\t192(%1), %%rcx\n\t"
-        "adcxq\t192(%2), %%rcx\n\t"
-        "movq\t%%rcx, 192(%3)\n\t"
-        "movq\t200(%1), %%rcx\n\t"
-        "adcxq\t200(%2), %%rcx\n\t"
-        "movq\t%%rcx, 200(%3)\n\t"
-        "movq\t208(%1), %%rcx\n\t"
-        "adcxq\t208(%2), %%rcx\n\t"
-        "movq\t%%rcx, 208(%3)\n\t"
-        "movq\t216(%1), %%rcx\n\t"
-        "adcxq\t216(%2), %%rcx\n\t"
-        "movq\t%%rcx, 216(%3)\n\t"
-        "movq\t224(%1), %%rcx\n\t"
-        "adcxq\t224(%2), %%rcx\n\t"
-        "movq\t%%rcx, 224(%3)\n\t"
-        "movq\t232(%1), %%rcx\n\t"
-        "adcxq\t232(%2), %%rcx\n\t"
-        "movq\t%%rcx, 232(%3)\n\t"
-        "movq\t240(%1), %%rcx\n\t"
-        "adcxq\t240(%2), %%rcx\n\t"
-        "movq\t%%rcx, 240(%3)\n\t"
-        "movq\t248(%1), %%rcx\n\t"
-        "adcxq\t248(%2), %%rcx\n\t"
-        "movq\t%%rcx, 248(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_32WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 691 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adoxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adoxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adoxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adoxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adoxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adoxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adoxq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adoxq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adoxq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adoxq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adoxq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adoxq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adoxq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adoxq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "movq\t128(%1), %%rcx\n\t"
-        "adoxq\t128(%2), %%rcx\n\t"
-        "movq\t%%rcx, 128(%3)\n\t"
-        "movq\t136(%1), %%rcx\n\t"
-        "adoxq\t136(%2), %%rcx\n\t"
-        "movq\t%%rcx, 136(%3)\n\t"
-        "movq\t144(%1), %%rcx\n\t"
-        "adoxq\t144(%2), %%rcx\n\t"
-        "movq\t%%rcx, 144(%3)\n\t"
-        "movq\t152(%1), %%rcx\n\t"
-        "adoxq\t152(%2), %%rcx\n\t"
-        "movq\t%%rcx, 152(%3)\n\t"
-        "movq\t160(%1), %%rcx\n\t"
-        "adoxq\t160(%2), %%rcx\n\t"
-        "movq\t%%rcx, 160(%3)\n\t"
-        "movq\t168(%1), %%rcx\n\t"
-        "adoxq\t168(%2), %%rcx\n\t"
-        "movq\t%%rcx, 168(%3)\n\t"
-        "movq\t176(%1), %%rcx\n\t"
-        "adoxq\t176(%2), %%rcx\n\t"
-        "movq\t%%rcx, 176(%3)\n\t"
-        "movq\t184(%1), %%rcx\n\t"
-        "adoxq\t184(%2), %%rcx\n\t"
-        "movq\t%%rcx, 184(%3)\n\t"
-        "movq\t192(%1), %%rcx\n\t"
-        "adoxq\t192(%2), %%rcx\n\t"
-        "movq\t%%rcx, 192(%3)\n\t"
-        "movq\t200(%1), %%rcx\n\t"
-        "adoxq\t200(%2), %%rcx\n\t"
-        "movq\t%%rcx, 200(%3)\n\t"
-        "movq\t208(%1), %%rcx\n\t"
-        "adoxq\t208(%2), %%rcx\n\t"
-        "movq\t%%rcx, 208(%3)\n\t"
-        "movq\t216(%1), %%rcx\n\t"
-        "adoxq\t216(%2), %%rcx\n\t"
-        "movq\t%%rcx, 216(%3)\n\t"
-        "movq\t224(%1), %%rcx\n\t"
-        "adoxq\t224(%2), %%rcx\n\t"
-        "movq\t%%rcx, 224(%3)\n\t"
-        "movq\t232(%1), %%rcx\n\t"
-        "adoxq\t232(%2), %%rcx\n\t"
-        "movq\t%%rcx, 232(%3)\n\t"
-        "movq\t240(%1), %%rcx\n\t"
-        "adoxq\t240(%2), %%rcx\n\t"
-        "movq\t%%rcx, 240(%3)\n\t"
-        "movq\t248(%1), %%rcx\n\t"
-        "adoxq\t248(%2), %%rcx\n\t"
-        "movq\t%%rcx, 248(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_32WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 944 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "sbbq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "sbbq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "sbbq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "sbbq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "sbbq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "sbbq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "sbbq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "sbbq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "sbbq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "sbbq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "sbbq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "sbbq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "sbbq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "sbbq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "movq\t128(%1), %%rcx\n\t"
-        "sbbq\t128(%2), %%rcx\n\t"
-        "movq\t%%rcx, 128(%3)\n\t"
-        "movq\t136(%1), %%rcx\n\t"
-        "sbbq\t136(%2), %%rcx\n\t"
-        "movq\t%%rcx, 136(%3)\n\t"
-        "movq\t144(%1), %%rcx\n\t"
-        "sbbq\t144(%2), %%rcx\n\t"
-        "movq\t%%rcx, 144(%3)\n\t"
-        "movq\t152(%1), %%rcx\n\t"
-        "sbbq\t152(%2), %%rcx\n\t"
-        "movq\t%%rcx, 152(%3)\n\t"
-        "movq\t160(%1), %%rcx\n\t"
-        "sbbq\t160(%2), %%rcx\n\t"
-        "movq\t%%rcx, 160(%3)\n\t"
-        "movq\t168(%1), %%rcx\n\t"
-        "sbbq\t168(%2), %%rcx\n\t"
-        "movq\t%%rcx, 168(%3)\n\t"
-        "movq\t176(%1), %%rcx\n\t"
-        "sbbq\t176(%2), %%rcx\n\t"
-        "movq\t%%rcx, 176(%3)\n\t"
-        "movq\t184(%1), %%rcx\n\t"
-        "sbbq\t184(%2), %%rcx\n\t"
-        "movq\t%%rcx, 184(%3)\n\t"
-        "movq\t192(%1), %%rcx\n\t"
-        "sbbq\t192(%2), %%rcx\n\t"
-        "movq\t%%rcx, 192(%3)\n\t"
-        "movq\t200(%1), %%rcx\n\t"
-        "sbbq\t200(%2), %%rcx\n\t"
-        "movq\t%%rcx, 200(%3)\n\t"
-        "movq\t208(%1), %%rcx\n\t"
-        "sbbq\t208(%2), %%rcx\n\t"
-        "movq\t%%rcx, 208(%3)\n\t"
-        "movq\t216(%1), %%rcx\n\t"
-        "sbbq\t216(%2), %%rcx\n\t"
-        "movq\t%%rcx, 216(%3)\n\t"
-        "movq\t224(%1), %%rcx\n\t"
-        "sbbq\t224(%2), %%rcx\n\t"
-        "movq\t%%rcx, 224(%3)\n\t"
-        "movq\t232(%1), %%rcx\n\t"
-        "sbbq\t232(%2), %%rcx\n\t"
-        "movq\t%%rcx, 232(%3)\n\t"
-        "movq\t240(%1), %%rcx\n\t"
-        "sbbq\t240(%2), %%rcx\n\t"
-        "movq\t%%rcx, 240(%3)\n\t"
-        "movq\t248(%1), %%rcx\n\t"
-        "sbbq\t248(%2), %%rcx\n\t"
-        "movq\t%%rcx, 248(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_32WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 1197 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adcq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adcq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adcq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adcq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adcq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adcq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adcq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adcq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "movq\t128(%1), %%rcx\n\t"
-        "adcq\t128(%2), %%rcx\n\t"
-        "movq\t%%rcx, 128(%3)\n\t"
-        "movq\t136(%1), %%rcx\n\t"
-        "adcq\t136(%2), %%rcx\n\t"
-        "movq\t%%rcx, 136(%3)\n\t"
-        "movq\t144(%1), %%rcx\n\t"
-        "adcq\t144(%2), %%rcx\n\t"
-        "movq\t%%rcx, 144(%3)\n\t"
-        "movq\t152(%1), %%rcx\n\t"
-        "adcq\t152(%2), %%rcx\n\t"
-        "movq\t%%rcx, 152(%3)\n\t"
-        "movq\t160(%1), %%rcx\n\t"
-        "adcq\t160(%2), %%rcx\n\t"
-        "movq\t%%rcx, 160(%3)\n\t"
-        "movq\t168(%1), %%rcx\n\t"
-        "adcq\t168(%2), %%rcx\n\t"
-        "movq\t%%rcx, 168(%3)\n\t"
-        "movq\t176(%1), %%rcx\n\t"
-        "adcq\t176(%2), %%rcx\n\t"
-        "movq\t%%rcx, 176(%3)\n\t"
-        "movq\t184(%1), %%rcx\n\t"
-        "adcq\t184(%2), %%rcx\n\t"
-        "movq\t%%rcx, 184(%3)\n\t"
-        "movq\t192(%1), %%rcx\n\t"
-        "adcq\t192(%2), %%rcx\n\t"
-        "movq\t%%rcx, 192(%3)\n\t"
-        "movq\t200(%1), %%rcx\n\t"
-        "adcq\t200(%2), %%rcx\n\t"
-        "movq\t%%rcx, 200(%3)\n\t"
-        "movq\t208(%1), %%rcx\n\t"
-        "adcq\t208(%2), %%rcx\n\t"
-        "movq\t%%rcx, 208(%3)\n\t"
-        "movq\t216(%1), %%rcx\n\t"
-        "adcq\t216(%2), %%rcx\n\t"
-        "movq\t%%rcx, 216(%3)\n\t"
-        "movq\t224(%1), %%rcx\n\t"
-        "adcq\t224(%2), %%rcx\n\t"
-        "movq\t%%rcx, 224(%3)\n\t"
-        "movq\t232(%1), %%rcx\n\t"
-        "adcq\t232(%2), %%rcx\n\t"
-        "movq\t%%rcx, 232(%3)\n\t"
-        "movq\t240(%1), %%rcx\n\t"
-        "adcq\t240(%2), %%rcx\n\t"
-        "movq\t%%rcx, 240(%3)\n\t"
-        "movq\t248(%1), %%rcx\n\t"
-        "adcq\t248(%2), %%rcx\n\t"
-        "movq\t%%rcx, 248(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_32WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 1450 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adcxq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adcxq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adcxq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adcxq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adcxq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adcxq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adcxq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adcxq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "movq\t128(%1), %%rcx\n\t"
-        "adcxq\t128(%2), %%rcx\n\t"
-        "movq\t%%rcx, 128(%3)\n\t"
-        "movq\t136(%1), %%rcx\n\t"
-        "adcxq\t136(%2), %%rcx\n\t"
-        "movq\t%%rcx, 136(%3)\n\t"
-        "movq\t144(%1), %%rcx\n\t"
-        "adcxq\t144(%2), %%rcx\n\t"
-        "movq\t%%rcx, 144(%3)\n\t"
-        "movq\t152(%1), %%rcx\n\t"
-        "adcxq\t152(%2), %%rcx\n\t"
-        "movq\t%%rcx, 152(%3)\n\t"
-        "movq\t160(%1), %%rcx\n\t"
-        "adcxq\t160(%2), %%rcx\n\t"
-        "movq\t%%rcx, 160(%3)\n\t"
-        "movq\t168(%1), %%rcx\n\t"
-        "adcxq\t168(%2), %%rcx\n\t"
-        "movq\t%%rcx, 168(%3)\n\t"
-        "movq\t176(%1), %%rcx\n\t"
-        "adcxq\t176(%2), %%rcx\n\t"
-        "movq\t%%rcx, 176(%3)\n\t"
-        "movq\t184(%1), %%rcx\n\t"
-        "adcxq\t184(%2), %%rcx\n\t"
-        "movq\t%%rcx, 184(%3)\n\t"
-        "movq\t192(%1), %%rcx\n\t"
-        "adcxq\t192(%2), %%rcx\n\t"
-        "movq\t%%rcx, 192(%3)\n\t"
-        "movq\t200(%1), %%rcx\n\t"
-        "adcxq\t200(%2), %%rcx\n\t"
-        "movq\t%%rcx, 200(%3)\n\t"
-        "movq\t208(%1), %%rcx\n\t"
-        "adcxq\t208(%2), %%rcx\n\t"
-        "movq\t%%rcx, 208(%3)\n\t"
-        "movq\t216(%1), %%rcx\n\t"
-        "adcxq\t216(%2), %%rcx\n\t"
-        "movq\t%%rcx, 216(%3)\n\t"
-        "movq\t224(%1), %%rcx\n\t"
-        "adcxq\t224(%2), %%rcx\n\t"
-        "movq\t%%rcx, 224(%3)\n\t"
-        "movq\t232(%1), %%rcx\n\t"
-        "adcxq\t232(%2), %%rcx\n\t"
-        "movq\t%%rcx, 232(%3)\n\t"
-        "movq\t240(%1), %%rcx\n\t"
-        "adcxq\t240(%2), %%rcx\n\t"
-        "movq\t%%rcx, 240(%3)\n\t"
-        "movq\t248(%1), %%rcx\n\t"
-        "adcxq\t248(%2), %%rcx\n\t"
-        "movq\t%%rcx, 248(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_32WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 1703 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adoxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adoxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adoxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adoxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adoxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adoxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adoxq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adoxq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adoxq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adoxq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adoxq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adoxq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adoxq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adoxq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "movq\t128(%1), %%rcx\n\t"
-        "adoxq\t128(%2), %%rcx\n\t"
-        "movq\t%%rcx, 128(%3)\n\t"
-        "movq\t136(%1), %%rcx\n\t"
-        "adoxq\t136(%2), %%rcx\n\t"
-        "movq\t%%rcx, 136(%3)\n\t"
-        "movq\t144(%1), %%rcx\n\t"
-        "adoxq\t144(%2), %%rcx\n\t"
-        "movq\t%%rcx, 144(%3)\n\t"
-        "movq\t152(%1), %%rcx\n\t"
-        "adoxq\t152(%2), %%rcx\n\t"
-        "movq\t%%rcx, 152(%3)\n\t"
-        "movq\t160(%1), %%rcx\n\t"
-        "adoxq\t160(%2), %%rcx\n\t"
-        "movq\t%%rcx, 160(%3)\n\t"
-        "movq\t168(%1), %%rcx\n\t"
-        "adoxq\t168(%2), %%rcx\n\t"
-        "movq\t%%rcx, 168(%3)\n\t"
-        "movq\t176(%1), %%rcx\n\t"
-        "adoxq\t176(%2), %%rcx\n\t"
-        "movq\t%%rcx, 176(%3)\n\t"
-        "movq\t184(%1), %%rcx\n\t"
-        "adoxq\t184(%2), %%rcx\n\t"
-        "movq\t%%rcx, 184(%3)\n\t"
-        "movq\t192(%1), %%rcx\n\t"
-        "adoxq\t192(%2), %%rcx\n\t"
-        "movq\t%%rcx, 192(%3)\n\t"
-        "movq\t200(%1), %%rcx\n\t"
-        "adoxq\t200(%2), %%rcx\n\t"
-        "movq\t%%rcx, 200(%3)\n\t"
-        "movq\t208(%1), %%rcx\n\t"
-        "adoxq\t208(%2), %%rcx\n\t"
-        "movq\t%%rcx, 208(%3)\n\t"
-        "movq\t216(%1), %%rcx\n\t"
-        "adoxq\t216(%2), %%rcx\n\t"
-        "movq\t%%rcx, 216(%3)\n\t"
-        "movq\t224(%1), %%rcx\n\t"
-        "adoxq\t224(%2), %%rcx\n\t"
-        "movq\t%%rcx, 224(%3)\n\t"
-        "movq\t232(%1), %%rcx\n\t"
-        "adoxq\t232(%2), %%rcx\n\t"
-        "movq\t%%rcx, 232(%3)\n\t"
-        "movq\t240(%1), %%rcx\n\t"
-        "adoxq\t240(%2), %%rcx\n\t"
-        "movq\t%%rcx, 240(%3)\n\t"
-        "movq\t248(%1), %%rcx\n\t"
-        "adoxq\t248(%2), %%rcx\n\t"
-        "movq\t%%rcx, 248(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_32WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 1956 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "sbbq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "sbbq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "sbbq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "sbbq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "sbbq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "sbbq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "sbbq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "sbbq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "sbbq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "sbbq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "sbbq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "sbbq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "sbbq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "sbbq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "movq\t128(%1), %%rcx\n\t"
-        "sbbq\t128(%2), %%rcx\n\t"
-        "movq\t%%rcx, 128(%3)\n\t"
-        "movq\t136(%1), %%rcx\n\t"
-        "sbbq\t136(%2), %%rcx\n\t"
-        "movq\t%%rcx, 136(%3)\n\t"
-        "movq\t144(%1), %%rcx\n\t"
-        "sbbq\t144(%2), %%rcx\n\t"
-        "movq\t%%rcx, 144(%3)\n\t"
-        "movq\t152(%1), %%rcx\n\t"
-        "sbbq\t152(%2), %%rcx\n\t"
-        "movq\t%%rcx, 152(%3)\n\t"
-        "movq\t160(%1), %%rcx\n\t"
-        "sbbq\t160(%2), %%rcx\n\t"
-        "movq\t%%rcx, 160(%3)\n\t"
-        "movq\t168(%1), %%rcx\n\t"
-        "sbbq\t168(%2), %%rcx\n\t"
-        "movq\t%%rcx, 168(%3)\n\t"
-        "movq\t176(%1), %%rcx\n\t"
-        "sbbq\t176(%2), %%rcx\n\t"
-        "movq\t%%rcx, 176(%3)\n\t"
-        "movq\t184(%1), %%rcx\n\t"
-        "sbbq\t184(%2), %%rcx\n\t"
-        "movq\t%%rcx, 184(%3)\n\t"
-        "movq\t192(%1), %%rcx\n\t"
-        "sbbq\t192(%2), %%rcx\n\t"
-        "movq\t%%rcx, 192(%3)\n\t"
-        "movq\t200(%1), %%rcx\n\t"
-        "sbbq\t200(%2), %%rcx\n\t"
-        "movq\t%%rcx, 200(%3)\n\t"
-        "movq\t208(%1), %%rcx\n\t"
-        "sbbq\t208(%2), %%rcx\n\t"
-        "movq\t%%rcx, 208(%3)\n\t"
-        "movq\t216(%1), %%rcx\n\t"
-        "sbbq\t216(%2), %%rcx\n\t"
-        "movq\t%%rcx, 216(%3)\n\t"
-        "movq\t224(%1), %%rcx\n\t"
-        "sbbq\t224(%2), %%rcx\n\t"
-        "movq\t%%rcx, 224(%3)\n\t"
-        "movq\t232(%1), %%rcx\n\t"
-        "sbbq\t232(%2), %%rcx\n\t"
-        "movq\t%%rcx, 232(%3)\n\t"
-        "movq\t240(%1), %%rcx\n\t"
-        "sbbq\t240(%2), %%rcx\n\t"
-        "movq\t%%rcx, 240(%3)\n\t"
-        "movq\t248(%1), %%rcx\n\t"
-        "sbbq\t248(%2), %%rcx\n\t"
-        "movq\t%%rcx, 248(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_16WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 2145 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adcq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adcq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adcq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adcq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adcq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adcq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adcq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adcq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_16WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 2286 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adcxq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adcxq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adcxq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adcxq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adcxq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adcxq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adcxq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adcxq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_16WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 2427 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adoxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adoxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adoxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adoxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adoxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adoxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adoxq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adoxq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adoxq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adoxq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adoxq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adoxq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adoxq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adoxq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_16WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 2568 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "sbbq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "sbbq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "sbbq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "sbbq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "sbbq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "sbbq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "sbbq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "sbbq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "sbbq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "sbbq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "sbbq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "sbbq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "sbbq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "sbbq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_16WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 2709 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adcq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adcq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adcq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adcq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adcq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adcq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adcq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adcq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_16WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 2850 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adcxq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adcxq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adcxq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adcxq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adcxq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adcxq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adcxq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adcxq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_16WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 2991 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adoxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adoxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adoxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adoxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adoxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adoxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "adoxq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "adoxq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "adoxq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "adoxq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "adoxq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "adoxq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "adoxq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "adoxq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_16WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 3132 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "sbbq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "sbbq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "sbbq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "sbbq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "sbbq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "sbbq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "movq\t64(%1), %%rcx\n\t"
-        "sbbq\t64(%2), %%rcx\n\t"
-        "movq\t%%rcx, 64(%3)\n\t"
-        "movq\t72(%1), %%rcx\n\t"
-        "sbbq\t72(%2), %%rcx\n\t"
-        "movq\t%%rcx, 72(%3)\n\t"
-        "movq\t80(%1), %%rcx\n\t"
-        "sbbq\t80(%2), %%rcx\n\t"
-        "movq\t%%rcx, 80(%3)\n\t"
-        "movq\t88(%1), %%rcx\n\t"
-        "sbbq\t88(%2), %%rcx\n\t"
-        "movq\t%%rcx, 88(%3)\n\t"
-        "movq\t96(%1), %%rcx\n\t"
-        "sbbq\t96(%2), %%rcx\n\t"
-        "movq\t%%rcx, 96(%3)\n\t"
-        "movq\t104(%1), %%rcx\n\t"
-        "sbbq\t104(%2), %%rcx\n\t"
-        "movq\t%%rcx, 104(%3)\n\t"
-        "movq\t112(%1), %%rcx\n\t"
-        "sbbq\t112(%2), %%rcx\n\t"
-        "movq\t%%rcx, 112(%3)\n\t"
-        "movq\t120(%1), %%rcx\n\t"
-        "sbbq\t120(%2), %%rcx\n\t"
-        "movq\t%%rcx, 120(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_8WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 3241 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_8WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 3326 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_8WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 3411 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adoxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adoxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adoxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adoxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adoxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adoxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_8WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 3496 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "sbbq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "sbbq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "sbbq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "sbbq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "sbbq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "sbbq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_8WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 3581 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_8WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 3666 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adcxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adcxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adcxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adcxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_8WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 3751 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adoxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adoxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "adoxq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "adoxq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "adoxq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "adoxq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_8WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 3836 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "sbbq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "sbbq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "movq\t32(%1), %%rcx\n\t"
-        "sbbq\t32(%2), %%rcx\n\t"
-        "movq\t%%rcx, 32(%3)\n\t"
-        "movq\t40(%1), %%rcx\n\t"
-        "sbbq\t40(%2), %%rcx\n\t"
-        "movq\t%%rcx, 40(%3)\n\t"
-        "movq\t48(%1), %%rcx\n\t"
-        "sbbq\t48(%2), %%rcx\n\t"
-        "movq\t%%rcx, 48(%3)\n\t"
-        "movq\t56(%1), %%rcx\n\t"
-        "sbbq\t56(%2), %%rcx\n\t"
-        "movq\t%%rcx, 56(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_4WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 3905 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_4WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 3962 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_4WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 4019 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adoxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adoxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_4WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 4076 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "sbbq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "sbbq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_4WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 4133 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_4WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 4190 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adcxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adcxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_4WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 4247 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "adoxq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "adoxq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_4WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 4304 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "movq\t16(%1), %%rcx\n\t"
-        "sbbq\t16(%2), %%rcx\n\t"
-        "movq\t%%rcx, 16(%3)\n\t"
-        "movq\t24(%1), %%rcx\n\t"
-        "sbbq\t24(%2), %%rcx\n\t"
-        "movq\t%%rcx, 24(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_2WORDS_ADC(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 4353 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_2WORDS_ADCX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 4396 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_2WORDS_ADOX(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 4439 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_2WORDS_SBB(char c, __UNIT_TYPE* xp, __UNIT_TYPE* yp, __UNIT_TYPE* zp)
-{
-# 4482 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_2WORDS_ADC_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 4525 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_2WORDS_ADCX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 4568 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adcxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adcxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _ADD_2WORDS_ADOX_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 4611 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "adoxq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "adoxq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-
-__inline static char _SUBTRUCT_2WORDS_SBB_DIV(char c, __UNIT_TYPE_DIV* xp, __UNIT_TYPE_DIV* yp, __UNIT_TYPE_DIV* zp)
-{
-# 4654 "autogenerated_inline_func.h"
-    __asm__ volatile (
-        "addb\t$-1, %0\n\t"
-        "movq\t(%1), %%rcx\n\t"
-        "sbbq\t(%2), %%rcx\n\t"
-        "movq\t%%rcx, (%3)\n\t"
-        "movq\t8(%1), %%rcx\n\t"
-        "sbbq\t8(%2), %%rcx\n\t"
-        "movq\t%%rcx, 8(%3)\n\t"
-        "setc\t%0"
-        : "+r"(c), "+r"(xp), "+r"(yp), "+r"(zp)
-        :
-        : "cc", "memory", "%rcx"
-);
-
-
-
-
-
-
-    return (c);
-}
-# 36 "pmc_pow.c" 2
-
-
-static void Pow_Imp(__UNIT_TYPE* x_buf, __UNIT_TYPE x_buf_count, _UINT32_T n, __UNIT_TYPE* work1_buf, __UNIT_TYPE* work2_buf, __UNIT_TYPE* z_buf)
-{
-    _UINT32_T n_mask = 1;
-    n_mask = 
-# 41 "pmc_pow.c" 3
-            __rord((
-# 41 "pmc_pow.c"
-            n_mask
-# 41 "pmc_pow.c" 3
-            ), (
-# 41 "pmc_pow.c"
-            _LZCNT_ALT_32(n) + 1
-# 41 "pmc_pow.c" 3
-            ))
-# 41 "pmc_pow.c"
-                                               ;
+    _UINT32_T e_mask = 
+# 39 "pmc_pow.c" 3
+                      __rord((
+# 39 "pmc_pow.c"
+                      1
+# 39 "pmc_pow.c" 3
+                      ), (
+# 39 "pmc_pow.c"
+                      _LZCNT_ALT_32(e) + 1
+# 39 "pmc_pow.c" 3
+                      ))
+# 39 "pmc_pow.c"
+                                                    ;
 
 
 
     __UNIT_TYPE* u_ptr = work1_buf;
-    __UNIT_TYPE* v_ptr = x_buf;
+    __UNIT_TYPE* v_ptr = v_buf;
     __UNIT_TYPE* w_ptr = work2_buf;
-    __UNIT_TYPE u_count = x_buf_count;
-    __UNIT_TYPE v_count = x_buf_count;
-    _COPY_MEMORY_UNIT(work1_buf, x_buf, x_buf_count);
-    n_mask >>= 1;
-    while (n_mask != 0)
+    __UNIT_TYPE u_count = v_buf_count;
+    __UNIT_TYPE v_count = v_buf_count;
+    _COPY_MEMORY_UNIT(work1_buf, v_buf, v_buf_count);
+    e_mask >>= 1;
+    while (e_mask != 0)
     {
 
         _ZERO_MEMORY_UNIT(w_ptr, u_count * 2);
@@ -91890,7 +89711,7 @@ static void Pow_Imp(__UNIT_TYPE* x_buf, __UNIT_TYPE x_buf_count, _UINT32_T n, __
             --u_count;
 
 
-        if (n & n_mask)
+        if (e & e_mask)
         {
 
             _ZERO_MEMORY_UNIT(u_ptr, u_count + v_count);
@@ -91907,19 +89728,19 @@ static void Pow_Imp(__UNIT_TYPE* x_buf, __UNIT_TYPE x_buf_count, _UINT32_T n, __
             w_ptr = t_ptr;
         }
 
-        n_mask >>= 1;
+        e_mask >>= 1;
     }
-    _COPY_MEMORY_UNIT(z_buf, u_ptr, u_count);
+    _COPY_MEMORY_UNIT(r_buf, u_ptr, u_count);
 }
 
-static PMC_STATUS_CODE PMC_Pow_X_I_Imp(NUMBER_HEADER* x, _UINT32_T n, NUMBER_HEADER** z)
+static PMC_STATUS_CODE PMC_Pow_X_I_Imp(NUMBER_HEADER* v, _UINT32_T e, NUMBER_HEADER** r)
 {
     PMC_STATUS_CODE result;
-    if (x->IS_ZERO)
+    if (v->IS_ZERO)
     {
 
 
-        if (n == 0)
+        if (e == 0)
         {
 
 
@@ -91930,19 +89751,33 @@ static PMC_STATUS_CODE PMC_Pow_X_I_Imp(NUMBER_HEADER* x, _UINT32_T n, NUMBER_HEA
         {
 
 
-            *z = &number_zero;
+            *r = &number_zero;
         }
+    }
+    else if (v->IS_ONE)
+    {
+
+
+
+        *r = &number_one;
     }
     else
     {
 
 
-        if (n == 0)
+        if (e == 0)
         {
 
 
 
-            if ((result = From_I_Imp(1, z)) != (0))
+            *r = &number_one;
+        }
+        else if (e == 1)
+        {
+
+
+
+            if ((result = DuplicateNumber(v, r)) != (0))
                 return (result);
         }
         else
@@ -91950,21 +89785,21 @@ static PMC_STATUS_CODE PMC_Pow_X_I_Imp(NUMBER_HEADER* x, _UINT32_T n, NUMBER_HEA
 
 
 
-            __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
+            __UNIT_TYPE v_bit_count = v->UNIT_BIT_COUNT;
 
 
-            if (x_bit_count > ((__UNIT_TYPE)-1 - (sizeof(__UNIT_TYPE) * 8)) / n)
+            if (v_bit_count > ((__UNIT_TYPE)-1 - (sizeof(__UNIT_TYPE) * 8)) / e)
                 return ((-2));
 
-            __UNIT_TYPE work_bit_count = x_bit_count * n + (sizeof(__UNIT_TYPE) * 8);
+            __UNIT_TYPE work_bit_count = v_bit_count * e + (sizeof(__UNIT_TYPE) * 8);
 
             __UNIT_TYPE work1_buf_code;
             __UNIT_TYPE work1_buf_words;
             __UNIT_TYPE* work1_buf = AllocateBlock(work_bit_count, &work1_buf_words, &work1_buf_code);
             if (work1_buf == 
-# 133 "pmc_pow.c" 3 4
+# 145 "pmc_pow.c" 3 4
                             ((void *)0)
-# 133 "pmc_pow.c"
+# 145 "pmc_pow.c"
                                 )
             {
                 return ((-5));
@@ -91973,64 +89808,64 @@ static PMC_STATUS_CODE PMC_Pow_X_I_Imp(NUMBER_HEADER* x, _UINT32_T n, NUMBER_HEA
             __UNIT_TYPE work2_buf_words;
             __UNIT_TYPE* work2_buf = AllocateBlock(work_bit_count, &work2_buf_words, &work2_buf_code);
             if (work1_buf == 
-# 140 "pmc_pow.c" 3 4
+# 152 "pmc_pow.c" 3 4
                             ((void *)0)
-# 140 "pmc_pow.c"
+# 152 "pmc_pow.c"
                                 )
             {
                 DeallocateBlock(work1_buf, work1_buf_words);
                 return ((-5));
             }
-            __UNIT_TYPE z_check_code;
-            if ((result = AllocateNumber(z, work_bit_count, &z_check_code)) != (0))
+            __UNIT_TYPE r_check_code;
+            if ((result = AllocateNumber(r, work_bit_count, &r_check_code)) != (0))
             {
                 DeallocateBlock(work1_buf, work1_buf_words);
                 DeallocateBlock(work2_buf, work2_buf_words);
                 return ((-5));
             }
 
-            Pow_Imp(x->BLOCK, x->UNIT_WORD_COUNT, n, work1_buf, work2_buf, (*z)->BLOCK);
+            Pow_Imp(v->BLOCK, v->UNIT_WORD_COUNT, e, work1_buf, work2_buf, (*r)->BLOCK);
 
             if ((result = CheckBlockLight(work1_buf, work1_buf_code)) != (0))
                 return (result);
             if ((result = CheckBlockLight(work2_buf, work2_buf_code)) != (0))
                 return (result);
-            if ((result = CheckBlockLight((*z)->BLOCK, z_check_code)) != (0))
+            if ((result = CheckBlockLight((*r)->BLOCK, r_check_code)) != (0))
                 return (result);
             DeallocateBlock(work1_buf, work1_buf_words);
             DeallocateBlock(work2_buf, work2_buf_words);
-            CommitNumber(*z);
+            CommitNumber(*r);
         }
     }
     return ((0));
 }
 
-PMC_STATUS_CODE PMC_Pow_X_I(HANDLE x, _UINT32_T n, HANDLE* z)
+PMC_STATUS_CODE PMC_Pow_X_I(HANDLE v, _UINT32_T e, HANDLE* r)
 {
-    if ((sizeof(__UNIT_TYPE) * 8) < sizeof(n) * 8)
+    if ((sizeof(__UNIT_TYPE) * 8) < sizeof(e) * 8)
     {
 
         return ((-256));
     }
-    if (x == 
-# 176 "pmc_pow.c" 3 4
+    if (v == 
+# 188 "pmc_pow.c" 3 4
             ((void *)0)
-# 176 "pmc_pow.c"
+# 188 "pmc_pow.c"
                 )
         return ((-1));
-    if (z == 
-# 178 "pmc_pow.c" 3 4
+    if (r == 
+# 190 "pmc_pow.c" 3 4
             ((void *)0)
-# 178 "pmc_pow.c"
+# 190 "pmc_pow.c"
                 )
         return ((-1));
     PMC_STATUS_CODE result;
-    if ((result = CheckNumber((NUMBER_HEADER*)x)) != (0))
+    if ((result = CheckNumber((NUMBER_HEADER*)v)) != (0))
         return (result);
-    if ((result = PMC_Pow_X_I_Imp((NUMBER_HEADER*)x, n, (NUMBER_HEADER**)z)) != (0))
+    if ((result = PMC_Pow_X_I_Imp((NUMBER_HEADER*)v, e, (NUMBER_HEADER**)r)) != (0))
         return (result);
 
-    if ((result = CheckNumber(*z)) != (0))
+    if ((result = CheckNumber(*r)) != (0))
         return (result);
 
     return ((0));

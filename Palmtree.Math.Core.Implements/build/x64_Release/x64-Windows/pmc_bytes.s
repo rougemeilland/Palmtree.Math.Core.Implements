@@ -53,7 +53,7 @@ PMC_FromByteArray:
 	movl	$7, %ecx
 	salq	$3, %rdx
 /APP
- # 848 "pmc_internal.h" 1
+ # 864 "pmc_internal.h" 1
 	bsrl %eax, %eax
  # 0 "" 2
 /NO_APP

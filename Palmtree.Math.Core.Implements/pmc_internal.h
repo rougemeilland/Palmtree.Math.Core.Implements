@@ -94,6 +94,9 @@ extern PMC_CONFIGURATION_INFO configuration_info;
 // 整数 0 のインスタンス
 extern NUMBER_HEADER number_zero;
 
+// 整数 1 のインスタンス
+extern NUMBER_HEADER number_one;
+
 // パフォーマンスカウンタ
 extern PMC_STATISTICS_INFO statistics_info;
 
@@ -160,6 +163,9 @@ extern void Multiply_X_X_Imp(__UNIT_TYPE* u, __UNIT_TYPE u_count, __UNIT_TYPE* v
 // 多倍長整数を 1 ワードで除算を行う。
 extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
 
+// 多倍長同士の除算を行う。work_v_buf が指す領域は v_count ワード以上の大きさが必要である。q_buf が指す領域は <uのビット数> - <vのビット数> + 1 + <1ワード分のビット数> 以上の大きさが必要である。r_buf が指す領域は u_count + 1 ワード以上の大きさが必要である。
+extern void DivRem_X_X(__UNIT_TYPE* u_buf, __UNIT_TYPE u_count, __UNIT_TYPE* v_buf, __UNIT_TYPE v_count, __UNIT_TYPE* work_v_buf, __UNIT_TYPE* q_buf, __UNIT_TYPE* r_buf);
+
 // 多倍長整数の大小比較を行う。
 extern _INT32_T Compare_Imp(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count);
 
@@ -213,6 +219,9 @@ extern PMC_STATUS_CODE Initialize_GreatestCommonDivisor(PROCESSOR_FEATURES* feat
 
 // べき乗計算の実装の初期化処理を行う。
 extern PMC_STATUS_CODE Initialize_Pow(PROCESSOR_FEATURES* feature);
+
+// べき剰余計算の実装の初期化処理を行う。
+extern PMC_STATUS_CODE Initialize_ModPow(PROCESSOR_FEATURES* feature);
 
 //
 // エントリポイントに登録される関数群
@@ -301,6 +310,13 @@ extern PMC_STATUS_CODE __PMC_CALL PMC_GreatestCommonDivisor_X_L(HANDLE u, _UINT6
 extern PMC_STATUS_CODE __PMC_CALL PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
 extern PMC_STATUS_CODE __PMC_CALL PMC_Pow_X_I(HANDLE x, _UINT32_T n, HANDLE* z);
+
+extern PMC_STATUS_CODE __PMC_CALL PMC_ModPow_X_X_X(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
+
+#ifdef _DEBUG
+extern int(_cdecl * __DEBUG_LOG)(const char*, ...);
+extern void DumpBinary_UNIT(__UNIT_TYPE* buf, __UNIT_TYPE count);
+#endif
 #pragma endregion
 
 
@@ -759,7 +775,7 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 #endif
 }
 
-__inline static __UNIT_TYPE _POPCNT_UNIT(__UNIT_TYPE value)
+__inline static int _POPCNT_UNIT(__UNIT_TYPE value)
 {
 #ifdef _M_IX86
     return (__popcnt(value));
@@ -770,7 +786,7 @@ __inline static __UNIT_TYPE _POPCNT_UNIT(__UNIT_TYPE value)
 #endif
 }
 
-__inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
+__inline static int _POPCNT_ALT_UNIT(__UNIT_TYPE x)
 {
 #ifdef _M_IX86
     x = (x & 0x55555555) + ((x >> 1) & 0x55555555);
@@ -788,33 +804,33 @@ __inline static __UNIT_TYPE _POPCNT_ALT_UNIT(__UNIT_TYPE x)
 #else
 #error unknown platform
 #endif
-    return(x);
+    return((int)x);
 }
 
-__inline static _UINT32_T _LZCNT_32(_UINT32_T value)
+__inline static int _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
 
 #ifdef _M_X64
-__inline static _UINT64_T _LZCNT_64(_UINT64_T value)
+__inline static int _LZCNT_64(_UINT64_T value)
 {
-    return (_lzcnt_u64(value));
+    return ((int)_lzcnt_u64(value));
 }
 #endif
 
-__inline static __UNIT_TYPE _LZCNT_UNIT(__UNIT_TYPE value)
+__inline static int _LZCNT_UNIT(__UNIT_TYPE value)
 {
 #ifdef _M_IX86
     return (_lzcnt_u32(value));
 #elif defined(_M_X64)
-    return (_lzcnt_u64(value));
+    return ((int)_lzcnt_u64(value));
 #else
 #error unknown platform
 #endif
 }
 
-__inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
+__inline static int _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
 {
 #ifdef _MSC_VER
 #ifdef _M_IX86
@@ -837,7 +853,7 @@ __inline static __UNIT_TYPE_DIV _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
 #endif
 }
 
-__inline static unsigned char _LZCNT_ALT_8(unsigned char x)
+__inline static int _LZCNT_ALT_8(unsigned char x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -852,7 +868,7 @@ __inline static unsigned char _LZCNT_ALT_8(unsigned char x)
     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 }
 
-__inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
+__inline static int _LZCNT_ALT_32(_UINT32_T x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -868,7 +884,7 @@ __inline static _UINT32_T _LZCNT_ALT_32(_UINT32_T x)
 }
 
 #ifdef _M_X64
-__inline static _UINT64_T _LZCNT_ALT_64(_UINT64_T x)
+__inline static int _LZCNT_ALT_64(_UINT64_T x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -885,7 +901,7 @@ __inline static _UINT64_T _LZCNT_ALT_64(_UINT64_T x)
 }
 #endif
 
-__inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
+__inline static int _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -914,7 +930,7 @@ __inline static __UNIT_TYPE _LZCNT_ALT_UNIT(__UNIT_TYPE x)
     return (sizeof(x) * 8 - 1 - pos);
 }
 
-__inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
+__inline static int _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -943,29 +959,29 @@ __inline static __UNIT_TYPE_DIV _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
     return (sizeof(x) * 8 - 1 - pos);
 }
 
-__inline static __UNIT_TYPE _TZCNT_UNIT(__UNIT_TYPE x)
+__inline static int _TZCNT_UNIT(__UNIT_TYPE x)
 {
 #ifdef _M_IX86
     return (_tzcnt_u32(x));
 #elif defined(_M_X64)
-    return (_tzcnt_u64(x));
+    return ((int)_tzcnt_u64(x));
 #else
 #error unknown platform
 #endif
 }
 
-__inline static __UNIT_TYPE _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
+__inline static int _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
 {
 #ifdef _M_IX86
     return(__popcnt(~x & (x - 1)));
 #elif defined(_M_X64)
-    return(__popcnt64(~x & (x - 1)));
+    return((int)__popcnt64(~x & (x - 1)));
 #else
 #error unknown platform
 #endif
 }
 
-__inline static __UNIT_TYPE _TZCNT_ALT_UNIT(__UNIT_TYPE x)
+__inline static int _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
         return (sizeof(x) * 8);
@@ -1085,6 +1101,42 @@ __inline static void AddToMULTI32Counter(_INT32_T value)
 __inline static void AddToMULTI64Counter(_INT32_T value)
 {
     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+}
+
+__inline static void ReportLabel(char* label)
+{
+#ifdef _DEBUG
+    if (__DEBUG_LOG != NULL)
+    {
+        (*__DEBUG_LOG)("%s\n", label);
+    }
+#endif // _DEBUG
+}
+
+__inline static void ReportDump(char* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
+{
+#ifdef _DEBUG
+    if (__DEBUG_LOG != NULL)
+    {
+        (*__DEBUG_LOG)("  %s: ", name);
+        DumpBinary_UNIT(buf, count);
+        (*__DEBUG_LOG)("\n");
+    }
+#endif // _DEBUG
+}
+
+__inline static void ReportVar(char* name, __UNIT_TYPE x)
+{
+#ifdef _DEBUG
+    if (__DEBUG_LOG != NULL)
+    {
+        (*__DEBUG_LOG)("  %s: ", name);
+        if (sizeof(__UNIT_TYPE) == sizeof(unsigned __int64))
+            (*__DEBUG_LOG)("0x%016llx\n", x);
+        else
+            (*__DEBUG_LOG)("0x%08lx\n", x);
+    }
+#endif // _DEBUG
 }
 #pragma endregion
 

@@ -3,7 +3,7 @@
 	.p2align 4,,15
 	.def	_Multiply_WORD_using_MUL_ADC;	.scl	3;	.type	32;	.endef
 _Multiply_WORD_using_MUL_ADC:
-LFB5490:
+LFB5493:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -35,7 +35,7 @@ L3:
 	movl	(%esi), %eax
 	movl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -52,7 +52,7 @@ L3:
 	adcl	$0, %edx
 	movl	%edx, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -69,7 +69,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -86,7 +86,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -103,7 +103,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -120,7 +120,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -137,7 +137,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -154,7 +154,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -171,7 +171,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -188,7 +188,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -205,7 +205,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -222,7 +222,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -239,7 +239,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -256,7 +256,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -273,7 +273,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -290,7 +290,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -307,7 +307,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -324,7 +324,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -341,7 +341,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -358,7 +358,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -375,7 +375,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -392,7 +392,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -409,7 +409,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -426,7 +426,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -443,7 +443,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -460,7 +460,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -477,7 +477,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -494,7 +494,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -511,7 +511,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -528,7 +528,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -545,7 +545,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %ebp
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -562,7 +562,7 @@ L3:
 	addb	$-1, %cl
 	adcl	$0, %edi
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -634,7 +634,7 @@ L32:
 	movl	(%esp), %esi
 	movl	(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %esi
  # 0 "" 2
 /NO_APP
@@ -651,7 +651,7 @@ L32:
 	movl	%eax, (%edx)
 	movl	4(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %esi
  # 0 "" 2
 /NO_APP
@@ -666,7 +666,7 @@ L32:
 	adcl	$0, %esi
 	movl	8(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -679,7 +679,7 @@ L32:
 	movl	%edx, %ecx
 	movl	12(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -693,7 +693,7 @@ L32:
 	movl	%eax, 12(%edx)
 	movl	16(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -706,7 +706,7 @@ L32:
 	movl	%eax, 16(%esi)
 	movl	20(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -720,7 +720,7 @@ L32:
 	movl	%eax, 20(%edx)
 	movl	24(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -733,7 +733,7 @@ L32:
 	movl	%edx, %ecx
 	movl	28(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -747,7 +747,7 @@ L32:
 	movl	%eax, 28(%edx)
 	movl	32(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -760,7 +760,7 @@ L32:
 	movl	%edx, %ecx
 	movl	36(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -774,7 +774,7 @@ L32:
 	movl	%eax, 36(%edx)
 	movl	40(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -787,7 +787,7 @@ L32:
 	movl	%eax, 40(%esi)
 	movl	44(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -801,7 +801,7 @@ L32:
 	movl	%eax, 44(%edx)
 	movl	48(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -814,7 +814,7 @@ L32:
 	movl	%edx, %ecx
 	movl	52(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -828,7 +828,7 @@ L32:
 	movl	%eax, 52(%edx)
 	movl	56(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -844,7 +844,7 @@ L32:
 	movl	56(%esp), %edi
 	movl	%eax, 4(%esp)
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -870,7 +870,7 @@ L33:
 	movl	(%esp), %esi
 	movl	(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %esi
  # 0 "" 2
 /NO_APP
@@ -887,7 +887,7 @@ L33:
 	movl	%eax, (%edx)
 	movl	4(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %esi
  # 0 "" 2
 /NO_APP
@@ -902,7 +902,7 @@ L33:
 	adcl	$0, %esi
 	movl	8(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -915,7 +915,7 @@ L33:
 	movl	%edx, %ecx
 	movl	12(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -929,7 +929,7 @@ L33:
 	movl	%eax, 12(%edx)
 	movl	16(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -942,7 +942,7 @@ L33:
 	movl	%eax, 16(%esi)
 	movl	20(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -956,7 +956,7 @@ L33:
 	movl	%eax, 20(%edx)
 	movl	24(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -972,7 +972,7 @@ L33:
 	movl	56(%esp), %edi
 	movl	%eax, 4(%esp)
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -998,7 +998,7 @@ L34:
 	movl	(%esp), %esi
 	movl	(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %esi
  # 0 "" 2
 /NO_APP
@@ -1015,7 +1015,7 @@ L34:
 	movl	%eax, (%edx)
 	movl	4(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %esi
  # 0 "" 2
 /NO_APP
@@ -1029,7 +1029,7 @@ L34:
 	movl	%eax, 4(%ebx)
 	movl	8(%edi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -1045,7 +1045,7 @@ L34:
 	movl	56(%esp), %edi
 	movl	%eax, 4(%esp)
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %ebp
  # 0 "" 2
 /NO_APP
@@ -1071,7 +1071,7 @@ L35:
 	movl	(%esp), %edi
 	movl	(%esi), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %edi
  # 0 "" 2
 /NO_APP
@@ -1088,7 +1088,7 @@ L35:
 	movl	4(%esi), %eax
 	movl	%eax, 4(%esp)
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull %edi
  # 0 "" 2
 /NO_APP
@@ -1114,7 +1114,7 @@ L36:
 	movl	12(%esp), %eax
 	movl	(%eax), %eax
 /APP
- # 563 "pmc_internal.h" 1
+ # 579 "pmc_internal.h" 1
 	mull (%esp)
  # 0 "" 2
 /NO_APP
@@ -1139,11 +1139,11 @@ L10:
 	xorl	%ebp, %ebp
 	jmp	L2
 	.cfi_endproc
-LFE5490:
+LFE5493:
 	.p2align 4,,15
 	.def	_Multiply_X_1W_using_MUL_ADC;	.scl	3;	.type	32;	.endef
 _Multiply_X_1W_using_MUL_ADC:
-LFB5492:
+LFB5495:
 	.cfi_startproc
 	movl	16(%esp), %edx
 	movl	4(%esp), %eax
@@ -1152,11 +1152,11 @@ LFB5492:
 	movl	8(%esp), %edx
 	jmp	_Multiply_WORD_using_MUL_ADC
 	.cfi_endproc
-LFE5492:
+LFE5495:
 	.p2align 4,,15
 	.def	_Multiply_X_2W_using_MUL_ADC;	.scl	3;	.type	32;	.endef
 _Multiply_X_2W_using_MUL_ADC:
-LFB5494:
+LFB5497:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -1202,11 +1202,11 @@ LFB5494:
 	.cfi_def_cfa_offset 4
 	jmp	_Multiply_WORD_using_MUL_ADC
 	.cfi_endproc
-LFE5494:
+LFE5497:
 	.p2align 4,,15
 	.def	_Multiply_X_X_using_MUL_ADC;	.scl	3;	.type	32;	.endef
 _Multiply_X_X_using_MUL_ADC:
-LFB5496:
+LFB5499:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -1261,11 +1261,11 @@ L42:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5496:
+LFE5499:
 	.p2align 4,,15
 	.def	_Multiply_WORD_using_MULX_ADCX;	.scl	3;	.type	32;	.endef
 _Multiply_WORD_using_MULX_ADCX:
-LFB5491:
+LFB5494:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -1297,7 +1297,7 @@ LFB5491:
 L48:
 	movl	(%ebx), %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1312,7 +1312,7 @@ L48:
 	movl	4(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1327,7 +1327,7 @@ L48:
 	movl	8(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1342,7 +1342,7 @@ L48:
 	movl	12(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1357,7 +1357,7 @@ L48:
 	movl	16(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1372,7 +1372,7 @@ L48:
 	movl	20(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1387,7 +1387,7 @@ L48:
 	movl	24(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1402,7 +1402,7 @@ L48:
 	movl	28(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1417,7 +1417,7 @@ L48:
 	movl	32(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1432,7 +1432,7 @@ L48:
 	movl	36(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1447,7 +1447,7 @@ L48:
 	movl	40(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1462,7 +1462,7 @@ L48:
 	movl	44(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1477,7 +1477,7 @@ L48:
 	movl	48(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1492,7 +1492,7 @@ L48:
 	movl	52(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1507,7 +1507,7 @@ L48:
 	movl	56(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1522,7 +1522,7 @@ L48:
 	movl	60(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1537,7 +1537,7 @@ L48:
 	movl	64(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1552,7 +1552,7 @@ L48:
 	movl	68(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1567,7 +1567,7 @@ L48:
 	movl	72(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1582,7 +1582,7 @@ L48:
 	movl	76(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1597,7 +1597,7 @@ L48:
 	movl	80(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1612,7 +1612,7 @@ L48:
 	movl	84(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1627,7 +1627,7 @@ L48:
 	movl	88(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1642,7 +1642,7 @@ L48:
 	movl	92(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1657,7 +1657,7 @@ L48:
 	movl	96(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1672,7 +1672,7 @@ L48:
 	movl	100(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1687,7 +1687,7 @@ L48:
 	movl	104(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1702,7 +1702,7 @@ L48:
 	movl	108(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1717,7 +1717,7 @@ L48:
 	movl	112(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1732,7 +1732,7 @@ L48:
 	movl	116(%ebx), %edx
 	adcl	$0, %esi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ebp, %edi
  # 0 "" 2
 /NO_APP
@@ -1747,7 +1747,7 @@ L48:
 	movl	120(%ebx), %edx
 	adcl	$0, %edi
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %esi, %ebp
  # 0 "" 2
 /NO_APP
@@ -1762,7 +1762,7 @@ L48:
 	movl	124(%ebx), %edx
 	adcl	$0, %ebp
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %esi
  # 0 "" 2
 /NO_APP
@@ -1832,7 +1832,7 @@ L76:
 	movl	(%ebx), %eax
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %ecx
  # 0 "" 2
 /NO_APP
@@ -1850,7 +1850,7 @@ L76:
 	movl	(%esp), %esi
 	movl	%ebx, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -1863,7 +1863,7 @@ L76:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -1876,7 +1876,7 @@ L76:
 	adcl	$0, %ecx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -1889,7 +1889,7 @@ L76:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -1902,7 +1902,7 @@ L76:
 	adcl	$0, %ecx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -1915,7 +1915,7 @@ L76:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -1928,7 +1928,7 @@ L76:
 	adcl	$0, %ecx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -1941,7 +1941,7 @@ L76:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -1954,7 +1954,7 @@ L76:
 	adcl	$0, %ecx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -1967,7 +1967,7 @@ L76:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -1980,7 +1980,7 @@ L76:
 	adcl	$0, %ecx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -1993,7 +1993,7 @@ L76:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -2006,7 +2006,7 @@ L76:
 	adcl	$0, %ecx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -2019,7 +2019,7 @@ L76:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -2035,7 +2035,7 @@ L76:
 	movl	%eax, 4(%esp)
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %esi
  # 0 "" 2
 /NO_APP
@@ -2059,7 +2059,7 @@ L77:
 	movl	(%ebx), %eax
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %ecx
  # 0 "" 2
 /NO_APP
@@ -2077,7 +2077,7 @@ L77:
 	movl	(%esp), %esi
 	movl	%ebx, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -2090,7 +2090,7 @@ L77:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -2103,7 +2103,7 @@ L77:
 	adcl	$0, %ecx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -2116,7 +2116,7 @@ L77:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -2129,7 +2129,7 @@ L77:
 	adcl	$0, %ecx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -2142,7 +2142,7 @@ L77:
 	adcl	$0, %ebx
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %ecx
  # 0 "" 2
 /NO_APP
@@ -2158,7 +2158,7 @@ L77:
 	movl	%eax, 4(%esp)
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %esi, %eax, %esi
  # 0 "" 2
 /NO_APP
@@ -2183,7 +2183,7 @@ L78:
 	movl	0(%ebp), %eax
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %ebx
  # 0 "" 2
 /NO_APP
@@ -2201,7 +2201,7 @@ L78:
 	movl	(%esp), %ebp
 	movl	%esi, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %ebp, %eax, %esi
  # 0 "" 2
 /NO_APP
@@ -2214,7 +2214,7 @@ L78:
 	adcl	$0, %esi
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %ebp, %eax, %ebx
  # 0 "" 2
 /NO_APP
@@ -2228,7 +2228,7 @@ L78:
 	movl	%eax, 4(%esp)
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl %ebp, %eax, %esi
  # 0 "" 2
 /NO_APP
@@ -2255,7 +2255,7 @@ L79:
 	movl	0(%ebp), %eax
 	movl	%eax, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %edi, %ebx
  # 0 "" 2
 /NO_APP
@@ -2273,7 +2273,7 @@ L79:
 	movl	%esi, 4(%esp)
 	movl	%esi, %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %eax, %esi
  # 0 "" 2
 /NO_APP
@@ -2299,7 +2299,7 @@ L80:
 	movl	12(%esp), %eax
 	movl	(%eax), %edx
 /APP
- # 607 "pmc_internal.h" 1
+ # 623 "pmc_internal.h" 1
 	mulxl (%esp), %ecx, %eax
  # 0 "" 2
 /NO_APP
@@ -2324,11 +2324,11 @@ L55:
 	xorl	%esi, %esi
 	jmp	L47
 	.cfi_endproc
-LFE5491:
+LFE5494:
 	.p2align 4,,15
 	.def	_Multiply_X_1W_using_MULX_ADCX;	.scl	3;	.type	32;	.endef
 _Multiply_X_1W_using_MULX_ADCX:
-LFB5493:
+LFB5496:
 	.cfi_startproc
 	movl	16(%esp), %edx
 	movl	4(%esp), %eax
@@ -2337,11 +2337,11 @@ LFB5493:
 	movl	8(%esp), %edx
 	jmp	_Multiply_WORD_using_MULX_ADCX
 	.cfi_endproc
-LFE5493:
+LFE5496:
 	.p2align 4,,15
 	.def	_Multiply_X_2W_using_MULX_ADCX;	.scl	3;	.type	32;	.endef
 _Multiply_X_2W_using_MULX_ADCX:
-LFB5495:
+LFB5498:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -2387,11 +2387,11 @@ LFB5495:
 	.cfi_def_cfa_offset 4
 	jmp	_Multiply_WORD_using_MULX_ADCX
 	.cfi_endproc
-LFE5495:
+LFE5498:
 	.p2align 4,,15
 	.def	_Multiply_X_X_using_MULX_ADCX;	.scl	3;	.type	32;	.endef
 _Multiply_X_X_using_MULX_ADCX:
-LFB5497:
+LFB5500:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -2446,11 +2446,11 @@ L86:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5497:
+LFE5500:
 	.p2align 4,,15
 	.def	_PMC_Multiply_X_I_Imp;	.scl	3;	.type	32;	.endef
 _PMC_Multiply_X_I_Imp:
-LFB5498:
+LFB5501:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -2501,7 +2501,7 @@ L93:
 	movl	%eax, 8(%esp)
 	movl	4(%edi), %eax
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %edx, %ecx
  # 0 "" 2
 /NO_APP
@@ -2548,11 +2548,11 @@ L105:
 	call	_DuplicateNumber
 	jmp	L90
 	.cfi_endproc
-LFE5498:
+LFE5501:
 	.p2align 4,,15
 	.def	_PMC_Multiply_X_L_Imp;	.scl	3;	.type	32;	.endef
 _PMC_Multiply_X_L_Imp:
-LFB5501:
+LFB5504:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -2614,7 +2614,7 @@ L109:
 	testl	%edx, %edx
 	je	L113
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %edx, %eax
  # 0 "" 2
 /NO_APP
@@ -2662,7 +2662,7 @@ L128:
 	.p2align 4,,10
 L112:
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %ecx, %esi
  # 0 "" 2
 /NO_APP
@@ -2696,21 +2696,21 @@ L129:
 	call	_DuplicateNumber
 	jmp	L106
 	.cfi_endproc
-LFE5501:
+LFE5504:
 	.p2align 4,,15
 	.globl	_Multiply_X_X_Imp
 	.def	_Multiply_X_X_Imp;	.scl	2;	.type	32;	.endef
 _Multiply_X_X_Imp:
-LFB5487:
+LFB5490:
 	.cfi_startproc
 	jmp	*_fp_Multiply_X_X
 	.cfi_endproc
-LFE5487:
+LFE5490:
 	.p2align 4,,15
 	.globl	_PMC_Multiply_I_X@12
 	.def	_PMC_Multiply_I_X@12;	.scl	2;	.type	32;	.endef
 _PMC_Multiply_I_X@12:
-LFB5499:
+LFB5502:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -2751,12 +2751,12 @@ L133:
 	movl	$-1, %eax
 	jmp	L131
 	.cfi_endproc
-LFE5499:
+LFE5502:
 	.p2align 4,,15
 	.globl	_PMC_Multiply_X_I@12
 	.def	_PMC_Multiply_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_Multiply_X_I@12:
-LFB5500:
+LFB5503:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -2797,12 +2797,12 @@ L137:
 	movl	$-1, %eax
 	jmp	L135
 	.cfi_endproc
-LFE5500:
+LFE5503:
 	.p2align 4,,15
 	.globl	_PMC_Multiply_L_X@16
 	.def	_PMC_Multiply_L_X@16;	.scl	2;	.type	32;	.endef
 _PMC_Multiply_L_X@16:
-LFB5502:
+LFB5505:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -2848,12 +2848,12 @@ L141:
 	movl	$-1, %eax
 	jmp	L139
 	.cfi_endproc
-LFE5502:
+LFE5505:
 	.p2align 4,,15
 	.globl	_PMC_Multiply_X_L@16
 	.def	_PMC_Multiply_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_Multiply_X_L@16:
-LFB5503:
+LFB5506:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -2899,12 +2899,12 @@ L145:
 	movl	$-1, %eax
 	jmp	L143
 	.cfi_endproc
-LFE5503:
+LFE5506:
 	.p2align 4,,15
 	.globl	_PMC_Multiply_X_X@12
 	.def	_PMC_Multiply_X_X@12;	.scl	2;	.type	32;	.endef
 _PMC_Multiply_X_X@12:
-LFB5504:
+LFB5507:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -3070,12 +3070,12 @@ L156:
 	movl	$-1, %ebx
 	jmp	L147
 	.cfi_endproc
-LFE5504:
+LFE5507:
 	.p2align 4,,15
 	.globl	_Initialize_Multiply
 	.def	_Initialize_Multiply;	.scl	2;	.type	32;	.endef
 _Initialize_Multiply:
-LFB5505:
+LFB5508:
 	.cfi_startproc
 	movl	4(%esp), %eax
 	movzbl	(%eax), %eax
@@ -3095,7 +3095,7 @@ L168:
 	movl	$_Multiply_X_X_using_MULX_ADCX, _fp_Multiply_X_X
 	ret
 	.cfi_endproc
-LFE5505:
+LFE5508:
 .lcomm _fp_Multiply_X_X,4,4
 .lcomm _fp_Multiply_X_2W,4,4
 .lcomm _fp_Multiply_X_1W,4,4

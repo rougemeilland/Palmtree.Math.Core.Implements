@@ -50,113 +50,113 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG94428 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94504 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-$SG94429 DB	'PMC_BitwiseAnd_I_X (%d.%d)', 00H
+$SG94505 DB	'PMC_BitwiseAnd_I_X (%d.%d)', 00H
 	ORG $+1
-$SG94430 DB	'PMC_BitwiseAnd_I_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94506 DB	'PMC_BitwiseAnd_I_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG94431 DB	'PMC_BitwiseAnd_I_X (%d.%d)', 00H
+$SG94507 DB	'PMC_BitwiseAnd_I_X (%d.%d)', 00H
 	ORG $+1
-$SG94432 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94508 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG94433 DB	'PMC_BitwiseAnd_I_X (%d.%d)', 00H
+$SG94509 DB	'PMC_BitwiseAnd_I_X (%d.%d)', 00H
 	ORG $+1
-$SG94454 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94530 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-$SG94455 DB	'PMC_BitwiseAnd_L_X (%d.%d)', 00H
+$SG94531 DB	'PMC_BitwiseAnd_L_X (%d.%d)', 00H
 	ORG $+1
-$SG94456 DB	'PMC_BitwiseAnd_L_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94532 DB	'PMC_BitwiseAnd_L_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG94457 DB	'PMC_BitwiseAnd_L_X (%d.%d)', 00H
+$SG94533 DB	'PMC_BitwiseAnd_L_X (%d.%d)', 00H
 	ORG $+1
-$SG94458 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94534 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG94459 DB	'PMC_BitwiseAnd_L_X (%d.%d)', 00H
+$SG94535 DB	'PMC_BitwiseAnd_L_X (%d.%d)', 00H
 	ORG $+1
-$SG94480 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94556 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-$SG94481 DB	'PMC_BitwiseAnd_X_I (%d.%d)', 00H
+$SG94557 DB	'PMC_BitwiseAnd_X_I (%d.%d)', 00H
 	ORG $+1
-$SG94482 DB	'PMC_BitwiseAnd_X_I', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94558 DB	'PMC_BitwiseAnd_X_I', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG94483 DB	'PMC_BitwiseAnd_X_I (%d.%d)', 00H
+$SG94559 DB	'PMC_BitwiseAnd_X_I (%d.%d)', 00H
 	ORG $+1
-$SG94484 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94560 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG94485 DB	'PMC_BitwiseAnd_X_I (%d.%d)', 00H
+$SG94561 DB	'PMC_BitwiseAnd_X_I (%d.%d)', 00H
 	ORG $+1
-$SG94506 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94582 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-$SG94507 DB	'PMC_BitwiseAnd_X_L (%d.%d)', 00H
+$SG94583 DB	'PMC_BitwiseAnd_X_L (%d.%d)', 00H
 	ORG $+1
-$SG94508 DB	'PMC_BitwiseAnd_X_L', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94584 DB	'PMC_BitwiseAnd_X_L', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG94509 DB	'PMC_BitwiseAnd_X_L (%d.%d)', 00H
+$SG94585 DB	'PMC_BitwiseAnd_X_L (%d.%d)', 00H
 	ORG $+1
-$SG94510 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94586 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG94511 DB	'PMC_BitwiseAnd_X_L (%d.%d)', 00H
+$SG94587 DB	'PMC_BitwiseAnd_X_L (%d.%d)', 00H
 	ORG $+1
-$SG94541 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94617 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-$SG94542 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
+$SG94618 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
 	ORG $+1
-$SG94543 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94619 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
-$SG94544 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
+$SG94620 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
 	ORG $+1
-$SG94545 DB	'PMC_BitwiseAnd_X_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94621 DB	'PMC_BitwiseAnd_X_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+3
-$SG94546 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
+$SG94622 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
 	ORG $+1
-$SG94547 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
+$SG94623 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
 	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
 	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
 	DB	'(%d)', 00H
 	ORG $+2
-$SG94548 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
+$SG94624 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
 	ORG $+1
-$SG94549 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG94625 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG94550 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
+$SG94626 DB	'PMC_BitwiseAnd_X_X (%d.%d)', 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -177,32 +177,32 @@ _buffer2$ = 16						; size = 4
 _count2$ = 20						; size = 4
 __EQUALS_MEMORY PROC
 
-; 147  : {
+; 153  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __1C66ECB2_pmc_debug@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 148  :     if (count1 != count2)
+; 154  :     if (count1 != count2)
 
 	mov	eax, DWORD PTR _count1$[ebp]
 	cmp	eax, DWORD PTR _count2$[ebp]
 	je	SHORT $LN2@EQUALS_MEM
 
-; 149  :         return (-1);
+; 155  :         return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN2@EQUALS_MEM:
 
-; 150  :     while (count1 > 0)
+; 156  :     while (count1 > 0)
 
 	cmp	DWORD PTR _count1$[ebp], 0
 	jbe	SHORT $LN3@EQUALS_MEM
 
-; 151  :     {
-; 152  :         if (*buffer1 != *buffer2)
+; 157  :     {
+; 158  :         if (*buffer1 != *buffer2)
 
 	mov	ecx, DWORD PTR _buffer1$[ebp]
 	movzx	edx, BYTE PTR [ecx]
@@ -211,41 +211,41 @@ $LN2@EQUALS_MEM:
 	cmp	edx, ecx
 	je	SHORT $LN5@EQUALS_MEM
 
-; 153  :             return (-1);
+; 159  :             return (-1);
 
 	or	eax, -1
 	jmp	SHORT $LN1@EQUALS_MEM
 $LN5@EQUALS_MEM:
 
-; 154  :         ++buffer1;
+; 160  :         ++buffer1;
 
 	mov	edx, DWORD PTR _buffer1$[ebp]
 	add	edx, 1
 	mov	DWORD PTR _buffer1$[ebp], edx
 
-; 155  :         ++buffer2;
+; 161  :         ++buffer2;
 
 	mov	eax, DWORD PTR _buffer2$[ebp]
 	add	eax, 1
 	mov	DWORD PTR _buffer2$[ebp], eax
 
-; 156  :         --count1;
+; 162  :         --count1;
 
 	mov	ecx, DWORD PTR _count1$[ebp]
 	sub	ecx, 1
 	mov	DWORD PTR _count1$[ebp], ecx
 
-; 157  :     }
+; 163  :     }
 
 	jmp	SHORT $LN2@EQUALS_MEM
 $LN3@EQUALS_MEM:
 
-; 158  :     return (0);
+; 164  :     return (0);
 
 	xor	eax, eax
 $LN1@EQUALS_MEM:
 
-; 159  : }
+; 165  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -332,7 +332,7 @@ $LN6@TEST_PMC_B:
 $LN7@TEST_PMC_B:
 	mov	edx, DWORD PTR _u_result$[ebp]
 	push	edx
-	push	OFFSET $SG94541
+	push	OFFSET $SG94617
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -341,7 +341,7 @@ $LN7@TEST_PMC_B:
 	push	1
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94542
+	push	OFFSET $SG94618
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -374,7 +374,7 @@ $LN8@TEST_PMC_B:
 $LN9@TEST_PMC_B:
 	mov	edx, DWORD PTR _v_result$[ebp]
 	push	edx
-	push	OFFSET $SG94543
+	push	OFFSET $SG94619
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -383,7 +383,7 @@ $LN9@TEST_PMC_B:
 	push	2
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94544
+	push	OFFSET $SG94620
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -416,7 +416,7 @@ $LN10@TEST_PMC_B:
 $LN11@TEST_PMC_B:
 	mov	edx, DWORD PTR _w_result$[ebp]
 	push	edx
-	push	OFFSET $SG94545
+	push	OFFSET $SG94621
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -425,7 +425,7 @@ $LN11@TEST_PMC_B:
 	push	3
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94546
+	push	OFFSET $SG94622
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -459,7 +459,7 @@ $LN12@TEST_PMC_B:
 $LN13@TEST_PMC_B:
 	mov	edx, DWORD PTR _result$[ebp]
 	push	edx
-	push	OFFSET $SG94547
+	push	OFFSET $SG94623
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -468,7 +468,7 @@ $LN13@TEST_PMC_B:
 	push	4
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94548
+	push	OFFSET $SG94624
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -496,13 +496,13 @@ $LN13@TEST_PMC_B:
 $LN14@TEST_PMC_B:
 	mov	DWORD PTR tv176[ebp], 0
 $LN15@TEST_PMC_B:
-	push	OFFSET $SG94549
+	push	OFFSET $SG94625
 	mov	ecx, DWORD PTR tv176[ebp]
 	push	ecx
 	push	5
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG94550
+	push	OFFSET $SG94626
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -707,7 +707,7 @@ $LN4@TEST_PMC_B:
 $LN5@TEST_PMC_B:
 	mov	edx, DWORD PTR _u_result$[ebp]
 	push	edx
-	push	OFFSET $SG94506
+	push	OFFSET $SG94582
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -716,7 +716,7 @@ $LN5@TEST_PMC_B:
 	push	1
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94507
+	push	OFFSET $SG94583
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -751,7 +751,7 @@ $LN6@TEST_PMC_B:
 $LN7@TEST_PMC_B:
 	mov	eax, DWORD PTR _result$[ebp]
 	push	eax
-	push	OFFSET $SG94508
+	push	OFFSET $SG94584
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -760,7 +760,7 @@ $LN7@TEST_PMC_B:
 	push	2
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG94509
+	push	OFFSET $SG94585
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -782,13 +782,13 @@ $LN7@TEST_PMC_B:
 $LN8@TEST_PMC_B:
 	mov	DWORD PTR tv134[ebp], 0
 $LN9@TEST_PMC_B:
-	push	OFFSET $SG94510
+	push	OFFSET $SG94586
 	mov	eax, DWORD PTR tv134[ebp]
 	push	eax
 	push	3
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94511
+	push	OFFSET $SG94587
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -918,7 +918,7 @@ $LN4@TEST_PMC_B:
 $LN5@TEST_PMC_B:
 	mov	edx, DWORD PTR _u_result$[ebp]
 	push	edx
-	push	OFFSET $SG94480
+	push	OFFSET $SG94556
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -927,7 +927,7 @@ $LN5@TEST_PMC_B:
 	push	1
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94481
+	push	OFFSET $SG94557
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -960,7 +960,7 @@ $LN6@TEST_PMC_B:
 $LN7@TEST_PMC_B:
 	mov	edx, DWORD PTR _result$[ebp]
 	push	edx
-	push	OFFSET $SG94482
+	push	OFFSET $SG94558
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -969,7 +969,7 @@ $LN7@TEST_PMC_B:
 	push	2
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94483
+	push	OFFSET $SG94559
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -988,13 +988,13 @@ $LN7@TEST_PMC_B:
 $LN8@TEST_PMC_B:
 	mov	DWORD PTR tv134[ebp], 0
 $LN9@TEST_PMC_B:
-	push	OFFSET $SG94484
+	push	OFFSET $SG94560
 	mov	ecx, DWORD PTR tv134[ebp]
 	push	ecx
 	push	3
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG94485
+	push	OFFSET $SG94561
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1124,7 +1124,7 @@ $LN4@TEST_PMC_B:
 $LN5@TEST_PMC_B:
 	mov	edx, DWORD PTR _v_result$[ebp]
 	push	edx
-	push	OFFSET $SG94454
+	push	OFFSET $SG94530
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -1133,7 +1133,7 @@ $LN5@TEST_PMC_B:
 	push	1
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94455
+	push	OFFSET $SG94531
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1168,7 +1168,7 @@ $LN6@TEST_PMC_B:
 $LN7@TEST_PMC_B:
 	mov	eax, DWORD PTR _result$[ebp]
 	push	eax
-	push	OFFSET $SG94456
+	push	OFFSET $SG94532
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -1177,7 +1177,7 @@ $LN7@TEST_PMC_B:
 	push	2
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG94457
+	push	OFFSET $SG94533
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1199,13 +1199,13 @@ $LN7@TEST_PMC_B:
 $LN8@TEST_PMC_B:
 	mov	DWORD PTR tv134[ebp], 0
 $LN9@TEST_PMC_B:
-	push	OFFSET $SG94458
+	push	OFFSET $SG94534
 	mov	eax, DWORD PTR tv134[ebp]
 	push	eax
 	push	3
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94459
+	push	OFFSET $SG94535
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1335,7 +1335,7 @@ $LN4@TEST_PMC_B:
 $LN5@TEST_PMC_B:
 	mov	edx, DWORD PTR _v_result$[ebp]
 	push	edx
-	push	OFFSET $SG94428
+	push	OFFSET $SG94504
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -1344,7 +1344,7 @@ $LN5@TEST_PMC_B:
 	push	1
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94429
+	push	OFFSET $SG94505
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1377,7 +1377,7 @@ $LN6@TEST_PMC_B:
 $LN7@TEST_PMC_B:
 	mov	edx, DWORD PTR _result$[ebp]
 	push	edx
-	push	OFFSET $SG94430
+	push	OFFSET $SG94506
 	call	_FormatTestMesssage
 	add	esp, 8
 	push	eax
@@ -1386,7 +1386,7 @@ $LN7@TEST_PMC_B:
 	push	2
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG94431
+	push	OFFSET $SG94507
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1405,13 +1405,13 @@ $LN7@TEST_PMC_B:
 $LN8@TEST_PMC_B:
 	mov	DWORD PTR tv134[ebp], 0
 $LN9@TEST_PMC_B:
-	push	OFFSET $SG94432
+	push	OFFSET $SG94508
 	mov	ecx, DWORD PTR tv134[ebp]
 	push	ecx
 	push	3
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG94433
+	push	OFFSET $SG94509
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax

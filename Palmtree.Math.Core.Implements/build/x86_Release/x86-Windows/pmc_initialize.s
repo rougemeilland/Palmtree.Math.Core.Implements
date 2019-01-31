@@ -4,7 +4,7 @@
 	.globl	_PMC_Initialize@4
 	.def	_PMC_Initialize@4;	.scl	2;	.type	32;	.endef
 _PMC_Initialize@4:
-LFB5487:
+LFB5490:
 	.cfi_startproc
 	pushl	%ebx
 	.cfi_def_cfa_offset 8
@@ -85,6 +85,10 @@ LFB5487:
 	call	_Initialize_Pow
 	testl	%eax, %eax
 	jne	L4
+	movl	%ebx, (%esp)
+	call	_Initialize_ModPow
+	testl	%eax, %eax
+	jne	L4
 	movzbl	_entry_points, %eax
 	movzbl	28(%esp), %edx
 	movl	$_PMC_GetStatisticsInfo@4, _entry_points+4
@@ -157,6 +161,7 @@ LFB5487:
 	movl	$_PMC_GreatestCommonDivisor_X_L@16, _entry_points+252
 	movl	$_PMC_GreatestCommonDivisor_X_X@12, _entry_points+256
 	movl	$_PMC_Pow_X_I@12, _entry_points+260
+	movl	$_PMC_ModPow_X_X_X@16, _entry_points+264
 	jmp	L1
 	.p2align 4,,10
 L4:
@@ -169,9 +174,9 @@ L1:
 	.cfi_def_cfa_offset 4
 	ret	$4
 	.cfi_endproc
-LFE5487:
+LFE5490:
 	.comm	_configuration_info, 4, 2
-.lcomm _entry_points,264,32
+.lcomm _entry_points,268,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_GetCPUInfo;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Memory;	.scl	2;	.type	32;	.endef
@@ -191,6 +196,7 @@ LFE5487:
 	.def	_Initialize_Parse;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_GreatestCommonDivisor;	.scl	2;	.type	32;	.endef
 	.def	_Initialize_Pow;	.scl	2;	.type	32;	.endef
+	.def	_Initialize_ModPow;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetStatisticsInfo@4;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_I@8;	.scl	2;	.type	32;	.endef
 	.def	_PMC_From_L@12;	.scl	2;	.type	32;	.endef
@@ -256,5 +262,6 @@ LFE5487:
 	.def	_PMC_GreatestCommonDivisor_X_L@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GreatestCommonDivisor_X_X@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_Pow_X_I@12;	.scl	2;	.type	32;	.endef
+	.def	_PMC_ModPow_X_X_X@16;	.scl	2;	.type	32;	.endef
 	.section .drectve
 	.ascii " -export:\"PMC_Initialize@4\""

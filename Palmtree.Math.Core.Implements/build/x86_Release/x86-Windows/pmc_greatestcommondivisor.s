@@ -3,7 +3,7 @@
 	.p2align 4,,15
 	.def	_GreatestCommonDivisor_Imp;	.scl	3;	.type	32;	.endef
 _GreatestCommonDivisor_Imp:
-LFB5527:
+LFB5530:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -99,11 +99,11 @@ L16:
 	.cfi_def_cfa_offset 4
 	ret
 	.cfi_endproc
-LFE5527:
+LFE5530:
 	.p2align 4,,15
 	.def	_PMC_GreatestCommonDivisor_X_I_Imp;	.scl	3;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_I_Imp:
-LFB5528:
+LFB5531:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -177,7 +177,7 @@ L18:
 L20:
 	.cfi_restore_state
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %edx, %ebx
  # 0 "" 2
 /NO_APP
@@ -217,7 +217,7 @@ L20:
 	jne	L31
 	movl	12(%esi), %eax
 /APP
- # 977 "pmc_internal.h" 1
+ # 993 "pmc_internal.h" 1
 	bsfl %edx, %ecx
  # 0 "" 2
 /NO_APP
@@ -339,11 +339,11 @@ L32:
 	movl	60(%esp), %edx
 	jmp	L25
 	.cfi_endproc
-LFE5528:
+LFE5531:
 	.p2align 4,,15
 	.def	_PMC_GreatestCommonDivisor_X_L_Imp;	.scl	3;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_L_Imp:
-LFB5531:
+LFB5534:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -402,7 +402,7 @@ L34:
 	testl	%ebx, %ebx
 	je	L38
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -444,7 +444,7 @@ L38:
 	testl	%ebx, %ebx
 	je	L42
 /APP
- # 977 "pmc_internal.h" 1
+ # 993 "pmc_internal.h" 1
 	bsfl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -546,7 +546,7 @@ L71:
 L37:
 	.cfi_restore_state
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %ecx, %eax
  # 0 "" 2
 /NO_APP
@@ -590,7 +590,7 @@ L37:
 	testl	%ebx, %ebx
 	jne	L48
 /APP
- # 977 "pmc_internal.h" 1
+ # 993 "pmc_internal.h" 1
 	bsfl %edx, %eax
  # 0 "" 2
 /NO_APP
@@ -730,7 +730,7 @@ L72:
 	.p2align 4,,10
 L48:
 /APP
- # 977 "pmc_internal.h" 1
+ # 993 "pmc_internal.h" 1
 	bsfl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -760,12 +760,12 @@ L75:
 	movl	60(%esp), %edx
 	jmp	L51
 	.cfi_endproc
-LFE5531:
+LFE5534:
 	.p2align 4,,15
 	.globl	_PMC_GreatestCommonDivisor_I_X@12
 	.def	_PMC_GreatestCommonDivisor_I_X@12;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_I_X@12:
-LFB5529:
+LFB5532:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -806,12 +806,12 @@ L79:
 	movl	$-1, %eax
 	jmp	L77
 	.cfi_endproc
-LFE5529:
+LFE5532:
 	.p2align 4,,15
 	.globl	_PMC_GreatestCommonDivisor_X_I@12
 	.def	_PMC_GreatestCommonDivisor_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_I@12:
-LFB5530:
+LFB5533:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -852,12 +852,12 @@ L83:
 	movl	$-1, %eax
 	jmp	L81
 	.cfi_endproc
-LFE5530:
+LFE5533:
 	.p2align 4,,15
 	.globl	_PMC_GreatestCommonDivisor_L_X@16
 	.def	_PMC_GreatestCommonDivisor_L_X@16;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_L_X@16:
-LFB5532:
+LFB5535:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -903,12 +903,12 @@ L87:
 	movl	$-1, %eax
 	jmp	L85
 	.cfi_endproc
-LFE5532:
+LFE5535:
 	.p2align 4,,15
 	.globl	_PMC_GreatestCommonDivisor_X_L@16
 	.def	_PMC_GreatestCommonDivisor_X_L@16;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_L@16:
-LFB5533:
+LFB5536:
 	.cfi_startproc
 	pushl	%esi
 	.cfi_def_cfa_offset 8
@@ -954,12 +954,12 @@ L91:
 	movl	$-1, %eax
 	jmp	L89
 	.cfi_endproc
-LFE5533:
+LFE5536:
 	.p2align 4,,15
 	.globl	_PMC_GreatestCommonDivisor_X_X@12
 	.def	_PMC_GreatestCommonDivisor_X_X@12;	.scl	2;	.type	32;	.endef
 _PMC_GreatestCommonDivisor_X_X@12:
-LFB5534:
+LFB5537:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -1233,17 +1233,17 @@ L115:
 	call	_RightShift_Imp
 	jmp	L104
 	.cfi_endproc
-LFE5534:
+LFE5537:
 	.p2align 4,,15
 	.globl	_Initialize_GreatestCommonDivisor
 	.def	_Initialize_GreatestCommonDivisor;	.scl	2;	.type	32;	.endef
 _Initialize_GreatestCommonDivisor:
-LFB5535:
+LFB5538:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5535:
+LFE5538:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_Compare_Imp;	.scl	2;	.type	32;	.endef
 	.def	_Subtruct_Imp;	.scl	2;	.type	32;	.endef

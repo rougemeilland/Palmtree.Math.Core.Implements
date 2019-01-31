@@ -59,13 +59,13 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$_LZCNT_ALT_8 DD imagerel _LZCNT_ALT_8
-	DD	imagerel _LZCNT_ALT_8+127
+	DD	imagerel _LZCNT_ALT_8+133
 	DD	imagerel $unwind$_LZCNT_ALT_8
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$CountActualBitsFromBuffer DD imagerel CountActualBitsFromBuffer
-	DD	imagerel CountActualBitsFromBuffer+209
+	DD	imagerel CountActualBitsFromBuffer+208
 	DD	imagerel $unwind$CountActualBitsFromBuffer
 pdata	ENDS
 ;	COMDAT rtc$TMZ
@@ -214,7 +214,7 @@ $LN2@CountActua:
 	mov	rcx, QWORD PTR p$[rbp]
 	movzx	ecx, BYTE PTR [rcx]
 	call	_LZCNT_ALT_8
-	movzx	eax, al
+	cdqe
 	mov	rcx, QWORD PTR tv69[rbp]
 	sub	rcx, rax
 	mov	rax, rcx
@@ -253,7 +253,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_8 PROC					; COMDAT
 
-; 841  : {
+; 857  : {
 
 	mov	BYTE PTR [rsp+8], cl
 	push	rbp
@@ -268,40 +268,41 @@ _LZCNT_ALT_8 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 842  :     if (x == 0)
+; 858  :     if (x == 0)
 
 	movzx	eax, BYTE PTR x$[rbp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 843  :         return (sizeof(x) * 8);
+; 859  :         return (sizeof(x) * 8);
 
-	mov	al, 8
+	mov	eax, 8
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 844  :     _UINT32_T pos;
-; 845  : #ifdef _MSC_VER
-; 846  :     _BitScanReverse(&pos, x);
+; 860  :     _UINT32_T pos;
+; 861  : #ifdef _MSC_VER
+; 862  :     _BitScanReverse(&pos, x);
 
 	movzx	eax, BYTE PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 847  : #elif defined(__GNUC__)
-; 848  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-; 849  : #else
-; 850  : #error unknown compiler
-; 851  : #endif
-; 852  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 863  : #elif defined(__GNUC__)
+; 864  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+; 865  : #else
+; 866  : #error unknown compiler
+; 867  : #endif
+; 868  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 7
 	sub	rcx, rax
 	mov	rax, rcx
+	movzx	eax, al
 $LN1@LZCNT_ALT_:
 
-; 853  : }
+; 869  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -322,7 +323,7 @@ u$ = 224
 v$ = 232
 _DIVIDE_CEILING_SIZE PROC				; COMDAT
 
-; 458  : {
+; 474  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -338,7 +339,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 459  :     return ((u + v - 1) / v);
+; 475  :     return ((u + v - 1) / v);
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
@@ -346,7 +347,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	xor	edx, edx
 	div	QWORD PTR v$[rbp]
 
-; 460  : }
+; 476  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -363,7 +364,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 309  : {
+; 325  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -381,14 +382,14 @@ _COPY_MEMORY_BYTE PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 310  :     __movsb(d, s, count);
+; 326  :     __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rsi, QWORD PTR s$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep movsb
 
-; 311  : }
+; 327  : }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi

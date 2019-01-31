@@ -475,16 +475,17 @@ PMC_Subtruct_I_X:
 .L74:
 	testb	%dl, %dl
 	jne	.L76
-	movl	$31, %ecx
+	movl	$31, %edx
 /APP
- # 863 "pmc_internal.h" 1
-	bsrl %esi, %edx
+ # 879 "pmc_internal.h" 1
+	bsrl %esi, %ecx
  # 0 "" 2
 /NO_APP
-	subl	%edx, %ecx
-	movl	$32, %edx
-	subq	%rcx, %rdx
-	cmpq	8(%rbx), %rdx
+	subl	%ecx, %edx
+	movl	$32, %ecx
+	movslq	%edx, %rdx
+	subq	%rdx, %rcx
+	cmpq	8(%rbx), %rcx
 	jb	.L79
 	movq	48(%rbx), %rdx
 	subq	(%rdx), %rsi
@@ -550,16 +551,17 @@ PMC_Subtruct_X_I:
 	testl	%ebp, %ebp
 	je	.L100
 	movq	8(%rbx), %rdx
-	movl	$31, %ecx
+	movl	$31, %eax
 /APP
- # 863 "pmc_internal.h" 1
-	bsrl %ebp, %eax
+ # 879 "pmc_internal.h" 1
+	bsrl %ebp, %ecx
  # 0 "" 2
 /NO_APP
-	subl	%eax, %ecx
-	movl	$32, %eax
-	subq	%rcx, %rax
-	cmpq	%rax, %rdx
+	subl	%ecx, %eax
+	movl	$32, %ecx
+	cltq
+	subq	%rax, %rcx
+	cmpq	%rcx, %rdx
 	jnb	.L101
 .L91:
 	movl	$-2, %esi
@@ -648,12 +650,12 @@ PMC_Subtruct_L_X:
 	subq	$48, %rsp
 	.seh_stackalloc	48
 	.seh_endprologue
-	testq	%r8, %r8
+	testq	%rdx, %rdx
 	movq	%rcx, %rdi
 	movq	%rdx, %rbx
 	movq	%r8, %rsi
 	je	.L108
-	testq	%rdx, %rdx
+	testq	%r8, %r8
 	je	.L108
 	movq	%rdx, %rcx
 	call	CheckNumber
@@ -676,13 +678,17 @@ PMC_Subtruct_L_X:
 .L105:
 	testb	%dl, %dl
 	jne	.L107
+	movl	$63, %edx
 /APP
- # 907 "pmc_internal.h" 1
-	bsrq %rdi, %rdx
+ # 923 "pmc_internal.h" 1
+	bsrq %rdi, %rcx
  # 0 "" 2
 /NO_APP
-	addq	$1, %rdx
-	cmpq	8(%rbx), %rdx
+	subl	%ecx, %edx
+	movl	$64, %ecx
+	movslq	%edx, %rdx
+	subq	%rdx, %rcx
+	cmpq	8(%rbx), %rcx
 	jb	.L110
 	movq	48(%rbx), %rdx
 	subq	(%rdx), %rdi
@@ -748,13 +754,17 @@ PMC_Subtruct_X_L:
 	testq	%rbp, %rbp
 	je	.L126
 	movq	8(%rbx), %rdx
+	movl	$63, %eax
 /APP
- # 907 "pmc_internal.h" 1
-	bsrq %rbp, %rax
+ # 923 "pmc_internal.h" 1
+	bsrq %rbp, %rcx
  # 0 "" 2
 /NO_APP
-	addq	$1, %rax
-	cmpq	%rax, %rdx
+	subl	%ecx, %eax
+	movl	$64, %ecx
+	cltq
+	subq	%rax, %rcx
+	cmpq	%rcx, %rdx
 	jnb	.L127
 .L121:
 	movl	$-2, %esi

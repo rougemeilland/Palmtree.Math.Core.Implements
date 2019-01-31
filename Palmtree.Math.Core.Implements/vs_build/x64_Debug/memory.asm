@@ -7,6 +7,7 @@ INCLUDELIB OLDNAMES
 
 _DATA	SEGMENT
 COMM	number_zero:BYTE:038H
+COMM	number_one:BYTE:038H
 COMM	hLocalHeap:QWORD
 _DATA	ENDS
 msvcjmc	SEGMENT
@@ -124,8 +125,8 @@ $pdata$DuplicateNumber DD imagerel $LN6
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$Initialize_Memory DD imagerel $LN7
-	DD	imagerel $LN7+153
+$pdata$Initialize_Memory DD imagerel $LN10
+	DD	imagerel $LN10+253
 	DD	imagerel $unwind$Initialize_Memory
 pdata	ENDS
 ;	COMDAT pdata
@@ -263,13 +264,13 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$GetEffectiveBitLength DD imagerel GetEffectiveBitLength
-	DD	imagerel GetEffectiveBitLength+268
+	DD	imagerel GetEffectiveBitLength+270
 	DD	imagerel $unwind$GetEffectiveBitLength
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$GetTrailingZeroBitCount DD imagerel GetTrailingZeroBitCount
-	DD	imagerel GetTrailingZeroBitCount+178
+	DD	imagerel GetTrailingZeroBitCount+180
 	DD	imagerel $unwind$GetTrailingZeroBitCount
 pdata	ENDS
 ;	COMDAT rtc$TMZ
@@ -504,7 +505,7 @@ xdata	ENDS
 xdata	SEGMENT
 $unwind$Initialize_Memory DD 025052a01H
 	DD	010e2313H
-	DD	070070025H
+	DD	070070029H
 	DD	05006H
 xdata	ENDS
 ;	COMDAT xdata
@@ -620,7 +621,7 @@ p$ = 256
 word_count$ = 264
 GetTrailingZeroBitCount PROC				; COMDAT
 
-; 449  : {
+; 450  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -636,64 +637,65 @@ GetTrailingZeroBitCount PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 450  :     __UNIT_TYPE bit_count = 0;
+; 451  :     __UNIT_TYPE bit_count = 0;
 
 	mov	QWORD PTR bit_count$[rbp], 0
 $LN2@GetTrailin:
 
-; 451  :     while (word_count > 0)
+; 452  :     while (word_count > 0)
 
 	cmp	QWORD PTR word_count$[rbp], 0
 	jbe	SHORT $LN3@GetTrailin
 
-; 452  :     {
-; 453  :         --word_count;
+; 453  :     {
+; 454  :         --word_count;
 
 	mov	rax, QWORD PTR word_count$[rbp]
 	dec	rax
 	mov	QWORD PTR word_count$[rbp], rax
 
-; 454  :         if (*p != 0)
+; 455  :         if (*p != 0)
 
 	mov	rax, QWORD PTR p$[rbp]
 	cmp	QWORD PTR [rax], 0
 	je	SHORT $LN4@GetTrailin
 
-; 455  :             return (bit_count + _TZCNT_ALT_UNIT(*p));
+; 456  :             return (bit_count + _TZCNT_ALT_UNIT(*p));
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rcx, QWORD PTR [rax]
 	call	_TZCNT_ALT_UNIT
+	cdqe
 	mov	rcx, QWORD PTR bit_count$[rbp]
 	add	rcx, rax
 	mov	rax, rcx
 	jmp	SHORT $LN1@GetTrailin
 $LN4@GetTrailin:
 
-; 456  :         bit_count += __UNIT_TYPE_BIT_COUNT;
+; 457  :         bit_count += __UNIT_TYPE_BIT_COUNT;
 
 	mov	rax, QWORD PTR bit_count$[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR bit_count$[rbp], rax
 
-; 457  :         ++p;
+; 458  :         ++p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	add	rax, 8
 	mov	QWORD PTR p$[rbp], rax
 
-; 458  :     }
+; 459  :     }
 
 	jmp	SHORT $LN2@GetTrailin
 $LN3@GetTrailin:
 
-; 459  :     // このルートには到達しないはず
-; 460  :     return (0);
+; 460  :     // このルートには到達しないはず
+; 461  :     return (0);
 
 	xor	eax, eax
 $LN1@GetTrailin:
 
-; 461  : }
+; 462  : }
 
 	lea	rsp, QWORD PTR [rbp+232]
 	pop	rdi
@@ -711,7 +713,7 @@ word_count$ = 248
 effective_word_count$ = 256
 GetEffectiveBitLength PROC				; COMDAT
 
-; 427  : {
+; 428  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -728,25 +730,25 @@ GetEffectiveBitLength PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 428  :     if (p == NULL)
+; 429  :     if (p == NULL)
 
 	cmp	QWORD PTR p$[rbp], 0
 	jne	SHORT $LN4@GetEffecti
 
-; 429  :     {
-; 430  :         *effective_word_count = 0;
+; 430  :     {
+; 431  :         *effective_word_count = 0;
 
 	mov	rax, QWORD PTR effective_word_count$[rbp]
 	mov	QWORD PTR [rax], 0
 
-; 431  :         return (0);
+; 432  :         return (0);
 
 	xor	eax, eax
 	jmp	$LN1@GetEffecti
 $LN4@GetEffecti:
 
-; 432  :     }
-; 433  :     p += word_count;
+; 433  :     }
+; 434  :     p += word_count;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rcx, QWORD PTR word_count$[rbp]
@@ -754,67 +756,68 @@ $LN4@GetEffecti:
 	mov	QWORD PTR p$[rbp], rax
 $LN2@GetEffecti:
 
-; 434  :     while (word_count != 0)
+; 435  :     while (word_count != 0)
 
 	cmp	QWORD PTR word_count$[rbp], 0
 	je	SHORT $LN3@GetEffecti
 
-; 435  :     {
-; 436  :         --p;
+; 436  :     {
+; 437  :         --p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	sub	rax, 8
 	mov	QWORD PTR p$[rbp], rax
 
-; 437  :         if (*p != 0)
+; 438  :         if (*p != 0)
 
 	mov	rax, QWORD PTR p$[rbp]
 	cmp	QWORD PTR [rax], 0
 	je	SHORT $LN5@GetEffecti
 
-; 438  :         {
-; 439  :             *effective_word_count = word_count;
+; 439  :         {
+; 440  :             *effective_word_count = word_count;
 
 	mov	rax, QWORD PTR effective_word_count$[rbp]
 	mov	rcx, QWORD PTR word_count$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 440  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 441  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	imul	rax, QWORD PTR word_count$[rbp], 64	; 00000040H
 	mov	QWORD PTR tv70[rbp], rax
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	rcx, QWORD PTR [rcx]
 	call	_LZCNT_ALT_UNIT
+	cdqe
 	mov	rcx, QWORD PTR tv70[rbp]
 	sub	rcx, rax
 	mov	rax, rcx
 	jmp	SHORT $LN1@GetEffecti
 $LN5@GetEffecti:
 
-; 441  :         }
-; 442  :         --word_count;
+; 442  :         }
+; 443  :         --word_count;
 
 	mov	rax, QWORD PTR word_count$[rbp]
 	dec	rax
 	mov	QWORD PTR word_count$[rbp], rax
 
-; 443  :     }
+; 444  :     }
 
 	jmp	SHORT $LN2@GetEffecti
 $LN3@GetEffecti:
 
-; 444  :     *effective_word_count = 0;
+; 445  :     *effective_word_count = 0;
 
 	mov	rax, QWORD PTR effective_word_count$[rbp]
 	mov	QWORD PTR [rax], 0
 
-; 445  :     return (0);
+; 446  :     return (0);
 
 	xor	eax, eax
 $LN1@GetEffecti:
 
-; 446  : }
+; 447  : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -829,7 +832,7 @@ _TEXT	SEGMENT
 p$ = 224
 CleanUpNumber PROC					; COMDAT
 
-; 380  : {
+; 381  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -844,14 +847,14 @@ CleanUpNumber PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 381  :     if (p->BLOCK != NULL)
+; 382  :     if (p->BLOCK != NULL)
 
 	mov	rax, QWORD PTR p$[rbp]
 	cmp	QWORD PTR [rax+48], 0
 	je	SHORT $LN2@CleanUpNum
 
-; 382  :     {
-; 383  :         DeallocateBlock(p->BLOCK, p->BLOCK_COUNT);
+; 383  :     {
+; 384  :         DeallocateBlock(p->BLOCK, p->BLOCK_COUNT);
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rdx, QWORD PTR [rax+40]
@@ -859,14 +862,14 @@ CleanUpNumber PROC					; COMDAT
 	mov	rcx, QWORD PTR [rax+48]
 	call	DeallocateBlock
 
-; 384  :         p->BLOCK = NULL;
+; 385  :         p->BLOCK = NULL;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rax+48], 0
 $LN2@CleanUpNum:
 
-; 385  :     }
-; 386  : }
+; 386  :     }
+; 387  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -885,7 +888,7 @@ bit_count$ = 296
 light_check_code$ = 304
 InitializeNumber PROC					; COMDAT
 
-; 357  : {
+; 358  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -902,19 +905,19 @@ InitializeNumber PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 358  :     ClearNumberHeader(p);
+; 359  :     ClearNumberHeader(p);
 
 	mov	rcx, QWORD PTR p$[rbp]
 	call	ClearNumberHeader
 
-; 359  :     if (bit_count > 0)
+; 360  :     if (bit_count > 0)
 
 	cmp	QWORD PTR bit_count$[rbp], 0
 	jbe	SHORT $LN2@Initialize
 
-; 360  :     {
-; 361  :         __UNIT_TYPE word_count;
-; 362  :         __UNIT_TYPE* block = AllocateBlock(bit_count, &word_count, light_check_code);
+; 361  :     {
+; 362  :         __UNIT_TYPE word_count;
+; 363  :         __UNIT_TYPE* block = AllocateBlock(bit_count, &word_count, light_check_code);
 
 	mov	r8, QWORD PTR light_check_code$[rbp]
 	lea	rdx, QWORD PTR word_count$4[rbp]
@@ -922,66 +925,66 @@ InitializeNumber PROC					; COMDAT
 	call	AllocateBlock
 	mov	QWORD PTR block$5[rbp], rax
 
-; 363  :         if (block == NULL)
+; 364  :         if (block == NULL)
 
 	cmp	QWORD PTR block$5[rbp], 0
 	jne	SHORT $LN4@Initialize
 
-; 364  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 365  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	SHORT $LN1@Initialize
 $LN4@Initialize:
 
-; 365  :         p->UNIT_BIT_COUNT = bit_count;
+; 366  :         p->UNIT_BIT_COUNT = bit_count;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rcx, QWORD PTR bit_count$[rbp]
 	mov	QWORD PTR [rax+8], rcx
 
-; 366  :         p->BLOCK_COUNT = word_count;
+; 367  :         p->BLOCK_COUNT = word_count;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rcx, QWORD PTR word_count$4[rbp]
 	mov	QWORD PTR [rax+40], rcx
 
-; 367  :         p->BLOCK = block;
+; 368  :         p->BLOCK = block;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rcx, QWORD PTR block$5[rbp]
 	mov	QWORD PTR [rax+48], rcx
 
-; 368  :     }
+; 369  :     }
 
 	jmp	SHORT $LN3@Initialize
 $LN2@Initialize:
 
-; 369  :     else
-; 370  :     {
-; 371  :         // bit_count に 0 が与えられるのは、数値が 0 の場合。
-; 372  :         p->UNIT_BIT_COUNT = 0;
+; 370  :     else
+; 371  :     {
+; 372  :         // bit_count に 0 が与えられるのは、数値が 0 の場合。
+; 373  :         p->UNIT_BIT_COUNT = 0;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rax+8], 0
 
-; 373  :         p->BLOCK_COUNT = 0;
+; 374  :         p->BLOCK_COUNT = 0;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rax+40], 0
 
-; 374  :         p->BLOCK = NULL;
+; 375  :         p->BLOCK = NULL;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rax+48], 0
 $LN3@Initialize:
 
-; 375  :     }
-; 376  :     return (PMC_STATUS_OK);
+; 376  :     }
+; 377  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@Initialize:
 
-; 377  : }
+; 378  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -1003,7 +1006,7 @@ __p$2 = 40
 p$ = 288
 FillNumberHeader PROC					; COMDAT
 
-; 316  : {
+; 317  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -1018,20 +1021,20 @@ FillNumberHeader PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 317  : #ifdef _M_IX64
-; 318  :     if (sizeof(*p) == sizeof(_UINT64_T) * 7)
+; 318  : #ifdef _M_IX64
+; 319  :     if (sizeof(*p) == sizeof(_UINT64_T) * 7)
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	$LN2@FillNumber
 
-; 319  :     {
-; 320  :         _UINT64_T* __p = (_UINT64_T*)p;
+; 320  :     {
+; 321  :         _UINT64_T* __p = (_UINT64_T*)p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR __p$1[rbp], rax
 
-; 321  :         __p[0] = DEFAULT_MEMORY_DATA;
+; 322  :         __p[0] = DEFAULT_MEMORY_DATA;
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -1039,7 +1042,7 @@ FillNumberHeader PROC					; COMDAT
 	mov	rdx, -3689348814741910324		; ccccccccccccccccH
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 322  :         __p[1] = DEFAULT_MEMORY_DATA;
+; 323  :         __p[1] = DEFAULT_MEMORY_DATA;
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -1047,7 +1050,7 @@ FillNumberHeader PROC					; COMDAT
 	mov	rdx, -3689348814741910324		; ccccccccccccccccH
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 323  :         __p[2] = DEFAULT_MEMORY_DATA;
+; 324  :         __p[2] = DEFAULT_MEMORY_DATA;
 
 	mov	eax, 8
 	imul	rax, rax, 2
@@ -1055,7 +1058,7 @@ FillNumberHeader PROC					; COMDAT
 	mov	rdx, -3689348814741910324		; ccccccccccccccccH
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 324  :         __p[3] = DEFAULT_MEMORY_DATA;
+; 325  :         __p[3] = DEFAULT_MEMORY_DATA;
 
 	mov	eax, 8
 	imul	rax, rax, 3
@@ -1063,7 +1066,7 @@ FillNumberHeader PROC					; COMDAT
 	mov	rdx, -3689348814741910324		; ccccccccccccccccH
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 325  :         __p[4] = DEFAULT_MEMORY_DATA;
+; 326  :         __p[4] = DEFAULT_MEMORY_DATA;
 
 	mov	eax, 8
 	imul	rax, rax, 4
@@ -1071,7 +1074,7 @@ FillNumberHeader PROC					; COMDAT
 	mov	rdx, -3689348814741910324		; ccccccccccccccccH
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 326  :         __p[5] = DEFAULT_MEMORY_DATA;
+; 327  :         __p[5] = DEFAULT_MEMORY_DATA;
 
 	mov	eax, 8
 	imul	rax, rax, 5
@@ -1079,7 +1082,7 @@ FillNumberHeader PROC					; COMDAT
 	mov	rdx, -3689348814741910324		; ccccccccccccccccH
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 327  :         __p[6] = DEFAULT_MEMORY_DATA;
+; 328  :         __p[6] = DEFAULT_MEMORY_DATA;
 
 	mov	eax, 8
 	imul	rax, rax, 6
@@ -1087,18 +1090,18 @@ FillNumberHeader PROC					; COMDAT
 	mov	rdx, -3689348814741910324		; ccccccccccccccccH
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 328  :     }
+; 329  :     }
 
 	jmp	$LN3@FillNumber
 $LN2@FillNumber:
 
-; 329  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
+; 330  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN4@FillNumber
 
-; 330  :         _FILL_MEMORY_64((_UINT64_T*)p, DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT64_T));
+; 331  :         _FILL_MEMORY_64((_UINT64_T*)p, DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT64_T));
 
 	mov	r8d, 7
 	mov	rdx, -3689348814741910324		; ccccccccccccccccH
@@ -1107,82 +1110,82 @@ $LN2@FillNumber:
 	jmp	$LN5@FillNumber
 $LN4@FillNumber:
 
-; 331  :     else
-; 332  :     {
-; 333  : #endif
-; 334  :         if (sizeof(*p) == sizeof(_UINT32_T) * 7)
+; 332  :     else
+; 333  :     {
+; 334  : #endif
+; 335  :         if (sizeof(*p) == sizeof(_UINT32_T) * 7)
 
 	xor	eax, eax
 	test	eax, eax
 	je	$LN6@FillNumber
 
-; 335  :         {
-; 336  :             _UINT32_T* __p = (_UINT32_T*)p;
+; 336  :         {
+; 337  :             _UINT32_T* __p = (_UINT32_T*)p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR __p$2[rbp], rax
 
-; 337  :             __p[0] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 338  :             __p[0] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	eax, 4
 	imul	rax, rax, 0
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], -858993460		; ccccccccH
 
-; 338  :             __p[1] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 339  :             __p[1] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	eax, 4
 	imul	rax, rax, 1
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], -858993460		; ccccccccH
 
-; 339  :             __p[2] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 340  :             __p[2] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	eax, 4
 	imul	rax, rax, 2
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], -858993460		; ccccccccH
 
-; 340  :             __p[3] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 341  :             __p[3] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	eax, 4
 	imul	rax, rax, 3
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], -858993460		; ccccccccH
 
-; 341  :             __p[4] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 342  :             __p[4] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	eax, 4
 	imul	rax, rax, 4
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], -858993460		; ccccccccH
 
-; 342  :             __p[5] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 343  :             __p[5] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	eax, 4
 	imul	rax, rax, 5
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], -858993460		; ccccccccH
 
-; 343  :             __p[6] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 344  :             __p[6] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	eax, 4
 	imul	rax, rax, 6
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], -858993460		; ccccccccH
 
-; 344  :         }
+; 345  :         }
 
 	jmp	SHORT $LN7@FillNumber
 $LN6@FillNumber:
 
-; 345  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
+; 346  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN8@FillNumber
 
-; 346  :             _FILL_MEMORY_32((_UINT32_T*)p, (_UINT32_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT32_T));
+; 347  :             _FILL_MEMORY_32((_UINT32_T*)p, (_UINT32_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT32_T));
 
 	mov	r8d, 14
 	mov	edx, -858993460				; ccccccccH
@@ -1191,13 +1194,13 @@ $LN6@FillNumber:
 	jmp	SHORT $LN9@FillNumber
 $LN8@FillNumber:
 
-; 347  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
+; 348  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN10@FillNumber
 
-; 348  :             _FILL_MEMORY_16((_UINT16_T*)p, (_UINT16_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT16_T));
+; 349  :             _FILL_MEMORY_16((_UINT16_T*)p, (_UINT16_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT16_T));
 
 	mov	r8d, 28
 	mov	dx, 52428				; 0000ccccH
@@ -1206,8 +1209,8 @@ $LN8@FillNumber:
 	jmp	SHORT $LN11@FillNumber
 $LN10@FillNumber:
 
-; 349  :         else
-; 350  :             _FILL_MEMORY_BYTE(p, (unsigned char)DEFAULT_MEMORY_DATA, sizeof(*p));
+; 350  :         else
+; 351  :             _FILL_MEMORY_BYTE(p, (unsigned char)DEFAULT_MEMORY_DATA, sizeof(*p));
 
 	mov	r8d, 56					; 00000038H
 	mov	dl, 204					; 000000ccH
@@ -1219,10 +1222,10 @@ $LN7@FillNumber:
 $LN5@FillNumber:
 $LN3@FillNumber:
 
-; 351  : #ifdef _M_IX64
-; 352  :     }
-; 353  : #endif
-; 354  : }
+; 352  : #ifdef _M_IX64
+; 353  :     }
+; 354  : #endif
+; 355  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -1239,7 +1242,7 @@ __p$2 = 40
 p$ = 288
 ClearNumberHeader PROC					; COMDAT
 
-; 275  : {
+; 276  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -1254,80 +1257,80 @@ ClearNumberHeader PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 276  : #ifdef _M_IX64
-; 277  :     if (sizeof(*p) == sizeof(_UINT64_T) * 7)
+; 277  : #ifdef _M_IX64
+; 278  :     if (sizeof(*p) == sizeof(_UINT64_T) * 7)
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	$LN2@ClearNumbe
 
-; 278  :     {
-; 279  :         _UINT64_T* __p = (_UINT64_T*)p;
+; 279  :     {
+; 280  :         _UINT64_T* __p = (_UINT64_T*)p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR __p$1[rbp], rax
 
-; 280  :         __p[0] = 0;
+; 281  :         __p[0] = 0;
 
 	mov	eax, 8
 	imul	rax, rax, 0
 	mov	rcx, QWORD PTR __p$1[rbp]
 	mov	QWORD PTR [rcx+rax], 0
 
-; 281  :         __p[1] = 0;
+; 282  :         __p[1] = 0;
 
 	mov	eax, 8
 	imul	rax, rax, 1
 	mov	rcx, QWORD PTR __p$1[rbp]
 	mov	QWORD PTR [rcx+rax], 0
 
-; 282  :         __p[2] = 0;
+; 283  :         __p[2] = 0;
 
 	mov	eax, 8
 	imul	rax, rax, 2
 	mov	rcx, QWORD PTR __p$1[rbp]
 	mov	QWORD PTR [rcx+rax], 0
 
-; 283  :         __p[3] = 0;
+; 284  :         __p[3] = 0;
 
 	mov	eax, 8
 	imul	rax, rax, 3
 	mov	rcx, QWORD PTR __p$1[rbp]
 	mov	QWORD PTR [rcx+rax], 0
 
-; 284  :         __p[4] = 0;
+; 285  :         __p[4] = 0;
 
 	mov	eax, 8
 	imul	rax, rax, 4
 	mov	rcx, QWORD PTR __p$1[rbp]
 	mov	QWORD PTR [rcx+rax], 0
 
-; 285  :         __p[5] = 0;
+; 286  :         __p[5] = 0;
 
 	mov	eax, 8
 	imul	rax, rax, 5
 	mov	rcx, QWORD PTR __p$1[rbp]
 	mov	QWORD PTR [rcx+rax], 0
 
-; 286  :         __p[6] = 0;
+; 287  :         __p[6] = 0;
 
 	mov	eax, 8
 	imul	rax, rax, 6
 	mov	rcx, QWORD PTR __p$1[rbp]
 	mov	QWORD PTR [rcx+rax], 0
 
-; 287  :     }
+; 288  :     }
 
 	jmp	$LN3@ClearNumbe
 $LN2@ClearNumbe:
 
-; 288  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
+; 289  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN4@ClearNumbe
 
-; 289  :         _ZERO_MEMORY_64((_UINT64_T*)p, sizeof(*p) / sizeof(_UINT64_T));
+; 290  :         _ZERO_MEMORY_64((_UINT64_T*)p, sizeof(*p) / sizeof(_UINT64_T));
 
 	mov	edx, 7
 	mov	rcx, QWORD PTR p$[rbp]
@@ -1335,82 +1338,82 @@ $LN2@ClearNumbe:
 	jmp	$LN5@ClearNumbe
 $LN4@ClearNumbe:
 
-; 290  :     else
-; 291  :     {
-; 292  : #endif
-; 293  :         if (sizeof(*p) == sizeof(_UINT32_T) * 7)
+; 291  :     else
+; 292  :     {
+; 293  : #endif
+; 294  :         if (sizeof(*p) == sizeof(_UINT32_T) * 7)
 
 	xor	eax, eax
 	test	eax, eax
 	je	$LN6@ClearNumbe
 
-; 294  :         {
-; 295  :             _UINT32_T* __p = (_UINT32_T*)p;
+; 295  :         {
+; 296  :             _UINT32_T* __p = (_UINT32_T*)p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR __p$2[rbp], rax
 
-; 296  :             __p[0] = 0;
+; 297  :             __p[0] = 0;
 
 	mov	eax, 4
 	imul	rax, rax, 0
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], 0
 
-; 297  :             __p[1] = 0;
+; 298  :             __p[1] = 0;
 
 	mov	eax, 4
 	imul	rax, rax, 1
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], 0
 
-; 298  :             __p[2] = 0;
+; 299  :             __p[2] = 0;
 
 	mov	eax, 4
 	imul	rax, rax, 2
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], 0
 
-; 299  :             __p[3] = 0;
+; 300  :             __p[3] = 0;
 
 	mov	eax, 4
 	imul	rax, rax, 3
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], 0
 
-; 300  :             __p[4] = 0;
+; 301  :             __p[4] = 0;
 
 	mov	eax, 4
 	imul	rax, rax, 4
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], 0
 
-; 301  :             __p[5] = 0;
+; 302  :             __p[5] = 0;
 
 	mov	eax, 4
 	imul	rax, rax, 5
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], 0
 
-; 302  :             __p[6] = 0;
+; 303  :             __p[6] = 0;
 
 	mov	eax, 4
 	imul	rax, rax, 6
 	mov	rcx, QWORD PTR __p$2[rbp]
 	mov	DWORD PTR [rcx+rax], 0
 
-; 303  :         }
+; 304  :         }
 
 	jmp	SHORT $LN7@ClearNumbe
 $LN6@ClearNumbe:
 
-; 304  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
+; 305  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN8@ClearNumbe
 
-; 305  :             _ZERO_MEMORY_32((_UINT32_T*)p, sizeof(*p) / sizeof(_UINT32_T));
+; 306  :             _ZERO_MEMORY_32((_UINT32_T*)p, sizeof(*p) / sizeof(_UINT32_T));
 
 	mov	edx, 14
 	mov	rcx, QWORD PTR p$[rbp]
@@ -1418,13 +1421,13 @@ $LN6@ClearNumbe:
 	jmp	SHORT $LN9@ClearNumbe
 $LN8@ClearNumbe:
 
-; 306  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
+; 307  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN10@ClearNumbe
 
-; 307  :             _ZERO_MEMORY_16((_UINT16_T*)p, sizeof(*p) / sizeof(_UINT16_T));
+; 308  :             _ZERO_MEMORY_16((_UINT16_T*)p, sizeof(*p) / sizeof(_UINT16_T));
 
 	mov	edx, 28
 	mov	rcx, QWORD PTR p$[rbp]
@@ -1432,8 +1435,8 @@ $LN8@ClearNumbe:
 	jmp	SHORT $LN11@ClearNumbe
 $LN10@ClearNumbe:
 
-; 308  :         else
-; 309  :             _ZERO_MEMORY_BYTE(p, sizeof(*p));
+; 309  :         else
+; 310  :             _ZERO_MEMORY_BYTE(p, sizeof(*p));
 
 	mov	edx, 56					; 00000038H
 	mov	rcx, QWORD PTR p$[rbp]
@@ -1444,10 +1447,10 @@ $LN7@ClearNumbe:
 $LN5@ClearNumbe:
 $LN3@ClearNumbe:
 
-; 310  : #ifdef _M_IX64
-; 311  :     }
-; 312  : #endif
-; 313  : }
+; 311  : #ifdef _M_IX64
+; 312  :     }
+; 313  : #endif
+; 314  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -1465,7 +1468,7 @@ code_actual$ = 72
 buffer$ = 320
 CheckBlock PROC						; COMDAT
 
-; 238  : {
+; 239  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -1480,25 +1483,25 @@ CheckBlock PROC						; COMDAT
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 239  : #ifdef _DEBUG
-; 240  :     if (buffer == NULL)
+; 240  : #ifdef _DEBUG
+; 241  :     if (buffer == NULL)
 
 	cmp	QWORD PTR buffer$[rbp], 0
 	jne	SHORT $LN2@CheckBlock
 
-; 241  :         return (PMC_STATUS_OK);
+; 242  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@CheckBlock
 $LN2@CheckBlock:
 
-; 242  :     --buffer;
+; 243  :     --buffer;
 
 	mov	rax, QWORD PTR buffer$[rbp]
 	sub	rax, 8
 	mov	QWORD PTR buffer$[rbp], rax
 
-; 243  :     __UNIT_TYPE words = buffer[0];
+; 244  :     __UNIT_TYPE words = buffer[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -1506,14 +1509,14 @@ $LN2@CheckBlock:
 	mov	rax, QWORD PTR [rcx+rax]
 	mov	QWORD PTR words$[rbp], rax
 
-; 244  :     __UNIT_TYPE code_desired = buffer[words + 1];
+; 245  :     __UNIT_TYPE code_desired = buffer[words + 1];
 
 	mov	rax, QWORD PTR buffer$[rbp]
 	mov	rcx, QWORD PTR words$[rbp]
 	mov	rax, QWORD PTR [rax+rcx*8+8]
 	mov	QWORD PTR code_desired$[rbp], rax
 
-; 245  :     __UNIT_TYPE code_actual = CalculateCheckCode(&buffer[1], words);
+; 246  :     __UNIT_TYPE code_actual = CalculateCheckCode(&buffer[1], words);
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -1525,30 +1528,30 @@ $LN2@CheckBlock:
 	call	CalculateCheckCode
 	mov	QWORD PTR code_actual$[rbp], rax
 
-; 246  :     if (code_actual == code_desired)
+; 247  :     if (code_actual == code_desired)
 
 	mov	rax, QWORD PTR code_desired$[rbp]
 	cmp	QWORD PTR code_actual$[rbp], rax
 	jne	SHORT $LN3@CheckBlock
 
-; 247  :         return (PMC_STATUS_OK);
+; 248  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@CheckBlock
 	jmp	SHORT $LN4@CheckBlock
 $LN3@CheckBlock:
 
-; 248  :     else
-; 249  :         return (PMC_STATUS_BAD_BUFFER);
+; 249  :     else
+; 250  :         return (PMC_STATUS_BAD_BUFFER);
 
 	mov	eax, -257				; fffffffffffffeffH
 $LN4@CheckBlock:
 $LN1@CheckBlock:
 
-; 250  : #else
-; 251  :     return (PMC_STATUS_OK);
-; 252  : #endif
-; 253  : }
+; 251  : #else
+; 252  :     return (PMC_STATUS_OK);
+; 253  : #endif
+; 254  : }
 
 	lea	rsp, QWORD PTR [rbp+296]
 	pop	rdi
@@ -1565,7 +1568,7 @@ code$2 = 40
 buffer$ = 288
 CommitBlock PROC					; COMDAT
 
-; 222  : {
+; 223  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -1580,19 +1583,19 @@ CommitBlock PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 223  :     if (buffer != NULL)
+; 224  :     if (buffer != NULL)
 
 	cmp	QWORD PTR buffer$[rbp], 0
 	je	SHORT $LN2@CommitBloc
 
-; 224  :     {
-; 225  :         --buffer;
+; 225  :     {
+; 226  :         --buffer;
 
 	mov	rax, QWORD PTR buffer$[rbp]
 	sub	rax, 8
 	mov	QWORD PTR buffer$[rbp], rax
 
-; 226  :         __UNIT_TYPE words = buffer[0];
+; 227  :         __UNIT_TYPE words = buffer[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -1600,8 +1603,8 @@ CommitBlock PROC					; COMDAT
 	mov	rax, QWORD PTR [rcx+rax]
 	mov	QWORD PTR words$1[rbp], rax
 
-; 227  : #ifdef _DEBUG
-; 228  :         __UNIT_TYPE code = CalculateCheckCode(&buffer[1], words);
+; 228  : #ifdef _DEBUG
+; 229  :         __UNIT_TYPE code = CalculateCheckCode(&buffer[1], words);
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -1613,10 +1616,10 @@ CommitBlock PROC					; COMDAT
 	call	CalculateCheckCode
 	mov	QWORD PTR code$2[rbp], rax
 
-; 229  : #else
-; 230  :         __UNIT_TYPE code = 0;
-; 231  : #endif
-; 232  :         buffer[words + 1] = code;
+; 230  : #else
+; 231  :         __UNIT_TYPE code = 0;
+; 232  : #endif
+; 233  :         buffer[words + 1] = code;
 
 	mov	rax, QWORD PTR buffer$[rbp]
 	mov	rcx, QWORD PTR words$1[rbp]
@@ -1624,8 +1627,8 @@ CommitBlock PROC					; COMDAT
 	mov	QWORD PTR [rax+rcx*8+8], rdx
 $LN2@CommitBloc:
 
-; 233  :     }
-; 234  : }
+; 234  :     }
+; 235  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -1643,7 +1646,7 @@ p$ = 288
 words$ = 296
 CalculateCheckCode PROC					; COMDAT
 
-; 57   : {
+; 58   : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -1659,26 +1662,26 @@ CalculateCheckCode PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 58   : 	__UNIT_TYPE code = CHECK_CODE_INIT;
+; 59   : 	__UNIT_TYPE code = CHECK_CODE_INIT;
 
 	mov	rax, -8897841259083430780		; 8484848484848484H
 	mov	QWORD PTR code$[rbp], rax
 
-; 59   : 	
-; 60   :     __UNIT_TYPE count = words >> 5;
+; 60   : 	
+; 61   :     __UNIT_TYPE count = words >> 5;
 
 	mov	rax, QWORD PTR words$[rbp]
 	shr	rax, 5
 	mov	QWORD PTR count$[rbp], rax
 $LN2@CalculateC:
 
-; 61   : 	while (count != 0)
+; 62   : 	while (count != 0)
 
 	cmp	QWORD PTR count$[rbp], 0
 	je	$LN3@CalculateC
 
-; 62   : 	{
-; 63   :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 63   : 	{
+; 64   :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1689,7 +1692,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 64   :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 65   :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1700,7 +1703,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 65   :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+; 66   :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1711,7 +1714,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 66   :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+; 67   :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1722,7 +1725,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 67   :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
+; 68   :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1733,7 +1736,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 68   :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
+; 69   :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1744,7 +1747,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 69   :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
+; 70   :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1755,7 +1758,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 70   :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
+; 71   :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1766,7 +1769,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 71   :         code = _ROTATE_L_UNIT(code, 3) ^ p[8];
+; 72   :         code = _ROTATE_L_UNIT(code, 3) ^ p[8];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1777,7 +1780,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 72   :         code = _ROTATE_L_UNIT(code, 3) ^ p[9];
+; 73   :         code = _ROTATE_L_UNIT(code, 3) ^ p[9];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1788,7 +1791,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 73   :         code = _ROTATE_L_UNIT(code, 3) ^ p[10];
+; 74   :         code = _ROTATE_L_UNIT(code, 3) ^ p[10];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1799,7 +1802,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 74   :         code = _ROTATE_L_UNIT(code, 3) ^ p[11];
+; 75   :         code = _ROTATE_L_UNIT(code, 3) ^ p[11];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1810,7 +1813,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 75   :         code = _ROTATE_L_UNIT(code, 3) ^ p[12];
+; 76   :         code = _ROTATE_L_UNIT(code, 3) ^ p[12];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1821,7 +1824,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 76   :         code = _ROTATE_L_UNIT(code, 3) ^ p[13];
+; 77   :         code = _ROTATE_L_UNIT(code, 3) ^ p[13];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1832,7 +1835,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 77   :         code = _ROTATE_L_UNIT(code, 3) ^ p[14];
+; 78   :         code = _ROTATE_L_UNIT(code, 3) ^ p[14];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1843,7 +1846,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 78   :         code = _ROTATE_L_UNIT(code, 3) ^ p[15];
+; 79   :         code = _ROTATE_L_UNIT(code, 3) ^ p[15];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1854,7 +1857,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 79   :         code = _ROTATE_L_UNIT(code, 3) ^ p[16];
+; 80   :         code = _ROTATE_L_UNIT(code, 3) ^ p[16];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1865,7 +1868,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 80   :         code = _ROTATE_L_UNIT(code, 3) ^ p[17];
+; 81   :         code = _ROTATE_L_UNIT(code, 3) ^ p[17];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1876,7 +1879,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 81   :         code = _ROTATE_L_UNIT(code, 3) ^ p[18];
+; 82   :         code = _ROTATE_L_UNIT(code, 3) ^ p[18];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1887,7 +1890,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 82   :         code = _ROTATE_L_UNIT(code, 3) ^ p[19];
+; 83   :         code = _ROTATE_L_UNIT(code, 3) ^ p[19];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1898,7 +1901,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 83   :         code = _ROTATE_L_UNIT(code, 3) ^ p[20];
+; 84   :         code = _ROTATE_L_UNIT(code, 3) ^ p[20];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1909,7 +1912,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 84   :         code = _ROTATE_L_UNIT(code, 3) ^ p[21];
+; 85   :         code = _ROTATE_L_UNIT(code, 3) ^ p[21];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1920,7 +1923,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 85   :         code = _ROTATE_L_UNIT(code, 3) ^ p[22];
+; 86   :         code = _ROTATE_L_UNIT(code, 3) ^ p[22];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1931,7 +1934,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 86   :         code = _ROTATE_L_UNIT(code, 3) ^ p[23];
+; 87   :         code = _ROTATE_L_UNIT(code, 3) ^ p[23];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1942,7 +1945,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 87   :         code = _ROTATE_L_UNIT(code, 3) ^ p[24];
+; 88   :         code = _ROTATE_L_UNIT(code, 3) ^ p[24];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1953,7 +1956,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 88   :         code = _ROTATE_L_UNIT(code, 3) ^ p[25];
+; 89   :         code = _ROTATE_L_UNIT(code, 3) ^ p[25];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1964,7 +1967,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 89   :         code = _ROTATE_L_UNIT(code, 3) ^ p[26];
+; 90   :         code = _ROTATE_L_UNIT(code, 3) ^ p[26];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1975,7 +1978,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 90   :         code = _ROTATE_L_UNIT(code, 3) ^ p[27];
+; 91   :         code = _ROTATE_L_UNIT(code, 3) ^ p[27];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1986,7 +1989,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 91   :         code = _ROTATE_L_UNIT(code, 3) ^ p[28];
+; 92   :         code = _ROTATE_L_UNIT(code, 3) ^ p[28];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -1997,7 +2000,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 92   :         code = _ROTATE_L_UNIT(code, 3) ^ p[29];
+; 93   :         code = _ROTATE_L_UNIT(code, 3) ^ p[29];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2008,7 +2011,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 93   :         code = _ROTATE_L_UNIT(code, 3) ^ p[30];
+; 94   :         code = _ROTATE_L_UNIT(code, 3) ^ p[30];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2019,7 +2022,7 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 94   :         code = _ROTATE_L_UNIT(code, 3) ^ p[31];
+; 95   :         code = _ROTATE_L_UNIT(code, 3) ^ p[31];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2030,33 +2033,33 @@ $LN2@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 95   :         p += 32;
+; 96   :         p += 32;
 
 	mov	rax, QWORD PTR p$[rbp]
 	add	rax, 256				; 00000100H
 	mov	QWORD PTR p$[rbp], rax
 
-; 96   :         --count;
+; 97   :         --count;
 
 	mov	rax, QWORD PTR count$[rbp]
 	dec	rax
 	mov	QWORD PTR count$[rbp], rax
 
-; 97   :     }
+; 98   :     }
 
 	jmp	$LN2@CalculateC
 $LN3@CalculateC:
 
-; 98   : 
-; 99   : 	if (words & 0x10)
+; 99   : 
+; 100  : 	if (words & 0x10)
 
 	mov	rax, QWORD PTR words$[rbp]
 	and	rax, 16
 	test	rax, rax
 	je	$LN4@CalculateC
 
-; 100  : 	{
-; 101  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 101  : 	{
+; 102  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2067,7 +2070,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 102  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 103  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2078,7 +2081,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 103  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+; 104  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2089,7 +2092,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 104  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+; 105  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2100,7 +2103,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 105  :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
+; 106  :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2111,7 +2114,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 106  :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
+; 107  :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2122,7 +2125,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 107  :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
+; 108  :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2133,7 +2136,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 108  :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
+; 109  :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2144,7 +2147,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 109  :         code = _ROTATE_L_UNIT(code, 3) ^ p[8];
+; 110  :         code = _ROTATE_L_UNIT(code, 3) ^ p[8];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2155,7 +2158,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 110  :         code = _ROTATE_L_UNIT(code, 3) ^ p[9];
+; 111  :         code = _ROTATE_L_UNIT(code, 3) ^ p[9];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2166,7 +2169,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 111  :         code = _ROTATE_L_UNIT(code, 3) ^ p[10];
+; 112  :         code = _ROTATE_L_UNIT(code, 3) ^ p[10];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2177,7 +2180,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 112  :         code = _ROTATE_L_UNIT(code, 3) ^ p[11];
+; 113  :         code = _ROTATE_L_UNIT(code, 3) ^ p[11];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2188,7 +2191,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 113  :         code = _ROTATE_L_UNIT(code, 3) ^ p[12];
+; 114  :         code = _ROTATE_L_UNIT(code, 3) ^ p[12];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2199,7 +2202,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 114  :         code = _ROTATE_L_UNIT(code, 3) ^ p[13];
+; 115  :         code = _ROTATE_L_UNIT(code, 3) ^ p[13];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2210,7 +2213,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 115  :         code = _ROTATE_L_UNIT(code, 3) ^ p[14];
+; 116  :         code = _ROTATE_L_UNIT(code, 3) ^ p[14];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2221,7 +2224,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 116  :         code = _ROTATE_L_UNIT(code, 3) ^ p[15];
+; 117  :         code = _ROTATE_L_UNIT(code, 3) ^ p[15];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2232,24 +2235,24 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 117  :         p += 16;
+; 118  :         p += 16;
 
 	mov	rax, QWORD PTR p$[rbp]
 	add	rax, 128				; 00000080H
 	mov	QWORD PTR p$[rbp], rax
 $LN4@CalculateC:
 
-; 118  :     }
-; 119  : 
-; 120  :     if (words & 0x8)
+; 119  :     }
+; 120  : 
+; 121  :     if (words & 0x8)
 
 	mov	rax, QWORD PTR words$[rbp]
 	and	rax, 8
 	test	rax, rax
 	je	$LN5@CalculateC
 
-; 121  :     {
-; 122  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 122  :     {
+; 123  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2260,7 +2263,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 123  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 124  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2271,7 +2274,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 124  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+; 125  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2282,7 +2285,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 125  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+; 126  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2293,7 +2296,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 126  :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
+; 127  :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2304,7 +2307,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 127  :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
+; 128  :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2315,7 +2318,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 128  :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
+; 129  :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2326,7 +2329,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 129  :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
+; 130  :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2337,24 +2340,24 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 130  :         p += 8;
+; 131  :         p += 8;
 
 	mov	rax, QWORD PTR p$[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR p$[rbp], rax
 $LN5@CalculateC:
 
-; 131  :     }
-; 132  : 
-; 133  :     if (words & 0x4)
+; 132  :     }
+; 133  : 
+; 134  :     if (words & 0x4)
 
 	mov	rax, QWORD PTR words$[rbp]
 	and	rax, 4
 	test	rax, rax
 	je	$LN6@CalculateC
 
-; 134  :     {
-; 135  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 135  :     {
+; 136  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2365,7 +2368,7 @@ $LN5@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 136  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 137  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2376,7 +2379,7 @@ $LN5@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 137  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+; 138  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2387,7 +2390,7 @@ $LN5@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 138  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+; 139  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2398,24 +2401,24 @@ $LN5@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 139  :         p += 4;
+; 140  :         p += 4;
 
 	mov	rax, QWORD PTR p$[rbp]
 	add	rax, 32					; 00000020H
 	mov	QWORD PTR p$[rbp], rax
 $LN6@CalculateC:
 
-; 140  :     }
-; 141  : 
-; 142  :     if (words & 0x2)
+; 141  :     }
+; 142  : 
+; 143  :     if (words & 0x2)
 
 	mov	rax, QWORD PTR words$[rbp]
 	and	rax, 2
 	test	rax, rax
 	je	SHORT $LN7@CalculateC
 
-; 143  :     {
-; 144  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 144  :     {
+; 145  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2426,7 +2429,7 @@ $LN6@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 145  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 146  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2437,23 +2440,23 @@ $LN6@CalculateC:
 	xor	rax, QWORD PTR [rdx+rcx]
 	mov	QWORD PTR code$[rbp], rax
 
-; 146  :         p += 2;
+; 147  :         p += 2;
 
 	mov	rax, QWORD PTR p$[rbp]
 	add	rax, 16
 	mov	QWORD PTR p$[rbp], rax
 $LN7@CalculateC:
 
-; 147  :     }
-; 148  : 
-; 149  :     if (words & 0x1)
+; 148  :     }
+; 149  : 
+; 150  :     if (words & 0x1)
 
 	mov	rax, QWORD PTR words$[rbp]
 	and	rax, 1
 	test	rax, rax
 	je	SHORT $LN8@CalculateC
 
-; 150  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 151  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	mov	edx, 3
 	mov	rcx, QWORD PTR code$[rbp]
@@ -2465,12 +2468,12 @@ $LN7@CalculateC:
 	mov	QWORD PTR code$[rbp], rax
 $LN8@CalculateC:
 
-; 151  :     
-; 152  :     return (code);
+; 152  :     
+; 153  :     return (code);
 
 	mov	rax, QWORD PTR code$[rbp]
 
-; 153  : }
+; 154  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -2486,7 +2489,7 @@ pos$ = 4
 x$ = 256
 _TZCNT_ALT_UNIT PROC					; COMDAT
 
-; 969  : {
+; 985  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -2501,50 +2504,50 @@ _TZCNT_ALT_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 970  :     if (x == 0)
+; 986  :     if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@TZCNT_ALT_
 
-; 971  :         return (sizeof(x) * 8);
+; 987  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	jmp	SHORT $LN1@TZCNT_ALT_
 $LN2@TZCNT_ALT_:
 
-; 972  : #ifdef _M_IX86
-; 973  :     _UINT32_T pos;
-; 974  : #ifdef _MSC_VER
-; 975  :     _BitScanForward(&pos, x);
-; 976  : #elif defined(__GNUC__)
-; 977  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-; 978  : #else
-; 979  : #error unknown compiler
-; 980  : #endif
-; 981  : #elif defined(_M_X64)
-; 982  : #ifdef _MSC_VER
-; 983  :     _UINT32_T pos;
-; 984  :     _BitScanForward64(&pos, x);
+; 988  : #ifdef _M_IX86
+; 989  :     _UINT32_T pos;
+; 990  : #ifdef _MSC_VER
+; 991  :     _BitScanForward(&pos, x);
+; 992  : #elif defined(__GNUC__)
+; 993  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+; 994  : #else
+; 995  : #error unknown compiler
+; 996  : #endif
+; 997  : #elif defined(_M_X64)
+; 998  : #ifdef _MSC_VER
+; 999  :     _UINT32_T pos;
+; 1000 :     _BitScanForward64(&pos, x);
 
 	mov	rax, QWORD PTR x$[rbp]
 	bsf	rax, rax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 985  : #elif defined(__GNUC__)
-; 986  :     _UINT64_T pos;
-; 987  :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
-; 988  : #else
-; 989  : #error unknown compiler
-; 990  : #endif
-; 991  : #else
-; 992  : #error unknown platform
-; 993  : #endif
-; 994  :     return (pos);
+; 1001 : #elif defined(__GNUC__)
+; 1002 :     _UINT64_T pos;
+; 1003 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 1004 : #else
+; 1005 : #error unknown compiler
+; 1006 : #endif
+; 1007 : #else
+; 1008 : #error unknown platform
+; 1009 : #endif
+; 1010 :     return (pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 $LN1@TZCNT_ALT_:
 
-; 995  : }
+; 1011 : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -2565,7 +2568,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 889  : {
+; 905  : {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -2580,45 +2583,45 @@ _LZCNT_ALT_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 890  :     if (x == 0)
+; 906  :     if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 891  :         return (sizeof(x) * 8);
+; 907  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 892  : #ifdef _M_IX86
-; 893  :     _UINT32_T pos;
-; 894  : #ifdef _MSC_VER
-; 895  :     _BitScanReverse(&pos, x);
-; 896  : #elif defined(__GNUC__)
-; 897  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 898  : #else
-; 899  : #error unknown compiler
-; 900  : #endif
-; 901  : #elif defined(_M_X64)
-; 902  : #ifdef _MSC_VER
-; 903  :     _UINT32_T pos;
-; 904  :     _BitScanReverse64(&pos, x);
+; 908  : #ifdef _M_IX86
+; 909  :     _UINT32_T pos;
+; 910  : #ifdef _MSC_VER
+; 911  :     _BitScanReverse(&pos, x);
+; 912  : #elif defined(__GNUC__)
+; 913  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 914  : #else
+; 915  : #error unknown compiler
+; 916  : #endif
+; 917  : #elif defined(_M_X64)
+; 918  : #ifdef _MSC_VER
+; 919  :     _UINT32_T pos;
+; 920  :     _BitScanReverse64(&pos, x);
 
 	mov	rax, QWORD PTR x$[rbp]
 	bsr	rax, rax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 905  : #elif defined(__GNUC__)
-; 906  :     _UINT64_T pos;
-; 907  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 908  : #else
-; 909  : #error unknown compiler
-; 910  : #endif
-; 911  : #else
-; 912  : #error unknown platform
-; 913  : #endif
-; 914  :     return (sizeof(x) * 8 - 1 - pos);
+; 921  : #elif defined(__GNUC__)
+; 922  :     _UINT64_T pos;
+; 923  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 924  : #else
+; 925  : #error unknown compiler
+; 926  : #endif
+; 927  : #else
+; 928  : #error unknown platform
+; 929  : #endif
+; 930  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 63					; 0000003fH
@@ -2626,7 +2629,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 915  : }
+; 931  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -2647,7 +2650,7 @@ x$ = 224
 count$ = 232
 _ROTATE_L_UNIT PROC					; COMDAT
 
-; 741  : {
+; 757  : {
 
 	mov	DWORD PTR [rsp+16], edx
 	mov	QWORD PTR [rsp+8], rcx
@@ -2663,20 +2666,20 @@ _ROTATE_L_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 742  : #ifdef _M_IX86
-; 743  :     return (_rotl(x, count));
-; 744  : #elif defined(_M_X64)
-; 745  :     return (_rotl64(x, count));
+; 758  : #ifdef _M_IX86
+; 759  :     return (_rotl(x, count));
+; 760  : #elif defined(_M_X64)
+; 761  :     return (_rotl64(x, count));
 
 	mov	eax, DWORD PTR count$[rbp]
 	movzx	ecx, al
 	mov	rax, QWORD PTR x$[rbp]
 	rol	rax, cl
 
-; 746  : #else
-; 747  : #error unknown platform
-; 748  : #endif
-; 749  : }
+; 762  : #else
+; 763  : #error unknown platform
+; 764  : #endif
+; 765  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -2692,7 +2695,7 @@ u$ = 224
 v$ = 232
 _DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 453  : {
+; 469  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -2708,7 +2711,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 454  :     return ((u + v - 1) / v);
+; 470  :     return ((u + v - 1) / v);
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
@@ -2716,7 +2719,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	xor	edx, edx
 	div	QWORD PTR v$[rbp]
 
-; 455  : }
+; 471  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -2733,7 +2736,7 @@ x$ = 232
 count$ = 240
 _FILL_MEMORY_UNIT PROC					; COMDAT
 
-; 426  : {
+; 442  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -2750,20 +2753,20 @@ _FILL_MEMORY_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 427  : #ifdef _M_IX86
-; 428  :     __stosd((unsigned long*)d, x, (unsigned long)count);
-; 429  : #elif defined(_M_X64)
-; 430  :     __stosq(d, x, count);
+; 443  : #ifdef _M_IX86
+; 444  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 445  : #elif defined(_M_X64)
+; 446  :     __stosq(d, x, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rax, QWORD PTR x$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep stosq
 
-; 431  : #else
-; 432  : #error unknown platform
-; 433  : #endif
-; 434  : }
+; 447  : #else
+; 448  : #error unknown platform
+; 449  : #endif
+; 450  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -2780,7 +2783,7 @@ x$ = 232
 count$ = 240
 _FILL_MEMORY_64 PROC					; COMDAT
 
-; 420  : {
+; 436  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -2797,14 +2800,14 @@ _FILL_MEMORY_64 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 421  :     __stosq(d, x, count);
+; 437  :     __stosq(d, x, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rax, QWORD PTR x$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep stosq
 
-; 422  : }
+; 438  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -2821,7 +2824,7 @@ x$ = 232
 count$ = 240
 _FILL_MEMORY_32 PROC					; COMDAT
 
-; 414  : {
+; 430  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	DWORD PTR [rsp+16], edx
@@ -2838,14 +2841,14 @@ _FILL_MEMORY_32 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 415  :     __stosd(( unsigned long*)d, x, count);
+; 431  :     __stosd(( unsigned long*)d, x, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	eax, DWORD PTR x$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep stosd
 
-; 416  : }
+; 432  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -2862,7 +2865,7 @@ x$ = 232
 count$ = 240
 _FILL_MEMORY_16 PROC					; COMDAT
 
-; 409  : {
+; 425  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	WORD PTR [rsp+16], dx
@@ -2879,14 +2882,14 @@ _FILL_MEMORY_16 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 410  :     __stosw(d, x, count);
+; 426  :     __stosw(d, x, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	movzx	eax, WORD PTR x$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep stosw
 
-; 411  : }
+; 427  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -2903,7 +2906,7 @@ x$ = 232
 count$ = 240
 _FILL_MEMORY_BYTE PROC					; COMDAT
 
-; 404  : {
+; 420  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	BYTE PTR [rsp+16], dl
@@ -2920,14 +2923,14 @@ _FILL_MEMORY_BYTE PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 405  :     __stosb(d, x, count);
+; 421  :     __stosb(d, x, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	movzx	eax, BYTE PTR x$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep stosb
 
-; 406  : }
+; 422  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -2942,6 +2945,123 @@ _TEXT	SEGMENT
 d$ = 224
 count$ = 232
 _ZERO_MEMORY_64 PROC					; COMDAT
+
+; 386  : {
+
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 387  :     __stosq(d, 0, count);
+
+	mov	rdi, QWORD PTR d$[rbp]
+	xor	eax, eax
+	mov	rcx, QWORD PTR count$[rbp]
+	rep stosq
+
+; 388  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+_ZERO_MEMORY_64 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _ZERO_MEMORY_32
+_TEXT	SEGMENT
+d$ = 224
+count$ = 232
+_ZERO_MEMORY_32 PROC					; COMDAT
+
+; 380  : {
+
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 381  :     __stosd((unsigned long*)d, 0, count);
+
+	mov	rdi, QWORD PTR d$[rbp]
+	xor	eax, eax
+	mov	rcx, QWORD PTR count$[rbp]
+	rep stosd
+
+; 382  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+_ZERO_MEMORY_32 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _ZERO_MEMORY_16
+_TEXT	SEGMENT
+d$ = 224
+count$ = 232
+_ZERO_MEMORY_16 PROC					; COMDAT
+
+; 375  : {
+
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 232				; 000000e8H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 58					; 0000003aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+264]
+	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	call	__CheckForDebuggerJustMyCode
+
+; 376  :     __stosw(d, 0, count);
+
+	mov	rdi, QWORD PTR d$[rbp]
+	xor	eax, eax
+	mov	rcx, QWORD PTR count$[rbp]
+	rep stosw
+
+; 377  : }
+
+	lea	rsp, QWORD PTR [rbp+200]
+	pop	rdi
+	pop	rbp
+	ret	0
+_ZERO_MEMORY_16 ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+;	COMDAT _ZERO_MEMORY_BYTE
+_TEXT	SEGMENT
+d$ = 224
+count$ = 232
+_ZERO_MEMORY_BYTE PROC					; COMDAT
 
 ; 370  : {
 
@@ -2959,131 +3079,14 @@ _ZERO_MEMORY_64 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 371  :     __stosq(d, 0, count);
-
-	mov	rdi, QWORD PTR d$[rbp]
-	xor	eax, eax
-	mov	rcx, QWORD PTR count$[rbp]
-	rep stosq
-
-; 372  : }
-
-	lea	rsp, QWORD PTR [rbp+200]
-	pop	rdi
-	pop	rbp
-	ret	0
-_ZERO_MEMORY_64 ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT _ZERO_MEMORY_32
-_TEXT	SEGMENT
-d$ = 224
-count$ = 232
-_ZERO_MEMORY_32 PROC					; COMDAT
-
-; 364  : {
-
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 232				; 000000e8H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 58					; 0000003aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
-	call	__CheckForDebuggerJustMyCode
-
-; 365  :     __stosd((unsigned long*)d, 0, count);
-
-	mov	rdi, QWORD PTR d$[rbp]
-	xor	eax, eax
-	mov	rcx, QWORD PTR count$[rbp]
-	rep stosd
-
-; 366  : }
-
-	lea	rsp, QWORD PTR [rbp+200]
-	pop	rdi
-	pop	rbp
-	ret	0
-_ZERO_MEMORY_32 ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT _ZERO_MEMORY_16
-_TEXT	SEGMENT
-d$ = 224
-count$ = 232
-_ZERO_MEMORY_16 PROC					; COMDAT
-
-; 359  : {
-
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 232				; 000000e8H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 58					; 0000003aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
-	call	__CheckForDebuggerJustMyCode
-
-; 360  :     __stosw(d, 0, count);
-
-	mov	rdi, QWORD PTR d$[rbp]
-	xor	eax, eax
-	mov	rcx, QWORD PTR count$[rbp]
-	rep stosw
-
-; 361  : }
-
-	lea	rsp, QWORD PTR [rbp+200]
-	pop	rdi
-	pop	rbp
-	ret	0
-_ZERO_MEMORY_16 ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT _ZERO_MEMORY_BYTE
-_TEXT	SEGMENT
-d$ = 224
-count$ = 232
-_ZERO_MEMORY_BYTE PROC					; COMDAT
-
-; 354  : {
-
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 232				; 000000e8H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 58					; 0000003aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
-	call	__CheckForDebuggerJustMyCode
-
-; 355  :     __stosb(d, 0, count);
+; 371  :     __stosb(d, 0, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	xor	eax, eax
 	mov	rcx, QWORD PTR count$[rbp]
 	rep stosb
 
-; 356  : }
+; 372  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3100,7 +3103,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 326  : {
+; 342  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -3118,20 +3121,20 @@ _COPY_MEMORY_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 327  : #ifdef _M_IX86
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 329  : #elif defined(_M_X64)
-; 330  :     __movsq(d, s, count);
+; 343  : #ifdef _M_IX86
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 345  : #elif defined(_M_X64)
+; 346  :     __movsq(d, s, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rsi, QWORD PTR s$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep movsq
 
-; 331  : #else
-; 332  : #error unknown platform
-; 333  : #endif
-; 334  : }
+; 347  : #else
+; 348  : #error unknown platform
+; 349  : #endif
+; 350  : }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi
@@ -3149,7 +3152,7 @@ result$ = 36
 p$ = 288
 PMC_Dispose PROC					; COMDAT
 
-; 538  : {
+; 539  : {
 
 $LN4:
 	mov	QWORD PTR [rsp+8], rcx
@@ -3165,35 +3168,35 @@ $LN4:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 539  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 540  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR np$[rbp], rax
 
-; 540  :     PMC_STATUS_CODE result = CheckNumber(np);
+; 541  :     PMC_STATUS_CODE result = CheckNumber(np);
 
 	mov	rcx, QWORD PTR np$[rbp]
 	call	CheckNumber
 	mov	DWORD PTR result$[rbp], eax
 
-; 541  :     if (result != PMC_STATUS_OK)
+; 542  :     if (result != PMC_STATUS_OK)
 
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN2@PMC_Dispos
 
-; 542  :         return;
+; 543  :         return;
 
 	jmp	SHORT $LN1@PMC_Dispos
 $LN2@PMC_Dispos:
 
-; 543  :     DeallocateNumber(np);
+; 544  :     DeallocateNumber(np);
 
 	mov	rcx, QWORD PTR np$[rbp]
 	call	DeallocateNumber
 $LN1@PMC_Dispos:
 
-; 544  :     return;
-; 545  : }
+; 545  :     return;
+; 546  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -3207,94 +3210,150 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 result$ = 4
 number_zero_ok$ = 36
-feature$ = 288
+number_one_ok$ = 68
+feature$ = 320
 Initialize_Memory PROC					; COMDAT
 
-; 548  : {
+; 549  : {
 
-$LN7:
+$LN10:
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
 	push	rdi
-	sub	rsp, 296				; 00000128H
+	sub	rsp, 328				; 00000148H
 	lea	rbp, QWORD PTR [rsp+32]
 	mov	rdi, rsp
-	mov	ecx, 74					; 0000004aH
+	mov	ecx, 82					; 00000052H
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
-	mov	rcx, QWORD PTR [rsp+328]
+	mov	rcx, QWORD PTR [rsp+360]
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 549  :     PMC_STATUS_CODE result = PMC_STATUS_OK;
+; 550  :     PMC_STATUS_CODE result = PMC_STATUS_OK;
 
 	mov	DWORD PTR result$[rbp], 0
 
-; 550  : 
-; 551  :     BOOL number_zero_ok = TRUE;
+; 551  : 
+; 552  :     BOOL number_zero_ok = TRUE;
 
 	mov	DWORD PTR number_zero_ok$[rbp], 1
 
-; 552  :     if (result == PMC_STATUS_OK)
+; 553  :     BOOL number_one_ok = TRUE;
+
+	mov	DWORD PTR number_one_ok$[rbp], 1
+
+; 554  :     if (result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR result$[rbp], 0
 	jne	SHORT $LN2@Initialize
 
-; 553  :     {
-; 554  :         result = AttatchNumber(&number_zero, 0);
+; 555  :     {
+; 556  :         result = AttatchNumber(&number_zero, 0);
 
 	xor	edx, edx
 	lea	rcx, OFFSET FLAT:number_zero
 	call	AttatchNumber
 	mov	DWORD PTR result$[rbp], eax
 
-; 555  :         if (result == PMC_STATUS_OK)
+; 557  :         if (result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR result$[rbp], 0
 	jne	SHORT $LN3@Initialize
 
-; 556  :         {
-; 557  :             CommitNumber(&number_zero);
+; 558  :         {
+; 559  :             CommitNumber(&number_zero);
 
 	lea	rcx, OFFSET FLAT:number_zero
 	call	CommitNumber
 
-; 558  :             number_zero_ok = TRUE;
+; 560  :             number_zero_ok = TRUE;
 
 	mov	DWORD PTR number_zero_ok$[rbp], 1
 $LN3@Initialize:
 $LN2@Initialize:
 
-; 559  :         }
-; 560  :     }
-; 561  : 
-; 562  :     if (result != PMC_STATUS_OK)
+; 561  :         }
+; 562  :     }
+; 563  : 
+; 564  :     if (result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR result$[rbp], 0
-	je	SHORT $LN4@Initialize
+	jne	SHORT $LN4@Initialize
 
-; 563  :     {
-; 564  :         if (number_zero_ok)
+; 565  :     {
+; 566  :         result = AttatchNumber(&number_one, 1);
 
-	cmp	DWORD PTR number_zero_ok$[rbp], 0
-	je	SHORT $LN5@Initialize
+	mov	edx, 1
+	lea	rcx, OFFSET FLAT:number_one
+	call	AttatchNumber
+	mov	DWORD PTR result$[rbp], eax
 
-; 565  :             DetatchNumber(&number_zero);
+; 567  :         if (result == PMC_STATUS_OK)
 
-	lea	rcx, OFFSET FLAT:number_zero
-	call	DetatchNumber
+	cmp	DWORD PTR result$[rbp], 0
+	jne	SHORT $LN5@Initialize
+
+; 568  :         {
+; 569  :             number_one.BLOCK[0] = 1;
+
+	mov	eax, 8
+	imul	rax, rax, 0
+	mov	rcx, QWORD PTR number_one+48
+	mov	QWORD PTR [rcx+rax], 1
+
+; 570  :             CommitNumber(&number_one);
+
+	lea	rcx, OFFSET FLAT:number_one
+	call	CommitNumber
+
+; 571  :             number_one_ok = TRUE;
+
+	mov	DWORD PTR number_one_ok$[rbp], 1
 $LN5@Initialize:
 $LN4@Initialize:
 
-; 566  :     }
-; 567  : 
-; 568  :     return (result);
+; 572  :         }
+; 573  :     }
+; 574  : 
+; 575  :     if (result != PMC_STATUS_OK)
+
+	cmp	DWORD PTR result$[rbp], 0
+	je	SHORT $LN6@Initialize
+
+; 576  :     {
+; 577  :         if (number_zero_ok)
+
+	cmp	DWORD PTR number_zero_ok$[rbp], 0
+	je	SHORT $LN7@Initialize
+
+; 578  :             DetatchNumber(&number_zero);
+
+	lea	rcx, OFFSET FLAT:number_zero
+	call	DetatchNumber
+$LN7@Initialize:
+
+; 579  :         if (number_one_ok)
+
+	cmp	DWORD PTR number_one_ok$[rbp], 0
+	je	SHORT $LN8@Initialize
+
+; 580  :             DetatchNumber(&number_one);
+
+	lea	rcx, OFFSET FLAT:number_one
+	call	DetatchNumber
+$LN8@Initialize:
+$LN6@Initialize:
+
+; 581  :     }
+; 582  : 
+; 583  :     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 
-; 569  : }
+; 584  : }
 
-	lea	rsp, QWORD PTR [rbp+264]
+	lea	rsp, QWORD PTR [rbp+296]
 	pop	rdi
 	pop	rbp
 	ret	0
@@ -3311,7 +3370,7 @@ x$ = 320
 op$ = 328
 DuplicateNumber PROC					; COMDAT
 
-; 514  : {
+; 515  : {
 
 $LN6:
 	mov	QWORD PTR [rsp+16], rdx
@@ -3328,7 +3387,7 @@ $LN6:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 515  :     if (x->IS_STATIC)
+; 516  :     if (x->IS_STATIC)
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3336,21 +3395,21 @@ $LN6:
 	test	eax, eax
 	je	SHORT $LN2@DuplicateN
 
-; 516  :     {
-; 517  :         *op = x;
+; 517  :     {
+; 518  :         *op = x;
 
 	mov	rax, QWORD PTR op$[rbp]
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 518  :         return (PMC_STATUS_OK);
+; 519  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	$LN1@DuplicateN
 $LN2@DuplicateN:
 
-; 519  :     }
-; 520  :     if (x->IS_ZERO)
+; 520  :     }
+; 521  :     if (x->IS_ZERO)
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3359,29 +3418,29 @@ $LN2@DuplicateN:
 	test	eax, eax
 	je	SHORT $LN3@DuplicateN
 
-; 521  :     {
-; 522  :         *op = &number_zero;
+; 522  :     {
+; 523  :         *op = &number_zero;
 
 	mov	rax, QWORD PTR op$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
 	mov	QWORD PTR [rax], rcx
 
-; 523  :         return (PMC_STATUS_OK);
+; 524  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@DuplicateN
 $LN3@DuplicateN:
 
-; 524  :     }
-; 525  :     __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
+; 525  :     }
+; 526  :     __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR x_bit_count$[rbp], rax
 
-; 526  :     PMC_STATUS_CODE result;
-; 527  :     NUMBER_HEADER* o;
-; 528  :     if ((result = AllocateNumber(&o, x_bit_count, NULL)) != PMC_STATUS_OK)
+; 527  :     PMC_STATUS_CODE result;
+; 528  :     NUMBER_HEADER* o;
+; 529  :     if ((result = AllocateNumber(&o, x_bit_count, NULL)) != PMC_STATUS_OK)
 
 	xor	r8d, r8d
 	mov	rdx, QWORD PTR x_bit_count$[rbp]
@@ -3391,13 +3450,13 @@ $LN3@DuplicateN:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN4@DuplicateN
 
-; 529  :         return (result);
+; 530  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@DuplicateN
 $LN4@DuplicateN:
 
-; 530  :     _COPY_MEMORY_UNIT(o->BLOCK, x->BLOCK, _DIVIDE_CEILING_UNIT(x_bit_count, __UNIT_TYPE_BIT_COUNT));
+; 531  :     _COPY_MEMORY_UNIT(o->BLOCK, x->BLOCK, _DIVIDE_CEILING_UNIT(x_bit_count, __UNIT_TYPE_BIT_COUNT));
 
 	mov	edx, 64					; 00000040H
 	mov	rcx, QWORD PTR x_bit_count$[rbp]
@@ -3409,23 +3468,23 @@ $LN4@DuplicateN:
 	mov	rcx, QWORD PTR [rax+48]
 	call	_COPY_MEMORY_UNIT
 
-; 531  :     CommitNumber(o);
+; 532  :     CommitNumber(o);
 
 	mov	rcx, QWORD PTR o$[rbp]
 	call	CommitNumber
 
-; 532  :     *op = o;
+; 533  :     *op = o;
 
 	mov	rax, QWORD PTR op$[rbp]
 	mov	rcx, QWORD PTR o$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 533  :     return (PMC_STATUS_OK);
+; 534  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@DuplicateN:
 
-; 534  : }
+; 535  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -3447,7 +3506,7 @@ desired_hash_code$2 = 40
 p$ = 288
 CheckNumber PROC					; COMDAT
 
-; 497  : {
+; 498  : {
 
 $LN6:
 	mov	QWORD PTR [rsp+8], rcx
@@ -3463,8 +3522,8 @@ $LN6:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 498  : #ifdef _DEBUG
-; 499  :     if (!p->IS_ZERO)
+; 499  : #ifdef _DEBUG
+; 500  :     if (!p->IS_ZERO)
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3473,9 +3532,9 @@ $LN6:
 	test	eax, eax
 	jne	SHORT $LN2@CheckNumbe
 
-; 500  :     {
-; 501  :         PMC_STATUS_CODE result;
-; 502  :         if ((result = CheckBlock(p->BLOCK)) != PMC_STATUS_OK)
+; 501  :     {
+; 502  :         PMC_STATUS_CODE result;
+; 503  :         if ((result = CheckBlock(p->BLOCK)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rcx, QWORD PTR [rax+48]
@@ -3484,13 +3543,13 @@ $LN6:
 	cmp	DWORD PTR result$1[rbp], 0
 	je	SHORT $LN3@CheckNumbe
 
-; 503  :             return (result);
+; 504  :             return (result);
 
 	mov	eax, DWORD PTR result$1[rbp]
 	jmp	SHORT $LN1@CheckNumbe
 $LN3@CheckNumbe:
 
-; 504  :         __UNIT_TYPE desired_hash_code = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+; 505  :         __UNIT_TYPE desired_hash_code = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rdx, QWORD PTR [rax]
@@ -3499,28 +3558,28 @@ $LN3@CheckNumbe:
 	call	CalculateCheckCode
 	mov	QWORD PTR desired_hash_code$2[rbp], rax
 
-; 505  :         if (desired_hash_code != p->HASH_CODE)
+; 506  :         if (desired_hash_code != p->HASH_CODE)
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rax, QWORD PTR [rax+16]
 	cmp	QWORD PTR desired_hash_code$2[rbp], rax
 	je	SHORT $LN4@CheckNumbe
 
-; 506  :             return (PMC_STATUS_BAD_BUFFER);
+; 507  :             return (PMC_STATUS_BAD_BUFFER);
 
 	mov	eax, -257				; fffffffffffffeffH
 	jmp	SHORT $LN1@CheckNumbe
 $LN4@CheckNumbe:
 $LN2@CheckNumbe:
 
-; 507  :     }
-; 508  : #endif
-; 509  :     return (PMC_STATUS_OK);
+; 508  :     }
+; 509  : #endif
+; 510  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@CheckNumbe:
 
-; 510  : }
+; 511  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -3538,7 +3597,7 @@ tv138 = 192
 p$ = 240
 CommitNumber PROC					; COMDAT
 
-; 464  : {
+; 465  : {
 
 $LN13:
 	mov	QWORD PTR [rsp+8], rcx
@@ -3554,13 +3613,13 @@ $LN13:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 465  :     CommitBlock(p->BLOCK);
+; 466  :     CommitBlock(p->BLOCK);
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rcx, QWORD PTR [rax+48]
 	call	CommitBlock
 
-; 466  :     p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT, &p->UNIT_WORD_COUNT);
+; 467  :     p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT, &p->UNIT_WORD_COUNT);
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	r8, rax
@@ -3572,19 +3631,19 @@ $LN13:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rcx+8], rax
 
-; 467  :     if (p->UNIT_BIT_COUNT <= 0)
+; 468  :     if (p->UNIT_BIT_COUNT <= 0)
 
 	mov	rax, QWORD PTR p$[rbp]
 	cmp	QWORD PTR [rax+8], 0
 	ja	SHORT $LN2@CommitNumb
 
-; 468  :     {
-; 469  :         p->HASH_CODE = 0;
+; 469  :     {
+; 470  :         p->HASH_CODE = 0;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rax+16], 0
 
-; 470  :         p->IS_ZERO = TRUE;
+; 471  :         p->IS_ZERO = TRUE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3592,7 +3651,7 @@ $LN13:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 471  :         p->IS_ONE = FALSE;
+; 472  :         p->IS_ONE = FALSE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3600,7 +3659,7 @@ $LN13:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 472  :         p->IS_EVEN = TRUE;
+; 473  :         p->IS_EVEN = TRUE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3608,12 +3667,12 @@ $LN13:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 473  :         p->TRAILING_ZERO_BITS_COUNT = 0;
+; 474  :         p->TRAILING_ZERO_BITS_COUNT = 0;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rax+24], 0
 
-; 474  :         p->IS_POWER_OF_TWO = FALSE;
+; 475  :         p->IS_POWER_OF_TWO = FALSE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3621,19 +3680,19 @@ $LN13:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 475  :     }
+; 476  :     }
 
 	jmp	$LN3@CommitNumb
 $LN2@CommitNumb:
 
-; 476  :     else if (p->UNIT_BIT_COUNT == 1)
+; 477  :     else if (p->UNIT_BIT_COUNT == 1)
 
 	mov	rax, QWORD PTR p$[rbp]
 	cmp	QWORD PTR [rax+8], 1
 	jne	$LN4@CommitNumb
 
-; 477  :     {
-; 478  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+; 478  :     {
+; 479  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rdx, QWORD PTR [rax]
@@ -3643,7 +3702,7 @@ $LN2@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rcx+16], rax
 
-; 479  :         p->IS_ZERO = FALSE;
+; 480  :         p->IS_ZERO = FALSE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3651,7 +3710,7 @@ $LN2@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 480  :         p->IS_ONE = p->BLOCK[0] == 1; // 無条件でTRUEでも大丈夫だが念のため。
+; 481  :         p->IS_ONE = p->BLOCK[0] == 1; // 無条件でTRUEでも大丈夫だが念のため。
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -3675,7 +3734,7 @@ $LN8@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 481  :         p->IS_EVEN = FALSE;
+; 482  :         p->IS_EVEN = FALSE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3683,12 +3742,12 @@ $LN8@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 482  :         p->TRAILING_ZERO_BITS_COUNT = 0;
+; 483  :         p->TRAILING_ZERO_BITS_COUNT = 0;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rax+24], 0
 
-; 483  :         p->IS_POWER_OF_TWO = TRUE;
+; 484  :         p->IS_POWER_OF_TWO = TRUE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3696,14 +3755,14 @@ $LN8@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 484  :     }
+; 485  :     }
 
 	jmp	$LN5@CommitNumb
 $LN4@CommitNumb:
 
-; 485  :     else
-; 486  :     {
-; 487  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+; 486  :     else
+; 487  :     {
+; 488  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rdx, QWORD PTR [rax]
@@ -3713,7 +3772,7 @@ $LN4@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rcx+16], rax
 
-; 488  :         p->IS_ZERO = FALSE;
+; 489  :         p->IS_ZERO = FALSE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3721,7 +3780,7 @@ $LN4@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 489  :         p->IS_ONE = FALSE;
+; 490  :         p->IS_ONE = FALSE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3729,7 +3788,7 @@ $LN4@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 490  :         p->IS_EVEN = !(p->BLOCK[0] & 1);
+; 491  :         p->IS_EVEN = !(p->BLOCK[0] & 1);
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -3755,7 +3814,7 @@ $LN10@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 491  :         p->TRAILING_ZERO_BITS_COUNT = GetTrailingZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
+; 492  :         p->TRAILING_ZERO_BITS_COUNT = GetTrailingZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rdx, QWORD PTR [rax]
@@ -3765,7 +3824,7 @@ $LN10@CommitNumb:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rcx+24], rax
 
-; 492  :         p->IS_POWER_OF_TWO = p->TRAILING_ZERO_BITS_COUNT + 1 == p->UNIT_BIT_COUNT;
+; 493  :         p->IS_POWER_OF_TWO = p->TRAILING_ZERO_BITS_COUNT + 1 == p->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	rax, QWORD PTR [rax+24]
@@ -3791,8 +3850,8 @@ $LN12@CommitNumb:
 $LN5@CommitNumb:
 $LN3@CommitNumb:
 
-; 493  :     }
-; 494  : }
+; 494  :     }
+; 495  : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -3807,7 +3866,7 @@ _TEXT	SEGMENT
 p$ = 224
 DeallocateNumber PROC					; COMDAT
 
-; 418  : {
+; 419  : {
 
 $LN5:
 	mov	QWORD PTR [rsp+8], rcx
@@ -3823,7 +3882,7 @@ $LN5:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 419  :     if (p == NULL || p->IS_STATIC)
+; 420  :     if (p == NULL || p->IS_STATIC)
 
 	cmp	QWORD PTR p$[rbp], 0
 	je	SHORT $LN3@Deallocate
@@ -3834,22 +3893,22 @@ $LN5:
 	je	SHORT $LN2@Deallocate
 $LN3@Deallocate:
 
-; 420  :         return;
+; 421  :         return;
 
 	jmp	SHORT $LN1@Deallocate
 $LN2@Deallocate:
 
-; 421  :     CleanUpNumber(p);
+; 422  :     CleanUpNumber(p);
 
 	mov	rcx, QWORD PTR p$[rbp]
 	call	CleanUpNumber
 
-; 422  :     FillNumberHeader(p);
+; 423  :     FillNumberHeader(p);
 
 	mov	rcx, QWORD PTR p$[rbp]
 	call	FillNumberHeader
 
-; 423  :     HeapFree(hLocalHeap, 0, p);
+; 424  :     HeapFree(hLocalHeap, 0, p);
 
 	mov	r8, QWORD PTR p$[rbp]
 	xor	edx, edx
@@ -3857,7 +3916,7 @@ $LN2@Deallocate:
 	call	QWORD PTR __imp_HeapFree
 $LN1@Deallocate:
 
-; 424  : }
+; 425  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3872,7 +3931,7 @@ _TEXT	SEGMENT
 p$ = 224
 DetatchNumber PROC					; COMDAT
 
-; 411  : {
+; 412  : {
 
 $LN5:
 	mov	QWORD PTR [rsp+8], rcx
@@ -3888,7 +3947,7 @@ $LN5:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 412  :     if (p == NULL || !p->IS_STATIC)
+; 413  :     if (p == NULL || !p->IS_STATIC)
 
 	cmp	QWORD PTR p$[rbp], 0
 	je	SHORT $LN3@DetatchNum
@@ -3899,18 +3958,18 @@ $LN5:
 	jne	SHORT $LN2@DetatchNum
 $LN3@DetatchNum:
 
-; 413  :         return;
+; 414  :         return;
 
 	jmp	SHORT $LN1@DetatchNum
 $LN2@DetatchNum:
 
-; 414  :     CleanUpNumber(p);
+; 415  :     CleanUpNumber(p);
 
 	mov	rcx, QWORD PTR p$[rbp]
 	call	CleanUpNumber
 $LN1@DetatchNum:
 
-; 415  : }
+; 416  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3929,7 +3988,7 @@ bit_count$ = 296
 light_check_code$ = 304
 AllocateNumber PROC					; COMDAT
 
-; 398  : {
+; 399  : {
 
 $LN5:
 	mov	QWORD PTR [rsp+24], r8
@@ -3947,7 +4006,7 @@ $LN5:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 399  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
+; 400  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
 
 	mov	r8d, 56					; 00000038H
 	mov	edx, 8
@@ -3955,18 +4014,18 @@ $LN5:
 	call	QWORD PTR __imp_HeapAlloc
 	mov	QWORD PTR p$[rbp], rax
 
-; 400  :     if (p == NULL)
+; 401  :     if (p == NULL)
 
 	cmp	QWORD PTR p$[rbp], 0
 	jne	SHORT $LN2@AllocateNu
 
-; 401  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 402  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	SHORT $LN1@AllocateNu
 $LN2@AllocateNu:
 
-; 402  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, light_check_code);
+; 403  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, light_check_code);
 
 	mov	r8, QWORD PTR light_check_code$[rbp]
 	mov	rdx, QWORD PTR bit_count$[rbp]
@@ -3974,18 +4033,18 @@ $LN2@AllocateNu:
 	call	InitializeNumber
 	mov	DWORD PTR result$[rbp], eax
 
-; 403  :     if (result != PMC_STATUS_OK)
+; 404  :     if (result != PMC_STATUS_OK)
 
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN3@AllocateNu
 
-; 404  :         return (result);
+; 405  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@AllocateNu
 $LN3@AllocateNu:
 
-; 405  :     p->IS_STATIC = FALSE;
+; 406  :     p->IS_STATIC = FALSE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -3993,18 +4052,18 @@ $LN3@AllocateNu:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 406  :     *pp = p;
+; 407  :     *pp = p;
 
 	mov	rax, QWORD PTR pp$[rbp]
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 407  :     return (PMC_STATUS_OK);
+; 408  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@AllocateNu:
 
-; 408  : }
+; 409  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -4021,7 +4080,7 @@ p$ = 256
 bit_count$ = 264
 AttatchNumber PROC					; COMDAT
 
-; 389  : {
+; 390  : {
 
 $LN4:
 	mov	QWORD PTR [rsp+16], rdx
@@ -4038,7 +4097,7 @@ $LN4:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 390  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, NULL);
+; 391  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, NULL);
 
 	xor	r8d, r8d
 	mov	rdx, QWORD PTR bit_count$[rbp]
@@ -4046,18 +4105,18 @@ $LN4:
 	call	InitializeNumber
 	mov	DWORD PTR result$[rbp], eax
 
-; 391  :     if (result != PMC_STATUS_OK)
+; 392  :     if (result != PMC_STATUS_OK)
 
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN2@AttatchNum
 
-; 392  :         return (result);
+; 393  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@AttatchNum
 $LN2@AttatchNum:
 
-; 393  :     p->IS_STATIC = TRUE;
+; 394  :     p->IS_STATIC = TRUE;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	eax, DWORD PTR [rax+32]
@@ -4065,12 +4124,12 @@ $LN2@AttatchNum:
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	DWORD PTR [rcx+32], eax
 
-; 394  :     return (PMC_STATUS_OK);
+; 395  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@AttatchNum:
 
-; 395  : }
+; 396  : }
 
 	lea	rsp, QWORD PTR [rbp+232]
 	pop	rdi
@@ -4089,7 +4148,7 @@ buffer$ = 320
 code$ = 328
 CheckBlockLight PROC					; COMDAT
 
-; 257  : {
+; 258  : {
 
 $LN6:
 	mov	QWORD PTR [rsp+16], rdx
@@ -4106,25 +4165,25 @@ $LN6:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 258  : #ifdef _DEBUG
-; 259  :     if (buffer == NULL)
+; 259  : #ifdef _DEBUG
+; 260  :     if (buffer == NULL)
 
 	cmp	QWORD PTR buffer$[rbp], 0
 	jne	SHORT $LN2@CheckBlock
 
-; 260  :         return (PMC_STATUS_OK);
+; 261  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@CheckBlock
 $LN2@CheckBlock:
 
-; 261  :     --buffer;
+; 262  :     --buffer;
 
 	mov	rax, QWORD PTR buffer$[rbp]
 	sub	rax, 8
 	mov	QWORD PTR buffer$[rbp], rax
 
-; 262  :     __UNIT_TYPE words = buffer[0];
+; 263  :     __UNIT_TYPE words = buffer[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -4132,7 +4191,7 @@ $LN2@CheckBlock:
 	mov	rax, QWORD PTR [rcx+rax]
 	mov	QWORD PTR words$[rbp], rax
 
-; 263  :     __UNIT_TYPE code_desired = buffer[words + 1] ^ (__UNIT_TYPE)&buffer[words + 1];
+; 264  :     __UNIT_TYPE code_desired = buffer[words + 1] ^ (__UNIT_TYPE)&buffer[words + 1];
 
 	mov	rax, QWORD PTR buffer$[rbp]
 	mov	rcx, QWORD PTR words$[rbp]
@@ -4144,35 +4203,35 @@ $LN2@CheckBlock:
 	mov	rax, rcx
 	mov	QWORD PTR code_desired$[rbp], rax
 
-; 264  :     __UNIT_TYPE code_actual = code;
+; 265  :     __UNIT_TYPE code_actual = code;
 
 	mov	rax, QWORD PTR code$[rbp]
 	mov	QWORD PTR code_actual$[rbp], rax
 
-; 265  :     if (code_actual == code_desired)
+; 266  :     if (code_actual == code_desired)
 
 	mov	rax, QWORD PTR code_desired$[rbp]
 	cmp	QWORD PTR code_actual$[rbp], rax
 	jne	SHORT $LN3@CheckBlock
 
-; 266  :         return (PMC_STATUS_OK);
+; 267  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@CheckBlock
 	jmp	SHORT $LN4@CheckBlock
 $LN3@CheckBlock:
 
-; 267  :     else
-; 268  :         return (PMC_STATUS_BAD_BUFFER);
+; 268  :     else
+; 269  :         return (PMC_STATUS_BAD_BUFFER);
 
 	mov	eax, -257				; fffffffffffffeffH
 $LN4@CheckBlock:
 $LN1@CheckBlock:
 
-; 269  : #else
-; 270  :     return (PMC_STATUS_OK);
-; 271  : #endif
-; 272  : }
+; 270  : #else
+; 271  :     return (PMC_STATUS_OK);
+; 272  : #endif
+; 273  : }
 
 	lea	rsp, QWORD PTR [rbp+296]
 	pop	rdi
@@ -4189,7 +4248,7 @@ buffer$ = 256
 buffer_words$ = 264
 DeallocateBlock PROC					; COMDAT
 
-; 202  : {
+; 203  : {
 
 $LN6:
 	mov	QWORD PTR [rsp+16], rdx
@@ -4206,36 +4265,36 @@ $LN6:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 203  : 	if (buffer != NULL)
+; 204  : 	if (buffer != NULL)
 
 	cmp	QWORD PTR buffer$[rbp], 0
 	je	SHORT $LN2@Deallocate
 
-; 204  : 	{
-; 205  :         __UNIT_TYPE* p = buffer - 1;
+; 205  : 	{
+; 206  :         __UNIT_TYPE* p = buffer - 1;
 
 	mov	rax, QWORD PTR buffer$[rbp]
 	sub	rax, 8
 	mov	QWORD PTR p$1[rbp], rax
 
-; 206  :         if (*p != buffer_words)
+; 207  :         if (*p != buffer_words)
 
 	mov	rax, QWORD PTR p$1[rbp]
 	mov	rcx, QWORD PTR buffer_words$[rbp]
 	cmp	QWORD PTR [rax], rcx
 	je	SHORT $LN3@Deallocate
 
-; 207  :         {
-; 208  :             // もし、buffer の指す内容が壊れていることが明らかならば、二重解放の恐れがあるので解放処理はしない。
-; 209  :         }
+; 208  :         {
+; 209  :             // もし、buffer の指す内容が壊れていることが明らかならば、二重解放の恐れがあるので解放処理はしない。
+; 210  :         }
 
 	jmp	SHORT $LN4@Deallocate
 $LN3@Deallocate:
 
-; 210  :         else
-; 211  :         {
-; 212  :             // 使用済みのバッファを既定のデータで塗りつぶす。
-; 213  :             _FILL_MEMORY_UNIT(p, DEFAULT_MEMORY_DATA, buffer_words + 2);
+; 211  :         else
+; 212  :         {
+; 213  :             // 使用済みのバッファを既定のデータで塗りつぶす。
+; 214  :             _FILL_MEMORY_UNIT(p, DEFAULT_MEMORY_DATA, buffer_words + 2);
 
 	mov	rax, QWORD PTR buffer_words$[rbp]
 	add	rax, 2
@@ -4244,8 +4303,8 @@ $LN3@Deallocate:
 	mov	rcx, QWORD PTR p$1[rbp]
 	call	_FILL_MEMORY_UNIT
 
-; 214  :             // バッファを解放する。
-; 215  :             HeapFree(hLocalHeap, 0, p);
+; 215  :             // バッファを解放する。
+; 216  :             HeapFree(hLocalHeap, 0, p);
 
 	mov	r8, QWORD PTR p$1[rbp]
 	xor	edx, edx
@@ -4254,9 +4313,9 @@ $LN3@Deallocate:
 $LN4@Deallocate:
 $LN2@Deallocate:
 
-; 216  :         }
-; 217  : 	}
-; 218  : }
+; 217  :         }
+; 218  : 	}
+; 219  : }
 
 	lea	rsp, QWORD PTR [rbp+232]
 	pop	rdi
@@ -4280,7 +4339,7 @@ allocated_block_words$ = 424
 code$ = 432
 AllocateBlock PROC					; COMDAT
 
-; 160  : {
+; 161  : {
 
 $LN7:
 	mov	QWORD PTR [rsp+24], r8
@@ -4298,30 +4357,30 @@ $LN7:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 161  :     // 実際に獲得されるメモリ領域は「引数で渡されたワード数+2」のワード数となる。
-; 162  :     // 最初のワードには獲得時に引数で渡されたワード数が格納される。
-; 163  :     // 最後のワードには格納されている内容の正当性確認のための値が格納される。
-; 164  :     // 2番目のワードへのポインタは呼び出し元に通知され利用される。
-; 165  :     __UNIT_TYPE words1 = _DIVIDE_CEILING_UNIT(bits, __UNIT_TYPE_BIT_COUNT);
+; 162  :     // 実際に獲得されるメモリ領域は「引数で渡されたワード数+2」のワード数となる。
+; 163  :     // 最初のワードには獲得時に引数で渡されたワード数が格納される。
+; 164  :     // 最後のワードには格納されている内容の正当性確認のための値が格納される。
+; 165  :     // 2番目のワードへのポインタは呼び出し元に通知され利用される。
+; 166  :     __UNIT_TYPE words1 = _DIVIDE_CEILING_UNIT(bits, __UNIT_TYPE_BIT_COUNT);
 
 	mov	edx, 64					; 00000040H
 	mov	rcx, QWORD PTR bits$[rbp]
 	call	_DIVIDE_CEILING_UNIT
 	mov	QWORD PTR words1$[rbp], rax
 
-; 166  : 	__UNIT_TYPE words2 = words1 + 2;
+; 167  : 	__UNIT_TYPE words2 = words1 + 2;
 
 	mov	rax, QWORD PTR words1$[rbp]
 	add	rax, 2
 	mov	QWORD PTR words2$[rbp], rax
 
-; 167  : 	__UNIT_TYPE bytes = words2 * __UNIT_TYPE_BYTE_COUNT;
+; 168  : 	__UNIT_TYPE bytes = words2 * __UNIT_TYPE_BYTE_COUNT;
 
 	mov	rax, QWORD PTR words2$[rbp]
 	shl	rax, 3
 	mov	QWORD PTR bytes$[rbp], rax
 
-; 168  : 	__UNIT_TYPE* buffer = (__UNIT_TYPE*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, bytes);
+; 169  : 	__UNIT_TYPE* buffer = (__UNIT_TYPE*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, bytes);
 
 	mov	r8, QWORD PTR bytes$[rbp]
 	mov	edx, 8
@@ -4329,18 +4388,18 @@ $LN7:
 	call	QWORD PTR __imp_HeapAlloc
 	mov	QWORD PTR buffer$[rbp], rax
 
-; 169  : 	if (buffer == NULL)
+; 170  : 	if (buffer == NULL)
 
 	cmp	QWORD PTR buffer$[rbp], 0
 	jne	SHORT $LN2@AllocateBl
 
-; 170  : 		return (NULL);
+; 171  : 		return (NULL);
 
 	xor	eax, eax
 	jmp	$LN1@AllocateBl
 $LN2@AllocateBl:
 
-; 171  : 	buffer[0] = words1;
+; 172  : 	buffer[0] = words1;
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -4348,33 +4407,33 @@ $LN2@AllocateBl:
 	mov	rdx, QWORD PTR words1$[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 172  :     *allocated_block_words = words1;
+; 173  :     *allocated_block_words = words1;
 
 	mov	rax, QWORD PTR allocated_block_words$[rbp]
 	mov	rcx, QWORD PTR words1$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 173  : #ifdef _DEBUG
-; 174  :     // 乱数もどきを生成する。
-; 175  : #ifdef _M_IX86
-; 176  :     __UNIT_TYPE r = GetTickCount();
-; 177  : #elif defined(_M_IX64)
-; 178  : #ifdef _MSC_VER
-; 179  :     __UNIT_TYPE r = GetTickCount64();
+; 174  : #ifdef _DEBUG
+; 175  :     // 乱数もどきを生成する。
+; 176  : #ifdef _M_IX86
+; 177  :     __UNIT_TYPE r = GetTickCount();
+; 178  : #elif defined(_M_IX64)
+; 179  : #ifdef _MSC_VER
+; 180  :     __UNIT_TYPE r = GetTickCount64();
 
 	call	QWORD PTR __imp_GetTickCount64
 	mov	QWORD PTR r$[rbp], rax
 
-; 180  : #elif defined(__GNUC__)
-; 181  :     _UINT32_T temp = GetTickCount();
-; 182  :     __UNIT_TYPE r = _FROMWORDTODWORD(temp, temp);
-; 183  : #else
-; 184  : #error unknown compiler
-; 185  : #endif
-; 186  : #else
-; 187  : #error unknown platform
-; 188  : #endif
-; 189  :     __UNIT_TYPE check_code = configuration_info.MEMORY_VERIFICATION_ENABLED ? CalculateCheckCode(&buffer[1], words1) : CHECK_CODE_INIT | r;
+; 181  : #elif defined(__GNUC__)
+; 182  :     _UINT32_T temp = GetTickCount();
+; 183  :     __UNIT_TYPE r = _FROMWORDTODWORD(temp, temp);
+; 184  : #else
+; 185  : #error unknown compiler
+; 186  : #endif
+; 187  : #else
+; 188  : #error unknown platform
+; 189  : #endif
+; 190  :     __UNIT_TYPE check_code = configuration_info.MEMORY_VERIFICATION_ENABLED ? CalculateCheckCode(&buffer[1], words1) : CHECK_CODE_INIT | r;
 
 	mov	eax, DWORD PTR configuration_info
 	and	eax, 1
@@ -4400,10 +4459,10 @@ $LN6@AllocateBl:
 	mov	rax, QWORD PTR tv88[rbp]
 	mov	QWORD PTR check_code$[rbp], rax
 
-; 190  : #else
-; 191  :     __UNIT_TYPE check_code = 0;
-; 192  : #endif
-; 193  :     buffer[words1 + 1] = check_code ^ (__UNIT_TYPE)&buffer[words1 + 1];
+; 191  : #else
+; 192  :     __UNIT_TYPE check_code = 0;
+; 193  : #endif
+; 194  :     buffer[words1 + 1] = check_code ^ (__UNIT_TYPE)&buffer[words1 + 1];
 
 	mov	rax, QWORD PTR buffer$[rbp]
 	mov	rcx, QWORD PTR words1$[rbp]
@@ -4415,19 +4474,19 @@ $LN6@AllocateBl:
 	mov	rdx, QWORD PTR words1$[rbp]
 	mov	QWORD PTR [rcx+rdx*8+8], rax
 
-; 194  :     if (code != NULL)
+; 195  :     if (code != NULL)
 
 	cmp	QWORD PTR code$[rbp], 0
 	je	SHORT $LN3@AllocateBl
 
-; 195  :         *code = check_code;
+; 196  :         *code = check_code;
 
 	mov	rax, QWORD PTR code$[rbp]
 	mov	rcx, QWORD PTR check_code$[rbp]
 	mov	QWORD PTR [rax], rcx
 $LN3@AllocateBl:
 
-; 196  :     return (&buffer[1]);
+; 197  :     return (&buffer[1]);
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -4436,7 +4495,7 @@ $LN3@AllocateBl:
 	mov	rax, rcx
 $LN1@AllocateBl:
 
-; 197  : }
+; 198  : }
 
 	lea	rsp, QWORD PTR [rbp+392]
 	pop	rdi
@@ -4450,7 +4509,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 DeallocateHeapArea PROC					; COMDAT
 
-; 580  : {
+; 595  : {
 
 $LN4:
 	push	rbp
@@ -4464,24 +4523,24 @@ $LN4:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 581  :     if (hLocalHeap != NULL)
+; 596  :     if (hLocalHeap != NULL)
 
 	cmp	QWORD PTR hLocalHeap, 0
 	je	SHORT $LN2@Deallocate
 
-; 582  :     {
-; 583  :         HeapDestroy(hLocalHeap);
+; 597  :     {
+; 598  :         HeapDestroy(hLocalHeap);
 
 	mov	rcx, QWORD PTR hLocalHeap
 	call	QWORD PTR __imp_HeapDestroy
 
-; 584  :         hLocalHeap = NULL;
+; 599  :         hLocalHeap = NULL;
 
 	mov	QWORD PTR hLocalHeap, 0
 $LN2@Deallocate:
 
-; 585  :     }
-; 586  : }
+; 600  :     }
+; 601  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -4495,7 +4554,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 AllocateHeapArea PROC					; COMDAT
 
-; 572  : {
+; 587  : {
 
 $LN4:
 	push	rbp
@@ -4509,7 +4568,7 @@ $LN4:
 	lea	rcx, OFFSET FLAT:__F13F011C_memory@c
 	call	__CheckForDebuggerJustMyCode
 
-; 573  :     hLocalHeap = HeapCreate(0, 0x1000, 0);
+; 588  :     hLocalHeap = HeapCreate(0, 0x1000, 0);
 
 	xor	r8d, r8d
 	mov	edx, 4096				; 00001000H
@@ -4517,23 +4576,23 @@ $LN4:
 	call	QWORD PTR __imp_HeapCreate
 	mov	QWORD PTR hLocalHeap, rax
 
-; 574  :     if (hLocalHeap == NULL)
+; 589  :     if (hLocalHeap == NULL)
 
 	cmp	QWORD PTR hLocalHeap, 0
 	jne	SHORT $LN2@AllocateHe
 
-; 575  :         return (FALSE);
+; 590  :         return (FALSE);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@AllocateHe
 $LN2@AllocateHe:
 
-; 576  :     return (TRUE);
+; 591  :     return (TRUE);
 
 	mov	eax, 1
 $LN1@AllocateHe:
 
-; 577  : }
+; 592  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi

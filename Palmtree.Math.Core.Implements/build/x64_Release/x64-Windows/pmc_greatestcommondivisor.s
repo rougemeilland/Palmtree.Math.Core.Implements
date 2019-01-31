@@ -147,12 +147,13 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	movl	$32, %ebp
 	movl	$-5, %edi
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
 	subl	%edx, %eax
 	leaq	72(%rsp), %rdx
+	cltq
 	subq	%rax, %rbp
 	cmpq	%r8, %rbp
 	cmovb	%r8, %rbp
@@ -167,7 +168,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	leaq	80(%rsp), %r8
 	call	AllocateBlock
 	testq	%rax, %rax
-	movq	%rax, %r13
+	movq	%rax, %r14
 	je	.L28
 	leaq	96(%rsp), %r8
 	movq	%rbp, %rdx
@@ -177,13 +178,14 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	movl	%eax, %edi
 	jne	.L29
 	movq	24(%rsi), %rax
-	movl	%ebx, %r14d
+	movl	%ebx, %r13d
 /APP
- # 987 "pmc_internal.h" 1
-	bsfq %r14, %r14
+ # 1003 "pmc_internal.h" 1
+	bsfq %r13, %r13
  # 0 "" 2
 /NO_APP
 	movq	(%rsi), %rcx
+	movslq	%r13d, %r13
 	movq	48(%rsi), %rsi
 	testq	%rax, %rax
 	movq	%rax, 56(%rsp)
@@ -196,13 +198,13 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 /NO_APP
 .L24:
 	leaq	63(%rbp), %r8
-	movl	%r14d, %ecx
-	movq	%r13, %rdx
+	movl	%r13d, %ecx
+	movq	%r14, %rdx
 	shrl	%cl, %ebx
 	shrq	$6, %r8
 	movq	%r12, %rcx
 	movl	%ebx, %eax
-	movq	%rax, 0(%r13)
+	movq	%rax, (%r14)
 	movq	(%r15), %rax
 	movq	48(%rax), %r9
 	leaq	104(%rsp), %rax
@@ -215,7 +217,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	movl	%eax, %edi
 	jne	.L16
 	movq	80(%rsp), %rdx
-	movq	%r13, %rcx
+	movq	%r14, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	movl	%eax, %edi
@@ -228,7 +230,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	movl	%eax, %edi
 	jne	.L16
 	movq	88(%rsp), %rdx
-	movq	%r13, %rcx
+	movq	%r14, %rcx
 	call	DeallocateBlock
 	movq	72(%rsp), %rdx
 	movq	%r12, %rcx
@@ -239,9 +241,9 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	movl	$1, 32(%rsp)
 	movq	56(%rsp), %rax
 	movq	%rcx, %r9
-	cmpq	%r14, %rax
+	cmpq	%r13, %rax
 	movq	%rax, %r8
-	cmova	%r14, %r8
+	cmova	%r13, %r8
 	call	LeftShift_Imp
 	movq	(%r15), %rax
 	movq	96(%rsp), %rdx
@@ -256,7 +258,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	.p2align 4,,10
 .L29:
 	movq	88(%rsp), %rdx
-	movq	%r13, %rcx
+	movq	%r14, %rcx
 	call	DeallocateBlock
 .L28:
 	movq	72(%rsp), %rdx
@@ -333,18 +335,23 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	jmp	.L31
 	.p2align 4,,10
 .L34:
+	movq	8(%rcx), %r8
+	movl	$63, %eax
+	movl	$64, %ebp
+	movl	$-5, %edi
 /APP
- # 907 "pmc_internal.h" 1
-	bsrq %rdx, %rbp
+ # 923 "pmc_internal.h" 1
+	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
-	leaq	64(%rsp), %r8
-	addq	$1, %rbp
-	cmpq	%rbp, 8(%rcx)
-	movl	$-5, %edi
-	cmovnb	8(%rcx), %rbp
-	movq	%rbp, %rcx
+	subl	%edx, %eax
 	leaq	72(%rsp), %rdx
+	cltq
+	subq	%rax, %rbp
+	cmpq	%r8, %rbp
+	cmovb	%r8, %rbp
+	leaq	64(%rsp), %r8
+	movq	%rbp, %rcx
 	call	AllocateBlock
 	testq	%rax, %rax
 	movq	%rax, %r12
@@ -363,16 +370,17 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	testl	%eax, %eax
 	movl	%eax, %edi
 	jne	.L44
-	movq	24(%rsi), %r14
+	movq	24(%rsi), %rax
 /APP
- # 987 "pmc_internal.h" 1
-	bsfq %rbx, %rax
+ # 1003 "pmc_internal.h" 1
+	bsfq %rbx, %r14
  # 0 "" 2
 /NO_APP
 	movq	(%rsi), %rcx
-	movq	%rax, 56(%rsp)
+	movslq	%r14d, %r14
 	movq	48(%rsi), %rsi
-	testq	%r14, %r14
+	testq	%rax, %rax
+	movq	%rax, 56(%rsp)
 	jne	.L45
 	movq	%r12, %rdi
 /APP
@@ -383,15 +391,14 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 .L39:
 	movq	(%r15), %rax
 	leaq	63(%rbp), %r8
+	movl	%r14d, %ecx
 	movq	%r13, %rdx
-	movq	56(%rsp), %rsi
-	shrq	$6, %r8
-	movq	48(%rax), %r9
-	leaq	104(%rsp), %rax
-	movl	%esi, %ecx
 	shrq	%cl, %rbx
+	shrq	$6, %r8
 	movq	%r12, %rcx
 	movq	%rbx, 0(%r13)
+	movq	48(%rax), %r9
+	leaq	104(%rsp), %rax
 	movq	%rax, 32(%rsp)
 	call	GreatestCommonDivisor_Imp
 	movq	64(%rsp), %rdx
@@ -420,13 +427,14 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	movq	%r12, %rcx
 	call	DeallocateBlock
 	movq	(%r15), %rax
-	cmpq	%rsi, %r14
-	movq	%rsi, %r8
-	cmovbe	%r14, %r8
 	movq	104(%rsp), %rdx
 	movq	48(%rax), %rcx
 	movl	$1, 32(%rsp)
+	movq	56(%rsp), %rax
 	movq	%rcx, %r9
+	cmpq	%r14, %rax
+	movq	%rax, %r8
+	cmova	%r14, %r8
 	call	LeftShift_Imp
 	movq	(%r15), %rax
 	movq	96(%rsp), %rdx
@@ -457,7 +465,7 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	movq	%rcx, %rdx
 	movl	$0, 32(%rsp)
 	movq	%r12, %r9
-	movq	%r14, %r8
+	movq	%rax, %r8
 	movq	%rsi, %rcx
 	call	RightShift_Imp
 	jmp	.L39

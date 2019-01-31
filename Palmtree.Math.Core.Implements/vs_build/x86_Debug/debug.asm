@@ -9,9 +9,11 @@
 INCLUDELIB MSVCRTD
 INCLUDELIB OLDNAMES
 
+PUBLIC	___DEBUG_LOG
 PUBLIC	_test_total_count
 PUBLIC	_test_ok_count
 _BSS	SEGMENT
+___DEBUG_LOG DD	01H DUP (?)
 _test_total_count DD 01H DUP (?)
 _test_ok_count DD 01H DUP (?)
 _BSS	ENDS
@@ -32,6 +34,7 @@ __4522B509_pmc_internal@h DB 01H
 __1C66ECB2_pmc_debug@h DB 01H
 __24F5AC6E_debug@c DB 01H
 msvcjmc	ENDS
+PUBLIC	_DumpBinary_UNIT
 PUBLIC	_TEST_Assert
 PUBLIC	_FormatTestLabel
 PUBLIC	_FormatTestMesssage
@@ -58,29 +61,33 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95511 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 'J', 08eH, 'n', 0aH
+$SG95659 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 'J', 08eH, 'n', 0aH
 	DB	00H
-$SG95534 DB	'x86', 00H
-$SG95516 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 0aeH, 097H, 0b9H, 081H
+$SG95683 DB	'x86', 00H
+$SG95664 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 0aeH, 097H, 0b9H, 081H
 	DB	'B', 08dH, 080H, 096H, 0daH, 090H, 094H, '=%d, OK', 08dH, 080H
 	DB	096H, 0daH, 090H, 094H, '=%d, NG', 08dH, 080H, 096H, 0daH, 090H
 	DB	094H, '=%d, OK', 097H, 0a6H, '=%d%%, NG', 097H, 0a6H, '=%d%%', 0aH
 	DB	00H
 	ORG $+1
-$SG95533 DB	'PMC_Initialize failed', 00H
+$SG95682 DB	'PMC_Initialize failed', 00H
 	ORG $+2
-$SG95535 DB	'MSC', 00H
-$SG95536 DB	'PLATFORM: %s', 0aH, 00H
+$SG95684 DB	'MSC', 00H
+$SG95685 DB	'PLATFORM: %s', 0aH, 00H
 	ORG $+2
-$SG95537 DB	'COMPILER: %s', 0aH, 00H
+$SG95686 DB	'COMPILER: %s', 0aH, 00H
 	ORG $+2
-$SG95538 DB	'CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d', 0aH
+$SG95687 DB	'CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d', 0aH
 	DB	00H
 	ORG $+1
-$SG95550 DB	'***NG***', 00H
+$SG95699 DB	'***NG***', 00H
 	ORG $+3
-$SG95551 DB	083H, 'e', 083H, 'X', 083H, 'g No.%d: %s => %s (%s)', 0aH
+$SG95700 DB	083H, 'e', 083H, 'X', 083H, 'g No.%d: %s => %s (%s)', 0aH
 	DB	00H
+	ORG $+3
+$SG95734 DB	', ', 00H
+	ORG $+1
+$SG95735 DB	'0x%02x', 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -102,7 +109,7 @@ _conf$ = -8						; size = 4
 _env$ = 8						; size = 4
 _DoDebug@4 PROC
 
-; 70   : {
+; 73   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -118,31 +125,31 @@ _DoDebug@4 PROC
 	mov	ecx, OFFSET __24F5AC6E_debug@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 71   : #ifdef _DEBUG
-; 72   :     PMC_CONFIGURATION_INFO conf;
-; 73   :     conf.MEMORY_VERIFICATION_ENABLED = FALSE;
+; 74   : #ifdef _DEBUG
+; 75   :     PMC_CONFIGURATION_INFO conf;
+; 76   :     conf.MEMORY_VERIFICATION_ENABLED = FALSE;
 
 	mov	eax, DWORD PTR _conf$[ebp]
 	and	eax, -2					; fffffffeH
 	mov	DWORD PTR _conf$[ebp], eax
 
-; 74   :     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
+; 77   :     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
 
 	lea	ecx, DWORD PTR _conf$[ebp]
 	push	ecx
 	call	_PMC_Initialize@4
 	mov	DWORD PTR _ep$[ebp], eax
 
-; 75   :     if (ep == NULL)
+; 78   :     if (ep == NULL)
 
 	cmp	DWORD PTR _ep$[ebp], 0
 	jne	SHORT $LN2@DoDebug
 
-; 76   :     {
-; 77   :          env->log("PMC_Initialize failed");
+; 79   :     {
+; 80   :          env->log("PMC_Initialize failed");
 
 	mov	esi, esp
-	push	OFFSET $SG95533
+	push	OFFSET $SG95682
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -150,39 +157,39 @@ _DoDebug@4 PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 78   :          return;
+; 81   :          return;
 
 	jmp	$LN1@DoDebug
 $LN2@DoDebug:
 
-; 79   :     }
-; 80   : #ifdef _M_IX86
-; 81   :     char* platform = "x86";
+; 82   :     }
+; 83   : #ifdef _M_IX86
+; 84   :     char* platform = "x86";
 
-	mov	DWORD PTR _platform$[ebp], OFFSET $SG95534
+	mov	DWORD PTR _platform$[ebp], OFFSET $SG95683
 
-; 82   : #elif defined(_M_IX64)
-; 83   :     char* platform = "x64";
-; 84   : #else
-; 85   : #error unknown platform
-; 86   : #endif
-; 87   : #ifdef _MSC_VER
-; 88   :     char* compiler = "MSC";
+; 85   : #elif defined(_M_IX64)
+; 86   :     char* platform = "x64";
+; 87   : #else
+; 88   : #error unknown platform
+; 89   : #endif
+; 90   : #ifdef _MSC_VER
+; 91   :     char* compiler = "MSC";
 
-	mov	DWORD PTR _compiler$[ebp], OFFSET $SG95535
+	mov	DWORD PTR _compiler$[ebp], OFFSET $SG95684
 
-; 89   : #elif defined(__GNUC__)
-; 90   :     char* compiler = "GNUC";
-; 91   : #else
-; 92   : #error unknown platform
-; 93   : #endif
-; 94   : 
-; 95   :     env->log("PLATFORM: %s\n", platform);
+; 92   : #elif defined(__GNUC__)
+; 93   :     char* compiler = "GNUC";
+; 94   : #else
+; 95   : #error unknown platform
+; 96   : #endif
+; 97   : 
+; 98   :     env->log("PLATFORM: %s\n", platform);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _platform$[ebp]
 	push	ecx
-	push	OFFSET $SG95536
+	push	OFFSET $SG95685
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -190,12 +197,12 @@ $LN2@DoDebug:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 96   :     env->log("COMPILER: %s\n", compiler);
+; 99   :     env->log("COMPILER: %s\n", compiler);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _compiler$[ebp]
 	push	ecx
-	push	OFFSET $SG95537
+	push	OFFSET $SG95686
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -203,7 +210,7 @@ $LN2@DoDebug:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 97   :     env->log("CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
+; 100  :     env->log("CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
 
 	mov	ecx, DWORD PTR _ep$[ebp]
 	mov	edx, DWORD PTR [ecx]
@@ -230,7 +237,7 @@ $LN2@DoDebug:
 	mov	ecx, DWORD PTR [eax]
 	and	ecx, 1
 	push	ecx
-	push	OFFSET $SG95538
+	push	OFFSET $SG95687
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -238,14 +245,14 @@ $LN2@DoDebug:
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 98   :              ep->PROCESSOR_FEATURE_POPCNT,
-; 99   :              ep->PROCESSOR_FEATURE_ADX,
-; 100  :              ep->PROCESSOR_FEATURE_BMI1,
-; 101  :              ep->PROCESSOR_FEATURE_BMI2,
-; 102  :              ep->PROCESSOR_FEATURE_ABM);
-; 103  : 
-; 104  :     //CalculateCriticalDataOfDivision(env);
-; 105  :     DoTest(env, ep);
+; 101  :              ep->PROCESSOR_FEATURE_POPCNT,
+; 102  :              ep->PROCESSOR_FEATURE_ADX,
+; 103  :              ep->PROCESSOR_FEATURE_BMI1,
+; 104  :              ep->PROCESSOR_FEATURE_BMI2,
+; 105  :              ep->PROCESSOR_FEATURE_ABM);
+; 106  : 
+; 107  :     //CalculateCriticalDataOfDivision(env);
+; 108  :     DoTest(env, ep);
 
 	mov	ecx, DWORD PTR _ep$[ebp]
 	push	ecx
@@ -255,8 +262,8 @@ $LN2@DoDebug:
 	add	esp, 8
 $LN1@DoDebug:
 
-; 106  : #endif
-; 107  : }
+; 109  : #endif
+; 110  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -294,37 +301,47 @@ _env$ = 8						; size = 4
 _ep$ = 12						; size = 4
 _DoTest	PROC
 
-; 62   : {
+; 63   : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __24F5AC6E_debug@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 63   :     TEST_Start(env);
+; 64   :     __DEBUG_LOG = env->log;
 
 	mov	eax, DWORD PTR _env$[ebp]
-	push	eax
+	mov	ecx, DWORD PTR [eax]
+	mov	DWORD PTR ___DEBUG_LOG, ecx
+
+; 65   :     TEST_Start(env);
+
+	mov	edx, DWORD PTR _env$[ebp]
+	push	edx
 	call	_TEST_Start
 	add	esp, 4
 
-; 64   :     TEST_autogenerated(env, ep);
+; 66   :     TEST_autogenerated(env, ep);
 
-	mov	ecx, DWORD PTR _ep$[ebp]
+	mov	eax, DWORD PTR _ep$[ebp]
+	push	eax
+	mov	ecx, DWORD PTR _env$[ebp]
 	push	ecx
-	mov	edx, DWORD PTR _env$[ebp]
-	push	edx
 	call	_TEST_autogenerated
 	add	esp, 8
 
-; 65   :     TEST_End(env);
+; 67   :     TEST_End(env);
 
-	mov	eax, DWORD PTR _env$[ebp]
-	push	eax
+	mov	edx, DWORD PTR _env$[ebp]
+	push	edx
 	call	_TEST_End
 	add	esp, 4
 
-; 66   : }
+; 68   :     __DEBUG_LOG = NULL;
+
+	mov	DWORD PTR ___DEBUG_LOG, 0
+
+; 69   : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -338,7 +355,7 @@ _TEXT	SEGMENT
 _env$ = 8						; size = 4
 _TEST_End PROC
 
-; 52   : {
+; 53   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -346,7 +363,7 @@ _TEST_End PROC
 	mov	ecx, OFFSET __24F5AC6E_debug@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 53   :     env->log("テスト完了。項目数=%d, OK項目数=%d, NG項目数=%d, OK率=%d%%, NG率=%d%%\n",
+; 54   :     env->log("テスト完了。項目数=%d, OK項目数=%d, NG項目数=%d, OK率=%d%%, NG率=%d%%\n",
 
 	mov	eax, DWORD PTR _test_total_count
 	sub	eax, DWORD PTR _test_ok_count
@@ -366,7 +383,7 @@ _TEST_End PROC
 	push	edx
 	mov	eax, DWORD PTR _test_total_count
 	push	eax
-	push	OFFSET $SG95516
+	push	OFFSET $SG95664
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx
@@ -374,12 +391,12 @@ _TEST_End PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 54   :              test_total_count,
-; 55   :              test_ok_count,
-; 56   :              test_total_count - test_ok_count,
-; 57   :              test_ok_count * 100 / test_total_count,
-; 58   :              (test_total_count - test_ok_count) * 100 / test_total_count);
-; 59   : }
+; 55   :              test_total_count,
+; 56   :              test_ok_count,
+; 57   :              test_total_count - test_ok_count,
+; 58   :              test_ok_count * 100 / test_total_count,
+; 59   :              (test_total_count - test_ok_count) * 100 / test_total_count);
+; 60   : }
 
 	pop	esi
 	cmp	ebp, esp
@@ -394,7 +411,7 @@ _TEXT	SEGMENT
 _env$ = 8						; size = 4
 _TEST_Start PROC
 
-; 45   : {
+; 46   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -402,18 +419,18 @@ _TEST_Start PROC
 	mov	ecx, OFFSET __24F5AC6E_debug@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 46   :     test_total_count = 0;
+; 47   :     test_total_count = 0;
 
 	mov	DWORD PTR _test_total_count, 0
 
-; 47   :     test_ok_count = 0;
+; 48   :     test_ok_count = 0;
 
 	mov	DWORD PTR _test_ok_count, 0
 
-; 48   :     env->log("テスト開始\n");
+; 49   :     env->log("テスト開始\n");
 
 	mov	esi, esp
-	push	OFFSET $SG95511
+	push	OFFSET $SG95659
 	mov	eax, DWORD PTR _env$[ebp]
 	mov	ecx, DWORD PTR [eax]
 	call	ecx
@@ -421,7 +438,7 @@ _TEST_Start PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 49   : }
+; 50   : }
 
 	pop	esi
 	cmp	ebp, esp
@@ -437,7 +454,7 @@ _format$ = 8						; size = 4
 _return_value$ = 12					; size = 4
 _FormatTestMesssage PROC
 
-; 132  : {
+; 135  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -445,8 +462,8 @@ _FormatTestMesssage PROC
 	mov	ecx, OFFSET __24F5AC6E_debug@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 133  :     static char buffer[256];
-; 134  :     wsprintf(buffer, format, return_value);
+; 136  :     static char buffer[256];
+; 137  :     wsprintf(buffer, format, return_value);
 
 	mov	esi, esp
 	mov	eax, DWORD PTR _return_value$[ebp]
@@ -459,11 +476,11 @@ _FormatTestMesssage PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 135  :     return buffer;
+; 138  :     return buffer;
 
 	mov	eax, OFFSET ?buffer@?1??FormatTestMesssage@@9@9
 
-; 136  : }
+; 139  : }
 
 	pop	esi
 	cmp	ebp, esp
@@ -480,7 +497,7 @@ _n1$ = 12						; size = 4
 _n2$ = 16						; size = 4
 _FormatTestLabel PROC
 
-; 125  : {
+; 128  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -488,8 +505,8 @@ _FormatTestLabel PROC
 	mov	ecx, OFFSET __24F5AC6E_debug@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 126  :     static char buffer[256];
-; 127  :     wsprintf(buffer, format, n1, n2);
+; 129  :     static char buffer[256];
+; 130  :     wsprintf(buffer, format, n1, n2);
 
 	mov	esi, esp
 	mov	eax, DWORD PTR _n2$[ebp]
@@ -504,11 +521,11 @@ _FormatTestLabel PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 128  :     return buffer;
+; 131  :     return buffer;
 
 	mov	eax, OFFSET ?buffer@?1??FormatTestLabel@@9@9
 
-; 129  : }
+; 132  : }
 
 	pop	esi
 	cmp	ebp, esp
@@ -526,7 +543,7 @@ _condition$ = 16					; size = 4
 _reason$ = 20						; size = 4
 _TEST_Assert PROC
 
-; 111  : {
+; 114  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -534,38 +551,38 @@ _TEST_Assert PROC
 	mov	ecx, OFFSET __24F5AC6E_debug@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 112  :     if (condition)
+; 115  :     if (condition)
 
 	cmp	DWORD PTR _condition$[ebp], 0
 	je	SHORT $LN2@TEST_Asser
 
-; 113  :     {
-; 114  :         //env->log("テスト No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
-; 115  :         ++test_ok_count;
+; 116  :     {
+; 117  :         //env->log("テスト No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
+; 118  :         ++test_ok_count;
 
 	mov	eax, DWORD PTR _test_ok_count
 	add	eax, 1
 	mov	DWORD PTR _test_ok_count, eax
 
-; 116  :     }
+; 119  :     }
 
 	jmp	SHORT $LN3@TEST_Asser
 $LN2@TEST_Asser:
 
-; 117  :     else
-; 118  :     {
-; 119  :         env->log("テスト No.%d: %s => %s (%s)\n", test_total_count + 1, test_name, "***NG***", reason);
+; 120  :     else
+; 121  :     {
+; 122  :         env->log("テスト No.%d: %s => %s (%s)\n", test_total_count + 1, test_name, "***NG***", reason);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _reason$[ebp]
 	push	ecx
-	push	OFFSET $SG95550
+	push	OFFSET $SG95699
 	mov	edx, DWORD PTR _test_name$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _test_total_count
 	add	eax, 1
 	push	eax
-	push	OFFSET $SG95551
+	push	OFFSET $SG95700
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx
@@ -574,14 +591,14 @@ $LN2@TEST_Asser:
 	call	__RTC_CheckEsp
 $LN3@TEST_Asser:
 
-; 120  :     }
-; 121  :     ++test_total_count;
+; 123  :     }
+; 124  :     ++test_total_count;
 
 	mov	eax, DWORD PTR _test_total_count
 	add	eax, 1
 	mov	DWORD PTR _test_total_count, eax
 
-; 122  : }
+; 125  : }
 
 	pop	esi
 	cmp	ebp, esp
@@ -589,5 +606,142 @@ $LN3@TEST_Asser:
 	pop	ebp
 	ret	0
 _TEST_Assert ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
+_TEXT	SEGMENT
+_is_first$1 = -8					; size = 4
+_p$2 = -4						; size = 4
+_buf$ = 8						; size = 4
+_count$ = 12						; size = 4
+_DumpBinary_UNIT PROC
+
+; 142  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 8
+	push	esi
+	mov	DWORD PTR [ebp-8], -858993460		; ccccccccH
+	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
+	mov	ecx, OFFSET __24F5AC6E_debug@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 143  :     if (__DEBUG_LOG != NULL)
+
+	cmp	DWORD PTR ___DEBUG_LOG, 0
+	je	$LN1@DumpBinary
+
+; 144  :     {
+; 145  :         unsigned char* p = (unsigned char*)buf;
+
+	mov	eax, DWORD PTR _buf$[ebp]
+	mov	DWORD PTR _p$2[ebp], eax
+
+; 146  :         count *= sizeof(__UNIT_TYPE);
+
+	mov	ecx, DWORD PTR _count$[ebp]
+	shl	ecx, 2
+	mov	DWORD PTR _count$[ebp], ecx
+$LN2@DumpBinary:
+
+; 147  :         while (count > 0 && p[count - 1] == 0)
+
+	cmp	DWORD PTR _count$[ebp], 0
+	jbe	SHORT $LN3@DumpBinary
+	mov	edx, DWORD PTR _p$2[ebp]
+	add	edx, DWORD PTR _count$[ebp]
+	movzx	eax, BYTE PTR [edx-1]
+	test	eax, eax
+	jne	SHORT $LN3@DumpBinary
+
+; 148  :             --count;
+
+	mov	ecx, DWORD PTR _count$[ebp]
+	sub	ecx, 1
+	mov	DWORD PTR _count$[ebp], ecx
+	jmp	SHORT $LN2@DumpBinary
+$LN3@DumpBinary:
+
+; 149  :         if (count <= 0)
+
+	cmp	DWORD PTR _count$[ebp], 0
+	ja	SHORT $LN7@DumpBinary
+
+; 150  :             count = 1;
+
+	mov	DWORD PTR _count$[ebp], 1
+$LN7@DumpBinary:
+
+; 151  :         int is_first = 1;
+
+	mov	DWORD PTR _is_first$1[ebp], 1
+$LN4@DumpBinary:
+
+; 152  :         while (count > 0)
+
+	cmp	DWORD PTR _count$[ebp], 0
+	jbe	SHORT $LN1@DumpBinary
+
+; 153  :         {
+; 154  :             if (!is_first)
+
+	cmp	DWORD PTR _is_first$1[ebp], 0
+	jne	SHORT $LN8@DumpBinary
+
+; 155  :                 (*__DEBUG_LOG)(", ");
+
+	mov	esi, esp
+	push	OFFSET $SG95734
+	call	DWORD PTR ___DEBUG_LOG
+	add	esp, 4
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+$LN8@DumpBinary:
+
+; 156  :             (*__DEBUG_LOG)("0x%02x", *p);
+
+	mov	edx, DWORD PTR _p$2[ebp]
+	movzx	eax, BYTE PTR [edx]
+	mov	esi, esp
+	push	eax
+	push	OFFSET $SG95735
+	call	DWORD PTR ___DEBUG_LOG
+	add	esp, 8
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 157  :             ++p;
+
+	mov	ecx, DWORD PTR _p$2[ebp]
+	add	ecx, 1
+	mov	DWORD PTR _p$2[ebp], ecx
+
+; 158  :             --count;
+
+	mov	edx, DWORD PTR _count$[ebp]
+	sub	edx, 1
+	mov	DWORD PTR _count$[ebp], edx
+
+; 159  :             is_first = 0;
+
+	mov	DWORD PTR _is_first$1[ebp], 0
+
+; 160  :         }
+
+	jmp	SHORT $LN4@DumpBinary
+$LN1@DumpBinary:
+
+; 161  :     }
+; 162  : }
+
+	pop	esi
+	add	esp, 8
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+_DumpBinary_UNIT ENDP
 _TEXT	ENDS
 END

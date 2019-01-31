@@ -25,18 +25,16 @@ PMC_Pow_X_I:
 	.seh_stackalloc	136
 	.seh_endprologue
 	testq	%r8, %r8
-	movq	%rcx, %rbx
-	movl	%edx, %r12d
-	movq	%r8, %rbp
+	movq	%rcx, %rsi
+	movl	%edx, %ebp
+	movq	%r8, %rbx
 	je	.L6
 	testq	%rcx, %rcx
 	je	.L6
 	call	CheckNumber
 	testl	%eax, %eax
-	movl	%eax, %esi
-	je	.L26
+	je	.L31
 .L1:
-	movl	%esi, %eax
 	addq	$136, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -48,35 +46,42 @@ PMC_Pow_X_I:
 	popq	%r15
 	ret
 	.p2align 4,,10
-.L26:
-	testb	$2, 32(%rbx)
+.L31:
+	movzbl	32(%rsi), %edx
+	testb	$2, %dl
 	je	.L5
-	testl	%r12d, %r12d
+	testl	%ebp, %ebp
 	je	.L6
-	movq	.refptr.number_zero(%rip), %rax
-	movq	%rax, 0(%rbp)
+	movq	.refptr.number_zero(%rip), %rdx
+	movq	%rdx, (%rbx)
 	jmp	.L1
 	.p2align 4,,10
 .L5:
-	testl	%r12d, %r12d
-	je	.L27
-	movq	8(%rbx), %r8
+	andl	$4, %edx
+	jne	.L8
+	testl	%ebp, %ebp
+	je	.L8
+	cmpl	$1, %ebp
+	je	.L32
+	movq	8(%rsi), %r9
 	xorl	%edx, %edx
-	movl	%r12d, %ecx
+	movl	%ebp, %r8d
 	movq	$-65, %rax
-	divq	%rcx
-	movl	$-2, %esi
-	cmpq	%rax, %r8
+	divq	%r8
+	movq	%rax, %rcx
+	movl	$-2, %eax
+	cmpq	%rcx, %r9
 	ja	.L1
-	imulq	%r8, %rcx
-	movl	$-5, %esi
+	imulq	%r9, %r8
 	leaq	96(%rsp), %rdx
+	leaq	64(%r8), %rdi
 	leaq	88(%rsp), %r8
-	leaq	64(%rcx), %rdi
 	movq	%rdi, %rcx
 	call	AllocateBlock
-	testq	%rax, %rax
+	movq	%rax, %rcx
 	movq	%rax, 48(%rsp)
+	movl	$-5, %eax
+	testq	%rcx, %rcx
 	je	.L1
 	leaq	112(%rsp), %rdx
 	movq	%rdi, %rcx
@@ -84,24 +89,24 @@ PMC_Pow_X_I:
 	call	AllocateBlock
 	leaq	120(%rsp), %r8
 	movq	%rdi, %rdx
-	movq	%rbp, %rcx
+	movq	%rbx, %rcx
 	movq	%rax, 64(%rsp)
 	call	AllocateNumber
 	testl	%eax, %eax
-	jne	.L28
-	movq	0(%rbp), %rax
-	movq	(%rbx), %rdx
+	jne	.L33
+	movq	(%rbx), %rax
+	movq	(%rsi), %rdx
+	movq	48(%rsp), %r10
 	movq	48(%rax), %rax
 	movq	%rdx, %rcx
+	movq	%r10, %rdi
 	movq	%rax, 72(%rsp)
-	movq	48(%rbx), %rax
-	movq	48(%rsp), %rbx
+	movq	48(%rsi), %rax
 	movq	%rax, %rsi
 	movq	%rax, 56(%rsp)
-	movq	%rbx, %rdi
 /APP
- # 863 "pmc_internal.h" 1
-	bsrl %r12d, %eax
+ # 879 "pmc_internal.h" 1
+	bsrl %ebp, %eax
  # 0 "" 2
  # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsq
@@ -112,85 +117,84 @@ PMC_Pow_X_I:
 	movl	%eax, %ecx
 	rorl	%cl, %r15d
 	shrl	%r15d
-	je	.L16
-	movq	%rbx, %rsi
+	je	.L18
+	movq	%rbx, 224(%rsp)
 	movq	64(%rsp), %r14
-	movq	%rdx, %rbx
+	movq	%rdx, %r12
 	movq	%rdx, %r13
-	movq	%rbp, 224(%rsp)
-	jmp	.L14
+	movq	%r10, %rbx
+	jmp	.L16
 	.p2align 4,,10
-.L18:
-	movq	%rsi, %rax
-	movq	%r14, %rsi
+.L20:
+	movq	%rbx, %rax
+	movq	%r14, %rbx
 	movq	%rax, %r14
-.L13:
+.L15:
 	shrl	%r15d
-	je	.L29
-.L14:
-	leaq	(%rbx,%rbx), %rbp
+	je	.L34
+.L16:
+	leaq	(%r12,%r12), %rsi
 	movq	%r14, %rdi
 	xorl	%eax, %eax
-	movq	%rbp, %rcx
+	movq	%rsi, %rcx
 /APP
  # 611 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep stosq
  # 0 "" 2
 /NO_APP
-	movq	%rbx, %r9
-	movq	%rbx, %rdx
-	salq	$4, %rbx
+	movq	%r12, %r9
+	movq	%r12, %rdx
+	salq	$4, %r12
 	movq	%r14, 32(%rsp)
-	addq	%r14, %rbx
-	movq	%rsi, %r8
-	movq	%rsi, %rcx
+	addq	%r14, %r12
+	movq	%rbx, %r8
+	movq	%rbx, %rcx
 	call	Multiply_X_X_Imp
-	cmpq	$1, -8(%rbx)
-	movq	%rbp, %rbx
-	sbbq	$0, %rbx
-	testl	%r15d, %r12d
-	je	.L18
-	leaq	0(%r13,%rbx), %rbp
-	movq	%rsi, %rdi
+	cmpq	$1, -8(%r12)
+	sbbq	$0, %rsi
+	testl	%r15d, %ebp
+	movq	%rsi, %r12
+	je	.L20
+	leaq	0(%r13,%rsi), %rsi
+	movq	%rbx, %rdi
 	xorl	%eax, %eax
-	movq	%rbp, %rcx
+	movq	%rsi, %rcx
 /APP
  # 611 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep stosq
  # 0 "" 2
 /NO_APP
 	movq	56(%rsp), %r8
-	movq	%rbx, %rdx
-	movq	%rsi, 32(%rsp)
+	movq	%r12, %rdx
+	movq	%rbx, 32(%rsp)
 	movq	%r13, %r9
 	movq	%r14, %rcx
-	movq	%rbp, %rbx
 	call	Multiply_X_X_Imp
-	cmpq	$1, -8(%rsi,%rbp,8)
-	sbbq	$0, %rbx
-	jmp	.L13
+	cmpq	$1, -8(%rbx,%rsi,8)
+	sbbq	$0, %rsi
+	movq	%rsi, %r12
+	jmp	.L15
 	.p2align 4,,10
-.L27:
-	movq	%rbp, %rdx
-	movl	$1, %ecx
-	call	From_I_Imp
-	movl	%eax, %esi
+.L8:
+	movq	.refptr.number_one(%rip), %rdx
+	movq	%rdx, (%rbx)
 	jmp	.L1
 	.p2align 4,,10
-.L28:
-	movq	96(%rsp), %rdx
-	movq	48(%rsp), %rcx
-	call	DeallocateBlock
-	movq	112(%rsp), %rdx
-	movq	64(%rsp), %rcx
-	call	DeallocateBlock
+.L32:
+	movq	%rbx, %rdx
+	movq	%rsi, %rcx
+	call	DuplicateNumber
 	jmp	.L1
 	.p2align 4,,10
-.L29:
-	movq	224(%rsp), %rbp
-.L11:
+.L6:
+	movl	$-1, %eax
+	jmp	.L1
+.L34:
+	movq	%rbx, %rsi
+	movq	224(%rsp), %rbx
+.L13:
 	movq	72(%rsp), %rdi
-	movq	%rbx, %rcx
+	movq	%r12, %rcx
 /APP
  # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsq
@@ -201,39 +205,43 @@ PMC_Pow_X_I:
 	movq	%rdi, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	movl	%eax, %esi
 	jne	.L1
-	movq	64(%rsp), %rbx
+	movq	64(%rsp), %rsi
 	movq	104(%rsp), %rdx
-	movq	%rbx, %rcx
+	movq	%rsi, %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	movl	%eax, %esi
 	jne	.L1
-	movq	0(%rbp), %rax
+	movq	(%rbx), %rax
 	movq	120(%rsp), %rdx
 	movq	48(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
-	movl	%eax, %esi
 	jne	.L1
 	movq	96(%rsp), %rdx
 	movq	%rdi, %rcx
+	movl	%eax, 48(%rsp)
 	call	DeallocateBlock
 	movq	112(%rsp), %rdx
-	movq	%rbx, %rcx
+	movq	%rsi, %rcx
 	call	DeallocateBlock
-	movq	0(%rbp), %rcx
+	movq	(%rbx), %rcx
 	call	CommitNumber
+	movl	48(%rsp), %eax
 	jmp	.L1
-	.p2align 4,,10
-.L6:
-	movl	$-1, %esi
+.L33:
+	movq	96(%rsp), %rdx
+	movq	48(%rsp), %rcx
+	call	DeallocateBlock
+	movq	112(%rsp), %rdx
+	movq	64(%rsp), %rcx
+	call	DeallocateBlock
+	movl	$-5, %eax
 	jmp	.L1
-.L16:
+.L18:
 	movq	48(%rsp), %rsi
-	movq	%rdx, %rbx
-	jmp	.L11
+	movq	%rdx, %r12
+	jmp	.L13
 	.seh_endproc
 	.p2align 4,,15
 	.globl	Initialize_Pow
@@ -249,10 +257,15 @@ Initialize_Pow:
 	.def	AllocateBlock;	.scl	2;	.type	32;	.endef
 	.def	AllocateNumber;	.scl	2;	.type	32;	.endef
 	.def	Multiply_X_X_Imp;	.scl	2;	.type	32;	.endef
-	.def	From_I_Imp;	.scl	2;	.type	32;	.endef
-	.def	DeallocateBlock;	.scl	2;	.type	32;	.endef
+	.def	DuplicateNumber;	.scl	2;	.type	32;	.endef
 	.def	CheckBlockLight;	.scl	2;	.type	32;	.endef
+	.def	DeallocateBlock;	.scl	2;	.type	32;	.endef
 	.def	CommitNumber;	.scl	2;	.type	32;	.endef
+	.section	.rdata$.refptr.number_one, "dr"
+	.globl	.refptr.number_one
+	.linkonce	discard
+.refptr.number_one:
+	.quad	number_one
 	.section	.rdata$.refptr.number_zero, "dr"
 	.globl	.refptr.number_zero
 	.linkonce	discard

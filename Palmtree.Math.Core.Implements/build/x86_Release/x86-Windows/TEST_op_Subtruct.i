@@ -2,7 +2,7 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "TEST_op_Subtruct.c"
-# 32 "TEST_op_Subtruct.c"
+# 33 "TEST_op_Subtruct.c"
 # 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/windows.h" 1 3
 # 9 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/windows.h" 3
 # 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/_mingw.h" 1 3
@@ -48705,7 +48705,7 @@ typedef struct _MODEMSETTINGS {
   DWORD __attribute__((__stdcall__)) ImmGetImeMenuItemsW(HIMC,DWORD,DWORD,LPIMEMENUITEMINFOW,LPIMEMENUITEMINFOW,DWORD);
   WINBOOL __attribute__((__stdcall__)) ImmDisableTextFrameService(DWORD idThread);
 # 131 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/windows.h" 2 3
-# 33 "TEST_op_Subtruct.c" 2
+# 34 "TEST_op_Subtruct.c" 2
 # 1 "pmc.h" 1
 # 36 "pmc.h"
 # 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/stdint.h" 1 3 4
@@ -48939,6 +48939,10 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
 
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Pow_X_I)(HANDLE x, _UINT32_T n, HANDLE* z);
+
+
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ModPow_X_X_X)(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
+
 } PMC_ENTRY_POINTS;
 #pragma endregion
 
@@ -48946,7 +48950,7 @@ typedef struct __tag_PMC_ENTRY_POINTS
 #pragma region 宣言
  PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_Initialize(PMC_CONFIGURATION_INFO*);
 #pragma endregion
-# 34 "TEST_op_Subtruct.c" 2
+# 35 "TEST_op_Subtruct.c" 2
 # 1 "pmc_debug.h" 1
 # 40 "pmc_debug.h"
 #pragma region 型の定義
@@ -48959,11 +48963,11 @@ typedef struct __tag_PMC_DEBUG_ENVIRONMENT
 
 
 #pragma region 宣言
-# 141 "pmc_debug.h"
+# 147 "pmc_debug.h"
 #pragma endregion
 
 
 #pragma region インライン関数の定義
-# 161 "pmc_debug.h"
+# 167 "pmc_debug.h"
 #pragma endregion
-# 35 "TEST_op_Subtruct.c" 2
+# 36 "TEST_op_Subtruct.c" 2

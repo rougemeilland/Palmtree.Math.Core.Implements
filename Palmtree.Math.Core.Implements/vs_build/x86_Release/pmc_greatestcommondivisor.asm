@@ -70,7 +70,7 @@ EXTRN	_Compare_Imp:PROC
 _TEXT	SEGMENT
 _k$1$ = -40						; size = 4
 _k$1$ = -36						; size = 4
-tv551 = -36						; size = 4
+tv563 = -36						; size = 4
 _result$8$ = -36					; size = 4
 _work_v_buf$1$ = -32					; size = 4
 _work_v_buf_code$1 = -32				; size = 4
@@ -83,16 +83,16 @@ _v_tzcnt$1$ = -20					; size = 4
 _nw_check_code$6 = -20					; size = 4
 _work_bit_count$1$ = -16				; size = 4
 _work_v_buf_words$7 = -16				; size = 4
-_v_tzcnt$1$ = -12					; size = 4
+$T8 = -12						; size = 4
 _result$3$ = -12					; size = 4
-_work_v_buf_words$8 = -12				; size = 4
-_work_u_buf_words$9 = -8				; size = 4
+_work_v_buf_words$9 = -12				; size = 4
 _work_u_buf_words$10 = -8				; size = 4
+_work_u_buf_words$11 = -8				; size = 4
 _work_v_buf$1$ = -4					; size = 4
-_nw_check_code$11 = -4					; size = 4
+_nw_check_code$12 = -4					; size = 4
 _work_u_buf$1$ = 8					; size = 4
 _work_u_buf$1$ = 8					; size = 4
-_w_buf_count$12 = 8					; size = 4
+_w_buf_count$13 = 8					; size = 4
 _u$ = 8							; size = 4
 _v$ = 12						; size = 8
 _w$ = 20						; size = 4
@@ -228,22 +228,22 @@ $LN7@PMC_Greate:
 	jne	$LN12@PMC_Greate
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 857  :     if (x == 0)
+; 873  :     if (x == 0)
 
 	test	ebx, ebx
 	jne	SHORT $LN48@PMC_Greate
 
-; 858  :         return (sizeof(x) * 8);
+; 874  :         return (sizeof(x) * 8);
 
 	lea	ecx, DWORD PTR [ebx+32]
 	jmp	SHORT $LN47@PMC_Greate
 $LN48@PMC_Greate:
 
-; 861  :     _BitScanReverse(&pos, x);
+; 877  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, ebx
 
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
@@ -261,18 +261,18 @@ $LN47@PMC_Greate:
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	cmp	edx, edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
 ; 276  :                     __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
 
-	lea	eax, DWORD PTR _work_u_buf_words$10[ebp]
+	lea	eax, DWORD PTR _work_u_buf_words$11[ebp]
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	cmovae	edi, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -282,7 +282,7 @@ $LN47@PMC_Greate:
 	push	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	mov	DWORD PTR _work_bit_count$1$[ebp], edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -321,7 +321,7 @@ $LN96@PMC_Greate:
 
 ; 439  : }
 
-	push	DWORD PTR _work_u_buf_words$10[ebp]
+	push	DWORD PTR _work_u_buf_words$11[ebp]
 	push	DWORD PTR _work_u_buf$1$[ebp]
 	call	_DeallocateBlock
 	add	esp, 8
@@ -363,7 +363,7 @@ $LN15@PMC_Greate:
 
 ; 293  :                         DeallocateBlock(work_u_buf, work_u_buf_words);
 
-	push	DWORD PTR _work_u_buf_words$10[ebp]
+	push	DWORD PTR _work_u_buf_words$11[ebp]
 	push	DWORD PTR _work_u_buf$1$[ebp]
 	call	_DeallocateBlock
 
@@ -389,21 +389,21 @@ $LN16@PMC_Greate:
 	mov	eax, DWORD PTR [esi+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 971  :         return (sizeof(x) * 8);
+; 987  :         return (sizeof(x) * 8);
 
 	mov	ecx, 32					; 00000020H
 	test	ebx, ebx
 	je	SHORT $LN93@PMC_Greate
 
-; 975  :     _BitScanForward(&pos, x);
+; 991  :     _BitScanForward(&pos, x);
 
 	bsf	ecx, ebx
 $LN93@PMC_Greate:
 
-; 469  :     return (x <= y ? x : y);
+; 485  :     return (x <= y ? x : y);
 
 	cmp	eax, ecx
-	mov	DWORD PTR _v_tzcnt$1$[ebp], ecx
+	mov	DWORD PTR $T8[ebp], ecx
 	mov	edx, ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
@@ -413,7 +413,7 @@ $LN93@PMC_Greate:
 	mov	esi, DWORD PTR [esi+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 469  :     return (x <= y ? x : y);
+; 485  :     return (x <= y ? x : y);
 
 	cmovbe	edx, eax
 	mov	DWORD PTR _k$1$[ebp], edx
@@ -437,7 +437,7 @@ $LN93@PMC_Greate:
 $LN17@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _work_u_buf$1$[ebp]
 	rep movsd
@@ -448,7 +448,7 @@ $LN57@PMC_Greate:
 ; 304  :                     work_v_buf[0] = v_lo >> v_tzcnt;
 
 	mov	eax, DWORD PTR _work_v_buf$1$[ebp]
-	mov	ecx, DWORD PTR _v_tzcnt$1$[ebp]
+	mov	ecx, DWORD PTR $T8[ebp]
 
 ; 307  :                     GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), (*w)->BLOCK, &w_buf_count);
 
@@ -462,7 +462,7 @@ $LN57@PMC_Greate:
 	push	DWORD PTR [eax+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 454  :     return ((u + v - 1) / v);
+; 470  :     return ((u + v - 1) / v);
 
 	lea	eax, DWORD PTR [edi+31]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -472,7 +472,7 @@ $LN57@PMC_Greate:
 	mov	edi, DWORD PTR _work_v_buf$1$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 454  :     return ((u + v - 1) / v);
+; 470  :     return ((u + v - 1) / v);
 
 	shr	eax, 5
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -523,7 +523,7 @@ $LN57@PMC_Greate:
 
 ; 315  :                     DeallocateBlock(work_u_buf, work_u_buf_words);
 
-	push	DWORD PTR _work_u_buf_words$10[ebp]
+	push	DWORD PTR _work_u_buf_words$11[ebp]
 	push	ebx
 	call	_DeallocateBlock
 
@@ -631,11 +631,11 @@ $LN57@PMC_Greate:
 $LN12@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 861  :     _BitScanReverse(&pos, x);
+; 877  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, ecx
 
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -645,7 +645,7 @@ $LN12@PMC_Greate:
 	mov	edi, 64					; 00000040H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -657,18 +657,18 @@ $LN12@PMC_Greate:
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	cmp	edx, edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
 
 ; 330  :                     __UNIT_TYPE* work_u_buf = AllocateBlock(work_bit_count, &work_u_buf_words, &work_u_buf_code);
 
-	lea	eax, DWORD PTR _work_u_buf_words$9[ebp]
+	lea	eax, DWORD PTR _work_u_buf_words$10[ebp]
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	cmovae	edi, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -678,7 +678,7 @@ $LN12@PMC_Greate:
 	push	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	mov	DWORD PTR _work_bit_count$1$[ebp], edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -702,7 +702,7 @@ $LN12@PMC_Greate:
 
 	lea	eax, DWORD PTR _work_v_buf_code$4[ebp]
 	push	eax
-	lea	eax, DWORD PTR _work_v_buf_words$8[ebp]
+	lea	eax, DWORD PTR _work_v_buf_words$9[ebp]
 	push	eax
 	push	edi
 	call	_AllocateBlock
@@ -723,7 +723,7 @@ $LN12@PMC_Greate:
 ; 343  :                     __UNIT_TYPE nw_check_code;
 ; 344  :                     if ((result = AllocateNumber(w, work_bit_count, &nw_check_code)) != PMC_STATUS_OK)
 
-	lea	eax, DWORD PTR _nw_check_code$11[ebp]
+	lea	eax, DWORD PTR _nw_check_code$12[ebp]
 	push	eax
 	push	DWORD PTR _work_bit_count$1$[ebp]
 	push	DWORD PTR _w$[ebp]
@@ -736,13 +736,13 @@ $LN12@PMC_Greate:
 ; 345  :                     {
 ; 346  :                         DeallocateBlock(work_v_buf, work_v_buf_words);
 
-	push	DWORD PTR _work_v_buf_words$8[ebp]
+	push	DWORD PTR _work_v_buf_words$9[ebp]
 	push	edi
 	call	_DeallocateBlock
 
 ; 347  :                         DeallocateBlock(work_u_buf, work_u_buf_words);
 
-	push	DWORD PTR _work_u_buf_words$9[ebp]
+	push	DWORD PTR _work_u_buf_words$10[ebp]
 	push	DWORD PTR _work_u_buf$1$[ebp]
 	call	_DeallocateBlock
 
@@ -773,7 +773,7 @@ $LN25@PMC_Greate:
 	jne	SHORT $LN43@PMC_Greate
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 975  :     _BitScanForward(&pos, x);
+; 991  :     _BitScanForward(&pos, x);
 
 	mov	eax, DWORD PTR _v$[ebp+4]
 	bsf	edx, eax
@@ -786,12 +786,12 @@ $LN25@PMC_Greate:
 $LN43@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 975  :     _BitScanForward(&pos, x);
+; 991  :     _BitScanForward(&pos, x);
 
 	bsf	edx, ebx
 $LN95@PMC_Greate:
 
-; 469  :     return (x <= y ? x : y);
+; 485  :     return (x <= y ? x : y);
 
 	cmp	ecx, edx
 	mov	DWORD PTR _v_tzcnt$1$[ebp], edx
@@ -804,7 +804,7 @@ $LN95@PMC_Greate:
 
 	mov	eax, DWORD PTR [esi]
 	mov	esi, DWORD PTR [esi+24]
-	mov	DWORD PTR tv551[ebp], esi
+	mov	DWORD PTR tv563[ebp], esi
 
 ; 354  :                     if (u_tzcnt > 0)
 
@@ -818,7 +818,7 @@ $LN95@PMC_Greate:
 	push	esi
 	push	ecx
 	push	eax
-	push	DWORD PTR tv551[ebp]
+	push	DWORD PTR tv563[ebp]
 	call	_RightShift_Imp
 	mov	edx, DWORD PTR _v_tzcnt$1$[ebp]
 	add	esp, 20					; 00000014H
@@ -826,7 +826,7 @@ $LN95@PMC_Greate:
 $LN26@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _work_u_buf$1$[ebp]
 	mov	ecx, eax
@@ -861,13 +861,13 @@ $LN28@PMC_Greate:
 ; 364  :                     GreatestCommonDivisor_Imp(work_u_buf, work_v_buf, _DIVIDE_CEILING_UNIT(work_bit_count, __UNIT_TYPE_BIT_COUNT), (*w)->BLOCK, &w_buf_count);
 
 	mov	ebx, DWORD PTR _w$[ebp]
-	lea	eax, DWORD PTR _w_buf_count$12[ebp]
+	lea	eax, DWORD PTR _w_buf_count$13[ebp]
 	push	eax
 	mov	eax, DWORD PTR [ebx]
 	push	DWORD PTR [eax+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 454  :     return ((u + v - 1) / v);
+; 470  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _work_bit_count$1$[ebp]
 	add	eax, 31					; 0000001fH
@@ -904,7 +904,7 @@ $LN28@PMC_Greate:
 ; 369  :                     if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR [ebx]
-	push	DWORD PTR _nw_check_code$11[ebp]
+	push	DWORD PTR _nw_check_code$12[ebp]
 	push	DWORD PTR [eax+24]
 	call	_CheckBlockLight
 	add	esp, 8
@@ -914,13 +914,13 @@ $LN28@PMC_Greate:
 ; 370  :                         return (result);
 ; 371  :                     DeallocateBlock(work_v_buf, work_v_buf_words);
 
-	push	DWORD PTR _work_v_buf_words$8[ebp]
+	push	DWORD PTR _work_v_buf_words$9[ebp]
 	push	edi
 	call	_DeallocateBlock
 
 ; 372  :                     DeallocateBlock(work_u_buf, work_u_buf_words);
 
-	push	DWORD PTR _work_u_buf_words$9[ebp]
+	push	DWORD PTR _work_u_buf_words$10[ebp]
 	push	esi
 	call	_DeallocateBlock
 
@@ -932,14 +932,14 @@ $LN28@PMC_Greate:
 	mov	eax, DWORD PTR [eax+24]
 	push	eax
 	push	DWORD PTR _k$1$[ebp]
-	push	DWORD PTR _w_buf_count$12[ebp]
+	push	DWORD PTR _w_buf_count$13[ebp]
 	push	eax
 	call	_LeftShift_Imp
 
 ; 375  :                     if ((result = CheckBlockLight((*w)->BLOCK, nw_check_code)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR [ebx]
-	push	DWORD PTR _nw_check_code$11[ebp]
+	push	DWORD PTR _nw_check_code$12[ebp]
 	push	DWORD PTR [eax+24]
 	call	_CheckBlockLight
 	add	esp, 44					; 0000002cH
@@ -1169,11 +1169,11 @@ $LN2@PMC_Greate:
 $LN7@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 861  :     _BitScanReverse(&pos, x);
+; 877  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, eax
 
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -1183,7 +1183,7 @@ $LN7@PMC_Greate:
 	mov	edi, 32					; 00000020H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -1194,7 +1194,7 @@ $LN7@PMC_Greate:
 	sub	edi, ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	cmp	DWORD PTR [esi+4], edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -1204,7 +1204,7 @@ $LN7@PMC_Greate:
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	cmovae	edi, DWORD PTR [esi+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -1216,7 +1216,7 @@ $LN7@PMC_Greate:
 	push	edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	mov	DWORD PTR _work_bit_count$1$[ebp], edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -1318,7 +1318,7 @@ $LN11@PMC_Greate:
 $LN12@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 975  :     _BitScanForward(&pos, x);
+; 991  :     _BitScanForward(&pos, x);
 
 	mov	eax, DWORD PTR _v$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -1328,19 +1328,19 @@ $LN12@PMC_Greate:
 	mov	ecx, DWORD PTR [esi+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 975  :     _BitScanForward(&pos, x);
+; 991  :     _BitScanForward(&pos, x);
 
 	bsf	edx, eax
 
-; 469  :     return (x <= y ? x : y);
+; 485  :     return (x <= y ? x : y);
 
 	cmp	ecx, edx
 
-; 975  :     _BitScanForward(&pos, x);
+; 991  :     _BitScanForward(&pos, x);
 
 	mov	DWORD PTR _pos$1$[ebp], edx
 
-; 469  :     return (x <= y ? x : y);
+; 485  :     return (x <= y ? x : y);
 
 	cmovbe	edx, ecx
 	mov	DWORD PTR _k$1$[ebp], edx
@@ -1370,7 +1370,7 @@ $LN12@PMC_Greate:
 $LN13@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, ebx
 	mov	ecx, edx
@@ -1394,7 +1394,7 @@ $LN30@PMC_Greate:
 	push	DWORD PTR [eax+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 454  :     return ((u + v - 1) / v);
+; 470  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _work_bit_count$1$[ebp]
 	add	eax, 31					; 0000001fH
@@ -1646,7 +1646,7 @@ $LL7@GreatestCo:
 $LN19@GreatestCo:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _w_buf$[ebp]
 	mov	ecx, ebx
@@ -1657,7 +1657,7 @@ $LN19@GreatestCo:
 	mov	eax, DWORD PTR _w_buf_count$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -1683,73 +1683,73 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __TZCNT_ALT_UNIT PROC					; COMDAT
 
-; 969  : {
+; 985  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 970  :     if (x == 0)
+; 986  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@TZCNT_ALT_
 
-; 971  :         return (sizeof(x) * 8);
+; 987  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 976  : #elif defined(__GNUC__)
-; 977  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-; 978  : #else
-; 979  : #error unknown compiler
-; 980  : #endif
-; 981  : #elif defined(_M_X64)
-; 982  : #ifdef _MSC_VER
-; 983  :     _UINT32_T pos;
-; 984  :     _BitScanForward64(&pos, x);
-; 985  : #elif defined(__GNUC__)
-; 986  :     _UINT64_T pos;
-; 987  :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
-; 988  : #else
-; 989  : #error unknown compiler
-; 990  : #endif
-; 991  : #else
-; 992  : #error unknown platform
-; 993  : #endif
-; 994  :     return (pos);
-; 995  : }
+; 992  : #elif defined(__GNUC__)
+; 993  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+; 994  : #else
+; 995  : #error unknown compiler
+; 996  : #endif
+; 997  : #elif defined(_M_X64)
+; 998  : #ifdef _MSC_VER
+; 999  :     _UINT32_T pos;
+; 1000 :     _BitScanForward64(&pos, x);
+; 1001 : #elif defined(__GNUC__)
+; 1002 :     _UINT64_T pos;
+; 1003 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 1004 : #else
+; 1005 : #error unknown compiler
+; 1006 : #endif
+; 1007 : #else
+; 1008 : #error unknown platform
+; 1009 : #endif
+; 1010 :     return (pos);
+; 1011 : }
 
 	pop	ebp
 	ret	0
 $LN2@TZCNT_ALT_:
 
-; 972  : #ifdef _M_IX86
-; 973  :     _UINT32_T pos;
-; 974  : #ifdef _MSC_VER
-; 975  :     _BitScanForward(&pos, x);
+; 988  : #ifdef _M_IX86
+; 989  :     _UINT32_T pos;
+; 990  : #ifdef _MSC_VER
+; 991  :     _BitScanForward(&pos, x);
 
 	bsf	eax, eax
 
-; 976  : #elif defined(__GNUC__)
-; 977  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-; 978  : #else
-; 979  : #error unknown compiler
-; 980  : #endif
-; 981  : #elif defined(_M_X64)
-; 982  : #ifdef _MSC_VER
-; 983  :     _UINT32_T pos;
-; 984  :     _BitScanForward64(&pos, x);
-; 985  : #elif defined(__GNUC__)
-; 986  :     _UINT64_T pos;
-; 987  :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
-; 988  : #else
-; 989  : #error unknown compiler
-; 990  : #endif
-; 991  : #else
-; 992  : #error unknown platform
-; 993  : #endif
-; 994  :     return (pos);
-; 995  : }
+; 992  : #elif defined(__GNUC__)
+; 993  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+; 994  : #else
+; 995  : #error unknown compiler
+; 996  : #endif
+; 997  : #elif defined(_M_X64)
+; 998  : #ifdef _MSC_VER
+; 999  :     _UINT32_T pos;
+; 1000 :     _BitScanForward64(&pos, x);
+; 1001 : #elif defined(__GNUC__)
+; 1002 :     _UINT64_T pos;
+; 1003 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 1004 : #else
+; 1005 : #error unknown compiler
+; 1006 : #endif
+; 1007 : #else
+; 1008 : #error unknown platform
+; 1009 : #endif
+; 1010 :     return (pos);
+; 1011 : }
 
 	pop	ebp
 	ret	0
@@ -1762,58 +1762,58 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 889  : {
+; 905  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 890  :     if (x == 0)
+; 906  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 891  :         return (sizeof(x) * 8);
+; 907  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 915  : }
+; 931  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 892  : #ifdef _M_IX86
-; 893  :     _UINT32_T pos;
-; 894  : #ifdef _MSC_VER
-; 895  :     _BitScanReverse(&pos, x);
+; 908  : #ifdef _M_IX86
+; 909  :     _UINT32_T pos;
+; 910  : #ifdef _MSC_VER
+; 911  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 896  : #elif defined(__GNUC__)
-; 897  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 898  : #else
-; 899  : #error unknown compiler
-; 900  : #endif
-; 901  : #elif defined(_M_X64)
-; 902  : #ifdef _MSC_VER
-; 903  :     _UINT32_T pos;
-; 904  :     _BitScanReverse64(&pos, x);
-; 905  : #elif defined(__GNUC__)
-; 906  :     _UINT64_T pos;
-; 907  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 908  : #else
-; 909  : #error unknown compiler
-; 910  : #endif
-; 911  : #else
-; 912  : #error unknown platform
-; 913  : #endif
-; 914  :     return (sizeof(x) * 8 - 1 - pos);
+; 912  : #elif defined(__GNUC__)
+; 913  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 914  : #else
+; 915  : #error unknown compiler
+; 916  : #endif
+; 917  : #elif defined(_M_X64)
+; 918  : #ifdef _MSC_VER
+; 919  :     _UINT32_T pos;
+; 920  :     _BitScanReverse64(&pos, x);
+; 921  : #elif defined(__GNUC__)
+; 922  :     _UINT64_T pos;
+; 923  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 924  : #else
+; 925  : #error unknown compiler
+; 926  : #endif
+; 927  : #else
+; 928  : #error unknown platform
+; 929  : #endif
+; 930  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 915  : }
+; 931  : }
 
 	pop	ebp
 	ret	0
@@ -1826,44 +1826,44 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC					; COMDAT
 
-; 856  : {
+; 872  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 857  :     if (x == 0)
+; 873  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 858  :         return (sizeof(x) * 8);
+; 874  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 868  : }
+; 884  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 859  :     _UINT32_T pos;
-; 860  : #ifdef _MSC_VER
-; 861  :     _BitScanReverse(&pos, x);
+; 875  :     _UINT32_T pos;
+; 876  : #ifdef _MSC_VER
+; 877  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 862  : #elif defined(__GNUC__)
-; 863  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 864  : #else
-; 865  : #error unknown compiler
-; 866  : #endif
-; 867  :     return (sizeof(x) * 8 - 1 - pos);
+; 878  : #elif defined(__GNUC__)
+; 879  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 880  : #else
+; 881  : #error unknown compiler
+; 882  : #endif
+; 883  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 868  : }
+; 884  : }
 
 	pop	ebp
 	ret	0
@@ -1877,18 +1877,18 @@ _x$ = 8							; size = 4
 _y$ = 12						; size = 4
 __MINIMUM_UNIT PROC					; COMDAT
 
-; 468  : {
+; 484  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 469  :     return (x <= y ? x : y);
+; 485  :     return (x <= y ? x : y);
 
 	mov	eax, DWORD PTR _y$[ebp]
 	cmp	DWORD PTR _x$[ebp], eax
 	cmovbe	eax, DWORD PTR _x$[ebp]
 
-; 470  : }
+; 486  : }
 
 	pop	ebp
 	ret	0
@@ -1902,18 +1902,18 @@ _x$ = 8							; size = 4
 _y$ = 12						; size = 4
 __MAXIMUM_UNIT PROC					; COMDAT
 
-; 463  : {
+; 479  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	mov	eax, DWORD PTR _y$[ebp]
 	cmp	DWORD PTR _x$[ebp], eax
 	cmovae	eax, DWORD PTR _x$[ebp]
 
-; 465  : }
+; 481  : }
 
 	pop	ebp
 	ret	0
@@ -1927,12 +1927,12 @@ _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 453  : {
+; 469  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 454  :     return ((u + v - 1) / v);
+; 470  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _u$[ebp]
 	xor	edx, edx
@@ -1940,7 +1940,7 @@ __DIVIDE_CEILING_UNIT PROC				; COMDAT
 	add	eax, DWORD PTR _v$[ebp]
 	div	DWORD PTR _v$[ebp]
 
-; 455  : }
+; 471  : }
 
 	pop	ebp
 	ret	0
@@ -1954,22 +1954,22 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC					; COMDAT
 
-; 442  : {
+; 458  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 443  :     *result_high = (_UINT32_T)(value >> 32);
+; 459  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _result_high$[ebp]
 	mov	ecx, DWORD PTR _value$[ebp+4]
 	mov	DWORD PTR [eax], ecx
 
-; 444  :     return ((_UINT32_T)value);
+; 460  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 445  : }
+; 461  : }
 
 	pop	ebp
 	ret	0
@@ -1984,13 +1984,13 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 326  : {
+; 342  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 327  : #ifdef _M_IX86
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 343  : #ifdef _M_IX86
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	push	esi
@@ -2001,12 +2001,12 @@ __COPY_MEMORY_UNIT PROC					; COMDAT
 	pop	edi
 	pop	esi
 
-; 329  : #elif defined(_M_X64)
-; 330  :     __movsq(d, s, count);
-; 331  : #else
-; 332  : #error unknown platform
-; 333  : #endif
-; 334  : }
+; 345  : #elif defined(_M_X64)
+; 346  :     __movsq(d, s, count);
+; 347  : #else
+; 348  : #error unknown platform
+; 349  : #endif
+; 350  : }
 
 	pop	ebp
 	ret	0
@@ -2213,7 +2213,7 @@ $LN12@PMC_Greate:
 	lea	eax, DWORD PTR _work_u_buf_code$2[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	cmp	DWORD PTR [esi+4], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -2223,7 +2223,7 @@ $LN12@PMC_Greate:
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	cmovae	ecx, DWORD PTR [esi+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -2235,7 +2235,7 @@ $LN12@PMC_Greate:
 	push	ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 464  :     return (x >= y ? x : y);
+; 480  :     return (x >= y ? x : y);
 
 	mov	DWORD PTR _work_bit_count$1$[ebp], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_greatestcommondivisor.c
@@ -2349,7 +2349,7 @@ $LN17@PMC_Greate:
 	mov	eax, DWORD PTR [ebx+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 469  :     return (x <= y ? x : y);
+; 485  :     return (x <= y ? x : y);
 
 	cmp	ecx, eax
 	mov	edx, eax
@@ -2360,7 +2360,7 @@ $LN17@PMC_Greate:
 	mov	DWORD PTR _v_tzcnt$1$[ebp], eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 469  :     return (x <= y ? x : y);
+; 485  :     return (x <= y ? x : y);
 
 	cmovbe	edx, ecx
 	mov	DWORD PTR _k$1$[ebp], edx
@@ -2390,7 +2390,7 @@ $LN17@PMC_Greate:
 $LN18@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, edx
 	rep movsd
@@ -2418,7 +2418,7 @@ $LN31@PMC_Greate:
 $LN20@PMC_Greate:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 328  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 344  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, ebx
 	rep movsd
@@ -2434,7 +2434,7 @@ $LN33@PMC_Greate:
 	push	DWORD PTR [eax+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 454  :     return ((u + v - 1) / v);
+; 470  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _work_bit_count$1$[ebp]
 	add	eax, 31					; 0000001fH

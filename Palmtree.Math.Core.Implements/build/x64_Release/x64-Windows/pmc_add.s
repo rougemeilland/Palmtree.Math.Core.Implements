@@ -817,12 +817,13 @@ PMC_Add_X_I_Imp:
 	leaq	72(%rsp), %r8
 	movl	$31, %eax
 /APP
- # 863 "pmc_internal.h" 1
+ # 879 "pmc_internal.h" 1
 	bsrl %ebx, %edx
  # 0 "" 2
 /NO_APP
 	subl	%edx, %eax
 	movl	$32, %edx
+	cltq
 	subq	%rax, %rdx
 	movq	8(%rcx), %rax
 	movq	%rdi, %rcx
@@ -892,8 +893,8 @@ PMC_Add_X_L_Imp:
 	.seh_stackalloc	80
 	.seh_endprologue
 	testb	$2, 32(%rcx)
-	movq	%rcx, %rbx
-	movq	%rdx, %rsi
+	movq	%rcx, %rsi
+	movq	%rdx, %rbx
 	movq	%r8, %rdi
 	je	.L91
 	testq	%rdx, %rdx
@@ -920,30 +921,35 @@ PMC_Add_X_L_Imp:
 	ret
 	.p2align 4,,10
 .L94:
+	leaq	72(%rsp), %r8
+	movl	$63, %eax
 /APP
- # 907 "pmc_internal.h" 1
+ # 923 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
-	leaq	72(%rsp), %r8
-	addq	$1, %rdx
-	cmpq	%rdx, 8(%rcx)
-	cmovnb	8(%rcx), %rdx
+	subl	%edx, %eax
+	movl	$64, %edx
+	cltq
+	subq	%rax, %rdx
+	movq	8(%rcx), %rax
 	movq	%rdi, %rcx
+	cmpq	%rax, %rdx
+	cmovb	%rax, %rdx
 	addq	$1, %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
 	jne	.L90
 	movq	(%rdi), %rdx
-	movq	(%rbx), %r10
+	movq	(%rsi), %r10
 	movq	48(%rdx), %r8
 	movq	40(%rdx), %rax
-	movq	48(%rbx), %rdx
+	movq	48(%rsi), %rdx
 	leaq	8(%r8), %r9
-	addq	(%rdx), %rsi
+	addq	(%rdx), %rbx
 	setc	%cl
 	subq	$1, %rax
-	movq	%rsi, (%r8)
+	movq	%rbx, (%r8)
 	addq	$8, %rdx
 	movq	%rax, 32(%rsp)
 	leaq	-1(%r10), %r8
@@ -965,7 +971,7 @@ PMC_Add_X_L_Imp:
 	.p2align 4,,10
 .L92:
 	movq	%r8, %rdx
-	movq	%rsi, %rcx
+	movq	%rbx, %rcx
 	call	From_L_Imp
 	addq	$80, %rsp
 	popq	%rbx
