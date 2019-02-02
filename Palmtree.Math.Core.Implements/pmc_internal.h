@@ -42,6 +42,9 @@
 
 #pragma region マクロの定義
 #define countof(x)  (sizeof(x)/sizeof(*(x)))
+
+#define PMC_SIGNATURE (((_UINT32_T)'I' << 24) | ((_UINT32_T)'c' << 16) | ((_UINT32_T)'M' << 8) | (_UINT32_T)'p')
+#define PMC_UINT_SIGNATURE (((_UINT32_T)'T' << 24) | ((_UINT32_T)'n' << 16) | ((_UINT32_T)'i' << 8) | (_UINT32_T)'U')
 #pragma endregion
 
 
@@ -67,6 +70,8 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
 
 typedef struct __tag_NUMBER_HEADER
 {
+    _UINT32_T SIGNATURE1;               // テーブルを識別するためのデータ1
+    _UINT32_T SIGNATURE2;               // テーブルを識別するためのデータ2
     __UNIT_TYPE UNIT_WORD_COUNT;        // BLOCKが示す領域において有効なデータが格納されている要素の数
     __UNIT_TYPE UNIT_BIT_COUNT;         // データの有効部分の合計ビット数
     __UNIT_TYPE HASH_CODE;              // データのハッシュコード。

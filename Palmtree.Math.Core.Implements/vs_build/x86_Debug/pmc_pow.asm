@@ -96,7 +96,7 @@ _PMC_Pow_X_I_Imp PROC
 ; 85   :     if (v->IS_ZERO)
 
 	mov	eax, DWORD PTR _v$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
+	mov	ecx, DWORD PTR [eax+24]
 	shr	ecx, 1
 	and	ecx, 1
 	je	SHORT $LN2@PMC_Pow_X_
@@ -142,7 +142,7 @@ $LN2@PMC_Pow_X_:
 ; 103  :     else if (v->IS_ONE)
 
 	mov	eax, DWORD PTR _v$[ebp]
-	mov	ecx, DWORD PTR [eax+16]
+	mov	ecx, DWORD PTR [eax+24]
 	shr	ecx, 2
 	and	ecx, 1
 	je	SHORT $LN6@PMC_Pow_X_
@@ -224,7 +224,7 @@ $LN10@PMC_Pow_X_:
 ; 134  :             __UNIT_TYPE v_bit_count = v->UNIT_BIT_COUNT;
 
 	mov	eax, DWORD PTR _v$[ebp]
-	mov	ecx, DWORD PTR [eax+4]
+	mov	ecx, DWORD PTR [eax+12]
 	mov	DWORD PTR _v_bit_count$9[ebp], ecx
 
 ; 135  : 
@@ -361,7 +361,7 @@ $LN16@PMC_Pow_X_:
 
 	mov	eax, DWORD PTR _r$[ebp]
 	mov	ecx, DWORD PTR [eax]
-	mov	edx, DWORD PTR [ecx+24]
+	mov	edx, DWORD PTR [ecx+32]
 	push	edx
 	mov	eax, DWORD PTR _work2_buf$2[ebp]
 	push	eax
@@ -370,10 +370,10 @@ $LN16@PMC_Pow_X_:
 	mov	edx, DWORD PTR _e$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _v$[ebp]
-	mov	ecx, DWORD PTR [eax]
+	mov	ecx, DWORD PTR [eax+8]
 	push	ecx
 	mov	edx, DWORD PTR _v$[ebp]
-	mov	eax, DWORD PTR [edx+24]
+	mov	eax, DWORD PTR [edx+32]
 	push	eax
 	call	_Pow_Imp
 	add	esp, 24					; 00000018H
@@ -421,7 +421,7 @@ $LN18@PMC_Pow_X_:
 	push	edx
 	mov	eax, DWORD PTR _r$[ebp]
 	mov	ecx, DWORD PTR [eax]
-	mov	edx, DWORD PTR [ecx+24]
+	mov	edx, DWORD PTR [ecx+32]
 	push	edx
 	call	_CheckBlockLight
 	add	esp, 8
@@ -485,6 +485,7 @@ $LN1@PMC_Pow_X_:
 	mov	esp, ebp
 	pop	ebp
 	ret	0
+	npad	3
 $LN27@PMC_Pow_X_:
 	DD	5
 	DD	$LN26@PMC_Pow_X_
@@ -850,7 +851,7 @@ _pos$ = -8						; size = 4
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC
 
-; 877  : {
+; 882  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -861,36 +862,36 @@ __LZCNT_ALT_32 PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 878  :     if (x == 0)
+; 883  :     if (x == 0)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 879  :         return (sizeof(x) * 8);
+; 884  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 880  :     _UINT32_T pos;
-; 881  : #ifdef _MSC_VER
-; 882  :     _BitScanReverse(&pos, x);
+; 885  :     _UINT32_T pos;
+; 886  : #ifdef _MSC_VER
+; 887  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _pos$[ebp], eax
 
-; 883  : #elif defined(__GNUC__)
-; 884  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 885  : #else
-; 886  : #error unknown compiler
-; 887  : #endif
-; 888  :     return (sizeof(x) * 8 - 1 - pos);
+; 888  : #elif defined(__GNUC__)
+; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 890  : #else
+; 891  : #error unknown compiler
+; 892  : #endif
+; 893  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, DWORD PTR _pos$[ebp]
 $LN1@LZCNT_ALT_:
 
-; 889  : }
+; 894  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -926,7 +927,7 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_UNIT PROC
 
-; 397  : {
+; 402  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -934,20 +935,20 @@ __ZERO_MEMORY_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 398  : #ifdef _M_IX86
-; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 403  : #ifdef _M_IX86
+; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	xor	eax, eax
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosd
 
-; 400  : #elif defined(_M_X64)
-; 401  :     __stosq(d, 0, count);
-; 402  : #else
-; 403  : #error unknown platform
-; 404  : #endif
-; 405  : }
+; 405  : #elif defined(_M_X64)
+; 406  :     __stosq(d, 0, count);
+; 407  : #else
+; 408  : #error unknown platform
+; 409  : #endif
+; 410  : }
 
 	pop	edi
 	cmp	ebp, esp
@@ -964,7 +965,7 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC
 
-; 347  : {
+; 352  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -973,20 +974,20 @@ __COPY_MEMORY_UNIT PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 348  : #ifdef _M_IX86
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 353  : #ifdef _M_IX86
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsd
 
-; 350  : #elif defined(_M_X64)
-; 351  :     __movsq(d, s, count);
-; 352  : #else
-; 353  : #error unknown platform
-; 354  : #endif
-; 355  : }
+; 355  : #elif defined(_M_X64)
+; 356  :     __movsq(d, s, count);
+; 357  : #else
+; 358  : #error unknown platform
+; 359  : #endif
+; 360  : }
 
 	pop	edi
 	pop	esi

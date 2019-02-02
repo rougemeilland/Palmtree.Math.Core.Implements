@@ -565,13 +565,13 @@ x$ = 8
 y$ = 16
 _MINIMUM_UNIT PROC					; COMDAT
 
-; 490  :     return (x <= y ? x : y);
+; 495  :     return (x <= y ? x : y);
 
 	cmp	rcx, rdx
 	cmovbe	rdx, rcx
 	mov	rax, rdx
 
-; 491  : }
+; 496  : }
 
 	ret	0
 _MINIMUM_UNIT ENDP
@@ -584,7 +584,7 @@ u$ = 8
 v$ = 16
 _DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	lea	rax, QWORD PTR [rdx-1]
 	mov	r8, rdx
@@ -592,7 +592,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	xor	edx, edx
 	div	r8
 
-; 476  : }
+; 481  : }
 
 	ret	0
 _DIVIDE_CEILING_UNIT ENDP
@@ -605,17 +605,17 @@ value$ = 8
 result_high$ = 16
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 464  :     *result_high = (_UINT32_T)(value >> 32);
+; 469  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, rcx
 	shr	rax, 32					; 00000020H
 	mov	DWORD PTR [rdx], eax
 
-; 465  :     return ((_UINT32_T)value);
+; 470  :     return ((_UINT32_T)value);
 
 	mov	eax, ecx
 
-; 466  : }
+; 471  : }
 
 	ret	0
 _FROMDWORDTOWORD ENDP
@@ -628,14 +628,14 @@ value_high$ = 8
 value_low$ = 16
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, ecx
 	shl	rax, 32					; 00000020H
 	mov	ecx, edx
 	or	rax, rcx
 
-; 460  : }
+; 465  : }
 
 	ret	0
 _FROMWORDTODWORD ENDP
@@ -708,14 +708,14 @@ $LN23:
 ; 330  :     NUMBER_HEADER* nw;
 ; 331  :     if (nu->IS_ZERO)
 
-	test	BYTE PTR [rdi+32], 2
+	test	BYTE PTR [rdi+40], 2
 	mov	QWORD PTR [rsp+72], rbp
 	jne	SHORT $LN19@PMC_Bitwis
 
 ; 332  :         *w = &number_zero;
 ; 333  :     else if (nv->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	jne	SHORT $LN19@PMC_Bitwis
 
 ; 334  :         *w = &number_zero;
@@ -724,16 +724,16 @@ $LN23:
 ; 337  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 ; 338  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
-	mov	rbp, QWORD PTR [rbx+8]
+	mov	rbp, QWORD PTR [rbx+16]
 
 ; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nw_light_check_code$1[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 490  :     return (x <= y ? x : y);
+; 495  :     return (x <= y ? x : y);
 
-	cmp	QWORD PTR [rdi+8], rbp
+	cmp	QWORD PTR [rdi+16], rbp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
 ; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
@@ -741,9 +741,9 @@ $LN23:
 	lea	rcx, QWORD PTR nw$[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 490  :     return (x <= y ? x : y);
+; 495  :     return (x <= y ? x : y);
 
-	cmovbe	rbp, QWORD PTR [rdi+8]
+	cmovbe	rbp, QWORD PTR [rdi+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
 ; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
@@ -758,32 +758,32 @@ $LN23:
 	mov	r8, QWORD PTR nw$[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	lea	r9, QWORD PTR [rbp+63]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
 ; 344  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
 
-	mov	rdx, QWORD PTR [rbx+48]
-	mov	rcx, QWORD PTR [rdi+48]
+	mov	rdx, QWORD PTR [rbx+56]
+	mov	rcx, QWORD PTR [rdi+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	shr	r9, 6
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
 ; 344  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
 
-	mov	r8, QWORD PTR [r8+48]
+	mov	r8, QWORD PTR [r8+56]
 	call	BitwiseAnd_X_X
 
 ; 345  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nw$[rsp]
 	mov	rdx, QWORD PTR nw_light_check_code$1[rsp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	call	CheckBlockLight
 	test	eax, eax
 	jne	SHORT $LN21@PMC_Bitwis
@@ -797,7 +797,7 @@ $LN23:
 ; 348  :         if (nw->IS_ZERO)
 
 	mov	rax, QWORD PTR nw$[rsp]
-	test	BYTE PTR [rax+32], 2
+	test	BYTE PTR [rax+40], 2
 	je	SHORT $LN13@PMC_Bitwis
 
 ; 349  :         {
@@ -894,7 +894,7 @@ $LN22:
 ; 280  :         return (result);
 ; 281  :     if (nu->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	jne	SHORT $LN20@PMC_Bitwis
 
 ; 282  :     {
@@ -947,7 +947,7 @@ $LN8@PMC_Bitwis:
 ; 308  :             // _UINT64_T が 1 ワードで表現できる場合
 ; 309  :             *w = nu->BLOCK[0] & v;
 
-	mov	rax, QWORD PTR [rbx+48]
+	mov	rax, QWORD PTR [rbx+56]
 	mov	rax, QWORD PTR [rax]
 	and	rax, rsi
 
@@ -1028,7 +1028,7 @@ $LN14:
 ; 196  :         return (result);
 ; 197  :     if (nu->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	jne	SHORT $LN12@PMC_Bitwis
 
 ; 198  :     {
@@ -1067,7 +1067,7 @@ $LN8@PMC_Bitwis:
 ; 211  :         // u と v の bit AND を計算する
 ; 212  :         *w = nu->BLOCK[0] & v;
 
-	mov	rax, QWORD PTR [rbx+48]
+	mov	rax, QWORD PTR [rbx+56]
 	mov	eax, DWORD PTR [rax]
 	and	eax, esi
 
@@ -1148,7 +1148,7 @@ $LN22:
 ; 231  :         return (result);
 ; 232  :     if (nv->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	jne	SHORT $LN20@PMC_Bitwis
 
 ; 233  :     {
@@ -1201,7 +1201,7 @@ $LN8@PMC_Bitwis:
 ; 259  :             // _UINT64_T が 1 ワードで表現できる場合
 ; 260  :             *w = nv->BLOCK[0] & u;
 
-	mov	rax, QWORD PTR [rbx+48]
+	mov	rax, QWORD PTR [rbx+56]
 	mov	rax, QWORD PTR [rax]
 	and	rax, rsi
 
@@ -1283,7 +1283,7 @@ $LN14:
 ; 161  :         return (result);
 ; 162  :     if (nv->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	jne	SHORT $LN12@PMC_Bitwis
 
 ; 163  :     {
@@ -1322,7 +1322,7 @@ $LN8@PMC_Bitwis:
 ; 176  :         // u と v の bit AND を計算する
 ; 177  :         *w = nv->BLOCK[0] & u;
 
-	mov	rax, QWORD PTR [rbx+48]
+	mov	rax, QWORD PTR [rbx+56]
 	mov	eax, DWORD PTR [rax]
 	and	eax, esi
 

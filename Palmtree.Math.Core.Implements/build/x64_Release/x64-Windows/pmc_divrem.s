@@ -1182,7 +1182,7 @@ SubtructOneLineX:
 .L51:
 	movq	(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %r12
  # 0 "" 2
 /NO_APP
@@ -1199,7 +1199,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	8(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1216,7 +1216,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	16(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1233,7 +1233,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	24(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1250,7 +1250,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	32(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1267,7 +1267,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	40(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1284,7 +1284,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	48(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1301,7 +1301,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	56(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1318,7 +1318,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	64(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1335,7 +1335,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	72(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1352,7 +1352,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	80(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1369,7 +1369,7 @@ SubtructOneLineX:
 	movq	%rdx, 80(%r9)
 	movq	88(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1386,7 +1386,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	96(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1403,7 +1403,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	104(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1420,7 +1420,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	112(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1437,7 +1437,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	120(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1454,7 +1454,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	128(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1471,7 +1471,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	136(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1488,7 +1488,7 @@ SubtructOneLineX:
 	movq	%rdx, 136(%r9)
 	movq	144(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1505,7 +1505,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	152(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1522,7 +1522,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	160(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1539,7 +1539,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	168(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1556,7 +1556,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	176(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1573,7 +1573,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	184(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1590,7 +1590,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	192(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1607,7 +1607,7 @@ SubtructOneLineX:
 	movq	%rdx, 192(%r9)
 	movq	200(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1624,7 +1624,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	208(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1641,7 +1641,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	216(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1658,7 +1658,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	224(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1675,7 +1675,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	232(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1692,7 +1692,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	240(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1709,7 +1709,7 @@ SubtructOneLineX:
 	setc	%bpl
 	movq	248(%r10), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %rdi
  # 0 "" 2
 /NO_APP
@@ -1805,7 +1805,7 @@ SubtructOneLineX:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rax, %r8
  # 0 "" 2
 /NO_APP
@@ -1832,7 +1832,7 @@ SubtructOneLineX:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %r9
  # 0 "" 2
 /NO_APP
@@ -1850,7 +1850,7 @@ SubtructOneLineX:
 	setc	%bl
 	movq	8(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r11
  # 0 "" 2
 /NO_APP
@@ -1879,7 +1879,7 @@ SubtructOneLineX:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %r10
  # 0 "" 2
 /NO_APP
@@ -1897,7 +1897,7 @@ SubtructOneLineX:
 	setc	%bl
 	movq	8(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r10, %r11
  # 0 "" 2
 /NO_APP
@@ -1914,7 +1914,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	16(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -1931,7 +1931,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	24(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -1960,7 +1960,7 @@ SubtructOneLineX:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %r10
  # 0 "" 2
 /NO_APP
@@ -1978,7 +1978,7 @@ SubtructOneLineX:
 	setc	%bl
 	movq	8(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r10, %r11
  # 0 "" 2
 /NO_APP
@@ -1995,7 +1995,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	16(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2012,7 +2012,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	24(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2029,7 +2029,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	32(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2046,7 +2046,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	40(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2063,7 +2063,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	48(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2080,7 +2080,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	56(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -2109,7 +2109,7 @@ SubtructOneLineX:
 	movq	(%r8), %rdx
 	movl	%ebp, %ebx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %rsi, %r9
  # 0 "" 2
 /NO_APP
@@ -2127,7 +2127,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	8(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2144,7 +2144,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	16(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2161,7 +2161,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	24(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2178,7 +2178,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	32(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2195,7 +2195,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	40(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2212,7 +2212,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	48(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2229,7 +2229,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	56(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2246,7 +2246,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	64(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2263,7 +2263,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	72(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2280,7 +2280,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	80(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2297,7 +2297,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	88(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2314,7 +2314,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	96(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2331,7 +2331,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	104(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2348,7 +2348,7 @@ SubtructOneLineX:
 	movq	%rdx, 104(%r13)
 	movq	112(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2365,7 +2365,7 @@ SubtructOneLineX:
 	setc	%r11b
 	movq	120(%r8), %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r9, %r10
  # 0 "" 2
 /NO_APP
@@ -2431,7 +2431,7 @@ DivRem_X_X_using_ADX_MULX:
 	je	.L121
 	movl	$63, %r9d
 /APP
- # 957 "pmc_internal.h" 1
+ # 962 "pmc_internal.h" 1
 	bsrq %rax, %rax
  # 0 "" 2
 /NO_APP
@@ -2520,7 +2520,7 @@ DivRem_X_X_using_ADX_MULX:
 	movq	%r8, %rax
 	movq	%r9, %rdx
 /APP
- # 694 "pmc_internal.h" 1
+ # 699 "pmc_internal.h" 1
 	divq %rcx
  # 0 "" 2
 /NO_APP
@@ -2530,14 +2530,14 @@ DivRem_X_X_using_ADX_MULX:
 	movq	%r10, %rdx
 	movq	56(%rsp), %r15
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rbx, %rax, %r14
  # 0 "" 2
 /NO_APP
 	movq	%rbx, %rdx
 	movq	%rax, 64(%rsp)
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rcx, %r11, %rax
  # 0 "" 2
 /NO_APP
@@ -2564,13 +2564,13 @@ DivRem_X_X_using_ADX_MULX:
 	leaq	-1(%rbx), %rax
 	movq	%r10, %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rax, %r14, %r11
  # 0 "" 2
 /NO_APP
 	movq	%rax, %rdx
 /APP
- # 653 "pmc_internal.h" 1
+ # 658 "pmc_internal.h" 1
 	mulxq %rcx, %rcx, %r10
  # 0 "" 2
 /NO_APP
@@ -3001,7 +3001,7 @@ DivRem_X_X_using_ADC_MUL:
 	je	.L183
 	movl	$63, %r9d
 /APP
- # 957 "pmc_internal.h" 1
+ # 962 "pmc_internal.h" 1
 	bsrq %rax, %rax
  # 0 "" 2
 /NO_APP
@@ -3085,7 +3085,7 @@ DivRem_X_X_using_ADC_MUL:
 	movq	%rcx, %rax
 	movq	%r9, %rdx
 /APP
- # 694 "pmc_internal.h" 1
+ # 699 "pmc_internal.h" 1
 	divq %r11
  # 0 "" 2
 /NO_APP
@@ -3550,224 +3550,224 @@ DivRem_X_1W:
 .L222:
 	movq	(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, (%r11)
 	movq	-8(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -8(%r11)
 	movq	-16(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -16(%r11)
 	movq	-24(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -24(%r11)
 	movq	-32(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -32(%r11)
 	movq	-40(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -40(%r11)
 	movq	-48(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -48(%r11)
 	movq	-56(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -56(%r11)
 	movq	-64(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -64(%r11)
 	movq	-72(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -72(%r11)
 	movq	-80(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -80(%r11)
 	movq	-88(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -88(%r11)
 	movq	-96(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -96(%r11)
 	movq	-104(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -104(%r11)
 	movq	-112(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -112(%r11)
 	movq	-120(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -120(%r11)
 	movq	-128(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -128(%r11)
 	movq	-136(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -136(%r11)
 	movq	-144(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -144(%r11)
 	movq	-152(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -152(%r11)
 	movq	-160(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -160(%r11)
 	movq	-168(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -168(%r11)
 	movq	-176(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -176(%r11)
 	movq	-184(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -184(%r11)
 	movq	-192(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -192(%r11)
 	movq	-200(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -200(%r11)
 	movq	-208(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -208(%r11)
 	movq	-216(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -216(%r11)
 	movq	-224(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -224(%r11)
 	movq	-232(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -232(%r11)
 	movq	-240(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, -240(%r11)
 	movq	-248(%r10), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -3810,112 +3810,112 @@ DivRem_X_1W:
 	addq	$-128, %r9
 	addq	$-128, %rbx
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 128(%r9)
 	movq	120(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 120(%r9)
 	movq	112(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 112(%r9)
 	movq	104(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 104(%r9)
 	movq	96(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 96(%r9)
 	movq	88(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 88(%r9)
 	movq	80(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 80(%r9)
 	movq	72(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 72(%r9)
 	movq	64(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 64(%r9)
 	movq	56(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 56(%r9)
 	movq	48(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 48(%r9)
 	movq	40(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 40(%r9)
 	movq	32(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 32(%r9)
 	movq	24(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 24(%r9)
 	movq	16(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 16(%r9)
 	movq	8(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -3929,56 +3929,56 @@ DivRem_X_1W:
 	subq	$64, %r9
 	subq	$64, %rbx
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 64(%r9)
 	movq	56(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 56(%r9)
 	movq	48(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 48(%r9)
 	movq	40(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 40(%r9)
 	movq	32(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 32(%r9)
 	movq	24(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 24(%r9)
 	movq	16(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 16(%r9)
 	movq	8(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -3992,28 +3992,28 @@ DivRem_X_1W:
 	subq	$32, %r9
 	subq	$32, %rbx
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 32(%r9)
 	movq	24(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 24(%r9)
 	movq	16(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 16(%r9)
 	movq	8(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -4027,14 +4027,14 @@ DivRem_X_1W:
 	subq	$16, %r9
 	subq	$16, %rbx
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
 	movq	%rax, 16(%r9)
 	movq	8(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -4046,7 +4046,7 @@ DivRem_X_1W:
 .L249:
 	movq	(%rbx), %rax
 /APP
- # 737 "pmc_internal.h" 1
+ # 742 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -4131,7 +4131,7 @@ DivRem_X_X:
 	xorl	%edx, %edx
 	movq	(%rcx), %rax
 /APP
- # 694 "pmc_internal.h" 1
+ # 699 "pmc_internal.h" 1
 	divq %r8
  # 0 "" 2
 /NO_APP
@@ -4178,7 +4178,7 @@ PMC_DivRem_I_X:
 	testl	%eax, %eax
 	movl	%eax, %r10d
 	jne	.L258
-	movzbl	32(%rbx), %eax
+	movzbl	40(%rbx), %eax
 	testb	$2, %al
 	jne	.L264
 	testl	%ebp, %ebp
@@ -4199,7 +4199,7 @@ PMC_DivRem_I_X:
 	jne	.L265
 	movl	$31, %eax
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %ebp, %edx
  # 0 "" 2
 /NO_APP
@@ -4207,7 +4207,7 @@ PMC_DivRem_I_X:
 	movl	$32, %edx
 	cltq
 	subq	%rax, %rdx
-	cmpq	8(%rbx), %rdx
+	cmpq	16(%rbx), %rdx
 	jnb	.L262
 	movl	%r10d, %eax
 	movl	$0, (%rdi)
@@ -4231,11 +4231,11 @@ PMC_DivRem_I_X:
 	ret
 	.p2align 4,,10
 .L262:
-	movq	48(%rbx), %rcx
+	movq	56(%rbx), %rcx
 	movl	%ebp, %eax
 	xorl	%edx, %edx
 /APP
- # 694 "pmc_internal.h" 1
+ # 699 "pmc_internal.h" 1
 	divq (%rcx)
  # 0 "" 2
 /NO_APP
@@ -4288,7 +4288,7 @@ PMC_DivRem_X_I:
 	jne	.L266
 	testl	%r12d, %r12d
 	je	.L275
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L268
 	movq	.refptr.number_zero(%rip), %rcx
 	movl	$0, 0(%rbp)
@@ -4307,10 +4307,10 @@ PMC_DivRem_X_I:
 .L268:
 	cmpl	$1, %r12d
 	je	.L280
-	movq	8(%rbx), %rcx
+	movq	16(%rbx), %rcx
 	movl	$31, %eax
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %r12d, %edx
  # 0 "" 2
 /NO_APP
@@ -4320,7 +4320,7 @@ PMC_DivRem_X_I:
 	subq	%rax, %rdx
 	cmpq	%rdx, %rcx
 	jnb	.L271
-	movq	48(%rbx), %rax
+	movq	56(%rbx), %rax
 	movq	.refptr.number_zero(%rip), %rcx
 	movq	(%rax), %rax
 	movl	%eax, 0(%rbp)
@@ -4352,24 +4352,24 @@ PMC_DivRem_X_I:
 	movl	%r12d, %r8d
 	movabsq	$2305843009213693951, %rdx
 	movq	$0, 72(%rsp)
-	andq	(%rbx), %rdx
-	movq	48(%rbx), %rcx
-	movq	48(%rax), %r9
+	andq	8(%rbx), %rdx
+	movq	56(%rbx), %rcx
+	movq	56(%rax), %r9
 	leaq	72(%rsp), %rax
 	movq	%rax, 32(%rsp)
 	call	DivRem_X_1W
 	movq	56(%rsp), %rax
 	movq	64(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L276
 	movq	56(%rsp), %rcx
 	call	CommitNumber
-	movq	56(%rsp), %rcx
 	movq	72(%rsp), %rax
-	testb	$2, 32(%rcx)
+	movq	56(%rsp), %rcx
 	movl	%eax, 0(%rbp)
+	testb	$2, 40(%rcx)
 	je	.L269
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
@@ -4415,7 +4415,7 @@ PMC_DivRem_L_X:
 	testl	%eax, %eax
 	movl	%eax, %r10d
 	jne	.L282
-	movzbl	32(%rbx), %eax
+	movzbl	40(%rbx), %eax
 	testb	$2, %al
 	jne	.L288
 	testq	%rbp, %rbp
@@ -4436,7 +4436,7 @@ PMC_DivRem_L_X:
 	jne	.L289
 	movl	$63, %eax
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %rbp, %rdx
  # 0 "" 2
 /NO_APP
@@ -4444,7 +4444,7 @@ PMC_DivRem_L_X:
 	movl	$64, %edx
 	cltq
 	subq	%rax, %rdx
-	cmpq	8(%rbx), %rdx
+	cmpq	16(%rbx), %rdx
 	jnb	.L286
 	movl	%r10d, %eax
 	movq	$0, (%rsi)
@@ -4468,11 +4468,11 @@ PMC_DivRem_L_X:
 	ret
 	.p2align 4,,10
 .L286:
-	movq	48(%rbx), %rcx
+	movq	56(%rbx), %rcx
 	movq	%rbp, %rax
 	xorl	%edx, %edx
 /APP
- # 694 "pmc_internal.h" 1
+ # 699 "pmc_internal.h" 1
 	divq (%rcx)
  # 0 "" 2
 /NO_APP
@@ -4525,7 +4525,7 @@ PMC_DivRem_X_L:
 	jne	.L290
 	testq	%r12, %r12
 	je	.L299
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L292
 	movq	.refptr.number_zero(%rip), %rcx
 	movq	$0, (%rdi)
@@ -4544,10 +4544,10 @@ PMC_DivRem_X_L:
 .L292:
 	cmpq	$1, %r12
 	je	.L304
-	movq	8(%rbx), %rcx
+	movq	16(%rbx), %rcx
 	movl	$63, %eax
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %r12, %rdx
  # 0 "" 2
 /NO_APP
@@ -4557,7 +4557,7 @@ PMC_DivRem_X_L:
 	subq	%rax, %rdx
 	cmpq	%rdx, %rcx
 	jnb	.L295
-	movq	48(%rbx), %rax
+	movq	56(%rbx), %rax
 	movq	.refptr.number_zero(%rip), %rcx
 	movq	(%rax), %rax
 	movq	%rax, (%rdi)
@@ -4589,15 +4589,15 @@ PMC_DivRem_X_L:
 	movq	%r12, %r8
 	movabsq	$2305843009213693951, %rdx
 	movq	$0, 72(%rsp)
-	andq	(%rbx), %rdx
-	movq	48(%rbx), %rcx
-	movq	48(%rax), %r9
+	andq	8(%rbx), %rdx
+	movq	56(%rbx), %rcx
+	movq	56(%rax), %r9
 	leaq	72(%rsp), %rax
 	movq	%rax, 32(%rsp)
 	call	DivRem_X_1W
 	movq	56(%rsp), %rax
 	movq	64(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L300
@@ -4606,7 +4606,7 @@ PMC_DivRem_X_L:
 	movq	72(%rsp), %rax
 	movq	56(%rsp), %rcx
 	movq	%rax, (%rdi)
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	je	.L293
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
@@ -4675,15 +4675,15 @@ PMC_DivRem_X_X:
 	testl	%eax, %eax
 	movl	%eax, %ebx
 	jne	.L306
-	movzbl	32(%rdi), %eax
+	movzbl	40(%rdi), %eax
 	testb	$2, %al
 	jne	.L323
-	testb	$2, 32(%rsi)
+	testb	$2, 40(%rsi)
 	jne	.L324
 	testb	$4, %al
 	jne	.L348
-	movq	8(%rsi), %r13
-	movq	8(%rdi), %rax
+	movq	16(%rsi), %r13
+	movq	16(%rdi), %rax
 	cmpq	%rax, %r13
 	jb	.L349
 	leaq	80(%rsp), %rcx
@@ -4702,7 +4702,7 @@ PMC_DivRem_X_X:
 	call	AllocateNumber
 	testl	%eax, %eax
 	jne	.L341
-	movq	(%rdi), %rcx
+	movq	8(%rdi), %rcx
 	leaq	120(%rsp), %rdx
 	leaq	112(%rsp), %r8
 	salq	$6, %rcx
@@ -4712,15 +4712,15 @@ PMC_DivRem_X_X:
 	je	.L351
 	movabsq	$2305843009213693951, %r9
 	movq	88(%rsp), %rax
-	movq	(%rsi), %rdx
-	movq	48(%rsi), %rcx
-	movq	48(%rdi), %r8
-	movq	48(%rax), %rax
+	movq	8(%rsi), %rdx
+	movq	56(%rsi), %rcx
+	movq	56(%rdi), %r8
+	movq	56(%rax), %rax
 	andq	%r9, %rdx
-	andq	(%rdi), %r9
+	andq	8(%rdi), %r9
 	movq	%rax, 48(%rsp)
 	movq	80(%rsp), %rax
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%r13, 32(%rsp)
 	movq	%rax, 40(%rsp)
 	call	*fp_DivRem_X_X(%rip)
@@ -4731,13 +4731,13 @@ PMC_DivRem_X_X:
 	jne	.L326
 	movq	80(%rsp), %rax
 	movq	96(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L326
 	movq	80(%rsp), %rax
 	movq	96(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L326
@@ -4750,11 +4750,11 @@ PMC_DivRem_X_X:
 	movq	88(%rsp), %rcx
 	call	CommitNumber
 	movq	80(%rsp), %rcx
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	jne	.L352
 .L320:
 	movq	88(%rsp), %rcx
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	jne	.L353
 .L321:
 	movq	80(%rsp), %rax
@@ -4802,23 +4802,23 @@ PMC_DivRem_X_X:
 	movabsq	$2305843009213693951, %rdx
 	movq	80(%rsp), %rax
 	movq	88(%rsp), %r8
-	andq	(%rsi), %rdx
-	movq	48(%rsi), %rcx
-	movq	48(%rax), %r9
-	movq	48(%r8), %r8
-	movq	48(%rdi), %rax
+	andq	8(%rsi), %rdx
+	movq	56(%rsi), %rcx
+	movq	56(%rax), %r9
+	movq	56(%r8), %r8
+	movq	56(%rdi), %rax
 	movq	%r8, 32(%rsp)
 	movq	(%rax), %r8
 	call	DivRem_X_1W
 	movq	80(%rsp), %rax
 	movq	112(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L326
 	movq	88(%rsp), %rax
 	movq	120(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	je	.L345

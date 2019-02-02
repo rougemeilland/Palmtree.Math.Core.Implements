@@ -165,6 +165,7 @@
     <ClInclude Include="pmc_cpuid.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".dep.inc" />
@@ -182,5 +183,8 @@
     <Filter Include="ソース ファイル\テスト">
       <UniqueIdentifier>{73456de2-e64d-43cf-88da-551790c8ffa1}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Palmtree.Math.Core.Implements.rc" />
   </ItemGroup>
 </Project>

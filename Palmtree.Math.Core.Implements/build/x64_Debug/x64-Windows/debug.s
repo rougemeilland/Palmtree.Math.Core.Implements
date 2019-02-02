@@ -399,12 +399,12 @@ FormatTestLabel:
 	movl	%edx, %r9d
 	movl	%eax, %r8d
 	movq	16(%rbp), %rdx
-	leaq	buffer.85738(%rip), %rcx
+	leaq	buffer.85740(%rip), %rcx
 	movq	__imp_wsprintfA(%rip), %rax
 	call	*%rax
 .LVL7:
 	.loc 1 131 12
-	leaq	buffer.85738(%rip), %rax
+	leaq	buffer.85740(%rip), %rax
 	.loc 1 132 1
 	addq	$32, %rsp
 	popq	%rbp
@@ -437,12 +437,12 @@ FormatTestMesssage:
 	movl	24(%rbp), %eax
 	movl	%eax, %r8d
 	movq	16(%rbp), %rdx
-	leaq	buffer.85743(%rip), %rcx
+	leaq	buffer.85745(%rip), %rcx
 	movq	__imp_wsprintfA(%rip), %rax
 	call	*%rax
 .LVL8:
 	.loc 1 138 12
-	leaq	buffer.85743(%rip), %rax
+	leaq	buffer.85745(%rip), %rax
 	.loc 1 139 1
 	addq	$32, %rsp
 	popq	%rbp
@@ -560,8 +560,8 @@ DumpBinary_UNIT:
 	.cfi_endproc
 .LFE4381:
 	.seh_endproc
-.lcomm buffer.85738,256,32
-.lcomm buffer.85743,256,32
+.lcomm buffer.85740,256,32
+.lcomm buffer.85745,256,32
 .Letext0:
 	.file 2 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/crtdefs.h"
 	.file 3 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/excpt.h"
@@ -597,7 +597,7 @@ DumpBinary_UNIT:
 	.file 33 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/winuser.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
-	.long	0x609c
+	.long	0x60c4
 	.word	0x4
 	.secrel32	.Ldebug_abbrev0
 	.byte	0x8
@@ -5709,108 +5709,122 @@ DumpBinary_UNIT:
 	.uleb128 0x4
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x1f
-	.byte	0x34
+	.byte	0x37
 	.byte	0x13
 	.long	0x4ca5
 	.uleb128 0x12
 	.ascii "__tag_NUMBER_HEADER\0"
-	.byte	0x38
+	.byte	0x40
 	.byte	0x1f
-	.byte	0x44
+	.byte	0x47
 	.byte	0x10
-	.long	0x5c07
+	.long	0x5c2f
+	.uleb128 0x13
+	.ascii "SIGNATURE1\0"
+	.byte	0x1f
+	.byte	0x49
+	.byte	0xf
+	.long	0x4c93
+	.byte	0
+	.uleb128 0x13
+	.ascii "SIGNATURE2\0"
+	.byte	0x1f
+	.byte	0x4a
+	.byte	0xf
+	.long	0x4c93
+	.byte	0x4
 	.uleb128 0x13
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1f
-	.byte	0x46
-	.byte	0x11
-	.long	0x5ade
-	.byte	0
-	.uleb128 0x13
-	.ascii "UNIT_BIT_COUNT\0"
-	.byte	0x1f
-	.byte	0x47
+	.byte	0x4b
 	.byte	0x11
 	.long	0x5ade
 	.byte	0x8
 	.uleb128 0x13
-	.ascii "HASH_CODE\0"
+	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x1f
-	.byte	0x48
+	.byte	0x4c
 	.byte	0x11
 	.long	0x5ade
 	.byte	0x10
 	.uleb128 0x13
-	.ascii "TRAILING_ZERO_BITS_COUNT\0"
+	.ascii "HASH_CODE\0"
 	.byte	0x1f
-	.byte	0x49
+	.byte	0x4d
 	.byte	0x11
 	.long	0x5ade
 	.byte	0x18
+	.uleb128 0x13
+	.ascii "TRAILING_ZERO_BITS_COUNT\0"
+	.byte	0x1f
+	.byte	0x4e
+	.byte	0x11
+	.long	0x5ade
+	.byte	0x20
 	.uleb128 0x1d
 	.ascii "IS_STATIC\0"
 	.byte	0x1f
-	.byte	0x4a
+	.byte	0x4f
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1f
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x1d
 	.ascii "IS_ZERO\0"
 	.byte	0x1f
-	.byte	0x4b
+	.byte	0x50
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1e
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x1d
 	.ascii "IS_ONE\0"
 	.byte	0x1f
-	.byte	0x4c
+	.byte	0x51
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1d
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x1d
 	.ascii "IS_EVEN\0"
 	.byte	0x1f
-	.byte	0x4d
+	.byte	0x52
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1c
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x1d
 	.ascii "IS_POWER_OF_TWO\0"
 	.byte	0x1f
-	.byte	0x4e
+	.byte	0x53
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1b
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x13
 	.ascii "BLOCK_COUNT\0"
 	.byte	0x1f
-	.byte	0x50
+	.byte	0x55
 	.byte	0xc
 	.long	0xc9
-	.byte	0x28
+	.byte	0x30
 	.uleb128 0x13
 	.ascii "BLOCK\0"
 	.byte	0x1f
-	.byte	0x54
+	.byte	0x59
 	.byte	0x12
-	.long	0x5c07
-	.byte	0x30
+	.long	0x5c2f
+	.byte	0x38
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
@@ -5818,38 +5832,38 @@ DumpBinary_UNIT:
 	.uleb128 0x4
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x1f
-	.byte	0x55
+	.byte	0x5a
 	.byte	0x3
 	.long	0x5af2
 	.uleb128 0x15
 	.ascii "configuration_info\0"
 	.byte	0x1f
-	.byte	0x5c
+	.byte	0x61
 	.byte	0x1f
 	.long	0x4d06
 	.uleb128 0x15
 	.ascii "number_zero\0"
 	.byte	0x1f
-	.byte	0x5f
+	.byte	0x64
 	.byte	0x16
-	.long	0x5c0d
+	.long	0x5c35
 	.uleb128 0x15
 	.ascii "number_one\0"
 	.byte	0x1f
-	.byte	0x62
+	.byte	0x67
 	.byte	0x16
-	.long	0x5c0d
+	.long	0x5c35
 	.uleb128 0x15
 	.ascii "statistics_info\0"
 	.byte	0x1f
-	.byte	0x65
+	.byte	0x6a
 	.byte	0x1c
 	.long	0x4df1
 	.uleb128 0x20
 	.long	0x12e
-	.long	0x5c8d
+	.long	0x5cb5
 	.uleb128 0x11
-	.long	0x5c8d
+	.long	0x5cb5
 	.uleb128 0x21
 	.byte	0
 	.uleb128 0x6
@@ -5858,25 +5872,25 @@ DumpBinary_UNIT:
 	.uleb128 0x18
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1f
-	.word	0x142
+	.word	0x147
 	.byte	0x29
-	.long	0x5ca8
+	.long	0x5cd0
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x5c7d
+	.long	0x5ca5
 	.uleb128 0x12
 	.ascii "__tag_PMC_DEBUG_ENVIRONMENT\0"
 	.byte	0x10
 	.byte	0x20
 	.byte	0x29
 	.byte	0x10
-	.long	0x5cf0
+	.long	0x5d18
 	.uleb128 0x13
 	.ascii "log\0"
 	.byte	0x20
 	.byte	0x2b
 	.byte	0x27
-	.long	0x5ca8
+	.long	0x5cd0
 	.byte	0
 	.uleb128 0x13
 	.ascii "pause\0"
@@ -5891,7 +5905,7 @@ DumpBinary_UNIT:
 	.byte	0x20
 	.byte	0x2d
 	.byte	0x3
-	.long	0x5cae
+	.long	0x5cd6
 	.uleb128 0x22
 	.ascii "test_total_count\0"
 	.byte	0x1
@@ -5911,7 +5925,7 @@ DumpBinary_UNIT:
 	.byte	0x3
 	.quad	test_ok_count
 	.uleb128 0x23
-	.long	0x5c93
+	.long	0x5cbb
 	.byte	0x1
 	.byte	0x29
 	.byte	0x22
@@ -5927,13 +5941,13 @@ DumpBinary_UNIT:
 	.quad	.LFE4381-.LFB4381
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5de1
+	.long	0x5e09
 	.uleb128 0x25
 	.ascii "buf\0"
 	.byte	0x1
 	.byte	0x8d
 	.byte	0x23
-	.long	0x5c07
+	.long	0x5c2f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -5979,13 +5993,13 @@ DumpBinary_UNIT:
 	.quad	.LFE4380-.LFB4380
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5e63
+	.long	0x5e8b
 	.uleb128 0x25
 	.ascii "format\0"
 	.byte	0x1
 	.byte	0x86
 	.byte	0x26
-	.long	0x5c8d
+	.long	0x5cb5
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -6003,17 +6017,17 @@ DumpBinary_UNIT:
 	.byte	0x1
 	.byte	0x88
 	.byte	0x11
-	.long	0x5e63
+	.long	0x5e8b
 	.uleb128 0x9
 	.byte	0x3
-	.quad	buffer.85743
+	.quad	buffer.85745
 	.uleb128 0x29
 	.quad	.LVL8
-	.long	0x6093
+	.long	0x60bb
 	.byte	0
 	.uleb128 0xe
 	.long	0xbc
-	.long	0x5e73
+	.long	0x5e9b
 	.uleb128 0xf
 	.long	0xd8
 	.byte	0xff
@@ -6028,13 +6042,13 @@ DumpBinary_UNIT:
 	.quad	.LFE4379-.LFB4379
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5ef6
+	.long	0x5f1e
 	.uleb128 0x25
 	.ascii "format\0"
 	.byte	0x1
 	.byte	0x7f
 	.byte	0x23
-	.long	0x5c8d
+	.long	0x5cb5
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -6061,13 +6075,13 @@ DumpBinary_UNIT:
 	.byte	0x1
 	.byte	0x81
 	.byte	0x11
-	.long	0x5e63
+	.long	0x5e8b
 	.uleb128 0x9
 	.byte	0x3
-	.quad	buffer.85738
+	.quad	buffer.85740
 	.uleb128 0x29
 	.quad	.LVL7
-	.long	0x6093
+	.long	0x60bb
 	.byte	0
 	.uleb128 0x24
 	.ascii "TEST_Assert\0"
@@ -6078,13 +6092,13 @@ DumpBinary_UNIT:
 	.quad	.LFE4378-.LFB4378
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5f68
+	.long	0x5f90
 	.uleb128 0x25
 	.ascii "env\0"
 	.byte	0x1
 	.byte	0x71
 	.byte	0x29
-	.long	0x5f68
+	.long	0x5f90
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -6093,7 +6107,7 @@ DumpBinary_UNIT:
 	.byte	0x1
 	.byte	0x71
 	.byte	0x3a
-	.long	0x5c8d
+	.long	0x5cb5
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -6111,14 +6125,14 @@ DumpBinary_UNIT:
 	.byte	0x1
 	.byte	0x71
 	.byte	0x61
-	.long	0x5c8d
+	.long	0x5cb5
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x5cf0
+	.long	0x5d18
 	.uleb128 0x24
 	.ascii "DoDebug\0"
 	.byte	0x1
@@ -6128,13 +6142,13 @@ DumpBinary_UNIT:
 	.quad	.LFE4377-.LFB4377
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5fe6
+	.long	0x600e
 	.uleb128 0x25
 	.ascii "env\0"
 	.byte	0x1
 	.byte	0x48
 	.byte	0x40
-	.long	0x5f68
+	.long	0x5f90
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -6152,7 +6166,7 @@ DumpBinary_UNIT:
 	.byte	0x1
 	.byte	0x4d
 	.byte	0x17
-	.long	0x5fe6
+	.long	0x600e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -6187,13 +6201,13 @@ DumpBinary_UNIT:
 	.quad	.LFE4376-.LFB4376
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x602b
+	.long	0x6053
 	.uleb128 0x25
 	.ascii "env\0"
 	.byte	0x1
 	.byte	0x3e
 	.byte	0x2b
-	.long	0x5f68
+	.long	0x5f90
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -6202,7 +6216,7 @@ DumpBinary_UNIT:
 	.byte	0x1
 	.byte	0x3e
 	.byte	0x42
-	.long	0x5fe6
+	.long	0x600e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -6216,13 +6230,13 @@ DumpBinary_UNIT:
 	.quad	.LFE4375-.LFB4375
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x605e
+	.long	0x6086
 	.uleb128 0x25
 	.ascii "env\0"
 	.byte	0x1
 	.byte	0x34
 	.byte	0x2d
-	.long	0x5f68
+	.long	0x5f90
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -6236,13 +6250,13 @@ DumpBinary_UNIT:
 	.quad	.LFE4374-.LFB4374
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x6093
+	.long	0x60bb
 	.uleb128 0x25
 	.ascii "env\0"
 	.byte	0x1
 	.byte	0x2d
 	.byte	0x2f
-	.long	0x5f68
+	.long	0x5f90
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0

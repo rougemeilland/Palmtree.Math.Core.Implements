@@ -7,7 +7,7 @@
 _ZERO_MEMORY_BYTE:
 .LFB4310:
 	.file 1 "pmc_internal.h"
-	.loc 1 375 1
+	.loc 1 380 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -52,7 +52,7 @@ _ZERO_MEMORY_BYTE:
 	movq	%rdx, -120(%rbp)
 .LBE9:
 .LBE8:
-	.loc 1 377 1
+	.loc 1 382 1
 	nop
 	addq	$40, %rsp
 	popq	%rdi
@@ -458,7 +458,7 @@ GetCPUInfo:
 	.file 32 "pmc_cpuid.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
-	.long	0x50f5
+	.long	0x511d
 	.word	0x4
 	.secrel32	.Ldebug_abbrev0
 	.byte	0x8
@@ -4381,108 +4381,122 @@ GetCPUInfo:
 	.uleb128 0x4
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x1
-	.byte	0x34
+	.byte	0x37
 	.byte	0x13
 	.long	0x4996
 	.uleb128 0x14
 	.ascii "__tag_NUMBER_HEADER\0"
-	.byte	0x38
+	.byte	0x40
 	.byte	0x1
-	.byte	0x44
+	.byte	0x47
 	.byte	0x10
-	.long	0x4cc9
+	.long	0x4cf1
+	.uleb128 0x15
+	.ascii "SIGNATURE1\0"
+	.byte	0x1
+	.byte	0x49
+	.byte	0xf
+	.long	0x4984
+	.byte	0
+	.uleb128 0x15
+	.ascii "SIGNATURE2\0"
+	.byte	0x1
+	.byte	0x4a
+	.byte	0xf
+	.long	0x4984
+	.byte	0x4
 	.uleb128 0x15
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1
-	.byte	0x46
-	.byte	0x11
-	.long	0x4ba0
-	.byte	0
-	.uleb128 0x15
-	.ascii "UNIT_BIT_COUNT\0"
-	.byte	0x1
-	.byte	0x47
+	.byte	0x4b
 	.byte	0x11
 	.long	0x4ba0
 	.byte	0x8
 	.uleb128 0x15
-	.ascii "HASH_CODE\0"
+	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x1
-	.byte	0x48
+	.byte	0x4c
 	.byte	0x11
 	.long	0x4ba0
 	.byte	0x10
 	.uleb128 0x15
-	.ascii "TRAILING_ZERO_BITS_COUNT\0"
+	.ascii "HASH_CODE\0"
 	.byte	0x1
-	.byte	0x49
+	.byte	0x4d
 	.byte	0x11
 	.long	0x4ba0
 	.byte	0x18
+	.uleb128 0x15
+	.ascii "TRAILING_ZERO_BITS_COUNT\0"
+	.byte	0x1
+	.byte	0x4e
+	.byte	0x11
+	.long	0x4ba0
+	.byte	0x20
 	.uleb128 0x18
 	.ascii "IS_STATIC\0"
 	.byte	0x1
-	.byte	0x4a
+	.byte	0x4f
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1f
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_ZERO\0"
 	.byte	0x1
-	.byte	0x4b
+	.byte	0x50
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1e
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_ONE\0"
 	.byte	0x1
-	.byte	0x4c
+	.byte	0x51
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1d
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_EVEN\0"
 	.byte	0x1
-	.byte	0x4d
+	.byte	0x52
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1c
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_POWER_OF_TWO\0"
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x53
 	.byte	0xe
 	.long	0x456
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1b
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x15
 	.ascii "BLOCK_COUNT\0"
 	.byte	0x1
-	.byte	0x50
+	.byte	0x55
 	.byte	0xc
 	.long	0xc9
-	.byte	0x28
+	.byte	0x30
 	.uleb128 0x15
 	.ascii "BLOCK\0"
 	.byte	0x1
-	.byte	0x54
+	.byte	0x59
 	.byte	0x12
-	.long	0x4cc9
-	.byte	0x30
+	.long	0x4cf1
+	.byte	0x38
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
@@ -4490,38 +4504,38 @@ GetCPUInfo:
 	.uleb128 0x4
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x1
-	.byte	0x55
+	.byte	0x5a
 	.byte	0x3
 	.long	0x4bb4
 	.uleb128 0x10
 	.ascii "configuration_info\0"
 	.byte	0x1
-	.byte	0x5c
+	.byte	0x61
 	.byte	0x1f
 	.long	0x49f7
 	.uleb128 0x10
 	.ascii "number_zero\0"
 	.byte	0x1
-	.byte	0x5f
+	.byte	0x64
 	.byte	0x16
-	.long	0x4ccf
+	.long	0x4cf7
 	.uleb128 0x10
 	.ascii "number_one\0"
 	.byte	0x1
-	.byte	0x62
+	.byte	0x67
 	.byte	0x16
-	.long	0x4ccf
+	.long	0x4cf7
 	.uleb128 0x10
 	.ascii "statistics_info\0"
 	.byte	0x1
-	.byte	0x65
+	.byte	0x6a
 	.byte	0x1c
 	.long	0x4a92
 	.uleb128 0x19
 	.long	0x12e
-	.long	0x4d4f
+	.long	0x4d77
 	.uleb128 0x13
-	.long	0x4d4f
+	.long	0x4d77
 	.uleb128 0x1a
 	.byte	0
 	.uleb128 0x6
@@ -4530,12 +4544,12 @@ GetCPUInfo:
 	.uleb128 0x11
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1
-	.word	0x142
+	.word	0x147
 	.byte	0x29
-	.long	0x4d6a
+	.long	0x4d92
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4d3f
+	.long	0x4d67
 	.uleb128 0x1b
 	.ascii "GetCPUInfo\0"
 	.byte	0x3
@@ -4545,13 +4559,13 @@ GetCPUInfo:
 	.quad	.LFE4373-.LFB4373
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4e38
+	.long	0x4e60
 	.uleb128 0x1c
 	.ascii "feature\0"
 	.byte	0x3
 	.byte	0x3a
 	.byte	0x25
-	.long	0x4e38
+	.long	0x4e60
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -4631,7 +4645,7 @@ GetCPUInfo:
 	.quad	.LFE4372-.LFB4372
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4eff
+	.long	0x4f27
 	.uleb128 0x1c
 	.ascii "op\0"
 	.byte	0x3
@@ -4691,29 +4705,29 @@ GetCPUInfo:
 	.byte	0x3
 	.byte	0x32
 	.byte	0xf
-	.long	0x4eff
+	.long	0x4f27
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
 	.uleb128 0x21
-	.long	0x5035
+	.long	0x505d
 	.quad	.LBB12
 	.quad	.LBE12-.LBB12
 	.byte	0x3
 	.byte	0x33
 	.byte	0x5
 	.uleb128 0x22
-	.long	0x506f
+	.long	0x5097
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x22
-	.long	0x505a
+	.long	0x5082
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -44
 	.uleb128 0x22
-	.long	0x5049
+	.long	0x5071
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -4721,7 +4735,7 @@ GetCPUInfo:
 	.byte	0
 	.uleb128 0xe
 	.long	0x4984
-	.long	0x4f0f
+	.long	0x4f37
 	.uleb128 0xf
 	.long	0xd8
 	.byte	0x3
@@ -4735,7 +4749,7 @@ GetCPUInfo:
 	.quad	.LFE4371-.LFB4371
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4fb5
+	.long	0x4fdd
 	.uleb128 0x1c
 	.ascii "op\0"
 	.byte	0x3
@@ -4786,24 +4800,24 @@ GetCPUInfo:
 	.byte	0x3
 	.byte	0x28
 	.byte	0xf
-	.long	0x4eff
+	.long	0x4f27
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
 	.uleb128 0x21
-	.long	0x5088
+	.long	0x50b0
 	.quad	.LBB10
 	.quad	.LBE10-.LBB10
 	.byte	0x3
 	.byte	0x29
 	.byte	0x5
 	.uleb128 0x22
-	.long	0x50ab
+	.long	0x50d3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -44
 	.uleb128 0x22
-	.long	0x509a
+	.long	0x50c2
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -4812,17 +4826,17 @@ GetCPUInfo:
 	.uleb128 0x23
 	.ascii "_ZERO_MEMORY_BYTE\0"
 	.byte	0x1
-	.word	0x176
+	.word	0x17b
 	.byte	0x16
 	.quad	.LFB4310
 	.quad	.LFE4310-.LFB4310
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5035
+	.long	0x505d
 	.uleb128 0x24
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x176
+	.word	0x17b
 	.byte	0x2e
 	.long	0x7aa
 	.uleb128 0x2
@@ -4831,31 +4845,31 @@ GetCPUInfo:
 	.uleb128 0x24
 	.ascii "count\0"
 	.byte	0x1
-	.word	0x176
+	.word	0x17b
 	.byte	0x38
 	.long	0xc9
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x25
-	.long	0x50be
+	.long	0x50e6
 	.quad	.LBB8
 	.quad	.LBE8-.LBB8
 	.byte	0x1
-	.word	0x178
+	.word	0x17d
 	.byte	0x5
 	.uleb128 0x22
-	.long	0x50e8
+	.long	0x5110
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x22
-	.long	0x50da
+	.long	0x5102
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -41
 	.uleb128 0x22
-	.long	0x50cc
+	.long	0x50f4
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -4867,7 +4881,7 @@ GetCPUInfo:
 	.word	0x6a6
 	.byte	0x6
 	.byte	0x3
-	.long	0x5088
+	.long	0x50b0
 	.uleb128 0x27
 	.ascii "CPUInfo\0"
 	.byte	0x2
@@ -4893,7 +4907,7 @@ GetCPUInfo:
 	.word	0x698
 	.byte	0x6
 	.byte	0x3
-	.long	0x50be
+	.long	0x50e6
 	.uleb128 0x27
 	.ascii "CPUInfo\0"
 	.byte	0x2

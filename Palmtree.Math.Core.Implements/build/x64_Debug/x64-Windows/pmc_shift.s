@@ -7,7 +7,7 @@
 _COPY_MEMORY_UNIT:
 .LFB4310:
 	.file 1 "pmc_internal.h"
-	.loc 1 347 1
+	.loc 1 352 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -60,7 +60,7 @@ _COPY_MEMORY_UNIT:
 	movq	%rax, -24(%rbp)
 .LBE11:
 .LBE10:
-	.loc 1 355 1
+	.loc 1 360 1
 	nop
 	addq	$32, %rsp
 	popq	%rsi
@@ -78,7 +78,7 @@ _COPY_MEMORY_UNIT:
 	.seh_proc	_COPY_MEMORY_UNIT_DIV
 _COPY_MEMORY_UNIT_DIV:
 .LFB4311:
-	.loc 1 358 1
+	.loc 1 363 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -130,7 +130,7 @@ _COPY_MEMORY_UNIT_DIV:
 	movq	%rax, -24(%rbp)
 .LBE13:
 .LBE12:
-	.loc 1 372 1
+	.loc 1 377 1
 	nop
 	addq	$32, %rsp
 	popq	%rsi
@@ -148,7 +148,7 @@ _COPY_MEMORY_UNIT_DIV:
 	.seh_proc	_ZERO_MEMORY_UNIT
 _ZERO_MEMORY_UNIT:
 .LFB4316:
-	.loc 1 397 1
+	.loc 1 402 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -192,7 +192,7 @@ _ZERO_MEMORY_UNIT:
 	movq	%rdx, -120(%rbp)
 .LBE15:
 .LBE14:
-	.loc 1 405 1
+	.loc 1 410 1
 	nop
 	addq	$40, %rsp
 	popq	%rdi
@@ -208,7 +208,7 @@ _ZERO_MEMORY_UNIT:
 	.seh_proc	_ZERO_MEMORY_UNIT_DIV
 _ZERO_MEMORY_UNIT_DIV:
 .LFB4317:
-	.loc 1 408 1
+	.loc 1 413 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -252,7 +252,7 @@ _ZERO_MEMORY_UNIT_DIV:
 	movq	%rdx, -120(%rbp)
 .LBE17:
 .LBE16:
-	.loc 1 422 1
+	.loc 1 427 1
 	nop
 	addq	$40, %rsp
 	popq	%rdi
@@ -7660,7 +7660,7 @@ PMC_RightShift_X_I:
 .L63:
 	.loc 3 593 9
 	movq	-8(%rbp), %rax
-	movzbl	32(%rax), %eax
+	movzbl	40(%rax), %eax
 	andl	$2, %eax
 	.loc 3 593 8
 	testb	%al, %al
@@ -7696,7 +7696,7 @@ PMC_RightShift_X_I:
 .LBB22:
 	.loc 3 603 21
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 604 25
 	movl	24(%rbp), %eax
@@ -7735,12 +7735,12 @@ PMC_RightShift_X_I:
 	.loc 3 612 65
 	movq	-40(%rbp), %rax
 	.loc 3 612 13
-	movq	48(%rax), %r8
+	movq	56(%rax), %r8
 	movl	24(%rbp), %ecx
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rdx
+	movq	8(%rax), %rdx
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movl	$0, 32(%rsp)
 	movq	%r8, %r9
 	movq	%rcx, %r8
@@ -7751,7 +7751,7 @@ PMC_RightShift_X_I:
 	.loc 3 613 45
 	movq	-40(%rbp), %rax
 	.loc 3 613 27
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -12(%rbp)
@@ -7849,7 +7849,7 @@ PMC_RightShift_X_L:
 .L78:
 	.loc 3 642 9
 	movq	-8(%rbp), %rax
-	movzbl	32(%rax), %eax
+	movzbl	40(%rax), %eax
 	andl	$2, %eax
 	.loc 3 642 8
 	testb	%al, %al
@@ -7885,7 +7885,7 @@ PMC_RightShift_X_L:
 .LBB24:
 	.loc 3 652 21
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 653 12
 	movq	-24(%rbp), %rax
@@ -7920,11 +7920,11 @@ PMC_RightShift_X_L:
 	.loc 3 661 78
 	movq	-40(%rbp), %rax
 	.loc 3 661 13
-	movq	48(%rax), %r8
+	movq	56(%rax), %r8
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rdx
+	movq	8(%rax), %rdx
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movq	24(%rbp), %rcx
 	movl	$0, 32(%rsp)
 	movq	%r8, %r9
@@ -7936,7 +7936,7 @@ PMC_RightShift_X_L:
 	.loc 3 662 45
 	movq	-40(%rbp), %rax
 	.loc 3 662 27
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -12(%rbp)
@@ -8034,7 +8034,7 @@ PMC_LeftShift_X_I:
 .L93:
 	.loc 3 691 9
 	movq	-8(%rbp), %rax
-	movzbl	32(%rax), %eax
+	movzbl	40(%rax), %eax
 	andl	$2, %eax
 	.loc 3 691 8
 	testb	%al, %al
@@ -8070,7 +8070,7 @@ PMC_LeftShift_X_I:
 .LBB26:
 	.loc 3 701 21
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 702 47
 	movl	24(%rbp), %eax
@@ -8096,12 +8096,12 @@ PMC_LeftShift_X_I:
 	.loc 3 706 60
 	movq	-40(%rbp), %rax
 	.loc 3 706 9
-	movq	48(%rax), %r8
+	movq	56(%rax), %r8
 	movl	24(%rbp), %ecx
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rdx
+	movq	8(%rax), %rdx
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movl	$0, 32(%rsp)
 	movq	%r8, %r9
 	movq	%rcx, %r8
@@ -8112,7 +8112,7 @@ PMC_LeftShift_X_I:
 	.loc 3 707 41
 	movq	-40(%rbp), %rax
 	.loc 3 707 23
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -12(%rbp)
@@ -8209,7 +8209,7 @@ PMC_LeftShift_X_L:
 .L107:
 	.loc 3 735 9
 	movq	-8(%rbp), %rax
-	movzbl	32(%rax), %eax
+	movzbl	40(%rax), %eax
 	andl	$2, %eax
 	.loc 3 735 8
 	testb	%al, %al
@@ -8245,7 +8245,7 @@ PMC_LeftShift_X_L:
 .LBB27:
 	.loc 3 745 21
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 746 21
 	movq	-24(%rbp), %rdx
@@ -8270,11 +8270,11 @@ PMC_LeftShift_X_L:
 	.loc 3 750 73
 	movq	-40(%rbp), %rax
 	.loc 3 750 9
-	movq	48(%rax), %r8
+	movq	56(%rax), %r8
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rdx
+	movq	8(%rax), %rdx
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movq	24(%rbp), %rcx
 	movl	$0, 32(%rsp)
 	movq	%r8, %r9
@@ -8286,7 +8286,7 @@ PMC_LeftShift_X_L:
 	.loc 3 751 41
 	movq	-40(%rbp), %rax
 	.loc 3 751 23
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -12(%rbp)
@@ -8390,7 +8390,7 @@ Initialize_Shift:
 	.file 32 "pmc_cpuid.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
-	.long	0x58a1
+	.long	0x58c9
 	.word	0x4
 	.secrel32	.Ldebug_abbrev0
 	.byte	0x8
@@ -12333,7 +12333,7 @@ Initialize_Shift:
 	.uleb128 0x4
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x1
-	.byte	0x34
+	.byte	0x37
 	.byte	0x13
 	.long	0x49c2
 	.uleb128 0x3
@@ -12341,110 +12341,124 @@ Initialize_Shift:
 	.uleb128 0x4
 	.ascii "__UNIT_TYPE_DIV\0"
 	.byte	0x1
-	.byte	0x3e
+	.byte	0x41
 	.byte	0x15
 	.long	0x4bde
 	.uleb128 0x3
 	.long	0x4bf7
 	.uleb128 0x12
 	.ascii "__tag_NUMBER_HEADER\0"
-	.byte	0x38
+	.byte	0x40
 	.byte	0x1
-	.byte	0x44
+	.byte	0x47
 	.byte	0x10
-	.long	0x4d29
+	.long	0x4d51
+	.uleb128 0x13
+	.ascii "SIGNATURE1\0"
+	.byte	0x1
+	.byte	0x49
+	.byte	0xf
+	.long	0x49b0
+	.byte	0
+	.uleb128 0x13
+	.ascii "SIGNATURE2\0"
+	.byte	0x1
+	.byte	0x4a
+	.byte	0xf
+	.long	0x49b0
+	.byte	0x4
 	.uleb128 0x13
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1
-	.byte	0x46
-	.byte	0x11
-	.long	0x4bde
-	.byte	0
-	.uleb128 0x13
-	.ascii "UNIT_BIT_COUNT\0"
-	.byte	0x1
-	.byte	0x47
+	.byte	0x4b
 	.byte	0x11
 	.long	0x4bde
 	.byte	0x8
 	.uleb128 0x13
-	.ascii "HASH_CODE\0"
+	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x1
-	.byte	0x48
+	.byte	0x4c
 	.byte	0x11
 	.long	0x4bde
 	.byte	0x10
 	.uleb128 0x13
-	.ascii "TRAILING_ZERO_BITS_COUNT\0"
+	.ascii "HASH_CODE\0"
 	.byte	0x1
-	.byte	0x49
+	.byte	0x4d
 	.byte	0x11
 	.long	0x4bde
 	.byte	0x18
+	.uleb128 0x13
+	.ascii "TRAILING_ZERO_BITS_COUNT\0"
+	.byte	0x1
+	.byte	0x4e
+	.byte	0x11
+	.long	0x4bde
+	.byte	0x20
 	.uleb128 0x18
 	.ascii "IS_STATIC\0"
 	.byte	0x1
-	.byte	0x4a
+	.byte	0x4f
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1f
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_ZERO\0"
 	.byte	0x1
-	.byte	0x4b
+	.byte	0x50
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1e
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_ONE\0"
 	.byte	0x1
-	.byte	0x4c
+	.byte	0x51
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1d
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_EVEN\0"
 	.byte	0x1
-	.byte	0x4d
+	.byte	0x52
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1c
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_POWER_OF_TWO\0"
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x53
 	.byte	0xe
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
 	.byte	0x1b
-	.byte	0x20
+	.byte	0x28
 	.uleb128 0x13
 	.ascii "BLOCK_COUNT\0"
 	.byte	0x1
-	.byte	0x50
+	.byte	0x55
 	.byte	0xc
 	.long	0xcd
-	.byte	0x28
+	.byte	0x30
 	.uleb128 0x13
 	.ascii "BLOCK\0"
 	.byte	0x1
-	.byte	0x54
+	.byte	0x59
 	.byte	0x12
-	.long	0x4d29
-	.byte	0x30
+	.long	0x4d51
+	.byte	0x38
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
@@ -12452,38 +12466,38 @@ Initialize_Shift:
 	.uleb128 0x4
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x1
-	.byte	0x55
+	.byte	0x5a
 	.byte	0x3
 	.long	0x4c14
 	.uleb128 0x15
 	.ascii "configuration_info\0"
 	.byte	0x1
-	.byte	0x5c
+	.byte	0x61
 	.byte	0x1f
 	.long	0x4a23
 	.uleb128 0x15
 	.ascii "number_zero\0"
 	.byte	0x1
-	.byte	0x5f
+	.byte	0x64
 	.byte	0x16
-	.long	0x4d2f
+	.long	0x4d57
 	.uleb128 0x15
 	.ascii "number_one\0"
 	.byte	0x1
-	.byte	0x62
+	.byte	0x67
 	.byte	0x16
-	.long	0x4d2f
+	.long	0x4d57
 	.uleb128 0x15
 	.ascii "statistics_info\0"
 	.byte	0x1
-	.byte	0x65
+	.byte	0x6a
 	.byte	0x1c
 	.long	0x4ad6
 	.uleb128 0x19
 	.long	0x137
-	.long	0x4daf
+	.long	0x4dd7
 	.uleb128 0x11
-	.long	0x4daf
+	.long	0x4dd7
 	.uleb128 0x1a
 	.byte	0
 	.uleb128 0x6
@@ -12492,12 +12506,12 @@ Initialize_Shift:
 	.uleb128 0x17
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1
-	.word	0x142
+	.word	0x147
 	.byte	0x29
-	.long	0x4dca
+	.long	0x4df2
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4d9f
+	.long	0x4dc7
 	.uleb128 0x1b
 	.ascii "Initialize_Shift\0"
 	.byte	0x3
@@ -12508,13 +12522,13 @@ Initialize_Shift:
 	.quad	.LFE4381-.LFB4381
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4e15
+	.long	0x4e3d
 	.uleb128 0x1c
 	.ascii "feature\0"
 	.byte	0x3
 	.word	0x2fb
 	.byte	0x36
-	.long	0x4e15
+	.long	0x4e3d
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -12532,7 +12546,7 @@ Initialize_Shift:
 	.quad	.LFE4380-.LFB4380
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4ee7
+	.long	0x4f0f
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
@@ -12565,7 +12579,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x2da
 	.byte	0x14
-	.long	0x4ee7
+	.long	0x4f0f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -12574,7 +12588,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x2db
 	.byte	0x14
-	.long	0x4ee7
+	.long	0x4f0f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -12621,7 +12635,7 @@ Initialize_Shift:
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4d2f
+	.long	0x4d57
 	.uleb128 0x1d
 	.ascii "PMC_LeftShift_X_I\0"
 	.byte	0x3
@@ -12632,7 +12646,7 @@ Initialize_Shift:
 	.quad	.LFE4379-.LFB4379
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x4fb9
+	.long	0x4fe1
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
@@ -12665,7 +12679,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x2ae
 	.byte	0x14
-	.long	0x4ee7
+	.long	0x4f0f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -12674,7 +12688,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x2af
 	.byte	0x14
-	.long	0x4ee7
+	.long	0x4f0f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -12729,7 +12743,7 @@ Initialize_Shift:
 	.quad	.LFE4378-.LFB4378
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5098
+	.long	0x50c0
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
@@ -12762,7 +12776,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x27d
 	.byte	0x14
-	.long	0x4ee7
+	.long	0x4f0f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -12771,7 +12785,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x27e
 	.byte	0x14
-	.long	0x4ee7
+	.long	0x4f0f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -12830,7 +12844,7 @@ Initialize_Shift:
 	.quad	.LFE4377-.LFB4377
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5177
+	.long	0x519f
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
@@ -12863,7 +12877,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x24c
 	.byte	0x14
-	.long	0x4ee7
+	.long	0x4f0f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -12872,7 +12886,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x24d
 	.byte	0x14
-	.long	0x4ee7
+	.long	0x4f0f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -12930,13 +12944,13 @@ Initialize_Shift:
 	.quad	.LFE4376-.LFB4376
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
 	.word	0x1ba
 	.byte	0x29
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -12963,7 +12977,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x1ba
 	.byte	0x66
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
@@ -12981,7 +12995,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x1bc
 	.byte	0x16
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -12999,7 +13013,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x1be
 	.byte	0x16
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -13074,13 +13088,13 @@ Initialize_Shift:
 	.quad	.LFE4375-.LFB4375
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x53b3
+	.long	0x53db
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
 	.word	0x133
 	.byte	0x21
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -13107,7 +13121,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x133
 	.byte	0x5a
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
@@ -13125,7 +13139,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x135
 	.byte	0x12
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -13143,7 +13157,7 @@ Initialize_Shift:
 	.byte	0x3
 	.word	0x137
 	.byte	0x12
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -13215,13 +13229,13 @@ Initialize_Shift:
 	.quad	.LFE4374-.LFB4374
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x54d6
+	.long	0x54fe
 	.uleb128 0x24
 	.ascii "p\0"
 	.byte	0x3
 	.byte	0xac
 	.byte	0x2a
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -13248,7 +13262,7 @@ Initialize_Shift:
 	.byte	0x3
 	.byte	0xac
 	.byte	0x67
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
@@ -13266,7 +13280,7 @@ Initialize_Shift:
 	.byte	0x3
 	.byte	0xae
 	.byte	0x16
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -13284,7 +13298,7 @@ Initialize_Shift:
 	.byte	0x3
 	.byte	0xb0
 	.byte	0x16
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -13365,13 +13379,13 @@ Initialize_Shift:
 	.quad	.LFE4373-.LFB4373
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x55f5
+	.long	0x561d
 	.uleb128 0x24
 	.ascii "p\0"
 	.byte	0x3
 	.byte	0x25
 	.byte	0x22
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -13398,7 +13412,7 @@ Initialize_Shift:
 	.byte	0x3
 	.byte	0x25
 	.byte	0x5b
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
@@ -13416,7 +13430,7 @@ Initialize_Shift:
 	.byte	0x3
 	.byte	0x27
 	.byte	0x12
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -13434,7 +13448,7 @@ Initialize_Shift:
 	.byte	0x3
 	.byte	0x29
 	.byte	0x12
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -13509,50 +13523,50 @@ Initialize_Shift:
 	.uleb128 0x28
 	.ascii "_ZERO_MEMORY_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x197
+	.word	0x19c
 	.byte	0x16
 	.quad	.LFB4317
 	.quad	.LFE4317-.LFB4317
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5677
+	.long	0x569f
 	.uleb128 0x1c
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x197
+	.word	0x19c
 	.byte	0x3d
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x22
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x197
+	.word	0x19c
 	.byte	0x4c
 	.long	0x4bde
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x29
-	.long	0x586a
+	.long	0x5892
 	.quad	.LBB16
 	.quad	.LBE16-.LBB16
 	.byte	0x1
-	.word	0x19f
+	.word	0x1a4
 	.byte	0x5
 	.uleb128 0x2a
-	.long	0x5894
+	.long	0x58bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2a
-	.long	0x5886
+	.long	0x58ae
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x2a
-	.long	0x5878
+	.long	0x58a0
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -13561,50 +13575,50 @@ Initialize_Shift:
 	.uleb128 0x28
 	.ascii "_ZERO_MEMORY_UNIT\0"
 	.byte	0x1
-	.word	0x18c
+	.word	0x191
 	.byte	0x16
 	.quad	.LFB4316
 	.quad	.LFE4316-.LFB4316
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x56f5
+	.long	0x571d
 	.uleb128 0x1c
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x18c
+	.word	0x191
 	.byte	0x35
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x22
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x18c
+	.word	0x191
 	.byte	0x44
 	.long	0x4bde
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x29
-	.long	0x586a
+	.long	0x5892
 	.quad	.LBB14
 	.quad	.LBE14-.LBB14
 	.byte	0x1
-	.word	0x191
+	.word	0x196
 	.byte	0x5
 	.uleb128 0x2a
-	.long	0x5894
+	.long	0x58bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2a
-	.long	0x5886
+	.long	0x58ae
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x2a
-	.long	0x5878
+	.long	0x58a0
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -13613,59 +13627,59 @@ Initialize_Shift:
 	.uleb128 0x28
 	.ascii "_COPY_MEMORY_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x165
+	.word	0x16a
 	.byte	0x16
 	.quad	.LFB4311
 	.quad	.LFE4311-.LFB4311
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5785
+	.long	0x57ad
 	.uleb128 0x1c
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x165
+	.word	0x16a
 	.byte	0x3d
-	.long	0x5294
+	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x1c
 	.ascii "s\0"
 	.byte	0x1
-	.word	0x165
+	.word	0x16a
 	.byte	0x57
-	.long	0x5785
+	.long	0x57ad
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x22
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x165
+	.word	0x16a
 	.byte	0x66
 	.long	0x4bde
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x29
-	.long	0x581d
+	.long	0x5845
 	.quad	.LBB12
 	.quad	.LBE12-.LBB12
 	.byte	0x1
-	.word	0x16d
+	.word	0x172
 	.byte	0x5
 	.uleb128 0x2a
-	.long	0x5854
+	.long	0x587c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2a
-	.long	0x5844
+	.long	0x586c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x2a
-	.long	0x582f
+	.long	0x5857
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -13677,59 +13691,59 @@ Initialize_Shift:
 	.uleb128 0x28
 	.ascii "_COPY_MEMORY_UNIT\0"
 	.byte	0x1
-	.word	0x15a
+	.word	0x15f
 	.byte	0x16
 	.quad	.LFB4310
 	.quad	.LFE4310-.LFB4310
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x5817
+	.long	0x583f
 	.uleb128 0x1c
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x15a
+	.word	0x15f
 	.byte	0x35
-	.long	0x4d29
+	.long	0x4d51
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
 	.uleb128 0x1c
 	.ascii "s\0"
 	.byte	0x1
-	.word	0x15a
+	.word	0x15f
 	.byte	0x4b
-	.long	0x5817
+	.long	0x583f
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x22
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x15a
+	.word	0x15f
 	.byte	0x5a
 	.long	0x4bde
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x29
-	.long	0x581d
+	.long	0x5845
 	.quad	.LBB10
 	.quad	.LBE10-.LBB10
 	.byte	0x1
-	.word	0x15f
+	.word	0x164
 	.byte	0x5
 	.uleb128 0x2a
-	.long	0x5854
+	.long	0x587c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2a
-	.long	0x5844
+	.long	0x586c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x2a
-	.long	0x582f
+	.long	0x5857
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -13744,7 +13758,7 @@ Initialize_Shift:
 	.word	0x3b8
 	.byte	0x6
 	.byte	0x3
-	.long	0x5864
+	.long	0x588c
 	.uleb128 0x2c
 	.ascii "Destination\0"
 	.byte	0x2
@@ -13756,7 +13770,7 @@ Initialize_Shift:
 	.byte	0x2
 	.word	0x3b8
 	.byte	0x49
-	.long	0x5864
+	.long	0x588c
 	.uleb128 0x2c
 	.ascii "Count\0"
 	.byte	0x2

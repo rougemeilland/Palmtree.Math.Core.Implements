@@ -49,7 +49,6 @@ MKDIR=mkdir
 CP=cp
 CCADMIN=CCadmin
 
-
 # build
 build: .build-post
 
@@ -118,8 +117,6 @@ help: .help-post
 
 .help-post: .help-impl
 # Add your post 'help' code here...
-
-
 
 # include project implementation makefile
 include nbproject/Makefile-impl.mk

@@ -31,7 +31,7 @@ PMC_GetPropertyValue_X_I:
 	je	.L6
 	cmpl	$4, %ebx
 	jne	.L8
-	movzbl	32(%rsi), %edx
+	movzbl	40(%rsi), %edx
 	shrb	%dl
 	andl	$1, %edx
 	movl	%edx, (%rdi)
@@ -45,7 +45,7 @@ PMC_GetPropertyValue_X_I:
 .L10:
 	cmpl	$1, %ebx
 	jne	.L8
-	movzbl	32(%rsi), %edx
+	movzbl	40(%rsi), %edx
 	shrb	$3, %dl
 	andl	$1, %edx
 	movl	%edx, (%rdi)
@@ -64,7 +64,7 @@ PMC_GetPropertyValue_X_I:
 	ret
 	.p2align 4,,10
 .L6:
-	movzbl	32(%rsi), %edx
+	movzbl	40(%rsi), %edx
 	shrb	$4, %dl
 	andl	$1, %edx
 	movl	%edx, (%rdi)
@@ -75,7 +75,7 @@ PMC_GetPropertyValue_X_I:
 	ret
 	.p2align 4,,10
 .L3:
-	movzbl	32(%rsi), %edx
+	movzbl	40(%rsi), %edx
 	shrb	$2, %dl
 	andl	$1, %edx
 	movl	%edx, (%rdi)

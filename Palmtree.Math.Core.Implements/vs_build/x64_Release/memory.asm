@@ -6,8 +6,8 @@ INCLUDELIB MSVCRT
 INCLUDELIB OLDNAMES
 
 _DATA	SEGMENT
-COMM	number_zero:BYTE:038H
-COMM	number_one:BYTE:038H
+COMM	number_zero:BYTE:040H
+COMM	number_one:BYTE:040H
 COMM	hLocalHeap:QWORD
 _DATA	ENDS
 PUBLIC	AllocateHeapArea
@@ -78,14 +78,14 @@ $pdata$AllocateNumber DD imagerel $LN6
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$DeallocateNumber DD imagerel $LN27
-	DD	imagerel $LN27+85
+$pdata$DeallocateNumber DD imagerel $LN41
+	DD	imagerel $LN41+89
 	DD	imagerel $unwind$DeallocateNumber
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$CommitNumber DD imagerel $LN39
-	DD	imagerel $LN39+349
+	DD	imagerel $LN39+353
 	DD	imagerel $unwind$CommitNumber
 pdata	ENDS
 ;	COMDAT pdata
@@ -96,14 +96,14 @@ $pdata$DuplicateNumber DD imagerel $LN18
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$Initialize_Memory DD imagerel $LN89
-	DD	imagerel $LN89+318
+$pdata$Initialize_Memory DD imagerel $LN157
+	DD	imagerel $LN157+346
 	DD	imagerel $unwind$Initialize_Memory
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$PMC_Dispose DD imagerel $LN32
-	DD	imagerel $LN32+85
+$pdata$PMC_Dispose DD imagerel $LN52
+	DD	imagerel $LN52+108
 	DD	imagerel $unwind$PMC_Dispose
 pdata	ENDS
 ;	COMDAT pdata
@@ -169,7 +169,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$InitializeNumber DD imagerel InitializeNumber
-	DD	imagerel InitializeNumber+191
+	DD	imagerel InitializeNumber+184
 	DD	imagerel $unwind$InitializeNumber
 pdata	ENDS
 ;	COMDAT pdata
@@ -212,12 +212,11 @@ $unwind$CleanUpNumber DD 020601H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$InitializeNumber DD 0a1a01H
-	DD	09741aH
-	DD	08641aH
-	DD	07541aH
-	DD	06341aH
-	DD	0e016321aH
+$unwind$InitializeNumber DD 081501H
+	DD	087415H
+	DD	076415H
+	DD	063415H
+	DD	0e0113215H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -272,8 +271,8 @@ $unwind$_COPY_MEMORY_UNIT DD 040a01H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$PMC_Dispose DD 020a01H
-	DD	03006320aH
+$unwind$PMC_Dispose DD 020601H
+	DD	030023206H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -359,60 +358,60 @@ p$ = 8
 word_count$ = 16
 GetTrailingZeroBitCount PROC				; COMDAT
 
-; 451  :     __UNIT_TYPE bit_count = 0;
+; 462  :     __UNIT_TYPE bit_count = 0;
 
 	xor	r8d, r8d
 
-; 452  :     while (word_count > 0)
+; 463  :     while (word_count > 0)
 
 	test	rdx, rdx
 	je	SHORT $LN3@GetTrailin
 	npad	8
 $LL2@GetTrailin:
 
-; 453  :     {
-; 454  :         --word_count;
-; 455  :         if (*p != 0)
+; 464  :     {
+; 465  :         --word_count;
+; 466  :         if (*p != 0)
 
 	mov	rax, QWORD PTR [rcx]
 	dec	rdx
 	test	rax, rax
 	jne	SHORT $LN10@GetTrailin
 
-; 457  :         bit_count += __UNIT_TYPE_BIT_COUNT;
+; 468  :         bit_count += __UNIT_TYPE_BIT_COUNT;
 
 	add	r8, 64					; 00000040H
 
-; 458  :         ++p;
+; 469  :         ++p;
 
 	add	rcx, 8
 	test	rdx, rdx
 	jne	SHORT $LL2@GetTrailin
 $LN3@GetTrailin:
 
-; 459  :     }
-; 460  :     // このルートには到達しないはず
-; 461  :     return (0);
+; 470  :     }
+; 471  :     // このルートには到達しないはず
+; 472  :     return (0);
 
 	xor	eax, eax
 
-; 462  : }
+; 473  : }
 
 	ret	0
 $LN10@GetTrailin:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 1005 :     _BitScanForward64(&pos, x);
+; 1010 :     _BitScanForward64(&pos, x);
 
 	bsf	rax, rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
-; 456  :             return (bit_count + _TZCNT_ALT_UNIT(*p));
+; 467  :             return (bit_count + _TZCNT_ALT_UNIT(*p));
 
 	cdqe
 	add	rax, r8
 
-; 462  : }
+; 473  : }
 
 	ret	0
 GetTrailingZeroBitCount ENDP
@@ -432,114 +431,114 @@ word_count$ = 16
 effective_word_count$ = 24
 GetEffectiveBitLength PROC				; COMDAT
 
-; 429  :     if (p == NULL)
+; 440  :     if (p == NULL)
 
 	test	rcx, rcx
 	je	SHORT $LN3@GetEffecti
 
-; 430  :     {
-; 431  :         *effective_word_count = 0;
-; 432  :         return (0);
-; 433  :     }
-; 434  :     p += word_count;
+; 441  :     {
+; 442  :         *effective_word_count = 0;
+; 443  :         return (0);
+; 444  :     }
+; 445  :     p += word_count;
 
 	lea	rax, QWORD PTR [rcx+rdx*8]
 
-; 435  :     while (word_count != 0)
+; 446  :     while (word_count != 0)
 
 	test	rdx, rdx
 	je	SHORT $LN3@GetEffecti
 	npad	2
 $LL2@GetEffecti:
 
-; 436  :     {
-; 437  :         --p;
-; 438  :         if (*p != 0)
+; 447  :     {
+; 448  :         --p;
+; 449  :         if (*p != 0)
 
 	cmp	QWORD PTR [rax-8], 0
 	lea	rax, QWORD PTR [rax-8]
 	jne	SHORT $LN11@GetEffecti
 
-; 442  :         }
-; 443  :         --word_count;
+; 453  :         }
+; 454  :         --word_count;
 
 	sub	rdx, 1
 	jne	SHORT $LL2@GetEffecti
 $LN3@GetEffecti:
 
-; 444  :     }
-; 445  :     *effective_word_count = 0;
+; 455  :     }
+; 456  :     *effective_word_count = 0;
 
 	mov	QWORD PTR [r8], 0
 
-; 446  :     return (0);
+; 457  :     return (0);
 
 	xor	eax, eax
 
-; 447  : }
+; 458  : }
 
 	ret	0
 $LN11@GetEffecti:
 
-; 439  :         {
-; 440  :             *effective_word_count = word_count;
+; 450  :         {
+; 451  :             *effective_word_count = word_count;
 
 	mov	QWORD PTR [r8], rdx
 
-; 441  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 452  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	mov	rcx, QWORD PTR [rax]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 911  :     if (x == 0)
+; 916  :     if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN8@GetEffecti
 
-; 912  :         return (sizeof(x) * 8);
+; 917  :         return (sizeof(x) * 8);
 
 	mov	ecx, 64					; 00000040H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
-; 441  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 452  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	shl	rdx, 6
 	movsxd	rax, ecx
 	sub	rdx, rax
 	mov	rax, rdx
 
-; 447  : }
+; 458  : }
 
 	ret	0
 $LN8@GetEffecti:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 925  :     _BitScanReverse64(&pos, x);
+; 930  :     _BitScanReverse64(&pos, x);
 
 	bsr	rax, rcx
 
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 63					; 0000003fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
-; 441  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 452  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	shl	rdx, 6
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
-; 441  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 452  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	movsxd	rax, ecx
 	sub	rdx, rax
 	mov	rax, rdx
 
-; 447  : }
+; 458  : }
 
 	ret	0
 GetEffectiveBitLength ENDP
@@ -553,22 +552,22 @@ _TEXT	SEGMENT
 p$ = 48
 CleanUpNumber PROC					; COMDAT
 
-; 381  : {
+; 392  : {
 
 	push	rbx
 	sub	rsp, 32					; 00000020H
 
-; 382  :     if (p->BLOCK != NULL)
+; 393  :     if (p->BLOCK != NULL)
 
-	mov	rax, QWORD PTR [rcx+48]
+	mov	rax, QWORD PTR [rcx+56]
 	mov	rbx, rcx
 	test	rax, rax
 	je	SHORT $LN2@CleanUpNum
 
-; 383  :     {
-; 384  :         DeallocateBlock(p->BLOCK, p->BLOCK_COUNT);
+; 394  :     {
+; 395  :         DeallocateBlock(p->BLOCK, p->BLOCK_COUNT);
 
-	mov	rcx, QWORD PTR [rcx+40]
+	mov	rcx, QWORD PTR [rcx+48]
 
 ; 206  :         __UNIT_TYPE* p = buffer - 1;
 
@@ -591,7 +590,7 @@ CleanUpNumber PROC					; COMDAT
 	mov	QWORD PTR [rsp+48], rdi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 451  :     __stosq(d, x, count);
+; 456  :     __stosq(d, x, count);
 
 	mov	rdi, r8
 	mov	rax, -3689348814741910324		; ccccccccccccccccH
@@ -606,13 +605,13 @@ CleanUpNumber PROC					; COMDAT
 	mov	rdi, QWORD PTR [rsp+48]
 $LN7@CleanUpNum:
 
-; 385  :         p->BLOCK = NULL;
+; 396  :         p->BLOCK = NULL;
 
-	mov	QWORD PTR [rbx+48], 0
+	mov	QWORD PTR [rbx+56], 0
 $LN2@CleanUpNum:
 
-; 386  :     }
-; 387  : }
+; 397  :     }
+; 398  : }
 
 	add	rsp, 32					; 00000020H
 	pop	rbx
@@ -630,61 +629,18 @@ bit_count$ = 56
 light_check_code$ = 64
 InitializeNumber PROC					; COMDAT
 
-; 358  : {
+; 364  : {
 
 	mov	QWORD PTR [rsp+8], rbx
-	mov	QWORD PTR [rsp+16], rbp
-	mov	QWORD PTR [rsp+24], rsi
-	mov	QWORD PTR [rsp+32], rdi
+	mov	QWORD PTR [rsp+16], rsi
+	mov	QWORD PTR [rsp+24], rdi
 	push	r14
 	sub	rsp, 32					; 00000020H
-
-; 281  :         __p[0] = 0;
-
-	xor	ebx, ebx
-
-; 358  : {
-
 	mov	r14, r8
+	mov	rsi, rdx
+	mov	rbx, rcx
 
-; 281  :         __p[0] = 0;
-
-	mov	QWORD PTR [rcx], rbx
-
-; 358  : {
-
-	mov	rbp, rdx
-
-; 282  :         __p[1] = 0;
-
-	mov	QWORD PTR [rcx+8], rbx
-
-; 358  : {
-
-	mov	rdi, rcx
-
-; 283  :         __p[2] = 0;
-
-	mov	QWORD PTR [rcx+16], rbx
-
-; 284  :         __p[3] = 0;
-
-	mov	QWORD PTR [rcx+24], rbx
-
-; 285  :         __p[4] = 0;
-
-	mov	QWORD PTR [rcx+32], rbx
-
-; 286  :         __p[5] = 0;
-
-	mov	QWORD PTR [rcx+40], rbx
-
-; 287  :         __p[6] = 0;
-
-	mov	QWORD PTR [rcx+48], rbx
-
-; 359  :     ClearNumberHeader(p);
-; 360  :     if (bit_count > 0)
+; 365  :     if (bit_count > 0)
 
 	test	rdx, rdx
 	je	SHORT $LN2@Initialize
@@ -694,28 +650,25 @@ InitializeNumber PROC					; COMDAT
 	mov	rcx, QWORD PTR hLocalHeap
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
-	lea	rsi, QWORD PTR [rdx+63]
-	shr	rsi, 6
+	lea	rdi, QWORD PTR [rdx+63]
+	shr	rdi, 6
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
 ; 169  : 	__UNIT_TYPE* buffer = (__UNIT_TYPE*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, bytes);
 
-	lea	edx, QWORD PTR [rbx+8]
-	lea	r8, QWORD PTR [rsi*8+16]
+	mov	edx, 8
+	lea	r8, QWORD PTR [rdi*8+16]
 	call	QWORD PTR __imp_HeapAlloc
 
 ; 170  : 	if (buffer == NULL)
 
 	test	rax, rax
-	je	SHORT $LN32@Initialize
+	je	SHORT $LN80@Initialize
 
 ; 171  : 		return (NULL);
 ; 172  : 	buffer[0] = words1;
-
-	mov	QWORD PTR [rax], rsi
-
 ; 173  :     *allocated_block_words = words1;
 ; 174  : #ifdef _DEBUG
 ; 175  :     // 乱数もどきを生成する。
@@ -739,69 +692,83 @@ InitializeNumber PROC					; COMDAT
 ; 193  : #endif
 ; 194  :     buffer[words1 + 1] = check_code ^ (__UNIT_TYPE)&buffer[words1 + 1];
 
-	lea	rcx, QWORD PTR [rsi+1]
+	lea	rcx, QWORD PTR [rdi+1]
+	mov	QWORD PTR [rax], rdi
 	lea	rcx, QWORD PTR [rax+rcx*8]
 	mov	QWORD PTR [rcx], rcx
 
 ; 195  :     if (code != NULL)
 
+	xor	ecx, ecx
 	test	r14, r14
-	je	SHORT $LN28@Initialize
+	je	SHORT $LN8@Initialize
 
 ; 196  :         *code = check_code;
 
-	mov	QWORD PTR [r14], rbx
-$LN28@Initialize:
+	mov	QWORD PTR [r14], rcx
+$LN8@Initialize:
 
 ; 197  :     return (&buffer[1]);
 
-	lea	rbx, QWORD PTR [rax+8]
+	add	rax, 8
 
-; 361  :     {
-; 362  :         __UNIT_TYPE word_count;
-; 363  :         __UNIT_TYPE* block = AllocateBlock(bit_count, &word_count, light_check_code);
-; 364  :         if (block == NULL)
+; 366  :     {
+; 367  :         __UNIT_TYPE word_count;
+; 368  :         __UNIT_TYPE* block = AllocateBlock(bit_count, &word_count, light_check_code);
+; 369  :         if (block == NULL)
 
-	test	rbx, rbx
 	jne	SHORT $LN3@Initialize
-$LN32@Initialize:
+$LN80@Initialize:
 
-; 365  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 370  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	SHORT $LN1@Initialize
 $LN2@Initialize:
 
-; 366  :         p->UNIT_BIT_COUNT = bit_count;
-; 367  :         p->BLOCK_COUNT = word_count;
-; 368  :         p->BLOCK = block;
-; 369  :     }
-; 370  :     else
-; 371  :     {
-; 372  :         // bit_count に 0 が与えられるのは、数値が 0 の場合。
-; 373  :         p->UNIT_BIT_COUNT = 0;
-; 374  :         p->BLOCK_COUNT = 0;
-; 375  :         p->BLOCK = NULL;
+; 371  :         ClearNumberHeader(p);
+; 372  :         p->SIGNATURE1 = PMC_SIGNATURE;
+; 373  :         p->SIGNATURE2 = PMC_UINT_SIGNATURE;
+; 374  :         p->UNIT_BIT_COUNT = bit_count;
+; 375  :         p->BLOCK_COUNT = word_count;
+; 376  :         p->BLOCK = block;
+; 377  :     }
+; 378  :     else
+; 379  :     {
+; 380  :         // bit_count に 0 が与えられるのは、数値が 0 の場合。
+; 381  :         ClearNumberHeader(p);
+; 382  :         p->SIGNATURE1 = PMC_SIGNATURE;
+; 383  :         p->SIGNATURE2 = PMC_UINT_SIGNATURE;
+; 384  :         p->UNIT_BIT_COUNT = 0;
+; 385  :         p->BLOCK_COUNT = 0;
+; 386  :         p->BLOCK = NULL;
 
-	mov	rsi, rbx
-	mov	rbp, rbx
+	xor	ecx, ecx
+	mov	eax, ecx
+	mov	edi, ecx
+	mov	esi, ecx
 $LN3@Initialize:
 
-; 376  :     }
-; 377  :     return (PMC_STATUS_OK);
+; 387  :     }
+; 388  :     return (PMC_STATUS_OK);
 
-	mov	QWORD PTR [rdi+8], rbp
+	mov	QWORD PTR [rbx+8], rcx
+	mov	QWORD PTR [rbx+24], rcx
+	mov	QWORD PTR [rbx+32], rcx
+	mov	QWORD PTR [rbx+40], rcx
+	mov	DWORD PTR [rbx], 1231244656		; 49634d70H
+	mov	DWORD PTR [rbx+4], 1416522069		; 546e6955H
+	mov	QWORD PTR [rbx+16], rsi
+	mov	QWORD PTR [rbx+48], rdi
+	mov	QWORD PTR [rbx+56], rax
 	xor	eax, eax
-	mov	QWORD PTR [rdi+40], rsi
-	mov	QWORD PTR [rdi+48], rbx
 $LN1@Initialize:
 
-; 378  : }
+; 389  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
-	mov	rbp, QWORD PTR [rsp+56]
-	mov	rsi, QWORD PTR [rsp+64]
-	mov	rdi, QWORD PTR [rsp+72]
+	mov	rsi, QWORD PTR [rsp+56]
+	mov	rdi, QWORD PTR [rsp+64]
 	add	rsp, 32					; 00000020H
 	pop	r14
 	ret	0
@@ -814,66 +781,58 @@ _TEXT	SEGMENT
 p$ = 8
 FillNumberHeader PROC					; COMDAT
 
-; 318  : #ifdef _M_IX64
-; 319  :     if (sizeof(*p) == sizeof(_UINT64_T) * 7)
-; 320  :     {
-; 321  :         _UINT64_T* __p = (_UINT64_T*)p;
-; 322  :         __p[0] = DEFAULT_MEMORY_DATA;
+; 321  : #ifdef _M_IX64
+; 322  :     if (sizeof(*p) == sizeof(_UINT64_T) * 8)
+; 323  :     {
+; 324  :         _UINT64_T* __p = (_UINT64_T*)p;
+; 325  :         __p[0] = DEFAULT_MEMORY_DATA;
 
 	mov	rax, -3689348814741910324		; ccccccccccccccccH
 	mov	QWORD PTR [rcx], rax
-
-; 323  :         __p[1] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rcx+8], rax
-
-; 324  :         __p[2] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rcx+16], rax
-
-; 325  :         __p[3] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rcx+24], rax
-
-; 326  :         __p[4] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rcx+32], rax
-
-; 327  :         __p[5] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rcx+40], rax
-
-; 328  :         __p[6] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rcx+48], rax
+	mov	QWORD PTR [rcx+56], rax
 
-; 329  :     }
-; 330  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
-; 331  :         _FILL_MEMORY_64((_UINT64_T*)p, DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT64_T));
-; 332  :     else
-; 333  :     {
-; 334  : #endif
-; 335  :         if (sizeof(*p) == sizeof(_UINT32_T) * 7)
-; 336  :         {
-; 337  :             _UINT32_T* __p = (_UINT32_T*)p;
-; 338  :             __p[0] = (_UINT32_T)DEFAULT_MEMORY_DATA;
-; 339  :             __p[1] = (_UINT32_T)DEFAULT_MEMORY_DATA;
-; 340  :             __p[2] = (_UINT32_T)DEFAULT_MEMORY_DATA;
-; 341  :             __p[3] = (_UINT32_T)DEFAULT_MEMORY_DATA;
-; 342  :             __p[4] = (_UINT32_T)DEFAULT_MEMORY_DATA;
-; 343  :             __p[5] = (_UINT32_T)DEFAULT_MEMORY_DATA;
-; 344  :             __p[6] = (_UINT32_T)DEFAULT_MEMORY_DATA;
-; 345  :         }
-; 346  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
-; 347  :             _FILL_MEMORY_32((_UINT32_T*)p, (_UINT32_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT32_T));
-; 348  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
-; 349  :             _FILL_MEMORY_16((_UINT16_T*)p, (_UINT16_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT16_T));
-; 350  :         else
-; 351  :             _FILL_MEMORY_BYTE(p, (unsigned char)DEFAULT_MEMORY_DATA, sizeof(*p));
-; 352  : #ifdef _M_IX64
-; 353  :     }
-; 354  : #endif
-; 355  : }
+; 326  :         __p[1] = DEFAULT_MEMORY_DATA;
+; 327  :         __p[2] = DEFAULT_MEMORY_DATA;
+; 328  :         __p[3] = DEFAULT_MEMORY_DATA;
+; 329  :         __p[4] = DEFAULT_MEMORY_DATA;
+; 330  :         __p[5] = DEFAULT_MEMORY_DATA;
+; 331  :         __p[6] = DEFAULT_MEMORY_DATA;
+; 332  :         __p[7] = DEFAULT_MEMORY_DATA;
+; 333  :     }
+; 334  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
+; 335  :         _FILL_MEMORY_64((_UINT64_T*)p, DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT64_T));
+; 336  :     else
+; 337  :     {
+; 338  : #endif
+; 339  :         if (sizeof(*p) == sizeof(_UINT32_T) * 9)
+; 340  :         {
+; 341  :             _UINT32_T* __p = (_UINT32_T*)p;
+; 342  :             __p[0] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 343  :             __p[1] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 344  :             __p[2] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 345  :             __p[3] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 346  :             __p[4] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 347  :             __p[5] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 348  :             __p[6] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 349  :             __p[7] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 350  :             __p[8] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 351  :         }
+; 352  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
+; 353  :             _FILL_MEMORY_32((_UINT32_T*)p, (_UINT32_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT32_T));
+; 354  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
+; 355  :             _FILL_MEMORY_16((_UINT16_T*)p, (_UINT16_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT16_T));
+; 356  :         else
+; 357  :             _FILL_MEMORY_BYTE(p, (unsigned char)DEFAULT_MEMORY_DATA, sizeof(*p));
+; 358  : #ifdef _M_IX64
+; 359  :     }
+; 360  : #endif
+; 361  : }
 
 	ret	0
 FillNumberHeader ENDP
@@ -886,68 +845,89 @@ p$ = 8
 ClearNumberHeader PROC					; COMDAT
 
 ; 277  : #ifdef _M_IX64
-; 278  :     if (sizeof(*p) == sizeof(_UINT64_T) * 7)
+; 278  :     if (sizeof(*p) == sizeof(_UINT64_T) * 8)
 ; 279  :     {
 ; 280  :         _UINT64_T* __p = (_UINT64_T*)p;
 ; 281  :         __p[0] = 0;
 
 	xor	eax, eax
 	mov	QWORD PTR [rcx], rax
+	mov	QWORD PTR [rcx+8], rax
+	mov	QWORD PTR [rcx+16], rax
+	mov	QWORD PTR [rcx+24], rax
+	mov	QWORD PTR [rcx+32], rax
+	mov	QWORD PTR [rcx+40], rax
+	mov	QWORD PTR [rcx+48], rax
+	mov	QWORD PTR [rcx+56], rax
 
 ; 282  :         __p[1] = 0;
-
-	mov	QWORD PTR [rcx+8], rax
-
 ; 283  :         __p[2] = 0;
-
-	mov	QWORD PTR [rcx+16], rax
-
 ; 284  :         __p[3] = 0;
-
-	mov	QWORD PTR [rcx+24], rax
-
 ; 285  :         __p[4] = 0;
-
-	mov	QWORD PTR [rcx+32], rax
-
 ; 286  :         __p[5] = 0;
-
-	mov	QWORD PTR [rcx+40], rax
-
 ; 287  :         __p[6] = 0;
-
-	mov	QWORD PTR [rcx+48], rax
-
-; 288  :     }
-; 289  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
-; 290  :         _ZERO_MEMORY_64((_UINT64_T*)p, sizeof(*p) / sizeof(_UINT64_T));
-; 291  :     else
-; 292  :     {
-; 293  : #endif
-; 294  :         if (sizeof(*p) == sizeof(_UINT32_T) * 7)
-; 295  :         {
-; 296  :             _UINT32_T* __p = (_UINT32_T*)p;
-; 297  :             __p[0] = 0;
-; 298  :             __p[1] = 0;
-; 299  :             __p[2] = 0;
-; 300  :             __p[3] = 0;
-; 301  :             __p[4] = 0;
-; 302  :             __p[5] = 0;
-; 303  :             __p[6] = 0;
-; 304  :         }
-; 305  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
-; 306  :             _ZERO_MEMORY_32((_UINT32_T*)p, sizeof(*p) / sizeof(_UINT32_T));
-; 307  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
-; 308  :             _ZERO_MEMORY_16((_UINT16_T*)p, sizeof(*p) / sizeof(_UINT16_T));
-; 309  :         else
-; 310  :             _ZERO_MEMORY_BYTE(p, sizeof(*p));
-; 311  : #ifdef _M_IX64
-; 312  :     }
-; 313  : #endif
-; 314  : }
+; 288  :         __p[7] = 0;
+; 289  :     }
+; 290  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
+; 291  :         _ZERO_MEMORY_64((_UINT64_T*)p, sizeof(*p) / sizeof(_UINT64_T));
+; 292  :     else
+; 293  :     {
+; 294  : #endif
+; 295  :         if (sizeof(*p) == sizeof(_UINT32_T) * 9)
+; 296  :         {
+; 297  :             _UINT32_T* __p = (_UINT32_T*)p;
+; 298  :             __p[0] = 0;
+; 299  :             __p[1] = 0;
+; 300  :             __p[2] = 0;
+; 301  :             __p[3] = 0;
+; 302  :             __p[4] = 0;
+; 303  :             __p[5] = 0;
+; 304  :             __p[6] = 0;
+; 305  :             __p[7] = 0;
+; 306  :             __p[8] = 0;
+; 307  :         }
+; 308  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
+; 309  :             _ZERO_MEMORY_32((_UINT32_T*)p, sizeof(*p) / sizeof(_UINT32_T));
+; 310  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
+; 311  :             _ZERO_MEMORY_16((_UINT16_T*)p, sizeof(*p) / sizeof(_UINT16_T));
+; 312  :         else
+; 313  :             _ZERO_MEMORY_BYTE(p, sizeof(*p));
+; 314  : #ifdef _M_IX64
+; 315  :     }
+; 316  : #endif
+; 317  : }
 
 	ret	0
 ClearNumberHeader ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
+;	COMDAT CheckBlock
+_TEXT	SEGMENT
+buffer$ = 8
+CheckBlock PROC						; COMDAT
+
+; 240  : #ifdef _DEBUG
+; 241  :     if (buffer == NULL)
+; 242  :         return (PMC_STATUS_OK);
+; 243  :     --buffer;
+; 244  :     __UNIT_TYPE words = buffer[0];
+; 245  :     __UNIT_TYPE code_desired = buffer[words + 1];
+; 246  :     __UNIT_TYPE code_actual = CalculateCheckCode(&buffer[1], words);
+; 247  :     if (code_actual == code_desired)
+; 248  :         return (PMC_STATUS_OK);
+; 249  :     else
+; 250  :         return (PMC_STATUS_BAD_BUFFER);
+; 251  : #else
+; 252  :     return (PMC_STATUS_OK);
+
+	xor	eax, eax
+
+; 253  : #endif
+; 254  : }
+
+	ret	0
+CheckBlock ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1131,7 +1111,7 @@ CalculateCheckCode PROC					; COMDAT
 $LL2@CalculateC:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1141,7 +1121,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1151,7 +1131,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1161,7 +1141,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1171,7 +1151,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1181,7 +1161,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1191,7 +1171,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1201,7 +1181,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1211,7 +1191,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1221,7 +1201,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1231,7 +1211,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1241,7 +1221,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1251,7 +1231,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1261,7 +1241,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1271,7 +1251,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1281,7 +1261,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1291,7 +1271,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+120]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1301,7 +1281,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+128]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1311,7 +1291,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+136]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1321,7 +1301,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+144]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1331,7 +1311,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+152]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1341,7 +1321,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+160]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1351,7 +1331,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+168]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1361,7 +1341,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+176]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1371,7 +1351,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+184]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1381,7 +1361,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+192]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1391,7 +1371,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+200]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1401,7 +1381,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+208]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1411,7 +1391,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+216]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1421,7 +1401,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+224]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1431,7 +1411,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+232]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1441,7 +1421,7 @@ $LL2@CalculateC:
 	xor	rax, QWORD PTR [rcx+240]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1468,7 +1448,7 @@ $LN3@CalculateC:
 	je	$LN4@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1478,7 +1458,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1488,7 +1468,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1498,7 +1478,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1508,7 +1488,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1518,7 +1498,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1528,7 +1508,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1538,7 +1518,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1548,7 +1528,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+56]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1558,7 +1538,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+64]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1568,7 +1548,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+72]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1578,7 +1558,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+80]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1588,7 +1568,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+88]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1598,7 +1578,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+96]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1608,7 +1588,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+104]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1618,7 +1598,7 @@ $LN3@CalculateC:
 	xor	rax, QWORD PTR [rcx+112]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1640,7 +1620,7 @@ $LN4@CalculateC:
 	je	SHORT $LN5@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1650,7 +1630,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1660,7 +1640,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rcx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1670,7 +1650,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rcx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1680,7 +1660,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rcx+24]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1690,7 +1670,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rcx+32]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1700,7 +1680,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rcx+40]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1710,7 +1690,7 @@ $LN4@CalculateC:
 	xor	rax, QWORD PTR [rcx+48]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1732,7 +1712,7 @@ $LN5@CalculateC:
 	je	SHORT $LN6@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1742,7 +1722,7 @@ $LN5@CalculateC:
 	xor	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1752,7 +1732,7 @@ $LN5@CalculateC:
 	xor	rax, QWORD PTR [rcx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1762,7 +1742,7 @@ $LN5@CalculateC:
 	xor	rax, QWORD PTR [rcx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1784,7 +1764,7 @@ $LN6@CalculateC:
 	je	SHORT $LN7@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1794,7 +1774,7 @@ $LN6@CalculateC:
 	xor	rax, QWORD PTR [rcx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1816,7 +1796,7 @@ $LN7@CalculateC:
 	je	SHORT $LN140@CalculateC
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 766  :     return (_rotl64(x, count));
+; 771  :     return (_rotl64(x, count));
 
 	rol	rax, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -1840,57 +1820,57 @@ _TEXT	SEGMENT
 x$ = 8
 _TZCNT_ALT_UNIT PROC					; COMDAT
 
-; 991  :     if (x == 0)
+; 996  :     if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN2@TZCNT_ALT_
 
-; 992  :         return (sizeof(x) * 8);
+; 997  :         return (sizeof(x) * 8);
 
 	lea	eax, QWORD PTR [rcx+64]
 
-; 1006 : #elif defined(__GNUC__)
-; 1007 :     _UINT64_T pos;
-; 1008 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
-; 1009 : #else
-; 1010 : #error unknown compiler
-; 1011 : #endif
-; 1012 : #else
-; 1013 : #error unknown platform
-; 1014 : #endif
-; 1015 :     return (pos);
-; 1016 : }
+; 1011 : #elif defined(__GNUC__)
+; 1012 :     _UINT64_T pos;
+; 1013 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 1014 : #else
+; 1015 : #error unknown compiler
+; 1016 : #endif
+; 1017 : #else
+; 1018 : #error unknown platform
+; 1019 : #endif
+; 1020 :     return (pos);
+; 1021 : }
 
 	ret	0
 $LN2@TZCNT_ALT_:
 
-; 993  : #ifdef _M_IX86
-; 994  :     _UINT32_T pos;
-; 995  : #ifdef _MSC_VER
-; 996  :     _BitScanForward(&pos, x);
-; 997  : #elif defined(__GNUC__)
-; 998  :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-; 999  : #else
-; 1000 : #error unknown compiler
-; 1001 : #endif
-; 1002 : #elif defined(_M_X64)
-; 1003 : #ifdef _MSC_VER
-; 1004 :     _UINT32_T pos;
-; 1005 :     _BitScanForward64(&pos, x);
+; 998  : #ifdef _M_IX86
+; 999  :     _UINT32_T pos;
+; 1000 : #ifdef _MSC_VER
+; 1001 :     _BitScanForward(&pos, x);
+; 1002 : #elif defined(__GNUC__)
+; 1003 :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+; 1004 : #else
+; 1005 : #error unknown compiler
+; 1006 : #endif
+; 1007 : #elif defined(_M_X64)
+; 1008 : #ifdef _MSC_VER
+; 1009 :     _UINT32_T pos;
+; 1010 :     _BitScanForward64(&pos, x);
 
 	bsf	rax, rcx
 
-; 1006 : #elif defined(__GNUC__)
-; 1007 :     _UINT64_T pos;
-; 1008 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
-; 1009 : #else
-; 1010 : #error unknown compiler
-; 1011 : #endif
-; 1012 : #else
-; 1013 : #error unknown platform
-; 1014 : #endif
-; 1015 :     return (pos);
-; 1016 : }
+; 1011 : #elif defined(__GNUC__)
+; 1012 :     _UINT64_T pos;
+; 1013 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 1014 : #else
+; 1015 : #error unknown compiler
+; 1016 : #endif
+; 1017 : #else
+; 1018 : #error unknown platform
+; 1019 : #endif
+; 1020 :     return (pos);
+; 1021 : }
 
 	ret	0
 _TZCNT_ALT_UNIT ENDP
@@ -1902,51 +1882,51 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 911  :     if (x == 0)
+; 916  :     if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 912  :         return (sizeof(x) * 8);
+; 917  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 
-; 936  : }
+; 941  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 913  : #ifdef _M_IX86
-; 914  :     _UINT32_T pos;
-; 915  : #ifdef _MSC_VER
-; 916  :     _BitScanReverse(&pos, x);
-; 917  : #elif defined(__GNUC__)
-; 918  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 919  : #else
-; 920  : #error unknown compiler
-; 921  : #endif
-; 922  : #elif defined(_M_X64)
-; 923  : #ifdef _MSC_VER
-; 924  :     _UINT32_T pos;
-; 925  :     _BitScanReverse64(&pos, x);
+; 918  : #ifdef _M_IX86
+; 919  :     _UINT32_T pos;
+; 920  : #ifdef _MSC_VER
+; 921  :     _BitScanReverse(&pos, x);
+; 922  : #elif defined(__GNUC__)
+; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 924  : #else
+; 925  : #error unknown compiler
+; 926  : #endif
+; 927  : #elif defined(_M_X64)
+; 928  : #ifdef _MSC_VER
+; 929  :     _UINT32_T pos;
+; 930  :     _BitScanReverse64(&pos, x);
 
 	bsr	rcx, rcx
 
-; 926  : #elif defined(__GNUC__)
-; 927  :     _UINT64_T pos;
-; 928  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 929  : #else
-; 930  : #error unknown compiler
-; 931  : #endif
-; 932  : #else
-; 933  : #error unknown platform
-; 934  : #endif
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 931  : #elif defined(__GNUC__)
+; 932  :     _UINT64_T pos;
+; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 934  : #else
+; 935  : #error unknown compiler
+; 936  : #endif
+; 937  : #else
+; 938  : #error unknown platform
+; 939  : #endif
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 63					; 0000003fH
 	sub	eax, ecx
 
-; 936  : }
+; 941  : }
 
 	ret	0
 _LZCNT_ALT_UNIT ENDP
@@ -1959,22 +1939,22 @@ x$ = 8
 count$ = 16
 _ROTATE_L_UNIT PROC					; COMDAT
 
-; 762  : {
+; 767  : {
 
 	mov	rax, rcx
 
-; 763  : #ifdef _M_IX86
-; 764  :     return (_rotl(x, count));
-; 765  : #elif defined(_M_X64)
-; 766  :     return (_rotl64(x, count));
+; 768  : #ifdef _M_IX86
+; 769  :     return (_rotl(x, count));
+; 770  : #elif defined(_M_X64)
+; 771  :     return (_rotl64(x, count));
 
 	mov	ecx, edx
 	rol	rax, cl
 
-; 767  : #else
-; 768  : #error unknown platform
-; 769  : #endif
-; 770  : }
+; 772  : #else
+; 773  : #error unknown platform
+; 774  : #endif
+; 775  : }
 
 	ret	0
 _ROTATE_L_UNIT ENDP
@@ -1987,7 +1967,7 @@ u$ = 8
 v$ = 16
 _DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	lea	rax, QWORD PTR [rdx-1]
 	mov	r8, rdx
@@ -1995,7 +1975,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	xor	edx, edx
 	div	r8
 
-; 476  : }
+; 481  : }
 
 	ret	0
 _DIVIDE_CEILING_UNIT ENDP
@@ -2009,24 +1989,24 @@ x$ = 16
 count$ = 24
 _FILL_MEMORY_UNIT PROC					; COMDAT
 
-; 447  : {
+; 452  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 448  : #ifdef _M_IX86
-; 449  :     __stosd((unsigned long*)d, x, (unsigned long)count);
-; 450  : #elif defined(_M_X64)
-; 451  :     __stosq(d, x, count);
+; 453  : #ifdef _M_IX86
+; 454  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 455  : #elif defined(_M_X64)
+; 456  :     __stosq(d, x, count);
 
 	mov	rdi, rcx
 	mov	rax, rdx
 	mov	rcx, r8
 	rep stosq
 
-; 452  : #else
-; 453  : #error unknown platform
-; 454  : #endif
-; 455  : }
+; 457  : #else
+; 458  : #error unknown platform
+; 459  : #endif
+; 460  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -2041,18 +2021,18 @@ x$ = 16
 count$ = 24
 _FILL_MEMORY_64 PROC					; COMDAT
 
-; 441  : {
+; 446  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 442  :     __stosq(d, x, count);
+; 447  :     __stosq(d, x, count);
 
 	mov	rdi, rcx
 	mov	rax, rdx
 	mov	rcx, r8
 	rep stosq
 
-; 443  : }
+; 448  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -2067,18 +2047,18 @@ x$ = 16
 count$ = 24
 _FILL_MEMORY_32 PROC					; COMDAT
 
-; 435  : {
+; 440  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 436  :     __stosd(( unsigned long*)d, x, count);
+; 441  :     __stosd(( unsigned long*)d, x, count);
 
 	mov	rdi, rcx
 	mov	eax, edx
 	mov	rcx, r8
 	rep stosd
 
-; 437  : }
+; 442  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -2093,18 +2073,18 @@ x$ = 16
 count$ = 24
 _FILL_MEMORY_16 PROC					; COMDAT
 
-; 430  : {
+; 435  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 431  :     __stosw(d, x, count);
+; 436  :     __stosw(d, x, count);
 
 	mov	rdi, rcx
 	movzx	eax, dx
 	mov	rcx, r8
 	rep stosw
 
-; 432  : }
+; 437  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -2119,18 +2099,18 @@ x$ = 16
 count$ = 24
 _FILL_MEMORY_BYTE PROC					; COMDAT
 
-; 425  : {
+; 430  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 426  :     __stosb(d, x, count);
+; 431  :     __stosb(d, x, count);
 
 	mov	rdi, rcx
 	movzx	eax, dl
 	mov	rcx, r8
 	rep stosb
 
-; 427  : }
+; 432  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -2144,18 +2124,18 @@ d$ = 8
 count$ = 16
 _ZERO_MEMORY_64 PROC					; COMDAT
 
-; 391  : {
+; 396  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 392  :     __stosq(d, 0, count);
+; 397  :     __stosq(d, 0, count);
 
 	mov	rdi, rcx
 	xor	eax, eax
 	mov	rcx, rdx
 	rep stosq
 
-; 393  : }
+; 398  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -2169,18 +2149,18 @@ d$ = 8
 count$ = 16
 _ZERO_MEMORY_32 PROC					; COMDAT
 
-; 385  : {
+; 390  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 386  :     __stosd((unsigned long*)d, 0, count);
+; 391  :     __stosd((unsigned long*)d, 0, count);
 
 	mov	rdi, rcx
 	xor	eax, eax
 	mov	rcx, rdx
 	rep stosd
 
-; 387  : }
+; 392  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -2194,18 +2174,18 @@ d$ = 8
 count$ = 16
 _ZERO_MEMORY_16 PROC					; COMDAT
 
-; 380  : {
+; 385  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 381  :     __stosw(d, 0, count);
+; 386  :     __stosw(d, 0, count);
 
 	mov	rdi, rcx
 	xor	eax, eax
 	mov	rcx, rdx
 	rep stosw
 
-; 382  : }
+; 387  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -2219,18 +2199,18 @@ d$ = 8
 count$ = 16
 _ZERO_MEMORY_BYTE PROC					; COMDAT
 
-; 375  : {
+; 380  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 376  :     __stosb(d, 0, count);
+; 381  :     __stosb(d, 0, count);
 
 	mov	rdi, rcx
 	xor	eax, eax
 	mov	rcx, rdx
 	rep stosb
 
-; 377  : }
+; 382  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -2245,25 +2225,25 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 347  : {
+; 352  : {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 
-; 348  : #ifdef _M_IX86
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 350  : #elif defined(_M_X64)
-; 351  :     __movsq(d, s, count);
+; 353  : #ifdef _M_IX86
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 355  : #elif defined(_M_X64)
+; 356  :     __movsq(d, s, count);
 
 	mov	rdi, rcx
 	mov	rsi, rdx
 	mov	rcx, r8
 	rep movsq
 
-; 352  : #else
-; 353  : #error unknown platform
-; 354  : #endif
-; 355  : }
+; 357  : #else
+; 358  : #error unknown platform
+; 359  : #endif
+; 360  : }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -2277,88 +2257,92 @@ _TEXT	SEGMENT
 p$ = 48
 PMC_Dispose PROC					; COMDAT
 
-; 539  : {
+; 552  : {
 
-$LN32:
-
-; 420  :     if (p == NULL || p->IS_STATIC)
-
-	test	rcx, rcx
-	je	SHORT $LN30@PMC_Dispos
+$LN52:
 	push	rbx
 	sub	rsp, 32					; 00000020H
-	test	BYTE PTR [rcx+32], 1
 
-; 539  : {
+; 510  :     if (p->SIGNATURE1 != PMC_SIGNATURE || p->SIGNATURE2 != PMC_UINT_SIGNATURE)
+
+	cmp	DWORD PTR [rcx], 1231244656		; 49634d70H
+
+; 552  : {
 
 	mov	rbx, rcx
 
-; 420  :     if (p == NULL || p->IS_STATIC)
+; 510  :     if (p->SIGNATURE1 != PMC_SIGNATURE || p->SIGNATURE2 != PMC_UINT_SIGNATURE)
 
-	jne	SHORT $LN8@PMC_Dispos
+	jne	SHORT $LN14@PMC_Dispos
+	cmp	DWORD PTR [rcx+4], 1416522069		; 546e6955H
+	jne	SHORT $LN14@PMC_Dispos
 
-; 421  :         return;
-; 422  :     CleanUpNumber(p);
+; 431  :     if (p == NULL || p->IS_STATIC)
+
+	test	BYTE PTR [rcx+40], 1
+	jne	SHORT $LN14@PMC_Dispos
+
+; 432  :         return;
+; 433  :     CleanUpNumber(p);
 
 	call	CleanUpNumber
 
-; 322  :         __p[0] = DEFAULT_MEMORY_DATA;
+; 325  :         __p[0] = DEFAULT_MEMORY_DATA;
 
 	mov	rax, -3689348814741910324		; ccccccccccccccccH
 
-; 424  :     HeapFree(hLocalHeap, 0, p);
+; 435  :     HeapFree(hLocalHeap, 0, p);
 
 	mov	r8, rbx
 
-; 322  :         __p[0] = DEFAULT_MEMORY_DATA;
+; 325  :         __p[0] = DEFAULT_MEMORY_DATA;
 
 	mov	QWORD PTR [rbx], rax
 
-; 424  :     HeapFree(hLocalHeap, 0, p);
+; 435  :     HeapFree(hLocalHeap, 0, p);
 
 	xor	edx, edx
 
-; 323  :         __p[1] = DEFAULT_MEMORY_DATA;
+; 325  :         __p[0] = DEFAULT_MEMORY_DATA;
 
 	mov	QWORD PTR [rbx+8], rax
-
-; 324  :         __p[2] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+16], rax
-
-; 325  :         __p[3] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+24], rax
-
-; 326  :         __p[4] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+32], rax
-
-; 327  :         __p[5] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+40], rax
-
-; 328  :         __p[6] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+48], rax
+	mov	QWORD PTR [rbx+56], rax
 
-; 424  :     HeapFree(hLocalHeap, 0, p);
+; 435  :     HeapFree(hLocalHeap, 0, p);
 
 	mov	rcx, QWORD PTR hLocalHeap
-	call	QWORD PTR __imp_HeapFree
-$LN8@PMC_Dispos:
 
-; 540  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-; 541  :     PMC_STATUS_CODE result = CheckNumber(np);
-; 542  :     if (result != PMC_STATUS_OK)
-; 543  :         return;
-; 544  :     DeallocateNumber(np);
-; 545  :     return;
-; 546  : }
+; 553  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 554  :     PMC_STATUS_CODE result = CheckNumber(np);
+; 555  :     if (result != PMC_STATUS_OK)
+; 556  :         return;
+; 557  :     DeallocateNumber(np);
+; 558  :     return;
+; 559  : }
 
 	add	rsp, 32					; 00000020H
 	pop	rbx
-$LN30@PMC_Dispos:
+
+; 435  :     HeapFree(hLocalHeap, 0, p);
+
+	rex_jmp	QWORD PTR __imp_HeapFree
+$LN14@PMC_Dispos:
+
+; 553  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 554  :     PMC_STATUS_CODE result = CheckNumber(np);
+; 555  :     if (result != PMC_STATUS_OK)
+; 556  :         return;
+; 557  :     DeallocateNumber(np);
+; 558  :     return;
+; 559  : }
+
+	add	rsp, 32					; 00000020H
+	pop	rbx
 	ret	0
 PMC_Dispose ENDP
 _TEXT	ENDS
@@ -2369,9 +2353,9 @@ _TEXT	SEGMENT
 feature$ = 48
 Initialize_Memory PROC					; COMDAT
 
-; 549  : {
+; 562  : {
 
-$LN89:
+$LN157:
 	mov	QWORD PTR [rsp+8], rbx
 	push	rdi
 	sub	rsp, 32					; 00000020H
@@ -2380,58 +2364,63 @@ $LN89:
 
 	xor	edi, edi
 
-; 550  :     PMC_STATUS_CODE result = PMC_STATUS_OK;
-; 551  : 
-; 552  :     BOOL number_zero_ok = TRUE;
-; 553  :     BOOL number_one_ok = TRUE;
-; 554  :     if (result == PMC_STATUS_OK)
-; 555  :     {
-; 556  :         result = AttatchNumber(&number_zero, 0);
-; 557  :         if (result == PMC_STATUS_OK)
-; 558  :         {
-; 559  :             CommitNumber(&number_zero);
+; 382  :         p->SIGNATURE1 = PMC_SIGNATURE;
 
-	lea	rcx, OFFSET FLAT:number_zero
-	xorps	xmm0, xmm0
-
-; 285  :         __p[4] = 0;
-
-	mov	QWORD PTR number_zero+32, rdi
-
-; 394  :     p->IS_STATIC = TRUE;
-
-	mov	DWORD PTR number_zero+32, 1
+	mov	DWORD PTR number_zero, 1231244656	; 49634d70H
 
 ; 281  :         __p[0] = 0;
 
-	mov	QWORD PTR number_zero, rdi
-
-; 283  :         __p[2] = 0;
-
-	movdqu	XMMWORD PTR number_zero+16, xmm0
-
-; 373  :         p->UNIT_BIT_COUNT = 0;
-
-	mov	QWORD PTR number_zero+8, rdi
-
-; 374  :         p->BLOCK_COUNT = 0;
-
 	mov	QWORD PTR number_zero+40, rdi
 
-; 375  :         p->BLOCK = NULL;
+; 563  :     PMC_STATUS_CODE result = PMC_STATUS_OK;
+; 564  : 
+; 565  :     BOOL number_zero_ok = TRUE;
+; 566  :     BOOL number_one_ok = TRUE;
+; 567  :     if (result == PMC_STATUS_OK)
+; 568  :     {
+; 569  :         result = AttatchNumber(&number_zero, 0);
+; 570  :         if (result == PMC_STATUS_OK)
+; 571  :         {
+; 572  :             CommitNumber(&number_zero);
+
+	lea	rcx, OFFSET FLAT:number_zero
+
+; 405  :     p->IS_STATIC = TRUE;
+
+	mov	DWORD PTR number_zero+40, 1
+
+; 281  :         __p[0] = 0;
+
+	mov	QWORD PTR number_zero+8, rdi
+	mov	QWORD PTR number_zero+24, rdi
+	mov	QWORD PTR number_zero+32, rdi
+
+; 383  :         p->SIGNATURE2 = PMC_UINT_SIGNATURE;
+
+	mov	DWORD PTR number_zero+4, 1416522069	; 546e6955H
+
+; 384  :         p->UNIT_BIT_COUNT = 0;
+
+	mov	QWORD PTR number_zero+16, rdi
+
+; 385  :         p->BLOCK_COUNT = 0;
 
 	mov	QWORD PTR number_zero+48, rdi
 
-; 550  :     PMC_STATUS_CODE result = PMC_STATUS_OK;
-; 551  : 
-; 552  :     BOOL number_zero_ok = TRUE;
-; 553  :     BOOL number_one_ok = TRUE;
-; 554  :     if (result == PMC_STATUS_OK)
-; 555  :     {
-; 556  :         result = AttatchNumber(&number_zero, 0);
-; 557  :         if (result == PMC_STATUS_OK)
-; 558  :         {
-; 559  :             CommitNumber(&number_zero);
+; 386  :         p->BLOCK = NULL;
+
+	mov	QWORD PTR number_zero+56, rdi
+
+; 563  :     PMC_STATUS_CODE result = PMC_STATUS_OK;
+; 564  : 
+; 565  :     BOOL number_zero_ok = TRUE;
+; 566  :     BOOL number_one_ok = TRUE;
+; 567  :     if (result == PMC_STATUS_OK)
+; 568  :     {
+; 569  :         result = AttatchNumber(&number_zero, 0);
+; 570  :         if (result == PMC_STATUS_OK)
+; 571  :         {
+; 572  :             CommitNumber(&number_zero);
 
 	call	CommitNumber
 
@@ -2439,45 +2428,13 @@ $LN89:
 
 	mov	rcx, QWORD PTR hLocalHeap
 	lea	edx, QWORD PTR [rdi+8]
-	xorps	xmm0, xmm0
-
-; 281  :         __p[0] = 0;
-
-	mov	QWORD PTR number_one, rdi
-
-; 169  : 	__UNIT_TYPE* buffer = (__UNIT_TYPE*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, bytes);
-
 	lea	r8d, QWORD PTR [rdi+24]
-
-; 282  :         __p[1] = 0;
-
-	mov	QWORD PTR number_one+8, rdi
-
-; 283  :         __p[2] = 0;
-
-	movdqu	XMMWORD PTR number_one+16, xmm0
-
-; 284  :         __p[3] = 0;
-; 285  :         __p[4] = 0;
-
-	mov	QWORD PTR number_one+32, rdi
-
-; 286  :         __p[5] = 0;
-
-	mov	QWORD PTR number_one+40, rdi
-
-; 287  :         __p[6] = 0;
-
-	mov	QWORD PTR number_one+48, rdi
-
-; 169  : 	__UNIT_TYPE* buffer = (__UNIT_TYPE*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, bytes);
-
 	call	QWORD PTR __imp_HeapAlloc
 
 ; 170  : 	if (buffer == NULL)
 
 	test	rax, rax
-	je	SHORT $LN86@Initialize
+	je	SHORT $LN154@Initialize
 
 ; 171  : 		return (NULL);
 ; 172  : 	buffer[0] = words1;
@@ -2509,78 +2466,100 @@ $LN89:
 	add	rax, 16
 	mov	QWORD PTR [rcx+8], rax
 
-; 364  :         if (block == NULL)
+; 369  :         if (block == NULL)
 
 	test	rcx, rcx
-	je	SHORT $LN86@Initialize
+	je	SHORT $LN154@Initialize
 
-; 392  :     if (result != PMC_STATUS_OK)
+; 281  :         __p[0] = 0;
 
-	or	DWORD PTR number_one+32, 1
+	mov	QWORD PTR number_one+40, rdi
+
+; 403  :     if (result != PMC_STATUS_OK)
+
 	mov	ebx, edi
 
-; 366  :         p->UNIT_BIT_COUNT = bit_count;
+; 404  :         return (result);
+; 405  :     p->IS_STATIC = TRUE;
 
-	mov	QWORD PTR number_one+8, 1
+	mov	DWORD PTR number_one+40, 1
 
-; 367  :         p->BLOCK_COUNT = word_count;
+; 281  :         __p[0] = 0;
 
-	mov	QWORD PTR number_one+40, 1
+	mov	QWORD PTR number_one+8, rdi
+	mov	QWORD PTR number_one+24, rdi
+	mov	QWORD PTR number_one+32, rdi
 
-; 368  :         p->BLOCK = block;
+; 372  :         p->SIGNATURE1 = PMC_SIGNATURE;
 
-	mov	QWORD PTR number_one+48, rcx
+	mov	DWORD PTR number_one, 1231244656	; 49634d70H
 
-; 394  :     p->IS_STATIC = TRUE;
+; 373  :         p->SIGNATURE2 = PMC_UINT_SIGNATURE;
 
-	jmp	SHORT $LN44@Initialize
-$LN86@Initialize:
+	mov	DWORD PTR number_one+4, 1416522069	; 546e6955H
 
-; 365  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 374  :         p->UNIT_BIT_COUNT = bit_count;
 
-	mov	rcx, QWORD PTR number_one+48
+	mov	QWORD PTR number_one+16, 1
+
+; 375  :         p->BLOCK_COUNT = word_count;
+
+	mov	QWORD PTR number_one+48, 1
+
+; 376  :         p->BLOCK = block;
+
+	mov	QWORD PTR number_one+56, rcx
+
+; 405  :     p->IS_STATIC = TRUE;
+
+	jmp	SHORT $LN64@Initialize
+$LN154@Initialize:
+
+; 370  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+
+	mov	rcx, QWORD PTR number_one+56
 	mov	ebx, -5
-$LN44@Initialize:
+$LN64@Initialize:
 
-; 560  :             number_zero_ok = TRUE;
-; 561  :         }
-; 562  :     }
-; 563  : 
-; 564  :     if (result == PMC_STATUS_OK)
-; 565  :     {
-; 566  :         result = AttatchNumber(&number_one, 1);
-; 567  :         if (result == PMC_STATUS_OK)
+; 573  :             number_zero_ok = TRUE;
+; 574  :         }
+; 575  :     }
+; 576  : 
+; 577  :     if (result == PMC_STATUS_OK)
+; 578  :     {
+; 579  :         result = AttatchNumber(&number_one, 1);
+; 580  :         if (result == PMC_STATUS_OK)
 
 	test	ebx, ebx
 	jne	SHORT $LN5@Initialize
 
-; 568  :         {
-; 569  :             number_one.BLOCK[0] = 1;
+; 581  :         {
+; 582  :             number_one.BLOCK[0] = 1;
 
 	mov	QWORD PTR [rcx], 1
 
-; 570  :             CommitNumber(&number_one);
+; 583  :             CommitNumber(&number_one);
 
 	lea	rcx, OFFSET FLAT:number_one
 	call	CommitNumber
 
-; 571  :             number_one_ok = TRUE;
-; 572  :         }
-; 573  :     }
-; 574  : 
-; 575  :     if (result != PMC_STATUS_OK)
-; 576  :     {
-; 577  :         if (number_zero_ok)
-; 578  :             DetatchNumber(&number_zero);
-; 579  :         if (number_one_ok)
-; 580  :             DetatchNumber(&number_one);
-; 581  :     }
-; 582  : 
-; 583  :     return (result);
+; 584  :             number_one_ok = TRUE;
+; 585  :         }
+; 586  :     }
+; 587  : 
+; 588  :     if (result != PMC_STATUS_OK)
+; 589  :     {
+; 590  :         if (number_zero_ok)
+; 591  :             DetatchNumber(&number_zero);
+; 592  :         if (number_one_ok)
+; 593  :             DetatchNumber(&number_one);
+; 594  :     }
+; 595  : 
+; 596  :     return (result);
 
 	mov	eax, edi
 
-; 584  : }
+; 597  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	add	rsp, 32					; 00000020H
@@ -2588,31 +2567,31 @@ $LN44@Initialize:
 	ret	0
 $LN5@Initialize:
 
-; 413  :     if (p == NULL || !p->IS_STATIC)
+; 424  :     if (p == NULL || !p->IS_STATIC)
 
-	test	BYTE PTR number_zero+32, 1
-	je	SHORT $LN80@Initialize
+	test	BYTE PTR number_zero+40, 1
+	je	SHORT $LN120@Initialize
 
-; 414  :         return;
-; 415  :     CleanUpNumber(p);
+; 425  :         return;
+; 426  :     CleanUpNumber(p);
 
 	lea	rcx, OFFSET FLAT:number_zero
 	call	CleanUpNumber
-$LN80@Initialize:
+$LN120@Initialize:
 
-; 413  :     if (p == NULL || !p->IS_STATIC)
+; 424  :     if (p == NULL || !p->IS_STATIC)
 
-	test	BYTE PTR number_one+32, 1
-	je	SHORT $LN87@Initialize
+	test	BYTE PTR number_one+40, 1
+	je	SHORT $LN155@Initialize
 
-; 414  :         return;
-; 415  :     CleanUpNumber(p);
+; 425  :         return;
+; 426  :     CleanUpNumber(p);
 
 	lea	rcx, OFFSET FLAT:number_one
 	call	CleanUpNumber
-$LN87@Initialize:
+$LN155@Initialize:
 
-; 584  : }
+; 597  : }
 
 	mov	eax, ebx
 	mov	rbx, QWORD PTR [rsp+48]
@@ -2631,31 +2610,31 @@ x$ = 48
 op$ = 56
 DuplicateNumber PROC					; COMDAT
 
-; 515  : {
+; 528  : {
 
 $LN18:
 	mov	QWORD PTR [rsp+24], rsi
 	push	r14
 	sub	rsp, 32					; 00000020H
 
-; 516  :     if (x->IS_STATIC)
+; 529  :     if (x->IS_STATIC)
 
-	mov	eax, DWORD PTR [rcx+32]
+	mov	eax, DWORD PTR [rcx+40]
 	mov	r14, rdx
 	mov	rsi, rcx
 	test	al, 1
 	je	SHORT $LN2@DuplicateN
 
-; 517  :     {
-; 518  :         *op = x;
+; 530  :     {
+; 531  :         *op = x;
 
 	mov	QWORD PTR [rdx], rcx
 
-; 519  :         return (PMC_STATUS_OK);
+; 532  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 535  : }
+; 548  : }
 
 	mov	rsi, QWORD PTR [rsp+64]
 	add	rsp, 32					; 00000020H
@@ -2663,23 +2642,23 @@ $LN18:
 	ret	0
 $LN2@DuplicateN:
 
-; 520  :     }
-; 521  :     if (x->IS_ZERO)
+; 533  :     }
+; 534  :     if (x->IS_ZERO)
 
 	test	al, 2
 	je	SHORT $LN3@DuplicateN
 
-; 522  :     {
-; 523  :         *op = &number_zero;
+; 535  :     {
+; 536  :         *op = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR [rdx], rax
 
-; 524  :         return (PMC_STATUS_OK);
+; 537  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 535  : }
+; 548  : }
 
 	mov	rsi, QWORD PTR [rsp+64]
 	add	rsp, 32					; 00000020H
@@ -2687,84 +2666,84 @@ $LN2@DuplicateN:
 	ret	0
 $LN3@DuplicateN:
 
-; 400  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
+; 411  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
 
 	mov	edx, 8
 	mov	QWORD PTR [rsp+48], rbx
 	mov	QWORD PTR [rsp+56], rdi
 
-; 525  :     }
-; 526  :     __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
+; 538  :     }
+; 539  :     __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
 
-	mov	rdi, QWORD PTR [rcx+8]
+	mov	rdi, QWORD PTR [rcx+16]
 
-; 400  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
+; 411  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
 
 	mov	rcx, QWORD PTR hLocalHeap
-	lea	r8d, QWORD PTR [rdx+48]
+	lea	r8d, QWORD PTR [rdx+56]
 	call	QWORD PTR __imp_HeapAlloc
 	mov	rbx, rax
 
-; 401  :     if (p == NULL)
+; 412  :     if (p == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN7@DuplicateN
 
-; 402  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 413  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, QWORD PTR [rbx-5]
 	jmp	SHORT $LN16@DuplicateN
 $LN7@DuplicateN:
 
-; 403  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, light_check_code);
+; 414  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, light_check_code);
 
 	xor	r8d, r8d
 	mov	rdx, rdi
 	mov	rcx, rbx
 	call	InitializeNumber
 
-; 404  :     if (result != PMC_STATUS_OK)
+; 415  :     if (result != PMC_STATUS_OK)
 
 	test	eax, eax
 	jne	SHORT $LN16@DuplicateN
 
-; 405  :         return (result);
-; 406  :     p->IS_STATIC = FALSE;
+; 416  :         return (result);
+; 417  :     p->IS_STATIC = FALSE;
 
-	and	DWORD PTR [rbx+32], -2			; fffffffeH
+	and	DWORD PTR [rbx+40], -2			; fffffffeH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	lea	rcx, QWORD PTR [rdi+63]
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
-	mov	rdi, QWORD PTR [rbx+48]
-	mov	rsi, QWORD PTR [rsi+48]
+	mov	rdi, QWORD PTR [rbx+56]
+	mov	rsi, QWORD PTR [rsi+56]
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	shr	rcx, 6
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
-; 532  :     CommitNumber(o);
+; 545  :     CommitNumber(o);
 
 	mov	rcx, rbx
 	call	CommitNumber
 
-; 533  :     *op = o;
-; 534  :     return (PMC_STATUS_OK);
+; 546  :     *op = o;
+; 547  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	mov	QWORD PTR [r14], rbx
 $LN16@DuplicateN:
 
-; 535  : }
+; 548  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	mov	rdi, QWORD PTR [rsp+56]
@@ -2781,22 +2760,38 @@ _TEXT	SEGMENT
 p$ = 8
 CheckNumber PROC					; COMDAT
 
-; 499  : #ifdef _DEBUG
-; 500  :     if (!p->IS_ZERO)
-; 501  :     {
-; 502  :         PMC_STATUS_CODE result;
-; 503  :         if ((result = CheckBlock(p->BLOCK)) != PMC_STATUS_OK)
-; 504  :             return (result);
-; 505  :         __UNIT_TYPE desired_hash_code = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
-; 506  :         if (desired_hash_code != p->HASH_CODE)
-; 507  :             return (PMC_STATUS_BAD_BUFFER);
-; 508  :     }
-; 509  : #endif
-; 510  :     return (PMC_STATUS_OK);
+; 510  :     if (p->SIGNATURE1 != PMC_SIGNATURE || p->SIGNATURE2 != PMC_UINT_SIGNATURE)
+
+	cmp	DWORD PTR [rcx], 1231244656		; 49634d70H
+	jne	SHORT $LN3@CheckNumbe
+	cmp	DWORD PTR [rcx+4], 1416522069		; 546e6955H
+	jne	SHORT $LN3@CheckNumbe
+
+; 512  :     if (!p->IS_ZERO)
+; 513  :     {
+; 514  :         PMC_STATUS_CODE result;
+; 515  :         if ((result = CheckBlock(p->BLOCK)) != PMC_STATUS_OK)
+; 516  :             return (result);
+; 517  : #ifdef _DEBUG
+; 518  :         __UNIT_TYPE desired_hash_code = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+; 519  :         if (desired_hash_code != p->HASH_CODE)
+; 520  :             return (PMC_STATUS_BAD_BUFFER);
+; 521  : #endif
+; 522  :     }
+; 523  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 511  : }
+; 524  : }
+
+	ret	0
+$LN3@CheckNumbe:
+
+; 511  :         return (PMC_STATUS_BAD_BUFFER);
+
+	mov	eax, -257				; fffffffffffffeffH
+
+; 524  : }
 
 	ret	0
 CheckNumber ENDP
@@ -2816,7 +2811,7 @@ _TEXT	SEGMENT
 p$ = 48
 CommitNumber PROC					; COMDAT
 
-; 465  : {
+; 476  : {
 
 $LN39:
 	sub	rsp, 40					; 00000028H
@@ -2826,9 +2821,9 @@ $LN39:
 
 	xor	r11d, r11d
 
-; 466  :     CommitBlock(p->BLOCK);
+; 477  :     CommitBlock(p->BLOCK);
 
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 
 ; 224  :     if (buffer != NULL)
 
@@ -2847,103 +2842,103 @@ $LN39:
 
 	mov	rax, QWORD PTR [rcx-8]
 	mov	QWORD PTR [rcx+rax*8], r11
-	mov	rcx, QWORD PTR [r10+48]
+	mov	rcx, QWORD PTR [r10+56]
 $LN8@CommitNumb:
 
-; 467  :     p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT, &p->UNIT_WORD_COUNT);
+; 478  :     p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT, &p->UNIT_WORD_COUNT);
 
-	mov	r9, QWORD PTR [r10+40]
+	mov	r9, QWORD PTR [r10+48]
 
-; 429  :     if (p == NULL)
+; 440  :     if (p == NULL)
 
 	test	rcx, rcx
 	je	SHORT $LN12@CommitNumb
 
-; 430  :     {
-; 431  :         *effective_word_count = 0;
-; 432  :         return (0);
-; 433  :     }
-; 434  :     p += word_count;
+; 441  :     {
+; 442  :         *effective_word_count = 0;
+; 443  :         return (0);
+; 444  :     }
+; 445  :     p += word_count;
 
 	lea	rax, QWORD PTR [rcx+r9*8]
 
-; 435  :     while (word_count != 0)
+; 446  :     while (word_count != 0)
 
 	test	r9, r9
 	je	SHORT $LN12@CommitNumb
 $LL11@CommitNumb:
 
-; 436  :     {
-; 437  :         --p;
-; 438  :         if (*p != 0)
+; 447  :     {
+; 448  :         --p;
+; 449  :         if (*p != 0)
 
 	cmp	QWORD PTR [rax-8], r11
 	lea	rax, QWORD PTR [rax-8]
 	jne	SHORT $LN29@CommitNumb
 
-; 442  :         }
-; 443  :         --word_count;
+; 453  :         }
+; 454  :         --word_count;
 
 	sub	r9, 1
 	jne	SHORT $LL11@CommitNumb
 $LN12@CommitNumb:
 
-; 467  :     p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT, &p->UNIT_WORD_COUNT);
+; 478  :     p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT, &p->UNIT_WORD_COUNT);
 
 	mov	r9, r11
-	mov	QWORD PTR [r10], r11
+	mov	QWORD PTR [r10+8], r11
 $LN10@CommitNumb:
-	mov	QWORD PTR [r10+8], r9
+	mov	QWORD PTR [r10+16], r9
 
-; 468  :     if (p->UNIT_BIT_COUNT <= 0)
+; 479  :     if (p->UNIT_BIT_COUNT <= 0)
 
 	test	r9, r9
 	jne	SHORT $LN2@CommitNumb
 
-; 469  :     {
-; 470  :         p->HASH_CODE = 0;
-; 471  :         p->IS_ZERO = TRUE;
+; 480  :     {
+; 481  :         p->HASH_CODE = 0;
+; 482  :         p->IS_ZERO = TRUE;
 
-	mov	eax, DWORD PTR [r10+32]
+	mov	eax, DWORD PTR [r10+40]
 	and	eax, -21				; ffffffebH
-	mov	QWORD PTR [r10+16], r11
-
-; 472  :         p->IS_ONE = FALSE;
-; 473  :         p->IS_EVEN = TRUE;
-; 474  :         p->TRAILING_ZERO_BITS_COUNT = 0;
-; 475  :         p->IS_POWER_OF_TWO = FALSE;
-
-	or	eax, 10
 	mov	QWORD PTR [r10+24], r11
 
-; 494  :     }
-; 495  : }
+; 483  :         p->IS_ONE = FALSE;
+; 484  :         p->IS_EVEN = TRUE;
+; 485  :         p->TRAILING_ZERO_BITS_COUNT = 0;
+; 486  :         p->IS_POWER_OF_TWO = FALSE;
 
-	mov	DWORD PTR [r10+32], eax
+	or	eax, 10
+	mov	QWORD PTR [r10+32], r11
+
+; 505  :     }
+; 506  : }
+
+	mov	DWORD PTR [r10+40], eax
 	add	rsp, 40					; 00000028H
 	ret	0
 $LN29@CommitNumb:
 
-; 440  :             *effective_word_count = word_count;
+; 451  :             *effective_word_count = word_count;
 
-	mov	QWORD PTR [r10], r9
+	mov	QWORD PTR [r10+8], r9
 
-; 441  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 452  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	mov	rcx, QWORD PTR [rax]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 911  :     if (x == 0)
+; 916  :     if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN17@CommitNumb
 
-; 912  :         return (sizeof(x) * 8);
+; 917  :         return (sizeof(x) * 8);
 
 	mov	ecx, 64					; 00000040H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
-; 441  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 452  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	shl	r9, 6
 	movsxd	rax, ecx
@@ -2952,87 +2947,87 @@ $LN29@CommitNumb:
 $LN17@CommitNumb:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 925  :     _BitScanReverse64(&pos, x);
+; 930  :     _BitScanReverse64(&pos, x);
 
 	bsr	rax, rcx
 
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 63					; 0000003fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
-; 441  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 452  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	shl	r9, 6
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
-; 441  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 452  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	movsxd	rax, ecx
 	sub	r9, rax
 	jmp	SHORT $LN10@CommitNumb
 $LN2@CommitNumb:
 
-; 476  :     }
-; 477  :     else if (p->UNIT_BIT_COUNT == 1)
+; 487  :     }
+; 488  :     else if (p->UNIT_BIT_COUNT == 1)
 
-	mov	rdx, QWORD PTR [r10]
-	mov	rcx, QWORD PTR [r10+48]
+	mov	rdx, QWORD PTR [r10+8]
+	mov	rcx, QWORD PTR [r10+56]
 	call	CalculateCheckCode
-	mov	QWORD PTR [r10+16], rax
-	mov	edx, DWORD PTR [r10+32]
+	mov	QWORD PTR [r10+24], rax
+	mov	edx, DWORD PTR [r10+40]
 	and	edx, -3					; fffffffdH
-	mov	DWORD PTR [r10+32], edx
-	mov	rcx, QWORD PTR [r10+48]
+	mov	DWORD PTR [r10+40], edx
+	mov	rcx, QWORD PTR [r10+56]
 	cmp	r9, 1
 	jne	SHORT $LN4@CommitNumb
 
-; 478  :     {
-; 479  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
-; 480  :         p->IS_ZERO = FALSE;
-; 481  :         p->IS_ONE = p->BLOCK[0] == 1; // 無条件でTRUEでも大丈夫だが念のため。
+; 489  :     {
+; 490  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+; 491  :         p->IS_ZERO = FALSE;
+; 492  :         p->IS_ONE = p->BLOCK[0] == 1; // 無条件でTRUEでも大丈夫だが念のため。
 
 	mov	rax, QWORD PTR [rcx]
 	mov	ecx, 4
 
-; 482  :         p->IS_EVEN = FALSE;
-; 483  :         p->TRAILING_ZERO_BITS_COUNT = 0;
+; 493  :         p->IS_EVEN = FALSE;
+; 494  :         p->TRAILING_ZERO_BITS_COUNT = 0;
 
-	mov	QWORD PTR [r10+24], r11
+	mov	QWORD PTR [r10+32], r11
 	cmp	rax, r9
 	cmove	r11d, ecx
 	and	edx, -5					; fffffffbH
 
-; 484  :         p->IS_POWER_OF_TWO = TRUE;
+; 495  :         p->IS_POWER_OF_TWO = TRUE;
 
 	or	r11d, edx
 	and	r11d, -9				; fffffff7H
 	or	r11d, 16
 
-; 494  :     }
-; 495  : }
+; 505  :     }
+; 506  : }
 
-	mov	DWORD PTR [r10+32], r11d
+	mov	DWORD PTR [r10+40], r11d
 	add	rsp, 40					; 00000028H
 	ret	0
 $LN4@CommitNumb:
 
-; 485  :     }
-; 486  :     else
-; 487  :     {
-; 488  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
-; 489  :         p->IS_ZERO = FALSE;
-; 490  :         p->IS_ONE = FALSE;
+; 496  :     }
+; 497  :     else
+; 498  :     {
+; 499  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+; 500  :         p->IS_ZERO = FALSE;
+; 501  :         p->IS_ONE = FALSE;
 
 	and	edx, -5					; fffffffbH
-	mov	DWORD PTR [r10+32], edx
+	mov	DWORD PTR [r10+40], edx
 
-; 491  :         p->IS_EVEN = !(p->BLOCK[0] & 1);
+; 502  :         p->IS_EVEN = !(p->BLOCK[0] & 1);
 
 	mov	eax, DWORD PTR [rcx]
 	shl	eax, 3
@@ -3041,80 +3036,80 @@ $LN4@CommitNumb:
 	and	eax, 8
 	xor	eax, edx
 
-; 451  :     __UNIT_TYPE bit_count = 0;
+; 462  :     __UNIT_TYPE bit_count = 0;
 
 	mov	rdx, r11
 
-; 491  :         p->IS_EVEN = !(p->BLOCK[0] & 1);
+; 502  :         p->IS_EVEN = !(p->BLOCK[0] & 1);
 
-	mov	DWORD PTR [r10+32], eax
+	mov	DWORD PTR [r10+40], eax
 
-; 492  :         p->TRAILING_ZERO_BITS_COUNT = GetTrailingZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
+; 503  :         p->TRAILING_ZERO_BITS_COUNT = GetTrailingZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
 
-	mov	rax, QWORD PTR [r10]
+	mov	rax, QWORD PTR [r10+8]
 
-; 452  :     while (word_count > 0)
+; 463  :     while (word_count > 0)
 
 	test	rax, rax
 	je	SHORT $LN21@CommitNumb
 $LL20@CommitNumb:
 
-; 453  :     {
-; 454  :         --word_count;
-; 455  :         if (*p != 0)
+; 464  :     {
+; 465  :         --word_count;
+; 466  :         if (*p != 0)
 
 	mov	r8, QWORD PTR [rcx]
 	dec	rax
 	test	r8, r8
 	jne	SHORT $LN30@CommitNumb
 
-; 457  :         bit_count += __UNIT_TYPE_BIT_COUNT;
+; 468  :         bit_count += __UNIT_TYPE_BIT_COUNT;
 
 	add	rdx, 64					; 00000040H
 
-; 458  :         ++p;
+; 469  :         ++p;
 
 	add	rcx, 8
 	test	rax, rax
 	jne	SHORT $LL20@CommitNumb
 $LN21@CommitNumb:
 
-; 459  :     }
-; 460  :     // このルートには到達しないはず
-; 461  :     return (0);
+; 470  :     }
+; 471  :     // このルートには到達しないはず
+; 472  :     return (0);
 
 	mov	rax, r11
 $LN19@CommitNumb:
 
-; 492  :         p->TRAILING_ZERO_BITS_COUNT = GetTrailingZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
+; 503  :         p->TRAILING_ZERO_BITS_COUNT = GetTrailingZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
 
-	mov	QWORD PTR [r10+24], rax
+	mov	QWORD PTR [r10+32], rax
 
-; 493  :         p->IS_POWER_OF_TWO = p->TRAILING_ZERO_BITS_COUNT + 1 == p->UNIT_BIT_COUNT;
+; 504  :         p->IS_POWER_OF_TWO = p->TRAILING_ZERO_BITS_COUNT + 1 == p->UNIT_BIT_COUNT;
 
 	mov	ecx, 16
 	inc	rax
 	cmp	rax, r9
-	mov	eax, DWORD PTR [r10+32]
+	mov	eax, DWORD PTR [r10+40]
 	cmove	r11d, ecx
 	and	eax, -17				; ffffffefH
 	or	r11d, eax
 
-; 494  :     }
-; 495  : }
+; 505  :     }
+; 506  : }
 
-	mov	DWORD PTR [r10+32], r11d
+	mov	DWORD PTR [r10+40], r11d
 	add	rsp, 40					; 00000028H
 	ret	0
 $LN30@CommitNumb:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 1005 :     _BitScanForward64(&pos, x);
+; 1010 :     _BitScanForward64(&pos, x);
 
 	bsf	rax, r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
 
-; 456  :             return (bit_count + _TZCNT_ALT_UNIT(*p));
+; 467  :             return (bit_count + _TZCNT_ALT_UNIT(*p));
 
 	cdqe
 	add	rax, rdx
@@ -3128,79 +3123,65 @@ _TEXT	SEGMENT
 p$ = 48
 DeallocateNumber PROC					; COMDAT
 
-; 419  : {
+; 430  : {
 
-$LN27:
+$LN41:
 
-; 420  :     if (p == NULL || p->IS_STATIC)
+; 431  :     if (p == NULL || p->IS_STATIC)
 
 	test	rcx, rcx
-	je	SHORT $LN25@Deallocate
+	je	SHORT $LN39@Deallocate
 	push	rbx
 	sub	rsp, 32					; 00000020H
-	test	BYTE PTR [rcx+32], 1
+	test	BYTE PTR [rcx+40], 1
 	mov	rbx, rcx
 	jne	SHORT $LN3@Deallocate
 
-; 421  :         return;
-; 422  :     CleanUpNumber(p);
+; 432  :         return;
+; 433  :     CleanUpNumber(p);
 
 	call	CleanUpNumber
 
-; 322  :         __p[0] = DEFAULT_MEMORY_DATA;
+; 325  :         __p[0] = DEFAULT_MEMORY_DATA;
 
 	mov	rax, -3689348814741910324		; ccccccccccccccccH
 
-; 423  :     FillNumberHeader(p);
-; 424  :     HeapFree(hLocalHeap, 0, p);
+; 434  :     FillNumberHeader(p);
+; 435  :     HeapFree(hLocalHeap, 0, p);
 
 	mov	r8, rbx
 
-; 322  :         __p[0] = DEFAULT_MEMORY_DATA;
+; 325  :         __p[0] = DEFAULT_MEMORY_DATA;
 
 	mov	QWORD PTR [rbx], rax
 
-; 423  :     FillNumberHeader(p);
-; 424  :     HeapFree(hLocalHeap, 0, p);
+; 434  :     FillNumberHeader(p);
+; 435  :     HeapFree(hLocalHeap, 0, p);
 
 	xor	edx, edx
 
-; 323  :         __p[1] = DEFAULT_MEMORY_DATA;
+; 325  :         __p[0] = DEFAULT_MEMORY_DATA;
 
 	mov	QWORD PTR [rbx+8], rax
-
-; 324  :         __p[2] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+16], rax
-
-; 325  :         __p[3] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+24], rax
-
-; 326  :         __p[4] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+32], rax
-
-; 327  :         __p[5] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+40], rax
-
-; 328  :         __p[6] = DEFAULT_MEMORY_DATA;
-
 	mov	QWORD PTR [rbx+48], rax
+	mov	QWORD PTR [rbx+56], rax
 
-; 423  :     FillNumberHeader(p);
-; 424  :     HeapFree(hLocalHeap, 0, p);
+; 434  :     FillNumberHeader(p);
+; 435  :     HeapFree(hLocalHeap, 0, p);
 
 	mov	rcx, QWORD PTR hLocalHeap
 	call	QWORD PTR __imp_HeapFree
 $LN3@Deallocate:
 
-; 425  : }
+; 436  : }
 
 	add	rsp, 32					; 00000020H
 	pop	rbx
-$LN25@Deallocate:
+$LN39@Deallocate:
 	ret	0
 DeallocateNumber ENDP
 _TEXT	ENDS
@@ -3211,17 +3192,17 @@ _TEXT	SEGMENT
 p$ = 8
 DetatchNumber PROC					; COMDAT
 
-; 413  :     if (p == NULL || !p->IS_STATIC)
+; 424  :     if (p == NULL || !p->IS_STATIC)
 
 	test	rcx, rcx
 	je	SHORT $LN3@DetatchNum
-	test	BYTE PTR [rcx+32], 1
+	test	BYTE PTR [rcx+40], 1
 	jne	CleanUpNumber
 $LN3@DetatchNum:
 
-; 414  :         return;
-; 415  :     CleanUpNumber(p);
-; 416  : }
+; 425  :         return;
+; 426  :     CleanUpNumber(p);
+; 427  : }
 
 	ret	0
 DetatchNumber ENDP
@@ -3235,7 +3216,7 @@ bit_count$ = 56
 light_check_code$ = 64
 AllocateNumber PROC					; COMDAT
 
-; 399  : {
+; 410  : {
 
 $LN6:
 	mov	QWORD PTR [rsp+8], rbx
@@ -3246,50 +3227,50 @@ $LN6:
 	mov	rbp, rdx
 	mov	rsi, r8
 
-; 400  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
+; 411  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
 
 	mov	edx, 8
 	mov	rdi, rcx
 	mov	rcx, QWORD PTR hLocalHeap
-	lea	r8d, QWORD PTR [rdx+48]
+	lea	r8d, QWORD PTR [rdx+56]
 	call	QWORD PTR __imp_HeapAlloc
 	mov	rbx, rax
 
-; 401  :     if (p == NULL)
+; 412  :     if (p == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN2@AllocateNu
 
-; 402  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 413  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, QWORD PTR [rbx-5]
 	jmp	SHORT $LN1@AllocateNu
 $LN2@AllocateNu:
 
-; 403  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, light_check_code);
+; 414  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, light_check_code);
 
 	mov	r8, rsi
 	mov	rdx, rbp
 	mov	rcx, rbx
 	call	InitializeNumber
 
-; 404  :     if (result != PMC_STATUS_OK)
+; 415  :     if (result != PMC_STATUS_OK)
 
 	test	eax, eax
 	jne	SHORT $LN1@AllocateNu
 
-; 405  :         return (result);
-; 406  :     p->IS_STATIC = FALSE;
+; 416  :         return (result);
+; 417  :     p->IS_STATIC = FALSE;
 
-	and	DWORD PTR [rbx+32], -2			; fffffffeH
+	and	DWORD PTR [rbx+40], -2			; fffffffeH
 
-; 407  :     *pp = p;
+; 418  :     *pp = p;
 
 	mov	QWORD PTR [rdi], rbx
 $LN1@AllocateNu:
 
-; 408  :     return (PMC_STATUS_OK);
-; 409  : }
+; 419  :     return (PMC_STATUS_OK);
+; 420  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	mov	rbp, QWORD PTR [rsp+56]
@@ -3307,31 +3288,31 @@ p$ = 48
 bit_count$ = 56
 AttatchNumber PROC					; COMDAT
 
-; 390  : {
+; 401  : {
 
 $LN5:
 	push	rbx
 	sub	rsp, 32					; 00000020H
 
-; 391  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, NULL);
+; 402  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, NULL);
 
 	xor	r8d, r8d
 	mov	rbx, rcx
 	call	InitializeNumber
 
-; 392  :     if (result != PMC_STATUS_OK)
+; 403  :     if (result != PMC_STATUS_OK)
 
 	test	eax, eax
 	jne	SHORT $LN1@AttatchNum
 
-; 393  :         return (result);
-; 394  :     p->IS_STATIC = TRUE;
+; 404  :         return (result);
+; 405  :     p->IS_STATIC = TRUE;
 
-	or	DWORD PTR [rbx+32], 1
+	or	DWORD PTR [rbx+40], 1
 $LN1@AttatchNum:
 
-; 395  :     return (PMC_STATUS_OK);
-; 396  : }
+; 406  :     return (PMC_STATUS_OK);
+; 407  : }
 
 	add	rsp, 32					; 00000020H
 	pop	rbx
@@ -3408,7 +3389,7 @@ $LN9:
 	mov	QWORD PTR [rsp+32], rdi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 451  :     __stosq(d, x, count);
+; 456  :     __stosq(d, x, count);
 
 	mov	rdi, r8
 	mov	rax, -3689348814741910324		; ccccccccccccccccH
@@ -3463,7 +3444,7 @@ $LN8:
 	sub	rsp, 32					; 00000020H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	lea	rbx, QWORD PTR [rcx+63]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -3478,7 +3459,7 @@ $LN8:
 	mov	rsi, rdx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	shr	rbx, 6
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\memory.c
@@ -3565,29 +3546,29 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 DeallocateHeapArea PROC					; COMDAT
 
-; 595  : {
+; 608  : {
 
 $LN5:
 	sub	rsp, 40					; 00000028H
 
-; 596  :     if (hLocalHeap != NULL)
+; 609  :     if (hLocalHeap != NULL)
 
 	mov	rcx, QWORD PTR hLocalHeap
 	test	rcx, rcx
 	je	SHORT $LN2@Deallocate
 
-; 597  :     {
-; 598  :         HeapDestroy(hLocalHeap);
+; 610  :     {
+; 611  :         HeapDestroy(hLocalHeap);
 
 	call	QWORD PTR __imp_HeapDestroy
 
-; 599  :         hLocalHeap = NULL;
+; 612  :         hLocalHeap = NULL;
 
 	mov	QWORD PTR hLocalHeap, 0
 $LN2@Deallocate:
 
-; 600  :     }
-; 601  : }
+; 613  :     }
+; 614  : }
 
 	add	rsp, 40					; 00000028H
 	ret	0
@@ -3599,19 +3580,19 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 AllocateHeapArea PROC					; COMDAT
 
-; 587  : {
+; 600  : {
 
 $LN5:
 	sub	rsp, 40					; 00000028H
 
-; 588  :     hLocalHeap = HeapCreate(0, 0x1000, 0);
+; 601  :     hLocalHeap = HeapCreate(0, 0x1000, 0);
 
 	xor	r8d, r8d
 	mov	edx, 4096				; 00001000H
 	xor	ecx, ecx
 	call	QWORD PTR __imp_HeapCreate
 
-; 589  :     if (hLocalHeap == NULL)
+; 602  :     if (hLocalHeap == NULL)
 
 	xor	ecx, ecx
 	mov	QWORD PTR hLocalHeap, rax
@@ -3619,9 +3600,9 @@ $LN5:
 	setne	cl
 	mov	eax, ecx
 
-; 590  :         return (FALSE);
-; 591  :     return (TRUE);
-; 592  : }
+; 603  :         return (FALSE);
+; 604  :     return (TRUE);
+; 605  : }
 
 	add	rsp, 40					; 00000028H
 	ret	0

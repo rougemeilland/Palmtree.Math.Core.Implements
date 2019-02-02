@@ -16,9 +16,9 @@ LFB5490:
 	call	_CheckNumber
 	testl	%eax, %eax
 	jne	L1
-	cmpl	$32, 4(%ebx)
+	cmpl	$32, 12(%ebx)
 	ja	L4
-	testb	$2, 16(%ebx)
+	testb	$2, 24(%ebx)
 	je	L3
 	movl	36(%esp), %ecx
 	movl	$0, (%ecx)
@@ -33,7 +33,7 @@ L1:
 	.p2align 4,,10
 L3:
 	.cfi_restore_state
-	movl	24(%ebx), %edx
+	movl	32(%ebx), %edx
 	movl	36(%esp), %ecx
 	movl	(%edx), %edx
 	movl	%edx, (%ecx)
@@ -66,12 +66,12 @@ LFB5491:
 	call	_CheckNumber
 	testl	%eax, %eax
 	jne	L7
-	movl	4(%ebx), %edx
+	movl	12(%ebx), %edx
 	cmpl	$64, %edx
 	ja	L11
-	testb	$2, 16(%ebx)
+	testb	$2, 24(%ebx)
 	jne	L13
-	movl	24(%ebx), %ecx
+	movl	32(%ebx), %ecx
 	cmpl	$32, %edx
 	ja	L10
 	movl	36(%esp), %edx

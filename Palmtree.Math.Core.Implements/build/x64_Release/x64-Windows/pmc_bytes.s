@@ -53,7 +53,7 @@ PMC_FromByteArray:
 	movl	$7, %ecx
 	salq	$3, %rdx
 /APP
- # 869 "pmc_internal.h" 1
+ # 874 "pmc_internal.h" 1
 	bsrl %eax, %eax
  # 0 "" 2
 /NO_APP
@@ -72,7 +72,7 @@ PMC_FromByteArray:
 	leaq	7(%rbx), %rcx
 	movl	%eax, 44(%rsp)
 	shrq	$3, %rcx
-	movq	48(%rdx), %rdi
+	movq	56(%rdx), %rdi
 /APP
  # 1755 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsb
@@ -118,18 +118,18 @@ PMC_ToByteArray:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L20
-	movzbl	32(%rbx), %ecx
+	movzbl	40(%rbx), %ecx
 	movl	$1, %edx
 	andl	$2, %ecx
 	jne	.L22
-	movq	8(%rbx), %rdx
+	movq	16(%rbx), %rdx
 	addq	$7, %rdx
 	shrq	$3, %rdx
 .L22:
 	testq	%rdi, %rdi
 	je	.L23
 	salq	$3, %rsi
-	cmpq	%rsi, 8(%rbx)
+	cmpq	%rsi, 16(%rbx)
 	ja	.L27
 	testb	%cl, %cl
 	je	.L24
@@ -145,7 +145,7 @@ PMC_ToByteArray:
 	ret
 	.p2align 4,,10
 .L24:
-	movq	48(%rbx), %rsi
+	movq	56(%rbx), %rsi
 	movq	%rdx, %rcx
 /APP
  # 1755 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1

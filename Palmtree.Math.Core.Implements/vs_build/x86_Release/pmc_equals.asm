@@ -41,7 +41,7 @@ _PMC_Equals_X_L_Imp PROC				; COMDAT
 ; 132  :     if (u->IS_ZERO)
 
 	mov	esi, DWORD PTR _u$[ebp]
-	test	BYTE PTR [esi+16], 2
+	test	BYTE PTR [esi+24], 2
 	je	SHORT $LN2@PMC_Equals
 
 ; 133  :     {
@@ -164,27 +164,27 @@ $LN2@PMC_Equals:
 	jne	SHORT $LN10@PMC_Equals
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 878  :     if (x == 0)
+; 883  :     if (x == 0)
 
 	test	edx, edx
 	jne	SHORT $LN26@PMC_Equals
 
-; 879  :         return (sizeof(x) * 8);
+; 884  :         return (sizeof(x) * 8);
 
 	lea	ecx, DWORD PTR [edx+32]
 	jmp	SHORT $LN25@PMC_Equals
 $LN26@PMC_Equals:
 
-; 882  :     _BitScanReverse(&pos, x);
+; 887  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, edx
 
-; 883  : #elif defined(__GNUC__)
-; 884  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 885  : #else
-; 886  : #error unknown compiler
-; 887  : #endif
-; 888  :     return (sizeof(x) * 8 - 1 - pos);
+; 888  : #elif defined(__GNUC__)
+; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 890  : #else
+; 891  : #error unknown compiler
+; 892  : #endif
+; 893  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
@@ -199,7 +199,7 @@ $LN25@PMC_Equals:
 ; 164  :                 if (u_bit_count != v_bit_count)
 
 	xor	ecx, ecx
-	cmp	DWORD PTR [esi+4], eax
+	cmp	DWORD PTR [esi+12], eax
 	jne	SHORT $LN34@PMC_Equals
 
 ; 165  :                 {
@@ -212,7 +212,7 @@ $LN25@PMC_Equals:
 ; 172  :                     // ⇒ u と v はともに 1 ワードで表現できる
 ; 173  :                     *w = u->BLOCK[0] == v_lo;
 
-	mov	eax, DWORD PTR [esi+24]
+	mov	eax, DWORD PTR [esi+32]
 	pop	edi
 
 ; 190  :                 }
@@ -254,16 +254,16 @@ $LN25@PMC_Equals:
 $LN10@PMC_Equals:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 882  :     _BitScanReverse(&pos, x);
+; 887  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, edi
 
-; 883  : #elif defined(__GNUC__)
-; 884  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 885  : #else
-; 886  : #error unknown compiler
-; 887  : #endif
-; 888  :     return (sizeof(x) * 8 - 1 - pos);
+; 888  : #elif defined(__GNUC__)
+; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 890  : #else
+; 891  : #error unknown compiler
+; 892  : #endif
+; 893  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
@@ -276,7 +276,7 @@ $LN10@PMC_Equals:
 
 ; 180  :                 if (u_bit_count != v_bit_count)
 
-	cmp	DWORD PTR [esi+4], eax
+	cmp	DWORD PTR [esi+12], eax
 	jne	SHORT $LN19@PMC_Equals
 
 ; 181  :                 {
@@ -289,7 +289,7 @@ $LN10@PMC_Equals:
 ; 188  :                     // ⇒ u と v はともに 2 ワードで表現できる
 ; 189  :                     *w = u->BLOCK[1] == v_hi && u->BLOCK[0] == v_lo;
 
-	mov	eax, DWORD PTR [esi+24]
+	mov	eax, DWORD PTR [esi+32]
 	cmp	DWORD PTR [eax+4], edi
 	jne	SHORT $LN19@PMC_Equals
 	cmp	DWORD PTR [eax], edx
@@ -404,7 +404,7 @@ _PMC_Equals_X_I_Imp PROC				; COMDAT
 ; 53   :     if (u->IS_ZERO)
 
 	mov	esi, DWORD PTR _u$[ebp]
-	test	BYTE PTR [esi+16], 2
+	test	BYTE PTR [esi+24], 2
 	je	SHORT $LN2@PMC_Equals
 
 ; 54   :     {
@@ -463,16 +463,16 @@ $LN16@PMC_Equals:
 $LN6@PMC_Equals:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 882  :     _BitScanReverse(&pos, x);
+; 887  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, edi
 
-; 883  : #elif defined(__GNUC__)
-; 884  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 885  : #else
-; 886  : #error unknown compiler
-; 887  : #endif
-; 888  :     return (sizeof(x) * 8 - 1 - pos);
+; 888  : #elif defined(__GNUC__)
+; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 890  : #else
+; 891  : #error unknown compiler
+; 892  : #endif
+; 893  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
@@ -485,7 +485,7 @@ $LN6@PMC_Equals:
 
 ; 77   :         if (u_bit_count != v_bit_count)
 
-	cmp	DWORD PTR [esi+4], eax
+	cmp	DWORD PTR [esi+12], eax
 	jne	SHORT $LN16@PMC_Equals
 
 ; 78   :         {
@@ -498,7 +498,7 @@ $LN6@PMC_Equals:
 ; 85   :             // ⇒ u と v はともに 1 ワードで表現できる
 ; 86   :             *w = u->BLOCK[0] == v;
 
-	mov	eax, DWORD PTR [esi+24]
+	mov	eax, DWORD PTR [esi+32]
 	xor	ecx, ecx
 	cmp	DWORD PTR [eax], edi
 	pop	edi
@@ -586,58 +586,58 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 910  : {
+; 915  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 911  :     if (x == 0)
+; 916  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 912  :         return (sizeof(x) * 8);
+; 917  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 936  : }
+; 941  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 913  : #ifdef _M_IX86
-; 914  :     _UINT32_T pos;
-; 915  : #ifdef _MSC_VER
-; 916  :     _BitScanReverse(&pos, x);
+; 918  : #ifdef _M_IX86
+; 919  :     _UINT32_T pos;
+; 920  : #ifdef _MSC_VER
+; 921  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 917  : #elif defined(__GNUC__)
-; 918  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 919  : #else
-; 920  : #error unknown compiler
-; 921  : #endif
-; 922  : #elif defined(_M_X64)
-; 923  : #ifdef _MSC_VER
-; 924  :     _UINT32_T pos;
-; 925  :     _BitScanReverse64(&pos, x);
-; 926  : #elif defined(__GNUC__)
-; 927  :     _UINT64_T pos;
-; 928  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 929  : #else
-; 930  : #error unknown compiler
-; 931  : #endif
-; 932  : #else
-; 933  : #error unknown platform
-; 934  : #endif
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 922  : #elif defined(__GNUC__)
+; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 924  : #else
+; 925  : #error unknown compiler
+; 926  : #endif
+; 927  : #elif defined(_M_X64)
+; 928  : #ifdef _MSC_VER
+; 929  :     _UINT32_T pos;
+; 930  :     _BitScanReverse64(&pos, x);
+; 931  : #elif defined(__GNUC__)
+; 932  :     _UINT64_T pos;
+; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 934  : #else
+; 935  : #error unknown compiler
+; 936  : #endif
+; 937  : #else
+; 938  : #error unknown platform
+; 939  : #endif
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 936  : }
+; 941  : }
 
 	pop	ebp
 	ret	0
@@ -650,44 +650,44 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC					; COMDAT
 
-; 877  : {
+; 882  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 878  :     if (x == 0)
+; 883  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 879  :         return (sizeof(x) * 8);
+; 884  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 889  : }
+; 894  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 880  :     _UINT32_T pos;
-; 881  : #ifdef _MSC_VER
-; 882  :     _BitScanReverse(&pos, x);
+; 885  :     _UINT32_T pos;
+; 886  : #ifdef _MSC_VER
+; 887  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 883  : #elif defined(__GNUC__)
-; 884  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 885  : #else
-; 886  : #error unknown compiler
-; 887  : #endif
-; 888  :     return (sizeof(x) * 8 - 1 - pos);
+; 888  : #elif defined(__GNUC__)
+; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 890  : #else
+; 891  : #error unknown compiler
+; 892  : #endif
+; 893  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 889  : }
+; 894  : }
 
 	pop	ebp
 	ret	0
@@ -701,22 +701,22 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC					; COMDAT
 
-; 463  : {
+; 468  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 464  :     *result_high = (_UINT32_T)(value >> 32);
+; 469  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _result_high$[ebp]
 	mov	ecx, DWORD PTR _value$[ebp+4]
 	mov	DWORD PTR [eax], ecx
 
-; 465  :     return ((_UINT32_T)value);
+; 470  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 466  : }
+; 471  : }
 
 	pop	ebp
 	ret	0
@@ -782,8 +782,8 @@ _PMC_Equals_X_X@12 PROC					; COMDAT
 ; 267  :         return (result);
 ; 268  :     if (nu->IS_ZERO)
 
-	test	BYTE PTR [esi+16], 2
-	mov	eax, DWORD PTR [edi+16]
+	test	BYTE PTR [esi+24], 2
+	mov	eax, DWORD PTR [edi+24]
 	je	SHORT $LN7@PMC_Equals
 
 ; 269  :     {
@@ -823,8 +823,8 @@ $LN7@PMC_Equals:
 ; 279  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 ; 280  :         if (u_bit_count != v_bit_count)
 
-	mov	eax, DWORD PTR [esi+4]
-	cmp	eax, DWORD PTR [edi+4]
+	mov	eax, DWORD PTR [esi+12]
+	cmp	eax, DWORD PTR [edi+12]
 	jne	SHORT $LN20@PMC_Equals
 
 ; 281  :         {
@@ -836,14 +836,14 @@ $LN7@PMC_Equals:
 ; 287  :             // u > 0 && v > 0 かつ u のビット長と v のビット長が等しい場合
 ; 288  :             *w = Equals_X_X(nu->BLOCK, nv->BLOCK, nu->UNIT_WORD_COUNT);
 
-	mov	edx, DWORD PTR [esi]
-	mov	ecx, DWORD PTR [edi+24]
+	mov	edx, DWORD PTR [esi+8]
+	mov	ecx, DWORD PTR [edi+32]
 
 ; 39   :     while (count > 0)
 
 	test	edx, edx
 	je	SHORT $LN16@PMC_Equals
-	mov	esi, DWORD PTR [esi+24]
+	mov	esi, DWORD PTR [esi+32]
 	sub	esi, ecx
 $LL15@PMC_Equals:
 

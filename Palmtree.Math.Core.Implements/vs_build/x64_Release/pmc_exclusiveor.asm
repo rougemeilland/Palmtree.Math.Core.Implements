@@ -71,13 +71,13 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$4$PMC_ExclusiveOr_X_X DD imagerel $LN24+152
-	DD	imagerel $LN24+315
+	DD	imagerel $LN24+319
 	DD	imagerel $chain$4$PMC_ExclusiveOr_X_X
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$5$PMC_ExclusiveOr_X_X DD imagerel $LN24+315
-	DD	imagerel $LN24+328
+$pdata$5$PMC_ExclusiveOr_X_X DD imagerel $LN24+319
+	DD	imagerel $LN24+332
 	DD	imagerel $chain$5$PMC_ExclusiveOr_X_X
 pdata	ENDS
 ;	COMDAT pdata
@@ -119,30 +119,30 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_ExclusiveOr_X_I_Imp DD imagerel PMC_ExclusiveOr_X_I_Imp
-	DD	imagerel PMC_ExclusiveOr_X_I_Imp+272
+	DD	imagerel PMC_ExclusiveOr_X_I_Imp+271
 	DD	imagerel $unwind$PMC_ExclusiveOr_X_I_Imp
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_ExclusiveOr_X_L_Imp DD imagerel PMC_ExclusiveOr_X_L_Imp
-	DD	imagerel PMC_ExclusiveOr_X_L_Imp+277
+	DD	imagerel PMC_ExclusiveOr_X_L_Imp+276
 	DD	imagerel $unwind$PMC_ExclusiveOr_X_L_Imp
 pdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$PMC_ExclusiveOr_X_L_Imp DD 081501H
-	DD	097415H
-	DD	086415H
-	DD	073415H
-	DD	0e0113215H
+$unwind$PMC_ExclusiveOr_X_L_Imp DD 081401H
+	DD	096414H
+	DD	085414H
+	DD	073414H
+	DD	070103214H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$PMC_ExclusiveOr_X_I_Imp DD 081501H
-	DD	097415H
-	DD	086415H
-	DD	073415H
-	DD	0e0113215H
+$unwind$PMC_ExclusiveOr_X_I_Imp DD 081401H
+	DD	096414H
+	DD	085414H
+	DD	073414H
+	DD	070103214H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -194,7 +194,7 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$4$PMC_ExclusiveOr_X_X DD 020021H
-	DD	0be400H
+	DD	0b5400H
 	DD	imagerel $LN24
 	DD	imagerel $LN24+69
 	DD	imagerel $unwind$PMC_ExclusiveOr_X_X
@@ -202,7 +202,7 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$2$PMC_ExclusiveOr_X_X DD 020021H
-	DD	0be400H
+	DD	0b5400H
 	DD	imagerel $LN24
 	DD	imagerel $LN24+69
 	DD	imagerel $unwind$PMC_ExclusiveOr_X_X
@@ -217,7 +217,7 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$0$PMC_ExclusiveOr_X_X DD 020521H
-	DD	0be405H
+	DD	0b5405H
 	DD	imagerel $LN24
 	DD	imagerel $LN24+69
 	DD	imagerel $unwind$PMC_ExclusiveOr_X_X
@@ -277,18 +277,18 @@ PMC_ExclusiveOr_X_L_Imp PROC				; COMDAT
 ; 281  : {
 
 	mov	QWORD PTR [rsp+16], rbx
-	mov	QWORD PTR [rsp+24], rsi
-	mov	QWORD PTR [rsp+32], rdi
-	push	r14
+	mov	QWORD PTR [rsp+24], rbp
+	mov	QWORD PTR [rsp+32], rsi
+	push	rdi
 	sub	rsp, 32					; 00000020H
 
 ; 282  :     PMC_STATUS_CODE result;
 ; 283  :     if (u->IS_ZERO)
 
-	test	BYTE PTR [rcx+32], 2
+	test	BYTE PTR [rcx+40], 2
 	mov	rbx, r8
 	mov	rsi, rdx
-	mov	r14, rcx
+	mov	rbp, rcx
 	je	SHORT $LN2@PMC_Exclus
 
 ; 284  :     {
@@ -348,11 +348,11 @@ $LN2@PMC_Exclus:
 $LN7@PMC_Exclus:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 925  :     _BitScanReverse64(&pos, x);
+; 930  :     _BitScanReverse64(&pos, x);
 
 	bsr	rax, rsi
 
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 63					; 0000003fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_exclusiveor.c
@@ -362,7 +362,7 @@ $LN7@PMC_Exclus:
 	lea	r8, QWORD PTR nw_light_check_code$1[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_exclusiveor.c
@@ -378,10 +378,10 @@ $LN7@PMC_Exclus:
 	sub	rdx, rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 485  :     return (x >= y ? x : y);
+; 490  :     return (x >= y ? x : y);
 
-	cmp	QWORD PTR [r14+8], rdx
-	cmovae	rdx, QWORD PTR [r14+8]
+	cmp	QWORD PTR [rbp+16], rdx
+	cmovae	rdx, QWORD PTR [rbp+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_exclusiveor.c
 
 ; 344  :             __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
@@ -398,9 +398,9 @@ $LN7@PMC_Exclus:
 ; 348  :             ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, (__UNIT_TYPE)v, (*w)->BLOCK);
 
 	mov	rax, QWORD PTR [rbx]
-	mov	rdx, QWORD PTR [r14+48]
-	mov	rcx, QWORD PTR [r14]
-	mov	rdi, QWORD PTR [rax+48]
+	mov	rdx, QWORD PTR [rbp+56]
+	mov	rcx, QWORD PTR [rbp+8]
+	mov	rdi, QWORD PTR [rax+56]
 	mov	rax, QWORD PTR [rdx]
 
 ; 40   :     if (u_count == 1)
@@ -421,7 +421,7 @@ $LN7@PMC_Exclus:
 	add	rdi, 8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	rep movsq
 $LN57@PMC_Exclus:
@@ -431,7 +431,7 @@ $LN57@PMC_Exclus:
 
 	mov	rcx, QWORD PTR [rbx]
 	mov	rdx, QWORD PTR nw_light_check_code$1[rsp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	call	CheckBlockLight
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Exclus
@@ -446,7 +446,7 @@ $LN57@PMC_Exclus:
 ; 353  :         if ((*w)->IS_ZERO)
 
 	mov	rcx, QWORD PTR [rbx]
-	test	BYTE PTR [rcx+32], 2
+	test	BYTE PTR [rcx+40], 2
 	je	SHORT $LN20@PMC_Exclus
 
 ; 354  :         {
@@ -470,10 +470,10 @@ $LN1@PMC_Exclus:
 ; 360  : }
 
 	mov	rbx, QWORD PTR [rsp+56]
-	mov	rsi, QWORD PTR [rsp+64]
-	mov	rdi, QWORD PTR [rsp+72]
+	mov	rbp, QWORD PTR [rsp+64]
+	mov	rsi, QWORD PTR [rsp+72]
 	add	rsp, 32					; 00000020H
-	pop	r14
+	pop	rdi
 	ret	0
 PMC_ExclusiveOr_X_L_Imp ENDP
 _TEXT	ENDS
@@ -498,18 +498,18 @@ PMC_ExclusiveOr_X_I_Imp PROC				; COMDAT
 ; 187  : {
 
 	mov	QWORD PTR [rsp+16], rbx
-	mov	QWORD PTR [rsp+24], rsi
-	mov	QWORD PTR [rsp+32], rdi
-	push	r14
+	mov	QWORD PTR [rsp+24], rbp
+	mov	QWORD PTR [rsp+32], rsi
+	push	rdi
 	sub	rsp, 32					; 00000020H
 
 ; 188  :     PMC_STATUS_CODE result;
 ; 189  :     if (u->IS_ZERO)
 
-	test	BYTE PTR [rcx+32], 2
+	test	BYTE PTR [rcx+40], 2
 	mov	rbx, r8
 	mov	esi, edx
-	mov	r14, rcx
+	mov	rbp, rcx
 	je	SHORT $LN2@PMC_Exclus
 
 ; 190  :     {
@@ -569,11 +569,11 @@ $LN2@PMC_Exclus:
 $LN7@PMC_Exclus:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 882  :     _BitScanReverse(&pos, x);
+; 887  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, esi
 
-; 888  :     return (sizeof(x) * 8 - 1 - pos);
+; 893  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_exclusiveor.c
@@ -583,7 +583,7 @@ $LN7@PMC_Exclus:
 	lea	r8, QWORD PTR nz_check_code$1[rsp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 888  :     return (sizeof(x) * 8 - 1 - pos);
+; 893  :     return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_exclusiveor.c
@@ -599,10 +599,10 @@ $LN7@PMC_Exclus:
 	sub	rdx, rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 485  :     return (x >= y ? x : y);
+; 490  :     return (x >= y ? x : y);
 
-	cmp	QWORD PTR [r14+8], rdx
-	cmovae	rdx, QWORD PTR [r14+8]
+	cmp	QWORD PTR [rbp+16], rdx
+	cmovae	rdx, QWORD PTR [rbp+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_exclusiveor.c
 
 ; 215  :         __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
@@ -619,9 +619,9 @@ $LN7@PMC_Exclus:
 ; 219  :         ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, v, (*w)->BLOCK);
 
 	mov	rax, QWORD PTR [rbx]
-	mov	rdx, QWORD PTR [r14+48]
-	mov	rcx, QWORD PTR [r14]
-	mov	rdi, QWORD PTR [rax+48]
+	mov	rdx, QWORD PTR [rbp+56]
+	mov	rcx, QWORD PTR [rbp+8]
+	mov	rdi, QWORD PTR [rax+56]
 	mov	rax, rsi
 	xor	rax, QWORD PTR [rdx]
 	mov	QWORD PTR [rdi], rax
@@ -642,7 +642,7 @@ $LN7@PMC_Exclus:
 	add	rdi, 8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	rep movsq
 $LN23@PMC_Exclus:
@@ -652,7 +652,7 @@ $LN23@PMC_Exclus:
 
 	mov	rcx, QWORD PTR [rbx]
 	mov	rdx, QWORD PTR nz_check_code$1[rsp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	call	CheckBlockLight
 	test	eax, eax
 	jne	SHORT $LN1@PMC_Exclus
@@ -666,7 +666,7 @@ $LN23@PMC_Exclus:
 ; 223  :         if ((*w)->IS_ZERO)
 
 	mov	rcx, QWORD PTR [rbx]
-	test	BYTE PTR [rcx+32], 2
+	test	BYTE PTR [rcx+40], 2
 	je	SHORT $LN12@PMC_Exclus
 
 ; 224  :         {
@@ -690,10 +690,10 @@ $LN1@PMC_Exclus:
 ; 230  : }
 
 	mov	rbx, QWORD PTR [rsp+56]
-	mov	rsi, QWORD PTR [rsp+64]
-	mov	rdi, QWORD PTR [rsp+72]
+	mov	rbp, QWORD PTR [rsp+64]
+	mov	rsi, QWORD PTR [rsp+72]
 	add	rsp, 32					; 00000020H
-	pop	r14
+	pop	rdi
 	ret	0
 PMC_ExclusiveOr_X_I_Imp ENDP
 _TEXT	ENDS
@@ -1102,7 +1102,7 @@ $LN8@ExclusiveO:
 	mov	rbx, QWORD PTR [rsp+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	mov	rcx, rbp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_exclusiveor.c
@@ -1112,7 +1112,7 @@ $LN8@ExclusiveO:
 	mov	rbp, QWORD PTR [rsp+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_exclusiveor.c
@@ -1189,7 +1189,7 @@ $LN2@ExclusiveO:
 	add	rdi, 16
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	rep movsq
 $LN7@ExclusiveO:
@@ -1239,7 +1239,7 @@ ExclusiveOr_X_1W PROC					; COMDAT
 	add	rsi, 8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	rep movsq
 	mov	rdi, QWORD PTR [rsp+16]
@@ -1259,51 +1259,51 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 911  :     if (x == 0)
+; 916  :     if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 912  :         return (sizeof(x) * 8);
+; 917  :         return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 
-; 936  : }
+; 941  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 913  : #ifdef _M_IX86
-; 914  :     _UINT32_T pos;
-; 915  : #ifdef _MSC_VER
-; 916  :     _BitScanReverse(&pos, x);
-; 917  : #elif defined(__GNUC__)
-; 918  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 919  : #else
-; 920  : #error unknown compiler
-; 921  : #endif
-; 922  : #elif defined(_M_X64)
-; 923  : #ifdef _MSC_VER
-; 924  :     _UINT32_T pos;
-; 925  :     _BitScanReverse64(&pos, x);
+; 918  : #ifdef _M_IX86
+; 919  :     _UINT32_T pos;
+; 920  : #ifdef _MSC_VER
+; 921  :     _BitScanReverse(&pos, x);
+; 922  : #elif defined(__GNUC__)
+; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 924  : #else
+; 925  : #error unknown compiler
+; 926  : #endif
+; 927  : #elif defined(_M_X64)
+; 928  : #ifdef _MSC_VER
+; 929  :     _UINT32_T pos;
+; 930  :     _BitScanReverse64(&pos, x);
 
 	bsr	rcx, rcx
 
-; 926  : #elif defined(__GNUC__)
-; 927  :     _UINT64_T pos;
-; 928  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 929  : #else
-; 930  : #error unknown compiler
-; 931  : #endif
-; 932  : #else
-; 933  : #error unknown platform
-; 934  : #endif
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 931  : #elif defined(__GNUC__)
+; 932  :     _UINT64_T pos;
+; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 934  : #else
+; 935  : #error unknown compiler
+; 936  : #endif
+; 937  : #else
+; 938  : #error unknown platform
+; 939  : #endif
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 63					; 0000003fH
 	sub	eax, ecx
 
-; 936  : }
+; 941  : }
 
 	ret	0
 _LZCNT_ALT_UNIT ENDP
@@ -1315,37 +1315,37 @@ _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 878  :     if (x == 0)
+; 883  :     if (x == 0)
 
 	test	ecx, ecx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 879  :         return (sizeof(x) * 8);
+; 884  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 889  : }
+; 894  : }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 880  :     _UINT32_T pos;
-; 881  : #ifdef _MSC_VER
-; 882  :     _BitScanReverse(&pos, x);
+; 885  :     _UINT32_T pos;
+; 886  : #ifdef _MSC_VER
+; 887  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, ecx
 
-; 883  : #elif defined(__GNUC__)
-; 884  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 885  : #else
-; 886  : #error unknown compiler
-; 887  : #endif
-; 888  :     return (sizeof(x) * 8 - 1 - pos);
+; 888  : #elif defined(__GNUC__)
+; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
+; 890  : #else
+; 891  : #error unknown compiler
+; 892  : #endif
+; 893  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31
 	sub	eax, ecx
 
-; 889  : }
+; 894  : }
 
 	ret	0
 _LZCNT_ALT_32 ENDP
@@ -1358,13 +1358,13 @@ x$ = 8
 y$ = 16
 _MAXIMUM_UNIT PROC					; COMDAT
 
-; 485  :     return (x >= y ? x : y);
+; 490  :     return (x >= y ? x : y);
 
 	cmp	rcx, rdx
 	cmovae	rdx, rcx
 	mov	rax, rdx
 
-; 486  : }
+; 491  : }
 
 	ret	0
 _MAXIMUM_UNIT ENDP
@@ -1377,17 +1377,17 @@ value$ = 8
 result_high$ = 16
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 464  :     *result_high = (_UINT32_T)(value >> 32);
+; 469  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, rcx
 	shr	rax, 32					; 00000020H
 	mov	DWORD PTR [rdx], eax
 
-; 465  :     return ((_UINT32_T)value);
+; 470  :     return ((_UINT32_T)value);
 
 	mov	eax, ecx
 
-; 466  : }
+; 471  : }
 
 	ret	0
 _FROMDWORDTOWORD ENDP
@@ -1401,25 +1401,25 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 347  : {
+; 352  : {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 
-; 348  : #ifdef _M_IX86
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 350  : #elif defined(_M_X64)
-; 351  :     __movsq(d, s, count);
+; 353  : #ifdef _M_IX86
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 355  : #elif defined(_M_X64)
+; 356  :     __movsq(d, s, count);
 
 	mov	rdi, rcx
 	mov	rsi, rdx
 	mov	rcx, r8
 	rep movsq
 
-; 352  : #else
-; 353  : #error unknown platform
-; 354  : #endif
-; 355  : }
+; 357  : #else
+; 358  : #error unknown platform
+; 359  : #endif
+; 360  : }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -1488,8 +1488,8 @@ $LN24:
 ; 425  :     NUMBER_HEADER* nw;
 ; 426  :     if (nu->IS_ZERO)
 
-	test	BYTE PTR [rdi+32], 2
-	mov	QWORD PTR [rsp+88], r14
+	test	BYTE PTR [rdi+40], 2
+	mov	QWORD PTR [rsp+88], rbp
 	je	SHORT $LN7@PMC_Exclus
 
 ; 427  :     {
@@ -1501,7 +1501,7 @@ $LN24:
 	test	eax, eax
 	je	SHORT $LN21@PMC_Exclus
 $LN22@PMC_Exclus:
-	mov	r14, QWORD PTR [rsp+88]
+	mov	rbp, QWORD PTR [rsp+88]
 $LN1@PMC_Exclus:
 
 ; 466  : }
@@ -1517,7 +1517,7 @@ $LN7@PMC_Exclus:
 ; 430  :     }
 ; 431  :     else if (nv->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	je	SHORT $LN10@PMC_Exclus
 
 ; 432  :     {
@@ -1534,7 +1534,7 @@ $LN21@PMC_Exclus:
 ; 428  :         if ((result = DuplicateNumber(nv, &nw)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR nw$[rsp]
-	mov	r14, QWORD PTR [rsp+88]
+	mov	rbp, QWORD PTR [rsp+88]
 
 ; 458  :         }
 ; 459  :     }
@@ -1565,23 +1565,23 @@ $LN10@PMC_Exclus:
 ; 437  :     {
 ; 438  :         if (nu->UNIT_WORD_COUNT < nv->UNIT_WORD_COUNT)
 
-	mov	rcx, QWORD PTR [rdi]
+	mov	rcx, QWORD PTR [rdi+8]
 
 ; 448  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nw_light_check_code$1[rsp]
-	cmp	rcx, QWORD PTR [rbx]
-	mov	r14, rdi
+	cmp	rcx, QWORD PTR [rbx+8]
+	mov	rbp, rdi
 	lea	rcx, QWORD PTR nw$[rsp]
-	cmovae	r14, rbx
+	cmovae	rbp, rbx
 	cmovae	rbx, rdi
-	mov	rdx, QWORD PTR [r14+8]
+	mov	rdx, QWORD PTR [rbp+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 485  :     return (x >= y ? x : y);
+; 490  :     return (x >= y ? x : y);
 
-	cmp	QWORD PTR [rbx+8], rdx
-	cmovae	rdx, QWORD PTR [rbx+8]
+	cmp	QWORD PTR [rbx+16], rdx
+	cmovae	rdx, QWORD PTR [rbx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_exclusiveor.c
 
 ; 448  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
@@ -1594,19 +1594,19 @@ $LN10@PMC_Exclus:
 ; 450  :         ExclusiveOr_X_X(nu->BLOCK, nu->UNIT_WORD_COUNT, nv->BLOCK, nv->UNIT_WORD_COUNT, nw->BLOCK);
 
 	mov	rax, QWORD PTR nw$[rsp]
-	mov	r9, QWORD PTR [r14]
-	mov	r8, QWORD PTR [r14+48]
-	mov	rdx, QWORD PTR [rbx]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	r9, QWORD PTR [rbp+8]
+	mov	r8, QWORD PTR [rbp+56]
+	mov	rdx, QWORD PTR [rbx+8]
+	mov	rcx, QWORD PTR [rax+56]
 	mov	QWORD PTR [rsp+32], rcx
-	mov	rcx, QWORD PTR [rbx+48]
+	mov	rcx, QWORD PTR [rbx+56]
 	call	ExclusiveOr_X_X
 
 ; 451  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nw$[rsp]
 	mov	rdx, QWORD PTR nw_light_check_code$1[rsp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	call	CheckBlockLight
 	test	eax, eax
 	jne	$LN22@PMC_Exclus
@@ -1620,7 +1620,7 @@ $LN10@PMC_Exclus:
 ; 454  :         if (nw->IS_ZERO)
 
 	mov	rax, QWORD PTR nw$[rsp]
-	test	BYTE PTR [rax+32], 2
+	test	BYTE PTR [rax+40], 2
 	je	SHORT $LN16@PMC_Exclus
 
 ; 455  :         {
@@ -1638,7 +1638,7 @@ $LN16@PMC_Exclus:
 ; 459  :     }
 ; 460  :     *w = nw;
 
-	mov	r14, QWORD PTR [rsp+88]
+	mov	rbp, QWORD PTR [rsp+88]
 	mov	QWORD PTR [rsi], rax
 
 ; 461  : #ifdef _DEBUG

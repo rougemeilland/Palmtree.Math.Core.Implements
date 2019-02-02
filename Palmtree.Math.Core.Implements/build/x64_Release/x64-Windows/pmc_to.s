@@ -17,9 +17,9 @@ PMC_To_X_I:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L1
-	cmpq	$32, 8(%rbx)
+	cmpq	$32, 16(%rbx)
 	ja	.L4
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L3
 	movl	$0, (%rsi)
 .L1:
@@ -29,7 +29,7 @@ PMC_To_X_I:
 	ret
 	.p2align 4,,10
 .L3:
-	movq	48(%rbx), %rdx
+	movq	56(%rbx), %rdx
 	movq	(%rdx), %rdx
 	movl	%edx, (%rsi)
 	addq	$40, %rsp
@@ -57,9 +57,9 @@ PMC_To_X_L:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L6
-	cmpq	$64, 8(%rbx)
+	cmpq	$64, 16(%rbx)
 	ja	.L9
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L8
 	movq	$0, (%rsi)
 .L6:
@@ -69,7 +69,7 @@ PMC_To_X_L:
 	ret
 	.p2align 4,,10
 .L8:
-	movq	48(%rbx), %rdx
+	movq	56(%rbx), %rdx
 	movq	(%rdx), %rdx
 	movq	%rdx, (%rsi)
 	addq	$40, %rsp

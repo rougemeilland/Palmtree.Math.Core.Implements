@@ -15,7 +15,7 @@ PMC_BitwiseOr_X_I_Imp:
 	subq	$72, %rsp
 	.seh_stackalloc	72
 	.seh_endprologue
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	movq	%rcx, %rsi
 	movl	%edx, %ebx
 	movq	%r8, %rbp
@@ -49,7 +49,7 @@ PMC_BitwiseOr_X_I_Imp:
 	leaq	56(%rsp), %r8
 	movl	$31, %eax
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %ebx, %edx
  # 0 "" 2
 /NO_APP
@@ -57,7 +57,7 @@ PMC_BitwiseOr_X_I_Imp:
 	movl	$32, %edx
 	cltq
 	subq	%rax, %rdx
-	movq	8(%rcx), %rax
+	movq	16(%rcx), %rax
 	movq	%rbp, %rcx
 	cmpq	%rax, %rdx
 	cmovb	%rax, %rdx
@@ -66,9 +66,9 @@ PMC_BitwiseOr_X_I_Imp:
 	testl	%eax, %eax
 	jne	.L1
 	movq	0(%rbp), %rax
-	movq	48(%rax), %rcx
-	movq	(%rsi), %rax
-	movq	48(%rsi), %rsi
+	movq	56(%rax), %rcx
+	movq	8(%rsi), %rax
+	movq	56(%rsi), %rsi
 	orq	(%rsi), %rbx
 	cmpq	$1, %rax
 	movq	%rbx, (%rcx)
@@ -82,7 +82,7 @@ PMC_BitwiseOr_X_I_Imp:
  # 0 "" 2
 /NO_APP
 	movq	0(%rbp), %rax
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 .L8:
 	movq	56(%rsp), %rdx
 	call	CheckBlockLight
@@ -120,7 +120,7 @@ PMC_BitwiseOr_X_L_Imp:
 	subq	$72, %rsp
 	.seh_stackalloc	72
 	.seh_endprologue
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	movq	%rcx, %rsi
 	movq	%rdx, %rbx
 	movq	%r8, %rbp
@@ -154,7 +154,7 @@ PMC_BitwiseOr_X_L_Imp:
 	leaq	56(%rsp), %r8
 	movl	$63, %eax
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
@@ -162,7 +162,7 @@ PMC_BitwiseOr_X_L_Imp:
 	movl	$64, %edx
 	cltq
 	subq	%rax, %rdx
-	movq	8(%rcx), %rax
+	movq	16(%rcx), %rax
 	movq	%rbp, %rcx
 	cmpq	%rax, %rdx
 	cmovb	%rax, %rdx
@@ -171,9 +171,9 @@ PMC_BitwiseOr_X_L_Imp:
 	testl	%eax, %eax
 	jne	.L10
 	movq	0(%rbp), %rax
-	movq	48(%rax), %rcx
-	movq	(%rsi), %rax
-	movq	48(%rsi), %rsi
+	movq	56(%rax), %rcx
+	movq	8(%rsi), %rax
+	movq	56(%rsi), %rsi
 	orq	(%rsi), %rbx
 	cmpq	$1, %rax
 	movq	%rbx, (%rcx)
@@ -187,7 +187,7 @@ PMC_BitwiseOr_X_L_Imp:
  # 0 "" 2
 /NO_APP
 	movq	0(%rbp), %rax
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 .L17:
 	movq	56(%rsp), %rdx
 	call	CheckBlockLight
@@ -444,35 +444,35 @@ PMC_BitwiseOr_X_X:
 	testl	%eax, %eax
 	movl	%eax, %ebx
 	jne	.L34
-	testb	$2, 32(%rbp)
+	testb	$2, 40(%rbp)
 	jne	.L72
-	testb	$2, 32(%rsi)
+	testb	$2, 40(%rsi)
 	jne	.L73
-	movq	(%rsi), %rax
-	cmpq	%rax, 0(%rbp)
+	movq	8(%rsi), %rax
+	cmpq	%rax, 8(%rbp)
 	jnb	.L39
 	movq	%rbp, %rax
 	movq	%rsi, %rbp
 	movq	%rax, %rsi
 .L39:
-	movq	8(%rsi), %rdx
+	movq	16(%rsi), %rdx
 	leaq	32(%rsp), %rcx
-	cmpq	%rdx, 8(%rbp)
+	cmpq	%rdx, 16(%rbp)
 	leaq	40(%rsp), %r8
-	cmovnb	8(%rbp), %rdx
+	cmovnb	16(%rbp), %rdx
 	call	AllocateNumber
 	testl	%eax, %eax
 	jne	.L51
-	movq	(%rsi), %r13
-	movq	0(%rbp), %rcx
+	movq	8(%rsi), %r13
+	movq	8(%rbp), %rcx
 	movq	32(%rsp), %rax
-	movq	48(%rsi), %r11
-	movq	48(%rbp), %rsi
+	movq	56(%rsi), %r11
+	movq	56(%rbp), %rsi
 	movq	%r13, %rbp
 	shrq	$5, %rbp
 	subq	%r13, %rcx
 	testq	%rbp, %rbp
-	movq	48(%rax), %rdi
+	movq	56(%rax), %rdi
 	je	.L41
 	movq	%rbp, %r10
 	movq	%rdi, %r8
@@ -715,7 +715,7 @@ PMC_BitwiseOr_X_X:
 /NO_APP
 	movq	32(%rsp), %rax
 	movq	40(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	je	.L74

@@ -161,7 +161,7 @@ $LN7@PMC_GetPro:
 ; 50   :         *o = nx->IS_EVEN;
 
 	mov	rax, QWORD PTR nx$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 3
 	and	eax, 1
 	mov	rcx, QWORD PTR o$[rbp]
@@ -177,7 +177,7 @@ $LN8@PMC_GetPro:
 ; 53   :         *o = nx->IS_ONE;
 
 	mov	rax, QWORD PTR nx$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 2
 	and	eax, 1
 	mov	rcx, QWORD PTR o$[rbp]
@@ -193,7 +193,7 @@ $LN9@PMC_GetPro:
 ; 56   :         *o = nx->IS_POWER_OF_TWO;
 
 	mov	rax, QWORD PTR nx$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 4
 	and	eax, 1
 	mov	rcx, QWORD PTR o$[rbp]
@@ -209,7 +209,7 @@ $LN10@PMC_GetPro:
 ; 59   :         *o = nx->IS_ZERO;
 
 	mov	rax, QWORD PTR nx$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	mov	rcx, QWORD PTR o$[rbp]

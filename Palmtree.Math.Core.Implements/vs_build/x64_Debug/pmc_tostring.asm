@@ -184,7 +184,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$ToStringDN DD imagerel ToStringDN
-	DD	imagerel ToStringDN+1093
+	DD	imagerel ToStringDN+1094
 	DD	imagerel $unwind$ToStringDN
 pdata	ENDS
 ;	COMDAT pdata
@@ -196,7 +196,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$ToStringX DD imagerel ToStringX
-	DD	imagerel ToStringX+647
+	DD	imagerel ToStringX+650
 	DD	imagerel $unwind$ToStringX
 pdata	ENDS
 ;	COMDAT rtc$TMZ
@@ -726,7 +726,7 @@ ToStringX PROC						; COMDAT
 ; 480  :     if (x->IS_ZERO)
 
 	mov	rax, QWORD PTR x$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -787,7 +787,7 @@ $LN4@ToStringX:
 
 	mov	edx, 4
 	mov	rax, QWORD PTR x$[rbp]
-	mov	rcx, QWORD PTR [rax+8]
+	mov	rcx, QWORD PTR [rax+16]
 	call	_DIVIDE_CEILING_UNIT
 	mov	QWORD PTR output_len$1[rbp], rax
 
@@ -863,9 +863,9 @@ $LN11@ToStringX:
 ; 513  :         __UNIT_TYPE* s_ptr = x->BLOCK + x->UNIT_WORD_COUNT - 1;
 
 	mov	rax, QWORD PTR x$[rbp]
-	mov	rax, QWORD PTR [rax]
+	mov	rax, QWORD PTR [rax+8]
 	mov	rcx, QWORD PTR x$[rbp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	lea	rax, QWORD PTR [rcx+rax*8-8]
 	mov	QWORD PTR s_ptr$5[rbp], rax
 
@@ -893,13 +893,13 @@ $LN14@ToStringX:
 ; 516  :         __UNIT_TYPE w_count = x->UNIT_WORD_COUNT;
 
 	mov	rax, QWORD PTR x$[rbp]
-	mov	rax, QWORD PTR [rax]
+	mov	rax, QWORD PTR [rax+8]
 	mov	QWORD PTR w_count$8[rbp], rax
 
 ; 517  :         d_ptr = ToStringX_1WORD(*s_ptr, (int)(x->UNIT_WORD_COUNT * (__UNIT_TYPE_BIT_COUNT / 4) - output_len), digit_table, d_ptr);
 
 	mov	rax, QWORD PTR x$[rbp]
-	imul	rax, QWORD PTR [rax], 16
+	imul	rax, QWORD PTR [rax+8], 16
 	sub	rax, QWORD PTR output_len$1[rbp]
 	mov	r9, QWORD PTR d_ptr$6[rbp]
 	mov	r8, QWORD PTR digit_table$7[rbp]
@@ -1705,7 +1705,7 @@ $LN3@ToStringDN:
 ; 334  :     if (x->IS_ZERO)
 
 	mov	rax, QWORD PTR x$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -1856,10 +1856,10 @@ $LN6@ToStringDN:
 ; 373  :         __UNIT_TYPE_DIV* r_buf = (__UNIT_TYPE_DIV*)AllocateBlock(x->UNIT_BIT_COUNT + (x->UNIT_BIT_COUNT >> 3) + __UNIT_TYPE_BIT_COUNT, &r_buf_words, &r_buf_code);
 
 	mov	rax, QWORD PTR x$[rbp]
-	mov	rax, QWORD PTR [rax+8]
+	mov	rax, QWORD PTR [rax+16]
 	shr	rax, 3
 	mov	rcx, QWORD PTR x$[rbp]
-	mov	rcx, QWORD PTR [rcx+8]
+	mov	rcx, QWORD PTR [rcx+16]
 	lea	rax, QWORD PTR [rcx+rax+64]
 	lea	r8, QWORD PTR r_buf_code$11[rbp]
 	lea	rdx, QWORD PTR r_buf_words$12[rbp]
@@ -1882,7 +1882,7 @@ $LN14@ToStringDN:
 ; 377  :         if ((result = ConvertCardinalNumber((__UNIT_TYPE_DIV*)x->BLOCK, x->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), x->UNIT_BIT_COUNT, base_value, r_buf, &r_buf_count)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR x$[rbp]
-	mov	rax, QWORD PTR [rax]
+	mov	rax, QWORD PTR [rax+8]
 	shl	rax, 3
 	xor	edx, edx
 	mov	ecx, 4
@@ -1893,10 +1893,10 @@ $LN14@ToStringDN:
 	mov	QWORD PTR [rsp+32], rcx
 	mov	r9d, DWORD PTR base_value$[rbp]
 	mov	rcx, QWORD PTR x$[rbp]
-	mov	r8, QWORD PTR [rcx+8]
+	mov	r8, QWORD PTR [rcx+16]
 	mov	rdx, rax
 	mov	rax, QWORD PTR x$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	ConvertCardinalNumber
 	mov	DWORD PTR result$10[rbp], eax
 	cmp	DWORD PTR result$10[rbp], 0
@@ -3640,7 +3640,7 @@ _TEXT	SEGMENT
 value$ = 224
 AddToDIV64Counter PROC					; COMDAT
 
-; 1095 : {
+; 1100 : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -3655,13 +3655,13 @@ AddToDIV64Counter PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1096 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
+; 1101 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
 
 	lea	rax, OFFSET FLAT:statistics_info+8
 	mov	ecx, DWORD PTR value$[rbp]
 	lock add DWORD PTR [rax], ecx
 
-; 1097 : }
+; 1102 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3676,7 +3676,7 @@ _TEXT	SEGMENT
 value$ = 224
 AddToDIV32Counter PROC					; COMDAT
 
-; 1089 : {
+; 1094 : {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -3691,13 +3691,13 @@ AddToDIV32Counter PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1090 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+; 1095 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
 
 	lea	rax, OFFSET FLAT:statistics_info+12
 	mov	ecx, DWORD PTR value$[rbp]
 	lock add DWORD PTR [rax], ecx
 
-; 1091 : }
+; 1096 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3711,7 +3711,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 IncrementDIV64Counter PROC				; COMDAT
 
-; 1072 : {
+; 1077 : {
 
 	push	rbp
 	push	rdi
@@ -3724,12 +3724,12 @@ IncrementDIV64Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1073 :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+; 1078 :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
 
 	lea	rax, OFFSET FLAT:statistics_info+8
 	lock inc DWORD PTR [rax]
 
-; 1074 : }
+; 1079 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3743,7 +3743,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 IncrementDIV32Counter PROC				; COMDAT
 
-; 1066 : {
+; 1071 : {
 
 	push	rbp
 	push	rdi
@@ -3756,12 +3756,12 @@ IncrementDIV32Counter PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 1067 :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+; 1072 :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
 
 	lea	rax, OFFSET FLAT:statistics_info+12
 	lock inc DWORD PTR [rax]
 
-; 1068 : }
+; 1073 : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3777,7 +3777,7 @@ x$ = 224
 count$ = 232
 _ROTATE_L_UNIT PROC					; COMDAT
 
-; 762  : {
+; 767  : {
 
 	mov	DWORD PTR [rsp+16], edx
 	mov	QWORD PTR [rsp+8], rcx
@@ -3793,20 +3793,20 @@ _ROTATE_L_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 763  : #ifdef _M_IX86
-; 764  :     return (_rotl(x, count));
-; 765  : #elif defined(_M_X64)
-; 766  :     return (_rotl64(x, count));
+; 768  : #ifdef _M_IX86
+; 769  :     return (_rotl(x, count));
+; 770  : #elif defined(_M_X64)
+; 771  :     return (_rotl64(x, count));
 
 	mov	eax, DWORD PTR count$[rbp]
 	movzx	ecx, al
 	mov	rax, QWORD PTR x$[rbp]
 	rol	rax, cl
 
-; 767  : #else
-; 768  : #error unknown platform
-; 769  : #endif
-; 770  : }
+; 772  : #else
+; 773  : #error unknown platform
+; 774  : #endif
+; 775  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -3827,7 +3827,7 @@ v$ = 272
 r$ = 280
 _DIVREM_UNIT PROC					; COMDAT
 
-; 665  : {
+; 670  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	DWORD PTR [rsp+24], r8d
@@ -3845,23 +3845,23 @@ _DIVREM_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 666  : #ifdef _MSC_VER
-; 667  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 671  : #ifdef _MSC_VER
+; 672  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
 
 	xor	eax, eax
 	cmp	eax, 1
 	je	SHORT $LN2@DIVREM_UNI
 
-; 668  :     {
-; 669  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
-; 670  :         _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
+; 673  :     {
+; 674  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
+; 675  :         _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
 
 	mov	edx, DWORD PTR u_low$[rbp]
 	mov	ecx, DWORD PTR u_high$[rbp]
 	call	_FROMWORDTODWORD
 	mov	QWORD PTR t$1[rbp], rax
 
-; 671  :         *r = (_UINT32_T)(t % v);
+; 676  :         *r = (_UINT32_T)(t % v);
 
 	mov	eax, DWORD PTR v$[rbp]
 	mov	QWORD PTR tv68[rbp], rax
@@ -3873,7 +3873,7 @@ _DIVREM_UNIT PROC					; COMDAT
 	mov	rcx, QWORD PTR r$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 672  :         return ((_UINT32_T)(t / v));
+; 677  :         return ((_UINT32_T)(t / v));
 
 	mov	eax, DWORD PTR v$[rbp]
 	mov	QWORD PTR tv71[rbp], rax
@@ -3883,70 +3883,70 @@ _DIVREM_UNIT PROC					; COMDAT
 	div	rcx
 	jmp	SHORT $LN1@DIVREM_UNI
 
-; 673  :     }
+; 678  :     }
 
 	jmp	SHORT $LN3@DIVREM_UNI
 $LN2@DIVREM_UNI:
 
-; 674  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 679  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN4@DIVREM_UNI
 
-; 675  :     {
-; 676  :         // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
-; 677  :         // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
-; 678  :         // ・128bit 整数のデータ型が用意されていない。
-; 679  :         // ・x64 ではインラインアセンブラがサポートされていない。
-; 680  :         *r = 0;
+; 680  :     {
+; 681  :         // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
+; 682  :         // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
+; 683  :         // ・128bit 整数のデータ型が用意されていない。
+; 684  :         // ・x64 ではインラインアセンブラがサポートされていない。
+; 685  :         *r = 0;
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	DWORD PTR [rax], 0
 
-; 681  :         return (0);
+; 686  :         return (0);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@DIVREM_UNI
 
-; 682  :     }
+; 687  :     }
 
 	jmp	SHORT $LN5@DIVREM_UNI
 $LN4@DIVREM_UNI:
 
-; 683  :     else
-; 684  :     {
-; 685  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 686  :         *r = 0;
+; 688  :     else
+; 689  :     {
+; 690  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 691  :         *r = 0;
 
 	mov	rax, QWORD PTR r$[rbp]
 	mov	DWORD PTR [rax], 0
 
-; 687  :         return (0);
+; 692  :         return (0);
 
 	xor	eax, eax
 $LN5@DIVREM_UNI:
 $LN3@DIVREM_UNI:
 $LN1@DIVREM_UNI:
 
-; 688  :     }
-; 689  : #elif defined(__GNUC__)
-; 690  :     __UNIT_TYPE q;
-; 691  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-; 692  :         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-; 693  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
-; 694  :         __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-; 695  :     else
-; 696  :     {
-; 697  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 698  :         *r = 0;
-; 699  :         q = 0;
-; 700  :     }
-; 701  :     return (q);
-; 702  : #else
-; 703  : #error unknown compiler
-; 704  : #endif
-; 705  : }
+; 693  :     }
+; 694  : #elif defined(__GNUC__)
+; 695  :     __UNIT_TYPE q;
+; 696  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 697  :         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+; 698  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 699  :         __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+; 700  :     else
+; 701  :     {
+; 702  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 703  :         *r = 0;
+; 704  :         q = 0;
+; 705  :     }
+; 706  :     return (q);
+; 707  : #else
+; 708  : #error unknown compiler
+; 709  : #endif
+; 710  : }
 
 	lea	rsp, QWORD PTR [rbp+232]
 	pop	rdi
@@ -3962,7 +3962,7 @@ u$ = 224
 v$ = 232
 _DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 474  : {
+; 479  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -3978,7 +3978,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
@@ -3986,7 +3986,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	xor	edx, edx
 	div	QWORD PTR v$[rbp]
 
-; 476  : }
+; 481  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -4002,7 +4002,7 @@ value_high$ = 224
 value_low$ = 232
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 458  : {
+; 463  : {
 
 	mov	DWORD PTR [rsp+16], edx
 	mov	DWORD PTR [rsp+8], ecx
@@ -4018,14 +4018,14 @@ _FROMWORDTODWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, DWORD PTR value_high$[rbp]
 	shl	rax, 32					; 00000020H
 	mov	ecx, DWORD PTR value_low$[rbp]
 	or	rax, rcx
 
-; 460  : }
+; 465  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -4042,7 +4042,7 @@ x$ = 232
 count$ = 240
 _FILL_MEMORY_16 PROC					; COMDAT
 
-; 430  : {
+; 435  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	WORD PTR [rsp+16], dx
@@ -4059,14 +4059,14 @@ _FILL_MEMORY_16 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 431  :     __stosw(d, x, count);
+; 436  :     __stosw(d, x, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	movzx	eax, WORD PTR x$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep stosw
 
-; 432  : }
+; 437  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -4083,7 +4083,7 @@ d$ = 240
 count$ = 248
 _ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 408  : {
+; 413  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -4099,11 +4099,11 @@ _ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 409  : #ifdef _M_IX86
-; 410  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 411  : #elif defined(_M_X64)
-; 412  : #ifdef _MSC_VER
-; 413  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 414  : #ifdef _M_IX86
+; 415  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 416  : #elif defined(_M_X64)
+; 417  : #ifdef _MSC_VER
+; 418  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	eax, DWORD PTR count$[rbp]
 	mov	QWORD PTR tv64[rbp], rax
@@ -4112,15 +4112,15 @@ _ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
 	mov	rcx, QWORD PTR tv64[rbp]
 	rep stosd
 
-; 414  : #elif defined(__GNUC__)
-; 415  :     __stosq(d, 0, count);
-; 416  : #else
-; 417  : #error unknown compiler
-; 418  : #endif
-; 419  : #else
-; 420  : #error unknown platform
-; 421  : #endif
-; 422  : }
+; 419  : #elif defined(__GNUC__)
+; 420  :     __stosq(d, 0, count);
+; 421  : #else
+; 422  : #error unknown compiler
+; 423  : #endif
+; 424  : #else
+; 425  : #error unknown platform
+; 426  : #endif
+; 427  : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -4137,7 +4137,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 358  : {
+; 363  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -4155,11 +4155,11 @@ _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 359  : #ifdef _M_IX86
-; 360  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 361  : #elif defined(_M_X64)
-; 362  : #ifdef _MSC_VER
-; 363  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 364  : #ifdef _M_IX86
+; 365  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 366  : #elif defined(_M_X64)
+; 367  : #ifdef _MSC_VER
+; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	eax, DWORD PTR count$[rbp]
 	mov	rdi, QWORD PTR d$[rbp]
@@ -4167,15 +4167,15 @@ _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 	mov	ecx, eax
 	rep movsd
 
-; 364  : #elif defined(__GNUC__)
-; 365  :     __movsq(d, s, count);
-; 366  : #else
-; 367  : #error unknown compiler
-; 368  : #endif
-; 369  : #else
-; 370  : #error unknown platform
-; 371  : #endif
-; 372  : }
+; 369  : #elif defined(__GNUC__)
+; 370  :     __movsq(d, s, count);
+; 371  : #else
+; 372  : #error unknown compiler
+; 373  : #endif
+; 374  : #else
+; 375  : #error unknown platform
+; 376  : #endif
+; 377  : }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi

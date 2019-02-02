@@ -458,7 +458,7 @@ PMC_Subtruct_I_X:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L72
-	movzbl	32(%rbx), %edx
+	movzbl	40(%rbx), %edx
 	andl	$2, %edx
 	testl	%esi, %esi
 	jne	.L74
@@ -477,7 +477,7 @@ PMC_Subtruct_I_X:
 	jne	.L76
 	movl	$31, %edx
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %esi, %ecx
  # 0 "" 2
 /NO_APP
@@ -485,9 +485,9 @@ PMC_Subtruct_I_X:
 	movl	$32, %ecx
 	movslq	%edx, %rdx
 	subq	%rdx, %rcx
-	cmpq	8(%rbx), %rcx
+	cmpq	16(%rbx), %rcx
 	jb	.L79
-	movq	48(%rbx), %rdx
+	movq	56(%rbx), %rdx
 	subq	(%rdx), %rsi
 	jb	.L79
 .L76:
@@ -532,7 +532,7 @@ PMC_Subtruct_X_I:
 	testl	%eax, %eax
 	movl	%eax, %esi
 	jne	.L80
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L82
 	testl	%ebp, %ebp
 	jne	.L91
@@ -550,10 +550,10 @@ PMC_Subtruct_X_I:
 .L82:
 	testl	%ebp, %ebp
 	je	.L100
-	movq	8(%rbx), %rdx
+	movq	16(%rbx), %rdx
 	movl	$31, %eax
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %ebp, %ecx
  # 0 "" 2
 /NO_APP
@@ -581,23 +581,23 @@ PMC_Subtruct_X_I:
 	jne	.L92
 	movq	32(%rsp), %rax
 	movl	%ebp, %r8d
-	movq	48(%rbx), %rcx
-	movq	(%rbx), %rdx
-	movq	48(%rax), %r9
+	movq	8(%rbx), %rdx
+	movq	56(%rbx), %rcx
+	movq	56(%rax), %r9
 	call	Subtruct_X_1W.isra.0
 	testl	%eax, %eax
 	movl	%eax, %ebx
 	jne	.L102
 	movq	32(%rsp), %rax
 	movq	40(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L92
 	movq	32(%rsp), %rcx
 	call	CommitNumber
 	movq	32(%rsp), %rcx
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	je	.L89
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
@@ -661,7 +661,7 @@ PMC_Subtruct_L_X:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L103
-	movzbl	32(%rbx), %edx
+	movzbl	40(%rbx), %edx
 	andl	$2, %edx
 	testq	%rdi, %rdi
 	jne	.L105
@@ -680,7 +680,7 @@ PMC_Subtruct_L_X:
 	jne	.L107
 	movl	$63, %edx
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %rdi, %rcx
  # 0 "" 2
 /NO_APP
@@ -688,9 +688,9 @@ PMC_Subtruct_L_X:
 	movl	$64, %ecx
 	movslq	%edx, %rdx
 	subq	%rdx, %rcx
-	cmpq	8(%rbx), %rcx
+	cmpq	16(%rbx), %rcx
 	jb	.L110
-	movq	48(%rbx), %rdx
+	movq	56(%rbx), %rdx
 	subq	(%rdx), %rdi
 	jb	.L110
 .L107:
@@ -735,7 +735,7 @@ PMC_Subtruct_X_L:
 	testl	%eax, %eax
 	movl	%eax, %esi
 	jne	.L111
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L113
 	testq	%rbp, %rbp
 	jne	.L121
@@ -753,10 +753,10 @@ PMC_Subtruct_X_L:
 .L113:
 	testq	%rbp, %rbp
 	je	.L126
-	movq	8(%rbx), %rdx
+	movq	16(%rbx), %rdx
 	movl	$63, %eax
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %rbp, %rcx
  # 0 "" 2
 /NO_APP
@@ -784,23 +784,23 @@ PMC_Subtruct_X_L:
 	jne	.L122
 	movq	32(%rsp), %rax
 	movq	%rbp, %r8
-	movq	48(%rbx), %rcx
-	movq	(%rbx), %rdx
-	movq	48(%rax), %r9
+	movq	8(%rbx), %rdx
+	movq	56(%rbx), %rcx
+	movq	56(%rax), %r9
 	call	Subtruct_X_1W.isra.0
 	testl	%eax, %eax
 	movl	%eax, %ebx
 	jne	.L128
 	movq	32(%rsp), %rax
 	movq	40(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L122
 	movq	32(%rsp), %rcx
 	call	CommitNumber
 	movq	32(%rsp), %rcx
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	je	.L115
 	call	DeallocateNumber
 	movq	.refptr.number_zero(%rip), %rcx
@@ -885,14 +885,14 @@ PMC_Subtruct_X_X:
 	testl	%eax, %eax
 	movl	%eax, %ebx
 	jne	.L129
-	movzbl	32(%rdi), %eax
+	movzbl	40(%rdi), %eax
 	andl	$2, %eax
-	testb	$2, 32(%rsi)
+	testb	$2, 40(%rsi)
 	jne	.L144
 	testb	%al, %al
 	jne	.L145
-	movq	8(%rsi), %rdx
-	cmpq	8(%rdi), %rdx
+	movq	16(%rsi), %rdx
+	cmpq	16(%rdi), %rdx
 	jb	.L138
 	leaq	48(%rsp), %rcx
 	leaq	56(%rsp), %r8
@@ -939,21 +939,21 @@ PMC_Subtruct_X_X:
 	.p2align 4,,10
 .L146:
 	movq	48(%rsp), %rax
-	movq	48(%rsi), %rcx
-	movq	(%rdi), %r9
-	movq	48(%rdi), %r8
-	movq	40(%rax), %rdx
-	movq	%rdx, 40(%rsp)
-	movq	48(%rax), %rax
+	movq	8(%rsi), %rdx
+	movq	56(%rsi), %rcx
+	movq	8(%rdi), %r9
+	movq	48(%rax), %r8
+	movq	%r8, 40(%rsp)
+	movq	56(%rax), %rax
+	movq	56(%rdi), %r8
 	movq	%rax, 32(%rsp)
-	movq	(%rsi), %rdx
 	call	Subtruct_Imp
 	testl	%eax, %eax
 	movl	%eax, %esi
 	jne	.L147
 	movq	48(%rsp), %rax
 	movq	56(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L139

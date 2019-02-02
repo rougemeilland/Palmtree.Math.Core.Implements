@@ -87498,13 +87498,16 @@ extern void GetCPUInfo(PROCESSOR_FEATURES* feature);
 
 #pragma region マクロの定義
 
+
+
+
 #pragma endregion
 
 
 #pragma region 型の定義
 
 typedef _UINT32_T __UNIT_TYPE;
-# 62 "pmc_internal.h"
+# 65 "pmc_internal.h"
 typedef __UNIT_TYPE __UNIT_TYPE_DIV;
 
 
@@ -87513,6 +87516,8 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
 
 typedef struct __tag_NUMBER_HEADER
 {
+    _UINT32_T SIGNATURE1;
+    _UINT32_T SIGNATURE2;
     __UNIT_TYPE UNIT_WORD_COUNT;
     __UNIT_TYPE UNIT_BIT_COUNT;
     __UNIT_TYPE HASH_CODE;
@@ -87781,7 +87786,7 @@ __inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T
 {
     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 }
-# 346 "pmc_internal.h"
+# 351 "pmc_internal.h"
 __inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
 {
 
@@ -87797,7 +87802,7 @@ __inline static void _COPY_MEMORY_UNIT_DIV(__UNIT_TYPE_DIV* d, const __UNIT_TYPE
 {
 
     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-# 372 "pmc_internal.h"
+# 377 "pmc_internal.h"
 }
 
 __inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
@@ -87814,7 +87819,7 @@ __inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
 {
     __stosd((unsigned long*)d, 0, count);
 }
-# 396 "pmc_internal.h"
+# 401 "pmc_internal.h"
 __inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
 {
 
@@ -87830,7 +87835,7 @@ __inline static void _ZERO_MEMORY_UNIT_DIV(__UNIT_TYPE_DIV* d, __UNIT_TYPE count
 {
 
     __stosd((unsigned long*)d, 0, (unsigned long)count);
-# 422 "pmc_internal.h"
+# 427 "pmc_internal.h"
 }
 
 __inline static void _FILL_MEMORY_BYTE(void* d, unsigned char x, size_t count)
@@ -87847,7 +87852,7 @@ __inline static void _FILL_MEMORY_32(_UINT32_T* d, _UINT32_T x, size_t count)
 {
     __stosd(( unsigned long*)d, x, count);
 }
-# 446 "pmc_internal.h"
+# 451 "pmc_internal.h"
 __inline static void _FILL_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE x, __UNIT_TYPE count)
 {
 
@@ -87913,7 +87918,7 @@ __inline static char _ADD_UNIT_DIV(char carry, __UNIT_TYPE_DIV u, __UNIT_TYPE_DI
 
 
     return (_addcarry_u32(carry, u, v, w));
-# 519 "pmc_internal.h"
+# 524 "pmc_internal.h"
 }
 
 __inline static char _ADDX_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
@@ -87934,7 +87939,7 @@ __inline static char _ADDX_UNIT_DIV(char carry, __UNIT_TYPE_DIV u, __UNIT_TYPE_D
 
 
     return (_addcarryx_u32(carry, u, v, w));
-# 547 "pmc_internal.h"
+# 552 "pmc_internal.h"
 }
 
 __inline static char _SUBTRUCT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
@@ -87955,7 +87960,7 @@ __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_T
 
 
     return (_subborrow_u32(borrow, u, v, w));
-# 575 "pmc_internal.h"
+# 580 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
@@ -87967,7 +87972,7 @@ __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_
     _UINT32_T w_lo;
     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
     return (w_lo);
-# 594 "pmc_internal.h"
+# 599 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
@@ -87979,16 +87984,16 @@ __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYP
     _UINT32_T w_lo;
     __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
     return (w_lo);
-# 613 "pmc_internal.h"
+# 618 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
 {
-# 627 "pmc_internal.h"
+# 632 "pmc_internal.h"
     _UINT32_T w_lo;
     __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
-# 640 "pmc_internal.h"
+# 645 "pmc_internal.h"
 }
 
 __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
@@ -88000,13 +88005,13 @@ __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TY
     _UINT32_T w_lo;
     __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
     return (w_lo);
-# 661 "pmc_internal.h"
+# 666 "pmc_internal.h"
 }
 
 
 __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
 {
-# 690 "pmc_internal.h"
+# 695 "pmc_internal.h"
     __UNIT_TYPE q;
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
@@ -88027,7 +88032,7 @@ __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE
 
 __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
 {
-# 734 "pmc_internal.h"
+# 739 "pmc_internal.h"
     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
         __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
@@ -88059,17 +88064,17 @@ __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 764 "pmc_internal.h" 3
+# 769 "pmc_internal.h" 3
            __rold((
-# 764 "pmc_internal.h"
+# 769 "pmc_internal.h"
            x
-# 764 "pmc_internal.h" 3
+# 769 "pmc_internal.h" 3
            ), (
-# 764 "pmc_internal.h"
+# 769 "pmc_internal.h"
            count
-# 764 "pmc_internal.h" 3
+# 769 "pmc_internal.h" 3
            ))
-# 764 "pmc_internal.h"
+# 769 "pmc_internal.h"
                           );
 
 
@@ -88082,17 +88087,17 @@ __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
 {
 
     return (
-# 775 "pmc_internal.h" 3
+# 780 "pmc_internal.h" 3
            __rord((
-# 775 "pmc_internal.h"
+# 780 "pmc_internal.h"
            x
-# 775 "pmc_internal.h" 3
+# 780 "pmc_internal.h" 3
            ), (
-# 775 "pmc_internal.h"
+# 780 "pmc_internal.h"
            count
-# 775 "pmc_internal.h" 3
+# 780 "pmc_internal.h" 3
            ))
-# 775 "pmc_internal.h"
+# 780 "pmc_internal.h"
                           );
 
 
@@ -88120,7 +88125,7 @@ __inline static int _POPCNT_ALT_UNIT(__UNIT_TYPE x)
     x = (x & 0x0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f);
     x = (x & 0x00ff00ff) + ((x >> 8) & 0x00ff00ff);
     x = (x & 0x0000ffff) + ((x >> 16) & 0x0000ffff);
-# 812 "pmc_internal.h"
+# 817 "pmc_internal.h"
     return((int)x);
 }
 
@@ -88128,7 +88133,7 @@ __inline static int _LZCNT_32(_UINT32_T value)
 {
     return (_lzcnt_u32(value));
 }
-# 827 "pmc_internal.h"
+# 832 "pmc_internal.h"
 __inline static int _LZCNT_UNIT(__UNIT_TYPE value)
 {
 
@@ -88142,9 +88147,9 @@ __inline static int _LZCNT_UNIT(__UNIT_TYPE value)
 
 __inline static int _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
 {
-# 850 "pmc_internal.h"
+# 855 "pmc_internal.h"
     return (_lzcnt_u32(value));
-# 859 "pmc_internal.h"
+# 864 "pmc_internal.h"
 }
 
 __inline static int _LZCNT_ALT_8(unsigned char x)
@@ -88176,7 +88181,7 @@ __inline static int _LZCNT_ALT_32(_UINT32_T x)
 
     return (sizeof(x) * 8 - 1 - pos);
 }
-# 909 "pmc_internal.h"
+# 914 "pmc_internal.h"
 __inline static int _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 {
     if (x == 0)
@@ -88187,7 +88192,7 @@ __inline static int _LZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 935 "pmc_internal.h"
+# 940 "pmc_internal.h"
     return (sizeof(x) * 8 - 1 - pos);
 }
 
@@ -88201,7 +88206,7 @@ __inline static int _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
 
 
     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 964 "pmc_internal.h"
+# 969 "pmc_internal.h"
     return (sizeof(x) * 8 - 1 - pos);
 }
 
@@ -88237,7 +88242,7 @@ __inline static int _TZCNT_ALT_UNIT(__UNIT_TYPE x)
 
 
     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-# 1015 "pmc_internal.h"
+# 1020 "pmc_internal.h"
     return (pos);
 }
 
@@ -88251,7 +88256,7 @@ __inline static _UINT32_T _REVERSE_BIT_ORDER_32(_UINT32_T x)
     x = (x << 16) | (x >> 16);
     return (x);
 }
-# 1044 "pmc_internal.h"
+# 1049 "pmc_internal.h"
 __inline static __UNIT_TYPE _REVERSE_BIT_ORDER_UNIT(__UNIT_TYPE x)
 {
 
@@ -88260,7 +88265,7 @@ __inline static __UNIT_TYPE _REVERSE_BIT_ORDER_UNIT(__UNIT_TYPE x)
     x = ((x & 0x0f0f0f0fU) << 4) | ((x & 0xf0f0f0f0U) >> 4);
     x = ((x & 0x00ff00ffU) << 8) | ((x & 0xff00ff00U) >> 8);
     x = (x << 16) | (x >> 16);
-# 1062 "pmc_internal.h"
+# 1067 "pmc_internal.h"
     return (x);
 }
 
@@ -88314,9 +88319,9 @@ __inline static void ReportLabel(char* label)
 {
 
     if (__DEBUG_LOG != 
-# 1114 "pmc_internal.h" 3 4
+# 1119 "pmc_internal.h" 3 4
                       ((void *)0)
-# 1114 "pmc_internal.h"
+# 1119 "pmc_internal.h"
                           )
     {
         (*__DEBUG_LOG)("%s\n", label);
@@ -88328,9 +88333,9 @@ __inline static void ReportDump(char* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
 {
 
     if (__DEBUG_LOG != 
-# 1124 "pmc_internal.h" 3 4
+# 1129 "pmc_internal.h" 3 4
                       ((void *)0)
-# 1124 "pmc_internal.h"
+# 1129 "pmc_internal.h"
                           )
     {
         (*__DEBUG_LOG)("  %s: ", name);
@@ -88344,16 +88349,16 @@ __inline static void ReportVar(char* name, __UNIT_TYPE x)
 {
 
     if (__DEBUG_LOG != 
-# 1136 "pmc_internal.h" 3 4
+# 1141 "pmc_internal.h" 3 4
                       ((void *)0)
-# 1136 "pmc_internal.h"
+# 1141 "pmc_internal.h"
                           )
     {
         (*__DEBUG_LOG)("  %s: ", name);
         if (sizeof(__UNIT_TYPE) == sizeof(unsigned 
-# 1139 "pmc_internal.h" 3
+# 1144 "pmc_internal.h" 3
                                                   long long
-# 1139 "pmc_internal.h"
+# 1144 "pmc_internal.h"
                                                          ))
             (*__DEBUG_LOG)("0x%016llx\n", x);
         else

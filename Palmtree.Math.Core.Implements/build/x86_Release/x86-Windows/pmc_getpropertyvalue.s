@@ -35,7 +35,7 @@ LFB5490:
 	je	L6
 	cmpl	$4, %ebx
 	jne	L8
-	movzbl	16(%esi), %edx
+	movzbl	24(%esi), %edx
 	shrb	%dl
 	andl	$1, %edx
 	movl	%edx, (%edi)
@@ -58,7 +58,7 @@ L11:
 	.cfi_restore_state
 	cmpl	$1, %ebx
 	jne	L8
-	movzbl	16(%esi), %edx
+	movzbl	24(%esi), %edx
 	shrb	$3, %dl
 	andl	$1, %edx
 	movl	%edx, (%edi)
@@ -95,7 +95,7 @@ L8:
 	.p2align 4,,10
 L6:
 	.cfi_restore_state
-	movzbl	16(%esi), %edx
+	movzbl	24(%esi), %edx
 	shrb	$4, %dl
 	andl	$1, %edx
 	movl	%edx, (%edi)
@@ -115,7 +115,7 @@ L6:
 	.p2align 4,,10
 L3:
 	.cfi_restore_state
-	movzbl	16(%esi), %edx
+	movzbl	24(%esi), %edx
 	shrb	$2, %dl
 	andl	$1, %edx
 	movl	%edx, (%edi)

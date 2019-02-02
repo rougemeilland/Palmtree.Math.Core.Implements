@@ -67,10 +67,10 @@ PMC_ModPow_X_X_X:
 	testl	%eax, %eax
 	movl	%eax, %r10d
 	jne	.L1
-	movzbl	32(%rsi), %eax
+	movzbl	40(%rsi), %eax
 	testb	$2, %al
 	jne	.L44
-	movzbl	32(%r12), %edx
+	movzbl	40(%r12), %edx
 	movl	%edx, %ecx
 	andl	$2, %ecx
 	testb	$4, %al
@@ -78,7 +78,7 @@ PMC_ModPow_X_X_X:
 	testb	%cl, %cl
 	je	.L6
 .L8:
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	jne	.L7
 .L6:
 	movq	.refptr.number_zero(%rip), %rax
@@ -90,13 +90,13 @@ PMC_ModPow_X_X_X:
 	jne	.L8
 	andl	$4, %edx
 	jne	.L10
-	movzbl	32(%rbx), %eax
+	movzbl	40(%rbx), %eax
 	testb	$2, %al
 	jne	.L10
 	testb	$4, %al
 	je	.L11
-	movq	8(%rsi), %rcx
-	cmpq	%rcx, 8(%r12)
+	movq	16(%rsi), %rcx
+	cmpq	%rcx, 16(%r12)
 	jnb	.L12
 	movq	%rbp, %rdx
 	movq	%r12, %rcx
@@ -113,12 +113,12 @@ PMC_ModPow_X_X_X:
 	movq	%rax, 0(%rbp)
 	jmp	.L1
 .L11:
-	movq	48(%rsi), %rax
+	movq	56(%rsi), %rax
 	leaq	160(%rsp), %rdx
 	leaq	152(%rsp), %r8
-	movq	(%rsi), %r14
+	movq	8(%rsi), %r14
 	movq	%rax, 128(%rsp)
-	movq	(%r12), %rax
+	movq	8(%r12), %rax
 	leaq	1(%rax), %rcx
 	salq	$6, %rcx
 	call	AllocateBlock
@@ -150,9 +150,9 @@ PMC_ModPow_X_X_X:
 	testq	%rax, %rax
 	movq	%rax, 96(%rsp)
 	je	.L106
-	movq	8(%rsi), %rcx
+	movq	16(%rsi), %rcx
 	leaq	224(%rsp), %rdx
-	movq	8(%r12), %r8
+	movq	16(%r12), %r8
 	leaq	(%rcx,%rcx), %rax
 	cmpq	%r8, %rax
 	cmovb	%r8, %rax
@@ -163,15 +163,15 @@ PMC_ModPow_X_X_X:
 	testq	%rax, %rax
 	movq	%rax, 104(%rsp)
 	je	.L107
-	movq	8(%rsi), %rdx
+	movq	16(%rsi), %rdx
 	leaq	232(%rsp), %r8
 	movq	%rbp, %rcx
 	call	AllocateNumber
 	testl	%eax, %eax
 	jne	.L110
-	movq	(%r12), %rdx
+	movq	8(%r12), %rdx
 	movl	%eax, 112(%rsp)
-	movq	48(%r12), %rcx
+	movq	56(%r12), %rcx
 	cmpq	%rdx, %r14
 	jb	.L25
 	ja	.L26
@@ -180,8 +180,8 @@ PMC_ModPow_X_X_X:
 	call	Compare_Imp
 	testl	%eax, %eax
 	je	.L104
-	movq	(%r12), %rdx
-	movq	48(%r12), %rcx
+	movq	8(%r12), %rdx
+	movq	56(%r12), %rcx
 	jg	.L25
 .L26:
 	movq	%rcx, %rsi
@@ -192,21 +192,21 @@ PMC_ModPow_X_X_X:
 	rep movsq
  # 0 "" 2
 /NO_APP
-	movq	(%r12), %rax
+	movq	8(%r12), %rax
 .L101:
 	movq	%rax, 112(%rsp)
 .L30:
-	movq	(%rbx), %rax
+	movq	8(%rbx), %rax
 	movl	$64, %ecx
 	movq	%rax, %rdi
 	movq	%rax, %r15
-	movq	48(%rbx), %rax
+	movq	56(%rbx), %rax
 	movq	-8(%rax,%rdi,8), %rax
 	testq	%rax, %rax
 	je	.L32
 	movl	$63, %ecx
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %rax, %rax
  # 0 "" 2
 /NO_APP
@@ -279,7 +279,7 @@ PMC_ModPow_X_X_X:
 	cmpq	%r11, %r14
 	jbe	.L111
 .L36:
-	movq	48(%rbx), %rax
+	movq	56(%rbx), %rax
 	testq	%r13, -8(%rax,%rbp,8)
 	je	.L39
 	movq	%rsi, %rdi
@@ -422,16 +422,16 @@ PMC_ModPow_X_X_X:
 	movq	%rax, %rbx
 	je	.L1
 	movl	$65, %ecx
-	subq	8(%rsi), %rcx
+	subq	16(%rsi), %rcx
 	movl	%r10d, 72(%rsp)
-	addq	8(%r12), %rcx
+	addq	16(%r12), %rcx
 	leaq	224(%rsp), %rdx
 	leaq	216(%rsp), %r8
 	call	AllocateBlock
 	testq	%rax, %rax
 	movq	%rax, %r13
 	je	.L115
-	movq	8(%r12), %rax
+	movq	16(%r12), %rax
 	leaq	232(%rsp), %r8
 	movq	%rbp, %rcx
 	leaq	64(%rax), %rdx
@@ -439,15 +439,15 @@ PMC_ModPow_X_X_X:
 	testl	%eax, %eax
 	movl	%eax, %r10d
 	jne	.L116
-	movq	(%r12), %rdx
-	movq	(%rsi), %r9
+	movq	8(%r12), %rdx
+	movq	8(%rsi), %r9
 	movq	0(%rbp), %rax
-	movq	48(%r12), %rcx
+	movq	56(%r12), %rcx
 	cmpq	%r9, %rdx
-	movq	48(%rax), %rdi
+	movq	56(%rax), %rdi
 	jnb	.L16
 	movq	$0, 0(%r13)
-	movq	(%r12), %rax
+	movq	8(%r12), %rax
 	movq	%rcx, %rsi
 	movq	%rax, %rcx
 /APP
@@ -471,7 +471,7 @@ PMC_ModPow_X_X_X:
 	movq	%rdi, 48(%rsp)
 	movq	%r13, 40(%rsp)
 	movq	%rbx, 32(%rsp)
-	movq	48(%rsi), %r8
+	movq	56(%rsi), %r8
 	movl	%r10d, 72(%rsp)
 	call	DivRem_X_X
 	movq	200(%rsp), %rdx
@@ -486,7 +486,7 @@ PMC_ModPow_X_X_X:
 	jne	.L98
 	movq	0(%rbp), %rax
 	movq	232(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	movl	72(%rsp), %r10d
 	testl	%eax, %eax
@@ -619,7 +619,7 @@ PMC_ModPow_X_X_X:
 .L33:
 	movq	0(%rbp), %rax
 	movq	%r12, %rcx
-	movq	48(%rax), %rdi
+	movq	56(%rax), %rdi
 /APP
  # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsq
@@ -627,7 +627,7 @@ PMC_ModPow_X_X_X:
 /NO_APP
 	movq	0(%rbp), %rax
 	movq	232(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	movl	%eax, %r10d

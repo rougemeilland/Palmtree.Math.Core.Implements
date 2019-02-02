@@ -24,7 +24,7 @@ LFB5491:
 	call	_CheckNumber
 	testl	%eax, %eax
 	jne	L1
-	testb	$2, 16(%ebx)
+	testb	$2, 24(%ebx)
 	je	L3
 L4:
 	movl	$0, (%esi)
@@ -45,7 +45,7 @@ L3:
 	movl	32(%esp), %edx
 	testl	%edx, %edx
 	je	L4
-	movl	24(%ebx), %edx
+	movl	32(%ebx), %edx
 	movl	32(%esp), %ecx
 	andl	(%edx), %ecx
 	movl	%ecx, (%esi)
@@ -90,7 +90,7 @@ LFB5492:
 	call	_CheckNumber
 	testl	%eax, %eax
 	jne	L11
-	testb	$2, 16(%ebx)
+	testb	$2, 24(%ebx)
 	je	L13
 L14:
 	movl	$0, (%esi)
@@ -111,7 +111,7 @@ L13:
 	movl	36(%esp), %edx
 	testl	%edx, %edx
 	je	L14
-	movl	24(%ebx), %edx
+	movl	32(%ebx), %edx
 	movl	36(%esp), %ecx
 	andl	(%edx), %ecx
 	movl	%ecx, (%esi)
@@ -164,7 +164,7 @@ LFB5493:
 	call	_CheckNumber
 	testl	%eax, %eax
 	jne	L20
-	testb	$2, 16(%ebx)
+	testb	$2, 24(%ebx)
 	je	L22
 L23:
 	movl	$0, (%esi)
@@ -193,8 +193,8 @@ L22:
 	orl	%edi, %edx
 	je	L23
 	xorl	%edx, %edx
-	cmpl	$1, (%ebx)
-	movl	24(%ebx), %ecx
+	cmpl	$1, 8(%ebx)
+	movl	32(%ebx), %ecx
 	jbe	L24
 	movl	4(%ecx), %edx
 	andl	%ebp, %edx
@@ -257,7 +257,7 @@ LFB5494:
 	call	_CheckNumber
 	testl	%eax, %eax
 	jne	L31
-	testb	$2, 16(%ebx)
+	testb	$2, 24(%ebx)
 	je	L33
 L34:
 	movl	$0, (%esi)
@@ -286,8 +286,8 @@ L33:
 	orl	%edi, %edx
 	je	L34
 	xorl	%edx, %edx
-	cmpl	$1, (%ebx)
-	movl	24(%ebx), %ecx
+	cmpl	$1, 8(%ebx)
+	movl	32(%ebx), %ecx
 	jbe	L35
 	movl	4(%ecx), %edx
 	andl	%ebp, %edx
@@ -377,14 +377,14 @@ L77:
 	call	_CheckNumber
 	testl	%eax, %eax
 	jne	L42
-	testb	$2, 16(%esi)
+	testb	$2, 24(%esi)
 	jne	L45
-	testb	$2, 16(%edi)
+	testb	$2, 24(%edi)
 	jne	L45
-	movl	4(%edi), %edx
+	movl	12(%edi), %edx
 	leal	44(%esp), %eax
-	cmpl	%edx, 4(%esi)
-	cmovbe	4(%esi), %edx
+	cmpl	%edx, 12(%esi)
+	cmovbe	12(%esi), %edx
 	movl	%eax, 8(%esp)
 	leal	40(%esp), %eax
 	movl	%eax, (%esp)
@@ -394,14 +394,14 @@ L77:
 	testl	%eax, %eax
 	jne	L42
 	leal	31(%ebp), %edx
-	movl	24(%edi), %ebp
+	movl	32(%edi), %ebp
 	movl	%edx, %eax
 	shrl	$5, %eax
 	shrl	$10, %edx
 	movl	%eax, 20(%esp)
 	movl	40(%esp), %eax
-	movl	24(%eax), %ecx
-	movl	24(%esi), %eax
+	movl	32(%eax), %ecx
+	movl	32(%esi), %eax
 	movl	%ecx, 24(%esp)
 	je	L56
 	sall	$7, %edx
@@ -649,7 +649,7 @@ L53:
 	call	_CommitNumber
 	movl	40(%esp), %edx
 	movl	20(%esp), %eax
-	testb	$2, 16(%edx)
+	testb	$2, 24(%edx)
 	jne	L78
 	movl	%edx, (%ebx)
 	jmp	L42

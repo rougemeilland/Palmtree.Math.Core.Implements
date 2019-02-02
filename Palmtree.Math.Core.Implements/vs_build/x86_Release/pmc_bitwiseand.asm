@@ -466,18 +466,18 @@ _x$ = 8							; size = 4
 _y$ = 12						; size = 4
 __MINIMUM_UNIT PROC					; COMDAT
 
-; 489  : {
+; 494  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 490  :     return (x <= y ? x : y);
+; 495  :     return (x <= y ? x : y);
 
 	mov	eax, DWORD PTR _y$[ebp]
 	cmp	DWORD PTR _x$[ebp], eax
 	cmovbe	eax, DWORD PTR _x$[ebp]
 
-; 491  : }
+; 496  : }
 
 	pop	ebp
 	ret	0
@@ -491,12 +491,12 @@ _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 474  : {
+; 479  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _u$[ebp]
 	xor	edx, edx
@@ -504,7 +504,7 @@ __DIVIDE_CEILING_UNIT PROC				; COMDAT
 	add	eax, DWORD PTR _v$[ebp]
 	div	DWORD PTR _v$[ebp]
 
-; 476  : }
+; 481  : }
 
 	pop	ebp
 	ret	0
@@ -518,22 +518,22 @@ _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC					; COMDAT
 
-; 463  : {
+; 468  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 464  :     *result_high = (_UINT32_T)(value >> 32);
+; 469  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _result_high$[ebp]
 	mov	ecx, DWORD PTR _value$[ebp+4]
 	mov	DWORD PTR [eax], ecx
 
-; 465  :     return ((_UINT32_T)value);
+; 470  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 466  : }
+; 471  : }
 
 	pop	ebp
 	ret	0
@@ -547,18 +547,18 @@ _value_high$ = 8					; size = 4
 _value_low$ = 12					; size = 4
 __FROMWORDTODWORD PROC					; COMDAT
 
-; 458  : {
+; 463  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edx, DWORD PTR _value_high$[ebp]
 	xor	eax, eax
 	or	eax, DWORD PTR _value_low$[ebp]
 
-; 460  : }
+; 465  : }
 
 	pop	ebp
 	ret	0
@@ -636,13 +636,13 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 ; 330  :     NUMBER_HEADER* nw;
 ; 331  :     if (nu->IS_ZERO)
 
-	test	BYTE PTR [esi+16], 2
+	test	BYTE PTR [esi+24], 2
 	jne	$LN19@PMC_Bitwis
 
 ; 332  :         *w = &number_zero;
 ; 333  :     else if (nv->IS_ZERO)
 
-	test	BYTE PTR [edi+16], 2
+	test	BYTE PTR [edi+24], 2
 	jne	SHORT $LN19@PMC_Bitwis
 
 ; 334  :         *w = &number_zero;
@@ -651,16 +651,16 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 ; 337  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 ; 338  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
-	mov	ecx, DWORD PTR [edi+4]
+	mov	ecx, DWORD PTR [edi+12]
 
 ; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	eax, DWORD PTR _nw_light_check_code$1[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 490  :     return (x <= y ? x : y);
+; 495  :     return (x <= y ? x : y);
 
-	cmp	DWORD PTR [esi+4], ecx
+	cmp	DWORD PTR [esi+12], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
 ; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
@@ -668,9 +668,9 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 490  :     return (x <= y ? x : y);
+; 495  :     return (x <= y ? x : y);
 
-	cmovbe	ecx, DWORD PTR [esi+4]
+	cmovbe	ecx, DWORD PTR [esi+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
 
 ; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
@@ -680,7 +680,7 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 	push	eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 490  :     return (x <= y ? x : y);
+; 495  :     return (x <= y ? x : y);
 
 	mov	DWORD PTR _w_bit_count$1$[ebp], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -693,7 +693,7 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 	jne	SHORT $LN1@PMC_Bitwis
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _w_bit_count$1$[ebp]
 	add	eax, 31					; 0000001fH
@@ -704,16 +704,16 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 
 	push	eax
 	mov	eax, DWORD PTR _nw$[ebp]
-	push	DWORD PTR [eax+24]
-	push	DWORD PTR [edi+24]
-	push	DWORD PTR [esi+24]
+	push	DWORD PTR [eax+32]
+	push	DWORD PTR [edi+32]
+	push	DWORD PTR [esi+32]
 	call	_BitwiseAnd_X_X
 
 ; 345  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nw$[ebp]
 	push	DWORD PTR _nw_light_check_code$1[ebp]
-	push	DWORD PTR [eax+24]
+	push	DWORD PTR [eax+32]
 	call	_CheckBlockLight
 	add	esp, 24					; 00000018H
 	test	eax, eax
@@ -729,7 +729,7 @@ _PMC_BitwiseAnd_X_X@12 PROC				; COMDAT
 
 	mov	eax, DWORD PTR _nw$[ebp]
 	add	esp, 4
-	test	BYTE PTR [eax+16], 2
+	test	BYTE PTR [eax+24], 2
 	je	SHORT $LN13@PMC_Bitwis
 
 ; 349  :         {
@@ -843,7 +843,7 @@ _PMC_BitwiseAnd_X_L@16 PROC				; COMDAT
 ; 280  :         return (result);
 ; 281  :     if (nu->IS_ZERO)
 
-	test	BYTE PTR [esi+16], 2
+	test	BYTE PTR [esi+24], 2
 	jne	SHORT $LN20@PMC_Bitwis
 
 ; 282  :     {
@@ -894,8 +894,8 @@ $LN8@PMC_Bitwis:
 ; 301  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
 ; 302  :             _UINT32_T w_hi = nu->UNIT_WORD_COUNT > 1 ? nu->BLOCK[1] & v_hi : 0;
 
-	cmp	DWORD PTR [esi], 1
-	mov	eax, DWORD PTR [esi+24]
+	cmp	DWORD PTR [esi+8], 1
+	mov	eax, DWORD PTR [esi+32]
 	jbe	SHORT $LN13@PMC_Bitwis
 	and	edx, DWORD PTR [eax+4]
 
@@ -904,7 +904,7 @@ $LN8@PMC_Bitwis:
 	and	ecx, DWORD PTR [eax]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	eax, eax
 	or	eax, edx
@@ -930,7 +930,7 @@ $LN13@PMC_Bitwis:
 	xor	edx, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	eax, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -940,7 +940,7 @@ $LN13@PMC_Bitwis:
 	mov	DWORD PTR [edi], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	or	eax, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -1018,7 +1018,7 @@ _PMC_BitwiseAnd_X_I@12 PROC				; COMDAT
 ; 196  :         return (result);
 ; 197  :     if (nu->IS_ZERO)
 
-	test	BYTE PTR [esi+16], 2
+	test	BYTE PTR [esi+24], 2
 	jne	SHORT $LN12@PMC_Bitwis
 
 ; 198  :     {
@@ -1057,7 +1057,7 @@ $LN8@PMC_Bitwis:
 ; 211  :         // u と v の bit AND を計算する
 ; 212  :         *w = nu->BLOCK[0] & v;
 
-	mov	eax, DWORD PTR [esi+24]
+	mov	eax, DWORD PTR [esi+32]
 	mov	eax, DWORD PTR [eax]
 	and	eax, ecx
 
@@ -1142,7 +1142,7 @@ _PMC_BitwiseAnd_L_X@16 PROC				; COMDAT
 ; 231  :         return (result);
 ; 232  :     if (nv->IS_ZERO)
 
-	test	BYTE PTR [esi+16], 2
+	test	BYTE PTR [esi+24], 2
 	jne	SHORT $LN20@PMC_Bitwis
 
 ; 233  :     {
@@ -1193,8 +1193,8 @@ $LN8@PMC_Bitwis:
 ; 252  :             _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
 ; 253  :             _UINT32_T w_hi = nv->UNIT_WORD_COUNT > 1 ? nv->BLOCK[1] & u_hi : 0;
 
-	cmp	DWORD PTR [esi], 1
-	mov	eax, DWORD PTR [esi+24]
+	cmp	DWORD PTR [esi+8], 1
+	mov	eax, DWORD PTR [esi+32]
 	jbe	SHORT $LN13@PMC_Bitwis
 	and	edx, DWORD PTR [eax+4]
 
@@ -1203,7 +1203,7 @@ $LN8@PMC_Bitwis:
 	and	ecx, DWORD PTR [eax]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	eax, eax
 	or	eax, edx
@@ -1229,7 +1229,7 @@ $LN13@PMC_Bitwis:
 	xor	edx, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	eax, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -1239,7 +1239,7 @@ $LN13@PMC_Bitwis:
 	mov	DWORD PTR [edi], ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	or	eax, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_bitwiseand.c
@@ -1317,7 +1317,7 @@ _PMC_BitwiseAnd_I_X@12 PROC				; COMDAT
 ; 161  :         return (result);
 ; 162  :     if (nv->IS_ZERO)
 
-	test	BYTE PTR [esi+16], 2
+	test	BYTE PTR [esi+24], 2
 	jne	SHORT $LN12@PMC_Bitwis
 
 ; 163  :     {
@@ -1356,7 +1356,7 @@ $LN8@PMC_Bitwis:
 ; 176  :         // u と v の bit AND を計算する
 ; 177  :         *w = nv->BLOCK[0] & u;
 
-	mov	eax, DWORD PTR [esi+24]
+	mov	eax, DWORD PTR [esi+32]
 	mov	eax, DWORD PTR [eax]
 	and	eax, ecx
 

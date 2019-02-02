@@ -19,7 +19,7 @@ From_I_Imp:
 	je	.L2
 	movl	$31, %eax
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP
@@ -36,7 +36,7 @@ From_I_Imp:
 	movq	(%rsi), %rcx
 	movl	%eax, 44(%rsp)
 	movl	%ebx, %eax
-	movq	48(%rcx), %rdx
+	movq	56(%rcx), %rdx
 	movq	%rax, (%rdx)
 	call	CommitNumber
 	movl	44(%rsp), %eax
@@ -65,7 +65,7 @@ From_L_Imp:
 	je	.L8
 	movl	$63, %eax
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %rcx, %rdx
  # 0 "" 2
 /NO_APP
@@ -81,7 +81,7 @@ From_L_Imp:
 	jne	.L7
 	movq	(%rsi), %rcx
 	movl	%eax, 44(%rsp)
-	movq	48(%rcx), %rdx
+	movq	56(%rcx), %rdx
 	movq	%rbx, (%rdx)
 	call	CommitNumber
 	movl	44(%rsp), %eax

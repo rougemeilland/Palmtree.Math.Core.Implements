@@ -25,7 +25,7 @@ PMC_BitwiseAnd_I_X:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L1
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L3
 .L4:
 	movl	$0, (%rsi)
@@ -39,7 +39,7 @@ PMC_BitwiseAnd_I_X:
 .L3:
 	testl	%edi, %edi
 	je	.L4
-	movq	48(%rbx), %rdx
+	movq	56(%rbx), %rdx
 	andl	(%rdx), %edi
 	movl	%edi, (%rsi)
 	addq	$32, %rsp
@@ -76,7 +76,7 @@ PMC_BitwiseAnd_X_I:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L10
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L12
 .L13:
 	movl	$0, (%rsi)
@@ -90,7 +90,7 @@ PMC_BitwiseAnd_X_I:
 .L12:
 	testl	%edi, %edi
 	je	.L13
-	movq	48(%rbx), %rdx
+	movq	56(%rbx), %rdx
 	andl	(%rdx), %edi
 	movl	%edi, (%rsi)
 	addq	$32, %rsp
@@ -128,7 +128,7 @@ PMC_BitwiseAnd_L_X:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L18
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L20
 .L21:
 	movq	$0, (%rsi)
@@ -142,7 +142,7 @@ PMC_BitwiseAnd_L_X:
 .L20:
 	testq	%rdi, %rdi
 	je	.L21
-	movq	48(%rbx), %rdx
+	movq	56(%rbx), %rdx
 	andq	(%rdx), %rdi
 	movq	%rdi, (%rsi)
 	addq	$32, %rsp
@@ -179,7 +179,7 @@ PMC_BitwiseAnd_X_L:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L26
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	je	.L28
 .L29:
 	movq	$0, (%rsi)
@@ -193,7 +193,7 @@ PMC_BitwiseAnd_X_L:
 .L28:
 	testq	%rdi, %rdi
 	je	.L29
-	movq	48(%rbx), %rdx
+	movq	56(%rbx), %rdx
 	andq	(%rdx), %rdi
 	movq	%rdi, (%rsi)
 	addq	$32, %rsp
@@ -249,15 +249,15 @@ PMC_BitwiseAnd_X_X:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L34
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	jne	.L37
-	testb	$2, 32(%rsi)
+	testb	$2, 40(%rsi)
 	jne	.L37
-	movq	8(%rsi), %rdx
+	movq	16(%rsi), %rdx
 	leaq	48(%rsp), %rcx
-	cmpq	%rdx, 8(%rbx)
+	cmpq	%rdx, 16(%rbx)
 	leaq	56(%rsp), %r8
-	cmovbe	8(%rbx), %rdx
+	cmovbe	16(%rbx), %rdx
 	movq	%rdx, %rbp
 	call	AllocateNumber
 	testl	%eax, %eax
@@ -266,11 +266,11 @@ PMC_BitwiseAnd_X_X:
 	leaq	63(%rbp), %r9
 	movq	%r9, %r11
 	shrq	$11, %r9
-	movq	48(%rsi), %rsi
+	movq	56(%rsi), %rsi
 	shrq	$6, %r11
 	testq	%r9, %r9
-	movq	48(%rax), %rcx
-	movq	48(%rbx), %rax
+	movq	56(%rax), %rcx
+	movq	56(%rbx), %rax
 	je	.L48
 	salq	$8, %r9
 	movq	%rcx, %r8
@@ -511,7 +511,7 @@ PMC_BitwiseAnd_X_X:
 	call	CommitNumber
 	movq	48(%rsp), %rcx
 	movl	44(%rsp), %eax
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	jne	.L69
 .L46:
 	movq	%rcx, (%rdi)

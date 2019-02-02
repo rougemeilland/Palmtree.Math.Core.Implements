@@ -21,18 +21,18 @@ _value_high$ = 8					; size = 4
 _value_low$ = 12					; size = 4
 __FROMWORDTODWORD PROC					; COMDAT
 
-; 458  : {
+; 463  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edx, DWORD PTR _value_high$[ebp]
 	xor	eax, eax
 	or	eax, DWORD PTR _value_low$[ebp]
 
-; 460  : }
+; 465  : }
 
 	pop	ebp
 	ret	0
@@ -73,7 +73,7 @@ _PMC_To_X_L@8 PROC					; COMDAT
 ; 67   :         return (result);
 ; 68   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
-	mov	ecx, DWORD PTR [esi+4]
+	mov	ecx, DWORD PTR [esi+12]
 	cmp	ecx, 64					; 00000040H
 	jbe	SHORT $LN4@PMC_To_X_L
 
@@ -94,7 +94,7 @@ $LN4@PMC_To_X_L:
 
 ; 70   :     if (np->IS_ZERO)
 
-	test	BYTE PTR [esi+16], 2
+	test	BYTE PTR [esi+24], 2
 	je	SHORT $LN5@PMC_To_X_L
 
 ; 71   :     {
@@ -120,7 +120,7 @@ $LN5@PMC_To_X_L:
 ; 74   :     }
 ; 75   :     if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT)
 
-	mov	eax, DWORD PTR [esi+24]
+	mov	eax, DWORD PTR [esi+32]
 	cmp	ecx, 32					; 00000020H
 	ja	SHORT $LN6@PMC_To_X_L
 
@@ -146,7 +146,7 @@ $LN5@PMC_To_X_L:
 $LN6@PMC_To_X_L:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edx, DWORD PTR [eax+4]
 	xor	ecx, ecx
@@ -205,7 +205,7 @@ _PMC_To_X_I@8 PROC					; COMDAT
 ; 47   :         return (result);
 ; 48   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
-	cmp	DWORD PTR [esi+4], 32			; 00000020H
+	cmp	DWORD PTR [esi+12], 32			; 00000020H
 	jbe	SHORT $LN4@PMC_To_X_I
 
 ; 49   :         return (PMC_STATUS_OVERFLOW);
@@ -221,7 +221,7 @@ $LN4@PMC_To_X_I:
 
 ; 50   :     if (np->IS_ZERO)
 
-	test	BYTE PTR [esi+16], 2
+	test	BYTE PTR [esi+24], 2
 	je	SHORT $LN5@PMC_To_X_I
 
 ; 54   :     return (PMC_STATUS_OK);
@@ -242,7 +242,7 @@ $LN5@PMC_To_X_I:
 ; 52   :     else
 ; 53   :         *o = (_UINT32_T)np->BLOCK[0];
 
-	mov	eax, DWORD PTR [esi+24]
+	mov	eax, DWORD PTR [esi+32]
 	mov	ecx, DWORD PTR [eax]
 
 ; 54   :     return (PMC_STATUS_OK);

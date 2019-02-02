@@ -107,25 +107,25 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_RightShift_X_I DD imagerel $LN20
-	DD	imagerel $LN20+282
+	DD	imagerel $LN20+283
 	DD	imagerel $unwind$PMC_RightShift_X_I
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_RightShift_X_L DD imagerel $LN20
-	DD	imagerel $LN20+284
+	DD	imagerel $LN20+285
 	DD	imagerel $unwind$PMC_RightShift_X_L
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_LeftShift_X_I DD imagerel $LN18
-	DD	imagerel $LN18+273
+	DD	imagerel $LN18+274
 	DD	imagerel $unwind$PMC_LeftShift_X_I
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_LeftShift_X_L DD imagerel $LN18
-	DD	imagerel $LN18+275
+	DD	imagerel $LN18+276
 	DD	imagerel $unwind$PMC_LeftShift_X_L
 pdata	ENDS
 ;	COMDAT pdata
@@ -316,30 +316,30 @@ d$ = 8
 count$ = 16
 _ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 408  : {
+; 413  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 	mov	rdi, rcx
 
-; 409  : #ifdef _M_IX86
-; 410  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 411  : #elif defined(_M_X64)
-; 412  : #ifdef _MSC_VER
-; 413  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 414  : #ifdef _M_IX86
+; 415  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 416  : #elif defined(_M_X64)
+; 417  : #ifdef _MSC_VER
+; 418  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 	mov	ecx, edx
 	rep stosd
 
-; 414  : #elif defined(__GNUC__)
-; 415  :     __stosq(d, 0, count);
-; 416  : #else
-; 417  : #error unknown compiler
-; 418  : #endif
-; 419  : #else
-; 420  : #error unknown platform
-; 421  : #endif
-; 422  : }
+; 419  : #elif defined(__GNUC__)
+; 420  :     __stosq(d, 0, count);
+; 421  : #else
+; 422  : #error unknown compiler
+; 423  : #endif
+; 424  : #else
+; 425  : #error unknown platform
+; 426  : #endif
+; 427  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -353,24 +353,24 @@ d$ = 8
 count$ = 16
 _ZERO_MEMORY_UNIT PROC					; COMDAT
 
-; 397  : {
+; 402  : {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 398  : #ifdef _M_IX86
-; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 400  : #elif defined(_M_X64)
-; 401  :     __stosq(d, 0, count);
+; 403  : #ifdef _M_IX86
+; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 405  : #elif defined(_M_X64)
+; 406  :     __stosq(d, 0, count);
 
 	mov	rdi, rcx
 	xor	eax, eax
 	mov	rcx, rdx
 	rep stosq
 
-; 402  : #else
-; 403  : #error unknown platform
-; 404  : #endif
-; 405  : }
+; 407  : #else
+; 408  : #error unknown platform
+; 409  : #endif
+; 410  : }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -385,31 +385,31 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 358  : {
+; 363  : {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 	mov	rdi, rcx
 
-; 359  : #ifdef _M_IX86
-; 360  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 361  : #elif defined(_M_X64)
-; 362  : #ifdef _MSC_VER
-; 363  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 364  : #ifdef _M_IX86
+; 365  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 366  : #elif defined(_M_X64)
+; 367  : #ifdef _MSC_VER
+; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	rsi, rdx
 	mov	ecx, r8d
 	rep movsd
 
-; 364  : #elif defined(__GNUC__)
-; 365  :     __movsq(d, s, count);
-; 366  : #else
-; 367  : #error unknown compiler
-; 368  : #endif
-; 369  : #else
-; 370  : #error unknown platform
-; 371  : #endif
-; 372  : }
+; 369  : #elif defined(__GNUC__)
+; 370  :     __movsq(d, s, count);
+; 371  : #else
+; 372  : #error unknown compiler
+; 373  : #endif
+; 374  : #else
+; 375  : #error unknown platform
+; 376  : #endif
+; 377  : }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -425,25 +425,25 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 347  : {
+; 352  : {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 
-; 348  : #ifdef _M_IX86
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 350  : #elif defined(_M_X64)
-; 351  :     __movsq(d, s, count);
+; 353  : #ifdef _M_IX86
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 355  : #elif defined(_M_X64)
+; 356  :     __movsq(d, s, count);
 
 	mov	rdi, rcx
 	mov	rsi, rdx
 	mov	rcx, r8
 	rep movsq
 
-; 352  : #else
-; 353  : #error unknown platform
-; 354  : #endif
-; 355  : }
+; 357  : #else
+; 358  : #error unknown platform
+; 359  : #endif
+; 360  : }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -500,7 +500,7 @@ $LN18:
 ; 734  :         return (result);
 ; 735  :     if (np->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	je	SHORT $LN6@PMC_LeftSh
 
 ; 736  :         *o = &number_zero;
@@ -570,7 +570,7 @@ $LN8@PMC_LeftSh:
 ; 745  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 ; 746  :         __UNIT_TYPE o_bit_count = p_bit_count + (__UNIT_TYPE)n;
 
-	mov	rdx, QWORD PTR [rbx+8]
+	mov	rdx, QWORD PTR [rbx+16]
 
 ; 747  :         __UNIT_TYPE no_light_check_code;
 ; 748  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
@@ -587,17 +587,17 @@ $LN8@PMC_LeftSh:
 
 	mov	r9, QWORD PTR no$[rsp]
 	mov	r8, rsi
-	mov	rdx, QWORD PTR [rbx]
-	mov	rcx, QWORD PTR [rbx+48]
+	mov	rdx, QWORD PTR [rbx+8]
+	mov	rcx, QWORD PTR [rbx+56]
 	mov	DWORD PTR [rsp+32], eax
-	mov	r9, QWORD PTR [r9+48]
+	mov	r9, QWORD PTR [r9+56]
 	call	LeftShift_Imp
 
 ; 751  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR no$[rsp]
 	mov	rdx, QWORD PTR no_light_check_code$1[rsp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	call	CheckBlockLight
 	test	eax, eax
 	jne	SHORT $LN1@PMC_LeftSh
@@ -693,7 +693,7 @@ $LN18:
 ; 690  :         return (result);
 ; 691  :     if (np->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	je	SHORT $LN6@PMC_LeftSh
 
 ; 692  :         *o = &number_zero;
@@ -763,7 +763,7 @@ $LN8@PMC_LeftSh:
 ; 701  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 ; 702  :         __UNIT_TYPE o_bit_count = p_bit_count + n;
 
-	mov	rdx, QWORD PTR [rbx+8]
+	mov	rdx, QWORD PTR [rbx+16]
 
 ; 703  :         __UNIT_TYPE no_light_check_code;
 ; 704  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
@@ -780,17 +780,17 @@ $LN8@PMC_LeftSh:
 
 	mov	r9, QWORD PTR no$[rsp]
 	mov	r8, rsi
-	mov	rdx, QWORD PTR [rbx]
-	mov	rcx, QWORD PTR [rbx+48]
+	mov	rdx, QWORD PTR [rbx+8]
+	mov	rcx, QWORD PTR [rbx+56]
 	mov	DWORD PTR [rsp+32], eax
-	mov	r9, QWORD PTR [r9+48]
+	mov	r9, QWORD PTR [r9+56]
 	call	LeftShift_Imp
 
 ; 707  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR no$[rsp]
 	mov	rdx, QWORD PTR no_light_check_code$1[rsp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	call	CheckBlockLight
 	test	eax, eax
 	jne	SHORT $LN1@PMC_LeftSh
@@ -886,7 +886,7 @@ $LN20:
 ; 641  :         return (result);
 ; 642  :     if (np->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	jne	$LN16@PMC_RightS
 
 ; 643  :         *o = &number_zero;
@@ -934,7 +934,7 @@ $LN8@PMC_RightS:
 ; 651  :     {
 ; 652  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 
-	mov	rdx, QWORD PTR [rbx+8]
+	mov	rdx, QWORD PTR [rbx+16]
 
 ; 653  :         if (p_bit_count <= n)
 
@@ -961,17 +961,17 @@ $LN8@PMC_RightS:
 
 	mov	r9, QWORD PTR no$[rsp]
 	mov	r8, rsi
-	mov	rdx, QWORD PTR [rbx]
-	mov	rcx, QWORD PTR [rbx+48]
+	mov	rdx, QWORD PTR [rbx+8]
+	mov	rcx, QWORD PTR [rbx+56]
 	mov	DWORD PTR [rsp+32], eax
-	mov	r9, QWORD PTR [r9+48]
+	mov	r9, QWORD PTR [r9+56]
 	call	RightShift_Imp
 
 ; 662  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR no$[rsp]
 	mov	rdx, QWORD PTR no_light_check_code$1[rsp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	call	CheckBlockLight
 	test	eax, eax
 	jne	SHORT $LN1@PMC_RightS
@@ -1094,7 +1094,7 @@ $LN20:
 ; 592  :         return (result);
 ; 593  :     if (np->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	jne	$LN16@PMC_RightS
 
 ; 594  :         *o = &number_zero;
@@ -1142,7 +1142,7 @@ $LN8@PMC_RightS:
 ; 602  :     {
 ; 603  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 
-	mov	rdx, QWORD PTR [rbx+8]
+	mov	rdx, QWORD PTR [rbx+16]
 
 ; 604  :         if (p_bit_count <= n)
 
@@ -1169,17 +1169,17 @@ $LN8@PMC_RightS:
 
 	mov	r9, QWORD PTR no$[rsp]
 	mov	r8, rsi
-	mov	rdx, QWORD PTR [rbx]
-	mov	rcx, QWORD PTR [rbx+48]
+	mov	rdx, QWORD PTR [rbx+8]
+	mov	rcx, QWORD PTR [rbx+56]
 	mov	DWORD PTR [rsp+32], eax
-	mov	r9, QWORD PTR [r9+48]
+	mov	r9, QWORD PTR [r9+56]
 	call	RightShift_Imp
 
 ; 613  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR no$[rsp]
 	mov	rdx, QWORD PTR no_light_check_code$1[rsp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	call	CheckBlockLight
 	test	eax, eax
 	jne	SHORT $LN1@PMC_RightS
@@ -1310,7 +1310,7 @@ $LN28:
 	jne	SHORT $LN4@LeftShift_
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	mov	rsi, rcx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
@@ -1320,7 +1320,7 @@ $LN28:
 	lea	rdi, QWORD PTR [r9+rbx*8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	mov	rcx, rdx
 	rep movsq
@@ -2247,7 +2247,7 @@ $LN28:
 	jne	SHORT $LN4@LeftShift_
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 363  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
@@ -2257,7 +2257,7 @@ $LN28:
 	lea	rdi, QWORD PTR [r9+rbx*4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 363  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	rsi, rax
 	rep movsd
@@ -3188,7 +3188,7 @@ $LN115:
 	jne	SHORT $LN4@RightShift
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 351  :     __movsq(d, s, count);
+; 356  :     __movsq(d, s, count);
 
 	mov	rdi, r9
 	mov	rsi, rax
@@ -4014,7 +4014,7 @@ $LN109:
 	mov	ecx, r11d
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 363  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	rdi, r9
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
@@ -4024,7 +4024,7 @@ $LN109:
 	sub	ecx, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 363  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	rsi, rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
@@ -4034,7 +4034,7 @@ $LN109:
 	cmp	DWORD PTR padding_zero$[rsp], 0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 363  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c

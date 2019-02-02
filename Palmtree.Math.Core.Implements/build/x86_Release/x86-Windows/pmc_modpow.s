@@ -71,10 +71,10 @@ L110:
 	movl	%eax, %edx
 	testl	%eax, %eax
 	jne	L1
-	movzbl	16(%esi), %eax
+	movzbl	24(%esi), %eax
 	testb	$2, %al
 	jne	L44
-	movzbl	16(%ebx), %ecx
+	movzbl	24(%ebx), %ecx
 	movl	%ecx, %edi
 	andl	$2, %edi
 	testb	$4, %al
@@ -83,7 +83,7 @@ L110:
 	testb	%al, %al
 	je	L6
 L8:
-	testb	$2, 16(%ebp)
+	testb	$2, 24(%ebp)
 	jne	L7
 L6:
 	movl	172(%esp), %eax
@@ -95,13 +95,13 @@ L5:
 	jne	L8
 	andl	$4, %ecx
 	jne	L10
-	movzbl	16(%ebp), %eax
+	movzbl	24(%ebp), %eax
 	testb	$2, %al
 	jne	L10
 	testb	$4, %al
 	je	L11
-	movl	4(%esi), %eax
-	cmpl	%eax, 4(%ebx)
+	movl	12(%esi), %eax
+	cmpl	%eax, 12(%ebx)
 	jnb	L12
 	movl	172(%esp), %eax
 	movl	%ebx, (%esp)
@@ -119,14 +119,14 @@ L10:
 	movl	$_number_one, (%eax)
 	jmp	L1
 L11:
-	movl	24(%esi), %eax
-	movl	(%esi), %edi
+	movl	32(%esi), %eax
+	movl	8(%esi), %edi
 	movl	%eax, 72(%esp)
 	leal	84(%esp), %eax
 	movl	%eax, 8(%esp)
 	leal	88(%esp), %eax
 	movl	%eax, 4(%esp)
-	movl	(%ebx), %eax
+	movl	8(%ebx), %eax
 	movl	%edi, 40(%esp)
 	addl	$1, %eax
 	sall	$5, %eax
@@ -167,11 +167,11 @@ L11:
 	testl	%eax, %eax
 	je	L107
 	leal	116(%esp), %eax
-	movl	4(%esi), %edx
+	movl	12(%esi), %edx
 	movl	%eax, 8(%esp)
 	leal	120(%esp), %eax
 	movl	%eax, 4(%esp)
-	movl	4(%ebx), %ecx
+	movl	12(%ebx), %ecx
 	leal	(%edx,%edx), %eax
 	cmpl	%ecx, %eax
 	cmovb	%ecx, %eax
@@ -184,7 +184,7 @@ L11:
 	je	L108
 	leal	124(%esp), %eax
 	movl	%eax, 8(%esp)
-	movl	4(%esi), %eax
+	movl	12(%esi), %eax
 	movl	%eax, 4(%esp)
 	movl	172(%esp), %eax
 	movl	%eax, (%esp)
@@ -192,8 +192,8 @@ L11:
 	testl	%eax, %eax
 	jne	L111
 	movl	%eax, 36(%esp)
-	movl	24(%ebx), %esi
-	movl	(%ebx), %eax
+	movl	32(%ebx), %esi
+	movl	8(%ebx), %eax
 	cmpl	%eax, 40(%esp)
 	jb	L25
 	ja	L26
@@ -204,8 +204,8 @@ L11:
 	call	_Compare_Imp
 	testl	%eax, %eax
 	je	L105
-	movl	(%ebx), %eax
-	movl	24(%ebx), %esi
+	movl	8(%ebx), %eax
+	movl	32(%ebx), %esi
 	jg	L25
 L26:
 	movl	56(%esp), %edi
@@ -215,20 +215,20 @@ L26:
 	rep movsd
  # 0 "" 2
 /NO_APP
-	movl	(%ebx), %eax
+	movl	8(%ebx), %eax
 	movl	%eax, 68(%esp)
 L30:
-	movl	0(%ebp), %eax
+	movl	8(%ebp), %eax
 	movl	%eax, %ecx
 	movl	%eax, 52(%esp)
-	movl	24(%ebp), %eax
+	movl	32(%ebp), %eax
 	movl	-4(%eax,%ecx,4), %eax
 	movl	$32, %ecx
 	testl	%eax, %eax
 	je	L32
 	movl	$31, %ecx
 /APP
- # 918 "pmc_internal.h" 1
+ # 923 "pmc_internal.h" 1
 	bsrl %eax, %eax
  # 0 "" 2
 /NO_APP
@@ -308,7 +308,7 @@ L36:
 	movl	164(%esp), %eax
 	movl	52(%esp), %ecx
 	movl	36(%esp), %edi
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	testl	%edi, -4(%eax,%ecx,4)
 	je	L39
 	movl	%esi, %edi
@@ -485,8 +485,8 @@ L12:
 	leal	120(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	$33, %eax
-	subl	4(%esi), %eax
-	addl	4(%ebx), %eax
+	subl	12(%esi), %eax
+	addl	12(%ebx), %eax
 	movl	%eax, (%esp)
 	call	_AllocateBlock
 	movl	%eax, %ebp
@@ -494,7 +494,7 @@ L12:
 	je	L116
 	leal	124(%esp), %eax
 	movl	%eax, 8(%esp)
-	movl	4(%ebx), %eax
+	movl	12(%ebx), %eax
 	addl	$32, %eax
 	movl	%eax, 4(%esp)
 	movl	172(%esp), %eax
@@ -503,18 +503,18 @@ L12:
 	movl	%eax, %edx
 	testl	%eax, %eax
 	jne	L117
-	movl	(%ebx), %eax
+	movl	8(%ebx), %eax
 	movl	172(%esp), %edi
-	movl	(%esi), %ecx
+	movl	8(%esi), %ecx
 	movl	%eax, 40(%esp)
 	movl	(%edi), %eax
-	movl	24(%eax), %edi
-	movl	24(%ebx), %eax
+	movl	32(%eax), %edi
+	movl	32(%ebx), %eax
 	cmpl	%ecx, 40(%esp)
 	jnb	L16
 	movl	$0, 0(%ebp)
 	movl	%eax, %esi
-	movl	(%ebx), %ecx
+	movl	8(%ebx), %ecx
 /APP
  # 1773 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsd
@@ -543,7 +543,7 @@ L16:
 	movl	%ebp, 20(%esp)
 	movl	%edi, 16(%esp)
 	movl	%ecx, 12(%esp)
-	movl	24(%esi), %ecx
+	movl	32(%esi), %ecx
 	movl	%eax, (%esp)
 	movl	%ecx, 8(%esp)
 	movl	40(%esp), %ecx
@@ -566,7 +566,7 @@ L16:
 	movl	%eax, 4(%esp)
 	movl	172(%esp), %eax
 	movl	(%eax), %eax
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	movl	44(%esp), %edx
@@ -722,7 +722,7 @@ L33:
 	movl	172(%esp), %eax
 	movl	%ebx, %ecx
 	movl	(%eax), %eax
-	movl	24(%eax), %edi
+	movl	32(%eax), %edi
 /APP
  # 1773 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsd
@@ -732,7 +732,7 @@ L33:
 	movl	%eax, 4(%esp)
 	movl	172(%esp), %eax
 	movl	(%eax), %eax
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	movl	%eax, %edx

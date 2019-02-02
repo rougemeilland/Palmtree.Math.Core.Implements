@@ -47,7 +47,7 @@ PMC_Pow_X_I:
 	ret
 	.p2align 4,,10
 .L31:
-	movzbl	32(%rsi), %edx
+	movzbl	40(%rsi), %edx
 	testb	$2, %dl
 	je	.L5
 	testl	%ebp, %ebp
@@ -63,7 +63,7 @@ PMC_Pow_X_I:
 	je	.L8
 	cmpl	$1, %ebp
 	je	.L32
-	movq	8(%rsi), %r9
+	movq	16(%rsi), %r9
 	xorl	%edx, %edx
 	movl	%ebp, %r8d
 	movq	$-65, %rax
@@ -95,17 +95,17 @@ PMC_Pow_X_I:
 	testl	%eax, %eax
 	jne	.L33
 	movq	(%rbx), %rax
-	movq	(%rsi), %rdx
+	movq	8(%rsi), %rdx
 	movq	48(%rsp), %r10
-	movq	48(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rdx, %rcx
 	movq	%r10, %rdi
 	movq	%rax, 72(%rsp)
-	movq	48(%rsi), %rax
+	movq	56(%rsi), %rax
 	movq	%rax, %rsi
 	movq	%rax, 56(%rsp)
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %ebp, %eax
  # 0 "" 2
  # 952 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
@@ -214,7 +214,7 @@ PMC_Pow_X_I:
 	jne	.L1
 	movq	(%rbx), %rax
 	movq	120(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L1

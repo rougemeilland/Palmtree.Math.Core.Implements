@@ -41,14 +41,14 @@ value_high$ = 8
 value_low$ = 16
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, ecx
 	shl	rax, 32					; 00000020H
 	mov	ecx, edx
 	or	rax, rcx
 
-; 460  : }
+; 465  : }
 
 	ret	0
 _FROMWORDTODWORD ENDP
@@ -86,7 +86,7 @@ $LN15:
 ; 67   :         return (result);
 ; 68   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
-	cmp	QWORD PTR [rbx+8], 64			; 00000040H
+	cmp	QWORD PTR [rbx+16], 64			; 00000040H
 	jbe	SHORT $LN4@PMC_To_X_L
 
 ; 69   :         return (PMC_STATUS_OVERFLOW);
@@ -113,7 +113,7 @@ $LN4@PMC_To_X_L:
 
 ; 70   :     if (np->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	je	SHORT $LN5@PMC_To_X_L
 
 ; 71   :     {
@@ -147,7 +147,7 @@ $LN5@PMC_To_X_L:
 ; 77   :         // 値が 1 ワードで表現できる場合
 ; 78   :         *o = np->BLOCK[0];
 
-	mov	rax, QWORD PTR [rbx+48]
+	mov	rax, QWORD PTR [rbx+56]
 	mov	rcx, QWORD PTR [rax]
 
 ; 79   :         return (PMC_STATUS_OK);
@@ -204,7 +204,7 @@ $LN9:
 ; 47   :         return (result);
 ; 48   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
-	cmp	QWORD PTR [rbx+8], 32			; 00000020H
+	cmp	QWORD PTR [rbx+16], 32			; 00000020H
 	jbe	SHORT $LN4@PMC_To_X_I
 
 ; 49   :         return (PMC_STATUS_OVERFLOW);
@@ -221,7 +221,7 @@ $LN4@PMC_To_X_I:
 
 ; 50   :     if (np->IS_ZERO)
 
-	test	BYTE PTR [rbx+32], 2
+	test	BYTE PTR [rbx+40], 2
 	je	SHORT $LN5@PMC_To_X_I
 
 ; 51   :         *o = 0;
@@ -243,7 +243,7 @@ $LN5@PMC_To_X_I:
 ; 52   :     else
 ; 53   :         *o = (_UINT32_T)np->BLOCK[0];
 
-	mov	rax, QWORD PTR [rbx+48]
+	mov	rax, QWORD PTR [rbx+56]
 	mov	eax, DWORD PTR [rax]
 
 ; 54   :     return (PMC_STATUS_OK);

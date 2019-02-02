@@ -61,33 +61,33 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95693 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 'J', 08eH, 'n', 0aH
+$SG95695 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 'J', 08eH, 'n', 0aH
 	DB	00H
-$SG95717 DB	'x86', 00H
-$SG95698 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 0aeH, 097H, 0b9H, 081H
+$SG95719 DB	'x86', 00H
+$SG95700 DB	083H, 'e', 083H, 'X', 083H, 'g', 08aH, 0aeH, 097H, 0b9H, 081H
 	DB	'B', 08dH, 080H, 096H, 0daH, 090H, 094H, '=%d, OK', 08dH, 080H
 	DB	096H, 0daH, 090H, 094H, '=%d, NG', 08dH, 080H, 096H, 0daH, 090H
 	DB	094H, '=%d, OK', 097H, 0a6H, '=%d%%, NG', 097H, 0a6H, '=%d%%', 0aH
 	DB	00H
 	ORG $+1
-$SG95716 DB	'PMC_Initialize failed', 00H
+$SG95718 DB	'PMC_Initialize failed', 00H
 	ORG $+2
-$SG95718 DB	'MSC', 00H
-$SG95719 DB	'PLATFORM: %s', 0aH, 00H
+$SG95720 DB	'MSC', 00H
+$SG95721 DB	'PLATFORM: %s', 0aH, 00H
 	ORG $+2
-$SG95720 DB	'COMPILER: %s', 0aH, 00H
+$SG95722 DB	'COMPILER: %s', 0aH, 00H
 	ORG $+2
-$SG95721 DB	'CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d', 0aH
+$SG95723 DB	'CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d', 0aH
 	DB	00H
 	ORG $+1
-$SG95733 DB	'***NG***', 00H
+$SG95735 DB	'***NG***', 00H
 	ORG $+3
-$SG95734 DB	083H, 'e', 083H, 'X', 083H, 'g No.%d: %s => %s (%s)', 0aH
+$SG95736 DB	083H, 'e', 083H, 'X', 083H, 'g No.%d: %s => %s (%s)', 0aH
 	DB	00H
 	ORG $+3
-$SG95768 DB	', ', 00H
+$SG95770 DB	', ', 00H
 	ORG $+1
-$SG95769 DB	'0x%02x', 00H
+$SG95771 DB	'0x%02x', 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -149,7 +149,7 @@ _DoDebug@4 PROC
 ; 80   :          env->log("PMC_Initialize failed");
 
 	mov	esi, esp
-	push	OFFSET $SG95716
+	push	OFFSET $SG95718
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -166,7 +166,7 @@ $LN2@DoDebug:
 ; 83   : #ifdef _M_IX86
 ; 84   :     char* platform = "x86";
 
-	mov	DWORD PTR _platform$[ebp], OFFSET $SG95717
+	mov	DWORD PTR _platform$[ebp], OFFSET $SG95719
 
 ; 85   : #elif defined(_M_IX64)
 ; 86   :     char* platform = "x64";
@@ -176,7 +176,7 @@ $LN2@DoDebug:
 ; 90   : #ifdef _MSC_VER
 ; 91   :     char* compiler = "MSC";
 
-	mov	DWORD PTR _compiler$[ebp], OFFSET $SG95718
+	mov	DWORD PTR _compiler$[ebp], OFFSET $SG95720
 
 ; 92   : #elif defined(__GNUC__)
 ; 93   :     char* compiler = "GNUC";
@@ -189,7 +189,7 @@ $LN2@DoDebug:
 	mov	esi, esp
 	mov	ecx, DWORD PTR _platform$[ebp]
 	push	ecx
-	push	OFFSET $SG95719
+	push	OFFSET $SG95721
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -202,7 +202,7 @@ $LN2@DoDebug:
 	mov	esi, esp
 	mov	ecx, DWORD PTR _compiler$[ebp]
 	push	ecx
-	push	OFFSET $SG95720
+	push	OFFSET $SG95722
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -237,7 +237,7 @@ $LN2@DoDebug:
 	mov	ecx, DWORD PTR [eax]
 	and	ecx, 1
 	push	ecx
-	push	OFFSET $SG95721
+	push	OFFSET $SG95723
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -383,7 +383,7 @@ _TEST_End PROC
 	push	edx
 	mov	eax, DWORD PTR _test_total_count
 	push	eax
-	push	OFFSET $SG95698
+	push	OFFSET $SG95700
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx
@@ -430,7 +430,7 @@ _TEST_Start PROC
 ; 49   :     env->log("テスト開始\n");
 
 	mov	esi, esp
-	push	OFFSET $SG95693
+	push	OFFSET $SG95695
 	mov	eax, DWORD PTR _env$[ebp]
 	mov	ecx, DWORD PTR [eax]
 	call	ecx
@@ -576,13 +576,13 @@ $LN2@TEST_Asser:
 	mov	esi, esp
 	mov	ecx, DWORD PTR _reason$[ebp]
 	push	ecx
-	push	OFFSET $SG95733
+	push	OFFSET $SG95735
 	mov	edx, DWORD PTR _test_name$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _test_total_count
 	add	eax, 1
 	push	eax
-	push	OFFSET $SG95734
+	push	OFFSET $SG95736
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx
@@ -692,7 +692,7 @@ $LN4@DumpBinary:
 ; 155  :                 (*__DEBUG_LOG)(", ");
 
 	mov	esi, esp
-	push	OFFSET $SG95768
+	push	OFFSET $SG95770
 	call	DWORD PTR ___DEBUG_LOG
 	add	esp, 4
 	cmp	esi, esp
@@ -705,7 +705,7 @@ $LN8@DumpBinary:
 	movzx	eax, BYTE PTR [edx]
 	mov	esi, esp
 	push	eax
-	push	OFFSET $SG95769
+	push	OFFSET $SG95771
 	call	DWORD PTR ___DEBUG_LOG
 	add	esp, 8
 	cmp	esi, esp

@@ -21,7 +21,7 @@ LFB5496:
 	subl	$60, %esp
 	.cfi_def_cfa_offset 80
 	movl	80(%esp), %ebp
-	testb	$2, 16(%eax)
+	testb	$2, 24(%eax)
 	je	L2
 	movl	%ecx, %eax
 	orl	%edx, %eax
@@ -52,13 +52,13 @@ L2:
 	movl	%ecx, %eax
 	orl	%edx, %eax
 	je	L21
-	movl	4(%esi), %eax
+	movl	12(%esi), %eax
 	testl	%ecx, %ecx
 	jne	L6
 	testl	%edx, %edx
 	je	L7
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -74,9 +74,9 @@ L7:
 	testl	%eax, %eax
 	jne	L1
 	movl	0(%ebp), %eax
-	movl	(%esi), %ecx
-	movl	24(%esi), %esi
-	movl	24(%eax), %edi
+	movl	8(%esi), %ecx
+	movl	32(%esi), %esi
+	movl	32(%eax), %edi
 	orl	(%esi), %ebx
 	movl	%ebx, (%edi)
 	cmpl	$1, %ecx
@@ -90,7 +90,7 @@ L7:
  # 0 "" 2
 /NO_APP
 	movl	0(%ebp), %eax
-	movl	24(%eax), %edi
+	movl	32(%eax), %edi
 L10:
 	movl	44(%esp), %eax
 	movl	%edi, (%esp)
@@ -168,7 +168,7 @@ L21:
 L6:
 	.cfi_restore_state
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP
@@ -184,10 +184,10 @@ L6:
 	testl	%eax, %eax
 	jne	L1
 	movl	0(%ebp), %eax
-	movl	(%esi), %edx
-	movl	24(%esi), %esi
+	movl	8(%esi), %edx
+	movl	32(%esi), %esi
 	movl	28(%esp), %ecx
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	orl	(%esi), %ebx
 	cmpl	$1, %edx
 	movl	%ebx, (%eax)
@@ -205,7 +205,7 @@ L6:
  # 0 "" 2
 /NO_APP
 	movl	0(%ebp), %eax
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 L14:
 	movl	44(%esp), %edx
 	movl	%eax, (%esp)
@@ -240,7 +240,7 @@ LFB5493:
 	.cfi_offset 3, -20
 	subl	$60, %esp
 	.cfi_def_cfa_offset 80
-	testb	$2, 16(%eax)
+	testb	$2, 24(%eax)
 	je	L24
 	testl	%edx, %edx
 	jne	L25
@@ -294,14 +294,14 @@ L27:
 	leal	44(%esp), %ecx
 	movl	%edx, 28(%esp)
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %eax
  # 0 "" 2
 /NO_APP
 	movl	%ecx, 8(%esp)
 	addl	$1, %eax
-	cmpl	%eax, 4(%ebx)
-	cmovnb	4(%ebx), %eax
+	cmpl	%eax, 12(%ebx)
+	cmovnb	12(%ebx), %eax
 	movl	%ebp, (%esp)
 	addl	$1, %eax
 	movl	%eax, 4(%esp)
@@ -309,10 +309,10 @@ L27:
 	testl	%eax, %eax
 	jne	L23
 	movl	0(%ebp), %eax
-	movl	24(%ebx), %esi
-	movl	(%ebx), %ecx
+	movl	32(%ebx), %esi
+	movl	8(%ebx), %ecx
 	movl	28(%esp), %edx
-	movl	24(%eax), %edi
+	movl	32(%eax), %edi
 	orl	(%esi), %edx
 	movl	%edx, (%edi)
 	cmpl	$1, %ecx
@@ -326,7 +326,7 @@ L27:
  # 0 "" 2
 /NO_APP
 	movl	0(%ebp), %eax
-	movl	24(%eax), %edi
+	movl	32(%eax), %edi
 L30:
 	movl	44(%esp), %eax
 	movl	%edi, (%esp)
@@ -618,12 +618,12 @@ L86:
 	movl	%eax, %ebx
 	testl	%eax, %eax
 	jne	L48
-	testb	$2, 16(%ebp)
+	testb	$2, 24(%ebp)
 	jne	L87
-	testb	$2, 16(%esi)
+	testb	$2, 24(%esi)
 	jne	L88
-	movl	(%esi), %eax
-	cmpl	%eax, 0(%ebp)
+	movl	8(%esi), %eax
+	cmpl	%eax, 8(%ebp)
 	jnb	L53
 	movl	%ebp, %eax
 	movl	%esi, %ebp
@@ -631,9 +631,9 @@ L86:
 L53:
 	leal	60(%esp), %eax
 	movl	%eax, 8(%esp)
-	movl	4(%esi), %eax
-	cmpl	%eax, 4(%ebp)
-	cmovnb	4(%ebp), %eax
+	movl	12(%esi), %eax
+	cmpl	%eax, 12(%ebp)
+	cmovnb	12(%ebp), %eax
 	movl	%eax, 4(%esp)
 	leal	56(%esp), %eax
 	movl	%eax, (%esp)
@@ -641,12 +641,12 @@ L53:
 	testl	%eax, %eax
 	jne	L65
 	movl	56(%esp), %eax
-	movl	0(%ebp), %ecx
-	movl	24(%esi), %edx
-	movl	24(%eax), %edi
-	movl	(%esi), %eax
+	movl	8(%ebp), %ecx
+	movl	32(%esi), %edx
+	movl	32(%eax), %edi
+	movl	8(%esi), %eax
 	movl	%edx, 28(%esp)
-	movl	24(%ebp), %esi
+	movl	32(%ebp), %esi
 	subl	%eax, %ecx
 	movl	%eax, 32(%esp)
 	shrl	$5, %eax
@@ -907,7 +907,7 @@ L61:
 	movl	60(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	56(%esp), %eax
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax

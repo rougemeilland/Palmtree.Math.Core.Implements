@@ -50,7 +50,7 @@ L1:
 	.p2align 4,,10
 L32:
 	.cfi_restore_state
-	movzbl	16(%esi), %edx
+	movzbl	24(%esi), %edx
 	testb	$2, %dl
 	je	L5
 	movl	132(%esp), %ecx
@@ -85,7 +85,7 @@ L5:
 	je	L33
 	movl	$-33, %eax
 	xorl	%edx, %edx
-	movl	4(%esi), %edi
+	movl	12(%esi), %edi
 	divl	132(%esp)
 	movl	%eax, %ecx
 	movl	$-2, %eax
@@ -119,18 +119,18 @@ L5:
 	testl	%eax, %eax
 	jne	L34
 	movl	(%ebx), %eax
-	movl	(%esi), %edx
+	movl	8(%esi), %edx
 	movl	48(%esp), %ebp
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	%edx, 44(%esp)
 	movl	%edx, %ecx
 	movl	%ebp, %edi
 	movl	%eax, 60(%esp)
-	movl	24(%esi), %eax
+	movl	32(%esi), %eax
 	movl	%eax, %esi
 	movl	%eax, 52(%esp)
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl 132(%esp), %eax
  # 0 "" 2
  # 1773 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
@@ -262,7 +262,7 @@ L13:
 	movl	92(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	(%ebx), %eax
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax

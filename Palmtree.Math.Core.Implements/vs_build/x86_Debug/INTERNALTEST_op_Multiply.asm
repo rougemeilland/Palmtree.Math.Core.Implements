@@ -48,17 +48,17 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95726 DB	'actual_w_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
+$SG95728 DB	'actual_w_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
 	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
 	DB	0e9H, 00H
 	ORG $+3
-$SG95727 DB	'Multiply_X_X_Imp (%d.%d)', 00H
+$SG95729 DB	'Multiply_X_X_Imp (%d.%d)', 00H
 	ORG $+3
-$SG95728 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
+$SG95730 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
 	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
 	DB	082H, 0a2H, 00H
 	ORG $+3
-$SG95729 DB	'Multiply_X_X_Imp (%d.%d)', 00H
+$SG95731 DB	'Multiply_X_X_Imp (%d.%d)', 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -379,13 +379,13 @@ $LN4@INTERNALTE:
 $LN6@INTERNALTE:
 	mov	DWORD PTR tv151[ebp], 0
 $LN7@INTERNALTE:
-	push	OFFSET $SG95726
+	push	OFFSET $SG95728
 	mov	ecx, DWORD PTR tv151[ebp]
 	push	ecx
 	push	1
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG95727
+	push	OFFSET $SG95729
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -413,13 +413,13 @@ $LN7@INTERNALTE:
 $LN8@INTERNALTE:
 	mov	DWORD PTR tv166[ebp], 0
 $LN9@INTERNALTE:
-	push	OFFSET $SG95728
+	push	OFFSET $SG95730
 	mov	edx, DWORD PTR tv166[ebp]
 	push	edx
 	push	2
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG95729
+	push	OFFSET $SG95731
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -650,14 +650,14 @@ _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_SIZE PROC
 
-; 479  : {
+; 484  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 480  :     return ((u + v - 1) / v);
+; 485  :     return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _v$[ebp]
 	mov	ecx, DWORD PTR _u$[ebp]
@@ -665,7 +665,7 @@ __DIVIDE_CEILING_SIZE PROC
 	xor	edx, edx
 	div	DWORD PTR _v$[ebp]
 
-; 481  : }
+; 486  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -681,7 +681,7 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_BYTE PROC
 
-; 330  : {
+; 335  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -690,14 +690,14 @@ __COPY_MEMORY_BYTE PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 331  :     __movsb(d, s, count);
+; 336  :     __movsb(d, s, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsb
 
-; 332  : }
+; 337  : }
 
 	pop	edi
 	pop	esi

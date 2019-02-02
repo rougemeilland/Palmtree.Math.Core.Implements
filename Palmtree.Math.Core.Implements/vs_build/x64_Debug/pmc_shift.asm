@@ -74,25 +74,25 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_RightShift_X_I DD imagerel $LN17
-	DD	imagerel $LN17+526
+	DD	imagerel $LN17+527
 	DD	imagerel $unwind$PMC_RightShift_X_I
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_RightShift_X_L DD imagerel $LN17
-	DD	imagerel $LN17+528
+	DD	imagerel $LN17+529
 	DD	imagerel $unwind$PMC_RightShift_X_L
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_LeftShift_X_I DD imagerel $LN15
-	DD	imagerel $LN15+492
+	DD	imagerel $LN15+493
 	DD	imagerel $unwind$PMC_LeftShift_X_I
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_LeftShift_X_L DD imagerel $LN15
-	DD	imagerel $LN15+493
+	DD	imagerel $LN15+494
 	DD	imagerel $unwind$PMC_LeftShift_X_L
 pdata	ENDS
 ;	COMDAT pdata
@@ -386,7 +386,7 @@ d$ = 240
 count$ = 248
 _ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 408  : {
+; 413  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -402,11 +402,11 @@ _ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 409  : #ifdef _M_IX86
-; 410  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 411  : #elif defined(_M_X64)
-; 412  : #ifdef _MSC_VER
-; 413  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 414  : #ifdef _M_IX86
+; 415  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 416  : #elif defined(_M_X64)
+; 417  : #ifdef _MSC_VER
+; 418  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	eax, DWORD PTR count$[rbp]
 	mov	QWORD PTR tv64[rbp], rax
@@ -415,15 +415,15 @@ _ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
 	mov	rcx, QWORD PTR tv64[rbp]
 	rep stosd
 
-; 414  : #elif defined(__GNUC__)
-; 415  :     __stosq(d, 0, count);
-; 416  : #else
-; 417  : #error unknown compiler
-; 418  : #endif
-; 419  : #else
-; 420  : #error unknown platform
-; 421  : #endif
-; 422  : }
+; 419  : #elif defined(__GNUC__)
+; 420  :     __stosq(d, 0, count);
+; 421  : #else
+; 422  : #error unknown compiler
+; 423  : #endif
+; 424  : #else
+; 425  : #error unknown platform
+; 426  : #endif
+; 427  : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -439,7 +439,7 @@ d$ = 224
 count$ = 232
 _ZERO_MEMORY_UNIT PROC					; COMDAT
 
-; 397  : {
+; 402  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -455,20 +455,20 @@ _ZERO_MEMORY_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 398  : #ifdef _M_IX86
-; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 400  : #elif defined(_M_X64)
-; 401  :     __stosq(d, 0, count);
+; 403  : #ifdef _M_IX86
+; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 405  : #elif defined(_M_X64)
+; 406  :     __stosq(d, 0, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	xor	eax, eax
 	mov	rcx, QWORD PTR count$[rbp]
 	rep stosq
 
-; 402  : #else
-; 403  : #error unknown platform
-; 404  : #endif
-; 405  : }
+; 407  : #else
+; 408  : #error unknown platform
+; 409  : #endif
+; 410  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -485,7 +485,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 358  : {
+; 363  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -503,11 +503,11 @@ _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 359  : #ifdef _M_IX86
-; 360  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 361  : #elif defined(_M_X64)
-; 362  : #ifdef _MSC_VER
-; 363  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 364  : #ifdef _M_IX86
+; 365  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 366  : #elif defined(_M_X64)
+; 367  : #ifdef _MSC_VER
+; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	eax, DWORD PTR count$[rbp]
 	mov	rdi, QWORD PTR d$[rbp]
@@ -515,15 +515,15 @@ _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 	mov	ecx, eax
 	rep movsd
 
-; 364  : #elif defined(__GNUC__)
-; 365  :     __movsq(d, s, count);
-; 366  : #else
-; 367  : #error unknown compiler
-; 368  : #endif
-; 369  : #else
-; 370  : #error unknown platform
-; 371  : #endif
-; 372  : }
+; 369  : #elif defined(__GNUC__)
+; 370  :     __movsq(d, s, count);
+; 371  : #else
+; 372  : #error unknown compiler
+; 373  : #endif
+; 374  : #else
+; 375  : #error unknown platform
+; 376  : #endif
+; 377  : }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi
@@ -541,7 +541,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 347  : {
+; 352  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -559,20 +559,20 @@ _COPY_MEMORY_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 348  : #ifdef _M_IX86
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 350  : #elif defined(_M_X64)
-; 351  :     __movsq(d, s, count);
+; 353  : #ifdef _M_IX86
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 355  : #elif defined(_M_X64)
+; 356  :     __movsq(d, s, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rsi, QWORD PTR s$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep movsq
 
-; 352  : #else
-; 353  : #error unknown platform
-; 354  : #endif
-; 355  : }
+; 357  : #else
+; 358  : #error unknown platform
+; 359  : #endif
+; 360  : }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi
@@ -675,7 +675,7 @@ $LN5@PMC_LeftSh:
 ; 735  :     if (np->IS_ZERO)
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -726,7 +726,7 @@ $LN8@PMC_LeftSh:
 ; 745  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rax, QWORD PTR [rax+8]
+	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR p_bit_count$5[rbp], rax
 
 ; 746  :         __UNIT_TYPE o_bit_count = p_bit_count + (__UNIT_TYPE)n;
@@ -758,19 +758,19 @@ $LN11@PMC_LeftSh:
 
 	mov	DWORD PTR [rsp+32], 0
 	mov	rax, QWORD PTR no$[rbp]
-	mov	r9, QWORD PTR [rax+48]
+	mov	r9, QWORD PTR [rax+56]
 	mov	r8, QWORD PTR n$[rbp]
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax]
+	mov	rdx, QWORD PTR [rax+8]
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	LeftShift_Imp
 
 ; 751  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
 	mov	rax, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	CheckBlockLight
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
@@ -925,7 +925,7 @@ $LN5@PMC_LeftSh:
 ; 691  :     if (np->IS_ZERO)
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -976,7 +976,7 @@ $LN8@PMC_LeftSh:
 ; 701  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rax, QWORD PTR [rax+8]
+	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR p_bit_count$5[rbp], rax
 
 ; 702  :         __UNIT_TYPE o_bit_count = p_bit_count + n;
@@ -1009,19 +1009,19 @@ $LN11@PMC_LeftSh:
 	mov	eax, DWORD PTR n$[rbp]
 	mov	DWORD PTR [rsp+32], 0
 	mov	rcx, QWORD PTR no$[rbp]
-	mov	r9, QWORD PTR [rcx+48]
+	mov	r9, QWORD PTR [rcx+56]
 	mov	r8d, eax
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax]
+	mov	rdx, QWORD PTR [rax+8]
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	LeftShift_Imp
 
 ; 707  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
 	mov	rax, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	CheckBlockLight
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
@@ -1176,7 +1176,7 @@ $LN5@PMC_RightS:
 ; 642  :     if (np->IS_ZERO)
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -1227,7 +1227,7 @@ $LN8@PMC_RightS:
 ; 652  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rax, QWORD PTR [rax+8]
+	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR p_bit_count$5[rbp], rax
 
 ; 653  :         if (p_bit_count <= n)
@@ -1275,19 +1275,19 @@ $LN13@PMC_RightS:
 
 	mov	DWORD PTR [rsp+32], 0
 	mov	rax, QWORD PTR no$[rbp]
-	mov	r9, QWORD PTR [rax+48]
+	mov	r9, QWORD PTR [rax+56]
 	mov	r8, QWORD PTR n$[rbp]
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax]
+	mov	rdx, QWORD PTR [rax+8]
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	RightShift_Imp
 
 ; 662  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
 	mov	rax, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	CheckBlockLight
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
@@ -1444,7 +1444,7 @@ $LN5@PMC_RightS:
 ; 593  :     if (np->IS_ZERO)
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -1495,7 +1495,7 @@ $LN8@PMC_RightS:
 ; 603  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rax, QWORD PTR [rax+8]
+	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR p_bit_count$5[rbp], rax
 
 ; 604  :         if (p_bit_count <= n)
@@ -1544,19 +1544,19 @@ $LN13@PMC_RightS:
 	mov	eax, DWORD PTR n$[rbp]
 	mov	DWORD PTR [rsp+32], 0
 	mov	rcx, QWORD PTR no$[rbp]
-	mov	r9, QWORD PTR [rcx+48]
+	mov	r9, QWORD PTR [rcx+56]
 	mov	r8d, eax
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax]
+	mov	rdx, QWORD PTR [rax+8]
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	RightShift_Imp
 
 ; 613  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR no_light_check_code$7[rbp]
 	mov	rax, QWORD PTR no$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	CheckBlockLight
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0

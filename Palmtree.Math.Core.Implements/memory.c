@@ -275,7 +275,7 @@ PMC_STATUS_CODE CheckBlockLight(__UNIT_TYPE* buffer, __UNIT_TYPE code)
 __inline static void ClearNumberHeader(NUMBER_HEADER* p)
 {
 #ifdef _M_IX64
-    if (sizeof(*p) == sizeof(_UINT64_T) * 7)
+    if (sizeof(*p) == sizeof(_UINT64_T) * 8)
     {
         _UINT64_T* __p = (_UINT64_T*)p;
         __p[0] = 0;
@@ -285,13 +285,14 @@ __inline static void ClearNumberHeader(NUMBER_HEADER* p)
         __p[4] = 0;
         __p[5] = 0;
         __p[6] = 0;
+        __p[7] = 0;
     }
     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
         _ZERO_MEMORY_64((_UINT64_T*)p, sizeof(*p) / sizeof(_UINT64_T));
     else
     {
 #endif
-        if (sizeof(*p) == sizeof(_UINT32_T) * 7)
+        if (sizeof(*p) == sizeof(_UINT32_T) * 9)
         {
             _UINT32_T* __p = (_UINT32_T*)p;
             __p[0] = 0;
@@ -301,6 +302,8 @@ __inline static void ClearNumberHeader(NUMBER_HEADER* p)
             __p[4] = 0;
             __p[5] = 0;
             __p[6] = 0;
+            __p[7] = 0;
+            __p[8] = 0;
         }
         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
             _ZERO_MEMORY_32((_UINT32_T*)p, sizeof(*p) / sizeof(_UINT32_T));
@@ -316,7 +319,7 @@ __inline static void ClearNumberHeader(NUMBER_HEADER* p)
 __inline static void FillNumberHeader(NUMBER_HEADER* p)
 {
 #ifdef _M_IX64
-    if (sizeof(*p) == sizeof(_UINT64_T) * 7)
+    if (sizeof(*p) == sizeof(_UINT64_T) * 8)
     {
         _UINT64_T* __p = (_UINT64_T*)p;
         __p[0] = DEFAULT_MEMORY_DATA;
@@ -326,13 +329,14 @@ __inline static void FillNumberHeader(NUMBER_HEADER* p)
         __p[4] = DEFAULT_MEMORY_DATA;
         __p[5] = DEFAULT_MEMORY_DATA;
         __p[6] = DEFAULT_MEMORY_DATA;
+        __p[7] = DEFAULT_MEMORY_DATA;
     }
     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
         _FILL_MEMORY_64((_UINT64_T*)p, DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT64_T));
     else
     {
 #endif
-        if (sizeof(*p) == sizeof(_UINT32_T) * 7)
+        if (sizeof(*p) == sizeof(_UINT32_T) * 9)
         {
             _UINT32_T* __p = (_UINT32_T*)p;
             __p[0] = (_UINT32_T)DEFAULT_MEMORY_DATA;
@@ -342,6 +346,8 @@ __inline static void FillNumberHeader(NUMBER_HEADER* p)
             __p[4] = (_UINT32_T)DEFAULT_MEMORY_DATA;
             __p[5] = (_UINT32_T)DEFAULT_MEMORY_DATA;
             __p[6] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+            __p[7] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+            __p[8] = (_UINT32_T)DEFAULT_MEMORY_DATA;
         }
         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
             _FILL_MEMORY_32((_UINT32_T*)p, (_UINT32_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT32_T));
@@ -356,13 +362,15 @@ __inline static void FillNumberHeader(NUMBER_HEADER* p)
 
 static PMC_STATUS_CODE InitializeNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_count, __UNIT_TYPE* light_check_code)
 {
-    ClearNumberHeader(p);
     if (bit_count > 0)
     {
         __UNIT_TYPE word_count;
         __UNIT_TYPE* block = AllocateBlock(bit_count, &word_count, light_check_code);
         if (block == NULL)
             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+        ClearNumberHeader(p);
+        p->SIGNATURE1 = PMC_SIGNATURE;
+        p->SIGNATURE2 = PMC_UINT_SIGNATURE;
         p->UNIT_BIT_COUNT = bit_count;
         p->BLOCK_COUNT = word_count;
         p->BLOCK = block;
@@ -370,6 +378,9 @@ static PMC_STATUS_CODE InitializeNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_count,
     else
     {
         // bit_count に 0 が与えられるのは、数値が 0 の場合。
+        ClearNumberHeader(p);
+        p->SIGNATURE1 = PMC_SIGNATURE;
+        p->SIGNATURE2 = PMC_UINT_SIGNATURE;
         p->UNIT_BIT_COUNT = 0;
         p->BLOCK_COUNT = 0;
         p->BLOCK = NULL;
@@ -496,17 +507,19 @@ void CommitNumber(NUMBER_HEADER* p)
 
 PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p)
 {
-#ifdef _DEBUG
+    if (p->SIGNATURE1 != PMC_SIGNATURE || p->SIGNATURE2 != PMC_UINT_SIGNATURE)
+        return (PMC_STATUS_BAD_BUFFER);
     if (!p->IS_ZERO)
     {
         PMC_STATUS_CODE result;
         if ((result = CheckBlock(p->BLOCK)) != PMC_STATUS_OK)
             return (result);
+#ifdef _DEBUG
         __UNIT_TYPE desired_hash_code = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
         if (desired_hash_code != p->HASH_CODE)
             return (PMC_STATUS_BAD_BUFFER);
-    }
 #endif
+    }
     return (PMC_STATUS_OK);
 }
 

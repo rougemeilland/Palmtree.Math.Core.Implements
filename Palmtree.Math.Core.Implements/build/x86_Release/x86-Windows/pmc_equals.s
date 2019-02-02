@@ -5,7 +5,7 @@
 _PMC_Equals_X_I_Imp:
 LFB5491:
 	.cfi_startproc
-	testb	$2, 16(%eax)
+	testb	$2, 24(%eax)
 	je	L2
 	testl	%edx, %edx
 	je	L14
@@ -26,12 +26,12 @@ L2:
 	.cfi_def_cfa_offset 8
 	.cfi_offset 3, -8
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %ebx
  # 0 "" 2
 /NO_APP
 	addl	$1, %ebx
-	cmpl	%ebx, 4(%eax)
+	cmpl	%ebx, 12(%eax)
 	je	L15
 	movl	$0, (%ecx)
 L4:
@@ -44,7 +44,7 @@ L4:
 	.p2align 4,,10
 L15:
 	.cfi_restore_state
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	cmpl	%edx, (%eax)
 	sete	%al
 	movzbl	%al, %eax
@@ -63,13 +63,13 @@ LFB5500:
 	pushl	%ebx
 	.cfi_def_cfa_offset 12
 	.cfi_offset 3, -12
-	movl	4(%eax), %ebx
+	movl	12(%eax), %ebx
 	testl	%ecx, %ecx
 	jne	L17
 	testl	%edx, %edx
 	je	L18
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %ecx
  # 0 "" 2
 /NO_APP
@@ -92,14 +92,14 @@ L21:
 L17:
 	.cfi_restore_state
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %ecx, %esi
  # 0 "" 2
 /NO_APP
 	addl	$33, %esi
 	cmpl	%esi, %ebx
 	jne	L21
-	movl	24(%eax), %ebx
+	movl	32(%eax), %ebx
 	xorl	%eax, %eax
 	cmpl	4(%ebx), %ecx
 	jne	L22
@@ -120,7 +120,7 @@ L22:
 	.p2align 4,,10
 L19:
 	.cfi_restore_state
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	12(%esp), %esi
 	cmpl	%edx, (%eax)
 	sete	%al
@@ -322,7 +322,7 @@ L45:
 	.p2align 4,,10
 L54:
 	.cfi_restore_state
-	testb	$2, 16(%ebx)
+	testb	$2, 24(%ebx)
 	je	L47
 	orl	%ebp, %edi
 	jne	L48
@@ -458,7 +458,7 @@ L56:
 	.p2align 4,,10
 L65:
 	.cfi_restore_state
-	testb	$2, 16(%ebx)
+	testb	$2, 24(%ebx)
 	je	L58
 	orl	%ebp, %edi
 	jne	L59
@@ -593,13 +593,13 @@ L80:
 	call	_CheckNumber
 	testl	%eax, %eax
 	jne	L67
-	movzbl	16(%esi), %edx
-	testb	$2, 16(%ebx)
+	movzbl	24(%esi), %edx
+	testb	$2, 24(%ebx)
 	jne	L81
 	andl	$2, %edx
 	jne	L71
-	movl	4(%esi), %ecx
-	cmpl	%ecx, 4(%ebx)
+	movl	12(%esi), %ecx
+	cmpl	%ecx, 12(%ebx)
 	je	L82
 L71:
 	movl	$0, (%edi)
@@ -638,9 +638,9 @@ L81:
 	.p2align 4,,10
 L82:
 	.cfi_restore_state
-	movl	(%ebx), %edx
-	movl	24(%esi), %esi
-	movl	24(%ebx), %ecx
+	movl	8(%ebx), %edx
+	movl	32(%esi), %esi
+	movl	32(%ebx), %ecx
 	testl	%edx, %edx
 	je	L76
 	movl	(%ecx), %ebx

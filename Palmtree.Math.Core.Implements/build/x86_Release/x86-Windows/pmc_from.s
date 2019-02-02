@@ -20,7 +20,7 @@ LFB5490:
 	testl	%ebx, %ebx
 	je	L2
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %ebx, %eax
  # 0 "" 2
 /NO_APP
@@ -34,7 +34,7 @@ L2:
 	jne	L1
 	movl	(%esi), %edx
 	movl	%eax, 28(%esp)
-	movl	24(%edx), %ecx
+	movl	32(%edx), %ecx
 	movl	%ebx, (%ecx)
 	movl	%edx, (%esp)
 	call	_CommitNumber
@@ -77,7 +77,7 @@ LFB5491:
 	testl	%esi, %esi
 	je	L11
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %esi, %eax
  # 0 "" 2
 /NO_APP
@@ -90,7 +90,7 @@ L11:
 	testl	%eax, %eax
 	jne	L9
 	movl	(%ebx), %eax
-	movl	24(%eax), %edx
+	movl	32(%eax), %edx
 L13:
 	movl	%esi, (%edx)
 	movl	%eax, (%esp)
@@ -114,7 +114,7 @@ L9:
 L10:
 	.cfi_restore_state
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edi, %eax
  # 0 "" 2
 /NO_APP
@@ -126,7 +126,7 @@ L10:
 	testl	%eax, %eax
 	jne	L9
 	movl	(%ebx), %eax
-	movl	24(%eax), %edx
+	movl	32(%eax), %edx
 	movl	%edi, 4(%edx)
 	jmp	L13
 	.cfi_endproc

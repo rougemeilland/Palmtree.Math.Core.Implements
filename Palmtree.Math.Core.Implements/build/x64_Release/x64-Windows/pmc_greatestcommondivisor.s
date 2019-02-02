@@ -109,7 +109,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	subq	$120, %rsp
 	.seh_stackalloc	120
 	.seh_endprologue
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	movq	%rcx, %rsi
 	movl	%edx, %ebx
 	movq	%r8, %r15
@@ -142,12 +142,12 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	jmp	.L16
 	.p2align 4,,10
 .L19:
-	movq	8(%rcx), %r8
+	movq	16(%rcx), %r8
 	movl	$31, %eax
 	movl	$32, %ebp
 	movl	$-5, %edi
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -177,16 +177,16 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	testl	%eax, %eax
 	movl	%eax, %edi
 	jne	.L29
-	movq	24(%rsi), %rax
+	movq	32(%rsi), %rax
 	movl	%ebx, %r13d
 /APP
- # 1008 "pmc_internal.h" 1
+ # 1013 "pmc_internal.h" 1
 	bsfq %r13, %r13
  # 0 "" 2
 /NO_APP
-	movq	(%rsi), %rcx
+	movq	8(%rsi), %rcx
 	movslq	%r13d, %r13
-	movq	48(%rsi), %rsi
+	movq	56(%rsi), %rsi
 	testq	%rax, %rax
 	movq	%rax, 56(%rsp)
 	jne	.L30
@@ -206,7 +206,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	movl	%ebx, %eax
 	movq	%rax, (%r14)
 	movq	(%r15), %rax
-	movq	48(%rax), %r9
+	movq	56(%rax), %r9
 	leaq	104(%rsp), %rax
 	movq	%rax, 32(%rsp)
 	call	GreatestCommonDivisor_Imp
@@ -224,7 +224,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	jne	.L16
 	movq	(%r15), %rax
 	movq	96(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	movl	%eax, %edi
@@ -237,7 +237,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	call	DeallocateBlock
 	movq	(%r15), %rax
 	movq	104(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	movl	$1, 32(%rsp)
 	movq	56(%rsp), %rax
 	movq	%rcx, %r9
@@ -247,7 +247,7 @@ PMC_GreatestCommonDivisor_X_I_Imp:
 	call	LeftShift_Imp
 	movq	(%r15), %rax
 	movq	96(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	movl	%eax, %edi
@@ -302,7 +302,7 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	subq	$120, %rsp
 	.seh_stackalloc	120
 	.seh_endprologue
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	movq	%rcx, %rsi
 	movq	%rdx, %rbx
 	movq	%r8, %r15
@@ -335,12 +335,12 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	jmp	.L31
 	.p2align 4,,10
 .L34:
-	movq	8(%rcx), %r8
+	movq	16(%rcx), %r8
 	movl	$63, %eax
 	movl	$64, %ebp
 	movl	$-5, %edi
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
@@ -370,15 +370,15 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	testl	%eax, %eax
 	movl	%eax, %edi
 	jne	.L44
-	movq	24(%rsi), %rax
+	movq	32(%rsi), %rax
 /APP
- # 1008 "pmc_internal.h" 1
+ # 1013 "pmc_internal.h" 1
 	bsfq %rbx, %r14
  # 0 "" 2
 /NO_APP
-	movq	(%rsi), %rcx
+	movq	8(%rsi), %rcx
 	movslq	%r14d, %r14
-	movq	48(%rsi), %rsi
+	movq	56(%rsi), %rsi
 	testq	%rax, %rax
 	movq	%rax, 56(%rsp)
 	jne	.L45
@@ -397,7 +397,7 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	shrq	$6, %r8
 	movq	%r12, %rcx
 	movq	%rbx, 0(%r13)
-	movq	48(%rax), %r9
+	movq	56(%rax), %r9
 	leaq	104(%rsp), %rax
 	movq	%rax, 32(%rsp)
 	call	GreatestCommonDivisor_Imp
@@ -415,7 +415,7 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	jne	.L31
 	movq	(%r15), %rax
 	movq	96(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	movl	%eax, %edi
@@ -428,7 +428,7 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	call	DeallocateBlock
 	movq	(%r15), %rax
 	movq	104(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	movl	$1, 32(%rsp)
 	movq	56(%rsp), %rax
 	movq	%rcx, %r9
@@ -438,7 +438,7 @@ PMC_GreatestCommonDivisor_X_L_Imp:
 	call	LeftShift_Imp
 	movq	(%r15), %rax
 	movq	96(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	movl	%eax, %edi
@@ -710,9 +710,9 @@ PMC_GreatestCommonDivisor_X_X:
 	testl	%eax, %eax
 	movl	%eax, %esi
 	jne	.L62
-	movzbl	32(%rbx), %eax
+	movzbl	40(%rbx), %eax
 	andl	$2, %eax
-	testb	$2, 32(%rdi)
+	testb	$2, 40(%rdi)
 	jne	.L81
 	testb	%al, %al
 	je	.L68
@@ -739,12 +739,12 @@ PMC_GreatestCommonDivisor_X_X:
 	jmp	.L62
 	.p2align 4,,10
 .L68:
-	movq	8(%rbx), %r12
+	movq	16(%rbx), %r12
 	leaq	88(%rsp), %rdx
 	movl	$-5, %esi
-	cmpq	%r12, 8(%rdi)
+	cmpq	%r12, 16(%rdi)
 	leaq	80(%rsp), %r8
-	cmovnb	8(%rdi), %r12
+	cmovnb	16(%rdi), %r12
 	movq	%r12, %rcx
 	call	AllocateBlock
 	testq	%rax, %rax
@@ -764,10 +764,10 @@ PMC_GreatestCommonDivisor_X_X:
 	testl	%eax, %eax
 	movl	%eax, %esi
 	jne	.L82
-	movq	24(%rdi), %r15
-	movq	24(%rbx), %rax
-	movq	(%rdi), %rcx
-	movq	48(%rdi), %rsi
+	movq	32(%rdi), %r15
+	movq	32(%rbx), %rax
+	movq	8(%rdi), %rcx
+	movq	56(%rdi), %rsi
 	testq	%r15, %r15
 	movq	%rax, 56(%rsp)
 	jne	.L83
@@ -779,8 +779,8 @@ PMC_GreatestCommonDivisor_X_X:
 /NO_APP
 .L73:
 	cmpq	$0, 56(%rsp)
-	movq	(%rbx), %rcx
-	movq	48(%rbx), %rsi
+	movq	8(%rbx), %rcx
+	movq	56(%rbx), %rsi
 	jne	.L84
 	movq	%r14, %rdi
 /APP
@@ -794,7 +794,7 @@ PMC_GreatestCommonDivisor_X_X:
 	movq	%r14, %rdx
 	movq	%r13, %rcx
 	shrq	$6, %r8
-	movq	48(%rax), %r9
+	movq	56(%rax), %r9
 	leaq	120(%rsp), %rax
 	movq	%rax, 32(%rsp)
 	call	GreatestCommonDivisor_Imp
@@ -812,7 +812,7 @@ PMC_GreatestCommonDivisor_X_X:
 	jne	.L62
 	movq	72(%rsp), %rax
 	movq	112(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	movl	%eax, %esi
@@ -825,7 +825,7 @@ PMC_GreatestCommonDivisor_X_X:
 	call	DeallocateBlock
 	movq	72(%rsp), %rax
 	movq	120(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	movl	$1, 32(%rsp)
 	movq	56(%rsp), %rax
 	movq	%rcx, %r9
@@ -835,7 +835,7 @@ PMC_GreatestCommonDivisor_X_X:
 	call	LeftShift_Imp
 	movq	72(%rsp), %rax
 	movq	112(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	movl	%eax, %esi

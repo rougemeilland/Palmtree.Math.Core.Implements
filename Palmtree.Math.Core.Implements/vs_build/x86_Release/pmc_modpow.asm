@@ -26,19 +26,10 @@ EXTRN	_number_zero:BYTE
 EXTRN	_number_one:BYTE
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 ;	COMDAT _PMC_ModPow_X_X_X_Imp
 _TEXT	SEGMENT
-_r_check_code$1 = -24					; size = 4
-_q_buf_code$2 = -20					; size = 4
-_work_v_buf_code$3 = -16				; size = 4
-_q_buf$1$ = -12						; size = 4
-_q_buf_words$4 = -8					; size = 4
-_work_v_buf_words$5 = -4				; size = 4
 _v$ = 8							; size = 4
 _e$ = 12						; size = 4
-_work_v_buf$1$ = 16					; size = 4
 _m$ = 16						; size = 4
 _r$ = 20						; size = 4
 _PMC_ModPow_X_X_X_Imp PROC				; COMDAT
@@ -47,16 +38,14 @@ _PMC_ModPow_X_X_X_Imp PROC				; COMDAT
 
 	push	ebp
 	mov	ebp, esp
-	sub	esp, 24					; 00000018H
-	push	esi
 
 ; 507  :     PMC_STATUS_CODE result;
 ; 508  : 
 ; 509  :     if (m->IS_ZERO)
 
-	mov	esi, DWORD PTR _m$[ebp]
-	mov	ecx, DWORD PTR [esi+16]
-	test	cl, 2
+	mov	ecx, DWORD PTR _m$[ebp]
+	mov	edx, DWORD PTR [ecx+24]
+	test	dl, 2
 	je	SHORT $LN2@PMC_ModPow
 
 ; 510  :     {
@@ -66,25 +55,21 @@ _PMC_ModPow_X_X_X_Imp PROC				; COMDAT
 ; 514  :         return (PMC_STATUS_DIVISION_BY_ZERO);
 
 	mov	eax, -3					; fffffffdH
-	pop	esi
 
 ; 598  : }
 
-	mov	esp, ebp
 	pop	ebp
 	ret	0
 $LN2@PMC_ModPow:
-	push	ebx
+	push	esi
 
 ; 515  :     }
 ; 516  :     else if (m->IS_ONE)
 
-	mov	ebx, DWORD PTR _v$[ebp]
-	push	edi
-	mov	edx, DWORD PTR [ebx+16]
-	mov	eax, edx
+	mov	esi, DWORD PTR _v$[ebp]
+	mov	eax, DWORD PTR [esi+24]
 	and	eax, 2
-	test	cl, 4
+	test	dl, 4
 	je	SHORT $LN4@PMC_ModPow
 
 ; 517  :     {
@@ -99,8 +84,8 @@ $LN2@PMC_ModPow:
 ; 522  :             if (e->IS_ZERO)
 
 	mov	eax, DWORD PTR _e$[ebp]
-	test	BYTE PTR [eax+16], 2
-	jne	SHORT $LN40@PMC_ModPow
+	test	BYTE PTR [eax+24], 2
+	jne	SHORT $LN24@PMC_ModPow
 $LN12@PMC_ModPow:
 
 ; 593  :                     return (result);
@@ -110,15 +95,12 @@ $LN12@PMC_ModPow:
 ; 597  :     return (PMC_STATUS_OK);
 
 	mov	eax, DWORD PTR _r$[ebp]
-	pop	edi
-	pop	ebx
 	pop	esi
 	mov	DWORD PTR [eax], OFFSET _number_zero
 	xor	eax, eax
 
 ; 598  : }
 
-	mov	esp, ebp
 	pop	ebp
 	ret	0
 $LN4@PMC_ModPow:
@@ -158,11 +140,9 @@ $LN4@PMC_ModPow:
 ; 551  :             if (e->IS_ZERO)
 
 	mov	eax, DWORD PTR _e$[ebp]
-	test	BYTE PTR [eax+16], 2
+	test	BYTE PTR [eax+24], 2
 	je	SHORT $LN12@PMC_ModPow
-$LN40@PMC_ModPow:
-	pop	edi
-	pop	ebx
+$LN24@PMC_ModPow:
 
 ; 552  :             {
 ; 553  :                 // e が 0 の場合
@@ -175,7 +155,6 @@ $LN40@PMC_ModPow:
 
 ; 598  : }
 
-	mov	esp, ebp
 	pop	ebp
 	ret	0
 $LN10@PMC_ModPow:
@@ -190,8 +169,8 @@ $LN10@PMC_ModPow:
 ; 564  :         }
 ; 565  :         else if (v->IS_ONE)
 
-	test	dl, 4
-	jne	$LN39@PMC_ModPow
+	test	BYTE PTR [esi+24], 4
+	jne	SHORT $LN23@PMC_ModPow
 
 ; 566  :         {
 ; 567  :             // v が 1 の場合
@@ -204,268 +183,38 @@ $LN10@PMC_ModPow:
 ; 574  :             // v が 2 以上の場合
 ; 575  :             if (e->IS_ZERO)
 
-	mov	ecx, DWORD PTR _e$[ebp]
-	mov	eax, DWORD PTR [ecx+16]
+	mov	edx, DWORD PTR _e$[ebp]
+	mov	eax, DWORD PTR [edx+24]
 	test	al, 2
-	jne	$LN39@PMC_ModPow
+	jne	SHORT $LN23@PMC_ModPow
 
 ; 579  :             }
 ; 580  :             else if (e->IS_ONE)
 
+	push	DWORD PTR _r$[ebp]
+	push	ecx
 	test	al, 4
-	je	$LN18@PMC_ModPow
-
-; 107  :     if (u->UNIT_BIT_COUNT < v->UNIT_BIT_COUNT)
-
-	mov	eax, DWORD PTR [esi+4]
-	cmp	DWORD PTR [ebx+4], eax
-	jae	SHORT $LN24@PMC_ModPow
-
-; 108  :     {
-; 109  :         if ((result = DuplicateNumber(u, r)) != PMC_STATUS_OK)
-
-	push	DWORD PTR _r$[ebp]
-	push	ebx
-	call	_DuplicateNumber
-	add	esp, 8
-	test	eax, eax
-	je	$LN21@PMC_ModPow
-	pop	edi
-	pop	ebx
-	pop	esi
-
-; 598  : }
-
-	mov	esp, ebp
-	pop	ebp
-	ret	0
-$LN24@PMC_ModPow:
-
-; 116  :         __UNIT_TYPE* work_v_buf = AllocateBlock(v->UNIT_BIT_COUNT, &work_v_buf_words, &work_v_buf_code);
-
-	lea	ecx, DWORD PTR _work_v_buf_code$3[ebp]
-	push	ecx
-	lea	ecx, DWORD PTR _work_v_buf_words$5[ebp]
-	push	ecx
-	push	eax
-	call	_AllocateBlock
-	add	esp, 12					; 0000000cH
-	mov	DWORD PTR _work_v_buf$1$[ebp], eax
-
-; 117  :         if (work_v_buf == NULL)
-
-	test	eax, eax
-	je	SHORT $LN43@PMC_ModPow
-
-; 118  :         {
-; 119  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 120  :         }
-; 121  :         __UNIT_TYPE q_buf_code;
-; 122  :         __UNIT_TYPE q_buf_words;
-; 123  :         __UNIT_TYPE* q_buf = AllocateBlock(u->UNIT_BIT_COUNT - v->UNIT_BIT_COUNT + 1 + __UNIT_TYPE_BIT_COUNT, &q_buf_words, &q_buf_code);
-
-	lea	eax, DWORD PTR _q_buf_code$2[ebp]
-	push	eax
-	lea	eax, DWORD PTR _q_buf_words$4[ebp]
-	push	eax
-	mov	eax, DWORD PTR [ebx+4]
-	sub	eax, DWORD PTR [esi+4]
-	add	eax, 33					; 00000021H
-	push	eax
-	call	_AllocateBlock
-	mov	edi, eax
-	add	esp, 12					; 0000000cH
-	mov	DWORD PTR _q_buf$1$[ebp], edi
-
-; 124  :         if (q_buf == NULL)
-
-	test	edi, edi
-	jne	SHORT $LN28@PMC_ModPow
-
-; 125  :         {
-; 126  :             DeallocateBlock(work_v_buf, work_v_buf_words);
-
-	push	DWORD PTR _work_v_buf_words$5[ebp]
-	push	DWORD PTR _work_v_buf$1$[ebp]
-	call	_DeallocateBlock
-	add	esp, 8
-$LN43@PMC_ModPow:
-	pop	edi
-	pop	ebx
-
-; 127  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-
-	mov	eax, -5					; fffffffbH
-	pop	esi
-
-; 598  : }
-
-	mov	esp, ebp
-	pop	ebp
-	ret	0
-$LN28@PMC_ModPow:
-
-; 130  :         if ((result = AllocateNumber(r, u->UNIT_BIT_COUNT + __UNIT_TYPE_BIT_COUNT, &r_check_code)) != PMC_STATUS_OK)
-
-	lea	eax, DWORD PTR _r_check_code$1[ebp]
-	push	eax
-	mov	eax, DWORD PTR [ebx+4]
-	add	eax, 32					; 00000020H
-	push	eax
-	push	DWORD PTR _r$[ebp]
-	call	_AllocateNumber
-	add	esp, 12					; 0000000cH
-	test	eax, eax
-	je	SHORT $LN29@PMC_ModPow
-
-; 131  :         {
-; 132  :             DeallocateBlock(q_buf, q_buf_words);
-
-	push	DWORD PTR _q_buf_words$4[ebp]
-	push	edi
-	call	_DeallocateBlock
-
-; 133  :             DeallocateBlock(work_v_buf, work_v_buf_words);
-
-	push	DWORD PTR _work_v_buf_words$5[ebp]
-	push	DWORD PTR _work_v_buf$1$[ebp]
-	call	_DeallocateBlock
-	add	esp, 16					; 00000010H
-
-; 134  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-
-	mov	eax, -5					; fffffffbH
-	pop	edi
-	pop	ebx
-	pop	esi
-
-; 598  : }
-
-	mov	esp, ebp
-	pop	ebp
-	ret	0
-$LN29@PMC_ModPow:
-
-; 137  :         if (u->UNIT_WORD_COUNT < v->UNIT_WORD_COUNT)
-
-	mov	ecx, DWORD PTR [ebx]
-	mov	edx, DWORD PTR [esi]
-	mov	eax, DWORD PTR _r$[ebp]
-	cmp	ecx, edx
-	jae	SHORT $LN30@PMC_ModPow
-
-; 138  :         {
-; 139  :             q_buf[0] = 0;
-
-	mov	DWORD PTR [edi], 0
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-
-	mov	edi, DWORD PTR [eax]
-	mov	esi, DWORD PTR [ebx+24]
-	mov	ecx, DWORD PTR [ebx]
-	mov	edi, DWORD PTR [edi+24]
-	rep movsd
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-
-; 141  :         }
-
-	mov	edi, DWORD PTR _q_buf$1$[ebp]
-	jmp	SHORT $LN34@PMC_ModPow
-$LN30@PMC_ModPow:
-
-; 142  :         else
-; 143  :         {
-; 144  :             DivRem_X_X(u->BLOCK, u->UNIT_WORD_COUNT, v->BLOCK, v->UNIT_WORD_COUNT, work_v_buf, q_buf, (*r)->BLOCK);
-
-	mov	eax, DWORD PTR [eax]
-	push	DWORD PTR [eax+24]
-	push	edi
-	push	DWORD PTR _work_v_buf$1$[ebp]
-	push	edx
-	push	DWORD PTR [esi+24]
-	push	ecx
-	push	DWORD PTR [ebx+24]
-	call	_DivRem_X_X
-
-; 145  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
-
-	push	DWORD PTR _work_v_buf_code$3[ebp]
-	push	DWORD PTR _work_v_buf$1$[ebp]
-	call	_CheckBlockLight
-	add	esp, 36					; 00000024H
-	test	eax, eax
-	jne	SHORT $LN41@PMC_ModPow
-
-; 146  :                 return (result);
-; 147  :             if ((result = CheckBlockLight(q_buf, q_buf_code)) != PMC_STATUS_OK)
-
-	push	DWORD PTR _q_buf_code$2[ebp]
-	push	edi
-	call	_CheckBlockLight
-	add	esp, 8
-	test	eax, eax
-	jne	SHORT $LN41@PMC_ModPow
-
-; 148  :                 return (result);
-; 149  :             if ((result = CheckBlockLight((*r)->BLOCK, r_check_code)) != PMC_STATUS_OK)
-
-	mov	eax, DWORD PTR _r$[ebp]
-	push	DWORD PTR _r_check_code$1[ebp]
-	mov	eax, DWORD PTR [eax]
-	push	DWORD PTR [eax+24]
-	call	_CheckBlockLight
-	add	esp, 8
-	test	eax, eax
-	jne	SHORT $LN41@PMC_ModPow
-$LN34@PMC_ModPow:
-
-; 150  :                 return (result);
-; 151  :         }
-; 152  : 
-; 153  :         DeallocateBlock(q_buf, q_buf_words);
-
-	push	DWORD PTR _q_buf_words$4[ebp]
-	push	edi
-	call	_DeallocateBlock
-
-; 154  :         DeallocateBlock(work_v_buf, work_v_buf_words);
-
-	push	DWORD PTR _work_v_buf_words$5[ebp]
-	push	DWORD PTR _work_v_buf$1$[ebp]
-	call	_DeallocateBlock
-
-; 155  :         CommitNumber(*r);
-
-	mov	eax, DWORD PTR _r$[ebp]
-	push	DWORD PTR [eax]
-	call	_CommitNumber
-	add	esp, 20					; 00000014H
-
-; 593  :                     return (result);
-; 594  :             }
-; 595  :         }
-; 596  :     }
-; 597  :     return (PMC_STATUS_OK);
-
-	xor	eax, eax
-	pop	edi
-	pop	ebx
-	pop	esi
-
-; 598  : }
-
-	mov	esp, ebp
-	pop	ebp
-	ret	0
-$LN18@PMC_ModPow:
+	je	SHORT $LN18@PMC_ModPow
 
 ; 581  :             {
 ; 582  :                 // e が 1 の場合
 ; 583  : 
 ; 584  :                 // v % m を計算して返す
 ; 585  :                 if ((result = Remainder(v, m, r)) != PMC_STATUS_OK)
+
+	push	esi
+	call	_Remainder
+	add	esp, 12					; 0000000cH
+	test	eax, eax
+	je	SHORT $LN21@PMC_ModPow
+	pop	esi
+
+; 598  : }
+
+	pop	ebp
+	ret	0
+$LN18@PMC_ModPow:
+
 ; 586  :                     return (result);
 ; 587  :             }
 ; 588  :             else
@@ -474,24 +223,19 @@ $LN18@PMC_ModPow:
 ; 591  :                 // v の e 乗 の m による剰余を計算して返す
 ; 592  :                 if ((result = ModulePower(v, e, m, r)) != PMC_STATUS_OK)
 
-	push	DWORD PTR _r$[ebp]
+	push	edx
 	push	esi
-	push	ecx
-	push	ebx
 	call	_ModulePower
 	add	esp, 16					; 00000010H
 	test	eax, eax
 	je	SHORT $LN21@PMC_ModPow
-	pop	edi
-	pop	ebx
 	pop	esi
 
 ; 598  : }
 
-	mov	esp, ebp
 	pop	ebp
 	ret	0
-$LN39@PMC_ModPow:
+$LN23@PMC_ModPow:
 
 ; 576  :             {
 ; 577  :                 // e が 0 の場合
@@ -508,14 +252,10 @@ $LN21@PMC_ModPow:
 ; 597  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
-$LN41@PMC_ModPow:
-	pop	edi
-	pop	ebx
 	pop	esi
 
 ; 598  : }
 
-	mov	esp, ebp
 	pop	ebp
 	ret	0
 _PMC_ModPow_X_X_X_Imp ENDP
@@ -545,7 +285,7 @@ _TEXT	ENDS
 ;	COMDAT _ModulePower
 _TEXT	SEGMENT
 _r_check_code$ = -92					; size = 4
-tv868 = -88						; size = 4
+tv912 = -88						; size = 4
 _v_2_buf_code$ = -84					; size = 4
 _t$1$ = -80						; size = 4
 _t$1$ = -80						; size = 4
@@ -571,7 +311,7 @@ _work_1_buf$1$ = -4					; size = 4
 _u_ptr$1$ = 8						; size = 4
 _v$ = 8							; size = 4
 _e$ = 12						; size = 4
-tv922 = 16						; size = 4
+tv967 = 16						; size = 4
 _work_v_buf$1$ = 16					; size = 4
 _m$ = 16						; size = 4
 _r$ = 20						; size = 4
@@ -608,10 +348,10 @@ _ModulePower PROC					; COMDAT
 	push	ecx
 	lea	ecx, DWORD PTR _v_2_buf_words$[ebp]
 	push	ecx
-	mov	eax, DWORD PTR [edi+24]
-	mov	ebx, DWORD PTR [edi]
+	mov	eax, DWORD PTR [edi+32]
+	mov	ebx, DWORD PTR [edi+8]
 	mov	DWORD PTR _m_buf$1$[ebp], eax
-	mov	eax, DWORD PTR [esi]
+	mov	eax, DWORD PTR [esi+8]
 	inc	eax
 	mov	DWORD PTR _m_count$1$[ebp], ebx
 	shl	eax, 5
@@ -642,7 +382,7 @@ _ModulePower PROC					; COMDAT
 	add	eax, 32					; 00000020H
 	push	ecx
 	push	eax
-	mov	DWORD PTR tv922[ebp], eax
+	mov	DWORD PTR tv967[ebp], eax
 	call	_AllocateBlock
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _work_1_buf$1$[ebp], eax
@@ -688,7 +428,7 @@ $LN11@ModulePowe:
 	push	eax
 	lea	eax, DWORD PTR _work_2_buf_words$[ebp]
 	push	eax
-	push	DWORD PTR tv922[ebp]
+	push	DWORD PTR tv967[ebp]
 	call	_AllocateBlock
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _work_2_buf$1$[ebp], eax
@@ -795,7 +535,7 @@ $LN13@ModulePowe:
 ; 212  : 
 ; 213  :     __UNIT_TYPE q_buf_bit_count = _MAXIMUM_UNIT(v->UNIT_BIT_COUNT, m->UNIT_BIT_COUNT * 2) - m->UNIT_BIT_COUNT + 1 + __UNIT_TYPE_BIT_COUNT;
 
-	mov	ecx, DWORD PTR [edi+4]
+	mov	ecx, DWORD PTR [edi+12]
 
 ; 216  :     __UNIT_TYPE* q_buf = AllocateBlock(q_buf_bit_count, &q_buf_words, &q_buf_code);
 
@@ -806,10 +546,10 @@ $LN13@ModulePowe:
 	lea	edx, DWORD PTR [ecx+ecx]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 485  :     return (x >= y ? x : y);
+; 490  :     return (x >= y ? x : y);
 
-	cmp	DWORD PTR [esi+4], edx
-	cmovae	edx, DWORD PTR [esi+4]
+	cmp	DWORD PTR [esi+12], edx
+	cmovae	edx, DWORD PTR [esi+12]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
 ; 216  :     __UNIT_TYPE* q_buf = AllocateBlock(q_buf_bit_count, &q_buf_words, &q_buf_code);
@@ -879,7 +619,7 @@ $LN14@ModulePowe:
 
 	lea	eax, DWORD PTR _r_check_code$[ebp]
 	push	eax
-	push	DWORD PTR [edi+4]
+	push	DWORD PTR [edi+12]
 	mov	edi, DWORD PTR _r$[ebp]
 	push	edi
 	call	_AllocateNumber
@@ -942,7 +682,7 @@ $LN15@ModulePowe:
 ; 238  :     __UNIT_TYPE v_count;
 ; 239  :     int cmp = Compare_Easy(v->BLOCK, v->UNIT_WORD_COUNT, m_buf, m_count);
 
-	mov	eax, DWORD PTR [esi]
+	mov	eax, DWORD PTR [esi+8]
 
 ; 88   :     if (u_count > v_count)
 
@@ -962,8 +702,8 @@ $LN16@ModulePowe:
 ; 257  :     }
 ; 258  :     else if (cmp > 0)
 
-	mov	ecx, DWORD PTR [esi]
-	mov	esi, DWORD PTR [esi+24]
+	mov	ecx, DWORD PTR [esi+8]
+	mov	esi, DWORD PTR [esi+32]
 	test	eax, eax
 	jle	$LN18@ModulePowe
 
@@ -1030,13 +770,13 @@ $LN16@ModulePowe:
 
 	lea	eax, DWORD PTR [ebx-1]
 	lea	eax, DWORD PTR [esi+eax*4]
-	npad	5
+	npad	1
 $LL2@ModulePowe:
 
 ; 272  :         while (v_count > 0 && v_2_buf[v_count - 1] == 0)
 
 	cmp	DWORD PTR [eax], 0
-	jne	SHORT $LN3@ModulePowe
+	jne	$LN3@ModulePowe
 
 ; 273  :             --v_count;
 
@@ -1067,7 +807,7 @@ $LN52@ModulePowe:
 
 	push	eax
 	push	DWORD PTR _m_buf$1$[ebp]
-	push	DWORD PTR [esi+24]
+	push	DWORD PTR [esi+32]
 	call	_Compare_Imp
 	add	esp, 12					; 0000000cH
 
@@ -1200,7 +940,7 @@ $LN18@ModulePowe:
 	mov	eax, DWORD PTR _v$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _v_2_buf$1$[ebp]
 	rep movsd
@@ -1208,7 +948,7 @@ $LN18@ModulePowe:
 
 ; 296  :         v_count = v->UNIT_WORD_COUNT;
 
-	mov	eax, DWORD PTR [eax]
+	mov	eax, DWORD PTR [eax+8]
 	mov	esi, DWORD PTR _v_2_buf$1$[ebp]
 	mov	DWORD PTR _v_count$1$[ebp], eax
 $LN19@ModulePowe:
@@ -1222,53 +962,53 @@ $LN19@ModulePowe:
 ; 303  :     __UNIT_TYPE e_count = e->UNIT_WORD_COUNT;
 
 	mov	eax, DWORD PTR _e$[ebp]
-	mov	ecx, DWORD PTR [eax]
+	mov	ecx, DWORD PTR [eax+8]
 
 ; 304  :     __UNIT_TYPE e_mask = ~((__UNIT_TYPE)-1 >> 1);
 ; 305  :     e_mask = e_mask >> _LZCNT_ALT_UNIT(e->BLOCK[e_count - 1]);
 
-	mov	eax, DWORD PTR [eax+24]
+	mov	eax, DWORD PTR [eax+32]
 	mov	DWORD PTR _e_count$1$[ebp], ecx
 	mov	eax, DWORD PTR [eax+ecx*4-4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 911  :     if (x == 0)
+; 916  :     if (x == 0)
 
 	test	eax, eax
 	jne	SHORT $LN58@ModulePowe
 
-; 912  :         return (sizeof(x) * 8);
+; 917  :         return (sizeof(x) * 8);
 
 	lea	ecx, DWORD PTR [eax+32]
 	jmp	SHORT $LN57@ModulePowe
 $LN58@ModulePowe:
 
-; 913  : #ifdef _M_IX86
-; 914  :     _UINT32_T pos;
-; 915  : #ifdef _MSC_VER
-; 916  :     _BitScanReverse(&pos, x);
+; 918  : #ifdef _M_IX86
+; 919  :     _UINT32_T pos;
+; 920  : #ifdef _MSC_VER
+; 921  :     _BitScanReverse(&pos, x);
 
 	bsr	eax, eax
 
-; 917  : #elif defined(__GNUC__)
-; 918  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 919  : #else
-; 920  : #error unknown compiler
-; 921  : #endif
-; 922  : #elif defined(_M_X64)
-; 923  : #ifdef _MSC_VER
-; 924  :     _UINT32_T pos;
-; 925  :     _BitScanReverse64(&pos, x);
-; 926  : #elif defined(__GNUC__)
-; 927  :     _UINT64_T pos;
-; 928  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 929  : #else
-; 930  : #error unknown compiler
-; 931  : #endif
-; 932  : #else
-; 933  : #error unknown platform
-; 934  : #endif
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 922  : #elif defined(__GNUC__)
+; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 924  : #else
+; 925  : #error unknown compiler
+; 926  : #endif
+; 927  : #elif defined(_M_X64)
+; 928  : #ifdef _MSC_VER
+; 929  :     _UINT32_T pos;
+; 930  :     _BitScanReverse64(&pos, x);
+; 931  : #elif defined(__GNUC__)
+; 932  :     _UINT64_T pos;
+; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 934  : #else
+; 935  : #error unknown compiler
+; 936  : #endif
+; 937  : #else
+; 938  : #error unknown platform
+; 939  : #endif
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
@@ -1280,11 +1020,11 @@ $LN57@ModulePowe:
 	mov	edx, DWORD PTR _work_1_buf$1$[ebp]
 	mov	eax, -2147483648			; 80000000H
 	mov	edi, eax
-	mov	DWORD PTR tv868[ebp], eax
+	mov	DWORD PTR tv912[ebp], eax
 	shr	edi, cl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
@@ -1296,7 +1036,7 @@ $LN57@ModulePowe:
 	mov	DWORD PTR _e_mask$1$[ebp], edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _work_1_buf$1$[ebp]
 	rep movsd
@@ -1312,7 +1052,6 @@ $LN57@ModulePowe:
 
 	jbe	$LN5@ModulePowe
 	mov	esi, DWORD PTR _m_count$1$[ebp]
-	npad	6
 $LL4@ModulePowe:
 
 ; 321  :     {
@@ -1331,7 +1070,7 @@ $LL4@ModulePowe:
 
 ; 330  :         if (e_mask == 0)
 
-	cmove	eax, DWORD PTR tv868[ebp]
+	cmove	eax, DWORD PTR tv912[ebp]
 	mov	DWORD PTR _e_mask$1$[ebp], eax
 
 ; 331  :         {
@@ -1350,7 +1089,7 @@ $LL4@ModulePowe:
 	je	$LN5@ModulePowe
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _work_1_buf_words$[ebp]
 	xor	eax, eax
@@ -1444,7 +1183,7 @@ $LL4@ModulePowe:
 	jb	$LN123@ModulePowe
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _work_v_buf_words$[ebp]
 	xor	eax, eax
@@ -1639,13 +1378,13 @@ $LN7@ModulePowe:
 	mov	eax, DWORD PTR _e$[ebp]
 	mov	esi, DWORD PTR _e_count$1$[ebp]
 	mov	edi, DWORD PTR _e_mask$1$[ebp]
-	mov	eax, DWORD PTR [eax+24]
+	mov	eax, DWORD PTR [eax+32]
 	test	DWORD PTR [eax+esi*4-4], edi
 	mov	esi, DWORD PTR _m_count$1$[ebp]
 	je	$LN122@ModulePowe
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	edi, ecx
 	xor	eax, eax
@@ -1742,7 +1481,7 @@ $LN7@ModulePowe:
 	jb	$LL4@ModulePowe
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _work_v_buf_words$[ebp]
 	xor	eax, eax
@@ -1901,13 +1640,13 @@ $LN124@ModulePowe:
 $LN5@ModulePowe:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	eax, DWORD PTR _r$[ebp]
 	mov	esi, edx
 	mov	ecx, ebx
 	mov	edi, DWORD PTR [eax]
-	mov	edi, DWORD PTR [edi+24]
+	mov	edi, DWORD PTR [edi+32]
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
@@ -1915,7 +1654,7 @@ $LN5@ModulePowe:
 
 	mov	eax, DWORD PTR [eax]
 	push	DWORD PTR _r_check_code$[ebp]
-	push	DWORD PTR [eax+24]
+	push	DWORD PTR [eax+32]
 	call	_CheckBlockLight
 	add	esp, 8
 	test	eax, eax
@@ -2008,8 +1747,8 @@ _Remainder PROC						; COMDAT
 	push	esi
 	mov	esi, DWORD PTR _v$[ebp]
 	push	edi
-	mov	eax, DWORD PTR [esi+4]
-	cmp	DWORD PTR [ebx+4], eax
+	mov	eax, DWORD PTR [esi+12]
+	cmp	DWORD PTR [ebx+12], eax
 	jae	SHORT $LN2@Remainder
 
 ; 108  :     {
@@ -2066,8 +1805,8 @@ $LN2@Remainder:
 	push	eax
 	lea	eax, DWORD PTR _q_buf_words$4[ebp]
 	push	eax
-	mov	eax, DWORD PTR [ebx+4]
-	sub	eax, DWORD PTR [esi+4]
+	mov	eax, DWORD PTR [ebx+12]
+	sub	eax, DWORD PTR [esi+12]
 	add	eax, 33					; 00000021H
 	push	eax
 	call	_AllocateBlock
@@ -2107,7 +1846,7 @@ $LN6@Remainder:
 
 	lea	eax, DWORD PTR _r_check_code$1[ebp]
 	push	eax
-	mov	eax, DWORD PTR [ebx+4]
+	mov	eax, DWORD PTR [ebx+12]
 	add	eax, 32					; 00000020H
 	push	eax
 	push	DWORD PTR _r$[ebp]
@@ -2149,9 +1888,9 @@ $LN7@Remainder:
 ; 137  :         if (u->UNIT_WORD_COUNT < v->UNIT_WORD_COUNT)
 
 	mov	ecx, DWORD PTR _v$[ebp]
-	mov	edx, DWORD PTR [ebx]
+	mov	edx, DWORD PTR [ebx+8]
 	mov	eax, DWORD PTR _r$[ebp]
-	cmp	edx, DWORD PTR [ecx]
+	cmp	edx, DWORD PTR [ecx+8]
 	jae	SHORT $LN8@Remainder
 
 ; 138  :         {
@@ -2160,12 +1899,12 @@ $LN7@Remainder:
 	mov	DWORD PTR [esi], 0
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
 
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR [eax]
-	mov	esi, DWORD PTR [ebx+24]
-	mov	ecx, DWORD PTR [ebx]
-	mov	edi, DWORD PTR [edi+24]
+	mov	esi, DWORD PTR [ebx+32]
+	mov	ecx, DWORD PTR [ebx+8]
+	mov	edi, DWORD PTR [edi+32]
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
@@ -2181,13 +1920,13 @@ $LN8@Remainder:
 ; 144  :             DivRem_X_X(u->BLOCK, u->UNIT_WORD_COUNT, v->BLOCK, v->UNIT_WORD_COUNT, work_v_buf, q_buf, (*r)->BLOCK);
 
 	mov	eax, DWORD PTR [eax]
-	push	DWORD PTR [eax+24]
+	push	DWORD PTR [eax+32]
 	push	esi
 	push	edi
-	push	DWORD PTR [ecx]
-	push	DWORD PTR [ecx+24]
+	push	DWORD PTR [ecx+8]
+	push	DWORD PTR [ecx+32]
 	push	edx
-	push	DWORD PTR [ebx+24]
+	push	DWORD PTR [ebx+32]
 	call	_DivRem_X_X
 
 ; 145  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
@@ -2215,7 +1954,7 @@ $LN8@Remainder:
 	mov	eax, DWORD PTR _r$[ebp]
 	push	DWORD PTR _r_check_code$1[ebp]
 	mov	eax, DWORD PTR [eax]
-	push	DWORD PTR [eax+24]
+	push	DWORD PTR [eax+32]
 	call	_CheckBlockLight
 	add	esp, 8
 	test	eax, eax
@@ -2364,58 +2103,58 @@ _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 910  : {
+; 915  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 911  :     if (x == 0)
+; 916  :     if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 912  :         return (sizeof(x) * 8);
+; 917  :         return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 936  : }
+; 941  : }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 913  : #ifdef _M_IX86
-; 914  :     _UINT32_T pos;
-; 915  : #ifdef _MSC_VER
-; 916  :     _BitScanReverse(&pos, x);
+; 918  : #ifdef _M_IX86
+; 919  :     _UINT32_T pos;
+; 920  : #ifdef _MSC_VER
+; 921  :     _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 917  : #elif defined(__GNUC__)
-; 918  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 919  : #else
-; 920  : #error unknown compiler
-; 921  : #endif
-; 922  : #elif defined(_M_X64)
-; 923  : #ifdef _MSC_VER
-; 924  :     _UINT32_T pos;
-; 925  :     _BitScanReverse64(&pos, x);
-; 926  : #elif defined(__GNUC__)
-; 927  :     _UINT64_T pos;
-; 928  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 929  : #else
-; 930  : #error unknown compiler
-; 931  : #endif
-; 932  : #else
-; 933  : #error unknown platform
-; 934  : #endif
-; 935  :     return (sizeof(x) * 8 - 1 - pos);
+; 922  : #elif defined(__GNUC__)
+; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 924  : #else
+; 925  : #error unknown compiler
+; 926  : #endif
+; 927  : #elif defined(_M_X64)
+; 928  : #ifdef _MSC_VER
+; 929  :     _UINT32_T pos;
+; 930  :     _BitScanReverse64(&pos, x);
+; 931  : #elif defined(__GNUC__)
+; 932  :     _UINT64_T pos;
+; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 934  : #else
+; 935  : #error unknown compiler
+; 936  : #endif
+; 937  : #else
+; 938  : #error unknown platform
+; 939  : #endif
+; 940  :     return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 936  : }
+; 941  : }
 
 	pop	ebp
 	ret	0
@@ -2429,18 +2168,18 @@ _x$ = 8							; size = 4
 _y$ = 12						; size = 4
 __MAXIMUM_UNIT PROC					; COMDAT
 
-; 484  : {
+; 489  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 485  :     return (x >= y ? x : y);
+; 490  :     return (x >= y ? x : y);
 
 	mov	eax, DWORD PTR _y$[ebp]
 	cmp	DWORD PTR _x$[ebp], eax
 	cmovae	eax, DWORD PTR _x$[ebp]
 
-; 486  : }
+; 491  : }
 
 	pop	ebp
 	ret	0
@@ -2454,13 +2193,13 @@ _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_UNIT PROC					; COMDAT
 
-; 397  : {
+; 402  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 398  : #ifdef _M_IX86
-; 399  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 403  : #ifdef _M_IX86
+; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	xor	eax, eax
@@ -2469,12 +2208,12 @@ __ZERO_MEMORY_UNIT PROC					; COMDAT
 	rep stosd
 	pop	edi
 
-; 400  : #elif defined(_M_X64)
-; 401  :     __stosq(d, 0, count);
-; 402  : #else
-; 403  : #error unknown platform
-; 404  : #endif
-; 405  : }
+; 405  : #elif defined(_M_X64)
+; 406  :     __stosq(d, 0, count);
+; 407  : #else
+; 408  : #error unknown platform
+; 409  : #endif
+; 410  : }
 
 	pop	ebp
 	ret	0
@@ -2489,13 +2228,13 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 347  : {
+; 352  : {
 
 	push	ebp
 	mov	ebp, esp
 
-; 348  : #ifdef _M_IX86
-; 349  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 353  : #ifdef _M_IX86
+; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	push	esi
@@ -2506,12 +2245,12 @@ __COPY_MEMORY_UNIT PROC					; COMDAT
 	pop	edi
 	pop	esi
 
-; 350  : #elif defined(_M_X64)
-; 351  :     __movsq(d, s, count);
-; 352  : #else
-; 353  : #error unknown platform
-; 354  : #endif
-; 355  : }
+; 355  : #elif defined(_M_X64)
+; 356  :     __movsq(d, s, count);
+; 357  : #else
+; 358  : #error unknown platform
+; 359  : #endif
+; 360  : }
 
 	pop	ebp
 	ret	0
@@ -2532,43 +2271,44 @@ _PMC_ModPow_X_X_X@16 PROC				; COMDAT
 	push	ebp
 	mov	ebp, esp
 	push	ebx
-	push	esi
 
 ; 602  :     if (v == NULL)
 
-	mov	esi, DWORD PTR _v$[ebp]
+	mov	ebx, DWORD PTR _v$[ebp]
+	push	esi
 	push	edi
-	test	esi, esi
-	je	SHORT $LN11@PMC_ModPow
+	test	ebx, ebx
+	je	SHORT $LN35@PMC_ModPow
 
 ; 603  :         return (PMC_STATUS_ARGUMENT_ERROR);
 ; 604  :     if (e == NULL)
 
 	mov	edi, DWORD PTR _e$[ebp]
 	test	edi, edi
-	je	SHORT $LN11@PMC_ModPow
+	je	SHORT $LN35@PMC_ModPow
 
 ; 605  :         return (PMC_STATUS_ARGUMENT_ERROR);
 ; 606  :     if (m == NULL)
 
-	mov	ebx, DWORD PTR _m$[ebp]
-	test	ebx, ebx
-	je	SHORT $LN11@PMC_ModPow
+	cmp	DWORD PTR _m$[ebp], 0
+	je	SHORT $LN35@PMC_ModPow
 
 ; 607  :         return (PMC_STATUS_ARGUMENT_ERROR);
 ; 608  :     if (r == NULL)
 
-	cmp	DWORD PTR _r$[ebp], 0
-	je	SHORT $LN11@PMC_ModPow
+	mov	esi, DWORD PTR _r$[ebp]
+	test	esi, esi
+	je	SHORT $LN35@PMC_ModPow
 
+; 609  :         return (PMC_STATUS_ARGUMENT_ERROR);
 ; 610  :     PMC_STATUS_CODE result;
 ; 611  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
 
-	push	esi
+	push	ebx
 	call	_CheckNumber
 	add	esp, 4
 	test	eax, eax
-	jne	SHORT $LN9@PMC_ModPow
+	jne	SHORT $LN1@PMC_ModPow
 
 ; 612  :         return (result);
 ; 613  :     if ((result = CheckNumber((NUMBER_HEADER*)e)) != PMC_STATUS_OK)
@@ -2577,57 +2317,186 @@ _PMC_ModPow_X_X_X@16 PROC				; COMDAT
 	call	_CheckNumber
 	add	esp, 4
 	test	eax, eax
-	jne	SHORT $LN9@PMC_ModPow
+	jne	SHORT $LN1@PMC_ModPow
 
 ; 614  :         return (result);
 ; 615  :     if ((result = CheckNumber((NUMBER_HEADER*)m)) != PMC_STATUS_OK)
 
-	push	ebx
+	push	DWORD PTR _m$[ebp]
 	call	_CheckNumber
 	add	esp, 4
 	test	eax, eax
-	jne	SHORT $LN9@PMC_ModPow
+	jne	SHORT $LN1@PMC_ModPow
 
-; 616  :         return (result);
-; 617  :     if ((result = PMC_ModPow_X_X_X_Imp((NUMBER_HEADER*)v, (NUMBER_HEADER*)e, (NUMBER_HEADER*)m, (NUMBER_HEADER**)r)) != PMC_STATUS_OK)
+; 509  :     if (m->IS_ZERO)
 
-	push	DWORD PTR _r$[ebp]
-	push	ebx
-	push	edi
-	push	esi
-	call	_PMC_ModPow_X_X_X_Imp
-	add	esp, 16					; 00000010H
+	mov	eax, DWORD PTR _m$[ebp]
+	mov	edx, DWORD PTR [eax+24]
+	test	dl, 2
+	je	SHORT $LN12@PMC_ModPow
+
+; 624  : }
+
+	pop	edi
+	pop	esi
+
+; 514  :         return (PMC_STATUS_DIVISION_BY_ZERO);
+
+	mov	eax, -3					; fffffffdH
+
+; 624  : }
+
+	pop	ebx
+	pop	ebp
+	ret	16					; 00000010H
+$LN12@PMC_ModPow:
+
+; 516  :     else if (m->IS_ONE)
+
+	mov	ecx, DWORD PTR [ebx+24]
+	and	ecx, 2
+	test	dl, 4
+	je	SHORT $LN14@PMC_ModPow
+
+; 517  :     {
+; 518  :         // m が 1 の場合
+; 519  :         if (v->IS_ZERO)
+
+	test	ecx, ecx
+	je	SHORT $LN22@PMC_ModPow
+
+; 520  :         {
+; 521  :             // v が 0 の場合
+; 522  :             if (e->IS_ZERO)
+
+	test	BYTE PTR [edi+24], 2
+	je	SHORT $LN22@PMC_ModPow
+$LN35@PMC_ModPow:
+
+; 624  : }
+
+	or	eax, -1
+$LN1@PMC_ModPow:
+	pop	edi
+	pop	esi
+	pop	ebx
+	pop	ebp
+	ret	16					; 00000010H
+$LN14@PMC_ModPow:
+
+; 548  :         if (v->IS_ZERO)
+
+	test	ecx, ecx
+	je	SHORT $LN20@PMC_ModPow
+
+; 549  :         {
+; 550  :             // v が 0 の場合
+; 551  :             if (e->IS_ZERO)
+
+	test	BYTE PTR [edi+24], 2
+	jne	SHORT $LN35@PMC_ModPow
+$LN22@PMC_ModPow:
 	pop	edi
 
-; 618  :         return (result);
 ; 619  : #ifdef _DEBUG
 ; 620  :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
 ; 621  :         return (result);
 ; 622  : #endif
 ; 623  :     return (PMC_STATUS_OK);
+
+	mov	DWORD PTR [esi], OFFSET _number_zero
+	xor	eax, eax
+
 ; 624  : }
 
 	pop	esi
 	pop	ebx
 	pop	ebp
 	ret	16					; 00000010H
-$LN11@PMC_ModPow:
+$LN20@PMC_ModPow:
 
-; 609  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 565  :         else if (v->IS_ONE)
 
-	or	eax, -1
+	test	BYTE PTR [ebx+24], 4
+	jne	SHORT $LN34@PMC_ModPow
+
+; 566  :         {
+; 567  :             // v が 1 の場合
+; 568  : 
+; 569  :             // 1 を何乗しても 1 であり、1 を 2 以上の数で割ればその剰余は必ず 1 となる
+; 570  :             *r = &number_one;
+; 571  :         }
+; 572  :         else
+; 573  :         {
+; 574  :             // v が 2 以上の場合
+; 575  :             if (e->IS_ZERO)
+
+	mov	ecx, DWORD PTR [edi+24]
+	test	cl, 2
+	jne	SHORT $LN34@PMC_ModPow
+
+; 579  :             }
+; 580  :             else if (e->IS_ONE)
+
+	push	esi
+	push	eax
+	test	cl, 4
+	je	SHORT $LN28@PMC_ModPow
+
+; 581  :             {
+; 582  :                 // e が 1 の場合
+; 583  : 
+; 584  :                 // v % m を計算して返す
+; 585  :                 if ((result = Remainder(v, m, r)) != PMC_STATUS_OK)
+
+	push	ebx
+	call	_Remainder
+	add	esp, 12					; 0000000cH
+
+; 586  :                     return (result);
+
+	jmp	SHORT $LN37@PMC_ModPow
+$LN28@PMC_ModPow:
+
+; 587  :             }
+; 588  :             else
+; 589  :             {
+; 590  :                 // v、e、m がすべて 2 以上である場合
+; 591  :                 // v の e 乗 の m による剰余を計算して返す
+; 592  :                 if ((result = ModulePower(v, e, m, r)) != PMC_STATUS_OK)
+
+	push	edi
+	push	ebx
+	call	_ModulePower
+	add	esp, 16					; 00000010H
+$LN37@PMC_ModPow:
+
+; 616  :         return (result);
+; 617  :     if ((result = PMC_ModPow_X_X_X_Imp((NUMBER_HEADER*)v, (NUMBER_HEADER*)e, (NUMBER_HEADER*)m, (NUMBER_HEADER**)r)) != PMC_STATUS_OK)
+; 618  :         return (result);
+
+	test	eax, eax
+	je	SHORT $LN9@PMC_ModPow
+
+; 624  : }
+
+	pop	edi
+	pop	esi
+	pop	ebx
+	pop	ebp
+	ret	16					; 00000010H
+$LN34@PMC_ModPow:
+
+; 578  :                 *r = &number_one;
+
+	mov	DWORD PTR [esi], OFFSET _number_one
 $LN9@PMC_ModPow:
 	pop	edi
 
-; 618  :         return (result);
-; 619  : #ifdef _DEBUG
-; 620  :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
-; 621  :         return (result);
-; 622  : #endif
-; 623  :     return (PMC_STATUS_OK);
 ; 624  : }
 
 	pop	esi
+	xor	eax, eax
 	pop	ebx
 	pop	ebp
 	ret	16					; 00000010H

@@ -76,7 +76,7 @@ $LN15:
 ; 58   :     case PMC_PROPERTY_IS_ZERO:
 ; 59   :         *o = nx->IS_ZERO;
 
-	mov	eax, DWORD PTR [rdi+32]
+	mov	eax, DWORD PTR [rdi+40]
 	shr	eax, 1
 	and	eax, ebx
 	mov	DWORD PTR [rsi], eax
@@ -100,7 +100,7 @@ $LN9@PMC_GetPro:
 ; 55   :     case PMC_PROPERTY_IS_POWER_OF_TWO:
 ; 56   :         *o = nx->IS_POWER_OF_TWO;
 
-	mov	eax, DWORD PTR [rdi+32]
+	mov	eax, DWORD PTR [rdi+40]
 	shr	eax, 4
 	and	eax, 1
 	mov	DWORD PTR [rsi], eax
@@ -124,7 +124,7 @@ $LN8@PMC_GetPro:
 ; 52   :     case PMC_PROPERTY_IS_ONE:
 ; 53   :         *o = nx->IS_ONE;
 
-	mov	eax, DWORD PTR [rdi+32]
+	mov	eax, DWORD PTR [rdi+40]
 	shr	eax, 2
 	and	eax, 1
 	mov	DWORD PTR [rsi], eax
@@ -149,7 +149,7 @@ $LN7@PMC_GetPro:
 ; 49   :     case PMC_PROPERTY_IS_EVEN:
 ; 50   :         *o = nx->IS_EVEN;
 
-	mov	eax, DWORD PTR [rdi+32]
+	mov	eax, DWORD PTR [rdi+40]
 	shr	eax, 3
 	and	eax, 1
 	mov	DWORD PTR [rsi], eax

@@ -223,9 +223,13 @@
     <ClInclude Include="pmc_cpuid.h" />
     <ClInclude Include="pmc_debug.h" />
     <ClInclude Include="pmc_internal.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".dep.inc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Palmtree.Math.Core.Implements.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,7 +5,7 @@
 	.seh_proc	PMC_Compare_X_I_Imp
 PMC_Compare_X_I_Imp:
 	.seh_endprologue
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	je	.L2
 	testl	%edx, %edx
 	jne	.L3
@@ -18,7 +18,7 @@ PMC_Compare_X_I_Imp:
 	je	.L6
 	movl	$31, %eax
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %r9d
  # 0 "" 2
 /NO_APP
@@ -26,10 +26,10 @@ PMC_Compare_X_I_Imp:
 	movl	$32, %r9d
 	cltq
 	subq	%rax, %r9
-	cmpq	%r9, 8(%rcx)
+	cmpq	%r9, 16(%rcx)
 	ja	.L6
 	jb	.L3
-	movq	48(%rcx), %rax
+	movq	56(%rcx), %rax
 	movl	%edx, %edx
 	cmpq	%rdx, (%rax)
 	ja	.L6
@@ -47,7 +47,7 @@ PMC_Compare_X_I_Imp:
 	.seh_proc	PMC_Compare_X_L_Imp
 PMC_Compare_X_L_Imp:
 	.seh_endprologue
-	testb	$2, 32(%rcx)
+	testb	$2, 40(%rcx)
 	je	.L10
 	testq	%rdx, %rdx
 	jne	.L11
@@ -60,7 +60,7 @@ PMC_Compare_X_L_Imp:
 	je	.L14
 	movl	$63, %eax
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %rdx, %r9
  # 0 "" 2
 /NO_APP
@@ -68,10 +68,10 @@ PMC_Compare_X_L_Imp:
 	movl	$64, %r9d
 	cltq
 	subq	%rax, %r9
-	cmpq	%r9, 8(%rcx)
+	cmpq	%r9, 16(%rcx)
 	ja	.L14
 	jb	.L11
-	movq	48(%rcx), %rax
+	movq	56(%rcx), %rax
 	cmpq	(%rax), %rdx
 	jb	.L14
 	jbe	.L15
@@ -343,14 +343,14 @@ PMC_Compare_X_X:
 	call	CheckNumber
 	testl	%eax, %eax
 	jne	.L37
-	movzbl	32(%rsi), %edx
+	movzbl	40(%rsi), %edx
 	andl	$2, %edx
-	testb	$2, 32(%rbx)
+	testb	$2, 40(%rbx)
 	jne	.L53
 	testb	%dl, %dl
 	jne	.L41
-	movq	8(%rsi), %rcx
-	cmpq	%rcx, 8(%rbx)
+	movq	16(%rsi), %rcx
+	cmpq	%rcx, 16(%rbx)
 	ja	.L41
 	jnb	.L42
 	movl	$-1, (%rdi)
@@ -377,9 +377,9 @@ PMC_Compare_X_X:
 	ret
 	.p2align 4,,10
 .L42:
-	movq	(%rbx), %r9
-	movq	48(%rbx), %r8
-	movq	48(%rsi), %rcx
+	movq	8(%rbx), %r9
+	movq	56(%rbx), %r8
+	movq	56(%rsi), %rcx
 	leaq	0(,%r9,8), %rdx
 	addq	%rdx, %r8
 	addq	%rdx, %rcx

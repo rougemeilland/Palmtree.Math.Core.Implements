@@ -253,7 +253,7 @@ pos$ = 4
 x$ = 256
 _LZCNT_ALT_8 PROC					; COMDAT
 
-; 862  : {
+; 867  : {
 
 	mov	BYTE PTR [rsp+8], cl
 	push	rbp
@@ -268,32 +268,32 @@ _LZCNT_ALT_8 PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 863  :     if (x == 0)
+; 868  :     if (x == 0)
 
 	movzx	eax, BYTE PTR x$[rbp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 864  :         return (sizeof(x) * 8);
+; 869  :         return (sizeof(x) * 8);
 
 	mov	eax, 8
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 865  :     _UINT32_T pos;
-; 866  : #ifdef _MSC_VER
-; 867  :     _BitScanReverse(&pos, x);
+; 870  :     _UINT32_T pos;
+; 871  : #ifdef _MSC_VER
+; 872  :     _BitScanReverse(&pos, x);
 
 	movzx	eax, BYTE PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 868  : #elif defined(__GNUC__)
-; 869  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-; 870  : #else
-; 871  : #error unknown compiler
-; 872  : #endif
-; 873  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 873  : #elif defined(__GNUC__)
+; 874  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
+; 875  : #else
+; 876  : #error unknown compiler
+; 877  : #endif
+; 878  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 7
@@ -302,7 +302,7 @@ $LN2@LZCNT_ALT_:
 	movzx	eax, al
 $LN1@LZCNT_ALT_:
 
-; 874  : }
+; 879  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -323,7 +323,7 @@ u$ = 224
 v$ = 232
 _DIVIDE_CEILING_SIZE PROC				; COMDAT
 
-; 479  : {
+; 484  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -339,7 +339,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 480  :     return ((u + v - 1) / v);
+; 485  :     return ((u + v - 1) / v);
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
@@ -347,7 +347,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	xor	edx, edx
 	div	QWORD PTR v$[rbp]
 
-; 481  : }
+; 486  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -364,7 +364,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 330  : {
+; 335  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -382,14 +382,14 @@ _COPY_MEMORY_BYTE PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 331  :     __movsb(d, s, count);
+; 336  :     __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rsi, QWORD PTR s$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep movsb
 
-; 332  : }
+; 337  : }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi
@@ -465,7 +465,7 @@ $LN3@PMC_ToByte:
 ; 85   :     size_t expected_buffer_size = np->IS_ZERO ? 1 : _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8);
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -475,7 +475,7 @@ $LN3@PMC_ToByte:
 $LN9@PMC_ToByte:
 	mov	edx, 8
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rcx, QWORD PTR [rax+8]
+	mov	rcx, QWORD PTR [rax+16]
 	call	_DIVIDE_CEILING_SIZE
 	mov	QWORD PTR tv76[rbp], rax
 $LN10@PMC_ToByte:
@@ -493,7 +493,7 @@ $LN10@PMC_ToByte:
 	mov	rax, QWORD PTR buffer_size$[rbp]
 	shl	rax, 3
 	mov	rcx, QWORD PTR np$[rbp]
-	cmp	QWORD PTR [rcx+8], rax
+	cmp	QWORD PTR [rcx+16], rax
 	jbe	SHORT $LN5@PMC_ToByte
 
 ; 89   :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
@@ -505,7 +505,7 @@ $LN5@PMC_ToByte:
 ; 90   :         if (np->IS_ZERO)
 
 	mov	rax, QWORD PTR np$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -525,7 +525,7 @@ $LN6@PMC_ToByte:
 
 	mov	r8, QWORD PTR expected_buffer_size$[rbp]
 	mov	rax, QWORD PTR np$[rbp]
-	mov	rdx, QWORD PTR [rax+48]
+	mov	rdx, QWORD PTR [rax+56]
 	mov	rcx, QWORD PTR buffer$[rbp]
 	call	_COPY_MEMORY_BYTE
 $LN7@PMC_ToByte:
@@ -651,7 +651,7 @@ $LN6@PMC_FromBy:
 	mov	r8, rax
 	mov	rdx, QWORD PTR buffer$[rbp]
 	mov	rax, QWORD PTR p$4[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	_COPY_MEMORY_BYTE
 
 ; 67   :         CommitNumber(p);

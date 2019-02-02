@@ -53,7 +53,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_BitwiseAnd_L_X DD imagerel $LN15
-	DD	imagerel $LN15+456
+	DD	imagerel $LN15+457
 	DD	imagerel $unwind$PMC_BitwiseAnd_L_X
 pdata	ENDS
 ;	COMDAT pdata
@@ -65,7 +65,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$PMC_BitwiseAnd_X_L DD imagerel $LN15
-	DD	imagerel $LN15+456
+	DD	imagerel $LN15+457
 	DD	imagerel $unwind$PMC_BitwiseAnd_X_L
 pdata	ENDS
 ;	COMDAT pdata
@@ -1507,7 +1507,7 @@ x$ = 240
 y$ = 248
 _MINIMUM_UNIT PROC					; COMDAT
 
-; 489  : {
+; 494  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -1523,7 +1523,7 @@ _MINIMUM_UNIT PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 490  :     return (x <= y ? x : y);
+; 495  :     return (x <= y ? x : y);
 
 	mov	rax, QWORD PTR y$[rbp]
 	cmp	QWORD PTR x$[rbp], rax
@@ -1537,7 +1537,7 @@ $LN3@MINIMUM_UN:
 $LN4@MINIMUM_UN:
 	mov	rax, QWORD PTR tv65[rbp]
 
-; 491  : }
+; 496  : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -1553,7 +1553,7 @@ u$ = 224
 v$ = 232
 _DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 474  : {
+; 479  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -1569,7 +1569,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 475  :     return ((u + v - 1) / v);
+; 480  :     return ((u + v - 1) / v);
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
@@ -1577,7 +1577,7 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	xor	edx, edx
 	div	QWORD PTR v$[rbp]
 
-; 476  : }
+; 481  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -1593,7 +1593,7 @@ value$ = 224
 result_high$ = 232
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 463  : {
+; 468  : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -1609,18 +1609,18 @@ _FROMDWORDTOWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 464  :     *result_high = (_UINT32_T)(value >> 32);
+; 469  :     *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, QWORD PTR value$[rbp]
 	shr	rax, 32					; 00000020H
 	mov	rcx, QWORD PTR result_high$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 465  :     return ((_UINT32_T)value);
+; 470  :     return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR value$[rbp]
 
-; 466  : }
+; 471  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -1636,7 +1636,7 @@ value_high$ = 224
 value_low$ = 232
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 458  : {
+; 463  : {
 
 	mov	DWORD PTR [rsp+16], edx
 	mov	DWORD PTR [rsp+8], ecx
@@ -1652,14 +1652,14 @@ _FROMWORDTODWORD PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
 	call	__CheckForDebuggerJustMyCode
 
-; 459  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, DWORD PTR value_high$[rbp]
 	shl	rax, 32					; 00000020H
 	mov	ecx, DWORD PTR value_low$[rbp]
 	or	rax, rcx
 
-; 460  : }
+; 465  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -1779,7 +1779,7 @@ $LN6@PMC_Bitwis:
 ; 331  :     if (nu->IS_ZERO)
 
 	mov	rax, QWORD PTR nu$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -1796,7 +1796,7 @@ $LN7@PMC_Bitwis:
 ; 333  :     else if (nv->IS_ZERO)
 
 	mov	rax, QWORD PTR nv$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -1815,13 +1815,13 @@ $LN9@PMC_Bitwis:
 ; 337  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nu$[rbp]
-	mov	rax, QWORD PTR [rax+8]
+	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR u_bit_count$5[rbp], rax
 
 ; 338  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nv$[rbp]
-	mov	rax, QWORD PTR [rax+8]
+	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR v_bit_count$6[rbp], rax
 
 ; 339  :         __UNIT_TYPE w_bit_count = _MINIMUM_UNIT(u_bit_count, v_bit_count);
@@ -1859,18 +1859,18 @@ $LN11@PMC_Bitwis:
 
 	mov	r9, QWORD PTR w_word_count$9[rbp]
 	mov	rax, QWORD PTR nw$[rbp]
-	mov	r8, QWORD PTR [rax+48]
+	mov	r8, QWORD PTR [rax+56]
 	mov	rax, QWORD PTR nv$[rbp]
-	mov	rdx, QWORD PTR [rax+48]
+	mov	rdx, QWORD PTR [rax+56]
 	mov	rax, QWORD PTR nu$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	BitwiseAnd_X_X
 
 ; 345  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nw_light_check_code$8[rbp]
 	mov	rax, QWORD PTR nw$[rbp]
-	mov	rcx, QWORD PTR [rax+48]
+	mov	rcx, QWORD PTR [rax+56]
 	call	CheckBlockLight
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
@@ -1890,7 +1890,7 @@ $LN12@PMC_Bitwis:
 ; 348  :         if (nw->IS_ZERO)
 
 	mov	rax, QWORD PTR nw$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -2047,7 +2047,7 @@ $LN5@PMC_Bitwis:
 ; 281  :     if (nu->IS_ZERO)
 
 	mov	rax, QWORD PTR nu$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -2107,12 +2107,12 @@ $LN8@PMC_Bitwis:
 ; 302  :             _UINT32_T w_hi = nu->UNIT_WORD_COUNT > 1 ? nu->BLOCK[1] & v_hi : 0;
 
 	mov	rax, QWORD PTR nu$[rbp]
-	cmp	QWORD PTR [rax], 1
+	cmp	QWORD PTR [rax+8], 1
 	jbe	SHORT $LN13@PMC_Bitwis
 	mov	eax, 8
 	imul	rax, rax, 1
 	mov	rcx, QWORD PTR nu$[rbp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	mov	edx, DWORD PTR v_hi$4[rbp]
 	mov	rax, QWORD PTR [rcx+rax]
 	and	rax, rdx
@@ -2129,7 +2129,7 @@ $LN14@PMC_Bitwis:
 	mov	eax, 8
 	imul	rax, rax, 0
 	mov	rcx, QWORD PTR nu$[rbp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	mov	edx, DWORD PTR v_lo$5[rbp]
 	mov	rax, QWORD PTR [rcx+rax]
 	and	rax, rdx
@@ -2156,7 +2156,7 @@ $LN10@PMC_Bitwis:
 	mov	eax, 8
 	imul	rax, rax, 0
 	mov	rcx, QWORD PTR nu$[rbp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	mov	rdx, QWORD PTR v$[rbp]
 	mov	rax, QWORD PTR [rcx+rax]
 	and	rax, rdx
@@ -2275,7 +2275,7 @@ $LN5@PMC_Bitwis:
 ; 197  :     if (nu->IS_ZERO)
 
 	mov	rax, QWORD PTR nu$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -2320,7 +2320,7 @@ $LN8@PMC_Bitwis:
 	mov	eax, 8
 	imul	rax, rax, 0
 	mov	rcx, QWORD PTR nu$[rbp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	mov	edx, DWORD PTR v$[rbp]
 	mov	rax, QWORD PTR [rcx+rax]
 	and	rax, rdx
@@ -2437,7 +2437,7 @@ $LN5@PMC_Bitwis:
 ; 232  :     if (nv->IS_ZERO)
 
 	mov	rax, QWORD PTR nv$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -2497,12 +2497,12 @@ $LN8@PMC_Bitwis:
 ; 253  :             _UINT32_T w_hi = nv->UNIT_WORD_COUNT > 1 ? nv->BLOCK[1] & u_hi : 0;
 
 	mov	rax, QWORD PTR nv$[rbp]
-	cmp	QWORD PTR [rax], 1
+	cmp	QWORD PTR [rax+8], 1
 	jbe	SHORT $LN13@PMC_Bitwis
 	mov	eax, 8
 	imul	rax, rax, 1
 	mov	rcx, QWORD PTR nv$[rbp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	mov	edx, DWORD PTR u_hi$4[rbp]
 	mov	rax, QWORD PTR [rcx+rax]
 	and	rax, rdx
@@ -2519,7 +2519,7 @@ $LN14@PMC_Bitwis:
 	mov	eax, 8
 	imul	rax, rax, 0
 	mov	rcx, QWORD PTR nv$[rbp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	mov	edx, DWORD PTR u_lo$5[rbp]
 	mov	rax, QWORD PTR [rcx+rax]
 	and	rax, rdx
@@ -2546,7 +2546,7 @@ $LN10@PMC_Bitwis:
 	mov	eax, 8
 	imul	rax, rax, 0
 	mov	rcx, QWORD PTR nv$[rbp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	mov	rdx, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR [rcx+rax]
 	and	rax, rdx
@@ -2665,7 +2665,7 @@ $LN5@PMC_Bitwis:
 ; 162  :     if (nv->IS_ZERO)
 
 	mov	rax, QWORD PTR nv$[rbp]
-	mov	eax, DWORD PTR [rax+32]
+	mov	eax, DWORD PTR [rax+40]
 	shr	eax, 1
 	and	eax, 1
 	test	eax, eax
@@ -2710,7 +2710,7 @@ $LN8@PMC_Bitwis:
 	mov	eax, 8
 	imul	rax, rax, 0
 	mov	rcx, QWORD PTR nv$[rbp]
-	mov	rcx, QWORD PTR [rcx+48]
+	mov	rcx, QWORD PTR [rcx+56]
 	mov	edx, DWORD PTR u$[rbp]
 	mov	rax, QWORD PTR [rcx+rax]
 	and	rax, rdx

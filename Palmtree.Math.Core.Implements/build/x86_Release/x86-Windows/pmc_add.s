@@ -897,7 +897,7 @@ LFB5535:
 	.cfi_offset 3, -20
 	subl	$60, %esp
 	.cfi_def_cfa_offset 80
-	testb	$2, 16(%eax)
+	testb	$2, 24(%eax)
 	je	L87
 	testl	%edx, %edx
 	jne	L88
@@ -951,14 +951,14 @@ L90:
 	leal	44(%esp), %ecx
 	movl	%edx, 28(%esp)
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %eax
  # 0 "" 2
 /NO_APP
 	movl	%ecx, 8(%esp)
 	addl	$1, %eax
-	cmpl	%eax, 4(%ebx)
-	cmovnb	4(%ebx), %eax
+	cmpl	%eax, 12(%ebx)
+	cmovnb	12(%ebx), %eax
 	movl	%esi, (%esp)
 	addl	$1, %eax
 	movl	%eax, 4(%esp)
@@ -967,10 +967,10 @@ L90:
 	jne	L86
 	movl	(%esi), %eax
 	movl	28(%esp), %edx
-	movl	(%ebx), %ecx
-	movl	20(%eax), %ebp
-	movl	24(%eax), %edi
-	movl	24(%ebx), %eax
+	movl	8(%ebx), %ecx
+	movl	28(%eax), %ebp
+	movl	32(%eax), %edi
+	movl	32(%ebx), %eax
 	addl	(%eax), %edx
 	setc	%bl
 	movl	%edx, (%edi)
@@ -987,7 +987,7 @@ L90:
 	movl	44(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	(%esi), %eax
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
@@ -1051,7 +1051,7 @@ LFB5538:
 	subl	$60, %esp
 	.cfi_def_cfa_offset 80
 	movl	80(%esp), %ebp
-	testb	$2, 16(%eax)
+	testb	$2, 24(%eax)
 	je	L96
 	movl	%ecx, %eax
 	orl	%edx, %eax
@@ -1082,13 +1082,13 @@ L96:
 	movl	%ecx, %eax
 	orl	%edx, %eax
 	je	L119
-	movl	4(%esi), %eax
+	movl	12(%esi), %eax
 	testl	%ecx, %ecx
 	jne	L100
 	testl	%edx, %edx
 	je	L101
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -1105,12 +1105,12 @@ L101:
 	testl	%eax, %eax
 	jne	L95
 	movl	0(%ebp), %eax
-	movl	24(%esi), %edx
-	movl	(%esi), %ecx
-	movl	20(%eax), %edi
+	movl	32(%esi), %edx
+	movl	8(%esi), %ecx
+	movl	28(%eax), %edi
 	addl	(%edx), %ebx
 	movl	%edi, 20(%esp)
-	movl	24(%eax), %edi
+	movl	32(%eax), %edi
 	setc	%al
 	subl	$1, %ecx
 	addl	$4, %edx
@@ -1128,7 +1128,7 @@ L108:
 	movl	44(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	0(%ebp), %eax
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax
@@ -1186,7 +1186,7 @@ L119:
 L100:
 	.cfi_restore_state
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %ecx, %edx
  # 0 "" 2
 /NO_APP
@@ -1202,12 +1202,12 @@ L100:
 	call	_AllocateNumber
 	testl	%eax, %eax
 	jne	L95
-	movl	(%esi), %ecx
+	movl	8(%esi), %ecx
 	movl	0(%ebp), %edi
-	movl	24(%esi), %edx
+	movl	32(%esi), %edx
 	cmpl	$1, %ecx
 	movl	%edi, 24(%esp)
-	movl	24(%edi), %edi
+	movl	32(%edi), %edi
 	movl	%ecx, 28(%esp)
 	movl	(%edx), %esi
 	movl	20(%esp), %ecx
@@ -1225,7 +1225,7 @@ L100:
 L106:
 	movl	24(%esp), %eax
 	addl	%esi, %ebx
-	movl	20(%eax), %eax
+	movl	28(%eax), %eax
 	movl	%eax, 20(%esp)
 	setc	%al
 	movl	%ebx, (%edi)
@@ -1517,9 +1517,9 @@ L153:
 	movl	%eax, %ebx
 	testl	%eax, %eax
 	jne	L137
-	movzbl	16(%edi), %eax
+	movzbl	24(%edi), %eax
 	andl	$2, %eax
-	testb	$2, 16(%esi)
+	testb	$2, 24(%esi)
 	jne	L154
 	testb	%al, %al
 	je	L142
@@ -1570,9 +1570,9 @@ L148:
 L142:
 	leal	44(%esp), %eax
 	movl	%eax, 8(%esp)
-	movl	4(%edi), %eax
-	cmpl	%eax, 4(%esi)
-	cmovnb	4(%esi), %eax
+	movl	12(%edi), %eax
+	cmpl	%eax, 12(%esi)
+	cmovnb	12(%esi), %eax
 	addl	$1, %eax
 	movl	%eax, 4(%esp)
 	leal	40(%esp), %eax
@@ -1581,17 +1581,17 @@ L142:
 	testl	%eax, %eax
 	jne	L148
 	movl	40(%esp), %eax
-	movl	20(%eax), %edx
+	movl	28(%eax), %edx
 	movl	%edx, 20(%esp)
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	%eax, 16(%esp)
-	movl	(%edi), %eax
+	movl	8(%edi), %eax
 	movl	%eax, 12(%esp)
-	movl	24(%edi), %eax
+	movl	32(%edi), %eax
 	movl	%eax, 8(%esp)
-	movl	(%esi), %eax
+	movl	8(%esi), %eax
 	movl	%eax, 4(%esp)
-	movl	24(%esi), %eax
+	movl	32(%esi), %eax
 	movl	%eax, (%esp)
 	call	*_fp_Add_Imp
 	movl	%eax, %esi
@@ -1600,7 +1600,7 @@ L142:
 	movl	44(%esp), %eax
 	movl	%eax, 4(%esp)
 	movl	40(%esp), %eax
-	movl	24(%eax), %eax
+	movl	32(%eax), %eax
 	movl	%eax, (%esp)
 	call	_CheckBlockLight
 	testl	%eax, %eax

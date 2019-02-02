@@ -919,7 +919,7 @@ Multiply_WORD_using_MULX_ADCX:
 .L44:
 	movq	(%r11), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rdi, %rsi
  # 0 "" 2
 /NO_APP
@@ -936,7 +936,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	8(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -953,7 +953,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	16(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -968,7 +968,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	24(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -985,7 +985,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	32(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1000,7 +1000,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	40(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1017,7 +1017,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	48(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1032,7 +1032,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	56(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1049,7 +1049,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	64(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1064,7 +1064,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	72(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1081,7 +1081,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	80(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1096,7 +1096,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	88(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1113,7 +1113,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	96(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1128,7 +1128,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	104(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1145,7 +1145,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	112(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1160,7 +1160,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	120(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1177,7 +1177,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	128(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1192,7 +1192,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	136(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1209,7 +1209,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	144(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1224,7 +1224,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	152(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1241,7 +1241,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	160(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1256,7 +1256,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	168(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1273,7 +1273,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	176(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1288,7 +1288,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	184(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1305,7 +1305,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	192(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1320,7 +1320,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	200(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1337,7 +1337,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	208(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1352,7 +1352,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	216(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1369,7 +1369,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	224(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1384,7 +1384,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	232(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1401,7 +1401,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	240(%r11), %rdx
 	adcq	$0, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rbx, %rdi
  # 0 "" 2
 /NO_APP
@@ -1416,7 +1416,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	248(%r11), %rdx
 	adcq	$0, %rdi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rsi, %rbx
  # 0 "" 2
 /NO_APP
@@ -1475,7 +1475,7 @@ Multiply_WORD_using_MULX_ADCX:
 .L71:
 	movq	(%rcx), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1490,7 +1490,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	8(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1502,7 +1502,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	16(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1514,7 +1514,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	24(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1526,7 +1526,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	32(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1538,7 +1538,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	40(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1550,7 +1550,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	48(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1562,7 +1562,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	56(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1574,7 +1574,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	64(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1586,7 +1586,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	72(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1598,7 +1598,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	80(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1610,7 +1610,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	88(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1622,7 +1622,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	96(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1634,7 +1634,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	104(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1646,7 +1646,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	112(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1658,7 +1658,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	120(%rcx), %rdx
 	movq	%rax, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %rbx
  # 0 "" 2
 /NO_APP
@@ -1680,7 +1680,7 @@ Multiply_WORD_using_MULX_ADCX:
 .L72:
 	movq	(%rcx), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1695,7 +1695,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	8(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1707,7 +1707,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	16(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1719,7 +1719,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	24(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1731,7 +1731,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	32(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1743,7 +1743,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	40(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1755,7 +1755,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	48(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1767,7 +1767,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	56(%rcx), %rdx
 	movq	%rax, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %rbx
  # 0 "" 2
 /NO_APP
@@ -1789,7 +1789,7 @@ Multiply_WORD_using_MULX_ADCX:
 .L73:
 	movq	(%rcx), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1804,7 +1804,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	8(%rcx), %rdx
 	movq	%rax, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %r10
  # 0 "" 2
 /NO_APP
@@ -1816,7 +1816,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	16(%rcx), %rdx
 	adcq	$0, %rbx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1828,7 +1828,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	24(%rcx), %rdx
 	movq	%rax, %rsi
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %rbx
  # 0 "" 2
 /NO_APP
@@ -1850,7 +1850,7 @@ Multiply_WORD_using_MULX_ADCX:
 .L74:
 	movq	(%rcx), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r10, %rax
  # 0 "" 2
 /NO_APP
@@ -1865,7 +1865,7 @@ Multiply_WORD_using_MULX_ADCX:
 	movq	8(%rcx), %rdx
 	movq	%rax, %r11
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %rax, %rbx
  # 0 "" 2
 /NO_APP
@@ -1887,7 +1887,7 @@ Multiply_WORD_using_MULX_ADCX:
 .L75:
 	movq	(%rcx), %rdx
 /APP
- # 632 "pmc_internal.h" 1
+ # 637 "pmc_internal.h" 1
 	mulxq %r8, %r8, %rax
  # 0 "" 2
 /NO_APP
@@ -2013,7 +2013,7 @@ PMC_Multiply_X_I_Imp:
 	subq	$64, %rsp
 	.seh_stackalloc	64
 	.seh_endprologue
-	movzbl	32(%rcx), %eax
+	movzbl	40(%rcx), %eax
 	testb	$2, %al
 	movq	%rcx, %rbx
 	movl	%edx, %edi
@@ -2039,10 +2039,10 @@ PMC_Multiply_X_I_Imp:
 	je	.L86
 	cmpl	$1, %edx
 	je	.L96
-	movq	8(%rbx), %rax
+	movq	16(%rbx), %rax
 	leaq	56(%rsp), %r8
 /APP
- # 884 "pmc_internal.h" 1
+ # 889 "pmc_internal.h" 1
 	bsrl %edx, %ecx
  # 0 "" 2
 /NO_APP
@@ -2057,13 +2057,13 @@ PMC_Multiply_X_I_Imp:
 	jne	.L82
 	movq	(%rsi), %rax
 	movl	%edi, %r8d
-	movq	48(%rbx), %rcx
-	movq	(%rbx), %rdx
-	movq	48(%rax), %r9
+	movq	8(%rbx), %rdx
+	movq	56(%rbx), %rcx
+	movq	56(%rax), %r9
 	call	*fp_Multiply_X_1W(%rip)
 	movq	(%rsi), %rax
 	movq	56(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L82
@@ -2097,7 +2097,7 @@ PMC_Multiply_X_L_Imp:
 	subq	$64, %rsp
 	.seh_stackalloc	64
 	.seh_endprologue
-	movzbl	32(%rcx), %eax
+	movzbl	40(%rcx), %eax
 	testb	$2, %al
 	movq	%rcx, %rbx
 	movq	%rdx, %rdi
@@ -2123,10 +2123,10 @@ PMC_Multiply_X_L_Imp:
 	je	.L101
 	cmpq	$1, %rdx
 	je	.L111
-	movq	8(%rbx), %rax
+	movq	16(%rbx), %rax
 	leaq	56(%rsp), %r8
 /APP
- # 928 "pmc_internal.h" 1
+ # 933 "pmc_internal.h" 1
 	bsrq %rdx, %rcx
  # 0 "" 2
 /NO_APP
@@ -2141,13 +2141,13 @@ PMC_Multiply_X_L_Imp:
 	jne	.L97
 	movq	(%rsi), %rax
 	movq	%rdi, %r8
-	movq	48(%rbx), %rcx
-	movq	(%rbx), %rdx
-	movq	48(%rax), %r9
+	movq	8(%rbx), %rdx
+	movq	56(%rbx), %rcx
+	movq	56(%rax), %r9
 	call	*fp_Multiply_X_1W(%rip)
 	movq	(%rsi), %rax
 	movq	56(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L97
@@ -2404,7 +2404,7 @@ PMC_Multiply_X_X:
 	testl	%eax, %eax
 	movl	%eax, %ebx
 	jne	.L129
-	movzbl	32(%rsi), %eax
+	movzbl	40(%rsi), %eax
 	testb	$2, %al
 	je	.L131
 .L139:
@@ -2420,7 +2420,7 @@ PMC_Multiply_X_X:
 	ret
 	.p2align 4,,10
 .L131:
-	movzbl	32(%rdi), %edx
+	movzbl	40(%rdi), %edx
 	movl	%edx, %ecx
 	andl	$2, %ecx
 	testb	$4, %al
@@ -2455,24 +2455,24 @@ PMC_Multiply_X_X:
 	jmp	.L129
 	.p2align 4,,10
 .L135:
-	movq	8(%rdi), %rdx
+	movq	16(%rdi), %rdx
 	leaq	48(%rsp), %rcx
-	addq	8(%rsi), %rdx
+	addq	16(%rsi), %rdx
 	leaq	56(%rsp), %r8
 	call	AllocateNumber
 	testl	%eax, %eax
 	jne	.L140
 	movq	48(%rsp), %rax
-	movq	48(%rsi), %rcx
-	movq	(%rdi), %r9
-	movq	48(%rdi), %r8
-	movq	48(%rax), %rax
-	movq	(%rsi), %rdx
+	movq	8(%rsi), %rdx
+	movq	56(%rsi), %rcx
+	movq	8(%rdi), %r9
+	movq	56(%rax), %rax
+	movq	56(%rdi), %r8
 	movq	%rax, 32(%rsp)
 	call	*fp_Multiply_X_X(%rip)
 	movq	48(%rsp), %rax
 	movq	56(%rsp), %rdx
-	movq	48(%rax), %rcx
+	movq	56(%rax), %rcx
 	call	CheckBlockLight
 	testl	%eax, %eax
 	jne	.L140

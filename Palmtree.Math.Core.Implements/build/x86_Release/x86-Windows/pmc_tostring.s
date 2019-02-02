@@ -109,7 +109,7 @@ LFB5499:
 	movl	%edx, 36(%esp)
 	movl	%ecx, 48(%esp)
 	movl	%eax, 52(%esp)
-	testb	$2, 16(%ebp)
+	testb	$2, 24(%ebp)
 	je	L10
 	cmpb	$78, %al
 	je	L71
@@ -183,7 +183,7 @@ L71:
 	.p2align 4,,10
 L10:
 	.cfi_restore_state
-	movl	4(%ebp), %eax
+	movl	12(%ebp), %eax
 	leal	72(%esp), %edx
 	movl	$-5, %edi
 	movl	%edx, 8(%esp)
@@ -197,10 +197,10 @@ L10:
 	movl	%eax, 60(%esp)
 	testl	%eax, %eax
 	je	L9
-	movl	0(%ebp), %ebx
-	movl	24(%ebp), %esi
+	movl	8(%ebp), %ebx
+	movl	32(%ebp), %esi
 	leal	80(%esp), %eax
-	movl	4(%ebp), %ebp
+	movl	12(%ebp), %ebp
 	movl	%eax, 8(%esp)
 	leal	84(%esp), %eax
 	movl	%eax, 4(%esp)
@@ -425,7 +425,7 @@ L34:
 	movl	%ecx, 32(%esp)
 	movl	%ebx, %eax
 /APP
- # 692 "pmc_internal.h" 1
+ # 697 "pmc_internal.h" 1
 	divl %esi
  # 0 "" 2
 /NO_APP
@@ -435,7 +435,7 @@ L34:
 	movl	%edi, %edx
 	movl	%ebx, %eax
 /APP
- # 692 "pmc_internal.h" 1
+ # 697 "pmc_internal.h" 1
 	divl %esi
  # 0 "" 2
 /NO_APP
@@ -445,7 +445,7 @@ L34:
 	movl	%edi, %edx
 	movl	%ebx, %eax
 /APP
- # 692 "pmc_internal.h" 1
+ # 697 "pmc_internal.h" 1
 	divl %esi
  # 0 "" 2
 /NO_APP
@@ -455,7 +455,7 @@ L34:
 	movl	%edi, %edx
 	movl	%ebx, %eax
 /APP
- # 692 "pmc_internal.h" 1
+ # 697 "pmc_internal.h" 1
 	divl %esi
  # 0 "" 2
 /NO_APP
@@ -465,7 +465,7 @@ L34:
 	movl	%edi, %edx
 	movl	%ebx, %eax
 /APP
- # 692 "pmc_internal.h" 1
+ # 697 "pmc_internal.h" 1
 	divl %esi
  # 0 "" 2
 /NO_APP
@@ -476,7 +476,7 @@ L34:
 	movl	%edi, %edx
 	movl	%ebx, %eax
 /APP
- # 692 "pmc_internal.h" 1
+ # 697 "pmc_internal.h" 1
 	divl %esi
  # 0 "" 2
 /NO_APP
@@ -486,7 +486,7 @@ L34:
 	movl	%edi, %edx
 	movl	%ebx, %eax
 /APP
- # 692 "pmc_internal.h" 1
+ # 697 "pmc_internal.h" 1
 	divl %esi
  # 0 "" 2
 /NO_APP
@@ -497,7 +497,7 @@ L34:
 	movl	%edi, %edx
 	movl	%ebx, %eax
 /APP
- # 692 "pmc_internal.h" 1
+ # 697 "pmc_internal.h" 1
 	divl %esi
  # 0 "" 2
 /NO_APP
@@ -524,7 +524,7 @@ L35:
 	movl	%edi, %eax
 	movl	%esi, %edx
 /APP
- # 692 "pmc_internal.h" 1
+ # 697 "pmc_internal.h" 1
 	divl %ebx
  # 0 "" 2
 /NO_APP
@@ -711,7 +711,7 @@ LFB5506:
 	subl	$32, %esp
 	.cfi_def_cfa_offset 52
 	movl	52(%esp), %ebp
-	testb	$2, 16(%eax)
+	testb	$2, 24(%eax)
 	je	L77
 	leal	1(%ebp), %eax
 	testl	%ebp, %ebp
@@ -751,7 +751,7 @@ L76:
 L77:
 	.cfi_restore_state
 	movl	%eax, %esi
-	movl	4(%eax), %eax
+	movl	12(%eax), %eax
 	leal	3(%eax), %ebx
 	shrl	$2, %ebx
 	cmpl	%ebx, %ebp
@@ -760,8 +760,8 @@ L77:
 	cmpl	%eax, %ecx
 	jb	L94
 L81:
-	movl	(%esi), %ecx
-	movl	24(%esi), %eax
+	movl	8(%esi), %ecx
+	movl	32(%esi), %eax
 	movl	%ecx, (%esp)
 	leal	-4(%eax,%ecx,4), %edi
 	movl	%ecx, %esi

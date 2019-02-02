@@ -68,7 +68,7 @@ L4:
 	movl	$7, %ecx
 	sall	$3, %eax
 /APP
- # 869 "pmc_internal.h" 1
+ # 874 "pmc_internal.h" 1
 	bsrl %edx, %edx
  # 0 "" 2
 /NO_APP
@@ -88,7 +88,7 @@ L4:
 	leal	7(%ebp), %ecx
 	movl	%eax, 28(%esp)
 	shrl	$3, %ecx
-	movl	24(%edx), %edi
+	movl	32(%edx), %edi
 /APP
  # 1755 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1
 	rep movsb
@@ -147,11 +147,11 @@ LFB5492:
 	call	_CheckNumber
 	testl	%eax, %eax
 	jne	L21
-	movzbl	16(%ebx), %ecx
+	movzbl	24(%ebx), %ecx
 	movl	$1, %edx
 	andl	$2, %ecx
 	jne	L23
-	movl	4(%ebx), %edx
+	movl	12(%ebx), %edx
 	addl	$7, %edx
 	shrl	$3, %edx
 L23:
@@ -159,7 +159,7 @@ L23:
 	je	L24
 	movl	40(%esp), %esi
 	sall	$3, %esi
-	cmpl	%esi, 4(%ebx)
+	cmpl	%esi, 12(%ebx)
 	ja	L28
 	testb	%cl, %cl
 	je	L25
@@ -184,7 +184,7 @@ L21:
 	.p2align 4,,10
 L25:
 	.cfi_restore_state
-	movl	24(%ebx), %esi
+	movl	32(%ebx), %esi
 	movl	%edx, %ecx
 /APP
  # 1755 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/psdk_inc/intrin-impl.h" 1

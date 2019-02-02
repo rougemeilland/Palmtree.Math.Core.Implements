@@ -48,35 +48,35 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95746 DB	'work_v_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
+$SG95748 DB	'work_v_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
 	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
 	DB	0e9H, 00H
 	ORG $+1
-$SG95747 DB	'DivRem_X_X (%d.%d)', 00H
-	ORG $+1
-$SG95748 DB	'actual_q_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
-	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
-	DB	0e9H, 00H
-	ORG $+3
 $SG95749 DB	'DivRem_X_X (%d.%d)', 00H
 	ORG $+1
-$SG95750 DB	'actual_r_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
+$SG95750 DB	'actual_q_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
 	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
 	DB	0e9H, 00H
 	ORG $+3
 $SG95751 DB	'DivRem_X_X (%d.%d)', 00H
 	ORG $+1
-$SG95752 DB	08fH, 0a4H, 082H, 0ccH, 083H, 'f', 081H, '[', 083H, '^', 082H
-	DB	0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H
-	DB	0b5H, 082H, 0c8H, 082H, 0a2H, 00H
+$SG95752 DB	'actual_r_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
+	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
+	DB	0e9H, 00H
 	ORG $+3
 $SG95753 DB	'DivRem_X_X (%d.%d)', 00H
 	ORG $+1
-$SG95754 DB	08fH, 0e8H, 097H, ']', 082H, 0ccH, 083H, 'f', 081H, '[', 083H
+$SG95754 DB	08fH, 0a4H, 082H, 0ccH, 083H, 'f', 081H, '[', 083H, '^', 082H
+	DB	0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H
+	DB	0b5H, 082H, 0c8H, 082H, 0a2H, 00H
+	ORG $+3
+$SG95755 DB	'DivRem_X_X (%d.%d)', 00H
+	ORG $+1
+$SG95756 DB	08fH, 0e8H, 097H, ']', 082H, 0ccH, 083H, 'f', 081H, '[', 083H
 	DB	'^', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 088H, 0eaH
 	DB	092H, 'v', 082H, 0b5H, 082H, 0c8H, 082H, 0a2H, 00H
 	ORG $+1
-$SG95755 DB	'DivRem_X_X (%d.%d)', 00H
+$SG95757 DB	'DivRem_X_X (%d.%d)', 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -516,13 +516,13 @@ $LN7@INTERNALTE:
 $LN11@INTERNALTE:
 	mov	DWORD PTR tv211[ebp], 0
 $LN12@INTERNALTE:
-	push	OFFSET $SG95746
+	push	OFFSET $SG95748
 	mov	edx, DWORD PTR tv211[ebp]
 	push	edx
 	push	1
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG95747
+	push	OFFSET $SG95749
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -546,13 +546,13 @@ $LN12@INTERNALTE:
 $LN13@INTERNALTE:
 	mov	DWORD PTR tv224[ebp], 0
 $LN14@INTERNALTE:
-	push	OFFSET $SG95748
+	push	OFFSET $SG95750
 	mov	ecx, DWORD PTR tv224[ebp]
 	push	ecx
 	push	2
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG95749
+	push	OFFSET $SG95751
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -576,13 +576,13 @@ $LN14@INTERNALTE:
 $LN15@INTERNALTE:
 	mov	DWORD PTR tv237[ebp], 0
 $LN16@INTERNALTE:
-	push	OFFSET $SG95750
+	push	OFFSET $SG95752
 	mov	eax, DWORD PTR tv237[ebp]
 	push	eax
 	push	3
 	mov	ecx, DWORD PTR _no$[ebp]
 	push	ecx
-	push	OFFSET $SG95751
+	push	OFFSET $SG95753
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -610,13 +610,13 @@ $LN16@INTERNALTE:
 $LN17@INTERNALTE:
 	mov	DWORD PTR tv252[ebp], 0
 $LN18@INTERNALTE:
-	push	OFFSET $SG95752
+	push	OFFSET $SG95754
 	mov	ecx, DWORD PTR tv252[ebp]
 	push	ecx
 	push	4
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG95753
+	push	OFFSET $SG95755
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -644,13 +644,13 @@ $LN18@INTERNALTE:
 $LN19@INTERNALTE:
 	mov	DWORD PTR tv267[ebp], 0
 $LN20@INTERNALTE:
-	push	OFFSET $SG95754
+	push	OFFSET $SG95756
 	mov	edx, DWORD PTR tv267[ebp]
 	push	edx
 	push	5
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG95755
+	push	OFFSET $SG95757
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -1041,7 +1041,7 @@ _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_BYTE PROC
 
-; 330  : {
+; 335  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1050,14 +1050,14 @@ __COPY_MEMORY_BYTE PROC
 	mov	ecx, OFFSET __4522B509_pmc_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 331  :     __movsb(d, s, count);
+; 336  :     __movsb(d, s, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsb
 
-; 332  : }
+; 337  : }
 
 	pop	edi
 	pop	esi
