@@ -128,7 +128,7 @@ typedef struct __tag_PMC_NUMBER_FORMAT_OPTION
     char        GroupSizes[11];         // 書式 N の場合に数値をグループで区切る場合のグループの大きさを示す文字の集合と解釈される。既定値は "3"。
 } PMC_NUMBER_FORMAT_OPTION;
 
-typedef struct __tag_PMC_ENTRY_POINTS
+typedef struct __tag_PMC_UINT_ENTRY_POINTS
 {
     // 実行中のプロセッサの実装命令に関する情報
     unsigned PROCESSOR_FEATURE_POPCNT : 1;  // 実行中のプロセッサの実装命令を示すフラグ。POPCNTをサポートしているなら1、そうではないのなら0。
@@ -250,12 +250,12 @@ typedef struct __tag_PMC_ENTRY_POINTS
     // べき剰余の計算
     PMC_STATUS_CODE(__PMC_CALL * PMC_ModPow_X_X_X)(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
 
-} PMC_ENTRY_POINTS;
+} PMC_UINT_ENTRY_POINTS;
 #pragma endregion
 
 
 #pragma region 宣言
-PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO*);
+PMC_EXPORT PMC_UINT_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO*);
 #pragma endregion
 
 

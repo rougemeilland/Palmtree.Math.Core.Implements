@@ -36,7 +36,7 @@
 
 
 #ifdef _DEBUG
-void TEST_PMC_RightShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 n, unsigned char*desired_z_buf, size_t desired_z_buf_size)
+void TEST_PMC_RightShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 n, unsigned char*desired_z_buf, size_t desired_z_buf_size)
 {
     HANDLE x;
     HANDLE z;
@@ -55,7 +55,7 @@ void TEST_PMC_RightShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, i
         ep->PMC_Dispose(x);
 }
 
-void TEST_PMC_RightShift_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 n, unsigned char*desired_z_buf, size_t desired_z_buf_size)
+void TEST_PMC_RightShift_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 n, unsigned char*desired_z_buf, size_t desired_z_buf_size)
 {
 #ifdef _M_IX64
     HANDLE x;
@@ -79,7 +79,7 @@ void TEST_PMC_RightShift_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, i
 #endif
 }
 
-void TEST_PMC_LeftShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 n, unsigned char*desired_z_buf, size_t desired_z_buf_size)
+void TEST_PMC_LeftShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 n, unsigned char*desired_z_buf, size_t desired_z_buf_size)
 {
     HANDLE x;
     HANDLE z;
@@ -98,7 +98,7 @@ void TEST_PMC_LeftShift_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, in
         ep->PMC_Dispose(x);
 }
 
-void TEST_PMC_LeftShift_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 n, unsigned char*desired_z_buf, size_t desired_z_buf_size)
+void TEST_PMC_LeftShift_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 n, unsigned char*desired_z_buf, size_t desired_z_buf_size)
 {
 #ifdef _M_IX64
     HANDLE x;

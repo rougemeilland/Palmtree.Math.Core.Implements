@@ -32,7 +32,8 @@
 
 #include <intrin.h>
 #include <immintrin.h>
-#include "pmc_internal.h"
+#include "pmc_uint_internal.h"
+#include "pmc_inline_func.h"
 
 
 __inline static void cpuid(_UINT32_T op, _UINT32_T* reg_eax, _UINT32_T* reg_ebx, _UINT32_T* reg_ecx, _UINT32_T* reg_edx)

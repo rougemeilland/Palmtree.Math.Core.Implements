@@ -18,143 +18,143 @@ EXTRN	_AllocateNumber:PROC
 EXTRN	_CommitNumber:PROC
 EXTRN	_number_zero:BYTE
 ; Function compile flags: /Ogtp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT __LZCNT_ALT_UNIT
 _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 915  : {
+; 629  :     {
 
 	push	ebp
 	mov	ebp, esp
 
-; 916  :     if (x == 0)
+; 630  :         if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 917  :         return (sizeof(x) * 8);
+; 631  :             return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 941  : }
+; 655  :     }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 918  : #ifdef _M_IX86
-; 919  :     _UINT32_T pos;
-; 920  : #ifdef _MSC_VER
-; 921  :     _BitScanReverse(&pos, x);
+; 632  : #ifdef _M_IX86
+; 633  :         _UINT32_T pos;
+; 634  : #ifdef _MSC_VER
+; 635  :         _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 922  : #elif defined(__GNUC__)
-; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #elif defined(_M_X64)
-; 928  : #ifdef _MSC_VER
-; 929  :     _UINT32_T pos;
-; 930  :     _BitScanReverse64(&pos, x);
-; 931  : #elif defined(__GNUC__)
-; 932  :     _UINT64_T pos;
-; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 934  : #else
-; 935  : #error unknown compiler
-; 936  : #endif
-; 937  : #else
-; 938  : #error unknown platform
-; 939  : #endif
-; 940  :     return (sizeof(x) * 8 - 1 - pos);
+; 636  : #elif defined(__GNUC__)
+; 637  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 638  : #else
+; 639  : #error unknown compiler
+; 640  : #endif
+; 641  : #elif defined(_M_X64)
+; 642  : #ifdef _MSC_VER
+; 643  :         _UINT32_T pos;
+; 644  :         _BitScanReverse64(&pos, x);
+; 645  : #elif defined(__GNUC__)
+; 646  :         _UINT64_T pos;
+; 647  :         __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 648  : #else
+; 649  : #error unknown compiler
+; 650  : #endif
+; 651  : #else
+; 652  : #error unknown platform
+; 653  : #endif
+; 654  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 941  : }
+; 655  :     }
 
 	pop	ebp
 	ret	0
 __LZCNT_ALT_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT __LZCNT_ALT_32
 _TEXT	SEGMENT
 _x$ = 8							; size = 4
 __LZCNT_ALT_32 PROC					; COMDAT
 
-; 882  : {
+; 596  :     {
 
 	push	ebp
 	mov	ebp, esp
 
-; 883  :     if (x == 0)
+; 597  :         if (x == 0)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 884  :         return (sizeof(x) * 8);
+; 598  :             return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 894  : }
+; 608  :     }
 
 	pop	ebp
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 885  :     _UINT32_T pos;
-; 886  : #ifdef _MSC_VER
-; 887  :     _BitScanReverse(&pos, x);
+; 599  :         _UINT32_T pos;
+; 600  : #ifdef _MSC_VER
+; 601  :         _BitScanReverse(&pos, x);
 
 	bsr	ecx, eax
 
-; 888  : #elif defined(__GNUC__)
-; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 890  : #else
-; 891  : #error unknown compiler
-; 892  : #endif
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 602  : #elif defined(__GNUC__)
+; 603  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 604  : #else
+; 605  : #error unknown compiler
+; 606  : #endif
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, ecx
 
-; 894  : }
+; 608  :     }
 
 	pop	ebp
 	ret	0
 __LZCNT_ALT_32 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT __FROMDWORDTOWORD
 _TEXT	SEGMENT
 _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC					; COMDAT
 
-; 468  : {
+; 182  :     {
 
 	push	ebp
 	mov	ebp, esp
 
-; 469  :     *result_high = (_UINT32_T)(value >> 32);
+; 183  :         *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _result_high$[ebp]
 	mov	ecx, DWORD PTR _value$[ebp+4]
 	mov	DWORD PTR [eax], ecx
 
-; 470  :     return ((_UINT32_T)value);
+; 184  :         return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 471  : }
+; 185  :     }
 
 	pop	ebp
 	ret	0
@@ -162,9 +162,9 @@ __FROMDWORDTOWORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 ;	COMDAT _PMC_From_L@12
 _TEXT	SEGMENT
@@ -173,20 +173,20 @@ _p$ = 12						; size = 4
 _o$ = 16						; size = 4
 _PMC_From_L@12 PROC					; COMDAT
 
-; 111  : {
+; 112  : {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 
-; 112  :     NUMBER_HEADER* p;
-; 113  :     PMC_STATUS_CODE result;
-; 114  :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
-; 115  :     {
-; 116  :         // 32bit未満のCPUには未対応
-; 117  :         return (PMC_STATUS_INTERNAL_ERROR);
-; 118  :     }
-; 119  :     if (x == 0)
+; 113  :     NUMBER_HEADER* p;
+; 114  :     PMC_STATUS_CODE result;
+; 115  :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
+; 116  :     {
+; 117  :         // 32bit未満のCPUには未対応
+; 118  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 119  :     }
+; 120  :     if (x == 0)
 
 	mov	esi, DWORD PTR _x$[ebp]
 	mov	eax, esi
@@ -195,12 +195,12 @@ _PMC_From_L@12 PROC					; COMDAT
 	or	eax, edi
 	jne	SHORT $LN3@PMC_From_L
 
-; 120  :         *o = &number_zero;
+; 121  :         *o = &number_zero;
 
 	mov	eax, DWORD PTR _o$[ebp]
 	pop	edi
 
-; 132  : }
+; 133  : }
 
 	pop	esi
 	mov	DWORD PTR [eax], OFFSET _number_zero
@@ -209,45 +209,45 @@ _PMC_From_L@12 PROC					; COMDAT
 	ret	12					; 0000000cH
 $LN3@PMC_From_L:
 
-; 61   :         if (x_hi == 0)
+; 62   :         if (x_hi == 0)
 
 	test	edi, edi
 	jne	SHORT $LN12@PMC_From_L
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 883  :     if (x == 0)
+; 597  :         if (x == 0)
 
 	test	esi, esi
 	jne	SHORT $LN21@PMC_From_L
 
-; 884  :         return (sizeof(x) * 8);
+; 598  :             return (sizeof(x) * 8);
 
 	lea	ecx, DWORD PTR [edi+32]
 	jmp	SHORT $LN20@PMC_From_L
 $LN21@PMC_From_L:
 
-; 887  :     _BitScanReverse(&pos, x);
+; 601  :         _BitScanReverse(&pos, x);
 
 	bsr	eax, esi
 
-; 888  : #elif defined(__GNUC__)
-; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 890  : #else
-; 891  : #error unknown compiler
-; 892  : #endif
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 602  : #elif defined(__GNUC__)
+; 603  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 604  : #else
+; 605  : #error unknown compiler
+; 606  : #endif
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
 $LN20@PMC_From_L:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 
-; 63   :             __UNIT_TYPE x_bit_length = sizeof(x_lo) * 8 - _LZCNT_ALT_32(x_lo);
+; 64   :             __UNIT_TYPE x_bit_length = sizeof(x_lo) * 8 - _LZCNT_ALT_32(x_lo);
 
 	mov	eax, 32					; 00000020H
 	sub	eax, ecx
 
-; 64   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 65   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
 
 	push	0
 	push	eax
@@ -258,36 +258,36 @@ $LN20@PMC_From_L:
 	test	eax, eax
 	je	SHORT $LN13@PMC_From_L
 
-; 132  : }
+; 133  : }
 
 	pop	edi
 	pop	esi
 	pop	ebp
 	ret	12					; 0000000cH
 $LN12@PMC_From_L:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 887  :     _BitScanReverse(&pos, x);
+; 601  :         _BitScanReverse(&pos, x);
 
 	bsr	eax, edi
 
-; 888  : #elif defined(__GNUC__)
-; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 890  : #else
-; 891  : #error unknown compiler
-; 892  : #endif
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 602  : #elif defined(__GNUC__)
+; 603  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 604  : #else
+; 605  : #error unknown compiler
+; 606  : #endif
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 
-; 69   :             __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_32(x_hi);
+; 70   :             __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_32(x_hi);
 
 	mov	eax, 64					; 00000040H
 	sub	eax, ecx
 
-; 70   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 71   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
 
 	push	0
 	push	eax
@@ -298,68 +298,68 @@ $LN12@PMC_From_L:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_From_L
 
-; 71   :                 return (result);
-; 72   :             (*o)->BLOCK[1] = x_hi;
+; 72   :                 return (result);
+; 73   :             (*o)->BLOCK[1] = x_hi;
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [eax+32]
 	mov	DWORD PTR [eax+4], edi
 $LN13@PMC_From_L:
 
-; 73   :         }
-; 74   :         (*o)->BLOCK[0] = x_lo;
+; 74   :         }
+; 75   :         (*o)->BLOCK[0] = x_lo;
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [eax+32]
 	mov	DWORD PTR [eax], esi
 
-; 75   :     }
-; 76   :     else
-; 77   :     {
-; 78   :         // _UINT64_T を表現するのに 1 ワードで十分である処理系の場合
-; 79   : 
-; 80   :         __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x);
-; 81   :         if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
-; 82   :             return (result);
-; 83   :         (*o)->BLOCK[0] = (__UNIT_TYPE)x;
-; 84   :     }
-; 85   :     CommitNumber(*o);
+; 76   :     }
+; 77   :     else
+; 78   :     {
+; 79   :         // _UINT64_T を表現するのに 1 ワードで十分である処理系の場合
+; 80   : 
+; 81   :         __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x);
+; 82   :         if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 83   :             return (result);
+; 84   :         (*o)->BLOCK[0] = (__UNIT_TYPE)x;
+; 85   :     }
+; 86   :     CommitNumber(*o);
 
 	push	DWORD PTR _p$[ebp]
 	call	_CommitNumber
 
-; 121  :     else
-; 122  :     {
-; 123  :         if ((result = From_L_Imp(x, &p)) != PMC_STATUS_OK)
-; 124  :             return (result);
-; 125  :         *o = p;
+; 122  :     else
+; 123  :     {
+; 124  :         if ((result = From_L_Imp(x, &p)) != PMC_STATUS_OK)
+; 125  :             return (result);
+; 126  :         *o = p;
 
 	mov	ecx, DWORD PTR _o$[ebp]
 
-; 85   :     CommitNumber(*o);
+; 86   :     CommitNumber(*o);
 
 	add	esp, 4
 
-; 121  :     else
-; 122  :     {
-; 123  :         if ((result = From_L_Imp(x, &p)) != PMC_STATUS_OK)
-; 124  :             return (result);
-; 125  :         *o = p;
+; 122  :     else
+; 123  :     {
+; 124  :         if ((result = From_L_Imp(x, &p)) != PMC_STATUS_OK)
+; 125  :             return (result);
+; 126  :         *o = p;
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx], eax
 
-; 126  :     }
-; 127  : #ifdef _DEBUG
-; 128  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 129  :         return (result);
-; 130  : #endif
-; 131  :     return (PMC_STATUS_OK);
+; 127  :     }
+; 128  : #ifdef _DEBUG
+; 129  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 130  :         return (result);
+; 131  : #endif
+; 132  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_From_L:
 
-; 132  : }
+; 133  : }
 
 	pop	edi
 	pop	esi
@@ -369,7 +369,7 @@ _PMC_From_L@12 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 ;	COMDAT _PMC_From_I@8
 _TEXT	SEGMENT
@@ -378,59 +378,59 @@ _x$ = 8							; size = 4
 _o$ = 12						; size = 4
 _PMC_From_I@8 PROC					; COMDAT
 
-; 90   : {
+; 91   : {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 
-; 91   :     PMC_STATUS_CODE result;
-; 92   :     if (sizeof(__UNIT_TYPE) < sizeof(x))
-; 93   :         return (PMC_STATUS_INTERNAL_ERROR);
-; 94   :     if (x == 0)
+; 92   :     PMC_STATUS_CODE result;
+; 93   :     if (sizeof(__UNIT_TYPE) < sizeof(x))
+; 94   :         return (PMC_STATUS_INTERNAL_ERROR);
+; 95   :     if (x == 0)
 
 	mov	esi, DWORD PTR _x$[ebp]
 	test	esi, esi
 	jne	SHORT $LN3@PMC_From_I
 
-; 95   :         *o = &number_zero;
+; 96   :         *o = &number_zero;
 
 	mov	eax, DWORD PTR _o$[ebp]
 	pop	esi
 	mov	DWORD PTR [eax], OFFSET _number_zero
 
-; 102  :     }
-; 103  : #ifdef _DEBUG
-; 104  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 105  :         return (result);
-; 106  : #endif
-; 107  :     return (PMC_STATUS_OK);
+; 103  :     }
+; 104  : #ifdef _DEBUG
+; 105  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 106  :         return (result);
+; 107  : #endif
+; 108  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 108  : }
+; 109  : }
 
 	pop	ebp
 	ret	8
 $LN3@PMC_From_I:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 887  :     _BitScanReverse(&pos, x);
+; 601  :         _BitScanReverse(&pos, x);
 
 	bsr	eax, esi
 
-; 888  : #elif defined(__GNUC__)
-; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 890  : #else
-; 891  : #error unknown compiler
-; 892  : #endif
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 602  : #elif defined(__GNUC__)
+; 603  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 604  : #else
+; 605  : #error unknown compiler
+; 606  : #endif
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 
-; 40   :     if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x), NULL)) != PMC_STATUS_OK)
+; 41   :     if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x), NULL)) != PMC_STATUS_OK)
 
 	mov	eax, 32					; 00000020H
 	sub	eax, ecx
@@ -443,53 +443,53 @@ $LN3@PMC_From_I:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_From_I
 
-; 41   :         return (result);
-; 42   :     (*o)->BLOCK[0] = x;
+; 42   :         return (result);
+; 43   :     (*o)->BLOCK[0] = x;
 
 	mov	eax, DWORD PTR _p$1[ebp]
 	mov	eax, DWORD PTR [eax+32]
 	mov	DWORD PTR [eax], esi
 
-; 43   :     CommitNumber(*o);
+; 44   :     CommitNumber(*o);
 
 	push	DWORD PTR _p$1[ebp]
 	call	_CommitNumber
 
-; 96   :     else
-; 97   :     {
-; 98   :         NUMBER_HEADER* p;
-; 99   :         if ((result = From_I_Imp(x, &p)) != PMC_STATUS_OK)
-; 100  :             return (result);
-; 101  :         *o = p;
+; 97   :     else
+; 98   :     {
+; 99   :         NUMBER_HEADER* p;
+; 100  :         if ((result = From_I_Imp(x, &p)) != PMC_STATUS_OK)
+; 101  :             return (result);
+; 102  :         *o = p;
 
 	mov	ecx, DWORD PTR _o$[ebp]
 
-; 43   :     CommitNumber(*o);
+; 44   :     CommitNumber(*o);
 
 	add	esp, 4
 
-; 96   :     else
-; 97   :     {
-; 98   :         NUMBER_HEADER* p;
-; 99   :         if ((result = From_I_Imp(x, &p)) != PMC_STATUS_OK)
-; 100  :             return (result);
-; 101  :         *o = p;
+; 97   :     else
+; 98   :     {
+; 99   :         NUMBER_HEADER* p;
+; 100  :         if ((result = From_I_Imp(x, &p)) != PMC_STATUS_OK)
+; 101  :             return (result);
+; 102  :         *o = p;
 
 	mov	eax, DWORD PTR _p$1[ebp]
 	mov	DWORD PTR [ecx], eax
 
-; 102  :     }
-; 103  : #ifdef _DEBUG
-; 104  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 105  :         return (result);
-; 106  : #endif
-; 107  :     return (PMC_STATUS_OK);
+; 103  :     }
+; 104  : #ifdef _DEBUG
+; 105  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 106  :         return (result);
+; 107  : #endif
+; 108  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_From_I:
 	pop	esi
 
-; 108  : }
+; 109  : }
 
 	pop	ebp
 	ret	8
@@ -502,24 +502,24 @@ _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_From PROC					; COMDAT
 
-; 136  :     return (PMC_STATUS_OK);
+; 137  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 137  : }
+; 138  : }
 
 	ret	0
 _Initialize_From ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 ;	COMDAT _From_L_Imp
 _TEXT	SEGMENT
@@ -527,69 +527,69 @@ _x$ = 8							; size = 8
 _o$ = 16						; size = 4
 _From_L_Imp PROC					; COMDAT
 
-; 48   : {
+; 49   : {
 
 	push	ebp
 	mov	ebp, esp
 	push	ebx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 469  :     *result_high = (_UINT32_T)(value >> 32);
+; 183  :         *result_high = (_UINT32_T)(value >> 32);
 
 	mov	ebx, DWORD PTR _x$[ebp+4]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 
-; 48   : {
+; 49   : {
 
 	push	esi
 	push	edi
 
-; 49   :     PMC_STATUS_CODE result;
-; 50   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
-; 51   :     {
-; 52   :         // _UINT64_T を表現するのに 2 ワードでは不足する処理系には対応しない。
-; 53   :         return (PMC_STATUS_INTERNAL_ERROR);
-; 54   :     }
-; 55   :     else if (sizeof(__UNIT_TYPE) < sizeof(x))
-; 56   :     {
-; 57   :         // _UINT64_T を表現するのに 1 ワードでは不足する(ちょうど 2 ワード必要とする)処理系の場合
-; 58   : 
-; 59   :         _UINT32_T x_hi;
-; 60   :         _UINT32_T x_lo = _FROMDWORDTOWORD(x, &x_hi);
+; 50   :     PMC_STATUS_CODE result;
+; 51   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
+; 52   :     {
+; 53   :         // _UINT64_T を表現するのに 2 ワードでは不足する処理系には対応しない。
+; 54   :         return (PMC_STATUS_INTERNAL_ERROR);
+; 55   :     }
+; 56   :     else if (sizeof(__UNIT_TYPE) < sizeof(x))
+; 57   :     {
+; 58   :         // _UINT64_T を表現するのに 1 ワードでは不足する(ちょうど 2 ワード必要とする)処理系の場合
+; 59   : 
+; 60   :         _UINT32_T x_hi;
+; 61   :         _UINT32_T x_lo = _FROMDWORDTOWORD(x, &x_hi);
 
 	mov	edi, DWORD PTR _x$[ebp]
 
-; 61   :         if (x_hi == 0)
+; 62   :         if (x_hi == 0)
 
 	test	ebx, ebx
 	jne	SHORT $LN6@From_L_Imp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 883  :     if (x == 0)
+; 597  :         if (x == 0)
 
 	test	edi, edi
 	jne	SHORT $LN15@From_L_Imp
 
-; 884  :         return (sizeof(x) * 8);
+; 598  :             return (sizeof(x) * 8);
 
 	lea	ecx, DWORD PTR [ebx+32]
 	jmp	SHORT $LN14@From_L_Imp
 $LN15@From_L_Imp:
 
-; 885  :     _UINT32_T pos;
-; 886  : #ifdef _MSC_VER
-; 887  :     _BitScanReverse(&pos, x);
+; 599  :         _UINT32_T pos;
+; 600  : #ifdef _MSC_VER
+; 601  :         _BitScanReverse(&pos, x);
 
 	bsr	eax, edi
 
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
 $LN14@From_L_Imp:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 
-; 64   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 65   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
 
 	mov	esi, DWORD PTR _o$[ebp]
 	mov	eax, 32					; 00000020H
@@ -602,7 +602,7 @@ $LN14@From_L_Imp:
 	test	eax, eax
 	je	SHORT $LN7@From_L_Imp
 
-; 87   : }
+; 88   : }
 
 	pop	edi
 	pop	esi
@@ -611,33 +611,33 @@ $LN14@From_L_Imp:
 	ret	0
 $LN6@From_L_Imp:
 
-; 70   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 71   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
 
 	mov	esi, DWORD PTR _o$[ebp]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	bsr	eax, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 
-; 70   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 71   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
 
 	push	0
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 
-; 69   :             __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_32(x_hi);
+; 70   :             __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_32(x_hi);
 
 	mov	eax, 64					; 00000040H
 	sub	eax, ecx
 
-; 70   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 71   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
 
 	push	eax
 	push	esi
@@ -646,43 +646,43 @@ $LN6@From_L_Imp:
 	test	eax, eax
 	jne	SHORT $LN1@From_L_Imp
 
-; 71   :                 return (result);
-; 72   :             (*o)->BLOCK[1] = x_hi;
+; 72   :                 return (result);
+; 73   :             (*o)->BLOCK[1] = x_hi;
 
 	mov	eax, DWORD PTR [esi]
 	mov	eax, DWORD PTR [eax+32]
 	mov	DWORD PTR [eax+4], ebx
 $LN7@From_L_Imp:
 
-; 73   :         }
-; 74   :         (*o)->BLOCK[0] = x_lo;
+; 74   :         }
+; 75   :         (*o)->BLOCK[0] = x_lo;
 
 	mov	eax, DWORD PTR [esi]
 	mov	eax, DWORD PTR [eax+32]
 	mov	DWORD PTR [eax], edi
 
-; 75   :     }
-; 76   :     else
-; 77   :     {
-; 78   :         // _UINT64_T を表現するのに 1 ワードで十分である処理系の場合
-; 79   : 
-; 80   :         __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x);
-; 81   :         if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
-; 82   :             return (result);
-; 83   :         (*o)->BLOCK[0] = (__UNIT_TYPE)x;
-; 84   :     }
-; 85   :     CommitNumber(*o);
+; 76   :     }
+; 77   :     else
+; 78   :     {
+; 79   :         // _UINT64_T を表現するのに 1 ワードで十分である処理系の場合
+; 80   : 
+; 81   :         __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x);
+; 82   :         if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 83   :             return (result);
+; 84   :         (*o)->BLOCK[0] = (__UNIT_TYPE)x;
+; 85   :     }
+; 86   :     CommitNumber(*o);
 
 	push	DWORD PTR [esi]
 	call	_CommitNumber
 	add	esp, 4
 
-; 86   :     return (PMC_STATUS_OK);
+; 87   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@From_L_Imp:
 
-; 87   : }
+; 88   : }
 
 	pop	edi
 	pop	esi
@@ -693,9 +693,9 @@ _From_L_Imp ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 ;	COMDAT _From_I_Imp
 _TEXT	SEGMENT
@@ -703,53 +703,53 @@ _x$ = 8							; size = 4
 _o$ = 12						; size = 4
 _From_I_Imp PROC					; COMDAT
 
-; 38   : {
+; 39   : {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 883  :     if (x == 0)
+; 597  :         if (x == 0)
 
 	mov	esi, DWORD PTR _x$[ebp]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 
-; 38   : {
+; 39   : {
 
 	push	edi
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 883  :     if (x == 0)
+; 597  :         if (x == 0)
 
 	test	esi, esi
 	jne	SHORT $LN5@From_I_Imp
 
-; 884  :         return (sizeof(x) * 8);
+; 598  :             return (sizeof(x) * 8);
 
 	lea	ecx, DWORD PTR [esi+32]
 	jmp	SHORT $LN4@From_I_Imp
 $LN5@From_I_Imp:
 
-; 885  :     _UINT32_T pos;
-; 886  : #ifdef _MSC_VER
-; 887  :     _BitScanReverse(&pos, x);
+; 599  :         _UINT32_T pos;
+; 600  : #ifdef _MSC_VER
+; 601  :         _BitScanReverse(&pos, x);
 
 	bsr	eax, esi
 
-; 888  : #elif defined(__GNUC__)
-; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 890  : #else
-; 891  : #error unknown compiler
-; 892  : #endif
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 602  : #elif defined(__GNUC__)
+; 603  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 604  : #else
+; 605  : #error unknown compiler
+; 606  : #endif
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31					; 0000001fH
 	sub	ecx, eax
 $LN4@From_I_Imp:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_from.c
 
-; 40   :     if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x), NULL)) != PMC_STATUS_OK)
+; 41   :     if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x), NULL)) != PMC_STATUS_OK)
 
 	mov	edi, DWORD PTR _o$[ebp]
 	mov	eax, 32					; 00000020H
@@ -762,25 +762,25 @@ $LN4@From_I_Imp:
 	test	eax, eax
 	jne	SHORT $LN1@From_I_Imp
 
-; 41   :         return (result);
-; 42   :     (*o)->BLOCK[0] = x;
+; 42   :         return (result);
+; 43   :     (*o)->BLOCK[0] = x;
 
 	mov	eax, DWORD PTR [edi]
 	mov	eax, DWORD PTR [eax+32]
 	mov	DWORD PTR [eax], esi
 
-; 43   :     CommitNumber(*o);
+; 44   :     CommitNumber(*o);
 
 	push	DWORD PTR [edi]
 	call	_CommitNumber
 	add	esp, 4
 
-; 44   :     return (PMC_STATUS_OK);
+; 45   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@From_I_Imp:
 
-; 45   : }
+; 46   : }
 
 	pop	edi
 	pop	esi

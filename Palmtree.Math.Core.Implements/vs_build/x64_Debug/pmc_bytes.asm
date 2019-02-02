@@ -18,7 +18,8 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
+__6B0481B0_pmc_inline_func@h DB 01H
 __38E6FCF1_pmc_bytes@c DB 01H
 msvcjmc	ENDS
 PUBLIC	PMC_FromByteArray
@@ -162,7 +163,7 @@ p$ = 240
 count$ = 248
 CountActualBitsFromBuffer PROC				; COMDAT
 
-; 38   : {
+; 39   : {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -178,7 +179,7 @@ CountActualBitsFromBuffer PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__38E6FCF1_pmc_bytes@c
 	call	__CheckForDebuggerJustMyCode
 
-; 39   :     p += count;
+; 40   :     p += count;
 
 	mov	rax, QWORD PTR count$[rbp]
 	mov	rcx, QWORD PTR p$[rbp]
@@ -187,26 +188,26 @@ CountActualBitsFromBuffer PROC				; COMDAT
 	mov	QWORD PTR p$[rbp], rax
 $LN2@CountActua:
 
-; 40   :     while (count > 0)
+; 41   :     while (count > 0)
 
 	cmp	QWORD PTR count$[rbp], 0
 	jbe	SHORT $LN3@CountActua
 
-; 41   :     {
-; 42   :         --p;
+; 42   :     {
+; 43   :         --p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	dec	rax
 	mov	QWORD PTR p$[rbp], rax
 
-; 43   :         if (*p != 0)
+; 44   :         if (*p != 0)
 
 	mov	rax, QWORD PTR p$[rbp]
 	movzx	eax, BYTE PTR [rax]
 	test	eax, eax
 	je	SHORT $LN4@CountActua
 
-; 44   :             return (count * 8 - _LZCNT_ALT_8(*p));
+; 45   :             return (count * 8 - _LZCNT_ALT_8(*p));
 
 	mov	rax, QWORD PTR count$[rbp]
 	shl	rax, 3
@@ -221,23 +222,23 @@ $LN2@CountActua:
 	jmp	SHORT $LN1@CountActua
 $LN4@CountActua:
 
-; 45   :         --count;
+; 46   :         --count;
 
 	mov	rax, QWORD PTR count$[rbp]
 	dec	rax
 	mov	QWORD PTR count$[rbp], rax
 
-; 46   :     }
+; 47   :     }
 
 	jmp	SHORT $LN2@CountActua
 $LN3@CountActua:
 
-; 47   :     return (0);
+; 48   :     return (0);
 
 	xor	eax, eax
 $LN1@CountActua:
 
-; 48   : }
+; 49   : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -246,14 +247,14 @@ $LN1@CountActua:
 CountActualBitsFromBuffer ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _LZCNT_ALT_8
 _TEXT	SEGMENT
 pos$ = 4
 x$ = 256
 _LZCNT_ALT_8 PROC					; COMDAT
 
-; 867  : {
+; 581  :     {
 
 	mov	BYTE PTR [rsp+8], cl
 	push	rbp
@@ -265,35 +266,35 @@ _LZCNT_ALT_8 PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	movzx	ecx, BYTE PTR [rsp+296]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 868  :     if (x == 0)
+; 582  :         if (x == 0)
 
 	movzx	eax, BYTE PTR x$[rbp]
 	test	eax, eax
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 869  :         return (sizeof(x) * 8);
+; 583  :             return (sizeof(x) * 8);
 
 	mov	eax, 8
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 870  :     _UINT32_T pos;
-; 871  : #ifdef _MSC_VER
-; 872  :     _BitScanReverse(&pos, x);
+; 584  :         _UINT32_T pos;
+; 585  : #ifdef _MSC_VER
+; 586  :         _BitScanReverse(&pos, x);
 
 	movzx	eax, BYTE PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 873  : #elif defined(__GNUC__)
-; 874  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-; 875  : #else
-; 876  : #error unknown compiler
-; 877  : #endif
-; 878  :     return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+; 587  : #elif defined(__GNUC__)
+; 588  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x));
+; 589  : #else
+; 590  : #error unknown compiler
+; 591  : #endif
+; 592  :         return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 7
@@ -302,7 +303,7 @@ $LN2@LZCNT_ALT_:
 	movzx	eax, al
 $LN1@LZCNT_ALT_:
 
-; 879  : }
+; 593  :     }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -316,14 +317,14 @@ $LN1@LZCNT_ALT_:
 _LZCNT_ALT_8 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _DIVIDE_CEILING_SIZE
 _TEXT	SEGMENT
 u$ = 224
 v$ = 232
 _DIVIDE_CEILING_SIZE PROC				; COMDAT
 
-; 484  : {
+; 198  :     {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -336,10 +337,10 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 485  :     return ((u + v - 1) / v);
+; 199  :         return ((u + v - 1) / v);
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
@@ -347,7 +348,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 	xor	edx, edx
 	div	QWORD PTR v$[rbp]
 
-; 486  : }
+; 200  :     }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -356,7 +357,7 @@ _DIVIDE_CEILING_SIZE PROC				; COMDAT
 _DIVIDE_CEILING_SIZE ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _COPY_MEMORY_BYTE
 _TEXT	SEGMENT
 d$ = 224
@@ -364,7 +365,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 335  : {
+; 49   :     {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -379,17 +380,17 @@ _COPY_MEMORY_BYTE PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 336  :     __movsb(d, s, count);
+; 50   :         __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rsi, QWORD PTR s$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep movsb
 
-; 337  : }
+; 51   :     }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi
@@ -412,7 +413,7 @@ buffer_size$ = 336
 count$ = 344
 PMC_ToByteArray PROC					; COMDAT
 
-; 78   : {
+; 79   : {
 
 $LN11:
 	mov	QWORD PTR [rsp+32], r9
@@ -431,24 +432,24 @@ $LN11:
 	lea	rcx, OFFSET FLAT:__38E6FCF1_pmc_bytes@c
 	call	__CheckForDebuggerJustMyCode
 
-; 79   :     if (p == NULL)
+; 80   :     if (p == NULL)
 
 	cmp	QWORD PTR p$[rbp], 0
 	jne	SHORT $LN2@PMC_ToByte
 
-; 80   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 81   :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_ToByte
 $LN2@PMC_ToByte:
 
-; 81   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 82   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR np$[rbp], rax
 
-; 82   :     PMC_STATUS_CODE result;
-; 83   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 83   :     PMC_STATUS_CODE result;
+; 84   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR np$[rbp]
 	call	CheckNumber
@@ -456,13 +457,13 @@ $LN2@PMC_ToByte:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN3@PMC_ToByte
 
-; 84   :         return (result);
+; 85   :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_ToByte
 $LN3@PMC_ToByte:
 
-; 85   :     size_t expected_buffer_size = np->IS_ZERO ? 1 : _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8);
+; 86   :     size_t expected_buffer_size = np->IS_ZERO ? 1 : _DIVIDE_CEILING_SIZE(np->UNIT_BIT_COUNT, 8);
 
 	mov	rax, QWORD PTR np$[rbp]
 	mov	eax, DWORD PTR [rax+40]
@@ -482,13 +483,13 @@ $LN10@PMC_ToByte:
 	mov	rax, QWORD PTR tv76[rbp]
 	mov	QWORD PTR expected_buffer_size$[rbp], rax
 
-; 86   :     if (buffer != NULL)
+; 87   :     if (buffer != NULL)
 
 	cmp	QWORD PTR buffer$[rbp], 0
 	je	SHORT $LN4@PMC_ToByte
 
-; 87   :     {
-; 88   :         if (np->UNIT_BIT_COUNT > sizeof(*buffer) * 8 * buffer_size)
+; 88   :     {
+; 89   :         if (np->UNIT_BIT_COUNT > sizeof(*buffer) * 8 * buffer_size)
 
 	mov	rax, QWORD PTR buffer_size$[rbp]
 	shl	rax, 3
@@ -496,13 +497,13 @@ $LN10@PMC_ToByte:
 	cmp	QWORD PTR [rcx+16], rax
 	jbe	SHORT $LN5@PMC_ToByte
 
-; 89   :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 90   :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
 
 	mov	eax, -4
 	jmp	SHORT $LN1@PMC_ToByte
 $LN5@PMC_ToByte:
 
-; 90   :         if (np->IS_ZERO)
+; 91   :         if (np->IS_ZERO)
 
 	mov	rax, QWORD PTR np$[rbp]
 	mov	eax, DWORD PTR [rax+40]
@@ -511,7 +512,7 @@ $LN5@PMC_ToByte:
 	test	eax, eax
 	je	SHORT $LN6@PMC_ToByte
 
-; 91   :             buffer[0] = 0;
+; 92   :             buffer[0] = 0;
 
 	mov	eax, 1
 	imul	rax, rax, 0
@@ -520,8 +521,8 @@ $LN5@PMC_ToByte:
 	jmp	SHORT $LN7@PMC_ToByte
 $LN6@PMC_ToByte:
 
-; 92   :         else
-; 93   :             _COPY_MEMORY_BYTE(buffer, np->BLOCK, expected_buffer_size);
+; 93   :         else
+; 94   :             _COPY_MEMORY_BYTE(buffer, np->BLOCK, expected_buffer_size);
 
 	mov	r8, QWORD PTR expected_buffer_size$[rbp]
 	mov	rax, QWORD PTR np$[rbp]
@@ -531,19 +532,19 @@ $LN6@PMC_ToByte:
 $LN7@PMC_ToByte:
 $LN4@PMC_ToByte:
 
-; 94   :     }
-; 95   :     *count = expected_buffer_size;
+; 95   :     }
+; 96   :     *count = expected_buffer_size;
 
 	mov	rax, QWORD PTR count$[rbp]
 	mov	rcx, QWORD PTR expected_buffer_size$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 96   :     return (PMC_STATUS_OK);
+; 97   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_ToByte:
 
-; 97   : }
+; 98   : }
 
 	lea	rsp, QWORD PTR [rbp+296]
 	pop	rdi
@@ -563,7 +564,7 @@ count$ = 328
 o$ = 336
 PMC_FromByteArray PROC					; COMDAT
 
-; 52   : {
+; 53   : {
 
 $LN9:
 	mov	QWORD PTR [rsp+24], r8
@@ -581,42 +582,42 @@ $LN9:
 	lea	rcx, OFFSET FLAT:__38E6FCF1_pmc_bytes@c
 	call	__CheckForDebuggerJustMyCode
 
-; 53   :     PMC_STATUS_CODE result;
-; 54   :     if (buffer == NULL)
+; 54   :     PMC_STATUS_CODE result;
+; 55   :     if (buffer == NULL)
 
 	cmp	QWORD PTR buffer$[rbp], 0
 	jne	SHORT $LN2@PMC_FromBy
 
-; 55   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 56   :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_FromBy
 $LN2@PMC_FromBy:
 
-; 56   :     if (o == NULL)
+; 57   :     if (o == NULL)
 
 	cmp	QWORD PTR o$[rbp], 0
 	jne	SHORT $LN3@PMC_FromBy
 
-; 57   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 58   :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_FromBy
 $LN3@PMC_FromBy:
 
-; 58   :     __UNIT_TYPE bit_count = CountActualBitsFromBuffer(buffer, count);
+; 59   :     __UNIT_TYPE bit_count = CountActualBitsFromBuffer(buffer, count);
 
 	mov	rdx, QWORD PTR count$[rbp]
 	mov	rcx, QWORD PTR buffer$[rbp]
 	call	CountActualBitsFromBuffer
 	mov	QWORD PTR bit_count$[rbp], rax
 
-; 59   :     if (bit_count == 0)
+; 60   :     if (bit_count == 0)
 
 	cmp	QWORD PTR bit_count$[rbp], 0
 	jne	SHORT $LN4@PMC_FromBy
 
-; 60   :         *o = &number_zero;
+; 61   :         *o = &number_zero;
 
 	mov	rax, QWORD PTR o$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
@@ -624,10 +625,10 @@ $LN3@PMC_FromBy:
 	jmp	SHORT $LN5@PMC_FromBy
 $LN4@PMC_FromBy:
 
-; 61   :     else
-; 62   :     {
-; 63   :         NUMBER_HEADER* p;
-; 64   :         if ((result = AllocateNumber(&p, bit_count, NULL)) != PMC_STATUS_OK)
+; 62   :     else
+; 63   :     {
+; 64   :         NUMBER_HEADER* p;
+; 65   :         if ((result = AllocateNumber(&p, bit_count, NULL)) != PMC_STATUS_OK)
 
 	xor	r8d, r8d
 	mov	rdx, QWORD PTR bit_count$[rbp]
@@ -637,13 +638,13 @@ $LN4@PMC_FromBy:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_FromBy
 
-; 65   :             return (result);
+; 66   :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_FromBy
 $LN6@PMC_FromBy:
 
-; 66   :         _COPY_MEMORY_BYTE(p->BLOCK, buffer, _DIVIDE_CEILING_SIZE(bit_count, 8));
+; 67   :         _COPY_MEMORY_BYTE(p->BLOCK, buffer, _DIVIDE_CEILING_SIZE(bit_count, 8));
 
 	mov	edx, 8
 	mov	rcx, QWORD PTR bit_count$[rbp]
@@ -654,21 +655,21 @@ $LN6@PMC_FromBy:
 	mov	rcx, QWORD PTR [rax+56]
 	call	_COPY_MEMORY_BYTE
 
-; 67   :         CommitNumber(p);
+; 68   :         CommitNumber(p);
 
 	mov	rcx, QWORD PTR p$4[rbp]
 	call	CommitNumber
 
-; 68   :         *o = p;
+; 69   :         *o = p;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR p$4[rbp]
 	mov	QWORD PTR [rax], rcx
 $LN5@PMC_FromBy:
 
-; 69   :     }
-; 70   : #ifdef _DEBUG
-; 71   :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 70   :     }
+; 71   : #ifdef _DEBUG
+; 72   :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -677,19 +678,19 @@ $LN5@PMC_FromBy:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN7@PMC_FromBy
 
-; 72   :         return (result);
+; 73   :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_FromBy
 $LN7@PMC_FromBy:
 
-; 73   : #endif
-; 74   :     return (PMC_STATUS_OK);
+; 74   : #endif
+; 75   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_FromBy:
 
-; 75   : }
+; 76   : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]

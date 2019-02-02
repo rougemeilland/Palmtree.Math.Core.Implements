@@ -27,7 +27,8 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
+__6B0481B0_pmc_inline_func@h DB 01H
 __F13F011C_memory@c DB 01H
 msvcjmc	ENDS
 PUBLIC	_AllocateHeapArea
@@ -82,7 +83,7 @@ _p$ = 8							; size = 4
 _word_count$ = 12					; size = 4
 _GetTrailingZeroBitCount PROC
 
-; 461  : {
+; 462  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -91,30 +92,30 @@ _GetTrailingZeroBitCount PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 462  :     __UNIT_TYPE bit_count = 0;
+; 463  :     __UNIT_TYPE bit_count = 0;
 
 	mov	DWORD PTR _bit_count$[ebp], 0
 $LN2@GetTrailin:
 
-; 463  :     while (word_count > 0)
+; 464  :     while (word_count > 0)
 
 	cmp	DWORD PTR _word_count$[ebp], 0
 	jbe	SHORT $LN3@GetTrailin
 
-; 464  :     {
-; 465  :         --word_count;
+; 465  :     {
+; 466  :         --word_count;
 
 	mov	eax, DWORD PTR _word_count$[ebp]
 	sub	eax, 1
 	mov	DWORD PTR _word_count$[ebp], eax
 
-; 466  :         if (*p != 0)
+; 467  :         if (*p != 0)
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	cmp	DWORD PTR [ecx], 0
 	je	SHORT $LN4@GetTrailin
 
-; 467  :             return (bit_count + _TZCNT_ALT_UNIT(*p));
+; 468  :             return (bit_count + _TZCNT_ALT_UNIT(*p));
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx]
@@ -125,30 +126,30 @@ $LN2@GetTrailin:
 	jmp	SHORT $LN1@GetTrailin
 $LN4@GetTrailin:
 
-; 468  :         bit_count += __UNIT_TYPE_BIT_COUNT;
+; 469  :         bit_count += __UNIT_TYPE_BIT_COUNT;
 
 	mov	ecx, DWORD PTR _bit_count$[ebp]
 	add	ecx, 32					; 00000020H
 	mov	DWORD PTR _bit_count$[ebp], ecx
 
-; 469  :         ++p;
+; 470  :         ++p;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	add	edx, 4
 	mov	DWORD PTR _p$[ebp], edx
 
-; 470  :     }
+; 471  :     }
 
 	jmp	SHORT $LN2@GetTrailin
 $LN3@GetTrailin:
 
-; 471  :     // このルートには到達しないはず
-; 472  :     return (0);
+; 472  :     // このルートには到達しないはず
+; 473  :     return (0);
 
 	xor	eax, eax
 $LN1@GetTrailin:
 
-; 473  : }
+; 474  : }
 
 	add	esp, 4
 	cmp	ebp, esp
@@ -166,7 +167,7 @@ _word_count$ = 12					; size = 4
 _effective_word_count$ = 16				; size = 4
 _GetEffectiveBitLength PROC
 
-; 439  : {
+; 440  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -174,25 +175,25 @@ _GetEffectiveBitLength PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 440  :     if (p == NULL)
+; 441  :     if (p == NULL)
 
 	cmp	DWORD PTR _p$[ebp], 0
 	jne	SHORT $LN4@GetEffecti
 
-; 441  :     {
-; 442  :         *effective_word_count = 0;
+; 442  :     {
+; 443  :         *effective_word_count = 0;
 
 	mov	eax, DWORD PTR _effective_word_count$[ebp]
 	mov	DWORD PTR [eax], 0
 
-; 443  :         return (0);
+; 444  :         return (0);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@GetEffecti
 $LN4@GetEffecti:
 
-; 444  :     }
-; 445  :     p += word_count;
+; 445  :     }
+; 446  :     p += word_count;
 
 	mov	ecx, DWORD PTR _word_count$[ebp]
 	mov	edx, DWORD PTR _p$[ebp]
@@ -200,32 +201,32 @@ $LN4@GetEffecti:
 	mov	DWORD PTR _p$[ebp], eax
 $LN2@GetEffecti:
 
-; 446  :     while (word_count != 0)
+; 447  :     while (word_count != 0)
 
 	cmp	DWORD PTR _word_count$[ebp], 0
 	je	SHORT $LN3@GetEffecti
 
-; 447  :     {
-; 448  :         --p;
+; 448  :     {
+; 449  :         --p;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	sub	ecx, 4
 	mov	DWORD PTR _p$[ebp], ecx
 
-; 449  :         if (*p != 0)
+; 450  :         if (*p != 0)
 
 	mov	edx, DWORD PTR _p$[ebp]
 	cmp	DWORD PTR [edx], 0
 	je	SHORT $LN5@GetEffecti
 
-; 450  :         {
-; 451  :             *effective_word_count = word_count;
+; 451  :         {
+; 452  :             *effective_word_count = word_count;
 
 	mov	eax, DWORD PTR _effective_word_count$[ebp]
 	mov	ecx, DWORD PTR _word_count$[ebp]
 	mov	DWORD PTR [eax], ecx
 
-; 452  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
+; 453  :             return (word_count * __UNIT_TYPE_BIT_COUNT - _LZCNT_ALT_UNIT(*p));
 
 	mov	esi, DWORD PTR _word_count$[ebp]
 	shl	esi, 5
@@ -239,29 +240,29 @@ $LN2@GetEffecti:
 	jmp	SHORT $LN1@GetEffecti
 $LN5@GetEffecti:
 
-; 453  :         }
-; 454  :         --word_count;
+; 454  :         }
+; 455  :         --word_count;
 
 	mov	ecx, DWORD PTR _word_count$[ebp]
 	sub	ecx, 1
 	mov	DWORD PTR _word_count$[ebp], ecx
 
-; 455  :     }
+; 456  :     }
 
 	jmp	SHORT $LN2@GetEffecti
 $LN3@GetEffecti:
 
-; 456  :     *effective_word_count = 0;
+; 457  :     *effective_word_count = 0;
 
 	mov	edx, DWORD PTR _effective_word_count$[ebp]
 	mov	DWORD PTR [edx], 0
 
-; 457  :     return (0);
+; 458  :     return (0);
 
 	xor	eax, eax
 $LN1@GetEffecti:
 
-; 458  : }
+; 459  : }
 
 	pop	esi
 	cmp	ebp, esp
@@ -276,21 +277,21 @@ _TEXT	SEGMENT
 _p$ = 8							; size = 4
 _CleanUpNumber PROC
 
-; 392  : {
+; 393  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 393  :     if (p->BLOCK != NULL)
+; 394  :     if (p->BLOCK != NULL)
 
 	mov	eax, DWORD PTR _p$[ebp]
 	cmp	DWORD PTR [eax+32], 0
 	je	SHORT $LN1@CleanUpNum
 
-; 394  :     {
-; 395  :         DeallocateBlock(p->BLOCK, p->BLOCK_COUNT);
+; 395  :     {
+; 396  :         DeallocateBlock(p->BLOCK, p->BLOCK_COUNT);
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	edx, DWORD PTR [ecx+28]
@@ -301,14 +302,14 @@ _CleanUpNumber PROC
 	call	_DeallocateBlock
 	add	esp, 8
 
-; 396  :         p->BLOCK = NULL;
+; 397  :         p->BLOCK = NULL;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [edx+32], 0
 $LN1@CleanUpNum:
 
-; 397  :     }
-; 398  : }
+; 398  :     }
+; 399  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -326,7 +327,7 @@ _bit_count$ = 12					; size = 4
 _light_check_code$ = 16					; size = 4
 _InitializeNumber PROC
 
-; 364  : {
+; 365  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -339,14 +340,14 @@ _InitializeNumber PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 365  :     if (bit_count > 0)
+; 366  :     if (bit_count > 0)
 
 	cmp	DWORD PTR _bit_count$[ebp], 0
 	jbe	SHORT $LN2@Initialize
 
-; 366  :     {
-; 367  :         __UNIT_TYPE word_count;
-; 368  :         __UNIT_TYPE* block = AllocateBlock(bit_count, &word_count, light_check_code);
+; 367  :     {
+; 368  :         __UNIT_TYPE word_count;
+; 369  :         __UNIT_TYPE* block = AllocateBlock(bit_count, &word_count, light_check_code);
 
 	mov	eax, DWORD PTR _light_check_code$[ebp]
 	push	eax
@@ -358,100 +359,100 @@ _InitializeNumber PROC
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _block$1[ebp], eax
 
-; 369  :         if (block == NULL)
+; 370  :         if (block == NULL)
 
 	cmp	DWORD PTR _block$1[ebp], 0
 	jne	SHORT $LN4@Initialize
 
-; 370  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 371  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5					; fffffffbH
 	jmp	SHORT $LN1@Initialize
 $LN4@Initialize:
 
-; 371  :         ClearNumberHeader(p);
+; 372  :         ClearNumberHeader(p);
 
 	mov	eax, DWORD PTR _p$[ebp]
 	push	eax
 	call	_ClearNumberHeader
 	add	esp, 4
 
-; 372  :         p->SIGNATURE1 = PMC_SIGNATURE;
+; 373  :         p->SIGNATURE1 = PMC_SIGNATURE;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx], 1231244656		; 49634d70H
 
-; 373  :         p->SIGNATURE2 = PMC_UINT_SIGNATURE;
+; 374  :         p->SIGNATURE2 = PMC_UINT_SIGNATURE;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [edx+4], 1416522069		; 546e6955H
 
-; 374  :         p->UNIT_BIT_COUNT = bit_count;
+; 375  :         p->UNIT_BIT_COUNT = bit_count;
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	ecx, DWORD PTR _bit_count$[ebp]
 	mov	DWORD PTR [eax+12], ecx
 
-; 375  :         p->BLOCK_COUNT = word_count;
+; 376  :         p->BLOCK_COUNT = word_count;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR _word_count$2[ebp]
 	mov	DWORD PTR [edx+28], eax
 
-; 376  :         p->BLOCK = block;
+; 377  :         p->BLOCK = block;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	edx, DWORD PTR _block$1[ebp]
 	mov	DWORD PTR [ecx+32], edx
 
-; 377  :     }
+; 378  :     }
 
 	jmp	SHORT $LN3@Initialize
 $LN2@Initialize:
 
-; 378  :     else
-; 379  :     {
-; 380  :         // bit_count に 0 が与えられるのは、数値が 0 の場合。
-; 381  :         ClearNumberHeader(p);
+; 379  :     else
+; 380  :     {
+; 381  :         // bit_count に 0 が与えられるのは、数値が 0 の場合。
+; 382  :         ClearNumberHeader(p);
 
 	mov	eax, DWORD PTR _p$[ebp]
 	push	eax
 	call	_ClearNumberHeader
 	add	esp, 4
 
-; 382  :         p->SIGNATURE1 = PMC_SIGNATURE;
+; 383  :         p->SIGNATURE1 = PMC_SIGNATURE;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx], 1231244656		; 49634d70H
 
-; 383  :         p->SIGNATURE2 = PMC_UINT_SIGNATURE;
+; 384  :         p->SIGNATURE2 = PMC_UINT_SIGNATURE;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [edx+4], 1416522069		; 546e6955H
 
-; 384  :         p->UNIT_BIT_COUNT = 0;
+; 385  :         p->UNIT_BIT_COUNT = 0;
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [eax+12], 0
 
-; 385  :         p->BLOCK_COUNT = 0;
+; 386  :         p->BLOCK_COUNT = 0;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+28], 0
 
-; 386  :         p->BLOCK = NULL;
+; 387  :         p->BLOCK = NULL;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [edx+32], 0
 $LN3@Initialize:
 
-; 387  :     }
-; 388  :     return (PMC_STATUS_OK);
+; 388  :     }
+; 389  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@Initialize:
 
-; 389  : }
+; 390  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -495,7 +496,7 @@ ___p$1 = -4						; size = 4
 _p$ = 8							; size = 4
 _FillNumberHeader PROC
 
-; 320  : {
+; 321  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -504,111 +505,111 @@ _FillNumberHeader PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 321  : #ifdef _M_IX64
-; 322  :     if (sizeof(*p) == sizeof(_UINT64_T) * 8)
-; 323  :     {
-; 324  :         _UINT64_T* __p = (_UINT64_T*)p;
-; 325  :         __p[0] = DEFAULT_MEMORY_DATA;
-; 326  :         __p[1] = DEFAULT_MEMORY_DATA;
-; 327  :         __p[2] = DEFAULT_MEMORY_DATA;
-; 328  :         __p[3] = DEFAULT_MEMORY_DATA;
-; 329  :         __p[4] = DEFAULT_MEMORY_DATA;
-; 330  :         __p[5] = DEFAULT_MEMORY_DATA;
-; 331  :         __p[6] = DEFAULT_MEMORY_DATA;
-; 332  :         __p[7] = DEFAULT_MEMORY_DATA;
-; 333  :     }
-; 334  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
-; 335  :         _FILL_MEMORY_64((_UINT64_T*)p, DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT64_T));
-; 336  :     else
-; 337  :     {
-; 338  : #endif
-; 339  :         if (sizeof(*p) == sizeof(_UINT32_T) * 9)
+; 322  : #ifdef _M_IX64
+; 323  :     if (sizeof(*p) == sizeof(_UINT64_T) * 8)
+; 324  :     {
+; 325  :         _UINT64_T* __p = (_UINT64_T*)p;
+; 326  :         __p[0] = DEFAULT_MEMORY_DATA;
+; 327  :         __p[1] = DEFAULT_MEMORY_DATA;
+; 328  :         __p[2] = DEFAULT_MEMORY_DATA;
+; 329  :         __p[3] = DEFAULT_MEMORY_DATA;
+; 330  :         __p[4] = DEFAULT_MEMORY_DATA;
+; 331  :         __p[5] = DEFAULT_MEMORY_DATA;
+; 332  :         __p[6] = DEFAULT_MEMORY_DATA;
+; 333  :         __p[7] = DEFAULT_MEMORY_DATA;
+; 334  :     }
+; 335  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
+; 336  :         _FILL_MEMORY_64((_UINT64_T*)p, DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT64_T));
+; 337  :     else
+; 338  :     {
+; 339  : #endif
+; 340  :         if (sizeof(*p) == sizeof(_UINT32_T) * 9)
 
 	mov	eax, 1
 	test	eax, eax
 	je	$LN2@FillNumber
 
-; 340  :         {
-; 341  :             _UINT32_T* __p = (_UINT32_T*)p;
+; 341  :         {
+; 342  :             _UINT32_T* __p = (_UINT32_T*)p;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR ___p$1[ebp], ecx
 
-; 342  :             __p[0] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 343  :             __p[0] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	edx, 4
 	imul	eax, edx, 0
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], -858993460		; ccccccccH
 
-; 343  :             __p[1] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 344  :             __p[1] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	edx, 4
 	shl	edx, 0
 	mov	eax, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [eax+edx], -858993460		; ccccccccH
 
-; 344  :             __p[2] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 345  :             __p[2] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	ecx, 4
 	shl	ecx, 1
 	mov	edx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [edx+ecx], -858993460		; ccccccccH
 
-; 345  :             __p[3] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 346  :             __p[3] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	eax, 4
 	imul	ecx, eax, 3
 	mov	edx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [edx+ecx], -858993460		; ccccccccH
 
-; 346  :             __p[4] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 347  :             __p[4] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	eax, 4
 	shl	eax, 2
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], -858993460		; ccccccccH
 
-; 347  :             __p[5] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 348  :             __p[5] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	edx, 4
 	imul	eax, edx, 5
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], -858993460		; ccccccccH
 
-; 348  :             __p[6] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 349  :             __p[6] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	edx, 4
 	imul	eax, edx, 6
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], -858993460		; ccccccccH
 
-; 349  :             __p[7] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 350  :             __p[7] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	edx, 4
 	imul	eax, edx, 7
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], -858993460		; ccccccccH
 
-; 350  :             __p[8] = (_UINT32_T)DEFAULT_MEMORY_DATA;
+; 351  :             __p[8] = (_UINT32_T)DEFAULT_MEMORY_DATA;
 
 	mov	edx, 4
 	shl	edx, 3
 	mov	eax, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [eax+edx], -858993460		; ccccccccH
 
-; 351  :         }
+; 352  :         }
 
 	jmp	SHORT $LN1@FillNumber
 $LN2@FillNumber:
 
-; 352  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
+; 353  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
 
 	mov	ecx, 1
 	test	ecx, ecx
 	je	SHORT $LN4@FillNumber
 
-; 353  :             _FILL_MEMORY_32((_UINT32_T*)p, (_UINT32_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT32_T));
+; 354  :             _FILL_MEMORY_32((_UINT32_T*)p, (_UINT32_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT32_T));
 
 	push	9
 	push	-858993460				; ccccccccH
@@ -619,13 +620,13 @@ $LN2@FillNumber:
 	jmp	SHORT $LN1@FillNumber
 $LN4@FillNumber:
 
-; 354  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
+; 355  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
 
 	mov	eax, 1
 	test	eax, eax
 	je	SHORT $LN6@FillNumber
 
-; 355  :             _FILL_MEMORY_16((_UINT16_T*)p, (_UINT16_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT16_T));
+; 356  :             _FILL_MEMORY_16((_UINT16_T*)p, (_UINT16_T)DEFAULT_MEMORY_DATA, sizeof(*p) / sizeof(_UINT16_T));
 
 	push	18					; 00000012H
 	push	52428					; 0000ccccH
@@ -636,8 +637,8 @@ $LN4@FillNumber:
 	jmp	SHORT $LN1@FillNumber
 $LN6@FillNumber:
 
-; 356  :         else
-; 357  :             _FILL_MEMORY_BYTE(p, (unsigned char)DEFAULT_MEMORY_DATA, sizeof(*p));
+; 357  :         else
+; 358  :             _FILL_MEMORY_BYTE(p, (unsigned char)DEFAULT_MEMORY_DATA, sizeof(*p));
 
 	push	36					; 00000024H
 	push	204					; 000000ccH
@@ -647,10 +648,10 @@ $LN6@FillNumber:
 	add	esp, 12					; 0000000cH
 $LN1@FillNumber:
 
-; 358  : #ifdef _M_IX64
-; 359  :     }
-; 360  : #endif
-; 361  : }
+; 359  : #ifdef _M_IX64
+; 360  :     }
+; 361  : #endif
+; 362  : }
 
 	add	esp, 4
 	cmp	ebp, esp
@@ -667,7 +668,7 @@ ___p$1 = -4						; size = 4
 _p$ = 8							; size = 4
 _ClearNumberHeader PROC
 
-; 276  : {
+; 277  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -676,111 +677,111 @@ _ClearNumberHeader PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 277  : #ifdef _M_IX64
-; 278  :     if (sizeof(*p) == sizeof(_UINT64_T) * 8)
-; 279  :     {
-; 280  :         _UINT64_T* __p = (_UINT64_T*)p;
-; 281  :         __p[0] = 0;
-; 282  :         __p[1] = 0;
-; 283  :         __p[2] = 0;
-; 284  :         __p[3] = 0;
-; 285  :         __p[4] = 0;
-; 286  :         __p[5] = 0;
-; 287  :         __p[6] = 0;
-; 288  :         __p[7] = 0;
-; 289  :     }
-; 290  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
-; 291  :         _ZERO_MEMORY_64((_UINT64_T*)p, sizeof(*p) / sizeof(_UINT64_T));
-; 292  :     else
-; 293  :     {
-; 294  : #endif
-; 295  :         if (sizeof(*p) == sizeof(_UINT32_T) * 9)
+; 278  : #ifdef _M_IX64
+; 279  :     if (sizeof(*p) == sizeof(_UINT64_T) * 8)
+; 280  :     {
+; 281  :         _UINT64_T* __p = (_UINT64_T*)p;
+; 282  :         __p[0] = 0;
+; 283  :         __p[1] = 0;
+; 284  :         __p[2] = 0;
+; 285  :         __p[3] = 0;
+; 286  :         __p[4] = 0;
+; 287  :         __p[5] = 0;
+; 288  :         __p[6] = 0;
+; 289  :         __p[7] = 0;
+; 290  :     }
+; 291  :     else if (sizeof(*p) % sizeof(_UINT64_T) == 0)
+; 292  :         _ZERO_MEMORY_64((_UINT64_T*)p, sizeof(*p) / sizeof(_UINT64_T));
+; 293  :     else
+; 294  :     {
+; 295  : #endif
+; 296  :         if (sizeof(*p) == sizeof(_UINT32_T) * 9)
 
 	mov	eax, 1
 	test	eax, eax
 	je	$LN2@ClearNumbe
 
-; 296  :         {
-; 297  :             _UINT32_T* __p = (_UINT32_T*)p;
+; 297  :         {
+; 298  :             _UINT32_T* __p = (_UINT32_T*)p;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR ___p$1[ebp], ecx
 
-; 298  :             __p[0] = 0;
+; 299  :             __p[0] = 0;
 
 	mov	edx, 4
 	imul	eax, edx, 0
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], 0
 
-; 299  :             __p[1] = 0;
+; 300  :             __p[1] = 0;
 
 	mov	edx, 4
 	shl	edx, 0
 	mov	eax, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [eax+edx], 0
 
-; 300  :             __p[2] = 0;
+; 301  :             __p[2] = 0;
 
 	mov	ecx, 4
 	shl	ecx, 1
 	mov	edx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [edx+ecx], 0
 
-; 301  :             __p[3] = 0;
+; 302  :             __p[3] = 0;
 
 	mov	eax, 4
 	imul	ecx, eax, 3
 	mov	edx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [edx+ecx], 0
 
-; 302  :             __p[4] = 0;
+; 303  :             __p[4] = 0;
 
 	mov	eax, 4
 	shl	eax, 2
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], 0
 
-; 303  :             __p[5] = 0;
+; 304  :             __p[5] = 0;
 
 	mov	edx, 4
 	imul	eax, edx, 5
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], 0
 
-; 304  :             __p[6] = 0;
+; 305  :             __p[6] = 0;
 
 	mov	edx, 4
 	imul	eax, edx, 6
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], 0
 
-; 305  :             __p[7] = 0;
+; 306  :             __p[7] = 0;
 
 	mov	edx, 4
 	imul	eax, edx, 7
 	mov	ecx, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [ecx+eax], 0
 
-; 306  :             __p[8] = 0;
+; 307  :             __p[8] = 0;
 
 	mov	edx, 4
 	shl	edx, 3
 	mov	eax, DWORD PTR ___p$1[ebp]
 	mov	DWORD PTR [eax+edx], 0
 
-; 307  :         }
+; 308  :         }
 
 	jmp	SHORT $LN1@ClearNumbe
 $LN2@ClearNumbe:
 
-; 308  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
+; 309  :         else if (sizeof(*p) % sizeof(_UINT32_T) == 0)
 
 	mov	ecx, 1
 	test	ecx, ecx
 	je	SHORT $LN4@ClearNumbe
 
-; 309  :             _ZERO_MEMORY_32((_UINT32_T*)p, sizeof(*p) / sizeof(_UINT32_T));
+; 310  :             _ZERO_MEMORY_32((_UINT32_T*)p, sizeof(*p) / sizeof(_UINT32_T));
 
 	push	9
 	mov	edx, DWORD PTR _p$[ebp]
@@ -790,13 +791,13 @@ $LN2@ClearNumbe:
 	jmp	SHORT $LN1@ClearNumbe
 $LN4@ClearNumbe:
 
-; 310  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
+; 311  :         else if (sizeof(*p) % sizeof(_UINT16_T) == 0)
 
 	mov	eax, 1
 	test	eax, eax
 	je	SHORT $LN6@ClearNumbe
 
-; 311  :             _ZERO_MEMORY_16((_UINT16_T*)p, sizeof(*p) / sizeof(_UINT16_T));
+; 312  :             _ZERO_MEMORY_16((_UINT16_T*)p, sizeof(*p) / sizeof(_UINT16_T));
 
 	push	18					; 00000012H
 	mov	ecx, DWORD PTR _p$[ebp]
@@ -806,8 +807,8 @@ $LN4@ClearNumbe:
 	jmp	SHORT $LN1@ClearNumbe
 $LN6@ClearNumbe:
 
-; 312  :         else
-; 313  :             _ZERO_MEMORY_BYTE(p, sizeof(*p));
+; 313  :         else
+; 314  :             _ZERO_MEMORY_BYTE(p, sizeof(*p));
 
 	push	36					; 00000024H
 	mov	edx, DWORD PTR _p$[ebp]
@@ -816,10 +817,10 @@ $LN6@ClearNumbe:
 	add	esp, 8
 $LN1@ClearNumbe:
 
-; 314  : #ifdef _M_IX64
-; 315  :     }
-; 316  : #endif
-; 317  : }
+; 315  : #ifdef _M_IX64
+; 316  :     }
+; 317  : #endif
+; 318  : }
 
 	add	esp, 4
 	cmp	ebp, esp
@@ -838,7 +839,7 @@ _words$ = -4						; size = 4
 _buffer$ = 8						; size = 4
 _CheckBlock PROC
 
-; 239  : {
+; 240  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -849,25 +850,25 @@ _CheckBlock PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 240  : #ifdef _DEBUG
-; 241  :     if (buffer == NULL)
+; 241  : #ifdef _DEBUG
+; 242  :     if (buffer == NULL)
 
 	cmp	DWORD PTR _buffer$[ebp], 0
 	jne	SHORT $LN2@CheckBlock
 
-; 242  :         return (PMC_STATUS_OK);
+; 243  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@CheckBlock
 $LN2@CheckBlock:
 
-; 243  :     --buffer;
+; 244  :     --buffer;
 
 	mov	eax, DWORD PTR _buffer$[ebp]
 	sub	eax, 4
 	mov	DWORD PTR _buffer$[ebp], eax
 
-; 244  :     __UNIT_TYPE words = buffer[0];
+; 245  :     __UNIT_TYPE words = buffer[0];
 
 	mov	ecx, 4
 	imul	edx, ecx, 0
@@ -875,14 +876,14 @@ $LN2@CheckBlock:
 	mov	ecx, DWORD PTR [eax+edx]
 	mov	DWORD PTR _words$[ebp], ecx
 
-; 245  :     __UNIT_TYPE code_desired = buffer[words + 1];
+; 246  :     __UNIT_TYPE code_desired = buffer[words + 1];
 
 	mov	edx, DWORD PTR _words$[ebp]
 	mov	eax, DWORD PTR _buffer$[ebp]
 	mov	ecx, DWORD PTR [eax+edx*4+4]
 	mov	DWORD PTR _code_desired$[ebp], ecx
 
-; 246  :     __UNIT_TYPE code_actual = CalculateCheckCode(&buffer[1], words);
+; 247  :     __UNIT_TYPE code_actual = CalculateCheckCode(&buffer[1], words);
 
 	mov	edx, DWORD PTR _words$[ebp]
 	push	edx
@@ -894,29 +895,29 @@ $LN2@CheckBlock:
 	add	esp, 8
 	mov	DWORD PTR _code_actual$[ebp], eax
 
-; 247  :     if (code_actual == code_desired)
+; 248  :     if (code_actual == code_desired)
 
 	mov	ecx, DWORD PTR _code_actual$[ebp]
 	cmp	ecx, DWORD PTR _code_desired$[ebp]
 	jne	SHORT $LN3@CheckBlock
 
-; 248  :         return (PMC_STATUS_OK);
+; 249  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@CheckBlock
 	jmp	SHORT $LN1@CheckBlock
 $LN3@CheckBlock:
 
-; 249  :     else
-; 250  :         return (PMC_STATUS_BAD_BUFFER);
+; 250  :     else
+; 251  :         return (PMC_STATUS_BAD_BUFFER);
 
 	mov	eax, -257				; fffffeffH
 $LN1@CheckBlock:
 
-; 251  : #else
-; 252  :     return (PMC_STATUS_OK);
-; 253  : #endif
-; 254  : }
+; 252  : #else
+; 253  :     return (PMC_STATUS_OK);
+; 254  : #endif
+; 255  : }
 
 	add	esp, 12					; 0000000cH
 	cmp	ebp, esp
@@ -934,7 +935,7 @@ _words$2 = -4						; size = 4
 _buffer$ = 8						; size = 4
 _CommitBlock PROC
 
-; 223  : {
+; 224  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -944,19 +945,19 @@ _CommitBlock PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 224  :     if (buffer != NULL)
+; 225  :     if (buffer != NULL)
 
 	cmp	DWORD PTR _buffer$[ebp], 0
 	je	SHORT $LN1@CommitBloc
 
-; 225  :     {
-; 226  :         --buffer;
+; 226  :     {
+; 227  :         --buffer;
 
 	mov	eax, DWORD PTR _buffer$[ebp]
 	sub	eax, 4
 	mov	DWORD PTR _buffer$[ebp], eax
 
-; 227  :         __UNIT_TYPE words = buffer[0];
+; 228  :         __UNIT_TYPE words = buffer[0];
 
 	mov	ecx, 4
 	imul	edx, ecx, 0
@@ -964,8 +965,8 @@ _CommitBlock PROC
 	mov	ecx, DWORD PTR [eax+edx]
 	mov	DWORD PTR _words$2[ebp], ecx
 
-; 228  : #ifdef _DEBUG
-; 229  :         __UNIT_TYPE code = CalculateCheckCode(&buffer[1], words);
+; 229  : #ifdef _DEBUG
+; 230  :         __UNIT_TYPE code = CalculateCheckCode(&buffer[1], words);
 
 	mov	edx, DWORD PTR _words$2[ebp]
 	push	edx
@@ -977,10 +978,10 @@ _CommitBlock PROC
 	add	esp, 8
 	mov	DWORD PTR _code$1[ebp], eax
 
-; 230  : #else
-; 231  :         __UNIT_TYPE code = 0;
-; 232  : #endif
-; 233  :         buffer[words + 1] = code;
+; 231  : #else
+; 232  :         __UNIT_TYPE code = 0;
+; 233  : #endif
+; 234  :         buffer[words + 1] = code;
 
 	mov	ecx, DWORD PTR _words$2[ebp]
 	mov	edx, DWORD PTR _buffer$[ebp]
@@ -988,8 +989,8 @@ _CommitBlock PROC
 	mov	DWORD PTR [edx+ecx*4+4], eax
 $LN1@CommitBloc:
 
-; 234  :     }
-; 235  : }
+; 235  :     }
+; 236  : }
 
 	add	esp, 8
 	cmp	ebp, esp
@@ -1008,7 +1009,7 @@ _p$ = 8							; size = 4
 _words$ = 12						; size = 4
 _CalculateCheckCode PROC
 
-; 58   : {
+; 59   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1018,25 +1019,25 @@ _CalculateCheckCode PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 59   : 	__UNIT_TYPE code = CHECK_CODE_INIT;
+; 60   : 	__UNIT_TYPE code = CHECK_CODE_INIT;
 
 	mov	DWORD PTR _code$[ebp], -2071690108	; 84848484H
 
-; 60   : 	
-; 61   :     __UNIT_TYPE count = words >> 5;
+; 61   : 	
+; 62   :     __UNIT_TYPE count = words >> 5;
 
 	mov	eax, DWORD PTR _words$[ebp]
 	shr	eax, 5
 	mov	DWORD PTR _count$[ebp], eax
 $LN2@CalculateC:
 
-; 62   : 	while (count != 0)
+; 63   : 	while (count != 0)
 
 	cmp	DWORD PTR _count$[ebp], 0
 	je	$LN3@CalculateC
 
-; 63   : 	{
-; 64   :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 64   : 	{
+; 65   :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	push	3
 	mov	ecx, DWORD PTR _code$[ebp]
@@ -1049,7 +1050,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 65   :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 66   :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1062,7 +1063,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 66   :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+; 67   :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1075,7 +1076,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 67   :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+; 68   :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1088,7 +1089,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 68   :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
+; 69   :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1101,7 +1102,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 69   :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
+; 70   :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1114,7 +1115,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 70   :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
+; 71   :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1127,7 +1128,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 71   :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
+; 72   :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1140,7 +1141,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 72   :         code = _ROTATE_L_UNIT(code, 3) ^ p[8];
+; 73   :         code = _ROTATE_L_UNIT(code, 3) ^ p[8];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1153,7 +1154,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 73   :         code = _ROTATE_L_UNIT(code, 3) ^ p[9];
+; 74   :         code = _ROTATE_L_UNIT(code, 3) ^ p[9];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1166,7 +1167,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 74   :         code = _ROTATE_L_UNIT(code, 3) ^ p[10];
+; 75   :         code = _ROTATE_L_UNIT(code, 3) ^ p[10];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1179,7 +1180,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 75   :         code = _ROTATE_L_UNIT(code, 3) ^ p[11];
+; 76   :         code = _ROTATE_L_UNIT(code, 3) ^ p[11];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1192,7 +1193,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 76   :         code = _ROTATE_L_UNIT(code, 3) ^ p[12];
+; 77   :         code = _ROTATE_L_UNIT(code, 3) ^ p[12];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1205,7 +1206,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 77   :         code = _ROTATE_L_UNIT(code, 3) ^ p[13];
+; 78   :         code = _ROTATE_L_UNIT(code, 3) ^ p[13];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1218,7 +1219,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 78   :         code = _ROTATE_L_UNIT(code, 3) ^ p[14];
+; 79   :         code = _ROTATE_L_UNIT(code, 3) ^ p[14];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1231,7 +1232,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 79   :         code = _ROTATE_L_UNIT(code, 3) ^ p[15];
+; 80   :         code = _ROTATE_L_UNIT(code, 3) ^ p[15];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1244,7 +1245,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 80   :         code = _ROTATE_L_UNIT(code, 3) ^ p[16];
+; 81   :         code = _ROTATE_L_UNIT(code, 3) ^ p[16];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1257,7 +1258,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 81   :         code = _ROTATE_L_UNIT(code, 3) ^ p[17];
+; 82   :         code = _ROTATE_L_UNIT(code, 3) ^ p[17];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1270,7 +1271,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 82   :         code = _ROTATE_L_UNIT(code, 3) ^ p[18];
+; 83   :         code = _ROTATE_L_UNIT(code, 3) ^ p[18];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1283,7 +1284,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 83   :         code = _ROTATE_L_UNIT(code, 3) ^ p[19];
+; 84   :         code = _ROTATE_L_UNIT(code, 3) ^ p[19];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1296,7 +1297,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 84   :         code = _ROTATE_L_UNIT(code, 3) ^ p[20];
+; 85   :         code = _ROTATE_L_UNIT(code, 3) ^ p[20];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1309,7 +1310,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 85   :         code = _ROTATE_L_UNIT(code, 3) ^ p[21];
+; 86   :         code = _ROTATE_L_UNIT(code, 3) ^ p[21];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1322,7 +1323,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 86   :         code = _ROTATE_L_UNIT(code, 3) ^ p[22];
+; 87   :         code = _ROTATE_L_UNIT(code, 3) ^ p[22];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1335,7 +1336,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 87   :         code = _ROTATE_L_UNIT(code, 3) ^ p[23];
+; 88   :         code = _ROTATE_L_UNIT(code, 3) ^ p[23];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1348,7 +1349,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 88   :         code = _ROTATE_L_UNIT(code, 3) ^ p[24];
+; 89   :         code = _ROTATE_L_UNIT(code, 3) ^ p[24];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1361,7 +1362,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 89   :         code = _ROTATE_L_UNIT(code, 3) ^ p[25];
+; 90   :         code = _ROTATE_L_UNIT(code, 3) ^ p[25];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1374,7 +1375,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 90   :         code = _ROTATE_L_UNIT(code, 3) ^ p[26];
+; 91   :         code = _ROTATE_L_UNIT(code, 3) ^ p[26];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1387,7 +1388,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 91   :         code = _ROTATE_L_UNIT(code, 3) ^ p[27];
+; 92   :         code = _ROTATE_L_UNIT(code, 3) ^ p[27];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1400,7 +1401,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 92   :         code = _ROTATE_L_UNIT(code, 3) ^ p[28];
+; 93   :         code = _ROTATE_L_UNIT(code, 3) ^ p[28];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1413,7 +1414,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 93   :         code = _ROTATE_L_UNIT(code, 3) ^ p[29];
+; 94   :         code = _ROTATE_L_UNIT(code, 3) ^ p[29];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1426,7 +1427,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 94   :         code = _ROTATE_L_UNIT(code, 3) ^ p[30];
+; 95   :         code = _ROTATE_L_UNIT(code, 3) ^ p[30];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1439,7 +1440,7 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 95   :         code = _ROTATE_L_UNIT(code, 3) ^ p[31];
+; 96   :         code = _ROTATE_L_UNIT(code, 3) ^ p[31];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1452,32 +1453,32 @@ $LN2@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 96   :         p += 32;
+; 97   :         p += 32;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	add	edx, 128				; 00000080H
 	mov	DWORD PTR _p$[ebp], edx
 
-; 97   :         --count;
+; 98   :         --count;
 
 	mov	eax, DWORD PTR _count$[ebp]
 	sub	eax, 1
 	mov	DWORD PTR _count$[ebp], eax
 
-; 98   :     }
+; 99   :     }
 
 	jmp	$LN2@CalculateC
 $LN3@CalculateC:
 
-; 99   : 
-; 100  : 	if (words & 0x10)
+; 100  : 
+; 101  : 	if (words & 0x10)
 
 	mov	ecx, DWORD PTR _words$[ebp]
 	and	ecx, 16					; 00000010H
 	je	$LN4@CalculateC
 
-; 101  : 	{
-; 102  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 102  : 	{
+; 103  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1490,7 +1491,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 103  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 104  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1503,7 +1504,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 104  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+; 105  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1516,7 +1517,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 105  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+; 106  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1529,7 +1530,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 106  :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
+; 107  :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1542,7 +1543,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 107  :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
+; 108  :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1555,7 +1556,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 108  :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
+; 109  :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1568,7 +1569,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 109  :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
+; 110  :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1581,7 +1582,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 110  :         code = _ROTATE_L_UNIT(code, 3) ^ p[8];
+; 111  :         code = _ROTATE_L_UNIT(code, 3) ^ p[8];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1594,7 +1595,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 111  :         code = _ROTATE_L_UNIT(code, 3) ^ p[9];
+; 112  :         code = _ROTATE_L_UNIT(code, 3) ^ p[9];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1607,7 +1608,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 112  :         code = _ROTATE_L_UNIT(code, 3) ^ p[10];
+; 113  :         code = _ROTATE_L_UNIT(code, 3) ^ p[10];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1620,7 +1621,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 113  :         code = _ROTATE_L_UNIT(code, 3) ^ p[11];
+; 114  :         code = _ROTATE_L_UNIT(code, 3) ^ p[11];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1633,7 +1634,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 114  :         code = _ROTATE_L_UNIT(code, 3) ^ p[12];
+; 115  :         code = _ROTATE_L_UNIT(code, 3) ^ p[12];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1646,7 +1647,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 115  :         code = _ROTATE_L_UNIT(code, 3) ^ p[13];
+; 116  :         code = _ROTATE_L_UNIT(code, 3) ^ p[13];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1659,7 +1660,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 116  :         code = _ROTATE_L_UNIT(code, 3) ^ p[14];
+; 117  :         code = _ROTATE_L_UNIT(code, 3) ^ p[14];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1672,7 +1673,7 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 117  :         code = _ROTATE_L_UNIT(code, 3) ^ p[15];
+; 118  :         code = _ROTATE_L_UNIT(code, 3) ^ p[15];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1685,23 +1686,23 @@ $LN3@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 118  :         p += 16;
+; 119  :         p += 16;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	add	edx, 64					; 00000040H
 	mov	DWORD PTR _p$[ebp], edx
 $LN4@CalculateC:
 
-; 119  :     }
-; 120  : 
-; 121  :     if (words & 0x8)
+; 120  :     }
+; 121  : 
+; 122  :     if (words & 0x8)
 
 	mov	eax, DWORD PTR _words$[ebp]
 	and	eax, 8
 	je	$LN5@CalculateC
 
-; 122  :     {
-; 123  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 123  :     {
+; 124  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	push	3
 	mov	ecx, DWORD PTR _code$[ebp]
@@ -1714,7 +1715,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 124  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 125  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1727,7 +1728,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 125  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+; 126  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1740,7 +1741,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 126  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+; 127  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1753,7 +1754,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 127  :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
+; 128  :         code = _ROTATE_L_UNIT(code, 3) ^ p[4];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1766,7 +1767,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 128  :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
+; 129  :         code = _ROTATE_L_UNIT(code, 3) ^ p[5];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1779,7 +1780,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 129  :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
+; 130  :         code = _ROTATE_L_UNIT(code, 3) ^ p[6];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1792,7 +1793,7 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 130  :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
+; 131  :         code = _ROTATE_L_UNIT(code, 3) ^ p[7];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1805,23 +1806,23 @@ $LN4@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 131  :         p += 8;
+; 132  :         p += 8;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	add	edx, 32					; 00000020H
 	mov	DWORD PTR _p$[ebp], edx
 $LN5@CalculateC:
 
-; 132  :     }
-; 133  : 
-; 134  :     if (words & 0x4)
+; 133  :     }
+; 134  : 
+; 135  :     if (words & 0x4)
 
 	mov	eax, DWORD PTR _words$[ebp]
 	and	eax, 4
 	je	$LN6@CalculateC
 
-; 135  :     {
-; 136  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 136  :     {
+; 137  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	push	3
 	mov	ecx, DWORD PTR _code$[ebp]
@@ -1834,7 +1835,7 @@ $LN5@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 137  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 138  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1847,7 +1848,7 @@ $LN5@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 138  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
+; 139  :         code = _ROTATE_L_UNIT(code, 3) ^ p[2];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1860,7 +1861,7 @@ $LN5@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 139  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
+; 140  :         code = _ROTATE_L_UNIT(code, 3) ^ p[3];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1873,23 +1874,23 @@ $LN5@CalculateC:
 	xor	eax, DWORD PTR [ecx+edx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 140  :         p += 4;
+; 141  :         p += 4;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	add	edx, 16					; 00000010H
 	mov	DWORD PTR _p$[ebp], edx
 $LN6@CalculateC:
 
-; 141  :     }
-; 142  : 
-; 143  :     if (words & 0x2)
+; 142  :     }
+; 143  : 
+; 144  :     if (words & 0x2)
 
 	mov	eax, DWORD PTR _words$[ebp]
 	and	eax, 2
 	je	SHORT $LN7@CalculateC
 
-; 144  :     {
-; 145  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 145  :     {
+; 146  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	push	3
 	mov	ecx, DWORD PTR _code$[ebp]
@@ -1902,7 +1903,7 @@ $LN6@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 146  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
+; 147  :         code = _ROTATE_L_UNIT(code, 3) ^ p[1];
 
 	push	3
 	mov	eax, DWORD PTR _code$[ebp]
@@ -1915,22 +1916,22 @@ $LN6@CalculateC:
 	xor	eax, DWORD PTR [edx+ecx]
 	mov	DWORD PTR _code$[ebp], eax
 
-; 147  :         p += 2;
+; 148  :         p += 2;
 
 	mov	eax, DWORD PTR _p$[ebp]
 	add	eax, 8
 	mov	DWORD PTR _p$[ebp], eax
 $LN7@CalculateC:
 
-; 148  :     }
-; 149  : 
-; 150  :     if (words & 0x1)
+; 149  :     }
+; 150  : 
+; 151  :     if (words & 0x1)
 
 	mov	ecx, DWORD PTR _words$[ebp]
 	and	ecx, 1
 	je	SHORT $LN8@CalculateC
 
-; 151  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
+; 152  :         code = _ROTATE_L_UNIT(code, 3) ^ p[0];
 
 	push	3
 	mov	edx, DWORD PTR _code$[ebp]
@@ -1944,12 +1945,12 @@ $LN7@CalculateC:
 	mov	DWORD PTR _code$[ebp], eax
 $LN8@CalculateC:
 
-; 152  :     
-; 153  :     return (code);
+; 153  :     
+; 154  :     return (code);
 
 	mov	eax, DWORD PTR _code$[ebp]
 
-; 154  : }
+; 155  : }
 
 	add	esp, 8
 	cmp	ebp, esp
@@ -1960,13 +1961,13 @@ $LN8@CalculateC:
 _CalculateCheckCode ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _pos$ = -8						; size = 4
 _x$ = 8							; size = 4
 __TZCNT_ALT_UNIT PROC
 
-; 995  : {
+; 709  :     {
 
 	push	ebp
 	mov	ebp, esp
@@ -1974,52 +1975,52 @@ __TZCNT_ALT_UNIT PROC
 	mov	DWORD PTR [ebp-12], -858993460		; ccccccccH
 	mov	DWORD PTR [ebp-8], -858993460		; ccccccccH
 	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 996  :     if (x == 0)
+; 710  :         if (x == 0)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@TZCNT_ALT_
 
-; 997  :         return (sizeof(x) * 8);
+; 711  :             return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@TZCNT_ALT_
 $LN2@TZCNT_ALT_:
 
-; 998  : #ifdef _M_IX86
-; 999  :     _UINT32_T pos;
-; 1000 : #ifdef _MSC_VER
-; 1001 :     _BitScanForward(&pos, x);
+; 712  : #ifdef _M_IX86
+; 713  :         _UINT32_T pos;
+; 714  : #ifdef _MSC_VER
+; 715  :         _BitScanForward(&pos, x);
 
 	bsf	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _pos$[ebp], eax
 
-; 1002 : #elif defined(__GNUC__)
-; 1003 :     __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-; 1004 : #else
-; 1005 : #error unknown compiler
-; 1006 : #endif
-; 1007 : #elif defined(_M_X64)
-; 1008 : #ifdef _MSC_VER
-; 1009 :     _UINT32_T pos;
-; 1010 :     _BitScanForward64(&pos, x);
-; 1011 : #elif defined(__GNUC__)
-; 1012 :     _UINT64_T pos;
-; 1013 :     __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
-; 1014 : #else
-; 1015 : #error unknown compiler
-; 1016 : #endif
-; 1017 : #else
-; 1018 : #error unknown platform
-; 1019 : #endif
-; 1020 :     return (pos);
+; 716  : #elif defined(__GNUC__)
+; 717  :         __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+; 718  : #else
+; 719  : #error unknown compiler
+; 720  : #endif
+; 721  : #elif defined(_M_X64)
+; 722  : #ifdef _MSC_VER
+; 723  :         _UINT32_T pos;
+; 724  :         _BitScanForward64(&pos, x);
+; 725  : #elif defined(__GNUC__)
+; 726  :         _UINT64_T pos;
+; 727  :         __asm__("bsfq %1, %0" : "=r"(pos) : "rm"(x));
+; 728  : #else
+; 729  : #error unknown compiler
+; 730  : #endif
+; 731  : #else
+; 732  : #error unknown platform
+; 733  : #endif
+; 734  :         return (pos);
 
 	mov	eax, DWORD PTR _pos$[ebp]
 $LN1@TZCNT_ALT_:
 
-; 1021 : }
+; 735  :     }
 
 	push	edx
 	mov	ecx, ebp
@@ -2050,13 +2051,13 @@ $LN4@TZCNT_ALT_:
 __TZCNT_ALT_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _pos$ = -8						; size = 4
 _x$ = 8							; size = 4
 __LZCNT_ALT_UNIT PROC
 
-; 915  : {
+; 629  :     {
 
 	push	ebp
 	mov	ebp, esp
@@ -2064,53 +2065,53 @@ __LZCNT_ALT_UNIT PROC
 	mov	DWORD PTR [ebp-12], -858993460		; ccccccccH
 	mov	DWORD PTR [ebp-8], -858993460		; ccccccccH
 	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 916  :     if (x == 0)
+; 630  :         if (x == 0)
 
 	cmp	DWORD PTR _x$[ebp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 917  :         return (sizeof(x) * 8);
+; 631  :             return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 918  : #ifdef _M_IX86
-; 919  :     _UINT32_T pos;
-; 920  : #ifdef _MSC_VER
-; 921  :     _BitScanReverse(&pos, x);
+; 632  : #ifdef _M_IX86
+; 633  :         _UINT32_T pos;
+; 634  : #ifdef _MSC_VER
+; 635  :         _BitScanReverse(&pos, x);
 
 	bsr	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR _pos$[ebp], eax
 
-; 922  : #elif defined(__GNUC__)
-; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #elif defined(_M_X64)
-; 928  : #ifdef _MSC_VER
-; 929  :     _UINT32_T pos;
-; 930  :     _BitScanReverse64(&pos, x);
-; 931  : #elif defined(__GNUC__)
-; 932  :     _UINT64_T pos;
-; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 934  : #else
-; 935  : #error unknown compiler
-; 936  : #endif
-; 937  : #else
-; 938  : #error unknown platform
-; 939  : #endif
-; 940  :     return (sizeof(x) * 8 - 1 - pos);
+; 636  : #elif defined(__GNUC__)
+; 637  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 638  : #else
+; 639  : #error unknown compiler
+; 640  : #endif
+; 641  : #elif defined(_M_X64)
+; 642  : #ifdef _MSC_VER
+; 643  :         _UINT32_T pos;
+; 644  :         _BitScanReverse64(&pos, x);
+; 645  : #elif defined(__GNUC__)
+; 646  :         _UINT64_T pos;
+; 647  :         __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 648  : #else
+; 649  : #error unknown compiler
+; 650  : #endif
+; 651  : #else
+; 652  : #error unknown platform
+; 653  : #endif
+; 654  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31					; 0000001fH
 	sub	eax, DWORD PTR _pos$[ebp]
 $LN1@LZCNT_ALT_:
 
-; 941  : }
+; 655  :     }
 
 	push	edx
 	mov	ecx, ebp
@@ -2140,32 +2141,32 @@ $LN4@LZCNT_ALT_:
 __LZCNT_ALT_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _x$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ROTATE_L_UNIT PROC
 
-; 767  : {
+; 481  :     {
 
 	push	ebp
 	mov	ebp, esp
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 768  : #ifdef _M_IX86
-; 769  :     return (_rotl(x, count));
+; 482  : #ifdef _M_IX86
+; 483  :         return (_rotl(x, count));
 
 	mov	eax, DWORD PTR _x$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rol	eax, cl
 
-; 770  : #elif defined(_M_X64)
-; 771  :     return (_rotl64(x, count));
-; 772  : #else
-; 773  : #error unknown platform
-; 774  : #endif
-; 775  : }
+; 484  : #elif defined(_M_X64)
+; 485  :         return (_rotl64(x, count));
+; 486  : #else
+; 487  : #error unknown platform
+; 488  : #endif
+; 489  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -2174,20 +2175,20 @@ __ROTATE_L_UNIT PROC
 __ROTATE_L_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_UNIT PROC
 
-; 479  : {
+; 193  :     {
 
 	push	ebp
 	mov	ebp, esp
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 480  :     return ((u + v - 1) / v);
+; 194  :         return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _v$[ebp]
 	mov	ecx, DWORD PTR _u$[ebp]
@@ -2195,7 +2196,7 @@ __DIVIDE_CEILING_UNIT PROC
 	xor	edx, edx
 	div	DWORD PTR _v$[ebp]
 
-; 481  : }
+; 195  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -2204,35 +2205,35 @@ __DIVIDE_CEILING_UNIT PROC
 __DIVIDE_CEILING_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _d$ = 8							; size = 4
 _x$ = 12						; size = 4
 _count$ = 16						; size = 4
 __FILL_MEMORY_UNIT PROC
 
-; 452  : {
+; 166  :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 453  : #ifdef _M_IX86
-; 454  :     __stosd((unsigned long*)d, x, (unsigned long)count);
+; 167  : #ifdef _M_IX86
+; 168  :         __stosd((unsigned long*)d, x, (unsigned long)count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	eax, DWORD PTR _x$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosd
 
-; 455  : #elif defined(_M_X64)
-; 456  :     __stosq(d, x, count);
-; 457  : #else
-; 458  : #error unknown platform
-; 459  : #endif
-; 460  : }
+; 169  : #elif defined(_M_X64)
+; 170  :         __stosq(d, x, count);
+; 171  : #else
+; 172  : #error unknown platform
+; 173  : #endif
+; 174  :     }
 
 	pop	edi
 	cmp	ebp, esp
@@ -2242,29 +2243,29 @@ __FILL_MEMORY_UNIT PROC
 __FILL_MEMORY_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _d$ = 8							; size = 4
 _x$ = 12						; size = 4
 _count$ = 16						; size = 4
 __FILL_MEMORY_32 PROC
 
-; 440  : {
+; 154  :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 441  :     __stosd(( unsigned long*)d, x, count);
+; 155  :         __stosd((unsigned long*)d, x, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	eax, DWORD PTR _x$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosd
 
-; 442  : }
+; 156  :     }
 
 	pop	edi
 	cmp	ebp, esp
@@ -2274,29 +2275,29 @@ __FILL_MEMORY_32 PROC
 __FILL_MEMORY_32 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _d$ = 8							; size = 4
 _x$ = 12						; size = 2
 _count$ = 16						; size = 4
 __FILL_MEMORY_16 PROC
 
-; 435  : {
+; 149  :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 436  :     __stosw(d, x, count);
+; 150  :         __stosw(d, x, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	ax, WORD PTR _x$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosw
 
-; 437  : }
+; 151  :     }
 
 	pop	edi
 	cmp	ebp, esp
@@ -2306,29 +2307,29 @@ __FILL_MEMORY_16 PROC
 __FILL_MEMORY_16 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _d$ = 8							; size = 4
 _x$ = 12						; size = 1
 _count$ = 16						; size = 4
 __FILL_MEMORY_BYTE PROC
 
-; 430  : {
+; 144  :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 431  :     __stosb(d, x, count);
+; 145  :         __stosb(d, x, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	al, BYTE PTR _x$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosb
 
-; 432  : }
+; 146  :     }
 
 	pop	edi
 	cmp	ebp, esp
@@ -2338,28 +2339,28 @@ __FILL_MEMORY_BYTE PROC
 __FILL_MEMORY_BYTE ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_32 PROC
 
-; 390  : {
+; 104  :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 391  :     __stosd((unsigned long*)d, 0, count);
+; 105  :         __stosd((unsigned long*)d, 0, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	xor	eax, eax
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosd
 
-; 392  : }
+; 106  :     }
 
 	pop	edi
 	cmp	ebp, esp
@@ -2369,28 +2370,28 @@ __ZERO_MEMORY_32 PROC
 __ZERO_MEMORY_32 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_16 PROC
 
-; 385  : {
+; 99   :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 386  :     __stosw(d, 0, count);
+; 100  :         __stosw(d, 0, count);
 
 	xor	eax, eax
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosw
 
-; 387  : }
+; 101  :     }
 
 	pop	edi
 	cmp	ebp, esp
@@ -2400,28 +2401,28 @@ __ZERO_MEMORY_16 PROC
 __ZERO_MEMORY_16 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _d$ = 8							; size = 4
 _count$ = 12						; size = 4
 __ZERO_MEMORY_BYTE PROC
 
-; 380  : {
+; 94   :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 381  :     __stosb(d, 0, count);
+; 95   :         __stosb(d, 0, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	xor	al, al
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep stosb
 
-; 382  : }
+; 96   :     }
 
 	pop	edi
 	cmp	ebp, esp
@@ -2431,36 +2432,36 @@ __ZERO_MEMORY_BYTE PROC
 __ZERO_MEMORY_BYTE ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _d$ = 8							; size = 4
 _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_UNIT PROC
 
-; 352  : {
+; 66   :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 353  : #ifdef _M_IX86
-; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 67   : #ifdef _M_IX86
+; 68   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsd
 
-; 355  : #elif defined(_M_X64)
-; 356  :     __movsq(d, s, count);
-; 357  : #else
-; 358  : #error unknown platform
-; 359  : #endif
-; 360  : }
+; 69   : #elif defined(_M_X64)
+; 70   :         __movsq(d, s, count);
+; 71   : #else
+; 72   : #error unknown platform
+; 73   : #endif
+; 74   :     }
 
 	pop	edi
 	pop	esi
@@ -2478,7 +2479,7 @@ _np$ = -4						; size = 4
 _p$ = 8							; size = 4
 _PMC_Dispose@4 PROC
 
-; 552  : {
+; 553  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2488,12 +2489,12 @@ _PMC_Dispose@4 PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 553  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 554  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR _np$[ebp], eax
 
-; 554  :     PMC_STATUS_CODE result = CheckNumber(np);
+; 555  :     PMC_STATUS_CODE result = CheckNumber(np);
 
 	mov	ecx, DWORD PTR _np$[ebp]
 	push	ecx
@@ -2501,17 +2502,17 @@ _PMC_Dispose@4 PROC
 	add	esp, 4
 	mov	DWORD PTR _result$[ebp], eax
 
-; 555  :     if (result != PMC_STATUS_OK)
+; 556  :     if (result != PMC_STATUS_OK)
 
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN2@PMC_Dispos
 
-; 556  :         return;
+; 557  :         return;
 
 	jmp	SHORT $LN1@PMC_Dispos
 $LN2@PMC_Dispos:
 
-; 557  :     DeallocateNumber(np);
+; 558  :     DeallocateNumber(np);
 
 	mov	edx, DWORD PTR _np$[ebp]
 	push	edx
@@ -2519,8 +2520,8 @@ $LN2@PMC_Dispos:
 	add	esp, 4
 $LN1@PMC_Dispos:
 
-; 558  :     return;
-; 559  : }
+; 559  :     return;
+; 560  : }
 
 	add	esp, 8
 	cmp	ebp, esp
@@ -2539,7 +2540,7 @@ _result$ = -4						; size = 4
 _feature$ = 8						; size = 4
 _Initialize_Memory PROC
 
-; 562  : {
+; 563  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2550,26 +2551,26 @@ _Initialize_Memory PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 563  :     PMC_STATUS_CODE result = PMC_STATUS_OK;
+; 564  :     PMC_STATUS_CODE result = PMC_STATUS_OK;
 
 	mov	DWORD PTR _result$[ebp], 0
 
-; 564  : 
-; 565  :     BOOL number_zero_ok = TRUE;
+; 565  : 
+; 566  :     BOOL number_zero_ok = TRUE;
 
 	mov	DWORD PTR _number_zero_ok$[ebp], 1
 
-; 566  :     BOOL number_one_ok = TRUE;
+; 567  :     BOOL number_one_ok = TRUE;
 
 	mov	DWORD PTR _number_one_ok$[ebp], 1
 
-; 567  :     if (result == PMC_STATUS_OK)
+; 568  :     if (result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _result$[ebp], 0
 	jne	SHORT $LN2@Initialize
 
-; 568  :     {
-; 569  :         result = AttatchNumber(&number_zero, 0);
+; 569  :     {
+; 570  :         result = AttatchNumber(&number_zero, 0);
 
 	push	0
 	push	OFFSET _number_zero
@@ -2577,33 +2578,33 @@ _Initialize_Memory PROC
 	add	esp, 8
 	mov	DWORD PTR _result$[ebp], eax
 
-; 570  :         if (result == PMC_STATUS_OK)
+; 571  :         if (result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _result$[ebp], 0
 	jne	SHORT $LN2@Initialize
 
-; 571  :         {
-; 572  :             CommitNumber(&number_zero);
+; 572  :         {
+; 573  :             CommitNumber(&number_zero);
 
 	push	OFFSET _number_zero
 	call	_CommitNumber
 	add	esp, 4
 
-; 573  :             number_zero_ok = TRUE;
+; 574  :             number_zero_ok = TRUE;
 
 	mov	DWORD PTR _number_zero_ok$[ebp], 1
 $LN2@Initialize:
 
-; 574  :         }
-; 575  :     }
-; 576  : 
-; 577  :     if (result == PMC_STATUS_OK)
+; 575  :         }
+; 576  :     }
+; 577  : 
+; 578  :     if (result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _result$[ebp], 0
 	jne	SHORT $LN4@Initialize
 
-; 578  :     {
-; 579  :         result = AttatchNumber(&number_one, 1);
+; 579  :     {
+; 580  :         result = AttatchNumber(&number_one, 1);
 
 	push	1
 	push	OFFSET _number_one
@@ -2611,70 +2612,70 @@ $LN2@Initialize:
 	add	esp, 8
 	mov	DWORD PTR _result$[ebp], eax
 
-; 580  :         if (result == PMC_STATUS_OK)
+; 581  :         if (result == PMC_STATUS_OK)
 
 	cmp	DWORD PTR _result$[ebp], 0
 	jne	SHORT $LN4@Initialize
 
-; 581  :         {
-; 582  :             number_one.BLOCK[0] = 1;
+; 582  :         {
+; 583  :             number_one.BLOCK[0] = 1;
 
 	mov	eax, 4
 	imul	ecx, eax, 0
 	mov	edx, DWORD PTR _number_one+32
 	mov	DWORD PTR [edx+ecx], 1
 
-; 583  :             CommitNumber(&number_one);
+; 584  :             CommitNumber(&number_one);
 
 	push	OFFSET _number_one
 	call	_CommitNumber
 	add	esp, 4
 
-; 584  :             number_one_ok = TRUE;
+; 585  :             number_one_ok = TRUE;
 
 	mov	DWORD PTR _number_one_ok$[ebp], 1
 $LN4@Initialize:
 
-; 585  :         }
-; 586  :     }
-; 587  : 
-; 588  :     if (result != PMC_STATUS_OK)
+; 586  :         }
+; 587  :     }
+; 588  : 
+; 589  :     if (result != PMC_STATUS_OK)
 
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN6@Initialize
 
-; 589  :     {
-; 590  :         if (number_zero_ok)
+; 590  :     {
+; 591  :         if (number_zero_ok)
 
 	cmp	DWORD PTR _number_zero_ok$[ebp], 0
 	je	SHORT $LN7@Initialize
 
-; 591  :             DetatchNumber(&number_zero);
+; 592  :             DetatchNumber(&number_zero);
 
 	push	OFFSET _number_zero
 	call	_DetatchNumber
 	add	esp, 4
 $LN7@Initialize:
 
-; 592  :         if (number_one_ok)
+; 593  :         if (number_one_ok)
 
 	cmp	DWORD PTR _number_one_ok$[ebp], 0
 	je	SHORT $LN6@Initialize
 
-; 593  :             DetatchNumber(&number_one);
+; 594  :             DetatchNumber(&number_one);
 
 	push	OFFSET _number_one
 	call	_DetatchNumber
 	add	esp, 4
 $LN6@Initialize:
 
-; 594  :     }
-; 595  : 
-; 596  :     return (result);
+; 595  :     }
+; 596  : 
+; 597  :     return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 
-; 597  : }
+; 598  : }
 
 	add	esp, 12					; 0000000cH
 	cmp	ebp, esp
@@ -2694,7 +2695,7 @@ _x$ = 8							; size = 4
 _op$ = 12						; size = 4
 _DuplicateNumber PROC
 
-; 528  : {
+; 529  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2708,28 +2709,28 @@ _DuplicateNumber PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 529  :     if (x->IS_STATIC)
+; 530  :     if (x->IS_STATIC)
 
 	mov	eax, DWORD PTR _x$[ebp]
 	mov	ecx, DWORD PTR [eax+24]
 	and	ecx, 1
 	je	SHORT $LN2@DuplicateN
 
-; 530  :     {
-; 531  :         *op = x;
+; 531  :     {
+; 532  :         *op = x;
 
 	mov	edx, DWORD PTR _op$[ebp]
 	mov	eax, DWORD PTR _x$[ebp]
 	mov	DWORD PTR [edx], eax
 
-; 532  :         return (PMC_STATUS_OK);
+; 533  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@DuplicateN
 $LN2@DuplicateN:
 
-; 533  :     }
-; 534  :     if (x->IS_ZERO)
+; 534  :     }
+; 535  :     if (x->IS_ZERO)
 
 	mov	ecx, DWORD PTR _x$[ebp]
 	mov	edx, DWORD PTR [ecx+24]
@@ -2737,28 +2738,28 @@ $LN2@DuplicateN:
 	and	edx, 1
 	je	SHORT $LN3@DuplicateN
 
-; 535  :     {
-; 536  :         *op = &number_zero;
+; 536  :     {
+; 537  :         *op = &number_zero;
 
 	mov	eax, DWORD PTR _op$[ebp]
 	mov	DWORD PTR [eax], OFFSET _number_zero
 
-; 537  :         return (PMC_STATUS_OK);
+; 538  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@DuplicateN
 $LN3@DuplicateN:
 
-; 538  :     }
-; 539  :     __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
+; 539  :     }
+; 540  :     __UNIT_TYPE x_bit_count = x->UNIT_BIT_COUNT;
 
 	mov	ecx, DWORD PTR _x$[ebp]
 	mov	edx, DWORD PTR [ecx+12]
 	mov	DWORD PTR _x_bit_count$[ebp], edx
 
-; 540  :     PMC_STATUS_CODE result;
-; 541  :     NUMBER_HEADER* o;
-; 542  :     if ((result = AllocateNumber(&o, x_bit_count, NULL)) != PMC_STATUS_OK)
+; 541  :     PMC_STATUS_CODE result;
+; 542  :     NUMBER_HEADER* o;
+; 543  :     if ((result = AllocateNumber(&o, x_bit_count, NULL)) != PMC_STATUS_OK)
 
 	push	0
 	mov	eax, DWORD PTR _x_bit_count$[ebp]
@@ -2771,13 +2772,13 @@ $LN3@DuplicateN:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN4@DuplicateN
 
-; 543  :         return (result);
+; 544  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@DuplicateN
 $LN4@DuplicateN:
 
-; 544  :     _COPY_MEMORY_UNIT(o->BLOCK, x->BLOCK, _DIVIDE_CEILING_UNIT(x_bit_count, __UNIT_TYPE_BIT_COUNT));
+; 545  :     _COPY_MEMORY_UNIT(o->BLOCK, x->BLOCK, _DIVIDE_CEILING_UNIT(x_bit_count, __UNIT_TYPE_BIT_COUNT));
 
 	push	32					; 00000020H
 	mov	edx, DWORD PTR _x_bit_count$[ebp]
@@ -2794,25 +2795,25 @@ $LN4@DuplicateN:
 	call	__COPY_MEMORY_UNIT
 	add	esp, 12					; 0000000cH
 
-; 545  :     CommitNumber(o);
+; 546  :     CommitNumber(o);
 
 	mov	ecx, DWORD PTR _o$[ebp]
 	push	ecx
 	call	_CommitNumber
 	add	esp, 4
 
-; 546  :     *op = o;
+; 547  :     *op = o;
 
 	mov	edx, DWORD PTR _op$[ebp]
 	mov	eax, DWORD PTR _o$[ebp]
 	mov	DWORD PTR [edx], eax
 
-; 547  :     return (PMC_STATUS_OK);
+; 548  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@DuplicateN:
 
-; 548  : }
+; 549  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -2847,7 +2848,7 @@ _result$2 = -4						; size = 4
 _p$ = 8							; size = 4
 _CheckNumber PROC
 
-; 509  : {
+; 510  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2857,7 +2858,7 @@ _CheckNumber PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 510  :     if (p->SIGNATURE1 != PMC_SIGNATURE || p->SIGNATURE2 != PMC_UINT_SIGNATURE)
+; 511  :     if (p->SIGNATURE1 != PMC_SIGNATURE || p->SIGNATURE2 != PMC_UINT_SIGNATURE)
 
 	mov	eax, DWORD PTR _p$[ebp]
 	cmp	DWORD PTR [eax], 1231244656		; 49634d70H
@@ -2867,13 +2868,13 @@ _CheckNumber PROC
 	je	SHORT $LN2@CheckNumbe
 $LN3@CheckNumbe:
 
-; 511  :         return (PMC_STATUS_BAD_BUFFER);
+; 512  :         return (PMC_STATUS_BAD_BUFFER);
 
 	mov	eax, -257				; fffffeffH
 	jmp	SHORT $LN1@CheckNumbe
 $LN2@CheckNumbe:
 
-; 512  :     if (!p->IS_ZERO)
+; 513  :     if (!p->IS_ZERO)
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+24]
@@ -2881,9 +2882,9 @@ $LN2@CheckNumbe:
 	and	eax, 1
 	jne	SHORT $LN4@CheckNumbe
 
-; 513  :     {
-; 514  :         PMC_STATUS_CODE result;
-; 515  :         if ((result = CheckBlock(p->BLOCK)) != PMC_STATUS_OK)
+; 514  :     {
+; 515  :         PMC_STATUS_CODE result;
+; 516  :         if ((result = CheckBlock(p->BLOCK)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	edx, DWORD PTR [ecx+32]
@@ -2894,14 +2895,14 @@ $LN2@CheckNumbe:
 	cmp	DWORD PTR _result$2[ebp], 0
 	je	SHORT $LN5@CheckNumbe
 
-; 516  :             return (result);
+; 517  :             return (result);
 
 	mov	eax, DWORD PTR _result$2[ebp]
 	jmp	SHORT $LN1@CheckNumbe
 $LN5@CheckNumbe:
 
-; 517  : #ifdef _DEBUG
-; 518  :         __UNIT_TYPE desired_hash_code = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+; 518  : #ifdef _DEBUG
+; 519  :         __UNIT_TYPE desired_hash_code = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	ecx, DWORD PTR [eax+8]
@@ -2913,27 +2914,27 @@ $LN5@CheckNumbe:
 	add	esp, 8
 	mov	DWORD PTR _desired_hash_code$1[ebp], eax
 
-; 519  :         if (desired_hash_code != p->HASH_CODE)
+; 520  :         if (desired_hash_code != p->HASH_CODE)
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	edx, DWORD PTR _desired_hash_code$1[ebp]
 	cmp	edx, DWORD PTR [ecx+16]
 	je	SHORT $LN4@CheckNumbe
 
-; 520  :             return (PMC_STATUS_BAD_BUFFER);
+; 521  :             return (PMC_STATUS_BAD_BUFFER);
 
 	mov	eax, -257				; fffffeffH
 	jmp	SHORT $LN1@CheckNumbe
 $LN4@CheckNumbe:
 
-; 521  : #endif
-; 522  :     }
-; 523  :     return (PMC_STATUS_OK);
+; 522  : #endif
+; 523  :     }
+; 524  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@CheckNumbe:
 
-; 524  : }
+; 525  : }
 
 	add	esp, 8
 	cmp	ebp, esp
@@ -2952,7 +2953,7 @@ tv138 = -4						; size = 4
 _p$ = 8							; size = 4
 _CommitNumber PROC
 
-; 476  : {
+; 477  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2963,7 +2964,7 @@ _CommitNumber PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 477  :     CommitBlock(p->BLOCK);
+; 478  :     CommitBlock(p->BLOCK);
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	ecx, DWORD PTR [eax+32]
@@ -2971,7 +2972,7 @@ _CommitNumber PROC
 	call	_CommitBlock
 	add	esp, 4
 
-; 478  :     p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT, &p->UNIT_WORD_COUNT);
+; 479  :     p->UNIT_BIT_COUNT = GetEffectiveBitLength(p->BLOCK, p->BLOCK_COUNT, &p->UNIT_WORD_COUNT);
 
 	mov	edx, DWORD PTR _p$[ebp]
 	add	edx, 8
@@ -2987,19 +2988,19 @@ _CommitNumber PROC
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+12], eax
 
-; 479  :     if (p->UNIT_BIT_COUNT <= 0)
+; 480  :     if (p->UNIT_BIT_COUNT <= 0)
 
 	mov	edx, DWORD PTR _p$[ebp]
 	cmp	DWORD PTR [edx+12], 0
 	ja	SHORT $LN2@CommitNumb
 
-; 480  :     {
-; 481  :         p->HASH_CODE = 0;
+; 481  :     {
+; 482  :         p->HASH_CODE = 0;
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [eax+16], 0
 
-; 482  :         p->IS_ZERO = TRUE;
+; 483  :         p->IS_ZERO = TRUE;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	edx, DWORD PTR [ecx+24]
@@ -3007,7 +3008,7 @@ _CommitNumber PROC
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [eax+24], edx
 
-; 483  :         p->IS_ONE = FALSE;
+; 484  :         p->IS_ONE = FALSE;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	edx, DWORD PTR [ecx+24]
@@ -3015,7 +3016,7 @@ _CommitNumber PROC
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [eax+24], edx
 
-; 484  :         p->IS_EVEN = TRUE;
+; 485  :         p->IS_EVEN = TRUE;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	edx, DWORD PTR [ecx+24]
@@ -3023,12 +3024,12 @@ _CommitNumber PROC
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [eax+24], edx
 
-; 485  :         p->TRAILING_ZERO_BITS_COUNT = 0;
+; 486  :         p->TRAILING_ZERO_BITS_COUNT = 0;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+20], 0
 
-; 486  :         p->IS_POWER_OF_TWO = FALSE;
+; 487  :         p->IS_POWER_OF_TWO = FALSE;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+24]
@@ -3036,19 +3037,19 @@ _CommitNumber PROC
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+24], eax
 
-; 487  :     }
+; 488  :     }
 
 	jmp	$LN1@CommitNumb
 $LN2@CommitNumb:
 
-; 488  :     else if (p->UNIT_BIT_COUNT == 1)
+; 489  :     else if (p->UNIT_BIT_COUNT == 1)
 
 	mov	edx, DWORD PTR _p$[ebp]
 	cmp	DWORD PTR [edx+12], 1
 	jne	$LN4@CommitNumb
 
-; 489  :     {
-; 490  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+; 490  :     {
+; 491  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
 
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	ecx, DWORD PTR [eax+8]
@@ -3061,7 +3062,7 @@ $LN2@CommitNumb:
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+16], eax
 
-; 491  :         p->IS_ZERO = FALSE;
+; 492  :         p->IS_ZERO = FALSE;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+24]
@@ -3069,7 +3070,7 @@ $LN2@CommitNumb:
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+24], eax
 
-; 492  :         p->IS_ONE = p->BLOCK[0] == 1; // 無条件でTRUEでも大丈夫だが念のため。
+; 493  :         p->IS_ONE = p->BLOCK[0] == 1; // 無条件でTRUEでも大丈夫だが念のため。
 
 	mov	edx, 4
 	imul	eax, edx, 0
@@ -3092,7 +3093,7 @@ $LN8@CommitNumb:
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [eax+24], edx
 
-; 493  :         p->IS_EVEN = FALSE;
+; 494  :         p->IS_EVEN = FALSE;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	edx, DWORD PTR [ecx+24]
@@ -3100,12 +3101,12 @@ $LN8@CommitNumb:
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [eax+24], edx
 
-; 494  :         p->TRAILING_ZERO_BITS_COUNT = 0;
+; 495  :         p->TRAILING_ZERO_BITS_COUNT = 0;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+20], 0
 
-; 495  :         p->IS_POWER_OF_TWO = TRUE;
+; 496  :         p->IS_POWER_OF_TWO = TRUE;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+24]
@@ -3113,14 +3114,14 @@ $LN8@CommitNumb:
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+24], eax
 
-; 496  :     }
+; 497  :     }
 
 	jmp	$LN1@CommitNumb
 $LN4@CommitNumb:
 
-; 497  :     else
-; 498  :     {
-; 499  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
+; 498  :     else
+; 499  :     {
+; 500  :         p->HASH_CODE = CalculateCheckCode(p->BLOCK, p->UNIT_WORD_COUNT);
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+8]
@@ -3133,7 +3134,7 @@ $LN4@CommitNumb:
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+16], eax
 
-; 500  :         p->IS_ZERO = FALSE;
+; 501  :         p->IS_ZERO = FALSE;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+24]
@@ -3141,7 +3142,7 @@ $LN4@CommitNumb:
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+24], eax
 
-; 501  :         p->IS_ONE = FALSE;
+; 502  :         p->IS_ONE = FALSE;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+24]
@@ -3149,7 +3150,7 @@ $LN4@CommitNumb:
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+24], eax
 
-; 502  :         p->IS_EVEN = !(p->BLOCK[0] & 1);
+; 503  :         p->IS_EVEN = !(p->BLOCK[0] & 1);
 
 	mov	edx, 4
 	imul	eax, edx, 0
@@ -3173,7 +3174,7 @@ $LN10@CommitNumb:
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+24], eax
 
-; 503  :         p->TRAILING_ZERO_BITS_COUNT = GetTrailingZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
+; 504  :         p->TRAILING_ZERO_BITS_COUNT = GetTrailingZeroBitCount(p->BLOCK, p->UNIT_WORD_COUNT);
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+8]
@@ -3186,7 +3187,7 @@ $LN10@CommitNumb:
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+20], eax
 
-; 504  :         p->IS_POWER_OF_TWO = p->TRAILING_ZERO_BITS_COUNT + 1 == p->UNIT_BIT_COUNT;
+; 505  :         p->IS_POWER_OF_TWO = p->TRAILING_ZERO_BITS_COUNT + 1 == p->UNIT_BIT_COUNT;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+20]
@@ -3210,8 +3211,8 @@ $LN12@CommitNumb:
 	mov	DWORD PTR [edx+24], ecx
 $LN1@CommitNumb:
 
-; 505  :     }
-; 506  : }
+; 506  :     }
+; 507  : }
 
 	add	esp, 12					; 0000000cH
 	cmp	ebp, esp
@@ -3227,7 +3228,7 @@ _TEXT	SEGMENT
 _p$ = 8							; size = 4
 _DeallocateNumber PROC
 
-; 430  : {
+; 431  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3235,7 +3236,7 @@ _DeallocateNumber PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 431  :     if (p == NULL || p->IS_STATIC)
+; 432  :     if (p == NULL || p->IS_STATIC)
 
 	cmp	DWORD PTR _p$[ebp], 0
 	je	SHORT $LN3@Deallocate
@@ -3245,26 +3246,26 @@ _DeallocateNumber PROC
 	je	SHORT $LN2@Deallocate
 $LN3@Deallocate:
 
-; 432  :         return;
+; 433  :         return;
 
 	jmp	SHORT $LN1@Deallocate
 $LN2@Deallocate:
 
-; 433  :     CleanUpNumber(p);
+; 434  :     CleanUpNumber(p);
 
 	mov	edx, DWORD PTR _p$[ebp]
 	push	edx
 	call	_CleanUpNumber
 	add	esp, 4
 
-; 434  :     FillNumberHeader(p);
+; 435  :     FillNumberHeader(p);
 
 	mov	eax, DWORD PTR _p$[ebp]
 	push	eax
 	call	_FillNumberHeader
 	add	esp, 4
 
-; 435  :     HeapFree(hLocalHeap, 0, p);
+; 436  :     HeapFree(hLocalHeap, 0, p);
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _p$[ebp]
@@ -3277,7 +3278,7 @@ $LN2@Deallocate:
 	call	__RTC_CheckEsp
 $LN1@Deallocate:
 
-; 436  : }
+; 437  : }
 
 	pop	esi
 	cmp	ebp, esp
@@ -3292,14 +3293,14 @@ _TEXT	SEGMENT
 _p$ = 8							; size = 4
 _DetatchNumber PROC
 
-; 423  : {
+; 424  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 424  :     if (p == NULL || !p->IS_STATIC)
+; 425  :     if (p == NULL || !p->IS_STATIC)
 
 	cmp	DWORD PTR _p$[ebp], 0
 	je	SHORT $LN3@DetatchNum
@@ -3309,12 +3310,12 @@ _DetatchNumber PROC
 	jne	SHORT $LN2@DetatchNum
 $LN3@DetatchNum:
 
-; 425  :         return;
+; 426  :         return;
 
 	jmp	SHORT $LN1@DetatchNum
 $LN2@DetatchNum:
 
-; 426  :     CleanUpNumber(p);
+; 427  :     CleanUpNumber(p);
 
 	mov	edx, DWORD PTR _p$[ebp]
 	push	edx
@@ -3322,7 +3323,7 @@ $LN2@DetatchNum:
 	add	esp, 4
 $LN1@DetatchNum:
 
-; 427  : }
+; 428  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -3340,7 +3341,7 @@ _bit_count$ = 12					; size = 4
 _light_check_code$ = 16					; size = 4
 _AllocateNumber PROC
 
-; 410  : {
+; 411  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3351,7 +3352,7 @@ _AllocateNumber PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 411  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
+; 412  :     NUMBER_HEADER* p = (NUMBER_HEADER*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, sizeof(NUMBER_HEADER));
 
 	mov	esi, esp
 	push	36					; 00000024H
@@ -3363,18 +3364,18 @@ _AllocateNumber PROC
 	call	__RTC_CheckEsp
 	mov	DWORD PTR _p$[ebp], eax
 
-; 412  :     if (p == NULL)
+; 413  :     if (p == NULL)
 
 	cmp	DWORD PTR _p$[ebp], 0
 	jne	SHORT $LN2@AllocateNu
 
-; 413  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 414  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5					; fffffffbH
 	jmp	SHORT $LN1@AllocateNu
 $LN2@AllocateNu:
 
-; 414  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, light_check_code);
+; 415  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, light_check_code);
 
 	mov	ecx, DWORD PTR _light_check_code$[ebp]
 	push	ecx
@@ -3386,18 +3387,18 @@ $LN2@AllocateNu:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _result$[ebp], eax
 
-; 415  :     if (result != PMC_STATUS_OK)
+; 416  :     if (result != PMC_STATUS_OK)
 
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN3@AllocateNu
 
-; 416  :         return (result);
+; 417  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@AllocateNu
 $LN3@AllocateNu:
 
-; 417  :     p->IS_STATIC = FALSE;
+; 418  :     p->IS_STATIC = FALSE;
 
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	edx, DWORD PTR [ecx+24]
@@ -3405,18 +3406,18 @@ $LN3@AllocateNu:
 	mov	eax, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [eax+24], edx
 
-; 418  :     *pp = p;
+; 419  :     *pp = p;
 
 	mov	ecx, DWORD PTR _pp$[ebp]
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx], edx
 
-; 419  :     return (PMC_STATUS_OK);
+; 420  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@AllocateNu:
 
-; 420  : }
+; 421  : }
 
 	pop	esi
 	add	esp, 8
@@ -3435,7 +3436,7 @@ _p$ = 8							; size = 4
 _bit_count$ = 12					; size = 4
 _AttatchNumber PROC
 
-; 401  : {
+; 402  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3444,7 +3445,7 @@ _AttatchNumber PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 402  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, NULL);
+; 403  :     PMC_STATUS_CODE result = InitializeNumber(p, bit_count, NULL);
 
 	push	0
 	mov	eax, DWORD PTR _bit_count$[ebp]
@@ -3455,18 +3456,18 @@ _AttatchNumber PROC
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _result$[ebp], eax
 
-; 403  :     if (result != PMC_STATUS_OK)
+; 404  :     if (result != PMC_STATUS_OK)
 
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN2@AttatchNum
 
-; 404  :         return (result);
+; 405  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@AttatchNum
 $LN2@AttatchNum:
 
-; 405  :     p->IS_STATIC = TRUE;
+; 406  :     p->IS_STATIC = TRUE;
 
 	mov	edx, DWORD PTR _p$[ebp]
 	mov	eax, DWORD PTR [edx+24]
@@ -3474,12 +3475,12 @@ $LN2@AttatchNum:
 	mov	ecx, DWORD PTR _p$[ebp]
 	mov	DWORD PTR [ecx+24], eax
 
-; 406  :     return (PMC_STATUS_OK);
+; 407  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@AttatchNum:
 
-; 407  : }
+; 408  : }
 
 	add	esp, 4
 	cmp	ebp, esp
@@ -3499,7 +3500,7 @@ _buffer$ = 8						; size = 4
 _code$ = 12						; size = 4
 _CheckBlockLight PROC
 
-; 258  : {
+; 259  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3510,25 +3511,25 @@ _CheckBlockLight PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 259  : #ifdef _DEBUG
-; 260  :     if (buffer == NULL)
+; 260  : #ifdef _DEBUG
+; 261  :     if (buffer == NULL)
 
 	cmp	DWORD PTR _buffer$[ebp], 0
 	jne	SHORT $LN2@CheckBlock
 
-; 261  :         return (PMC_STATUS_OK);
+; 262  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@CheckBlock
 $LN2@CheckBlock:
 
-; 262  :     --buffer;
+; 263  :     --buffer;
 
 	mov	eax, DWORD PTR _buffer$[ebp]
 	sub	eax, 4
 	mov	DWORD PTR _buffer$[ebp], eax
 
-; 263  :     __UNIT_TYPE words = buffer[0];
+; 264  :     __UNIT_TYPE words = buffer[0];
 
 	mov	ecx, 4
 	imul	edx, ecx, 0
@@ -3536,7 +3537,7 @@ $LN2@CheckBlock:
 	mov	ecx, DWORD PTR [eax+edx]
 	mov	DWORD PTR _words$[ebp], ecx
 
-; 264  :     __UNIT_TYPE code_desired = buffer[words + 1] ^ (__UNIT_TYPE)&buffer[words + 1];
+; 265  :     __UNIT_TYPE code_desired = buffer[words + 1] ^ (__UNIT_TYPE)&buffer[words + 1];
 
 	mov	edx, DWORD PTR _words$[ebp]
 	mov	eax, DWORD PTR _buffer$[ebp]
@@ -3546,34 +3547,34 @@ $LN2@CheckBlock:
 	xor	ecx, DWORD PTR [eax+edx*4+4]
 	mov	DWORD PTR _code_desired$[ebp], ecx
 
-; 265  :     __UNIT_TYPE code_actual = code;
+; 266  :     __UNIT_TYPE code_actual = code;
 
 	mov	ecx, DWORD PTR _code$[ebp]
 	mov	DWORD PTR _code_actual$[ebp], ecx
 
-; 266  :     if (code_actual == code_desired)
+; 267  :     if (code_actual == code_desired)
 
 	mov	edx, DWORD PTR _code_actual$[ebp]
 	cmp	edx, DWORD PTR _code_desired$[ebp]
 	jne	SHORT $LN3@CheckBlock
 
-; 267  :         return (PMC_STATUS_OK);
+; 268  :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@CheckBlock
 	jmp	SHORT $LN1@CheckBlock
 $LN3@CheckBlock:
 
-; 268  :     else
-; 269  :         return (PMC_STATUS_BAD_BUFFER);
+; 269  :     else
+; 270  :         return (PMC_STATUS_BAD_BUFFER);
 
 	mov	eax, -257				; fffffeffH
 $LN1@CheckBlock:
 
-; 270  : #else
-; 271  :     return (PMC_STATUS_OK);
-; 272  : #endif
-; 273  : }
+; 271  : #else
+; 272  :     return (PMC_STATUS_OK);
+; 273  : #endif
+; 274  : }
 
 	add	esp, 12					; 0000000cH
 	cmp	ebp, esp
@@ -3591,7 +3592,7 @@ _buffer$ = 8						; size = 4
 _buffer_words$ = 12					; size = 4
 _DeallocateBlock PROC
 
-; 203  : {
+; 204  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3601,36 +3602,36 @@ _DeallocateBlock PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 204  : 	if (buffer != NULL)
+; 205  : 	if (buffer != NULL)
 
 	cmp	DWORD PTR _buffer$[ebp], 0
 	je	SHORT $LN1@Deallocate
 
-; 205  : 	{
-; 206  :         __UNIT_TYPE* p = buffer - 1;
+; 206  : 	{
+; 207  :         __UNIT_TYPE* p = buffer - 1;
 
 	mov	eax, DWORD PTR _buffer$[ebp]
 	sub	eax, 4
 	mov	DWORD PTR _p$1[ebp], eax
 
-; 207  :         if (*p != buffer_words)
+; 208  :         if (*p != buffer_words)
 
 	mov	ecx, DWORD PTR _p$1[ebp]
 	mov	edx, DWORD PTR [ecx]
 	cmp	edx, DWORD PTR _buffer_words$[ebp]
 	je	SHORT $LN3@Deallocate
 
-; 208  :         {
-; 209  :             // もし、buffer の指す内容が壊れていることが明らかならば、二重解放の恐れがあるので解放処理はしない。
-; 210  :         }
+; 209  :         {
+; 210  :             // もし、buffer の指す内容が壊れていることが明らかならば、二重解放の恐れがあるので解放処理はしない。
+; 211  :         }
 
 	jmp	SHORT $LN1@Deallocate
 $LN3@Deallocate:
 
-; 211  :         else
-; 212  :         {
-; 213  :             // 使用済みのバッファを既定のデータで塗りつぶす。
-; 214  :             _FILL_MEMORY_UNIT(p, DEFAULT_MEMORY_DATA, buffer_words + 2);
+; 212  :         else
+; 213  :         {
+; 214  :             // 使用済みのバッファを既定のデータで塗りつぶす。
+; 215  :             _FILL_MEMORY_UNIT(p, DEFAULT_MEMORY_DATA, buffer_words + 2);
 
 	mov	eax, DWORD PTR _buffer_words$[ebp]
 	add	eax, 2
@@ -3641,8 +3642,8 @@ $LN3@Deallocate:
 	call	__FILL_MEMORY_UNIT
 	add	esp, 12					; 0000000cH
 
-; 215  :             // バッファを解放する。
-; 216  :             HeapFree(hLocalHeap, 0, p);
+; 216  :             // バッファを解放する。
+; 217  :             HeapFree(hLocalHeap, 0, p);
 
 	mov	esi, esp
 	mov	edx, DWORD PTR _p$1[ebp]
@@ -3655,9 +3656,9 @@ $LN3@Deallocate:
 	call	__RTC_CheckEsp
 $LN1@Deallocate:
 
-; 217  :         }
-; 218  : 	}
-; 219  : }
+; 218  :         }
+; 219  : 	}
+; 220  : }
 
 	pop	esi
 	add	esp, 4
@@ -3683,7 +3684,7 @@ _allocated_block_words$ = 12				; size = 4
 _code$ = 16						; size = 4
 _AllocateBlock PROC
 
-; 161  : {
+; 162  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3700,11 +3701,11 @@ _AllocateBlock PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 162  :     // 実際に獲得されるメモリ領域は「引数で渡されたワード数+2」のワード数となる。
-; 163  :     // 最初のワードには獲得時に引数で渡されたワード数が格納される。
-; 164  :     // 最後のワードには格納されている内容の正当性確認のための値が格納される。
-; 165  :     // 2番目のワードへのポインタは呼び出し元に通知され利用される。
-; 166  :     __UNIT_TYPE words1 = _DIVIDE_CEILING_UNIT(bits, __UNIT_TYPE_BIT_COUNT);
+; 163  :     // 実際に獲得されるメモリ領域は「引数で渡されたワード数+2」のワード数となる。
+; 164  :     // 最初のワードには獲得時に引数で渡されたワード数が格納される。
+; 165  :     // 最後のワードには格納されている内容の正当性確認のための値が格納される。
+; 166  :     // 2番目のワードへのポインタは呼び出し元に通知され利用される。
+; 167  :     __UNIT_TYPE words1 = _DIVIDE_CEILING_UNIT(bits, __UNIT_TYPE_BIT_COUNT);
 
 	push	32					; 00000020H
 	mov	eax, DWORD PTR _bits$[ebp]
@@ -3713,19 +3714,19 @@ _AllocateBlock PROC
 	add	esp, 8
 	mov	DWORD PTR _words1$[ebp], eax
 
-; 167  : 	__UNIT_TYPE words2 = words1 + 2;
+; 168  : 	__UNIT_TYPE words2 = words1 + 2;
 
 	mov	ecx, DWORD PTR _words1$[ebp]
 	add	ecx, 2
 	mov	DWORD PTR _words2$[ebp], ecx
 
-; 168  : 	__UNIT_TYPE bytes = words2 * __UNIT_TYPE_BYTE_COUNT;
+; 169  : 	__UNIT_TYPE bytes = words2 * __UNIT_TYPE_BYTE_COUNT;
 
 	mov	edx, DWORD PTR _words2$[ebp]
 	shl	edx, 2
 	mov	DWORD PTR _bytes$[ebp], edx
 
-; 169  : 	__UNIT_TYPE* buffer = (__UNIT_TYPE*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, bytes);
+; 170  : 	__UNIT_TYPE* buffer = (__UNIT_TYPE*)HeapAlloc(hLocalHeap, HEAP_ZERO_MEMORY, bytes);
 
 	mov	esi, esp
 	mov	eax, DWORD PTR _bytes$[ebp]
@@ -3738,18 +3739,18 @@ _AllocateBlock PROC
 	call	__RTC_CheckEsp
 	mov	DWORD PTR _buffer$[ebp], eax
 
-; 170  : 	if (buffer == NULL)
+; 171  : 	if (buffer == NULL)
 
 	cmp	DWORD PTR _buffer$[ebp], 0
 	jne	SHORT $LN2@AllocateBl
 
-; 171  : 		return (NULL);
+; 172  : 		return (NULL);
 
 	xor	eax, eax
 	jmp	$LN1@AllocateBl
 $LN2@AllocateBl:
 
-; 172  : 	buffer[0] = words1;
+; 173  : 	buffer[0] = words1;
 
 	mov	edx, 4
 	imul	eax, edx, 0
@@ -3757,16 +3758,16 @@ $LN2@AllocateBl:
 	mov	edx, DWORD PTR _words1$[ebp]
 	mov	DWORD PTR [ecx+eax], edx
 
-; 173  :     *allocated_block_words = words1;
+; 174  :     *allocated_block_words = words1;
 
 	mov	eax, DWORD PTR _allocated_block_words$[ebp]
 	mov	ecx, DWORD PTR _words1$[ebp]
 	mov	DWORD PTR [eax], ecx
 
-; 174  : #ifdef _DEBUG
-; 175  :     // 乱数もどきを生成する。
-; 176  : #ifdef _M_IX86
-; 177  :     __UNIT_TYPE r = GetTickCount();
+; 175  : #ifdef _DEBUG
+; 176  :     // 乱数もどきを生成する。
+; 177  : #ifdef _M_IX86
+; 178  :     __UNIT_TYPE r = GetTickCount();
 
 	mov	esi, esp
 	call	DWORD PTR __imp__GetTickCount@0
@@ -3774,19 +3775,19 @@ $LN2@AllocateBl:
 	call	__RTC_CheckEsp
 	mov	DWORD PTR _r$[ebp], eax
 
-; 178  : #elif defined(_M_IX64)
-; 179  : #ifdef _MSC_VER
-; 180  :     __UNIT_TYPE r = GetTickCount64();
-; 181  : #elif defined(__GNUC__)
-; 182  :     _UINT32_T temp = GetTickCount();
-; 183  :     __UNIT_TYPE r = _FROMWORDTODWORD(temp, temp);
-; 184  : #else
-; 185  : #error unknown compiler
-; 186  : #endif
-; 187  : #else
-; 188  : #error unknown platform
-; 189  : #endif
-; 190  :     __UNIT_TYPE check_code = configuration_info.MEMORY_VERIFICATION_ENABLED ? CalculateCheckCode(&buffer[1], words1) : CHECK_CODE_INIT | r;
+; 179  : #elif defined(_M_IX64)
+; 180  : #ifdef _MSC_VER
+; 181  :     __UNIT_TYPE r = GetTickCount64();
+; 182  : #elif defined(__GNUC__)
+; 183  :     _UINT32_T temp = GetTickCount();
+; 184  :     __UNIT_TYPE r = _FROMWORDTODWORD(temp, temp);
+; 185  : #else
+; 186  : #error unknown compiler
+; 187  : #endif
+; 188  : #else
+; 189  : #error unknown platform
+; 190  : #endif
+; 191  :     __UNIT_TYPE check_code = configuration_info.MEMORY_VERIFICATION_ENABLED ? CalculateCheckCode(&buffer[1], words1) : CHECK_CODE_INIT | r;
 
 	mov	edx, DWORD PTR _configuration_info
 	and	edx, 1
@@ -3809,10 +3810,10 @@ $LN6@AllocateBl:
 	mov	eax, DWORD PTR tv88[ebp]
 	mov	DWORD PTR _check_code$[ebp], eax
 
-; 191  : #else
-; 192  :     __UNIT_TYPE check_code = 0;
-; 193  : #endif
-; 194  :     buffer[words1 + 1] = check_code ^ (__UNIT_TYPE)&buffer[words1 + 1];
+; 192  : #else
+; 193  :     __UNIT_TYPE check_code = 0;
+; 194  : #endif
+; 195  :     buffer[words1 + 1] = check_code ^ (__UNIT_TYPE)&buffer[words1 + 1];
 
 	mov	ecx, DWORD PTR _words1$[ebp]
 	mov	edx, DWORD PTR _buffer$[ebp]
@@ -3822,26 +3823,26 @@ $LN6@AllocateBl:
 	mov	edx, DWORD PTR _buffer$[ebp]
 	mov	DWORD PTR [edx+ecx*4+4], eax
 
-; 195  :     if (code != NULL)
+; 196  :     if (code != NULL)
 
 	cmp	DWORD PTR _code$[ebp], 0
 	je	SHORT $LN3@AllocateBl
 
-; 196  :         *code = check_code;
+; 197  :         *code = check_code;
 
 	mov	eax, DWORD PTR _code$[ebp]
 	mov	ecx, DWORD PTR _check_code$[ebp]
 	mov	DWORD PTR [eax], ecx
 $LN3@AllocateBl:
 
-; 197  :     return (&buffer[1]);
+; 198  :     return (&buffer[1]);
 
 	mov	eax, 4
 	shl	eax, 0
 	add	eax, DWORD PTR _buffer$[ebp]
 $LN1@AllocateBl:
 
-; 198  : }
+; 199  : }
 
 	pop	esi
 	add	esp, 28					; 0000001cH
@@ -3857,7 +3858,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 _DeallocateHeapArea PROC
 
-; 608  : {
+; 609  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3865,13 +3866,13 @@ _DeallocateHeapArea PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 609  :     if (hLocalHeap != NULL)
+; 610  :     if (hLocalHeap != NULL)
 
 	cmp	DWORD PTR _hLocalHeap, 0
 	je	SHORT $LN1@Deallocate
 
-; 610  :     {
-; 611  :         HeapDestroy(hLocalHeap);
+; 611  :     {
+; 612  :         HeapDestroy(hLocalHeap);
 
 	mov	esi, esp
 	mov	eax, DWORD PTR _hLocalHeap
@@ -3880,13 +3881,13 @@ _DeallocateHeapArea PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 612  :         hLocalHeap = NULL;
+; 613  :         hLocalHeap = NULL;
 
 	mov	DWORD PTR _hLocalHeap, 0
 $LN1@Deallocate:
 
-; 613  :     }
-; 614  : }
+; 614  :     }
+; 615  : }
 
 	pop	esi
 	cmp	ebp, esp
@@ -3900,7 +3901,7 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 _AllocateHeapArea PROC
 
-; 600  : {
+; 601  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -3908,7 +3909,7 @@ _AllocateHeapArea PROC
 	mov	ecx, OFFSET __F13F011C_memory@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 601  :     hLocalHeap = HeapCreate(0, 0x1000, 0);
+; 602  :     hLocalHeap = HeapCreate(0, 0x1000, 0);
 
 	mov	esi, esp
 	push	0
@@ -3919,23 +3920,23 @@ _AllocateHeapArea PROC
 	call	__RTC_CheckEsp
 	mov	DWORD PTR _hLocalHeap, eax
 
-; 602  :     if (hLocalHeap == NULL)
+; 603  :     if (hLocalHeap == NULL)
 
 	cmp	DWORD PTR _hLocalHeap, 0
 	jne	SHORT $LN2@AllocateHe
 
-; 603  :         return (FALSE);
+; 604  :         return (FALSE);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@AllocateHe
 $LN2@AllocateHe:
 
-; 604  :     return (TRUE);
+; 605  :     return (TRUE);
 
 	mov	eax, 1
 $LN1@AllocateHe:
 
-; 605  : }
+; 606  : }
 
 	pop	esi
 	cmp	ebp, esp

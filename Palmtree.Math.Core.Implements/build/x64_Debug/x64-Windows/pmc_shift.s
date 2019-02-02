@@ -5,9 +5,9 @@
 	.def	_COPY_MEMORY_UNIT;	.scl	3;	.type	32;	.endef
 	.seh_proc	_COPY_MEMORY_UNIT
 _COPY_MEMORY_UNIT:
-.LFB4310:
-	.file 1 "pmc_internal.h"
-	.loc 1 352 1
+.LFB4321:
+	.file 1 "pmc_inline_func.h"
+	.loc 1 66 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -60,7 +60,7 @@ _COPY_MEMORY_UNIT:
 	movq	%rax, -24(%rbp)
 .LBE11:
 .LBE10:
-	.loc 1 360 1
+	.loc 1 74 5
 	nop
 	addq	$32, %rsp
 	popq	%rsi
@@ -72,13 +72,13 @@ _COPY_MEMORY_UNIT:
 	.cfi_def_cfa 7, 24
 	ret
 	.cfi_endproc
-.LFE4310:
+.LFE4321:
 	.seh_endproc
 	.def	_COPY_MEMORY_UNIT_DIV;	.scl	3;	.type	32;	.endef
 	.seh_proc	_COPY_MEMORY_UNIT_DIV
 _COPY_MEMORY_UNIT_DIV:
-.LFB4311:
-	.loc 1 363 1
+.LFB4322:
+	.loc 1 77 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -130,7 +130,7 @@ _COPY_MEMORY_UNIT_DIV:
 	movq	%rax, -24(%rbp)
 .LBE13:
 .LBE12:
-	.loc 1 377 1
+	.loc 1 91 5
 	nop
 	addq	$32, %rsp
 	popq	%rsi
@@ -142,13 +142,13 @@ _COPY_MEMORY_UNIT_DIV:
 	.cfi_def_cfa 7, 24
 	ret
 	.cfi_endproc
-.LFE4311:
+.LFE4322:
 	.seh_endproc
 	.def	_ZERO_MEMORY_UNIT;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZERO_MEMORY_UNIT
 _ZERO_MEMORY_UNIT:
-.LFB4316:
-	.loc 1 402 1
+.LFB4327:
+	.loc 1 116 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -192,7 +192,7 @@ _ZERO_MEMORY_UNIT:
 	movq	%rdx, -120(%rbp)
 .LBE15:
 .LBE14:
-	.loc 1 410 1
+	.loc 1 124 5
 	nop
 	addq	$40, %rsp
 	popq	%rdi
@@ -202,13 +202,13 @@ _ZERO_MEMORY_UNIT:
 	.cfi_def_cfa 7, -24
 	ret
 	.cfi_endproc
-.LFE4316:
+.LFE4327:
 	.seh_endproc
 	.def	_ZERO_MEMORY_UNIT_DIV;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZERO_MEMORY_UNIT_DIV
 _ZERO_MEMORY_UNIT_DIV:
-.LFB4317:
-	.loc 1 413 1
+.LFB4328:
+	.loc 1 127 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -252,7 +252,7 @@ _ZERO_MEMORY_UNIT_DIV:
 	movq	%rdx, -120(%rbp)
 .LBE17:
 .LBE16:
-	.loc 1 427 1
+	.loc 1 141 5
 	nop
 	addq	$40, %rsp
 	popq	%rdi
@@ -262,7 +262,7 @@ _ZERO_MEMORY_UNIT_DIV:
 	.cfi_def_cfa 7, -24
 	ret
 	.cfi_endproc
-.LFE4317:
+.LFE4328:
 	.seh_endproc
 	.globl	RightShift_Imp
 	.def	RightShift_Imp;	.scl	2;	.type	32;	.endef
@@ -270,7 +270,7 @@ _ZERO_MEMORY_UNIT_DIV:
 RightShift_Imp:
 .LFB4373:
 	.file 3 "pmc_shift.c"
-	.loc 3 38 1
+	.loc 3 39 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -286,109 +286,85 @@ RightShift_Imp:
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 3 39 18
+	.loc 3 40 18
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 3 40 17
+	.loc 3 41 17
 	movq	24(%rbp), %rax
 	movq	%rax, -40(%rbp)
-	.loc 3 41 18
+	.loc 3 42 18
 	movq	40(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	.loc 3 43 17
+	.loc 3 44 17
 	movq	32(%rbp), %rax
 	shrq	$6, %rax
 	movq	%rax, -48(%rbp)
-	.loc 3 44 17
+	.loc 3 45 17
 	movq	32(%rbp), %rax
 	andl	$63, %eax
 	movq	%rax, -56(%rbp)
-	.loc 3 45 8
+	.loc 3 46 8
 	cmpq	$0, -56(%rbp)
 	jne	.L6
-	.loc 3 48 9
+	.loc 3 49 9
 	movq	-40(%rbp), %rax
 	subq	-48(%rbp), %rax
 	movq	%rax, %rcx
-	.loc 3 48 34
+	.loc 3 49 34
 	movq	-48(%rbp), %rax
 	leaq	0(,%rax,8), %rdx
 	movq	-8(%rbp), %rax
 	addq	%rax, %rdx
-	.loc 3 48 9
+	.loc 3 49 9
 	movq	-16(%rbp), %rax
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	_COPY_MEMORY_UNIT
-	.loc 3 49 12
+	.loc 3 50 12
 	cmpl	$0, 48(%rbp)
 	je	.L18
-	.loc 3 50 44
+	.loc 3 51 44
 	movq	-40(%rbp), %rax
 	subq	-48(%rbp), %rax
 	leaq	0(,%rax,8), %rdx
-	.loc 3 50 13
+	.loc 3 51 13
 	movq	-16(%rbp), %rax
 	addq	%rdx, %rax
 	movq	-48(%rbp), %rdx
 	movq	%rax, %rcx
 	call	_ZERO_MEMORY_UNIT
-	.loc 3 170 1
+	.loc 3 171 1
 	jmp	.L18
 .L6:
 .LBB18:
-	.loc 3 54 12
+	.loc 3 55 12
 	movq	-48(%rbp), %rax
 	salq	$3, %rax
 	addq	%rax, -8(%rbp)
-	.loc 3 55 21
+	.loc 3 56 21
 	movl	$64, %eax
 	subq	-56(%rbp), %rax
 	movq	%rax, -64(%rbp)
-	.loc 3 58 31
+	.loc 3 59 31
 	movq	-8(%rbp), %rax
 	leaq	8(%rax), %rdx
 	movq	%rdx, -8(%rbp)
-	.loc 3 58 21
+	.loc 3 59 21
 	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 60 39
+	.loc 3 61 39
 	movq	-40(%rbp), %rax
 	subq	-48(%rbp), %rax
-	.loc 3 60 21
+	.loc 3 61 21
 	subq	$1, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 62 21
+	.loc 3 63 21
 	movq	-72(%rbp), %rax
 	shrq	$5, %rax
 	movq	%rax, -32(%rbp)
-	.loc 3 63 15
+	.loc 3 64 15
 	jmp	.L9
 .L10:
-	.loc 3 65 25
-	movq	-56(%rbp), %rax
-	movl	%eax, %edx
-	.loc 3 65 18
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	shrq	%cl, %rax
-	movq	%rax, -80(%rbp)
-	.loc 3 65 53
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	movq	%rax, -24(%rbp)
-	.loc 3 65 75
-	movq	-64(%rbp), %rax
-	movl	%eax, %edx
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	salq	%cl, %rax
-	.loc 3 65 67
-	orq	%rax, -80(%rbp)
-	.loc 3 65 104
-	movq	-16(%rbp), %rax
-	movq	-80(%rbp), %rdx
-	movq	%rdx, (%rax)
 	.loc 3 66 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -399,7 +375,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 66 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 66 75
 	movq	-64(%rbp), %rax
@@ -409,10 +385,8 @@ RightShift_Imp:
 	salq	%cl, %rax
 	.loc 3 66 67
 	orq	%rax, -80(%rbp)
-	.loc 3 66 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 66 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 67 25
@@ -425,7 +399,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 67 53
 	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 67 75
 	movq	-64(%rbp), %rax
@@ -437,7 +411,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 67 100
 	movq	-16(%rbp), %rax
-	addq	$16, %rax
+	addq	$8, %rax
 	.loc 3 67 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -451,7 +425,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 68 53
 	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 68 75
 	movq	-64(%rbp), %rax
@@ -463,7 +437,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 68 100
 	movq	-16(%rbp), %rax
-	addq	$24, %rax
+	addq	$16, %rax
 	.loc 3 68 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -477,7 +451,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 69 53
 	movq	-8(%rbp), %rax
-	movq	32(%rax), %rax
+	movq	24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 69 75
 	movq	-64(%rbp), %rax
@@ -489,7 +463,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 69 100
 	movq	-16(%rbp), %rax
-	addq	$32, %rax
+	addq	$24, %rax
 	.loc 3 69 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -503,7 +477,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 70 53
 	movq	-8(%rbp), %rax
-	movq	40(%rax), %rax
+	movq	32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 70 75
 	movq	-64(%rbp), %rax
@@ -515,7 +489,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 70 100
 	movq	-16(%rbp), %rax
-	addq	$40, %rax
+	addq	$32, %rax
 	.loc 3 70 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -529,7 +503,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 71 53
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 71 75
 	movq	-64(%rbp), %rax
@@ -541,7 +515,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 71 100
 	movq	-16(%rbp), %rax
-	addq	$48, %rax
+	addq	$40, %rax
 	.loc 3 71 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -555,7 +529,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 72 53
 	movq	-8(%rbp), %rax
-	movq	56(%rax), %rax
+	movq	48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 72 75
 	movq	-64(%rbp), %rax
@@ -567,7 +541,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 72 100
 	movq	-16(%rbp), %rax
-	addq	$56, %rax
+	addq	$48, %rax
 	.loc 3 72 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -581,7 +555,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 73 53
 	movq	-8(%rbp), %rax
-	movq	64(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 73 75
 	movq	-64(%rbp), %rax
@@ -593,7 +567,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 73 100
 	movq	-16(%rbp), %rax
-	addq	$64, %rax
+	addq	$56, %rax
 	.loc 3 73 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -607,7 +581,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 74 53
 	movq	-8(%rbp), %rax
-	movq	72(%rax), %rax
+	movq	64(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 74 75
 	movq	-64(%rbp), %rax
@@ -619,7 +593,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 74 100
 	movq	-16(%rbp), %rax
-	addq	$72, %rax
+	addq	$64, %rax
 	.loc 3 74 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -633,20 +607,20 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 75 53
 	movq	-8(%rbp), %rax
-	movq	80(%rax), %rax
+	movq	72(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 75 76
+	.loc 3 75 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 75 68
+	.loc 3 75 67
 	orq	%rax, -80(%rbp)
-	.loc 3 75 101
+	.loc 3 75 100
 	movq	-16(%rbp), %rax
-	addq	$80, %rax
-	.loc 3 75 106
+	addq	$72, %rax
+	.loc 3 75 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 76 25
@@ -659,7 +633,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 76 53
 	movq	-8(%rbp), %rax
-	movq	88(%rax), %rax
+	movq	80(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 76 76
 	movq	-64(%rbp), %rax
@@ -671,7 +645,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 76 101
 	movq	-16(%rbp), %rax
-	addq	$88, %rax
+	addq	$80, %rax
 	.loc 3 76 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -685,7 +659,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 77 53
 	movq	-8(%rbp), %rax
-	movq	96(%rax), %rax
+	movq	88(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 77 76
 	movq	-64(%rbp), %rax
@@ -697,7 +671,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 77 101
 	movq	-16(%rbp), %rax
-	addq	$96, %rax
+	addq	$88, %rax
 	.loc 3 77 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -711,7 +685,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 78 53
 	movq	-8(%rbp), %rax
-	movq	104(%rax), %rax
+	movq	96(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 78 76
 	movq	-64(%rbp), %rax
@@ -723,7 +697,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 78 101
 	movq	-16(%rbp), %rax
-	addq	$104, %rax
+	addq	$96, %rax
 	.loc 3 78 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -737,7 +711,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 79 53
 	movq	-8(%rbp), %rax
-	movq	112(%rax), %rax
+	movq	104(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 79 76
 	movq	-64(%rbp), %rax
@@ -749,7 +723,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 79 101
 	movq	-16(%rbp), %rax
-	addq	$112, %rax
+	addq	$104, %rax
 	.loc 3 79 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -763,7 +737,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 80 53
 	movq	-8(%rbp), %rax
-	movq	120(%rax), %rax
+	movq	112(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 80 76
 	movq	-64(%rbp), %rax
@@ -775,7 +749,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 80 101
 	movq	-16(%rbp), %rax
-	addq	$120, %rax
+	addq	$112, %rax
 	.loc 3 80 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -789,7 +763,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 81 53
 	movq	-8(%rbp), %rax
-	movq	128(%rax), %rax
+	movq	120(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 81 76
 	movq	-64(%rbp), %rax
@@ -801,7 +775,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 81 101
 	movq	-16(%rbp), %rax
-	subq	$-128, %rax
+	addq	$120, %rax
 	.loc 3 81 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -815,7 +789,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 82 53
 	movq	-8(%rbp), %rax
-	movq	136(%rax), %rax
+	movq	128(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 82 76
 	movq	-64(%rbp), %rax
@@ -827,7 +801,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 82 101
 	movq	-16(%rbp), %rax
-	addq	$136, %rax
+	subq	$-128, %rax
 	.loc 3 82 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -841,7 +815,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 83 53
 	movq	-8(%rbp), %rax
-	movq	144(%rax), %rax
+	movq	136(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 83 76
 	movq	-64(%rbp), %rax
@@ -853,7 +827,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 83 101
 	movq	-16(%rbp), %rax
-	addq	$144, %rax
+	addq	$136, %rax
 	.loc 3 83 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -867,7 +841,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 84 53
 	movq	-8(%rbp), %rax
-	movq	152(%rax), %rax
+	movq	144(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 84 76
 	movq	-64(%rbp), %rax
@@ -879,7 +853,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 84 101
 	movq	-16(%rbp), %rax
-	addq	$152, %rax
+	addq	$144, %rax
 	.loc 3 84 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -893,7 +867,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 85 53
 	movq	-8(%rbp), %rax
-	movq	160(%rax), %rax
+	movq	152(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 85 76
 	movq	-64(%rbp), %rax
@@ -905,7 +879,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 85 101
 	movq	-16(%rbp), %rax
-	addq	$160, %rax
+	addq	$152, %rax
 	.loc 3 85 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -919,7 +893,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 86 53
 	movq	-8(%rbp), %rax
-	movq	168(%rax), %rax
+	movq	160(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 86 76
 	movq	-64(%rbp), %rax
@@ -931,7 +905,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 86 101
 	movq	-16(%rbp), %rax
-	addq	$168, %rax
+	addq	$160, %rax
 	.loc 3 86 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -945,7 +919,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 87 53
 	movq	-8(%rbp), %rax
-	movq	176(%rax), %rax
+	movq	168(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 87 76
 	movq	-64(%rbp), %rax
@@ -957,7 +931,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 87 101
 	movq	-16(%rbp), %rax
-	addq	$176, %rax
+	addq	$168, %rax
 	.loc 3 87 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -971,7 +945,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 88 53
 	movq	-8(%rbp), %rax
-	movq	184(%rax), %rax
+	movq	176(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 88 76
 	movq	-64(%rbp), %rax
@@ -983,7 +957,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 88 101
 	movq	-16(%rbp), %rax
-	addq	$184, %rax
+	addq	$176, %rax
 	.loc 3 88 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -997,7 +971,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 89 53
 	movq	-8(%rbp), %rax
-	movq	192(%rax), %rax
+	movq	184(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 89 76
 	movq	-64(%rbp), %rax
@@ -1009,7 +983,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 89 101
 	movq	-16(%rbp), %rax
-	addq	$192, %rax
+	addq	$184, %rax
 	.loc 3 89 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1023,7 +997,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 90 53
 	movq	-8(%rbp), %rax
-	movq	200(%rax), %rax
+	movq	192(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 90 76
 	movq	-64(%rbp), %rax
@@ -1035,7 +1009,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 90 101
 	movq	-16(%rbp), %rax
-	addq	$200, %rax
+	addq	$192, %rax
 	.loc 3 90 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1049,7 +1023,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 91 53
 	movq	-8(%rbp), %rax
-	movq	208(%rax), %rax
+	movq	200(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 91 76
 	movq	-64(%rbp), %rax
@@ -1061,7 +1035,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 91 101
 	movq	-16(%rbp), %rax
-	addq	$208, %rax
+	addq	$200, %rax
 	.loc 3 91 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1075,7 +1049,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 92 53
 	movq	-8(%rbp), %rax
-	movq	216(%rax), %rax
+	movq	208(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 92 76
 	movq	-64(%rbp), %rax
@@ -1087,7 +1061,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 92 101
 	movq	-16(%rbp), %rax
-	addq	$216, %rax
+	addq	$208, %rax
 	.loc 3 92 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1101,7 +1075,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 93 53
 	movq	-8(%rbp), %rax
-	movq	224(%rax), %rax
+	movq	216(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 93 76
 	movq	-64(%rbp), %rax
@@ -1113,7 +1087,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 93 101
 	movq	-16(%rbp), %rax
-	addq	$224, %rax
+	addq	$216, %rax
 	.loc 3 93 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1127,7 +1101,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 94 53
 	movq	-8(%rbp), %rax
-	movq	232(%rax), %rax
+	movq	224(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 94 76
 	movq	-64(%rbp), %rax
@@ -1139,7 +1113,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 94 101
 	movq	-16(%rbp), %rax
-	addq	$232, %rax
+	addq	$224, %rax
 	.loc 3 94 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1153,7 +1127,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 95 53
 	movq	-8(%rbp), %rax
-	movq	240(%rax), %rax
+	movq	232(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 95 76
 	movq	-64(%rbp), %rax
@@ -1165,7 +1139,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 95 101
 	movq	-16(%rbp), %rax
-	addq	$240, %rax
+	addq	$232, %rax
 	.loc 3 95 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1179,7 +1153,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 96 53
 	movq	-8(%rbp), %rax
-	movq	248(%rax), %rax
+	movq	240(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 96 76
 	movq	-64(%rbp), %rax
@@ -1191,50 +1165,52 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 96 101
 	movq	-16(%rbp), %rax
-	addq	$248, %rax
+	addq	$240, %rax
 	.loc 3 96 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 97 13
-	subq	$1, -32(%rbp)
-	.loc 3 98 16
-	addq	$256, -8(%rbp)
-	.loc 3 99 16
-	addq	$256, -16(%rbp)
-.L9:
-	.loc 3 63 15
-	cmpq	$0, -32(%rbp)
-	jne	.L10
-	.loc 3 102 21
-	movq	-72(%rbp), %rax
-	andl	$16, %eax
-	.loc 3 102 12
-	testq	%rax, %rax
-	je	.L11
-	.loc 3 104 25
+	.loc 3 97 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 104 18
+	.loc 3 97 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 104 53
+	.loc 3 97 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	248(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 104 75
+	.loc 3 97 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 104 67
+	.loc 3 97 68
 	orq	%rax, -80(%rbp)
-	.loc 3 104 104
+	.loc 3 97 101
 	movq	-16(%rbp), %rax
+	addq	$248, %rax
+	.loc 3 97 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 98 13
+	subq	$1, -32(%rbp)
+	.loc 3 99 16
+	addq	$256, -8(%rbp)
+	.loc 3 100 16
+	addq	$256, -16(%rbp)
+.L9:
+	.loc 3 64 15
+	cmpq	$0, -32(%rbp)
+	jne	.L10
+	.loc 3 103 21
+	movq	-72(%rbp), %rax
+	andl	$16, %eax
+	.loc 3 103 12
+	testq	%rax, %rax
+	je	.L11
 	.loc 3 105 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -1245,7 +1221,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 105 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 105 75
 	movq	-64(%rbp), %rax
@@ -1255,10 +1231,8 @@ RightShift_Imp:
 	salq	%cl, %rax
 	.loc 3 105 67
 	orq	%rax, -80(%rbp)
-	.loc 3 105 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 105 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 106 25
@@ -1271,7 +1245,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 106 53
 	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 106 75
 	movq	-64(%rbp), %rax
@@ -1283,7 +1257,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 106 100
 	movq	-16(%rbp), %rax
-	addq	$16, %rax
+	addq	$8, %rax
 	.loc 3 106 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1297,7 +1271,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 107 53
 	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 107 75
 	movq	-64(%rbp), %rax
@@ -1309,7 +1283,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 107 100
 	movq	-16(%rbp), %rax
-	addq	$24, %rax
+	addq	$16, %rax
 	.loc 3 107 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1323,7 +1297,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 108 53
 	movq	-8(%rbp), %rax
-	movq	32(%rax), %rax
+	movq	24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 108 75
 	movq	-64(%rbp), %rax
@@ -1335,7 +1309,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 108 100
 	movq	-16(%rbp), %rax
-	addq	$32, %rax
+	addq	$24, %rax
 	.loc 3 108 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1349,7 +1323,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 109 53
 	movq	-8(%rbp), %rax
-	movq	40(%rax), %rax
+	movq	32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 109 75
 	movq	-64(%rbp), %rax
@@ -1361,7 +1335,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 109 100
 	movq	-16(%rbp), %rax
-	addq	$40, %rax
+	addq	$32, %rax
 	.loc 3 109 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1375,7 +1349,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 110 53
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 110 75
 	movq	-64(%rbp), %rax
@@ -1387,7 +1361,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 110 100
 	movq	-16(%rbp), %rax
-	addq	$48, %rax
+	addq	$40, %rax
 	.loc 3 110 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1401,7 +1375,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 111 53
 	movq	-8(%rbp), %rax
-	movq	56(%rax), %rax
+	movq	48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 111 75
 	movq	-64(%rbp), %rax
@@ -1413,7 +1387,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 111 100
 	movq	-16(%rbp), %rax
-	addq	$56, %rax
+	addq	$48, %rax
 	.loc 3 111 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1427,7 +1401,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 112 53
 	movq	-8(%rbp), %rax
-	movq	64(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 112 75
 	movq	-64(%rbp), %rax
@@ -1439,7 +1413,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 112 100
 	movq	-16(%rbp), %rax
-	addq	$64, %rax
+	addq	$56, %rax
 	.loc 3 112 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1453,7 +1427,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 113 53
 	movq	-8(%rbp), %rax
-	movq	72(%rax), %rax
+	movq	64(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 113 75
 	movq	-64(%rbp), %rax
@@ -1465,7 +1439,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 113 100
 	movq	-16(%rbp), %rax
-	addq	$72, %rax
+	addq	$64, %rax
 	.loc 3 113 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1479,20 +1453,20 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 114 53
 	movq	-8(%rbp), %rax
-	movq	80(%rax), %rax
+	movq	72(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 114 76
+	.loc 3 114 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 114 68
+	.loc 3 114 67
 	orq	%rax, -80(%rbp)
-	.loc 3 114 101
+	.loc 3 114 100
 	movq	-16(%rbp), %rax
-	addq	$80, %rax
-	.loc 3 114 106
+	addq	$72, %rax
+	.loc 3 114 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 115 25
@@ -1505,7 +1479,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 115 53
 	movq	-8(%rbp), %rax
-	movq	88(%rax), %rax
+	movq	80(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 115 76
 	movq	-64(%rbp), %rax
@@ -1517,7 +1491,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 115 101
 	movq	-16(%rbp), %rax
-	addq	$88, %rax
+	addq	$80, %rax
 	.loc 3 115 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1531,7 +1505,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 116 53
 	movq	-8(%rbp), %rax
-	movq	96(%rax), %rax
+	movq	88(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 116 76
 	movq	-64(%rbp), %rax
@@ -1543,7 +1517,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 116 101
 	movq	-16(%rbp), %rax
-	addq	$96, %rax
+	addq	$88, %rax
 	.loc 3 116 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1557,7 +1531,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 117 53
 	movq	-8(%rbp), %rax
-	movq	104(%rax), %rax
+	movq	96(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 117 76
 	movq	-64(%rbp), %rax
@@ -1569,7 +1543,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 117 101
 	movq	-16(%rbp), %rax
-	addq	$104, %rax
+	addq	$96, %rax
 	.loc 3 117 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1583,7 +1557,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 118 53
 	movq	-8(%rbp), %rax
-	movq	112(%rax), %rax
+	movq	104(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 118 76
 	movq	-64(%rbp), %rax
@@ -1595,7 +1569,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 118 101
 	movq	-16(%rbp), %rax
-	addq	$112, %rax
+	addq	$104, %rax
 	.loc 3 118 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1609,7 +1583,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 119 53
 	movq	-8(%rbp), %rax
-	movq	120(%rax), %rax
+	movq	112(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 119 76
 	movq	-64(%rbp), %rax
@@ -1621,45 +1595,47 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 119 101
 	movq	-16(%rbp), %rax
-	addq	$120, %rax
+	addq	$112, %rax
 	.loc 3 119 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 120 16
-	subq	$-128, -8(%rbp)
-	.loc 3 121 16
-	subq	$-128, -16(%rbp)
-.L11:
-	.loc 3 124 21
-	movq	-72(%rbp), %rax
-	andl	$8, %eax
-	.loc 3 124 12
-	testq	%rax, %rax
-	je	.L12
-	.loc 3 126 25
+	.loc 3 120 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 126 18
+	.loc 3 120 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 126 53
+	.loc 3 120 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	120(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 126 75
+	.loc 3 120 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 126 67
+	.loc 3 120 68
 	orq	%rax, -80(%rbp)
-	.loc 3 126 104
+	.loc 3 120 101
 	movq	-16(%rbp), %rax
+	addq	$120, %rax
+	.loc 3 120 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 121 16
+	subq	$-128, -8(%rbp)
+	.loc 3 122 16
+	subq	$-128, -16(%rbp)
+.L11:
+	.loc 3 125 21
+	movq	-72(%rbp), %rax
+	andl	$8, %eax
+	.loc 3 125 12
+	testq	%rax, %rax
+	je	.L12
 	.loc 3 127 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -1670,7 +1646,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 127 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 127 75
 	movq	-64(%rbp), %rax
@@ -1680,10 +1656,8 @@ RightShift_Imp:
 	salq	%cl, %rax
 	.loc 3 127 67
 	orq	%rax, -80(%rbp)
-	.loc 3 127 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 127 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 128 25
@@ -1696,7 +1670,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 128 53
 	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 128 75
 	movq	-64(%rbp), %rax
@@ -1708,7 +1682,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 128 100
 	movq	-16(%rbp), %rax
-	addq	$16, %rax
+	addq	$8, %rax
 	.loc 3 128 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1722,7 +1696,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 129 53
 	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 129 75
 	movq	-64(%rbp), %rax
@@ -1734,7 +1708,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 129 100
 	movq	-16(%rbp), %rax
-	addq	$24, %rax
+	addq	$16, %rax
 	.loc 3 129 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1748,7 +1722,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 130 53
 	movq	-8(%rbp), %rax
-	movq	32(%rax), %rax
+	movq	24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 130 75
 	movq	-64(%rbp), %rax
@@ -1760,7 +1734,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 130 100
 	movq	-16(%rbp), %rax
-	addq	$32, %rax
+	addq	$24, %rax
 	.loc 3 130 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1774,7 +1748,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 131 53
 	movq	-8(%rbp), %rax
-	movq	40(%rax), %rax
+	movq	32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 131 75
 	movq	-64(%rbp), %rax
@@ -1786,7 +1760,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 131 100
 	movq	-16(%rbp), %rax
-	addq	$40, %rax
+	addq	$32, %rax
 	.loc 3 131 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1800,7 +1774,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 132 53
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 132 75
 	movq	-64(%rbp), %rax
@@ -1812,7 +1786,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 132 100
 	movq	-16(%rbp), %rax
-	addq	$48, %rax
+	addq	$40, %rax
 	.loc 3 132 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1826,7 +1800,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 133 53
 	movq	-8(%rbp), %rax
-	movq	56(%rax), %rax
+	movq	48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 133 75
 	movq	-64(%rbp), %rax
@@ -1838,45 +1812,47 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 133 100
 	movq	-16(%rbp), %rax
-	addq	$56, %rax
+	addq	$48, %rax
 	.loc 3 133 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 134 16
-	addq	$64, -8(%rbp)
-	.loc 3 135 16
-	addq	$64, -16(%rbp)
-.L12:
-	.loc 3 138 21
-	movq	-72(%rbp), %rax
-	andl	$4, %eax
-	.loc 3 138 12
-	testq	%rax, %rax
-	je	.L13
-	.loc 3 140 25
+	.loc 3 134 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 140 18
+	.loc 3 134 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 140 53
+	.loc 3 134 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 140 75
+	.loc 3 134 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 140 67
+	.loc 3 134 67
 	orq	%rax, -80(%rbp)
-	.loc 3 140 104
+	.loc 3 134 100
 	movq	-16(%rbp), %rax
+	addq	$56, %rax
+	.loc 3 134 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 135 16
+	addq	$64, -8(%rbp)
+	.loc 3 136 16
+	addq	$64, -16(%rbp)
+.L12:
+	.loc 3 139 21
+	movq	-72(%rbp), %rax
+	andl	$4, %eax
+	.loc 3 139 12
+	testq	%rax, %rax
+	je	.L13
 	.loc 3 141 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -1887,7 +1863,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 141 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 141 75
 	movq	-64(%rbp), %rax
@@ -1897,10 +1873,8 @@ RightShift_Imp:
 	salq	%cl, %rax
 	.loc 3 141 67
 	orq	%rax, -80(%rbp)
-	.loc 3 141 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 141 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 142 25
@@ -1913,7 +1887,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 142 53
 	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 142 75
 	movq	-64(%rbp), %rax
@@ -1925,7 +1899,7 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 142 100
 	movq	-16(%rbp), %rax
-	addq	$16, %rax
+	addq	$8, %rax
 	.loc 3 142 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -1939,7 +1913,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 143 53
 	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 143 75
 	movq	-64(%rbp), %rax
@@ -1951,45 +1925,47 @@ RightShift_Imp:
 	orq	%rax, -80(%rbp)
 	.loc 3 143 100
 	movq	-16(%rbp), %rax
-	addq	$24, %rax
+	addq	$16, %rax
 	.loc 3 143 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 144 16
-	addq	$32, -8(%rbp)
-	.loc 3 145 16
-	addq	$32, -16(%rbp)
-.L13:
-	.loc 3 148 21
-	movq	-72(%rbp), %rax
-	andl	$2, %eax
-	.loc 3 148 12
-	testq	%rax, %rax
-	je	.L14
-	.loc 3 150 25
+	.loc 3 144 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 150 18
+	.loc 3 144 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 150 53
+	.loc 3 144 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	24(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 150 75
+	.loc 3 144 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 150 67
+	.loc 3 144 67
 	orq	%rax, -80(%rbp)
-	.loc 3 150 104
+	.loc 3 144 100
 	movq	-16(%rbp), %rax
+	addq	$24, %rax
+	.loc 3 144 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 145 16
+	addq	$32, -8(%rbp)
+	.loc 3 146 16
+	addq	$32, -16(%rbp)
+.L13:
+	.loc 3 149 21
+	movq	-72(%rbp), %rax
+	andl	$2, %eax
+	.loc 3 149 12
+	testq	%rax, %rax
+	je	.L14
 	.loc 3 151 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -2000,7 +1976,7 @@ RightShift_Imp:
 	movq	%rax, -80(%rbp)
 	.loc 3 151 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 151 75
 	movq	-64(%rbp), %rax
@@ -2010,80 +1986,104 @@ RightShift_Imp:
 	salq	%cl, %rax
 	.loc 3 151 67
 	orq	%rax, -80(%rbp)
-	.loc 3 151 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 151 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 152 16
-	addq	$16, -8(%rbp)
-	.loc 3 153 16
-	addq	$16, -16(%rbp)
-.L14:
-	.loc 3 156 21
-	movq	-72(%rbp), %rax
-	andl	$1, %eax
-	.loc 3 156 12
-	testq	%rax, %rax
-	je	.L15
-	.loc 3 158 25
+	.loc 3 152 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 158 18
+	.loc 3 152 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 158 53
+	.loc 3 152 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 158 75
+	.loc 3 152 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 158 67
+	.loc 3 152 67
 	orq	%rax, -80(%rbp)
-	.loc 3 158 104
+	.loc 3 152 100
 	movq	-16(%rbp), %rax
+	addq	$8, %rax
+	.loc 3 152 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 159 16
-	addq	$8, -8(%rbp)
-	.loc 3 160 16
-	addq	$8, -16(%rbp)
-.L15:
-	.loc 3 163 21
+	.loc 3 153 16
+	addq	$16, -8(%rbp)
+	.loc 3 154 16
+	addq	$16, -16(%rbp)
+.L14:
+	.loc 3 157 21
+	movq	-72(%rbp), %rax
+	andl	$1, %eax
+	.loc 3 157 12
+	testq	%rax, %rax
+	je	.L15
+	.loc 3 159 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 163 14
+	.loc 3 159 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 164 12
+	.loc 3 159 53
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	movq	%rax, -24(%rbp)
+	.loc 3 159 75
+	movq	-64(%rbp), %rax
+	movl	%eax, %edx
+	movq	-24(%rbp), %rax
+	movl	%edx, %ecx
+	salq	%cl, %rax
+	.loc 3 159 67
+	orq	%rax, -80(%rbp)
+	.loc 3 159 104
+	movq	-16(%rbp), %rax
+	movq	-80(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 3 160 16
+	addq	$8, -8(%rbp)
+	.loc 3 161 16
+	addq	$8, -16(%rbp)
+.L15:
+	.loc 3 164 21
+	movq	-56(%rbp), %rax
+	movl	%eax, %edx
+	.loc 3 164 14
+	movq	-24(%rbp), %rax
+	movl	%edx, %ecx
+	shrq	%cl, %rax
+	movq	%rax, -80(%rbp)
+	.loc 3 165 12
 	cmpq	$0, -80(%rbp)
 	jne	.L16
-	.loc 3 164 23 discriminator 1
+	.loc 3 165 23 discriminator 1
 	cmpl	$0, 48(%rbp)
 	je	.L17
 .L16:
-	.loc 3 165 17
+	.loc 3 166 17
 	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 .L17:
-	.loc 3 167 12
+	.loc 3 168 12
 	cmpl	$0, 48(%rbp)
 	je	.L18
-	.loc 3 168 48
+	.loc 3 169 48
 	movq	24(%rbp), %rax
 	subq	-48(%rbp), %rax
 	leaq	0(,%rax,8), %rdx
-	.loc 3 168 13
+	.loc 3 169 13
 	movq	40(%rbp), %rax
 	addq	%rdx, %rax
 	movq	-48(%rbp), %rdx
@@ -2091,7 +2091,7 @@ RightShift_Imp:
 	call	_ZERO_MEMORY_UNIT
 .L18:
 .LBE18:
-	.loc 3 170 1
+	.loc 3 171 1
 	nop
 	addq	$112, %rsp
 	popq	%rbp
@@ -2106,7 +2106,7 @@ RightShift_Imp:
 	.seh_proc	RightShift_Imp_DIV
 RightShift_Imp_DIV:
 .LFB4374:
-	.loc 3 173 1
+	.loc 3 174 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -2122,109 +2122,85 @@ RightShift_Imp_DIV:
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 3 174 22
+	.loc 3 175 22
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 3 175 17
+	.loc 3 176 17
 	movq	24(%rbp), %rax
 	movq	%rax, -40(%rbp)
-	.loc 3 176 22
+	.loc 3 177 22
 	movq	40(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	.loc 3 178 17
+	.loc 3 179 17
 	movq	32(%rbp), %rax
 	shrq	$6, %rax
 	movq	%rax, -48(%rbp)
-	.loc 3 179 17
+	.loc 3 180 17
 	movq	32(%rbp), %rax
 	andl	$63, %eax
 	movq	%rax, -56(%rbp)
-	.loc 3 180 8
+	.loc 3 181 8
 	cmpq	$0, -56(%rbp)
 	jne	.L20
-	.loc 3 183 9
+	.loc 3 184 9
 	movq	-40(%rbp), %rax
 	subq	-48(%rbp), %rax
 	movq	%rax, %rcx
-	.loc 3 183 38
+	.loc 3 184 38
 	movq	-48(%rbp), %rax
 	leaq	0(,%rax,8), %rdx
 	movq	-8(%rbp), %rax
 	addq	%rax, %rdx
-	.loc 3 183 9
+	.loc 3 184 9
 	movq	-16(%rbp), %rax
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	_COPY_MEMORY_UNIT_DIV
-	.loc 3 184 12
+	.loc 3 185 12
 	cmpl	$0, 48(%rbp)
 	je	.L32
-	.loc 3 185 48
+	.loc 3 186 48
 	movq	-40(%rbp), %rax
 	subq	-48(%rbp), %rax
 	leaq	0(,%rax,8), %rdx
-	.loc 3 185 13
+	.loc 3 186 13
 	movq	-16(%rbp), %rax
 	addq	%rdx, %rax
 	movq	-48(%rbp), %rdx
 	movq	%rax, %rcx
 	call	_ZERO_MEMORY_UNIT_DIV
-	.loc 3 305 1
+	.loc 3 306 1
 	jmp	.L32
 .L20:
 .LBB19:
-	.loc 3 189 12
+	.loc 3 190 12
 	movq	-48(%rbp), %rax
 	salq	$3, %rax
 	addq	%rax, -8(%rbp)
-	.loc 3 190 21
+	.loc 3 191 21
 	movl	$64, %eax
 	subq	-56(%rbp), %rax
 	movq	%rax, -64(%rbp)
-	.loc 3 193 35
+	.loc 3 194 35
 	movq	-8(%rbp), %rax
 	leaq	8(%rax), %rdx
 	movq	%rdx, -8(%rbp)
-	.loc 3 193 25
+	.loc 3 194 25
 	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 195 39
+	.loc 3 196 39
 	movq	-40(%rbp), %rax
 	subq	-48(%rbp), %rax
-	.loc 3 195 21
+	.loc 3 196 21
 	subq	$1, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 197 21
+	.loc 3 198 21
 	movq	-72(%rbp), %rax
 	shrq	$5, %rax
 	movq	%rax, -32(%rbp)
-	.loc 3 198 15
+	.loc 3 199 15
 	jmp	.L23
 .L24:
-	.loc 3 200 25
-	movq	-56(%rbp), %rax
-	movl	%eax, %edx
-	.loc 3 200 18
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	shrq	%cl, %rax
-	movq	%rax, -80(%rbp)
-	.loc 3 200 53
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	movq	%rax, -24(%rbp)
-	.loc 3 200 75
-	movq	-64(%rbp), %rax
-	movl	%eax, %edx
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	salq	%cl, %rax
-	.loc 3 200 67
-	orq	%rax, -80(%rbp)
-	.loc 3 200 104
-	movq	-16(%rbp), %rax
-	movq	-80(%rbp), %rdx
-	movq	%rdx, (%rax)
 	.loc 3 201 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -2235,7 +2211,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 201 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 201 75
 	movq	-64(%rbp), %rax
@@ -2245,10 +2221,8 @@ RightShift_Imp_DIV:
 	salq	%cl, %rax
 	.loc 3 201 67
 	orq	%rax, -80(%rbp)
-	.loc 3 201 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 201 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 202 25
@@ -2261,7 +2235,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 202 53
 	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 202 75
 	movq	-64(%rbp), %rax
@@ -2273,7 +2247,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 202 100
 	movq	-16(%rbp), %rax
-	addq	$16, %rax
+	addq	$8, %rax
 	.loc 3 202 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2287,7 +2261,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 203 53
 	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 203 75
 	movq	-64(%rbp), %rax
@@ -2299,7 +2273,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 203 100
 	movq	-16(%rbp), %rax
-	addq	$24, %rax
+	addq	$16, %rax
 	.loc 3 203 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2313,7 +2287,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 204 53
 	movq	-8(%rbp), %rax
-	movq	32(%rax), %rax
+	movq	24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 204 75
 	movq	-64(%rbp), %rax
@@ -2325,7 +2299,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 204 100
 	movq	-16(%rbp), %rax
-	addq	$32, %rax
+	addq	$24, %rax
 	.loc 3 204 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2339,7 +2313,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 205 53
 	movq	-8(%rbp), %rax
-	movq	40(%rax), %rax
+	movq	32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 205 75
 	movq	-64(%rbp), %rax
@@ -2351,7 +2325,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 205 100
 	movq	-16(%rbp), %rax
-	addq	$40, %rax
+	addq	$32, %rax
 	.loc 3 205 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2365,7 +2339,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 206 53
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 206 75
 	movq	-64(%rbp), %rax
@@ -2377,7 +2351,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 206 100
 	movq	-16(%rbp), %rax
-	addq	$48, %rax
+	addq	$40, %rax
 	.loc 3 206 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2391,7 +2365,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 207 53
 	movq	-8(%rbp), %rax
-	movq	56(%rax), %rax
+	movq	48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 207 75
 	movq	-64(%rbp), %rax
@@ -2403,7 +2377,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 207 100
 	movq	-16(%rbp), %rax
-	addq	$56, %rax
+	addq	$48, %rax
 	.loc 3 207 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2417,7 +2391,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 208 53
 	movq	-8(%rbp), %rax
-	movq	64(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 208 75
 	movq	-64(%rbp), %rax
@@ -2429,7 +2403,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 208 100
 	movq	-16(%rbp), %rax
-	addq	$64, %rax
+	addq	$56, %rax
 	.loc 3 208 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2443,7 +2417,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 209 53
 	movq	-8(%rbp), %rax
-	movq	72(%rax), %rax
+	movq	64(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 209 75
 	movq	-64(%rbp), %rax
@@ -2455,7 +2429,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 209 100
 	movq	-16(%rbp), %rax
-	addq	$72, %rax
+	addq	$64, %rax
 	.loc 3 209 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2469,20 +2443,20 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 210 53
 	movq	-8(%rbp), %rax
-	movq	80(%rax), %rax
+	movq	72(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 210 76
+	.loc 3 210 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 210 68
+	.loc 3 210 67
 	orq	%rax, -80(%rbp)
-	.loc 3 210 101
+	.loc 3 210 100
 	movq	-16(%rbp), %rax
-	addq	$80, %rax
-	.loc 3 210 106
+	addq	$72, %rax
+	.loc 3 210 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 211 25
@@ -2495,7 +2469,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 211 53
 	movq	-8(%rbp), %rax
-	movq	88(%rax), %rax
+	movq	80(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 211 76
 	movq	-64(%rbp), %rax
@@ -2507,7 +2481,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 211 101
 	movq	-16(%rbp), %rax
-	addq	$88, %rax
+	addq	$80, %rax
 	.loc 3 211 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2521,7 +2495,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 212 53
 	movq	-8(%rbp), %rax
-	movq	96(%rax), %rax
+	movq	88(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 212 76
 	movq	-64(%rbp), %rax
@@ -2533,7 +2507,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 212 101
 	movq	-16(%rbp), %rax
-	addq	$96, %rax
+	addq	$88, %rax
 	.loc 3 212 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2547,7 +2521,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 213 53
 	movq	-8(%rbp), %rax
-	movq	104(%rax), %rax
+	movq	96(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 213 76
 	movq	-64(%rbp), %rax
@@ -2559,7 +2533,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 213 101
 	movq	-16(%rbp), %rax
-	addq	$104, %rax
+	addq	$96, %rax
 	.loc 3 213 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2573,7 +2547,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 214 53
 	movq	-8(%rbp), %rax
-	movq	112(%rax), %rax
+	movq	104(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 214 76
 	movq	-64(%rbp), %rax
@@ -2585,7 +2559,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 214 101
 	movq	-16(%rbp), %rax
-	addq	$112, %rax
+	addq	$104, %rax
 	.loc 3 214 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2599,7 +2573,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 215 53
 	movq	-8(%rbp), %rax
-	movq	120(%rax), %rax
+	movq	112(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 215 76
 	movq	-64(%rbp), %rax
@@ -2611,7 +2585,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 215 101
 	movq	-16(%rbp), %rax
-	addq	$120, %rax
+	addq	$112, %rax
 	.loc 3 215 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2625,7 +2599,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 216 53
 	movq	-8(%rbp), %rax
-	movq	128(%rax), %rax
+	movq	120(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 216 76
 	movq	-64(%rbp), %rax
@@ -2637,7 +2611,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 216 101
 	movq	-16(%rbp), %rax
-	subq	$-128, %rax
+	addq	$120, %rax
 	.loc 3 216 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2651,7 +2625,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 217 53
 	movq	-8(%rbp), %rax
-	movq	136(%rax), %rax
+	movq	128(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 217 76
 	movq	-64(%rbp), %rax
@@ -2663,7 +2637,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 217 101
 	movq	-16(%rbp), %rax
-	addq	$136, %rax
+	subq	$-128, %rax
 	.loc 3 217 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2677,7 +2651,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 218 53
 	movq	-8(%rbp), %rax
-	movq	144(%rax), %rax
+	movq	136(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 218 76
 	movq	-64(%rbp), %rax
@@ -2689,7 +2663,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 218 101
 	movq	-16(%rbp), %rax
-	addq	$144, %rax
+	addq	$136, %rax
 	.loc 3 218 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2703,7 +2677,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 219 53
 	movq	-8(%rbp), %rax
-	movq	152(%rax), %rax
+	movq	144(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 219 76
 	movq	-64(%rbp), %rax
@@ -2715,7 +2689,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 219 101
 	movq	-16(%rbp), %rax
-	addq	$152, %rax
+	addq	$144, %rax
 	.loc 3 219 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2729,7 +2703,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 220 53
 	movq	-8(%rbp), %rax
-	movq	160(%rax), %rax
+	movq	152(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 220 76
 	movq	-64(%rbp), %rax
@@ -2741,7 +2715,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 220 101
 	movq	-16(%rbp), %rax
-	addq	$160, %rax
+	addq	$152, %rax
 	.loc 3 220 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2755,7 +2729,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 221 53
 	movq	-8(%rbp), %rax
-	movq	168(%rax), %rax
+	movq	160(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 221 76
 	movq	-64(%rbp), %rax
@@ -2767,7 +2741,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 221 101
 	movq	-16(%rbp), %rax
-	addq	$168, %rax
+	addq	$160, %rax
 	.loc 3 221 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2781,7 +2755,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 222 53
 	movq	-8(%rbp), %rax
-	movq	176(%rax), %rax
+	movq	168(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 222 76
 	movq	-64(%rbp), %rax
@@ -2793,7 +2767,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 222 101
 	movq	-16(%rbp), %rax
-	addq	$176, %rax
+	addq	$168, %rax
 	.loc 3 222 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2807,7 +2781,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 223 53
 	movq	-8(%rbp), %rax
-	movq	184(%rax), %rax
+	movq	176(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 223 76
 	movq	-64(%rbp), %rax
@@ -2819,7 +2793,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 223 101
 	movq	-16(%rbp), %rax
-	addq	$184, %rax
+	addq	$176, %rax
 	.loc 3 223 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2833,7 +2807,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 224 53
 	movq	-8(%rbp), %rax
-	movq	192(%rax), %rax
+	movq	184(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 224 76
 	movq	-64(%rbp), %rax
@@ -2845,7 +2819,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 224 101
 	movq	-16(%rbp), %rax
-	addq	$192, %rax
+	addq	$184, %rax
 	.loc 3 224 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2859,7 +2833,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 225 53
 	movq	-8(%rbp), %rax
-	movq	200(%rax), %rax
+	movq	192(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 225 76
 	movq	-64(%rbp), %rax
@@ -2871,7 +2845,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 225 101
 	movq	-16(%rbp), %rax
-	addq	$200, %rax
+	addq	$192, %rax
 	.loc 3 225 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2885,7 +2859,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 226 53
 	movq	-8(%rbp), %rax
-	movq	208(%rax), %rax
+	movq	200(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 226 76
 	movq	-64(%rbp), %rax
@@ -2897,7 +2871,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 226 101
 	movq	-16(%rbp), %rax
-	addq	$208, %rax
+	addq	$200, %rax
 	.loc 3 226 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2911,7 +2885,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 227 53
 	movq	-8(%rbp), %rax
-	movq	216(%rax), %rax
+	movq	208(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 227 76
 	movq	-64(%rbp), %rax
@@ -2923,7 +2897,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 227 101
 	movq	-16(%rbp), %rax
-	addq	$216, %rax
+	addq	$208, %rax
 	.loc 3 227 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2937,7 +2911,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 228 53
 	movq	-8(%rbp), %rax
-	movq	224(%rax), %rax
+	movq	216(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 228 76
 	movq	-64(%rbp), %rax
@@ -2949,7 +2923,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 228 101
 	movq	-16(%rbp), %rax
-	addq	$224, %rax
+	addq	$216, %rax
 	.loc 3 228 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2963,7 +2937,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 229 53
 	movq	-8(%rbp), %rax
-	movq	232(%rax), %rax
+	movq	224(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 229 76
 	movq	-64(%rbp), %rax
@@ -2975,7 +2949,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 229 101
 	movq	-16(%rbp), %rax
-	addq	$232, %rax
+	addq	$224, %rax
 	.loc 3 229 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -2989,7 +2963,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 230 53
 	movq	-8(%rbp), %rax
-	movq	240(%rax), %rax
+	movq	232(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 230 76
 	movq	-64(%rbp), %rax
@@ -3001,7 +2975,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 230 101
 	movq	-16(%rbp), %rax
-	addq	$240, %rax
+	addq	$232, %rax
 	.loc 3 230 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3015,7 +2989,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 231 53
 	movq	-8(%rbp), %rax
-	movq	248(%rax), %rax
+	movq	240(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 231 76
 	movq	-64(%rbp), %rax
@@ -3027,50 +3001,52 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 231 101
 	movq	-16(%rbp), %rax
-	addq	$248, %rax
+	addq	$240, %rax
 	.loc 3 231 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 232 13
-	subq	$1, -32(%rbp)
-	.loc 3 233 16
-	addq	$256, -8(%rbp)
-	.loc 3 234 16
-	addq	$256, -16(%rbp)
-.L23:
-	.loc 3 198 15
-	cmpq	$0, -32(%rbp)
-	jne	.L24
-	.loc 3 237 21
-	movq	-72(%rbp), %rax
-	andl	$16, %eax
-	.loc 3 237 12
-	testq	%rax, %rax
-	je	.L25
-	.loc 3 239 25
+	.loc 3 232 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 239 18
+	.loc 3 232 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 239 53
+	.loc 3 232 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	248(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 239 75
+	.loc 3 232 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 239 67
+	.loc 3 232 68
 	orq	%rax, -80(%rbp)
-	.loc 3 239 104
+	.loc 3 232 101
 	movq	-16(%rbp), %rax
+	addq	$248, %rax
+	.loc 3 232 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 233 13
+	subq	$1, -32(%rbp)
+	.loc 3 234 16
+	addq	$256, -8(%rbp)
+	.loc 3 235 16
+	addq	$256, -16(%rbp)
+.L23:
+	.loc 3 199 15
+	cmpq	$0, -32(%rbp)
+	jne	.L24
+	.loc 3 238 21
+	movq	-72(%rbp), %rax
+	andl	$16, %eax
+	.loc 3 238 12
+	testq	%rax, %rax
+	je	.L25
 	.loc 3 240 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -3081,7 +3057,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 240 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 240 75
 	movq	-64(%rbp), %rax
@@ -3091,10 +3067,8 @@ RightShift_Imp_DIV:
 	salq	%cl, %rax
 	.loc 3 240 67
 	orq	%rax, -80(%rbp)
-	.loc 3 240 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 240 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 241 25
@@ -3107,7 +3081,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 241 53
 	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 241 75
 	movq	-64(%rbp), %rax
@@ -3119,7 +3093,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 241 100
 	movq	-16(%rbp), %rax
-	addq	$16, %rax
+	addq	$8, %rax
 	.loc 3 241 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3133,7 +3107,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 242 53
 	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 242 75
 	movq	-64(%rbp), %rax
@@ -3145,7 +3119,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 242 100
 	movq	-16(%rbp), %rax
-	addq	$24, %rax
+	addq	$16, %rax
 	.loc 3 242 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3159,7 +3133,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 243 53
 	movq	-8(%rbp), %rax
-	movq	32(%rax), %rax
+	movq	24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 243 75
 	movq	-64(%rbp), %rax
@@ -3171,7 +3145,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 243 100
 	movq	-16(%rbp), %rax
-	addq	$32, %rax
+	addq	$24, %rax
 	.loc 3 243 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3185,7 +3159,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 244 53
 	movq	-8(%rbp), %rax
-	movq	40(%rax), %rax
+	movq	32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 244 75
 	movq	-64(%rbp), %rax
@@ -3197,7 +3171,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 244 100
 	movq	-16(%rbp), %rax
-	addq	$40, %rax
+	addq	$32, %rax
 	.loc 3 244 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3211,7 +3185,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 245 53
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 245 75
 	movq	-64(%rbp), %rax
@@ -3223,7 +3197,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 245 100
 	movq	-16(%rbp), %rax
-	addq	$48, %rax
+	addq	$40, %rax
 	.loc 3 245 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3237,7 +3211,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 246 53
 	movq	-8(%rbp), %rax
-	movq	56(%rax), %rax
+	movq	48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 246 75
 	movq	-64(%rbp), %rax
@@ -3249,7 +3223,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 246 100
 	movq	-16(%rbp), %rax
-	addq	$56, %rax
+	addq	$48, %rax
 	.loc 3 246 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3263,7 +3237,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 247 53
 	movq	-8(%rbp), %rax
-	movq	64(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 247 75
 	movq	-64(%rbp), %rax
@@ -3275,7 +3249,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 247 100
 	movq	-16(%rbp), %rax
-	addq	$64, %rax
+	addq	$56, %rax
 	.loc 3 247 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3289,7 +3263,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 248 53
 	movq	-8(%rbp), %rax
-	movq	72(%rax), %rax
+	movq	64(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 248 75
 	movq	-64(%rbp), %rax
@@ -3301,7 +3275,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 248 100
 	movq	-16(%rbp), %rax
-	addq	$72, %rax
+	addq	$64, %rax
 	.loc 3 248 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3315,20 +3289,20 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 249 53
 	movq	-8(%rbp), %rax
-	movq	80(%rax), %rax
+	movq	72(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 249 76
+	.loc 3 249 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 249 68
+	.loc 3 249 67
 	orq	%rax, -80(%rbp)
-	.loc 3 249 101
+	.loc 3 249 100
 	movq	-16(%rbp), %rax
-	addq	$80, %rax
-	.loc 3 249 106
+	addq	$72, %rax
+	.loc 3 249 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 250 25
@@ -3341,7 +3315,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 250 53
 	movq	-8(%rbp), %rax
-	movq	88(%rax), %rax
+	movq	80(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 250 76
 	movq	-64(%rbp), %rax
@@ -3353,7 +3327,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 250 101
 	movq	-16(%rbp), %rax
-	addq	$88, %rax
+	addq	$80, %rax
 	.loc 3 250 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3367,7 +3341,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 251 53
 	movq	-8(%rbp), %rax
-	movq	96(%rax), %rax
+	movq	88(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 251 76
 	movq	-64(%rbp), %rax
@@ -3379,7 +3353,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 251 101
 	movq	-16(%rbp), %rax
-	addq	$96, %rax
+	addq	$88, %rax
 	.loc 3 251 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3393,7 +3367,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 252 53
 	movq	-8(%rbp), %rax
-	movq	104(%rax), %rax
+	movq	96(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 252 76
 	movq	-64(%rbp), %rax
@@ -3405,7 +3379,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 252 101
 	movq	-16(%rbp), %rax
-	addq	$104, %rax
+	addq	$96, %rax
 	.loc 3 252 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3419,7 +3393,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 253 53
 	movq	-8(%rbp), %rax
-	movq	112(%rax), %rax
+	movq	104(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 253 76
 	movq	-64(%rbp), %rax
@@ -3431,7 +3405,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 253 101
 	movq	-16(%rbp), %rax
-	addq	$112, %rax
+	addq	$104, %rax
 	.loc 3 253 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3445,7 +3419,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 254 53
 	movq	-8(%rbp), %rax
-	movq	120(%rax), %rax
+	movq	112(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 254 76
 	movq	-64(%rbp), %rax
@@ -3457,45 +3431,47 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 254 101
 	movq	-16(%rbp), %rax
-	addq	$120, %rax
+	addq	$112, %rax
 	.loc 3 254 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 255 16
-	subq	$-128, -8(%rbp)
-	.loc 3 256 16
-	subq	$-128, -16(%rbp)
-.L25:
-	.loc 3 259 21
-	movq	-72(%rbp), %rax
-	andl	$8, %eax
-	.loc 3 259 12
-	testq	%rax, %rax
-	je	.L26
-	.loc 3 261 25
+	.loc 3 255 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 261 18
+	.loc 3 255 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 261 53
+	.loc 3 255 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	120(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 261 75
+	.loc 3 255 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 261 67
+	.loc 3 255 68
 	orq	%rax, -80(%rbp)
-	.loc 3 261 104
+	.loc 3 255 101
 	movq	-16(%rbp), %rax
+	addq	$120, %rax
+	.loc 3 255 106
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 256 16
+	subq	$-128, -8(%rbp)
+	.loc 3 257 16
+	subq	$-128, -16(%rbp)
+.L25:
+	.loc 3 260 21
+	movq	-72(%rbp), %rax
+	andl	$8, %eax
+	.loc 3 260 12
+	testq	%rax, %rax
+	je	.L26
 	.loc 3 262 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -3506,7 +3482,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 262 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 262 75
 	movq	-64(%rbp), %rax
@@ -3516,10 +3492,8 @@ RightShift_Imp_DIV:
 	salq	%cl, %rax
 	.loc 3 262 67
 	orq	%rax, -80(%rbp)
-	.loc 3 262 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 262 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 263 25
@@ -3532,7 +3506,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 263 53
 	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 263 75
 	movq	-64(%rbp), %rax
@@ -3544,7 +3518,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 263 100
 	movq	-16(%rbp), %rax
-	addq	$16, %rax
+	addq	$8, %rax
 	.loc 3 263 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3558,7 +3532,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 264 53
 	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 264 75
 	movq	-64(%rbp), %rax
@@ -3570,7 +3544,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 264 100
 	movq	-16(%rbp), %rax
-	addq	$24, %rax
+	addq	$16, %rax
 	.loc 3 264 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3584,7 +3558,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 265 53
 	movq	-8(%rbp), %rax
-	movq	32(%rax), %rax
+	movq	24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 265 75
 	movq	-64(%rbp), %rax
@@ -3596,7 +3570,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 265 100
 	movq	-16(%rbp), %rax
-	addq	$32, %rax
+	addq	$24, %rax
 	.loc 3 265 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3610,7 +3584,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 266 53
 	movq	-8(%rbp), %rax
-	movq	40(%rax), %rax
+	movq	32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 266 75
 	movq	-64(%rbp), %rax
@@ -3622,7 +3596,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 266 100
 	movq	-16(%rbp), %rax
-	addq	$40, %rax
+	addq	$32, %rax
 	.loc 3 266 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3636,7 +3610,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 267 53
 	movq	-8(%rbp), %rax
-	movq	48(%rax), %rax
+	movq	40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 267 75
 	movq	-64(%rbp), %rax
@@ -3648,7 +3622,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 267 100
 	movq	-16(%rbp), %rax
-	addq	$48, %rax
+	addq	$40, %rax
 	.loc 3 267 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3662,7 +3636,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 268 53
 	movq	-8(%rbp), %rax
-	movq	56(%rax), %rax
+	movq	48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 268 75
 	movq	-64(%rbp), %rax
@@ -3674,45 +3648,47 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 268 100
 	movq	-16(%rbp), %rax
-	addq	$56, %rax
+	addq	$48, %rax
 	.loc 3 268 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 269 16
-	addq	$64, -8(%rbp)
-	.loc 3 270 16
-	addq	$64, -16(%rbp)
-.L26:
-	.loc 3 273 21
-	movq	-72(%rbp), %rax
-	andl	$4, %eax
-	.loc 3 273 12
-	testq	%rax, %rax
-	je	.L27
-	.loc 3 275 25
+	.loc 3 269 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 275 18
+	.loc 3 269 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 275 53
+	.loc 3 269 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	56(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 275 75
+	.loc 3 269 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 275 67
+	.loc 3 269 67
 	orq	%rax, -80(%rbp)
-	.loc 3 275 104
+	.loc 3 269 100
 	movq	-16(%rbp), %rax
+	addq	$56, %rax
+	.loc 3 269 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 270 16
+	addq	$64, -8(%rbp)
+	.loc 3 271 16
+	addq	$64, -16(%rbp)
+.L26:
+	.loc 3 274 21
+	movq	-72(%rbp), %rax
+	andl	$4, %eax
+	.loc 3 274 12
+	testq	%rax, %rax
+	je	.L27
 	.loc 3 276 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -3723,7 +3699,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 276 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 276 75
 	movq	-64(%rbp), %rax
@@ -3733,10 +3709,8 @@ RightShift_Imp_DIV:
 	salq	%cl, %rax
 	.loc 3 276 67
 	orq	%rax, -80(%rbp)
-	.loc 3 276 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 276 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 277 25
@@ -3749,7 +3723,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 277 53
 	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 277 75
 	movq	-64(%rbp), %rax
@@ -3761,7 +3735,7 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 277 100
 	movq	-16(%rbp), %rax
-	addq	$16, %rax
+	addq	$8, %rax
 	.loc 3 277 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -3775,7 +3749,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 278 53
 	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
+	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 278 75
 	movq	-64(%rbp), %rax
@@ -3787,45 +3761,47 @@ RightShift_Imp_DIV:
 	orq	%rax, -80(%rbp)
 	.loc 3 278 100
 	movq	-16(%rbp), %rax
-	addq	$24, %rax
+	addq	$16, %rax
 	.loc 3 278 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 279 16
-	addq	$32, -8(%rbp)
-	.loc 3 280 16
-	addq	$32, -16(%rbp)
-.L27:
-	.loc 3 283 21
-	movq	-72(%rbp), %rax
-	andl	$2, %eax
-	.loc 3 283 12
-	testq	%rax, %rax
-	je	.L28
-	.loc 3 285 25
+	.loc 3 279 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 285 18
+	.loc 3 279 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 285 53
+	.loc 3 279 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	24(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 285 75
+	.loc 3 279 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 285 67
+	.loc 3 279 67
 	orq	%rax, -80(%rbp)
-	.loc 3 285 104
+	.loc 3 279 100
 	movq	-16(%rbp), %rax
+	addq	$24, %rax
+	.loc 3 279 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 280 16
+	addq	$32, -8(%rbp)
+	.loc 3 281 16
+	addq	$32, -16(%rbp)
+.L27:
+	.loc 3 284 21
+	movq	-72(%rbp), %rax
+	andl	$2, %eax
+	.loc 3 284 12
+	testq	%rax, %rax
+	je	.L28
 	.loc 3 286 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -3836,7 +3812,7 @@ RightShift_Imp_DIV:
 	movq	%rax, -80(%rbp)
 	.loc 3 286 53
 	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 286 75
 	movq	-64(%rbp), %rax
@@ -3846,80 +3822,104 @@ RightShift_Imp_DIV:
 	salq	%cl, %rax
 	.loc 3 286 67
 	orq	%rax, -80(%rbp)
-	.loc 3 286 100
-	movq	-16(%rbp), %rax
-	addq	$8, %rax
 	.loc 3 286 104
+	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 287 16
-	addq	$16, -8(%rbp)
-	.loc 3 288 16
-	addq	$16, -16(%rbp)
-.L28:
-	.loc 3 291 21
-	movq	-72(%rbp), %rax
-	andl	$1, %eax
-	.loc 3 291 12
-	testq	%rax, %rax
-	je	.L29
-	.loc 3 293 25
+	.loc 3 287 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 293 18
+	.loc 3 287 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 293 53
+	.loc 3 287 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	8(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 293 75
+	.loc 3 287 75
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
-	.loc 3 293 67
+	.loc 3 287 67
 	orq	%rax, -80(%rbp)
-	.loc 3 293 104
+	.loc 3 287 100
 	movq	-16(%rbp), %rax
+	addq	$8, %rax
+	.loc 3 287 104
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 294 16
-	addq	$8, -8(%rbp)
-	.loc 3 295 16
-	addq	$8, -16(%rbp)
-.L29:
-	.loc 3 298 21
+	.loc 3 288 16
+	addq	$16, -8(%rbp)
+	.loc 3 289 16
+	addq	$16, -16(%rbp)
+.L28:
+	.loc 3 292 21
+	movq	-72(%rbp), %rax
+	andl	$1, %eax
+	.loc 3 292 12
+	testq	%rax, %rax
+	je	.L29
+	.loc 3 294 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 298 14
+	.loc 3 294 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -80(%rbp)
-	.loc 3 299 12
+	.loc 3 294 53
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	movq	%rax, -24(%rbp)
+	.loc 3 294 75
+	movq	-64(%rbp), %rax
+	movl	%eax, %edx
+	movq	-24(%rbp), %rax
+	movl	%edx, %ecx
+	salq	%cl, %rax
+	.loc 3 294 67
+	orq	%rax, -80(%rbp)
+	.loc 3 294 104
+	movq	-16(%rbp), %rax
+	movq	-80(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 3 295 16
+	addq	$8, -8(%rbp)
+	.loc 3 296 16
+	addq	$8, -16(%rbp)
+.L29:
+	.loc 3 299 21
+	movq	-56(%rbp), %rax
+	movl	%eax, %edx
+	.loc 3 299 14
+	movq	-24(%rbp), %rax
+	movl	%edx, %ecx
+	shrq	%cl, %rax
+	movq	%rax, -80(%rbp)
+	.loc 3 300 12
 	cmpq	$0, -80(%rbp)
 	jne	.L30
-	.loc 3 299 23 discriminator 1
+	.loc 3 300 23 discriminator 1
 	cmpl	$0, 48(%rbp)
 	je	.L31
 .L30:
-	.loc 3 300 17
+	.loc 3 301 17
 	movq	-16(%rbp), %rax
 	movq	-80(%rbp), %rdx
 	movq	%rdx, (%rax)
 .L31:
-	.loc 3 302 12
+	.loc 3 303 12
 	cmpl	$0, 48(%rbp)
 	je	.L32
-	.loc 3 303 52
+	.loc 3 304 52
 	movq	24(%rbp), %rax
 	subq	-48(%rbp), %rax
 	leaq	0(,%rax,8), %rdx
-	.loc 3 303 13
+	.loc 3 304 13
 	movq	40(%rbp), %rax
 	addq	%rdx, %rax
 	movq	-48(%rbp), %rdx
@@ -3927,7 +3927,7 @@ RightShift_Imp_DIV:
 	call	_ZERO_MEMORY_UNIT_DIV
 .L32:
 .LBE19:
-	.loc 3 305 1
+	.loc 3 306 1
 	nop
 	addq	$112, %rsp
 	popq	%rbp
@@ -3942,7 +3942,7 @@ RightShift_Imp_DIV:
 	.seh_proc	LeftShift_Imp
 LeftShift_Imp:
 .LFB4375:
-	.loc 3 308 1
+	.loc 3 309 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -3958,30 +3958,30 @@ LeftShift_Imp:
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 3 309 18
+	.loc 3 310 18
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 3 310 17
+	.loc 3 311 17
 	movq	24(%rbp), %rax
 	movq	%rax, -40(%rbp)
-	.loc 3 311 18
+	.loc 3 312 18
 	movq	40(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	.loc 3 312 17
+	.loc 3 313 17
 	movq	32(%rbp), %rax
 	shrq	$6, %rax
 	movq	%rax, -48(%rbp)
-	.loc 3 313 17
+	.loc 3 314 17
 	movq	32(%rbp), %rax
 	andl	$63, %eax
 	movq	%rax, -56(%rbp)
-	.loc 3 314 8
+	.loc 3 315 8
 	cmpq	$0, -56(%rbp)
 	jne	.L34
-	.loc 3 317 30
+	.loc 3 318 30
 	movq	-48(%rbp), %rax
 	leaq	0(,%rax,8), %rdx
-	.loc 3 317 9
+	.loc 3 318 9
 	movq	-16(%rbp), %rax
 	addq	%rdx, %rax
 	movq	-40(%rbp), %rcx
@@ -3989,91 +3989,67 @@ LeftShift_Imp:
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	_COPY_MEMORY_UNIT
-	.loc 3 318 12
+	.loc 3 319 12
 	cmpl	$0, 48(%rbp)
 	je	.L45
-	.loc 3 319 13
+	.loc 3 320 13
 	movq	-48(%rbp), %rdx
 	movq	-16(%rbp), %rax
 	movq	%rax, %rcx
 	call	_ZERO_MEMORY_UNIT
-	.loc 3 440 1
+	.loc 3 441 1
 	jmp	.L45
 .L34:
 .LBB20:
-	.loc 3 323 21
+	.loc 3 324 21
 	movl	$64, %eax
 	subq	-56(%rbp), %rax
 	movq	%rax, -64(%rbp)
-	.loc 3 324 12
+	.loc 3 325 12
 	movq	-40(%rbp), %rax
 	salq	$3, %rax
 	subq	$8, %rax
 	addq	%rax, -8(%rbp)
-	.loc 3 325 23
+	.loc 3 326 23
 	movq	-40(%rbp), %rdx
 	movq	-48(%rbp), %rax
 	addq	%rdx, %rax
-	.loc 3 325 12
+	.loc 3 326 12
 	salq	$3, %rax
 	addq	%rax, -16(%rbp)
-	.loc 3 326 17
+	.loc 3 327 17
 	subq	$1, -40(%rbp)
-	.loc 3 327 21
+	.loc 3 328 21
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 328 33
+	.loc 3 329 33
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 328 21
+	.loc 3 329 21
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 329 12
+	.loc 3 330 12
 	cmpq	$0, -72(%rbp)
 	je	.L37
-	.loc 3 330 17
+	.loc 3 331 17
 	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 .L37:
-	.loc 3 331 9
-	subq	$8, -8(%rbp)
 	.loc 3 332 9
+	subq	$8, -8(%rbp)
+	.loc 3 333 9
 	subq	$8, -16(%rbp)
-	.loc 3 334 21
+	.loc 3 335 21
 	movq	-40(%rbp), %rax
 	shrq	$5, %rax
 	movq	%rax, -32(%rbp)
-	.loc 3 335 15
+	.loc 3 336 15
 	jmp	.L38
 .L39:
-	.loc 3 337 25
-	movq	-56(%rbp), %rax
-	movl	%eax, %edx
-	.loc 3 337 18
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	salq	%cl, %rax
-	movq	%rax, -72(%rbp)
-	.loc 3 337 53
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	movq	%rax, -24(%rbp)
-	.loc 3 337 76
-	movq	-64(%rbp), %rax
-	movl	%eax, %edx
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	shrq	%cl, %rax
-	.loc 3 337 68
-	orq	%rax, -72(%rbp)
-	.loc 3 337 106
-	movq	-16(%rbp), %rax
-	movq	-72(%rbp), %rdx
-	movq	%rdx, (%rax)
 	.loc 3 338 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -4084,7 +4060,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 338 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 338 76
 	movq	-64(%rbp), %rax
@@ -4094,10 +4070,8 @@ LeftShift_Imp:
 	shrq	%cl, %rax
 	.loc 3 338 68
 	orq	%rax, -72(%rbp)
-	.loc 3 338 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 338 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 339 25
@@ -4110,7 +4084,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 339 53
 	movq	-8(%rbp), %rax
-	movq	-16(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 339 76
 	movq	-64(%rbp), %rax
@@ -4122,7 +4096,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 339 101
 	movq	-16(%rbp), %rax
-	subq	$16, %rax
+	subq	$8, %rax
 	.loc 3 339 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4136,7 +4110,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 340 53
 	movq	-8(%rbp), %rax
-	movq	-24(%rax), %rax
+	movq	-16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 340 76
 	movq	-64(%rbp), %rax
@@ -4148,7 +4122,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 340 101
 	movq	-16(%rbp), %rax
-	subq	$24, %rax
+	subq	$16, %rax
 	.loc 3 340 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4162,7 +4136,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 341 53
 	movq	-8(%rbp), %rax
-	movq	-32(%rax), %rax
+	movq	-24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 341 76
 	movq	-64(%rbp), %rax
@@ -4174,7 +4148,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 341 101
 	movq	-16(%rbp), %rax
-	subq	$32, %rax
+	subq	$24, %rax
 	.loc 3 341 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4188,7 +4162,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 342 53
 	movq	-8(%rbp), %rax
-	movq	-40(%rax), %rax
+	movq	-32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 342 76
 	movq	-64(%rbp), %rax
@@ -4200,7 +4174,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 342 101
 	movq	-16(%rbp), %rax
-	subq	$40, %rax
+	subq	$32, %rax
 	.loc 3 342 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4214,7 +4188,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 343 53
 	movq	-8(%rbp), %rax
-	movq	-48(%rax), %rax
+	movq	-40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 343 76
 	movq	-64(%rbp), %rax
@@ -4226,7 +4200,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 343 101
 	movq	-16(%rbp), %rax
-	subq	$48, %rax
+	subq	$40, %rax
 	.loc 3 343 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4240,7 +4214,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 344 53
 	movq	-8(%rbp), %rax
-	movq	-56(%rax), %rax
+	movq	-48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 344 76
 	movq	-64(%rbp), %rax
@@ -4252,7 +4226,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 344 101
 	movq	-16(%rbp), %rax
-	subq	$56, %rax
+	subq	$48, %rax
 	.loc 3 344 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4266,7 +4240,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 345 53
 	movq	-8(%rbp), %rax
-	movq	-64(%rax), %rax
+	movq	-56(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 345 76
 	movq	-64(%rbp), %rax
@@ -4278,7 +4252,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 345 101
 	movq	-16(%rbp), %rax
-	subq	$64, %rax
+	subq	$56, %rax
 	.loc 3 345 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4292,7 +4266,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 346 53
 	movq	-8(%rbp), %rax
-	movq	-72(%rax), %rax
+	movq	-64(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 346 76
 	movq	-64(%rbp), %rax
@@ -4304,7 +4278,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 346 101
 	movq	-16(%rbp), %rax
-	subq	$72, %rax
+	subq	$64, %rax
 	.loc 3 346 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4318,20 +4292,20 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 347 53
 	movq	-8(%rbp), %rax
-	movq	-80(%rax), %rax
+	movq	-72(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 347 77
+	.loc 3 347 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 347 69
+	.loc 3 347 68
 	orq	%rax, -72(%rbp)
-	.loc 3 347 102
+	.loc 3 347 101
 	movq	-16(%rbp), %rax
-	subq	$80, %rax
-	.loc 3 347 108
+	subq	$72, %rax
+	.loc 3 347 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 348 25
@@ -4344,7 +4318,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 348 53
 	movq	-8(%rbp), %rax
-	movq	-88(%rax), %rax
+	movq	-80(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 348 77
 	movq	-64(%rbp), %rax
@@ -4356,7 +4330,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 348 102
 	movq	-16(%rbp), %rax
-	subq	$88, %rax
+	subq	$80, %rax
 	.loc 3 348 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4370,7 +4344,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 349 53
 	movq	-8(%rbp), %rax
-	movq	-96(%rax), %rax
+	movq	-88(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 349 77
 	movq	-64(%rbp), %rax
@@ -4382,7 +4356,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 349 102
 	movq	-16(%rbp), %rax
-	subq	$96, %rax
+	subq	$88, %rax
 	.loc 3 349 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4396,7 +4370,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 350 53
 	movq	-8(%rbp), %rax
-	movq	-104(%rax), %rax
+	movq	-96(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 350 77
 	movq	-64(%rbp), %rax
@@ -4408,7 +4382,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 350 102
 	movq	-16(%rbp), %rax
-	subq	$104, %rax
+	subq	$96, %rax
 	.loc 3 350 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4422,7 +4396,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 351 53
 	movq	-8(%rbp), %rax
-	movq	-112(%rax), %rax
+	movq	-104(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 351 77
 	movq	-64(%rbp), %rax
@@ -4434,7 +4408,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 351 102
 	movq	-16(%rbp), %rax
-	subq	$112, %rax
+	subq	$104, %rax
 	.loc 3 351 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4448,7 +4422,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 352 53
 	movq	-8(%rbp), %rax
-	movq	-120(%rax), %rax
+	movq	-112(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 352 77
 	movq	-64(%rbp), %rax
@@ -4460,7 +4434,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 352 102
 	movq	-16(%rbp), %rax
-	subq	$120, %rax
+	subq	$112, %rax
 	.loc 3 352 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4474,7 +4448,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 353 53
 	movq	-8(%rbp), %rax
-	movq	-128(%rax), %rax
+	movq	-120(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 353 77
 	movq	-64(%rbp), %rax
@@ -4486,7 +4460,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 353 102
 	movq	-16(%rbp), %rax
-	addq	$-128, %rax
+	subq	$120, %rax
 	.loc 3 353 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4500,7 +4474,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 354 53
 	movq	-8(%rbp), %rax
-	movq	-136(%rax), %rax
+	movq	-128(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 354 77
 	movq	-64(%rbp), %rax
@@ -4512,7 +4486,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 354 102
 	movq	-16(%rbp), %rax
-	subq	$136, %rax
+	addq	$-128, %rax
 	.loc 3 354 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4526,7 +4500,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 355 53
 	movq	-8(%rbp), %rax
-	movq	-144(%rax), %rax
+	movq	-136(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 355 77
 	movq	-64(%rbp), %rax
@@ -4538,7 +4512,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 355 102
 	movq	-16(%rbp), %rax
-	subq	$144, %rax
+	subq	$136, %rax
 	.loc 3 355 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4552,7 +4526,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 356 53
 	movq	-8(%rbp), %rax
-	movq	-152(%rax), %rax
+	movq	-144(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 356 77
 	movq	-64(%rbp), %rax
@@ -4564,7 +4538,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 356 102
 	movq	-16(%rbp), %rax
-	subq	$152, %rax
+	subq	$144, %rax
 	.loc 3 356 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4578,7 +4552,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 357 53
 	movq	-8(%rbp), %rax
-	movq	-160(%rax), %rax
+	movq	-152(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 357 77
 	movq	-64(%rbp), %rax
@@ -4590,7 +4564,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 357 102
 	movq	-16(%rbp), %rax
-	subq	$160, %rax
+	subq	$152, %rax
 	.loc 3 357 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4604,7 +4578,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 358 53
 	movq	-8(%rbp), %rax
-	movq	-168(%rax), %rax
+	movq	-160(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 358 77
 	movq	-64(%rbp), %rax
@@ -4616,7 +4590,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 358 102
 	movq	-16(%rbp), %rax
-	subq	$168, %rax
+	subq	$160, %rax
 	.loc 3 358 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4630,7 +4604,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 359 53
 	movq	-8(%rbp), %rax
-	movq	-176(%rax), %rax
+	movq	-168(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 359 77
 	movq	-64(%rbp), %rax
@@ -4642,7 +4616,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 359 102
 	movq	-16(%rbp), %rax
-	subq	$176, %rax
+	subq	$168, %rax
 	.loc 3 359 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4656,7 +4630,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 360 53
 	movq	-8(%rbp), %rax
-	movq	-184(%rax), %rax
+	movq	-176(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 360 77
 	movq	-64(%rbp), %rax
@@ -4668,7 +4642,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 360 102
 	movq	-16(%rbp), %rax
-	subq	$184, %rax
+	subq	$176, %rax
 	.loc 3 360 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4682,7 +4656,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 361 53
 	movq	-8(%rbp), %rax
-	movq	-192(%rax), %rax
+	movq	-184(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 361 77
 	movq	-64(%rbp), %rax
@@ -4694,7 +4668,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 361 102
 	movq	-16(%rbp), %rax
-	subq	$192, %rax
+	subq	$184, %rax
 	.loc 3 361 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4708,7 +4682,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 362 53
 	movq	-8(%rbp), %rax
-	movq	-200(%rax), %rax
+	movq	-192(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 362 77
 	movq	-64(%rbp), %rax
@@ -4720,7 +4694,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 362 102
 	movq	-16(%rbp), %rax
-	subq	$200, %rax
+	subq	$192, %rax
 	.loc 3 362 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4734,7 +4708,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 363 53
 	movq	-8(%rbp), %rax
-	movq	-208(%rax), %rax
+	movq	-200(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 363 77
 	movq	-64(%rbp), %rax
@@ -4746,7 +4720,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 363 102
 	movq	-16(%rbp), %rax
-	subq	$208, %rax
+	subq	$200, %rax
 	.loc 3 363 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4760,7 +4734,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 364 53
 	movq	-8(%rbp), %rax
-	movq	-216(%rax), %rax
+	movq	-208(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 364 77
 	movq	-64(%rbp), %rax
@@ -4772,7 +4746,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 364 102
 	movq	-16(%rbp), %rax
-	subq	$216, %rax
+	subq	$208, %rax
 	.loc 3 364 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4786,7 +4760,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 365 53
 	movq	-8(%rbp), %rax
-	movq	-224(%rax), %rax
+	movq	-216(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 365 77
 	movq	-64(%rbp), %rax
@@ -4798,7 +4772,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 365 102
 	movq	-16(%rbp), %rax
-	subq	$224, %rax
+	subq	$216, %rax
 	.loc 3 365 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4812,7 +4786,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 366 53
 	movq	-8(%rbp), %rax
-	movq	-232(%rax), %rax
+	movq	-224(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 366 77
 	movq	-64(%rbp), %rax
@@ -4824,7 +4798,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 366 102
 	movq	-16(%rbp), %rax
-	subq	$232, %rax
+	subq	$224, %rax
 	.loc 3 366 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4838,7 +4812,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 367 53
 	movq	-8(%rbp), %rax
-	movq	-240(%rax), %rax
+	movq	-232(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 367 77
 	movq	-64(%rbp), %rax
@@ -4850,7 +4824,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 367 102
 	movq	-16(%rbp), %rax
-	subq	$240, %rax
+	subq	$232, %rax
 	.loc 3 367 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4864,7 +4838,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 368 53
 	movq	-8(%rbp), %rax
-	movq	-248(%rax), %rax
+	movq	-240(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 368 77
 	movq	-64(%rbp), %rax
@@ -4876,50 +4850,52 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 368 102
 	movq	-16(%rbp), %rax
-	subq	$248, %rax
+	subq	$240, %rax
 	.loc 3 368 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 369 16
-	subq	$256, -8(%rbp)
-	.loc 3 370 16
-	subq	$256, -16(%rbp)
-	.loc 3 371 13
-	subq	$1, -32(%rbp)
-.L38:
-	.loc 3 335 15
-	cmpq	$0, -32(%rbp)
-	jne	.L39
-	.loc 3 374 21
-	movq	-40(%rbp), %rax
-	andl	$16, %eax
-	.loc 3 374 12
-	testq	%rax, %rax
-	je	.L40
-	.loc 3 376 25
+	.loc 3 369 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 376 18
+	.loc 3 369 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 376 53
+	.loc 3 369 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-248(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 376 76
+	.loc 3 369 77
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 376 68
+	.loc 3 369 69
 	orq	%rax, -72(%rbp)
-	.loc 3 376 106
+	.loc 3 369 102
 	movq	-16(%rbp), %rax
+	subq	$248, %rax
+	.loc 3 369 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 370 16
+	subq	$256, -8(%rbp)
+	.loc 3 371 16
+	subq	$256, -16(%rbp)
+	.loc 3 372 13
+	subq	$1, -32(%rbp)
+.L38:
+	.loc 3 336 15
+	cmpq	$0, -32(%rbp)
+	jne	.L39
+	.loc 3 375 21
+	movq	-40(%rbp), %rax
+	andl	$16, %eax
+	.loc 3 375 12
+	testq	%rax, %rax
+	je	.L40
 	.loc 3 377 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -4930,7 +4906,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 377 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 377 76
 	movq	-64(%rbp), %rax
@@ -4940,10 +4916,8 @@ LeftShift_Imp:
 	shrq	%cl, %rax
 	.loc 3 377 68
 	orq	%rax, -72(%rbp)
-	.loc 3 377 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 377 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 378 25
@@ -4956,7 +4930,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 378 53
 	movq	-8(%rbp), %rax
-	movq	-16(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 378 76
 	movq	-64(%rbp), %rax
@@ -4968,7 +4942,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 378 101
 	movq	-16(%rbp), %rax
-	subq	$16, %rax
+	subq	$8, %rax
 	.loc 3 378 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -4982,7 +4956,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 379 53
 	movq	-8(%rbp), %rax
-	movq	-24(%rax), %rax
+	movq	-16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 379 76
 	movq	-64(%rbp), %rax
@@ -4994,7 +4968,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 379 101
 	movq	-16(%rbp), %rax
-	subq	$24, %rax
+	subq	$16, %rax
 	.loc 3 379 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5008,7 +4982,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 380 53
 	movq	-8(%rbp), %rax
-	movq	-32(%rax), %rax
+	movq	-24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 380 76
 	movq	-64(%rbp), %rax
@@ -5020,7 +4994,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 380 101
 	movq	-16(%rbp), %rax
-	subq	$32, %rax
+	subq	$24, %rax
 	.loc 3 380 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5034,7 +5008,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 381 53
 	movq	-8(%rbp), %rax
-	movq	-40(%rax), %rax
+	movq	-32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 381 76
 	movq	-64(%rbp), %rax
@@ -5046,7 +5020,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 381 101
 	movq	-16(%rbp), %rax
-	subq	$40, %rax
+	subq	$32, %rax
 	.loc 3 381 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5060,7 +5034,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 382 53
 	movq	-8(%rbp), %rax
-	movq	-48(%rax), %rax
+	movq	-40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 382 76
 	movq	-64(%rbp), %rax
@@ -5072,7 +5046,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 382 101
 	movq	-16(%rbp), %rax
-	subq	$48, %rax
+	subq	$40, %rax
 	.loc 3 382 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5086,7 +5060,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 383 53
 	movq	-8(%rbp), %rax
-	movq	-56(%rax), %rax
+	movq	-48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 383 76
 	movq	-64(%rbp), %rax
@@ -5098,7 +5072,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 383 101
 	movq	-16(%rbp), %rax
-	subq	$56, %rax
+	subq	$48, %rax
 	.loc 3 383 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5112,7 +5086,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 384 53
 	movq	-8(%rbp), %rax
-	movq	-64(%rax), %rax
+	movq	-56(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 384 76
 	movq	-64(%rbp), %rax
@@ -5124,7 +5098,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 384 101
 	movq	-16(%rbp), %rax
-	subq	$64, %rax
+	subq	$56, %rax
 	.loc 3 384 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5138,7 +5112,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 385 53
 	movq	-8(%rbp), %rax
-	movq	-72(%rax), %rax
+	movq	-64(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 385 76
 	movq	-64(%rbp), %rax
@@ -5150,7 +5124,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 385 101
 	movq	-16(%rbp), %rax
-	subq	$72, %rax
+	subq	$64, %rax
 	.loc 3 385 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5164,20 +5138,20 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 386 53
 	movq	-8(%rbp), %rax
-	movq	-80(%rax), %rax
+	movq	-72(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 386 77
+	.loc 3 386 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 386 69
+	.loc 3 386 68
 	orq	%rax, -72(%rbp)
-	.loc 3 386 102
+	.loc 3 386 101
 	movq	-16(%rbp), %rax
-	subq	$80, %rax
-	.loc 3 386 108
+	subq	$72, %rax
+	.loc 3 386 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 387 25
@@ -5190,7 +5164,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 387 53
 	movq	-8(%rbp), %rax
-	movq	-88(%rax), %rax
+	movq	-80(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 387 77
 	movq	-64(%rbp), %rax
@@ -5202,7 +5176,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 387 102
 	movq	-16(%rbp), %rax
-	subq	$88, %rax
+	subq	$80, %rax
 	.loc 3 387 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5216,7 +5190,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 388 53
 	movq	-8(%rbp), %rax
-	movq	-96(%rax), %rax
+	movq	-88(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 388 77
 	movq	-64(%rbp), %rax
@@ -5228,7 +5202,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 388 102
 	movq	-16(%rbp), %rax
-	subq	$96, %rax
+	subq	$88, %rax
 	.loc 3 388 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5242,7 +5216,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 389 53
 	movq	-8(%rbp), %rax
-	movq	-104(%rax), %rax
+	movq	-96(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 389 77
 	movq	-64(%rbp), %rax
@@ -5254,7 +5228,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 389 102
 	movq	-16(%rbp), %rax
-	subq	$104, %rax
+	subq	$96, %rax
 	.loc 3 389 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5268,7 +5242,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 390 53
 	movq	-8(%rbp), %rax
-	movq	-112(%rax), %rax
+	movq	-104(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 390 77
 	movq	-64(%rbp), %rax
@@ -5280,7 +5254,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 390 102
 	movq	-16(%rbp), %rax
-	subq	$112, %rax
+	subq	$104, %rax
 	.loc 3 390 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5294,7 +5268,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 391 53
 	movq	-8(%rbp), %rax
-	movq	-120(%rax), %rax
+	movq	-112(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 391 77
 	movq	-64(%rbp), %rax
@@ -5306,45 +5280,47 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 391 102
 	movq	-16(%rbp), %rax
-	subq	$120, %rax
+	subq	$112, %rax
 	.loc 3 391 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 392 16
-	addq	$-128, -8(%rbp)
-	.loc 3 393 16
-	addq	$-128, -16(%rbp)
-.L40:
-	.loc 3 396 21
-	movq	-40(%rbp), %rax
-	andl	$8, %eax
-	.loc 3 396 12
-	testq	%rax, %rax
-	je	.L41
-	.loc 3 398 25
+	.loc 3 392 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 398 18
+	.loc 3 392 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 398 53
+	.loc 3 392 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-120(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 398 76
+	.loc 3 392 77
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 398 68
+	.loc 3 392 69
 	orq	%rax, -72(%rbp)
-	.loc 3 398 106
+	.loc 3 392 102
 	movq	-16(%rbp), %rax
+	subq	$120, %rax
+	.loc 3 392 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 393 16
+	addq	$-128, -8(%rbp)
+	.loc 3 394 16
+	addq	$-128, -16(%rbp)
+.L40:
+	.loc 3 397 21
+	movq	-40(%rbp), %rax
+	andl	$8, %eax
+	.loc 3 397 12
+	testq	%rax, %rax
+	je	.L41
 	.loc 3 399 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -5355,7 +5331,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 399 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 399 76
 	movq	-64(%rbp), %rax
@@ -5365,10 +5341,8 @@ LeftShift_Imp:
 	shrq	%cl, %rax
 	.loc 3 399 68
 	orq	%rax, -72(%rbp)
-	.loc 3 399 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 399 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 400 25
@@ -5381,7 +5355,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 400 53
 	movq	-8(%rbp), %rax
-	movq	-16(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 400 76
 	movq	-64(%rbp), %rax
@@ -5393,7 +5367,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 400 101
 	movq	-16(%rbp), %rax
-	subq	$16, %rax
+	subq	$8, %rax
 	.loc 3 400 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5407,7 +5381,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 401 53
 	movq	-8(%rbp), %rax
-	movq	-24(%rax), %rax
+	movq	-16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 401 76
 	movq	-64(%rbp), %rax
@@ -5419,7 +5393,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 401 101
 	movq	-16(%rbp), %rax
-	subq	$24, %rax
+	subq	$16, %rax
 	.loc 3 401 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5433,7 +5407,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 402 53
 	movq	-8(%rbp), %rax
-	movq	-32(%rax), %rax
+	movq	-24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 402 76
 	movq	-64(%rbp), %rax
@@ -5445,7 +5419,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 402 101
 	movq	-16(%rbp), %rax
-	subq	$32, %rax
+	subq	$24, %rax
 	.loc 3 402 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5459,7 +5433,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 403 53
 	movq	-8(%rbp), %rax
-	movq	-40(%rax), %rax
+	movq	-32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 403 76
 	movq	-64(%rbp), %rax
@@ -5471,7 +5445,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 403 101
 	movq	-16(%rbp), %rax
-	subq	$40, %rax
+	subq	$32, %rax
 	.loc 3 403 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5485,7 +5459,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 404 53
 	movq	-8(%rbp), %rax
-	movq	-48(%rax), %rax
+	movq	-40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 404 76
 	movq	-64(%rbp), %rax
@@ -5497,7 +5471,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 404 101
 	movq	-16(%rbp), %rax
-	subq	$48, %rax
+	subq	$40, %rax
 	.loc 3 404 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5511,7 +5485,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 405 53
 	movq	-8(%rbp), %rax
-	movq	-56(%rax), %rax
+	movq	-48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 405 76
 	movq	-64(%rbp), %rax
@@ -5523,45 +5497,47 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 405 101
 	movq	-16(%rbp), %rax
-	subq	$56, %rax
+	subq	$48, %rax
 	.loc 3 405 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 406 16
-	subq	$64, -8(%rbp)
-	.loc 3 407 16
-	subq	$64, -16(%rbp)
-.L41:
-	.loc 3 410 21
-	movq	-40(%rbp), %rax
-	andl	$4, %eax
-	.loc 3 410 12
-	testq	%rax, %rax
-	je	.L42
-	.loc 3 412 25
+	.loc 3 406 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 412 18
+	.loc 3 406 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 412 53
+	.loc 3 406 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-56(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 412 76
+	.loc 3 406 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 412 68
+	.loc 3 406 68
 	orq	%rax, -72(%rbp)
-	.loc 3 412 106
+	.loc 3 406 101
 	movq	-16(%rbp), %rax
+	subq	$56, %rax
+	.loc 3 406 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 407 16
+	subq	$64, -8(%rbp)
+	.loc 3 408 16
+	subq	$64, -16(%rbp)
+.L41:
+	.loc 3 411 21
+	movq	-40(%rbp), %rax
+	andl	$4, %eax
+	.loc 3 411 12
+	testq	%rax, %rax
+	je	.L42
 	.loc 3 413 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -5572,7 +5548,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 413 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 413 76
 	movq	-64(%rbp), %rax
@@ -5582,10 +5558,8 @@ LeftShift_Imp:
 	shrq	%cl, %rax
 	.loc 3 413 68
 	orq	%rax, -72(%rbp)
-	.loc 3 413 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 413 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 414 25
@@ -5598,7 +5572,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 414 53
 	movq	-8(%rbp), %rax
-	movq	-16(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 414 76
 	movq	-64(%rbp), %rax
@@ -5610,7 +5584,7 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 414 101
 	movq	-16(%rbp), %rax
-	subq	$16, %rax
+	subq	$8, %rax
 	.loc 3 414 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5624,7 +5598,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 415 53
 	movq	-8(%rbp), %rax
-	movq	-24(%rax), %rax
+	movq	-16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 415 76
 	movq	-64(%rbp), %rax
@@ -5636,45 +5610,47 @@ LeftShift_Imp:
 	orq	%rax, -72(%rbp)
 	.loc 3 415 101
 	movq	-16(%rbp), %rax
-	subq	$24, %rax
+	subq	$16, %rax
 	.loc 3 415 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 416 16
-	subq	$32, -8(%rbp)
-	.loc 3 417 16
-	subq	$32, -16(%rbp)
-.L42:
-	.loc 3 420 21
-	movq	-40(%rbp), %rax
-	andl	$2, %eax
-	.loc 3 420 12
-	testq	%rax, %rax
-	je	.L43
-	.loc 3 422 25
+	.loc 3 416 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 422 18
+	.loc 3 416 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 422 53
+	.loc 3 416 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-24(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 422 76
+	.loc 3 416 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 422 68
+	.loc 3 416 68
 	orq	%rax, -72(%rbp)
-	.loc 3 422 106
+	.loc 3 416 101
 	movq	-16(%rbp), %rax
+	subq	$24, %rax
+	.loc 3 416 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 417 16
+	subq	$32, -8(%rbp)
+	.loc 3 418 16
+	subq	$32, -16(%rbp)
+.L42:
+	.loc 3 421 21
+	movq	-40(%rbp), %rax
+	andl	$2, %eax
+	.loc 3 421 12
+	testq	%rax, %rax
+	je	.L43
 	.loc 3 423 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -5685,7 +5661,7 @@ LeftShift_Imp:
 	movq	%rax, -72(%rbp)
 	.loc 3 423 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 423 76
 	movq	-64(%rbp), %rax
@@ -5695,75 +5671,99 @@ LeftShift_Imp:
 	shrq	%cl, %rax
 	.loc 3 423 68
 	orq	%rax, -72(%rbp)
-	.loc 3 423 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 423 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 424 16
-	subq	$16, -8(%rbp)
-	.loc 3 425 16
-	subq	$16, -16(%rbp)
-.L43:
-	.loc 3 428 21
-	movq	-40(%rbp), %rax
-	andl	$1, %eax
-	.loc 3 428 12
-	testq	%rax, %rax
-	je	.L44
-	.loc 3 430 25
+	.loc 3 424 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 430 18
+	.loc 3 424 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 430 53
+	.loc 3 424 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 430 76
+	.loc 3 424 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 430 68
+	.loc 3 424 68
 	orq	%rax, -72(%rbp)
-	.loc 3 430 106
+	.loc 3 424 101
 	movq	-16(%rbp), %rax
+	subq	$8, %rax
+	.loc 3 424 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 431 16
-	subq	$8, -8(%rbp)
-	.loc 3 432 16
-	subq	$8, -16(%rbp)
-.L44:
-	.loc 3 434 21
+	.loc 3 425 16
+	subq	$16, -8(%rbp)
+	.loc 3 426 16
+	subq	$16, -16(%rbp)
+.L43:
+	.loc 3 429 21
+	movq	-40(%rbp), %rax
+	andl	$1, %eax
+	.loc 3 429 12
+	testq	%rax, %rax
+	je	.L44
+	.loc 3 431 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 434 14
+	.loc 3 431 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 435 13
+	.loc 3 431 53
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	movq	%rax, -24(%rbp)
+	.loc 3 431 76
+	movq	-64(%rbp), %rax
+	movl	%eax, %edx
+	movq	-24(%rbp), %rax
+	movl	%edx, %ecx
+	shrq	%cl, %rax
+	.loc 3 431 68
+	orq	%rax, -72(%rbp)
+	.loc 3 431 106
 	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 437 12
+	.loc 3 432 16
+	subq	$8, -8(%rbp)
+	.loc 3 433 16
+	subq	$8, -16(%rbp)
+.L44:
+	.loc 3 435 21
+	movq	-56(%rbp), %rax
+	movl	%eax, %edx
+	.loc 3 435 14
+	movq	-24(%rbp), %rax
+	movl	%edx, %ecx
+	salq	%cl, %rax
+	movq	%rax, -72(%rbp)
+	.loc 3 436 13
+	movq	-16(%rbp), %rax
+	movq	-72(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 3 438 12
 	cmpl	$0, 48(%rbp)
 	je	.L45
-	.loc 3 438 13
+	.loc 3 439 13
 	movq	-48(%rbp), %rdx
 	movq	40(%rbp), %rax
 	movq	%rax, %rcx
 	call	_ZERO_MEMORY_UNIT
 .L45:
 .LBE20:
-	.loc 3 440 1
+	.loc 3 441 1
 	nop
 	addq	$112, %rsp
 	popq	%rbp
@@ -5778,7 +5778,7 @@ LeftShift_Imp:
 	.seh_proc	LeftShift_Imp_DIV
 LeftShift_Imp_DIV:
 .LFB4376:
-	.loc 3 443 1
+	.loc 3 444 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -5794,30 +5794,30 @@ LeftShift_Imp_DIV:
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
 	movq	%r9, 40(%rbp)
-	.loc 3 444 22
+	.loc 3 445 22
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 3 445 17
+	.loc 3 446 17
 	movq	24(%rbp), %rax
 	movq	%rax, -40(%rbp)
-	.loc 3 446 22
+	.loc 3 447 22
 	movq	40(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	.loc 3 447 17
+	.loc 3 448 17
 	movq	32(%rbp), %rax
 	shrq	$6, %rax
 	movq	%rax, -48(%rbp)
-	.loc 3 448 17
+	.loc 3 449 17
 	movq	32(%rbp), %rax
 	andl	$63, %eax
 	movq	%rax, -56(%rbp)
-	.loc 3 449 8
+	.loc 3 450 8
 	cmpq	$0, -56(%rbp)
 	jne	.L47
-	.loc 3 452 34
+	.loc 3 453 34
 	movq	-48(%rbp), %rax
 	leaq	0(,%rax,8), %rdx
-	.loc 3 452 9
+	.loc 3 453 9
 	movq	-16(%rbp), %rax
 	addq	%rdx, %rax
 	movq	-40(%rbp), %rcx
@@ -5825,91 +5825,67 @@ LeftShift_Imp_DIV:
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	_COPY_MEMORY_UNIT_DIV
-	.loc 3 453 12
+	.loc 3 454 12
 	cmpl	$0, 48(%rbp)
 	je	.L58
-	.loc 3 454 13
+	.loc 3 455 13
 	movq	-48(%rbp), %rdx
 	movq	-16(%rbp), %rax
 	movq	%rax, %rcx
 	call	_ZERO_MEMORY_UNIT_DIV
-	.loc 3 575 1
+	.loc 3 576 1
 	jmp	.L58
 .L47:
 .LBB21:
-	.loc 3 458 21
+	.loc 3 459 21
 	movl	$64, %eax
 	subq	-56(%rbp), %rax
 	movq	%rax, -64(%rbp)
-	.loc 3 459 12
+	.loc 3 460 12
 	movq	-40(%rbp), %rax
 	salq	$3, %rax
 	subq	$8, %rax
 	addq	%rax, -8(%rbp)
-	.loc 3 460 23
+	.loc 3 461 23
 	movq	-40(%rbp), %rdx
 	movq	-48(%rbp), %rax
 	addq	%rdx, %rax
-	.loc 3 460 12
+	.loc 3 461 12
 	salq	$3, %rax
 	addq	%rax, -16(%rbp)
-	.loc 3 461 17
+	.loc 3 462 17
 	subq	$1, -40(%rbp)
-	.loc 3 462 25
+	.loc 3 463 25
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 463 37
+	.loc 3 464 37
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 463 25
+	.loc 3 464 25
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 464 12
+	.loc 3 465 12
 	cmpq	$0, -72(%rbp)
 	je	.L50
-	.loc 3 465 17
+	.loc 3 466 17
 	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 .L50:
-	.loc 3 466 9
-	subq	$8, -8(%rbp)
 	.loc 3 467 9
+	subq	$8, -8(%rbp)
+	.loc 3 468 9
 	subq	$8, -16(%rbp)
-	.loc 3 469 21
+	.loc 3 470 21
 	movq	-40(%rbp), %rax
 	shrq	$5, %rax
 	movq	%rax, -32(%rbp)
-	.loc 3 470 15
+	.loc 3 471 15
 	jmp	.L51
 .L52:
-	.loc 3 472 25
-	movq	-56(%rbp), %rax
-	movl	%eax, %edx
-	.loc 3 472 18
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	salq	%cl, %rax
-	movq	%rax, -72(%rbp)
-	.loc 3 472 53
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	movq	%rax, -24(%rbp)
-	.loc 3 472 76
-	movq	-64(%rbp), %rax
-	movl	%eax, %edx
-	movq	-24(%rbp), %rax
-	movl	%edx, %ecx
-	shrq	%cl, %rax
-	.loc 3 472 68
-	orq	%rax, -72(%rbp)
-	.loc 3 472 106
-	movq	-16(%rbp), %rax
-	movq	-72(%rbp), %rdx
-	movq	%rdx, (%rax)
 	.loc 3 473 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -5920,7 +5896,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 473 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 473 76
 	movq	-64(%rbp), %rax
@@ -5930,10 +5906,8 @@ LeftShift_Imp_DIV:
 	shrq	%cl, %rax
 	.loc 3 473 68
 	orq	%rax, -72(%rbp)
-	.loc 3 473 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 473 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 474 25
@@ -5946,7 +5920,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 474 53
 	movq	-8(%rbp), %rax
-	movq	-16(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 474 76
 	movq	-64(%rbp), %rax
@@ -5958,7 +5932,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 474 101
 	movq	-16(%rbp), %rax
-	subq	$16, %rax
+	subq	$8, %rax
 	.loc 3 474 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5972,7 +5946,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 475 53
 	movq	-8(%rbp), %rax
-	movq	-24(%rax), %rax
+	movq	-16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 475 76
 	movq	-64(%rbp), %rax
@@ -5984,7 +5958,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 475 101
 	movq	-16(%rbp), %rax
-	subq	$24, %rax
+	subq	$16, %rax
 	.loc 3 475 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -5998,7 +5972,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 476 53
 	movq	-8(%rbp), %rax
-	movq	-32(%rax), %rax
+	movq	-24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 476 76
 	movq	-64(%rbp), %rax
@@ -6010,7 +5984,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 476 101
 	movq	-16(%rbp), %rax
-	subq	$32, %rax
+	subq	$24, %rax
 	.loc 3 476 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6024,7 +5998,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 477 53
 	movq	-8(%rbp), %rax
-	movq	-40(%rax), %rax
+	movq	-32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 477 76
 	movq	-64(%rbp), %rax
@@ -6036,7 +6010,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 477 101
 	movq	-16(%rbp), %rax
-	subq	$40, %rax
+	subq	$32, %rax
 	.loc 3 477 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6050,7 +6024,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 478 53
 	movq	-8(%rbp), %rax
-	movq	-48(%rax), %rax
+	movq	-40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 478 76
 	movq	-64(%rbp), %rax
@@ -6062,7 +6036,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 478 101
 	movq	-16(%rbp), %rax
-	subq	$48, %rax
+	subq	$40, %rax
 	.loc 3 478 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6076,7 +6050,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 479 53
 	movq	-8(%rbp), %rax
-	movq	-56(%rax), %rax
+	movq	-48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 479 76
 	movq	-64(%rbp), %rax
@@ -6088,7 +6062,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 479 101
 	movq	-16(%rbp), %rax
-	subq	$56, %rax
+	subq	$48, %rax
 	.loc 3 479 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6102,7 +6076,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 480 53
 	movq	-8(%rbp), %rax
-	movq	-64(%rax), %rax
+	movq	-56(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 480 76
 	movq	-64(%rbp), %rax
@@ -6114,7 +6088,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 480 101
 	movq	-16(%rbp), %rax
-	subq	$64, %rax
+	subq	$56, %rax
 	.loc 3 480 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6128,7 +6102,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 481 53
 	movq	-8(%rbp), %rax
-	movq	-72(%rax), %rax
+	movq	-64(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 481 76
 	movq	-64(%rbp), %rax
@@ -6140,7 +6114,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 481 101
 	movq	-16(%rbp), %rax
-	subq	$72, %rax
+	subq	$64, %rax
 	.loc 3 481 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6154,20 +6128,20 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 482 53
 	movq	-8(%rbp), %rax
-	movq	-80(%rax), %rax
+	movq	-72(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 482 77
+	.loc 3 482 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 482 69
+	.loc 3 482 68
 	orq	%rax, -72(%rbp)
-	.loc 3 482 102
+	.loc 3 482 101
 	movq	-16(%rbp), %rax
-	subq	$80, %rax
-	.loc 3 482 108
+	subq	$72, %rax
+	.loc 3 482 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 483 25
@@ -6180,7 +6154,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 483 53
 	movq	-8(%rbp), %rax
-	movq	-88(%rax), %rax
+	movq	-80(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 483 77
 	movq	-64(%rbp), %rax
@@ -6192,7 +6166,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 483 102
 	movq	-16(%rbp), %rax
-	subq	$88, %rax
+	subq	$80, %rax
 	.loc 3 483 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6206,7 +6180,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 484 53
 	movq	-8(%rbp), %rax
-	movq	-96(%rax), %rax
+	movq	-88(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 484 77
 	movq	-64(%rbp), %rax
@@ -6218,7 +6192,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 484 102
 	movq	-16(%rbp), %rax
-	subq	$96, %rax
+	subq	$88, %rax
 	.loc 3 484 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6232,7 +6206,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 485 53
 	movq	-8(%rbp), %rax
-	movq	-104(%rax), %rax
+	movq	-96(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 485 77
 	movq	-64(%rbp), %rax
@@ -6244,7 +6218,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 485 102
 	movq	-16(%rbp), %rax
-	subq	$104, %rax
+	subq	$96, %rax
 	.loc 3 485 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6258,7 +6232,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 486 53
 	movq	-8(%rbp), %rax
-	movq	-112(%rax), %rax
+	movq	-104(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 486 77
 	movq	-64(%rbp), %rax
@@ -6270,7 +6244,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 486 102
 	movq	-16(%rbp), %rax
-	subq	$112, %rax
+	subq	$104, %rax
 	.loc 3 486 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6284,7 +6258,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 487 53
 	movq	-8(%rbp), %rax
-	movq	-120(%rax), %rax
+	movq	-112(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 487 77
 	movq	-64(%rbp), %rax
@@ -6296,7 +6270,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 487 102
 	movq	-16(%rbp), %rax
-	subq	$120, %rax
+	subq	$112, %rax
 	.loc 3 487 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6310,7 +6284,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 488 53
 	movq	-8(%rbp), %rax
-	movq	-128(%rax), %rax
+	movq	-120(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 488 77
 	movq	-64(%rbp), %rax
@@ -6322,7 +6296,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 488 102
 	movq	-16(%rbp), %rax
-	addq	$-128, %rax
+	subq	$120, %rax
 	.loc 3 488 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6336,7 +6310,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 489 53
 	movq	-8(%rbp), %rax
-	movq	-136(%rax), %rax
+	movq	-128(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 489 77
 	movq	-64(%rbp), %rax
@@ -6348,7 +6322,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 489 102
 	movq	-16(%rbp), %rax
-	subq	$136, %rax
+	addq	$-128, %rax
 	.loc 3 489 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6362,7 +6336,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 490 53
 	movq	-8(%rbp), %rax
-	movq	-144(%rax), %rax
+	movq	-136(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 490 77
 	movq	-64(%rbp), %rax
@@ -6374,7 +6348,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 490 102
 	movq	-16(%rbp), %rax
-	subq	$144, %rax
+	subq	$136, %rax
 	.loc 3 490 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6388,7 +6362,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 491 53
 	movq	-8(%rbp), %rax
-	movq	-152(%rax), %rax
+	movq	-144(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 491 77
 	movq	-64(%rbp), %rax
@@ -6400,7 +6374,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 491 102
 	movq	-16(%rbp), %rax
-	subq	$152, %rax
+	subq	$144, %rax
 	.loc 3 491 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6414,7 +6388,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 492 53
 	movq	-8(%rbp), %rax
-	movq	-160(%rax), %rax
+	movq	-152(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 492 77
 	movq	-64(%rbp), %rax
@@ -6426,7 +6400,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 492 102
 	movq	-16(%rbp), %rax
-	subq	$160, %rax
+	subq	$152, %rax
 	.loc 3 492 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6440,7 +6414,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 493 53
 	movq	-8(%rbp), %rax
-	movq	-168(%rax), %rax
+	movq	-160(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 493 77
 	movq	-64(%rbp), %rax
@@ -6452,7 +6426,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 493 102
 	movq	-16(%rbp), %rax
-	subq	$168, %rax
+	subq	$160, %rax
 	.loc 3 493 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6466,7 +6440,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 494 53
 	movq	-8(%rbp), %rax
-	movq	-176(%rax), %rax
+	movq	-168(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 494 77
 	movq	-64(%rbp), %rax
@@ -6478,7 +6452,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 494 102
 	movq	-16(%rbp), %rax
-	subq	$176, %rax
+	subq	$168, %rax
 	.loc 3 494 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6492,7 +6466,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 495 53
 	movq	-8(%rbp), %rax
-	movq	-184(%rax), %rax
+	movq	-176(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 495 77
 	movq	-64(%rbp), %rax
@@ -6504,7 +6478,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 495 102
 	movq	-16(%rbp), %rax
-	subq	$184, %rax
+	subq	$176, %rax
 	.loc 3 495 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6518,7 +6492,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 496 53
 	movq	-8(%rbp), %rax
-	movq	-192(%rax), %rax
+	movq	-184(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 496 77
 	movq	-64(%rbp), %rax
@@ -6530,7 +6504,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 496 102
 	movq	-16(%rbp), %rax
-	subq	$192, %rax
+	subq	$184, %rax
 	.loc 3 496 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6544,7 +6518,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 497 53
 	movq	-8(%rbp), %rax
-	movq	-200(%rax), %rax
+	movq	-192(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 497 77
 	movq	-64(%rbp), %rax
@@ -6556,7 +6530,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 497 102
 	movq	-16(%rbp), %rax
-	subq	$200, %rax
+	subq	$192, %rax
 	.loc 3 497 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6570,7 +6544,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 498 53
 	movq	-8(%rbp), %rax
-	movq	-208(%rax), %rax
+	movq	-200(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 498 77
 	movq	-64(%rbp), %rax
@@ -6582,7 +6556,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 498 102
 	movq	-16(%rbp), %rax
-	subq	$208, %rax
+	subq	$200, %rax
 	.loc 3 498 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6596,7 +6570,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 499 53
 	movq	-8(%rbp), %rax
-	movq	-216(%rax), %rax
+	movq	-208(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 499 77
 	movq	-64(%rbp), %rax
@@ -6608,7 +6582,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 499 102
 	movq	-16(%rbp), %rax
-	subq	$216, %rax
+	subq	$208, %rax
 	.loc 3 499 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6622,7 +6596,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 500 53
 	movq	-8(%rbp), %rax
-	movq	-224(%rax), %rax
+	movq	-216(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 500 77
 	movq	-64(%rbp), %rax
@@ -6634,7 +6608,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 500 102
 	movq	-16(%rbp), %rax
-	subq	$224, %rax
+	subq	$216, %rax
 	.loc 3 500 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6648,7 +6622,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 501 53
 	movq	-8(%rbp), %rax
-	movq	-232(%rax), %rax
+	movq	-224(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 501 77
 	movq	-64(%rbp), %rax
@@ -6660,7 +6634,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 501 102
 	movq	-16(%rbp), %rax
-	subq	$232, %rax
+	subq	$224, %rax
 	.loc 3 501 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6674,7 +6648,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 502 53
 	movq	-8(%rbp), %rax
-	movq	-240(%rax), %rax
+	movq	-232(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 502 77
 	movq	-64(%rbp), %rax
@@ -6686,7 +6660,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 502 102
 	movq	-16(%rbp), %rax
-	subq	$240, %rax
+	subq	$232, %rax
 	.loc 3 502 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6700,7 +6674,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 503 53
 	movq	-8(%rbp), %rax
-	movq	-248(%rax), %rax
+	movq	-240(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 503 77
 	movq	-64(%rbp), %rax
@@ -6712,50 +6686,52 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 503 102
 	movq	-16(%rbp), %rax
-	subq	$248, %rax
+	subq	$240, %rax
 	.loc 3 503 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 504 16
-	subq	$256, -8(%rbp)
-	.loc 3 505 16
-	subq	$256, -16(%rbp)
-	.loc 3 506 13
-	subq	$1, -32(%rbp)
-.L51:
-	.loc 3 470 15
-	cmpq	$0, -32(%rbp)
-	jne	.L52
-	.loc 3 509 21
-	movq	-40(%rbp), %rax
-	andl	$16, %eax
-	.loc 3 509 12
-	testq	%rax, %rax
-	je	.L53
-	.loc 3 511 25
+	.loc 3 504 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 511 18
+	.loc 3 504 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 511 53
+	.loc 3 504 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-248(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 511 76
+	.loc 3 504 77
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 511 68
+	.loc 3 504 69
 	orq	%rax, -72(%rbp)
-	.loc 3 511 106
+	.loc 3 504 102
 	movq	-16(%rbp), %rax
+	subq	$248, %rax
+	.loc 3 504 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 505 16
+	subq	$256, -8(%rbp)
+	.loc 3 506 16
+	subq	$256, -16(%rbp)
+	.loc 3 507 13
+	subq	$1, -32(%rbp)
+.L51:
+	.loc 3 471 15
+	cmpq	$0, -32(%rbp)
+	jne	.L52
+	.loc 3 510 21
+	movq	-40(%rbp), %rax
+	andl	$16, %eax
+	.loc 3 510 12
+	testq	%rax, %rax
+	je	.L53
 	.loc 3 512 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -6766,7 +6742,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 512 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 512 76
 	movq	-64(%rbp), %rax
@@ -6776,10 +6752,8 @@ LeftShift_Imp_DIV:
 	shrq	%cl, %rax
 	.loc 3 512 68
 	orq	%rax, -72(%rbp)
-	.loc 3 512 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 512 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 513 25
@@ -6792,7 +6766,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 513 53
 	movq	-8(%rbp), %rax
-	movq	-16(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 513 76
 	movq	-64(%rbp), %rax
@@ -6804,7 +6778,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 513 101
 	movq	-16(%rbp), %rax
-	subq	$16, %rax
+	subq	$8, %rax
 	.loc 3 513 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6818,7 +6792,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 514 53
 	movq	-8(%rbp), %rax
-	movq	-24(%rax), %rax
+	movq	-16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 514 76
 	movq	-64(%rbp), %rax
@@ -6830,7 +6804,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 514 101
 	movq	-16(%rbp), %rax
-	subq	$24, %rax
+	subq	$16, %rax
 	.loc 3 514 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6844,7 +6818,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 515 53
 	movq	-8(%rbp), %rax
-	movq	-32(%rax), %rax
+	movq	-24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 515 76
 	movq	-64(%rbp), %rax
@@ -6856,7 +6830,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 515 101
 	movq	-16(%rbp), %rax
-	subq	$32, %rax
+	subq	$24, %rax
 	.loc 3 515 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6870,7 +6844,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 516 53
 	movq	-8(%rbp), %rax
-	movq	-40(%rax), %rax
+	movq	-32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 516 76
 	movq	-64(%rbp), %rax
@@ -6882,7 +6856,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 516 101
 	movq	-16(%rbp), %rax
-	subq	$40, %rax
+	subq	$32, %rax
 	.loc 3 516 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6896,7 +6870,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 517 53
 	movq	-8(%rbp), %rax
-	movq	-48(%rax), %rax
+	movq	-40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 517 76
 	movq	-64(%rbp), %rax
@@ -6908,7 +6882,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 517 101
 	movq	-16(%rbp), %rax
-	subq	$48, %rax
+	subq	$40, %rax
 	.loc 3 517 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6922,7 +6896,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 518 53
 	movq	-8(%rbp), %rax
-	movq	-56(%rax), %rax
+	movq	-48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 518 76
 	movq	-64(%rbp), %rax
@@ -6934,7 +6908,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 518 101
 	movq	-16(%rbp), %rax
-	subq	$56, %rax
+	subq	$48, %rax
 	.loc 3 518 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6948,7 +6922,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 519 53
 	movq	-8(%rbp), %rax
-	movq	-64(%rax), %rax
+	movq	-56(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 519 76
 	movq	-64(%rbp), %rax
@@ -6960,7 +6934,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 519 101
 	movq	-16(%rbp), %rax
-	subq	$64, %rax
+	subq	$56, %rax
 	.loc 3 519 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -6974,7 +6948,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 520 53
 	movq	-8(%rbp), %rax
-	movq	-72(%rax), %rax
+	movq	-64(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 520 76
 	movq	-64(%rbp), %rax
@@ -6986,7 +6960,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 520 101
 	movq	-16(%rbp), %rax
-	subq	$72, %rax
+	subq	$64, %rax
 	.loc 3 520 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7000,20 +6974,20 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 521 53
 	movq	-8(%rbp), %rax
-	movq	-80(%rax), %rax
+	movq	-72(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 521 77
+	.loc 3 521 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 521 69
+	.loc 3 521 68
 	orq	%rax, -72(%rbp)
-	.loc 3 521 102
+	.loc 3 521 101
 	movq	-16(%rbp), %rax
-	subq	$80, %rax
-	.loc 3 521 108
+	subq	$72, %rax
+	.loc 3 521 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 522 25
@@ -7026,7 +7000,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 522 53
 	movq	-8(%rbp), %rax
-	movq	-88(%rax), %rax
+	movq	-80(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 522 77
 	movq	-64(%rbp), %rax
@@ -7038,7 +7012,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 522 102
 	movq	-16(%rbp), %rax
-	subq	$88, %rax
+	subq	$80, %rax
 	.loc 3 522 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7052,7 +7026,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 523 53
 	movq	-8(%rbp), %rax
-	movq	-96(%rax), %rax
+	movq	-88(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 523 77
 	movq	-64(%rbp), %rax
@@ -7064,7 +7038,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 523 102
 	movq	-16(%rbp), %rax
-	subq	$96, %rax
+	subq	$88, %rax
 	.loc 3 523 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7078,7 +7052,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 524 53
 	movq	-8(%rbp), %rax
-	movq	-104(%rax), %rax
+	movq	-96(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 524 77
 	movq	-64(%rbp), %rax
@@ -7090,7 +7064,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 524 102
 	movq	-16(%rbp), %rax
-	subq	$104, %rax
+	subq	$96, %rax
 	.loc 3 524 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7104,7 +7078,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 525 53
 	movq	-8(%rbp), %rax
-	movq	-112(%rax), %rax
+	movq	-104(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 525 77
 	movq	-64(%rbp), %rax
@@ -7116,7 +7090,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 525 102
 	movq	-16(%rbp), %rax
-	subq	$112, %rax
+	subq	$104, %rax
 	.loc 3 525 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7130,7 +7104,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 526 53
 	movq	-8(%rbp), %rax
-	movq	-120(%rax), %rax
+	movq	-112(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 526 77
 	movq	-64(%rbp), %rax
@@ -7142,45 +7116,47 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 526 102
 	movq	-16(%rbp), %rax
-	subq	$120, %rax
+	subq	$112, %rax
 	.loc 3 526 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 527 16
-	addq	$-128, -8(%rbp)
-	.loc 3 528 16
-	addq	$-128, -16(%rbp)
-.L53:
-	.loc 3 531 21
-	movq	-40(%rbp), %rax
-	andl	$8, %eax
-	.loc 3 531 12
-	testq	%rax, %rax
-	je	.L54
-	.loc 3 533 25
+	.loc 3 527 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 533 18
+	.loc 3 527 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 533 53
+	.loc 3 527 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-120(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 533 76
+	.loc 3 527 77
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 533 68
+	.loc 3 527 69
 	orq	%rax, -72(%rbp)
-	.loc 3 533 106
+	.loc 3 527 102
 	movq	-16(%rbp), %rax
+	subq	$120, %rax
+	.loc 3 527 108
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 528 16
+	addq	$-128, -8(%rbp)
+	.loc 3 529 16
+	addq	$-128, -16(%rbp)
+.L53:
+	.loc 3 532 21
+	movq	-40(%rbp), %rax
+	andl	$8, %eax
+	.loc 3 532 12
+	testq	%rax, %rax
+	je	.L54
 	.loc 3 534 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -7191,7 +7167,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 534 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 534 76
 	movq	-64(%rbp), %rax
@@ -7201,10 +7177,8 @@ LeftShift_Imp_DIV:
 	shrq	%cl, %rax
 	.loc 3 534 68
 	orq	%rax, -72(%rbp)
-	.loc 3 534 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 534 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 535 25
@@ -7217,7 +7191,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 535 53
 	movq	-8(%rbp), %rax
-	movq	-16(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 535 76
 	movq	-64(%rbp), %rax
@@ -7229,7 +7203,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 535 101
 	movq	-16(%rbp), %rax
-	subq	$16, %rax
+	subq	$8, %rax
 	.loc 3 535 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7243,7 +7217,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 536 53
 	movq	-8(%rbp), %rax
-	movq	-24(%rax), %rax
+	movq	-16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 536 76
 	movq	-64(%rbp), %rax
@@ -7255,7 +7229,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 536 101
 	movq	-16(%rbp), %rax
-	subq	$24, %rax
+	subq	$16, %rax
 	.loc 3 536 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7269,7 +7243,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 537 53
 	movq	-8(%rbp), %rax
-	movq	-32(%rax), %rax
+	movq	-24(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 537 76
 	movq	-64(%rbp), %rax
@@ -7281,7 +7255,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 537 101
 	movq	-16(%rbp), %rax
-	subq	$32, %rax
+	subq	$24, %rax
 	.loc 3 537 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7295,7 +7269,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 538 53
 	movq	-8(%rbp), %rax
-	movq	-40(%rax), %rax
+	movq	-32(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 538 76
 	movq	-64(%rbp), %rax
@@ -7307,7 +7281,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 538 101
 	movq	-16(%rbp), %rax
-	subq	$40, %rax
+	subq	$32, %rax
 	.loc 3 538 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7321,7 +7295,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 539 53
 	movq	-8(%rbp), %rax
-	movq	-48(%rax), %rax
+	movq	-40(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 539 76
 	movq	-64(%rbp), %rax
@@ -7333,7 +7307,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 539 101
 	movq	-16(%rbp), %rax
-	subq	$48, %rax
+	subq	$40, %rax
 	.loc 3 539 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7347,7 +7321,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 540 53
 	movq	-8(%rbp), %rax
-	movq	-56(%rax), %rax
+	movq	-48(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 540 76
 	movq	-64(%rbp), %rax
@@ -7359,45 +7333,47 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 540 101
 	movq	-16(%rbp), %rax
-	subq	$56, %rax
+	subq	$48, %rax
 	.loc 3 540 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 541 16
-	subq	$64, -8(%rbp)
-	.loc 3 542 16
-	subq	$64, -16(%rbp)
-.L54:
-	.loc 3 545 21
-	movq	-40(%rbp), %rax
-	andl	$4, %eax
-	.loc 3 545 12
-	testq	%rax, %rax
-	je	.L55
-	.loc 3 547 25
+	.loc 3 541 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 547 18
+	.loc 3 541 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 547 53
+	.loc 3 541 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-56(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 547 76
+	.loc 3 541 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 547 68
+	.loc 3 541 68
 	orq	%rax, -72(%rbp)
-	.loc 3 547 106
+	.loc 3 541 101
 	movq	-16(%rbp), %rax
+	subq	$56, %rax
+	.loc 3 541 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 542 16
+	subq	$64, -8(%rbp)
+	.loc 3 543 16
+	subq	$64, -16(%rbp)
+.L54:
+	.loc 3 546 21
+	movq	-40(%rbp), %rax
+	andl	$4, %eax
+	.loc 3 546 12
+	testq	%rax, %rax
+	je	.L55
 	.loc 3 548 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -7408,7 +7384,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 548 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 548 76
 	movq	-64(%rbp), %rax
@@ -7418,10 +7394,8 @@ LeftShift_Imp_DIV:
 	shrq	%cl, %rax
 	.loc 3 548 68
 	orq	%rax, -72(%rbp)
-	.loc 3 548 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 548 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
 	.loc 3 549 25
@@ -7434,7 +7408,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 549 53
 	movq	-8(%rbp), %rax
-	movq	-16(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 549 76
 	movq	-64(%rbp), %rax
@@ -7446,7 +7420,7 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 549 101
 	movq	-16(%rbp), %rax
-	subq	$16, %rax
+	subq	$8, %rax
 	.loc 3 549 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
@@ -7460,7 +7434,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 550 53
 	movq	-8(%rbp), %rax
-	movq	-24(%rax), %rax
+	movq	-16(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 550 76
 	movq	-64(%rbp), %rax
@@ -7472,45 +7446,47 @@ LeftShift_Imp_DIV:
 	orq	%rax, -72(%rbp)
 	.loc 3 550 101
 	movq	-16(%rbp), %rax
-	subq	$24, %rax
+	subq	$16, %rax
 	.loc 3 550 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 551 16
-	subq	$32, -8(%rbp)
-	.loc 3 552 16
-	subq	$32, -16(%rbp)
-.L55:
-	.loc 3 555 21
-	movq	-40(%rbp), %rax
-	andl	$2, %eax
-	.loc 3 555 12
-	testq	%rax, %rax
-	je	.L56
-	.loc 3 557 25
+	.loc 3 551 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 557 18
+	.loc 3 551 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 557 53
+	.loc 3 551 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-24(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 557 76
+	.loc 3 551 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 557 68
+	.loc 3 551 68
 	orq	%rax, -72(%rbp)
-	.loc 3 557 106
+	.loc 3 551 101
 	movq	-16(%rbp), %rax
+	subq	$24, %rax
+	.loc 3 551 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
+	.loc 3 552 16
+	subq	$32, -8(%rbp)
+	.loc 3 553 16
+	subq	$32, -16(%rbp)
+.L55:
+	.loc 3 556 21
+	movq	-40(%rbp), %rax
+	andl	$2, %eax
+	.loc 3 556 12
+	testq	%rax, %rax
+	je	.L56
 	.loc 3 558 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
@@ -7521,7 +7497,7 @@ LeftShift_Imp_DIV:
 	movq	%rax, -72(%rbp)
 	.loc 3 558 53
 	movq	-8(%rbp), %rax
-	movq	-8(%rax), %rax
+	movq	(%rax), %rax
 	movq	%rax, -24(%rbp)
 	.loc 3 558 76
 	movq	-64(%rbp), %rax
@@ -7531,75 +7507,99 @@ LeftShift_Imp_DIV:
 	shrq	%cl, %rax
 	.loc 3 558 68
 	orq	%rax, -72(%rbp)
-	.loc 3 558 101
-	movq	-16(%rbp), %rax
-	subq	$8, %rax
 	.loc 3 558 106
+	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 559 16
-	subq	$16, -8(%rbp)
-	.loc 3 560 16
-	subq	$16, -16(%rbp)
-.L56:
-	.loc 3 563 21
-	movq	-40(%rbp), %rax
-	andl	$1, %eax
-	.loc 3 563 12
-	testq	%rax, %rax
-	je	.L57
-	.loc 3 565 25
+	.loc 3 559 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 565 18
+	.loc 3 559 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 565 53
+	.loc 3 559 53
 	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
+	movq	-8(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 565 76
+	.loc 3 559 76
 	movq	-64(%rbp), %rax
 	movl	%eax, %edx
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	shrq	%cl, %rax
-	.loc 3 565 68
+	.loc 3 559 68
 	orq	%rax, -72(%rbp)
-	.loc 3 565 106
+	.loc 3 559 101
 	movq	-16(%rbp), %rax
+	subq	$8, %rax
+	.loc 3 559 106
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 566 16
-	subq	$8, -8(%rbp)
-	.loc 3 567 16
-	subq	$8, -16(%rbp)
-.L57:
-	.loc 3 569 21
+	.loc 3 560 16
+	subq	$16, -8(%rbp)
+	.loc 3 561 16
+	subq	$16, -16(%rbp)
+.L56:
+	.loc 3 564 21
+	movq	-40(%rbp), %rax
+	andl	$1, %eax
+	.loc 3 564 12
+	testq	%rax, %rax
+	je	.L57
+	.loc 3 566 25
 	movq	-56(%rbp), %rax
 	movl	%eax, %edx
-	.loc 3 569 14
+	.loc 3 566 18
 	movq	-24(%rbp), %rax
 	movl	%edx, %ecx
 	salq	%cl, %rax
 	movq	%rax, -72(%rbp)
-	.loc 3 570 13
+	.loc 3 566 53
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	movq	%rax, -24(%rbp)
+	.loc 3 566 76
+	movq	-64(%rbp), %rax
+	movl	%eax, %edx
+	movq	-24(%rbp), %rax
+	movl	%edx, %ecx
+	shrq	%cl, %rax
+	.loc 3 566 68
+	orq	%rax, -72(%rbp)
+	.loc 3 566 106
 	movq	-16(%rbp), %rax
 	movq	-72(%rbp), %rdx
 	movq	%rdx, (%rax)
-	.loc 3 572 12
+	.loc 3 567 16
+	subq	$8, -8(%rbp)
+	.loc 3 568 16
+	subq	$8, -16(%rbp)
+.L57:
+	.loc 3 570 21
+	movq	-56(%rbp), %rax
+	movl	%eax, %edx
+	.loc 3 570 14
+	movq	-24(%rbp), %rax
+	movl	%edx, %ecx
+	salq	%cl, %rax
+	movq	%rax, -72(%rbp)
+	.loc 3 571 13
+	movq	-16(%rbp), %rax
+	movq	-72(%rbp), %rdx
+	movq	%rdx, (%rax)
+	.loc 3 573 12
 	cmpl	$0, 48(%rbp)
 	je	.L58
-	.loc 3 573 13
+	.loc 3 574 13
 	movq	-48(%rbp), %rdx
 	movq	40(%rbp), %rax
 	movq	%rax, %rcx
 	call	_ZERO_MEMORY_UNIT_DIV
 .L58:
 .LBE21:
-	.loc 3 575 1
+	.loc 3 576 1
 	nop
 	addq	$112, %rsp
 	popq	%rbp
@@ -7614,7 +7614,7 @@ LeftShift_Imp_DIV:
 	.seh_proc	PMC_RightShift_X_I
 PMC_RightShift_X_I:
 .LFB4377:
-	.loc 3 578 1
+	.loc 3 579 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -7629,95 +7629,95 @@ PMC_RightShift_X_I:
 	movq	%rcx, 16(%rbp)
 	movl	%edx, 24(%rbp)
 	movq	%r8, 32(%rbp)
-	.loc 3 584 8
+	.loc 3 585 8
 	cmpq	$0, 16(%rbp)
 	jne	.L60
-	.loc 3 585 16
+	.loc 3 586 16
 	movl	$-1, %eax
 	jmp	.L73
 .L60:
-	.loc 3 586 8
+	.loc 3 587 8
 	cmpq	$0, 32(%rbp)
 	jne	.L62
-	.loc 3 587 16
+	.loc 3 588 16
 	movl	$-1, %eax
 	jmp	.L73
 .L62:
-	.loc 3 588 20
+	.loc 3 589 20
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 3 591 19
+	.loc 3 592 19
 	movq	-8(%rbp), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 591 8
+	.loc 3 592 8
 	cmpl	$0, -12(%rbp)
 	je	.L63
-	.loc 3 592 16
+	.loc 3 593 16
 	movl	-12(%rbp), %eax
 	jmp	.L73
 .L63:
-	.loc 3 593 9
+	.loc 3 594 9
 	movq	-8(%rbp), %rax
 	movzbl	40(%rax), %eax
 	andl	$2, %eax
-	.loc 3 593 8
+	.loc 3 594 8
 	testb	%al, %al
 	je	.L64
-	.loc 3 594 12
+	.loc 3 595 12
 	movq	32(%rbp), %rax
 	movq	.refptr.number_zero(%rip), %rdx
 	movq	%rdx, (%rax)
 	jmp	.L65
 .L64:
-	.loc 3 595 13
+	.loc 3 596 13
 	cmpl	$0, 24(%rbp)
 	jne	.L66
-	.loc 3 597 23
+	.loc 3 598 23
 	leaq	-40(%rbp), %rax
 	movq	-8(%rbp), %rcx
 	movq	%rax, %rdx
 	call	DuplicateNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 597 12
+	.loc 3 598 12
 	cmpl	$0, -12(%rbp)
 	je	.L67
-	.loc 3 598 20
+	.loc 3 599 20
 	movl	-12(%rbp), %eax
 	jmp	.L73
 .L67:
-	.loc 3 599 12
+	.loc 3 600 12
 	movq	-40(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
 	jmp	.L65
 .L66:
 .LBB22:
-	.loc 3 603 21
+	.loc 3 604 21
 	movq	-8(%rbp), %rax
 	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 604 25
+	.loc 3 605 25
 	movl	24(%rbp), %eax
-	.loc 3 604 12
+	.loc 3 605 12
 	cmpq	%rax, -24(%rbp)
 	ja	.L68
-	.loc 3 605 16
+	.loc 3 606 16
 	movq	32(%rbp), %rax
 	movq	.refptr.number_zero(%rip), %rdx
 	movq	%rdx, (%rax)
 	jmp	.L65
 .L68:
 .LBB23:
-	.loc 3 608 51
+	.loc 3 609 51
 	movl	24(%rbp), %eax
-	.loc 3 608 25
+	.loc 3 609 25
 	movq	-24(%rbp), %rdx
 	subq	%rax, %rdx
 	movq	%rdx, %rax
 	movq	%rax, -32(%rbp)
-	.loc 3 610 27
+	.loc 3 611 27
 	leaq	-48(%rbp), %rcx
 	movq	-32(%rbp), %rdx
 	leaq	-40(%rbp), %rax
@@ -7725,16 +7725,16 @@ PMC_RightShift_X_I:
 	movq	%rax, %rcx
 	call	AllocateNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 610 16
+	.loc 3 611 16
 	cmpl	$0, -12(%rbp)
 	je	.L69
-	.loc 3 611 24
+	.loc 3 612 24
 	movl	-12(%rbp), %eax
 	jmp	.L73
 .L69:
-	.loc 3 612 65
+	.loc 3 613 65
 	movq	-40(%rbp), %rax
-	.loc 3 612 13
+	.loc 3 613 13
 	movq	56(%rax), %r8
 	movl	24(%rbp), %ecx
 	movq	-8(%rbp), %rax
@@ -7746,50 +7746,50 @@ PMC_RightShift_X_I:
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	RightShift_Imp
-	.loc 3 613 27
+	.loc 3 614 27
 	movq	-48(%rbp), %rdx
-	.loc 3 613 45
+	.loc 3 614 45
 	movq	-40(%rbp), %rax
-	.loc 3 613 27
+	.loc 3 614 27
 	movq	56(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -12(%rbp)
-	.loc 3 613 16
+	.loc 3 614 16
 	cmpl	$0, -12(%rbp)
 	je	.L71
-	.loc 3 614 24
+	.loc 3 615 24
 	movl	-12(%rbp), %eax
 	jmp	.L73
 .L71:
-	.loc 3 615 13
+	.loc 3 616 13
 	movq	-40(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-	.loc 3 616 16
+	.loc 3 617 16
 	movq	-40(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
 .L65:
 .LBE23:
 .LBE22:
-	.loc 3 620 19
+	.loc 3 621 19
 	movq	32(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 620 8
+	.loc 3 621 8
 	cmpl	$0, -12(%rbp)
 	je	.L72
-	.loc 3 621 16
+	.loc 3 622 16
 	movl	-12(%rbp), %eax
 	jmp	.L73
 .L72:
-	.loc 3 623 12
+	.loc 3 624 12
 	movl	$0, %eax
 .L73:
-	.loc 3 624 1 discriminator 1
+	.loc 3 625 1 discriminator 1
 	addq	$96, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -7803,7 +7803,7 @@ PMC_RightShift_X_I:
 	.seh_proc	PMC_RightShift_X_L
 PMC_RightShift_X_L:
 .LFB4378:
-	.loc 3 627 1
+	.loc 3 628 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -7818,91 +7818,91 @@ PMC_RightShift_X_L:
 	movq	%rcx, 16(%rbp)
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
-	.loc 3 633 8
+	.loc 3 634 8
 	cmpq	$0, 16(%rbp)
 	jne	.L75
-	.loc 3 634 16
+	.loc 3 635 16
 	movl	$-1, %eax
 	jmp	.L88
 .L75:
-	.loc 3 635 8
+	.loc 3 636 8
 	cmpq	$0, 32(%rbp)
 	jne	.L77
-	.loc 3 636 16
+	.loc 3 637 16
 	movl	$-1, %eax
 	jmp	.L88
 .L77:
-	.loc 3 637 20
+	.loc 3 638 20
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 3 640 19
+	.loc 3 641 19
 	movq	-8(%rbp), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 640 8
+	.loc 3 641 8
 	cmpl	$0, -12(%rbp)
 	je	.L78
-	.loc 3 641 16
+	.loc 3 642 16
 	movl	-12(%rbp), %eax
 	jmp	.L88
 .L78:
-	.loc 3 642 9
+	.loc 3 643 9
 	movq	-8(%rbp), %rax
 	movzbl	40(%rax), %eax
 	andl	$2, %eax
-	.loc 3 642 8
+	.loc 3 643 8
 	testb	%al, %al
 	je	.L79
-	.loc 3 643 12
+	.loc 3 644 12
 	movq	32(%rbp), %rax
 	movq	.refptr.number_zero(%rip), %rdx
 	movq	%rdx, (%rax)
 	jmp	.L80
 .L79:
-	.loc 3 644 13
+	.loc 3 645 13
 	cmpq	$0, 24(%rbp)
 	jne	.L81
-	.loc 3 646 23
+	.loc 3 647 23
 	leaq	-40(%rbp), %rax
 	movq	-8(%rbp), %rcx
 	movq	%rax, %rdx
 	call	DuplicateNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 646 12
+	.loc 3 647 12
 	cmpl	$0, -12(%rbp)
 	je	.L82
-	.loc 3 647 20
+	.loc 3 648 20
 	movl	-12(%rbp), %eax
 	jmp	.L88
 .L82:
-	.loc 3 648 12
+	.loc 3 649 12
 	movq	-40(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
 	jmp	.L80
 .L81:
 .LBB24:
-	.loc 3 652 21
+	.loc 3 653 21
 	movq	-8(%rbp), %rax
 	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 653 12
+	.loc 3 654 12
 	movq	-24(%rbp), %rax
 	cmpq	24(%rbp), %rax
 	ja	.L83
-	.loc 3 654 16
+	.loc 3 655 16
 	movq	32(%rbp), %rax
 	movq	.refptr.number_zero(%rip), %rdx
 	movq	%rdx, (%rax)
 	jmp	.L80
 .L83:
 .LBB25:
-	.loc 3 657 25
+	.loc 3 658 25
 	movq	-24(%rbp), %rax
 	subq	24(%rbp), %rax
 	movq	%rax, -32(%rbp)
-	.loc 3 659 27
+	.loc 3 660 27
 	leaq	-48(%rbp), %rcx
 	movq	-32(%rbp), %rdx
 	leaq	-40(%rbp), %rax
@@ -7910,16 +7910,16 @@ PMC_RightShift_X_L:
 	movq	%rax, %rcx
 	call	AllocateNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 659 16
+	.loc 3 660 16
 	cmpl	$0, -12(%rbp)
 	je	.L84
-	.loc 3 660 24
+	.loc 3 661 24
 	movl	-12(%rbp), %eax
 	jmp	.L88
 .L84:
-	.loc 3 661 78
+	.loc 3 662 78
 	movq	-40(%rbp), %rax
-	.loc 3 661 13
+	.loc 3 662 13
 	movq	56(%rax), %r8
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rdx
@@ -7931,50 +7931,50 @@ PMC_RightShift_X_L:
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	RightShift_Imp
-	.loc 3 662 27
+	.loc 3 663 27
 	movq	-48(%rbp), %rdx
-	.loc 3 662 45
+	.loc 3 663 45
 	movq	-40(%rbp), %rax
-	.loc 3 662 27
+	.loc 3 663 27
 	movq	56(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -12(%rbp)
-	.loc 3 662 16
+	.loc 3 663 16
 	cmpl	$0, -12(%rbp)
 	je	.L86
-	.loc 3 663 24
+	.loc 3 664 24
 	movl	-12(%rbp), %eax
 	jmp	.L88
 .L86:
-	.loc 3 664 13
+	.loc 3 665 13
 	movq	-40(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-	.loc 3 665 16
+	.loc 3 666 16
 	movq	-40(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
 .L80:
 .LBE25:
 .LBE24:
-	.loc 3 669 19
+	.loc 3 670 19
 	movq	32(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 669 8
+	.loc 3 670 8
 	cmpl	$0, -12(%rbp)
 	je	.L87
-	.loc 3 670 16
+	.loc 3 671 16
 	movl	-12(%rbp), %eax
 	jmp	.L88
 .L87:
-	.loc 3 672 12
+	.loc 3 673 12
 	movl	$0, %eax
 .L88:
-	.loc 3 673 1 discriminator 1
+	.loc 3 674 1 discriminator 1
 	addq	$96, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -7988,7 +7988,7 @@ PMC_RightShift_X_L:
 	.seh_proc	PMC_LeftShift_X_I
 PMC_LeftShift_X_I:
 .LFB4379:
-	.loc 3 676 1
+	.loc 3 677 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -8003,82 +8003,82 @@ PMC_LeftShift_X_I:
 	movq	%rcx, 16(%rbp)
 	movl	%edx, 24(%rbp)
 	movq	%r8, 32(%rbp)
-	.loc 3 682 8
+	.loc 3 683 8
 	cmpq	$0, 16(%rbp)
 	jne	.L90
-	.loc 3 683 16
+	.loc 3 684 16
 	movl	$-1, %eax
 	jmp	.L102
 .L90:
-	.loc 3 684 8
+	.loc 3 685 8
 	cmpq	$0, 32(%rbp)
 	jne	.L92
-	.loc 3 685 16
+	.loc 3 686 16
 	movl	$-1, %eax
 	jmp	.L102
 .L92:
-	.loc 3 686 20
+	.loc 3 687 20
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 3 689 19
+	.loc 3 690 19
 	movq	-8(%rbp), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 689 8
+	.loc 3 690 8
 	cmpl	$0, -12(%rbp)
 	je	.L93
-	.loc 3 690 16
+	.loc 3 691 16
 	movl	-12(%rbp), %eax
 	jmp	.L102
 .L93:
-	.loc 3 691 9
+	.loc 3 692 9
 	movq	-8(%rbp), %rax
 	movzbl	40(%rax), %eax
 	andl	$2, %eax
-	.loc 3 691 8
+	.loc 3 692 8
 	testb	%al, %al
 	je	.L94
-	.loc 3 692 12
+	.loc 3 693 12
 	movq	32(%rbp), %rax
 	movq	.refptr.number_zero(%rip), %rdx
 	movq	%rdx, (%rax)
 	jmp	.L95
 .L94:
-	.loc 3 693 13
+	.loc 3 694 13
 	cmpl	$0, 24(%rbp)
 	jne	.L96
-	.loc 3 695 23
+	.loc 3 696 23
 	leaq	-40(%rbp), %rax
 	movq	-8(%rbp), %rcx
 	movq	%rax, %rdx
 	call	DuplicateNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 695 12
+	.loc 3 696 12
 	cmpl	$0, -12(%rbp)
 	je	.L97
-	.loc 3 696 20
+	.loc 3 697 20
 	movl	-12(%rbp), %eax
 	jmp	.L102
 .L97:
-	.loc 3 697 12
+	.loc 3 698 12
 	movq	-40(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
 	jmp	.L95
 .L96:
 .LBB26:
-	.loc 3 701 21
+	.loc 3 702 21
 	movq	-8(%rbp), %rax
 	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 702 47
+	.loc 3 703 47
 	movl	24(%rbp), %eax
-	.loc 3 702 21
+	.loc 3 703 21
 	movq	-24(%rbp), %rdx
 	addq	%rdx, %rax
 	movq	%rax, -32(%rbp)
-	.loc 3 704 23
+	.loc 3 705 23
 	leaq	-48(%rbp), %rcx
 	movq	-32(%rbp), %rdx
 	leaq	-40(%rbp), %rax
@@ -8086,16 +8086,16 @@ PMC_LeftShift_X_I:
 	movq	%rax, %rcx
 	call	AllocateNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 704 12
+	.loc 3 705 12
 	cmpl	$0, -12(%rbp)
 	je	.L98
-	.loc 3 705 20
+	.loc 3 706 20
 	movl	-12(%rbp), %eax
 	jmp	.L102
 .L98:
-	.loc 3 706 60
+	.loc 3 707 60
 	movq	-40(%rbp), %rax
-	.loc 3 706 9
+	.loc 3 707 9
 	movq	56(%rax), %r8
 	movl	24(%rbp), %ecx
 	movq	-8(%rbp), %rax
@@ -8107,49 +8107,49 @@ PMC_LeftShift_X_I:
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	LeftShift_Imp
-	.loc 3 707 23
+	.loc 3 708 23
 	movq	-48(%rbp), %rdx
-	.loc 3 707 41
+	.loc 3 708 41
 	movq	-40(%rbp), %rax
-	.loc 3 707 23
+	.loc 3 708 23
 	movq	56(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -12(%rbp)
-	.loc 3 707 12
+	.loc 3 708 12
 	cmpl	$0, -12(%rbp)
 	je	.L100
-	.loc 3 708 20
+	.loc 3 709 20
 	movl	-12(%rbp), %eax
 	jmp	.L102
 .L100:
-	.loc 3 709 9
+	.loc 3 710 9
 	movq	-40(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-	.loc 3 710 12
+	.loc 3 711 12
 	movq	-40(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
 .L95:
 .LBE26:
-	.loc 3 713 19
+	.loc 3 714 19
 	movq	32(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 713 8
+	.loc 3 714 8
 	cmpl	$0, -12(%rbp)
 	je	.L101
-	.loc 3 714 16
+	.loc 3 715 16
 	movl	-12(%rbp), %eax
 	jmp	.L102
 .L101:
-	.loc 3 716 12
+	.loc 3 717 12
 	movl	$0, %eax
 .L102:
-	.loc 3 717 1 discriminator 1
+	.loc 3 718 1 discriminator 1
 	addq	$96, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -8163,7 +8163,7 @@ PMC_LeftShift_X_I:
 	.seh_proc	PMC_LeftShift_X_L
 PMC_LeftShift_X_L:
 .LFB4380:
-	.loc 3 720 1
+	.loc 3 721 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -8178,81 +8178,81 @@ PMC_LeftShift_X_L:
 	movq	%rcx, 16(%rbp)
 	movq	%rdx, 24(%rbp)
 	movq	%r8, 32(%rbp)
-	.loc 3 726 8
+	.loc 3 727 8
 	cmpq	$0, 16(%rbp)
 	jne	.L104
-	.loc 3 727 16
+	.loc 3 728 16
 	movl	$-1, %eax
 	jmp	.L116
 .L104:
-	.loc 3 728 8
+	.loc 3 729 8
 	cmpq	$0, 32(%rbp)
 	jne	.L106
-	.loc 3 729 16
+	.loc 3 730 16
 	movl	$-1, %eax
 	jmp	.L116
 .L106:
-	.loc 3 730 20
+	.loc 3 731 20
 	movq	16(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	.loc 3 733 19
+	.loc 3 734 19
 	movq	-8(%rbp), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 733 8
+	.loc 3 734 8
 	cmpl	$0, -12(%rbp)
 	je	.L107
-	.loc 3 734 16
+	.loc 3 735 16
 	movl	-12(%rbp), %eax
 	jmp	.L116
 .L107:
-	.loc 3 735 9
+	.loc 3 736 9
 	movq	-8(%rbp), %rax
 	movzbl	40(%rax), %eax
 	andl	$2, %eax
-	.loc 3 735 8
+	.loc 3 736 8
 	testb	%al, %al
 	je	.L108
-	.loc 3 736 12
+	.loc 3 737 12
 	movq	32(%rbp), %rax
 	movq	.refptr.number_zero(%rip), %rdx
 	movq	%rdx, (%rax)
 	jmp	.L109
 .L108:
-	.loc 3 737 13
+	.loc 3 738 13
 	cmpq	$0, 24(%rbp)
 	jne	.L110
-	.loc 3 739 23
+	.loc 3 740 23
 	leaq	-40(%rbp), %rax
 	movq	-8(%rbp), %rcx
 	movq	%rax, %rdx
 	call	DuplicateNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 739 12
+	.loc 3 740 12
 	cmpl	$0, -12(%rbp)
 	je	.L111
-	.loc 3 740 20
+	.loc 3 741 20
 	movl	-12(%rbp), %eax
 	jmp	.L116
 .L111:
-	.loc 3 741 12
+	.loc 3 742 12
 	movq	-40(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
 	jmp	.L109
 .L110:
 .LBB27:
-	.loc 3 745 21
+	.loc 3 746 21
 	movq	-8(%rbp), %rax
 	movq	16(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 3 746 21
+	.loc 3 747 21
 	movq	-24(%rbp), %rdx
 	movq	24(%rbp), %rax
 	addq	%rdx, %rax
 	movq	%rax, -32(%rbp)
-	.loc 3 748 23
+	.loc 3 749 23
 	leaq	-48(%rbp), %rcx
 	movq	-32(%rbp), %rdx
 	leaq	-40(%rbp), %rax
@@ -8260,16 +8260,16 @@ PMC_LeftShift_X_L:
 	movq	%rax, %rcx
 	call	AllocateNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 748 12
+	.loc 3 749 12
 	cmpl	$0, -12(%rbp)
 	je	.L112
-	.loc 3 749 20
+	.loc 3 750 20
 	movl	-12(%rbp), %eax
 	jmp	.L116
 .L112:
-	.loc 3 750 73
+	.loc 3 751 73
 	movq	-40(%rbp), %rax
-	.loc 3 750 9
+	.loc 3 751 9
 	movq	56(%rax), %r8
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rdx
@@ -8281,49 +8281,49 @@ PMC_LeftShift_X_L:
 	movq	%rcx, %r8
 	movq	%rax, %rcx
 	call	LeftShift_Imp
-	.loc 3 751 23
+	.loc 3 752 23
 	movq	-48(%rbp), %rdx
-	.loc 3 751 41
+	.loc 3 752 41
 	movq	-40(%rbp), %rax
-	.loc 3 751 23
+	.loc 3 752 23
 	movq	56(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckBlockLight
 	movl	%eax, -12(%rbp)
-	.loc 3 751 12
+	.loc 3 752 12
 	cmpl	$0, -12(%rbp)
 	je	.L114
-	.loc 3 752 20
+	.loc 3 753 20
 	movl	-12(%rbp), %eax
 	jmp	.L116
 .L114:
-	.loc 3 753 9
+	.loc 3 754 9
 	movq	-40(%rbp), %rax
 	movq	%rax, %rcx
 	call	CommitNumber
-	.loc 3 754 12
+	.loc 3 755 12
 	movq	-40(%rbp), %rdx
 	movq	32(%rbp), %rax
 	movq	%rdx, (%rax)
 .L109:
 .LBE27:
-	.loc 3 757 19
+	.loc 3 758 19
 	movq	32(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rcx
 	call	CheckNumber
 	movl	%eax, -12(%rbp)
-	.loc 3 757 8
+	.loc 3 758 8
 	cmpl	$0, -12(%rbp)
 	je	.L115
-	.loc 3 758 16
+	.loc 3 759 16
 	movl	-12(%rbp), %eax
 	jmp	.L116
 .L115:
-	.loc 3 760 12
+	.loc 3 761 12
 	movl	$0, %eax
 .L116:
-	.loc 3 761 1 discriminator 1
+	.loc 3 762 1 discriminator 1
 	addq	$96, %rsp
 	popq	%rbp
 	.cfi_restore 6
@@ -8337,7 +8337,7 @@ PMC_LeftShift_X_L:
 	.seh_proc	Initialize_Shift
 Initialize_Shift:
 .LFB4381:
-	.loc 3 764 1
+	.loc 3 765 1
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -8348,9 +8348,9 @@ Initialize_Shift:
 	.cfi_def_cfa_register 6
 	.seh_endprologue
 	movq	%rcx, 16(%rbp)
-	.loc 3 765 12
+	.loc 3 766 12
 	movl	$0, %eax
-	.loc 3 766 1
+	.loc 3 767 1
 	popq	%rbp
 	.cfi_restore 6
 	.cfi_def_cfa 7, 8
@@ -8388,9 +8388,11 @@ Initialize_Shift:
 	.file 30 "C:/GNU/MINGW64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/x86_64-w64-mingw32/include/stdint.h"
 	.file 31 "pmc.h"
 	.file 32 "pmc_cpuid.h"
+	.file 33 "pmc_internal.h"
+	.file 34 "pmc_uint_internal.h"
 	.section	.debug_info,"dr"
 .Ldebug_info0:
-	.long	0x58c9
+	.long	0x58b7
 	.word	0x4
 	.secrel32	.Ldebug_abbrev0
 	.byte	0x8
@@ -12335,16 +12337,16 @@ Initialize_Shift:
 	.long	0x4af8
 	.uleb128 0x3
 	.ascii "__UNIT_TYPE\0"
-	.byte	0x1
-	.byte	0x37
+	.byte	0x21
+	.byte	0x34
 	.byte	0x13
 	.long	0x49c8
 	.uleb128 0x4
 	.long	0x4be4
 	.uleb128 0x3
 	.ascii "__UNIT_TYPE_DIV\0"
-	.byte	0x1
-	.byte	0x41
+	.byte	0x21
+	.byte	0x3e
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x4
@@ -12352,57 +12354,57 @@ Initialize_Shift:
 	.uleb128 0x12
 	.ascii "__tag_NUMBER_HEADER\0"
 	.byte	0x40
-	.byte	0x1
-	.byte	0x47
-	.byte	0x10
+	.byte	0x22
+	.byte	0x2d
+	.byte	0x14
 	.long	0x4d57
 	.uleb128 0x13
 	.ascii "SIGNATURE1\0"
-	.byte	0x1
-	.byte	0x49
-	.byte	0xf
+	.byte	0x22
+	.byte	0x2f
+	.byte	0x13
 	.long	0x49b6
 	.byte	0
 	.uleb128 0x13
 	.ascii "SIGNATURE2\0"
-	.byte	0x1
-	.byte	0x4a
-	.byte	0xf
+	.byte	0x22
+	.byte	0x30
+	.byte	0x13
 	.long	0x49b6
 	.byte	0x4
 	.uleb128 0x13
 	.ascii "UNIT_WORD_COUNT\0"
-	.byte	0x1
-	.byte	0x4b
-	.byte	0x11
+	.byte	0x22
+	.byte	0x31
+	.byte	0x15
 	.long	0x4be4
 	.byte	0x8
 	.uleb128 0x13
 	.ascii "UNIT_BIT_COUNT\0"
-	.byte	0x1
-	.byte	0x4c
-	.byte	0x11
+	.byte	0x22
+	.byte	0x32
+	.byte	0x15
 	.long	0x4be4
 	.byte	0x10
 	.uleb128 0x13
 	.ascii "HASH_CODE\0"
-	.byte	0x1
-	.byte	0x4d
-	.byte	0x11
+	.byte	0x22
+	.byte	0x33
+	.byte	0x15
 	.long	0x4be4
 	.byte	0x18
 	.uleb128 0x13
 	.ascii "TRAILING_ZERO_BITS_COUNT\0"
-	.byte	0x1
-	.byte	0x4e
-	.byte	0x11
+	.byte	0x22
+	.byte	0x34
+	.byte	0x15
 	.long	0x4be4
 	.byte	0x20
 	.uleb128 0x18
 	.ascii "IS_STATIC\0"
-	.byte	0x1
-	.byte	0x4f
-	.byte	0xe
+	.byte	0x22
+	.byte	0x35
+	.byte	0x12
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
@@ -12410,9 +12412,9 @@ Initialize_Shift:
 	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_ZERO\0"
-	.byte	0x1
-	.byte	0x50
-	.byte	0xe
+	.byte	0x22
+	.byte	0x36
+	.byte	0x12
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
@@ -12420,9 +12422,9 @@ Initialize_Shift:
 	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_ONE\0"
-	.byte	0x1
-	.byte	0x51
-	.byte	0xe
+	.byte	0x22
+	.byte	0x37
+	.byte	0x12
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
@@ -12430,9 +12432,9 @@ Initialize_Shift:
 	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_EVEN\0"
-	.byte	0x1
-	.byte	0x52
-	.byte	0xe
+	.byte	0x22
+	.byte	0x38
+	.byte	0x12
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
@@ -12440,9 +12442,9 @@ Initialize_Shift:
 	.byte	0x28
 	.uleb128 0x18
 	.ascii "IS_POWER_OF_TWO\0"
-	.byte	0x1
-	.byte	0x53
-	.byte	0xe
+	.byte	0x22
+	.byte	0x39
+	.byte	0x12
 	.long	0x45f
 	.byte	0x4
 	.byte	0x1
@@ -12450,16 +12452,16 @@ Initialize_Shift:
 	.byte	0x28
 	.uleb128 0x13
 	.ascii "BLOCK_COUNT\0"
-	.byte	0x1
-	.byte	0x55
-	.byte	0xc
+	.byte	0x22
+	.byte	0x3b
+	.byte	0x10
 	.long	0xc8
 	.byte	0x30
 	.uleb128 0x13
 	.ascii "BLOCK\0"
-	.byte	0x1
-	.byte	0x59
-	.byte	0x12
+	.byte	0x22
+	.byte	0x3f
+	.byte	0x16
 	.long	0x4d57
 	.byte	0x38
 	.byte	0
@@ -12468,33 +12470,33 @@ Initialize_Shift:
 	.long	0x4be4
 	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
-	.byte	0x1
-	.byte	0x5a
-	.byte	0x3
+	.byte	0x22
+	.byte	0x40
+	.byte	0x7
 	.long	0x4c1a
 	.uleb128 0x15
 	.ascii "configuration_info\0"
-	.byte	0x1
-	.byte	0x61
-	.byte	0x1f
+	.byte	0x22
+	.byte	0x46
+	.byte	0x23
 	.long	0x4a29
 	.uleb128 0x15
 	.ascii "number_zero\0"
-	.byte	0x1
-	.byte	0x64
-	.byte	0x16
+	.byte	0x22
+	.byte	0x49
+	.byte	0x1a
 	.long	0x4d5d
 	.uleb128 0x15
 	.ascii "number_one\0"
-	.byte	0x1
-	.byte	0x67
-	.byte	0x16
+	.byte	0x22
+	.byte	0x4c
+	.byte	0x1a
 	.long	0x4d5d
 	.uleb128 0x15
 	.ascii "statistics_info\0"
-	.byte	0x1
-	.byte	0x6a
-	.byte	0x1c
+	.byte	0x22
+	.byte	0x4f
+	.byte	0x20
 	.long	0x4adc
 	.uleb128 0x19
 	.long	0x137
@@ -12505,9 +12507,9 @@ Initialize_Shift:
 	.byte	0
 	.uleb128 0x17
 	.ascii "__DEBUG_LOG\0"
-	.byte	0x1
-	.word	0x147
-	.byte	0x29
+	.byte	0x22
+	.word	0x12f
+	.byte	0x2d
 	.long	0x4df2
 	.uleb128 0x6
 	.byte	0x8
@@ -12515,7 +12517,7 @@ Initialize_Shift:
 	.uleb128 0x1b
 	.ascii "Initialize_Shift\0"
 	.byte	0x3
-	.word	0x2fb
+	.word	0x2fc
 	.byte	0x11
 	.long	0x4a48
 	.quad	.LFB4381
@@ -12526,7 +12528,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "feature\0"
 	.byte	0x3
-	.word	0x2fb
+	.word	0x2fc
 	.byte	0x36
 	.long	0x4e3d
 	.uleb128 0x2
@@ -12539,7 +12541,7 @@ Initialize_Shift:
 	.uleb128 0x1d
 	.ascii "PMC_LeftShift_X_L\0"
 	.byte	0x3
-	.word	0x2cf
+	.word	0x2d0
 	.byte	0x11
 	.long	0x4a48
 	.quad	.LFB4380
@@ -12550,7 +12552,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
-	.word	0x2cf
+	.word	0x2d0
 	.byte	0x2a
 	.long	0x766
 	.uleb128 0x2
@@ -12559,7 +12561,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "n\0"
 	.byte	0x3
-	.word	0x2cf
+	.word	0x2d0
 	.byte	0x37
 	.long	0x49c8
 	.uleb128 0x2
@@ -12568,7 +12570,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "o\0"
 	.byte	0x3
-	.word	0x2cf
+	.word	0x2d0
 	.byte	0x42
 	.long	0x776
 	.uleb128 0x2
@@ -12577,7 +12579,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "np\0"
 	.byte	0x3
-	.word	0x2da
+	.word	0x2db
 	.byte	0x14
 	.long	0x4f0f
 	.uleb128 0x2
@@ -12586,7 +12588,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "no\0"
 	.byte	0x3
-	.word	0x2db
+	.word	0x2dc
 	.byte	0x14
 	.long	0x4f0f
 	.uleb128 0x2
@@ -12595,7 +12597,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF1
 	.byte	0x3
-	.word	0x2dc
+	.word	0x2dd
 	.byte	0x15
 	.long	0x4a48
 	.uleb128 0x2
@@ -12607,7 +12609,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF2
 	.byte	0x3
-	.word	0x2e9
+	.word	0x2ea
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -12616,7 +12618,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF3
 	.byte	0x3
-	.word	0x2ea
+	.word	0x2eb
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -12625,7 +12627,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF4
 	.byte	0x3
-	.word	0x2eb
+	.word	0x2ec
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -12639,7 +12641,7 @@ Initialize_Shift:
 	.uleb128 0x1d
 	.ascii "PMC_LeftShift_X_I\0"
 	.byte	0x3
-	.word	0x2a3
+	.word	0x2a4
 	.byte	0x11
 	.long	0x4a48
 	.quad	.LFB4379
@@ -12650,7 +12652,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
-	.word	0x2a3
+	.word	0x2a4
 	.byte	0x2a
 	.long	0x766
 	.uleb128 0x2
@@ -12659,7 +12661,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "n\0"
 	.byte	0x3
-	.word	0x2a3
+	.word	0x2a4
 	.byte	0x37
 	.long	0x49b6
 	.uleb128 0x2
@@ -12668,7 +12670,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "o\0"
 	.byte	0x3
-	.word	0x2a3
+	.word	0x2a4
 	.byte	0x42
 	.long	0x776
 	.uleb128 0x2
@@ -12677,7 +12679,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "np\0"
 	.byte	0x3
-	.word	0x2ae
+	.word	0x2af
 	.byte	0x14
 	.long	0x4f0f
 	.uleb128 0x2
@@ -12686,7 +12688,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "no\0"
 	.byte	0x3
-	.word	0x2af
+	.word	0x2b0
 	.byte	0x14
 	.long	0x4f0f
 	.uleb128 0x2
@@ -12695,7 +12697,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF1
 	.byte	0x3
-	.word	0x2b0
+	.word	0x2b1
 	.byte	0x15
 	.long	0x4a48
 	.uleb128 0x2
@@ -12707,7 +12709,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF2
 	.byte	0x3
-	.word	0x2bd
+	.word	0x2be
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -12716,7 +12718,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF3
 	.byte	0x3
-	.word	0x2be
+	.word	0x2bf
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -12725,7 +12727,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF4
 	.byte	0x3
-	.word	0x2bf
+	.word	0x2c0
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -12736,7 +12738,7 @@ Initialize_Shift:
 	.uleb128 0x1d
 	.ascii "PMC_RightShift_X_L\0"
 	.byte	0x3
-	.word	0x272
+	.word	0x273
 	.byte	0x11
 	.long	0x4a48
 	.quad	.LFB4378
@@ -12747,7 +12749,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
-	.word	0x272
+	.word	0x273
 	.byte	0x2b
 	.long	0x766
 	.uleb128 0x2
@@ -12756,7 +12758,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "n\0"
 	.byte	0x3
-	.word	0x272
+	.word	0x273
 	.byte	0x38
 	.long	0x49c8
 	.uleb128 0x2
@@ -12765,7 +12767,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "o\0"
 	.byte	0x3
-	.word	0x272
+	.word	0x273
 	.byte	0x43
 	.long	0x776
 	.uleb128 0x2
@@ -12774,7 +12776,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "np\0"
 	.byte	0x3
-	.word	0x27d
+	.word	0x27e
 	.byte	0x14
 	.long	0x4f0f
 	.uleb128 0x2
@@ -12783,7 +12785,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "no\0"
 	.byte	0x3
-	.word	0x27e
+	.word	0x27f
 	.byte	0x14
 	.long	0x4f0f
 	.uleb128 0x2
@@ -12792,7 +12794,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF1
 	.byte	0x3
-	.word	0x27f
+	.word	0x280
 	.byte	0x15
 	.long	0x4a48
 	.uleb128 0x2
@@ -12804,7 +12806,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF2
 	.byte	0x3
-	.word	0x28c
+	.word	0x28d
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -12816,7 +12818,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF3
 	.byte	0x3
-	.word	0x291
+	.word	0x292
 	.byte	0x19
 	.long	0x4be4
 	.uleb128 0x2
@@ -12825,7 +12827,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF4
 	.byte	0x3
-	.word	0x292
+	.word	0x293
 	.byte	0x19
 	.long	0x4be4
 	.uleb128 0x2
@@ -12837,7 +12839,7 @@ Initialize_Shift:
 	.uleb128 0x1d
 	.ascii "PMC_RightShift_X_I\0"
 	.byte	0x3
-	.word	0x241
+	.word	0x242
 	.byte	0x11
 	.long	0x4a48
 	.quad	.LFB4377
@@ -12848,7 +12850,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
-	.word	0x241
+	.word	0x242
 	.byte	0x2b
 	.long	0x766
 	.uleb128 0x2
@@ -12857,7 +12859,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "n\0"
 	.byte	0x3
-	.word	0x241
+	.word	0x242
 	.byte	0x38
 	.long	0x49b6
 	.uleb128 0x2
@@ -12866,7 +12868,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "o\0"
 	.byte	0x3
-	.word	0x241
+	.word	0x242
 	.byte	0x43
 	.long	0x776
 	.uleb128 0x2
@@ -12875,7 +12877,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "np\0"
 	.byte	0x3
-	.word	0x24c
+	.word	0x24d
 	.byte	0x14
 	.long	0x4f0f
 	.uleb128 0x2
@@ -12884,7 +12886,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "no\0"
 	.byte	0x3
-	.word	0x24d
+	.word	0x24e
 	.byte	0x14
 	.long	0x4f0f
 	.uleb128 0x2
@@ -12893,7 +12895,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF1
 	.byte	0x3
-	.word	0x24e
+	.word	0x24f
 	.byte	0x15
 	.long	0x4a48
 	.uleb128 0x2
@@ -12905,7 +12907,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF2
 	.byte	0x3
-	.word	0x25b
+	.word	0x25c
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -12917,7 +12919,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF3
 	.byte	0x3
-	.word	0x260
+	.word	0x261
 	.byte	0x19
 	.long	0x4be4
 	.uleb128 0x2
@@ -12926,7 +12928,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF4
 	.byte	0x3
-	.word	0x261
+	.word	0x262
 	.byte	0x19
 	.long	0x4be4
 	.uleb128 0x2
@@ -12938,7 +12940,7 @@ Initialize_Shift:
 	.uleb128 0x21
 	.ascii "LeftShift_Imp_DIV\0"
 	.byte	0x3
-	.word	0x1ba
+	.word	0x1bb
 	.byte	0x6
 	.quad	.LFB4376
 	.quad	.LFE4376-.LFB4376
@@ -12948,7 +12950,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
-	.word	0x1ba
+	.word	0x1bb
 	.byte	0x29
 	.long	0x52bc
 	.uleb128 0x2
@@ -12957,7 +12959,7 @@ Initialize_Shift:
 	.uleb128 0x22
 	.secrel32	.LASF5
 	.byte	0x3
-	.word	0x1ba
+	.word	0x1bb
 	.byte	0x38
 	.long	0x4be4
 	.uleb128 0x2
@@ -12966,7 +12968,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "n\0"
 	.byte	0x3
-	.word	0x1ba
+	.word	0x1bb
 	.byte	0x52
 	.long	0x4be4
 	.uleb128 0x2
@@ -12975,7 +12977,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "o\0"
 	.byte	0x3
-	.word	0x1ba
+	.word	0x1bb
 	.byte	0x66
 	.long	0x52bc
 	.uleb128 0x2
@@ -12984,7 +12986,7 @@ Initialize_Shift:
 	.uleb128 0x22
 	.secrel32	.LASF6
 	.byte	0x3
-	.word	0x1ba
+	.word	0x1bb
 	.byte	0x6e
 	.long	0x5e7
 	.uleb128 0x2
@@ -12993,7 +12995,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "pp\0"
 	.byte	0x3
-	.word	0x1bc
+	.word	0x1bd
 	.byte	0x16
 	.long	0x52bc
 	.uleb128 0x2
@@ -13002,7 +13004,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF7
 	.byte	0x3
-	.word	0x1bd
+	.word	0x1be
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x2
@@ -13011,7 +13013,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "op\0"
 	.byte	0x3
-	.word	0x1be
+	.word	0x1bf
 	.byte	0x16
 	.long	0x52bc
 	.uleb128 0x2
@@ -13020,7 +13022,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF8
 	.byte	0x3
-	.word	0x1bf
+	.word	0x1c0
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x2
@@ -13029,7 +13031,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF9
 	.byte	0x3
-	.word	0x1c0
+	.word	0x1c1
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x3
@@ -13041,7 +13043,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF10
 	.byte	0x3
-	.word	0x1ca
+	.word	0x1cb
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x3
@@ -13050,7 +13052,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "temp\0"
 	.byte	0x3
-	.word	0x1ce
+	.word	0x1cf
 	.byte	0x19
 	.long	0x4bfd
 	.uleb128 0x2
@@ -13059,7 +13061,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "work\0"
 	.byte	0x3
-	.word	0x1cf
+	.word	0x1d0
 	.byte	0x19
 	.long	0x4bfd
 	.uleb128 0x3
@@ -13068,7 +13070,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF11
 	.byte	0x3
-	.word	0x1d5
+	.word	0x1d6
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -13082,7 +13084,7 @@ Initialize_Shift:
 	.uleb128 0x21
 	.ascii "LeftShift_Imp\0"
 	.byte	0x3
-	.word	0x133
+	.word	0x134
 	.byte	0x6
 	.quad	.LFB4375
 	.quad	.LFE4375-.LFB4375
@@ -13092,7 +13094,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "p\0"
 	.byte	0x3
-	.word	0x133
+	.word	0x134
 	.byte	0x21
 	.long	0x4d57
 	.uleb128 0x2
@@ -13101,7 +13103,7 @@ Initialize_Shift:
 	.uleb128 0x22
 	.secrel32	.LASF5
 	.byte	0x3
-	.word	0x133
+	.word	0x134
 	.byte	0x30
 	.long	0x4be4
 	.uleb128 0x2
@@ -13110,7 +13112,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "n\0"
 	.byte	0x3
-	.word	0x133
+	.word	0x134
 	.byte	0x4a
 	.long	0x4be4
 	.uleb128 0x2
@@ -13119,7 +13121,7 @@ Initialize_Shift:
 	.uleb128 0x1c
 	.ascii "o\0"
 	.byte	0x3
-	.word	0x133
+	.word	0x134
 	.byte	0x5a
 	.long	0x4d57
 	.uleb128 0x2
@@ -13128,7 +13130,7 @@ Initialize_Shift:
 	.uleb128 0x22
 	.secrel32	.LASF6
 	.byte	0x3
-	.word	0x133
+	.word	0x134
 	.byte	0x62
 	.long	0x5e7
 	.uleb128 0x2
@@ -13137,7 +13139,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "pp\0"
 	.byte	0x3
-	.word	0x135
+	.word	0x136
 	.byte	0x12
 	.long	0x4d57
 	.uleb128 0x2
@@ -13146,7 +13148,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF7
 	.byte	0x3
-	.word	0x136
+	.word	0x137
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x2
@@ -13155,7 +13157,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "op\0"
 	.byte	0x3
-	.word	0x137
+	.word	0x138
 	.byte	0x12
 	.long	0x4d57
 	.uleb128 0x2
@@ -13164,7 +13166,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF8
 	.byte	0x3
-	.word	0x138
+	.word	0x139
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x2
@@ -13173,7 +13175,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF9
 	.byte	0x3
-	.word	0x139
+	.word	0x13a
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x3
@@ -13185,7 +13187,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF10
 	.byte	0x3
-	.word	0x143
+	.word	0x144
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x3
@@ -13194,7 +13196,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "temp\0"
 	.byte	0x3
-	.word	0x147
+	.word	0x148
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -13203,7 +13205,7 @@ Initialize_Shift:
 	.uleb128 0x1e
 	.ascii "work\0"
 	.byte	0x3
-	.word	0x148
+	.word	0x149
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x3
@@ -13212,7 +13214,7 @@ Initialize_Shift:
 	.uleb128 0x1f
 	.secrel32	.LASF11
 	.byte	0x3
-	.word	0x14e
+	.word	0x14f
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -13223,7 +13225,7 @@ Initialize_Shift:
 	.uleb128 0x23
 	.ascii "RightShift_Imp_DIV\0"
 	.byte	0x3
-	.byte	0xac
+	.byte	0xad
 	.byte	0x6
 	.quad	.LFB4374
 	.quad	.LFE4374-.LFB4374
@@ -13233,7 +13235,7 @@ Initialize_Shift:
 	.uleb128 0x24
 	.ascii "p\0"
 	.byte	0x3
-	.byte	0xac
+	.byte	0xad
 	.byte	0x2a
 	.long	0x52bc
 	.uleb128 0x2
@@ -13242,7 +13244,7 @@ Initialize_Shift:
 	.uleb128 0x25
 	.secrel32	.LASF5
 	.byte	0x3
-	.byte	0xac
+	.byte	0xad
 	.byte	0x39
 	.long	0x4be4
 	.uleb128 0x2
@@ -13251,7 +13253,7 @@ Initialize_Shift:
 	.uleb128 0x24
 	.ascii "n\0"
 	.byte	0x3
-	.byte	0xac
+	.byte	0xad
 	.byte	0x53
 	.long	0x4be4
 	.uleb128 0x2
@@ -13260,7 +13262,7 @@ Initialize_Shift:
 	.uleb128 0x24
 	.ascii "o\0"
 	.byte	0x3
-	.byte	0xac
+	.byte	0xad
 	.byte	0x67
 	.long	0x52bc
 	.uleb128 0x2
@@ -13269,7 +13271,7 @@ Initialize_Shift:
 	.uleb128 0x25
 	.secrel32	.LASF6
 	.byte	0x3
-	.byte	0xac
+	.byte	0xad
 	.byte	0x6f
 	.long	0x5e7
 	.uleb128 0x2
@@ -13278,7 +13280,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "pp\0"
 	.byte	0x3
-	.byte	0xae
+	.byte	0xaf
 	.byte	0x16
 	.long	0x52bc
 	.uleb128 0x2
@@ -13287,7 +13289,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF7
 	.byte	0x3
-	.byte	0xaf
+	.byte	0xb0
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x2
@@ -13296,7 +13298,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "op\0"
 	.byte	0x3
-	.byte	0xb0
+	.byte	0xb1
 	.byte	0x16
 	.long	0x52bc
 	.uleb128 0x2
@@ -13305,7 +13307,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF8
 	.byte	0x3
-	.byte	0xb2
+	.byte	0xb3
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x2
@@ -13314,7 +13316,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF10
 	.byte	0x3
-	.byte	0xb3
+	.byte	0xb4
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x3
@@ -13326,7 +13328,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF9
 	.byte	0x3
-	.byte	0xbe
+	.byte	0xbf
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x3
@@ -13335,7 +13337,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "temp\0"
 	.byte	0x3
-	.byte	0xc1
+	.byte	0xc2
 	.byte	0x19
 	.long	0x4bfd
 	.uleb128 0x2
@@ -13344,7 +13346,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "work\0"
 	.byte	0x3
-	.byte	0xc2
+	.byte	0xc3
 	.byte	0x19
 	.long	0x4bfd
 	.uleb128 0x3
@@ -13353,7 +13355,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "t_count\0"
 	.byte	0x3
-	.byte	0xc3
+	.byte	0xc4
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x3
@@ -13362,7 +13364,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF11
 	.byte	0x3
-	.byte	0xc5
+	.byte	0xc6
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -13373,7 +13375,7 @@ Initialize_Shift:
 	.uleb128 0x23
 	.ascii "RightShift_Imp\0"
 	.byte	0x3
-	.byte	0x25
+	.byte	0x26
 	.byte	0x6
 	.quad	.LFB4373
 	.quad	.LFE4373-.LFB4373
@@ -13383,7 +13385,7 @@ Initialize_Shift:
 	.uleb128 0x24
 	.ascii "p\0"
 	.byte	0x3
-	.byte	0x25
+	.byte	0x26
 	.byte	0x22
 	.long	0x4d57
 	.uleb128 0x2
@@ -13392,7 +13394,7 @@ Initialize_Shift:
 	.uleb128 0x25
 	.secrel32	.LASF5
 	.byte	0x3
-	.byte	0x25
+	.byte	0x26
 	.byte	0x31
 	.long	0x4be4
 	.uleb128 0x2
@@ -13401,7 +13403,7 @@ Initialize_Shift:
 	.uleb128 0x24
 	.ascii "n\0"
 	.byte	0x3
-	.byte	0x25
+	.byte	0x26
 	.byte	0x4b
 	.long	0x4be4
 	.uleb128 0x2
@@ -13410,7 +13412,7 @@ Initialize_Shift:
 	.uleb128 0x24
 	.ascii "o\0"
 	.byte	0x3
-	.byte	0x25
+	.byte	0x26
 	.byte	0x5b
 	.long	0x4d57
 	.uleb128 0x2
@@ -13419,7 +13421,7 @@ Initialize_Shift:
 	.uleb128 0x25
 	.secrel32	.LASF6
 	.byte	0x3
-	.byte	0x25
+	.byte	0x26
 	.byte	0x63
 	.long	0x5e7
 	.uleb128 0x2
@@ -13428,7 +13430,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "pp\0"
 	.byte	0x3
-	.byte	0x27
+	.byte	0x28
 	.byte	0x12
 	.long	0x4d57
 	.uleb128 0x2
@@ -13437,7 +13439,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF7
 	.byte	0x3
-	.byte	0x28
+	.byte	0x29
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x2
@@ -13446,7 +13448,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "op\0"
 	.byte	0x3
-	.byte	0x29
+	.byte	0x2a
 	.byte	0x12
 	.long	0x4d57
 	.uleb128 0x2
@@ -13455,7 +13457,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF8
 	.byte	0x3
-	.byte	0x2b
+	.byte	0x2c
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x2
@@ -13464,7 +13466,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF10
 	.byte	0x3
-	.byte	0x2c
+	.byte	0x2d
 	.byte	0x11
 	.long	0x4be4
 	.uleb128 0x3
@@ -13476,7 +13478,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF9
 	.byte	0x3
-	.byte	0x37
+	.byte	0x38
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x3
@@ -13485,7 +13487,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "temp\0"
 	.byte	0x3
-	.byte	0x3a
+	.byte	0x3b
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -13494,7 +13496,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "work\0"
 	.byte	0x3
-	.byte	0x3b
+	.byte	0x3c
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x3
@@ -13503,7 +13505,7 @@ Initialize_Shift:
 	.uleb128 0x26
 	.ascii "t_count\0"
 	.byte	0x3
-	.byte	0x3c
+	.byte	0x3d
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x3
@@ -13512,7 +13514,7 @@ Initialize_Shift:
 	.uleb128 0x27
 	.secrel32	.LASF11
 	.byte	0x3
-	.byte	0x3e
+	.byte	0x3f
 	.byte	0x15
 	.long	0x4be4
 	.uleb128 0x2
@@ -13523,50 +13525,50 @@ Initialize_Shift:
 	.uleb128 0x28
 	.ascii "_ZERO_MEMORY_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x19c
-	.byte	0x16
-	.quad	.LFB4317
-	.quad	.LFE4317-.LFB4317
+	.byte	0x7e
+	.byte	0x1a
+	.quad	.LFB4328
+	.quad	.LFE4328-.LFB4328
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x569f
-	.uleb128 0x1c
+	.long	0x569b
+	.uleb128 0x24
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x19c
-	.byte	0x3d
+	.byte	0x7e
+	.byte	0x41
 	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x22
+	.uleb128 0x25
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x19c
-	.byte	0x4c
+	.byte	0x7e
+	.byte	0x50
 	.long	0x4be4
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x29
-	.long	0x5892
+	.long	0x5880
 	.quad	.LBB16
 	.quad	.LBE16-.LBB16
 	.byte	0x1
-	.word	0x1a4
-	.byte	0x5
+	.byte	0x86
+	.byte	0x9
 	.uleb128 0x2a
-	.long	0x58bc
+	.long	0x58aa
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2a
-	.long	0x58ae
+	.long	0x589c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x2a
-	.long	0x58a0
+	.long	0x588e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -13575,50 +13577,50 @@ Initialize_Shift:
 	.uleb128 0x28
 	.ascii "_ZERO_MEMORY_UNIT\0"
 	.byte	0x1
-	.word	0x191
-	.byte	0x16
-	.quad	.LFB4316
-	.quad	.LFE4316-.LFB4316
+	.byte	0x73
+	.byte	0x1a
+	.quad	.LFB4327
+	.quad	.LFE4327-.LFB4327
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x571d
-	.uleb128 0x1c
+	.long	0x5715
+	.uleb128 0x24
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x191
-	.byte	0x35
+	.byte	0x73
+	.byte	0x39
 	.long	0x4d57
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x22
+	.uleb128 0x25
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x191
-	.byte	0x44
+	.byte	0x73
+	.byte	0x48
 	.long	0x4be4
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x29
-	.long	0x5892
+	.long	0x5880
 	.quad	.LBB14
 	.quad	.LBE14-.LBB14
 	.byte	0x1
-	.word	0x196
-	.byte	0x5
+	.byte	0x78
+	.byte	0x9
 	.uleb128 0x2a
-	.long	0x58bc
+	.long	0x58aa
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2a
-	.long	0x58ae
+	.long	0x589c
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x2a
-	.long	0x58a0
+	.long	0x588e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -13627,59 +13629,59 @@ Initialize_Shift:
 	.uleb128 0x28
 	.ascii "_COPY_MEMORY_UNIT_DIV\0"
 	.byte	0x1
-	.word	0x16a
-	.byte	0x16
-	.quad	.LFB4311
-	.quad	.LFE4311-.LFB4311
+	.byte	0x4c
+	.byte	0x1a
+	.quad	.LFB4322
+	.quad	.LFE4322-.LFB4322
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x57ad
-	.uleb128 0x1c
+	.long	0x57a0
+	.uleb128 0x24
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x16a
-	.byte	0x3d
+	.byte	0x4c
+	.byte	0x41
 	.long	0x52bc
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x1c
+	.uleb128 0x24
 	.ascii "s\0"
 	.byte	0x1
-	.word	0x16a
-	.byte	0x57
-	.long	0x57ad
+	.byte	0x4c
+	.byte	0x5b
+	.long	0x57a0
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
-	.uleb128 0x22
+	.uleb128 0x25
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x16a
-	.byte	0x66
+	.byte	0x4c
+	.byte	0x6a
 	.long	0x4be4
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x29
-	.long	0x5845
+	.long	0x5833
 	.quad	.LBB12
 	.quad	.LBE12-.LBB12
 	.byte	0x1
-	.word	0x172
-	.byte	0x5
+	.byte	0x54
+	.byte	0x9
 	.uleb128 0x2a
-	.long	0x587c
+	.long	0x586a
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2a
-	.long	0x586c
+	.long	0x585a
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x2a
-	.long	0x5857
+	.long	0x5845
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -13691,59 +13693,59 @@ Initialize_Shift:
 	.uleb128 0x28
 	.ascii "_COPY_MEMORY_UNIT\0"
 	.byte	0x1
-	.word	0x15f
-	.byte	0x16
-	.quad	.LFB4310
-	.quad	.LFE4310-.LFB4310
+	.byte	0x41
+	.byte	0x1a
+	.quad	.LFB4321
+	.quad	.LFE4321-.LFB4321
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x583f
-	.uleb128 0x1c
+	.long	0x582d
+	.uleb128 0x24
 	.ascii "d\0"
 	.byte	0x1
-	.word	0x15f
-	.byte	0x35
+	.byte	0x41
+	.byte	0x39
 	.long	0x4d57
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
-	.uleb128 0x1c
+	.uleb128 0x24
 	.ascii "s\0"
 	.byte	0x1
-	.word	0x15f
-	.byte	0x4b
-	.long	0x583f
+	.byte	0x41
+	.byte	0x4f
+	.long	0x582d
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
-	.uleb128 0x22
+	.uleb128 0x25
 	.secrel32	.LASF11
 	.byte	0x1
-	.word	0x15f
-	.byte	0x5a
+	.byte	0x41
+	.byte	0x5e
 	.long	0x4be4
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
 	.uleb128 0x29
-	.long	0x5845
+	.long	0x5833
 	.quad	.LBB10
 	.quad	.LBE10-.LBB10
 	.byte	0x1
-	.word	0x164
-	.byte	0x5
+	.byte	0x46
+	.byte	0x9
 	.uleb128 0x2a
-	.long	0x587c
+	.long	0x586a
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2a
-	.long	0x586c
+	.long	0x585a
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x2a
-	.long	0x5857
+	.long	0x5845
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -13758,7 +13760,7 @@ Initialize_Shift:
 	.word	0x3b8
 	.byte	0x6
 	.byte	0x3
-	.long	0x588c
+	.long	0x587a
 	.uleb128 0x2c
 	.ascii "Destination\0"
 	.byte	0x2
@@ -13770,7 +13772,7 @@ Initialize_Shift:
 	.byte	0x2
 	.word	0x3b8
 	.byte	0x49
-	.long	0x588c
+	.long	0x587a
 	.uleb128 0x2c
 	.ascii "Count\0"
 	.byte	0x2
@@ -14416,7 +14418,7 @@ Initialize_Shift:
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
-	.uleb128 0x5
+	.uleb128 0xb
 	.uleb128 0x39
 	.uleb128 0xb
 	.uleb128 0x27
@@ -14445,7 +14447,7 @@ Initialize_Shift:
 	.uleb128 0x58
 	.uleb128 0xb
 	.uleb128 0x59
-	.uleb128 0x5
+	.uleb128 0xb
 	.uleb128 0x57
 	.uleb128 0xb
 	.byte	0

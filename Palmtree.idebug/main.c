@@ -11,6 +11,7 @@
   * Created on 2018/12/22, 7:12
   */
 
+#include <locale.h>
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
@@ -47,17 +48,19 @@ static void pause_console(void)
  */
 int main(int argc, char** argv)
 {
+    setlocale(LC_ALL, "Japanese");
+
     printf("***start\n");
 
     char dll_file_path[MAX_PATH + 1];
 #ifdef _MSC_VER
     char dll_file_sub_path[MAX_PATH + 1];
-    if (GetEnvironmentVariable("DLL_FILE_PATH", dll_file_sub_path, MAX_PATH) == 0)
+    if (GetEnvironmentVariableA("DLL_FILE_PATH", dll_file_sub_path, MAX_PATH) == 0)
         strcpy_s(dll_file_path, MAX_PATH, "");
     else
     {
         char module_path[MAX_PATH + 1];
-        GetModuleFileName(NULL, module_path, MAX_PATH + 1);
+        GetModuleFileNameA(NULL, module_path, MAX_PATH + 1);
         *strrchr(module_path, '\\') = '\0';
         strcpy_s(dll_file_path, MAX_PATH, module_path);
         strcat_s(dll_file_path, MAX_PATH, "\\");
@@ -96,7 +99,7 @@ int main(int argc, char** argv)
 
     printf("***dll file path: %s\n", dll_file_path);
 
-    HANDLE hLib = LoadLibrary(dll_file_path);
+    HANDLE hLib = LoadLibraryA(dll_file_path);
     if (hLib == NULL)
     {
         DWORD err = GetLastError();

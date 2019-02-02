@@ -22,7 +22,8 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
+__6B0481B0_pmc_inline_func@h DB 01H
 __1C66ECB2_pmc_debug@h DB 01H
 __6BD5A6F4_internaltest_op_multiply@c DB 01H
 msvcjmc	ENDS
@@ -48,19 +49,19 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95728 DB	'a', 00H, 'c', 00H, 't', 00H, 'u', 00H, 'a', 00H, 'l', 00H
+$SG95730 DB	'a', 00H, 'c', 00H, 't', 00H, 'u', 00H, 'a', 00H, 'l', 00H
 	DB	'_', 00H, 'w', 00H, '_', 00H, 'b', 00H, 'u', 00H, 'f', 00H, 'n'
 	DB	'0', 085H, 'Q', 0b9H, '[L04x', 0dH, 'dW0f0D0', 08bH, '0', 00H, 00H
 	ORG $+2
-$SG95729 DB	'M', 00H, 'u', 00H, 'l', 00H, 't', 00H, 'i', 00H, 'p', 00H
+$SG95731 DB	'M', 00H, 'u', 00H, 'l', 00H, 't', 00H, 'i', 00H, 'p', 00H
 	DB	'l', 00H, 'y', 00H, '_', 00H, 'X', 00H, '_', 00H, 'X', 00H, '_'
 	DB	00H, 'I', 00H, 'm', 00H, 'p', 00H, ' ', 00H, '(', 00H, '%', 00H
 	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG95730 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+$SG95732 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
 	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
 	ORG $+2
-$SG95731 DB	'M', 00H, 'u', 00H, 'l', 00H, 't', 00H, 'i', 00H, 'p', 00H
+$SG95733 DB	'M', 00H, 'u', 00H, 'l', 00H, 't', 00H, 'i', 00H, 'p', 00H
 	DB	'l', 00H, 'y', 00H, '_', 00H, 'X', 00H, '_', 00H, 'X', 00H, '_'
 	DB	00H, 'I', 00H, 'm', 00H, 'p', 00H, ' ', 00H, '(', 00H, '%', 00H
 	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
@@ -190,7 +191,7 @@ _desired_w$ = 36					; size = 4
 _desired_w_count$ = 40					; size = 4
 _INTERNALTEST_Multiply_X_X_Imp PROC
 
-; 40   : {
+; 41   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -204,9 +205,9 @@ _INTERNALTEST_Multiply_X_X_Imp PROC
 	mov	ecx, OFFSET __6BD5A6F4_internaltest_op_multiply@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 41   :     __UNIT_TYPE u_buf_words;
-; 42   :     __UNIT_TYPE u_buf_code;
-; 43   :     __UNIT_TYPE* u_buf = AllocateBlock(u_count * 8, &u_buf_words, &u_buf_code);
+; 42   :     __UNIT_TYPE u_buf_words;
+; 43   :     __UNIT_TYPE u_buf_code;
+; 44   :     __UNIT_TYPE* u_buf = AllocateBlock(u_count * 8, &u_buf_words, &u_buf_code);
 
 	lea	eax, DWORD PTR _u_buf_code$[ebp]
 	push	eax
@@ -219,7 +220,7 @@ _INTERNALTEST_Multiply_X_X_Imp PROC
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _u_buf$[ebp], eax
 
-; 44   :     _COPY_MEMORY_BYTE(u_buf, u, u_count);
+; 45   :     _COPY_MEMORY_BYTE(u_buf, u, u_count);
 
 	mov	eax, DWORD PTR _u_count$[ebp]
 	push	eax
@@ -230,10 +231,10 @@ _INTERNALTEST_Multiply_X_X_Imp PROC
 	call	__COPY_MEMORY_BYTE
 	add	esp, 12					; 0000000cH
 
-; 45   : 
-; 46   :     __UNIT_TYPE v_buf_words;
-; 47   :     __UNIT_TYPE v_buf_code;
-; 48   :     __UNIT_TYPE* v_buf = AllocateBlock(v_count * 8, &v_buf_words, &v_buf_code);
+; 46   : 
+; 47   :     __UNIT_TYPE v_buf_words;
+; 48   :     __UNIT_TYPE v_buf_code;
+; 49   :     __UNIT_TYPE* v_buf = AllocateBlock(v_count * 8, &v_buf_words, &v_buf_code);
 
 	lea	eax, DWORD PTR _v_buf_code$[ebp]
 	push	eax
@@ -246,7 +247,7 @@ _INTERNALTEST_Multiply_X_X_Imp PROC
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _v_buf$[ebp], eax
 
-; 49   :     _COPY_MEMORY_BYTE(v_buf, v, v_count);
+; 50   :     _COPY_MEMORY_BYTE(v_buf, v, v_count);
 
 	mov	eax, DWORD PTR _v_count$[ebp]
 	push	eax
@@ -257,10 +258,10 @@ _INTERNALTEST_Multiply_X_X_Imp PROC
 	call	__COPY_MEMORY_BYTE
 	add	esp, 12					; 0000000cH
 
-; 50   : 
-; 51   :     __UNIT_TYPE desired_w_buf_words;
-; 52   :     __UNIT_TYPE desired_w_buf_code;
-; 53   :     __UNIT_TYPE* desired_w_buf = AllocateBlock(desired_w_count * 8, &desired_w_buf_words, &desired_w_buf_code);
+; 51   : 
+; 52   :     __UNIT_TYPE desired_w_buf_words;
+; 53   :     __UNIT_TYPE desired_w_buf_code;
+; 54   :     __UNIT_TYPE* desired_w_buf = AllocateBlock(desired_w_count * 8, &desired_w_buf_words, &desired_w_buf_code);
 
 	lea	eax, DWORD PTR _desired_w_buf_code$[ebp]
 	push	eax
@@ -273,7 +274,7 @@ _INTERNALTEST_Multiply_X_X_Imp PROC
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _desired_w_buf$[ebp], eax
 
-; 54   :     _COPY_MEMORY_BYTE(desired_w_buf, desired_w, desired_w_count);
+; 55   :     _COPY_MEMORY_BYTE(desired_w_buf, desired_w, desired_w_count);
 
 	mov	eax, DWORD PTR _desired_w_count$[ebp]
 	push	eax
@@ -284,10 +285,10 @@ _INTERNALTEST_Multiply_X_X_Imp PROC
 	call	__COPY_MEMORY_BYTE
 	add	esp, 12					; 0000000cH
 
-; 55   : 
-; 56   :     __UNIT_TYPE actual_w_buf_words;
-; 57   :     __UNIT_TYPE actual_w_buf_code;
-; 58   :     __UNIT_TYPE* actual_w_buf = AllocateBlock((_DIVIDE_CEILING_SIZE(u_count, __UNIT_TYPE_BYTE_COUNT) + _DIVIDE_CEILING_SIZE(v_count, __UNIT_TYPE_BYTE_COUNT)) * __UNIT_TYPE_BIT_COUNT, &actual_w_buf_words, &actual_w_buf_code);
+; 56   : 
+; 57   :     __UNIT_TYPE actual_w_buf_words;
+; 58   :     __UNIT_TYPE actual_w_buf_code;
+; 59   :     __UNIT_TYPE* actual_w_buf = AllocateBlock((_DIVIDE_CEILING_SIZE(u_count, __UNIT_TYPE_BYTE_COUNT) + _DIVIDE_CEILING_SIZE(v_count, __UNIT_TYPE_BYTE_COUNT)) * __UNIT_TYPE_BIT_COUNT, &actual_w_buf_words, &actual_w_buf_code);
 
 	lea	eax, DWORD PTR _actual_w_buf_code$[ebp]
 	push	eax
@@ -311,8 +312,8 @@ _INTERNALTEST_Multiply_X_X_Imp PROC
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _actual_w_buf$[ebp], eax
 
-; 59   : 
-; 60   :     Multiply_X_X_Imp(u_buf, u_buf_words, v_buf, v_buf_words, actual_w_buf);
+; 60   : 
+; 61   :     Multiply_X_X_Imp(u_buf, u_buf_words, v_buf, v_buf_words, actual_w_buf);
 
 	mov	ecx, DWORD PTR _actual_w_buf$[ebp]
 	push	ecx
@@ -327,20 +328,20 @@ _INTERNALTEST_Multiply_X_X_Imp PROC
 	call	_Multiply_X_X_Imp
 	add	esp, 20					; 00000014H
 
-; 61   : 
-; 62   :     size_t actual_w_count = actual_w_buf_words * __UNIT_TYPE_BYTE_COUNT;
+; 62   : 
+; 63   :     size_t actual_w_count = actual_w_buf_words * __UNIT_TYPE_BYTE_COUNT;
 
 	mov	eax, DWORD PTR _actual_w_buf_words$[ebp]
 	shl	eax, 2
 	mov	DWORD PTR _actual_w_count$[ebp], eax
 
-; 63   :     unsigned char* actual_w = (unsigned char*)actual_w_buf;
+; 64   :     unsigned char* actual_w = (unsigned char*)actual_w_buf;
 
 	mov	ecx, DWORD PTR _actual_w_buf$[ebp]
 	mov	DWORD PTR _actual_w$[ebp], ecx
 $LN2@INTERNALTE:
 
-; 64   :     while (actual_w_count > 0 && actual_w[actual_w_count - 1] == 0)
+; 65   :     while (actual_w_count > 0 && actual_w[actual_w_count - 1] == 0)
 
 	cmp	DWORD PTR _actual_w_count$[ebp], 0
 	jbe	SHORT $LN3@INTERNALTE
@@ -350,7 +351,7 @@ $LN2@INTERNALTE:
 	test	eax, eax
 	jne	SHORT $LN3@INTERNALTE
 
-; 65   :         --actual_w_count;
+; 66   :         --actual_w_count;
 
 	mov	ecx, DWORD PTR _actual_w_count$[ebp]
 	sub	ecx, 1
@@ -358,18 +359,18 @@ $LN2@INTERNALTE:
 	jmp	SHORT $LN2@INTERNALTE
 $LN3@INTERNALTE:
 
-; 66   :     if (actual_w_count == 0)
+; 67   :     if (actual_w_count == 0)
 
 	cmp	DWORD PTR _actual_w_count$[ebp], 0
 	jne	SHORT $LN4@INTERNALTE
 
-; 67   :         actual_w_count = 1;
+; 68   :         actual_w_count = 1;
 
 	mov	DWORD PTR _actual_w_count$[ebp], 1
 $LN4@INTERNALTE:
 
-; 68   : 
-; 69   :     TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 1), CheckBlockLight(actual_w_buf, actual_w_buf_code) == PMC_STATUS_OK, L"actual_w_bufの内容が破損している");
+; 69   : 
+; 70   :     TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 1), CheckBlockLight(actual_w_buf, actual_w_buf_code) == PMC_STATUS_OK, L"actual_w_bufの内容が破損している");
 
 	mov	edx, DWORD PTR _actual_w_buf_code$[ebp]
 	push	edx
@@ -384,13 +385,13 @@ $LN4@INTERNALTE:
 $LN6@INTERNALTE:
 	mov	DWORD PTR tv151[ebp], 0
 $LN7@INTERNALTE:
-	push	OFFSET $SG95728
+	push	OFFSET $SG95730
 	mov	ecx, DWORD PTR tv151[ebp]
 	push	ecx
 	push	1
 	mov	edx, DWORD PTR _no$[ebp]
 	push	edx
-	push	OFFSET $SG95729
+	push	OFFSET $SG95731
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -399,7 +400,7 @@ $LN7@INTERNALTE:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 70   :     TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 2), _EQUALS_MEMORY(actual_w, actual_w_count, desired_w, desired_w_count) == 0, L"データの内容が一致しない");
+; 71   :     TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 2), _EQUALS_MEMORY(actual_w, actual_w_count, desired_w, desired_w_count) == 0, L"データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_w_count$[ebp]
 	push	ecx
@@ -418,13 +419,13 @@ $LN7@INTERNALTE:
 $LN8@INTERNALTE:
 	mov	DWORD PTR tv166[ebp], 0
 $LN9@INTERNALTE:
-	push	OFFSET $SG95730
+	push	OFFSET $SG95732
 	mov	edx, DWORD PTR tv166[ebp]
 	push	edx
 	push	2
 	mov	eax, DWORD PTR _no$[ebp]
 	push	eax
-	push	OFFSET $SG95731
+	push	OFFSET $SG95733
 	call	_FormatTestLabel
 	add	esp, 12					; 0000000cH
 	push	eax
@@ -433,8 +434,8 @@ $LN9@INTERNALTE:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 71   : 
-; 72   :     DeallocateBlock(actual_w_buf, actual_w_buf_words);
+; 72   : 
+; 73   :     DeallocateBlock(actual_w_buf, actual_w_buf_words);
 
 	mov	edx, DWORD PTR _actual_w_buf_words$[ebp]
 	push	edx
@@ -443,7 +444,7 @@ $LN9@INTERNALTE:
 	call	_DeallocateBlock
 	add	esp, 8
 
-; 73   :     DeallocateBlock(desired_w_buf, desired_w_buf_words);
+; 74   :     DeallocateBlock(desired_w_buf, desired_w_buf_words);
 
 	mov	ecx, DWORD PTR _desired_w_buf_words$[ebp]
 	push	ecx
@@ -452,7 +453,7 @@ $LN9@INTERNALTE:
 	call	_DeallocateBlock
 	add	esp, 8
 
-; 74   :     DeallocateBlock(v_buf, v_buf_words);
+; 75   :     DeallocateBlock(v_buf, v_buf_words);
 
 	mov	eax, DWORD PTR _v_buf_words$[ebp]
 	push	eax
@@ -461,7 +462,7 @@ $LN9@INTERNALTE:
 	call	_DeallocateBlock
 	add	esp, 8
 
-; 75   :     DeallocateBlock(u_buf, u_buf_words);
+; 76   :     DeallocateBlock(u_buf, u_buf_words);
 
 	mov	edx, DWORD PTR _u_buf_words$[ebp]
 	push	edx
@@ -470,7 +471,7 @@ $LN9@INTERNALTE:
 	call	_DeallocateBlock
 	add	esp, 8
 
-; 76   : }
+; 77   : }
 
 	push	edx
 	mov	ecx, ebp
@@ -649,20 +650,20 @@ $LN10@INTERNALTE:
 _INTERNALTEST_Multiply_X_X_Imp ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_SIZE PROC
 
-; 484  : {
+; 198  :     {
 
 	push	ebp
 	mov	ebp, esp
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 485  :     return ((u + v - 1) / v);
+; 199  :         return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _v$[ebp]
 	mov	ecx, DWORD PTR _u$[ebp]
@@ -670,7 +671,7 @@ __DIVIDE_CEILING_SIZE PROC
 	xor	edx, edx
 	div	DWORD PTR _v$[ebp]
 
-; 486  : }
+; 200  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -679,30 +680,30 @@ __DIVIDE_CEILING_SIZE PROC
 __DIVIDE_CEILING_SIZE ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _d$ = 8							; size = 4
 _s$ = 12						; size = 4
 _count$ = 16						; size = 4
 __COPY_MEMORY_BYTE PROC
 
-; 335  : {
+; 49   :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 	push	edi
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 336  :     __movsb(d, s, count);
+; 50   :         __movsb(d, s, count);
 
 	mov	edi, DWORD PTR _d$[ebp]
 	mov	esi, DWORD PTR _s$[ebp]
 	mov	ecx, DWORD PTR _count$[ebp]
 	rep movsb
 
-; 337  : }
+; 51   :     }
 
 	pop	edi
 	pop	esi

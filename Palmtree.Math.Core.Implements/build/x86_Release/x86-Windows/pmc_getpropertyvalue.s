@@ -4,7 +4,7 @@
 	.globl	_PMC_GetPropertyValue_X_I@12
 	.def	_PMC_GetPropertyValue_X_I@12;	.scl	2;	.type	32;	.endef
 _PMC_GetPropertyValue_X_I@12:
-LFB5490:
+LFB94:
 	.cfi_startproc
 	pushl	%edi
 	.cfi_def_cfa_offset 8
@@ -132,16 +132,16 @@ L3:
 	.cfi_def_cfa_offset 4
 	ret	$12
 	.cfi_endproc
-LFE5490:
+LFE94:
 	.p2align 4,,15
 	.globl	_Initialize_GetPropertyValue
 	.def	_Initialize_GetPropertyValue;	.scl	2;	.type	32;	.endef
 _Initialize_GetPropertyValue:
-LFB5491:
+LFB95:
 	.cfi_startproc
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-LFE5491:
+LFE95:
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
 	.def	_CheckNumber;	.scl	2;	.type	32;	.endef

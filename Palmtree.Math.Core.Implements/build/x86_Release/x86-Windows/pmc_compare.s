@@ -23,7 +23,7 @@ L5:
 	.cfi_def_cfa_offset 8
 	.cfi_offset 3, -8
 /APP
- # 889 "pmc_internal.h" 1
+ # 603 "pmc_inline_func.h" 1
 	bsrl %edx, %ebx
  # 0 "" 2
 /NO_APP
@@ -81,7 +81,7 @@ LFB5500:
 	testl	%edx, %edx
 	je	L17
 /APP
- # 889 "pmc_internal.h" 1
+ # 603 "pmc_inline_func.h" 1
 	bsrl %edx, %ecx
  # 0 "" 2
 /NO_APP
@@ -104,7 +104,7 @@ L15:
 L16:
 	.cfi_restore_state
 /APP
- # 889 "pmc_internal.h" 1
+ # 603 "pmc_inline_func.h" 1
 	bsrl %ecx, %ebx
  # 0 "" 2
 /NO_APP

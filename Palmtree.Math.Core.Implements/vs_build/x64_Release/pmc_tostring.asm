@@ -278,17 +278,17 @@ $unwind$Initialize_ToString DD 010401H
 xdata	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 ;	COMDAT ToStringX
 _TEXT	SEGMENT
@@ -300,27 +300,27 @@ format_option$ = 80
 using_upper_letter$ = 88
 ToStringX PROC						; COMDAT
 
-; 479  : {
+; 480  : {
 
 	mov	QWORD PTR [rsp+16], rbp
 	mov	QWORD PTR [rsp+24], rsi
 	push	rdi
 	sub	rsp, 32					; 00000020H
 
-; 480  :     if (x->IS_ZERO)
+; 481  :     if (x->IS_ZERO)
 
 	test	BYTE PTR [rcx+40], 2
 	mov	r10, rdx
 	mov	r11, rcx
 	je	SHORT $LN4@ToStringX
 
-; 481  :     {
-; 482  :         // x が 0 である場合
-; 483  :         // 最低で 1 桁、最高で format_option->MinimumWidth 桁だけ '0' を出力する。
-; 484  : 
-; 485  :         if (width < 1)
-; 486  :             width = 1;
-; 487  :         if (buffer_size < width + 1)
+; 482  :     {
+; 483  :         // x が 0 である場合
+; 484  :         // 最低で 1 桁、最高で format_option->MinimumWidth 桁だけ '0' を出力する。
+; 485  : 
+; 486  :         if (width < 1)
+; 487  :             width = 1;
+; 488  :         if (buffer_size < width + 1)
 
 	mov	edi, 1
 	cmp	r9d, edi
@@ -329,39 +329,39 @@ ToStringX PROC						; COMDAT
 	cmp	r8, rcx
 	jb	SHORT $LN23@ToStringX
 
-; 488  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
-; 489  :         _FILL_MEMORY_16(buffer, L'0', width);
+; 489  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 490  :         _FILL_MEMORY_16(buffer, L'0', width);
 
 	mov	edx, edi
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 436  :     __stosw(d, x, count);
+; 150  :         __stosw(d, x, count);
 
 	mov	eax, 48					; 00000030H
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 490  :         buffer[width] = L'\0';
+; 491  :         buffer[width] = L'\0';
 
 	xor	esi, esi
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 436  :     __stosw(d, x, count);
+; 150  :         __stosw(d, x, count);
 
 	mov	ecx, edx
 	mov	rdi, r10
 	rep stosw
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 490  :         buffer[width] = L'\0';
+; 491  :         buffer[width] = L'\0';
 
 	mov	WORD PTR [r10+rdx*2], si
 
-; 527  :     }
-; 528  :     return (PMC_STATUS_OK);
+; 528  :     }
+; 529  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 529  : }
+; 530  : }
 
 	mov	rbp, QWORD PTR [rsp+56]
 	mov	rsi, QWORD PTR [rsp+64]
@@ -369,34 +369,34 @@ ToStringX PROC						; COMDAT
 	pop	rdi
 	ret	0
 $LN4@ToStringX:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 480  :     return ((u + v - 1) / v);
+; 194  :         return ((u + v - 1) / v);
 
 	mov	rbp, QWORD PTR [rcx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 508  :         if (buffer_size < total_length + 1)
+; 509  :         if (buffer_size < total_length + 1)
 
 	xor	esi, esi
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 480  :     return ((u + v - 1) / v);
+; 194  :         return ((u + v - 1) / v);
 
 	add	rbp, 3
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 495  :         __UNIT_TYPE output_len = _DIVIDE_CEILING_UNIT(x->UNIT_BIT_COUNT, 4);
+; 496  :         __UNIT_TYPE output_len = _DIVIDE_CEILING_UNIT(x->UNIT_BIT_COUNT, 4);
 
 	mov	eax, r9d
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 480  :     return ((u + v - 1) / v);
+; 194  :         return ((u + v - 1) / v);
 
 	shr	rbp, 2
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 508  :         if (buffer_size < total_length + 1)
+; 509  :         if (buffer_size < total_length + 1)
 
 	mov	edx, r9d
 	sub	rdx, rbp
@@ -408,11 +408,11 @@ $LN4@ToStringX:
 	jae	SHORT $LN10@ToStringX
 $LN23@ToStringX:
 
-; 509  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 510  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
 
 	mov	eax, -4
 
-; 529  : }
+; 530  : }
 
 	mov	rbp, QWORD PTR [rsp+56]
 	mov	rsi, QWORD PTR [rsp+64]
@@ -422,14 +422,14 @@ $LN23@ToStringX:
 $LN10@ToStringX:
 	mov	QWORD PTR [rsp+48], rbx
 
-; 510  :         __UNIT_TYPE filling_digit_count = filling_digit_len;
-; 511  :         if (filling_digit_len > 0)
+; 511  :         __UNIT_TYPE filling_digit_count = filling_digit_len;
+; 512  :         if (filling_digit_len > 0)
 
 	test	rdx, rdx
 	je	SHORT $LN17@ToStringX
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 436  :     __stosw(d, x, count);
+; 150  :         __stosw(d, x, count);
 
 	mov	eax, 48					; 00000030H
 	mov	rdi, r10
@@ -438,23 +438,23 @@ $LN10@ToStringX:
 $LN17@ToStringX:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 513  :         __UNIT_TYPE* s_ptr = x->BLOCK + x->UNIT_WORD_COUNT - 1;
+; 514  :         __UNIT_TYPE* s_ptr = x->BLOCK + x->UNIT_WORD_COUNT - 1;
 
 	mov	rdi, QWORD PTR [r11+8]
 
-; 514  :         wchar_t* d_ptr = buffer + filling_digit_len;
+; 515  :         wchar_t* d_ptr = buffer + filling_digit_len;
 
 	lea	r9, QWORD PTR [r10+rdx*2]
 	mov	rax, QWORD PTR [r11+56]
 
-; 515  :         wchar_t* digit_table = using_upper_letter ? hexadecimal_upper_digits : hexadecimal_lower_digits;
+; 516  :         wchar_t* digit_table = using_upper_letter ? hexadecimal_upper_digits : hexadecimal_lower_digits;
 
 	lea	r8, OFFSET FLAT:hexadecimal_lower_digits
 	cmp	DWORD PTR using_upper_letter$[rsp], esi
 	lea	rbx, QWORD PTR [rax+rdi*8]
 
-; 516  :         __UNIT_TYPE w_count = x->UNIT_WORD_COUNT;
-; 517  :         d_ptr = ToStringX_1WORD(*s_ptr, (int)(x->UNIT_WORD_COUNT * (__UNIT_TYPE_BIT_COUNT / 4) - output_len), digit_table, d_ptr);
+; 517  :         __UNIT_TYPE w_count = x->UNIT_WORD_COUNT;
+; 518  :         d_ptr = ToStringX_1WORD(*s_ptr, (int)(x->UNIT_WORD_COUNT * (__UNIT_TYPE_BIT_COUNT / 4) - output_len), digit_table, d_ptr);
 
 	mov	rcx, QWORD PTR [rbx-8]
 	lea	rax, OFFSET FLAT:hexadecimal_upper_digits
@@ -464,44 +464,44 @@ $LN17@ToStringX:
 	sub	edx, ebp
 	call	ToStringX_1WORD
 
-; 518  :         --s_ptr;
+; 519  :         --s_ptr;
 
 	sub	rbx, 16
 
-; 519  :         --w_count;
+; 520  :         --w_count;
 
 	sub	rdi, 1
 
-; 520  :         while (w_count > 0)
+; 521  :         while (w_count > 0)
 
 	je	SHORT $LN3@ToStringX
 	npad	2
 $LL2@ToStringX:
 
-; 521  :         {
-; 522  :             d_ptr = ToStringX_1WORD(*s_ptr, 0, digit_table, d_ptr);
+; 522  :         {
+; 523  :             d_ptr = ToStringX_1WORD(*s_ptr, 0, digit_table, d_ptr);
 
 	mov	rcx, QWORD PTR [rbx]
 	mov	r9, rax
 	xor	edx, edx
 	call	ToStringX_1WORD
 
-; 523  :             --s_ptr;
+; 524  :             --s_ptr;
 
 	lea	rbx, QWORD PTR [rbx-8]
 
-; 524  :             --w_count;
+; 525  :             --w_count;
 
 	sub	rdi, 1
 	jne	SHORT $LL2@ToStringX
 $LN3@ToStringX:
 
-; 525  :         }
-; 526  :         *d_ptr = '\0';
+; 526  :         }
+; 527  :         *d_ptr = '\0';
 
 	mov	rbx, QWORD PTR [rsp+48]
 
-; 529  : }
+; 530  : }
 
 	mov	rbp, QWORD PTR [rsp+56]
 	mov	WORD PTR [rax], si
@@ -514,69 +514,69 @@ ToStringX ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 ;	COMDAT ToStringX_1WORD
 _TEXT	SEGMENT
@@ -586,605 +586,605 @@ digit_table$ = 24
 ptr$ = 32
 ToStringX_1WORD PROC					; COMDAT
 
-; 411  : {
+; 412  : {
 
 	mov	r10, rcx
 
-; 412  :     if (sizeof(__UNIT_TYPE) > sizeof(_UINT64_T))
-; 413  :     {
-; 414  :         // 64bit を超える __UNIT_TYPE には未対応
-; 415  :         // 対応するには以降のコーディングを見直す必要がある
-; 416  :         return (NULL);
-; 417  :     }
-; 418  :     int count = __UNIT_TYPE_BIT_COUNT / 4;
+; 413  :     if (sizeof(__UNIT_TYPE) > sizeof(_UINT64_T))
+; 414  :     {
+; 415  :         // 64bit を超える __UNIT_TYPE には未対応
+; 416  :         // 対応するには以降のコーディングを見直す必要がある
+; 417  :         return (NULL);
+; 418  :     }
+; 419  :     int count = __UNIT_TYPE_BIT_COUNT / 4;
 
 	mov	r11d, 16
 
-; 419  :     if (skip_digit_len > 0)
+; 420  :     if (skip_digit_len > 0)
 
 	test	edx, edx
 	jle	SHORT $LN3@ToStringX_
 
-; 420  :     {
-; 421  :         x = _ROTATE_L_UNIT(x, 4 * skip_digit_len);
+; 421  :     {
+; 422  :         x = _ROTATE_L_UNIT(x, 4 * skip_digit_len);
 
 	lea	ecx, DWORD PTR [rdx*4]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, cl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 422  :         count -= skip_digit_len;
+; 423  :         count -= skip_digit_len;
 
 	sub	r11d, edx
 $LN3@ToStringX_:
 
-; 423  :     }
-; 424  :     if (count & 0x10)
+; 424  :     }
+; 425  :     if (count & 0x10)
 
 	test	r11b, 16
 	je	$LN4@ToStringX_
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 426  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 427  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	mov	rax, r10
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 426  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 427  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	and	eax, 15
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9], ax
 
-; 427  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 428  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 427  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 428  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+2], ax
 
-; 428  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
+; 429  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 428  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
+; 429  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+4], ax
 
-; 429  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
+; 430  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 429  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
+; 430  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+6], ax
 
-; 430  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
+; 431  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 430  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
+; 431  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+8], ax
 
-; 431  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
+; 432  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 431  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
+; 432  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+10], ax
 
-; 432  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
+; 433  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 432  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
+; 433  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+12], ax
 
-; 433  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
+; 434  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 433  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
+; 434  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+14], ax
 
-; 434  :         x = _ROTATE_L_UNIT(x, 4); ptr[8] = digit_table[x & 0x0f];
+; 435  :         x = _ROTATE_L_UNIT(x, 4); ptr[8] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 434  :         x = _ROTATE_L_UNIT(x, 4); ptr[8] = digit_table[x & 0x0f];
+; 435  :         x = _ROTATE_L_UNIT(x, 4); ptr[8] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+16], ax
 
-; 435  :         x = _ROTATE_L_UNIT(x, 4); ptr[9] = digit_table[x & 0x0f];
+; 436  :         x = _ROTATE_L_UNIT(x, 4); ptr[9] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 435  :         x = _ROTATE_L_UNIT(x, 4); ptr[9] = digit_table[x & 0x0f];
+; 436  :         x = _ROTATE_L_UNIT(x, 4); ptr[9] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+18], ax
 
-; 436  :         x = _ROTATE_L_UNIT(x, 4); ptr[10] = digit_table[x & 0x0f];
+; 437  :         x = _ROTATE_L_UNIT(x, 4); ptr[10] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 436  :         x = _ROTATE_L_UNIT(x, 4); ptr[10] = digit_table[x & 0x0f];
+; 437  :         x = _ROTATE_L_UNIT(x, 4); ptr[10] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+20], ax
 
-; 437  :         x = _ROTATE_L_UNIT(x, 4); ptr[11] = digit_table[x & 0x0f];
+; 438  :         x = _ROTATE_L_UNIT(x, 4); ptr[11] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 437  :         x = _ROTATE_L_UNIT(x, 4); ptr[11] = digit_table[x & 0x0f];
+; 438  :         x = _ROTATE_L_UNIT(x, 4); ptr[11] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+22], ax
 
-; 438  :         x = _ROTATE_L_UNIT(x, 4); ptr[12] = digit_table[x & 0x0f];
+; 439  :         x = _ROTATE_L_UNIT(x, 4); ptr[12] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 438  :         x = _ROTATE_L_UNIT(x, 4); ptr[12] = digit_table[x & 0x0f];
+; 439  :         x = _ROTATE_L_UNIT(x, 4); ptr[12] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+24], ax
 
-; 439  :         x = _ROTATE_L_UNIT(x, 4); ptr[13] = digit_table[x & 0x0f];
+; 440  :         x = _ROTATE_L_UNIT(x, 4); ptr[13] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 439  :         x = _ROTATE_L_UNIT(x, 4); ptr[13] = digit_table[x & 0x0f];
+; 440  :         x = _ROTATE_L_UNIT(x, 4); ptr[13] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+26], ax
 
-; 440  :         x = _ROTATE_L_UNIT(x, 4); ptr[14] = digit_table[x & 0x0f];
+; 441  :         x = _ROTATE_L_UNIT(x, 4); ptr[14] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 440  :         x = _ROTATE_L_UNIT(x, 4); ptr[14] = digit_table[x & 0x0f];
+; 441  :         x = _ROTATE_L_UNIT(x, 4); ptr[14] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+28], ax
 
-; 441  :         x = _ROTATE_L_UNIT(x, 4); ptr[15] = digit_table[x & 0x0f];
+; 442  :         x = _ROTATE_L_UNIT(x, 4); ptr[15] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+30], ax
 
-; 442  :         ptr += 16;
+; 443  :         ptr += 16;
 
 	add	r9, 32					; 00000020H
 $LN4@ToStringX_:
 
-; 443  :     }
-; 444  :     if (count & 0x8)
+; 444  :     }
+; 445  :     if (count & 0x8)
 
 	test	r11b, 8
 	je	$LN5@ToStringX_
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 446  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 447  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	mov	rax, r10
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 446  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 447  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	and	eax, 15
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9], ax
 
-; 447  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 448  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 447  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 448  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+2], ax
 
-; 448  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
+; 449  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 448  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
+; 449  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+4], ax
 
-; 449  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
+; 450  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 449  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
+; 450  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+6], ax
 
-; 450  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
+; 451  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 450  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
+; 451  :         x = _ROTATE_L_UNIT(x, 4); ptr[4] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+8], ax
 
-; 451  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
+; 452  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 451  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
+; 452  :         x = _ROTATE_L_UNIT(x, 4); ptr[5] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+10], ax
 
-; 452  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
+; 453  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 452  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
+; 453  :         x = _ROTATE_L_UNIT(x, 4); ptr[6] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+12], ax
 
-; 453  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
+; 454  :         x = _ROTATE_L_UNIT(x, 4); ptr[7] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+14], ax
 
-; 454  :         ptr+=8;
+; 455  :         ptr+=8;
 
 	add	r9, 16
 $LN5@ToStringX_:
 
-; 455  :     }
-; 456  :     if (count & 0x4)
+; 456  :     }
+; 457  :     if (count & 0x4)
 
 	test	r11b, 4
 	je	SHORT $LN6@ToStringX_
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 458  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 459  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	mov	rax, r10
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 458  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 459  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	and	eax, 15
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9], ax
 
-; 459  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 460  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 459  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 460  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+2], ax
 
-; 460  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
+; 461  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 460  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
+; 461  :         x = _ROTATE_L_UNIT(x, 4); ptr[2] = digit_table[x & 0x0f];
 
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+4], ax
 
-; 461  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
+; 462  :         x = _ROTATE_L_UNIT(x, 4); ptr[3] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+6], ax
 
-; 462  :         ptr += 4;
+; 463  :         ptr += 4;
 
 	add	r9, 8
 $LN6@ToStringX_:
 
-; 463  :     }
-; 464  :     if (count & 0x2)
+; 464  :     }
+; 465  :     if (count & 0x2)
 
 	test	r11b, 2
 	je	SHORT $LN7@ToStringX_
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 466  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 467  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	mov	rax, r10
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 466  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 467  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	and	eax, 15
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9], ax
 
-; 467  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
+; 468  :         x = _ROTATE_L_UNIT(x, 4); ptr[1] = digit_table[x & 0x0f];
 
 	mov	rax, r10
 	and	eax, 15
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [r9+2], ax
 
-; 468  :         ptr += 2;
+; 469  :         ptr += 2;
 
 	add	r9, 4
 $LN7@ToStringX_:
 
-; 469  :     }
-; 470  :     if (count & 0x1)
+; 470  :     }
+; 471  :     if (count & 0x1)
 
 	test	r11b, 1
 	je	SHORT $LN74@ToStringX_
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 771  :     return (_rotl64(x, count));
+; 485  :         return (_rotl64(x, count));
 
 	rol	r10, 4
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 472  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
+; 473  :         x = _ROTATE_L_UNIT(x, 4); ptr[0] = digit_table[x & 0x0f];
 
 	and	r10d, 15
 	movzx	eax, WORD PTR [r8+r10*2]
 	mov	WORD PTR [r9], ax
 
-; 473  :         ptr += 1;
+; 474  :         ptr += 1;
 
 	lea	rax, QWORD PTR [r9+2]
 
-; 476  : }
+; 477  : }
 
 	ret	0
 $LN74@ToStringX_:
 
-; 474  :     }
-; 475  :     return (ptr);
+; 475  :     }
+; 476  :     return (ptr);
 
 	mov	rax, r9
 
-; 476  : }
+; 477  : }
 
 	ret	0
 ToStringX_1WORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 ;	COMDAT ToStringDN
 _TEXT	SEGMENT
@@ -1208,7 +1208,7 @@ width$ = 240
 format_option$ = 248
 ToStringDN PROC						; COMDAT
 
-; 318  : {
+; 319  : {
 
 	mov	QWORD PTR [rsp+16], rbx
 	mov	BYTE PTR [rsp+32], r9b
@@ -1223,22 +1223,22 @@ ToStringDN PROC						; COMDAT
 	lea	rbp, QWORD PTR [rsp-23]
 	sub	rsp, 144				; 00000090H
 
-; 319  :     __UNIT_TYPE_DIV base_value;
-; 320  :     int word_digit_count;
-; 321  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-; 322  :     {
-; 323  :         base_value = 1000000000U; // 10^9
-; 324  :         word_digit_count = 9;
-; 325  :     }
-; 326  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
-; 327  :     {
-; 328  :         base_value = (__UNIT_TYPE_DIV)10000000000000000000UL; // 10^19
-; 329  :         word_digit_count = 19;
-; 330  :     }
-; 331  :     else
-; 332  :         return (PMC_STATUS_NOT_SUPPORTED);
-; 333  : 
-; 334  :     if (x->IS_ZERO)
+; 320  :     __UNIT_TYPE_DIV base_value;
+; 321  :     int word_digit_count;
+; 322  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 323  :     {
+; 324  :         base_value = 1000000000U; // 10^9
+; 325  :         word_digit_count = 9;
+; 326  :     }
+; 327  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 328  :     {
+; 329  :         base_value = (__UNIT_TYPE_DIV)10000000000000000000UL; // 10^19
+; 330  :         word_digit_count = 19;
+; 331  :     }
+; 332  :     else
+; 333  :         return (PMC_STATUS_NOT_SUPPORTED);
+; 334  : 
+; 335  :     if (x->IS_ZERO)
 
 	test	BYTE PTR [rcx+40], 2
 	movzx	eax, r9b
@@ -1246,19 +1246,19 @@ ToStringDN PROC						; COMDAT
 	mov	rdi, rcx
 	je	$LN6@ToStringDN
 
-; 335  :     {
-; 336  :         // x が 0 である場合
-; 337  :         if (format == 'N')
+; 336  :     {
+; 337  :         // x が 0 である場合
+; 338  :         if (format == 'N')
 
 	cmp	al, 78					; 0000004eH
 	jne	SHORT $LN8@ToStringDN
 
-; 338  :         {
-; 339  :             // format が 'N' である場合
-; 340  : 
-; 341  :             // 整数部が 1 桁の 0、小数部が width 桁の 0 である文字列を出力する。
-; 342  :             buffer[0] = '0';
-; 343  :             if (width == 0)
+; 339  :         {
+; 340  :             // format が 'N' である場合
+; 341  : 
+; 342  :             // 整数部が 1 桁の 0、小数部が width 桁の 0 である文字列を出力する。
+; 343  :             buffer[0] = '0';
+; 344  :             if (width == 0)
 
 	mov	r15d, DWORD PTR width$[rbp-121]
 	lea	rcx, QWORD PTR [rdx+2]
@@ -1267,69 +1267,69 @@ ToStringDN PROC						; COMDAT
 	test	r15d, r15d
 	jne	SHORT $LN10@ToStringDN
 
-; 344  :                 buffer[1] = L'\0';
+; 345  :                 buffer[1] = L'\0';
 
 	xor	eax, eax
 	mov	WORD PTR [rcx], ax
 	jmp	$LN7@ToStringDN
 $LN10@ToStringDN:
 
-; 345  :             else
-; 346  :             {
-; 347  :                 lstrcpyW(&buffer[1], format_option->DecimalSeparator);
+; 346  :             else
+; 347  :             {
+; 348  :                 lstrcpyW(&buffer[1], format_option->DecimalSeparator);
 
 	mov	rdi, QWORD PTR format_option$[rbp-121]
 	lea	rdx, QWORD PTR [rdi+10]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 348  :                 int decimal_separator_len = lstrlenW(format_option->DecimalSeparator);
+; 349  :                 int decimal_separator_len = lstrlenW(format_option->DecimalSeparator);
 
 	lea	rcx, QWORD PTR [rdi+10]
 	call	QWORD PTR __imp_lstrlenW
 	movsxd	rsi, eax
 
-; 349  :                 _FILL_MEMORY_16(buffer + 1 + decimal_separator_len, L'0', width);
+; 350  :                 _FILL_MEMORY_16(buffer + 1 + decimal_separator_len, L'0', width);
 
 	lea	rdi, QWORD PTR [rbx+2]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 436  :     __stosw(d, x, count);
+; 150  :         __stosw(d, x, count);
 
 	mov	eax, r14d
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 349  :                 _FILL_MEMORY_16(buffer + 1 + decimal_separator_len, L'0', width);
+; 350  :                 _FILL_MEMORY_16(buffer + 1 + decimal_separator_len, L'0', width);
 
 	mov	rcx, r15
 	lea	rdi, QWORD PTR [rdi+rsi*2]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 436  :     __stosw(d, x, count);
+; 150  :         __stosw(d, x, count);
 
 	rep stosw
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 350  :                 buffer[1 + decimal_separator_len + width] = L'\0';
+; 351  :                 buffer[1 + decimal_separator_len + width] = L'\0';
 
 	lea	ecx, DWORD PTR [r15+1]
 	add	ecx, esi
 	xor	eax, eax
 	mov	WORD PTR [rbx+rcx*2], ax
 
-; 351  :             }
-; 352  :         }
+; 352  :             }
+; 353  :         }
 
 	jmp	$LN7@ToStringDN
 $LN8@ToStringDN:
 
-; 353  :         else
-; 354  :         {
-; 355  :             // format が 'D' である場合
-; 356  : 
-; 357  :             // 最低で 1 桁、最高で width 桁だけ '0' を出力する。
-; 358  :             if (width < 1)
-; 359  :                 width = 1;
-; 360  :             if (buffer_size < width + 1)
+; 354  :         else
+; 355  :         {
+; 356  :             // format が 'D' である場合
+; 357  : 
+; 358  :             // 最低で 1 桁、最高で width 桁だけ '0' を出力する。
+; 359  :             if (width < 1)
+; 360  :                 width = 1;
+; 361  :             if (buffer_size < width + 1)
 
 	mov	edx, 1
 	cmp	DWORD PTR width$[rbp-121], edx
@@ -1337,9 +1337,9 @@ $LN8@ToStringDN:
 	lea	ecx, DWORD PTR [rdx+1]
 	cmp	r8, rcx
 	jb	$LN62@ToStringDN
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 436  :     __stosw(d, x, count);
+; 150  :         __stosw(d, x, count);
 
 	mov	eax, 48					; 00000030H
 	mov	rdi, rbx
@@ -1347,25 +1347,25 @@ $LN8@ToStringDN:
 	rep stosw
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 363  :             buffer[width] = L'\0';
+; 364  :             buffer[width] = L'\0';
 
 	xor	eax, eax
 	mov	WORD PTR [rbx+rdx*2], ax
 
-; 364  :         }
-; 365  :     }
+; 365  :         }
+; 366  :     }
 
 	jmp	$LN7@ToStringDN
 $LN6@ToStringDN:
 
-; 366  :     else
-; 367  :     {
-; 368  :         // x が 0 ではない場合
-; 369  :         PMC_STATUS_CODE result;
-; 370  :         __UNIT_TYPE r_buf_code;
-; 371  :         __UNIT_TYPE r_buf_words;
-; 372  :         // xを base_value 基数として変換した数値が r に格納される。約 7% ほど余分に領域が必要な計算になるが、余裕を見て 12.5% 程度の領域を獲得している。
-; 373  :         __UNIT_TYPE_DIV* r_buf = (__UNIT_TYPE_DIV*)AllocateBlock(x->UNIT_BIT_COUNT + (x->UNIT_BIT_COUNT >> 3) + __UNIT_TYPE_BIT_COUNT, &r_buf_words, &r_buf_code);
+; 367  :     else
+; 368  :     {
+; 369  :         // x が 0 ではない場合
+; 370  :         PMC_STATUS_CODE result;
+; 371  :         __UNIT_TYPE r_buf_code;
+; 372  :         __UNIT_TYPE r_buf_words;
+; 373  :         // xを base_value 基数として変換した数値が r に格納される。約 7% ほど余分に領域が必要な計算になるが、余裕を見て 12.5% 程度の領域を獲得している。
+; 374  :         __UNIT_TYPE_DIV* r_buf = (__UNIT_TYPE_DIV*)AllocateBlock(x->UNIT_BIT_COUNT + (x->UNIT_BIT_COUNT >> 3) + __UNIT_TYPE_BIT_COUNT, &r_buf_words, &r_buf_code);
 
 	mov	rcx, QWORD PTR [rcx+16]
 	lea	r8, QWORD PTR r_buf_code$7[rbp-121]
@@ -1377,57 +1377,57 @@ $LN6@ToStringDN:
 	call	AllocateBlock
 	mov	QWORD PTR r_buf$1$[rbp-121], rax
 
-; 374  :         if (r_buf == NULL)
+; 375  :         if (r_buf == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN14@ToStringDN
 
-; 375  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 376  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	$LN1@ToStringDN
 $LN14@ToStringDN:
 
-; 376  :         __UNIT_TYPE r_buf_count;
-; 377  :         if ((result = ConvertCardinalNumber((__UNIT_TYPE_DIV*)x->BLOCK, x->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), x->UNIT_BIT_COUNT, base_value, r_buf, &r_buf_count)) != PMC_STATUS_OK)
+; 377  :         __UNIT_TYPE r_buf_count;
+; 378  :         if ((result = ConvertCardinalNumber((__UNIT_TYPE_DIV*)x->BLOCK, x->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), x->UNIT_BIT_COUNT, base_value, r_buf, &r_buf_count)) != PMC_STATUS_OK)
 
 	mov	rsi, QWORD PTR [rdi+8]
 
-; 62   :     __UNIT_TYPE_DIV* work_buf_1 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_1_words, &work_buf_1_code);
+; 63   :     __UNIT_TYPE_DIV* work_buf_1 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_1_words, &work_buf_1_code);
 
 	lea	r8, QWORD PTR work_buf_1_code$5[rbp-121]
 
-; 376  :         __UNIT_TYPE r_buf_count;
-; 377  :         if ((result = ConvertCardinalNumber((__UNIT_TYPE_DIV*)x->BLOCK, x->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), x->UNIT_BIT_COUNT, base_value, r_buf, &r_buf_count)) != PMC_STATUS_OK)
+; 377  :         __UNIT_TYPE r_buf_count;
+; 378  :         if ((result = ConvertCardinalNumber((__UNIT_TYPE_DIV*)x->BLOCK, x->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), x->UNIT_BIT_COUNT, base_value, r_buf, &r_buf_count)) != PMC_STATUS_OK)
 
 	mov	r14, QWORD PTR [rdi+56]
 
-; 62   :     __UNIT_TYPE_DIV* work_buf_1 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_1_words, &work_buf_1_code);
+; 63   :     __UNIT_TYPE_DIV* work_buf_1 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_1_words, &work_buf_1_code);
 
 	lea	rdx, QWORD PTR work_buf_1_words$1[rbp-121]
 	mov	rdi, QWORD PTR [rdi+16]
 
-; 376  :         __UNIT_TYPE r_buf_count;
-; 377  :         if ((result = ConvertCardinalNumber((__UNIT_TYPE_DIV*)x->BLOCK, x->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), x->UNIT_BIT_COUNT, base_value, r_buf, &r_buf_count)) != PMC_STATUS_OK)
+; 377  :         __UNIT_TYPE r_buf_count;
+; 378  :         if ((result = ConvertCardinalNumber((__UNIT_TYPE_DIV*)x->BLOCK, x->UNIT_WORD_COUNT * sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV), x->UNIT_BIT_COUNT, base_value, r_buf, &r_buf_count)) != PMC_STATUS_OK)
 
 	shl	rsi, 3
 	shr	rsi, 2
 
-; 62   :     __UNIT_TYPE_DIV* work_buf_1 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_1_words, &work_buf_1_code);
+; 63   :     __UNIT_TYPE_DIV* work_buf_1 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_1_words, &work_buf_1_code);
 
 	lea	rcx, QWORD PTR [rdi+64]
 	call	AllocateBlock
 	mov	r13, rax
 
-; 63   :     if (work_buf_1 == NULL)
+; 64   :     if (work_buf_1 == NULL)
 
 	test	rax, rax
 	je	SHORT $LN61@ToStringDN
 
-; 64   :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 65   :     __UNIT_TYPE work_buf_2_code;
-; 66   :     __UNIT_TYPE work_buf_2_words;
-; 67   :     __UNIT_TYPE_DIV* work_buf_2 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_2_words, &work_buf_2_code);
+; 65   :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 66   :     __UNIT_TYPE work_buf_2_code;
+; 67   :     __UNIT_TYPE work_buf_2_words;
+; 68   :     __UNIT_TYPE_DIV* work_buf_2 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_2_words, &work_buf_2_code);
 
 	lea	r8, QWORD PTR work_buf_2_code$4[rbp-121]
 	lea	rdx, QWORD PTR work_buf_2_words$6[rbp-121]
@@ -1435,21 +1435,21 @@ $LN14@ToStringDN:
 	call	AllocateBlock
 	mov	QWORD PTR work_buf_2$1$[rbp-121], rax
 
-; 68   :     if (work_buf_2 == NULL)
+; 69   :     if (work_buf_2 == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN33@ToStringDN
 
-; 69   :     {
-; 70   :         DeallocateBlock((__UNIT_TYPE*)work_buf_1, work_buf_1_words);
+; 70   :     {
+; 71   :         DeallocateBlock((__UNIT_TYPE*)work_buf_1, work_buf_1_words);
 
 	mov	rdx, QWORD PTR work_buf_1_words$1[rbp-121]
 	mov	rcx, r13
 	call	DeallocateBlock
 $LN61@ToStringDN:
 
-; 378  :         {
-; 379  :             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
+; 379  :         {
+; 380  :             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
 
 	mov	edi, -5
 $LN49@ToStringDN:
@@ -1457,67 +1457,67 @@ $LN49@ToStringDN:
 	mov	rcx, QWORD PTR r_buf$1$[rbp-121]
 	call	DeallocateBlock
 
-; 380  :             return (result);
+; 381  :             return (result);
 
 	mov	eax, edi
 	jmp	$LN1@ToStringDN
 $LN33@ToStringDN:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, esi
 	mov	rdi, r13
 	mov	rsi, r14
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 73   :     __UNIT_TYPE_DIV* u_ptr = work_buf_1;
+; 74   :     __UNIT_TYPE_DIV* u_ptr = work_buf_1;
 
 	mov	r15, r13
 
-; 74   :     __UNIT_TYPE_DIV* q_ptr = work_buf_2;
-; 75   :     _COPY_MEMORY_UNIT_DIV(u_ptr, x_buf, x_buf_size);
-; 76   :     __UNIT_TYPE_DIV* r_ptr = r_buf;
+; 75   :     __UNIT_TYPE_DIV* q_ptr = work_buf_2;
+; 76   :     _COPY_MEMORY_UNIT_DIV(u_ptr, x_buf, x_buf_size);
+; 77   :     __UNIT_TYPE_DIV* r_ptr = r_buf;
 
 	mov	r14, QWORD PTR r_buf$1$[rbp-121]
 	mov	r12, rax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 77   :     __UNIT_TYPE work_u_count = work_buf_1_words * (sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV));
+; 78   :     __UNIT_TYPE work_u_count = work_buf_1_words * (sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV));
 
 	mov	rsi, QWORD PTR work_buf_1_words$1[rbp-121]
 	add	rsi, rsi
 
-; 78   :     while (work_u_count > 0)
+; 79   :     while (work_u_count > 0)
 
 	je	$LN29@ToStringDN
 	npad	5
 $LL28@ToStringDN:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 418  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 132  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 	mov	ecx, esi
 	mov	rdi, r12
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 82   :         DivRem_X_1W(u_ptr, work_u_count, base_value, q_ptr, &r_value);
+; 83   :         DivRem_X_1W(u_ptr, work_u_count, base_value, q_ptr, &r_value);
 
 	mov	r9, r12
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 418  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 132  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 82   :         DivRem_X_1W(u_ptr, work_u_count, base_value, q_ptr, &r_value);
+; 83   :         DivRem_X_1W(u_ptr, work_u_count, base_value, q_ptr, &r_value);
 
 	lea	rax, QWORD PTR r_value$9[rbp-121]
 	mov	rcx, r15
@@ -1526,7 +1526,7 @@ $LL28@ToStringDN:
 	mov	rdx, rsi
 	call	DivRem_X_1W
 
-; 83   :         if ((result = CheckBlockLight((__UNIT_TYPE*)work_buf_2, work_buf_2_code)) != PMC_STATUS_OK)
+; 84   :         if ((result = CheckBlockLight((__UNIT_TYPE*)work_buf_2, work_buf_2_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_buf_2_code$4[rbp-121]
 	mov	rcx, QWORD PTR work_buf_2$1$[rbp-121]
@@ -1535,8 +1535,8 @@ $LL28@ToStringDN:
 	test	eax, eax
 	jne	SHORT $LN49@ToStringDN
 
-; 84   :             return (result);
-; 85   :         if ((result = CheckBlockLight((__UNIT_TYPE*)work_buf_1, work_buf_1_code)) != PMC_STATUS_OK)
+; 85   :             return (result);
+; 86   :         if ((result = CheckBlockLight((__UNIT_TYPE*)work_buf_1, work_buf_1_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_buf_1_code$5[rbp-121]
 	mov	rcx, r13
@@ -1545,56 +1545,56 @@ $LL28@ToStringDN:
 	test	eax, eax
 	jne	$LN49@ToStringDN
 
-; 86   :             return (result);
-; 87   :         *r_ptr++ = r_value;
+; 87   :             return (result);
+; 88   :         *r_ptr++ = r_value;
 
 	mov	eax, DWORD PTR r_value$9[rbp-121]
 	mov	DWORD PTR [r14], eax
 
-; 88   :         __UNIT_TYPE_DIV* temp = u_ptr;
+; 89   :         __UNIT_TYPE_DIV* temp = u_ptr;
 
 	mov	rax, r15
 	add	r14, 4
 
-; 89   :         u_ptr = q_ptr;
+; 90   :         u_ptr = q_ptr;
 
 	mov	r15, r12
 
-; 90   :         q_ptr = temp;
+; 91   :         q_ptr = temp;
 
 	mov	r12, rax
 
-; 91   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
+; 92   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
 
 	test	rsi, rsi
 	je	SHORT $LN29@ToStringDN
 
-; 86   :             return (result);
-; 87   :         *r_ptr++ = r_value;
+; 87   :             return (result);
+; 88   :         *r_ptr++ = r_value;
 
 	lea	rax, QWORD PTR [rsi-1]
 	lea	rax, QWORD PTR [r15+rax*4]
 	npad	1
 $LL30@ToStringDN:
 
-; 91   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
+; 92   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
 
 	cmp	DWORD PTR [rax], 0
 	jne	$LN31@ToStringDN
 
-; 92   :             --work_u_count;
+; 93   :             --work_u_count;
 
 	sub	rax, 4
 	sub	rsi, 1
 	jne	SHORT $LL30@ToStringDN
 $LN29@ToStringDN:
 
-; 93   :     }
-; 94   :     *r_buf_count = r_ptr - r_buf;
+; 94   :     }
+; 95   :     *r_buf_count = r_ptr - r_buf;
 
 	mov	r15, QWORD PTR r_buf$1$[rbp-121]
 
-; 95   :     DeallocateBlock((__UNIT_TYPE*)work_buf_2, work_buf_2_words);
+; 96   :     DeallocateBlock((__UNIT_TYPE*)work_buf_2, work_buf_2_words);
 
 	mov	rdx, QWORD PTR work_buf_2_words$6[rbp-121]
 	sub	r14, r15
@@ -1602,14 +1602,14 @@ $LN29@ToStringDN:
 	sar	r14, 2
 	call	DeallocateBlock
 
-; 96   :     DeallocateBlock((__UNIT_TYPE*)work_buf_1, work_buf_1_words);
+; 97   :     DeallocateBlock((__UNIT_TYPE*)work_buf_1, work_buf_1_words);
 
 	mov	rdx, QWORD PTR work_buf_1_words$1[rbp-121]
 	mov	rcx, r13
 	call	DeallocateBlock
 
-; 381  :         }
-; 382  :         if ((result = CheckBlockLight((__UNIT_TYPE*)r_buf, r_buf_code)) != PMC_STATUS_OK)
+; 382  :         }
+; 383  :         if ((result = CheckBlockLight((__UNIT_TYPE*)r_buf, r_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR r_buf_code$7[rbp-121]
 	mov	rcx, r15
@@ -1617,12 +1617,12 @@ $LN29@ToStringDN:
 	test	eax, eax
 	jne	$LN1@ToStringDN
 
-; 383  :             return (result);
-; 384  : 
-; 385  :         __UNIT_TYPE rev_str_buf_code;
-; 386  :         __UNIT_TYPE rev_str_buf_words;
-; 387  :         // 獲得領域長の * 2 は、桁区切りのワーストケースにより文字列が膨らんだ場合を考慮したもの。
-; 388  :         wchar_t* rev_str_buf = (wchar_t*)AllocateBlock((max(r_buf_count * word_digit_count, width) * 2 + width + 2) * sizeof(wchar_t) * 8, &rev_str_buf_words, &rev_str_buf_code);
+; 384  :             return (result);
+; 385  : 
+; 386  :         __UNIT_TYPE rev_str_buf_code;
+; 387  :         __UNIT_TYPE rev_str_buf_words;
+; 388  :         // 獲得領域長の * 2 は、桁区切りのワーストケースにより文字列が膨らんだ場合を考慮したもの。
+; 389  :         wchar_t* rev_str_buf = (wchar_t*)AllocateBlock((max(r_buf_count * word_digit_count, width) * 2 + width + 2) * sizeof(wchar_t) * 8, &rev_str_buf_words, &rev_str_buf_code);
 
 	mov	edi, DWORD PTR width$[rbp-121]
 	lea	rcx, QWORD PTR [r14+r14*8]
@@ -1635,13 +1635,13 @@ $LN29@ToStringDN:
 	shl	rcx, 4
 	call	AllocateBlock
 
-; 389  :         if (r_buf == NULL)
-; 390  :         {
-; 391  :             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
-; 392  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 393  :         }
-; 394  :         __UNIT_TYPE rev_str_buf_count;
-; 395  :         PrintDecimal(r_buf, r_buf_count, rev_str_buf, &rev_str_buf_count, format, width, format_option);
+; 390  :         if (r_buf == NULL)
+; 391  :         {
+; 392  :             DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
+; 393  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 394  :         }
+; 395  :         __UNIT_TYPE rev_str_buf_count;
+; 396  :         PrintDecimal(r_buf, r_buf_count, rev_str_buf, &rev_str_buf_count, format, width, format_option);
 
 	mov	rcx, QWORD PTR format_option$[rbp-121]
 	lea	r9, QWORD PTR rev_str_buf_count$10[rbp-121]
@@ -1655,7 +1655,7 @@ $LN29@ToStringDN:
 	mov	BYTE PTR [rsp+32], al
 	call	PrintDecimal
 
-; 396  :         if ((result = CheckBlockLight((__UNIT_TYPE*)rev_str_buf, rev_str_buf_code)) != PMC_STATUS_OK)
+; 397  :         if ((result = CheckBlockLight((__UNIT_TYPE*)rev_str_buf, rev_str_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR rev_str_buf_code$8[rbp-121]
 	mov	rcx, rsi
@@ -1663,108 +1663,108 @@ $LN29@ToStringDN:
 	test	eax, eax
 	jne	SHORT $LN1@ToStringDN
 
-; 397  :             return (result);
-; 398  :         DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
+; 398  :             return (result);
+; 399  :         DeallocateBlock((__UNIT_TYPE*)r_buf, r_buf_words);
 
 	mov	rdx, QWORD PTR r_buf_words$2[rbp-121]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 399  :         if (rev_str_buf_count + 1 > buffer_size)
+; 400  :         if (rev_str_buf_count + 1 > buffer_size)
 
 	mov	rdx, QWORD PTR rev_str_buf_count$10[rbp-121]
 	lea	rax, QWORD PTR [rdx+1]
 	cmp	rax, QWORD PTR buffer_size$[rbp-121]
 	jbe	SHORT $LN19@ToStringDN
 
-; 400  :         {
-; 401  :             DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
+; 401  :         {
+; 402  :             DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
 
 	mov	rdx, QWORD PTR rev_str_buf_words$3[rbp-121]
 	mov	rcx, rsi
 	call	DeallocateBlock
 $LN62@ToStringDN:
 
-; 408  : }
+; 409  : }
 
 	mov	eax, -4
 	jmp	SHORT $LN1@ToStringDN
 $LN31@ToStringDN:
 
-; 78   :     while (work_u_count > 0)
+; 79   :     while (work_u_count > 0)
 
 	test	rsi, rsi
 	jne	$LL28@ToStringDN
 	jmp	$LN29@ToStringDN
 $LN19@ToStringDN:
 
-; 306  :     wchar_t* in_ptr = in_buf + in_buf_count - 1;
+; 307  :     wchar_t* in_ptr = in_buf + in_buf_count - 1;
 
 	lea	rcx, QWORD PTR [rdx-1]
 	lea	rcx, QWORD PTR [rsi+rcx*2]
 
-; 307  :     wchar_t* out_ptr = out_buf;
-; 308  :     __UNIT_TYPE count = in_buf_count;
+; 308  :     wchar_t* out_ptr = out_buf;
+; 309  :     __UNIT_TYPE count = in_buf_count;
 
 	test	rdx, rdx
 
-; 309  :     while (count > 0)
+; 310  :     while (count > 0)
 
 	je	SHORT $LN43@ToStringDN
 	npad	12
 $LL42@ToStringDN:
 
-; 310  :     {
-; 311  :         *out_ptr++ = *in_ptr--;
+; 311  :     {
+; 312  :         *out_ptr++ = *in_ptr--;
 
 	movzx	eax, WORD PTR [rcx]
 	lea	rcx, QWORD PTR [rcx-2]
 	mov	WORD PTR [rbx], ax
 	add	rbx, 2
 
-; 312  :         --count;
+; 313  :         --count;
 
 	sub	rdx, 1
 	jne	SHORT $LL42@ToStringDN
 $LN43@ToStringDN:
 
-; 402  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
-; 403  :         }
-; 404  :         ToStringDN_Finalize(rev_str_buf, rev_str_buf_count, buffer, buffer_size);
-; 405  :         DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
+; 403  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 404  :         }
+; 405  :         ToStringDN_Finalize(rev_str_buf, rev_str_buf_count, buffer, buffer_size);
+; 406  :         DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
 
 	mov	rdx, QWORD PTR rev_str_buf_words$3[rbp-121]
 
-; 314  :     *out_ptr = L'\0';
+; 315  :     *out_ptr = L'\0';
 
 	xor	eax, eax
 
-; 402  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
-; 403  :         }
-; 404  :         ToStringDN_Finalize(rev_str_buf, rev_str_buf_count, buffer, buffer_size);
-; 405  :         DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
+; 403  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 404  :         }
+; 405  :         ToStringDN_Finalize(rev_str_buf, rev_str_buf_count, buffer, buffer_size);
+; 406  :         DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
 
 	mov	rcx, rsi
 
-; 314  :     *out_ptr = L'\0';
+; 315  :     *out_ptr = L'\0';
 
 	mov	WORD PTR [rbx], ax
 
-; 402  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
-; 403  :         }
-; 404  :         ToStringDN_Finalize(rev_str_buf, rev_str_buf_count, buffer, buffer_size);
-; 405  :         DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
+; 403  :             return (PMC_STATUS_INSUFFICIENT_BUFFER);
+; 404  :         }
+; 405  :         ToStringDN_Finalize(rev_str_buf, rev_str_buf_count, buffer, buffer_size);
+; 406  :         DeallocateBlock((__UNIT_TYPE*)rev_str_buf, rev_str_buf_words);
 
 	call	DeallocateBlock
 $LN7@ToStringDN:
 
-; 406  :     }
-; 407  :     return (PMC_STATUS_OK);
+; 407  :     }
+; 408  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@ToStringDN:
 
-; 408  : }
+; 409  : }
 
 	mov	rbx, QWORD PTR [rsp+216]
 	add	rsp, 144				; 00000090H
@@ -1788,37 +1788,37 @@ out_buf$ = 24
 out_buf_count$ = 32
 ToStringDN_Finalize PROC				; COMDAT
 
-; 306  :     wchar_t* in_ptr = in_buf + in_buf_count - 1;
+; 307  :     wchar_t* in_ptr = in_buf + in_buf_count - 1;
 
 	lea	r9, QWORD PTR [rdx-1]
 	lea	r9, QWORD PTR [rcx+r9*2]
 
-; 307  :     wchar_t* out_ptr = out_buf;
-; 308  :     __UNIT_TYPE count = in_buf_count;
-; 309  :     while (count > 0)
+; 308  :     wchar_t* out_ptr = out_buf;
+; 309  :     __UNIT_TYPE count = in_buf_count;
+; 310  :     while (count > 0)
 
 	test	rdx, rdx
 	je	SHORT $LN9@ToStringDN
 	npad	3
 $LL2@ToStringDN:
 
-; 310  :     {
-; 311  :         *out_ptr++ = *in_ptr--;
+; 311  :     {
+; 312  :         *out_ptr++ = *in_ptr--;
 
 	movzx	eax, WORD PTR [r9]
 	lea	r9, QWORD PTR [r9-2]
 	mov	WORD PTR [r8], ax
 	lea	r8, QWORD PTR [r8+2]
 
-; 312  :         --count;
+; 313  :         --count;
 
 	sub	rdx, 1
 	jne	SHORT $LL2@ToStringDN
 $LN9@ToStringDN:
 
-; 313  :     }
-; 314  :     *out_ptr = L'\0';
-; 315  : }
+; 314  :     }
+; 315  :     *out_ptr = L'\0';
+; 316  : }
 
 	xor	eax, eax
 	mov	WORD PTR [r8], ax
@@ -1827,27 +1827,29 @@ ToStringDN_Finalize ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 ;	COMDAT PrintDecimal
 _TEXT	SEGMENT
@@ -1863,7 +1865,7 @@ width$ = 200
 format_option$ = 208
 PrintDecimal PROC					; COMDAT
 
-; 263  : {
+; 264  : {
 
 	mov	QWORD PTR [rsp+8], rbx
 	mov	QWORD PTR [rsp+16], rsi
@@ -1881,38 +1883,38 @@ PrintDecimal PROC					; COMDAT
 	mov	rdi, QWORD PTR format_option$[rbp-112]
 	mov	r15, rcx
 
-; 102  :     state->FORMAT = format;
+; 103  :     state->FORMAT = format;
 
 	movzx	r13d, BYTE PTR format$[rbp-112]
 
-; 263  : {
+; 264  : {
 
 	mov	r12, r8
 	mov	QWORD PTR out_buf_count$GSCopy$1$[rbp-112], r9
 	mov	rsi, rdx
 
-; 102  :     state->FORMAT = format;
+; 103  :     state->FORMAT = format;
 
 	mov	BYTE PTR state$[rbp-112], r13b
 
-; 103  : 
-; 104  :     state->GROUP_SEPARATOR_LENGTH = lstrlenW(format_option->GroupSeparator);
+; 104  : 
+; 105  :     state->GROUP_SEPARATOR_LENGTH = lstrlenW(format_option->GroupSeparator);
 
 	lea	rbx, QWORD PTR [rdi+4]
 	mov	rcx, rbx
 	call	QWORD PTR __imp_lstrlenW
 	mov	DWORD PTR state$[rbp-88], eax
 
-; 105  :     wchar_t* in_ptr = format_option->GroupSeparator;
-; 106  :     wchar_t* out_ptr = state->GROUP_SEPARATOR + state->GROUP_SEPARATOR_LENGTH;
-; 107  :     *out_ptr-- = '\0';
+; 106  :     wchar_t* in_ptr = format_option->GroupSeparator;
+; 107  :     wchar_t* out_ptr = state->GROUP_SEPARATOR + state->GROUP_SEPARATOR_LENGTH;
+; 108  :     *out_ptr-- = '\0';
 
 	xor	r14d, r14d
 	cdqe
 	lea	rcx, QWORD PTR state$[rbp-110]
 	lea	rcx, QWORD PTR [rcx+rax*2]
 
-; 108  :     while (*in_ptr != L'\0')
+; 109  :     while (*in_ptr != L'\0')
 
 	movzx	eax, WORD PTR [rbx]
 	mov	WORD PTR [rcx], r14w
@@ -1922,13 +1924,13 @@ PrintDecimal PROC					; COMDAT
 	npad	12
 $LL13@PrintDecim:
 
-; 109  :     {
-; 110  :         *out_ptr = *in_ptr;
+; 110  :     {
+; 111  :         *out_ptr = *in_ptr;
 
 	mov	WORD PTR [rcx], ax
 
-; 111  :         --out_ptr;
-; 112  :         ++in_ptr;
+; 112  :         --out_ptr;
+; 113  :         ++in_ptr;
 
 	lea	rbx, QWORD PTR [rbx+2]
 	movzx	eax, WORD PTR [rbx]
@@ -1937,24 +1939,24 @@ $LL13@PrintDecim:
 	jne	SHORT $LL13@PrintDecim
 $LN14@PrintDecim:
 
-; 113  :     }
-; 114  : 
-; 115  :     state->DECIMAL_SEPARATOR_LENGTH = lstrlenW(format_option->DecimalSeparator);
+; 114  :     }
+; 115  : 
+; 116  :     state->DECIMAL_SEPARATOR_LENGTH = lstrlenW(format_option->DecimalSeparator);
 
 	lea	rbx, QWORD PTR [rdi+10]
 	mov	rcx, rbx
 	call	QWORD PTR __imp_lstrlenW
 	mov	DWORD PTR state$[rbp-84], eax
 
-; 116  :     in_ptr = format_option->DecimalSeparator;
-; 117  :     out_ptr = state->DECIMAL_SEPARATOR + state->DECIMAL_SEPARATOR_LENGTH;
+; 117  :     in_ptr = format_option->DecimalSeparator;
+; 118  :     out_ptr = state->DECIMAL_SEPARATOR + state->DECIMAL_SEPARATOR_LENGTH;
 
 	lea	rcx, QWORD PTR state$[rbp-100]
 	cdqe
 	lea	rcx, QWORD PTR [rcx+rax*2]
 
-; 118  :     *out_ptr-- = '\0';
-; 119  :     while (*in_ptr != L'\0')
+; 119  :     *out_ptr-- = '\0';
+; 120  :     while (*in_ptr != L'\0')
 
 	movzx	eax, WORD PTR [rbx]
 	mov	WORD PTR [rcx], r14w
@@ -1964,13 +1966,13 @@ $LN14@PrintDecim:
 	npad	3
 $LL15@PrintDecim:
 
-; 120  :     {
-; 121  :         *out_ptr = *in_ptr;
+; 121  :     {
+; 122  :         *out_ptr = *in_ptr;
 
 	mov	WORD PTR [rcx], ax
 
-; 122  :         --out_ptr;
-; 123  :         ++in_ptr;
+; 123  :         --out_ptr;
+; 124  :         ++in_ptr;
 
 	lea	rbx, QWORD PTR [rbx+2]
 	movzx	eax, WORD PTR [rbx]
@@ -1979,14 +1981,14 @@ $LL15@PrintDecim:
 	jne	SHORT $LL15@PrintDecim
 $LN16@PrintDecim:
 
-; 124  :     }
-; 125  : 
-; 126  :     state->CURRENT_GROUP = &format_option->GroupSizes[0];
+; 125  :     }
+; 126  : 
+; 127  :     state->CURRENT_GROUP = &format_option->GroupSizes[0];
 
 	lea	rax, QWORD PTR [rdi+28]
 
-; 128  :     state->CURRENT_GROUP_INDEX = 0;
-; 129  :     state->OUT_PTR = out_buf;
+; 129  :     state->CURRENT_GROUP_INDEX = 0;
+; 130  :     state->OUT_PTR = out_buf;
 
 	mov	r8, r12
 	mov	QWORD PTR state$[rbp-80], rax
@@ -1994,63 +1996,63 @@ $LN16@PrintDecim:
 	sub	r9d, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-68], r14d
 
-; 264  :     struct TOSTRINGN_OUTPUT_STATE state;
-; 265  :     InitializeOutputState(&state, out_buf, format, format_option);
-; 266  :     if (format == 'N' && width > 0)
+; 265  :     struct TOSTRINGN_OUTPUT_STATE state;
+; 266  :     InitializeOutputState(&state, out_buf, format, format_option);
+; 267  :     if (format == 'N' && width > 0)
 
 	mov	r14d, DWORD PTR width$[rbp-112]
 
-; 127  :     state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 128  :     state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	mov	DWORD PTR state$[rbp-72], r9d
 
-; 128  :     state->CURRENT_GROUP_INDEX = 0;
-; 129  :     state->OUT_PTR = out_buf;
+; 129  :     state->CURRENT_GROUP_INDEX = 0;
+; 130  :     state->OUT_PTR = out_buf;
 
 	mov	QWORD PTR state$[rbp-64], r12
 
-; 264  :     struct TOSTRINGN_OUTPUT_STATE state;
-; 265  :     InitializeOutputState(&state, out_buf, format, format_option);
-; 266  :     if (format == 'N' && width > 0)
+; 265  :     struct TOSTRINGN_OUTPUT_STATE state;
+; 266  :     InitializeOutputState(&state, out_buf, format, format_option);
+; 267  :     if (format == 'N' && width > 0)
 
 	cmp	r13b, 78				; 0000004eH
 	jne	SHORT $LN20@PrintDecim
 	test	r14d, r14d
 	je	SHORT $LN20@PrintDecim
 
-; 267  :     {
-; 268  :         _UINT32_T count = width;
+; 268  :     {
+; 269  :         _UINT32_T count = width;
 
 	mov	edx, r14d
 	npad	12
 $LL2@PrintDecim:
 
-; 140  :     *state->OUT_PTR = decimal_digits[x];
+; 141  :     *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR decimal_digits
 	mov	WORD PTR [r8], ax
 
-; 141  :     state->OUT_PTR += 1;
+; 142  :     state->OUT_PTR += 1;
 
 	mov	r8, QWORD PTR state$[rbp-64]
 	add	r8, 2
 	mov	QWORD PTR state$[rbp-64], r8
 
-; 269  :         while (count > 0)
-; 270  :         {
-; 271  :             OutputUngroupedOneChar(&state, 0);
-; 272  :             --count;
+; 270  :         while (count > 0)
+; 271  :         {
+; 272  :             OutputUngroupedOneChar(&state, 0);
+; 273  :             --count;
 
 	add	edx, -1					; ffffffffH
 	jne	SHORT $LL2@PrintDecim
 
-; 134  :     lstrcpyW(state->OUT_PTR, state->DECIMAL_SEPARATOR);
+; 135  :     lstrcpyW(state->OUT_PTR, state->DECIMAL_SEPARATOR);
 
 	lea	rdx, QWORD PTR state$[rbp-100]
 	mov	rcx, r8
 	call	QWORD PTR __imp_lstrcpyW
 
-; 135  :     state->OUT_PTR += state->DECIMAL_SEPARATOR_LENGTH;
+; 136  :     state->OUT_PTR += state->DECIMAL_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 	movsxd	rcx, DWORD PTR state$[rbp-84]
@@ -2059,12 +2061,12 @@ $LL2@PrintDecim:
 	mov	QWORD PTR state$[rbp-64], r8
 $LN20@PrintDecim:
 
-; 273  :         }
-; 274  :         OutputDecimalSeparator(&state);
-; 275  :     }
-; 276  :     __UNIT_TYPE_DIV* in_ptr = in_buf;
-; 277  :     __UNIT_TYPE in_count = in_buf_count - 1;
-; 278  :     while (in_count != 0)
+; 274  :         }
+; 275  :         OutputDecimalSeparator(&state);
+; 276  :     }
+; 277  :     __UNIT_TYPE_DIV* in_ptr = in_buf;
+; 278  :     __UNIT_TYPE in_count = in_buf_count - 1;
+; 279  :     while (in_count != 0)
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	sub	rsi, 1
@@ -2072,13 +2074,13 @@ $LN20@PrintDecim:
 	mov	r13, -3689348814741910323		; cccccccccccccccdH
 	npad	8
 $LL4@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edi, DWORD PTR [r15]
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, r13
 	mul	rdi
@@ -2089,40 +2091,40 @@ $LL4@PrintDecim:
 	sub	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	$LN199@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	test	r9d, r9d
 	jle	SHORT $LN201@PrintDecim
 	cmp	DWORD PTR state$[rbp-68], r9d
 	jl	SHORT $LN201@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	lea	rdx, QWORD PTR state$[rbp-110]
 	mov	rcx, r8
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
 
-; 158  :             state->CURRENT_GROUP_INDEX = 1;
+; 159  :             state->CURRENT_GROUP_INDEX = 1;
 
 	mov	r9d, 1
 	lea	rdx, QWORD PTR [rax+rcx*2]
@@ -2131,9 +2133,9 @@ $LL4@PrintDecim:
 	mov	WORD PTR [rdx], ax
 	mov	r8, QWORD PTR state$[rbp-64]
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	add	r8, 2
@@ -2143,32 +2145,32 @@ $LL4@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN200@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN200@PrintDecim
 $LN201@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rdi*2]
 	mov	WORD PTR [r8], ax
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	mov	r9d, DWORD PTR state$[rbp-68]
 	mov	r8, QWORD PTR state$[rbp-64]
@@ -2176,36 +2178,36 @@ $LN201@PrintDecim:
 	inc	r9d
 	mov	DWORD PTR state$[rbp-68], r9d
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN394@PrintDecim
 $LN199@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rdi*2]
 	mov	WORD PTR [r8], ax
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	mov	r8, QWORD PTR state$[rbp-64]
 	mov	r9d, DWORD PTR state$[rbp-68]
 	add	r8, 2
 $LN394@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	QWORD PTR state$[rbp-64], r8
 $LN200@PrintDecim:
 	mov	ecx, ebx
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, r13
 	mul	rcx
@@ -2216,14 +2218,14 @@ $LN200@PrintDecim:
 	sub	ebx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	$LN214@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	mov	eax, DWORD PTR state$[rbp-72]
 	test	eax, eax
@@ -2231,26 +2233,26 @@ $LN200@PrintDecim:
 	cmp	r9d, eax
 	jl	SHORT $LN216@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	lea	rdx, QWORD PTR state$[rbp-110]
 	mov	rcx, r8
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
 
-; 158  :             state->CURRENT_GROUP_INDEX = 1;
+; 159  :             state->CURRENT_GROUP_INDEX = 1;
 
 	mov	r9d, 1
 	lea	rdx, QWORD PTR [rax+rcx*2]
@@ -2259,9 +2261,9 @@ $LN200@PrintDecim:
 	mov	WORD PTR [rdx], ax
 	mov	r8, QWORD PTR state$[rbp-64]
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	add	r8, 2
@@ -2271,32 +2273,32 @@ $LN200@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN215@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN215@PrintDecim
 $LN216@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rbx*2]
 	mov	WORD PTR [r8], ax
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	mov	r9d, DWORD PTR state$[rbp-68]
 	mov	r8, QWORD PTR state$[rbp-64]
@@ -2304,36 +2306,36 @@ $LN216@PrintDecim:
 	inc	r9d
 	mov	DWORD PTR state$[rbp-68], r9d
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN395@PrintDecim
 $LN214@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rbx*2]
 	mov	WORD PTR [r8], ax
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	mov	r8, QWORD PTR state$[rbp-64]
 	mov	r9d, DWORD PTR state$[rbp-68]
 	add	r8, 2
 $LN395@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	QWORD PTR state$[rbp-64], r8
 $LN215@PrintDecim:
 	mov	ecx, edi
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, r13
 	mul	rcx
@@ -2344,14 +2346,14 @@ $LN215@PrintDecim:
 	sub	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	$LN229@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	mov	eax, DWORD PTR state$[rbp-72]
 	test	eax, eax
@@ -2359,26 +2361,26 @@ $LN215@PrintDecim:
 	cmp	r9d, eax
 	jl	SHORT $LN231@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	lea	rdx, QWORD PTR state$[rbp-110]
 	mov	rcx, r8
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
 
-; 158  :             state->CURRENT_GROUP_INDEX = 1;
+; 159  :             state->CURRENT_GROUP_INDEX = 1;
 
 	mov	r9d, 1
 	lea	rdx, QWORD PTR [rax+rcx*2]
@@ -2387,9 +2389,9 @@ $LN215@PrintDecim:
 	mov	WORD PTR [rdx], ax
 	mov	r8, QWORD PTR state$[rbp-64]
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	add	r8, 2
@@ -2399,32 +2401,32 @@ $LN215@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN230@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN230@PrintDecim
 $LN231@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rdi*2]
 	mov	WORD PTR [r8], ax
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	mov	r9d, DWORD PTR state$[rbp-68]
 	mov	r8, QWORD PTR state$[rbp-64]
@@ -2432,36 +2434,36 @@ $LN231@PrintDecim:
 	inc	r9d
 	mov	DWORD PTR state$[rbp-68], r9d
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN396@PrintDecim
 $LN229@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rdi*2]
 	mov	WORD PTR [r8], ax
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	mov	r8, QWORD PTR state$[rbp-64]
 	mov	r9d, DWORD PTR state$[rbp-68]
 	add	r8, 2
 $LN396@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	QWORD PTR state$[rbp-64], r8
 $LN230@PrintDecim:
 	mov	ecx, ebx
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, r13
 	mul	rcx
@@ -2472,14 +2474,14 @@ $LN230@PrintDecim:
 	sub	ebx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	$LN244@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	mov	eax, DWORD PTR state$[rbp-72]
 	test	eax, eax
@@ -2487,26 +2489,26 @@ $LN230@PrintDecim:
 	cmp	r9d, eax
 	jl	SHORT $LN246@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	lea	rdx, QWORD PTR state$[rbp-110]
 	mov	rcx, r8
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
 
-; 158  :             state->CURRENT_GROUP_INDEX = 1;
+; 159  :             state->CURRENT_GROUP_INDEX = 1;
 
 	mov	r9d, 1
 	lea	rdx, QWORD PTR [rax+rcx*2]
@@ -2515,9 +2517,9 @@ $LN230@PrintDecim:
 	mov	WORD PTR [rdx], ax
 	mov	r8, QWORD PTR state$[rbp-64]
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	add	r8, 2
@@ -2527,32 +2529,32 @@ $LN230@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN245@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN245@PrintDecim
 $LN246@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rbx*2]
 	mov	WORD PTR [r8], ax
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	mov	r9d, DWORD PTR state$[rbp-68]
 	mov	r8, QWORD PTR state$[rbp-64]
@@ -2560,36 +2562,36 @@ $LN246@PrintDecim:
 	inc	r9d
 	mov	DWORD PTR state$[rbp-68], r9d
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN397@PrintDecim
 $LN244@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rbx*2]
 	mov	WORD PTR [r8], ax
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	mov	r8, QWORD PTR state$[rbp-64]
 	mov	r9d, DWORD PTR state$[rbp-68]
 	add	r8, 2
 $LN397@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	QWORD PTR state$[rbp-64], r8
 $LN245@PrintDecim:
 	mov	ecx, edi
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, r13
 	mul	rcx
@@ -2600,14 +2602,14 @@ $LN245@PrintDecim:
 	sub	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	SHORT $LN259@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	mov	eax, DWORD PTR state$[rbp-72]
 	test	eax, eax
@@ -2615,21 +2617,21 @@ $LN245@PrintDecim:
 	cmp	r9d, eax
 	jl	SHORT $LN261@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	lea	rdx, QWORD PTR state$[rbp-110]
 	mov	rcx, r8
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
@@ -2638,13 +2640,13 @@ $LN245@PrintDecim:
 	mov	QWORD PTR state$[rbp-64], rdx
 	mov	WORD PTR [rdx], ax
 
-; 157  :             state->OUT_PTR += 1;
+; 158  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	inc	rax
@@ -2652,70 +2654,71 @@ $LN245@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN260@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN260@PrintDecim
 $LN261@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rdi*2]
 	mov	WORD PTR [r8], ax
 
-; 171  :             state->OUT_PTR += 1;
+; 172  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	inc	DWORD PTR state$[rbp-68]
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN260@PrintDecim
 $LN259@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rdi*2]
 	mov	WORD PTR [r8], ax
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 $LN260@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 
-; 1095 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+; 335  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
 
 	mov	eax, 5
 	lock xadd DWORD PTR statistics_info+12, eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	ecx, ebx
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, r13
 	mul	rcx
@@ -2726,14 +2729,14 @@ $LN260@PrintDecim:
 	sub	ebx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	$LN278@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	mov	eax, DWORD PTR state$[rbp-72]
 	test	eax, eax
@@ -2741,26 +2744,26 @@ $LN260@PrintDecim:
 	cmp	DWORD PTR state$[rbp-68], eax
 	jl	SHORT $LN280@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	mov	rcx, QWORD PTR state$[rbp-64]
 	lea	rdx, QWORD PTR state$[rbp-110]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
 
-; 158  :             state->CURRENT_GROUP_INDEX = 1;
+; 159  :             state->CURRENT_GROUP_INDEX = 1;
 
 	mov	r9d, 1
 	lea	rdx, QWORD PTR [rax+rcx*2]
@@ -2769,9 +2772,9 @@ $LN260@PrintDecim:
 	mov	WORD PTR [rdx], ax
 	mov	r8, QWORD PTR state$[rbp-64]
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	add	r8, 2
@@ -2781,33 +2784,33 @@ $LN260@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN279@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN279@PrintDecim
 $LN280@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	mov	rax, QWORD PTR state$[rbp-64]
 	movzx	ecx, WORD PTR [r10+rbx*2]
 	mov	WORD PTR [rax], cx
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	mov	r9d, DWORD PTR state$[rbp-68]
 	mov	r8, QWORD PTR state$[rbp-64]
@@ -2815,37 +2818,37 @@ $LN280@PrintDecim:
 	inc	r9d
 	mov	DWORD PTR state$[rbp-68], r9d
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN398@PrintDecim
 $LN278@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	mov	rax, QWORD PTR state$[rbp-64]
 	movzx	ecx, WORD PTR [r10+rbx*2]
 	mov	WORD PTR [rax], cx
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	mov	r8, QWORD PTR state$[rbp-64]
 	mov	r9d, DWORD PTR state$[rbp-68]
 	add	r8, 2
 $LN398@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	QWORD PTR state$[rbp-64], r8
 $LN279@PrintDecim:
 	mov	ecx, edi
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, r13
 	mul	rcx
@@ -2856,14 +2859,14 @@ $LN279@PrintDecim:
 	sub	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	SHORT $LN293@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	mov	eax, DWORD PTR state$[rbp-72]
 	test	eax, eax
@@ -2871,21 +2874,21 @@ $LN279@PrintDecim:
 	cmp	r9d, eax
 	jl	SHORT $LN295@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	lea	rdx, QWORD PTR state$[rbp-110]
 	mov	rcx, r8
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
@@ -2894,13 +2897,13 @@ $LN279@PrintDecim:
 	mov	QWORD PTR state$[rbp-64], rdx
 	mov	WORD PTR [rdx], ax
 
-; 157  :             state->OUT_PTR += 1;
+; 158  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	inc	rax
@@ -2908,70 +2911,71 @@ $LN279@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN294@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN294@PrintDecim
 $LN295@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rdi*2]
 	mov	WORD PTR [r8], ax
 
-; 171  :             state->OUT_PTR += 1;
+; 172  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	inc	DWORD PTR state$[rbp-68]
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN294@PrintDecim
 $LN293@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rdi*2]
 	mov	WORD PTR [r8], ax
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 $LN294@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 
-; 1095 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+; 335  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
 
 	mov	eax, 2
 	lock xadd DWORD PTR statistics_info+12, eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	ecx, ebx
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, r13
 	mul	rcx
@@ -2982,14 +2986,14 @@ $LN294@PrintDecim:
 	sub	ebx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	$LN312@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	mov	eax, DWORD PTR state$[rbp-72]
 	test	eax, eax
@@ -2997,21 +3001,21 @@ $LN294@PrintDecim:
 	cmp	DWORD PTR state$[rbp-68], eax
 	jl	SHORT $LN314@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	mov	rcx, QWORD PTR state$[rbp-64]
 	lea	rdx, QWORD PTR state$[rbp-110]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
@@ -3020,14 +3024,14 @@ $LN294@PrintDecim:
 	mov	QWORD PTR state$[rbp-64], rdx
 	mov	WORD PTR [rdx], ax
 
-; 158  :             state->CURRENT_GROUP_INDEX = 1;
+; 159  :             state->CURRENT_GROUP_INDEX = 1;
 
 	mov	edx, 1
 	mov	rcx, QWORD PTR state$[rbp-64]
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	add	rcx, 2
@@ -3037,33 +3041,33 @@ $LN294@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN313@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN313@PrintDecim
 $LN314@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	movzx	ecx, WORD PTR [r10+rbx*2]
 	mov	rax, QWORD PTR state$[rbp-64]
 	mov	WORD PTR [rax], cx
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	mov	edx, DWORD PTR state$[rbp-68]
 	mov	rcx, QWORD PTR state$[rbp-64]
@@ -3071,39 +3075,39 @@ $LN314@PrintDecim:
 	inc	edx
 	mov	DWORD PTR state$[rbp-68], edx
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN399@PrintDecim
 $LN312@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	movzx	ecx, WORD PTR [r10+rbx*2]
 	mov	rax, QWORD PTR state$[rbp-64]
 	mov	WORD PTR [rax], cx
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	mov	rcx, QWORD PTR state$[rbp-64]
 	mov	edx, DWORD PTR state$[rbp-68]
 	add	rcx, 2
 $LN399@PrintDecim:
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	mov	QWORD PTR state$[rbp-64], rcx
 $LN313@PrintDecim:
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	SHORT $LN319@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	mov	eax, DWORD PTR state$[rbp-72]
 	test	eax, eax
@@ -3111,20 +3115,20 @@ $LN313@PrintDecim:
 	cmp	edx, eax
 	jl	SHORT $LN321@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	lea	rdx, QWORD PTR state$[rbp-110]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
@@ -3134,13 +3138,13 @@ $LN313@PrintDecim:
 	movzx	eax, WORD PTR [r10+rax*2]
 	mov	WORD PTR [rdx], ax
 
-; 157  :             state->OUT_PTR += 1;
+; 158  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	inc	rax
@@ -3148,94 +3152,94 @@ $LN313@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN320@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN320@PrintDecim
 $LN321@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	mov	eax, edi
 	movzx	eax, WORD PTR [r10+rax*2]
 	mov	WORD PTR [rcx], ax
 
-; 171  :             state->OUT_PTR += 1;
+; 172  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	inc	DWORD PTR state$[rbp-68]
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN320@PrintDecim
 $LN319@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	mov	eax, edi
 	movzx	eax, WORD PTR [r10+rax*2]
 	mov	WORD PTR [rcx], ax
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 $LN320@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 
-; 1072 :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+; 312  :         _InterlockedIncrement(&statistics_info.COUNT_DIV32);
 
 	lock inc DWORD PTR statistics_info+12
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 281  :         ++in_ptr;
+; 282  :         ++in_ptr;
 
 	mov	r8, QWORD PTR state$[rbp-64]
 	add	r15, 4
 	mov	r9d, DWORD PTR state$[rbp-72]
 
-; 282  :         --in_count;
+; 283  :         --in_count;
 
 	sub	rsi, 1
 	jne	$LL4@PrintDecim
 	movzx	r13d, BYTE PTR format$[rbp-112]
 $LN5@PrintDecim:
 
-; 283  :     }
-; 284  :     ToStringDN_LEADING_1WORD(&state, *in_ptr);
+; 284  :     }
+; 285  :     ToStringDN_LEADING_1WORD(&state, *in_ptr);
 
 	mov	ebx, DWORD PTR [r15]
 	mov	r14, -3689348814741910323		; cccccccccccccccdH
 	npad	1
 $LL332@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	ecx, ebx
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, r14
 	mul	rcx
@@ -3246,35 +3250,35 @@ $LL332@PrintDecim:
 	sub	ebx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR state$[rbp-112], 78		; 0000004eH
 	jne	SHORT $LN345@PrintDecim
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	test	r9d, r9d
 	jle	SHORT $LN347@PrintDecim
 	cmp	DWORD PTR state$[rbp-68], r9d
 	jl	SHORT $LN347@PrintDecim
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	lea	rdx, QWORD PTR state$[rbp-110]
 	mov	rcx, r8
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	mov	rax, QWORD PTR state$[rbp-64]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	r10, OFFSET FLAT:decimal_digits
 	movsxd	rcx, DWORD PTR state$[rbp-88]
@@ -3283,13 +3287,13 @@ $LL332@PrintDecim:
 	mov	QWORD PTR state$[rbp-64], rdx
 	mov	WORD PTR [rdx], ax
 
-; 157  :             state->OUT_PTR += 1;
+; 158  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR state$[rbp-80]
 	inc	rax
@@ -3297,67 +3301,67 @@ $LL332@PrintDecim:
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN346@PrintDecim
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR state$[rbp-80], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR state$[rbp-72], eax
 
-; 165  :             }
-; 166  :         }
+; 166  :             }
+; 167  :         }
 
 	jmp	SHORT $LN346@PrintDecim
 $LN347@PrintDecim:
 
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rbx*2]
 	mov	WORD PTR [r8], ax
 
-; 171  :             state->OUT_PTR += 1;
+; 172  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	inc	DWORD PTR state$[rbp-68]
 
-; 173  :         }
-; 174  :     }
+; 174  :         }
+; 175  :     }
 
 	jmp	SHORT $LN346@PrintDecim
 $LN345@PrintDecim:
 
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	movzx	eax, WORD PTR [r10+rbx*2]
 	mov	WORD PTR [r8], ax
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	add	QWORD PTR state$[rbp-64], 2
 $LN346@PrintDecim:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 
-; 1072 :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+; 312  :         _InterlockedIncrement(&statistics_info.COUNT_DIV32);
 
 	lock inc DWORD PTR statistics_info+12
 	mov	ebx, edi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 198  :     } while (x != 0);
+; 199  :     } while (x != 0);
 
 	test	edi, edi
 	je	SHORT $LN393@PrintDecim
@@ -3366,45 +3370,45 @@ $LN346@PrintDecim:
 	jmp	$LL332@PrintDecim
 $LN393@PrintDecim:
 
-; 285  :     ++in_ptr;
-; 286  :     --in_count;
-; 287  :     if (format == 'D')
+; 286  :     ++in_ptr;
+; 287  :     --in_count;
+; 288  :     if (format == 'D')
 
 	mov	r14d, DWORD PTR width$[rbp-112]
 	mov	rdx, QWORD PTR state$[rbp-64]
 	cmp	r13b, 68				; 00000044H
 	jne	SHORT $LN7@PrintDecim
 
-; 288  :     {
-; 289  :         if (state.OUT_PTR < out_buf + width)
+; 289  :     {
+; 290  :         if (state.OUT_PTR < out_buf + width)
 
 	lea	rcx, QWORD PTR [r12+r14*2]
 	cmp	rdx, rcx
 	jae	SHORT $LN7@PrintDecim
 
-; 290  :         {
-; 291  :             int count = width - (int)(state.OUT_PTR - out_buf);
+; 291  :         {
+; 292  :             int count = width - (int)(state.OUT_PTR - out_buf);
 
 	mov	rax, rdx
 	sub	rax, r12
 	sar	rax, 1
 	sub	r14d, eax
 
-; 292  :             while (count > 0)
+; 293  :             while (count > 0)
 
 	test	r14d, r14d
 	jle	SHORT $LN7@PrintDecim
 	npad	3
 $LL6@PrintDecim:
 
-; 293  :             {
-; 294  :                 OutputOneChar(&state, 0);
+; 294  :             {
+; 295  :                 OutputOneChar(&state, 0);
 
 	xor	edx, edx
 	lea	rcx, QWORD PTR state$[rbp-112]
 	call	OutputOneChar
 
-; 295  :                 --count;
+; 296  :                 --count;
 
 	dec	r14d
 	test	r14d, r14d
@@ -3412,10 +3416,10 @@ $LL6@PrintDecim:
 	mov	rdx, QWORD PTR state$[rbp-64]
 $LN7@PrintDecim:
 
-; 296  :             }
-; 297  :         }
-; 298  :     }
-; 299  :     *out_buf_count = state.OUT_PTR - out_buf;
+; 297  :             }
+; 298  :         }
+; 299  :     }
+; 300  :     *out_buf_count = state.OUT_PTR - out_buf;
 
 	mov	rcx, QWORD PTR out_buf_count$GSCopy$1$[rbp-112]
 	mov	rax, rdx
@@ -3423,12 +3427,12 @@ $LN7@PrintDecim:
 	sar	rax, 1
 	mov	QWORD PTR [rcx], rax
 
-; 300  :     *state.OUT_PTR = '\0';
+; 301  :     *state.OUT_PTR = '\0';
 
 	xor	eax, eax
 	mov	WORD PTR [rdx], ax
 
-; 301  : }
+; 302  : }
 
 	mov	rcx, QWORD PTR __$ArrayPad$[rbp-112]
 	xor	rcx, rsp
@@ -3448,37 +3452,39 @@ PrintDecimal ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 ;	COMDAT ToStringDN_1WORD
 _TEXT	SEGMENT
@@ -3486,7 +3492,7 @@ state$ = 48
 x$ = 56
 ToStringDN_1WORD PROC					; COMDAT
 
-; 203  : {
+; 204  : {
 
 	mov	QWORD PTR [rsp+8], rbx
 	mov	QWORD PTR [rsp+16], rbp
@@ -3495,20 +3501,20 @@ ToStringDN_1WORD PROC					; COMDAT
 	push	r14
 	sub	rsp, 32					; 00000020H
 	mov	r9d, edx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	r14, -3689348814741910323		; cccccccccccccccdH
 	mov	rax, r14
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 203  : {
+; 204  : {
 
 	mov	rbp, rcx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mul	r9
 	mov	rbx, rdx
@@ -3518,47 +3524,17 @@ ToStringDN_1WORD PROC					; COMDAT
 	sub	r9d, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 226  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 227  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	edx, r9d
 	call	OutputOneChar
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	ecx, ebx
 
-; 676  :         *r = (_UINT32_T)(t % v);
-
-	mov	rax, r14
-	mul	rcx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-
-; 227  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	mov	rcx, rbp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 676  :         *r = (_UINT32_T)(t % v);
-
-	mov	rdi, rdx
-	shr	rdi, 3
-	lea	eax, DWORD PTR [rdi+rdi*4]
-	add	eax, eax
-	sub	ebx, eax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-
-; 227  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	mov	edx, ebx
-	call	OutputOneChar
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
-
-	mov	ecx, edi
-
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	rax, r14
 	mul	rcx
@@ -3567,9 +3543,39 @@ ToStringDN_1WORD PROC					; COMDAT
 ; 228  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	rcx, rbp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
+
+	mov	rdi, rdx
+	shr	rdi, 3
+	lea	eax, DWORD PTR [rdi+rdi*4]
+	add	eax, eax
+	sub	ebx, eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
+
+; 228  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	mov	edx, ebx
+	call	OutputOneChar
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
+
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
+
+	mov	ecx, edi
+
+; 390  :             *r = (_UINT32_T)(t % v);
+
+	mov	rax, r14
+	mul	rcx
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
+
+; 229  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	mov	rcx, rbp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
+
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	rbx, rdx
 	shr	rbx, 3
@@ -3578,47 +3584,17 @@ ToStringDN_1WORD PROC					; COMDAT
 	sub	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 228  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 229  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	edx, edi
 	call	OutputOneChar
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	ecx, ebx
 
-; 676  :         *r = (_UINT32_T)(t % v);
-
-	mov	rax, r14
-	mul	rcx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-
-; 229  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	mov	rcx, rbp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 676  :         *r = (_UINT32_T)(t % v);
-
-	mov	rdi, rdx
-	shr	rdi, 3
-	lea	eax, DWORD PTR [rdi+rdi*4]
-	add	eax, eax
-	sub	ebx, eax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-
-; 229  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
-
-	mov	edx, ebx
-	call	OutputOneChar
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
-
-	mov	ecx, edi
-
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	rax, r14
 	mul	rcx
@@ -3627,9 +3603,39 @@ ToStringDN_1WORD PROC					; COMDAT
 ; 230  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	rcx, rbp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
+
+	mov	rdi, rdx
+	shr	rdi, 3
+	lea	eax, DWORD PTR [rdi+rdi*4]
+	add	eax, eax
+	sub	ebx, eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
+
+; 230  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	mov	edx, ebx
+	call	OutputOneChar
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
+
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
+
+	mov	ecx, edi
+
+; 390  :             *r = (_UINT32_T)(t % v);
+
+	mov	rax, r14
+	mul	rcx
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
+
+; 231  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+
+	mov	rcx, rbp
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
+
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	rsi, rdx
 	shr	rsi, 3
@@ -3638,33 +3644,34 @@ ToStringDN_1WORD PROC					; COMDAT
 	sub	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 230  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 231  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	edx, edi
 	call	OutputOneChar
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 
-; 1095 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+; 335  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
 
 	mov	eax, 5
 	lock xadd DWORD PTR statistics_info+12, eax
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	ecx, esi
 
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	rax, r14
 	mul	rcx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 240  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 241  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	rcx, rbp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	rbx, rdx
 	shr	rbx, 3
@@ -3673,17 +3680,17 @@ ToStringDN_1WORD PROC					; COMDAT
 	sub	esi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 240  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 241  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	edx, esi
 	call	OutputOneChar
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	ecx, ebx
 
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	rax, r14
 	mul	rcx
@@ -3694,34 +3701,35 @@ ToStringDN_1WORD PROC					; COMDAT
 	sub	ebx, ecx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 241  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 242  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	rcx, rbp
 	mov	edx, ebx
 	call	OutputOneChar
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 
-; 1095 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+; 335  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
 
 	mov	ecx, 2
 	lock xadd DWORD PTR statistics_info+12, ecx
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	r8d, edi
 
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	rax, r14
 	mul	r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 251  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 252  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	rcx, rbp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 676  :         *r = (_UINT32_T)(t % v);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	rbx, rdx
 	shr	rbx, 3
@@ -3730,24 +3738,24 @@ ToStringDN_1WORD PROC					; COMDAT
 	sub	edi, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 251  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
+; 252  :         x = _DIVREM_UNIT(0, x, 10, &r); OutputOneChar(state, r);
 
 	mov	edx, edi
 	call	OutputOneChar
 
-; 252  :         OutputOneChar(state, x);
+; 253  :         OutputOneChar(state, x);
 
 	mov	edx, ebx
 	mov	rcx, rbp
 	call	OutputOneChar
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 
-; 1072 :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+; 312  :         _InterlockedIncrement(&statistics_info.COUNT_DIV32);
 
 	lock inc DWORD PTR statistics_info+12
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 260  : }
+; 261  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	mov	rbp, QWORD PTR [rsp+56]
@@ -3760,11 +3768,11 @@ ToStringDN_1WORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 ;	COMDAT ToStringDN_LEADING_1WORD
 _TEXT	SEGMENT
@@ -3772,7 +3780,7 @@ state$ = 48
 x$ = 56
 ToStringDN_LEADING_1WORD PROC				; COMDAT
 
-; 186  : {
+; 187  : {
 
 	mov	QWORD PTR [rsp+8], rbx
 	mov	QWORD PTR [rsp+16], rsi
@@ -3783,24 +3791,24 @@ ToStringDN_LEADING_1WORD PROC				; COMDAT
 	mov	rsi, -3689348814741910323		; cccccccccccccccdH
 	npad	1
 $LL4@ToStringDN:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edx, r8d
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rax, rsi
 	mul	rdx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 191  :         OutputOneChar(state, r);
+; 192  :         OutputOneChar(state, r);
 
 	mov	rcx, rdi
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 677  :         return ((_UINT32_T)(t / v));
+; 391  :             return ((_UINT32_T)(t / v));
 
 	mov	rbx, rdx
 	shr	rbx, 3
@@ -3809,24 +3817,24 @@ $LL4@ToStringDN:
 	sub	r8d, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 191  :         OutputOneChar(state, r);
+; 192  :         OutputOneChar(state, r);
 
 	mov	edx, r8d
 	call	OutputOneChar
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
 
-; 1072 :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+; 312  :         _InterlockedIncrement(&statistics_info.COUNT_DIV32);
 
 	lock inc DWORD PTR statistics_info+12
 	mov	r8d, ebx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 198  :     } while (x != 0);
+; 199  :     } while (x != 0);
 
 	test	ebx, ebx
 	jne	SHORT $LL4@ToStringDN
 
-; 199  : }
+; 200  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	mov	rsi, QWORD PTR [rsp+56]
@@ -3843,22 +3851,22 @@ state$ = 48
 x$ = 56
 OutputOneChar PROC					; COMDAT
 
-; 145  : {
+; 146  : {
 
 	mov	QWORD PTR [rsp+8], rbx
 	push	rdi
 	sub	rsp, 32					; 00000020H
 
-; 146  :     if (state->FORMAT == 'N')
+; 147  :     if (state->FORMAT == 'N')
 
 	cmp	BYTE PTR [rcx], 78			; 0000004eH
 	mov	rbx, rcx
 	mov	edi, edx
 	jne	$LN2@OutputOneC
 
-; 147  :     {
-; 148  :         // 書式が N である場合
-; 149  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
+; 148  :     {
+; 149  :         // 書式が N である場合
+; 150  :         if (state->CURRENT_GROUP_SIZE > 0 && state->CURRENT_GROUP_INDEX >= state->CURRENT_GROUP_SIZE)
 
 	mov	eax, DWORD PTR [rcx+40]
 	test	eax, eax
@@ -3866,21 +3874,21 @@ OutputOneChar PROC					; COMDAT
 	cmp	DWORD PTR [rcx+44], eax
 	jl	SHORT $LN9@OutputOneC
 
-; 150  :         {
-; 151  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
-; 152  : 
-; 153  :             // グループ区切り文字を出力してから与えられた文字を出力する
-; 154  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
+; 151  :         {
+; 152  :             // 現在のグループ幅が 0 ではなく、かつ既に出力した文字数がグループ幅に達した場合
+; 153  : 
+; 154  :             // グループ区切り文字を出力してから与えられた文字を出力する
+; 155  :             lstrcpyW(state->OUT_PTR, state->GROUP_SEPARATOR);
 
 	lea	rdx, QWORD PTR [rcx+2]
 	mov	rcx, QWORD PTR [rcx+48]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 155  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
+; 156  :             state->OUT_PTR += state->GROUP_SEPARATOR_LENGTH;
 
 	movsxd	rax, DWORD PTR [rbx+24]
 
-; 156  :             *state->OUT_PTR = decimal_digits[x];
+; 157  :             *state->OUT_PTR = decimal_digits[x];
 
 	lea	rdx, OFFSET FLAT:decimal_digits
 	add	rax, rax
@@ -3889,14 +3897,14 @@ OutputOneChar PROC					; COMDAT
 	movzx	eax, WORD PTR [rdx+rdi*2]
 	mov	WORD PTR [rcx], ax
 
-; 157  :             state->OUT_PTR += 1;
+; 158  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR [rbx+48], 2
 
-; 158  :             state->CURRENT_GROUP_INDEX = 1;
-; 159  : 
-; 160  :             // 次のグループが存在すればそのグループに移行する
-; 161  :             if (state->CURRENT_GROUP[1] != '\0')
+; 159  :             state->CURRENT_GROUP_INDEX = 1;
+; 160  : 
+; 161  :             // 次のグループが存在すればそのグループに移行する
+; 162  :             if (state->CURRENT_GROUP[1] != '\0')
 
 	mov	rax, QWORD PTR [rbx+32]
 	inc	rax
@@ -3904,19 +3912,19 @@ OutputOneChar PROC					; COMDAT
 	cmp	BYTE PTR [rax], 0
 	je	SHORT $LN3@OutputOneC
 
-; 162  :             {
-; 163  :                 state->CURRENT_GROUP += 1;
+; 163  :             {
+; 164  :                 state->CURRENT_GROUP += 1;
 
 	mov	QWORD PTR [rbx+32], rax
 
-; 164  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 165  :                 state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
 
 	movsx	eax, BYTE PTR [rax]
 	sub	eax, 48					; 00000030H
 	mov	DWORD PTR [rbx+40], eax
 
-; 181  :     }
-; 182  : }
+; 182  :     }
+; 183  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	add	rsp, 32					; 00000020H
@@ -3924,28 +3932,28 @@ OutputOneChar PROC					; COMDAT
 	ret	0
 $LN9@OutputOneC:
 
-; 165  :             }
-; 166  :         }
-; 167  :         else
-; 168  :         {
-; 169  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
-; 170  :             *state->OUT_PTR = decimal_digits[x];
+; 166  :             }
+; 167  :         }
+; 168  :         else
+; 169  :         {
+; 170  :             // 現在のグループの幅が 0 であるかあるいは出力した文字数がグループ幅に達していない場合
+; 171  :             *state->OUT_PTR = decimal_digits[x];
 
 	mov	rcx, QWORD PTR [rcx+48]
 	lea	rdx, OFFSET FLAT:decimal_digits
 	movzx	eax, WORD PTR [rdx+rdi*2]
 	mov	WORD PTR [rcx], ax
 
-; 171  :             state->OUT_PTR += 1;
+; 172  :             state->OUT_PTR += 1;
 
 	add	QWORD PTR [rbx+48], 2
 
-; 172  :             state->CURRENT_GROUP_INDEX += 1;
+; 173  :             state->CURRENT_GROUP_INDEX += 1;
 
 	inc	DWORD PTR [rbx+44]
 
-; 181  :     }
-; 182  : }
+; 182  :     }
+; 183  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	add	rsp, 32					; 00000020H
@@ -3953,26 +3961,26 @@ $LN9@OutputOneC:
 	ret	0
 $LN2@OutputOneC:
 
-; 173  :         }
-; 174  :     }
-; 175  :     else
-; 176  :     {
-; 177  :         // 書式が N ではない (つまり D である) 場合
-; 178  :         
-; 179  :         *state->OUT_PTR = decimal_digits[x];
+; 174  :         }
+; 175  :     }
+; 176  :     else
+; 177  :     {
+; 178  :         // 書式が N ではない (つまり D である) 場合
+; 179  :         
+; 180  :         *state->OUT_PTR = decimal_digits[x];
 
 	mov	rcx, QWORD PTR [rcx+48]
 	lea	rdx, OFFSET FLAT:decimal_digits
 	movzx	eax, WORD PTR [rdx+rdi*2]
 	mov	WORD PTR [rcx], ax
 
-; 180  :         state->OUT_PTR += 1;
+; 181  :         state->OUT_PTR += 1;
 
 	add	QWORD PTR [rbx+48], 2
 $LN3@OutputOneC:
 
-; 181  :     }
-; 182  : }
+; 182  :     }
+; 183  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	add	rsp, 32					; 00000020H
@@ -3988,7 +3996,7 @@ state$ = 8
 x$ = 16
 OutputUngroupedOneChar PROC				; COMDAT
 
-; 140  :     *state->OUT_PTR = decimal_digits[x];
+; 141  :     *state->OUT_PTR = decimal_digits[x];
 
 	mov	eax, edx
 	lea	r8, OFFSET FLAT:decimal_digits
@@ -3996,11 +4004,11 @@ OutputUngroupedOneChar PROC				; COMDAT
 	movzx	eax, WORD PTR [r8+rax*2]
 	mov	WORD PTR [rdx], ax
 
-; 141  :     state->OUT_PTR += 1;
+; 142  :     state->OUT_PTR += 1;
 
 	add	QWORD PTR [rcx+48], 2
 
-; 142  : }
+; 143  : }
 
 	ret	0
 OutputUngroupedOneChar ENDP
@@ -4012,25 +4020,25 @@ _TEXT	SEGMENT
 state$ = 48
 OutputDecimalSeparator PROC				; COMDAT
 
-; 133  : {
+; 134  : {
 
 	push	rbx
 	sub	rsp, 32					; 00000020H
 	mov	rbx, rcx
 
-; 134  :     lstrcpyW(state->OUT_PTR, state->DECIMAL_SEPARATOR);
+; 135  :     lstrcpyW(state->OUT_PTR, state->DECIMAL_SEPARATOR);
 
 	lea	rdx, QWORD PTR [rcx+12]
 	mov	rcx, QWORD PTR [rcx+48]
 	call	QWORD PTR __imp_lstrcpyW
 
-; 135  :     state->OUT_PTR += state->DECIMAL_SEPARATOR_LENGTH;
+; 136  :     state->OUT_PTR += state->DECIMAL_SEPARATOR_LENGTH;
 
 	movsxd	rax, DWORD PTR [rbx+28]
 	add	rax, rax
 	add	QWORD PTR [rbx+48], rax
 
-; 136  : }
+; 137  : }
 
 	add	rsp, 32					; 00000020H
 	pop	rbx
@@ -4047,7 +4055,7 @@ format$ = 64
 format_option$ = 72
 InitializeOutputState PROC				; COMDAT
 
-; 101  : {
+; 102  : {
 
 	mov	QWORD PTR [rsp+8], rbx
 	mov	QWORD PTR [rsp+16], rbp
@@ -4056,9 +4064,9 @@ InitializeOutputState PROC				; COMDAT
 	push	r14
 	sub	rsp, 32					; 00000020H
 
-; 102  :     state->FORMAT = format;
-; 103  : 
-; 104  :     state->GROUP_SEPARATOR_LENGTH = lstrlenW(format_option->GroupSeparator);
+; 103  :     state->FORMAT = format;
+; 104  : 
+; 105  :     state->GROUP_SEPARATOR_LENGTH = lstrlenW(format_option->GroupSeparator);
 
 	lea	rbx, QWORD PTR [r9+4]
 	mov	BYTE PTR [rcx], r8b
@@ -4069,16 +4077,16 @@ InitializeOutputState PROC				; COMDAT
 	call	QWORD PTR __imp_lstrlenW
 	mov	DWORD PTR [rdi+24], eax
 
-; 105  :     wchar_t* in_ptr = format_option->GroupSeparator;
-; 106  :     wchar_t* out_ptr = state->GROUP_SEPARATOR + state->GROUP_SEPARATOR_LENGTH;
-; 107  :     *out_ptr-- = '\0';
+; 106  :     wchar_t* in_ptr = format_option->GroupSeparator;
+; 107  :     wchar_t* out_ptr = state->GROUP_SEPARATOR + state->GROUP_SEPARATOR_LENGTH;
+; 108  :     *out_ptr-- = '\0';
 
 	xor	r14d, r14d
 	cdqe
 	lea	r8, QWORD PTR [rdi+rax*2]
 	mov	WORD PTR [r8+2], r14w
 
-; 108  :     while (*in_ptr != L'\0')
+; 109  :     while (*in_ptr != L'\0')
 
 	movzx	eax, WORD PTR [rbx]
 	test	ax, ax
@@ -4086,13 +4094,13 @@ InitializeOutputState PROC				; COMDAT
 	npad	4
 $LL2@Initialize:
 
-; 109  :     {
-; 110  :         *out_ptr = *in_ptr;
+; 110  :     {
+; 111  :         *out_ptr = *in_ptr;
 
 	mov	WORD PTR [r8], ax
 
-; 111  :         --out_ptr;
-; 112  :         ++in_ptr;
+; 112  :         --out_ptr;
+; 113  :         ++in_ptr;
 
 	lea	rbx, QWORD PTR [rbx+2]
 	movzx	eax, WORD PTR [rbx]
@@ -4101,27 +4109,27 @@ $LL2@Initialize:
 	jne	SHORT $LL2@Initialize
 $LN3@Initialize:
 
-; 113  :     }
-; 114  : 
-; 115  :     state->DECIMAL_SEPARATOR_LENGTH = lstrlenW(format_option->DecimalSeparator);
+; 114  :     }
+; 115  : 
+; 116  :     state->DECIMAL_SEPARATOR_LENGTH = lstrlenW(format_option->DecimalSeparator);
 
 	lea	rbx, QWORD PTR [rsi+10]
 	mov	rcx, rbx
 	call	QWORD PTR __imp_lstrlenW
 	mov	DWORD PTR [rdi+28], eax
 
-; 116  :     in_ptr = format_option->DecimalSeparator;
-; 117  :     out_ptr = state->DECIMAL_SEPARATOR + state->DECIMAL_SEPARATOR_LENGTH;
+; 117  :     in_ptr = format_option->DecimalSeparator;
+; 118  :     out_ptr = state->DECIMAL_SEPARATOR + state->DECIMAL_SEPARATOR_LENGTH;
 
 	cdqe
 	lea	rax, QWORD PTR [rdi+rax*2]
 
-; 118  :     *out_ptr-- = '\0';
+; 119  :     *out_ptr-- = '\0';
 
 	mov	WORD PTR [rax+12], r14w
 	sub	rax, -10
 
-; 119  :     while (*in_ptr != L'\0')
+; 120  :     while (*in_ptr != L'\0')
 
 	movzx	ecx, WORD PTR [rbx]
 	test	cx, cx
@@ -4129,13 +4137,13 @@ $LN3@Initialize:
 	npad	5
 $LL4@Initialize:
 
-; 120  :     {
-; 121  :         *out_ptr = *in_ptr;
+; 121  :     {
+; 122  :         *out_ptr = *in_ptr;
 
 	mov	WORD PTR [rax], cx
 
-; 122  :         --out_ptr;
-; 123  :         ++in_ptr;
+; 123  :         --out_ptr;
+; 124  :         ++in_ptr;
 
 	lea	rbx, QWORD PTR [rbx+2]
 	movzx	ecx, WORD PTR [rbx]
@@ -4144,13 +4152,13 @@ $LL4@Initialize:
 	jne	SHORT $LL4@Initialize
 $LN5@Initialize:
 
-; 124  :     }
-; 125  : 
-; 126  :     state->CURRENT_GROUP = &format_option->GroupSizes[0];
-; 127  :     state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
-; 128  :     state->CURRENT_GROUP_INDEX = 0;
-; 129  :     state->OUT_PTR = out_buf;
-; 130  : }
+; 125  :     }
+; 126  : 
+; 127  :     state->CURRENT_GROUP = &format_option->GroupSizes[0];
+; 128  :     state->CURRENT_GROUP_SIZE = *state->CURRENT_GROUP - '0';
+; 129  :     state->CURRENT_GROUP_INDEX = 0;
+; 130  :     state->OUT_PTR = out_buf;
+; 131  : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	lea	rax, QWORD PTR [rsi+28]
@@ -4170,13 +4178,13 @@ InitializeOutputState ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 ;	COMDAT ConvertCardinalNumber
 _TEXT	SEGMENT
@@ -4193,7 +4201,7 @@ r_buf$ = 160
 r_buf_count$ = 168
 ConvertCardinalNumber PROC				; COMDAT
 
-; 58   : {
+; 59   : {
 
 	push	rbx
 	push	rsi
@@ -4202,10 +4210,10 @@ ConvertCardinalNumber PROC				; COMDAT
 	push	r15
 	sub	rsp, 80					; 00000050H
 
-; 59   :     PMC_STATUS_CODE result;
-; 60   :     __UNIT_TYPE work_buf_1_code;
-; 61   :     __UNIT_TYPE work_buf_1_words;
-; 62   :     __UNIT_TYPE_DIV* work_buf_1 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_1_words, &work_buf_1_code);
+; 60   :     PMC_STATUS_CODE result;
+; 61   :     __UNIT_TYPE work_buf_1_code;
+; 62   :     __UNIT_TYPE work_buf_1_words;
+; 63   :     __UNIT_TYPE_DIV* work_buf_1 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_1_words, &work_buf_1_code);
 
 	lea	rdi, QWORD PTR [r8+64]
 	mov	rsi, rdx
@@ -4217,16 +4225,16 @@ ConvertCardinalNumber PROC				; COMDAT
 	call	AllocateBlock
 	mov	r15, rax
 
-; 63   :     if (work_buf_1 == NULL)
+; 64   :     if (work_buf_1 == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN6@ConvertCar
 
-; 64   :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 65   :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, QWORD PTR [r15-5]
 
-; 98   : }
+; 99   : }
 
 	add	rsp, 80					; 00000050H
 	pop	r15
@@ -4237,9 +4245,9 @@ ConvertCardinalNumber PROC				; COMDAT
 	ret	0
 $LN6@ConvertCar:
 
-; 65   :     __UNIT_TYPE work_buf_2_code;
-; 66   :     __UNIT_TYPE work_buf_2_words;
-; 67   :     __UNIT_TYPE_DIV* work_buf_2 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_2_words, &work_buf_2_code);
+; 66   :     __UNIT_TYPE work_buf_2_code;
+; 67   :     __UNIT_TYPE work_buf_2_words;
+; 68   :     __UNIT_TYPE_DIV* work_buf_2 = (__UNIT_TYPE_DIV*)AllocateBlock(x_bit_count + __UNIT_TYPE_BIT_COUNT, &work_buf_2_words, &work_buf_2_code);
 
 	lea	r8, QWORD PTR work_buf_2_code$[rsp]
 	mov	QWORD PTR [rsp+136], r12
@@ -4248,26 +4256,26 @@ $LN6@ConvertCar:
 	call	AllocateBlock
 	mov	r12, rax
 
-; 68   :     if (work_buf_2 == NULL)
+; 69   :     if (work_buf_2 == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN7@ConvertCar
 
-; 69   :     {
-; 70   :         DeallocateBlock((__UNIT_TYPE*)work_buf_1, work_buf_1_words);
+; 70   :     {
+; 71   :         DeallocateBlock((__UNIT_TYPE*)work_buf_1, work_buf_1_words);
 
 	mov	rdx, QWORD PTR work_buf_1_words$[rsp]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 71   :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 72   :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, QWORD PTR [r12-5]
 	jmp	$LN26@ConvertCar
 $LN7@ConvertCar:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, esi
 	mov	rdi, r15
@@ -4275,48 +4283,48 @@ $LN7@ConvertCar:
 	mov	QWORD PTR [rsp+128], rbp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 76   :     __UNIT_TYPE_DIV* r_ptr = r_buf;
+; 77   :     __UNIT_TYPE_DIV* r_ptr = r_buf;
 
 	mov	rbx, QWORD PTR r_buf$[rsp]
 	mov	rbp, r15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 77   :     __UNIT_TYPE work_u_count = work_buf_1_words * (sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV));
+; 78   :     __UNIT_TYPE work_u_count = work_buf_1_words * (sizeof(__UNIT_TYPE) / sizeof(__UNIT_TYPE_DIV));
 
 	mov	rsi, QWORD PTR work_buf_1_words$[rsp]
 	mov	QWORD PTR [rsp+152], r14
 	mov	r14, r12
 	add	rsi, rsi
 
-; 78   :     while (work_u_count > 0)
+; 79   :     while (work_u_count > 0)
 
 	je	$LN3@ConvertCar
 $LL2@ConvertCar:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 418  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 132  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 	mov	ecx, esi
 	mov	rdi, r14
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 82   :         DivRem_X_1W(u_ptr, work_u_count, base_value, q_ptr, &r_value);
+; 83   :         DivRem_X_1W(u_ptr, work_u_count, base_value, q_ptr, &r_value);
 
 	mov	r9, r14
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 418  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 132  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	rep stosd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
 
-; 82   :         DivRem_X_1W(u_ptr, work_u_count, base_value, q_ptr, &r_value);
+; 83   :         DivRem_X_1W(u_ptr, work_u_count, base_value, q_ptr, &r_value);
 
 	lea	rax, QWORD PTR r_value$1[rsp]
 	mov	rcx, rbp
@@ -4325,7 +4333,7 @@ $LL2@ConvertCar:
 	mov	rdx, rsi
 	call	DivRem_X_1W
 
-; 83   :         if ((result = CheckBlockLight((__UNIT_TYPE*)work_buf_2, work_buf_2_code)) != PMC_STATUS_OK)
+; 84   :         if ((result = CheckBlockLight((__UNIT_TYPE*)work_buf_2, work_buf_2_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_buf_2_code$[rsp]
 	mov	rcx, r12
@@ -4333,8 +4341,8 @@ $LL2@ConvertCar:
 	test	eax, eax
 	jne	$LN28@ConvertCar
 
-; 84   :             return (result);
-; 85   :         if ((result = CheckBlockLight((__UNIT_TYPE*)work_buf_1, work_buf_1_code)) != PMC_STATUS_OK)
+; 85   :             return (result);
+; 86   :         if ((result = CheckBlockLight((__UNIT_TYPE*)work_buf_1, work_buf_1_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_buf_1_code$[rsp]
 	mov	rcx, r15
@@ -4342,65 +4350,65 @@ $LL2@ConvertCar:
 	test	eax, eax
 	jne	SHORT $LN28@ConvertCar
 
-; 86   :             return (result);
-; 87   :         *r_ptr++ = r_value;
+; 87   :             return (result);
+; 88   :         *r_ptr++ = r_value;
 
 	mov	eax, DWORD PTR r_value$1[rsp]
 	mov	DWORD PTR [rbx], eax
 
-; 88   :         __UNIT_TYPE_DIV* temp = u_ptr;
+; 89   :         __UNIT_TYPE_DIV* temp = u_ptr;
 
 	mov	rax, rbp
 	add	rbx, 4
 
-; 89   :         u_ptr = q_ptr;
+; 90   :         u_ptr = q_ptr;
 
 	mov	rbp, r14
 
-; 90   :         q_ptr = temp;
+; 91   :         q_ptr = temp;
 
 	mov	r14, rax
 
-; 91   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
+; 92   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
 
 	test	rsi, rsi
 	je	SHORT $LN3@ConvertCar
 
-; 86   :             return (result);
-; 87   :         *r_ptr++ = r_value;
+; 87   :             return (result);
+; 88   :         *r_ptr++ = r_value;
 
 	lea	rax, QWORD PTR [rsi*4-4]
 	add	rax, rbp
 $LL4@ConvertCar:
 
-; 91   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
+; 92   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
 
 	cmp	DWORD PTR [rax], 0
 	jne	SHORT $LN5@ConvertCar
 
-; 92   :             --work_u_count;
+; 93   :             --work_u_count;
 
 	sub	rax, 4
 	sub	rsi, 1
 	jne	SHORT $LL4@ConvertCar
 
-; 91   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
+; 92   :         while (work_u_count > 0 && u_ptr[work_u_count - 1] == 0)
 
 	jmp	SHORT $LN3@ConvertCar
 $LN5@ConvertCar:
 
-; 78   :     while (work_u_count > 0)
+; 79   :     while (work_u_count > 0)
 
 	test	rsi, rsi
 	jne	$LL2@ConvertCar
 $LN3@ConvertCar:
 
-; 93   :     }
-; 94   :     *r_buf_count = r_ptr - r_buf;
+; 94   :     }
+; 95   :     *r_buf_count = r_ptr - r_buf;
 
 	mov	rax, QWORD PTR r_buf_count$[rsp]
 
-; 95   :     DeallocateBlock((__UNIT_TYPE*)work_buf_2, work_buf_2_words);
+; 96   :     DeallocateBlock((__UNIT_TYPE*)work_buf_2, work_buf_2_words);
 
 	mov	rcx, r12
 	sub	rbx, QWORD PTR r_buf$[rsp]
@@ -4409,13 +4417,13 @@ $LN3@ConvertCar:
 	mov	QWORD PTR [rax], rbx
 	call	DeallocateBlock
 
-; 96   :     DeallocateBlock((__UNIT_TYPE*)work_buf_1, work_buf_1_words);
+; 97   :     DeallocateBlock((__UNIT_TYPE*)work_buf_1, work_buf_1_words);
 
 	mov	rdx, QWORD PTR work_buf_1_words$[rsp]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 97   :     return (PMC_STATUS_OK);
+; 98   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN28@ConvertCar:
@@ -4424,7 +4432,7 @@ $LN28@ConvertCar:
 $LN26@ConvertCar:
 	mov	r12, QWORD PTR [rsp+136]
 
-; 98   : }
+; 99   : }
 
 	add	rsp, 80					; 00000050H
 	pop	r15
@@ -4436,97 +4444,35 @@ $LN26@ConvertCar:
 ConvertCardinalNumber ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT AddToDIV64Counter
-_TEXT	SEGMENT
-value$ = 8
-AddToDIV64Counter PROC					; COMDAT
-
-; 1101 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
-
-	lock xadd DWORD PTR statistics_info+8, ecx
-
-; 1102 : }
-
-	ret	0
-AddToDIV64Counter ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT AddToDIV32Counter
-_TEXT	SEGMENT
-value$ = 8
-AddToDIV32Counter PROC					; COMDAT
-
-; 1095 :     _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
-
-	lock xadd DWORD PTR statistics_info+12, ecx
-
-; 1096 : }
-
-	ret	0
-AddToDIV32Counter ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT IncrementDIV64Counter
-_TEXT	SEGMENT
-IncrementDIV64Counter PROC				; COMDAT
-
-; 1078 :     _InterlockedIncrement(&statistics_info.COUNT_DIV64);
-
-	lock inc DWORD PTR statistics_info+8
-
-; 1079 : }
-
-	ret	0
-IncrementDIV64Counter ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
-;	COMDAT IncrementDIV32Counter
-_TEXT	SEGMENT
-IncrementDIV32Counter PROC				; COMDAT
-
-; 1072 :     _InterlockedIncrement(&statistics_info.COUNT_DIV32);
-
-	lock inc DWORD PTR statistics_info+12
-
-; 1073 : }
-
-	ret	0
-IncrementDIV32Counter ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _ROTATE_L_UNIT
 _TEXT	SEGMENT
 x$ = 8
 count$ = 16
 _ROTATE_L_UNIT PROC					; COMDAT
 
-; 767  : {
+; 481  :     {
 
 	mov	rax, rcx
 
-; 768  : #ifdef _M_IX86
-; 769  :     return (_rotl(x, count));
-; 770  : #elif defined(_M_X64)
-; 771  :     return (_rotl64(x, count));
+; 482  : #ifdef _M_IX86
+; 483  :         return (_rotl(x, count));
+; 484  : #elif defined(_M_X64)
+; 485  :         return (_rotl64(x, count));
 
 	mov	ecx, edx
 	rol	rax, cl
 
-; 772  : #else
-; 773  : #error unknown platform
-; 774  : #endif
-; 775  : }
+; 486  : #else
+; 487  : #error unknown platform
+; 488  : #endif
+; 489  :     }
 
 	ret	0
 _ROTATE_L_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _DIVREM_UNIT
 _TEXT	SEGMENT
 u_high$ = 8
@@ -4535,83 +4481,83 @@ v$ = 24
 r$ = 32
 _DIVREM_UNIT PROC					; COMDAT
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, ecx
 	mov	ecx, edx
 
-; 671  : #ifdef _MSC_VER
-; 672  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-; 673  :     {
-; 674  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
-; 675  :         _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
-; 676  :         *r = (_UINT32_T)(t % v);
+; 385  : #ifdef _MSC_VER
+; 386  :         if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 387  :         {
+; 388  :             // 64bit/32bitの除算を行う組み込み関数は実装されていない。
+; 389  :             _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	xor	edx, edx
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	shl	rax, 32					; 00000020H
 	or	rax, rcx
 
-; 671  : #ifdef _MSC_VER
-; 672  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-; 673  :     {
-; 674  :         // 64bit/32bitの除算を行う組み込み関数は実装されていない。
-; 675  :         _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
-; 676  :         *r = (_UINT32_T)(t % v);
+; 385  : #ifdef _MSC_VER
+; 386  :         if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 387  :         {
+; 388  :             // 64bit/32bitの除算を行う組み込み関数は実装されていない。
+; 389  :             _UINT64_T t = _FROMWORDTODWORD(u_high, u_low);
+; 390  :             *r = (_UINT32_T)(t % v);
 
 	mov	ecx, r8d
 	div	rcx
 	mov	DWORD PTR [r9], edx
 
-; 677  :         return ((_UINT32_T)(t / v));
-; 678  :     }
-; 679  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
-; 680  :     {
-; 681  :         // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
-; 682  :         // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
-; 683  :         // ・128bit 整数のデータ型が用意されていない。
-; 684  :         // ・x64 ではインラインアセンブラがサポートされていない。
-; 685  :         *r = 0;
-; 686  :         return (0);
-; 687  :     }
-; 688  :     else
-; 689  :     {
-; 690  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 691  :         *r = 0;
-; 692  :         return (0);
-; 693  :     }
-; 694  : #elif defined(__GNUC__)
-; 695  :     __UNIT_TYPE q;
-; 696  :     if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-; 697  :         __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-; 698  :     else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
-; 699  :         __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-; 700  :     else
-; 701  :     {
-; 702  :         // 未知のプラットフォームの場合はとりあえず適当なものを返す。
-; 703  :         *r = 0;
-; 704  :         q = 0;
-; 705  :     }
-; 706  :     return (q);
-; 707  : #else
-; 708  : #error unknown compiler
-; 709  : #endif
-; 710  : }
+; 391  :             return ((_UINT32_T)(t / v));
+; 392  :         }
+; 393  :         else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 394  :         {
+; 395  :             // 以下の理由のため、MSVCでは 128bit/64bit の除算を実装できない。運用で回避すること。
+; 396  :             // ・(x64 に限らず) 除算の組み込み関数が用意されていない。
+; 397  :             // ・128bit 整数のデータ型が用意されていない。
+; 398  :             // ・x64 ではインラインアセンブラがサポートされていない。
+; 399  :             *r = 0;
+; 400  :             return (0);
+; 401  :         }
+; 402  :         else
+; 403  :         {
+; 404  :             // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 405  :             *r = 0;
+; 406  :             return (0);
+; 407  :         }
+; 408  : #elif defined(__GNUC__)
+; 409  :         __UNIT_TYPE q;
+; 410  :         if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+; 411  :             __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+; 412  :         else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+; 413  :             __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+; 414  :         else
+; 415  :         {
+; 416  :             // 未知のプラットフォームの場合はとりあえず適当なものを返す。
+; 417  :             *r = 0;
+; 418  :             q = 0;
+; 419  :         }
+; 420  :         return (q);
+; 421  : #else
+; 422  : #error unknown compiler
+; 423  : #endif
+; 424  :     }
 
 	ret	0
 _DIVREM_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _DIVIDE_CEILING_UNIT
 _TEXT	SEGMENT
 u$ = 8
 v$ = 16
 _DIVIDE_CEILING_UNIT PROC				; COMDAT
 
-; 480  :     return ((u + v - 1) / v);
+; 194  :         return ((u + v - 1) / v);
 
 	lea	rax, QWORD PTR [rdx-1]
 	mov	r8, rdx
@@ -4619,33 +4565,33 @@ _DIVIDE_CEILING_UNIT PROC				; COMDAT
 	xor	edx, edx
 	div	r8
 
-; 481  : }
+; 195  :     }
 
 	ret	0
 _DIVIDE_CEILING_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _FROMWORDTODWORD
 _TEXT	SEGMENT
 value_high$ = 8
 value_low$ = 16
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, ecx
 	shl	rax, 32					; 00000020H
 	mov	ecx, edx
 	or	rax, rcx
 
-; 465  : }
+; 179  :     }
 
 	ret	0
 _FROMWORDTODWORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _FILL_MEMORY_16
 _TEXT	SEGMENT
 d$ = 8
@@ -4653,62 +4599,62 @@ x$ = 16
 count$ = 24
 _FILL_MEMORY_16 PROC					; COMDAT
 
-; 435  : {
+; 149  :     {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 436  :     __stosw(d, x, count);
+; 150  :         __stosw(d, x, count);
 
 	mov	rdi, rcx
 	movzx	eax, dx
 	mov	rcx, r8
 	rep stosw
 
-; 437  : }
+; 151  :     }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
 _FILL_MEMORY_16 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _ZERO_MEMORY_UNIT_DIV
 _TEXT	SEGMENT
 d$ = 8
 count$ = 16
 _ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 413  : {
+; 127  :     {
 
 	mov	QWORD PTR [rsp+8], rdi
 	mov	rdi, rcx
 
-; 414  : #ifdef _M_IX86
-; 415  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 416  : #elif defined(_M_X64)
-; 417  : #ifdef _MSC_VER
-; 418  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 128  : #ifdef _M_IX86
+; 129  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 130  : #elif defined(_M_X64)
+; 131  : #ifdef _MSC_VER
+; 132  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 	mov	ecx, edx
 	rep stosd
 
-; 419  : #elif defined(__GNUC__)
-; 420  :     __stosq(d, 0, count);
-; 421  : #else
-; 422  : #error unknown compiler
-; 423  : #endif
-; 424  : #else
-; 425  : #error unknown platform
-; 426  : #endif
-; 427  : }
+; 133  : #elif defined(__GNUC__)
+; 134  :         __stosq(d, 0, count);
+; 135  : #else
+; 136  : #error unknown compiler
+; 137  : #endif
+; 138  : #else
+; 139  : #error unknown platform
+; 140  : #endif
+; 141  :     }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
 _ZERO_MEMORY_UNIT_DIV ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _COPY_MEMORY_UNIT_DIV
 _TEXT	SEGMENT
 d$ = 8
@@ -4716,36 +4662,98 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 363  : {
+; 77   :     {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 	mov	rdi, rcx
 
-; 364  : #ifdef _M_IX86
-; 365  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 366  : #elif defined(_M_X64)
-; 367  : #ifdef _MSC_VER
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 78   : #ifdef _M_IX86
+; 79   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 80   : #elif defined(_M_X64)
+; 81   : #ifdef _MSC_VER
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	rsi, rdx
 	mov	ecx, r8d
 	rep movsd
 
-; 369  : #elif defined(__GNUC__)
-; 370  :     __movsq(d, s, count);
-; 371  : #else
-; 372  : #error unknown compiler
-; 373  : #endif
-; 374  : #else
-; 375  : #error unknown platform
-; 376  : #endif
-; 377  : }
+; 83   : #elif defined(__GNUC__)
+; 84   :         __movsq(d, s, count);
+; 85   : #else
+; 86   : #error unknown compiler
+; 87   : #endif
+; 88   : #else
+; 89   : #error unknown platform
+; 90   : #endif
+; 91   :     }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
 	ret	0
 _COPY_MEMORY_UNIT_DIV ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
+;	COMDAT AddToDIV64Counter
+_TEXT	SEGMENT
+value$ = 8
+AddToDIV64Counter PROC					; COMDAT
+
+; 341  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
+
+	lock xadd DWORD PTR statistics_info+8, ecx
+
+; 342  :     }
+
+	ret	0
+AddToDIV64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
+;	COMDAT AddToDIV32Counter
+_TEXT	SEGMENT
+value$ = 8
+AddToDIV32Counter PROC					; COMDAT
+
+; 335  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+
+	lock xadd DWORD PTR statistics_info+12, ecx
+
+; 336  :     }
+
+	ret	0
+AddToDIV32Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
+;	COMDAT IncrementDIV64Counter
+_TEXT	SEGMENT
+IncrementDIV64Counter PROC				; COMDAT
+
+; 318  :         _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+
+	lock inc DWORD PTR statistics_info+8
+
+; 319  :     }
+
+	ret	0
+IncrementDIV64Counter ENDP
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_uint_internal.h
+;	COMDAT IncrementDIV32Counter
+_TEXT	SEGMENT
+IncrementDIV32Counter PROC				; COMDAT
+
+; 312  :         _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+
+	lock inc DWORD PTR statistics_info+12
+
+; 313  :     }
+
+	ret	0
+IncrementDIV32Counter ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_tostring.c
@@ -4759,7 +4767,7 @@ width$ = 96
 format_option$ = 104
 PMC_ToString PROC					; COMDAT
 
-; 532  : {
+; 533  : {
 
 $LN19:
 	mov	QWORD PTR [rsp+8], rbx
@@ -4773,36 +4781,36 @@ $LN19:
 	mov	rsi, rdx
 	mov	rdi, rcx
 
-; 533  :     if (x == NULL)
+; 534  :     if (x == NULL)
 
 	test	rcx, rcx
 	je	$LN12@PMC_ToStri
 
-; 534  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 535  :     if (buffer == NULL)
+; 535  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 536  :     if (buffer == NULL)
 
 	test	rdx, rdx
 	je	$LN12@PMC_ToStri
 
-; 536  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 537  :     if (format_option == NULL)
-; 538  :         format_option = &default_number_format_option;
-; 539  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
+; 537  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 538  :     if (format_option == NULL)
+; 539  :         format_option = &default_number_format_option;
+; 540  :     NUMBER_HEADER* nx = (NUMBER_HEADER*)x;
 
 	mov	rax, QWORD PTR format_option$[rsp]
 	lea	rbx, OFFSET FLAT:default_number_format_option
 	test	rax, rax
 	cmovne	rbx, rax
 
-; 540  :     PMC_STATUS_CODE result;
-; 541  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
+; 541  :     PMC_STATUS_CODE result;
+; 542  :     if ((result = CheckNumber(nx)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_ToStri
 
-; 542  :         return (result);
-; 543  :     switch (format)
+; 543  :         return (result);
+; 544  :     switch (format)
 
 	movsx	eax, r14b
 	add	eax, -68				; ffffffffffffffbcH
@@ -4816,10 +4824,10 @@ $LN19:
 	jmp	rcx
 $LN8@PMC_ToStri:
 
-; 544  :     {
-; 545  :     case 'n':
-; 546  :     case 'N':
-; 547  :         return (ToStringDN(nx, buffer, buffer_size, 'N', width >= 0 ? width : format_option->DecimalDigits, format_option));
+; 545  :     {
+; 546  :     case 'n':
+; 547  :     case 'N':
+; 548  :         return (ToStringDN(nx, buffer, buffer_size, 'N', width >= 0 ? width : format_option->DecimalDigits, format_option));
 
 	mov	eax, DWORD PTR width$[rsp]
 	test	eax, eax
@@ -4836,8 +4844,8 @@ $LN15@PMC_ToStri:
 	jmp	SHORT $LN1@PMC_ToStri
 $LN9@PMC_ToStri:
 
-; 548  :     case 'x':
-; 549  :         return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 0));
+; 549  :     case 'x':
+; 550  :         return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 0));
 
 	mov	eax, DWORD PTR width$[rsp]
 	xor	ecx, ecx
@@ -4853,8 +4861,8 @@ $LN9@PMC_ToStri:
 	jmp	SHORT $LN1@PMC_ToStri
 $LN10@PMC_ToStri:
 
-; 550  :     case 'X':
-; 551  :         return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 1));
+; 551  :     case 'X':
+; 552  :         return (ToStringX(nx, buffer, buffer_size, width >= 0 ? width : 0, format_option, 1));
 
 	mov	eax, DWORD PTR width$[rsp]
 	xor	ecx, ecx
@@ -4870,9 +4878,9 @@ $LN10@PMC_ToStri:
 	jmp	SHORT $LN1@PMC_ToStri
 $LN11@PMC_ToStri:
 
-; 552  :     case 'd':
-; 553  :     case 'D':
-; 554  :         return (ToStringDN(nx, buffer, buffer_size, 'D', width >= 0 ? width : 0, format_option));
+; 553  :     case 'd':
+; 554  :     case 'D':
+; 555  :         return (ToStringDN(nx, buffer, buffer_size, 'D', width >= 0 ? width : 0, format_option));
 
 	mov	eax, DWORD PTR width$[rsp]
 	xor	ecx, ecx
@@ -4888,14 +4896,14 @@ $LN11@PMC_ToStri:
 	jmp	SHORT $LN1@PMC_ToStri
 $LN12@PMC_ToStri:
 
-; 555  :     default:
-; 556  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 556  :     default:
+; 557  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN1@PMC_ToStri:
 
-; 557  :     }
-; 558  : }
+; 558  :     }
+; 559  : }
 
 	mov	rbx, QWORD PTR [rsp+64]
 	mov	rbp, QWORD PTR [rsp+72]
@@ -4974,49 +4982,49 @@ _TEXT	SEGMENT
 feature$ = 48
 Initialize_ToString PROC				; COMDAT
 
-; 561  : {
+; 562  : {
 
 $LN4:
 	sub	rsp, 40					; 00000028H
 
-; 562  :     default_number_format_option.DecimalDigits = 2;
-; 563  :     lstrcpyW(default_number_format_option.GroupSeparator, L",");
+; 563  :     default_number_format_option.DecimalDigits = 2;
+; 564  :     lstrcpyW(default_number_format_option.GroupSeparator, L",");
 
 	lea	rdx, OFFSET FLAT:??_C@_13DEFPDAGF@?$AA?0@
 	mov	DWORD PTR default_number_format_option, 2
 	lea	rcx, OFFSET FLAT:default_number_format_option+4
 	call	QWORD PTR __imp_lstrcpyW
 
-; 564  :     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
+; 565  :     lstrcpyW(default_number_format_option.DecimalSeparator, L".");
 
 	lea	rdx, OFFSET FLAT:??_C@_13JOFGPIOO@?$AA?4@
 	lea	rcx, OFFSET FLAT:default_number_format_option+10
 	call	QWORD PTR __imp_lstrcpyW
 
-; 565  :     lstrcpy(default_number_format_option.GroupSizes, "3");
+; 566  :     lstrcpy(default_number_format_option.GroupSizes, "3");
 
 	lea	rdx, OFFSET FLAT:??_C@_01EKENIIDA@3@
 	lea	rcx, OFFSET FLAT:default_number_format_option+28
 	call	QWORD PTR __imp_lstrcpyA
 
-; 566  :     lstrcpyW(default_number_format_option.PositiveSign, L"+");
+; 567  :     lstrcpyW(default_number_format_option.PositiveSign, L"+");
 
 	lea	rdx, OFFSET FLAT:??_C@_13KJIIAINM@?$AA?$CL@
 	lea	rcx, OFFSET FLAT:default_number_format_option+16
 	call	QWORD PTR __imp_lstrcpyW
 
-; 567  :     lstrcpyW(default_number_format_option.NegativeSign, L"-");
+; 568  :     lstrcpyW(default_number_format_option.NegativeSign, L"-");
 
 	lea	rdx, OFFSET FLAT:??_C@_13IMODFHAA@?$AA?9@
 	lea	rcx, OFFSET FLAT:default_number_format_option+22
 	call	QWORD PTR __imp_lstrcpyW
 
-; 568  : 
-; 569  :     return (PMC_STATUS_OK);
+; 569  : 
+; 570  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 570  : }
+; 571  : }
 
 	add	rsp, 40					; 00000028H
 	ret	0

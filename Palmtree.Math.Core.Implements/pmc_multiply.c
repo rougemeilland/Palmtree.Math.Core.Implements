@@ -31,7 +31,8 @@
 
 
 #include <windows.h>
-#include "pmc_internal.h"
+#include "pmc_uint_internal.h"
+#include "pmc_inline_func.h"
 
 
 static void (*fp_Multiply_X_1W)(__UNIT_TYPE* u, __UNIT_TYPE u_count, __UNIT_TYPE v, __UNIT_TYPE* w);

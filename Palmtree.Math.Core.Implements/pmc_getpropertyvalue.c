@@ -31,7 +31,7 @@
 
 
 #include <windows.h>
-#include "pmc_internal.h"
+#include "pmc_uint_internal.h"
 
 
 PMC_STATUS_CODE __PMC_CALL PMC_GetPropertyValue_X_I(HANDLE x, PMC_PROPERTY_CODE function_code, _INT32_T* o)

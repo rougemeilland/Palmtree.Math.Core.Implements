@@ -31,12 +31,13 @@
 
 
 #include <windows.h>
-#include "pmc_internal.h"
+#include "pmc_uint_internal.h"
+#include "pmc_inline_func.h"
 #include "pmc_debug.h"
 
 
 #ifdef _DEBUG
-void INTERNALTEST_DivRem_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char* u, size_t u_count, unsigned char* v, size_t v_count, unsigned char *desired_q, size_t desired_q_count, unsigned char *desired_r, size_t desired_r_count)
+void INTERNALTEST_DivRem_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned char* u, size_t u_count, unsigned char* v, size_t v_count, unsigned char *desired_q, size_t desired_q_count, unsigned char *desired_r, size_t desired_r_count)
 {
     __UNIT_TYPE u_buf_words;
     __UNIT_TYPE u_buf_code;

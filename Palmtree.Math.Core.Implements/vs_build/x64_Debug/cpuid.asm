@@ -19,7 +19,8 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
+__6B0481B0_pmc_inline_func@h DB 01H
 __78001C24_cpuid@c DB 01H
 msvcjmc	ENDS
 PUBLIC	GetCPUInfo
@@ -203,7 +204,7 @@ reg_ecx$ = 304
 reg_edx$ = 312
 cpuidex	PROC						; COMDAT
 
-; 49   : {
+; 50   : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -225,8 +226,8 @@ cpuidex	PROC						; COMDAT
 	lea	rcx, OFFSET FLAT:__78001C24_cpuid@c
 	call	__CheckForDebuggerJustMyCode
 
-; 50   :     _UINT32_T regbuf[4];
-; 51   :     __cpuidex(regbuf, op, subop);
+; 51   :     _UINT32_T regbuf[4];
+; 52   :     __cpuidex(regbuf, op, subop);
 
 	mov	eax, DWORD PTR op$[rbp]
 	mov	ecx, DWORD PTR subop$[rbp]
@@ -237,7 +238,7 @@ cpuidex	PROC						; COMDAT
 	mov	DWORD PTR [r8+8], ecx
 	mov	DWORD PTR [r8+12], edx
 
-; 52   :     *reg_eax = regbuf[0];
+; 53   :     *reg_eax = regbuf[0];
 
 	mov	eax, 4
 	imul	rax, rax, 0
@@ -245,7 +246,7 @@ cpuidex	PROC						; COMDAT
 	mov	eax, DWORD PTR regbuf$[rbp+rax]
 	mov	DWORD PTR [rcx], eax
 
-; 53   :     *reg_ebx = regbuf[1];
+; 54   :     *reg_ebx = regbuf[1];
 
 	mov	eax, 4
 	imul	rax, rax, 1
@@ -253,7 +254,7 @@ cpuidex	PROC						; COMDAT
 	mov	eax, DWORD PTR regbuf$[rbp+rax]
 	mov	DWORD PTR [rcx], eax
 
-; 54   :     *reg_ecx = regbuf[2];
+; 55   :     *reg_ecx = regbuf[2];
 
 	mov	eax, 4
 	imul	rax, rax, 2
@@ -261,7 +262,7 @@ cpuidex	PROC						; COMDAT
 	mov	eax, DWORD PTR regbuf$[rbp+rax]
 	mov	DWORD PTR [rcx], eax
 
-; 55   :     *reg_edx = regbuf[3];
+; 56   :     *reg_edx = regbuf[3];
 
 	mov	eax, 4
 	imul	rax, rax, 3
@@ -269,7 +270,7 @@ cpuidex	PROC						; COMDAT
 	mov	eax, DWORD PTR regbuf$[rbp+rax]
 	mov	DWORD PTR [rcx], eax
 
-; 56   : }
+; 57   : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:cpuidex$rtcFrameData
@@ -297,7 +298,7 @@ reg_ecx$ = 296
 reg_edx$ = 304
 cpuid	PROC						; COMDAT
 
-; 39   : {
+; 40   : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -319,8 +320,8 @@ cpuid	PROC						; COMDAT
 	lea	rcx, OFFSET FLAT:__78001C24_cpuid@c
 	call	__CheckForDebuggerJustMyCode
 
-; 40   :     _UINT32_T regbuf[4];
-; 41   :     __cpuid(regbuf, op);
+; 41   :     _UINT32_T regbuf[4];
+; 42   :     __cpuid(regbuf, op);
 
 	mov	eax, DWORD PTR op$[rbp]
 	xor	ecx, ecx
@@ -331,7 +332,7 @@ cpuid	PROC						; COMDAT
 	mov	DWORD PTR [r8+8], ecx
 	mov	DWORD PTR [r8+12], edx
 
-; 42   :     *reg_eax = regbuf[0];
+; 43   :     *reg_eax = regbuf[0];
 
 	mov	eax, 4
 	imul	rax, rax, 0
@@ -339,7 +340,7 @@ cpuid	PROC						; COMDAT
 	mov	eax, DWORD PTR regbuf$[rbp+rax]
 	mov	DWORD PTR [rcx], eax
 
-; 43   :     *reg_ebx = regbuf[1];
+; 44   :     *reg_ebx = regbuf[1];
 
 	mov	eax, 4
 	imul	rax, rax, 1
@@ -347,7 +348,7 @@ cpuid	PROC						; COMDAT
 	mov	eax, DWORD PTR regbuf$[rbp+rax]
 	mov	DWORD PTR [rcx], eax
 
-; 44   :     *reg_ecx = regbuf[2];
+; 45   :     *reg_ecx = regbuf[2];
 
 	mov	eax, 4
 	imul	rax, rax, 2
@@ -355,7 +356,7 @@ cpuid	PROC						; COMDAT
 	mov	eax, DWORD PTR regbuf$[rbp+rax]
 	mov	DWORD PTR [rcx], eax
 
-; 45   :     *reg_edx = regbuf[3];
+; 46   :     *reg_edx = regbuf[3];
 
 	mov	eax, 4
 	imul	rax, rax, 3
@@ -363,7 +364,7 @@ cpuid	PROC						; COMDAT
 	mov	eax, DWORD PTR regbuf$[rbp+rax]
 	mov	DWORD PTR [rcx], eax
 
-; 46   : }
+; 47   : }
 
 	lea	rcx, QWORD PTR [rbp-32]
 	lea	rdx, OFFSET FLAT:cpuid$rtcFrameData
@@ -379,14 +380,14 @@ cpuid	PROC						; COMDAT
 cpuid	ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _ZERO_MEMORY_BYTE
 _TEXT	SEGMENT
 d$ = 224
 count$ = 232
 _ZERO_MEMORY_BYTE PROC					; COMDAT
 
-; 380  : {
+; 94   :     {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -399,17 +400,17 @@ _ZERO_MEMORY_BYTE PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 381  :     __stosb(d, 0, count);
+; 95   :         __stosb(d, 0, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	xor	eax, eax
 	mov	rcx, QWORD PTR count$[rbp]
 	rep stosb
 
-; 382  : }
+; 96   :     }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -431,7 +432,7 @@ max_ex_function_no$ = 196
 feature$ = 448
 GetCPUInfo PROC						; COMDAT
 
-; 59   : {
+; 60   : {
 
 $LN6:
 	mov	QWORD PTR [rsp+8], rcx
@@ -447,23 +448,23 @@ $LN6:
 	lea	rcx, OFFSET FLAT:__78001C24_cpuid@c
 	call	__CheckForDebuggerJustMyCode
 
-; 60   :     _UINT32_T reg_eax;
-; 61   :     _UINT32_T reg_ebx;
-; 62   :     _UINT32_T reg_ecx;
-; 63   :     _UINT32_T reg_edx;
-; 64   :     _UINT32_T max_function_no = 0;
+; 61   :     _UINT32_T reg_eax;
+; 62   :     _UINT32_T reg_ebx;
+; 63   :     _UINT32_T reg_ecx;
+; 64   :     _UINT32_T reg_edx;
+; 65   :     _UINT32_T max_function_no = 0;
 
 	mov	DWORD PTR max_function_no$[rbp], 0
 
-; 65   :     _UINT32_T max_subleaf_no = 0;
+; 66   :     _UINT32_T max_subleaf_no = 0;
 
 	mov	DWORD PTR max_subleaf_no$[rbp], 0
 
-; 66   :     _UINT32_T max_ex_function_no = 0;
+; 67   :     _UINT32_T max_ex_function_no = 0;
 
 	mov	DWORD PTR max_ex_function_no$[rbp], 0
 
-; 67   :     cpuid(0, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 68   :     cpuid(0, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
 
 	lea	rax, QWORD PTR reg_edx$[rbp]
 	mov	QWORD PTR [rsp+32], rax
@@ -473,24 +474,24 @@ $LN6:
 	xor	ecx, ecx
 	call	cpuid
 
-; 68   :     max_function_no = reg_eax;
+; 69   :     max_function_no = reg_eax;
 
 	mov	eax, DWORD PTR reg_eax$[rbp]
 	mov	DWORD PTR max_function_no$[rbp], eax
 
-; 69   :     _ZERO_MEMORY_BYTE(feature, sizeof(*feature));
+; 70   :     _ZERO_MEMORY_BYTE(feature, sizeof(*feature));
 
 	mov	edx, 4
 	mov	rcx, QWORD PTR feature$[rbp]
 	call	_ZERO_MEMORY_BYTE
 
-; 70   :     if (max_function_no >= 1)
+; 71   :     if (max_function_no >= 1)
 
 	cmp	DWORD PTR max_function_no$[rbp], 1
 	jb	SHORT $LN2@GetCPUInfo
 
-; 71   :     {
-; 72   :         cpuid(1, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 72   :     {
+; 73   :         cpuid(1, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
 
 	lea	rax, QWORD PTR reg_edx$[rbp]
 	mov	QWORD PTR [rsp+32], rax
@@ -500,7 +501,7 @@ $LN6:
 	mov	ecx, 1
 	call	cpuid
 
-; 73   :         feature->PROCESSOR_FEATURE_POPCNT = (reg_ecx >> 23) & 1;
+; 74   :         feature->PROCESSOR_FEATURE_POPCNT = (reg_ecx >> 23) & 1;
 
 	mov	eax, DWORD PTR reg_ecx$[rbp]
 	shr	eax, 23
@@ -515,14 +516,14 @@ $LN6:
 	mov	DWORD PTR [rcx], eax
 $LN2@GetCPUInfo:
 
-; 74   :     }
-; 75   :     if (max_function_no >= 7)
+; 75   :     }
+; 76   :     if (max_function_no >= 7)
 
 	cmp	DWORD PTR max_function_no$[rbp], 7
 	jb	$LN3@GetCPUInfo
 
-; 76   :     {
-; 77   :         cpuidex(7, 0, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 77   :     {
+; 78   :         cpuidex(7, 0, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
 
 	lea	rax, QWORD PTR reg_edx$[rbp]
 	mov	QWORD PTR [rsp+40], rax
@@ -534,12 +535,12 @@ $LN2@GetCPUInfo:
 	mov	ecx, 7
 	call	cpuidex
 
-; 78   :         max_subleaf_no = reg_eax;
+; 79   :         max_subleaf_no = reg_eax;
 
 	mov	eax, DWORD PTR reg_eax$[rbp]
 	mov	DWORD PTR max_subleaf_no$[rbp], eax
 
-; 79   :         feature->PROCESSOR_FEATURE_BMI1 = (reg_ebx >> 3) & 1;
+; 80   :         feature->PROCESSOR_FEATURE_BMI1 = (reg_ebx >> 3) & 1;
 
 	mov	eax, DWORD PTR reg_ebx$[rbp]
 	shr	eax, 3
@@ -554,7 +555,7 @@ $LN2@GetCPUInfo:
 	mov	rcx, QWORD PTR feature$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 80   :         feature->PROCESSOR_FEATURE_ADX = (reg_ebx >> 8) & 1;
+; 81   :         feature->PROCESSOR_FEATURE_ADX = (reg_ebx >> 8) & 1;
 
 	mov	eax, DWORD PTR reg_ebx$[rbp]
 	shr	eax, 8
@@ -569,7 +570,7 @@ $LN2@GetCPUInfo:
 	mov	rcx, QWORD PTR feature$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 81   :         feature->PROCESSOR_FEATURE_BMI2 = (reg_ebx >> 19) & 1;
+; 82   :         feature->PROCESSOR_FEATURE_BMI2 = (reg_ebx >> 19) & 1;
 
 	mov	eax, DWORD PTR reg_ebx$[rbp]
 	shr	eax, 19
@@ -585,8 +586,8 @@ $LN2@GetCPUInfo:
 	mov	DWORD PTR [rcx], eax
 $LN3@GetCPUInfo:
 
-; 82   :     }
-; 83   :     cpuid(0x80000000, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 83   :     }
+; 84   :     cpuid(0x80000000, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
 
 	lea	rax, QWORD PTR reg_edx$[rbp]
 	mov	QWORD PTR [rsp+32], rax
@@ -596,18 +597,18 @@ $LN3@GetCPUInfo:
 	mov	ecx, -2147483648			; 80000000H
 	call	cpuid
 
-; 84   :     max_ex_function_no = reg_eax;
+; 85   :     max_ex_function_no = reg_eax;
 
 	mov	eax, DWORD PTR reg_eax$[rbp]
 	mov	DWORD PTR max_ex_function_no$[rbp], eax
 
-; 85   :     if (max_ex_function_no >= 0x80000001)
+; 86   :     if (max_ex_function_no >= 0x80000001)
 
 	cmp	DWORD PTR max_ex_function_no$[rbp], -2147483647 ; 80000001H
 	jb	SHORT $LN4@GetCPUInfo
 
-; 86   :     {
-; 87   :         cpuid(0x80000001, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 87   :     {
+; 88   :         cpuid(0x80000001, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
 
 	lea	rax, QWORD PTR reg_edx$[rbp]
 	mov	QWORD PTR [rsp+32], rax
@@ -617,7 +618,7 @@ $LN3@GetCPUInfo:
 	mov	ecx, -2147483647			; 80000001H
 	call	cpuid
 
-; 88   :         feature->PROCESSOR_FEATURE_ABM = (reg_ecx >> 5) & 1;
+; 89   :         feature->PROCESSOR_FEATURE_ABM = (reg_ecx >> 5) & 1;
 
 	mov	eax, DWORD PTR reg_ecx$[rbp]
 	shr	eax, 5
@@ -633,8 +634,8 @@ $LN3@GetCPUInfo:
 	mov	DWORD PTR [rcx], eax
 $LN4@GetCPUInfo:
 
-; 89   :     }
-; 90   : }
+; 90   :     }
+; 91   : }
 
 	lea	rcx, QWORD PTR [rbp-48]
 	lea	rdx, OFFSET FLAT:GetCPUInfo$rtcFrameData

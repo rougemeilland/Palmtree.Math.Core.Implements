@@ -161,36 +161,36 @@ m$ = 64
 r$ = 72
 PMC_ModPow_X_X_X_Imp PROC				; COMDAT
 
-; 506  : {
+; 507  : {
 
 	sub	rsp, 40					; 00000028H
 	mov	r11, r8
 	mov	r10, rcx
 
-; 507  :     PMC_STATUS_CODE result;
-; 508  : 
-; 509  :     if (m->IS_ZERO)
+; 508  :     PMC_STATUS_CODE result;
+; 509  : 
+; 510  :     if (m->IS_ZERO)
 
 	mov	r8d, DWORD PTR [r8+40]
 	test	r8b, 2
 	je	SHORT $LN2@PMC_ModPow
 
-; 510  :     {
-; 511  :         // m が 0 の場合
-; 512  : 
-; 513  :         // 0 による除算は許されないのでエラーを通知する
-; 514  :         return (PMC_STATUS_DIVISION_BY_ZERO);
+; 511  :     {
+; 512  :         // m が 0 の場合
+; 513  : 
+; 514  :         // 0 による除算は許されないのでエラーを通知する
+; 515  :         return (PMC_STATUS_DIVISION_BY_ZERO);
 
 	mov	eax, -3
 
-; 598  : }
+; 599  : }
 
 	add	rsp, 40					; 00000028H
 	ret	0
 $LN2@PMC_ModPow:
 
-; 515  :     }
-; 516  :     else if (m->IS_ONE)
+; 516  :     }
+; 517  :     else if (m->IS_ONE)
 
 	mov	ecx, DWORD PTR [rcx+40]
 	mov	eax, ecx
@@ -198,129 +198,129 @@ $LN2@PMC_ModPow:
 	test	r8b, 4
 	je	SHORT $LN4@PMC_ModPow
 
-; 517  :     {
-; 518  :         // m が 1 の場合
-; 519  :         if (v->IS_ZERO)
+; 518  :     {
+; 519  :         // m が 1 の場合
+; 520  :         if (v->IS_ZERO)
 
 	test	eax, eax
 	je	SHORT $LN8@PMC_ModPow
 
-; 520  :         {
-; 521  :             // v が 0 の場合
-; 522  :             if (e->IS_ZERO)
+; 521  :         {
+; 522  :             // v が 0 の場合
+; 523  :             if (e->IS_ZERO)
 
 	test	BYTE PTR [rdx+40], 2
 	jne	SHORT $LN24@PMC_ModPow
 $LN8@PMC_ModPow:
 
-; 593  :                     return (result);
-; 594  :             }
-; 595  :         }
-; 596  :     }
-; 597  :     return (PMC_STATUS_OK);
+; 594  :                     return (result);
+; 595  :             }
+; 596  :         }
+; 597  :     }
+; 598  :     return (PMC_STATUS_OK);
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR [r9], rax
 	xor	eax, eax
 
-; 598  : }
+; 599  : }
 
 	add	rsp, 40					; 00000028H
 	ret	0
 $LN4@PMC_ModPow:
 
-; 523  :             {
-; 524  :                 // e が 0 の場合
-; 525  : 
-; 526  :                 // 0 の 0 乗となるので、エラーを返す
-; 527  :                 return (PMC_STATUS_ARGUMENT_ERROR);
-; 528  :             }
-; 529  :             else
-; 530  :             {
-; 531  :                 // e が 0 ではない場合
-; 532  : 
-; 533  :                 // v の e 乗がどんな値であっても 1 では必ず割り切れるので剰余は 0 となる。
-; 534  :                 *r = &number_zero;
-; 535  :             }
-; 536  :         }
-; 537  :         else
-; 538  :         {
-; 539  :             // v が 0 ではない場合
-; 540  : 
-; 541  :             // v の e 乗がどんな値であっても 1 では必ず割り切れるので剰余は 0 となる。
-; 542  :             *r = &number_zero;
-; 543  :         }
-; 544  :     }
-; 545  :     else
-; 546  :     {
-; 547  :         // m が 2 以上の場合
-; 548  :         if (v->IS_ZERO)
+; 524  :             {
+; 525  :                 // e が 0 の場合
+; 526  : 
+; 527  :                 // 0 の 0 乗となるので、エラーを返す
+; 528  :                 return (PMC_STATUS_ARGUMENT_ERROR);
+; 529  :             }
+; 530  :             else
+; 531  :             {
+; 532  :                 // e が 0 ではない場合
+; 533  : 
+; 534  :                 // v の e 乗がどんな値であっても 1 では必ず割り切れるので剰余は 0 となる。
+; 535  :                 *r = &number_zero;
+; 536  :             }
+; 537  :         }
+; 538  :         else
+; 539  :         {
+; 540  :             // v が 0 ではない場合
+; 541  : 
+; 542  :             // v の e 乗がどんな値であっても 1 では必ず割り切れるので剰余は 0 となる。
+; 543  :             *r = &number_zero;
+; 544  :         }
+; 545  :     }
+; 546  :     else
+; 547  :     {
+; 548  :         // m が 2 以上の場合
+; 549  :         if (v->IS_ZERO)
 
 	test	eax, eax
 	je	SHORT $LN10@PMC_ModPow
 
-; 549  :         {
-; 550  :             // v が 0 の場合
-; 551  :             if (e->IS_ZERO)
+; 550  :         {
+; 551  :             // v が 0 の場合
+; 552  :             if (e->IS_ZERO)
 
 	test	BYTE PTR [rdx+40], 2
 	je	SHORT $LN8@PMC_ModPow
 $LN24@PMC_ModPow:
 
-; 552  :             {
-; 553  :                 // e が 0 の場合
-; 554  : 
-; 555  :                 // 0 の 0 乗となるので、エラーを返す
-; 556  :                 return (PMC_STATUS_ARGUMENT_ERROR);
+; 553  :             {
+; 554  :                 // e が 0 の場合
+; 555  : 
+; 556  :                 // 0 の 0 乗となるので、エラーを返す
+; 557  :                 return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 
-; 598  : }
+; 599  : }
 
 	add	rsp, 40					; 00000028H
 	ret	0
 $LN10@PMC_ModPow:
 
-; 557  :             }
-; 558  :             else
-; 559  :             {
-; 560  :                 // e が 0 ではない場合
-; 561  : 
-; 562  :                 *r = &number_zero;
-; 563  :             }
-; 564  :         }
-; 565  :         else if (v->IS_ONE)
+; 558  :             }
+; 559  :             else
+; 560  :             {
+; 561  :                 // e が 0 ではない場合
+; 562  : 
+; 563  :                 *r = &number_zero;
+; 564  :             }
+; 565  :         }
+; 566  :         else if (v->IS_ONE)
 
 	test	cl, 4
 	jne	SHORT $LN23@PMC_ModPow
 
-; 566  :         {
-; 567  :             // v が 1 の場合
-; 568  : 
-; 569  :             // 1 を何乗しても 1 であり、1 を 2 以上の数で割ればその剰余は必ず 1 となる
-; 570  :             *r = &number_one;
-; 571  :         }
-; 572  :         else
-; 573  :         {
-; 574  :             // v が 2 以上の場合
-; 575  :             if (e->IS_ZERO)
+; 567  :         {
+; 568  :             // v が 1 の場合
+; 569  : 
+; 570  :             // 1 を何乗しても 1 であり、1 を 2 以上の数で割ればその剰余は必ず 1 となる
+; 571  :             *r = &number_one;
+; 572  :         }
+; 573  :         else
+; 574  :         {
+; 575  :             // v が 2 以上の場合
+; 576  :             if (e->IS_ZERO)
 
 	mov	eax, DWORD PTR [rdx+40]
 	test	al, 2
 	jne	SHORT $LN23@PMC_ModPow
 
-; 579  :             }
-; 580  :             else if (e->IS_ONE)
+; 580  :             }
+; 581  :             else if (e->IS_ONE)
 
 	mov	rcx, r10
 	test	al, 4
 	je	SHORT $LN18@PMC_ModPow
 
-; 581  :             {
-; 582  :                 // e が 1 の場合
-; 583  : 
-; 584  :                 // v % m を計算して返す
-; 585  :                 if ((result = Remainder(v, m, r)) != PMC_STATUS_OK)
+; 582  :             {
+; 583  :                 // e が 1 の場合
+; 584  : 
+; 585  :                 // v % m を計算して返す
+; 586  :                 if ((result = Remainder(v, m, r)) != PMC_STATUS_OK)
 
 	mov	r8, r9
 	mov	rdx, r11
@@ -328,48 +328,48 @@ $LN10@PMC_ModPow:
 	test	eax, eax
 	je	SHORT $LN21@PMC_ModPow
 
-; 598  : }
+; 599  : }
 
 	add	rsp, 40					; 00000028H
 	ret	0
 $LN18@PMC_ModPow:
 
-; 586  :                     return (result);
-; 587  :             }
-; 588  :             else
-; 589  :             {
-; 590  :                 // v、e、m がすべて 2 以上である場合
-; 591  :                 // v の e 乗 の m による剰余を計算して返す
-; 592  :                 if ((result = ModulePower(v, e, m, r)) != PMC_STATUS_OK)
+; 587  :                     return (result);
+; 588  :             }
+; 589  :             else
+; 590  :             {
+; 591  :                 // v、e、m がすべて 2 以上である場合
+; 592  :                 // v の e 乗 の m による剰余を計算して返す
+; 593  :                 if ((result = ModulePower(v, e, m, r)) != PMC_STATUS_OK)
 
 	mov	r8, r11
 	call	ModulePower
 	test	eax, eax
 	je	SHORT $LN21@PMC_ModPow
 
-; 598  : }
+; 599  : }
 
 	add	rsp, 40					; 00000028H
 	ret	0
 $LN23@PMC_ModPow:
 
-; 576  :             {
-; 577  :                 // e が 0 の場合
-; 578  :                 *r = &number_one;
+; 577  :             {
+; 578  :                 // e が 0 の場合
+; 579  :                 *r = &number_one;
 
 	lea	rax, OFFSET FLAT:number_one
 
-; 593  :                     return (result);
-; 594  :             }
-; 595  :         }
-; 596  :     }
-; 597  :     return (PMC_STATUS_OK);
+; 594  :                     return (result);
+; 595  :             }
+; 596  :         }
+; 597  :     }
+; 598  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [r9], rax
 $LN21@PMC_ModPow:
 	xor	eax, eax
 
-; 598  : }
+; 599  : }
 
 	add	rsp, 40					; 00000028H
 	ret	0
@@ -377,39 +377,39 @@ PMC_ModPow_X_X_X_Imp ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 ;	COMDAT ModulePower
 _TEXT	SEGMENT
@@ -438,7 +438,7 @@ m$ = 304
 r$ = 312
 ModulePower PROC					; COMDAT
 
-; 161  : {
+; 162  : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+16], rdx
@@ -450,22 +450,22 @@ ModulePower PROC					; COMDAT
 	lea	rbp, QWORD PTR [rsp-55]
 	sub	rsp, 240				; 000000f0H
 
-; 162  : #ifdef DO_TRACE
-; 163  :     ReportIN(v, e, m);
-; 164  : #endif
-; 165  :     PMC_STATUS_CODE result;
-; 166  :     __UNIT_TYPE* m_buf = m->BLOCK;
+; 163  : #ifdef DO_TRACE
+; 164  :     ReportIN(v, e, m);
+; 165  : #endif
+; 166  :     PMC_STATUS_CODE result;
+; 167  :     __UNIT_TYPE* m_buf = m->BLOCK;
 
 	mov	rax, QWORD PTR [r8+56]
 
-; 167  :     __UNIT_TYPE m_count = m->UNIT_WORD_COUNT;
-; 168  : 
-; 169  :     // 作業域を獲得する
-; 170  : 
-; 171  :     __UNIT_TYPE v_2_bit_count = v->UNIT_WORD_COUNT * __UNIT_TYPE_BIT_COUNT + __UNIT_TYPE_BIT_COUNT;
-; 172  :     __UNIT_TYPE v_2_buf_code;
-; 173  :     __UNIT_TYPE v_2_buf_words;
-; 174  :     __UNIT_TYPE* v_2_buf = AllocateBlock(v_2_bit_count, &v_2_buf_words, &v_2_buf_code);
+; 168  :     __UNIT_TYPE m_count = m->UNIT_WORD_COUNT;
+; 169  : 
+; 170  :     // 作業域を獲得する
+; 171  : 
+; 172  :     __UNIT_TYPE v_2_bit_count = v->UNIT_WORD_COUNT * __UNIT_TYPE_BIT_COUNT + __UNIT_TYPE_BIT_COUNT;
+; 173  :     __UNIT_TYPE v_2_buf_code;
+; 174  :     __UNIT_TYPE v_2_buf_words;
+; 175  :     __UNIT_TYPE* v_2_buf = AllocateBlock(v_2_bit_count, &v_2_buf_words, &v_2_buf_code);
 
 	lea	rdx, QWORD PTR v_2_buf_words$[rbp-185]
 	mov	r14, QWORD PTR [r8+8]
@@ -480,17 +480,17 @@ ModulePower PROC					; COMDAT
 	mov	QWORD PTR v_2_buf$1$[rbp-185], rax
 	mov	r13, rax
 
-; 175  :     if (v_2_buf == NULL)
+; 176  :     if (v_2_buf == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN10@ModulePowe
 
-; 176  :     {
-; 177  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 177  :     {
+; 178  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, QWORD PTR [r13-5]
 
-; 503  : }
+; 504  : }
 
 	add	rsp, 240				; 000000f0H
 	pop	r14
@@ -502,12 +502,12 @@ ModulePower PROC					; COMDAT
 $LN10@ModulePowe:
 	mov	QWORD PTR [rsp+232], rsi
 
-; 178  :     }
-; 179  : 
-; 180  :     __UNIT_TYPE work_1_bit_count = m_count * 2 * __UNIT_TYPE_BIT_COUNT + __UNIT_TYPE_BIT_COUNT;
-; 181  :     __UNIT_TYPE work_1_buf_code;
-; 182  :     __UNIT_TYPE work_1_buf_words;
-; 183  :     __UNIT_TYPE* work_1_buf = AllocateBlock(work_1_bit_count, &work_1_buf_words, &work_1_buf_code);
+; 179  :     }
+; 180  : 
+; 181  :     __UNIT_TYPE work_1_bit_count = m_count * 2 * __UNIT_TYPE_BIT_COUNT + __UNIT_TYPE_BIT_COUNT;
+; 182  :     __UNIT_TYPE work_1_buf_code;
+; 183  :     __UNIT_TYPE work_1_buf_words;
+; 184  :     __UNIT_TYPE* work_1_buf = AllocateBlock(work_1_bit_count, &work_1_buf_words, &work_1_buf_code);
 
 	lea	r8, QWORD PTR work_1_buf_code$[rbp-185]
 	mov	rsi, r14
@@ -519,30 +519,30 @@ $LN10@ModulePowe:
 	mov	QWORD PTR work_1_buf$1$[rbp-185], rax
 	mov	r12, rax
 
-; 184  :     if (work_1_buf == NULL)
+; 185  :     if (work_1_buf == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN11@ModulePowe
 
-; 185  :     {
-; 186  :         DeallocateBlock(v_2_buf, v_2_buf_words);
+; 186  :     {
+; 187  :         DeallocateBlock(v_2_buf, v_2_buf_words);
 
 	mov	rdx, QWORD PTR v_2_buf_words$[rbp-185]
 	mov	rcx, r13
 	call	DeallocateBlock
 
-; 187  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 188  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	lea	eax, QWORD PTR [r12-5]
 	jmp	$LN125@ModulePowe
 $LN11@ModulePowe:
 
-; 188  :     }
-; 189  : 
-; 190  :     __UNIT_TYPE work_2_bit_count = m_count * 2 * __UNIT_TYPE_BIT_COUNT + __UNIT_TYPE_BIT_COUNT;
-; 191  :     __UNIT_TYPE work_2_buf_code;
-; 192  :     __UNIT_TYPE work_2_buf_words;
-; 193  :     __UNIT_TYPE* work_2_buf = AllocateBlock(work_2_bit_count, &work_2_buf_words, &work_2_buf_code);
+; 189  :     }
+; 190  : 
+; 191  :     __UNIT_TYPE work_2_bit_count = m_count * 2 * __UNIT_TYPE_BIT_COUNT + __UNIT_TYPE_BIT_COUNT;
+; 192  :     __UNIT_TYPE work_2_buf_code;
+; 193  :     __UNIT_TYPE work_2_buf_words;
+; 194  :     __UNIT_TYPE* work_2_buf = AllocateBlock(work_2_bit_count, &work_2_buf_words, &work_2_buf_code);
 
 	lea	r8, QWORD PTR work_2_buf_code$[rbp-185]
 	mov	QWORD PTR [rsp+216], r15
@@ -552,24 +552,24 @@ $LN11@ModulePowe:
 	mov	QWORD PTR work_2_buf$1$[rbp-185], rax
 	mov	r15, rax
 
-; 194  :     if (work_2_buf == NULL)
+; 195  :     if (work_2_buf == NULL)
 
 	test	rax, rax
 	je	SHORT $LN129@ModulePowe
 
-; 195  :     {
-; 196  :         DeallocateBlock(work_1_buf, work_1_buf_words);
-; 197  :         DeallocateBlock(v_2_buf, v_2_buf_words);
-; 198  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 199  :     }
-; 200  : 
-; 201  :     __UNIT_TYPE work_v_bit_count = m_count * __UNIT_TYPE_BIT_COUNT;
+; 196  :     {
+; 197  :         DeallocateBlock(work_1_buf, work_1_buf_words);
+; 198  :         DeallocateBlock(v_2_buf, v_2_buf_words);
+; 199  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 200  :     }
+; 201  : 
+; 202  :     __UNIT_TYPE work_v_bit_count = m_count * __UNIT_TYPE_BIT_COUNT;
 
 	mov	rcx, r14
 
-; 202  :     __UNIT_TYPE work_v_buf_code;
-; 203  :     __UNIT_TYPE work_v_buf_words;
-; 204  :     __UNIT_TYPE* work_v_buf = AllocateBlock(work_v_bit_count, &work_v_buf_words, &work_v_buf_code);
+; 203  :     __UNIT_TYPE work_v_buf_code;
+; 204  :     __UNIT_TYPE work_v_buf_words;
+; 205  :     __UNIT_TYPE* work_v_buf = AllocateBlock(work_v_bit_count, &work_v_buf_words, &work_v_buf_code);
 
 	lea	r8, QWORD PTR work_v_buf_code$[rbp-185]
 	shl	rcx, 6
@@ -578,56 +578,56 @@ $LN11@ModulePowe:
 	mov	QWORD PTR work_v_buf$1$[rbp-185], rax
 	mov	rsi, rax
 
-; 205  :     if (work_v_buf == NULL)
+; 206  :     if (work_v_buf == NULL)
 
 	test	rax, rax
 	jne	SHORT $LN13@ModulePowe
 
-; 206  :     {
-; 207  :         DeallocateBlock(work_2_buf, work_2_buf_words);
+; 207  :     {
+; 208  :         DeallocateBlock(work_2_buf, work_2_buf_words);
 
 	mov	rdx, QWORD PTR work_2_buf_words$[rbp-185]
 	mov	rcx, r15
 	call	DeallocateBlock
 $LN129@ModulePowe:
 
-; 208  :         DeallocateBlock(work_1_buf, work_1_buf_words);
+; 209  :         DeallocateBlock(work_1_buf, work_1_buf_words);
 
 	mov	rdx, QWORD PTR work_1_buf_words$[rbp-185]
 	mov	rcx, r12
 	call	DeallocateBlock
 
-; 209  :         DeallocateBlock(v_2_buf, v_2_buf_words);
+; 210  :         DeallocateBlock(v_2_buf, v_2_buf_words);
 
 	mov	rdx, QWORD PTR v_2_buf_words$[rbp-185]
 	mov	rcx, r13
 	call	DeallocateBlock
 
-; 210  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 211  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	$LN126@ModulePowe
 $LN13@ModulePowe:
 
-; 211  :     }
-; 212  : 
-; 213  :     __UNIT_TYPE q_buf_bit_count = _MAXIMUM_UNIT(v->UNIT_BIT_COUNT, m->UNIT_BIT_COUNT * 2) - m->UNIT_BIT_COUNT + 1 + __UNIT_TYPE_BIT_COUNT;
+; 212  :     }
+; 213  : 
+; 214  :     __UNIT_TYPE q_buf_bit_count = _MAXIMUM_UNIT(v->UNIT_BIT_COUNT, m->UNIT_BIT_COUNT * 2) - m->UNIT_BIT_COUNT + 1 + __UNIT_TYPE_BIT_COUNT;
 
 	mov	rdx, QWORD PTR [rdi+16]
 
-; 216  :     __UNIT_TYPE* q_buf = AllocateBlock(q_buf_bit_count, &q_buf_words, &q_buf_code);
+; 217  :     __UNIT_TYPE* q_buf = AllocateBlock(q_buf_bit_count, &q_buf_words, &q_buf_code);
 
 	lea	r8, QWORD PTR q_buf_code$[rbp-185]
 	lea	rcx, QWORD PTR [rdx+rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 490  :     return (x >= y ? x : y);
+; 204  :         return (x >= y ? x : y);
 
 	cmp	QWORD PTR [rbx+16], rcx
 	cmovae	rcx, QWORD PTR [rbx+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 216  :     __UNIT_TYPE* q_buf = AllocateBlock(q_buf_bit_count, &q_buf_words, &q_buf_code);
+; 217  :     __UNIT_TYPE* q_buf = AllocateBlock(q_buf_bit_count, &q_buf_words, &q_buf_code);
 
 	sub	rcx, rdx
 	lea	rdx, QWORD PTR q_buf_words$[rbp-185]
@@ -636,22 +636,22 @@ $LN13@ModulePowe:
 	mov	QWORD PTR q_buf$1$[rbp-185], rax
 	mov	r13, rax
 
-; 217  :     if (q_buf == NULL)
+; 218  :     if (q_buf == NULL)
 
 	test	rax, rax
 	je	SHORT $LN128@ModulePowe
 
-; 218  :     {
-; 219  :         DeallocateBlock(work_v_buf, work_v_buf_words);
-; 220  :         DeallocateBlock(work_2_buf, work_2_buf_words);
-; 221  :         DeallocateBlock(work_1_buf, work_1_buf_words);
-; 222  :         DeallocateBlock(v_2_buf, v_2_buf_words);
-; 223  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 224  :     }
-; 225  : 
-; 226  :     __UNIT_TYPE r_bit_count = m->UNIT_BIT_COUNT;
-; 227  :     __UNIT_TYPE r_check_code;
-; 228  :     if ((result = AllocateNumber(r, r_bit_count, &r_check_code)) != PMC_STATUS_OK)
+; 219  :     {
+; 220  :         DeallocateBlock(work_v_buf, work_v_buf_words);
+; 221  :         DeallocateBlock(work_2_buf, work_2_buf_words);
+; 222  :         DeallocateBlock(work_1_buf, work_1_buf_words);
+; 223  :         DeallocateBlock(v_2_buf, v_2_buf_words);
+; 224  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 225  :     }
+; 226  : 
+; 227  :     __UNIT_TYPE r_bit_count = m->UNIT_BIT_COUNT;
+; 228  :     __UNIT_TYPE r_check_code;
+; 229  :     if ((result = AllocateNumber(r, r_bit_count, &r_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR [rdi+16]
 	lea	r8, QWORD PTR r_check_code$[rbp-185]
@@ -661,75 +661,75 @@ $LN13@ModulePowe:
 	test	eax, eax
 	je	SHORT $LN15@ModulePowe
 
-; 229  :     {
-; 230  :         DeallocateBlock(q_buf, q_buf_words);
+; 230  :     {
+; 231  :         DeallocateBlock(q_buf, q_buf_words);
 
 	mov	rdx, QWORD PTR q_buf_words$[rbp-185]
 	mov	rcx, r13
 	call	DeallocateBlock
 $LN128@ModulePowe:
 
-; 231  :         DeallocateBlock(work_v_buf, work_v_buf_words);
+; 232  :         DeallocateBlock(work_v_buf, work_v_buf_words);
 
 	mov	rdx, QWORD PTR work_v_buf_words$[rbp-185]
 	mov	rcx, rsi
 	call	DeallocateBlock
 
-; 232  :         DeallocateBlock(work_2_buf, work_2_buf_words);
+; 233  :         DeallocateBlock(work_2_buf, work_2_buf_words);
 
 	mov	rdx, QWORD PTR work_2_buf_words$[rbp-185]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 233  :         DeallocateBlock(work_1_buf, work_1_buf_words);
+; 234  :         DeallocateBlock(work_1_buf, work_1_buf_words);
 
 	mov	rdx, QWORD PTR work_1_buf_words$[rbp-185]
 	mov	rcx, r12
 	call	DeallocateBlock
 
-; 234  :         DeallocateBlock(v_2_buf, v_2_buf_words);
+; 235  :         DeallocateBlock(v_2_buf, v_2_buf_words);
 
 	mov	rdx, QWORD PTR v_2_buf_words$[rbp-185]
 	mov	rcx, QWORD PTR v_2_buf$1$[rbp-185]
 	call	DeallocateBlock
 
-; 235  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 236  :         return (PMC_STATUS_NOT_ENOUGH_MEMORY);
 
 	mov	eax, -5
 	jmp	$LN126@ModulePowe
 $LN15@ModulePowe:
 
-; 236  :     }
-; 237  : 
-; 238  :     __UNIT_TYPE v_count;
-; 239  :     int cmp = Compare_Easy(v->BLOCK, v->UNIT_WORD_COUNT, m_buf, m_count);
+; 237  :     }
+; 238  : 
+; 239  :     __UNIT_TYPE v_count;
+; 240  :     int cmp = Compare_Easy(v->BLOCK, v->UNIT_WORD_COUNT, m_buf, m_count);
 
 	mov	r8, QWORD PTR [rbx+8]
 
-; 88   :     if (u_count > v_count)
+; 89   :     if (u_count > v_count)
 
 	cmp	r8, r14
 	jbe	$LN50@ModulePowe
 
-; 89   :         return (1);
+; 90   :         return (1);
 
 	mov	eax, 1
 $LN16@ModulePowe:
 
-; 257  :     }
-; 258  :     else if (cmp > 0)
+; 258  :     }
+; 259  :     else if (cmp > 0)
 
 	mov	rcx, QWORD PTR [rbx+8]
 	mov	rsi, QWORD PTR [rbx+56]
 	test	eax, eax
 	jle	$LN18@ModulePowe
 
-; 259  :     {
-; 260  :         // v > m である場合
-; 261  : 
-; 262  :         // v2 を v % m に設定する。
-; 263  : 
-; 264  :         DivRem_X_X(v->BLOCK, v->UNIT_WORD_COUNT, m_buf, m_count, work_v_buf, q_buf, v_2_buf);
+; 260  :     {
+; 261  :         // v > m である場合
+; 262  : 
+; 263  :         // v2 を v % m に設定する。
+; 264  : 
+; 265  :         DivRem_X_X(v->BLOCK, v->UNIT_WORD_COUNT, m_buf, m_count, work_v_buf, q_buf, v_2_buf);
 
 	mov	rbx, QWORD PTR v_2_buf$1$[rbp-185]
 	mov	rdx, rcx
@@ -742,7 +742,7 @@ $LN16@ModulePowe:
 	mov	QWORD PTR [rsp+32], rdi
 	call	DivRem_X_X
 
-; 265  :         if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
+; 266  :         if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_v_buf_code$[rbp-185]
 	mov	rcx, rdi
@@ -750,8 +750,8 @@ $LN16@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 266  :             return (result);
-; 267  :         if ((result = CheckBlockLight(q_buf, q_buf_code)) != PMC_STATUS_OK)
+; 267  :             return (result);
+; 268  :         if ((result = CheckBlockLight(q_buf, q_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR q_buf_code$[rbp-185]
 	mov	rcx, r13
@@ -759,8 +759,8 @@ $LN16@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 268  :             return (result);
-; 269  :         if ((result = CheckBlockLight(v_2_buf, v_2_buf_code)) != PMC_STATUS_OK)
+; 269  :             return (result);
+; 270  :         if ((result = CheckBlockLight(v_2_buf, v_2_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR v_2_buf_code$[rbp-185]
 	mov	rcx, rbx
@@ -768,30 +768,30 @@ $LN16@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 270  :             return (result);
-; 271  :         v_count = m_count;
+; 271  :             return (result);
+; 272  :         v_count = m_count;
 
 	mov	rdx, r14
 	mov	QWORD PTR v_count$1$[rbp-185], rdx
 
-; 272  :         while (v_count > 0 && v_2_buf[v_count - 1] == 0)
+; 273  :         while (v_count > 0 && v_2_buf[v_count - 1] == 0)
 
 	test	r14, r14
 	je	$LN118@ModulePowe
 
-; 270  :             return (result);
-; 271  :         v_count = m_count;
+; 271  :             return (result);
+; 272  :         v_count = m_count;
 
 	lea	rax, QWORD PTR [rbx-8]
 	lea	rax, QWORD PTR [rax+r14*8]
 $LL2@ModulePowe:
 
-; 272  :         while (v_count > 0 && v_2_buf[v_count - 1] == 0)
+; 273  :         while (v_count > 0 && v_2_buf[v_count - 1] == 0)
 
 	cmp	QWORD PTR [rax], 0
 	jne	$LN3@ModulePowe
 
-; 273  :             --v_count;
+; 274  :             --v_count;
 
 	dec	rdx
 	sub	rax, 8
@@ -799,281 +799,281 @@ $LL2@ModulePowe:
 	test	rdx, rdx
 	jne	SHORT $LL2@ModulePowe
 
-; 274  : 
-; 275  :         if (v_count <= 0)
+; 275  : 
+; 276  :         if (v_count <= 0)
 
 	jmp	SHORT $LN118@ModulePowe
 $LN50@ModulePowe:
 
-; 90   :     else if (u_count < v_count)
+; 91   :     else if (u_count < v_count)
 
 	jae	SHORT $LN52@ModulePowe
 
-; 91   :         return (-1);
+; 92   :         return (-1);
 
 	mov	eax, -1
 	jmp	$LN16@ModulePowe
 $LN52@ModulePowe:
 
-; 92   :     else
-; 93   :         return (Compare_Imp(u, v, u_count));
+; 93   :     else
+; 94   :         return (Compare_Imp(u, v, u_count));
 
 	mov	rdx, QWORD PTR m_buf$1$[rbp-185]
 	mov	rcx, QWORD PTR [rbx+56]
 	call	Compare_Imp
 
-; 240  :     if (cmp == 0)
+; 241  :     if (cmp == 0)
 
 	test	eax, eax
 	jne	$LN16@ModulePowe
 
-; 241  :     {
-; 242  :         // v == m である場合
-; 243  : 
-; 244  :         // v を何乗してもその剰余は 0 であるため、0 を返す。
-; 245  : 
-; 246  :         DeallocateNumber(*r);
+; 242  :     {
+; 243  :         // v == m である場合
+; 244  : 
+; 245  :         // v を何乗してもその剰余は 0 であるため、0 を返す。
+; 246  : 
+; 247  :         DeallocateNumber(*r);
 
 	mov	rcx, QWORD PTR [rdi]
 	call	DeallocateNumber
 
-; 247  :         DeallocateBlock(q_buf, q_buf_words);
+; 248  :         DeallocateBlock(q_buf, q_buf_words);
 
 	mov	rdx, QWORD PTR q_buf_words$[rbp-185]
 	mov	rcx, r13
 	call	DeallocateBlock
 
-; 248  :         DeallocateBlock(work_v_buf, work_v_buf_words);
+; 249  :         DeallocateBlock(work_v_buf, work_v_buf_words);
 
 	mov	rdx, QWORD PTR work_v_buf_words$[rbp-185]
 	mov	rcx, rsi
 	call	DeallocateBlock
 
-; 249  :         DeallocateBlock(work_2_buf, work_2_buf_words);
+; 250  :         DeallocateBlock(work_2_buf, work_2_buf_words);
 
 	mov	rdx, QWORD PTR work_2_buf_words$[rbp-185]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 250  :         DeallocateBlock(work_1_buf, work_1_buf_words);
+; 251  :         DeallocateBlock(work_1_buf, work_1_buf_words);
 
 	mov	rdx, QWORD PTR work_1_buf_words$[rbp-185]
 	mov	rcx, r12
 	call	DeallocateBlock
 
-; 251  :         DeallocateBlock(v_2_buf, v_2_buf_words);
+; 252  :         DeallocateBlock(v_2_buf, v_2_buf_words);
 
 	mov	rdx, QWORD PTR v_2_buf_words$[rbp-185]
 	mov	rcx, QWORD PTR v_2_buf$1$[rbp-185]
 	call	DeallocateBlock
 
-; 252  :         *r = &number_zero;
+; 253  :         *r = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR [rdi], rax
 
-; 253  : #ifdef DO_TRACE
-; 254  :         ReportOUT(*r);
-; 255  : #endif
-; 256  :         return (PMC_STATUS_OK);
+; 254  : #ifdef DO_TRACE
+; 255  :         ReportOUT(*r);
+; 256  : #endif
+; 257  :         return (PMC_STATUS_OK);
 
 	jmp	$LN127@ModulePowe
 $LN3@ModulePowe:
 
-; 274  : 
-; 275  :         if (v_count <= 0)
+; 275  : 
+; 276  :         if (v_count <= 0)
 
 	test	rdx, rdx
 	jne	SHORT $LN19@ModulePowe
 $LN118@ModulePowe:
 
-; 276  :         {
-; 277  :             // v2 が 0 になってしまった場合はべき乗を繰り返しても 0 になることが確定なので 0 を返す
-; 278  :             DeallocateNumber(*r);
+; 277  :         {
+; 278  :             // v2 が 0 になってしまった場合はべき乗を繰り返しても 0 になることが確定なので 0 を返す
+; 279  :             DeallocateNumber(*r);
 
 	mov	r14, QWORD PTR r$[rbp-185]
 	mov	rcx, QWORD PTR [r14]
 	call	DeallocateNumber
 
-; 279  :             DeallocateBlock(q_buf, q_buf_words);
+; 280  :             DeallocateBlock(q_buf, q_buf_words);
 
 	mov	rdx, QWORD PTR q_buf_words$[rbp-185]
 	mov	rcx, r13
 	call	DeallocateBlock
 
-; 280  :             DeallocateBlock(work_v_buf, work_v_buf_words);
+; 281  :             DeallocateBlock(work_v_buf, work_v_buf_words);
 
 	mov	rdx, QWORD PTR work_v_buf_words$[rbp-185]
 	mov	rcx, rdi
 	call	DeallocateBlock
 
-; 281  :             DeallocateBlock(work_2_buf, work_2_buf_words);
+; 282  :             DeallocateBlock(work_2_buf, work_2_buf_words);
 
 	mov	rdx, QWORD PTR work_2_buf_words$[rbp-185]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 282  :             DeallocateBlock(work_1_buf, work_1_buf_words);
+; 283  :             DeallocateBlock(work_1_buf, work_1_buf_words);
 
 	mov	rdx, QWORD PTR work_1_buf_words$[rbp-185]
 	mov	rcx, r12
 	call	DeallocateBlock
 
-; 283  :             DeallocateBlock(v_2_buf, v_2_buf_words);
+; 284  :             DeallocateBlock(v_2_buf, v_2_buf_words);
 
 	mov	rdx, QWORD PTR v_2_buf_words$[rbp-185]
 	mov	rcx, rbx
 	call	DeallocateBlock
 
-; 284  :             *r = &number_zero;
+; 285  :             *r = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR [r14], rax
 
-; 285  : #ifdef DO_TRACE
-; 286  :             ReportOUT(*r);
-; 287  : #endif
-; 288  :             return (PMC_STATUS_OK);
+; 286  : #ifdef DO_TRACE
+; 287  :             ReportOUT(*r);
+; 288  : #endif
+; 289  :             return (PMC_STATUS_OK);
 
 	jmp	$LN127@ModulePowe
 $LN18@ModulePowe:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 356  :     __movsq(d, s, count);
+; 70   :         __movsq(d, s, count);
 
 	mov	rdi, QWORD PTR v_2_buf$1$[rbp-185]
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 296  :         v_count = v->UNIT_WORD_COUNT;
+; 297  :         v_count = v->UNIT_WORD_COUNT;
 
 	mov	rdx, QWORD PTR [rbx+8]
 	mov	rbx, QWORD PTR v_2_buf$1$[rbp-185]
 	mov	QWORD PTR v_count$1$[rbp-185], rdx
 $LN19@ModulePowe:
 
-; 297  :     }
-; 298  : 
-; 299  : #ifdef DO_TRACE
-; 300  :     ReportLabel("vの初期化");
-; 301  :     ReportDump("v", v_2_buf, v_count);
-; 302  : #endif
-; 303  :     __UNIT_TYPE e_count = e->UNIT_WORD_COUNT;
+; 298  :     }
+; 299  : 
+; 300  : #ifdef DO_TRACE
+; 301  :     ReportLabel("vの初期化");
+; 302  :     ReportDump("v", v_2_buf, v_count);
+; 303  : #endif
+; 304  :     __UNIT_TYPE e_count = e->UNIT_WORD_COUNT;
 
 	mov	rax, QWORD PTR e$[rbp-185]
 	mov	r8, QWORD PTR [rax+8]
 
-; 305  :     e_mask = e_mask >> _LZCNT_ALT_UNIT(e->BLOCK[e_count - 1]);
+; 306  :     e_mask = e_mask >> _LZCNT_ALT_UNIT(e->BLOCK[e_count - 1]);
 
 	mov	rax, QWORD PTR [rax+56]
 	mov	rcx, QWORD PTR [rax+r8*8-8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 916  :     if (x == 0)
+; 630  :         if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN58@ModulePowe
 
-; 917  :         return (sizeof(x) * 8);
+; 631  :             return (sizeof(x) * 8);
 
 	mov	ecx, 64					; 00000040H
 	jmp	SHORT $LN57@ModulePowe
 $LN58@ModulePowe:
 
-; 918  : #ifdef _M_IX86
-; 919  :     _UINT32_T pos;
-; 920  : #ifdef _MSC_VER
-; 921  :     _BitScanReverse(&pos, x);
-; 922  : #elif defined(__GNUC__)
-; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #elif defined(_M_X64)
-; 928  : #ifdef _MSC_VER
-; 929  :     _UINT32_T pos;
-; 930  :     _BitScanReverse64(&pos, x);
+; 632  : #ifdef _M_IX86
+; 633  :         _UINT32_T pos;
+; 634  : #ifdef _MSC_VER
+; 635  :         _BitScanReverse(&pos, x);
+; 636  : #elif defined(__GNUC__)
+; 637  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 638  : #else
+; 639  : #error unknown compiler
+; 640  : #endif
+; 641  : #elif defined(_M_X64)
+; 642  : #ifdef _MSC_VER
+; 643  :         _UINT32_T pos;
+; 644  :         _BitScanReverse64(&pos, x);
 
 	bsr	rax, rcx
 
-; 931  : #elif defined(__GNUC__)
-; 932  :     _UINT64_T pos;
-; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 934  : #else
-; 935  : #error unknown compiler
-; 936  : #endif
-; 937  : #else
-; 938  : #error unknown platform
-; 939  : #endif
-; 940  :     return (sizeof(x) * 8 - 1 - pos);
+; 645  : #elif defined(__GNUC__)
+; 646  :         _UINT64_T pos;
+; 647  :         __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 648  : #else
+; 649  : #error unknown compiler
+; 650  : #endif
+; 651  : #else
+; 652  : #error unknown platform
+; 653  : #endif
+; 654  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 63					; 0000003fH
 	sub	ecx, eax
 $LN57@ModulePowe:
 
-; 356  :     __movsq(d, s, count);
+; 70   :         __movsq(d, s, count);
 
 	mov	rdi, r12
 	mov	rsi, rbx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 305  :     e_mask = e_mask >> _LZCNT_ALT_UNIT(e->BLOCK[e_count - 1]);
+; 306  :     e_mask = e_mask >> _LZCNT_ALT_UNIT(e->BLOCK[e_count - 1]);
 
 	mov	rax, -9223372036854775808		; 8000000000000000H
 
-; 318  :     __UNIT_TYPE u_count = v_count;
+; 319  :     __UNIT_TYPE u_count = v_count;
 
 	mov	rbx, rdx
 	mov	r13, rax
 	shr	r13, cl
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 356  :     __movsq(d, s, count);
+; 70   :         __movsq(d, s, count);
 
 	mov	rcx, r14
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 315  :     __UNIT_TYPE* u_ptr = work_1_buf;
+; 316  :     __UNIT_TYPE* u_ptr = work_1_buf;
 
 	mov	rsi, r12
 
-; 316  :     __UNIT_TYPE* v_ptr = v_2_buf;
-; 317  :     __UNIT_TYPE* w_ptr = work_2_buf;
+; 317  :     __UNIT_TYPE* v_ptr = v_2_buf;
+; 318  :     __UNIT_TYPE* w_ptr = work_2_buf;
 
 	mov	r12, r15
 
-; 319  : 
-; 320  :     while (e_count > 0)
+; 320  : 
+; 321  :     while (e_count > 0)
 
 	test	r8, r8
 	je	$LN5@ModulePowe
 	npad	8
 $LL4@ModulePowe:
 
-; 321  :     {
-; 322  : #ifdef DO_TRACE
-; 323  :         ReportLabel("ループ開始");
-; 324  :         ReportVar("e_count", e_count);
-; 325  :         ReportVar("e_mask", e_mask);
-; 326  : #endif
-; 327  : 
-; 328  :         // 次の桁の準備をする
-; 329  :         e_mask >>= 1;
+; 322  :     {
+; 323  : #ifdef DO_TRACE
+; 324  :         ReportLabel("ループ開始");
+; 325  :         ReportVar("e_count", e_count);
+; 326  :         ReportVar("e_mask", e_mask);
+; 327  : #endif
+; 328  : 
+; 329  :         // 次の桁の準備をする
+; 330  :         e_mask >>= 1;
 
 	shr	r13, 1
 	mov	rcx, r13
 
-; 330  :         if (e_mask == 0)
+; 331  :         if (e_mask == 0)
 
 	cmove	r13, rax
 
-; 331  :         {
-; 332  :             e_mask = ~((__UNIT_TYPE)-1 >> 1);
-; 333  :             --e_count;
-; 334  :         }
-; 335  : 
-; 336  :         if (e_count <= 0)
+; 332  :         {
+; 333  :             e_mask = ~((__UNIT_TYPE)-1 >> 1);
+; 334  :             --e_count;
+; 335  :         }
+; 336  : 
+; 337  :         if (e_count <= 0)
 
 	test	rcx, rcx
 	lea	rax, QWORD PTR [r8-1]
@@ -1081,26 +1081,26 @@ $LL4@ModulePowe:
 	mov	QWORD PTR e_count$1$[rbp-185], rax
 	test	rax, rax
 	je	$LN5@ModulePowe
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	mov	rcx, QWORD PTR work_1_buf_words$[rbp-185]
 	xor	eax, eax
 	mov	rdi, r12
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 351  :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
+; 352  :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
 
 	mov	QWORD PTR [rsp+32], r12
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	rep stosq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 351  :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
+; 352  :         Multiply_X_X_Imp(u_ptr, u_count, u_ptr, u_count, w_ptr);
 
 	mov	rcx, rsi
 	mov	r9, rbx
@@ -1108,7 +1108,7 @@ $LL4@ModulePowe:
 	mov	rdx, rbx
 	call	Multiply_X_X_Imp
 
-; 352  :         if ((result = CheckBlockLight(work_1_buf, work_1_buf_code)) != PMC_STATUS_OK)
+; 353  :         if ((result = CheckBlockLight(work_1_buf, work_1_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_1_buf_code$[rbp-185]
 	mov	rcx, QWORD PTR work_1_buf$1$[rbp-185]
@@ -1116,8 +1116,8 @@ $LL4@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 353  :             return (result);
-; 354  :         if ((result = CheckBlockLight(work_2_buf, work_2_buf_code)) != PMC_STATUS_OK)
+; 354  :             return (result);
+; 355  :         if ((result = CheckBlockLight(work_2_buf, work_2_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_2_buf_code$[rbp-185]
 	mov	rcx, r15
@@ -1125,38 +1125,38 @@ $LL4@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 100  :     *v = t;
+; 101  :     *v = t;
 
 	lea	rcx, QWORD PTR [rbx+rbx]
 	mov	r15, rsi
 
-; 355  :             return (result);
-; 356  :         SwapPointer(&u_ptr, &w_ptr);
-; 357  :         u_count *= 2;
-; 358  :         if (u_ptr[u_count - 1] == 0)
+; 356  :             return (result);
+; 357  :         SwapPointer(&u_ptr, &w_ptr);
+; 358  :         u_count *= 2;
+; 359  :         if (u_ptr[u_count - 1] == 0)
 
 	add	rbx, rbx
 
-; 99   :     *u = *v;
+; 100  :     *u = *v;
 
 	mov	rsi, r12
 
-; 100  :     *v = t;
+; 101  :     *v = t;
 
 	mov	r12, r15
 
-; 359  :             --u_count;
-; 360  : #ifdef DO_TRACE
-; 361  :         ReportDump("w", u_ptr, u_count);
-; 362  : #endif
-; 363  : 
-; 364  :         // w := u % m を計算する
-; 365  : #ifdef DO_TRACE
-; 366  :         ReportLabel("w := u % m");
-; 367  :         ReportDump("u", u_ptr, u_count);
-; 368  :         ReportDump("m", m_buf, m_count);
-; 369  : #endif
-; 370  :         if (u_count >= m_count)
+; 360  :             --u_count;
+; 361  : #ifdef DO_TRACE
+; 362  :         ReportDump("w", u_ptr, u_count);
+; 363  : #endif
+; 364  : 
+; 365  :         // w := u % m を計算する
+; 366  : #ifdef DO_TRACE
+; 367  :         ReportLabel("w := u % m");
+; 368  :         ReportDump("u", u_ptr, u_count);
+; 369  :         ReportDump("m", m_buf, m_count);
+; 370  : #endif
+; 371  :         if (u_count >= m_count)
 
 	mov	rax, QWORD PTR [rsi+rbx*8-8]
 	lea	rbx, QWORD PTR [rcx-1]
@@ -1164,32 +1164,32 @@ $LL4@ModulePowe:
 	cmovne	rbx, rcx
 	cmp	rbx, r14
 	jb	$LN7@ModulePowe
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	mov	rcx, QWORD PTR work_v_buf_words$[rbp-185]
 	xor	eax, eax
 	mov	rdx, QWORD PTR work_v_buf$1$[rbp-185]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 375  :             DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
+; 376  :             DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
 
 	mov	r9, r14
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	mov	r12, QWORD PTR q_buf$1$[rbp-185]
 	mov	rdi, rdx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 375  :             DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
+; 376  :             DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
 
 	mov	r8, QWORD PTR m_buf$1$[rbp-185]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	rep stosq
 	mov	rcx, QWORD PTR q_buf_words$[rbp-185]
@@ -1199,17 +1199,17 @@ $LL4@ModulePowe:
 	mov	rdi, r15
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 375  :             DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
+; 376  :             DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
 
 	mov	QWORD PTR [rsp+48], r15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	rep stosq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 375  :             DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
+; 376  :             DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
 
 	mov	QWORD PTR [rsp+40], r12
 	mov	rcx, rsi
@@ -1217,7 +1217,7 @@ $LL4@ModulePowe:
 	mov	rdx, rbx
 	call	DivRem_X_X
 
-; 376  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
+; 377  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_v_buf_code$[rbp-185]
 	mov	rcx, QWORD PTR work_v_buf$1$[rbp-185]
@@ -1225,8 +1225,8 @@ $LL4@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 377  :                 return (result);
-; 378  :             if ((result = CheckBlockLight(q_buf, q_buf_code)) != PMC_STATUS_OK)
+; 378  :                 return (result);
+; 379  :             if ((result = CheckBlockLight(q_buf, q_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR q_buf_code$[rbp-185]
 	mov	rcx, r12
@@ -1234,8 +1234,8 @@ $LL4@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 379  :                 return (result);
-; 380  :             if ((result = CheckBlockLight(work_1_buf, work_1_buf_code)) != PMC_STATUS_OK)
+; 380  :                 return (result);
+; 381  :             if ((result = CheckBlockLight(work_1_buf, work_1_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_1_buf_code$[rbp-185]
 	mov	rcx, QWORD PTR work_1_buf$1$[rbp-185]
@@ -1243,8 +1243,8 @@ $LL4@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 381  :                 return (result);
-; 382  :             if ((result = CheckBlockLight(work_2_buf, work_2_buf_code)) != PMC_STATUS_OK)
+; 382  :                 return (result);
+; 383  :             if ((result = CheckBlockLight(work_2_buf, work_2_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdi, QWORD PTR work_2_buf$1$[rbp-185]
 	mov	rdx, QWORD PTR work_2_buf_code$[rbp-185]
@@ -1253,48 +1253,48 @@ $LL4@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 98   :     __UNIT_TYPE* t = *u;
+; 99   :     __UNIT_TYPE* t = *u;
 
 	mov	r12, rsi
 
-; 99   :     *u = *v;
+; 100  :     *u = *v;
 
 	mov	rsi, r15
 
-; 383  :                 return (result);
-; 384  :             SwapPointer(&u_ptr, &w_ptr);
-; 385  :             u_count = m_count;
+; 384  :                 return (result);
+; 385  :             SwapPointer(&u_ptr, &w_ptr);
+; 386  :             u_count = m_count;
 
 	mov	rbx, r14
 
-; 386  :             while (u_count > 0 && u_ptr[u_count - 1] == 0)
+; 387  :             while (u_count > 0 && u_ptr[u_count - 1] == 0)
 
 	test	r14, r14
 	je	SHORT $LN99@ModulePowe
 
-; 98   :     __UNIT_TYPE* t = *u;
+; 99   :     __UNIT_TYPE* t = *u;
 
 	lea	rax, QWORD PTR [r14-1]
 	lea	rax, QWORD PTR [r15+rax*8]
 	npad	5
 $LL6@ModulePowe:
 
-; 386  :             while (u_count > 0 && u_ptr[u_count - 1] == 0)
+; 387  :             while (u_count > 0 && u_ptr[u_count - 1] == 0)
 
 	cmp	QWORD PTR [rax], 0
 	jne	SHORT $LN7@ModulePowe
 
-; 387  :                 --u_count;
+; 388  :                 --u_count;
 
 	sub	rax, 8
 	sub	rbx, 1
 	jne	SHORT $LL6@ModulePowe
 $LN99@ModulePowe:
 
-; 499  : #ifdef DO_TRACE
-; 500  :     ReportOUT(*r);
-; 501  : #endif
-; 502  :     return (PMC_STATUS_OK);
+; 500  : #ifdef DO_TRACE
+; 501  :     ReportOUT(*r);
+; 502  : #endif
+; 503  :     return (PMC_STATUS_OK);
 
 	mov	r14, QWORD PTR r$[rbp-185]
 	mov	rcx, QWORD PTR [r14]
@@ -1319,61 +1319,61 @@ $LN99@ModulePowe:
 	jmp	$LN127@ModulePowe
 $LN7@ModulePowe:
 
-; 388  : 
-; 389  :             if (u_count <= 0)
-; 390  :             {
-; 391  :                 // 剰余が 0 になった場合はこれ以上続行しても解が 0 以外にはならないので、処理を中断して 0 を返す
-; 392  :                 DeallocateNumber(*r);
-; 393  :                 DeallocateBlock(q_buf, q_buf_words);
-; 394  :                 DeallocateBlock(work_v_buf, work_v_buf_words);
-; 395  :                 DeallocateBlock(work_2_buf, work_2_buf_words);
-; 396  :                 DeallocateBlock(work_1_buf, work_1_buf_words);
-; 397  :                 DeallocateBlock(v_2_buf, v_2_buf_words);
-; 398  :                 *r = &number_zero;
-; 399  : #ifdef DO_TRACE
-; 400  :                 ReportOUT(*r);
-; 401  : #endif
-; 402  :                 return (PMC_STATUS_OK);
-; 403  :             }
-; 404  :         }
-; 405  : #ifdef DO_TRACE
-; 406  :         ReportDump("w", u_ptr, u_count);
-; 407  : #endif
-; 408  : 
-; 409  : #ifdef DO_TRACE
-; 410  :         ReportLabel("e のビット検査");
-; 411  :         ReportDump("e", e->BLOCK, e->UNIT_WORD_COUNT);
-; 412  :         ReportVar("e_count", e_count);
-; 413  :         ReportVar("e_mask", e_mask);
-; 414  :         ReportVar("e_mask & e->BLOCK[e_count - 1]", e_mask & e->BLOCK[e_count - 1]);
-; 415  : #endif
-; 416  :         if (e_mask & e->BLOCK[e_count - 1])
+; 389  : 
+; 390  :             if (u_count <= 0)
+; 391  :             {
+; 392  :                 // 剰余が 0 になった場合はこれ以上続行しても解が 0 以外にはならないので、処理を中断して 0 を返す
+; 393  :                 DeallocateNumber(*r);
+; 394  :                 DeallocateBlock(q_buf, q_buf_words);
+; 395  :                 DeallocateBlock(work_v_buf, work_v_buf_words);
+; 396  :                 DeallocateBlock(work_2_buf, work_2_buf_words);
+; 397  :                 DeallocateBlock(work_1_buf, work_1_buf_words);
+; 398  :                 DeallocateBlock(v_2_buf, v_2_buf_words);
+; 399  :                 *r = &number_zero;
+; 400  : #ifdef DO_TRACE
+; 401  :                 ReportOUT(*r);
+; 402  : #endif
+; 403  :                 return (PMC_STATUS_OK);
+; 404  :             }
+; 405  :         }
+; 406  : #ifdef DO_TRACE
+; 407  :         ReportDump("w", u_ptr, u_count);
+; 408  : #endif
+; 409  : 
+; 410  : #ifdef DO_TRACE
+; 411  :         ReportLabel("e のビット検査");
+; 412  :         ReportDump("e", e->BLOCK, e->UNIT_WORD_COUNT);
+; 413  :         ReportVar("e_count", e_count);
+; 414  :         ReportVar("e_mask", e_mask);
+; 415  :         ReportVar("e_mask & e->BLOCK[e_count - 1]", e_mask & e->BLOCK[e_count - 1]);
+; 416  : #endif
+; 417  :         if (e_mask & e->BLOCK[e_count - 1])
 
 	mov	rax, QWORD PTR e$[rbp-185]
 	mov	r8, QWORD PTR e_count$1$[rbp-185]
 	mov	rax, QWORD PTR [rax+56]
 	test	QWORD PTR [rax+r8*8-8], r13
 	je	$LN9@ModulePowe
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	mov	rcx, QWORD PTR work_1_buf_words$[rbp-185]
 	xor	eax, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 428  :             Multiply_X_X_Imp(u_ptr, u_count, v_ptr, v_count, w_ptr);
+; 429  :             Multiply_X_X_Imp(u_ptr, u_count, v_ptr, v_count, w_ptr);
 
 	mov	r8, QWORD PTR v_2_buf$1$[rbp-185]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	mov	rdi, r12
 	rep stosq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 428  :             Multiply_X_X_Imp(u_ptr, u_count, v_ptr, v_count, w_ptr);
+; 429  :             Multiply_X_X_Imp(u_ptr, u_count, v_ptr, v_count, w_ptr);
 
 	mov	rdi, QWORD PTR v_count$1$[rbp-185]
 	mov	rdx, rbx
@@ -1382,7 +1382,7 @@ $LN7@ModulePowe:
 	mov	rcx, rsi
 	call	Multiply_X_X_Imp
 
-; 429  :             if ((result = CheckBlockLight(work_1_buf, work_1_buf_code)) != PMC_STATUS_OK)
+; 430  :             if ((result = CheckBlockLight(work_1_buf, work_1_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_1_buf_code$[rbp-185]
 	mov	rcx, QWORD PTR work_1_buf$1$[rbp-185]
@@ -1390,8 +1390,8 @@ $LN7@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 430  :                 return (result);
-; 431  :             if ((result = CheckBlockLight(work_2_buf, work_2_buf_code)) != PMC_STATUS_OK)
+; 431  :                 return (result);
+; 432  :             if ((result = CheckBlockLight(work_2_buf, work_2_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_2_buf_code$[rbp-185]
 	mov	rcx, QWORD PTR work_2_buf$1$[rbp-185]
@@ -1399,44 +1399,44 @@ $LN7@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 432  :                 return (result);
-; 433  :             SwapPointer(&u_ptr, &w_ptr);
-; 434  :             u_count += v_count;
+; 433  :                 return (result);
+; 434  :             SwapPointer(&u_ptr, &w_ptr);
+; 435  :             u_count += v_count;
 
 	add	rbx, rdi
 
-; 98   :     __UNIT_TYPE* t = *u;
+; 99   :     __UNIT_TYPE* t = *u;
 
 	mov	r15, rsi
 
-; 99   :     *u = *v;
+; 100  :     *u = *v;
 
 	mov	rsi, r12
 
-; 432  :                 return (result);
-; 433  :             SwapPointer(&u_ptr, &w_ptr);
-; 434  :             u_count += v_count;
+; 433  :                 return (result);
+; 434  :             SwapPointer(&u_ptr, &w_ptr);
+; 435  :             u_count += v_count;
 
 	mov	rcx, rbx
 
-; 100  :     *v = t;
+; 101  :     *v = t;
 
 	mov	r12, r15
 
-; 435  :             if (u_ptr[u_count - 1] == 0)
-; 436  :                 --u_count;
-; 437  : #ifdef DO_TRACE
-; 438  :             ReportDump("w", u_ptr, u_count);
-; 439  : #endif
-; 440  : 
-; 441  :             // w := u % m を計算する
-; 442  : 
-; 443  : #ifdef DO_TRACE
-; 444  :             ReportLabel("w := u % m");
-; 445  :             ReportDump("u", u_ptr, u_count);
-; 446  :             ReportDump("m", m_buf, m_count);
-; 447  : #endif
-; 448  :             if (u_count >= m_count)
+; 436  :             if (u_ptr[u_count - 1] == 0)
+; 437  :                 --u_count;
+; 438  : #ifdef DO_TRACE
+; 439  :             ReportDump("w", u_ptr, u_count);
+; 440  : #endif
+; 441  : 
+; 442  :             // w := u % m を計算する
+; 443  : 
+; 444  : #ifdef DO_TRACE
+; 445  :             ReportLabel("w := u % m");
+; 446  :             ReportDump("u", u_ptr, u_count);
+; 447  :             ReportDump("m", m_buf, m_count);
+; 448  : #endif
+; 449  :             if (u_count >= m_count)
 
 	mov	rax, QWORD PTR [rsi+rbx*8-8]
 	dec	rbx
@@ -1444,32 +1444,32 @@ $LN7@ModulePowe:
 	cmovne	rbx, rcx
 	cmp	rbx, r14
 	jb	$LN123@ModulePowe
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	mov	rcx, QWORD PTR work_v_buf_words$[rbp-185]
 	xor	eax, eax
 	mov	rdx, QWORD PTR work_v_buf$1$[rbp-185]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 453  :                 DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
+; 454  :                 DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
 
 	mov	r9, r14
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	mov	r12, QWORD PTR q_buf$1$[rbp-185]
 	mov	rdi, rdx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 453  :                 DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
+; 454  :                 DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
 
 	mov	r8, QWORD PTR m_buf$1$[rbp-185]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	rep stosq
 	mov	rcx, QWORD PTR q_buf_words$[rbp-185]
@@ -1479,17 +1479,17 @@ $LN7@ModulePowe:
 	mov	rdi, r15
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 453  :                 DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
+; 454  :                 DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
 
 	mov	QWORD PTR [rsp+48], r15
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 406  :     __stosq(d, 0, count);
+; 120  :         __stosq(d, 0, count);
 
 	rep stosq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 453  :                 DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
+; 454  :                 DivRem_X_X(u_ptr, u_count, m_buf, m_count, work_v_buf, q_buf, w_ptr);
 
 	mov	QWORD PTR [rsp+40], r12
 	mov	rcx, rsi
@@ -1497,7 +1497,7 @@ $LN7@ModulePowe:
 	mov	rdx, rbx
 	call	DivRem_X_X
 
-; 454  :                 if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
+; 455  :                 if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_v_buf_code$[rbp-185]
 	mov	rcx, QWORD PTR work_v_buf$1$[rbp-185]
@@ -1505,8 +1505,8 @@ $LN7@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 455  :                     return (result);
-; 456  :                 if ((result = CheckBlockLight(q_buf, q_buf_code)) != PMC_STATUS_OK)
+; 456  :                     return (result);
+; 457  :                 if ((result = CheckBlockLight(q_buf, q_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR q_buf_code$[rbp-185]
 	mov	rcx, r12
@@ -1514,8 +1514,8 @@ $LN7@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 457  :                     return (result);
-; 458  :                 if ((result = CheckBlockLight(work_1_buf, work_1_buf_code)) != PMC_STATUS_OK)
+; 458  :                     return (result);
+; 459  :                 if ((result = CheckBlockLight(work_1_buf, work_1_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_1_buf_code$[rbp-185]
 	mov	rcx, QWORD PTR work_1_buf$1$[rbp-185]
@@ -1523,8 +1523,8 @@ $LN7@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 459  :                     return (result);
-; 460  :                 if ((result = CheckBlockLight(work_2_buf, work_2_buf_code)) != PMC_STATUS_OK)
+; 460  :                     return (result);
+; 461  :                 if ((result = CheckBlockLight(work_2_buf, work_2_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdi, QWORD PTR work_2_buf$1$[rbp-185]
 	mov	rdx, QWORD PTR work_2_buf_code$[rbp-185]
@@ -1533,49 +1533,49 @@ $LN7@ModulePowe:
 	test	eax, eax
 	jne	$LN126@ModulePowe
 
-; 98   :     __UNIT_TYPE* t = *u;
+; 99   :     __UNIT_TYPE* t = *u;
 
 	mov	r12, rsi
 
-; 99   :     *u = *v;
+; 100  :     *u = *v;
 
 	mov	rsi, r15
 
-; 461  :                     return (result);
-; 462  :                 SwapPointer(&u_ptr, &w_ptr);
-; 463  :                 u_count = m_count;
+; 462  :                     return (result);
+; 463  :                 SwapPointer(&u_ptr, &w_ptr);
+; 464  :                 u_count = m_count;
 
 	mov	rbx, r14
 
-; 464  :                 while (u_count > 0 && u_ptr[u_count - 1] == 0)
+; 465  :                 while (u_count > 0 && u_ptr[u_count - 1] == 0)
 
 	test	r14, r14
 	je	$LN99@ModulePowe
 
-; 98   :     __UNIT_TYPE* t = *u;
+; 99   :     __UNIT_TYPE* t = *u;
 
 	lea	rax, QWORD PTR [r14-1]
 	lea	rax, QWORD PTR [r15+rax*8]
 $LL8@ModulePowe:
 
-; 464  :                 while (u_count > 0 && u_ptr[u_count - 1] == 0)
+; 465  :                 while (u_count > 0 && u_ptr[u_count - 1] == 0)
 
 	cmp	QWORD PTR [rax], 0
 	jne	SHORT $LN123@ModulePowe
 
-; 465  :                     --u_count;
+; 466  :                     --u_count;
 
 	sub	rax, 8
 	sub	rbx, 1
 	jne	SHORT $LL8@ModulePowe
 
-; 464  :                 while (u_count > 0 && u_ptr[u_count - 1] == 0)
+; 465  :                 while (u_count > 0 && u_ptr[u_count - 1] == 0)
 
 	jmp	$LN99@ModulePowe
 $LN123@ModulePowe:
 
-; 319  : 
-; 320  :     while (e_count > 0)
+; 320  : 
+; 321  :     while (e_count > 0)
 
 	mov	r8, QWORD PTR e_count$1$[rbp-185]
 $LN9@ModulePowe:
@@ -1583,9 +1583,9 @@ $LN9@ModulePowe:
 	mov	rax, -9223372036854775808		; 8000000000000000H
 	jmp	$LL4@ModulePowe
 $LN5@ModulePowe:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 356  :     __movsq(d, s, count);
+; 70   :         __movsq(d, s, count);
 
 	mov	r14, QWORD PTR r$[rbp-185]
 	mov	rcx, rbx
@@ -1594,7 +1594,7 @@ $LN5@ModulePowe:
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 491  :     if ((result = CheckBlockLight((*r)->BLOCK, r_check_code)) != PMC_STATUS_OK)
+; 492  :     if ((result = CheckBlockLight((*r)->BLOCK, r_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR [r14]
 	mov	rdx, QWORD PTR r_check_code$[rbp-185]
@@ -1603,47 +1603,47 @@ $LN5@ModulePowe:
 	test	eax, eax
 	jne	SHORT $LN126@ModulePowe
 
-; 492  :         return (result);
-; 493  :     CommitNumber(*r);
+; 493  :         return (result);
+; 494  :     CommitNumber(*r);
 
 	mov	rcx, QWORD PTR [r14]
 	call	CommitNumber
 
-; 494  :     DeallocateBlock(q_buf, q_buf_words);
+; 495  :     DeallocateBlock(q_buf, q_buf_words);
 
 	mov	rdx, QWORD PTR q_buf_words$[rbp-185]
 	mov	rcx, QWORD PTR q_buf$1$[rbp-185]
 	call	DeallocateBlock
 
-; 495  :     DeallocateBlock(work_v_buf, work_v_buf_words);
+; 496  :     DeallocateBlock(work_v_buf, work_v_buf_words);
 
 	mov	rdx, QWORD PTR work_v_buf_words$[rbp-185]
 	mov	rcx, QWORD PTR work_v_buf$1$[rbp-185]
 	call	DeallocateBlock
 
-; 496  :     DeallocateBlock(work_2_buf, work_2_buf_words);
+; 497  :     DeallocateBlock(work_2_buf, work_2_buf_words);
 
 	mov	rdx, QWORD PTR work_2_buf_words$[rbp-185]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 497  :     DeallocateBlock(work_1_buf, work_1_buf_words);
+; 498  :     DeallocateBlock(work_1_buf, work_1_buf_words);
 
 	mov	rdx, QWORD PTR work_1_buf_words$[rbp-185]
 	mov	rcx, QWORD PTR work_1_buf$1$[rbp-185]
 	call	DeallocateBlock
 
-; 498  :     DeallocateBlock(v_2_buf, v_2_buf_words);
+; 499  :     DeallocateBlock(v_2_buf, v_2_buf_words);
 
 	mov	rdx, QWORD PTR v_2_buf_words$[rbp-185]
 	mov	rcx, QWORD PTR v_2_buf$1$[rbp-185]
 	call	DeallocateBlock
 $LN127@ModulePowe:
 
-; 499  : #ifdef DO_TRACE
-; 500  :     ReportOUT(*r);
-; 501  : #endif
-; 502  :     return (PMC_STATUS_OK);
+; 500  : #ifdef DO_TRACE
+; 501  :     ReportOUT(*r);
+; 502  : #endif
+; 503  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN126@ModulePowe:
@@ -1652,7 +1652,7 @@ $LN125@ModulePowe:
 	mov	rsi, QWORD PTR [rsp+232]
 	mov	r12, QWORD PTR [rsp+224]
 
-; 503  : }
+; 504  : }
 
 	add	rsp, 240				; 000000f0H
 	pop	r14
@@ -1665,9 +1665,9 @@ ModulePower ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 ;	COMDAT Remainder
 _TEXT	SEGMENT
@@ -1681,7 +1681,7 @@ r$ = 144
 work_v_buf_code$5 = 152
 Remainder PROC						; COMDAT
 
-; 104  : {
+; 105  : {
 
 	push	rbx
 	push	rbp
@@ -1692,17 +1692,17 @@ Remainder PROC						; COMDAT
 	mov	rbx, rcx
 	mov	r14, r8
 
-; 105  :     PMC_STATUS_CODE result;
-; 106  : 
-; 107  :     if (u->UNIT_BIT_COUNT < v->UNIT_BIT_COUNT)
+; 106  :     PMC_STATUS_CODE result;
+; 107  : 
+; 108  :     if (u->UNIT_BIT_COUNT < v->UNIT_BIT_COUNT)
 
 	mov	rcx, QWORD PTR [rdx+16]
 	mov	rdi, rdx
 	cmp	QWORD PTR [rbx+16], rcx
 	jae	SHORT $LN2@Remainder
 
-; 108  :     {
-; 109  :         if ((result = DuplicateNumber(u, r)) != PMC_STATUS_OK)
+; 109  :     {
+; 110  :         if ((result = DuplicateNumber(u, r)) != PMC_STATUS_OK)
 
 	mov	rdx, r8
 	mov	rcx, rbx
@@ -1710,7 +1710,7 @@ Remainder PROC						; COMDAT
 	test	eax, eax
 	je	$LN3@Remainder
 
-; 158  : }
+; 159  : }
 
 	add	rsp, 80					; 00000050H
 	pop	r15
@@ -1721,30 +1721,30 @@ Remainder PROC						; COMDAT
 	ret	0
 $LN2@Remainder:
 
-; 110  :             return (result);
-; 111  :     }
-; 112  :     else
-; 113  :     {
-; 114  :         __UNIT_TYPE work_v_buf_code;
-; 115  :         __UNIT_TYPE work_v_buf_words;
-; 116  :         __UNIT_TYPE* work_v_buf = AllocateBlock(v->UNIT_BIT_COUNT, &work_v_buf_words, &work_v_buf_code);
+; 111  :             return (result);
+; 112  :     }
+; 113  :     else
+; 114  :     {
+; 115  :         __UNIT_TYPE work_v_buf_code;
+; 116  :         __UNIT_TYPE work_v_buf_words;
+; 117  :         __UNIT_TYPE* work_v_buf = AllocateBlock(v->UNIT_BIT_COUNT, &work_v_buf_words, &work_v_buf_code);
 
 	lea	r8, QWORD PTR work_v_buf_code$5[rsp]
 	lea	rdx, QWORD PTR work_v_buf_words$3[rsp]
 	call	AllocateBlock
 	mov	rbp, rax
 
-; 117  :         if (work_v_buf == NULL)
+; 118  :         if (work_v_buf == NULL)
 
 	test	rax, rax
 	je	SHORT $LN16@Remainder
 
-; 118  :         {
-; 119  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 120  :         }
-; 121  :         __UNIT_TYPE q_buf_code;
-; 122  :         __UNIT_TYPE q_buf_words;
-; 123  :         __UNIT_TYPE* q_buf = AllocateBlock(u->UNIT_BIT_COUNT - v->UNIT_BIT_COUNT + 1 + __UNIT_TYPE_BIT_COUNT, &q_buf_words, &q_buf_code);
+; 119  :         {
+; 120  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 121  :         }
+; 122  :         __UNIT_TYPE q_buf_code;
+; 123  :         __UNIT_TYPE q_buf_words;
+; 124  :         __UNIT_TYPE* q_buf = AllocateBlock(u->UNIT_BIT_COUNT - v->UNIT_BIT_COUNT + 1 + __UNIT_TYPE_BIT_COUNT, &q_buf_words, &q_buf_code);
 
 	mov	rcx, QWORD PTR [rbx+16]
 	lea	r8, QWORD PTR q_buf_code$1[rsp]
@@ -1754,17 +1754,17 @@ $LN2@Remainder:
 	call	AllocateBlock
 	mov	r15, rax
 
-; 124  :         if (q_buf == NULL)
+; 125  :         if (q_buf == NULL)
 
 	test	rax, rax
 	je	SHORT $LN17@Remainder
 
-; 125  :         {
-; 126  :             DeallocateBlock(work_v_buf, work_v_buf_words);
-; 127  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 128  :         }
-; 129  :         __UNIT_TYPE r_check_code;
-; 130  :         if ((result = AllocateNumber(r, u->UNIT_BIT_COUNT + __UNIT_TYPE_BIT_COUNT, &r_check_code)) != PMC_STATUS_OK)
+; 126  :         {
+; 127  :             DeallocateBlock(work_v_buf, work_v_buf_words);
+; 128  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 129  :         }
+; 130  :         __UNIT_TYPE r_check_code;
+; 131  :         if ((result = AllocateNumber(r, u->UNIT_BIT_COUNT + __UNIT_TYPE_BIT_COUNT, &r_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR [rbx+16]
 	lea	r8, QWORD PTR r_check_code$2[rsp]
@@ -1774,15 +1774,15 @@ $LN2@Remainder:
 	test	eax, eax
 	je	SHORT $LN7@Remainder
 
-; 131  :         {
-; 132  :             DeallocateBlock(q_buf, q_buf_words);
+; 132  :         {
+; 133  :             DeallocateBlock(q_buf, q_buf_words);
 
 	mov	rdx, QWORD PTR q_buf_words$4[rsp]
 	mov	rcx, r15
 	call	DeallocateBlock
 $LN17@Remainder:
 
-; 158  : }
+; 159  : }
 
 	mov	rdx, QWORD PTR work_v_buf_words$3[rsp]
 	mov	rcx, rbp
@@ -1798,34 +1798,34 @@ $LN16@Remainder:
 	ret	0
 $LN7@Remainder:
 
-; 133  :             DeallocateBlock(work_v_buf, work_v_buf_words);
-; 134  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
-; 135  :         }
-; 136  : 
-; 137  :         if (u->UNIT_WORD_COUNT < v->UNIT_WORD_COUNT)
+; 134  :             DeallocateBlock(work_v_buf, work_v_buf_words);
+; 135  :             return (PMC_STATUS_NOT_ENOUGH_MEMORY);
+; 136  :         }
+; 137  : 
+; 138  :         if (u->UNIT_WORD_COUNT < v->UNIT_WORD_COUNT)
 
 	mov	rdx, QWORD PTR [rbx+8]
 	mov	r9, QWORD PTR [rdi+8]
 	cmp	rdx, r9
 	jae	SHORT $LN8@Remainder
 
-; 139  :             q_buf[0] = 0;
+; 140  :             q_buf[0] = 0;
 
 	mov	QWORD PTR [r15], 0
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 356  :     __movsq(d, s, count);
+; 70   :         __movsq(d, s, count);
 
 	mov	rdi, QWORD PTR [r14]
 	mov	rcx, QWORD PTR [rbx+8]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 139  :             q_buf[0] = 0;
+; 140  :             q_buf[0] = 0;
 
 	mov	QWORD PTR [rsp+144], rsi
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 356  :     __movsq(d, s, count);
+; 70   :         __movsq(d, s, count);
 
 	mov	rsi, QWORD PTR [rbx+56]
 	mov	rdi, QWORD PTR [rdi+56]
@@ -1833,14 +1833,14 @@ $LN7@Remainder:
 	mov	rsi, QWORD PTR [rsp+144]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_modpow.c
 
-; 141  :         }
+; 142  :         }
 
 	jmp	SHORT $LN12@Remainder
 $LN8@Remainder:
 
-; 142  :         else
-; 143  :         {
-; 144  :             DivRem_X_X(u->BLOCK, u->UNIT_WORD_COUNT, v->BLOCK, v->UNIT_WORD_COUNT, work_v_buf, q_buf, (*r)->BLOCK);
+; 143  :         else
+; 144  :         {
+; 145  :             DivRem_X_X(u->BLOCK, u->UNIT_WORD_COUNT, v->BLOCK, v->UNIT_WORD_COUNT, work_v_buf, q_buf, (*r)->BLOCK);
 
 	mov	rax, QWORD PTR [r14]
 	mov	r8, QWORD PTR [rdi+56]
@@ -1851,7 +1851,7 @@ $LN8@Remainder:
 	mov	QWORD PTR [rsp+32], rbp
 	call	DivRem_X_X
 
-; 145  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
+; 146  :             if ((result = CheckBlockLight(work_v_buf, work_v_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR work_v_buf_code$5[rsp]
 	mov	rcx, rbp
@@ -1859,8 +1859,8 @@ $LN8@Remainder:
 	test	eax, eax
 	jne	SHORT $LN1@Remainder
 
-; 146  :                 return (result);
-; 147  :             if ((result = CheckBlockLight(q_buf, q_buf_code)) != PMC_STATUS_OK)
+; 147  :                 return (result);
+; 148  :             if ((result = CheckBlockLight(q_buf, q_buf_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR q_buf_code$1[rsp]
 	mov	rcx, r15
@@ -1868,8 +1868,8 @@ $LN8@Remainder:
 	test	eax, eax
 	jne	SHORT $LN1@Remainder
 
-; 148  :                 return (result);
-; 149  :             if ((result = CheckBlockLight((*r)->BLOCK, r_check_code)) != PMC_STATUS_OK)
+; 149  :                 return (result);
+; 150  :             if ((result = CheckBlockLight((*r)->BLOCK, r_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR [r14]
 	mov	rdx, QWORD PTR r_check_code$2[rsp]
@@ -1879,34 +1879,34 @@ $LN8@Remainder:
 	jne	SHORT $LN1@Remainder
 $LN12@Remainder:
 
-; 150  :                 return (result);
-; 151  :         }
-; 152  : 
-; 153  :         DeallocateBlock(q_buf, q_buf_words);
+; 151  :                 return (result);
+; 152  :         }
+; 153  : 
+; 154  :         DeallocateBlock(q_buf, q_buf_words);
 
 	mov	rdx, QWORD PTR q_buf_words$4[rsp]
 	mov	rcx, r15
 	call	DeallocateBlock
 
-; 154  :         DeallocateBlock(work_v_buf, work_v_buf_words);
+; 155  :         DeallocateBlock(work_v_buf, work_v_buf_words);
 
 	mov	rdx, QWORD PTR work_v_buf_words$3[rsp]
 	mov	rcx, rbp
 	call	DeallocateBlock
 
-; 155  :         CommitNumber(*r);
+; 156  :         CommitNumber(*r);
 
 	mov	rcx, QWORD PTR [r14]
 	call	CommitNumber
 $LN3@Remainder:
 
-; 156  :     }
-; 157  :     return (PMC_STATUS_OK);
+; 157  :     }
+; 158  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@Remainder:
 
-; 158  : }
+; 159  : }
 
 	add	rsp, 80					; 00000050H
 	pop	r15
@@ -1925,18 +1925,18 @@ u$ = 8
 v$ = 16
 SwapPointer PROC					; COMDAT
 
-; 98   :     __UNIT_TYPE* t = *u;
-; 99   :     *u = *v;
+; 99   :     __UNIT_TYPE* t = *u;
+; 100  :     *u = *v;
 
 	mov	rax, QWORD PTR [rdx]
 	mov	r8, QWORD PTR [rcx]
 	mov	QWORD PTR [rcx], rax
 
-; 100  :     *v = t;
+; 101  :     *v = t;
 
 	mov	QWORD PTR [rdx], r8
 
-; 101  : }
+; 102  : }
 
 	ret	0
 SwapPointer ENDP
@@ -1951,39 +1951,39 @@ v$ = 24
 v_count$ = 32
 Compare_Easy PROC					; COMDAT
 
-; 87   : {
+; 88   : {
 
 	mov	rax, r8
 
-; 88   :     if (u_count > v_count)
+; 89   :     if (u_count > v_count)
 
 	cmp	rdx, r9
 	jbe	SHORT $LN2@Compare_Ea
 
-; 89   :         return (1);
+; 90   :         return (1);
 
 	mov	eax, 1
 
-; 94   : }
+; 95   : }
 
 	ret	0
 $LN2@Compare_Ea:
 
-; 90   :     else if (u_count < v_count)
+; 91   :     else if (u_count < v_count)
 
 	jae	SHORT $LN4@Compare_Ea
 
-; 91   :         return (-1);
+; 92   :         return (-1);
 
 	mov	eax, -1
 
-; 94   : }
+; 95   : }
 
 	ret	0
 $LN4@Compare_Ea:
 
-; 92   :     else
-; 93   :         return (Compare_Imp(u, v, u_count));
+; 93   :     else
+; 94   :         return (Compare_Imp(u, v, u_count));
 
 	mov	r8, rdx
 	mov	rdx, rax
@@ -1991,113 +1991,113 @@ $LN4@Compare_Ea:
 Compare_Easy ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _LZCNT_ALT_UNIT
 _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 916  :     if (x == 0)
+; 630  :         if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 917  :         return (sizeof(x) * 8);
+; 631  :             return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 
-; 941  : }
+; 655  :     }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 918  : #ifdef _M_IX86
-; 919  :     _UINT32_T pos;
-; 920  : #ifdef _MSC_VER
-; 921  :     _BitScanReverse(&pos, x);
-; 922  : #elif defined(__GNUC__)
-; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #elif defined(_M_X64)
-; 928  : #ifdef _MSC_VER
-; 929  :     _UINT32_T pos;
-; 930  :     _BitScanReverse64(&pos, x);
+; 632  : #ifdef _M_IX86
+; 633  :         _UINT32_T pos;
+; 634  : #ifdef _MSC_VER
+; 635  :         _BitScanReverse(&pos, x);
+; 636  : #elif defined(__GNUC__)
+; 637  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 638  : #else
+; 639  : #error unknown compiler
+; 640  : #endif
+; 641  : #elif defined(_M_X64)
+; 642  : #ifdef _MSC_VER
+; 643  :         _UINT32_T pos;
+; 644  :         _BitScanReverse64(&pos, x);
 
 	bsr	rcx, rcx
 
-; 931  : #elif defined(__GNUC__)
-; 932  :     _UINT64_T pos;
-; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 934  : #else
-; 935  : #error unknown compiler
-; 936  : #endif
-; 937  : #else
-; 938  : #error unknown platform
-; 939  : #endif
-; 940  :     return (sizeof(x) * 8 - 1 - pos);
+; 645  : #elif defined(__GNUC__)
+; 646  :         _UINT64_T pos;
+; 647  :         __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 648  : #else
+; 649  : #error unknown compiler
+; 650  : #endif
+; 651  : #else
+; 652  : #error unknown platform
+; 653  : #endif
+; 654  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 63					; 0000003fH
 	sub	eax, ecx
 
-; 941  : }
+; 655  :     }
 
 	ret	0
 _LZCNT_ALT_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _MAXIMUM_UNIT
 _TEXT	SEGMENT
 x$ = 8
 y$ = 16
 _MAXIMUM_UNIT PROC					; COMDAT
 
-; 490  :     return (x >= y ? x : y);
+; 204  :         return (x >= y ? x : y);
 
 	cmp	rcx, rdx
 	cmovae	rdx, rcx
 	mov	rax, rdx
 
-; 491  : }
+; 205  :     }
 
 	ret	0
 _MAXIMUM_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _ZERO_MEMORY_UNIT
 _TEXT	SEGMENT
 d$ = 8
 count$ = 16
 _ZERO_MEMORY_UNIT PROC					; COMDAT
 
-; 402  : {
+; 116  :     {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 403  : #ifdef _M_IX86
-; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 405  : #elif defined(_M_X64)
-; 406  :     __stosq(d, 0, count);
+; 117  : #ifdef _M_IX86
+; 118  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 119  : #elif defined(_M_X64)
+; 120  :         __stosq(d, 0, count);
 
 	mov	rdi, rcx
 	xor	eax, eax
 	mov	rcx, rdx
 	rep stosq
 
-; 407  : #else
-; 408  : #error unknown platform
-; 409  : #endif
-; 410  : }
+; 121  : #else
+; 122  : #error unknown platform
+; 123  : #endif
+; 124  :     }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
 _ZERO_MEMORY_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _COPY_MEMORY_UNIT
 _TEXT	SEGMENT
 d$ = 8
@@ -2105,25 +2105,25 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 352  : {
+; 66   :     {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 
-; 353  : #ifdef _M_IX86
-; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 355  : #elif defined(_M_X64)
-; 356  :     __movsq(d, s, count);
+; 67   : #ifdef _M_IX86
+; 68   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 69   : #elif defined(_M_X64)
+; 70   :         __movsq(d, s, count);
 
 	mov	rdi, rcx
 	mov	rsi, rdx
 	mov	rcx, r8
 	rep movsq
 
-; 357  : #else
-; 358  : #error unknown platform
-; 359  : #endif
-; 360  : }
+; 71   : #else
+; 72   : #error unknown platform
+; 73   : #endif
+; 74   :     }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -2140,7 +2140,7 @@ m$ = 64
 r$ = 72
 PMC_ModPow_X_X_X PROC					; COMDAT
 
-; 601  : {
+; 602  : {
 
 $LN41:
 	mov	QWORD PTR [rsp+8], rbx
@@ -2153,71 +2153,71 @@ $LN41:
 	mov	rdi, rdx
 	mov	rbp, rcx
 
-; 602  :     if (v == NULL)
+; 603  :     if (v == NULL)
 
 	test	rcx, rcx
 	je	$LN35@PMC_ModPow
 
-; 603  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 604  :     if (e == NULL)
+; 604  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 605  :     if (e == NULL)
 
 	test	rdx, rdx
 	je	$LN35@PMC_ModPow
 
-; 605  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 606  :     if (m == NULL)
+; 606  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 607  :     if (m == NULL)
 
 	test	r8, r8
 	je	$LN35@PMC_ModPow
 
-; 607  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 608  :     if (r == NULL)
+; 608  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 609  :     if (r == NULL)
 
 	test	rbx, rbx
 	je	$LN35@PMC_ModPow
 
-; 609  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 610  :     PMC_STATUS_CODE result;
-; 611  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
+; 610  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 611  :     PMC_STATUS_CODE result;
+; 612  :     if ((result = CheckNumber((NUMBER_HEADER*)v)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_ModPow
 
-; 612  :         return (result);
-; 613  :     if ((result = CheckNumber((NUMBER_HEADER*)e)) != PMC_STATUS_OK)
+; 613  :         return (result);
+; 614  :     if ((result = CheckNumber((NUMBER_HEADER*)e)) != PMC_STATUS_OK)
 
 	mov	rcx, rdi
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_ModPow
 
-; 614  :         return (result);
-; 615  :     if ((result = CheckNumber((NUMBER_HEADER*)m)) != PMC_STATUS_OK)
+; 615  :         return (result);
+; 616  :     if ((result = CheckNumber((NUMBER_HEADER*)m)) != PMC_STATUS_OK)
 
 	mov	rcx, rsi
 	call	CheckNumber
 	test	eax, eax
 	jne	SHORT $LN1@PMC_ModPow
 
-; 509  :     if (m->IS_ZERO)
+; 510  :     if (m->IS_ZERO)
 
 	mov	ecx, DWORD PTR [rsi+40]
 	test	cl, 2
 	je	SHORT $LN12@PMC_ModPow
 
-; 510  :     {
-; 511  :         // m が 0 の場合
-; 512  : 
-; 513  :         // 0 による除算は許されないのでエラーを通知する
-; 514  :         return (PMC_STATUS_DIVISION_BY_ZERO);
+; 511  :     {
+; 512  :         // m が 0 の場合
+; 513  : 
+; 514  :         // 0 による除算は許されないのでエラーを通知する
+; 515  :         return (PMC_STATUS_DIVISION_BY_ZERO);
 
 	mov	eax, -3
 	jmp	SHORT $LN1@PMC_ModPow
 $LN12@PMC_ModPow:
 
-; 515  :     }
-; 516  :     else if (m->IS_ONE)
+; 516  :     }
+; 517  :     else if (m->IS_ONE)
 
 	mov	edx, DWORD PTR [rbp+40]
 	mov	eax, edx
@@ -2225,25 +2225,25 @@ $LN12@PMC_ModPow:
 	test	cl, 4
 	je	SHORT $LN14@PMC_ModPow
 
-; 517  :     {
-; 518  :         // m が 1 の場合
-; 519  :         if (v->IS_ZERO)
+; 518  :     {
+; 519  :         // m が 1 の場合
+; 520  :         if (v->IS_ZERO)
 
 	test	eax, eax
 	je	SHORT $LN18@PMC_ModPow
 $LN39@PMC_ModPow:
 
-; 624  : }
+; 625  : }
 
 	test	BYTE PTR [rdi+40], 2
 	jne	SHORT $LN35@PMC_ModPow
 $LN18@PMC_ModPow:
 
-; 619  : #ifdef _DEBUG
-; 620  :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
-; 621  :         return (result);
-; 622  : #endif
-; 623  :     return (PMC_STATUS_OK);
+; 620  : #ifdef _DEBUG
+; 621  :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
+; 622  :         return (result);
+; 623  : #endif
+; 624  :     return (PMC_STATUS_OK);
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR [rbx], rax
@@ -2251,75 +2251,75 @@ $LN18@PMC_ModPow:
 	jmp	SHORT $LN1@PMC_ModPow
 $LN14@PMC_ModPow:
 
-; 548  :         if (v->IS_ZERO)
+; 549  :         if (v->IS_ZERO)
 
 	test	eax, eax
 	jne	SHORT $LN39@PMC_ModPow
 
-; 549  :         {
-; 550  :             // v が 0 の場合
-; 551  :             if (e->IS_ZERO)
-; 552  :             {
-; 553  :                 // e が 0 の場合
-; 554  : 
-; 555  :                 // 0 の 0 乗となるので、エラーを返す
-; 556  :                 return (PMC_STATUS_ARGUMENT_ERROR);
-; 557  :             }
-; 558  :             else
-; 559  :             {
-; 560  :                 // e が 0 ではない場合
-; 561  : 
-; 562  :                 *r = &number_zero;
-; 563  :             }
-; 564  :         }
-; 565  :         else if (v->IS_ONE)
+; 550  :         {
+; 551  :             // v が 0 の場合
+; 552  :             if (e->IS_ZERO)
+; 553  :             {
+; 554  :                 // e が 0 の場合
+; 555  : 
+; 556  :                 // 0 の 0 乗となるので、エラーを返す
+; 557  :                 return (PMC_STATUS_ARGUMENT_ERROR);
+; 558  :             }
+; 559  :             else
+; 560  :             {
+; 561  :                 // e が 0 ではない場合
+; 562  : 
+; 563  :                 *r = &number_zero;
+; 564  :             }
+; 565  :         }
+; 566  :         else if (v->IS_ONE)
 
 	test	dl, 4
 	jne	SHORT $LN34@PMC_ModPow
 
-; 566  :         {
-; 567  :             // v が 1 の場合
-; 568  : 
-; 569  :             // 1 を何乗しても 1 であり、1 を 2 以上の数で割ればその剰余は必ず 1 となる
-; 570  :             *r = &number_one;
-; 571  :         }
-; 572  :         else
-; 573  :         {
-; 574  :             // v が 2 以上の場合
-; 575  :             if (e->IS_ZERO)
+; 567  :         {
+; 568  :             // v が 1 の場合
+; 569  : 
+; 570  :             // 1 を何乗しても 1 であり、1 を 2 以上の数で割ればその剰余は必ず 1 となる
+; 571  :             *r = &number_one;
+; 572  :         }
+; 573  :         else
+; 574  :         {
+; 575  :             // v が 2 以上の場合
+; 576  :             if (e->IS_ZERO)
 
 	mov	eax, DWORD PTR [rdi+40]
 	test	al, 2
 	jne	SHORT $LN34@PMC_ModPow
 
-; 579  :             }
-; 580  :             else if (e->IS_ONE)
+; 580  :             }
+; 581  :             else if (e->IS_ONE)
 
 	mov	rcx, rbp
 	test	al, 4
 	je	SHORT $LN28@PMC_ModPow
 
-; 581  :             {
-; 582  :                 // e が 1 の場合
-; 583  : 
-; 584  :                 // v % m を計算して返す
-; 585  :                 if ((result = Remainder(v, m, r)) != PMC_STATUS_OK)
+; 582  :             {
+; 583  :                 // e が 1 の場合
+; 584  : 
+; 585  :                 // v % m を計算して返す
+; 586  :                 if ((result = Remainder(v, m, r)) != PMC_STATUS_OK)
 
 	mov	r8, rbx
 	mov	rdx, rsi
 	call	Remainder
 
-; 586  :                     return (result);
+; 587  :                     return (result);
 
 	jmp	SHORT $LN38@PMC_ModPow
 $LN28@PMC_ModPow:
 
-; 587  :             }
-; 588  :             else
-; 589  :             {
-; 590  :                 // v、e、m がすべて 2 以上である場合
-; 591  :                 // v の e 乗 の m による剰余を計算して返す
-; 592  :                 if ((result = ModulePower(v, e, m, r)) != PMC_STATUS_OK)
+; 588  :             }
+; 589  :             else
+; 590  :             {
+; 591  :                 // v、e、m がすべて 2 以上である場合
+; 592  :                 // v の e 乗 の m による剰余を計算して返す
+; 593  :                 if ((result = ModulePower(v, e, m, r)) != PMC_STATUS_OK)
 
 	mov	r9, rbx
 	mov	r8, rsi
@@ -2327,24 +2327,24 @@ $LN28@PMC_ModPow:
 	call	ModulePower
 $LN38@PMC_ModPow:
 
-; 616  :         return (result);
-; 617  :     if ((result = PMC_ModPow_X_X_X_Imp((NUMBER_HEADER*)v, (NUMBER_HEADER*)e, (NUMBER_HEADER*)m, (NUMBER_HEADER**)r)) != PMC_STATUS_OK)
-; 618  :         return (result);
+; 617  :         return (result);
+; 618  :     if ((result = PMC_ModPow_X_X_X_Imp((NUMBER_HEADER*)v, (NUMBER_HEADER*)e, (NUMBER_HEADER*)m, (NUMBER_HEADER**)r)) != PMC_STATUS_OK)
+; 619  :         return (result);
 
 	test	eax, eax
 	je	SHORT $LN9@PMC_ModPow
 	jmp	SHORT $LN1@PMC_ModPow
 $LN34@PMC_ModPow:
 
-; 578  :                 *r = &number_one;
+; 579  :                 *r = &number_one;
 
 	lea	rax, OFFSET FLAT:number_one
 
-; 619  : #ifdef _DEBUG
-; 620  :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
-; 621  :         return (result);
-; 622  : #endif
-; 623  :     return (PMC_STATUS_OK);
+; 620  : #ifdef _DEBUG
+; 621  :     if ((result = CheckNumber(*r)) != PMC_STATUS_OK)
+; 622  :         return (result);
+; 623  : #endif
+; 624  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rbx], rax
 $LN9@PMC_ModPow:
@@ -2352,7 +2352,7 @@ $LN9@PMC_ModPow:
 	jmp	SHORT $LN1@PMC_ModPow
 $LN35@PMC_ModPow:
 
-; 624  : }
+; 625  : }
 
 	mov	eax, -1
 $LN1@PMC_ModPow:
@@ -2371,11 +2371,11 @@ _TEXT	SEGMENT
 feature$ = 8
 Initialize_ModPow PROC					; COMDAT
 
-; 628  :     return (PMC_STATUS_OK);
+; 629  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 629  : }
+; 630  : }
 
 	ret	0
 Initialize_ModPow ENDP

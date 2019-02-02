@@ -34,21 +34,21 @@ $unwind$PMC_To_X_I DD 040a01H
 	DD	07006320aH
 xdata	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _FROMWORDTODWORD
 _TEXT	SEGMENT
 value_high$ = 8
 value_low$ = 16
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, ecx
 	shl	rax, 32					; 00000020H
 	mov	ecx, edx
 	or	rax, rcx
 
-; 465  : }
+; 179  :     }
 
 	ret	0
 _FROMWORDTODWORD ENDP
@@ -61,7 +61,7 @@ p$ = 48
 o$ = 56
 PMC_To_X_L PROC						; COMDAT
 
-; 58   : {
+; 59   : {
 
 $LN15:
 	mov	QWORD PTR [rsp+8], rbx
@@ -70,40 +70,40 @@ $LN15:
 	mov	rdi, rdx
 	mov	rbx, rcx
 
-; 59   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
-; 60   :     {
-; 61   :         // 32bit未満のCPUは未対応
-; 62   :         return (PMC_STATUS_NOT_SUPPORTED);
-; 63   :     }
-; 64   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-; 65   :     PMC_STATUS_CODE result;
-; 66   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 60   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
+; 61   :     {
+; 62   :         // 32bit未満のCPUは未対応
+; 63   :         return (PMC_STATUS_NOT_SUPPORTED);
+; 64   :     }
+; 65   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 66   :     PMC_STATUS_CODE result;
+; 67   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	SHORT $LN9@PMC_To_X_L
 
-; 67   :         return (result);
-; 68   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
+; 68   :         return (result);
+; 69   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
 	cmp	QWORD PTR [rbx+16], 64			; 00000040H
 	jbe	SHORT $LN4@PMC_To_X_L
 
-; 69   :         return (PMC_STATUS_OVERFLOW);
+; 70   :         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 
-; 79   :         return (PMC_STATUS_OK);
-; 80   :     }
-; 81   :     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
-; 82   :     {
-; 83   :         // 値が 2 ワードで表現できる場合
-; 84   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
-; 85   :         return (PMC_STATUS_OK);
-; 86   :     }
-; 87   :     else
-; 88   :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 89   : }
+; 80   :         return (PMC_STATUS_OK);
+; 81   :     }
+; 82   :     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
+; 83   :     {
+; 84   :         // 値が 2 ワードで表現できる場合
+; 85   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
+; 86   :         return (PMC_STATUS_OK);
+; 87   :     }
+; 88   :     else
+; 89   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 90   : }
 
 	mov	rbx, QWORD PTR [rsp+48]
 	add	rsp, 32					; 00000020H
@@ -111,27 +111,27 @@ $LN15:
 	ret	0
 $LN4@PMC_To_X_L:
 
-; 70   :     if (np->IS_ZERO)
+; 71   :     if (np->IS_ZERO)
 
 	test	BYTE PTR [rbx+40], 2
 	je	SHORT $LN5@PMC_To_X_L
 
-; 71   :     {
-; 72   :         *o = 0;
+; 72   :     {
+; 73   :         *o = 0;
 
 	mov	QWORD PTR [rdi], 0
 
-; 79   :         return (PMC_STATUS_OK);
-; 80   :     }
-; 81   :     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
-; 82   :     {
-; 83   :         // 値が 2 ワードで表現できる場合
-; 84   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
-; 85   :         return (PMC_STATUS_OK);
-; 86   :     }
-; 87   :     else
-; 88   :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 89   : }
+; 80   :         return (PMC_STATUS_OK);
+; 81   :     }
+; 82   :     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
+; 83   :     {
+; 84   :         // 値が 2 ワードで表現できる場合
+; 85   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
+; 86   :         return (PMC_STATUS_OK);
+; 87   :     }
+; 88   :     else
+; 89   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 90   : }
 
 	xor	eax, eax
 	mov	rbx, QWORD PTR [rsp+48]
@@ -140,27 +140,27 @@ $LN4@PMC_To_X_L:
 	ret	0
 $LN5@PMC_To_X_L:
 
-; 73   :         return (PMC_STATUS_OK);
-; 74   :     }
-; 75   :     if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT)
-; 76   :     {
-; 77   :         // 値が 1 ワードで表現できる場合
-; 78   :         *o = np->BLOCK[0];
+; 74   :         return (PMC_STATUS_OK);
+; 75   :     }
+; 76   :     if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT)
+; 77   :     {
+; 78   :         // 値が 1 ワードで表現できる場合
+; 79   :         *o = np->BLOCK[0];
 
 	mov	rax, QWORD PTR [rbx+56]
 	mov	rcx, QWORD PTR [rax]
 
-; 79   :         return (PMC_STATUS_OK);
-; 80   :     }
-; 81   :     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
-; 82   :     {
-; 83   :         // 値が 2 ワードで表現できる場合
-; 84   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
-; 85   :         return (PMC_STATUS_OK);
-; 86   :     }
-; 87   :     else
-; 88   :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 89   : }
+; 80   :         return (PMC_STATUS_OK);
+; 81   :     }
+; 82   :     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
+; 83   :     {
+; 84   :         // 値が 2 ワードで表現できる場合
+; 85   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
+; 86   :         return (PMC_STATUS_OK);
+; 87   :     }
+; 88   :     else
+; 89   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 90   : }
 
 	xor	eax, eax
 	mov	QWORD PTR [rdi], rcx
@@ -179,7 +179,7 @@ p$ = 48
 o$ = 56
 PMC_To_X_I PROC						; COMDAT
 
-; 38   : {
+; 39   : {
 
 $LN9:
 	mov	QWORD PTR [rsp+8], rbx
@@ -188,30 +188,30 @@ $LN9:
 	mov	rdi, rdx
 	mov	rbx, rcx
 
-; 39   :     if (sizeof(__UNIT_TYPE) < sizeof(*o))
-; 40   :     {
-; 41   :         // 32bit未満のCPUは未対応
-; 42   :         return (PMC_STATUS_NOT_SUPPORTED);
-; 43   :     }
-; 44   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-; 45   :     PMC_STATUS_CODE result;
-; 46   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 40   :     if (sizeof(__UNIT_TYPE) < sizeof(*o))
+; 41   :     {
+; 42   :         // 32bit未満のCPUは未対応
+; 43   :         return (PMC_STATUS_NOT_SUPPORTED);
+; 44   :     }
+; 45   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 46   :     PMC_STATUS_CODE result;
+; 47   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	SHORT $LN1@PMC_To_X_I
 
-; 47   :         return (result);
-; 48   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
+; 48   :         return (result);
+; 49   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
 	cmp	QWORD PTR [rbx+16], 32			; 00000020H
 	jbe	SHORT $LN4@PMC_To_X_I
 
-; 49   :         return (PMC_STATUS_OVERFLOW);
+; 50   :         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 
-; 55   : }   
+; 56   : }   
 
 	mov	rbx, QWORD PTR [rsp+48]
 	add	rsp, 32					; 00000020H
@@ -219,20 +219,20 @@ $LN9:
 	ret	0
 $LN4@PMC_To_X_I:
 
-; 50   :     if (np->IS_ZERO)
+; 51   :     if (np->IS_ZERO)
 
 	test	BYTE PTR [rbx+40], 2
 	je	SHORT $LN5@PMC_To_X_I
 
-; 51   :         *o = 0;
+; 52   :         *o = 0;
 
 	xor	eax, eax
 
-; 54   :     return (PMC_STATUS_OK);
+; 55   :     return (PMC_STATUS_OK);
 
 	mov	DWORD PTR [rdi], eax
 
-; 55   : }   
+; 56   : }   
 
 	mov	rbx, QWORD PTR [rsp+48]
 	add	rsp, 32					; 00000020H
@@ -240,19 +240,19 @@ $LN4@PMC_To_X_I:
 	ret	0
 $LN5@PMC_To_X_I:
 
-; 52   :     else
-; 53   :         *o = (_UINT32_T)np->BLOCK[0];
+; 53   :     else
+; 54   :         *o = (_UINT32_T)np->BLOCK[0];
 
 	mov	rax, QWORD PTR [rbx+56]
 	mov	eax, DWORD PTR [rax]
 
-; 54   :     return (PMC_STATUS_OK);
+; 55   :     return (PMC_STATUS_OK);
 
 	mov	DWORD PTR [rdi], eax
 	xor	eax, eax
 $LN1@PMC_To_X_I:
 
-; 55   : }   
+; 56   : }   
 
 	mov	rbx, QWORD PTR [rsp+48]
 	add	rsp, 32					; 00000020H
@@ -267,11 +267,11 @@ _TEXT	SEGMENT
 feature$ = 8
 Initialize_To PROC					; COMDAT
 
-; 93   :     return (PMC_STATUS_OK);
+; 94   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 94   : }
+; 95   : }
 
 	ret	0
 Initialize_To ENDP

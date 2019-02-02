@@ -52587,8 +52587,8 @@ _wrpkru (unsigned int __key)
    
 # 34 "cpuid.c" 2
 
-# 1 "pmc_internal.h" 1
-# 35 "pmc_internal.h"
+# 1 "pmc_uint_internal.h" 1
+# 33 "pmc_uint_internal.h"
 # 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/windows.h" 1 3
 # 9 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/windows.h" 3
 # 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/_mingw.h" 1 3
@@ -100118,10 +100118,9 @@ typedef struct _MODEMSETTINGS {
   DWORD __attribute__((__stdcall__)) ImmGetImeMenuItemsW(HIMC,DWORD,DWORD,LPIMEMENUITEMINFOW,LPIMEMENUITEMINFOW,DWORD);
   WINBOOL __attribute__((__stdcall__)) ImmDisableTextFrameService(DWORD idThread);
 # 131 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/i686-w64-mingw32/include/windows.h" 2 3
-# 36 "pmc_internal.h" 2
-
-
-
+# 34 "pmc_uint_internal.h" 2
+# 1 "pmc_internal.h" 1
+# 33 "pmc_internal.h"
 # 1 "pmc.h" 1
 # 36 "pmc.h"
 # 1 "C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/stdint.h" 1 3 4
@@ -100227,7 +100226,7 @@ typedef struct __tag_PMC_NUMBER_FORMAT_OPTION
     char GroupSizes[11];
 } PMC_NUMBER_FORMAT_OPTION;
 
-typedef struct __tag_PMC_ENTRY_POINTS
+typedef struct __tag_PMC_UINT_ENTRY_POINTS
 {
 
     unsigned PROCESSOR_FEATURE_POPCNT : 1;
@@ -100349,14 +100348,14 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ModPow_X_X_X)(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
 
-} PMC_ENTRY_POINTS;
+} PMC_UINT_ENTRY_POINTS;
 #pragma endregion
 
 
 #pragma region 宣言
-__attribute__((dllexport)) PMC_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_Initialize(PMC_CONFIGURATION_INFO*);
+ PMC_UINT_ENTRY_POINTS* __attribute__((__stdcall__)) PMC_Initialize(PMC_CONFIGURATION_INFO*);
 #pragma endregion
-# 40 "pmc_internal.h" 2
+# 34 "pmc_internal.h" 2
 # 1 "pmc_cpuid.h" 1
 # 41 "pmc_cpuid.h"
 typedef struct _tag_PROCESSOR_FEATURES
@@ -100378,7 +100377,10 @@ typedef struct _tag_PROCESSOR_FEATURES
 } PROCESSOR_FEATURES;
 
 extern void GetCPUInfo(PROCESSOR_FEATURES* feature);
-# 41 "pmc_internal.h" 2
+# 35 "pmc_internal.h" 2
+
+
+
 
 
 #pragma region マクロの定義
@@ -100392,267 +100394,272 @@ extern void GetCPUInfo(PROCESSOR_FEATURES* feature);
 #pragma region 型の定義
 
 typedef _UINT32_T __UNIT_TYPE;
-# 65 "pmc_internal.h"
+# 62 "pmc_internal.h"
 typedef __UNIT_TYPE __UNIT_TYPE_DIV;
 
 
 
 
+#pragma endregion
+# 35 "pmc_uint_internal.h" 2
+# 44 "pmc_uint_internal.h"
+#pragma region 型の定義
+    typedef struct __tag_NUMBER_HEADER
+    {
+        _UINT32_T SIGNATURE1;
+        _UINT32_T SIGNATURE2;
+        __UNIT_TYPE UNIT_WORD_COUNT;
+        __UNIT_TYPE UNIT_BIT_COUNT;
+        __UNIT_TYPE HASH_CODE;
+        __UNIT_TYPE TRAILING_ZERO_BITS_COUNT;
+        unsigned IS_STATIC : 1;
+        unsigned IS_ZERO : 1;
+        unsigned IS_ONE : 1;
+        unsigned IS_EVEN : 1;
+        unsigned IS_POWER_OF_TWO : 1;
 
-typedef struct __tag_NUMBER_HEADER
-{
-    _UINT32_T SIGNATURE1;
-    _UINT32_T SIGNATURE2;
-    __UNIT_TYPE UNIT_WORD_COUNT;
-    __UNIT_TYPE UNIT_BIT_COUNT;
-    __UNIT_TYPE HASH_CODE;
-    __UNIT_TYPE TRAILING_ZERO_BITS_COUNT;
-    unsigned IS_STATIC : 1;
-    unsigned IS_ZERO : 1;
-    unsigned IS_ONE : 1;
-    unsigned IS_EVEN : 1;
-    unsigned IS_POWER_OF_TWO : 1;
-
-    size_t BLOCK_COUNT;
+        size_t BLOCK_COUNT;
 
 
 
-    __UNIT_TYPE* BLOCK;
-} NUMBER_HEADER;
-
+        __UNIT_TYPE* BLOCK;
+    } NUMBER_HEADER;
 #pragma endregion
 
 
-#pragma region 宣言
+#pragma region 共用関数/変数の宣言
 
-extern PMC_CONFIGURATION_INFO configuration_info;
+    extern PMC_CONFIGURATION_INFO configuration_info;
 
 
-extern NUMBER_HEADER number_zero;
+    extern NUMBER_HEADER number_zero;
 
 
-extern NUMBER_HEADER number_one;
+    extern NUMBER_HEADER number_one;
 
 
-extern PMC_STATISTICS_INFO statistics_info;
+    extern PMC_STATISTICS_INFO statistics_info;
 
 
-extern BOOL AllocateHeapArea(void);
+    extern BOOL AllocateHeapArea(void);
 
 
-extern void DeallocateHeapArea(void);
+    extern void DeallocateHeapArea(void);
 
 
-extern __UNIT_TYPE* AllocateBlock(size_t bits, __UNIT_TYPE* allocated_block_words, __UNIT_TYPE* light_check_code);
+    extern __UNIT_TYPE* AllocateBlock(size_t bits, __UNIT_TYPE* allocated_block_words, __UNIT_TYPE* light_check_code);
 
 
-extern void DeallocateBlock(__UNIT_TYPE* buffer, __UNIT_TYPE buffer_words);
+    extern void DeallocateBlock(__UNIT_TYPE* buffer, __UNIT_TYPE buffer_words);
 
 
-extern PMC_STATUS_CODE CheckBlockLight(__UNIT_TYPE* buffer, __UNIT_TYPE light_check_code);
+    extern PMC_STATUS_CODE CheckBlockLight(__UNIT_TYPE* buffer, __UNIT_TYPE light_check_code);
 
 
-extern PMC_STATUS_CODE AttatchNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_length);
+    extern PMC_STATUS_CODE AttatchNumber(NUMBER_HEADER* p, __UNIT_TYPE bit_length);
 
 
-extern PMC_STATUS_CODE AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_length, __UNIT_TYPE* light_check_code);
+    extern PMC_STATUS_CODE AllocateNumber(NUMBER_HEADER** pp, __UNIT_TYPE bit_length, __UNIT_TYPE* light_check_code);
 
 
-extern void DetatchNumber(NUMBER_HEADER* p);
+    extern void DetatchNumber(NUMBER_HEADER* p);
 
 
-extern void DeallocateNumber(NUMBER_HEADER* p);
+    extern void DeallocateNumber(NUMBER_HEADER* p);
 
 
-extern void CommitNumber(NUMBER_HEADER* p);
+    extern void CommitNumber(NUMBER_HEADER* p);
 
 
-extern PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p);
+    extern PMC_STATUS_CODE CheckNumber(NUMBER_HEADER* p);
 
 
-extern PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* p, NUMBER_HEADER** op);
+    extern PMC_STATUS_CODE DuplicateNumber(NUMBER_HEADER* p, NUMBER_HEADER** op);
 
 
-extern PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o);
+    extern PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o);
 
 
-extern PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o);
+    extern PMC_STATUS_CODE From_L_Imp(_UINT64_T x, NUMBER_HEADER** o);
 
 
-extern void RightShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL pad1ding_zero);
+    extern void RightShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL pad1ding_zero);
 
 
-extern void RightShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
+    extern void RightShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
 
 
-extern void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL padding_zero);
+    extern void LeftShift_Imp_DIV(__UNIT_TYPE_DIV* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE_DIV* o, BOOL padding_zero);
 
 
-extern void LeftShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
+    extern void LeftShift_Imp(__UNIT_TYPE* p, __UNIT_TYPE p_word_count, __UNIT_TYPE n, __UNIT_TYPE* o, BOOL padding_zero);
 
 
-extern PMC_STATUS_CODE Subtruct_Imp(__UNIT_TYPE* up, __UNIT_TYPE u_count, __UNIT_TYPE* vp, __UNIT_TYPE v_count, __UNIT_TYPE* wp, __UNIT_TYPE w_count);
+    extern PMC_STATUS_CODE Subtruct_Imp(__UNIT_TYPE* up, __UNIT_TYPE u_count, __UNIT_TYPE* vp, __UNIT_TYPE v_count, __UNIT_TYPE* wp, __UNIT_TYPE w_count);
 
 
-extern void Multiply_X_X_Imp(__UNIT_TYPE* u, __UNIT_TYPE u_count, __UNIT_TYPE* v, __UNIT_TYPE v_count, __UNIT_TYPE* w);
+    extern void Multiply_X_X_Imp(__UNIT_TYPE* u, __UNIT_TYPE u_count, __UNIT_TYPE* v, __UNIT_TYPE v_count, __UNIT_TYPE* w);
 
 
-extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
+    extern void DivRem_X_1W(__UNIT_TYPE_DIV* u_buf, __UNIT_TYPE u_buf_len, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* q_buf, __UNIT_TYPE_DIV* r_buf);
 
 
-extern void DivRem_X_X(__UNIT_TYPE* u_buf, __UNIT_TYPE u_count, __UNIT_TYPE* v_buf, __UNIT_TYPE v_count, __UNIT_TYPE* work_v_buf, __UNIT_TYPE* q_buf, __UNIT_TYPE* r_buf);
+    extern void DivRem_X_X(__UNIT_TYPE* u_buf, __UNIT_TYPE u_count, __UNIT_TYPE* v_buf, __UNIT_TYPE v_count, __UNIT_TYPE* work_v_buf, __UNIT_TYPE* q_buf, __UNIT_TYPE* r_buf);
 
 
-extern _INT32_T Compare_Imp(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count);
+    extern _INT32_T Compare_Imp(__UNIT_TYPE* u, __UNIT_TYPE* v, __UNIT_TYPE count);
+#pragma endregion
 
 
-extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
+#pragma region モジュール初期化関数の宣言
 
+    extern PMC_STATUS_CODE Initialize_Memory(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
 
+    extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
 
-extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
+    extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
-extern PMC_STATUS_CODE Initialize_GetPropertyValue(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_GetPropertyValue(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_Add(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_Subtruct(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_Multiply(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_DivRem(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_DivRem(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_Shift(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_Shift(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_BitwiseAnd(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_BitwiseAnd(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_BitwiseOr(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_BitwiseOr(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_ExclusiveOr(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_ExclusiveOr(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_Compare(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_Compare(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_Equals(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_Equals(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_ToString(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_ToString(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_Parse(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_Parse(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_GreatestCommonDivisor(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_GreatestCommonDivisor(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_Pow(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_Pow(PROCESSOR_FEATURES* feature);
 
-extern PMC_STATUS_CODE Initialize_ModPow(PROCESSOR_FEATURES* feature);
 
+    extern PMC_STATUS_CODE Initialize_ModPow(PROCESSOR_FEATURES* feature);
+#pragma endregion
 
 
+#pragma region エントリポイントに登録される関数の宣言
+    extern void __attribute__((__stdcall__)) PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
 
-extern void __attribute__((__stdcall__)) PMC_GetStatisticsInfo(PMC_STATISTICS_INFO* p);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_From_I(_UINT32_T x, HANDLE* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_From_L(_UINT64_T x, HANDLE* o);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_From_I(_UINT32_T x, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_From_L(_UINT64_T x, HANDLE* o);
+    extern void __attribute__((__stdcall__)) PMC_Dispose(HANDLE p);
 
-extern void __attribute__((__stdcall__)) PMC_Dispose(HANDLE p);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GetPropertyValue_X_I(HANDLE x, PMC_PROPERTY_CODE function_code, _INT32_T* o);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GetPropertyValue_X_I(HANDLE x, PMC_PROPERTY_CODE function_code, _INT32_T* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_FromByteArray(unsigned char* buffer, size_t count, HANDLE* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ToByteArray(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_FromByteArray(unsigned char* buffer, size_t count, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ToByteArray(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_I(HANDLE p, _UINT32_T* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_L(HANDLE p, _UINT64_T* o);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_I(HANDLE p, _UINT32_T* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_L(HANDLE p, _UINT64_T* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ToString(HANDLE x, wchar_t* buffer, size_t buffer_size, char format, int width, PMC_NUMBER_FORMAT_OPTION* format_option);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_TryParse(wchar_t* source, PMC_NUMBER_STYLE_CODE number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_TryParse(wchar_t* source, PMC_NUMBER_STYLE_CODE number_styles, PMC_NUMBER_FORMAT_OPTION* format_option, HANDLE* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Add_X_X(HANDLE u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_I_X(_UINT32_T u, HANDLE v, _UINT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_L_X(_UINT64_T u, HANDLE v, _UINT64_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_I_X(_UINT32_T u, HANDLE v, _UINT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_L_X(_UINT64_T u, HANDLE v, _UINT64_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Subtruct_X_X(HANDLE u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Multiply_X_X(HANDLE u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_I_X(_UINT32_T u, HANDLE v, _UINT32_T* q, _UINT32_T* r);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_L_X(_UINT64_T u, HANDLE v, _UINT64_T* q, _UINT64_T* r);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_X_I(HANDLE u, _UINT32_T v, HANDLE* q, _UINT32_T* r);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_X_L(HANDLE u, _UINT64_T v, HANDLE* q, _UINT64_T* r);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_X_X(HANDLE u, HANDLE v, HANDLE* q, HANDLE* r);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_I_X(_UINT32_T u, HANDLE v, _UINT32_T* q, _UINT32_T* r);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_L_X(_UINT64_T u, HANDLE v, _UINT64_T* q, _UINT64_T* r);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_X_I(HANDLE u, _UINT32_T v, HANDLE* q, _UINT32_T* r);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_X_L(HANDLE u, _UINT64_T v, HANDLE* q, _UINT64_T* r);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_DivRem_X_X(HANDLE u, HANDLE v, HANDLE* q, HANDLE* r);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_RightShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_RightShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_RightShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_RightShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_LeftShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_LeftShift_X_I(HANDLE p, _UINT32_T n, HANDLE* o);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_LeftShift_X_L(HANDLE p, _UINT64_T n, HANDLE* o);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_I_X(_UINT32_T u, HANDLE v, _UINT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_L_X(_UINT64_T u, HANDLE v, _UINT64_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_X_I(HANDLE u, _UINT32_T v, _UINT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_X_L(HANDLE u, _UINT64_T v, _UINT64_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_I_X(_UINT32_T u, HANDLE v, _UINT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_L_X(_UINT64_T u, HANDLE v, _UINT64_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_X_I(HANDLE u, _UINT32_T v, _UINT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_X_L(HANDLE u, _UINT64_T v, _UINT64_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseAnd_X_X(HANDLE u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_BitwiseOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ExclusiveOr_X_X(HANDLE u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_I_X(_UINT32_T u, HANDLE v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_L_X(_UINT64_T u, HANDLE v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_I_X(_UINT32_T u, HANDLE v, _INT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_L_X(_UINT64_T u, HANDLE v, _INT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Compare_X_X(HANDLE u, HANDLE v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_I_X(_UINT32_T u, HANDLE v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_L_X(_UINT64_T u, HANDLE v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_I_X(_UINT32_T u, HANDLE v, _INT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_L_X(_UINT64_T u, HANDLE v, _INT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_I(HANDLE u, _UINT32_T v, _INT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_L(HANDLE u, _UINT64_T v, _INT32_T* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Equals_X_X(HANDLE u, HANDLE v, _INT32_T* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_I_X(_UINT32_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_L_X(_UINT64_T u, HANDLE v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_I(HANDLE u, _UINT32_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_L(HANDLE u, _UINT64_T v, HANDLE* w);
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_GreatestCommonDivisor_X_X(HANDLE u, HANDLE v, HANDLE* w);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Pow_X_I(HANDLE x, _UINT32_T n, HANDLE* z);
 
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Pow_X_I(HANDLE x, _UINT32_T n, HANDLE* z);
-
-extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ModPow_X_X_X(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ModPow_X_X_X(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
 
 
 
@@ -100662,565 +100669,570 @@ extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ModPow_X_X_X(HANDLE v, H
 
 
 #pragma region インライン関数の定義
-__inline static void _COPY_MEMORY_BYTE(void* d, const void* s, size_t count)
-{
-    __movsb(d, s, count);
-}
+    __inline static void IncrementDIV32Counter(void)
+    {
+        _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+    }
 
-__inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T count)
-{
-    __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-}
-# 351 "pmc_internal.h"
-__inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
-{
 
-    __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+    __inline static void IncrementDIV64Counter(void)
+    {
+        _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+    }
 
 
+    __inline static void IncrementMULTI32Counter(void)
+    {
+        _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+    }
 
 
+    __inline static void IncrementMULTI64Counter(void)
+    {
+        _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
+    }
 
-}
+    __inline static void AddToDIV32Counter(_INT32_T value)
+    {
+        _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+    }
 
-__inline static void _COPY_MEMORY_UNIT_DIV(__UNIT_TYPE_DIV* d, const __UNIT_TYPE_DIV* s, __UNIT_TYPE count)
-{
 
-    __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-# 377 "pmc_internal.h"
-}
+    __inline static void AddToDIV64Counter(_INT32_T value)
+    {
+        _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
+    }
 
-__inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
-{
-    __stosb(d, 0, count);
-}
 
-__inline static void _ZERO_MEMORY_16(_UINT16_T* d, size_t count)
-{
-    __stosw(d, 0, count);
-}
+    __inline static void AddToMULTI32Counter(_INT32_T value)
+    {
+        _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+    }
 
-__inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
-{
-    __stosd((unsigned long*)d, 0, count);
-}
-# 401 "pmc_internal.h"
-__inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
-{
 
-    __stosd((unsigned long*)d, 0, (unsigned long)count);
+    __inline static void AddToMULTI64Counter(_INT32_T value)
+    {
+        _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+    }
 
-
-
-
-
-}
-
-__inline static void _ZERO_MEMORY_UNIT_DIV(__UNIT_TYPE_DIV* d, __UNIT_TYPE count)
-{
-
-    __stosd((unsigned long*)d, 0, (unsigned long)count);
-# 427 "pmc_internal.h"
-}
-
-__inline static void _FILL_MEMORY_BYTE(void* d, unsigned char x, size_t count)
-{
-    __stosb(d, x, count);
-}
-
-__inline static void _FILL_MEMORY_16(_UINT16_T* d, _UINT16_T x, size_t count)
-{
-    __stosw(d, x, count);
-}
-
-__inline static void _FILL_MEMORY_32(_UINT32_T* d, _UINT32_T x, size_t count)
-{
-    __stosd(( unsigned long*)d, x, count);
-}
-# 451 "pmc_internal.h"
-__inline static void _FILL_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE x, __UNIT_TYPE count)
-{
-
-    __stosd((unsigned long*)d, x, (unsigned long)count);
-
-
-
-
-
-}
-
-__inline static _UINT64_T _FROMWORDTODWORD(_UINT32_T value_high, _UINT32_T value_low)
-{
-    return (((_UINT64_T)value_high << 32) | value_low);
-}
-
-__inline static _UINT32_T _FROMDWORDTOWORD(_UINT64_T value, _UINT32_T *result_high)
-{
-    *result_high = (_UINT32_T)(value >> 32);
-    return ((_UINT32_T)value);
-}
-
-__inline static __UNIT_TYPE _MAKE_MASK_UNIT(int bits)
-{
-    return (((__UNIT_TYPE)1UL << bits) - 1);
-}
-
-__inline static __UNIT_TYPE _DIVIDE_CEILING_UNIT(__UNIT_TYPE u, __UNIT_TYPE v)
-{
-    return ((u + v - 1) / v);
-}
-
-__inline static size_t _DIVIDE_CEILING_SIZE(size_t u, size_t v)
-{
-    return ((u + v - 1) / v);
-}
-
-__inline static __UNIT_TYPE _MAXIMUM_UNIT(__UNIT_TYPE x, __UNIT_TYPE y)
-{
-    return (x >= y ? x : y);
-}
-
-__inline static __UNIT_TYPE _MINIMUM_UNIT(__UNIT_TYPE x, __UNIT_TYPE y)
-{
-    return (x <= y ? x : y);
-}
-
-__inline static char _ADD_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
-{
-
-    return (_addcarry_u32(carry, u, v, w));
-
-
-
-
-
-}
-
-__inline static char _ADD_UNIT_DIV(char carry, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w)
-{
-
-
-
-
-    return (_addcarry_u32(carry, u, v, w));
-# 524 "pmc_internal.h"
-}
-
-__inline static char _ADDX_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
-{
-
-    return (_addcarryx_u32(carry, u, v, w));
-
-
-
-
-
-}
-
-__inline static char _ADDX_UNIT_DIV(char carry, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w)
-{
-
-
-
-
-    return (_addcarryx_u32(carry, u, v, w));
-# 552 "pmc_internal.h"
-}
-
-__inline static char _SUBTRUCT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
-{
-
-    return (_subborrow_u32(borrow, u, v, w));
-
-
-
-
-
-}
-
-__inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w)
-{
-
-
-
-
-    return (_subborrow_u32(borrow, u, v, w));
-# 580 "pmc_internal.h"
-}
-
-__inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
-{
-
-
-
-
-    _UINT32_T w_lo;
-    __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
-    return (w_lo);
-# 599 "pmc_internal.h"
-}
-
-__inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
-{
-
-
-
-
-    _UINT32_T w_lo;
-    __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
-    return (w_lo);
-# 618 "pmc_internal.h"
-}
-
-__inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
-{
-# 632 "pmc_internal.h"
-    _UINT32_T w_lo;
-    __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
-    return (w_lo);
-# 645 "pmc_internal.h"
-}
-
-__inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
-{
-
-
-
-
-    _UINT32_T w_lo;
-    __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
-    return (w_lo);
-# 666 "pmc_internal.h"
-}
-
-
-__inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
-{
-# 695 "pmc_internal.h"
-    __UNIT_TYPE q;
-    if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-        __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-    else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
-        __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
-    else
+    __inline static void ReportLabel(wchar_t* label)
     {
 
-        *r = 0;
-        q = 0;
+
+
+
+
+
     }
-    return (q);
 
-
-
-}
-
-
-__inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
-{
-# 739 "pmc_internal.h"
-    if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
-        __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
-    else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
-        __asm__("divq %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
-    else
+    __inline static void ReportDump(wchar_t* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
     {
-
-        *q = 0;
-        r = 0;
+# 376 "pmc_uint_internal.h"
     }
-    return (r);
 
-
-
-}
-
-__inline static void _MEMCPY_UNIT(__UNIT_TYPE* dst, __UNIT_TYPE* src, size_t count)
-{
-
-    __movsd((unsigned long *)dst, (const unsigned long *)src, count);
-
-
-
-
-
-}
-
-__inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
-{
-
-    return (
-# 769 "pmc_internal.h" 3
-           __rold((
-# 769 "pmc_internal.h"
-           x
-# 769 "pmc_internal.h" 3
-           ), (
-# 769 "pmc_internal.h"
-           count
-# 769 "pmc_internal.h" 3
-           ))
-# 769 "pmc_internal.h"
-                          );
-
-
-
-
-
-}
-
-__inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
-{
-
-    return (
-# 780 "pmc_internal.h" 3
-           __rord((
-# 780 "pmc_internal.h"
-           x
-# 780 "pmc_internal.h" 3
-           ), (
-# 780 "pmc_internal.h"
-           count
-# 780 "pmc_internal.h" 3
-           ))
-# 780 "pmc_internal.h"
-                          );
-
-
-
-
-
-}
-
-__inline static int _POPCNT_UNIT(__UNIT_TYPE value)
-{
-
-    return (__popcnt(value));
-
-
-
-
-
-}
-
-__inline static int _POPCNT_ALT_UNIT(__UNIT_TYPE x)
-{
-
-    x = (x & 0x55555555) + ((x >> 1) & 0x55555555);
-    x = (x & 0x33333333) + ((x >> 2) & 0x33333333);
-    x = (x & 0x0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f);
-    x = (x & 0x00ff00ff) + ((x >> 8) & 0x00ff00ff);
-    x = (x & 0x0000ffff) + ((x >> 16) & 0x0000ffff);
-# 817 "pmc_internal.h"
-    return((int)x);
-}
-
-__inline static int _LZCNT_32(_UINT32_T value)
-{
-    return (_lzcnt_u32(value));
-}
-# 832 "pmc_internal.h"
-__inline static int _LZCNT_UNIT(__UNIT_TYPE value)
-{
-
-    return (_lzcnt_u32(value));
-
-
-
-
-
-}
-
-__inline static int _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
-{
-# 855 "pmc_internal.h"
-    return (_lzcnt_u32(value));
-# 864 "pmc_internal.h"
-}
-
-__inline static int _LZCNT_ALT_8(unsigned char x)
-{
-    if (x == 0)
-        return (sizeof(x) * 8);
-    _UINT32_T pos;
-
-
-
-    __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x) );
-
-
-
-    return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
-}
-
-__inline static int _LZCNT_ALT_32(_UINT32_T x)
-{
-    if (x == 0)
-        return (sizeof(x) * 8);
-    _UINT32_T pos;
-
-
-
-    __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-
-
-
-    return (sizeof(x) * 8 - 1 - pos);
-}
-# 914 "pmc_internal.h"
-__inline static int _LZCNT_ALT_UNIT(__UNIT_TYPE x)
-{
-    if (x == 0)
-        return (sizeof(x) * 8);
-
-    _UINT32_T pos;
-
-
-
-    __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 940 "pmc_internal.h"
-    return (sizeof(x) * 8 - 1 - pos);
-}
-
-__inline static int _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
-{
-    if (x == 0)
-        return (sizeof(x) * 8);
-
-    _UINT32_T pos;
-
-
-
-    __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-# 969 "pmc_internal.h"
-    return (sizeof(x) * 8 - 1 - pos);
-}
-
-__inline static int _TZCNT_UNIT(__UNIT_TYPE x)
-{
-
-    return (_tzcnt_u32(x));
-
-
-
-
-
-}
-
-__inline static int _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
-{
-
-    return(__popcnt(~x & (x - 1)));
-
-
-
-
-
-}
-
-__inline static int _TZCNT_ALT_UNIT(__UNIT_TYPE x)
-{
-    if (x == 0)
-        return (sizeof(x) * 8);
-
-    _UINT32_T pos;
-
-
-
-    __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
-# 1020 "pmc_internal.h"
-    return (pos);
-}
-
-
-__inline static _UINT32_T _REVERSE_BIT_ORDER_32(_UINT32_T x)
-{
-    x = ((x & 0x55555555U) << 1) | ((x & 0xaaaaaaaaU) >> 1);
-    x = ((x & 0x33333333U) << 2) | ((x & 0xccccccccU) >> 2);
-    x = ((x & 0x0f0f0f0fU) << 4) | ((x & 0xf0f0f0f0U) >> 4);
-    x = ((x & 0x00ff00ffU) << 8) | ((x & 0xff00ff00U) >> 8);
-    x = (x << 16) | (x >> 16);
-    return (x);
-}
-# 1049 "pmc_internal.h"
-__inline static __UNIT_TYPE _REVERSE_BIT_ORDER_UNIT(__UNIT_TYPE x)
-{
-
-    x = ((x & 0x55555555U) << 1) | ((x & 0xaaaaaaaaU) >> 1);
-    x = ((x & 0x33333333U) << 2) | ((x & 0xccccccccU) >> 2);
-    x = ((x & 0x0f0f0f0fU) << 4) | ((x & 0xf0f0f0f0U) >> 4);
-    x = ((x & 0x00ff00ffU) << 8) | ((x & 0xff00ff00U) >> 8);
-    x = (x << 16) | (x >> 16);
-# 1067 "pmc_internal.h"
-    return (x);
-}
-
-__inline static void IncrementDIV32Counter(void)
-{
-    _InterlockedIncrement(&statistics_info.COUNT_DIV32);
-}
-
-
-__inline static void IncrementDIV64Counter(void)
-{
-    _InterlockedIncrement(&statistics_info.COUNT_DIV64);
-}
-
-
-__inline static void IncrementMULTI32Counter(void)
-{
-    _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
-}
-
-
-__inline static void IncrementMULTI64Counter(void)
-{
-    _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
-}
-
-__inline static void AddToDIV32Counter(_INT32_T value)
-{
-    _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
-}
-
-
-__inline static void AddToDIV64Counter(_INT32_T value)
-{
-    _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
-}
-
-
-__inline static void AddToMULTI32Counter(_INT32_T value)
-{
-    _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
-}
-
-
-__inline static void AddToMULTI64Counter(_INT32_T value)
-{
-    _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
-}
-
-__inline static void ReportLabel(wchar_t* label)
-{
-
-
-
-
-
-
-}
-
-__inline static void ReportDump(wchar_t* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
-{
-# 1136 "pmc_internal.h"
-}
-
-__inline static void ReportVar(wchar_t* name, __UNIT_TYPE x)
-{
-# 1150 "pmc_internal.h"
-}
+    __inline static void ReportVar(wchar_t* name, __UNIT_TYPE x)
+    {
+# 390 "pmc_uint_internal.h"
+    }
 #pragma endregion
 # 36 "cpuid.c" 2
+# 1 "pmc_inline_func.h" 1
+# 37 "pmc_inline_func.h"
+# 1 "pmc_internal.h" 1
+# 38 "pmc_inline_func.h" 2
+# 48 "pmc_inline_func.h"
+    __inline static void _COPY_MEMORY_BYTE(void* d, const void* s, size_t count)
+    {
+        __movsb(d, s, count);
+    }
+
+    __inline static void _COPY_MEMORY_32(_UINT32_T* d, const _UINT32_T* s, _UINT32_T count)
+    {
+        __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+    }
+# 65 "pmc_inline_func.h"
+    __inline static void _COPY_MEMORY_UNIT(__UNIT_TYPE* d, const __UNIT_TYPE* s, __UNIT_TYPE count)
+    {
+
+        __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+
+
+
+
+
+    }
+
+    __inline static void _COPY_MEMORY_UNIT_DIV(__UNIT_TYPE_DIV* d, const __UNIT_TYPE_DIV* s, __UNIT_TYPE count)
+    {
+
+        __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+# 91 "pmc_inline_func.h"
+    }
+
+    __inline static void _ZERO_MEMORY_BYTE(void* d, size_t count)
+    {
+        __stosb(d, 0, count);
+    }
+
+    __inline static void _ZERO_MEMORY_16(_UINT16_T* d, size_t count)
+    {
+        __stosw(d, 0, count);
+    }
+
+    __inline static void _ZERO_MEMORY_32(_UINT32_T* d, size_t count)
+    {
+        __stosd((unsigned long*)d, 0, count);
+    }
+# 115 "pmc_inline_func.h"
+    __inline static void _ZERO_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE count)
+    {
+
+        __stosd((unsigned long*)d, 0, (unsigned long)count);
+
+
+
+
+
+    }
+
+    __inline static void _ZERO_MEMORY_UNIT_DIV(__UNIT_TYPE_DIV* d, __UNIT_TYPE count)
+    {
+
+        __stosd((unsigned long*)d, 0, (unsigned long)count);
+# 141 "pmc_inline_func.h"
+    }
+
+    __inline static void _FILL_MEMORY_BYTE(void* d, unsigned char x, size_t count)
+    {
+        __stosb(d, x, count);
+    }
+
+    __inline static void _FILL_MEMORY_16(_UINT16_T* d, _UINT16_T x, size_t count)
+    {
+        __stosw(d, x, count);
+    }
+
+    __inline static void _FILL_MEMORY_32(_UINT32_T* d, _UINT32_T x, size_t count)
+    {
+        __stosd((unsigned long*)d, x, count);
+    }
+# 165 "pmc_inline_func.h"
+    __inline static void _FILL_MEMORY_UNIT(__UNIT_TYPE* d, __UNIT_TYPE x, __UNIT_TYPE count)
+    {
+
+        __stosd((unsigned long*)d, x, (unsigned long)count);
+
+
+
+
+
+    }
+
+    __inline static _UINT64_T _FROMWORDTODWORD(_UINT32_T value_high, _UINT32_T value_low)
+    {
+        return (((_UINT64_T)value_high << 32) | value_low);
+    }
+
+    __inline static _UINT32_T _FROMDWORDTOWORD(_UINT64_T value, _UINT32_T *result_high)
+    {
+        *result_high = (_UINT32_T)(value >> 32);
+        return ((_UINT32_T)value);
+    }
+
+    __inline static __UNIT_TYPE _MAKE_MASK_UNIT(int bits)
+    {
+        return (((__UNIT_TYPE)1UL << bits) - 1);
+    }
+
+    __inline static __UNIT_TYPE _DIVIDE_CEILING_UNIT(__UNIT_TYPE u, __UNIT_TYPE v)
+    {
+        return ((u + v - 1) / v);
+    }
+
+    __inline static size_t _DIVIDE_CEILING_SIZE(size_t u, size_t v)
+    {
+        return ((u + v - 1) / v);
+    }
+
+    __inline static __UNIT_TYPE _MAXIMUM_UNIT(__UNIT_TYPE x, __UNIT_TYPE y)
+    {
+        return (x >= y ? x : y);
+    }
+
+    __inline static __UNIT_TYPE _MINIMUM_UNIT(__UNIT_TYPE x, __UNIT_TYPE y)
+    {
+        return (x <= y ? x : y);
+    }
+
+    __inline static char _ADD_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+    {
+
+        return (_addcarry_u32(carry, u, v, w));
+
+
+
+
+
+    }
+
+    __inline static char _ADD_UNIT_DIV(char carry, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w)
+    {
+
+
+
+
+        return (_addcarry_u32(carry, u, v, w));
+# 238 "pmc_inline_func.h"
+    }
+
+    __inline static char _ADDX_UNIT(char carry, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+    {
+
+        return (_addcarryx_u32(carry, u, v, w));
+
+
+
+
+
+    }
+
+    __inline static char _ADDX_UNIT_DIV(char carry, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w)
+    {
+
+
+
+
+        return (_addcarryx_u32(carry, u, v, w));
+# 266 "pmc_inline_func.h"
+    }
+
+    __inline static char _SUBTRUCT_UNIT(char borrow, __UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w)
+    {
+
+        return (_subborrow_u32(borrow, u, v, w));
+
+
+
+
+
+    }
+
+    __inline static char _SUBTRUCT_UNIT_DIV(char borrow, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w)
+    {
+
+
+
+
+        return (_subborrow_u32(borrow, u, v, w));
+# 294 "pmc_inline_func.h"
+    }
+
+    __inline static __UNIT_TYPE _MULTIPLY_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
+    {
+
+
+
+
+        _UINT32_T w_lo;
+        __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
+        return (w_lo);
+# 313 "pmc_inline_func.h"
+    }
+
+    __inline static __UNIT_TYPE_DIV _MULTIPLY_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
+    {
+
+
+
+
+        _UINT32_T w_lo;
+        __asm__("mull %3": "=a"(w_lo), "=d"(*w_hi) : "0"(u), "rm"(v));
+        return (w_lo);
+# 332 "pmc_inline_func.h"
+    }
+
+    __inline static __UNIT_TYPE _MULTIPLYX_UNIT(__UNIT_TYPE u, __UNIT_TYPE v, __UNIT_TYPE* w_hi)
+    {
+# 346 "pmc_inline_func.h"
+        _UINT32_T w_lo;
+        __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+        return (w_lo);
+# 359 "pmc_inline_func.h"
+    }
+
+    __inline static __UNIT_TYPE_DIV _MULTIPLYX_UNIT_DIV(__UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV* w_hi)
+    {
+
+
+
+
+        _UINT32_T w_lo;
+        __asm__("mulxl %3, %0, %1" : "=r"(w_lo), "=r"(*w_hi), "+d"(u) : "rm"(v));
+        return (w_lo);
+# 380 "pmc_inline_func.h"
+    }
+
+
+    __inline static __UNIT_TYPE_DIV _DIVREM_UNIT(__UNIT_TYPE_DIV u_high, __UNIT_TYPE_DIV u_low, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *r)
+    {
+# 409 "pmc_inline_func.h"
+        __UNIT_TYPE q;
+        if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+            __asm__("divl %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+        else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+            __asm__("divq %4": "=a"(q), "=d"(*r) : "0"(u_low), "1"(u_high), "rm"(v));
+        else
+        {
+
+            *r = 0;
+            q = 0;
+        }
+        return (q);
+
+
+
+    }
+
+
+    __inline static __UNIT_TYPE_DIV _DIVREM_SINGLE_UNIT(__UNIT_TYPE_DIV r, __UNIT_TYPE_DIV u, __UNIT_TYPE_DIV v, __UNIT_TYPE_DIV *q)
+    {
+# 453 "pmc_inline_func.h"
+        if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT32_T))
+            __asm__("divl %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
+        else if (sizeof(__UNIT_TYPE_DIV) == sizeof(_UINT64_T))
+            __asm__("divq %4": "=a"(*q), "=d"(r) : "0"(u), "1"(r), "rm"(v));
+        else
+        {
+
+            *q = 0;
+            r = 0;
+        }
+        return (r);
+
+
+
+    }
+
+    __inline static void _MEMCPY_UNIT(__UNIT_TYPE* dst, __UNIT_TYPE* src, size_t count)
+    {
+
+        __movsd((unsigned long *)dst, (const unsigned long *)src, count);
+
+
+
+
+
+    }
+
+    __inline static __UNIT_TYPE _ROTATE_L_UNIT(__UNIT_TYPE x, int count)
+    {
+
+        return (
+# 483 "pmc_inline_func.h" 3
+               __rold((
+# 483 "pmc_inline_func.h"
+               x
+# 483 "pmc_inline_func.h" 3
+               ), (
+# 483 "pmc_inline_func.h"
+               count
+# 483 "pmc_inline_func.h" 3
+               ))
+# 483 "pmc_inline_func.h"
+                              );
+
+
+
+
+
+    }
+
+    __inline static __UNIT_TYPE _ROTATE_R_UNIT(__UNIT_TYPE x, int count)
+    {
+
+        return (
+# 494 "pmc_inline_func.h" 3
+               __rord((
+# 494 "pmc_inline_func.h"
+               x
+# 494 "pmc_inline_func.h" 3
+               ), (
+# 494 "pmc_inline_func.h"
+               count
+# 494 "pmc_inline_func.h" 3
+               ))
+# 494 "pmc_inline_func.h"
+                              );
+
+
+
+
+
+    }
+
+    __inline static int _POPCNT_UNIT(__UNIT_TYPE value)
+    {
+
+        return (__popcnt(value));
+
+
+
+
+
+    }
+
+    __inline static int _POPCNT_ALT_UNIT(__UNIT_TYPE x)
+    {
+
+        x = (x & 0x55555555) + ((x >> 1) & 0x55555555);
+        x = (x & 0x33333333) + ((x >> 2) & 0x33333333);
+        x = (x & 0x0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f);
+        x = (x & 0x00ff00ff) + ((x >> 8) & 0x00ff00ff);
+        x = (x & 0x0000ffff) + ((x >> 16) & 0x0000ffff);
+# 531 "pmc_inline_func.h"
+        return((int)x);
+    }
+
+    __inline static int _LZCNT_32(_UINT32_T value)
+    {
+        return (_lzcnt_u32(value));
+    }
+# 546 "pmc_inline_func.h"
+    __inline static int _LZCNT_UNIT(__UNIT_TYPE value)
+    {
+
+        return (_lzcnt_u32(value));
+
+
+
+
+
+    }
+
+    __inline static int _LZCNT_UNIT_DIV(__UNIT_TYPE_DIV value)
+    {
+# 569 "pmc_inline_func.h"
+        return (_lzcnt_u32(value));
+# 578 "pmc_inline_func.h"
+    }
+
+    __inline static int _LZCNT_ALT_8(unsigned char x)
+    {
+        if (x == 0)
+            return (sizeof(x) * 8);
+        _UINT32_T pos;
+
+
+
+        __asm__("bsrl %1, %0" : "=r"(pos) : "rm"((_UINT32_T)x));
+
+
+
+        return ((unsigned char)(sizeof(x) * 8 - 1 - pos));
+    }
+
+    __inline static int _LZCNT_ALT_32(_UINT32_T x)
+    {
+        if (x == 0)
+            return (sizeof(x) * 8);
+        _UINT32_T pos;
+
+
+
+        __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+
+
+
+        return (sizeof(x) * 8 - 1 - pos);
+    }
+# 628 "pmc_inline_func.h"
+    __inline static int _LZCNT_ALT_UNIT(__UNIT_TYPE x)
+    {
+        if (x == 0)
+            return (sizeof(x) * 8);
+
+        _UINT32_T pos;
+
+
+
+        __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+# 654 "pmc_inline_func.h"
+        return (sizeof(x) * 8 - 1 - pos);
+    }
+
+    __inline static int _LZCNT_ALT_UNIT_DIV(__UNIT_TYPE_DIV x)
+    {
+        if (x == 0)
+            return (sizeof(x) * 8);
+
+        _UINT32_T pos;
+
+
+
+        __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+# 683 "pmc_inline_func.h"
+        return (sizeof(x) * 8 - 1 - pos);
+    }
+
+    __inline static int _TZCNT_UNIT(__UNIT_TYPE x)
+    {
+
+        return (_tzcnt_u32(x));
+
+
+
+
+
+    }
+
+    __inline static int _TZCNT_ALT_USING_POPCNT_UNIT(__UNIT_TYPE x)
+    {
+
+        return(__popcnt(~x & (x - 1)));
+
+
+
+
+
+    }
+
+    __inline static int _TZCNT_ALT_UNIT(__UNIT_TYPE x)
+    {
+        if (x == 0)
+            return (sizeof(x) * 8);
+
+        _UINT32_T pos;
+
+
+
+        __asm__("bsfl %1, %0" : "=r"(pos) : "rm"(x));
+# 734 "pmc_inline_func.h"
+        return (pos);
+    }
+
+
+    __inline static _UINT32_T _REVERSE_BIT_ORDER_32(_UINT32_T x)
+    {
+        x = ((x & 0x55555555U) << 1) | ((x & 0xaaaaaaaaU) >> 1);
+        x = ((x & 0x33333333U) << 2) | ((x & 0xccccccccU) >> 2);
+        x = ((x & 0x0f0f0f0fU) << 4) | ((x & 0xf0f0f0f0U) >> 4);
+        x = ((x & 0x00ff00ffU) << 8) | ((x & 0xff00ff00U) >> 8);
+        x = (x << 16) | (x >> 16);
+        return (x);
+    }
+# 763 "pmc_inline_func.h"
+    __inline static __UNIT_TYPE _REVERSE_BIT_ORDER_UNIT(__UNIT_TYPE x)
+    {
+
+        x = ((x & 0x55555555U) << 1) | ((x & 0xaaaaaaaaU) >> 1);
+        x = ((x & 0x33333333U) << 2) | ((x & 0xccccccccU) >> 2);
+        x = ((x & 0x0f0f0f0fU) << 4) | ((x & 0xf0f0f0f0U) >> 4);
+        x = ((x & 0x00ff00ffU) << 8) | ((x & 0xff00ff00U) >> 8);
+        x = (x << 16) | (x >> 16);
+# 781 "pmc_inline_func.h"
+        return (x);
+    }
+# 37 "cpuid.c" 2
 
 
 __inline static void cpuid(_UINT32_T op, _UINT32_T* reg_eax, _UINT32_T* reg_ebx, _UINT32_T* reg_ecx, _UINT32_T* reg_edx)

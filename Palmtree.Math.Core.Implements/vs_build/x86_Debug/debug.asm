@@ -9,13 +9,13 @@
 INCLUDELIB MSVCRTD
 INCLUDELIB OLDNAMES
 
-PUBLIC	___DEBUG_LOG
 PUBLIC	_test_total_count
 PUBLIC	_test_ok_count
+PUBLIC	___DEBUG_LOG
 _BSS	SEGMENT
-___DEBUG_LOG DD	01H DUP (?)
 _test_total_count DD 01H DUP (?)
 _test_ok_count DD 01H DUP (?)
+___DEBUG_LOG DD	01H DUP (?)
 _BSS	ENDS
 msvcjmc	SEGMENT
 __7B7A869E_ctype@h DB 01H
@@ -30,15 +30,14 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
 __1C66ECB2_pmc_debug@h DB 01H
 __24F5AC6E_debug@c DB 01H
 msvcjmc	ENDS
-PUBLIC	_DumpBinary_UNIT
 PUBLIC	_TEST_Assert
 PUBLIC	_FormatTestLabel
 PUBLIC	_FormatTestMesssage
 PUBLIC	_DoDebug@4
+PUBLIC	_DumpBinary_UNIT
 PUBLIC	__JustMyCode_Default
 EXTRN	__imp__wsprintfW:PROC
 EXTRN	_PMC_Initialize@4:PROC
@@ -61,10 +60,10 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95695 DB	0c6H, '0', 0b9H, '0', 0c8H, '0', 08bH, 095H, 0cbH, 'Y', 0aH
+$SG94532 DB	0c6H, '0', 0b9H, '0', 0c8H, '0', 08bH, 095H, 0cbH, 'Y', 0aH
 	DB	00H, 00H, 00H
 	ORG $+2
-$SG95700 DB	0c6H, '0', 0b9H, '0', 0c8H, '0', 08cH, '[', 086H, 'N', 02H
+$SG94537 DB	0c6H, '0', 0b9H, '0', 0c8H, '0', 08cH, '[', 086H, 'N', 02H
 	DB	'0', 05H, 098H, 0eeH, 'vpe=', 00H, '%', 00H, 'd', 00H, ',', 00H
 	DB	' ', 00H, 'O', 00H, 'K', 00H, 05H, 098H, 0eeH, 'vpe=', 00H, '%'
 	DB	00H, 'd', 00H, ',', 00H, ' ', 00H, 'N', 00H, 'G', 00H, 05H, 098H
@@ -72,19 +71,19 @@ $SG95700 DB	0c6H, '0', 0b9H, '0', 0c8H, '0', 08cH, '[', 086H, 'N', 02H
 	DB	'K', 00H, 087H, 's=', 00H, '%', 00H, 'd', 00H, '%', 00H, '%', 00H
 	DB	',', 00H, ' ', 00H, 'N', 00H, 'G', 00H, 087H, 's=', 00H, '%', 00H
 	DB	'd', 00H, '%', 00H, '%', 00H, 0aH, 00H, 00H, 00H
-$SG95718 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'I', 00H, 'n', 00H
+$SG94555 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'I', 00H, 'n', 00H
 	DB	'i', 00H, 't', 00H, 'i', 00H, 'a', 00H, 'l', 00H, 'i', 00H, 'z'
 	DB	00H, 'e', 00H, ' ', 00H, 'f', 00H, 'a', 00H, 'i', 00H, 'l', 00H
 	DB	'e', 00H, 'd', 00H, 00H, 00H
-$SG95719 DB	'x', 00H, '8', 00H, '6', 00H, 00H, 00H
-$SG95720 DB	'M', 00H, 'S', 00H, 'C', 00H, 00H, 00H
-$SG95721 DB	'P', 00H, 'L', 00H, 'A', 00H, 'T', 00H, 'F', 00H, 'O', 00H
+$SG94556 DB	'x', 00H, '8', 00H, '6', 00H, 00H, 00H
+$SG94557 DB	'M', 00H, 'S', 00H, 'C', 00H, 00H, 00H
+$SG94558 DB	'P', 00H, 'L', 00H, 'A', 00H, 'T', 00H, 'F', 00H, 'O', 00H
 	DB	'R', 00H, 'M', 00H, ':', 00H, ' ', 00H, '%', 00H, 's', 00H, 0aH
 	DB	00H, 00H, 00H
-$SG95722 DB	'C', 00H, 'O', 00H, 'M', 00H, 'P', 00H, 'I', 00H, 'L', 00H
+$SG94559 DB	'C', 00H, 'O', 00H, 'M', 00H, 'P', 00H, 'I', 00H, 'L', 00H
 	DB	'E', 00H, 'R', 00H, ':', 00H, ' ', 00H, '%', 00H, 's', 00H, 0aH
 	DB	00H, 00H, 00H
-$SG95723 DB	'C', 00H, 'P', 00H, 'U', 00H, '-', 00H, 'I', 00H, 'N', 00H
+$SG94560 DB	'C', 00H, 'P', 00H, 'U', 00H, '-', 00H, 'I', 00H, 'N', 00H
 	DB	'F', 00H, 'O', 00H, ':', 00H, ' ', 00H, 'P', 00H, 'O', 00H, 'P'
 	DB	00H, 'C', 00H, 'N', 00H, 'T', 00H, '=', 00H, '%', 00H, 'd', 00H
 	DB	',', 00H, ' ', 00H, 'A', 00H, 'D', 00H, 'X', 00H, '=', 00H, '%'
@@ -94,16 +93,16 @@ $SG95723 DB	'C', 00H, 'P', 00H, 'U', 00H, '-', 00H, 'I', 00H, 'N', 00H
 	DB	',', 00H, ' ', 00H, 'A', 00H, 'B', 00H, 'M', 00H, '=', 00H, '%'
 	DB	00H, 'd', 00H, 0aH, 00H, 00H, 00H
 	ORG $+2
-$SG95735 DB	'***NG***', 00H
+$SG94572 DB	'***NG***', 00H
 	ORG $+3
-$SG95736 DB	0c6H, '0', 0b9H, '0', 0c8H, '0 ', 00H, 'N', 00H, 'o', 00H
+$SG94573 DB	0c6H, '0', 0b9H, '0', 0c8H, '0 ', 00H, 'N', 00H, 'o', 00H
 	DB	'.', 00H, '%', 00H, 'd', 00H, ':', 00H, ' ', 00H, '%', 00H, 's'
 	DB	00H, ' ', 00H, '=', 00H, '>', 00H, ' ', 00H, '%', 00H, 's', 00H
 	DB	' ', 00H, '(', 00H, '%', 00H, 's', 00H, ')', 00H, 0aH, 00H, 00H
 	DB	00H
-$SG95770 DB	',', 00H, ' ', 00H, 00H, 00H
+$SG94608 DB	',', 00H, ' ', 00H, 00H, 00H
 	ORG $+2
-$SG95771 DB	'0', 00H, 'x', 00H, '%', 00H, '0', 00H, '2', 00H, 'x', 00H
+$SG94609 DB	'0', 00H, 'x', 00H, '%', 00H, '0', 00H, '2', 00H, 'x', 00H
 	DB	00H, 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
@@ -115,6 +114,143 @@ __JustMyCode_Default PROC				; COMDAT
 	pop	ebp
 	ret	0
 __JustMyCode_Default ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
+_TEXT	SEGMENT
+_is_first$1 = -8					; size = 4
+_p$2 = -4						; size = 4
+_buf$ = 8						; size = 4
+_count$ = 12						; size = 4
+_DumpBinary_UNIT PROC
+
+; 142  : {
+
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 8
+	push	esi
+	mov	DWORD PTR [ebp-8], -858993460		; ccccccccH
+	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
+	mov	ecx, OFFSET __24F5AC6E_debug@c
+	call	@__CheckForDebuggerJustMyCode@4
+
+; 143  :     if (__DEBUG_LOG != NULL)
+
+	cmp	DWORD PTR ___DEBUG_LOG, 0
+	je	$LN1@DumpBinary
+
+; 144  :     {
+; 145  :         unsigned char* p = (unsigned char*)buf;
+
+	mov	eax, DWORD PTR _buf$[ebp]
+	mov	DWORD PTR _p$2[ebp], eax
+
+; 146  :         count *= sizeof(__UNIT_TYPE);
+
+	mov	ecx, DWORD PTR _count$[ebp]
+	shl	ecx, 2
+	mov	DWORD PTR _count$[ebp], ecx
+$LN2@DumpBinary:
+
+; 147  :         while (count > 0 && p[count - 1] == 0)
+
+	cmp	DWORD PTR _count$[ebp], 0
+	jbe	SHORT $LN3@DumpBinary
+	mov	edx, DWORD PTR _p$2[ebp]
+	add	edx, DWORD PTR _count$[ebp]
+	movzx	eax, BYTE PTR [edx-1]
+	test	eax, eax
+	jne	SHORT $LN3@DumpBinary
+
+; 148  :             --count;
+
+	mov	ecx, DWORD PTR _count$[ebp]
+	sub	ecx, 1
+	mov	DWORD PTR _count$[ebp], ecx
+	jmp	SHORT $LN2@DumpBinary
+$LN3@DumpBinary:
+
+; 149  :         if (count <= 0)
+
+	cmp	DWORD PTR _count$[ebp], 0
+	ja	SHORT $LN7@DumpBinary
+
+; 150  :             count = 1;
+
+	mov	DWORD PTR _count$[ebp], 1
+$LN7@DumpBinary:
+
+; 151  :         int is_first = 1;
+
+	mov	DWORD PTR _is_first$1[ebp], 1
+$LN4@DumpBinary:
+
+; 152  :         while (count > 0)
+
+	cmp	DWORD PTR _count$[ebp], 0
+	jbe	SHORT $LN1@DumpBinary
+
+; 153  :         {
+; 154  :             if (!is_first)
+
+	cmp	DWORD PTR _is_first$1[ebp], 0
+	jne	SHORT $LN8@DumpBinary
+
+; 155  :                 (*__DEBUG_LOG)(L", ");
+
+	mov	esi, esp
+	push	OFFSET $SG94608
+	call	DWORD PTR ___DEBUG_LOG
+	add	esp, 4
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+$LN8@DumpBinary:
+
+; 156  :             (*__DEBUG_LOG)(L"0x%02x", *p);
+
+	mov	edx, DWORD PTR _p$2[ebp]
+	movzx	eax, BYTE PTR [edx]
+	mov	esi, esp
+	push	eax
+	push	OFFSET $SG94609
+	call	DWORD PTR ___DEBUG_LOG
+	add	esp, 8
+	cmp	esi, esp
+	call	__RTC_CheckEsp
+
+; 157  :             ++p;
+
+	mov	ecx, DWORD PTR _p$2[ebp]
+	add	ecx, 1
+	mov	DWORD PTR _p$2[ebp], ecx
+
+; 158  :             --count;
+
+	mov	edx, DWORD PTR _count$[ebp]
+	sub	edx, 1
+	mov	DWORD PTR _count$[ebp], edx
+
+; 159  :             is_first = 0;
+
+	mov	DWORD PTR _is_first$1[ebp], 0
+
+; 160  :         }
+
+	jmp	SHORT $LN4@DumpBinary
+$LN1@DumpBinary:
+
+; 161  :     }
+; 162  : }
+
+	pop	esi
+	add	esp, 8
+	cmp	ebp, esp
+	call	__RTC_CheckEsp
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+_DumpBinary_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
@@ -150,7 +286,7 @@ _DoDebug@4 PROC
 	and	eax, -2					; fffffffeH
 	mov	DWORD PTR _conf$[ebp], eax
 
-; 77   :     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
+; 77   :     PMC_UINT_ENTRY_POINTS* ep = PMC_Initialize(&conf);
 
 	lea	ecx, DWORD PTR _conf$[ebp]
 	push	ecx
@@ -166,7 +302,7 @@ _DoDebug@4 PROC
 ; 80   :          env->log(L"PMC_Initialize failed");
 
 	mov	esi, esp
-	push	OFFSET $SG95718
+	push	OFFSET $SG94555
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -183,7 +319,7 @@ $LN2@DoDebug:
 ; 83   : #ifdef _M_IX86
 ; 84   :     wchar_t* platform = L"x86";
 
-	mov	DWORD PTR _platform$[ebp], OFFSET $SG95719
+	mov	DWORD PTR _platform$[ebp], OFFSET $SG94556
 
 ; 85   : #elif defined(_M_IX64)
 ; 86   :     wchar_t* platform = L"x64";
@@ -193,7 +329,7 @@ $LN2@DoDebug:
 ; 90   : #ifdef _MSC_VER
 ; 91   :     wchar_t* compiler = L"MSC";
 
-	mov	DWORD PTR _compiler$[ebp], OFFSET $SG95720
+	mov	DWORD PTR _compiler$[ebp], OFFSET $SG94557
 
 ; 92   : #elif defined(__GNUC__)
 ; 93   :     wchar_t* compiler = L"GNUC";
@@ -206,7 +342,7 @@ $LN2@DoDebug:
 	mov	esi, esp
 	mov	ecx, DWORD PTR _platform$[ebp]
 	push	ecx
-	push	OFFSET $SG95721
+	push	OFFSET $SG94558
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -219,7 +355,7 @@ $LN2@DoDebug:
 	mov	esi, esp
 	mov	ecx, DWORD PTR _compiler$[ebp]
 	push	ecx
-	push	OFFSET $SG95722
+	push	OFFSET $SG94559
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -254,7 +390,7 @@ $LN2@DoDebug:
 	mov	ecx, DWORD PTR [eax]
 	and	ecx, 1
 	push	ecx
-	push	OFFSET $SG95723
+	push	OFFSET $SG94560
 	mov	edx, DWORD PTR _env$[ebp]
 	mov	eax, DWORD PTR [edx]
 	call	eax
@@ -400,7 +536,7 @@ _TEST_End PROC
 	push	edx
 	mov	eax, DWORD PTR _test_total_count
 	push	eax
-	push	OFFSET $SG95700
+	push	OFFSET $SG94537
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx
@@ -447,7 +583,7 @@ _TEST_Start PROC
 ; 49   :     env->log(L"テスト開始\n");
 
 	mov	esi, esp
-	push	OFFSET $SG95695
+	push	OFFSET $SG94532
 	mov	eax, DWORD PTR _env$[ebp]
 	mov	ecx, DWORD PTR [eax]
 	call	ecx
@@ -593,13 +729,13 @@ $LN2@TEST_Asser:
 	mov	esi, esp
 	mov	ecx, DWORD PTR _reason$[ebp]
 	push	ecx
-	push	OFFSET $SG95735
+	push	OFFSET $SG94572
 	mov	edx, DWORD PTR _test_name$[ebp]
 	push	edx
 	mov	eax, DWORD PTR _test_total_count
 	add	eax, 1
 	push	eax
-	push	OFFSET $SG95736
+	push	OFFSET $SG94573
 	mov	ecx, DWORD PTR _env$[ebp]
 	mov	edx, DWORD PTR [ecx]
 	call	edx
@@ -623,142 +759,5 @@ $LN3@TEST_Asser:
 	pop	ebp
 	ret	0
 _TEST_Assert ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
-_TEXT	SEGMENT
-_is_first$1 = -8					; size = 4
-_p$2 = -4						; size = 4
-_buf$ = 8						; size = 4
-_count$ = 12						; size = 4
-_DumpBinary_UNIT PROC
-
-; 142  : {
-
-	push	ebp
-	mov	ebp, esp
-	sub	esp, 8
-	push	esi
-	mov	DWORD PTR [ebp-8], -858993460		; ccccccccH
-	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
-	mov	ecx, OFFSET __24F5AC6E_debug@c
-	call	@__CheckForDebuggerJustMyCode@4
-
-; 143  :     if (__DEBUG_LOG != NULL)
-
-	cmp	DWORD PTR ___DEBUG_LOG, 0
-	je	$LN1@DumpBinary
-
-; 144  :     {
-; 145  :         unsigned char* p = (unsigned char*)buf;
-
-	mov	eax, DWORD PTR _buf$[ebp]
-	mov	DWORD PTR _p$2[ebp], eax
-
-; 146  :         count *= sizeof(__UNIT_TYPE);
-
-	mov	ecx, DWORD PTR _count$[ebp]
-	shl	ecx, 2
-	mov	DWORD PTR _count$[ebp], ecx
-$LN2@DumpBinary:
-
-; 147  :         while (count > 0 && p[count - 1] == 0)
-
-	cmp	DWORD PTR _count$[ebp], 0
-	jbe	SHORT $LN3@DumpBinary
-	mov	edx, DWORD PTR _p$2[ebp]
-	add	edx, DWORD PTR _count$[ebp]
-	movzx	eax, BYTE PTR [edx-1]
-	test	eax, eax
-	jne	SHORT $LN3@DumpBinary
-
-; 148  :             --count;
-
-	mov	ecx, DWORD PTR _count$[ebp]
-	sub	ecx, 1
-	mov	DWORD PTR _count$[ebp], ecx
-	jmp	SHORT $LN2@DumpBinary
-$LN3@DumpBinary:
-
-; 149  :         if (count <= 0)
-
-	cmp	DWORD PTR _count$[ebp], 0
-	ja	SHORT $LN7@DumpBinary
-
-; 150  :             count = 1;
-
-	mov	DWORD PTR _count$[ebp], 1
-$LN7@DumpBinary:
-
-; 151  :         int is_first = 1;
-
-	mov	DWORD PTR _is_first$1[ebp], 1
-$LN4@DumpBinary:
-
-; 152  :         while (count > 0)
-
-	cmp	DWORD PTR _count$[ebp], 0
-	jbe	SHORT $LN1@DumpBinary
-
-; 153  :         {
-; 154  :             if (!is_first)
-
-	cmp	DWORD PTR _is_first$1[ebp], 0
-	jne	SHORT $LN8@DumpBinary
-
-; 155  :                 (*__DEBUG_LOG)(L", ");
-
-	mov	esi, esp
-	push	OFFSET $SG95770
-	call	DWORD PTR ___DEBUG_LOG
-	add	esp, 4
-	cmp	esi, esp
-	call	__RTC_CheckEsp
-$LN8@DumpBinary:
-
-; 156  :             (*__DEBUG_LOG)(L"0x%02x", *p);
-
-	mov	edx, DWORD PTR _p$2[ebp]
-	movzx	eax, BYTE PTR [edx]
-	mov	esi, esp
-	push	eax
-	push	OFFSET $SG95771
-	call	DWORD PTR ___DEBUG_LOG
-	add	esp, 8
-	cmp	esi, esp
-	call	__RTC_CheckEsp
-
-; 157  :             ++p;
-
-	mov	ecx, DWORD PTR _p$2[ebp]
-	add	ecx, 1
-	mov	DWORD PTR _p$2[ebp], ecx
-
-; 158  :             --count;
-
-	mov	edx, DWORD PTR _count$[ebp]
-	sub	edx, 1
-	mov	DWORD PTR _count$[ebp], edx
-
-; 159  :             is_first = 0;
-
-	mov	DWORD PTR _is_first$1[ebp], 0
-
-; 160  :         }
-
-	jmp	SHORT $LN4@DumpBinary
-$LN1@DumpBinary:
-
-; 161  :     }
-; 162  : }
-
-	pop	esi
-	add	esp, 8
-	cmp	ebp, esp
-	call	__RTC_CheckEsp
-	mov	esp, ebp
-	pop	ebp
-	ret	0
-_DumpBinary_UNIT ENDP
 _TEXT	ENDS
 END

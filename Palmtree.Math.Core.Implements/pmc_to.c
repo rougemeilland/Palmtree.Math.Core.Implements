@@ -31,7 +31,8 @@
 
 
 #include <windows.h>
-#include "pmc_internal.h"
+#include "pmc_uint_internal.h"
+#include "pmc_inline_func.h"
 
 
 PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, _UINT32_T* o)

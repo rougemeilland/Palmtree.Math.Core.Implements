@@ -228,7 +228,7 @@ L30:
 	je	L32
 	movl	$31, %ecx
 /APP
- # 923 "pmc_internal.h" 1
+ # 637 "pmc_inline_func.h" 1
 	bsrl %eax, %eax
  # 0 "" 2
 /NO_APP

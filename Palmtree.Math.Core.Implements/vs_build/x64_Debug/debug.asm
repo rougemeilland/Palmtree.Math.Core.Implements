@@ -5,13 +5,13 @@ include listing.inc
 INCLUDELIB MSVCRTD
 INCLUDELIB OLDNAMES
 
-PUBLIC	__DEBUG_LOG
 PUBLIC	test_total_count
 PUBLIC	test_ok_count
+PUBLIC	__DEBUG_LOG
 _BSS	SEGMENT
-__DEBUG_LOG DQ	01H DUP (?)
 test_total_count DD 01H DUP (?)
 test_ok_count DD 01H DUP (?)
+__DEBUG_LOG DQ	01H DUP (?)
 _BSS	ENDS
 msvcjmc	SEGMENT
 __7B7A869E_ctype@h DB 01H
@@ -26,15 +26,14 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
 __1C66ECB2_pmc_debug@h DB 01H
 __24F5AC6E_debug@c DB 01H
 msvcjmc	ENDS
-PUBLIC	DumpBinary_UNIT
 PUBLIC	TEST_Assert
 PUBLIC	FormatTestLabel
 PUBLIC	FormatTestMesssage
 PUBLIC	DoDebug
+PUBLIC	DumpBinary_UNIT
 PUBLIC	__JustMyCode_Default
 PUBLIC	??_C@_1O@FHBPNOC@?$PP?F?$PP?$LJ?$PP?H?$PP?$IL?$PP?K?$AA?6@ ; `string'
 PUBLIC	??_C@_1GM@EPACJBNM@?$PP?F?$PP?$LJ?$PP?H?$PP?$IM?$PP?$IG?$AA?$AC?$AA?$AF?$PP?n?$AAp?$AA?$DN?$AA?$CF?$AAd?$AA?0?$AA?5?$AAO@ ; `string'
@@ -59,12 +58,6 @@ _BSS	SEGMENT
 ?buffer@?1??FormatTestLabel@@9@9 DW 0100H DUP (?)	; `FormatTestLabel'::`2'::buffer
 ?buffer@?1??FormatTestMesssage@@9@9 DW 0100H DUP (?)	; `FormatTestMesssage'::`2'::buffer
 _BSS	ENDS
-;	COMDAT pdata
-pdata	SEGMENT
-$pdata$DumpBinary_UNIT DD imagerel $LN10
-	DD	imagerel $LN10+282
-	DD	imagerel $unwind$DumpBinary_UNIT
-pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$TEST_Assert DD imagerel $LN5
@@ -106,6 +99,12 @@ pdata	SEGMENT
 $pdata$DoDebug DD imagerel $LN4
 	DD	imagerel $LN4+311
 	DD	imagerel $unwind$DoDebug
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$DumpBinary_UNIT DD imagerel $LN10
+	DD	imagerel $LN10+282
+	DD	imagerel $unwind$DumpBinary_UNIT
 pdata	ENDS
 ;	COMDAT rtc$TMZ
 rtc$TMZ	SEGMENT
@@ -198,6 +197,13 @@ CONST	SEGMENT
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
+$unwind$DumpBinary_UNIT DD 025052f01H
+	DD	01132318H
+	DD	0700c0025H
+	DD	0500bH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
 $unwind$DoDebug DD 035052a01H
 	DD	010e3313H
 	DD	07007002fH
@@ -261,19 +267,148 @@ $unwind$TEST_Assert DD 035053901H
 	DD	07016001fH
 	DD	05015H
 xdata	ENDS
-;	COMDAT xdata
-xdata	SEGMENT
-$unwind$DumpBinary_UNIT DD 025052f01H
-	DD	01132318H
-	DD	0700c0025H
-	DD	0500bH
-xdata	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
 _TEXT	SEGMENT
 __JustMyCode_Default PROC				; COMDAT
 	ret	0
 __JustMyCode_Default ENDP
+_TEXT	ENDS
+; Function compile flags: /Odtp /RTCsu /ZI
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
+;	COMDAT DumpBinary_UNIT
+_TEXT	SEGMENT
+p$1 = 8
+is_first$2 = 36
+buf$ = 288
+count$ = 296
+DumpBinary_UNIT PROC					; COMDAT
+
+; 142  : {
+
+$LN10:
+	mov	QWORD PTR [rsp+16], rdx
+	mov	QWORD PTR [rsp+8], rcx
+	push	rbp
+	push	rdi
+	sub	rsp, 296				; 00000128H
+	lea	rbp, QWORD PTR [rsp+32]
+	mov	rdi, rsp
+	mov	ecx, 74					; 0000004aH
+	mov	eax, -858993460				; ccccccccH
+	rep stosd
+	mov	rcx, QWORD PTR [rsp+328]
+	lea	rcx, OFFSET FLAT:__24F5AC6E_debug@c
+	call	__CheckForDebuggerJustMyCode
+
+; 143  :     if (__DEBUG_LOG != NULL)
+
+	cmp	QWORD PTR __DEBUG_LOG, 0
+	je	$LN6@DumpBinary
+
+; 144  :     {
+; 145  :         unsigned char* p = (unsigned char*)buf;
+
+	mov	rax, QWORD PTR buf$[rbp]
+	mov	QWORD PTR p$1[rbp], rax
+
+; 146  :         count *= sizeof(__UNIT_TYPE);
+
+	mov	rax, QWORD PTR count$[rbp]
+	shl	rax, 3
+	mov	QWORD PTR count$[rbp], rax
+$LN2@DumpBinary:
+
+; 147  :         while (count > 0 && p[count - 1] == 0)
+
+	cmp	QWORD PTR count$[rbp], 0
+	jbe	SHORT $LN3@DumpBinary
+	mov	rax, QWORD PTR count$[rbp]
+	mov	rcx, QWORD PTR p$1[rbp]
+	add	rcx, rax
+	mov	rax, rcx
+	movzx	eax, BYTE PTR [rax-1]
+	test	eax, eax
+	jne	SHORT $LN3@DumpBinary
+
+; 148  :             --count;
+
+	mov	rax, QWORD PTR count$[rbp]
+	dec	rax
+	mov	QWORD PTR count$[rbp], rax
+	jmp	SHORT $LN2@DumpBinary
+$LN3@DumpBinary:
+
+; 149  :         if (count <= 0)
+
+	cmp	QWORD PTR count$[rbp], 0
+	ja	SHORT $LN7@DumpBinary
+
+; 150  :             count = 1;
+
+	mov	QWORD PTR count$[rbp], 1
+$LN7@DumpBinary:
+
+; 151  :         int is_first = 1;
+
+	mov	DWORD PTR is_first$2[rbp], 1
+$LN4@DumpBinary:
+
+; 152  :         while (count > 0)
+
+	cmp	QWORD PTR count$[rbp], 0
+	jbe	SHORT $LN5@DumpBinary
+
+; 153  :         {
+; 154  :             if (!is_first)
+
+	cmp	DWORD PTR is_first$2[rbp], 0
+	jne	SHORT $LN8@DumpBinary
+
+; 155  :                 (*__DEBUG_LOG)(L", ");
+
+	lea	rcx, OFFSET FLAT:??_C@_15JOGBDECP@?$AA?0?$AA?5@
+	call	QWORD PTR __DEBUG_LOG
+$LN8@DumpBinary:
+
+; 156  :             (*__DEBUG_LOG)(L"0x%02x", *p);
+
+	mov	rax, QWORD PTR p$1[rbp]
+	movzx	eax, BYTE PTR [rax]
+	mov	edx, eax
+	lea	rcx, OFFSET FLAT:??_C@_1O@GMFEIALK@?$AA0?$AAx?$AA?$CF?$AA0?$AA2?$AAx@
+	call	QWORD PTR __DEBUG_LOG
+
+; 157  :             ++p;
+
+	mov	rax, QWORD PTR p$1[rbp]
+	inc	rax
+	mov	QWORD PTR p$1[rbp], rax
+
+; 158  :             --count;
+
+	mov	rax, QWORD PTR count$[rbp]
+	dec	rax
+	mov	QWORD PTR count$[rbp], rax
+
+; 159  :             is_first = 0;
+
+	mov	DWORD PTR is_first$2[rbp], 0
+
+; 160  :         }
+
+	jmp	SHORT $LN4@DumpBinary
+$LN5@DumpBinary:
+$LN6@DumpBinary:
+
+; 161  :     }
+; 162  : }
+
+	lea	rsp, QWORD PTR [rbp+264]
+	pop	rdi
+	pop	rbp
+	ret	0
+DumpBinary_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
@@ -311,7 +446,7 @@ $LN4:
 	and	eax, -2					; fffffffeH
 	mov	DWORD PTR conf$[rbp], eax
 
-; 77   :     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
+; 77   :     PMC_UINT_ENTRY_POINTS* ep = PMC_Initialize(&conf);
 
 	lea	rcx, QWORD PTR conf$[rbp]
 	call	PMC_Initialize
@@ -765,141 +900,5 @@ $LN3@TEST_Asser:
 	pop	rbp
 	ret	0
 TEST_Assert ENDP
-_TEXT	ENDS
-; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\debug.c
-;	COMDAT DumpBinary_UNIT
-_TEXT	SEGMENT
-p$1 = 8
-is_first$2 = 36
-buf$ = 288
-count$ = 296
-DumpBinary_UNIT PROC					; COMDAT
-
-; 142  : {
-
-$LN10:
-	mov	QWORD PTR [rsp+16], rdx
-	mov	QWORD PTR [rsp+8], rcx
-	push	rbp
-	push	rdi
-	sub	rsp, 296				; 00000128H
-	lea	rbp, QWORD PTR [rsp+32]
-	mov	rdi, rsp
-	mov	ecx, 74					; 0000004aH
-	mov	eax, -858993460				; ccccccccH
-	rep stosd
-	mov	rcx, QWORD PTR [rsp+328]
-	lea	rcx, OFFSET FLAT:__24F5AC6E_debug@c
-	call	__CheckForDebuggerJustMyCode
-
-; 143  :     if (__DEBUG_LOG != NULL)
-
-	cmp	QWORD PTR __DEBUG_LOG, 0
-	je	$LN6@DumpBinary
-
-; 144  :     {
-; 145  :         unsigned char* p = (unsigned char*)buf;
-
-	mov	rax, QWORD PTR buf$[rbp]
-	mov	QWORD PTR p$1[rbp], rax
-
-; 146  :         count *= sizeof(__UNIT_TYPE);
-
-	mov	rax, QWORD PTR count$[rbp]
-	shl	rax, 3
-	mov	QWORD PTR count$[rbp], rax
-$LN2@DumpBinary:
-
-; 147  :         while (count > 0 && p[count - 1] == 0)
-
-	cmp	QWORD PTR count$[rbp], 0
-	jbe	SHORT $LN3@DumpBinary
-	mov	rax, QWORD PTR count$[rbp]
-	mov	rcx, QWORD PTR p$1[rbp]
-	add	rcx, rax
-	mov	rax, rcx
-	movzx	eax, BYTE PTR [rax-1]
-	test	eax, eax
-	jne	SHORT $LN3@DumpBinary
-
-; 148  :             --count;
-
-	mov	rax, QWORD PTR count$[rbp]
-	dec	rax
-	mov	QWORD PTR count$[rbp], rax
-	jmp	SHORT $LN2@DumpBinary
-$LN3@DumpBinary:
-
-; 149  :         if (count <= 0)
-
-	cmp	QWORD PTR count$[rbp], 0
-	ja	SHORT $LN7@DumpBinary
-
-; 150  :             count = 1;
-
-	mov	QWORD PTR count$[rbp], 1
-$LN7@DumpBinary:
-
-; 151  :         int is_first = 1;
-
-	mov	DWORD PTR is_first$2[rbp], 1
-$LN4@DumpBinary:
-
-; 152  :         while (count > 0)
-
-	cmp	QWORD PTR count$[rbp], 0
-	jbe	SHORT $LN5@DumpBinary
-
-; 153  :         {
-; 154  :             if (!is_first)
-
-	cmp	DWORD PTR is_first$2[rbp], 0
-	jne	SHORT $LN8@DumpBinary
-
-; 155  :                 (*__DEBUG_LOG)(L", ");
-
-	lea	rcx, OFFSET FLAT:??_C@_15JOGBDECP@?$AA?0?$AA?5@
-	call	QWORD PTR __DEBUG_LOG
-$LN8@DumpBinary:
-
-; 156  :             (*__DEBUG_LOG)(L"0x%02x", *p);
-
-	mov	rax, QWORD PTR p$1[rbp]
-	movzx	eax, BYTE PTR [rax]
-	mov	edx, eax
-	lea	rcx, OFFSET FLAT:??_C@_1O@GMFEIALK@?$AA0?$AAx?$AA?$CF?$AA0?$AA2?$AAx@
-	call	QWORD PTR __DEBUG_LOG
-
-; 157  :             ++p;
-
-	mov	rax, QWORD PTR p$1[rbp]
-	inc	rax
-	mov	QWORD PTR p$1[rbp], rax
-
-; 158  :             --count;
-
-	mov	rax, QWORD PTR count$[rbp]
-	dec	rax
-	mov	QWORD PTR count$[rbp], rax
-
-; 159  :             is_first = 0;
-
-	mov	DWORD PTR is_first$2[rbp], 0
-
-; 160  :         }
-
-	jmp	SHORT $LN4@DumpBinary
-$LN5@DumpBinary:
-$LN6@DumpBinary:
-
-; 161  :     }
-; 162  : }
-
-	lea	rsp, QWORD PTR [rbp+264]
-	pop	rdi
-	pop	rbp
-	ret	0
-DumpBinary_UNIT ENDP
 _TEXT	ENDS
 END

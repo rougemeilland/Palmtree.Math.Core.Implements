@@ -18,7 +18,8 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
+__6B0481B0_pmc_inline_func@h DB 01H
 __5C0CD9D4_pmc_from@c DB 01H
 msvcjmc	ENDS
 PUBLIC	From_I_Imp
@@ -227,14 +228,14 @@ __JustMyCode_Default PROC				; COMDAT
 __JustMyCode_Default ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _LZCNT_ALT_UNIT
 _TEXT	SEGMENT
 pos$ = 4
 x$ = 256
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 915  : {
+; 629  :     {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -246,48 +247,48 @@ _LZCNT_ALT_UNIT PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+296]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 916  :     if (x == 0)
+; 630  :         if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 917  :         return (sizeof(x) * 8);
+; 631  :             return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 918  : #ifdef _M_IX86
-; 919  :     _UINT32_T pos;
-; 920  : #ifdef _MSC_VER
-; 921  :     _BitScanReverse(&pos, x);
-; 922  : #elif defined(__GNUC__)
-; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #elif defined(_M_X64)
-; 928  : #ifdef _MSC_VER
-; 929  :     _UINT32_T pos;
-; 930  :     _BitScanReverse64(&pos, x);
+; 632  : #ifdef _M_IX86
+; 633  :         _UINT32_T pos;
+; 634  : #ifdef _MSC_VER
+; 635  :         _BitScanReverse(&pos, x);
+; 636  : #elif defined(__GNUC__)
+; 637  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 638  : #else
+; 639  : #error unknown compiler
+; 640  : #endif
+; 641  : #elif defined(_M_X64)
+; 642  : #ifdef _MSC_VER
+; 643  :         _UINT32_T pos;
+; 644  :         _BitScanReverse64(&pos, x);
 
 	mov	rax, QWORD PTR x$[rbp]
 	bsr	rax, rax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 931  : #elif defined(__GNUC__)
-; 932  :     _UINT64_T pos;
-; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 934  : #else
-; 935  : #error unknown compiler
-; 936  : #endif
-; 937  : #else
-; 938  : #error unknown platform
-; 939  : #endif
-; 940  :     return (sizeof(x) * 8 - 1 - pos);
+; 645  : #elif defined(__GNUC__)
+; 646  :         _UINT64_T pos;
+; 647  :         __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 648  : #else
+; 649  : #error unknown compiler
+; 650  : #endif
+; 651  : #else
+; 652  : #error unknown platform
+; 653  : #endif
+; 654  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 63					; 0000003fH
@@ -295,7 +296,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 941  : }
+; 655  :     }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -309,14 +310,14 @@ $LN1@LZCNT_ALT_:
 _LZCNT_ALT_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _LZCNT_ALT_32
 _TEXT	SEGMENT
 pos$ = 4
 x$ = 256
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 882  : {
+; 596  :     {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -328,34 +329,34 @@ _LZCNT_ALT_32 PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	ecx, DWORD PTR [rsp+296]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 883  :     if (x == 0)
+; 597  :         if (x == 0)
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 884  :         return (sizeof(x) * 8);
+; 598  :             return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 885  :     _UINT32_T pos;
-; 886  : #ifdef _MSC_VER
-; 887  :     _BitScanReverse(&pos, x);
+; 599  :         _UINT32_T pos;
+; 600  : #ifdef _MSC_VER
+; 601  :         _BitScanReverse(&pos, x);
 
 	mov	eax, DWORD PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 888  : #elif defined(__GNUC__)
-; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 890  : #else
-; 891  : #error unknown compiler
-; 892  : #endif
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 602  : #elif defined(__GNUC__)
+; 603  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 604  : #else
+; 605  : #error unknown compiler
+; 606  : #endif
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 31
@@ -363,7 +364,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 894  : }
+; 608  :     }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -377,14 +378,14 @@ $LN1@LZCNT_ALT_:
 _LZCNT_ALT_32 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _FROMDWORDTOWORD
 _TEXT	SEGMENT
 value$ = 224
 result_high$ = 232
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 468  : {
+; 182  :     {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -397,21 +398,21 @@ _FROMDWORDTOWORD PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 469  :     *result_high = (_UINT32_T)(value >> 32);
+; 183  :         *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, QWORD PTR value$[rbp]
 	shr	rax, 32					; 00000020H
 	mov	rcx, QWORD PTR result_high$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 470  :     return ((_UINT32_T)value);
+; 184  :         return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR value$[rbp]
 
-; 471  : }
+; 185  :     }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -429,7 +430,7 @@ x$ = 288
 o$ = 296
 PMC_From_L PROC						; COMDAT
 
-; 111  : {
+; 112  : {
 
 $LN8:
 	mov	QWORD PTR [rsp+16], rdx
@@ -446,29 +447,29 @@ $LN8:
 	lea	rcx, OFFSET FLAT:__5C0CD9D4_pmc_from@c
 	call	__CheckForDebuggerJustMyCode
 
-; 112  :     NUMBER_HEADER* p;
-; 113  :     PMC_STATUS_CODE result;
-; 114  :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
+; 113  :     NUMBER_HEADER* p;
+; 114  :     PMC_STATUS_CODE result;
+; 115  :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_From_L
 
-; 115  :     {
-; 116  :         // 32bit未満のCPUには未対応
-; 117  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 116  :     {
+; 117  :         // 32bit未満のCPUには未対応
+; 118  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	SHORT $LN1@PMC_From_L
 $LN2@PMC_From_L:
 
-; 118  :     }
-; 119  :     if (x == 0)
+; 119  :     }
+; 120  :     if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN3@PMC_From_L
 
-; 120  :         *o = &number_zero;
+; 121  :         *o = &number_zero;
 
 	mov	rax, QWORD PTR o$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
@@ -476,9 +477,9 @@ $LN2@PMC_From_L:
 	jmp	SHORT $LN4@PMC_From_L
 $LN3@PMC_From_L:
 
-; 121  :     else
-; 122  :     {
-; 123  :         if ((result = From_L_Imp(x, &p)) != PMC_STATUS_OK)
+; 122  :     else
+; 123  :     {
+; 124  :         if ((result = From_L_Imp(x, &p)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR p$[rbp]
 	mov	rcx, QWORD PTR x$[rbp]
@@ -487,22 +488,22 @@ $LN3@PMC_From_L:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_From_L
 
-; 124  :             return (result);
+; 125  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_From_L
 $LN5@PMC_From_L:
 
-; 125  :         *o = p;
+; 126  :         *o = p;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR p$[rbp]
 	mov	QWORD PTR [rax], rcx
 $LN4@PMC_From_L:
 
-; 126  :     }
-; 127  : #ifdef _DEBUG
-; 128  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 127  :     }
+; 128  : #ifdef _DEBUG
+; 129  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -511,19 +512,19 @@ $LN4@PMC_From_L:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_From_L
 
-; 129  :         return (result);
+; 130  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_From_L
 $LN6@PMC_From_L:
 
-; 130  : #endif
-; 131  :     return (PMC_STATUS_OK);
+; 131  : #endif
+; 132  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_From_L:
 
-; 132  : }
+; 133  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -546,7 +547,7 @@ x$ = 288
 o$ = 296
 PMC_From_I PROC						; COMDAT
 
-; 90   : {
+; 91   : {
 
 $LN8:
 	mov	QWORD PTR [rsp+16], rdx
@@ -563,25 +564,25 @@ $LN8:
 	lea	rcx, OFFSET FLAT:__5C0CD9D4_pmc_from@c
 	call	__CheckForDebuggerJustMyCode
 
-; 91   :     PMC_STATUS_CODE result;
-; 92   :     if (sizeof(__UNIT_TYPE) < sizeof(x))
+; 92   :     PMC_STATUS_CODE result;
+; 93   :     if (sizeof(__UNIT_TYPE) < sizeof(x))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_From_I
 
-; 93   :         return (PMC_STATUS_INTERNAL_ERROR);
+; 94   :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	SHORT $LN1@PMC_From_I
 $LN2@PMC_From_I:
 
-; 94   :     if (x == 0)
+; 95   :     if (x == 0)
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN3@PMC_From_I
 
-; 95   :         *o = &number_zero;
+; 96   :         *o = &number_zero;
 
 	mov	rax, QWORD PTR o$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
@@ -589,10 +590,10 @@ $LN2@PMC_From_I:
 	jmp	SHORT $LN4@PMC_From_I
 $LN3@PMC_From_I:
 
-; 96   :     else
-; 97   :     {
-; 98   :         NUMBER_HEADER* p;
-; 99   :         if ((result = From_I_Imp(x, &p)) != PMC_STATUS_OK)
+; 97   :     else
+; 98   :     {
+; 99   :         NUMBER_HEADER* p;
+; 100  :         if ((result = From_I_Imp(x, &p)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR p$4[rbp]
 	mov	ecx, DWORD PTR x$[rbp]
@@ -601,22 +602,22 @@ $LN3@PMC_From_I:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_From_I
 
-; 100  :             return (result);
+; 101  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_From_I
 $LN5@PMC_From_I:
 
-; 101  :         *o = p;
+; 102  :         *o = p;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR p$4[rbp]
 	mov	QWORD PTR [rax], rcx
 $LN4@PMC_From_I:
 
-; 102  :     }
-; 103  : #ifdef _DEBUG
-; 104  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 103  :     }
+; 104  : #ifdef _DEBUG
+; 105  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -625,19 +626,19 @@ $LN4@PMC_From_I:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_From_I
 
-; 105  :         return (result);
+; 106  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_From_I
 $LN6@PMC_From_I:
 
-; 106  : #endif
-; 107  :     return (PMC_STATUS_OK);
+; 107  : #endif
+; 108  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_From_I:
 
-; 108  : }
+; 109  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -657,7 +658,7 @@ _TEXT	SEGMENT
 feature$ = 224
 Initialize_From PROC					; COMDAT
 
-; 135  : {
+; 136  : {
 
 $LN3:
 	mov	QWORD PTR [rsp+8], rcx
@@ -673,11 +674,11 @@ $LN3:
 	lea	rcx, OFFSET FLAT:__5C0CD9D4_pmc_from@c
 	call	__CheckForDebuggerJustMyCode
 
-; 136  :     return (PMC_STATUS_OK);
+; 137  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 137  : }
+; 138  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -699,7 +700,7 @@ x$ = 416
 o$ = 424
 From_L_Imp PROC						; COMDAT
 
-; 48   : {
+; 49   : {
 
 $LN12:
 	mov	QWORD PTR [rsp+16], rdx
@@ -716,49 +717,49 @@ $LN12:
 	lea	rcx, OFFSET FLAT:__5C0CD9D4_pmc_from@c
 	call	__CheckForDebuggerJustMyCode
 
-; 49   :     PMC_STATUS_CODE result;
-; 50   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
+; 50   :     PMC_STATUS_CODE result;
+; 51   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(x))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@From_L_Imp
 
-; 51   :     {
-; 52   :         // _UINT64_T を表現するのに 2 ワードでは不足する処理系には対応しない。
-; 53   :         return (PMC_STATUS_INTERNAL_ERROR);
+; 52   :     {
+; 53   :         // _UINT64_T を表現するのに 2 ワードでは不足する処理系には対応しない。
+; 54   :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	$LN1@From_L_Imp
 
-; 54   :     }
+; 55   :     }
 
 	jmp	$LN3@From_L_Imp
 $LN2@From_L_Imp:
 
-; 55   :     else if (sizeof(__UNIT_TYPE) < sizeof(x))
+; 56   :     else if (sizeof(__UNIT_TYPE) < sizeof(x))
 
 	xor	eax, eax
 	test	eax, eax
 	je	$LN4@From_L_Imp
 
-; 56   :     {
-; 57   :         // _UINT64_T を表現するのに 1 ワードでは不足する(ちょうど 2 ワード必要とする)処理系の場合
-; 58   : 
-; 59   :         _UINT32_T x_hi;
-; 60   :         _UINT32_T x_lo = _FROMDWORDTOWORD(x, &x_hi);
+; 57   :     {
+; 58   :         // _UINT64_T を表現するのに 1 ワードでは不足する(ちょうど 2 ワード必要とする)処理系の場合
+; 59   : 
+; 60   :         _UINT32_T x_hi;
+; 61   :         _UINT32_T x_lo = _FROMDWORDTOWORD(x, &x_hi);
 
 	lea	rdx, QWORD PTR x_hi$4[rbp]
 	mov	rcx, QWORD PTR x$[rbp]
 	call	_FROMDWORDTOWORD
 	mov	DWORD PTR x_lo$5[rbp], eax
 
-; 61   :         if (x_hi == 0)
+; 62   :         if (x_hi == 0)
 
 	cmp	DWORD PTR x_hi$4[rbp], 0
 	jne	SHORT $LN6@From_L_Imp
 
-; 62   :         {
-; 63   :             __UNIT_TYPE x_bit_length = sizeof(x_lo) * 8 - _LZCNT_ALT_32(x_lo);
+; 63   :         {
+; 64   :             __UNIT_TYPE x_bit_length = sizeof(x_lo) * 8 - _LZCNT_ALT_32(x_lo);
 
 	mov	ecx, DWORD PTR x_lo$5[rbp]
 	call	_LZCNT_ALT_32
@@ -768,7 +769,7 @@ $LN2@From_L_Imp:
 	mov	rax, rcx
 	mov	QWORD PTR x_bit_length$6[rbp], rax
 
-; 64   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 65   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
 
 	xor	r8d, r8d
 	mov	rdx, QWORD PTR x_bit_length$6[rbp]
@@ -778,20 +779,20 @@ $LN2@From_L_Imp:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN8@From_L_Imp
 
-; 65   :                 return (result);
+; 66   :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@From_L_Imp
 $LN8@From_L_Imp:
 
-; 66   :         }
+; 67   :         }
 
 	jmp	SHORT $LN7@From_L_Imp
 $LN6@From_L_Imp:
 
-; 67   :         else
-; 68   :         {
-; 69   :             __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_32(x_hi);
+; 68   :         else
+; 69   :         {
+; 70   :             __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_32(x_hi);
 
 	mov	ecx, DWORD PTR x_hi$4[rbp]
 	call	_LZCNT_ALT_32
@@ -801,7 +802,7 @@ $LN6@From_L_Imp:
 	mov	rax, rcx
 	mov	QWORD PTR x_bit_length$7[rbp], rax
 
-; 70   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 71   :             if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
 
 	xor	r8d, r8d
 	mov	rdx, QWORD PTR x_bit_length$7[rbp]
@@ -811,13 +812,13 @@ $LN6@From_L_Imp:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN9@From_L_Imp
 
-; 71   :                 return (result);
+; 72   :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@From_L_Imp
 $LN9@From_L_Imp:
 
-; 72   :             (*o)->BLOCK[1] = x_hi;
+; 73   :             (*o)->BLOCK[1] = x_hi;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -828,8 +829,8 @@ $LN9@From_L_Imp:
 	mov	QWORD PTR [rcx+rax], rdx
 $LN7@From_L_Imp:
 
-; 73   :         }
-; 74   :         (*o)->BLOCK[0] = x_lo;
+; 74   :         }
+; 75   :         (*o)->BLOCK[0] = x_lo;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -839,16 +840,16 @@ $LN7@From_L_Imp:
 	mov	edx, DWORD PTR x_lo$5[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 75   :     }
+; 76   :     }
 
 	jmp	SHORT $LN5@From_L_Imp
 $LN4@From_L_Imp:
 
-; 76   :     else
-; 77   :     {
-; 78   :         // _UINT64_T を表現するのに 1 ワードで十分である処理系の場合
-; 79   : 
-; 80   :         __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x);
+; 77   :     else
+; 78   :     {
+; 79   :         // _UINT64_T を表現するのに 1 ワードで十分である処理系の場合
+; 80   : 
+; 81   :         __UNIT_TYPE x_bit_length = sizeof(x) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)x);
 
 	mov	rcx, QWORD PTR x$[rbp]
 	call	_LZCNT_ALT_UNIT
@@ -858,7 +859,7 @@ $LN4@From_L_Imp:
 	mov	rax, rcx
 	mov	QWORD PTR x_bit_length$8[rbp], rax
 
-; 81   :         if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
+; 82   :         if ((result = AllocateNumber(o, x_bit_length, NULL)) != PMC_STATUS_OK)
 
 	xor	r8d, r8d
 	mov	rdx, QWORD PTR x_bit_length$8[rbp]
@@ -868,13 +869,13 @@ $LN4@From_L_Imp:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN10@From_L_Imp
 
-; 82   :             return (result);
+; 83   :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@From_L_Imp
 $LN10@From_L_Imp:
 
-; 83   :         (*o)->BLOCK[0] = (__UNIT_TYPE)x;
+; 84   :         (*o)->BLOCK[0] = (__UNIT_TYPE)x;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -886,19 +887,19 @@ $LN10@From_L_Imp:
 $LN5@From_L_Imp:
 $LN3@From_L_Imp:
 
-; 84   :     }
-; 85   :     CommitNumber(*o);
+; 85   :     }
+; 86   :     CommitNumber(*o);
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR [rax]
 	call	CommitNumber
 
-; 86   :     return (PMC_STATUS_OK);
+; 87   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@From_L_Imp:
 
-; 87   : }
+; 88   : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -920,7 +921,7 @@ x$ = 256
 o$ = 264
 From_I_Imp PROC						; COMDAT
 
-; 38   : {
+; 39   : {
 
 $LN4:
 	mov	QWORD PTR [rsp+16], rdx
@@ -937,8 +938,8 @@ $LN4:
 	lea	rcx, OFFSET FLAT:__5C0CD9D4_pmc_from@c
 	call	__CheckForDebuggerJustMyCode
 
-; 39   :     PMC_STATUS_CODE result;
-; 40   :     if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x), NULL)) != PMC_STATUS_OK)
+; 40   :     PMC_STATUS_CODE result;
+; 41   :     if ((result = AllocateNumber(o, sizeof(x) * 8 - _LZCNT_ALT_32(x), NULL)) != PMC_STATUS_OK)
 
 	mov	ecx, DWORD PTR x$[rbp]
 	call	_LZCNT_ALT_32
@@ -954,13 +955,13 @@ $LN4:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN2@From_I_Imp
 
-; 41   :         return (result);
+; 42   :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@From_I_Imp
 $LN2@From_I_Imp:
 
-; 42   :     (*o)->BLOCK[0] = x;
+; 43   :     (*o)->BLOCK[0] = x;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -970,18 +971,18 @@ $LN2@From_I_Imp:
 	mov	edx, DWORD PTR x$[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 43   :     CommitNumber(*o);
+; 44   :     CommitNumber(*o);
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	rcx, QWORD PTR [rax]
 	call	CommitNumber
 
-; 44   :     return (PMC_STATUS_OK);
+; 45   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@From_I_Imp:
 
-; 45   : }
+; 46   : }
 
 	lea	rsp, QWORD PTR [rbp+232]
 	pop	rdi

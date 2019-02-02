@@ -542,7 +542,7 @@ CommitNumber:
 	je	.L85
 	movl	$63, %eax
 /APP
- # 933 "pmc_internal.h" 1
+ # 647 "pmc_inline_func.h" 1
 	bsrq %rdx, %rdx
  # 0 "" 2
 /NO_APP
@@ -627,7 +627,7 @@ CommitNumber:
 	.p2align 4,,10
 .L91:
 /APP
- # 1013 "pmc_internal.h" 1
+ # 727 "pmc_inline_func.h" 1
 	bsfq %rdx, %rdx
  # 0 "" 2
 /NO_APP

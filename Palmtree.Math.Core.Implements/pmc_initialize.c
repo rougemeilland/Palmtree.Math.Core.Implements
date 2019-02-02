@@ -32,17 +32,17 @@
 #include <windows.h>
 #include <intrin.h>
 #include <immintrin.h>
-#include "pmc_internal.h"
+#include "pmc_uint_internal.h"
 #include "pmc_cpuid.h"
 
 
 #pragma region 静的変数の定義
-static PMC_ENTRY_POINTS entry_points;
+static PMC_UINT_ENTRY_POINTS entry_points;
 PMC_CONFIGURATION_INFO configuration_info;
 #pragma endregion
 
 
-PMC_EXPORT PMC_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* config)
+PMC_EXPORT PMC_UINT_ENTRY_POINTS* __PMC_CALL PMC_Initialize(PMC_CONFIGURATION_INFO* config)
 {
     configuration_info = *config;
     PROCESSOR_FEATURES feature;

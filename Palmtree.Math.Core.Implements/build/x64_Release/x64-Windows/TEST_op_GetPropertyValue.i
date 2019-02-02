@@ -100738,7 +100738,7 @@ typedef struct __tag_PMC_NUMBER_FORMAT_OPTION
     char GroupSizes[11];
 } PMC_NUMBER_FORMAT_OPTION;
 
-typedef struct __tag_PMC_ENTRY_POINTS
+typedef struct __tag_PMC_UINT_ENTRY_POINTS
 {
 
     unsigned PROCESSOR_FEATURE_POPCNT : 1;
@@ -100860,12 +100860,12 @@ typedef struct __tag_PMC_ENTRY_POINTS
 
     PMC_STATUS_CODE( * PMC_ModPow_X_X_X)(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
 
-} PMC_ENTRY_POINTS;
+} PMC_UINT_ENTRY_POINTS;
 #pragma endregion
 
 
 #pragma region 宣言
- PMC_ENTRY_POINTS* PMC_Initialize(PMC_CONFIGURATION_INFO*);
+ PMC_UINT_ENTRY_POINTS* PMC_Initialize(PMC_CONFIGURATION_INFO*);
 #pragma endregion
 # 35 "TEST_op_GetPropertyValue.c" 2
 # 1 "pmc_debug.h" 1

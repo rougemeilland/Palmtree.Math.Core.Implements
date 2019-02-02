@@ -27,7 +27,7 @@ __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
 __331E732B_malloc@h DB 01H
 __746E1CEC_xmmintrin@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
 __33CE1650_pmc_initialize@c DB 01H
 msvcjmc	ENDS
 PUBLIC	_PMC_Initialize@4

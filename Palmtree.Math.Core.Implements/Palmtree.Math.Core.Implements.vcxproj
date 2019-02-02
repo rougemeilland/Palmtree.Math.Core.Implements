@@ -221,7 +221,9 @@
     <ClInclude Include="pmc.h" />
     <ClInclude Include="pmc_cpuid.h" />
     <ClInclude Include="pmc_debug.h" />
+    <ClInclude Include="pmc_inline_func.h" />
     <ClInclude Include="pmc_internal.h" />
+    <ClInclude Include="pmc_uint_internal.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

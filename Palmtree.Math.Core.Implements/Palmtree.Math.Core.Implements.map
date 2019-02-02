@@ -32,7 +32,7 @@ Discarded input sections
 
  .drectve       0x00000000       0x14 build/x86_Release/x86-Windows/debug.o
  .drectve       0x00000000       0x54 build/x86_Release/x86-Windows/memory.o
- .drectve       0x00000000       0x40 build/x86_Release/x86-Windows/pmc_initialize.o
+ .drectve       0x00000000       0x24 build/x86_Release/x86-Windows/pmc_initialize.o
  .drectve       0x00000000       0x20 build/x86_Release/x86-Windows/pmc_statistics.o
  .text          0x00000000        0x8 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzcs01342.o)
  .text          0x00000000        0x8 C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/lib/../lib/libkernel32.a(dgzcs01336.o)
@@ -546,7 +546,7 @@ LOAD C:/GNU/MINGW64/i686-8.1.0-win32-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i68
 
 .edata          0x65698000      0x200
  *(.edata)
- .edata         0x65698000       0x79 dll stuff
+ .edata         0x65698000       0x5e dll stuff
 
 /DISCARD/
  *(.debug$S)

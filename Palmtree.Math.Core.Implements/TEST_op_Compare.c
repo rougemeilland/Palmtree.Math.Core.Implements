@@ -35,7 +35,7 @@
 
 
 #ifdef _DEBUG
-void TEST_PMC_Compare_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char*v_buf, size_t v_buf_size, __int32 desired_w)
+void TEST_PMC_Compare_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned __int32 u, unsigned char*v_buf, size_t v_buf_size, __int32 desired_w)
 {
     HANDLE v;
     int actual_w;
@@ -48,7 +48,7 @@ void TEST_PMC_Compare_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int 
         ep->PMC_Dispose(v);
 }
 
-void TEST_PMC_Compare_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char*v_buf, size_t v_buf_size, __int32 desired_w)
+void TEST_PMC_Compare_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned __int64 u, unsigned char*v_buf, size_t v_buf_size, __int32 desired_w)
 {
     HANDLE v;
     int actual_w;
@@ -61,7 +61,7 @@ void TEST_PMC_Compare_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int 
         ep->PMC_Dispose(v);
 }
 
-void TEST_PMC_Compare_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, __int32 desired_z)
+void TEST_PMC_Compare_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int32 y, __int32 desired_z)
 {
     HANDLE x;
     int actual_z;
@@ -74,7 +74,7 @@ void TEST_PMC_Compare_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int 
         ep->PMC_Dispose(x);
 }
 
-void TEST_PMC_Compare_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, __int32 desired_z)
+void TEST_PMC_Compare_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned __int64 y, __int32 desired_z)
 {
     HANDLE x;
     int actual_z;
@@ -87,7 +87,7 @@ void TEST_PMC_Compare_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int 
         ep->PMC_Dispose(x);
 }
 
-void TEST_PMC_Compare_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, __int32 desired_z)
+void TEST_PMC_Compare_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep, int no, unsigned char*x_buf, size_t x_buf_size, unsigned char*y_buf, size_t y_buf_size, __int32 desired_z)
 {
     HANDLE x;
     HANDLE y;

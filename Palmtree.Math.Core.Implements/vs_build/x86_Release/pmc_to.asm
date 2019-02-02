@@ -14,25 +14,25 @@ PUBLIC	_PMC_To_X_I@8
 PUBLIC	_PMC_To_X_L@8
 EXTRN	_CheckNumber:PROC
 ; Function compile flags: /Ogtp
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT __FROMWORDTODWORD
 _TEXT	SEGMENT
 _value_high$ = 8					; size = 4
 _value_low$ = 12					; size = 4
 __FROMWORDTODWORD PROC					; COMDAT
 
-; 463  : {
+; 177  :     {
 
 	push	ebp
 	mov	ebp, esp
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edx, DWORD PTR _value_high$[ebp]
 	xor	eax, eax
 	or	eax, DWORD PTR _value_low$[ebp]
 
-; 465  : }
+; 179  :     }
 
 	pop	ebp
 	ret	0
@@ -40,7 +40,7 @@ __FROMWORDTODWORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtp
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_to.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_to.c
 ;	COMDAT _PMC_To_X_L@8
 _TEXT	SEGMENT
@@ -48,21 +48,21 @@ _p$ = 8							; size = 4
 _o$ = 12						; size = 4
 _PMC_To_X_L@8 PROC					; COMDAT
 
-; 58   : {
+; 59   : {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 	mov	esi, DWORD PTR _p$[ebp]
 
-; 59   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
-; 60   :     {
-; 61   :         // 32bit未満のCPUは未対応
-; 62   :         return (PMC_STATUS_NOT_SUPPORTED);
-; 63   :     }
-; 64   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-; 65   :     PMC_STATUS_CODE result;
-; 66   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 60   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
+; 61   :     {
+; 62   :         // 32bit未満のCPUは未対応
+; 63   :         return (PMC_STATUS_NOT_SUPPORTED);
+; 64   :     }
+; 65   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 66   :     PMC_STATUS_CODE result;
+; 67   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	push	esi
 	call	_CheckNumber
@@ -70,100 +70,100 @@ _PMC_To_X_L@8 PROC					; COMDAT
 	test	eax, eax
 	jne	SHORT $LN9@PMC_To_X_L
 
-; 67   :         return (result);
-; 68   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
+; 68   :         return (result);
+; 69   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
 	mov	ecx, DWORD PTR [esi+12]
 	cmp	ecx, 64					; 00000040H
 	jbe	SHORT $LN4@PMC_To_X_L
 
-; 69   :         return (PMC_STATUS_OVERFLOW);
+; 70   :         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	pop	esi
 
-; 85   :         return (PMC_STATUS_OK);
-; 86   :     }
-; 87   :     else
-; 88   :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 89   : }
+; 86   :         return (PMC_STATUS_OK);
+; 87   :     }
+; 88   :     else
+; 89   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 90   : }
 
 	pop	ebp
 	ret	8
 $LN4@PMC_To_X_L:
 
-; 70   :     if (np->IS_ZERO)
+; 71   :     if (np->IS_ZERO)
 
 	test	BYTE PTR [esi+24], 2
 	je	SHORT $LN5@PMC_To_X_L
 
-; 71   :     {
-; 72   :         *o = 0;
+; 72   :     {
+; 73   :         *o = 0;
 
 	mov	eax, DWORD PTR _o$[ebp]
 	pop	esi
 	mov	DWORD PTR [eax], 0
 	mov	DWORD PTR [eax+4], 0
 
-; 85   :         return (PMC_STATUS_OK);
-; 86   :     }
-; 87   :     else
-; 88   :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 89   : }
+; 86   :         return (PMC_STATUS_OK);
+; 87   :     }
+; 88   :     else
+; 89   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 90   : }
 
 	xor	eax, eax
 	pop	ebp
 	ret	8
 $LN5@PMC_To_X_L:
 
-; 73   :         return (PMC_STATUS_OK);
-; 74   :     }
-; 75   :     if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT)
+; 74   :         return (PMC_STATUS_OK);
+; 75   :     }
+; 76   :     if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT)
 
 	mov	eax, DWORD PTR [esi+32]
 	cmp	ecx, 32					; 00000020H
 	ja	SHORT $LN6@PMC_To_X_L
 
-; 76   :     {
-; 77   :         // 値が 1 ワードで表現できる場合
-; 78   :         *o = np->BLOCK[0];
+; 77   :     {
+; 78   :         // 値が 1 ワードで表現できる場合
+; 79   :         *o = np->BLOCK[0];
 
 	mov	ecx, DWORD PTR _o$[ebp]
 	mov	eax, DWORD PTR [eax]
 	pop	esi
 	mov	DWORD PTR [ecx], eax
 
-; 85   :         return (PMC_STATUS_OK);
-; 86   :     }
-; 87   :     else
-; 88   :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 89   : }
+; 86   :         return (PMC_STATUS_OK);
+; 87   :     }
+; 88   :     else
+; 89   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 90   : }
 
 	xor	eax, eax
 	mov	DWORD PTR [ecx+4], 0
 	pop	ebp
 	ret	8
 $LN6@PMC_To_X_L:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	edx, DWORD PTR [eax+4]
 	xor	ecx, ecx
 	or	ecx, DWORD PTR [eax]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_to.c
 
-; 84   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
+; 85   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
 
 	mov	eax, DWORD PTR _o$[ebp]
 	mov	DWORD PTR [eax], ecx
 	mov	DWORD PTR [eax+4], edx
 
-; 85   :         return (PMC_STATUS_OK);
-; 86   :     }
-; 87   :     else
-; 88   :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 89   : }
+; 86   :         return (PMC_STATUS_OK);
+; 87   :     }
+; 88   :     else
+; 89   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 90   : }
 
 	xor	eax, eax
 $LN9@PMC_To_X_L:
@@ -180,20 +180,20 @@ _p$ = 8							; size = 4
 _o$ = 12						; size = 4
 _PMC_To_X_I@8 PROC					; COMDAT
 
-; 38   : {
+; 39   : {
 
 	push	ebp
 	mov	ebp, esp
 	push	esi
 
-; 39   :     if (sizeof(__UNIT_TYPE) < sizeof(*o))
-; 40   :     {
-; 41   :         // 32bit未満のCPUは未対応
-; 42   :         return (PMC_STATUS_NOT_SUPPORTED);
-; 43   :     }
-; 44   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-; 45   :     PMC_STATUS_CODE result;
-; 46   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 40   :     if (sizeof(__UNIT_TYPE) < sizeof(*o))
+; 41   :     {
+; 42   :         // 32bit未満のCPUは未対応
+; 43   :         return (PMC_STATUS_NOT_SUPPORTED);
+; 44   :     }
+; 45   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 46   :     PMC_STATUS_CODE result;
+; 47   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	mov	esi, DWORD PTR _p$[ebp]
 	push	esi
@@ -202,29 +202,29 @@ _PMC_To_X_I@8 PROC					; COMDAT
 	test	eax, eax
 	jne	SHORT $LN1@PMC_To_X_I
 
-; 47   :         return (result);
-; 48   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
+; 48   :         return (result);
+; 49   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
 	cmp	DWORD PTR [esi+12], 32			; 00000020H
 	jbe	SHORT $LN4@PMC_To_X_I
 
-; 49   :         return (PMC_STATUS_OVERFLOW);
+; 50   :         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2					; fffffffeH
 	pop	esi
 
-; 55   : }   
+; 56   : }   
 
 	pop	ebp
 	ret	8
 $LN4@PMC_To_X_I:
 
-; 50   :     if (np->IS_ZERO)
+; 51   :     if (np->IS_ZERO)
 
 	test	BYTE PTR [esi+24], 2
 	je	SHORT $LN5@PMC_To_X_I
 
-; 54   :     return (PMC_STATUS_OK);
+; 55   :     return (PMC_STATUS_OK);
 
 	mov	eax, DWORD PTR _o$[ebp]
 	xor	ecx, ecx
@@ -232,20 +232,20 @@ $LN4@PMC_To_X_I:
 	mov	DWORD PTR [eax], ecx
 	xor	eax, eax
 
-; 55   : }   
+; 56   : }   
 
 	pop	ebp
 	ret	8
 $LN5@PMC_To_X_I:
 
-; 51   :         *o = 0;
-; 52   :     else
-; 53   :         *o = (_UINT32_T)np->BLOCK[0];
+; 52   :         *o = 0;
+; 53   :     else
+; 54   :         *o = (_UINT32_T)np->BLOCK[0];
 
 	mov	eax, DWORD PTR [esi+32]
 	mov	ecx, DWORD PTR [eax]
 
-; 54   :     return (PMC_STATUS_OK);
+; 55   :     return (PMC_STATUS_OK);
 
 	mov	eax, DWORD PTR _o$[ebp]
 	mov	DWORD PTR [eax], ecx
@@ -253,7 +253,7 @@ $LN5@PMC_To_X_I:
 $LN1@PMC_To_X_I:
 	pop	esi
 
-; 55   : }   
+; 56   : }   
 
 	pop	ebp
 	ret	8
@@ -266,11 +266,11 @@ _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_To PROC					; COMDAT
 
-; 93   :     return (PMC_STATUS_OK);
+; 94   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 94   : }
+; 95   : }
 
 	ret	0
 _Initialize_To ENDP

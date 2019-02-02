@@ -56,7 +56,9 @@
       <itemPath>pmc.h</itemPath>
       <itemPath>pmc_cpuid.h</itemPath>
       <itemPath>pmc_debug.h</itemPath>
+      <itemPath>pmc_inline_func.h</itemPath>
       <itemPath>pmc_internal.h</itemPath>
+      <itemPath>pmc_uint_internal.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles" displayName="リソース・ファイル" projectFiles="true">
     </logicalFolder>
@@ -194,6 +196,8 @@
       </item>
       <item path="pmc_initialize.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="pmc_inline_func.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_modpow.c" ex="false" tool="0" flavor2="0">
@@ -213,6 +217,8 @@
       <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_tostring.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_uint_internal.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="x64_Release" type="2" platformSpecific="true">
@@ -342,6 +348,8 @@
       </item>
       <item path="pmc_initialize.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="pmc_inline_func.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_modpow.c" ex="false" tool="0" flavor2="0">
@@ -361,6 +369,8 @@
       <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_tostring.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_uint_internal.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="x86_Debug" type="2" platformSpecific="true">
@@ -483,6 +493,8 @@
       </item>
       <item path="pmc_initialize.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="pmc_inline_func.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_modpow.c" ex="false" tool="0" flavor2="0">
@@ -502,6 +514,8 @@
       <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_tostring.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_uint_internal.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="x86_Release" type="2" platformSpecific="true">
@@ -632,6 +646,8 @@
       </item>
       <item path="pmc_initialize.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="pmc_inline_func.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="pmc_internal.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pmc_modpow.c" ex="false" tool="0" flavor2="0">
@@ -651,6 +667,8 @@
       <item path="pmc_to.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_tostring.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_uint_internal.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

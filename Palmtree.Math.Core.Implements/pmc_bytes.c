@@ -31,7 +31,8 @@
 
 
 #include <windows.h>
-#include "pmc_internal.h"
+#include "pmc_uint_internal.h"
+#include "pmc_inline_func.h"
 
 
 static __UNIT_TYPE CountActualBitsFromBuffer(unsigned char* p, size_t count)

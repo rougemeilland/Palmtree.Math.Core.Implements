@@ -264,8 +264,6 @@ PMC_Initialize:
 	.def	Initialize_Pow;	.scl	2;	.type	32;	.endef
 	.def	Initialize_ModPow;	.scl	2;	.type	32;	.endef
 	.def	Initialize_GetPropertyValue;	.scl	2;	.type	32;	.endef
-	.section .drectve
-	.ascii " -export:\"PMC_Initialize\""
 	.section	.rdata$.refptr.PMC_GetPropertyValue_X_I, "dr"
 	.globl	.refptr.PMC_GetPropertyValue_X_I
 	.linkonce	discard

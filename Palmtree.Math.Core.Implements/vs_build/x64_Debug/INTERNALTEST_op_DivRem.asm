@@ -18,7 +18,8 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
+__6B0481B0_pmc_inline_func@h DB 01H
 __1C66ECB2_pmc_debug@h DB 01H
 __0F2941F6_internaltest_op_divrem@c DB 01H
 msvcjmc	ENDS
@@ -573,7 +574,7 @@ desired_r$ = 1288
 desired_r_count$ = 1296
 INTERNALTEST_DivRem_X_X PROC				; COMDAT
 
-; 40   : {
+; 41   : {
 
 $LN21:
 	mov	QWORD PTR [rsp+32], r9
@@ -592,9 +593,9 @@ $LN21:
 	lea	rcx, OFFSET FLAT:__0F2941F6_internaltest_op_divrem@c
 	call	__CheckForDebuggerJustMyCode
 
-; 41   :     __UNIT_TYPE u_buf_words;
-; 42   :     __UNIT_TYPE u_buf_code;
-; 43   :     __UNIT_TYPE* u_buf = AllocateBlock(u_count * 8, &u_buf_words, &u_buf_code);
+; 42   :     __UNIT_TYPE u_buf_words;
+; 43   :     __UNIT_TYPE u_buf_code;
+; 44   :     __UNIT_TYPE* u_buf = AllocateBlock(u_count * 8, &u_buf_words, &u_buf_code);
 
 	mov	rax, QWORD PTR u_count$[rbp]
 	shl	rax, 3
@@ -604,17 +605,17 @@ $LN21:
 	call	AllocateBlock
 	mov	QWORD PTR u_buf$[rbp], rax
 
-; 44   :     _COPY_MEMORY_BYTE(u_buf, u, u_count);
+; 45   :     _COPY_MEMORY_BYTE(u_buf, u, u_count);
 
 	mov	r8, QWORD PTR u_count$[rbp]
 	mov	rdx, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR u_buf$[rbp]
 	call	_COPY_MEMORY_BYTE
 
-; 45   : 
-; 46   :     __UNIT_TYPE v_buf_words;
-; 47   :     __UNIT_TYPE v_buf_code;
-; 48   :     __UNIT_TYPE* v_buf = AllocateBlock(v_count * 8, &v_buf_words, &v_buf_code);
+; 46   : 
+; 47   :     __UNIT_TYPE v_buf_words;
+; 48   :     __UNIT_TYPE v_buf_code;
+; 49   :     __UNIT_TYPE* v_buf = AllocateBlock(v_count * 8, &v_buf_words, &v_buf_code);
 
 	mov	rax, QWORD PTR v_count$[rbp]
 	shl	rax, 3
@@ -624,17 +625,17 @@ $LN21:
 	call	AllocateBlock
 	mov	QWORD PTR v_buf$[rbp], rax
 
-; 49   :     _COPY_MEMORY_BYTE(v_buf, v, v_count);
+; 50   :     _COPY_MEMORY_BYTE(v_buf, v, v_count);
 
 	mov	r8, QWORD PTR v_count$[rbp]
 	mov	rdx, QWORD PTR v$[rbp]
 	mov	rcx, QWORD PTR v_buf$[rbp]
 	call	_COPY_MEMORY_BYTE
 
-; 50   : 
-; 51   :     __UNIT_TYPE desired_q_buf_words;
-; 52   :     __UNIT_TYPE desired_q_buf_code;
-; 53   :     __UNIT_TYPE* desired_q_buf = AllocateBlock(desired_q_count * 8, &desired_q_buf_words, &desired_q_buf_code);
+; 51   : 
+; 52   :     __UNIT_TYPE desired_q_buf_words;
+; 53   :     __UNIT_TYPE desired_q_buf_code;
+; 54   :     __UNIT_TYPE* desired_q_buf = AllocateBlock(desired_q_count * 8, &desired_q_buf_words, &desired_q_buf_code);
 
 	mov	rax, QWORD PTR desired_q_count$[rbp]
 	shl	rax, 3
@@ -644,17 +645,17 @@ $LN21:
 	call	AllocateBlock
 	mov	QWORD PTR desired_q_buf$[rbp], rax
 
-; 54   :     _COPY_MEMORY_BYTE(desired_q_buf, desired_q, desired_q_count);
+; 55   :     _COPY_MEMORY_BYTE(desired_q_buf, desired_q, desired_q_count);
 
 	mov	r8, QWORD PTR desired_q_count$[rbp]
 	mov	rdx, QWORD PTR desired_q$[rbp]
 	mov	rcx, QWORD PTR desired_q_buf$[rbp]
 	call	_COPY_MEMORY_BYTE
 
-; 55   : 
-; 56   :     __UNIT_TYPE desired_r_buf_words;
-; 57   :     __UNIT_TYPE desired_r_buf_code;
-; 58   :     __UNIT_TYPE* desired_r_buf = AllocateBlock(desired_r_count * 8, &desired_r_buf_words, &desired_r_buf_code);
+; 56   : 
+; 57   :     __UNIT_TYPE desired_r_buf_words;
+; 58   :     __UNIT_TYPE desired_r_buf_code;
+; 59   :     __UNIT_TYPE* desired_r_buf = AllocateBlock(desired_r_count * 8, &desired_r_buf_words, &desired_r_buf_code);
 
 	mov	rax, QWORD PTR desired_r_count$[rbp]
 	shl	rax, 3
@@ -664,17 +665,17 @@ $LN21:
 	call	AllocateBlock
 	mov	QWORD PTR desired_r_buf$[rbp], rax
 
-; 59   :     _COPY_MEMORY_BYTE(desired_r_buf, desired_r, desired_r_count);
+; 60   :     _COPY_MEMORY_BYTE(desired_r_buf, desired_r, desired_r_count);
 
 	mov	r8, QWORD PTR desired_r_count$[rbp]
 	mov	rdx, QWORD PTR desired_r$[rbp]
 	mov	rcx, QWORD PTR desired_r_buf$[rbp]
 	call	_COPY_MEMORY_BYTE
 
-; 60   : 
-; 61   :     __UNIT_TYPE work_v_buf_words;
-; 62   :     __UNIT_TYPE work_v_buf_code;
-; 63   :     __UNIT_TYPE* work_v_buf = AllocateBlock(v_count * 8, &work_v_buf_words, &work_v_buf_code);
+; 61   : 
+; 62   :     __UNIT_TYPE work_v_buf_words;
+; 63   :     __UNIT_TYPE work_v_buf_code;
+; 64   :     __UNIT_TYPE* work_v_buf = AllocateBlock(v_count * 8, &work_v_buf_words, &work_v_buf_code);
 
 	mov	rax, QWORD PTR v_count$[rbp]
 	shl	rax, 3
@@ -684,10 +685,10 @@ $LN21:
 	call	AllocateBlock
 	mov	QWORD PTR work_v_buf$[rbp], rax
 
-; 64   : 
-; 65   :     __UNIT_TYPE actual_q_buf_words;
-; 66   :     __UNIT_TYPE actual_q_buf_code;
-; 67   :     __UNIT_TYPE* actual_q_buf = AllocateBlock(u_count > v_count ? (u_count - v_count + 1) * 8 + __UNIT_TYPE_BIT_COUNT : __UNIT_TYPE_BIT_COUNT, &actual_q_buf_words, &actual_q_buf_code);
+; 65   : 
+; 66   :     __UNIT_TYPE actual_q_buf_words;
+; 67   :     __UNIT_TYPE actual_q_buf_code;
+; 68   :     __UNIT_TYPE* actual_q_buf = AllocateBlock(u_count > v_count ? (u_count - v_count + 1) * 8 + __UNIT_TYPE_BIT_COUNT : __UNIT_TYPE_BIT_COUNT, &actual_q_buf_words, &actual_q_buf_code);
 
 	mov	rax, QWORD PTR v_count$[rbp]
 	cmp	QWORD PTR u_count$[rbp], rax
@@ -708,10 +709,10 @@ $LN10@INTERNALTE:
 	call	AllocateBlock
 	mov	QWORD PTR actual_q_buf$[rbp], rax
 
-; 68   : 
-; 69   :     __UNIT_TYPE actual_r_buf_words;
-; 70   :     __UNIT_TYPE actual_r_buf_code;
-; 71   :     __UNIT_TYPE* actual_r_buf = AllocateBlock(u_count * 8 + __UNIT_TYPE_BIT_COUNT, &actual_r_buf_words, &actual_r_buf_code);
+; 69   : 
+; 70   :     __UNIT_TYPE actual_r_buf_words;
+; 71   :     __UNIT_TYPE actual_r_buf_code;
+; 72   :     __UNIT_TYPE* actual_r_buf = AllocateBlock(u_count * 8 + __UNIT_TYPE_BIT_COUNT, &actual_r_buf_words, &actual_r_buf_code);
 
 	mov	rax, QWORD PTR u_count$[rbp]
 	lea	rax, QWORD PTR [rax*8+64]
@@ -721,8 +722,8 @@ $LN10@INTERNALTE:
 	call	AllocateBlock
 	mov	QWORD PTR actual_r_buf$[rbp], rax
 
-; 72   : 
-; 73   :     DivRem_X_X(u_buf, u_buf_words, v_buf, v_buf_words, work_v_buf, actual_q_buf, actual_r_buf);
+; 73   : 
+; 74   :     DivRem_X_X(u_buf, u_buf_words, v_buf, v_buf_words, work_v_buf, actual_q_buf, actual_r_buf);
 
 	mov	rax, QWORD PTR actual_r_buf$[rbp]
 	mov	QWORD PTR [rsp+48], rax
@@ -736,20 +737,20 @@ $LN10@INTERNALTE:
 	mov	rcx, QWORD PTR u_buf$[rbp]
 	call	DivRem_X_X
 
-; 74   : 
-; 75   :     size_t actual_q_count = actual_q_buf_words * __UNIT_TYPE_BYTE_COUNT;
+; 75   : 
+; 76   :     size_t actual_q_count = actual_q_buf_words * __UNIT_TYPE_BYTE_COUNT;
 
 	mov	rax, QWORD PTR actual_q_buf_words$[rbp]
 	shl	rax, 3
 	mov	QWORD PTR actual_q_count$[rbp], rax
 
-; 76   :     unsigned char* actual_q = (unsigned char*)actual_q_buf;
+; 77   :     unsigned char* actual_q = (unsigned char*)actual_q_buf;
 
 	mov	rax, QWORD PTR actual_q_buf$[rbp]
 	mov	QWORD PTR actual_q$[rbp], rax
 $LN2@INTERNALTE:
 
-; 77   :     while (actual_q_count > 0 && actual_q[actual_q_count - 1] == 0)
+; 78   :     while (actual_q_count > 0 && actual_q[actual_q_count - 1] == 0)
 
 	cmp	QWORD PTR actual_q_count$[rbp], 0
 	jbe	SHORT $LN3@INTERNALTE
@@ -761,7 +762,7 @@ $LN2@INTERNALTE:
 	test	eax, eax
 	jne	SHORT $LN3@INTERNALTE
 
-; 78   :         --actual_q_count;
+; 79   :         --actual_q_count;
 
 	mov	rax, QWORD PTR actual_q_count$[rbp]
 	dec	rax
@@ -769,30 +770,30 @@ $LN2@INTERNALTE:
 	jmp	SHORT $LN2@INTERNALTE
 $LN3@INTERNALTE:
 
-; 79   :     if (actual_q_count == 0)
+; 80   :     if (actual_q_count == 0)
 
 	cmp	QWORD PTR actual_q_count$[rbp], 0
 	jne	SHORT $LN6@INTERNALTE
 
-; 80   :         actual_q_count = 1;
+; 81   :         actual_q_count = 1;
 
 	mov	QWORD PTR actual_q_count$[rbp], 1
 $LN6@INTERNALTE:
 
-; 81   : 
-; 82   :     size_t actual_r_count = actual_r_buf_words * __UNIT_TYPE_BYTE_COUNT;
+; 82   : 
+; 83   :     size_t actual_r_count = actual_r_buf_words * __UNIT_TYPE_BYTE_COUNT;
 
 	mov	rax, QWORD PTR actual_r_buf_words$[rbp]
 	shl	rax, 3
 	mov	QWORD PTR actual_r_count$[rbp], rax
 
-; 83   :     unsigned char* actual_r = (unsigned char*)actual_r_buf;
+; 84   :     unsigned char* actual_r = (unsigned char*)actual_r_buf;
 
 	mov	rax, QWORD PTR actual_r_buf$[rbp]
 	mov	QWORD PTR actual_r$[rbp], rax
 $LN4@INTERNALTE:
 
-; 84   :     while (actual_r_count > 0 && actual_r[actual_r_count - 1] == 0)
+; 85   :     while (actual_r_count > 0 && actual_r[actual_r_count - 1] == 0)
 
 	cmp	QWORD PTR actual_r_count$[rbp], 0
 	jbe	SHORT $LN5@INTERNALTE
@@ -804,7 +805,7 @@ $LN4@INTERNALTE:
 	test	eax, eax
 	jne	SHORT $LN5@INTERNALTE
 
-; 85   :         --actual_r_count;
+; 86   :         --actual_r_count;
 
 	mov	rax, QWORD PTR actual_r_count$[rbp]
 	dec	rax
@@ -812,18 +813,18 @@ $LN4@INTERNALTE:
 	jmp	SHORT $LN4@INTERNALTE
 $LN5@INTERNALTE:
 
-; 86   :     if (actual_r_count == 0)
+; 87   :     if (actual_r_count == 0)
 
 	cmp	QWORD PTR actual_r_count$[rbp], 0
 	jne	SHORT $LN7@INTERNALTE
 
-; 87   :         actual_r_count = 1;
+; 88   :         actual_r_count = 1;
 
 	mov	QWORD PTR actual_r_count$[rbp], 1
 $LN7@INTERNALTE:
 
-; 88   : 
-; 89   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 1), CheckBlockLight(work_v_buf, work_v_buf_code) == PMC_STATUS_OK, L"work_v_bufの内容が破損している");
+; 89   : 
+; 90   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 1), CheckBlockLight(work_v_buf, work_v_buf_code) == PMC_STATUS_OK, L"work_v_bufの内容が破損している");
 
 	mov	rdx, QWORD PTR work_v_buf_code$[rbp]
 	mov	rcx, QWORD PTR work_v_buf$[rbp]
@@ -845,7 +846,7 @@ $LN12@INTERNALTE:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 90   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 2), CheckBlockLight(actual_q_buf, actual_q_buf_code) == PMC_STATUS_OK, L"actual_q_bufの内容が破損している");
+; 91   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 2), CheckBlockLight(actual_q_buf, actual_q_buf_code) == PMC_STATUS_OK, L"actual_q_bufの内容が破損している");
 
 	mov	rdx, QWORD PTR actual_q_buf_code$[rbp]
 	mov	rcx, QWORD PTR actual_q_buf$[rbp]
@@ -867,7 +868,7 @@ $LN14@INTERNALTE:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 91   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 3), CheckBlockLight(actual_r_buf, actual_r_buf_code) == PMC_STATUS_OK, L"actual_r_bufの内容が破損している");
+; 92   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 3), CheckBlockLight(actual_r_buf, actual_r_buf_code) == PMC_STATUS_OK, L"actual_r_bufの内容が破損している");
 
 	mov	rdx, QWORD PTR actual_r_buf_code$[rbp]
 	mov	rcx, QWORD PTR actual_r_buf$[rbp]
@@ -889,7 +890,7 @@ $LN16@INTERNALTE:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 92   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_q, actual_q_count, desired_q, desired_q_count) == 0, L"商のデータの内容が一致しない");
+; 93   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_q, actual_q_count, desired_q, desired_q_count) == 0, L"商のデータの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_q_count$[rbp]
 	mov	r8, QWORD PTR desired_q$[rbp]
@@ -913,7 +914,7 @@ $LN18@INTERNALTE:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 93   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_r, actual_r_count, desired_r, desired_r_count) == 0, L"剰余のデータの内容が一致しない");
+; 94   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_r, actual_r_count, desired_r, desired_r_count) == 0, L"剰余のデータの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_r_count$[rbp]
 	mov	r8, QWORD PTR desired_r$[rbp]
@@ -937,50 +938,50 @@ $LN20@INTERNALTE:
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 94   : 
-; 95   :     DeallocateBlock(actual_r_buf, actual_r_buf_words);
+; 95   : 
+; 96   :     DeallocateBlock(actual_r_buf, actual_r_buf_words);
 
 	mov	rdx, QWORD PTR actual_r_buf_words$[rbp]
 	mov	rcx, QWORD PTR actual_r_buf$[rbp]
 	call	DeallocateBlock
 
-; 96   :     DeallocateBlock(actual_q_buf, actual_q_buf_words);
+; 97   :     DeallocateBlock(actual_q_buf, actual_q_buf_words);
 
 	mov	rdx, QWORD PTR actual_q_buf_words$[rbp]
 	mov	rcx, QWORD PTR actual_q_buf$[rbp]
 	call	DeallocateBlock
 
-; 97   :     DeallocateBlock(work_v_buf, work_v_buf_words);
+; 98   :     DeallocateBlock(work_v_buf, work_v_buf_words);
 
 	mov	rdx, QWORD PTR work_v_buf_words$[rbp]
 	mov	rcx, QWORD PTR work_v_buf$[rbp]
 	call	DeallocateBlock
 
-; 98   :     DeallocateBlock(desired_r_buf, desired_r_buf_words);
+; 99   :     DeallocateBlock(desired_r_buf, desired_r_buf_words);
 
 	mov	rdx, QWORD PTR desired_r_buf_words$[rbp]
 	mov	rcx, QWORD PTR desired_r_buf$[rbp]
 	call	DeallocateBlock
 
-; 99   :     DeallocateBlock(desired_q_buf, desired_q_buf_words);
+; 100  :     DeallocateBlock(desired_q_buf, desired_q_buf_words);
 
 	mov	rdx, QWORD PTR desired_q_buf_words$[rbp]
 	mov	rcx, QWORD PTR desired_q_buf$[rbp]
 	call	DeallocateBlock
 
-; 100  :     DeallocateBlock(v_buf, v_buf_words);
+; 101  :     DeallocateBlock(v_buf, v_buf_words);
 
 	mov	rdx, QWORD PTR v_buf_words$[rbp]
 	mov	rcx, QWORD PTR v_buf$[rbp]
 	call	DeallocateBlock
 
-; 101  :     DeallocateBlock(u_buf, u_buf_words);
+; 102  :     DeallocateBlock(u_buf, u_buf_words);
 
 	mov	rdx, QWORD PTR u_buf_words$[rbp]
 	mov	rcx, QWORD PTR u_buf$[rbp]
 	call	DeallocateBlock
 
-; 102  : }
+; 103  : }
 
 	lea	rcx, QWORD PTR [rbp-64]
 	lea	rdx, OFFSET FLAT:INTERNALTEST_DivRem_X_X$rtcFrameData
@@ -992,7 +993,7 @@ $LN20@INTERNALTE:
 INTERNALTEST_DivRem_X_X ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _COPY_MEMORY_BYTE
 _TEXT	SEGMENT
 d$ = 224
@@ -1000,7 +1001,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_BYTE PROC					; COMDAT
 
-; 335  : {
+; 49   :     {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -1015,17 +1016,17 @@ _COPY_MEMORY_BYTE PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 336  :     __movsb(d, s, count);
+; 50   :         __movsb(d, s, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rsi, QWORD PTR s$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep movsb
 
-; 337  : }
+; 51   :     }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi

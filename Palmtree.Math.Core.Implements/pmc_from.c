@@ -31,7 +31,8 @@
 
 
 #include <windows.h>
-#include "pmc_internal.h"
+#include "pmc_uint_internal.h"
+#include "pmc_inline_func.h"
 
 
 PMC_STATUS_CODE From_I_Imp(_UINT32_T x, NUMBER_HEADER** o)

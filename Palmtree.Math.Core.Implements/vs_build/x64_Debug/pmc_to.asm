@@ -18,7 +18,8 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
+__6B0481B0_pmc_inline_func@h DB 01H
 __83853269_pmc_to@c DB 01H
 msvcjmc	ENDS
 PUBLIC	Initialize_To
@@ -97,14 +98,14 @@ __JustMyCode_Default PROC				; COMDAT
 __JustMyCode_Default ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _FROMWORDTODWORD
 _TEXT	SEGMENT
 value_high$ = 224
 value_low$ = 232
 _FROMWORDTODWORD PROC					; COMDAT
 
-; 463  : {
+; 177  :     {
 
 	mov	DWORD PTR [rsp+16], edx
 	mov	DWORD PTR [rsp+8], ecx
@@ -117,17 +118,17 @@ _FROMWORDTODWORD PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	ecx, DWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	mov	eax, DWORD PTR value_high$[rbp]
 	shl	rax, 32					; 00000020H
 	mov	ecx, DWORD PTR value_low$[rbp]
 	or	rax, rcx
 
-; 465  : }
+; 179  :     }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -146,7 +147,7 @@ p$ = 288
 o$ = 296
 PMC_To_X_L PROC						; COMDAT
 
-; 58   : {
+; 59   : {
 
 $LN11:
 	mov	QWORD PTR [rsp+16], rdx
@@ -163,28 +164,28 @@ $LN11:
 	lea	rcx, OFFSET FLAT:__83853269_pmc_to@c
 	call	__CheckForDebuggerJustMyCode
 
-; 59   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
+; 60   :     if (sizeof(__UNIT_TYPE) * 2 < sizeof(*o))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_To_X_L
 
-; 60   :     {
-; 61   :         // 32bit未満のCPUは未対応
-; 62   :         return (PMC_STATUS_NOT_SUPPORTED);
+; 61   :     {
+; 62   :         // 32bit未満のCPUは未対応
+; 63   :         return (PMC_STATUS_NOT_SUPPORTED);
 
 	mov	eax, -6
 	jmp	$LN1@PMC_To_X_L
 $LN2@PMC_To_X_L:
 
-; 63   :     }
-; 64   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 64   :     }
+; 65   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR np$[rbp], rax
 
-; 65   :     PMC_STATUS_CODE result;
-; 66   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 66   :     PMC_STATUS_CODE result;
+; 67   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR np$[rbp]
 	call	CheckNumber
@@ -192,25 +193,25 @@ $LN2@PMC_To_X_L:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN3@PMC_To_X_L
 
-; 67   :         return (result);
+; 68   :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_To_X_L
 $LN3@PMC_To_X_L:
 
-; 68   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
+; 69   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
 	mov	rax, QWORD PTR np$[rbp]
 	cmp	QWORD PTR [rax+16], 64			; 00000040H
 	jbe	SHORT $LN4@PMC_To_X_L
 
-; 69   :         return (PMC_STATUS_OVERFLOW);
+; 70   :         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	$LN1@PMC_To_X_L
 $LN4@PMC_To_X_L:
 
-; 70   :     if (np->IS_ZERO)
+; 71   :     if (np->IS_ZERO)
 
 	mov	rax, QWORD PTR np$[rbp]
 	mov	eax, DWORD PTR [rax+40]
@@ -219,28 +220,28 @@ $LN4@PMC_To_X_L:
 	test	eax, eax
 	je	SHORT $LN5@PMC_To_X_L
 
-; 71   :     {
-; 72   :         *o = 0;
+; 72   :     {
+; 73   :         *o = 0;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	QWORD PTR [rax], 0
 
-; 73   :         return (PMC_STATUS_OK);
+; 74   :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	$LN1@PMC_To_X_L
 $LN5@PMC_To_X_L:
 
-; 74   :     }
-; 75   :     if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT)
+; 75   :     }
+; 76   :     if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT)
 
 	mov	rax, QWORD PTR np$[rbp]
 	cmp	QWORD PTR [rax+16], 64			; 00000040H
 	ja	SHORT $LN6@PMC_To_X_L
 
-; 76   :     {
-; 77   :         // 値が 1 ワードで表現できる場合
-; 78   :         *o = np->BLOCK[0];
+; 77   :     {
+; 78   :         // 値が 1 ワードで表現できる場合
+; 79   :         *o = np->BLOCK[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -250,25 +251,25 @@ $LN5@PMC_To_X_L:
 	mov	rax, QWORD PTR [rax+rcx]
 	mov	QWORD PTR [rdx], rax
 
-; 79   :         return (PMC_STATUS_OK);
+; 80   :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@PMC_To_X_L
 
-; 80   :     }
+; 81   :     }
 
 	jmp	SHORT $LN7@PMC_To_X_L
 $LN6@PMC_To_X_L:
 
-; 81   :     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
+; 82   :     else if (np->UNIT_BIT_COUNT <= __UNIT_TYPE_BIT_COUNT * 2)
 
 	mov	rax, QWORD PTR np$[rbp]
 	cmp	QWORD PTR [rax+16], 128			; 00000080H
 	ja	SHORT $LN8@PMC_To_X_L
 
-; 82   :     {
-; 83   :         // 値が 2 ワードで表現できる場合
-; 84   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
+; 83   :     {
+; 84   :         // 値が 2 ワードで表現できる場合
+; 85   :         *o = _FROMWORDTODWORD((_UINT32_T)np->BLOCK[1], (_UINT32_T)np->BLOCK[0]);
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -286,25 +287,25 @@ $LN6@PMC_To_X_L:
 	mov	rcx, QWORD PTR o$[rbp]
 	mov	QWORD PTR [rcx], rax
 
-; 85   :         return (PMC_STATUS_OK);
+; 86   :         return (PMC_STATUS_OK);
 
 	xor	eax, eax
 	jmp	SHORT $LN1@PMC_To_X_L
 
-; 86   :     }
+; 87   :     }
 
 	jmp	SHORT $LN9@PMC_To_X_L
 $LN8@PMC_To_X_L:
 
-; 87   :     else
-; 88   :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 88   :     else
+; 89   :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN9@PMC_To_X_L:
 $LN7@PMC_To_X_L:
 $LN1@PMC_To_X_L:
 
-; 89   : }
+; 90   : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -322,7 +323,7 @@ p$ = 288
 o$ = 296
 PMC_To_X_I PROC						; COMDAT
 
-; 38   : {
+; 39   : {
 
 $LN8:
 	mov	QWORD PTR [rsp+16], rdx
@@ -339,28 +340,28 @@ $LN8:
 	lea	rcx, OFFSET FLAT:__83853269_pmc_to@c
 	call	__CheckForDebuggerJustMyCode
 
-; 39   :     if (sizeof(__UNIT_TYPE) < sizeof(*o))
+; 40   :     if (sizeof(__UNIT_TYPE) < sizeof(*o))
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_To_X_I
 
-; 40   :     {
-; 41   :         // 32bit未満のCPUは未対応
-; 42   :         return (PMC_STATUS_NOT_SUPPORTED);
+; 41   :     {
+; 42   :         // 32bit未満のCPUは未対応
+; 43   :         return (PMC_STATUS_NOT_SUPPORTED);
 
 	mov	eax, -6
 	jmp	SHORT $LN1@PMC_To_X_I
 $LN2@PMC_To_X_I:
 
-; 43   :     }
-; 44   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 44   :     }
+; 45   :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
 
 	mov	rax, QWORD PTR p$[rbp]
 	mov	QWORD PTR np$[rbp], rax
 
-; 45   :     PMC_STATUS_CODE result;
-; 46   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 46   :     PMC_STATUS_CODE result;
+; 47   :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR np$[rbp]
 	call	CheckNumber
@@ -368,25 +369,25 @@ $LN2@PMC_To_X_I:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN3@PMC_To_X_I
 
-; 47   :         return (result);
+; 48   :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_To_X_I
 $LN3@PMC_To_X_I:
 
-; 48   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
+; 49   :     if (np->UNIT_BIT_COUNT > sizeof(*o) * 8)
 
 	mov	rax, QWORD PTR np$[rbp]
 	cmp	QWORD PTR [rax+16], 32			; 00000020H
 	jbe	SHORT $LN4@PMC_To_X_I
 
-; 49   :         return (PMC_STATUS_OVERFLOW);
+; 50   :         return (PMC_STATUS_OVERFLOW);
 
 	mov	eax, -2
 	jmp	SHORT $LN1@PMC_To_X_I
 $LN4@PMC_To_X_I:
 
-; 50   :     if (np->IS_ZERO)
+; 51   :     if (np->IS_ZERO)
 
 	mov	rax, QWORD PTR np$[rbp]
 	mov	eax, DWORD PTR [rax+40]
@@ -395,15 +396,15 @@ $LN4@PMC_To_X_I:
 	test	eax, eax
 	je	SHORT $LN5@PMC_To_X_I
 
-; 51   :         *o = 0;
+; 52   :         *o = 0;
 
 	mov	rax, QWORD PTR o$[rbp]
 	mov	DWORD PTR [rax], 0
 	jmp	SHORT $LN6@PMC_To_X_I
 $LN5@PMC_To_X_I:
 
-; 52   :     else
-; 53   :         *o = (_UINT32_T)np->BLOCK[0];
+; 53   :     else
+; 54   :         *o = (_UINT32_T)np->BLOCK[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -414,12 +415,12 @@ $LN5@PMC_To_X_I:
 	mov	DWORD PTR [rdx], eax
 $LN6@PMC_To_X_I:
 
-; 54   :     return (PMC_STATUS_OK);
+; 55   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_To_X_I:
 
-; 55   : }   
+; 56   : }   
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -434,7 +435,7 @@ _TEXT	SEGMENT
 feature$ = 224
 Initialize_To PROC					; COMDAT
 
-; 92   : {
+; 93   : {
 
 $LN3:
 	mov	QWORD PTR [rsp+8], rcx
@@ -450,11 +451,11 @@ $LN3:
 	lea	rcx, OFFSET FLAT:__83853269_pmc_to@c
 	call	__CheckForDebuggerJustMyCode
 
-; 93   :     return (PMC_STATUS_OK);
+; 94   :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 94   : }
+; 95   : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi

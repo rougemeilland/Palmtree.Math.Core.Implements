@@ -18,7 +18,8 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
+__6B0481B0_pmc_inline_func@h DB 01H
 __6904D90E_pmc_exclusiveor@c DB 01H
 msvcjmc	ENDS
 PUBLIC	Initialize_ExclusiveOr
@@ -468,7 +469,7 @@ v$ = 680
 w$ = 688
 PMC_ExclusiveOr_X_L_Imp PROC				; COMDAT
 
-; 281  : {
+; 282  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -485,8 +486,8 @@ PMC_ExclusiveOr_X_L_Imp PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 282  :     PMC_STATUS_CODE result;
-; 283  :     if (u->IS_ZERO)
+; 283  :     PMC_STATUS_CODE result;
+; 284  :     if (u->IS_ZERO)
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	eax, DWORD PTR [rax+40]
@@ -495,30 +496,30 @@ PMC_ExclusiveOr_X_L_Imp PROC				; COMDAT
 	test	eax, eax
 	je	SHORT $LN2@PMC_Exclus
 
-; 284  :     {
-; 285  :         // x が 0 である場合
-; 286  :         if (v == 0)
+; 285  :     {
+; 286  :         // x が 0 である場合
+; 287  :         if (v == 0)
 
 	cmp	QWORD PTR v$[rbp], 0
 	jne	SHORT $LN4@PMC_Exclus
 
-; 287  :         {
-; 288  :             // v が 0 である場合
-; 289  :             *w = &number_zero;
+; 288  :         {
+; 289  :             // v が 0 である場合
+; 290  :             *w = &number_zero;
 
 	mov	rax, QWORD PTR w$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
 	mov	QWORD PTR [rax], rcx
 
-; 290  :         }
+; 291  :         }
 
 	jmp	SHORT $LN5@PMC_Exclus
 $LN4@PMC_Exclus:
 
-; 291  :         else
-; 292  :         {
-; 293  :             // v が 0 でない場合
-; 294  :             if ((result = From_L_Imp(v, w)) != PMC_STATUS_OK)
+; 292  :         else
+; 293  :         {
+; 294  :             // v が 0 でない場合
+; 295  :             if ((result = From_L_Imp(v, w)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
@@ -527,27 +528,27 @@ $LN4@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_Exclus
 
-; 295  :                 return (result);
+; 296  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN6@PMC_Exclus:
 $LN5@PMC_Exclus:
 
-; 296  :         }
-; 297  :     }
+; 297  :         }
+; 298  :     }
 
 	jmp	$LN3@PMC_Exclus
 $LN2@PMC_Exclus:
 
-; 298  :     else if (v == 0)
+; 299  :     else if (v == 0)
 
 	cmp	QWORD PTR v$[rbp], 0
 	jne	SHORT $LN7@PMC_Exclus
 
-; 299  :     {
-; 300  :         // y が 0 である場合
-; 301  :         if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
+; 300  :     {
+; 301  :         // y が 0 である場合
+; 302  :         if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR u$[rbp]
@@ -556,50 +557,50 @@ $LN2@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN9@PMC_Exclus
 
-; 302  :             return (result);
+; 303  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN9@PMC_Exclus:
 
-; 303  :     }
+; 304  :     }
 
 	jmp	$LN8@PMC_Exclus
 $LN7@PMC_Exclus:
 
-; 304  :     else
-; 305  :     {
-; 306  :         // u と v がともに 0 ではない場合
-; 307  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 305  :     else
+; 306  :     {
+; 307  :         // u と v がともに 0 ではない場合
+; 308  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
 
 	xor	eax, eax
 	test	eax, eax
 	je	$LN10@PMC_Exclus
 
-; 308  :         {
-; 309  :             // _UINT64_T が 1 ワードで表現しきれない場合
-; 310  :             __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+; 309  :         {
+; 310  :             // _UINT64_T が 1 ワードで表現しきれない場合
+; 311  :             __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR u_bit_count$7[rbp], rax
 
-; 311  :             _UINT32_T v_hi;
-; 312  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
+; 312  :             _UINT32_T v_hi;
+; 313  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
 
 	lea	rdx, QWORD PTR v_hi$8[rbp]
 	mov	rcx, QWORD PTR v$[rbp]
 	call	_FROMDWORDTOWORD
 	mov	DWORD PTR v_lo$9[rbp], eax
 
-; 313  :             if (v_hi == 0)
+; 314  :             if (v_hi == 0)
 
 	cmp	DWORD PTR v_hi$8[rbp], 0
 	jne	$LN12@PMC_Exclus
 
-; 314  :             {
-; 315  :                 // v の値が 32bit で表現可能な場合
-; 316  :                 __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
+; 315  :             {
+; 316  :                 // v の値が 32bit で表現可能な場合
+; 317  :                 __UNIT_TYPE v_bit_count = sizeof(v_lo) * 8 - _LZCNT_ALT_32(v_lo);
 
 	mov	ecx, DWORD PTR v_lo$9[rbp]
 	call	_LZCNT_ALT_32
@@ -609,15 +610,15 @@ $LN7@PMC_Exclus:
 	mov	rax, rcx
 	mov	QWORD PTR v_bit_count$10[rbp], rax
 
-; 317  :                 __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+; 318  :                 __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
 
 	mov	rdx, QWORD PTR v_bit_count$10[rbp]
 	mov	rcx, QWORD PTR u_bit_count$7[rbp]
 	call	_MAXIMUM_UNIT
 	mov	QWORD PTR w_bit_count$11[rbp], rax
 
-; 318  :                 __UNIT_TYPE nw_light_check_code;
-; 319  :                 if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+; 319  :                 __UNIT_TYPE nw_light_check_code;
+; 320  :                 if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nw_light_check_code$12[rbp]
 	mov	rdx, QWORD PTR w_bit_count$11[rbp]
@@ -627,13 +628,13 @@ $LN7@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN14@PMC_Exclus
 
-; 320  :                     return (result);
+; 321  :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN14@PMC_Exclus:
 
-; 321  :                 ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, v_lo, (*w)->BLOCK);
+; 322  :                 ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, v_lo, (*w)->BLOCK);
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -646,7 +647,7 @@ $LN14@PMC_Exclus:
 	mov	rcx, QWORD PTR [rax+56]
 	call	ExclusiveOr_X_1W
 
-; 322  :                 if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+; 323  :                 if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -657,21 +658,21 @@ $LN14@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN15@PMC_Exclus
 
-; 323  :                     return (result);
+; 324  :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN15@PMC_Exclus:
 
-; 324  :             }
+; 325  :             }
 
 	jmp	$LN13@PMC_Exclus
 $LN12@PMC_Exclus:
 
-; 325  :             else
-; 326  :             {
-; 327  :                 // y の値が 32bit では表現できない場合
-; 328  :                 __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
+; 326  :             else
+; 327  :             {
+; 328  :                 // y の値が 32bit では表現できない場合
+; 329  :                 __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v_hi);
 
 	mov	ecx, DWORD PTR v_hi$8[rbp]
 	call	_LZCNT_ALT_32
@@ -681,15 +682,15 @@ $LN12@PMC_Exclus:
 	mov	rax, rcx
 	mov	QWORD PTR v_bit_count$13[rbp], rax
 
-; 329  :                 __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+; 330  :                 __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
 
 	mov	rdx, QWORD PTR v_bit_count$13[rbp]
 	mov	rcx, QWORD PTR u_bit_count$7[rbp]
 	call	_MAXIMUM_UNIT
 	mov	QWORD PTR w_bit_count$14[rbp], rax
 
-; 330  :                 __UNIT_TYPE nw_light_check_code;
-; 331  :                 if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+; 331  :                 __UNIT_TYPE nw_light_check_code;
+; 332  :                 if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nw_light_check_code$15[rbp]
 	mov	rdx, QWORD PTR w_bit_count$14[rbp]
@@ -699,13 +700,13 @@ $LN12@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN16@PMC_Exclus
 
-; 332  :                     return (result);
+; 333  :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN16@PMC_Exclus:
 
-; 333  :                 ExclusiveOr_X_2W(u->BLOCK, u->UNIT_WORD_COUNT, v_hi, v_lo, (*w)->BLOCK);
+; 334  :                 ExclusiveOr_X_2W(u->BLOCK, u->UNIT_WORD_COUNT, v_hi, v_lo, (*w)->BLOCK);
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -721,7 +722,7 @@ $LN16@PMC_Exclus:
 	mov	rcx, QWORD PTR [rax+56]
 	call	ExclusiveOr_X_2W
 
-; 334  :                 if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+; 335  :                 if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -732,30 +733,30 @@ $LN16@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN17@PMC_Exclus
 
-; 335  :                     return (result);
+; 336  :                     return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN17@PMC_Exclus:
 $LN13@PMC_Exclus:
 
-; 336  :             }
-; 337  :         }
+; 337  :             }
+; 338  :         }
 
 	jmp	$LN11@PMC_Exclus
 $LN10@PMC_Exclus:
 
-; 338  :         else
-; 339  :         {
-; 340  :             // _UINT64_T が 1 ワードで表現できる場合
-; 341  : 
-; 342  :             __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+; 339  :         else
+; 340  :         {
+; 341  :             // _UINT64_T が 1 ワードで表現できる場合
+; 342  : 
+; 343  :             __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR u_bit_count$16[rbp], rax
 
-; 343  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
+; 344  :             __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_UNIT((__UNIT_TYPE)v);
 
 	mov	rcx, QWORD PTR v$[rbp]
 	call	_LZCNT_ALT_UNIT
@@ -765,7 +766,7 @@ $LN10@PMC_Exclus:
 	mov	rax, rcx
 	mov	QWORD PTR v_bit_count$17[rbp], rax
 
-; 344  :             __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
+; 345  :             __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
 
 	mov	rdx, QWORD PTR v_bit_count$17[rbp]
 	mov	rcx, QWORD PTR u_bit_count$16[rbp]
@@ -773,8 +774,8 @@ $LN10@PMC_Exclus:
 	inc	rax
 	mov	QWORD PTR w_bit_count$18[rbp], rax
 
-; 345  :             __UNIT_TYPE nw_light_check_code;
-; 346  :             if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+; 346  :             __UNIT_TYPE nw_light_check_code;
+; 347  :             if ((result = AllocateNumber(w, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nw_light_check_code$19[rbp]
 	mov	rdx, QWORD PTR w_bit_count$18[rbp]
@@ -784,13 +785,13 @@ $LN10@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN18@PMC_Exclus
 
-; 347  :                 return (result);
+; 348  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN18@PMC_Exclus:
 
-; 348  :             ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, (__UNIT_TYPE)v, (*w)->BLOCK);
+; 349  :             ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, (__UNIT_TYPE)v, (*w)->BLOCK);
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -802,7 +803,7 @@ $LN18@PMC_Exclus:
 	mov	rcx, QWORD PTR [rax+56]
 	call	ExclusiveOr_X_1W
 
-; 349  :             if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+; 350  :             if ((result = CheckBlockLight((*w)->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -813,21 +814,21 @@ $LN18@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN19@PMC_Exclus
 
-; 350  :                 return (result);
+; 351  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN19@PMC_Exclus:
 $LN11@PMC_Exclus:
 
-; 351  :         }
-; 352  :         CommitNumber(*w);
+; 352  :         }
+; 353  :         CommitNumber(*w);
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
 	call	CommitNumber
 
-; 353  :         if ((*w)->IS_ZERO)
+; 354  :         if ((*w)->IS_ZERO)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -837,14 +838,14 @@ $LN11@PMC_Exclus:
 	test	eax, eax
 	je	SHORT $LN20@PMC_Exclus
 
-; 354  :         {
-; 355  :             DeallocateNumber(*w);
+; 355  :         {
+; 356  :             DeallocateNumber(*w);
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
 	call	DeallocateNumber
 
-; 356  :             *w = &number_zero;
+; 357  :             *w = &number_zero;
 
 	mov	rax, QWORD PTR w$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
@@ -853,14 +854,14 @@ $LN20@PMC_Exclus:
 $LN8@PMC_Exclus:
 $LN3@PMC_Exclus:
 
-; 357  :         }
-; 358  :     }
-; 359  :     return (PMC_STATUS_OK);
+; 358  :         }
+; 359  :     }
+; 360  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Exclus:
 
-; 360  : }
+; 361  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-48]
@@ -887,7 +888,7 @@ v$ = 392
 w$ = 400
 PMC_ExclusiveOr_X_I_Imp PROC				; COMDAT
 
-; 187  : {
+; 188  : {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	DWORD PTR [rsp+16], edx
@@ -904,8 +905,8 @@ PMC_ExclusiveOr_X_I_Imp PROC				; COMDAT
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 188  :     PMC_STATUS_CODE result;
-; 189  :     if (u->IS_ZERO)
+; 189  :     PMC_STATUS_CODE result;
+; 190  :     if (u->IS_ZERO)
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	eax, DWORD PTR [rax+40]
@@ -914,30 +915,30 @@ PMC_ExclusiveOr_X_I_Imp PROC				; COMDAT
 	test	eax, eax
 	je	SHORT $LN2@PMC_Exclus
 
-; 190  :     {
-; 191  :         // u が 0 である場合
-; 192  :         if (v == 0)
+; 191  :     {
+; 192  :         // u が 0 である場合
+; 193  :         if (v == 0)
 
 	cmp	DWORD PTR v$[rbp], 0
 	jne	SHORT $LN4@PMC_Exclus
 
-; 193  :         {
-; 194  :             // v が 0 である場合
-; 195  :             *w = &number_zero;
+; 194  :         {
+; 195  :             // v が 0 である場合
+; 196  :             *w = &number_zero;
 
 	mov	rax, QWORD PTR w$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
 	mov	QWORD PTR [rax], rcx
 
-; 196  :         }
+; 197  :         }
 
 	jmp	SHORT $LN5@PMC_Exclus
 $LN4@PMC_Exclus:
 
-; 197  :         else
-; 198  :         {
-; 199  :             // v が 0 でない場合
-; 200  :             if ((result = From_I_Imp(v, w)) != PMC_STATUS_OK)
+; 198  :         else
+; 199  :         {
+; 200  :             // v が 0 でない場合
+; 201  :             if ((result = From_I_Imp(v, w)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	ecx, DWORD PTR v$[rbp]
@@ -946,27 +947,27 @@ $LN4@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_Exclus
 
-; 201  :                 return (result);
+; 202  :                 return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN6@PMC_Exclus:
 $LN5@PMC_Exclus:
 
-; 202  :         }
-; 203  :     }
+; 203  :         }
+; 204  :     }
 
 	jmp	$LN3@PMC_Exclus
 $LN2@PMC_Exclus:
 
-; 204  :     else if (v == 0)
+; 205  :     else if (v == 0)
 
 	cmp	DWORD PTR v$[rbp], 0
 	jne	SHORT $LN7@PMC_Exclus
 
-; 205  :     {
-; 206  :         // v が 0 である場合
-; 207  :         if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
+; 206  :     {
+; 207  :         // v が 0 である場合
+; 208  :         if ((result = DuplicateNumber(u, w)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR u$[rbp]
@@ -975,27 +976,27 @@ $LN2@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN9@PMC_Exclus
 
-; 208  :             return (result);
+; 209  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN9@PMC_Exclus:
 
-; 209  :     }
+; 210  :     }
 
 	jmp	$LN8@PMC_Exclus
 $LN7@PMC_Exclus:
 
-; 210  :     else
-; 211  :     {
-; 212  :         // x と y がともに 0 ではない場合
-; 213  :         __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
+; 211  :     else
+; 212  :     {
+; 213  :         // x と y がともに 0 ではない場合
+; 214  :         __UNIT_TYPE u_bit_count = u->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR u_bit_count$4[rbp], rax
 
-; 214  :         __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
+; 215  :         __UNIT_TYPE v_bit_count = sizeof(v) * 8 - _LZCNT_ALT_32(v);
 
 	mov	ecx, DWORD PTR v$[rbp]
 	call	_LZCNT_ALT_32
@@ -1005,7 +1006,7 @@ $LN7@PMC_Exclus:
 	mov	rax, rcx
 	mov	QWORD PTR v_bit_count$5[rbp], rax
 
-; 215  :         __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
+; 216  :         __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count) + 1;
 
 	mov	rdx, QWORD PTR v_bit_count$5[rbp]
 	mov	rcx, QWORD PTR u_bit_count$4[rbp]
@@ -1013,8 +1014,8 @@ $LN7@PMC_Exclus:
 	inc	rax
 	mov	QWORD PTR w_bit_count$6[rbp], rax
 
-; 216  :         __UNIT_TYPE nz_check_code;
-; 217  :         if ((result = AllocateNumber(w, w_bit_count, &nz_check_code)) != PMC_STATUS_OK)
+; 217  :         __UNIT_TYPE nz_check_code;
+; 218  :         if ((result = AllocateNumber(w, w_bit_count, &nz_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nz_check_code$7[rbp]
 	mov	rdx, QWORD PTR w_bit_count$6[rbp]
@@ -1024,13 +1025,13 @@ $LN7@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN10@PMC_Exclus
 
-; 218  :             return (result);
+; 219  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN10@PMC_Exclus:
 
-; 219  :         ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, v, (*w)->BLOCK);
+; 220  :         ExclusiveOr_X_1W(u->BLOCK, u->UNIT_WORD_COUNT, v, (*w)->BLOCK);
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -1043,7 +1044,7 @@ $LN10@PMC_Exclus:
 	mov	rcx, QWORD PTR [rax+56]
 	call	ExclusiveOr_X_1W
 
-; 220  :         if ((result = CheckBlockLight((*w)->BLOCK, nz_check_code)) != PMC_STATUS_OK)
+; 221  :         if ((result = CheckBlockLight((*w)->BLOCK, nz_check_code)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -1054,19 +1055,19 @@ $LN10@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN11@PMC_Exclus
 
-; 221  :             return (result);
+; 222  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN11@PMC_Exclus:
 
-; 222  :         CommitNumber(*w);
+; 223  :         CommitNumber(*w);
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
 	call	CommitNumber
 
-; 223  :         if ((*w)->IS_ZERO)
+; 224  :         if ((*w)->IS_ZERO)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rax, QWORD PTR [rax]
@@ -1076,14 +1077,14 @@ $LN11@PMC_Exclus:
 	test	eax, eax
 	je	SHORT $LN12@PMC_Exclus
 
-; 224  :         {
-; 225  :             DeallocateNumber(*w);
+; 225  :         {
+; 226  :             DeallocateNumber(*w);
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
 	call	DeallocateNumber
 
-; 226  :             *w = &number_zero;
+; 227  :             *w = &number_zero;
 
 	mov	rax, QWORD PTR w$[rbp]
 	lea	rcx, OFFSET FLAT:number_zero
@@ -1092,14 +1093,14 @@ $LN12@PMC_Exclus:
 $LN8@PMC_Exclus:
 $LN3@PMC_Exclus:
 
-; 227  :         }
-; 228  :     }
-; 229  :     return (PMC_STATUS_OK);
+; 228  :         }
+; 229  :     }
+; 230  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Exclus:
 
-; 230  : }
+; 231  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -1126,7 +1127,7 @@ v_count$ = 344
 w$ = 352
 ExclusiveOr_X_X PROC					; COMDAT
 
-; 72   : {
+; 73   : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -1144,12 +1145,12 @@ ExclusiveOr_X_X PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 73   :     __UNIT_TYPE or_count = v_count;
+; 74   :     __UNIT_TYPE or_count = v_count;
 
 	mov	rax, QWORD PTR v_count$[rbp]
 	mov	QWORD PTR or_count$[rbp], rax
 
-; 74   :     __UNIT_TYPE cp_count = u_count - v_count;
+; 75   :     __UNIT_TYPE cp_count = u_count - v_count;
 
 	mov	rax, QWORD PTR v_count$[rbp]
 	mov	rcx, QWORD PTR u_count$[rbp]
@@ -1157,21 +1158,21 @@ ExclusiveOr_X_X PROC					; COMDAT
 	mov	rax, rcx
 	mov	QWORD PTR cp_count$[rbp], rax
 
-; 75   : 
-; 76   :     __UNIT_TYPE count = or_count >> 5;
+; 76   : 
+; 77   :     __UNIT_TYPE count = or_count >> 5;
 
 	mov	rax, QWORD PTR or_count$[rbp]
 	shr	rax, 5
 	mov	QWORD PTR count$[rbp], rax
 $LN2@ExclusiveO:
 
-; 77   :     while (count > 0)
+; 78   :     while (count > 0)
 
 	cmp	QWORD PTR count$[rbp], 0
 	jbe	$LN3@ExclusiveO
 
-; 78   :     {
-; 79   :         w[0] = u[0] ^ v[0];
+; 79   :     {
+; 80   :         w[0] = u[0] ^ v[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -1187,7 +1188,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 80   :         w[1] = u[1] ^ v[1];
+; 81   :         w[1] = u[1] ^ v[1];
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -1203,7 +1204,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 81   :         w[2] = u[2] ^ v[2];
+; 82   :         w[2] = u[2] ^ v[2];
 
 	mov	eax, 8
 	imul	rax, rax, 2
@@ -1219,7 +1220,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 82   :         w[3] = u[3] ^ v[3];
+; 83   :         w[3] = u[3] ^ v[3];
 
 	mov	eax, 8
 	imul	rax, rax, 3
@@ -1235,7 +1236,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 83   :         w[4] = u[4] ^ v[4];
+; 84   :         w[4] = u[4] ^ v[4];
 
 	mov	eax, 8
 	imul	rax, rax, 4
@@ -1251,7 +1252,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 84   :         w[5] = u[5] ^ v[5];
+; 85   :         w[5] = u[5] ^ v[5];
 
 	mov	eax, 8
 	imul	rax, rax, 5
@@ -1267,7 +1268,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 85   :         w[6] = u[6] ^ v[6];
+; 86   :         w[6] = u[6] ^ v[6];
 
 	mov	eax, 8
 	imul	rax, rax, 6
@@ -1283,7 +1284,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 86   :         w[7] = u[7] ^ v[7];
+; 87   :         w[7] = u[7] ^ v[7];
 
 	mov	eax, 8
 	imul	rax, rax, 7
@@ -1299,7 +1300,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 87   :         w[8] = u[8] ^ v[8];
+; 88   :         w[8] = u[8] ^ v[8];
 
 	mov	eax, 8
 	imul	rax, rax, 8
@@ -1315,7 +1316,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 88   :         w[9] = u[9] ^ v[9];
+; 89   :         w[9] = u[9] ^ v[9];
 
 	mov	eax, 8
 	imul	rax, rax, 9
@@ -1331,7 +1332,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 89   :         w[10] = u[10] ^ v[10];
+; 90   :         w[10] = u[10] ^ v[10];
 
 	mov	eax, 8
 	imul	rax, rax, 10
@@ -1347,7 +1348,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 90   :         w[11] = u[11] ^ v[11];
+; 91   :         w[11] = u[11] ^ v[11];
 
 	mov	eax, 8
 	imul	rax, rax, 11
@@ -1363,7 +1364,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 91   :         w[12] = u[12] ^ v[12];
+; 92   :         w[12] = u[12] ^ v[12];
 
 	mov	eax, 8
 	imul	rax, rax, 12
@@ -1379,7 +1380,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 92   :         w[13] = u[13] ^ v[13];
+; 93   :         w[13] = u[13] ^ v[13];
 
 	mov	eax, 8
 	imul	rax, rax, 13
@@ -1395,7 +1396,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 93   :         w[14] = u[14] ^ v[14];
+; 94   :         w[14] = u[14] ^ v[14];
 
 	mov	eax, 8
 	imul	rax, rax, 14
@@ -1411,7 +1412,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 94   :         w[15] = u[15] ^ v[15];
+; 95   :         w[15] = u[15] ^ v[15];
 
 	mov	eax, 8
 	imul	rax, rax, 15
@@ -1427,7 +1428,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 95   :         w[16] = u[16] ^ v[16];
+; 96   :         w[16] = u[16] ^ v[16];
 
 	mov	eax, 8
 	imul	rax, rax, 16
@@ -1443,7 +1444,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 96   :         w[17] = u[17] ^ v[17];
+; 97   :         w[17] = u[17] ^ v[17];
 
 	mov	eax, 8
 	imul	rax, rax, 17
@@ -1459,7 +1460,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 97   :         w[18] = u[18] ^ v[18];
+; 98   :         w[18] = u[18] ^ v[18];
 
 	mov	eax, 8
 	imul	rax, rax, 18
@@ -1475,7 +1476,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 98   :         w[19] = u[19] ^ v[19];
+; 99   :         w[19] = u[19] ^ v[19];
 
 	mov	eax, 8
 	imul	rax, rax, 19
@@ -1491,7 +1492,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 99   :         w[20] = u[20] ^ v[20];
+; 100  :         w[20] = u[20] ^ v[20];
 
 	mov	eax, 8
 	imul	rax, rax, 20
@@ -1507,7 +1508,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 100  :         w[21] = u[21] ^ v[21];
+; 101  :         w[21] = u[21] ^ v[21];
 
 	mov	eax, 8
 	imul	rax, rax, 21
@@ -1523,7 +1524,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 101  :         w[22] = u[22] ^ v[22];
+; 102  :         w[22] = u[22] ^ v[22];
 
 	mov	eax, 8
 	imul	rax, rax, 22
@@ -1539,7 +1540,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 102  :         w[23] = u[23] ^ v[23];
+; 103  :         w[23] = u[23] ^ v[23];
 
 	mov	eax, 8
 	imul	rax, rax, 23
@@ -1555,7 +1556,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 103  :         w[24] = u[24] ^ v[24];
+; 104  :         w[24] = u[24] ^ v[24];
 
 	mov	eax, 8
 	imul	rax, rax, 24
@@ -1571,7 +1572,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 104  :         w[25] = u[25] ^ v[25];
+; 105  :         w[25] = u[25] ^ v[25];
 
 	mov	eax, 8
 	imul	rax, rax, 25
@@ -1587,7 +1588,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 105  :         w[26] = u[26] ^ v[26];
+; 106  :         w[26] = u[26] ^ v[26];
 
 	mov	eax, 8
 	imul	rax, rax, 26
@@ -1603,7 +1604,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 106  :         w[27] = u[27] ^ v[27];
+; 107  :         w[27] = u[27] ^ v[27];
 
 	mov	eax, 8
 	imul	rax, rax, 27
@@ -1619,7 +1620,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 107  :         w[28] = u[28] ^ v[28];
+; 108  :         w[28] = u[28] ^ v[28];
 
 	mov	eax, 8
 	imul	rax, rax, 28
@@ -1635,7 +1636,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 108  :         w[29] = u[29] ^ v[29];
+; 109  :         w[29] = u[29] ^ v[29];
 
 	mov	eax, 8
 	imul	rax, rax, 29
@@ -1651,7 +1652,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 109  :         w[30] = u[30] ^ v[30];
+; 110  :         w[30] = u[30] ^ v[30];
 
 	mov	eax, 8
 	imul	rax, rax, 30
@@ -1667,7 +1668,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 110  :         w[31] = u[31] ^ v[31];
+; 111  :         w[31] = u[31] ^ v[31];
 
 	mov	eax, 8
 	imul	rax, rax, 31
@@ -1683,45 +1684,45 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 111  :         u += 32;
+; 112  :         u += 32;
 
 	mov	rax, QWORD PTR u$[rbp]
 	add	rax, 256				; 00000100H
 	mov	QWORD PTR u$[rbp], rax
 
-; 112  :         v += 32;
+; 113  :         v += 32;
 
 	mov	rax, QWORD PTR v$[rbp]
 	add	rax, 256				; 00000100H
 	mov	QWORD PTR v$[rbp], rax
 
-; 113  :         w += 32;
+; 114  :         w += 32;
 
 	mov	rax, QWORD PTR w$[rbp]
 	add	rax, 256				; 00000100H
 	mov	QWORD PTR w$[rbp], rax
 
-; 114  :         --count;
+; 115  :         --count;
 
 	mov	rax, QWORD PTR count$[rbp]
 	dec	rax
 	mov	QWORD PTR count$[rbp], rax
 
-; 115  :     }
+; 116  :     }
 
 	jmp	$LN2@ExclusiveO
 $LN3@ExclusiveO:
 
-; 116  : 
-; 117  :     if (or_count & 0x10)
+; 117  : 
+; 118  :     if (or_count & 0x10)
 
 	mov	rax, QWORD PTR or_count$[rbp]
 	and	rax, 16
 	test	rax, rax
 	je	$LN4@ExclusiveO
 
-; 118  :     {
-; 119  :         w[0] = u[0] ^ v[0];
+; 119  :     {
+; 120  :         w[0] = u[0] ^ v[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -1737,7 +1738,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 120  :         w[1] = u[1] ^ v[1];
+; 121  :         w[1] = u[1] ^ v[1];
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -1753,7 +1754,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 121  :         w[2] = u[2] ^ v[2];
+; 122  :         w[2] = u[2] ^ v[2];
 
 	mov	eax, 8
 	imul	rax, rax, 2
@@ -1769,7 +1770,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 122  :         w[3] = u[3] ^ v[3];
+; 123  :         w[3] = u[3] ^ v[3];
 
 	mov	eax, 8
 	imul	rax, rax, 3
@@ -1785,7 +1786,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 123  :         w[4] = u[4] ^ v[4];
+; 124  :         w[4] = u[4] ^ v[4];
 
 	mov	eax, 8
 	imul	rax, rax, 4
@@ -1801,7 +1802,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 124  :         w[5] = u[5] ^ v[5];
+; 125  :         w[5] = u[5] ^ v[5];
 
 	mov	eax, 8
 	imul	rax, rax, 5
@@ -1817,7 +1818,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 125  :         w[6] = u[6] ^ v[6];
+; 126  :         w[6] = u[6] ^ v[6];
 
 	mov	eax, 8
 	imul	rax, rax, 6
@@ -1833,7 +1834,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 126  :         w[7] = u[7] ^ v[7];
+; 127  :         w[7] = u[7] ^ v[7];
 
 	mov	eax, 8
 	imul	rax, rax, 7
@@ -1849,7 +1850,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 127  :         w[8] = u[8] ^ v[8];
+; 128  :         w[8] = u[8] ^ v[8];
 
 	mov	eax, 8
 	imul	rax, rax, 8
@@ -1865,7 +1866,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 128  :         w[9] = u[9] ^ v[9];
+; 129  :         w[9] = u[9] ^ v[9];
 
 	mov	eax, 8
 	imul	rax, rax, 9
@@ -1881,7 +1882,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 129  :         w[10] = u[10] ^ v[10];
+; 130  :         w[10] = u[10] ^ v[10];
 
 	mov	eax, 8
 	imul	rax, rax, 10
@@ -1897,7 +1898,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 130  :         w[11] = u[11] ^ v[11];
+; 131  :         w[11] = u[11] ^ v[11];
 
 	mov	eax, 8
 	imul	rax, rax, 11
@@ -1913,7 +1914,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 131  :         w[12] = u[12] ^ v[12];
+; 132  :         w[12] = u[12] ^ v[12];
 
 	mov	eax, 8
 	imul	rax, rax, 12
@@ -1929,7 +1930,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 132  :         w[13] = u[13] ^ v[13];
+; 133  :         w[13] = u[13] ^ v[13];
 
 	mov	eax, 8
 	imul	rax, rax, 13
@@ -1945,7 +1946,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 133  :         w[14] = u[14] ^ v[14];
+; 134  :         w[14] = u[14] ^ v[14];
 
 	mov	eax, 8
 	imul	rax, rax, 14
@@ -1961,7 +1962,7 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 134  :         w[15] = u[15] ^ v[15];
+; 135  :         w[15] = u[15] ^ v[15];
 
 	mov	eax, 8
 	imul	rax, rax, 15
@@ -1977,36 +1978,36 @@ $LN3@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 135  :         u += 16;
+; 136  :         u += 16;
 
 	mov	rax, QWORD PTR u$[rbp]
 	add	rax, 128				; 00000080H
 	mov	QWORD PTR u$[rbp], rax
 
-; 136  :         v += 16;
+; 137  :         v += 16;
 
 	mov	rax, QWORD PTR v$[rbp]
 	add	rax, 128				; 00000080H
 	mov	QWORD PTR v$[rbp], rax
 
-; 137  :         w += 16;
+; 138  :         w += 16;
 
 	mov	rax, QWORD PTR w$[rbp]
 	add	rax, 128				; 00000080H
 	mov	QWORD PTR w$[rbp], rax
 $LN4@ExclusiveO:
 
-; 138  :     }
-; 139  : 
-; 140  :     if (or_count & 0x8)
+; 139  :     }
+; 140  : 
+; 141  :     if (or_count & 0x8)
 
 	mov	rax, QWORD PTR or_count$[rbp]
 	and	rax, 8
 	test	rax, rax
 	je	$LN5@ExclusiveO
 
-; 141  :     {
-; 142  :         w[0] = u[0] ^ v[0];
+; 142  :     {
+; 143  :         w[0] = u[0] ^ v[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2022,7 +2023,7 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 143  :         w[1] = u[1] ^ v[1];
+; 144  :         w[1] = u[1] ^ v[1];
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -2038,7 +2039,7 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 144  :         w[2] = u[2] ^ v[2];
+; 145  :         w[2] = u[2] ^ v[2];
 
 	mov	eax, 8
 	imul	rax, rax, 2
@@ -2054,7 +2055,7 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 145  :         w[3] = u[3] ^ v[3];
+; 146  :         w[3] = u[3] ^ v[3];
 
 	mov	eax, 8
 	imul	rax, rax, 3
@@ -2070,7 +2071,7 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 146  :         w[4] = u[4] ^ v[4];
+; 147  :         w[4] = u[4] ^ v[4];
 
 	mov	eax, 8
 	imul	rax, rax, 4
@@ -2086,7 +2087,7 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 147  :         w[5] = u[5] ^ v[5];
+; 148  :         w[5] = u[5] ^ v[5];
 
 	mov	eax, 8
 	imul	rax, rax, 5
@@ -2102,7 +2103,7 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 148  :         w[6] = u[6] ^ v[6];
+; 149  :         w[6] = u[6] ^ v[6];
 
 	mov	eax, 8
 	imul	rax, rax, 6
@@ -2118,7 +2119,7 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 149  :         w[7] = u[7] ^ v[7];
+; 150  :         w[7] = u[7] ^ v[7];
 
 	mov	eax, 8
 	imul	rax, rax, 7
@@ -2134,36 +2135,36 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 150  :         u += 8;
+; 151  :         u += 8;
 
 	mov	rax, QWORD PTR u$[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR u$[rbp], rax
 
-; 151  :         v += 8;
+; 152  :         v += 8;
 
 	mov	rax, QWORD PTR v$[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR v$[rbp], rax
 
-; 152  :         w += 8;
+; 153  :         w += 8;
 
 	mov	rax, QWORD PTR w$[rbp]
 	add	rax, 64					; 00000040H
 	mov	QWORD PTR w$[rbp], rax
 $LN5@ExclusiveO:
 
-; 153  :     }
-; 154  : 
-; 155  :     if (or_count & 0x4)
+; 154  :     }
+; 155  : 
+; 156  :     if (or_count & 0x4)
 
 	mov	rax, QWORD PTR or_count$[rbp]
 	and	rax, 4
 	test	rax, rax
 	je	$LN6@ExclusiveO
 
-; 156  :     {
-; 157  :         w[0] = u[0] ^ v[0];
+; 157  :     {
+; 158  :         w[0] = u[0] ^ v[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2179,7 +2180,7 @@ $LN5@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 158  :         w[1] = u[1] ^ v[1];
+; 159  :         w[1] = u[1] ^ v[1];
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -2195,7 +2196,7 @@ $LN5@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 159  :         w[2] = u[2] ^ v[2];
+; 160  :         w[2] = u[2] ^ v[2];
 
 	mov	eax, 8
 	imul	rax, rax, 2
@@ -2211,7 +2212,7 @@ $LN5@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 160  :         w[3] = u[3] ^ v[3];
+; 161  :         w[3] = u[3] ^ v[3];
 
 	mov	eax, 8
 	imul	rax, rax, 3
@@ -2227,36 +2228,36 @@ $LN5@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 161  :         u += 4;
+; 162  :         u += 4;
 
 	mov	rax, QWORD PTR u$[rbp]
 	add	rax, 32					; 00000020H
 	mov	QWORD PTR u$[rbp], rax
 
-; 162  :         v += 4;
+; 163  :         v += 4;
 
 	mov	rax, QWORD PTR v$[rbp]
 	add	rax, 32					; 00000020H
 	mov	QWORD PTR v$[rbp], rax
 
-; 163  :         w += 4;
+; 164  :         w += 4;
 
 	mov	rax, QWORD PTR w$[rbp]
 	add	rax, 32					; 00000020H
 	mov	QWORD PTR w$[rbp], rax
 $LN6@ExclusiveO:
 
-; 164  :     }
-; 165  : 
-; 166  :     if (or_count & 0x2)
+; 165  :     }
+; 166  : 
+; 167  :     if (or_count & 0x2)
 
 	mov	rax, QWORD PTR or_count$[rbp]
 	and	rax, 2
 	test	rax, rax
 	je	$LN7@ExclusiveO
 
-; 167  :     {
-; 168  :         w[0] = u[0] ^ v[0];
+; 168  :     {
+; 169  :         w[0] = u[0] ^ v[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2272,7 +2273,7 @@ $LN6@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 169  :         w[1] = u[1] ^ v[1];
+; 170  :         w[1] = u[1] ^ v[1];
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -2288,36 +2289,36 @@ $LN6@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 170  :         u += 2;
+; 171  :         u += 2;
 
 	mov	rax, QWORD PTR u$[rbp]
 	add	rax, 16
 	mov	QWORD PTR u$[rbp], rax
 
-; 171  :         v += 2;
+; 172  :         v += 2;
 
 	mov	rax, QWORD PTR v$[rbp]
 	add	rax, 16
 	mov	QWORD PTR v$[rbp], rax
 
-; 172  :         w += 2;
+; 173  :         w += 2;
 
 	mov	rax, QWORD PTR w$[rbp]
 	add	rax, 16
 	mov	QWORD PTR w$[rbp], rax
 $LN7@ExclusiveO:
 
-; 173  :     }
-; 174  : 
-; 175  :     if (or_count & 0x1)
+; 174  :     }
+; 175  : 
+; 176  :     if (or_count & 0x1)
 
 	mov	rax, QWORD PTR or_count$[rbp]
 	and	rax, 1
 	test	rax, rax
 	je	SHORT $LN8@ExclusiveO
 
-; 176  :     {
-; 177  :         w[0] = u[0] ^ v[0];
+; 177  :     {
+; 178  :         w[0] = u[0] ^ v[0];
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2333,35 +2334,35 @@ $LN7@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 178  :         u += 1;
+; 179  :         u += 1;
 
 	mov	rax, QWORD PTR u$[rbp]
 	add	rax, 8
 	mov	QWORD PTR u$[rbp], rax
 
-; 179  :         v += 1;
+; 180  :         v += 1;
 
 	mov	rax, QWORD PTR v$[rbp]
 	add	rax, 8
 	mov	QWORD PTR v$[rbp], rax
 
-; 180  :         w += 1;
+; 181  :         w += 1;
 
 	mov	rax, QWORD PTR w$[rbp]
 	add	rax, 8
 	mov	QWORD PTR w$[rbp], rax
 $LN8@ExclusiveO:
 
-; 181  :     }
-; 182  : 
-; 183  :     _COPY_MEMORY_UNIT(w, u, cp_count);
+; 182  :     }
+; 183  : 
+; 184  :     _COPY_MEMORY_UNIT(w, u, cp_count);
 
 	mov	r8, QWORD PTR cp_count$[rbp]
 	mov	rdx, QWORD PTR u$[rbp]
 	mov	rcx, QWORD PTR w$[rbp]
 	call	_COPY_MEMORY_UNIT
 
-; 184  : }
+; 185  : }
 
 	lea	rsp, QWORD PTR [rbp+296]
 	pop	rdi
@@ -2381,7 +2382,7 @@ v_lo$ = 264
 w$ = 272
 ExclusiveOr_X_2W PROC					; COMDAT
 
-; 51   : {
+; 52   : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -2399,13 +2400,13 @@ ExclusiveOr_X_2W PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 52   :     if (u_count == 1)
+; 53   :     if (u_count == 1)
 
 	cmp	QWORD PTR u_count$[rbp], 1
 	jne	SHORT $LN2@ExclusiveO
 
-; 53   :     {
-; 54   :         w[0] = u[0] ^ v_lo;
+; 54   :     {
+; 55   :         w[0] = u[0] ^ v_lo;
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2418,7 +2419,7 @@ ExclusiveOr_X_2W PROC					; COMDAT
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 55   :         w[1] = v_hi;
+; 56   :         w[1] = v_hi;
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -2426,18 +2427,18 @@ ExclusiveOr_X_2W PROC					; COMDAT
 	mov	rdx, QWORD PTR v_hi$[rbp]
 	mov	QWORD PTR [rcx+rax], rdx
 
-; 56   :     }
+; 57   :     }
 
 	jmp	$LN3@ExclusiveO
 $LN2@ExclusiveO:
 
-; 57   :     else if (u_count == 2)
+; 58   :     else if (u_count == 2)
 
 	cmp	QWORD PTR u_count$[rbp], 2
 	jne	SHORT $LN4@ExclusiveO
 
-; 58   :     {
-; 59   :         w[0] = u[0] ^ v_lo;
+; 59   :     {
+; 60   :         w[0] = u[0] ^ v_lo;
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2450,7 +2451,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 60   :         w[1] = u[1] ^ v_hi;
+; 61   :         w[1] = u[1] ^ v_hi;
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -2463,14 +2464,14 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 61   :     }
+; 62   :     }
 
 	jmp	$LN5@ExclusiveO
 $LN4@ExclusiveO:
 
-; 62   :     else
-; 63   :     {
-; 64   :         w[0] = u[0] ^ v_lo;
+; 63   :     else
+; 64   :     {
+; 65   :         w[0] = u[0] ^ v_lo;
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2483,7 +2484,7 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 65   :         w[1] = u[1] ^ v_hi;
+; 66   :         w[1] = u[1] ^ v_hi;
 
 	mov	eax, 8
 	imul	rax, rax, 1
@@ -2496,7 +2497,7 @@ $LN4@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 66   :         _COPY_MEMORY_UNIT(w + 2, u + 2, u_count - 2);
+; 67   :         _COPY_MEMORY_UNIT(w + 2, u + 2, u_count - 2);
 
 	mov	rax, QWORD PTR u_count$[rbp]
 	sub	rax, 2
@@ -2513,8 +2514,8 @@ $LN4@ExclusiveO:
 $LN5@ExclusiveO:
 $LN3@ExclusiveO:
 
-; 67   :     }
-; 68   : }
+; 68   :     }
+; 69   : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -2533,7 +2534,7 @@ v$ = 256
 w$ = 264
 ExclusiveOr_X_1W PROC					; COMDAT
 
-; 39   : {
+; 40   : {
 
 	mov	QWORD PTR [rsp+32], r9
 	mov	QWORD PTR [rsp+24], r8
@@ -2551,12 +2552,12 @@ ExclusiveOr_X_1W PROC					; COMDAT
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 40   :     if (u_count == 1)
+; 41   :     if (u_count == 1)
 
 	cmp	QWORD PTR u_count$[rbp], 1
 	jne	SHORT $LN2@ExclusiveO
 
-; 41   :         w[0] = u[0] ^ v;
+; 42   :         w[0] = u[0] ^ v;
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2571,9 +2572,9 @@ ExclusiveOr_X_1W PROC					; COMDAT
 	jmp	SHORT $LN3@ExclusiveO
 $LN2@ExclusiveO:
 
-; 42   :     else
-; 43   :     {
-; 44   :         w[0] = u[0] ^ v;
+; 43   :     else
+; 44   :     {
+; 45   :         w[0] = u[0] ^ v;
 
 	mov	eax, 8
 	imul	rax, rax, 0
@@ -2586,7 +2587,7 @@ $LN2@ExclusiveO:
 	mov	rdx, QWORD PTR w$[rbp]
 	mov	QWORD PTR [rdx+rcx], rax
 
-; 45   :         _COPY_MEMORY_UNIT(w + 1, u + 1, u_count - 1);
+; 46   :         _COPY_MEMORY_UNIT(w + 1, u + 1, u_count - 1);
 
 	mov	rax, QWORD PTR u_count$[rbp]
 	dec	rax
@@ -2602,8 +2603,8 @@ $LN2@ExclusiveO:
 	call	_COPY_MEMORY_UNIT
 $LN3@ExclusiveO:
 
-; 46   :     }
-; 47   : }
+; 47   :     }
+; 48   : }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -2612,14 +2613,14 @@ $LN3@ExclusiveO:
 ExclusiveOr_X_1W ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _LZCNT_ALT_UNIT
 _TEXT	SEGMENT
 pos$ = 4
 x$ = 256
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 915  : {
+; 629  :     {
 
 	mov	QWORD PTR [rsp+8], rcx
 	push	rbp
@@ -2631,48 +2632,48 @@ _LZCNT_ALT_UNIT PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+296]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 916  :     if (x == 0)
+; 630  :         if (x == 0)
 
 	cmp	QWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 917  :         return (sizeof(x) * 8);
+; 631  :             return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 918  : #ifdef _M_IX86
-; 919  :     _UINT32_T pos;
-; 920  : #ifdef _MSC_VER
-; 921  :     _BitScanReverse(&pos, x);
-; 922  : #elif defined(__GNUC__)
-; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #elif defined(_M_X64)
-; 928  : #ifdef _MSC_VER
-; 929  :     _UINT32_T pos;
-; 930  :     _BitScanReverse64(&pos, x);
+; 632  : #ifdef _M_IX86
+; 633  :         _UINT32_T pos;
+; 634  : #ifdef _MSC_VER
+; 635  :         _BitScanReverse(&pos, x);
+; 636  : #elif defined(__GNUC__)
+; 637  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 638  : #else
+; 639  : #error unknown compiler
+; 640  : #endif
+; 641  : #elif defined(_M_X64)
+; 642  : #ifdef _MSC_VER
+; 643  :         _UINT32_T pos;
+; 644  :         _BitScanReverse64(&pos, x);
 
 	mov	rax, QWORD PTR x$[rbp]
 	bsr	rax, rax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 931  : #elif defined(__GNUC__)
-; 932  :     _UINT64_T pos;
-; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 934  : #else
-; 935  : #error unknown compiler
-; 936  : #endif
-; 937  : #else
-; 938  : #error unknown platform
-; 939  : #endif
-; 940  :     return (sizeof(x) * 8 - 1 - pos);
+; 645  : #elif defined(__GNUC__)
+; 646  :         _UINT64_T pos;
+; 647  :         __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 648  : #else
+; 649  : #error unknown compiler
+; 650  : #endif
+; 651  : #else
+; 652  : #error unknown platform
+; 653  : #endif
+; 654  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 63					; 0000003fH
@@ -2680,7 +2681,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 941  : }
+; 655  :     }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -2694,14 +2695,14 @@ $LN1@LZCNT_ALT_:
 _LZCNT_ALT_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _LZCNT_ALT_32
 _TEXT	SEGMENT
 pos$ = 4
 x$ = 256
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 882  : {
+; 596  :     {
 
 	mov	DWORD PTR [rsp+8], ecx
 	push	rbp
@@ -2713,34 +2714,34 @@ _LZCNT_ALT_32 PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	ecx, DWORD PTR [rsp+296]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 883  :     if (x == 0)
+; 597  :         if (x == 0)
 
 	cmp	DWORD PTR x$[rbp], 0
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 884  :         return (sizeof(x) * 8);
+; 598  :             return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 	jmp	SHORT $LN1@LZCNT_ALT_
 $LN2@LZCNT_ALT_:
 
-; 885  :     _UINT32_T pos;
-; 886  : #ifdef _MSC_VER
-; 887  :     _BitScanReverse(&pos, x);
+; 599  :         _UINT32_T pos;
+; 600  : #ifdef _MSC_VER
+; 601  :         _BitScanReverse(&pos, x);
 
 	mov	eax, DWORD PTR x$[rbp]
 	bsr	eax, eax
 	mov	DWORD PTR pos$[rbp], eax
 
-; 888  : #elif defined(__GNUC__)
-; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 890  : #else
-; 891  : #error unknown compiler
-; 892  : #endif
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 602  : #elif defined(__GNUC__)
+; 603  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 604  : #else
+; 605  : #error unknown compiler
+; 606  : #endif
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, DWORD PTR pos$[rbp]
 	mov	ecx, 31
@@ -2748,7 +2749,7 @@ $LN2@LZCNT_ALT_:
 	mov	rax, rcx
 $LN1@LZCNT_ALT_:
 
-; 894  : }
+; 608  :     }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-32]
@@ -2762,7 +2763,7 @@ $LN1@LZCNT_ALT_:
 _LZCNT_ALT_32 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _MAXIMUM_UNIT
 _TEXT	SEGMENT
 tv65 = 192
@@ -2770,7 +2771,7 @@ x$ = 240
 y$ = 248
 _MAXIMUM_UNIT PROC					; COMDAT
 
-; 489  : {
+; 203  :     {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -2783,10 +2784,10 @@ _MAXIMUM_UNIT PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+280]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 490  :     return (x >= y ? x : y);
+; 204  :         return (x >= y ? x : y);
 
 	mov	rax, QWORD PTR y$[rbp]
 	cmp	QWORD PTR x$[rbp], rax
@@ -2800,7 +2801,7 @@ $LN3@MAXIMUM_UN:
 $LN4@MAXIMUM_UN:
 	mov	rax, QWORD PTR tv65[rbp]
 
-; 491  : }
+; 205  :     }
 
 	lea	rsp, QWORD PTR [rbp+216]
 	pop	rdi
@@ -2809,14 +2810,14 @@ $LN4@MAXIMUM_UN:
 _MAXIMUM_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _FROMDWORDTOWORD
 _TEXT	SEGMENT
 value$ = 224
 result_high$ = 232
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 468  : {
+; 182  :     {
 
 	mov	QWORD PTR [rsp+16], rdx
 	mov	QWORD PTR [rsp+8], rcx
@@ -2829,21 +2830,21 @@ _FROMDWORDTOWORD PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 469  :     *result_high = (_UINT32_T)(value >> 32);
+; 183  :         *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, QWORD PTR value$[rbp]
 	shr	rax, 32					; 00000020H
 	mov	rcx, QWORD PTR result_high$[rbp]
 	mov	DWORD PTR [rcx], eax
 
-; 470  :     return ((_UINT32_T)value);
+; 184  :         return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR value$[rbp]
 
-; 471  : }
+; 185  :     }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi
@@ -2852,7 +2853,7 @@ _FROMDWORDTOWORD PROC					; COMDAT
 _FROMDWORDTOWORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu /ZI
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _COPY_MEMORY_UNIT
 _TEXT	SEGMENT
 d$ = 224
@@ -2860,7 +2861,7 @@ s$ = 232
 count$ = 240
 _COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 352  : {
+; 66   :     {
 
 	mov	QWORD PTR [rsp+24], r8
 	mov	QWORD PTR [rsp+16], rdx
@@ -2875,23 +2876,23 @@ _COPY_MEMORY_UNIT PROC					; COMDAT
 	mov	eax, -858993460				; ccccccccH
 	rep stosd
 	mov	rcx, QWORD PTR [rsp+264]
-	lea	rcx, OFFSET FLAT:__4522B509_pmc_internal@h
+	lea	rcx, OFFSET FLAT:__6B0481B0_pmc_inline_func@h
 	call	__CheckForDebuggerJustMyCode
 
-; 353  : #ifdef _M_IX86
-; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 355  : #elif defined(_M_X64)
-; 356  :     __movsq(d, s, count);
+; 67   : #ifdef _M_IX86
+; 68   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 69   : #elif defined(_M_X64)
+; 70   :         __movsq(d, s, count);
 
 	mov	rdi, QWORD PTR d$[rbp]
 	mov	rsi, QWORD PTR s$[rbp]
 	mov	rcx, QWORD PTR count$[rbp]
 	rep movsq
 
-; 357  : #else
-; 358  : #error unknown platform
-; 359  : #endif
-; 360  : }
+; 71   : #else
+; 72   : #error unknown platform
+; 73   : #endif
+; 74   :     }
 
 	lea	rsp, QWORD PTR [rbp+192]
 	pop	rdi
@@ -2918,7 +2919,7 @@ v$ = 520
 w$ = 528
 PMC_ExclusiveOr_X_X PROC				; COMDAT
 
-; 411  : {
+; 412  : {
 
 $LN19:
 	mov	QWORD PTR [rsp+24], r8
@@ -2936,51 +2937,51 @@ $LN19:
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 412  :     if (u == NULL)
+; 413  :     if (u == NULL)
 
 	cmp	QWORD PTR u$[rbp], 0
 	jne	SHORT $LN2@PMC_Exclus
 
-; 413  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 414  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Exclus
 $LN2@PMC_Exclus:
 
-; 414  :     if (v == NULL)
+; 415  :     if (v == NULL)
 
 	cmp	QWORD PTR v$[rbp], 0
 	jne	SHORT $LN3@PMC_Exclus
 
-; 415  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 416  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Exclus
 $LN3@PMC_Exclus:
 
-; 416  :     if (w == NULL)
+; 417  :     if (w == NULL)
 
 	cmp	QWORD PTR w$[rbp], 0
 	jne	SHORT $LN4@PMC_Exclus
 
-; 417  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 418  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	$LN1@PMC_Exclus
 $LN4@PMC_Exclus:
 
-; 418  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 419  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	QWORD PTR nu$[rbp], rax
 
-; 419  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 420  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
 
 	mov	rax, QWORD PTR v$[rbp]
 	mov	QWORD PTR nv$[rbp], rax
 
-; 420  :     PMC_STATUS_CODE result;
-; 421  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 421  :     PMC_STATUS_CODE result;
+; 422  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nu$[rbp]
 	call	CheckNumber
@@ -2988,13 +2989,13 @@ $LN4@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_Exclus
 
-; 422  :         return (result);
+; 423  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN5@PMC_Exclus:
 
-; 423  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+; 424  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nv$[rbp]
 	call	CheckNumber
@@ -3002,14 +3003,14 @@ $LN5@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_Exclus
 
-; 424  :         return (result);
+; 425  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN6@PMC_Exclus:
 
-; 425  :     NUMBER_HEADER* nw;
-; 426  :     if (nu->IS_ZERO)
+; 426  :     NUMBER_HEADER* nw;
+; 427  :     if (nu->IS_ZERO)
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	eax, DWORD PTR [rax+40]
@@ -3018,8 +3019,8 @@ $LN6@PMC_Exclus:
 	test	eax, eax
 	je	SHORT $LN7@PMC_Exclus
 
-; 427  :     {
-; 428  :         if ((result = DuplicateNumber(nv, &nw)) != PMC_STATUS_OK)
+; 428  :     {
+; 429  :         if ((result = DuplicateNumber(nv, &nw)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR nw$[rbp]
 	mov	rcx, QWORD PTR nv$[rbp]
@@ -3028,18 +3029,18 @@ $LN6@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN9@PMC_Exclus
 
-; 429  :             return (result);
+; 430  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN9@PMC_Exclus:
 
-; 430  :     }
+; 431  :     }
 
 	jmp	$LN8@PMC_Exclus
 $LN7@PMC_Exclus:
 
-; 431  :     else if (nv->IS_ZERO)
+; 432  :     else if (nv->IS_ZERO)
 
 	mov	rax, QWORD PTR nv$[rbp]
 	mov	eax, DWORD PTR [rax+40]
@@ -3048,8 +3049,8 @@ $LN7@PMC_Exclus:
 	test	eax, eax
 	je	SHORT $LN10@PMC_Exclus
 
-; 432  :     {
-; 433  :         if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
+; 433  :     {
+; 434  :         if ((result = DuplicateNumber(nu, &nw)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR nw$[rbp]
 	mov	rcx, QWORD PTR nu$[rbp]
@@ -3058,20 +3059,20 @@ $LN7@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN12@PMC_Exclus
 
-; 434  :             return (result);
+; 435  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN12@PMC_Exclus:
 
-; 435  :     }
+; 436  :     }
 
 	jmp	$LN11@PMC_Exclus
 $LN10@PMC_Exclus:
 
-; 436  :     else
-; 437  :     {
-; 438  :         if (nu->UNIT_WORD_COUNT < nv->UNIT_WORD_COUNT)
+; 437  :     else
+; 438  :     {
+; 439  :         if (nu->UNIT_WORD_COUNT < nv->UNIT_WORD_COUNT)
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	rcx, QWORD PTR nv$[rbp]
@@ -3079,45 +3080,45 @@ $LN10@PMC_Exclus:
 	cmp	QWORD PTR [rax+8], rcx
 	jae	SHORT $LN13@PMC_Exclus
 
-; 439  :         {
-; 440  :             NUMBER_HEADER* t = nu;
+; 440  :         {
+; 441  :             NUMBER_HEADER* t = nu;
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	QWORD PTR t$5[rbp], rax
 
-; 441  :             nu = nv;
+; 442  :             nu = nv;
 
 	mov	rax, QWORD PTR nv$[rbp]
 	mov	QWORD PTR nu$[rbp], rax
 
-; 442  :             nv = t;
+; 443  :             nv = t;
 
 	mov	rax, QWORD PTR t$5[rbp]
 	mov	QWORD PTR nv$[rbp], rax
 $LN13@PMC_Exclus:
 
-; 443  :         }
-; 444  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 444  :         }
+; 445  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nu$[rbp]
 	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR u_bit_count$6[rbp], rax
 
-; 445  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 446  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
 	mov	rax, QWORD PTR nv$[rbp]
 	mov	rax, QWORD PTR [rax+16]
 	mov	QWORD PTR v_bit_count$7[rbp], rax
 
-; 446  :         __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
+; 447  :         __UNIT_TYPE w_bit_count = _MAXIMUM_UNIT(u_bit_count, v_bit_count);
 
 	mov	rdx, QWORD PTR v_bit_count$7[rbp]
 	mov	rcx, QWORD PTR u_bit_count$6[rbp]
 	call	_MAXIMUM_UNIT
 	mov	QWORD PTR w_bit_count$8[rbp], rax
 
-; 447  :         __UNIT_TYPE nw_light_check_code;
-; 448  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+; 448  :         __UNIT_TYPE nw_light_check_code;
+; 449  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nw_light_check_code$9[rbp]
 	mov	rdx, QWORD PTR w_bit_count$8[rbp]
@@ -3127,13 +3128,13 @@ $LN13@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN14@PMC_Exclus
 
-; 449  :             return (result);
+; 450  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	$LN1@PMC_Exclus
 $LN14@PMC_Exclus:
 
-; 450  :         ExclusiveOr_X_X(nu->BLOCK, nu->UNIT_WORD_COUNT, nv->BLOCK, nv->UNIT_WORD_COUNT, nw->BLOCK);
+; 451  :         ExclusiveOr_X_X(nu->BLOCK, nu->UNIT_WORD_COUNT, nv->BLOCK, nv->UNIT_WORD_COUNT, nw->BLOCK);
 
 	mov	rax, QWORD PTR nw$[rbp]
 	mov	rax, QWORD PTR [rax+56]
@@ -3148,7 +3149,7 @@ $LN14@PMC_Exclus:
 	mov	rcx, QWORD PTR [rax+56]
 	call	ExclusiveOr_X_X
 
-; 451  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+; 452  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rdx, QWORD PTR nw_light_check_code$9[rbp]
 	mov	rax, QWORD PTR nw$[rbp]
@@ -3158,18 +3159,18 @@ $LN14@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN15@PMC_Exclus
 
-; 452  :             return (result);
+; 453  :             return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN15@PMC_Exclus:
 
-; 453  :         CommitNumber(nw);
+; 454  :         CommitNumber(nw);
 
 	mov	rcx, QWORD PTR nw$[rbp]
 	call	CommitNumber
 
-; 454  :         if (nw->IS_ZERO)
+; 455  :         if (nw->IS_ZERO)
 
 	mov	rax, QWORD PTR nw$[rbp]
 	mov	eax, DWORD PTR [rax+40]
@@ -3178,13 +3179,13 @@ $LN15@PMC_Exclus:
 	test	eax, eax
 	je	SHORT $LN16@PMC_Exclus
 
-; 455  :         {
-; 456  :             DeallocateNumber(nw);
+; 456  :         {
+; 457  :             DeallocateNumber(nw);
 
 	mov	rcx, QWORD PTR nw$[rbp]
 	call	DeallocateNumber
 
-; 457  :             nw = &number_zero;
+; 458  :             nw = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 	mov	QWORD PTR nw$[rbp], rax
@@ -3192,16 +3193,16 @@ $LN16@PMC_Exclus:
 $LN11@PMC_Exclus:
 $LN8@PMC_Exclus:
 
-; 458  :         }
-; 459  :     }
-; 460  :     *w = nw;
+; 459  :         }
+; 460  :     }
+; 461  :     *w = nw;
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR nw$[rbp]
 	mov	QWORD PTR [rax], rcx
 
-; 461  : #ifdef _DEBUG
-; 462  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 462  : #ifdef _DEBUG
+; 463  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -3210,19 +3211,19 @@ $LN8@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN17@PMC_Exclus
 
-; 463  :         return (result);
+; 464  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN17@PMC_Exclus:
 
-; 464  : #endif
-; 465  :     return (PMC_STATUS_OK);
+; 465  : #endif
+; 466  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Exclus:
 
-; 466  : }
+; 467  : }
 
 	mov	rdi, rax
 	lea	rcx, QWORD PTR [rbp-48]
@@ -3246,7 +3247,7 @@ v$ = 296
 w$ = 304
 PMC_ExclusiveOr_X_L PROC				; COMDAT
 
-; 387  : {
+; 388  : {
 
 $LN9:
 	mov	QWORD PTR [rsp+24], r8
@@ -3264,50 +3265,50 @@ $LN9:
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 388  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
+; 389  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_Exclus
 
-; 389  :     {
-; 390  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 391  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 390  :     {
+; 391  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 392  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	$LN1@PMC_Exclus
 $LN2@PMC_Exclus:
 
-; 392  :     }
-; 393  :     if (u == NULL)
+; 393  :     }
+; 394  :     if (u == NULL)
 
 	cmp	QWORD PTR u$[rbp], 0
 	jne	SHORT $LN3@PMC_Exclus
 
-; 394  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 395  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@PMC_Exclus
 $LN3@PMC_Exclus:
 
-; 395  :     if (w == NULL)
+; 396  :     if (w == NULL)
 
 	cmp	QWORD PTR w$[rbp], 0
 	jne	SHORT $LN4@PMC_Exclus
 
-; 396  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 397  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@PMC_Exclus
 $LN4@PMC_Exclus:
 
-; 397  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 398  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	QWORD PTR nu$[rbp], rax
 
-; 398  :     PMC_STATUS_CODE result;
-; 399  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 399  :     PMC_STATUS_CODE result;
+; 400  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nu$[rbp]
 	call	CheckNumber
@@ -3315,13 +3316,13 @@ $LN4@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_Exclus
 
-; 400  :         return (result);
+; 401  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN5@PMC_Exclus:
 
-; 401  :     if ((result = PMC_ExclusiveOr_X_L_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+; 402  :     if ((result = PMC_ExclusiveOr_X_L_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
 
 	mov	r8, QWORD PTR w$[rbp]
 	mov	rdx, QWORD PTR v$[rbp]
@@ -3331,14 +3332,14 @@ $LN5@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_Exclus
 
-; 402  :         return (result);
+; 403  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN6@PMC_Exclus:
 
-; 403  : #ifdef _DEBUG
-; 404  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 404  : #ifdef _DEBUG
+; 405  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -3347,19 +3348,19 @@ $LN6@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN7@PMC_Exclus
 
-; 405  :         return (result);
+; 406  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN7@PMC_Exclus:
 
-; 406  : #endif
-; 407  :     return (PMC_STATUS_OK);
+; 407  : #endif
+; 408  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Exclus:
 
-; 408  : }
+; 409  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -3378,7 +3379,7 @@ v$ = 296
 w$ = 304
 PMC_ExclusiveOr_X_I PROC				; COMDAT
 
-; 257  : {
+; 258  : {
 
 $LN9:
 	mov	QWORD PTR [rsp+24], r8
@@ -3396,50 +3397,50 @@ $LN9:
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 258  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 259  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_Exclus
 
-; 259  :     {
-; 260  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 261  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 260  :     {
+; 261  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 262  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	$LN1@PMC_Exclus
 $LN2@PMC_Exclus:
 
-; 262  :     }
-; 263  :     if (u == NULL)
+; 263  :     }
+; 264  :     if (u == NULL)
 
 	cmp	QWORD PTR u$[rbp], 0
 	jne	SHORT $LN3@PMC_Exclus
 
-; 264  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 265  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@PMC_Exclus
 $LN3@PMC_Exclus:
 
-; 265  :     if (w == NULL)
+; 266  :     if (w == NULL)
 
 	cmp	QWORD PTR w$[rbp], 0
 	jne	SHORT $LN4@PMC_Exclus
 
-; 266  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 267  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@PMC_Exclus
 $LN4@PMC_Exclus:
 
-; 267  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 268  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	rax, QWORD PTR u$[rbp]
 	mov	QWORD PTR nu$[rbp], rax
 
-; 268  :     PMC_STATUS_CODE result;
-; 269  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 269  :     PMC_STATUS_CODE result;
+; 270  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nu$[rbp]
 	call	CheckNumber
@@ -3447,13 +3448,13 @@ $LN4@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_Exclus
 
-; 270  :         return (result);
+; 271  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN5@PMC_Exclus:
 
-; 271  :     if ((result = PMC_ExclusiveOr_X_I_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+; 272  :     if ((result = PMC_ExclusiveOr_X_I_Imp((NUMBER_HEADER*)u, v, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
 
 	mov	r8, QWORD PTR w$[rbp]
 	mov	edx, DWORD PTR v$[rbp]
@@ -3463,14 +3464,14 @@ $LN5@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_Exclus
 
-; 272  :         return (result);
+; 273  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN6@PMC_Exclus:
 
-; 273  : #ifdef _DEBUG
-; 274  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 274  : #ifdef _DEBUG
+; 275  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -3479,19 +3480,19 @@ $LN6@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN7@PMC_Exclus
 
-; 275  :         return (result);
+; 276  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN7@PMC_Exclus:
 
-; 276  : #endif
-; 277  :     return (PMC_STATUS_OK);
+; 277  : #endif
+; 278  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Exclus:
 
-; 278  : }
+; 279  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -3510,7 +3511,7 @@ v$ = 296
 w$ = 304
 PMC_ExclusiveOr_L_X PROC				; COMDAT
 
-; 363  : {
+; 364  : {
 
 $LN9:
 	mov	QWORD PTR [rsp+24], r8
@@ -3528,50 +3529,50 @@ $LN9:
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 364  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+; 365  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_Exclus
 
-; 365  :     {
-; 366  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 367  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 366  :     {
+; 367  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 368  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	$LN1@PMC_Exclus
 $LN2@PMC_Exclus:
 
-; 368  :     }
-; 369  :     if (v == NULL)
+; 369  :     }
+; 370  :     if (v == NULL)
 
 	cmp	QWORD PTR v$[rbp], 0
 	jne	SHORT $LN3@PMC_Exclus
 
-; 370  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 371  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@PMC_Exclus
 $LN3@PMC_Exclus:
 
-; 371  :     if (w == NULL)
+; 372  :     if (w == NULL)
 
 	cmp	QWORD PTR w$[rbp], 0
 	jne	SHORT $LN4@PMC_Exclus
 
-; 372  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 373  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@PMC_Exclus
 $LN4@PMC_Exclus:
 
-; 373  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)v;
+; 374  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)v;
 
 	mov	rax, QWORD PTR v$[rbp]
 	mov	QWORD PTR nu$[rbp], rax
 
-; 374  :     PMC_STATUS_CODE result;
-; 375  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 375  :     PMC_STATUS_CODE result;
+; 376  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nu$[rbp]
 	call	CheckNumber
@@ -3579,13 +3580,13 @@ $LN4@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_Exclus
 
-; 376  :         return (result);
+; 377  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN5@PMC_Exclus:
 
-; 377  :     if ((result = PMC_ExclusiveOr_X_L_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+; 378  :     if ((result = PMC_ExclusiveOr_X_L_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
 
 	mov	r8, QWORD PTR w$[rbp]
 	mov	rdx, QWORD PTR u$[rbp]
@@ -3595,14 +3596,14 @@ $LN5@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_Exclus
 
-; 378  :         return (result);
+; 379  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN6@PMC_Exclus:
 
-; 379  : #ifdef _DEBUG
-; 380  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 380  : #ifdef _DEBUG
+; 381  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -3611,19 +3612,19 @@ $LN6@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN7@PMC_Exclus
 
-; 381  :         return (result);
+; 382  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN7@PMC_Exclus:
 
-; 382  : #endif
-; 383  :     return (PMC_STATUS_OK);
+; 383  : #endif
+; 384  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Exclus:
 
-; 384  : }
+; 385  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -3642,7 +3643,7 @@ v$ = 296
 w$ = 304
 PMC_ExclusiveOr_I_X PROC				; COMDAT
 
-; 233  : {
+; 234  : {
 
 $LN9:
 	mov	QWORD PTR [rsp+24], r8
@@ -3660,50 +3661,50 @@ $LN9:
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 234  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+; 235  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
 
 	xor	eax, eax
 	test	eax, eax
 	je	SHORT $LN2@PMC_Exclus
 
-; 235  :     {
-; 236  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 237  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 236  :     {
+; 237  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 238  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffffffffffff00H
 	jmp	$LN1@PMC_Exclus
 $LN2@PMC_Exclus:
 
-; 238  :     }
-; 239  :     if (v == NULL)
+; 239  :     }
+; 240  :     if (v == NULL)
 
 	cmp	QWORD PTR v$[rbp], 0
 	jne	SHORT $LN3@PMC_Exclus
 
-; 240  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 241  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@PMC_Exclus
 $LN3@PMC_Exclus:
 
-; 241  :     if (w == NULL)
+; 242  :     if (w == NULL)
 
 	cmp	QWORD PTR w$[rbp], 0
 	jne	SHORT $LN4@PMC_Exclus
 
-; 242  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 243  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 	jmp	SHORT $LN1@PMC_Exclus
 $LN4@PMC_Exclus:
 
-; 243  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)v;
+; 244  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)v;
 
 	mov	rax, QWORD PTR v$[rbp]
 	mov	QWORD PTR nu$[rbp], rax
 
-; 244  :     PMC_STATUS_CODE result;
-; 245  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 245  :     PMC_STATUS_CODE result;
+; 246  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR nu$[rbp]
 	call	CheckNumber
@@ -3711,13 +3712,13 @@ $LN4@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN5@PMC_Exclus
 
-; 246  :         return (result);
+; 247  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN5@PMC_Exclus:
 
-; 247  :     if ((result = PMC_ExclusiveOr_X_I_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
+; 248  :     if ((result = PMC_ExclusiveOr_X_I_Imp((NUMBER_HEADER*)v, u, (NUMBER_HEADER**)w)) != PMC_STATUS_OK)
 
 	mov	r8, QWORD PTR w$[rbp]
 	mov	edx, DWORD PTR u$[rbp]
@@ -3727,14 +3728,14 @@ $LN5@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN6@PMC_Exclus
 
-; 248  :         return (result);
+; 249  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN6@PMC_Exclus:
 
-; 249  : #ifdef _DEBUG
-; 250  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 250  : #ifdef _DEBUG
+; 251  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
 	mov	rax, QWORD PTR w$[rbp]
 	mov	rcx, QWORD PTR [rax]
@@ -3743,19 +3744,19 @@ $LN6@PMC_Exclus:
 	cmp	DWORD PTR result$[rbp], 0
 	je	SHORT $LN7@PMC_Exclus
 
-; 251  :         return (result);
+; 252  :         return (result);
 
 	mov	eax, DWORD PTR result$[rbp]
 	jmp	SHORT $LN1@PMC_Exclus
 $LN7@PMC_Exclus:
 
-; 252  : #endif
-; 253  :     return (PMC_STATUS_OK);
+; 253  : #endif
+; 254  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Exclus:
 
-; 254  : }
+; 255  : }
 
 	lea	rsp, QWORD PTR [rbp+264]
 	pop	rdi
@@ -3770,7 +3771,7 @@ _TEXT	SEGMENT
 feature$ = 224
 Initialize_ExclusiveOr PROC				; COMDAT
 
-; 469  : {
+; 470  : {
 
 $LN3:
 	mov	QWORD PTR [rsp+8], rcx
@@ -3786,11 +3787,11 @@ $LN3:
 	lea	rcx, OFFSET FLAT:__6904D90E_pmc_exclusiveor@c
 	call	__CheckForDebuggerJustMyCode
 
-; 470  :     return (PMC_STATUS_OK);
+; 471  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 471  : }
+; 472  : }
 
 	lea	rsp, QWORD PTR [rbp+200]
 	pop	rdi

@@ -140,13 +140,13 @@ $unwind$PMC_Add_I_X DD 060f01H
 xdata	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ;	COMDAT PMC_Add_X_L_Imp
 _TEXT	SEGMENT
@@ -260,13 +260,13 @@ $LN2@PMC_Add_X_:
 	pop	rdi
 	ret	0
 $LN7@PMC_Add_X_:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 930  :     _BitScanReverse64(&pos, x);
+; 644  :         _BitScanReverse64(&pos, x);
 
 	bsr	rax, rdi
 
-; 940  :     return (sizeof(x) * 8 - 1 - pos);
+; 654  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 63					; 0000003fH
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -274,9 +274,9 @@ $LN7@PMC_Add_X_:
 ; 494  :                 if ((result = AllocateNumber(w, w_bit_count, &w_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR w_light_check_code$1[rsp]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 940  :     return (sizeof(x) * 8 - 1 - pos);
+; 654  :         return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -290,9 +290,9 @@ $LN7@PMC_Add_X_:
 
 	mov	rcx, rbx
 	sub	rdx, rax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 490  :     return (x >= y ? x : y);
+; 204  :         return (x >= y ? x : y);
 
 	cmp	QWORD PTR [rsi+16], rdx
 	cmovae	rdx, QWORD PTR [rsi+16]
@@ -320,9 +320,9 @@ $LN7@PMC_Add_X_:
 ; 97   :     c = _ADD_UNIT(0, *u_ptr++, v, w_ptr++);
 
 	mov	rax, QWORD PTR [r10]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	rax, rdi
 	mov	QWORD PTR [r9], rax
@@ -412,17 +412,17 @@ PMC_Add_X_L_Imp ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ;	COMDAT PMC_Add_X_I_Imp
 _TEXT	SEGMENT
@@ -534,13 +534,13 @@ $LN2@PMC_Add_X_:
 	pop	rdi
 	ret	0
 $LN7@PMC_Add_X_:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 887  :     _BitScanReverse(&pos, x);
+; 601  :         _BitScanReverse(&pos, x);
 
 	bsr	eax, edi
 
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	ecx, 31
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -548,9 +548,9 @@ $LN7@PMC_Add_X_:
 ; 344  :             if ((result = AllocateNumber(nw, z_bit_count, &nz_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR nz_check_code$1[rsp]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	sub	ecx, eax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -564,9 +564,9 @@ $LN7@PMC_Add_X_:
 
 	mov	rcx, rbx
 	sub	rdx, rax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 490  :     return (x >= y ? x : y);
+; 204  :         return (x >= y ? x : y);
 
 	cmp	QWORD PTR [rsi+16], rdx
 	cmovae	rdx, QWORD PTR [rsi+16]
@@ -594,9 +594,9 @@ $LN7@PMC_Add_X_:
 ; 97   :     c = _ADD_UNIT(0, *u_ptr++, v, w_ptr++);
 
 	mov	rdx, QWORD PTR [r11]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	rdx, rdi
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -604,9 +604,9 @@ $LN7@PMC_Add_X_:
 ; 99   :     --w_count;
 
 	lea	rax, QWORD PTR [r8-1]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	mov	QWORD PTR [r9], rdx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -614,9 +614,9 @@ $LN7@PMC_Add_X_:
 ; 98   :     --u_count;
 
 	lea	r8, QWORD PTR [r10-1]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	setb	cl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -696,37 +696,37 @@ _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ;	COMDAT Add_Imp_using_ADCX
 _TEXT	SEGMENT
@@ -851,90 +851,90 @@ $LN5@Add_Imp_us:
 	je	$LN6@Add_Imp_us
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3284 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3286 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rax, QWORD PTR [r10]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3285 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3287 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3286 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3288 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3287 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3289 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+24]
 	mov	QWORD PTR [r9+24], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3288 :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+; 3290 :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	rax, QWORD PTR [rdx+32]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+32]
 	mov	QWORD PTR [r9+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3289 :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+; 3291 :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	rax, QWORD PTR [rdx+40]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+40]
 	mov	QWORD PTR [r9+40], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3290 :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+; 3292 :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	rax, QWORD PTR [rdx+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+48]
 	mov	QWORD PTR [r9+48], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3291 :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+; 3293 :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	rax, QWORD PTR [rdx+56]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+56]
 	mov	QWORD PTR [r9+56], rax
@@ -964,46 +964,46 @@ $LN6@Add_Imp_us:
 	je	SHORT $LN7@Add_Imp_us
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3936 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3938 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rax, QWORD PTR [r10]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3937 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3939 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3938 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3940 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3939 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3941 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+24]
 	mov	QWORD PTR [r9+24], rax
@@ -1033,24 +1033,24 @@ $LN7@Add_Imp_us:
 	je	SHORT $LN8@Add_Imp_us
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 4378 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 4380 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rax, QWORD PTR [r10]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 4379 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 4381 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r10+8]
 	mov	QWORD PTR [r9+8], rax
@@ -1082,9 +1082,9 @@ $LN8@Add_Imp_us:
 ; 294  :         c = _ADDX_UNIT(c, *up++, *vp++, wp++);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rax, QWORD PTR [r10]
@@ -1124,102 +1124,102 @@ _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ;	COMDAT Add_Imp_using_ADC
 _TEXT	SEGMENT
@@ -1296,354 +1296,354 @@ Add_Imp_using_ADC PROC					; COMDAT
 $LL2@Add_Imp_us:
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 47   :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 49   :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [r10]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 48   :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 50   :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [r10+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [rdx+r9+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 49   :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 51   :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [r10+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [rdx+r9+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 50   :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 52   :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [r10+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [rdx+r9+24]
 	mov	QWORD PTR [r9+24], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 51   :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+; 53   :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	rax, QWORD PTR [r10+32]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [rdx+r9+32]
 	mov	QWORD PTR [r9+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 52   :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+; 54   :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	rax, QWORD PTR [r10+40]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+40]
 	mov	QWORD PTR [r9+40], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 53   :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+; 55   :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	rax, QWORD PTR [r10+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+48]
 	mov	QWORD PTR [r9+48], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 54   :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+; 56   :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	rax, QWORD PTR [r10+56]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+56]
 	mov	QWORD PTR [r9+56], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 55   :     c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
+; 57   :     c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	rax, QWORD PTR [r10+64]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+64]
 	mov	QWORD PTR [r9+64], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 56   :     c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
+; 58   :     c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	rax, QWORD PTR [r10+72]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+72]
 	mov	QWORD PTR [r9+72], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 57   :     c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
+; 59   :     c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	rax, QWORD PTR [r10+80]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+80]
 	mov	QWORD PTR [r9+80], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 58   :     c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
+; 60   :     c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	rax, QWORD PTR [r10+88]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+88]
 	mov	QWORD PTR [r9+88], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 59   :     c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
+; 61   :     c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	rax, QWORD PTR [r10+96]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+96]
 	mov	QWORD PTR [r9+96], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 60   :     c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
+; 62   :     c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	rax, QWORD PTR [r10+104]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+104]
 	mov	QWORD PTR [r9+104], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 61   :     c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
+; 63   :     c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	rax, QWORD PTR [r10+112]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+112]
 	mov	QWORD PTR [r9+112], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 62   :     c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
+; 64   :     c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	rax, QWORD PTR [r10+120]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+120]
 	mov	QWORD PTR [r9+120], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 63   :     c = _ADD_UNIT(c, xp[16], yp[16], &zp[16]);
+; 65   :     c = _ADD_UNIT(c, xp[16], yp[16], &zp[16]);
 
 	mov	rax, QWORD PTR [r10+128]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+128]
 	mov	QWORD PTR [r9+128], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 64   :     c = _ADD_UNIT(c, xp[17], yp[17], &zp[17]);
+; 66   :     c = _ADD_UNIT(c, xp[17], yp[17], &zp[17]);
 
 	mov	rax, QWORD PTR [r10+136]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+136]
 	mov	QWORD PTR [r9+136], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 65   :     c = _ADD_UNIT(c, xp[18], yp[18], &zp[18]);
+; 67   :     c = _ADD_UNIT(c, xp[18], yp[18], &zp[18]);
 
 	mov	rax, QWORD PTR [r10+144]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+144]
 	mov	QWORD PTR [r9+144], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 66   :     c = _ADD_UNIT(c, xp[19], yp[19], &zp[19]);
+; 68   :     c = _ADD_UNIT(c, xp[19], yp[19], &zp[19]);
 
 	mov	rax, QWORD PTR [r10+152]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+152]
 	mov	QWORD PTR [r9+152], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 67   :     c = _ADD_UNIT(c, xp[20], yp[20], &zp[20]);
+; 69   :     c = _ADD_UNIT(c, xp[20], yp[20], &zp[20]);
 
 	mov	rax, QWORD PTR [r10+160]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+160]
 	mov	QWORD PTR [r9+160], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 68   :     c = _ADD_UNIT(c, xp[21], yp[21], &zp[21]);
+; 70   :     c = _ADD_UNIT(c, xp[21], yp[21], &zp[21]);
 
 	mov	rax, QWORD PTR [r10+168]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+168]
 	mov	QWORD PTR [r9+168], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 69   :     c = _ADD_UNIT(c, xp[22], yp[22], &zp[22]);
+; 71   :     c = _ADD_UNIT(c, xp[22], yp[22], &zp[22]);
 
 	mov	rax, QWORD PTR [r10+176]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+176]
 	mov	QWORD PTR [r9+176], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 70   :     c = _ADD_UNIT(c, xp[23], yp[23], &zp[23]);
+; 72   :     c = _ADD_UNIT(c, xp[23], yp[23], &zp[23]);
 
 	mov	rax, QWORD PTR [r10+184]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+184]
 	mov	QWORD PTR [r9+184], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 71   :     c = _ADD_UNIT(c, xp[24], yp[24], &zp[24]);
+; 73   :     c = _ADD_UNIT(c, xp[24], yp[24], &zp[24]);
 
 	mov	rax, QWORD PTR [r10+192]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+192]
 	mov	QWORD PTR [r9+192], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 72   :     c = _ADD_UNIT(c, xp[25], yp[25], &zp[25]);
+; 74   :     c = _ADD_UNIT(c, xp[25], yp[25], &zp[25]);
 
 	mov	rax, QWORD PTR [r10+200]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+200]
 	mov	QWORD PTR [r9+200], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 73   :     c = _ADD_UNIT(c, xp[26], yp[26], &zp[26]);
+; 75   :     c = _ADD_UNIT(c, xp[26], yp[26], &zp[26]);
 
 	mov	rax, QWORD PTR [r10+208]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+208]
 	mov	QWORD PTR [r9+208], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 74   :     c = _ADD_UNIT(c, xp[27], yp[27], &zp[27]);
+; 76   :     c = _ADD_UNIT(c, xp[27], yp[27], &zp[27]);
 
 	mov	rax, QWORD PTR [r10+216]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+216]
 	mov	QWORD PTR [r9+216], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 75   :     c = _ADD_UNIT(c, xp[28], yp[28], &zp[28]);
+; 77   :     c = _ADD_UNIT(c, xp[28], yp[28], &zp[28]);
 
 	mov	rax, QWORD PTR [r10+224]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+224]
 	mov	QWORD PTR [r9+224], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 76   :     c = _ADD_UNIT(c, xp[29], yp[29], &zp[29]);
+; 78   :     c = _ADD_UNIT(c, xp[29], yp[29], &zp[29]);
 
 	mov	rax, QWORD PTR [r10+232]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+232]
 	mov	QWORD PTR [r9+232], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 77   :     c = _ADD_UNIT(c, xp[30], yp[30], &zp[30]);
+; 79   :     c = _ADD_UNIT(c, xp[30], yp[30], &zp[30]);
 
 	mov	rax, QWORD PTR [r10+240]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+240]
 	mov	QWORD PTR [r9+240], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 78   :     c = _ADD_UNIT(c, xp[31], yp[31], &zp[31]);
+; 80   :     c = _ADD_UNIT(c, xp[31], yp[31], &zp[31]);
 
 	mov	rax, QWORD PTR [r10+248]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r9+rdx+248]
 	mov	QWORD PTR [r9+248], rax
@@ -1707,90 +1707,90 @@ $LN5@Add_Imp_us:
 	je	SHORT $LN6@Add_Imp_us
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3199 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3201 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [r10]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3200 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3202 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [r10+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3201 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3203 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [r10+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3202 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3204 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [r10+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3203 :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+; 3205 :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	rax, QWORD PTR [r10+32]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3204 :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+; 3206 :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	rax, QWORD PTR [r10+40]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3205 :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+; 3207 :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	rax, QWORD PTR [r10+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3206 :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+; 3208 :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	rax, QWORD PTR [r10+56]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rax
@@ -1820,46 +1820,46 @@ $LN6@Add_Imp_us:
 	je	SHORT $LN7@Add_Imp_us
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3879 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3881 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [r10]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3880 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3882 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [r10+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3881 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3883 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [r10+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3882 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3884 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [r10+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
@@ -1889,24 +1889,24 @@ $LN7@Add_Imp_us:
 	je	SHORT $LN8@Add_Imp_us
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 4335 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 4337 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [r10]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 4336 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 4338 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [r10+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
@@ -1938,9 +1938,9 @@ $LN8@Add_Imp_us:
 ; 217  :         c = _ADD_UNIT(c, *up++, *vp++, wp++);
 
 	mov	rax, QWORD PTR [r10]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
@@ -1980,15 +1980,15 @@ Add_Imp_using_ADC ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ;	COMDAT Add_X_2W
 _TEXT	SEGMENT
@@ -2015,9 +2015,9 @@ Add_X_2W PROC						; COMDAT
 
 	cmp	r11, 2
 	jae	SHORT $LN2@Add_X_2W
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	rax, r10
 	mov	QWORD PTR [r9], rax
@@ -2047,9 +2047,9 @@ $LN4@Add_X_2W:
 
 	ret	0
 $LN2@Add_X_2W:
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	rax, r10
 	mov	QWORD PTR [r9], rax
@@ -2058,9 +2058,9 @@ $LN2@Add_X_2W:
 ; 136  :         c = _ADD_UNIT(c, *up++, v_hi, wp++);
 
 	mov	rax, QWORD PTR [rcx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -2068,9 +2068,9 @@ $LN2@Add_X_2W:
 ; 137  :         u_count -= 2;
 
 	lea	r8, QWORD PTR [r11-2]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -2078,9 +2078,9 @@ $LN2@Add_X_2W:
 ; 138  :         w_count -= 2;
 
 	mov	rax, QWORD PTR w_count$[rsp]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	setb	cl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -2101,11 +2101,11 @@ Add_X_2W ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ;	COMDAT Add_X_1W
 _TEXT	SEGMENT
@@ -2123,9 +2123,9 @@ Add_X_1W PROC						; COMDAT
 
 	mov	rax, QWORD PTR [rcx]
 	mov	r10, rcx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	rax, r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -2133,9 +2133,9 @@ Add_X_1W PROC						; COMDAT
 ; 98   :     --u_count;
 
 	lea	r8, QWORD PTR [rdx-1]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -2143,9 +2143,9 @@ Add_X_1W PROC						; COMDAT
 ; 99   :     --w_count;
 
 	mov	rax, QWORD PTR w_count$[rsp]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	setb	cl
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -2166,7 +2166,7 @@ Add_X_1W ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ;	COMDAT DoCarry
 _TEXT	SEGMENT
@@ -2202,9 +2202,9 @@ $LL2@DoCarry:
 ; 71   :             c = _ADD_UNIT(c, *u_ptr++, 0, w_ptr++);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, 0
@@ -2315,9 +2315,9 @@ DoCarry	ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_2WORDS_ADCX
 _TEXT	SEGMENT
@@ -2327,41 +2327,41 @@ yp$ = 24
 zp$ = 32
 _ADD_2WORDS_ADCX PROC					; COMDAT
 
-; 4377 : #ifdef _MSC_VER
-; 4378 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 4379 : #ifdef _MSC_VER
+; 4380 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 4379 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 4381 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rcx, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rcx, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 4416 : }
+; 4418 : }
 
 	ret	0
 _ADD_2WORDS_ADCX ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_2WORDS_ADC
 _TEXT	SEGMENT
@@ -2371,45 +2371,45 @@ yp$ = 24
 zp$ = 32
 _ADD_2WORDS_ADC PROC					; COMDAT
 
-; 4334 : #ifdef _MSC_VER
-; 4335 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 4336 : #ifdef _MSC_VER
+; 4337 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 4336 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 4338 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rcx, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rcx, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 4373 : }
+; 4375 : }
 
 	ret	0
 _ADD_2WORDS_ADC ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_4WORDS_ADCX
 _TEXT	SEGMENT
@@ -2419,67 +2419,67 @@ yp$ = 24
 zp$ = 32
 _ADD_4WORDS_ADCX PROC					; COMDAT
 
-; 3935 : #ifdef _MSC_VER
-; 3936 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3937 : #ifdef _MSC_VER
+; 3938 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3937 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3939 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3938 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3940 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3939 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3941 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rcx, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rcx, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3988 : }
+; 3990 : }
 
 	ret	0
 _ADD_4WORDS_ADCX ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_4WORDS_ADC
 _TEXT	SEGMENT
@@ -2489,75 +2489,75 @@ yp$ = 24
 zp$ = 32
 _ADD_4WORDS_ADC PROC					; COMDAT
 
-; 3878 : #ifdef _MSC_VER
-; 3879 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3880 : #ifdef _MSC_VER
+; 3881 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3880 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3882 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3881 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3883 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3882 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3884 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rcx, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rcx, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3931 : }
+; 3933 : }
 
 	ret	0
 _ADD_4WORDS_ADC ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_8WORDS_ADCX
 _TEXT	SEGMENT
@@ -2567,119 +2567,119 @@ yp$ = 24
 zp$ = 32
 _ADD_8WORDS_ADCX PROC					; COMDAT
 
-; 3283 : #ifdef _MSC_VER
-; 3284 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3285 : #ifdef _MSC_VER
+; 3286 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3285 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3287 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3286 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3288 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3287 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3289 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3288 :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+; 3290 :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	rax, QWORD PTR [rdx+32]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3289 :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+; 3291 :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	rax, QWORD PTR [rdx+40]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3290 :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+; 3292 :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	rax, QWORD PTR [rdx+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3291 :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+; 3293 :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	rcx, QWORD PTR [rdx+56]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rcx, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3364 : }
+; 3366 : }
 
 	ret	0
 _ADD_8WORDS_ADCX ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_8WORDS_ADC
 _TEXT	SEGMENT
@@ -2689,135 +2689,135 @@ yp$ = 24
 zp$ = 32
 _ADD_8WORDS_ADC PROC					; COMDAT
 
-; 3198 : #ifdef _MSC_VER
-; 3199 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 3200 : #ifdef _MSC_VER
+; 3201 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3200 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 3202 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3201 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 3203 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3202 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 3204 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3203 :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+; 3205 :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	rax, QWORD PTR [rdx+32]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3204 :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+; 3206 :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	rax, QWORD PTR [rdx+40]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3205 :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+; 3207 :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	rax, QWORD PTR [rdx+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3206 :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+; 3208 :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	rcx, QWORD PTR [rdx+56]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rcx, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 3279 : }
+; 3281 : }
 
 	ret	0
 _ADD_8WORDS_ADC ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_16WORDS_ADCX
 _TEXT	SEGMENT
@@ -2827,223 +2827,223 @@ yp$ = 24
 zp$ = 32
 _ADD_16WORDS_ADCX PROC					; COMDAT
 
-; 2211 : #ifdef _MSC_VER
-; 2212 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 2213 : #ifdef _MSC_VER
+; 2214 :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2213 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 2215 :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2214 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 2216 :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2215 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 2217 :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2216 :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+; 2218 :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	rax, QWORD PTR [rdx+32]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2217 :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+; 2219 :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	rax, QWORD PTR [rdx+40]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2218 :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+; 2220 :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	rax, QWORD PTR [rdx+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2219 :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+; 2221 :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	rax, QWORD PTR [rdx+56]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2220 :     c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+; 2222 :     c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	rax, QWORD PTR [rdx+64]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+64]
 	mov	QWORD PTR [r9+64], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2221 :     c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+; 2223 :     c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	rax, QWORD PTR [rdx+72]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+72]
 	mov	QWORD PTR [r9+72], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2222 :     c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+; 2224 :     c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	rax, QWORD PTR [rdx+80]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+80]
 	mov	QWORD PTR [r9+80], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2223 :     c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+; 2225 :     c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	rax, QWORD PTR [rdx+88]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+88]
 	mov	QWORD PTR [r9+88], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2224 :     c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+; 2226 :     c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	rax, QWORD PTR [rdx+96]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+96]
 	mov	QWORD PTR [r9+96], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2225 :     c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+; 2227 :     c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	rax, QWORD PTR [rdx+104]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+104]
 	mov	QWORD PTR [r9+104], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2226 :     c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+; 2228 :     c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	rax, QWORD PTR [rdx+112]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+112]
 	mov	QWORD PTR [r9+112], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2227 :     c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+; 2229 :     c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	rcx, QWORD PTR [rdx+120]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rcx, QWORD PTR [r8+120]
 	mov	QWORD PTR [r9+120], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2348 : }
+; 2350 : }
 
 	ret	0
 _ADD_16WORDS_ADCX ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_16WORDS_ADC
 _TEXT	SEGMENT
@@ -3053,255 +3053,255 @@ yp$ = 24
 zp$ = 32
 _ADD_16WORDS_ADC PROC					; COMDAT
 
-; 2070 : #ifdef _MSC_VER
-; 2071 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 2072 : #ifdef _MSC_VER
+; 2073 :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2072 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 2074 :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2073 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 2075 :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2074 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 2076 :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2075 :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+; 2077 :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	rax, QWORD PTR [rdx+32]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2076 :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+; 2078 :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	rax, QWORD PTR [rdx+40]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2077 :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+; 2079 :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	rax, QWORD PTR [rdx+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2078 :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+; 2080 :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	rax, QWORD PTR [rdx+56]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2079 :     c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
+; 2081 :     c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	rax, QWORD PTR [rdx+64]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+64]
 	mov	QWORD PTR [r9+64], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2080 :     c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
+; 2082 :     c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	rax, QWORD PTR [rdx+72]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+72]
 	mov	QWORD PTR [r9+72], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2081 :     c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
+; 2083 :     c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	rax, QWORD PTR [rdx+80]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+80]
 	mov	QWORD PTR [r9+80], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2082 :     c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
+; 2084 :     c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	rax, QWORD PTR [rdx+88]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+88]
 	mov	QWORD PTR [r9+88], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2083 :     c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
+; 2085 :     c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	rax, QWORD PTR [rdx+96]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+96]
 	mov	QWORD PTR [r9+96], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2084 :     c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
+; 2086 :     c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	rax, QWORD PTR [rdx+104]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+104]
 	mov	QWORD PTR [r9+104], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2085 :     c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
+; 2087 :     c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	rax, QWORD PTR [rdx+112]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+112]
 	mov	QWORD PTR [r9+112], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2086 :     c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
+; 2088 :     c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	rcx, QWORD PTR [rdx+120]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rcx, QWORD PTR [r8+120]
 	mov	QWORD PTR [r9+120], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 2207 : }
+; 2209 : }
 
 	ret	0
 _ADD_16WORDS_ADC ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_32WORDS_ADCX
 _TEXT	SEGMENT
@@ -3311,431 +3311,431 @@ yp$ = 24
 zp$ = 32
 _ADD_32WORDS_ADCX PROC					; COMDAT
 
-; 299  : #ifdef _MSC_VER
-; 300  :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
+; 301  : #ifdef _MSC_VER
+; 302  :     c = _ADDX_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 301  :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
+; 303  :     c = _ADDX_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 302  :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
+; 304  :     c = _ADDX_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 303  :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
+; 305  :     c = _ADDX_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 304  :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
+; 306  :     c = _ADDX_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	rax, QWORD PTR [rdx+32]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 305  :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
+; 307  :     c = _ADDX_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	rax, QWORD PTR [rdx+40]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 306  :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
+; 308  :     c = _ADDX_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	rax, QWORD PTR [rdx+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 307  :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
+; 309  :     c = _ADDX_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	rax, QWORD PTR [rdx+56]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 308  :     c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
+; 310  :     c = _ADDX_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	rax, QWORD PTR [rdx+64]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+64]
 	mov	QWORD PTR [r9+64], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 309  :     c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
+; 311  :     c = _ADDX_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	rax, QWORD PTR [rdx+72]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+72]
 	mov	QWORD PTR [r9+72], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 310  :     c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
+; 312  :     c = _ADDX_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	rax, QWORD PTR [rdx+80]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+80]
 	mov	QWORD PTR [r9+80], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 311  :     c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
+; 313  :     c = _ADDX_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	rax, QWORD PTR [rdx+88]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+88]
 	mov	QWORD PTR [r9+88], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 312  :     c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
+; 314  :     c = _ADDX_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	rax, QWORD PTR [rdx+96]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+96]
 	mov	QWORD PTR [r9+96], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 313  :     c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
+; 315  :     c = _ADDX_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	rax, QWORD PTR [rdx+104]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+104]
 	mov	QWORD PTR [r9+104], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 314  :     c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
+; 316  :     c = _ADDX_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	rax, QWORD PTR [rdx+112]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+112]
 	mov	QWORD PTR [r9+112], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 315  :     c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
+; 317  :     c = _ADDX_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	rax, QWORD PTR [rdx+120]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+120]
 	mov	QWORD PTR [r9+120], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 316  :     c = _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
+; 318  :     c = _ADDX_UNIT(c, xp[16], yp[16], &zp[16]);
 
 	mov	rax, QWORD PTR [rdx+128]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+128]
 	mov	QWORD PTR [r9+128], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 317  :     c = _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
+; 319  :     c = _ADDX_UNIT(c, xp[17], yp[17], &zp[17]);
 
 	mov	rax, QWORD PTR [rdx+136]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+136]
 	mov	QWORD PTR [r9+136], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 318  :     c = _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
+; 320  :     c = _ADDX_UNIT(c, xp[18], yp[18], &zp[18]);
 
 	mov	rax, QWORD PTR [rdx+144]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+144]
 	mov	QWORD PTR [r9+144], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 319  :     c = _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
+; 321  :     c = _ADDX_UNIT(c, xp[19], yp[19], &zp[19]);
 
 	mov	rax, QWORD PTR [rdx+152]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+152]
 	mov	QWORD PTR [r9+152], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 320  :     c = _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
+; 322  :     c = _ADDX_UNIT(c, xp[20], yp[20], &zp[20]);
 
 	mov	rax, QWORD PTR [rdx+160]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+160]
 	mov	QWORD PTR [r9+160], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 321  :     c = _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
+; 323  :     c = _ADDX_UNIT(c, xp[21], yp[21], &zp[21]);
 
 	mov	rax, QWORD PTR [rdx+168]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+168]
 	mov	QWORD PTR [r9+168], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 322  :     c = _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
+; 324  :     c = _ADDX_UNIT(c, xp[22], yp[22], &zp[22]);
 
 	mov	rax, QWORD PTR [rdx+176]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+176]
 	mov	QWORD PTR [r9+176], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 323  :     c = _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
+; 325  :     c = _ADDX_UNIT(c, xp[23], yp[23], &zp[23]);
 
 	mov	rax, QWORD PTR [rdx+184]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+184]
 	mov	QWORD PTR [r9+184], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 324  :     c = _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
+; 326  :     c = _ADDX_UNIT(c, xp[24], yp[24], &zp[24]);
 
 	mov	rax, QWORD PTR [rdx+192]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+192]
 	mov	QWORD PTR [r9+192], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 325  :     c = _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
+; 327  :     c = _ADDX_UNIT(c, xp[25], yp[25], &zp[25]);
 
 	mov	rax, QWORD PTR [rdx+200]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+200]
 	mov	QWORD PTR [r9+200], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 326  :     c = _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
+; 328  :     c = _ADDX_UNIT(c, xp[26], yp[26], &zp[26]);
 
 	mov	rax, QWORD PTR [rdx+208]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+208]
 	mov	QWORD PTR [r9+208], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 327  :     c = _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
+; 329  :     c = _ADDX_UNIT(c, xp[27], yp[27], &zp[27]);
 
 	mov	rax, QWORD PTR [rdx+216]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+216]
 	mov	QWORD PTR [r9+216], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 328  :     c = _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
+; 330  :     c = _ADDX_UNIT(c, xp[28], yp[28], &zp[28]);
 
 	mov	rax, QWORD PTR [rdx+224]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+224]
 	mov	QWORD PTR [r9+224], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 329  :     c = _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
+; 331  :     c = _ADDX_UNIT(c, xp[29], yp[29], &zp[29]);
 
 	mov	rax, QWORD PTR [rdx+232]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+232]
 	mov	QWORD PTR [r9+232], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 330  :     c = _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
+; 332  :     c = _ADDX_UNIT(c, xp[30], yp[30], &zp[30]);
 
 	mov	rax, QWORD PTR [rdx+240]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rax, QWORD PTR [r8+240]
 	mov	QWORD PTR [r9+240], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 331  :     c = _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
+; 333  :     c = _ADDX_UNIT(c, xp[31], yp[31], &zp[31]);
 
 	mov	rcx, QWORD PTR [rdx+248]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	adcx	rcx, QWORD PTR [r8+248]
 	mov	QWORD PTR [r9+248], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 548  : }
+; 550  : }
 
 	ret	0
 _ADD_32WORDS_ADCX ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 ;	COMDAT _ADD_32WORDS_ADC
 _TEXT	SEGMENT
@@ -3745,466 +3745,466 @@ yp$ = 24
 zp$ = 32
 _ADD_32WORDS_ADC PROC					; COMDAT
 
-; 46   : #ifdef _MSC_VER
-; 47   :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
+; 48   : #ifdef _MSC_VER
+; 49   :     c = _ADD_UNIT(c, xp[0], yp[0], &zp[0]);
 
 	mov	rax, QWORD PTR [rdx]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rax, QWORD PTR [r8]
 	mov	QWORD PTR [r9], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 48   :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
+; 50   :     c = _ADD_UNIT(c, xp[1], yp[1], &zp[1]);
 
 	mov	rax, QWORD PTR [rdx+8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+8]
 	mov	QWORD PTR [r9+8], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 49   :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
+; 51   :     c = _ADD_UNIT(c, xp[2], yp[2], &zp[2]);
 
 	mov	rax, QWORD PTR [rdx+16]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+16]
 	mov	QWORD PTR [r9+16], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 50   :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
+; 52   :     c = _ADD_UNIT(c, xp[3], yp[3], &zp[3]);
 
 	mov	rax, QWORD PTR [rdx+24]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+24]
 	mov	QWORD PTR [r9+24], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 51   :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
+; 53   :     c = _ADD_UNIT(c, xp[4], yp[4], &zp[4]);
 
 	mov	rax, QWORD PTR [rdx+32]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+32]
 	mov	QWORD PTR [r9+32], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 52   :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
+; 54   :     c = _ADD_UNIT(c, xp[5], yp[5], &zp[5]);
 
 	mov	rax, QWORD PTR [rdx+40]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+40]
 	mov	QWORD PTR [r9+40], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 53   :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
+; 55   :     c = _ADD_UNIT(c, xp[6], yp[6], &zp[6]);
 
 	mov	rax, QWORD PTR [rdx+48]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+48]
 	mov	QWORD PTR [r9+48], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 54   :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
+; 56   :     c = _ADD_UNIT(c, xp[7], yp[7], &zp[7]);
 
 	mov	rax, QWORD PTR [rdx+56]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+56]
 	mov	QWORD PTR [r9+56], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 55   :     c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
+; 57   :     c = _ADD_UNIT(c, xp[8], yp[8], &zp[8]);
 
 	mov	rax, QWORD PTR [rdx+64]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+64]
 	mov	QWORD PTR [r9+64], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 56   :     c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
+; 58   :     c = _ADD_UNIT(c, xp[9], yp[9], &zp[9]);
 
 	mov	rax, QWORD PTR [rdx+72]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+72]
 	mov	QWORD PTR [r9+72], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 57   :     c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
+; 59   :     c = _ADD_UNIT(c, xp[10], yp[10], &zp[10]);
 
 	mov	rax, QWORD PTR [rdx+80]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+80]
 	mov	QWORD PTR [r9+80], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 58   :     c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
+; 60   :     c = _ADD_UNIT(c, xp[11], yp[11], &zp[11]);
 
 	mov	rax, QWORD PTR [rdx+88]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+88]
 	mov	QWORD PTR [r9+88], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 59   :     c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
+; 61   :     c = _ADD_UNIT(c, xp[12], yp[12], &zp[12]);
 
 	mov	rax, QWORD PTR [rdx+96]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+96]
 	mov	QWORD PTR [r9+96], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 60   :     c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
+; 62   :     c = _ADD_UNIT(c, xp[13], yp[13], &zp[13]);
 
 	mov	rax, QWORD PTR [rdx+104]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+104]
 	mov	QWORD PTR [r9+104], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 61   :     c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
+; 63   :     c = _ADD_UNIT(c, xp[14], yp[14], &zp[14]);
 
 	mov	rax, QWORD PTR [rdx+112]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+112]
 	mov	QWORD PTR [r9+112], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 62   :     c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
+; 64   :     c = _ADD_UNIT(c, xp[15], yp[15], &zp[15]);
 
 	mov	rax, QWORD PTR [rdx+120]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+120]
 	mov	QWORD PTR [r9+120], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 63   :     c = _ADD_UNIT(c, xp[16], yp[16], &zp[16]);
+; 65   :     c = _ADD_UNIT(c, xp[16], yp[16], &zp[16]);
 
 	mov	rax, QWORD PTR [rdx+128]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+128]
 	mov	QWORD PTR [r9+128], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 64   :     c = _ADD_UNIT(c, xp[17], yp[17], &zp[17]);
+; 66   :     c = _ADD_UNIT(c, xp[17], yp[17], &zp[17]);
 
 	mov	rax, QWORD PTR [rdx+136]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+136]
 	mov	QWORD PTR [r9+136], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 65   :     c = _ADD_UNIT(c, xp[18], yp[18], &zp[18]);
+; 67   :     c = _ADD_UNIT(c, xp[18], yp[18], &zp[18]);
 
 	mov	rax, QWORD PTR [rdx+144]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+144]
 	mov	QWORD PTR [r9+144], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 66   :     c = _ADD_UNIT(c, xp[19], yp[19], &zp[19]);
+; 68   :     c = _ADD_UNIT(c, xp[19], yp[19], &zp[19]);
 
 	mov	rax, QWORD PTR [rdx+152]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+152]
 	mov	QWORD PTR [r9+152], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 67   :     c = _ADD_UNIT(c, xp[20], yp[20], &zp[20]);
+; 69   :     c = _ADD_UNIT(c, xp[20], yp[20], &zp[20]);
 
 	mov	rax, QWORD PTR [rdx+160]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+160]
 	mov	QWORD PTR [r9+160], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 68   :     c = _ADD_UNIT(c, xp[21], yp[21], &zp[21]);
+; 70   :     c = _ADD_UNIT(c, xp[21], yp[21], &zp[21]);
 
 	mov	rax, QWORD PTR [rdx+168]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+168]
 	mov	QWORD PTR [r9+168], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 69   :     c = _ADD_UNIT(c, xp[22], yp[22], &zp[22]);
+; 71   :     c = _ADD_UNIT(c, xp[22], yp[22], &zp[22]);
 
 	mov	rax, QWORD PTR [rdx+176]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+176]
 	mov	QWORD PTR [r9+176], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 70   :     c = _ADD_UNIT(c, xp[23], yp[23], &zp[23]);
+; 72   :     c = _ADD_UNIT(c, xp[23], yp[23], &zp[23]);
 
 	mov	rax, QWORD PTR [rdx+184]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+184]
 	mov	QWORD PTR [r9+184], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 71   :     c = _ADD_UNIT(c, xp[24], yp[24], &zp[24]);
+; 73   :     c = _ADD_UNIT(c, xp[24], yp[24], &zp[24]);
 
 	mov	rax, QWORD PTR [rdx+192]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+192]
 	mov	QWORD PTR [r9+192], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 72   :     c = _ADD_UNIT(c, xp[25], yp[25], &zp[25]);
+; 74   :     c = _ADD_UNIT(c, xp[25], yp[25], &zp[25]);
 
 	mov	rax, QWORD PTR [rdx+200]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+200]
 	mov	QWORD PTR [r9+200], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 73   :     c = _ADD_UNIT(c, xp[26], yp[26], &zp[26]);
+; 75   :     c = _ADD_UNIT(c, xp[26], yp[26], &zp[26]);
 
 	mov	rax, QWORD PTR [rdx+208]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+208]
 	mov	QWORD PTR [r9+208], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 74   :     c = _ADD_UNIT(c, xp[27], yp[27], &zp[27]);
+; 76   :     c = _ADD_UNIT(c, xp[27], yp[27], &zp[27]);
 
 	mov	rax, QWORD PTR [rdx+216]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+216]
 	mov	QWORD PTR [r9+216], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 75   :     c = _ADD_UNIT(c, xp[28], yp[28], &zp[28]);
+; 77   :     c = _ADD_UNIT(c, xp[28], yp[28], &zp[28]);
 
 	mov	rax, QWORD PTR [rdx+224]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+224]
 	mov	QWORD PTR [r9+224], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 76   :     c = _ADD_UNIT(c, xp[29], yp[29], &zp[29]);
+; 78   :     c = _ADD_UNIT(c, xp[29], yp[29], &zp[29]);
 
 	mov	rax, QWORD PTR [rdx+232]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+232]
 	mov	QWORD PTR [r9+232], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 77   :     c = _ADD_UNIT(c, xp[30], yp[30], &zp[30]);
+; 79   :     c = _ADD_UNIT(c, xp[30], yp[30], &zp[30]);
 
 	mov	rax, QWORD PTR [rdx+240]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rax, QWORD PTR [r8+240]
 	mov	QWORD PTR [r9+240], rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 78   :     c = _ADD_UNIT(c, xp[31], yp[31], &zp[31]);
+; 80   :     c = _ADD_UNIT(c, xp[31], yp[31], &zp[31]);
 
 	mov	rcx, QWORD PTR [rdx+248]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	adc	rcx, QWORD PTR [r8+248]
 	mov	QWORD PTR [r9+248], rcx
 	setb	al
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\autogenerated_inline_func.h
 
-; 295  : }
+; 297  : }
 
 	ret	0
 _ADD_32WORDS_ADC ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _LZCNT_ALT_UNIT
 _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_UNIT PROC					; COMDAT
 
-; 916  :     if (x == 0)
+; 630  :         if (x == 0)
 
 	test	rcx, rcx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 917  :         return (sizeof(x) * 8);
+; 631  :             return (sizeof(x) * 8);
 
 	mov	eax, 64					; 00000040H
 
-; 941  : }
+; 655  :     }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 918  : #ifdef _M_IX86
-; 919  :     _UINT32_T pos;
-; 920  : #ifdef _MSC_VER
-; 921  :     _BitScanReverse(&pos, x);
-; 922  : #elif defined(__GNUC__)
-; 923  :     __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
-; 924  : #else
-; 925  : #error unknown compiler
-; 926  : #endif
-; 927  : #elif defined(_M_X64)
-; 928  : #ifdef _MSC_VER
-; 929  :     _UINT32_T pos;
-; 930  :     _BitScanReverse64(&pos, x);
+; 632  : #ifdef _M_IX86
+; 633  :         _UINT32_T pos;
+; 634  : #ifdef _MSC_VER
+; 635  :         _BitScanReverse(&pos, x);
+; 636  : #elif defined(__GNUC__)
+; 637  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 638  : #else
+; 639  : #error unknown compiler
+; 640  : #endif
+; 641  : #elif defined(_M_X64)
+; 642  : #ifdef _MSC_VER
+; 643  :         _UINT32_T pos;
+; 644  :         _BitScanReverse64(&pos, x);
 
 	bsr	rcx, rcx
 
-; 931  : #elif defined(__GNUC__)
-; 932  :     _UINT64_T pos;
-; 933  :     __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
-; 934  : #else
-; 935  : #error unknown compiler
-; 936  : #endif
-; 937  : #else
-; 938  : #error unknown platform
-; 939  : #endif
-; 940  :     return (sizeof(x) * 8 - 1 - pos);
+; 645  : #elif defined(__GNUC__)
+; 646  :         _UINT64_T pos;
+; 647  :         __asm__("bsrq %1, %0" : "=r"(pos) : "rm"(x));
+; 648  : #else
+; 649  : #error unknown compiler
+; 650  : #endif
+; 651  : #else
+; 652  : #error unknown platform
+; 653  : #endif
+; 654  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 63					; 0000003fH
 	sub	eax, ecx
 
-; 941  : }
+; 655  :     }
 
 	ret	0
 _LZCNT_ALT_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _LZCNT_ALT_32
 _TEXT	SEGMENT
 x$ = 8
 _LZCNT_ALT_32 PROC					; COMDAT
 
-; 883  :     if (x == 0)
+; 597  :         if (x == 0)
 
 	test	ecx, ecx
 	jne	SHORT $LN2@LZCNT_ALT_
 
-; 884  :         return (sizeof(x) * 8);
+; 598  :             return (sizeof(x) * 8);
 
 	mov	eax, 32					; 00000020H
 
-; 894  : }
+; 608  :     }
 
 	ret	0
 $LN2@LZCNT_ALT_:
 
-; 885  :     _UINT32_T pos;
-; 886  : #ifdef _MSC_VER
-; 887  :     _BitScanReverse(&pos, x);
+; 599  :         _UINT32_T pos;
+; 600  : #ifdef _MSC_VER
+; 601  :         _BitScanReverse(&pos, x);
 
 	bsr	ecx, ecx
 
-; 888  : #elif defined(__GNUC__)
-; 889  :     __asm__( "bsrl %1, %0" : "=r"(pos) : "rm"(x) );
-; 890  : #else
-; 891  : #error unknown compiler
-; 892  : #endif
-; 893  :     return (sizeof(x) * 8 - 1 - pos);
+; 602  : #elif defined(__GNUC__)
+; 603  :         __asm__("bsrl %1, %0" : "=r"(pos) : "rm"(x));
+; 604  : #else
+; 605  : #error unknown compiler
+; 606  : #endif
+; 607  :         return (sizeof(x) * 8 - 1 - pos);
 
 	mov	eax, 31
 	sub	eax, ecx
 
-; 894  : }
+; 608  :     }
 
 	ret	0
 _LZCNT_ALT_32 ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _ADDX_UNIT
 _TEXT	SEGMENT
 carry$ = 8
@@ -4213,26 +4213,26 @@ v$ = 24
 w$ = 32
 _ADDX_UNIT PROC						; COMDAT
 
-; 528  : #ifdef _M_IX86
-; 529  :     return (_addcarryx_u32(carry, u, v, w));
-; 530  : #elif defined(_M_X64)
-; 531  :     return (_addcarryx_u64(carry, u, v, w));
+; 242  : #ifdef _M_IX86
+; 243  :         return (_addcarryx_u32(carry, u, v, w));
+; 244  : #elif defined(_M_X64)
+; 245  :         return (_addcarryx_u64(carry, u, v, w));
 
 	add	cl, -1
 	adcx	rdx, r8
 	mov	QWORD PTR [r9], rdx
 	setb	al
 
-; 532  : #else
-; 533  : #error unknown platform
-; 534  : #endif
-; 535  : }
+; 246  : #else
+; 247  : #error unknown platform
+; 248  : #endif
+; 249  :     }
 
 	ret	0
 _ADDX_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _ADD_UNIT
 _TEXT	SEGMENT
 carry$ = 8
@@ -4241,71 +4241,71 @@ v$ = 24
 w$ = 32
 _ADD_UNIT PROC						; COMDAT
 
-; 500  : #ifdef _M_IX86
-; 501  :     return (_addcarry_u32(carry, u, v, w));
-; 502  : #elif defined(_M_X64)
-; 503  :     return (_addcarry_u64(carry, u, v, w));
+; 214  : #ifdef _M_IX86
+; 215  :         return (_addcarry_u32(carry, u, v, w));
+; 216  : #elif defined(_M_X64)
+; 217  :         return (_addcarry_u64(carry, u, v, w));
 
 	add	cl, -1
 	adc	rdx, r8
 	mov	QWORD PTR [r9], rdx
 	setb	al
 
-; 504  : #else
-; 505  : #error unknown platform
-; 506  : #endif
-; 507  : }
+; 218  : #else
+; 219  : #error unknown platform
+; 220  : #endif
+; 221  :     }
 
 	ret	0
 _ADD_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _MAXIMUM_UNIT
 _TEXT	SEGMENT
 x$ = 8
 y$ = 16
 _MAXIMUM_UNIT PROC					; COMDAT
 
-; 490  :     return (x >= y ? x : y);
+; 204  :         return (x >= y ? x : y);
 
 	cmp	rcx, rdx
 	cmovae	rdx, rcx
 	mov	rax, rdx
 
-; 491  : }
+; 205  :     }
 
 	ret	0
 _MAXIMUM_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _FROMDWORDTOWORD
 _TEXT	SEGMENT
 value$ = 8
 result_high$ = 16
 _FROMDWORDTOWORD PROC					; COMDAT
 
-; 469  :     *result_high = (_UINT32_T)(value >> 32);
+; 183  :         *result_high = (_UINT32_T)(value >> 32);
 
 	mov	rax, rcx
 	shr	rax, 32					; 00000020H
 	mov	DWORD PTR [rdx], eax
 
-; 470  :     return ((_UINT32_T)value);
+; 184  :         return ((_UINT32_T)value);
 
 	mov	eax, ecx
 
-; 471  : }
+; 185  :     }
 
 	ret	0
 _FROMDWORDTOWORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
 ;	COMDAT PMC_Add_X_X
 _TEXT	SEGMENT
@@ -4477,9 +4477,9 @@ $LN12@PMC_Add_X_:
 ; 596  :             if ((result = AllocateNumber(&nw, w_bit_count, &w_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR w_light_check_code$1[rsp]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 490  :     return (x >= y ? x : y);
+; 204  :         return (x >= y ? x : y);
 
 	cmp	QWORD PTR [rdi+16], rdx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c
@@ -4487,9 +4487,9 @@ $LN12@PMC_Add_X_:
 ; 596  :             if ((result = AllocateNumber(&nw, w_bit_count, &w_light_check_code)) != PMC_STATUS_OK)
 
 	lea	rcx, QWORD PTR nw$[rsp]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 490  :     return (x >= y ? x : y);
+; 204  :         return (x >= y ? x : y);
 
 	cmovae	rdx, QWORD PTR [rdi+16]
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_add.c

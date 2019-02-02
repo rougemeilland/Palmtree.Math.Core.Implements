@@ -309,75 +309,75 @@ $unwind$RightShift_Imp_DIV DD 060d01H
 	DD	0700be00dH
 xdata	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _ZERO_MEMORY_UNIT_DIV
 _TEXT	SEGMENT
 d$ = 8
 count$ = 16
 _ZERO_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 413  : {
+; 127  :     {
 
 	mov	QWORD PTR [rsp+8], rdi
 	mov	rdi, rcx
 
-; 414  : #ifdef _M_IX86
-; 415  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 416  : #elif defined(_M_X64)
-; 417  : #ifdef _MSC_VER
-; 418  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 128  : #ifdef _M_IX86
+; 129  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 130  : #elif defined(_M_X64)
+; 131  : #ifdef _MSC_VER
+; 132  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
 
 	xor	eax, eax
 	mov	ecx, edx
 	rep stosd
 
-; 419  : #elif defined(__GNUC__)
-; 420  :     __stosq(d, 0, count);
-; 421  : #else
-; 422  : #error unknown compiler
-; 423  : #endif
-; 424  : #else
-; 425  : #error unknown platform
-; 426  : #endif
-; 427  : }
+; 133  : #elif defined(__GNUC__)
+; 134  :         __stosq(d, 0, count);
+; 135  : #else
+; 136  : #error unknown compiler
+; 137  : #endif
+; 138  : #else
+; 139  : #error unknown platform
+; 140  : #endif
+; 141  :     }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
 _ZERO_MEMORY_UNIT_DIV ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _ZERO_MEMORY_UNIT
 _TEXT	SEGMENT
 d$ = 8
 count$ = 16
 _ZERO_MEMORY_UNIT PROC					; COMDAT
 
-; 402  : {
+; 116  :     {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 403  : #ifdef _M_IX86
-; 404  :     __stosd((unsigned long*)d, 0, (unsigned long)count);
-; 405  : #elif defined(_M_X64)
-; 406  :     __stosq(d, 0, count);
+; 117  : #ifdef _M_IX86
+; 118  :         __stosd((unsigned long*)d, 0, (unsigned long)count);
+; 119  : #elif defined(_M_X64)
+; 120  :         __stosq(d, 0, count);
 
 	mov	rdi, rcx
 	xor	eax, eax
 	mov	rcx, rdx
 	rep stosq
 
-; 407  : #else
-; 408  : #error unknown platform
-; 409  : #endif
-; 410  : }
+; 121  : #else
+; 122  : #error unknown platform
+; 123  : #endif
+; 124  :     }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
 _ZERO_MEMORY_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _COPY_MEMORY_UNIT_DIV
 _TEXT	SEGMENT
 d$ = 8
@@ -385,31 +385,31 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 
-; 363  : {
+; 77   :     {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 	mov	rdi, rcx
 
-; 364  : #ifdef _M_IX86
-; 365  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 366  : #elif defined(_M_X64)
-; 367  : #ifdef _MSC_VER
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 78   : #ifdef _M_IX86
+; 79   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 80   : #elif defined(_M_X64)
+; 81   : #ifdef _MSC_VER
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	rsi, rdx
 	mov	ecx, r8d
 	rep movsd
 
-; 369  : #elif defined(__GNUC__)
-; 370  :     __movsq(d, s, count);
-; 371  : #else
-; 372  : #error unknown compiler
-; 373  : #endif
-; 374  : #else
-; 375  : #error unknown platform
-; 376  : #endif
-; 377  : }
+; 83   : #elif defined(__GNUC__)
+; 84   :         __movsq(d, s, count);
+; 85   : #else
+; 86   : #error unknown compiler
+; 87   : #endif
+; 88   : #else
+; 89   : #error unknown platform
+; 90   : #endif
+; 91   :     }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -417,7 +417,7 @@ _COPY_MEMORY_UNIT_DIV PROC				; COMDAT
 _COPY_MEMORY_UNIT_DIV ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _COPY_MEMORY_UNIT
 _TEXT	SEGMENT
 d$ = 8
@@ -425,25 +425,25 @@ s$ = 16
 count$ = 24
 _COPY_MEMORY_UNIT PROC					; COMDAT
 
-; 352  : {
+; 66   :     {
 
 	mov	QWORD PTR [rsp+8], rsi
 	mov	QWORD PTR [rsp+16], rdi
 
-; 353  : #ifdef _M_IX86
-; 354  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
-; 355  : #elif defined(_M_X64)
-; 356  :     __movsq(d, s, count);
+; 67   : #ifdef _M_IX86
+; 68   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 69   : #elif defined(_M_X64)
+; 70   :         __movsq(d, s, count);
 
 	mov	rdi, rcx
 	mov	rsi, rdx
 	mov	rcx, r8
 	rep movsq
 
-; 357  : #else
-; 358  : #error unknown platform
-; 359  : #endif
-; 360  : }
+; 71   : #else
+; 72   : #error unknown platform
+; 73   : #endif
+; 74   :     }
 
 	mov	rsi, QWORD PTR [rsp+8]
 	mov	rdi, QWORD PTR [rsp+16]
@@ -461,7 +461,7 @@ o$ = 80
 no_light_check_code$1 = 88
 PMC_LeftShift_X_L PROC					; COMDAT
 
-; 720  : {
+; 721  : {
 
 $LN18:
 	mov	QWORD PTR [rsp+16], rbx
@@ -472,53 +472,53 @@ $LN18:
 	mov	rsi, rdx
 	mov	rbx, rcx
 
-; 721  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
-; 722  :     {
-; 723  :         // _UINT64_T が 1 ワードで表現しきれない処理系には対応しない
-; 724  :         return (PMC_STATUS_NOT_SUPPORTED);
-; 725  :     }
-; 726  :     if (p == NULL)
+; 722  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
+; 723  :     {
+; 724  :         // _UINT64_T が 1 ワードで表現しきれない処理系には対応しない
+; 725  :         return (PMC_STATUS_NOT_SUPPORTED);
+; 726  :     }
+; 727  :     if (p == NULL)
 
 	test	rcx, rcx
 	je	$LN14@PMC_LeftSh
 
-; 727  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 728  :     if (o == NULL)
+; 728  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 729  :     if (o == NULL)
 
 	test	r8, r8
 	je	$LN14@PMC_LeftSh
 
-; 730  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-; 731  :     NUMBER_HEADER* no;
-; 732  :     PMC_STATUS_CODE result;
-; 733  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 731  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 732  :     NUMBER_HEADER* no;
+; 733  :     PMC_STATUS_CODE result;
+; 734  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_LeftSh
 
-; 734  :         return (result);
-; 735  :     if (np->IS_ZERO)
+; 735  :         return (result);
+; 736  :     if (np->IS_ZERO)
 
 	test	BYTE PTR [rbx+40], 2
 	je	SHORT $LN6@PMC_LeftSh
 
-; 736  :         *o = &number_zero;
+; 737  :         *o = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 
-; 754  :         *o = no;
-; 755  :     }
-; 756  : #ifdef _DEBUG
-; 757  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 758  :         return (result);
-; 759  : #endif
-; 760  :     return (PMC_STATUS_OK);
+; 755  :         *o = no;
+; 756  :     }
+; 757  : #ifdef _DEBUG
+; 758  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 759  :         return (result);
+; 760  : #endif
+; 761  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 761  : }
+; 762  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -527,13 +527,13 @@ $LN18:
 	ret	0
 $LN6@PMC_LeftSh:
 
-; 737  :     else if (n == 0)
+; 738  :     else if (n == 0)
 
 	test	rsi, rsi
 	jne	SHORT $LN8@PMC_LeftSh
 
-; 738  :     {
-; 739  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
+; 739  :     {
+; 740  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR no$[rsp]
 	mov	rcx, rbx
@@ -541,19 +541,19 @@ $LN6@PMC_LeftSh:
 	test	eax, eax
 	jne	$LN1@PMC_LeftSh
 
-; 754  :         *o = no;
-; 755  :     }
-; 756  : #ifdef _DEBUG
-; 757  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 758  :         return (result);
-; 759  : #endif
-; 760  :     return (PMC_STATUS_OK);
+; 755  :         *o = no;
+; 756  :     }
+; 757  : #ifdef _DEBUG
+; 758  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 759  :         return (result);
+; 760  : #endif
+; 761  :     return (PMC_STATUS_OK);
 
 	mov	rax, QWORD PTR no$[rsp]
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 761  : }
+; 762  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -562,18 +562,18 @@ $LN6@PMC_LeftSh:
 	ret	0
 $LN8@PMC_LeftSh:
 
-; 740  :             return (result);
-; 741  :         *o = no;
-; 742  :     }
-; 743  :     else
-; 744  :     {
-; 745  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
-; 746  :         __UNIT_TYPE o_bit_count = p_bit_count + (__UNIT_TYPE)n;
+; 741  :             return (result);
+; 742  :         *o = no;
+; 743  :     }
+; 744  :     else
+; 745  :     {
+; 746  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
+; 747  :         __UNIT_TYPE o_bit_count = p_bit_count + (__UNIT_TYPE)n;
 
 	mov	rdx, QWORD PTR [rbx+16]
 
-; 747  :         __UNIT_TYPE no_light_check_code;
-; 748  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+; 748  :         __UNIT_TYPE no_light_check_code;
+; 749  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR no_light_check_code$1[rsp]
 	add	rdx, rsi
@@ -582,8 +582,8 @@ $LN8@PMC_LeftSh:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_LeftSh
 
-; 749  :             return (result);
-; 750  :         LeftShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, (__UNIT_TYPE)n, no->BLOCK, FALSE);
+; 750  :             return (result);
+; 751  :         LeftShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, (__UNIT_TYPE)n, no->BLOCK, FALSE);
 
 	mov	r9, QWORD PTR no$[rsp]
 	mov	r8, rsi
@@ -593,7 +593,7 @@ $LN8@PMC_LeftSh:
 	mov	r9, QWORD PTR [r9+56]
 	call	LeftShift_Imp
 
-; 751  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+; 752  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR no$[rsp]
 	mov	rdx, QWORD PTR no_light_check_code$1[rsp]
@@ -602,25 +602,25 @@ $LN8@PMC_LeftSh:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_LeftSh
 
-; 752  :             return (result);
-; 753  :         CommitNumber(no);
+; 753  :             return (result);
+; 754  :         CommitNumber(no);
 
 	mov	rcx, QWORD PTR no$[rsp]
 	call	CommitNumber
 
-; 754  :         *o = no;
-; 755  :     }
-; 756  : #ifdef _DEBUG
-; 757  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 758  :         return (result);
-; 759  : #endif
-; 760  :     return (PMC_STATUS_OK);
+; 755  :         *o = no;
+; 756  :     }
+; 757  : #ifdef _DEBUG
+; 758  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 759  :         return (result);
+; 760  : #endif
+; 761  :     return (PMC_STATUS_OK);
 
 	mov	rax, QWORD PTR no$[rsp]
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 761  : }
+; 762  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -629,12 +629,12 @@ $LN8@PMC_LeftSh:
 	ret	0
 $LN14@PMC_LeftSh:
 
-; 729  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 730  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN1@PMC_LeftSh:
 
-; 761  : }
+; 762  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -654,7 +654,7 @@ o$ = 80
 no_light_check_code$1 = 88
 PMC_LeftShift_X_I PROC					; COMDAT
 
-; 676  : {
+; 677  : {
 
 $LN18:
 	mov	QWORD PTR [rsp+16], rbx
@@ -665,53 +665,53 @@ $LN18:
 	mov	rdi, r8
 	mov	rbx, rcx
 
-; 677  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
-; 678  :     {
-; 679  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 680  :         return (PMC_STATUS_NOT_SUPPORTED);
-; 681  :     }
-; 682  :     if (p == NULL)
+; 678  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
+; 679  :     {
+; 680  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 681  :         return (PMC_STATUS_NOT_SUPPORTED);
+; 682  :     }
+; 683  :     if (p == NULL)
 
 	test	rcx, rcx
 	je	$LN14@PMC_LeftSh
 
-; 683  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 684  :     if (o == NULL)
+; 684  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 685  :     if (o == NULL)
 
 	test	r8, r8
 	je	$LN14@PMC_LeftSh
 
-; 686  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-; 687  :     NUMBER_HEADER* no;
-; 688  :     PMC_STATUS_CODE result;
-; 689  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 687  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 688  :     NUMBER_HEADER* no;
+; 689  :     PMC_STATUS_CODE result;
+; 690  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_LeftSh
 
-; 690  :         return (result);
-; 691  :     if (np->IS_ZERO)
+; 691  :         return (result);
+; 692  :     if (np->IS_ZERO)
 
 	test	BYTE PTR [rbx+40], 2
 	je	SHORT $LN6@PMC_LeftSh
 
-; 692  :         *o = &number_zero;
+; 693  :         *o = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 
-; 710  :         *o = no;
-; 711  :     }
-; 712  : #ifdef _DEBUG
-; 713  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 714  :         return (result);
-; 715  : #endif
-; 716  :     return (PMC_STATUS_OK);
+; 711  :         *o = no;
+; 712  :     }
+; 713  : #ifdef _DEBUG
+; 714  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 715  :         return (result);
+; 716  : #endif
+; 717  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 717  : }
+; 718  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -720,13 +720,13 @@ $LN18:
 	ret	0
 $LN6@PMC_LeftSh:
 
-; 693  :     else if (n == 0)
+; 694  :     else if (n == 0)
 
 	test	esi, esi
 	jne	SHORT $LN8@PMC_LeftSh
 
-; 694  :     {
-; 695  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
+; 695  :     {
+; 696  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR no$[rsp]
 	mov	rcx, rbx
@@ -734,19 +734,19 @@ $LN6@PMC_LeftSh:
 	test	eax, eax
 	jne	$LN1@PMC_LeftSh
 
-; 710  :         *o = no;
-; 711  :     }
-; 712  : #ifdef _DEBUG
-; 713  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 714  :         return (result);
-; 715  : #endif
-; 716  :     return (PMC_STATUS_OK);
+; 711  :         *o = no;
+; 712  :     }
+; 713  : #ifdef _DEBUG
+; 714  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 715  :         return (result);
+; 716  : #endif
+; 717  :     return (PMC_STATUS_OK);
 
 	mov	rax, QWORD PTR no$[rsp]
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 717  : }
+; 718  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -755,18 +755,18 @@ $LN6@PMC_LeftSh:
 	ret	0
 $LN8@PMC_LeftSh:
 
-; 696  :             return (result);
-; 697  :         *o = no;
-; 698  :     }
-; 699  :     else
-; 700  :     {
-; 701  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
-; 702  :         __UNIT_TYPE o_bit_count = p_bit_count + n;
+; 697  :             return (result);
+; 698  :         *o = no;
+; 699  :     }
+; 700  :     else
+; 701  :     {
+; 702  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
+; 703  :         __UNIT_TYPE o_bit_count = p_bit_count + n;
 
 	mov	rdx, QWORD PTR [rbx+16]
 
-; 703  :         __UNIT_TYPE no_light_check_code;
-; 704  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+; 704  :         __UNIT_TYPE no_light_check_code;
+; 705  :         if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR no_light_check_code$1[rsp]
 	add	rdx, rsi
@@ -775,8 +775,8 @@ $LN8@PMC_LeftSh:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_LeftSh
 
-; 705  :             return (result);
-; 706  :         LeftShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, n, no->BLOCK, FALSE);
+; 706  :             return (result);
+; 707  :         LeftShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, n, no->BLOCK, FALSE);
 
 	mov	r9, QWORD PTR no$[rsp]
 	mov	r8, rsi
@@ -786,7 +786,7 @@ $LN8@PMC_LeftSh:
 	mov	r9, QWORD PTR [r9+56]
 	call	LeftShift_Imp
 
-; 707  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+; 708  :         if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR no$[rsp]
 	mov	rdx, QWORD PTR no_light_check_code$1[rsp]
@@ -795,25 +795,25 @@ $LN8@PMC_LeftSh:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_LeftSh
 
-; 708  :             return (result);
-; 709  :         CommitNumber(no);
+; 709  :             return (result);
+; 710  :         CommitNumber(no);
 
 	mov	rcx, QWORD PTR no$[rsp]
 	call	CommitNumber
 
-; 710  :         *o = no;
-; 711  :     }
-; 712  : #ifdef _DEBUG
-; 713  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 714  :         return (result);
-; 715  : #endif
-; 716  :     return (PMC_STATUS_OK);
+; 711  :         *o = no;
+; 712  :     }
+; 713  : #ifdef _DEBUG
+; 714  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 715  :         return (result);
+; 716  : #endif
+; 717  :     return (PMC_STATUS_OK);
 
 	mov	rax, QWORD PTR no$[rsp]
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 717  : }
+; 718  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -822,12 +822,12 @@ $LN8@PMC_LeftSh:
 	ret	0
 $LN14@PMC_LeftSh:
 
-; 685  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 686  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN1@PMC_LeftSh:
 
-; 717  : }
+; 718  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -847,7 +847,7 @@ o$ = 80
 no_light_check_code$1 = 88
 PMC_RightShift_X_L PROC					; COMDAT
 
-; 627  : {
+; 628  : {
 
 $LN20:
 	mov	QWORD PTR [rsp+16], rbx
@@ -858,45 +858,45 @@ $LN20:
 	mov	rsi, rdx
 	mov	rbx, rcx
 
-; 628  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
-; 629  :     {
-; 630  :         // _UINT64_T が 1 ワードで表現しきれない処理系には対応しない
-; 631  :         return (PMC_STATUS_NOT_SUPPORTED);
-; 632  :     }
-; 633  :     if (p == NULL)
+; 629  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
+; 630  :     {
+; 631  :         // _UINT64_T が 1 ワードで表現しきれない処理系には対応しない
+; 632  :         return (PMC_STATUS_NOT_SUPPORTED);
+; 633  :     }
+; 634  :     if (p == NULL)
 
 	test	rcx, rcx
 	je	$LN17@PMC_RightS
 
-; 634  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 635  :     if (o == NULL)
+; 635  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 636  :     if (o == NULL)
 
 	test	r8, r8
 	je	$LN17@PMC_RightS
 
-; 637  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-; 638  :     NUMBER_HEADER* no;
-; 639  :     PMC_STATUS_CODE result;
-; 640  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 638  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 639  :     NUMBER_HEADER* no;
+; 640  :     PMC_STATUS_CODE result;
+; 641  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_RightS
 
-; 641  :         return (result);
-; 642  :     if (np->IS_ZERO)
+; 642  :         return (result);
+; 643  :     if (np->IS_ZERO)
 
 	test	BYTE PTR [rbx+40], 2
 	jne	$LN16@PMC_RightS
 
-; 643  :         *o = &number_zero;
-; 644  :     else if (n == 0)
+; 644  :         *o = &number_zero;
+; 645  :     else if (n == 0)
 
 	test	rsi, rsi
 	jne	SHORT $LN8@PMC_RightS
 
-; 645  :     {
-; 646  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
+; 646  :     {
+; 647  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR no$[rsp]
 	mov	rcx, rbx
@@ -904,23 +904,23 @@ $LN20:
 	test	eax, eax
 	jne	$LN1@PMC_RightS
 
-; 647  :             return (result);
-; 648  :         *o = no;
+; 648  :             return (result);
+; 649  :         *o = no;
 
 	mov	rax, QWORD PTR no$[rsp]
 
-; 666  :         }
-; 667  :     }
-; 668  : #ifdef _DEBUG
-; 669  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 670  :         return (result);
-; 671  : #endif
-; 672  :     return (PMC_STATUS_OK);
+; 667  :         }
+; 668  :     }
+; 669  : #ifdef _DEBUG
+; 670  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 671  :         return (result);
+; 672  : #endif
+; 673  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 673  : }
+; 674  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -929,26 +929,26 @@ $LN20:
 	ret	0
 $LN8@PMC_RightS:
 
-; 649  :     }
-; 650  :     else
-; 651  :     {
-; 652  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
+; 650  :     }
+; 651  :     else
+; 652  :     {
+; 653  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 
 	mov	rdx, QWORD PTR [rbx+16]
 
-; 653  :         if (p_bit_count <= n)
+; 654  :         if (p_bit_count <= n)
 
 	cmp	rdx, rsi
 	jbe	SHORT $LN16@PMC_RightS
 
-; 655  :         else
-; 656  :         {
-; 657  :             __UNIT_TYPE o_bit_count = p_bit_count - (__UNIT_TYPE)n;
+; 656  :         else
+; 657  :         {
+; 658  :             __UNIT_TYPE o_bit_count = p_bit_count - (__UNIT_TYPE)n;
 
 	sub	rdx, rsi
 
-; 658  :             __UNIT_TYPE no_light_check_code;
-; 659  :             if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+; 659  :             __UNIT_TYPE no_light_check_code;
+; 660  :             if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR no_light_check_code$1[rsp]
 	lea	rcx, QWORD PTR no$[rsp]
@@ -956,8 +956,8 @@ $LN8@PMC_RightS:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_RightS
 
-; 660  :                 return (result);
-; 661  :             RightShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, (__UNIT_TYPE)n, no->BLOCK, FALSE);
+; 661  :                 return (result);
+; 662  :             RightShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, (__UNIT_TYPE)n, no->BLOCK, FALSE);
 
 	mov	r9, QWORD PTR no$[rsp]
 	mov	r8, rsi
@@ -967,7 +967,7 @@ $LN8@PMC_RightS:
 	mov	r9, QWORD PTR [r9+56]
 	call	RightShift_Imp
 
-; 662  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+; 663  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR no$[rsp]
 	mov	rdx, QWORD PTR no_light_check_code$1[rsp]
@@ -976,28 +976,28 @@ $LN8@PMC_RightS:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_RightS
 
-; 663  :                 return (result);
-; 664  :             CommitNumber(no);
+; 664  :                 return (result);
+; 665  :             CommitNumber(no);
 
 	mov	rcx, QWORD PTR no$[rsp]
 	call	CommitNumber
 
-; 665  :             *o = no;
+; 666  :             *o = no;
 
 	mov	rax, QWORD PTR no$[rsp]
 
-; 666  :         }
-; 667  :     }
-; 668  : #ifdef _DEBUG
-; 669  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 670  :         return (result);
-; 671  : #endif
-; 672  :     return (PMC_STATUS_OK);
+; 667  :         }
+; 668  :     }
+; 669  : #ifdef _DEBUG
+; 670  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 671  :         return (result);
+; 672  : #endif
+; 673  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 673  : }
+; 674  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -1006,22 +1006,22 @@ $LN8@PMC_RightS:
 	ret	0
 $LN16@PMC_RightS:
 
-; 654  :             *o = &number_zero;
+; 655  :             *o = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 
-; 666  :         }
-; 667  :     }
-; 668  : #ifdef _DEBUG
-; 669  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 670  :         return (result);
-; 671  : #endif
-; 672  :     return (PMC_STATUS_OK);
+; 667  :         }
+; 668  :     }
+; 669  : #ifdef _DEBUG
+; 670  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 671  :         return (result);
+; 672  : #endif
+; 673  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 673  : }
+; 674  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -1030,12 +1030,12 @@ $LN16@PMC_RightS:
 	ret	0
 $LN17@PMC_RightS:
 
-; 636  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 637  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN1@PMC_RightS:
 
-; 673  : }
+; 674  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -1055,7 +1055,7 @@ o$ = 80
 no_light_check_code$1 = 88
 PMC_RightShift_X_I PROC					; COMDAT
 
-; 578  : {
+; 579  : {
 
 $LN20:
 	mov	QWORD PTR [rsp+16], rbx
@@ -1066,45 +1066,45 @@ $LN20:
 	mov	rdi, r8
 	mov	rbx, rcx
 
-; 579  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
-; 580  :     {
-; 581  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 582  :         return (PMC_STATUS_NOT_SUPPORTED);
-; 583  :     }
-; 584  :     if (p == NULL)
+; 580  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(n) * 8)
+; 581  :     {
+; 582  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 583  :         return (PMC_STATUS_NOT_SUPPORTED);
+; 584  :     }
+; 585  :     if (p == NULL)
 
 	test	rcx, rcx
 	je	$LN17@PMC_RightS
 
-; 585  :         return (PMC_STATUS_ARGUMENT_ERROR);
-; 586  :     if (o == NULL)
+; 586  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 587  :     if (o == NULL)
 
 	test	r8, r8
 	je	$LN17@PMC_RightS
 
-; 588  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
-; 589  :     NUMBER_HEADER* no;
-; 590  :     PMC_STATUS_CODE result;
-; 591  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
+; 589  :     NUMBER_HEADER* np = (NUMBER_HEADER*)p;
+; 590  :     NUMBER_HEADER* no;
+; 591  :     PMC_STATUS_CODE result;
+; 592  :     if ((result = CheckNumber(np)) != PMC_STATUS_OK)
 
 	call	CheckNumber
 	test	eax, eax
 	jne	$LN1@PMC_RightS
 
-; 592  :         return (result);
-; 593  :     if (np->IS_ZERO)
+; 593  :         return (result);
+; 594  :     if (np->IS_ZERO)
 
 	test	BYTE PTR [rbx+40], 2
 	jne	$LN16@PMC_RightS
 
-; 594  :         *o = &number_zero;
-; 595  :     else if (n == 0)
+; 595  :         *o = &number_zero;
+; 596  :     else if (n == 0)
 
 	test	esi, esi
 	jne	SHORT $LN8@PMC_RightS
 
-; 596  :     {
-; 597  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
+; 597  :     {
+; 598  :         if ((result = DuplicateNumber(np, &no)) != PMC_STATUS_OK)
 
 	lea	rdx, QWORD PTR no$[rsp]
 	mov	rcx, rbx
@@ -1112,23 +1112,23 @@ $LN20:
 	test	eax, eax
 	jne	$LN1@PMC_RightS
 
-; 598  :             return (result);
-; 599  :         *o = no;
+; 599  :             return (result);
+; 600  :         *o = no;
 
 	mov	rax, QWORD PTR no$[rsp]
 
-; 617  :         }
-; 618  :     }
-; 619  : #ifdef _DEBUG
-; 620  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 621  :         return (result);
-; 622  : #endif
-; 623  :     return (PMC_STATUS_OK);
+; 618  :         }
+; 619  :     }
+; 620  : #ifdef _DEBUG
+; 621  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 622  :         return (result);
+; 623  : #endif
+; 624  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 624  : }
+; 625  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -1137,26 +1137,26 @@ $LN20:
 	ret	0
 $LN8@PMC_RightS:
 
-; 600  :     }
-; 601  :     else
-; 602  :     {
-; 603  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
+; 601  :     }
+; 602  :     else
+; 603  :     {
+; 604  :         __UNIT_TYPE p_bit_count = np->UNIT_BIT_COUNT;
 
 	mov	rdx, QWORD PTR [rbx+16]
 
-; 604  :         if (p_bit_count <= n)
+; 605  :         if (p_bit_count <= n)
 
 	cmp	rdx, rsi
 	jbe	SHORT $LN16@PMC_RightS
 
-; 606  :         else
-; 607  :         {
-; 608  :             __UNIT_TYPE o_bit_count = p_bit_count - n;
+; 607  :         else
+; 608  :         {
+; 609  :             __UNIT_TYPE o_bit_count = p_bit_count - n;
 
 	sub	rdx, rsi
 
-; 609  :             __UNIT_TYPE no_light_check_code;
-; 610  :             if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
+; 610  :             __UNIT_TYPE no_light_check_code;
+; 611  :             if ((result = AllocateNumber(&no, o_bit_count, &no_light_check_code)) != PMC_STATUS_OK)
 
 	lea	r8, QWORD PTR no_light_check_code$1[rsp]
 	lea	rcx, QWORD PTR no$[rsp]
@@ -1164,8 +1164,8 @@ $LN8@PMC_RightS:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_RightS
 
-; 611  :                 return (result);
-; 612  :             RightShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, n, no->BLOCK, FALSE);
+; 612  :                 return (result);
+; 613  :             RightShift_Imp(np->BLOCK, np->UNIT_WORD_COUNT, n, no->BLOCK, FALSE);
 
 	mov	r9, QWORD PTR no$[rsp]
 	mov	r8, rsi
@@ -1175,7 +1175,7 @@ $LN8@PMC_RightS:
 	mov	r9, QWORD PTR [r9+56]
 	call	RightShift_Imp
 
-; 613  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
+; 614  :             if ((result = CheckBlockLight(no->BLOCK, no_light_check_code)) != PMC_STATUS_OK)
 
 	mov	rcx, QWORD PTR no$[rsp]
 	mov	rdx, QWORD PTR no_light_check_code$1[rsp]
@@ -1184,28 +1184,28 @@ $LN8@PMC_RightS:
 	test	eax, eax
 	jne	SHORT $LN1@PMC_RightS
 
-; 614  :                 return (result);
-; 615  :             CommitNumber(no);
+; 615  :                 return (result);
+; 616  :             CommitNumber(no);
 
 	mov	rcx, QWORD PTR no$[rsp]
 	call	CommitNumber
 
-; 616  :             *o = no;
+; 617  :             *o = no;
 
 	mov	rax, QWORD PTR no$[rsp]
 
-; 617  :         }
-; 618  :     }
-; 619  : #ifdef _DEBUG
-; 620  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 621  :         return (result);
-; 622  : #endif
-; 623  :     return (PMC_STATUS_OK);
+; 618  :         }
+; 619  :     }
+; 620  : #ifdef _DEBUG
+; 621  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 622  :         return (result);
+; 623  : #endif
+; 624  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 624  : }
+; 625  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -1214,22 +1214,22 @@ $LN8@PMC_RightS:
 	ret	0
 $LN16@PMC_RightS:
 
-; 605  :             *o = &number_zero;
+; 606  :             *o = &number_zero;
 
 	lea	rax, OFFSET FLAT:number_zero
 
-; 617  :         }
-; 618  :     }
-; 619  : #ifdef _DEBUG
-; 620  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
-; 621  :         return (result);
-; 622  : #endif
-; 623  :     return (PMC_STATUS_OK);
+; 618  :         }
+; 619  :     }
+; 620  : #ifdef _DEBUG
+; 621  :     if ((result = CheckNumber(*o)) != PMC_STATUS_OK)
+; 622  :         return (result);
+; 623  : #endif
+; 624  :     return (PMC_STATUS_OK);
 
 	mov	QWORD PTR [rdi], rax
 	xor	eax, eax
 
-; 624  : }
+; 625  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -1238,12 +1238,12 @@ $LN16@PMC_RightS:
 	ret	0
 $LN17@PMC_RightS:
 
-; 587  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 588  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	mov	eax, -1
 $LN1@PMC_RightS:
 
-; 624  : }
+; 625  : }
 
 	mov	rbx, QWORD PTR [rsp+72]
 	mov	rsi, QWORD PTR [rsp+80]
@@ -1259,20 +1259,20 @@ _TEXT	SEGMENT
 feature$ = 8
 Initialize_Shift PROC					; COMDAT
 
-; 765  :     return (PMC_STATUS_OK);
+; 766  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 766  : }
+; 767  : }
 
 	ret	0
 Initialize_Shift ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 ;	COMDAT LeftShift_Imp
 _TEXT	SEGMENT
@@ -1283,7 +1283,7 @@ o$ = 40
 padding_zero$ = 48
 LeftShift_Imp PROC					; COMDAT
 
-; 308  : {
+; 309  : {
 
 $LN28:
 	mov	QWORD PTR [rsp+16], rbx
@@ -1291,53 +1291,53 @@ $LN28:
 	mov	QWORD PTR [rsp+32], rdi
 	push	r14
 
-; 309  :     __UNIT_TYPE* pp = p;
-; 310  :     __UNIT_TYPE p_count = p_word_count;
-; 311  :     __UNIT_TYPE* op = o;
-; 312  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
+; 310  :     __UNIT_TYPE* pp = p;
+; 311  :     __UNIT_TYPE p_count = p_word_count;
+; 312  :     __UNIT_TYPE* op = o;
+; 313  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
 
 	mov	rbx, r8
 	mov	r10, r8
 	shr	rbx, 6
 	mov	r14, r9
 
-; 313  :     __UNIT_TYPE n_lshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
+; 314  :     __UNIT_TYPE n_lshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
 
 	and	r10d, 63				; 0000003fH
 
-; 314  :     if (n_lshift_bit_count == 0)
+; 315  :     if (n_lshift_bit_count == 0)
 
 	jne	SHORT $LN4@LeftShift_
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 356  :     __movsq(d, s, count);
+; 70   :         __movsq(d, s, count);
 
 	mov	rsi, rcx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 
-; 317  :         _COPY_MEMORY_UNIT(op + n_word_count, pp, p_count);
+; 318  :         _COPY_MEMORY_UNIT(op + n_word_count, pp, p_count);
 
 	lea	rdi, QWORD PTR [r9+rbx*8]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 356  :     __movsq(d, s, count);
+; 70   :         __movsq(d, s, count);
 
 	mov	rcx, rdx
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 
-; 320  :     }
+; 321  :     }
 
 	jmp	$LN26@LeftShift_
 $LN4@LeftShift_:
 
-; 321  :     else
-; 322  :     {
-; 323  :         __UNIT_TYPE n_rshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_lshift_bit_count;
-; 324  :         pp += p_count - 1;
-; 325  :         op += p_count + n_word_count;
-; 326  :         p_count -= 1;
-; 327  :         __UNIT_TYPE temp = *pp;
+; 322  :     else
+; 323  :     {
+; 324  :         __UNIT_TYPE n_rshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_lshift_bit_count;
+; 325  :         pp += p_count - 1;
+; 326  :         op += p_count + n_word_count;
+; 327  :         p_count -= 1;
+; 328  :         __UNIT_TYPE temp = *pp;
 
 	mov	rsi, QWORD PTR [rcx+rdx*8-8]
 	lea	r8, QWORD PTR [rcx+rdx*8]
@@ -1348,41 +1348,41 @@ $LN4@LeftShift_:
 	sub	r9, r10
 	lea	rax, QWORD PTR [r14+rax*8]
 
-; 328  :         __UNIT_TYPE work = temp >> n_rshift_bit_count;
+; 329  :         __UNIT_TYPE work = temp >> n_rshift_bit_count;
 
 	mov	rdx, rsi
 	mov	rcx, r9
 	shr	rdx, cl
 
-; 329  :         if (work != 0)
+; 330  :         if (work != 0)
 
 	test	rdx, rdx
 	je	SHORT $LN7@LeftShift_
 
-; 330  :             *op = work;
+; 331  :             *op = work;
 
 	mov	QWORD PTR [rax], rdx
 $LN7@LeftShift_:
 
-; 331  :         --pp;
-; 332  :         --op;
-; 333  : 
-; 334  :         __UNIT_TYPE count = p_count >> 5;
+; 332  :         --pp;
+; 333  :         --op;
+; 334  : 
+; 335  :         __UNIT_TYPE count = p_count >> 5;
 
 	mov	rbp, r11
 	sub	r8, 16
 	shr	rbp, 5
 	sub	rax, 8
 
-; 335  :         while (count != 0)
+; 336  :         while (count != 0)
 
 	test	rbp, rbp
 	je	$LN3@LeftShift_
 	npad	14
 $LL2@LeftShift_:
 
-; 336  :         {
-; 337  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 337  :         {
+; 338  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rdi, QWORD PTR [r8]
 	mov	rcx, r10
@@ -1391,7 +1391,7 @@ $LL2@LeftShift_:
 	mov	rcx, r9
 	shr	rdx, cl
 
-; 338  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 339  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1402,7 +1402,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 339  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 340  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1413,7 +1413,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 340  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 341  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1424,7 +1424,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 341  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+; 342  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1435,7 +1435,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 342  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+; 343  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1446,7 +1446,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 343  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+; 344  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1457,7 +1457,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 344  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+; 345  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1468,7 +1468,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 345  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
+; 346  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1479,7 +1479,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 346  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
+; 347  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1490,7 +1490,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 347  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
+; 348  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1501,7 +1501,7 @@ $LL2@LeftShift_:
 	mov	rcx, r9
 	shr	rdx, cl
 
-; 348  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
+; 349  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1512,7 +1512,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 349  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
+; 350  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1523,7 +1523,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 350  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
+; 351  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1534,7 +1534,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 351  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
+; 352  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1545,7 +1545,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 352  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
+; 353  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1556,7 +1556,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 353  :             work = temp << n_lshift_bit_count; temp = pp[-16]; work |= temp >> n_rshift_bit_count; op[-16] = work;
+; 354  :             work = temp << n_lshift_bit_count; temp = pp[-16]; work |= temp >> n_rshift_bit_count; op[-16] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1567,7 +1567,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 354  :             work = temp << n_lshift_bit_count; temp = pp[-17]; work |= temp >> n_rshift_bit_count; op[-17] = work;
+; 355  :             work = temp << n_lshift_bit_count; temp = pp[-17]; work |= temp >> n_rshift_bit_count; op[-17] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1578,7 +1578,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 355  :             work = temp << n_lshift_bit_count; temp = pp[-18]; work |= temp >> n_rshift_bit_count; op[-18] = work;
+; 356  :             work = temp << n_lshift_bit_count; temp = pp[-18]; work |= temp >> n_rshift_bit_count; op[-18] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1589,7 +1589,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 356  :             work = temp << n_lshift_bit_count; temp = pp[-19]; work |= temp >> n_rshift_bit_count; op[-19] = work;
+; 357  :             work = temp << n_lshift_bit_count; temp = pp[-19]; work |= temp >> n_rshift_bit_count; op[-19] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1600,7 +1600,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 357  :             work = temp << n_lshift_bit_count; temp = pp[-20]; work |= temp >> n_rshift_bit_count; op[-20] = work;
+; 358  :             work = temp << n_lshift_bit_count; temp = pp[-20]; work |= temp >> n_rshift_bit_count; op[-20] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1611,7 +1611,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 358  :             work = temp << n_lshift_bit_count; temp = pp[-21]; work |= temp >> n_rshift_bit_count; op[-21] = work;
+; 359  :             work = temp << n_lshift_bit_count; temp = pp[-21]; work |= temp >> n_rshift_bit_count; op[-21] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1622,7 +1622,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 359  :             work = temp << n_lshift_bit_count; temp = pp[-22]; work |= temp >> n_rshift_bit_count; op[-22] = work;
+; 360  :             work = temp << n_lshift_bit_count; temp = pp[-22]; work |= temp >> n_rshift_bit_count; op[-22] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1633,7 +1633,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 360  :             work = temp << n_lshift_bit_count; temp = pp[-23]; work |= temp >> n_rshift_bit_count; op[-23] = work;
+; 361  :             work = temp << n_lshift_bit_count; temp = pp[-23]; work |= temp >> n_rshift_bit_count; op[-23] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1644,7 +1644,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 361  :             work = temp << n_lshift_bit_count; temp = pp[-24]; work |= temp >> n_rshift_bit_count; op[-24] = work;
+; 362  :             work = temp << n_lshift_bit_count; temp = pp[-24]; work |= temp >> n_rshift_bit_count; op[-24] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1655,7 +1655,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 362  :             work = temp << n_lshift_bit_count; temp = pp[-25]; work |= temp >> n_rshift_bit_count; op[-25] = work;
+; 363  :             work = temp << n_lshift_bit_count; temp = pp[-25]; work |= temp >> n_rshift_bit_count; op[-25] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1666,7 +1666,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 363  :             work = temp << n_lshift_bit_count; temp = pp[-26]; work |= temp >> n_rshift_bit_count; op[-26] = work;
+; 364  :             work = temp << n_lshift_bit_count; temp = pp[-26]; work |= temp >> n_rshift_bit_count; op[-26] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1677,7 +1677,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 364  :             work = temp << n_lshift_bit_count; temp = pp[-27]; work |= temp >> n_rshift_bit_count; op[-27] = work;
+; 365  :             work = temp << n_lshift_bit_count; temp = pp[-27]; work |= temp >> n_rshift_bit_count; op[-27] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1688,7 +1688,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 365  :             work = temp << n_lshift_bit_count; temp = pp[-28]; work |= temp >> n_rshift_bit_count; op[-28] = work;
+; 366  :             work = temp << n_lshift_bit_count; temp = pp[-28]; work |= temp >> n_rshift_bit_count; op[-28] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1699,7 +1699,7 @@ $LL2@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 366  :             work = temp << n_lshift_bit_count; temp = pp[-29]; work |= temp >> n_rshift_bit_count; op[-29] = work;
+; 367  :             work = temp << n_lshift_bit_count; temp = pp[-29]; work |= temp >> n_rshift_bit_count; op[-29] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1710,7 +1710,7 @@ $LL2@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 367  :             work = temp << n_lshift_bit_count; temp = pp[-30]; work |= temp >> n_rshift_bit_count; op[-30] = work;
+; 368  :             work = temp << n_lshift_bit_count; temp = pp[-30]; work |= temp >> n_rshift_bit_count; op[-30] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1721,7 +1721,7 @@ $LL2@LeftShift_:
 	mov	rcx, r9
 	shr	rdx, cl
 
-; 368  :             work = temp << n_lshift_bit_count; temp = pp[-31]; work |= temp >> n_rshift_bit_count; op[-31] = work;
+; 369  :             work = temp << n_lshift_bit_count; temp = pp[-31]; work |= temp >> n_rshift_bit_count; op[-31] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1730,7 +1730,7 @@ $LL2@LeftShift_:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [r8-248]
 
-; 369  :             pp -= 32;
+; 370  :             pp -= 32;
 
 	sub	r8, 256					; 00000100H
 	mov	rdx, rsi
@@ -1738,26 +1738,26 @@ $LL2@LeftShift_:
 	or	rdx, rdi
 	mov	QWORD PTR [rax-248], rdx
 
-; 370  :             op -= 32;
+; 371  :             op -= 32;
 
 	sub	rax, 256				; 00000100H
 
-; 371  :             --count;
+; 372  :             --count;
 
 	sub	rbp, 1
 	jne	$LL2@LeftShift_
 $LN3@LeftShift_:
 	mov	rbp, QWORD PTR [rsp+16]
 
-; 372  :         }
-; 373  : 
-; 374  :         if (p_count & 0x10)
+; 373  :         }
+; 374  : 
+; 375  :         if (p_count & 0x10)
 
 	test	r11b, 16
 	je	$LN8@LeftShift_
 
-; 375  :         {
-; 376  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 376  :         {
+; 377  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rdi, QWORD PTR [r8]
 	mov	rcx, r10
@@ -1766,7 +1766,7 @@ $LN3@LeftShift_:
 	mov	rcx, r9
 	shr	rdx, cl
 
-; 377  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 378  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1777,7 +1777,7 @@ $LN3@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 378  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 379  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1788,7 +1788,7 @@ $LN3@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 379  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 380  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1799,7 +1799,7 @@ $LN3@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 380  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+; 381  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1810,7 +1810,7 @@ $LN3@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 381  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+; 382  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1821,7 +1821,7 @@ $LN3@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 382  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+; 383  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1832,7 +1832,7 @@ $LN3@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 383  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+; 384  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1843,7 +1843,7 @@ $LN3@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 384  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
+; 385  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1854,7 +1854,7 @@ $LN3@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 385  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
+; 386  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1865,7 +1865,7 @@ $LN3@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 386  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
+; 387  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1876,7 +1876,7 @@ $LN3@LeftShift_:
 	mov	rcx, r9
 	shr	rdx, cl
 
-; 387  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
+; 388  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1887,7 +1887,7 @@ $LN3@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 388  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
+; 389  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1898,7 +1898,7 @@ $LN3@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 389  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
+; 390  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1909,7 +1909,7 @@ $LN3@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 390  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
+; 391  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1920,7 +1920,7 @@ $LN3@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 391  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
+; 392  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1929,7 +1929,7 @@ $LN3@LeftShift_:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [r8-120]
 
-; 392  :             pp -= 16;
+; 393  :             pp -= 16;
 
 	add	r8, -128				; ffffffffffffff80H
 	mov	rdx, rsi
@@ -1937,20 +1937,20 @@ $LN3@LeftShift_:
 	or	rdx, rdi
 	mov	QWORD PTR [rax-120], rdx
 
-; 393  :             op -= 16;
+; 394  :             op -= 16;
 
 	add	rax, -128				; ffffffffffffff80H
 $LN8@LeftShift_:
 
-; 394  :         }
-; 395  : 
-; 396  :         if (p_count & 0x8)
+; 395  :         }
+; 396  : 
+; 397  :         if (p_count & 0x8)
 
 	test	r11b, 8
 	je	$LN9@LeftShift_
 
-; 397  :         {
-; 398  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 398  :         {
+; 399  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rdi, QWORD PTR [r8]
 	mov	rcx, r10
@@ -1959,7 +1959,7 @@ $LN8@LeftShift_:
 	mov	rcx, r9
 	shr	rdx, cl
 
-; 399  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 400  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1970,7 +1970,7 @@ $LN8@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 400  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 401  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -1981,7 +1981,7 @@ $LN8@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 401  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 402  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -1992,7 +1992,7 @@ $LN8@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 402  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+; 403  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -2003,7 +2003,7 @@ $LN8@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 403  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+; 404  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -2014,7 +2014,7 @@ $LN8@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 404  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+; 405  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -2025,7 +2025,7 @@ $LN8@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 405  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+; 406  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -2034,7 +2034,7 @@ $LN8@LeftShift_:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [r8-56]
 
-; 406  :             pp -= 8;
+; 407  :             pp -= 8;
 
 	sub	r8, 64					; 00000040H
 	mov	rdx, rsi
@@ -2042,20 +2042,20 @@ $LN8@LeftShift_:
 	or	rdx, rdi
 	mov	QWORD PTR [rax-56], rdx
 
-; 407  :             op -= 8;
+; 408  :             op -= 8;
 
 	sub	rax, 64					; 00000040H
 $LN9@LeftShift_:
 
-; 408  :         }
-; 409  : 
-; 410  :         if (p_count & 0x4)
+; 409  :         }
+; 410  : 
+; 411  :         if (p_count & 0x4)
 
 	test	r11b, 4
 	je	SHORT $LN10@LeftShift_
 
-; 411  :         {
-; 412  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 412  :         {
+; 413  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rdi, QWORD PTR [r8]
 	mov	rcx, r10
@@ -2064,7 +2064,7 @@ $LN9@LeftShift_:
 	mov	rcx, r9
 	shr	rdx, cl
 
-; 413  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 414  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -2075,7 +2075,7 @@ $LN9@LeftShift_:
 	mov	rdx, rsi
 	shr	rdx, cl
 
-; 414  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 415  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rcx, r10
 	or	rdx, rdi
@@ -2086,7 +2086,7 @@ $LN9@LeftShift_:
 	mov	rdx, rdi
 	shr	rdx, cl
 
-; 415  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 416  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -2095,7 +2095,7 @@ $LN9@LeftShift_:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [r8-24]
 
-; 416  :             pp -= 4;
+; 417  :             pp -= 4;
 
 	sub	r8, 32					; 00000020H
 	mov	rdx, rsi
@@ -2103,20 +2103,20 @@ $LN9@LeftShift_:
 	or	rdx, rdi
 	mov	QWORD PTR [rax-24], rdx
 
-; 417  :             op -= 4;
+; 418  :             op -= 4;
 
 	sub	rax, 32					; 00000020H
 $LN10@LeftShift_:
 
-; 418  :         }
-; 419  : 
-; 420  :         if (p_count & 0x2)
+; 419  :         }
+; 420  : 
+; 421  :         if (p_count & 0x2)
 
 	test	r11b, 2
 	je	SHORT $LN11@LeftShift_
 
-; 421  :         {
-; 422  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 422  :         {
+; 423  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rdi, QWORD PTR [r8]
 	mov	rcx, r10
@@ -2125,7 +2125,7 @@ $LN10@LeftShift_:
 	mov	rcx, r9
 	shr	rdx, cl
 
-; 423  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 424  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	rdx, rsi
@@ -2134,7 +2134,7 @@ $LN10@LeftShift_:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [r8-8]
 
-; 424  :             pp -= 2;
+; 425  :             pp -= 2;
 
 	sub	r8, 16
 	mov	rdx, rsi
@@ -2142,20 +2142,20 @@ $LN10@LeftShift_:
 	or	rdx, rdi
 	mov	QWORD PTR [rax-8], rdx
 
-; 425  :             op -= 2;
+; 426  :             op -= 2;
 
 	sub	rax, 16
 $LN11@LeftShift_:
 
-; 426  :         }
-; 427  : 
-; 428  :         if (p_count & 0x1)
+; 427  :         }
+; 428  : 
+; 429  :         if (p_count & 0x1)
 
 	test	r11b, 1
 	je	SHORT $LN12@LeftShift_
 
-; 429  :         {
-; 430  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 430  :         {
+; 431  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rcx, r10
 	shl	rsi, cl
@@ -2167,28 +2167,28 @@ $LN11@LeftShift_:
 	or	rdx, rdi
 	mov	QWORD PTR [rax], rdx
 
-; 431  :             pp -= 1;
-; 432  :             op -= 1;
+; 432  :             pp -= 1;
+; 433  :             op -= 1;
 
 	sub	rax, 8
 $LN12@LeftShift_:
 
-; 433  :         }
-; 434  :         work = temp << n_lshift_bit_count;
+; 434  :         }
+; 435  :         work = temp << n_lshift_bit_count;
 
 	mov	rcx, r10
 	shl	rsi, cl
 
-; 435  :         *op = work;
+; 436  :         *op = work;
 
 	mov	QWORD PTR [rax], rsi
 $LN26@LeftShift_:
 
-; 436  : 
-; 437  :         if (padding_zero)
-; 438  :             _ZERO_MEMORY_UNIT(o, n_word_count);
-; 439  :     }
-; 440  : }
+; 437  : 
+; 438  :         if (padding_zero)
+; 439  :             _ZERO_MEMORY_UNIT(o, n_word_count);
+; 440  :     }
+; 441  : }
 
 	cmp	DWORD PTR padding_zero$[rsp], 0
 	je	SHORT $LN19@LeftShift_
@@ -2206,9 +2206,9 @@ LeftShift_Imp ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 ;	COMDAT LeftShift_Imp_DIV
 _TEXT	SEGMENT
@@ -2219,7 +2219,7 @@ o$ = 40
 padding_zero$ = 48
 LeftShift_Imp_DIV PROC					; COMDAT
 
-; 443  : {
+; 444  : {
 
 $LN28:
 	mov	QWORD PTR [rsp+16], rbx
@@ -2227,10 +2227,10 @@ $LN28:
 	mov	QWORD PTR [rsp+32], rdi
 	push	r14
 
-; 444  :     __UNIT_TYPE_DIV* pp = p;
-; 445  :     __UNIT_TYPE p_count = p_word_count;
-; 446  :     __UNIT_TYPE_DIV* op = o;
-; 447  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
+; 445  :     __UNIT_TYPE_DIV* pp = p;
+; 446  :     __UNIT_TYPE p_count = p_word_count;
+; 447  :     __UNIT_TYPE_DIV* op = o;
+; 448  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
 
 	mov	rbx, r8
 	mov	r10, r8
@@ -2238,43 +2238,43 @@ $LN28:
 	mov	r14, r9
 	mov	rax, rcx
 
-; 448  :     __UNIT_TYPE n_lshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
+; 449  :     __UNIT_TYPE n_lshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
 
 	and	r10d, 63				; 0000003fH
 
-; 449  :     if (n_lshift_bit_count == 0)
+; 450  :     if (n_lshift_bit_count == 0)
 
 	jne	SHORT $LN4@LeftShift_
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	ecx, edx
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 
-; 452  :         _COPY_MEMORY_UNIT_DIV(op + n_word_count, pp, p_count);
+; 453  :         _COPY_MEMORY_UNIT_DIV(op + n_word_count, pp, p_count);
 
 	lea	rdi, QWORD PTR [r9+rbx*4]
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	rsi, rax
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 
-; 455  :     }
+; 456  :     }
 
 	jmp	$LN26@LeftShift_
 $LN4@LeftShift_:
 
-; 456  :     else
-; 457  :     {
-; 458  :         __UNIT_TYPE n_rshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_lshift_bit_count;
-; 459  :         pp += p_count - 1;
-; 460  :         op += p_count + n_word_count;
-; 461  :         p_count -= 1;
-; 462  :         __UNIT_TYPE_DIV temp = *pp;
+; 457  :     else
+; 458  :     {
+; 459  :         __UNIT_TYPE n_rshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_lshift_bit_count;
+; 460  :         pp += p_count - 1;
+; 461  :         op += p_count + n_word_count;
+; 462  :         p_count -= 1;
+; 463  :         __UNIT_TYPE_DIV temp = *pp;
 
 	mov	esi, DWORD PTR [rcx+rdx*4-4]
 	lea	r8, QWORD PTR [rcx+rdx*4]
@@ -2285,41 +2285,41 @@ $LN4@LeftShift_:
 	sub	r9, r10
 	lea	rax, QWORD PTR [r14+rax*4]
 
-; 463  :         __UNIT_TYPE_DIV work = temp >> n_rshift_bit_count;
+; 464  :         __UNIT_TYPE_DIV work = temp >> n_rshift_bit_count;
 
 	mov	rcx, r9
 	mov	edx, esi
 	shr	edx, cl
 
-; 464  :         if (work != 0)
+; 465  :         if (work != 0)
 
 	test	edx, edx
 	je	SHORT $LN7@LeftShift_
 
-; 465  :             *op = work;
+; 466  :             *op = work;
 
 	mov	DWORD PTR [rax], edx
 $LN7@LeftShift_:
 
-; 466  :         --pp;
-; 467  :         --op;
-; 468  : 
-; 469  :         __UNIT_TYPE count = p_count >> 5;
+; 467  :         --pp;
+; 468  :         --op;
+; 469  : 
+; 470  :         __UNIT_TYPE count = p_count >> 5;
 
 	mov	rbp, r11
 	sub	r8, 8
 	shr	rbp, 5
 	sub	rax, 4
 
-; 470  :         while (count != 0)
+; 471  :         while (count != 0)
 
 	test	rbp, rbp
 	je	$LN3@LeftShift_
 	npad	2
 $LL2@LeftShift_:
 
-; 471  :         {
-; 472  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 472  :         {
+; 473  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	edi, DWORD PTR [r8]
 	mov	rcx, r10
@@ -2328,7 +2328,7 @@ $LL2@LeftShift_:
 	mov	rcx, r9
 	shr	edx, cl
 
-; 473  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 474  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2339,7 +2339,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 474  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 475  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2350,7 +2350,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 475  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 476  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2361,7 +2361,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 476  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+; 477  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2372,7 +2372,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 477  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+; 478  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2383,7 +2383,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 478  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+; 479  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2394,7 +2394,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 479  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+; 480  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2405,7 +2405,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 480  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
+; 481  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2416,7 +2416,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 481  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
+; 482  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2427,7 +2427,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 482  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
+; 483  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2438,7 +2438,7 @@ $LL2@LeftShift_:
 	mov	rcx, r9
 	shr	edx, cl
 
-; 483  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
+; 484  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2449,7 +2449,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 484  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
+; 485  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2460,7 +2460,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 485  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
+; 486  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2471,7 +2471,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 486  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
+; 487  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2482,7 +2482,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 487  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
+; 488  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2493,7 +2493,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 488  :             work = temp << n_lshift_bit_count; temp = pp[-16]; work |= temp >> n_rshift_bit_count; op[-16] = work;
+; 489  :             work = temp << n_lshift_bit_count; temp = pp[-16]; work |= temp >> n_rshift_bit_count; op[-16] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2504,7 +2504,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 489  :             work = temp << n_lshift_bit_count; temp = pp[-17]; work |= temp >> n_rshift_bit_count; op[-17] = work;
+; 490  :             work = temp << n_lshift_bit_count; temp = pp[-17]; work |= temp >> n_rshift_bit_count; op[-17] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2515,7 +2515,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 490  :             work = temp << n_lshift_bit_count; temp = pp[-18]; work |= temp >> n_rshift_bit_count; op[-18] = work;
+; 491  :             work = temp << n_lshift_bit_count; temp = pp[-18]; work |= temp >> n_rshift_bit_count; op[-18] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2526,7 +2526,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 491  :             work = temp << n_lshift_bit_count; temp = pp[-19]; work |= temp >> n_rshift_bit_count; op[-19] = work;
+; 492  :             work = temp << n_lshift_bit_count; temp = pp[-19]; work |= temp >> n_rshift_bit_count; op[-19] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2537,7 +2537,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 492  :             work = temp << n_lshift_bit_count; temp = pp[-20]; work |= temp >> n_rshift_bit_count; op[-20] = work;
+; 493  :             work = temp << n_lshift_bit_count; temp = pp[-20]; work |= temp >> n_rshift_bit_count; op[-20] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2548,7 +2548,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 493  :             work = temp << n_lshift_bit_count; temp = pp[-21]; work |= temp >> n_rshift_bit_count; op[-21] = work;
+; 494  :             work = temp << n_lshift_bit_count; temp = pp[-21]; work |= temp >> n_rshift_bit_count; op[-21] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2559,7 +2559,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 494  :             work = temp << n_lshift_bit_count; temp = pp[-22]; work |= temp >> n_rshift_bit_count; op[-22] = work;
+; 495  :             work = temp << n_lshift_bit_count; temp = pp[-22]; work |= temp >> n_rshift_bit_count; op[-22] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2570,7 +2570,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 495  :             work = temp << n_lshift_bit_count; temp = pp[-23]; work |= temp >> n_rshift_bit_count; op[-23] = work;
+; 496  :             work = temp << n_lshift_bit_count; temp = pp[-23]; work |= temp >> n_rshift_bit_count; op[-23] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2581,7 +2581,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 496  :             work = temp << n_lshift_bit_count; temp = pp[-24]; work |= temp >> n_rshift_bit_count; op[-24] = work;
+; 497  :             work = temp << n_lshift_bit_count; temp = pp[-24]; work |= temp >> n_rshift_bit_count; op[-24] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2592,7 +2592,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 497  :             work = temp << n_lshift_bit_count; temp = pp[-25]; work |= temp >> n_rshift_bit_count; op[-25] = work;
+; 498  :             work = temp << n_lshift_bit_count; temp = pp[-25]; work |= temp >> n_rshift_bit_count; op[-25] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2603,7 +2603,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 498  :             work = temp << n_lshift_bit_count; temp = pp[-26]; work |= temp >> n_rshift_bit_count; op[-26] = work;
+; 499  :             work = temp << n_lshift_bit_count; temp = pp[-26]; work |= temp >> n_rshift_bit_count; op[-26] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2614,7 +2614,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 499  :             work = temp << n_lshift_bit_count; temp = pp[-27]; work |= temp >> n_rshift_bit_count; op[-27] = work;
+; 500  :             work = temp << n_lshift_bit_count; temp = pp[-27]; work |= temp >> n_rshift_bit_count; op[-27] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2625,7 +2625,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 500  :             work = temp << n_lshift_bit_count; temp = pp[-28]; work |= temp >> n_rshift_bit_count; op[-28] = work;
+; 501  :             work = temp << n_lshift_bit_count; temp = pp[-28]; work |= temp >> n_rshift_bit_count; op[-28] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2636,7 +2636,7 @@ $LL2@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 501  :             work = temp << n_lshift_bit_count; temp = pp[-29]; work |= temp >> n_rshift_bit_count; op[-29] = work;
+; 502  :             work = temp << n_lshift_bit_count; temp = pp[-29]; work |= temp >> n_rshift_bit_count; op[-29] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2647,7 +2647,7 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 502  :             work = temp << n_lshift_bit_count; temp = pp[-30]; work |= temp >> n_rshift_bit_count; op[-30] = work;
+; 503  :             work = temp << n_lshift_bit_count; temp = pp[-30]; work |= temp >> n_rshift_bit_count; op[-30] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2658,7 +2658,7 @@ $LL2@LeftShift_:
 	mov	rcx, r9
 	shr	edx, cl
 
-; 503  :             work = temp << n_lshift_bit_count; temp = pp[-31]; work |= temp >> n_rshift_bit_count; op[-31] = work;
+; 504  :             work = temp << n_lshift_bit_count; temp = pp[-31]; work |= temp >> n_rshift_bit_count; op[-31] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2669,32 +2669,32 @@ $LL2@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 504  :             pp -= 32;
+; 505  :             pp -= 32;
 
 	add	r8, -128				; ffffffffffffff80H
 	or	edx, edi
 	mov	DWORD PTR [rax-124], edx
 
-; 505  :             op -= 32;
+; 506  :             op -= 32;
 
 	add	rax, -128				; ffffffffffffff80H
 
-; 506  :             --count;
+; 507  :             --count;
 
 	sub	rbp, 1
 	jne	$LL2@LeftShift_
 $LN3@LeftShift_:
 	mov	rbp, QWORD PTR [rsp+16]
 
-; 507  :         }
-; 508  : 
-; 509  :         if (p_count & 0x10)
+; 508  :         }
+; 509  : 
+; 510  :         if (p_count & 0x10)
 
 	test	r11b, 16
 	je	$LN8@LeftShift_
 
-; 510  :         {
-; 511  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 511  :         {
+; 512  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	edi, DWORD PTR [r8]
 	mov	rcx, r10
@@ -2703,7 +2703,7 @@ $LN3@LeftShift_:
 	mov	rcx, r9
 	shr	edx, cl
 
-; 512  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 513  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2714,7 +2714,7 @@ $LN3@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 513  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 514  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2725,7 +2725,7 @@ $LN3@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 514  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 515  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2736,7 +2736,7 @@ $LN3@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 515  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+; 516  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2747,7 +2747,7 @@ $LN3@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 516  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+; 517  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2758,7 +2758,7 @@ $LN3@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 517  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+; 518  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2769,7 +2769,7 @@ $LN3@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 518  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+; 519  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2780,7 +2780,7 @@ $LN3@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 519  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
+; 520  :             work = temp << n_lshift_bit_count; temp = pp[-8]; work |= temp >> n_rshift_bit_count; op[-8] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2791,7 +2791,7 @@ $LN3@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 520  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
+; 521  :             work = temp << n_lshift_bit_count; temp = pp[-9]; work |= temp >> n_rshift_bit_count; op[-9] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2802,7 +2802,7 @@ $LN3@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 521  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
+; 522  :             work = temp << n_lshift_bit_count; temp = pp[-10]; work |= temp >> n_rshift_bit_count; op[-10] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2813,7 +2813,7 @@ $LN3@LeftShift_:
 	mov	rcx, r9
 	shr	edx, cl
 
-; 522  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
+; 523  :             work = temp << n_lshift_bit_count; temp = pp[-11]; work |= temp >> n_rshift_bit_count; op[-11] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2824,7 +2824,7 @@ $LN3@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 523  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
+; 524  :             work = temp << n_lshift_bit_count; temp = pp[-12]; work |= temp >> n_rshift_bit_count; op[-12] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2835,7 +2835,7 @@ $LN3@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 524  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
+; 525  :             work = temp << n_lshift_bit_count; temp = pp[-13]; work |= temp >> n_rshift_bit_count; op[-13] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2846,7 +2846,7 @@ $LN3@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 525  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
+; 526  :             work = temp << n_lshift_bit_count; temp = pp[-14]; work |= temp >> n_rshift_bit_count; op[-14] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2857,7 +2857,7 @@ $LN3@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 526  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
+; 527  :             work = temp << n_lshift_bit_count; temp = pp[-15]; work |= temp >> n_rshift_bit_count; op[-15] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2868,26 +2868,26 @@ $LN3@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 527  :             pp -= 16;
+; 528  :             pp -= 16;
 
 	sub	r8, 64					; 00000040H
 	or	edx, edi
 	mov	DWORD PTR [rax-60], edx
 
-; 528  :             op -= 16;
+; 529  :             op -= 16;
 
 	sub	rax, 64					; 00000040H
 $LN8@LeftShift_:
 
-; 529  :         }
-; 530  : 
-; 531  :         if (p_count & 0x8)
+; 530  :         }
+; 531  : 
+; 532  :         if (p_count & 0x8)
 
 	test	r11b, 8
 	je	$LN9@LeftShift_
 
-; 532  :         {
-; 533  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 533  :         {
+; 534  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	edi, DWORD PTR [r8]
 	mov	rcx, r10
@@ -2896,7 +2896,7 @@ $LN8@LeftShift_:
 	mov	rcx, r9
 	shr	edx, cl
 
-; 534  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 535  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2907,7 +2907,7 @@ $LN8@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 535  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 536  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2918,7 +2918,7 @@ $LN8@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 536  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 537  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2929,7 +2929,7 @@ $LN8@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 537  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
+; 538  :             work = temp << n_lshift_bit_count; temp = pp[-4]; work |= temp >> n_rshift_bit_count; op[-4] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2940,7 +2940,7 @@ $LN8@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 538  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
+; 539  :             work = temp << n_lshift_bit_count; temp = pp[-5]; work |= temp >> n_rshift_bit_count; op[-5] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2951,7 +2951,7 @@ $LN8@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 539  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
+; 540  :             work = temp << n_lshift_bit_count; temp = pp[-6]; work |= temp >> n_rshift_bit_count; op[-6] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -2962,7 +2962,7 @@ $LN8@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 540  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
+; 541  :             work = temp << n_lshift_bit_count; temp = pp[-7]; work |= temp >> n_rshift_bit_count; op[-7] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -2973,26 +2973,26 @@ $LN8@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 541  :             pp -= 8;
+; 542  :             pp -= 8;
 
 	sub	r8, 32					; 00000020H
 	or	edx, edi
 	mov	DWORD PTR [rax-28], edx
 
-; 542  :             op -= 8;
+; 543  :             op -= 8;
 
 	sub	rax, 32					; 00000020H
 $LN9@LeftShift_:
 
-; 543  :         }
-; 544  : 
-; 545  :         if (p_count & 0x4)
+; 544  :         }
+; 545  : 
+; 546  :         if (p_count & 0x4)
 
 	test	r11b, 4
 	je	SHORT $LN10@LeftShift_
 
-; 546  :         {
-; 547  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 547  :         {
+; 548  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	edi, DWORD PTR [r8]
 	mov	rcx, r10
@@ -3001,7 +3001,7 @@ $LN9@LeftShift_:
 	mov	rcx, r9
 	shr	edx, cl
 
-; 548  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 549  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -3012,7 +3012,7 @@ $LN9@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 549  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
+; 550  :             work = temp << n_lshift_bit_count; temp = pp[-2]; work |= temp >> n_rshift_bit_count; op[-2] = work;
 
 	mov	rcx, r10
 	or	edx, edi
@@ -3023,7 +3023,7 @@ $LN9@LeftShift_:
 	mov	edx, edi
 	shr	edx, cl
 
-; 550  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
+; 551  :             work = temp << n_lshift_bit_count; temp = pp[-3]; work |= temp >> n_rshift_bit_count; op[-3] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -3034,26 +3034,26 @@ $LN9@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 551  :             pp -= 4;
+; 552  :             pp -= 4;
 
 	sub	r8, 16
 	or	edx, edi
 	mov	DWORD PTR [rax-12], edx
 
-; 552  :             op -= 4;
+; 553  :             op -= 4;
 
 	sub	rax, 16
 $LN10@LeftShift_:
 
-; 553  :         }
-; 554  : 
-; 555  :         if (p_count & 0x2)
+; 554  :         }
+; 555  : 
+; 556  :         if (p_count & 0x2)
 
 	test	r11b, 2
 	je	SHORT $LN11@LeftShift_
 
-; 556  :         {
-; 557  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 557  :         {
+; 558  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	edi, DWORD PTR [r8]
 	mov	rcx, r10
@@ -3062,7 +3062,7 @@ $LN10@LeftShift_:
 	mov	rcx, r9
 	shr	edx, cl
 
-; 558  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
+; 559  :             work = temp << n_lshift_bit_count; temp = pp[-1]; work |= temp >> n_rshift_bit_count; op[-1] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -3073,26 +3073,26 @@ $LN10@LeftShift_:
 	mov	edx, esi
 	shr	edx, cl
 
-; 559  :             pp -= 2;
+; 560  :             pp -= 2;
 
 	sub	r8, 8
 	or	edx, edi
 	mov	DWORD PTR [rax-4], edx
 
-; 560  :             op -= 2;
+; 561  :             op -= 2;
 
 	sub	rax, 8
 $LN11@LeftShift_:
 
-; 561  :         }
-; 562  : 
-; 563  :         if (p_count & 0x1)
+; 562  :         }
+; 563  : 
+; 564  :         if (p_count & 0x1)
 
 	test	r11b, 1
 	je	SHORT $LN12@LeftShift_
 
-; 564  :         {
-; 565  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
+; 565  :         {
+; 566  :             work = temp << n_lshift_bit_count; temp = pp[-0]; work |= temp >> n_rshift_bit_count; op[-0] = work;
 
 	mov	rcx, r10
 	shl	esi, cl
@@ -3104,28 +3104,28 @@ $LN11@LeftShift_:
 	or	edx, edi
 	mov	DWORD PTR [rax], edx
 
-; 566  :             pp -= 1;
-; 567  :             op -= 1;
+; 567  :             pp -= 1;
+; 568  :             op -= 1;
 
 	sub	rax, 4
 $LN12@LeftShift_:
 
-; 568  :         }
-; 569  :         work = temp << n_lshift_bit_count;
+; 569  :         }
+; 570  :         work = temp << n_lshift_bit_count;
 
 	mov	rcx, r10
 	shl	esi, cl
 
-; 570  :         *op = work;
+; 571  :         *op = work;
 
 	mov	DWORD PTR [rax], esi
 $LN26@LeftShift_:
 
-; 571  : 
-; 572  :         if (padding_zero)
-; 573  :             _ZERO_MEMORY_UNIT_DIV(o, n_word_count);
-; 574  :     }
-; 575  : }
+; 572  : 
+; 573  :         if (padding_zero)
+; 574  :             _ZERO_MEMORY_UNIT_DIV(o, n_word_count);
+; 575  :     }
+; 576  : }
 
 	cmp	DWORD PTR padding_zero$[rsp], 0
 	je	SHORT $LN19@LeftShift_
@@ -3143,7 +3143,7 @@ LeftShift_Imp_DIV ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 ;	COMDAT RightShift_Imp
 _TEXT	SEGMENT
@@ -3154,7 +3154,7 @@ o$ = 48
 padding_zero$ = 56
 RightShift_Imp PROC					; COMDAT
 
-; 38   : {
+; 39   : {
 
 $LN115:
 	mov	QWORD PTR [rsp+16], rbx
@@ -3165,30 +3165,30 @@ $LN115:
 	mov	r10, r8
 	mov	rbx, rdx
 
-; 39   :     __UNIT_TYPE* pp = p;
-; 40   :     __UNIT_TYPE p_count = p_word_count;
-; 41   :     __UNIT_TYPE* op = o;
-; 42   :     // n_word_count ワード右に移動し、更に n_bit_count ビット右に移動する。
-; 43   :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
+; 40   :     __UNIT_TYPE* pp = p;
+; 41   :     __UNIT_TYPE p_count = p_word_count;
+; 42   :     __UNIT_TYPE* op = o;
+; 43   :     // n_word_count ワード右に移動し、更に n_bit_count ビット右に移動する。
+; 44   :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
 
 	mov	rbp, r10
 	mov	r14, r9
 	shr	rbp, 6
 
-; 44   :     __UNIT_TYPE n_rshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
+; 45   :     __UNIT_TYPE n_rshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
 
 	and	r10d, 63				; 0000003fH
 	sub	rbx, rbp
 	mov	r8, r9
 	lea	rax, QWORD PTR [rcx+rbp*8]
 
-; 45   :     if (n_rshift_bit_count == 0)
+; 46   :     if (n_rshift_bit_count == 0)
 
 	test	r10, r10
 	jne	SHORT $LN4@RightShift
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 356  :     __movsq(d, s, count);
+; 70   :         __movsq(d, s, count);
 
 	mov	rdi, r9
 	mov	rsi, rax
@@ -3196,54 +3196,54 @@ $LN115:
 	rep movsq
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 
-; 49   :         if (padding_zero)
+; 50   :         if (padding_zero)
 
 	cmp	DWORD PTR padding_zero$[rsp], r10d
 	je	$LN20@RightShift
 
-; 50   :             _ZERO_MEMORY_UNIT(op + p_count - n_word_count, n_word_count);
+; 51   :             _ZERO_MEMORY_UNIT(op + p_count - n_word_count, n_word_count);
 
 	lea	rdi, QWORD PTR [r9+rbx*8]
 
-; 51   :     }
+; 52   :     }
 
 	jmp	$LN113@RightShift
 $LN4@RightShift:
 
-; 52   :     else
-; 53   :     {
-; 54   :         pp += n_word_count;
-; 55   :         __UNIT_TYPE n_lshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_rshift_bit_count;
-; 56   :         // p_count - n_word_count 回繰り返し
-; 57   : 
-; 58   :         __UNIT_TYPE temp = *pp++;
+; 53   :     else
+; 54   :     {
+; 55   :         pp += n_word_count;
+; 56   :         __UNIT_TYPE n_lshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_rshift_bit_count;
+; 57   :         // p_count - n_word_count 回繰り返し
+; 58   : 
+; 59   :         __UNIT_TYPE temp = *pp++;
 
 	mov	rsi, QWORD PTR [rax]
 
-; 59   :         __UNIT_TYPE work;
-; 60   :         __UNIT_TYPE t_count = p_count - n_word_count - 1;
+; 60   :         __UNIT_TYPE work;
+; 61   :         __UNIT_TYPE t_count = p_count - n_word_count - 1;
 
 	lea	r11, QWORD PTR [rbx-1]
 	mov	QWORD PTR [rsp+24], r15
 	mov	r9d, 64					; 00000040H
 
-; 61   : 
-; 62   :         __UNIT_TYPE count = t_count >> 5;
+; 62   : 
+; 63   :         __UNIT_TYPE count = t_count >> 5;
 
 	mov	r15, r11
 	sub	r9, r10
 	shr	r15, 5
 	add	rax, 8
 
-; 63   :         while ( count > 0)
+; 64   :         while ( count > 0)
 
 	test	r15, r15
 	je	$LN3@RightShift
 	npad	2
 $LL2@RightShift:
 
-; 64   :         {
-; 65   :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 65   :         {
+; 66   :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rdi, QWORD PTR [rax]
 	mov	rcx, r10
@@ -3498,39 +3498,39 @@ $LL2@RightShift:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [rax+248]
 
-; 66   :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
-; 67   :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
-; 68   :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
-; 69   :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
-; 70   :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
-; 71   :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
-; 72   :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
-; 73   :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
-; 74   :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
-; 75   :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
-; 76   :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
-; 77   :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
-; 78   :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
-; 79   :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
-; 80   :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
-; 81   :             work = temp >> n_rshift_bit_count; temp = pp[16]; work |= temp << n_lshift_bit_count; op[16] = work;
-; 82   :             work = temp >> n_rshift_bit_count; temp = pp[17]; work |= temp << n_lshift_bit_count; op[17] = work;
-; 83   :             work = temp >> n_rshift_bit_count; temp = pp[18]; work |= temp << n_lshift_bit_count; op[18] = work;
-; 84   :             work = temp >> n_rshift_bit_count; temp = pp[19]; work |= temp << n_lshift_bit_count; op[19] = work;
-; 85   :             work = temp >> n_rshift_bit_count; temp = pp[20]; work |= temp << n_lshift_bit_count; op[20] = work;
-; 86   :             work = temp >> n_rshift_bit_count; temp = pp[21]; work |= temp << n_lshift_bit_count; op[21] = work;
-; 87   :             work = temp >> n_rshift_bit_count; temp = pp[22]; work |= temp << n_lshift_bit_count; op[22] = work;
-; 88   :             work = temp >> n_rshift_bit_count; temp = pp[23]; work |= temp << n_lshift_bit_count; op[23] = work;
-; 89   :             work = temp >> n_rshift_bit_count; temp = pp[24]; work |= temp << n_lshift_bit_count; op[24] = work;
-; 90   :             work = temp >> n_rshift_bit_count; temp = pp[25]; work |= temp << n_lshift_bit_count; op[25] = work;
-; 91   :             work = temp >> n_rshift_bit_count; temp = pp[26]; work |= temp << n_lshift_bit_count; op[26] = work;
-; 92   :             work = temp >> n_rshift_bit_count; temp = pp[27]; work |= temp << n_lshift_bit_count; op[27] = work;
-; 93   :             work = temp >> n_rshift_bit_count; temp = pp[28]; work |= temp << n_lshift_bit_count; op[28] = work;
-; 94   :             work = temp >> n_rshift_bit_count; temp = pp[29]; work |= temp << n_lshift_bit_count; op[29] = work;
-; 95   :             work = temp >> n_rshift_bit_count; temp = pp[30]; work |= temp << n_lshift_bit_count; op[30] = work;
-; 96   :             work = temp >> n_rshift_bit_count; temp = pp[31]; work |= temp << n_lshift_bit_count; op[31] = work;
-; 97   :             --count;
-; 98   :             pp += 32;
+; 67   :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 68   :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 69   :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 70   :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 71   :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 72   :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 73   :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 74   :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
+; 75   :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
+; 76   :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
+; 77   :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
+; 78   :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
+; 79   :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
+; 80   :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
+; 81   :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
+; 82   :             work = temp >> n_rshift_bit_count; temp = pp[16]; work |= temp << n_lshift_bit_count; op[16] = work;
+; 83   :             work = temp >> n_rshift_bit_count; temp = pp[17]; work |= temp << n_lshift_bit_count; op[17] = work;
+; 84   :             work = temp >> n_rshift_bit_count; temp = pp[18]; work |= temp << n_lshift_bit_count; op[18] = work;
+; 85   :             work = temp >> n_rshift_bit_count; temp = pp[19]; work |= temp << n_lshift_bit_count; op[19] = work;
+; 86   :             work = temp >> n_rshift_bit_count; temp = pp[20]; work |= temp << n_lshift_bit_count; op[20] = work;
+; 87   :             work = temp >> n_rshift_bit_count; temp = pp[21]; work |= temp << n_lshift_bit_count; op[21] = work;
+; 88   :             work = temp >> n_rshift_bit_count; temp = pp[22]; work |= temp << n_lshift_bit_count; op[22] = work;
+; 89   :             work = temp >> n_rshift_bit_count; temp = pp[23]; work |= temp << n_lshift_bit_count; op[23] = work;
+; 90   :             work = temp >> n_rshift_bit_count; temp = pp[24]; work |= temp << n_lshift_bit_count; op[24] = work;
+; 91   :             work = temp >> n_rshift_bit_count; temp = pp[25]; work |= temp << n_lshift_bit_count; op[25] = work;
+; 92   :             work = temp >> n_rshift_bit_count; temp = pp[26]; work |= temp << n_lshift_bit_count; op[26] = work;
+; 93   :             work = temp >> n_rshift_bit_count; temp = pp[27]; work |= temp << n_lshift_bit_count; op[27] = work;
+; 94   :             work = temp >> n_rshift_bit_count; temp = pp[28]; work |= temp << n_lshift_bit_count; op[28] = work;
+; 95   :             work = temp >> n_rshift_bit_count; temp = pp[29]; work |= temp << n_lshift_bit_count; op[29] = work;
+; 96   :             work = temp >> n_rshift_bit_count; temp = pp[30]; work |= temp << n_lshift_bit_count; op[30] = work;
+; 97   :             work = temp >> n_rshift_bit_count; temp = pp[31]; work |= temp << n_lshift_bit_count; op[31] = work;
+; 98   :             --count;
+; 99   :             pp += 32;
 
 	add	rax, 256				; 00000100H
 	mov	rdx, rsi
@@ -3538,7 +3538,7 @@ $LL2@RightShift:
 	or	rdx, rdi
 	mov	QWORD PTR [r8+248], rdx
 
-; 99   :             op += 32;
+; 100  :             op += 32;
 
 	add	r8, 256					; 00000100H
 	sub	r15, 1
@@ -3546,15 +3546,15 @@ $LL2@RightShift:
 $LN3@RightShift:
 	mov	r15, QWORD PTR [rsp+24]
 
-; 100  :         }
-; 101  : 
-; 102  :         if (t_count & 0x10)
+; 101  :         }
+; 102  : 
+; 103  :         if (t_count & 0x10)
 
 	test	r11b, 16
 	je	$LN7@RightShift
 
-; 103  :         {
-; 104  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 104  :         {
+; 105  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rdi, QWORD PTR [rax]
 	mov	rcx, r10
@@ -3681,22 +3681,22 @@ $LN3@RightShift:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [rax+120]
 
-; 105  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
-; 106  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
-; 107  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
-; 108  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
-; 109  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
-; 110  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
-; 111  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
-; 112  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
-; 113  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
-; 114  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
-; 115  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
-; 116  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
-; 117  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
-; 118  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
-; 119  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
-; 120  :             pp += 16;
+; 106  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 107  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 108  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 109  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 110  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 111  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 112  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 113  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
+; 114  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
+; 115  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
+; 116  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
+; 117  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
+; 118  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
+; 119  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
+; 120  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
+; 121  :             pp += 16;
 
 	sub	rax, -128				; ffffffffffffff80H
 	mov	rdx, rsi
@@ -3704,20 +3704,20 @@ $LN3@RightShift:
 	or	rdx, rdi
 	mov	QWORD PTR [r8+120], rdx
 
-; 121  :             op += 16;
+; 122  :             op += 16;
 
 	sub	r8, -128				; ffffffffffffff80H
 $LN7@RightShift:
 
-; 122  :         }
-; 123  : 
-; 124  :         if (t_count & 0x8)
+; 123  :         }
+; 124  : 
+; 125  :         if (t_count & 0x8)
 
 	test	r11b, 8
 	je	$LN8@RightShift
 
-; 125  :         {
-; 126  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 126  :         {
+; 127  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rdi, QWORD PTR [rax]
 	mov	rcx, r10
@@ -3780,14 +3780,14 @@ $LN7@RightShift:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [rax+56]
 
-; 127  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
-; 128  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
-; 129  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
-; 130  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
-; 131  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
-; 132  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
-; 133  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
-; 134  :             pp += 8;
+; 128  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 129  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 130  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 131  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 132  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 133  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 134  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 135  :             pp += 8;
 
 	add	rax, 64					; 00000040H
 	mov	rdx, rsi
@@ -3795,20 +3795,20 @@ $LN7@RightShift:
 	or	rdx, rdi
 	mov	QWORD PTR [r8+56], rdx
 
-; 135  :             op += 8;
+; 136  :             op += 8;
 
 	add	r8, 64					; 00000040H
 $LN8@RightShift:
 
-; 136  :         }
-; 137  : 
-; 138  :         if (t_count & 0x4)
+; 137  :         }
+; 138  : 
+; 139  :         if (t_count & 0x4)
 
 	test	r11b, 4
 	je	SHORT $LN9@RightShift
 
-; 139  :         {
-; 140  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 140  :         {
+; 141  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rdi, QWORD PTR [rax]
 	mov	rcx, r10
@@ -3839,10 +3839,10 @@ $LN8@RightShift:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [rax+24]
 
-; 141  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
-; 142  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
-; 143  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
-; 144  :             pp += 4;
+; 142  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 143  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 144  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 145  :             pp += 4;
 
 	add	rax, 32					; 00000020H
 	mov	rdx, rsi
@@ -3850,20 +3850,20 @@ $LN8@RightShift:
 	or	rdx, rdi
 	mov	QWORD PTR [r8+24], rdx
 
-; 145  :             op += 4;
+; 146  :             op += 4;
 
 	add	r8, 32					; 00000020H
 $LN9@RightShift:
 
-; 146  :         }
-; 147  : 
-; 148  :         if (t_count & 0x2)
+; 147  :         }
+; 148  : 
+; 149  :         if (t_count & 0x2)
 
 	test	r11b, 2
 	je	SHORT $LN10@RightShift
 
-; 149  :         {
-; 150  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 150  :         {
+; 151  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rdi, QWORD PTR [rax]
 	mov	rcx, r10
@@ -3878,8 +3878,8 @@ $LN9@RightShift:
 	mov	rcx, r9
 	mov	rsi, QWORD PTR [rax+8]
 
-; 151  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
-; 152  :             pp += 2;
+; 152  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 153  :             pp += 2;
 
 	add	rax, 16
 	mov	rdx, rsi
@@ -3887,20 +3887,20 @@ $LN9@RightShift:
 	or	rdx, rdi
 	mov	QWORD PTR [r8+8], rdx
 
-; 153  :             op += 2;
+; 154  :             op += 2;
 
 	add	r8, 16
 $LN10@RightShift:
 
-; 154  :         }
-; 155  : 
-; 156  :         if (t_count & 0x1)
+; 155  :         }
+; 156  : 
+; 157  :         if (t_count & 0x1)
 
 	test	r11b, 1
 	je	SHORT $LN11@RightShift
 
-; 157  :         {
-; 158  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 158  :         {
+; 159  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rcx, r10
 	shr	rsi, cl
@@ -3912,16 +3912,16 @@ $LN10@RightShift:
 	or	rax, rdx
 	mov	QWORD PTR [r8], rax
 
-; 159  :             pp += 1;
-; 160  :             op += 1;
+; 160  :             pp += 1;
+; 161  :             op += 1;
 
 	add	r8, 8
 $LN11@RightShift:
 
-; 161  :         }
-; 162  : 
-; 163  :         work = temp >> n_rshift_bit_count;
-; 164  :         if (work != 0 || padding_zero)
+; 162  :         }
+; 163  : 
+; 164  :         work = temp >> n_rshift_bit_count;
+; 165  :         if (work != 0 || padding_zero)
 
 	mov	eax, DWORD PTR padding_zero$[rsp]
 	mov	rcx, r10
@@ -3932,23 +3932,23 @@ $LN11@RightShift:
 	je	SHORT $LN20@RightShift
 $LN13@RightShift:
 
-; 165  :             *op = work;
+; 166  :             *op = work;
 
 	mov	QWORD PTR [r8], rsi
 
-; 166  : 
-; 167  :         if (padding_zero)
+; 167  : 
+; 168  :         if (padding_zero)
 
 	test	eax, eax
 	je	SHORT $LN20@RightShift
 
-; 168  :             _ZERO_MEMORY_UNIT(o + p_word_count - n_word_count, n_word_count);
+; 169  :             _ZERO_MEMORY_UNIT(o + p_word_count - n_word_count, n_word_count);
 
 	lea	rdi, QWORD PTR [r14+rbx*8]
 $LN113@RightShift:
 
-; 169  :     }
-; 170  : }
+; 170  :     }
+; 171  : }
 
 	mov	rcx, rbp
 	xor	eax, eax
@@ -3964,11 +3964,11 @@ RightShift_Imp ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 ;	COMDAT RightShift_Imp_DIV
 _TEXT	SEGMENT
@@ -3979,7 +3979,7 @@ o$ = 48
 padding_zero$ = 56
 RightShift_Imp_DIV PROC					; COMDAT
 
-; 173  : {
+; 174  : {
 
 $LN109:
 	mov	QWORD PTR [rsp+24], rbx
@@ -3989,82 +3989,82 @@ $LN109:
 	mov	r10, r8
 	mov	r14, r9
 
-; 174  :     __UNIT_TYPE_DIV* pp = p;
-; 175  :     __UNIT_TYPE p_count = p_word_count;
-; 176  :     __UNIT_TYPE_DIV* op = o;
-; 177  :     // n_word_count ワード右に移動し、更に n_bit_count ビット右に移動する。
-; 178  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
+; 175  :     __UNIT_TYPE_DIV* pp = p;
+; 176  :     __UNIT_TYPE p_count = p_word_count;
+; 177  :     __UNIT_TYPE_DIV* op = o;
+; 178  :     // n_word_count ワード右に移動し、更に n_bit_count ビット右に移動する。
+; 179  :     __UNIT_TYPE n_word_count = n / __UNIT_TYPE_BIT_COUNT;
 
 	mov	rbx, r10
 	mov	r11, rdx
 	shr	rbx, 6
 	mov	r8, r9
 
-; 179  :     __UNIT_TYPE n_rshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
+; 180  :     __UNIT_TYPE n_rshift_bit_count = n % __UNIT_TYPE_BIT_COUNT;
 
 	lea	rax, QWORD PTR [rcx+rbx*4]
 	and	r10d, 63				; 0000003fH
 
-; 180  :     if (n_rshift_bit_count == 0)
+; 181  :     if (n_rshift_bit_count == 0)
 
 	jne	SHORT $LN4@RightShift
 
-; 183  :         _COPY_MEMORY_UNIT_DIV(op, pp + n_word_count, p_count - n_word_count);
+; 184  :         _COPY_MEMORY_UNIT_DIV(op, pp + n_word_count, p_count - n_word_count);
 
 	mov	ecx, r11d
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	rdi, r9
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 
-; 183  :         _COPY_MEMORY_UNIT_DIV(op, pp + n_word_count, p_count - n_word_count);
+; 184  :         _COPY_MEMORY_UNIT_DIV(op, pp + n_word_count, p_count - n_word_count);
 
 	sub	ecx, ebx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	mov	rsi, rax
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 
-; 184  :         if (padding_zero)
+; 185  :         if (padding_zero)
 
 	cmp	DWORD PTR padding_zero$[rsp], 0
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 368  :     __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
+; 82   :         __movsd((unsigned long *)d, (unsigned long *)s, (unsigned long)count);
 
 	rep movsd
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_shift.c
 
-; 184  :         if (padding_zero)
+; 185  :         if (padding_zero)
 
 	je	$LN20@RightShift
 
-; 185  :             _ZERO_MEMORY_UNIT_DIV(op + p_count - n_word_count, n_word_count);
+; 186  :             _ZERO_MEMORY_UNIT_DIV(op + p_count - n_word_count, n_word_count);
 
 	sub	r11, rbx
 	lea	rdi, QWORD PTR [r9+r11*4]
 
-; 186  :     }
+; 187  :     }
 
 	jmp	$LN107@RightShift
 $LN4@RightShift:
 
-; 187  :     else
-; 188  :     {
-; 189  :         pp += n_word_count;
-; 190  :         __UNIT_TYPE n_lshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_rshift_bit_count;
-; 191  :         // p_count - n_word_count 回繰り返し
-; 192  : 
-; 193  :         __UNIT_TYPE_DIV temp = *pp++;
+; 188  :     else
+; 189  :     {
+; 190  :         pp += n_word_count;
+; 191  :         __UNIT_TYPE n_lshift_bit_count = __UNIT_TYPE_BIT_COUNT - n_rshift_bit_count;
+; 192  :         // p_count - n_word_count 回繰り返し
+; 193  : 
+; 194  :         __UNIT_TYPE_DIV temp = *pp++;
 
 	mov	esi, DWORD PTR [rax]
 
-; 194  :         __UNIT_TYPE_DIV work;
-; 195  :         __UNIT_TYPE t_count = p_count - n_word_count - 1;
+; 195  :         __UNIT_TYPE_DIV work;
+; 196  :         __UNIT_TYPE t_count = p_count - n_word_count - 1;
 
 	sub	r11, rbx
 	mov	QWORD PTR [rsp+24], rbp
@@ -4074,21 +4074,21 @@ $LN4@RightShift:
 	add	rax, 4
 	lea	rbp, QWORD PTR [r11-1]
 
-; 196  : 
-; 197  :         __UNIT_TYPE count = t_count >> 5;
+; 197  : 
+; 198  :         __UNIT_TYPE count = t_count >> 5;
 
 	mov	r15, rbp
 	shr	r15, 5
 
-; 198  :         while (count > 0)
+; 199  :         while (count > 0)
 
 	test	r15, r15
 	je	$LN3@RightShift
 	npad	2
 $LL2@RightShift:
 
-; 199  :         {
-; 200  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 200  :         {
+; 201  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	edi, DWORD PTR [rax]
 	mov	rcx, r10
@@ -4345,45 +4345,45 @@ $LL2@RightShift:
 	mov	edx, esi
 	shl	edx, cl
 
-; 201  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
-; 202  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
-; 203  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
-; 204  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
-; 205  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
-; 206  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
-; 207  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
-; 208  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
-; 209  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
-; 210  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
-; 211  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
-; 212  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
-; 213  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
-; 214  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
-; 215  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
-; 216  :             work = temp >> n_rshift_bit_count; temp = pp[16]; work |= temp << n_lshift_bit_count; op[16] = work;
-; 217  :             work = temp >> n_rshift_bit_count; temp = pp[17]; work |= temp << n_lshift_bit_count; op[17] = work;
-; 218  :             work = temp >> n_rshift_bit_count; temp = pp[18]; work |= temp << n_lshift_bit_count; op[18] = work;
-; 219  :             work = temp >> n_rshift_bit_count; temp = pp[19]; work |= temp << n_lshift_bit_count; op[19] = work;
-; 220  :             work = temp >> n_rshift_bit_count; temp = pp[20]; work |= temp << n_lshift_bit_count; op[20] = work;
-; 221  :             work = temp >> n_rshift_bit_count; temp = pp[21]; work |= temp << n_lshift_bit_count; op[21] = work;
-; 222  :             work = temp >> n_rshift_bit_count; temp = pp[22]; work |= temp << n_lshift_bit_count; op[22] = work;
-; 223  :             work = temp >> n_rshift_bit_count; temp = pp[23]; work |= temp << n_lshift_bit_count; op[23] = work;
-; 224  :             work = temp >> n_rshift_bit_count; temp = pp[24]; work |= temp << n_lshift_bit_count; op[24] = work;
-; 225  :             work = temp >> n_rshift_bit_count; temp = pp[25]; work |= temp << n_lshift_bit_count; op[25] = work;
-; 226  :             work = temp >> n_rshift_bit_count; temp = pp[26]; work |= temp << n_lshift_bit_count; op[26] = work;
-; 227  :             work = temp >> n_rshift_bit_count; temp = pp[27]; work |= temp << n_lshift_bit_count; op[27] = work;
-; 228  :             work = temp >> n_rshift_bit_count; temp = pp[28]; work |= temp << n_lshift_bit_count; op[28] = work;
-; 229  :             work = temp >> n_rshift_bit_count; temp = pp[29]; work |= temp << n_lshift_bit_count; op[29] = work;
-; 230  :             work = temp >> n_rshift_bit_count; temp = pp[30]; work |= temp << n_lshift_bit_count; op[30] = work;
-; 231  :             work = temp >> n_rshift_bit_count; temp = pp[31]; work |= temp << n_lshift_bit_count; op[31] = work;
-; 232  :             --count;
-; 233  :             pp += 32;
+; 202  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 203  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 204  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 205  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 206  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 207  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 208  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 209  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
+; 210  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
+; 211  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
+; 212  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
+; 213  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
+; 214  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
+; 215  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
+; 216  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
+; 217  :             work = temp >> n_rshift_bit_count; temp = pp[16]; work |= temp << n_lshift_bit_count; op[16] = work;
+; 218  :             work = temp >> n_rshift_bit_count; temp = pp[17]; work |= temp << n_lshift_bit_count; op[17] = work;
+; 219  :             work = temp >> n_rshift_bit_count; temp = pp[18]; work |= temp << n_lshift_bit_count; op[18] = work;
+; 220  :             work = temp >> n_rshift_bit_count; temp = pp[19]; work |= temp << n_lshift_bit_count; op[19] = work;
+; 221  :             work = temp >> n_rshift_bit_count; temp = pp[20]; work |= temp << n_lshift_bit_count; op[20] = work;
+; 222  :             work = temp >> n_rshift_bit_count; temp = pp[21]; work |= temp << n_lshift_bit_count; op[21] = work;
+; 223  :             work = temp >> n_rshift_bit_count; temp = pp[22]; work |= temp << n_lshift_bit_count; op[22] = work;
+; 224  :             work = temp >> n_rshift_bit_count; temp = pp[23]; work |= temp << n_lshift_bit_count; op[23] = work;
+; 225  :             work = temp >> n_rshift_bit_count; temp = pp[24]; work |= temp << n_lshift_bit_count; op[24] = work;
+; 226  :             work = temp >> n_rshift_bit_count; temp = pp[25]; work |= temp << n_lshift_bit_count; op[25] = work;
+; 227  :             work = temp >> n_rshift_bit_count; temp = pp[26]; work |= temp << n_lshift_bit_count; op[26] = work;
+; 228  :             work = temp >> n_rshift_bit_count; temp = pp[27]; work |= temp << n_lshift_bit_count; op[27] = work;
+; 229  :             work = temp >> n_rshift_bit_count; temp = pp[28]; work |= temp << n_lshift_bit_count; op[28] = work;
+; 230  :             work = temp >> n_rshift_bit_count; temp = pp[29]; work |= temp << n_lshift_bit_count; op[29] = work;
+; 231  :             work = temp >> n_rshift_bit_count; temp = pp[30]; work |= temp << n_lshift_bit_count; op[30] = work;
+; 232  :             work = temp >> n_rshift_bit_count; temp = pp[31]; work |= temp << n_lshift_bit_count; op[31] = work;
+; 233  :             --count;
+; 234  :             pp += 32;
 
 	sub	rax, -128				; ffffffffffffff80H
 	or	edx, edi
 	mov	DWORD PTR [r8+124], edx
 
-; 234  :             op += 32;
+; 235  :             op += 32;
 
 	sub	r8, -128				; ffffffffffffff80H
 	sub	r15, 1
@@ -4391,15 +4391,15 @@ $LL2@RightShift:
 $LN3@RightShift:
 	mov	r15, QWORD PTR [rsp+32]
 
-; 235  :         }
-; 236  : 
-; 237  :         if (t_count & 0x10)
+; 236  :         }
+; 237  : 
+; 238  :         if (t_count & 0x10)
 
 	test	bpl, 16
 	je	$LN7@RightShift
 
-; 238  :         {
-; 239  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 239  :         {
+; 240  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	edi, DWORD PTR [rax]
 	mov	rcx, r10
@@ -4528,41 +4528,41 @@ $LN3@RightShift:
 	mov	edx, esi
 	shl	edx, cl
 
-; 240  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
-; 241  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
-; 242  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
-; 243  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
-; 244  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
-; 245  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
-; 246  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
-; 247  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
-; 248  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
-; 249  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
-; 250  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
-; 251  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
-; 252  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
-; 253  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
-; 254  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
-; 255  :             pp += 16;
+; 241  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 242  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 243  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 244  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 245  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 246  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 247  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 248  :             work = temp >> n_rshift_bit_count; temp = pp[8]; work |= temp << n_lshift_bit_count; op[8] = work;
+; 249  :             work = temp >> n_rshift_bit_count; temp = pp[9]; work |= temp << n_lshift_bit_count; op[9] = work;
+; 250  :             work = temp >> n_rshift_bit_count; temp = pp[10]; work |= temp << n_lshift_bit_count; op[10] = work;
+; 251  :             work = temp >> n_rshift_bit_count; temp = pp[11]; work |= temp << n_lshift_bit_count; op[11] = work;
+; 252  :             work = temp >> n_rshift_bit_count; temp = pp[12]; work |= temp << n_lshift_bit_count; op[12] = work;
+; 253  :             work = temp >> n_rshift_bit_count; temp = pp[13]; work |= temp << n_lshift_bit_count; op[13] = work;
+; 254  :             work = temp >> n_rshift_bit_count; temp = pp[14]; work |= temp << n_lshift_bit_count; op[14] = work;
+; 255  :             work = temp >> n_rshift_bit_count; temp = pp[15]; work |= temp << n_lshift_bit_count; op[15] = work;
+; 256  :             pp += 16;
 
 	add	rax, 64					; 00000040H
 	or	edx, edi
 	mov	DWORD PTR [r8+60], edx
 
-; 256  :             op += 16;
+; 257  :             op += 16;
 
 	add	r8, 64					; 00000040H
 $LN7@RightShift:
 
-; 257  :         }
-; 258  : 
-; 259  :         if (t_count & 0x8)
+; 258  :         }
+; 259  : 
+; 260  :         if (t_count & 0x8)
 
 	test	bpl, 8
 	je	$LN8@RightShift
 
-; 260  :         {
-; 261  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 261  :         {
+; 262  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	edi, DWORD PTR [rax]
 	mov	rcx, r10
@@ -4627,33 +4627,33 @@ $LN7@RightShift:
 	mov	edx, esi
 	shl	edx, cl
 
-; 262  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
-; 263  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
-; 264  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
-; 265  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
-; 266  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
-; 267  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
-; 268  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
-; 269  :             pp += 8;
+; 263  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 264  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 265  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 266  :             work = temp >> n_rshift_bit_count; temp = pp[4]; work |= temp << n_lshift_bit_count; op[4] = work;
+; 267  :             work = temp >> n_rshift_bit_count; temp = pp[5]; work |= temp << n_lshift_bit_count; op[5] = work;
+; 268  :             work = temp >> n_rshift_bit_count; temp = pp[6]; work |= temp << n_lshift_bit_count; op[6] = work;
+; 269  :             work = temp >> n_rshift_bit_count; temp = pp[7]; work |= temp << n_lshift_bit_count; op[7] = work;
+; 270  :             pp += 8;
 
 	add	rax, 32					; 00000020H
 	or	edx, edi
 	mov	DWORD PTR [r8+28], edx
 
-; 270  :             op += 8;
+; 271  :             op += 8;
 
 	add	r8, 32					; 00000020H
 $LN8@RightShift:
 
-; 271  :         }
-; 272  : 
-; 273  :         if (t_count & 0x4)
+; 272  :         }
+; 273  : 
+; 274  :         if (t_count & 0x4)
 
 	test	bpl, 4
 	je	SHORT $LN9@RightShift
 
-; 274  :         {
-; 275  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 275  :         {
+; 276  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	edi, DWORD PTR [rax]
 	mov	rcx, r10
@@ -4686,29 +4686,29 @@ $LN8@RightShift:
 	mov	edx, esi
 	shl	edx, cl
 
-; 276  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
-; 277  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
-; 278  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
-; 279  :             pp += 4;
+; 277  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 278  :             work = temp >> n_rshift_bit_count; temp = pp[2]; work |= temp << n_lshift_bit_count; op[2] = work;
+; 279  :             work = temp >> n_rshift_bit_count; temp = pp[3]; work |= temp << n_lshift_bit_count; op[3] = work;
+; 280  :             pp += 4;
 
 	add	rax, 16
 	or	edx, edi
 	mov	DWORD PTR [r8+12], edx
 
-; 280  :             op += 4;
+; 281  :             op += 4;
 
 	add	r8, 16
 $LN9@RightShift:
 
-; 281  :         }
-; 282  : 
-; 283  :         if (t_count & 0x2)
+; 282  :         }
+; 283  : 
+; 284  :         if (t_count & 0x2)
 
 	test	bpl, 2
 	je	SHORT $LN10@RightShift
 
-; 284  :         {
-; 285  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 285  :         {
+; 286  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	edi, DWORD PTR [rax]
 	mov	rcx, r10
@@ -4717,7 +4717,7 @@ $LN9@RightShift:
 	mov	rcx, r9
 	shl	edx, cl
 
-; 286  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
+; 287  :             work = temp >> n_rshift_bit_count; temp = pp[1]; work |= temp << n_lshift_bit_count; op[1] = work;
 
 	mov	rcx, r10
 	or	edx, esi
@@ -4728,27 +4728,27 @@ $LN9@RightShift:
 	mov	edx, esi
 	shl	edx, cl
 
-; 287  :             pp += 2;
+; 288  :             pp += 2;
 
 	add	rax, 8
 	or	edx, edi
 	mov	DWORD PTR [r8+4], edx
 
-; 288  :             op += 2;
+; 289  :             op += 2;
 
 	add	r8, 8
 $LN10@RightShift:
 
-; 289  :         }
-; 290  : 
-; 291  :         if (t_count & 0x1)
+; 290  :         }
+; 291  : 
+; 292  :         if (t_count & 0x1)
 
 	test	bpl, 1
 	mov	rbp, QWORD PTR [rsp+24]
 	je	SHORT $LN11@RightShift
 
-; 292  :         {
-; 293  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
+; 293  :         {
+; 294  :             work = temp >> n_rshift_bit_count; temp = pp[0]; work |= temp << n_lshift_bit_count; op[0] = work;
 
 	mov	rcx, r10
 	shr	esi, cl
@@ -4760,16 +4760,16 @@ $LN10@RightShift:
 	or	eax, edx
 	mov	DWORD PTR [r8], eax
 
-; 294  :             pp += 1;
-; 295  :             op += 1;
+; 295  :             pp += 1;
+; 296  :             op += 1;
 
 	add	r8, 4
 $LN11@RightShift:
 
-; 296  :         }
-; 297  : 
-; 298  :         work = temp >> n_rshift_bit_count;
-; 299  :         if (work != 0 || padding_zero)
+; 297  :         }
+; 298  : 
+; 299  :         work = temp >> n_rshift_bit_count;
+; 300  :         if (work != 0 || padding_zero)
 
 	mov	eax, DWORD PTR padding_zero$[rsp]
 	mov	rcx, r10
@@ -4780,23 +4780,23 @@ $LN11@RightShift:
 	je	SHORT $LN20@RightShift
 $LN13@RightShift:
 
-; 300  :             *op = work;
+; 301  :             *op = work;
 
 	mov	DWORD PTR [r8], esi
 
-; 301  : 
-; 302  :         if (padding_zero)
+; 302  : 
+; 303  :         if (padding_zero)
 
 	test	eax, eax
 	je	SHORT $LN20@RightShift
 
-; 303  :             _ZERO_MEMORY_UNIT_DIV(o + p_word_count - n_word_count, n_word_count);
+; 304  :             _ZERO_MEMORY_UNIT_DIV(o + p_word_count - n_word_count, n_word_count);
 
 	lea	rdi, QWORD PTR [r14+r11*4]
 $LN107@RightShift:
 
-; 304  :     }
-; 305  : }
+; 305  :     }
+; 306  : }
 
 	mov	ecx, ebx
 	xor	eax, eax

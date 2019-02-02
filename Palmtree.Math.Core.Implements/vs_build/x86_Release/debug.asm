@@ -20,7 +20,7 @@ _DoDebug@4 PROC						; COMDAT
 ; 74   : #ifdef _DEBUG
 ; 75   :     PMC_CONFIGURATION_INFO conf;
 ; 76   :     conf.MEMORY_VERIFICATION_ENABLED = FALSE;
-; 77   :     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
+; 77   :     PMC_UINT_ENTRY_POINTS* ep = PMC_Initialize(&conf);
 ; 78   :     if (ep == NULL)
 ; 79   :     {
 ; 80   :          env->log(L"PMC_Initialize failed");

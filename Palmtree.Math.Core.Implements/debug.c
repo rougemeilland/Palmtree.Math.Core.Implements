@@ -59,7 +59,7 @@ static void TEST_End(PMC_DEBUG_ENVIRONMENT *env)
              (test_total_count - test_ok_count) * 100 / test_total_count);
 }
 
-static void DoTest(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep)
+static void DoTest(PMC_DEBUG_ENVIRONMENT *env, PMC_UINT_ENTRY_POINTS* ep)
 {
     __DEBUG_LOG = env->log;
     TEST_Start(env);
@@ -74,7 +74,7 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
 #ifdef _DEBUG
     PMC_CONFIGURATION_INFO conf;
     conf.MEMORY_VERIFICATION_ENABLED = FALSE;
-    PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
+    PMC_UINT_ENTRY_POINTS* ep = PMC_Initialize(&conf);
     if (ep == NULL)
     {
          env->log(L"PMC_Initialize failed");

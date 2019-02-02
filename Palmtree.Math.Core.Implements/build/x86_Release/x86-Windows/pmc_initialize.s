@@ -4,7 +4,7 @@
 	.globl	_PMC_Initialize@4
 	.def	_PMC_Initialize@4;	.scl	2;	.type	32;	.endef
 _PMC_Initialize@4:
-LFB5490:
+LFB5441:
 	.cfi_startproc
 	pushl	%ebx
 	.cfi_def_cfa_offset 8
@@ -179,7 +179,7 @@ L1:
 	.cfi_def_cfa_offset 4
 	ret	$4
 	.cfi_endproc
-LFE5490:
+LFE5441:
 	.comm	_configuration_info, 4, 2
 .lcomm _entry_points,272,32
 	.ident	"GCC: (i686-win32-dwarf-rev0, Built by MinGW-W64 project) 8.1.0"
@@ -270,5 +270,3 @@ LFE5490:
 	.def	_PMC_Pow_X_I@12;	.scl	2;	.type	32;	.endef
 	.def	_PMC_ModPow_X_X_X@16;	.scl	2;	.type	32;	.endef
 	.def	_PMC_GetPropertyValue_X_I@12;	.scl	2;	.type	32;	.endef
-	.section .drectve
-	.ascii " -export:\"PMC_Initialize@4\""

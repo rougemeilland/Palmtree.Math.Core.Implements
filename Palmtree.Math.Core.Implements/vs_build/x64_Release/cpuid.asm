@@ -63,29 +63,29 @@ reg_ecx$ = 40
 reg_edx$ = 48
 cpuidex	PROC						; COMDAT
 
-; 49   : {
+; 50   : {
 
 	mov	QWORD PTR [rsp+8], rbx
 
-; 50   :     _UINT32_T regbuf[4];
-; 51   :     __cpuidex(regbuf, op, subop);
+; 51   :     _UINT32_T regbuf[4];
+; 52   :     __cpuidex(regbuf, op, subop);
 
 	mov	eax, ecx
 	mov	ecx, edx
 	cpuid
 
-; 52   :     *reg_eax = regbuf[0];
+; 53   :     *reg_eax = regbuf[0];
 
 	mov	DWORD PTR [r8], eax
 
-; 53   :     *reg_ebx = regbuf[1];
-; 54   :     *reg_ecx = regbuf[2];
+; 54   :     *reg_ebx = regbuf[1];
+; 55   :     *reg_ecx = regbuf[2];
 
 	mov	rax, QWORD PTR reg_ecx$[rsp]
 	mov	DWORD PTR [r9], ebx
 
-; 55   :     *reg_edx = regbuf[3];
-; 56   : }
+; 56   :     *reg_edx = regbuf[3];
+; 57   : }
 
 	mov	rbx, QWORD PTR [rsp+8]
 	mov	DWORD PTR [rax], ecx
@@ -105,30 +105,30 @@ reg_ecx$ = 32
 reg_edx$ = 40
 cpuid	PROC						; COMDAT
 
-; 39   : {
+; 40   : {
 
 	mov	QWORD PTR [rsp+8], rbx
 
-; 40   :     _UINT32_T regbuf[4];
-; 41   :     __cpuid(regbuf, op);
+; 41   :     _UINT32_T regbuf[4];
+; 42   :     __cpuid(regbuf, op);
 
 	mov	eax, ecx
 	mov	r10, rdx
 	xor	ecx, ecx
 	cpuid
 
-; 42   :     *reg_eax = regbuf[0];
+; 43   :     *reg_eax = regbuf[0];
 
 	mov	DWORD PTR [r10], eax
 
-; 43   :     *reg_ebx = regbuf[1];
-; 44   :     *reg_ecx = regbuf[2];
-; 45   :     *reg_edx = regbuf[3];
+; 44   :     *reg_ebx = regbuf[1];
+; 45   :     *reg_ecx = regbuf[2];
+; 46   :     *reg_edx = regbuf[3];
 
 	mov	rax, QWORD PTR reg_edx$[rsp]
 	mov	DWORD PTR [r8], ebx
 
-; 46   : }
+; 47   : }
 
 	mov	rbx, QWORD PTR [rsp+8]
 	mov	DWORD PTR [r9], ecx
@@ -137,25 +137,25 @@ cpuid	PROC						; COMDAT
 cpuid	ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ;	COMDAT _ZERO_MEMORY_BYTE
 _TEXT	SEGMENT
 d$ = 8
 count$ = 16
 _ZERO_MEMORY_BYTE PROC					; COMDAT
 
-; 380  : {
+; 94   :     {
 
 	mov	QWORD PTR [rsp+8], rdi
 
-; 381  :     __stosb(d, 0, count);
+; 95   :         __stosb(d, 0, count);
 
 	mov	rdi, rcx
 	xor	eax, eax
 	mov	rcx, rdx
 	rep stosb
 
-; 382  : }
+; 96   :     }
 
 	mov	rdi, QWORD PTR [rsp+8]
 	ret	0
@@ -163,16 +163,16 @@ _ZERO_MEMORY_BYTE ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\cpuid.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\cpuid.c
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\cpuid.c
 ;	COMDAT GetCPUInfo
 _TEXT	SEGMENT
 feature$ = 32
 GetCPUInfo PROC						; COMDAT
 
-; 59   : {
+; 60   : {
 
 $LN23:
 	mov	QWORD PTR [rsp+8], rbx
@@ -180,83 +180,83 @@ $LN23:
 	sub	rsp, 16
 	mov	r8, rcx
 
-; 41   :     __cpuid(regbuf, op);
+; 42   :     __cpuid(regbuf, op);
 
 	xor	eax, eax
 	xor	ecx, ecx
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 381  :     __stosb(d, 0, count);
+; 95   :         __stosb(d, 0, count);
 
 	mov	rdi, r8
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\cpuid.c
 
-; 41   :     __cpuid(regbuf, op);
+; 42   :     __cpuid(regbuf, op);
 
 	cpuid
 	mov	r9d, eax
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 
-; 381  :     __stosb(d, 0, count);
+; 95   :         __stosb(d, 0, count);
 
 	mov	ecx, 4
 	xor	eax, eax
 	rep stosb
 ; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\cpuid.c
 
-; 70   :     if (max_function_no >= 1)
+; 71   :     if (max_function_no >= 1)
 
 	cmp	r9d, 1
 	jb	SHORT $LN20@GetCPUInfo
 
-; 71   :     {
-; 72   :         cpuid(1, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
-; 73   :         feature->PROCESSOR_FEATURE_POPCNT = (reg_ecx >> 23) & 1;
+; 72   :     {
+; 73   :         cpuid(1, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 74   :         feature->PROCESSOR_FEATURE_POPCNT = (reg_ecx >> 23) & 1;
 
 	and	DWORD PTR [r8], -2			; fffffffeH
 
-; 41   :     __cpuid(regbuf, op);
+; 42   :     __cpuid(regbuf, op);
 
 	xor	ecx, ecx
 	mov	eax, 1
 	cpuid
 
-; 71   :     {
-; 72   :         cpuid(1, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
-; 73   :         feature->PROCESSOR_FEATURE_POPCNT = (reg_ecx >> 23) & 1;
+; 72   :     {
+; 73   :         cpuid(1, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 74   :         feature->PROCESSOR_FEATURE_POPCNT = (reg_ecx >> 23) & 1;
 
 	shr	ecx, 23
 	and	ecx, 1
 	or	DWORD PTR [r8], ecx
 $LN20@GetCPUInfo:
 
-; 74   :     }
-; 75   :     if (max_function_no >= 7)
+; 75   :     }
+; 76   :     if (max_function_no >= 7)
 
 	cmp	r9d, 7
 	jb	SHORT $LN21@GetCPUInfo
 
-; 76   :     {
-; 77   :         cpuidex(7, 0, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
-; 78   :         max_subleaf_no = reg_eax;
-; 79   :         feature->PROCESSOR_FEATURE_BMI1 = (reg_ebx >> 3) & 1;
-; 80   :         feature->PROCESSOR_FEATURE_ADX = (reg_ebx >> 8) & 1;
-; 81   :         feature->PROCESSOR_FEATURE_BMI2 = (reg_ebx >> 19) & 1;
+; 77   :     {
+; 78   :         cpuidex(7, 0, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 79   :         max_subleaf_no = reg_eax;
+; 80   :         feature->PROCESSOR_FEATURE_BMI1 = (reg_ebx >> 3) & 1;
+; 81   :         feature->PROCESSOR_FEATURE_ADX = (reg_ebx >> 8) & 1;
+; 82   :         feature->PROCESSOR_FEATURE_BMI2 = (reg_ebx >> 19) & 1;
 
 	and	DWORD PTR [r8], -15			; fffffff1H
 
-; 51   :     __cpuidex(regbuf, op, subop);
+; 52   :     __cpuidex(regbuf, op, subop);
 
 	xor	ecx, ecx
 	mov	eax, 7
 	cpuid
 
-; 76   :     {
-; 77   :         cpuidex(7, 0, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
-; 78   :         max_subleaf_no = reg_eax;
-; 79   :         feature->PROCESSOR_FEATURE_BMI1 = (reg_ebx >> 3) & 1;
-; 80   :         feature->PROCESSOR_FEATURE_ADX = (reg_ebx >> 8) & 1;
-; 81   :         feature->PROCESSOR_FEATURE_BMI2 = (reg_ebx >> 19) & 1;
+; 77   :     {
+; 78   :         cpuidex(7, 0, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 79   :         max_subleaf_no = reg_eax;
+; 80   :         feature->PROCESSOR_FEATURE_BMI1 = (reg_ebx >> 3) & 1;
+; 81   :         feature->PROCESSOR_FEATURE_ADX = (reg_ebx >> 8) & 1;
+; 82   :         feature->PROCESSOR_FEATURE_BMI2 = (reg_ebx >> 19) & 1;
 
 	mov	ecx, ebx
 	mov	eax, ebx
@@ -271,43 +271,43 @@ $LN20@GetCPUInfo:
 	or	DWORD PTR [r8], ecx
 $LN21@GetCPUInfo:
 
-; 41   :     __cpuid(regbuf, op);
+; 42   :     __cpuid(regbuf, op);
 
 	xor	ecx, ecx
 	mov	eax, -2147483648			; ffffffff80000000H
 	cpuid
 
-; 82   :     }
-; 83   :     cpuid(0x80000000, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
-; 84   :     max_ex_function_no = reg_eax;
-; 85   :     if (max_ex_function_no >= 0x80000001)
+; 83   :     }
+; 84   :     cpuid(0x80000000, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 85   :     max_ex_function_no = reg_eax;
+; 86   :     if (max_ex_function_no >= 0x80000001)
 
 	cmp	eax, -2147483647			; 80000001H
 	jb	SHORT $LN4@GetCPUInfo
 
-; 86   :     {
-; 87   :         cpuid(0x80000001, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
-; 88   :         feature->PROCESSOR_FEATURE_ABM = (reg_ecx >> 5) & 1;
+; 87   :     {
+; 88   :         cpuid(0x80000001, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 89   :         feature->PROCESSOR_FEATURE_ABM = (reg_ecx >> 5) & 1;
 
 	and	DWORD PTR [r8], -17			; ffffffefH
 
-; 41   :     __cpuid(regbuf, op);
+; 42   :     __cpuid(regbuf, op);
 
 	xor	ecx, ecx
 	mov	eax, -2147483647			; ffffffff80000001H
 	cpuid
 
-; 86   :     {
-; 87   :         cpuid(0x80000001, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
-; 88   :         feature->PROCESSOR_FEATURE_ABM = (reg_ecx >> 5) & 1;
+; 87   :     {
+; 88   :         cpuid(0x80000001, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx);
+; 89   :         feature->PROCESSOR_FEATURE_ABM = (reg_ecx >> 5) & 1;
 
 	shr	ecx, 1
 	and	ecx, 16
 	or	DWORD PTR [r8], ecx
 $LN4@GetCPUInfo:
 
-; 89   :     }
-; 90   : }
+; 90   :     }
+; 91   : }
 
 	mov	rbx, QWORD PTR [rsp+32]
 	add	rsp, 16

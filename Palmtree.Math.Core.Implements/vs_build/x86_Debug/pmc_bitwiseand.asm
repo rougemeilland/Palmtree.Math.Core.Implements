@@ -22,7 +22,8 @@ __F37DAFF1_winerror@h DB 01H
 __7A450CCC_winbase@h DB 01H
 __B4B40122_winioctl@h DB 01H
 __86261D59_stralign@h DB 01H
-__4522B509_pmc_internal@h DB 01H
+__7B8DBFC3_pmc_uint_internal@h DB 01H
+__6B0481B0_pmc_inline_func@h DB 01H
 __B93DAC51_pmc_bitwiseand@c DB 01H
 msvcjmc	ENDS
 PUBLIC	_Initialize_BitwiseAnd
@@ -73,7 +74,7 @@ _w$ = 16						; size = 4
 _w_count$ = 20						; size = 4
 _BitwiseAnd_X_X PROC
 
-; 38   : {
+; 39   : {
 
 	push	ebp
 	mov	ebp, esp
@@ -83,20 +84,20 @@ _BitwiseAnd_X_X PROC
 	mov	ecx, OFFSET __B93DAC51_pmc_bitwiseand@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 39   :     __UNIT_TYPE count = w_count >> 5;
+; 40   :     __UNIT_TYPE count = w_count >> 5;
 
 	mov	eax, DWORD PTR _w_count$[ebp]
 	shr	eax, 5
 	mov	DWORD PTR _count$[ebp], eax
 $LN2@BitwiseAnd:
 
-; 40   :     while (count != 0)
+; 41   :     while (count != 0)
 
 	cmp	DWORD PTR _count$[ebp], 0
 	je	$LN3@BitwiseAnd
 
-; 41   :     {
-; 42   :         w[0] = u[0] & v[0];
+; 42   :     {
+; 43   :         w[0] = u[0] & v[0];
 
 	mov	ecx, 4
 	imul	edx, ecx, 0
@@ -111,7 +112,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 43   :         w[1] = u[1] & v[1];
+; 44   :         w[1] = u[1] & v[1];
 
 	mov	ecx, 4
 	shl	ecx, 0
@@ -126,7 +127,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+edx], ecx
 
-; 44   :         w[2] = u[2] & v[2];
+; 45   :         w[2] = u[2] & v[2];
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -141,7 +142,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+edx], ecx
 
-; 45   :         w[3] = u[3] & v[3];
+; 46   :         w[3] = u[3] & v[3];
 
 	mov	ecx, 4
 	imul	edx, ecx, 3
@@ -156,7 +157,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 46   :         w[4] = u[4] & v[4];
+; 47   :         w[4] = u[4] & v[4];
 
 	mov	ecx, 4
 	shl	ecx, 2
@@ -171,7 +172,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+edx], ecx
 
-; 47   :         w[5] = u[5] & v[5];
+; 48   :         w[5] = u[5] & v[5];
 
 	mov	ecx, 4
 	imul	edx, ecx, 5
@@ -186,7 +187,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 48   :         w[6] = u[6] & v[6];
+; 49   :         w[6] = u[6] & v[6];
 
 	mov	ecx, 4
 	imul	edx, ecx, 6
@@ -201,7 +202,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 49   :         w[7] = u[7] & v[7];
+; 50   :         w[7] = u[7] & v[7];
 
 	mov	ecx, 4
 	imul	edx, ecx, 7
@@ -216,7 +217,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 50   :         w[8] = u[8] & v[8];
+; 51   :         w[8] = u[8] & v[8];
 
 	mov	ecx, 4
 	shl	ecx, 3
@@ -231,7 +232,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+edx], ecx
 
-; 51   :         w[9] = u[9] & v[9];
+; 52   :         w[9] = u[9] & v[9];
 
 	mov	ecx, 4
 	imul	edx, ecx, 9
@@ -246,7 +247,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 52   :         w[10] = u[10] & v[10];
+; 53   :         w[10] = u[10] & v[10];
 
 	mov	ecx, 4
 	imul	edx, ecx, 10
@@ -261,7 +262,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 53   :         w[11] = u[11] & v[11];
+; 54   :         w[11] = u[11] & v[11];
 
 	mov	ecx, 4
 	imul	edx, ecx, 11
@@ -276,7 +277,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 54   :         w[12] = u[12] & v[12];
+; 55   :         w[12] = u[12] & v[12];
 
 	mov	ecx, 4
 	imul	edx, ecx, 12
@@ -291,7 +292,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 55   :         w[13] = u[13] & v[13];
+; 56   :         w[13] = u[13] & v[13];
 
 	mov	ecx, 4
 	imul	edx, ecx, 13
@@ -306,7 +307,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 56   :         w[14] = u[14] & v[14];
+; 57   :         w[14] = u[14] & v[14];
 
 	mov	ecx, 4
 	imul	edx, ecx, 14
@@ -321,7 +322,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 57   :         w[15] = u[15] & v[15];
+; 58   :         w[15] = u[15] & v[15];
 
 	mov	ecx, 4
 	imul	edx, ecx, 15
@@ -336,7 +337,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 58   :         w[16] = u[16] & v[16];
+; 59   :         w[16] = u[16] & v[16];
 
 	mov	ecx, 4
 	shl	ecx, 4
@@ -351,7 +352,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+edx], ecx
 
-; 59   :         w[17] = u[17] & v[17];
+; 60   :         w[17] = u[17] & v[17];
 
 	mov	ecx, 4
 	imul	edx, ecx, 17
@@ -366,7 +367,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 60   :         w[18] = u[18] & v[18];
+; 61   :         w[18] = u[18] & v[18];
 
 	mov	ecx, 4
 	imul	edx, ecx, 18
@@ -381,7 +382,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 61   :         w[19] = u[19] & v[19];
+; 62   :         w[19] = u[19] & v[19];
 
 	mov	ecx, 4
 	imul	edx, ecx, 19
@@ -396,7 +397,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 62   :         w[20] = u[20] & v[20];
+; 63   :         w[20] = u[20] & v[20];
 
 	mov	ecx, 4
 	imul	edx, ecx, 20
@@ -411,7 +412,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 63   :         w[21] = u[21] & v[21];
+; 64   :         w[21] = u[21] & v[21];
 
 	mov	ecx, 4
 	imul	edx, ecx, 21
@@ -426,7 +427,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 64   :         w[22] = u[22] & v[22];
+; 65   :         w[22] = u[22] & v[22];
 
 	mov	ecx, 4
 	imul	edx, ecx, 22
@@ -441,7 +442,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 65   :         w[23] = u[23] & v[23];
+; 66   :         w[23] = u[23] & v[23];
 
 	mov	ecx, 4
 	imul	edx, ecx, 23
@@ -456,7 +457,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 66   :         w[24] = u[24] & v[24];
+; 67   :         w[24] = u[24] & v[24];
 
 	mov	ecx, 4
 	imul	edx, ecx, 24
@@ -471,7 +472,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 67   :         w[25] = u[25] & v[25];
+; 68   :         w[25] = u[25] & v[25];
 
 	mov	ecx, 4
 	imul	edx, ecx, 25
@@ -486,7 +487,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 68   :         w[26] = u[26] & v[26];
+; 69   :         w[26] = u[26] & v[26];
 
 	mov	ecx, 4
 	imul	edx, ecx, 26
@@ -501,7 +502,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 69   :         w[27] = u[27] & v[27];
+; 70   :         w[27] = u[27] & v[27];
 
 	mov	ecx, 4
 	imul	edx, ecx, 27
@@ -516,7 +517,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 70   :         w[28] = u[28] & v[28];
+; 71   :         w[28] = u[28] & v[28];
 
 	mov	ecx, 4
 	imul	edx, ecx, 28
@@ -531,7 +532,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 71   :         w[29] = u[29] & v[29];
+; 72   :         w[29] = u[29] & v[29];
 
 	mov	ecx, 4
 	imul	edx, ecx, 29
@@ -546,7 +547,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 72   :         w[30] = u[30] & v[30];
+; 73   :         w[30] = u[30] & v[30];
 
 	mov	ecx, 4
 	imul	edx, ecx, 30
@@ -561,7 +562,7 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 73   :         w[31] = u[31] & v[31];
+; 74   :         w[31] = u[31] & v[31];
 
 	mov	ecx, 4
 	imul	edx, ecx, 31
@@ -576,44 +577,44 @@ $LN2@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 74   :         u += 32;
+; 75   :         u += 32;
 
 	mov	ecx, DWORD PTR _u$[ebp]
 	add	ecx, 128				; 00000080H
 	mov	DWORD PTR _u$[ebp], ecx
 
-; 75   :         v += 32;
+; 76   :         v += 32;
 
 	mov	edx, DWORD PTR _v$[ebp]
 	add	edx, 128				; 00000080H
 	mov	DWORD PTR _v$[ebp], edx
 
-; 76   :         w += 32;
+; 77   :         w += 32;
 
 	mov	eax, DWORD PTR _w$[ebp]
 	add	eax, 128				; 00000080H
 	mov	DWORD PTR _w$[ebp], eax
 
-; 77   :         --count;
+; 78   :         --count;
 
 	mov	ecx, DWORD PTR _count$[ebp]
 	sub	ecx, 1
 	mov	DWORD PTR _count$[ebp], ecx
 
-; 78   :     }
+; 79   :     }
 
 	jmp	$LN2@BitwiseAnd
 $LN3@BitwiseAnd:
 
-; 79   : 
-; 80   :     if (w_count & 0x10)
+; 80   : 
+; 81   :     if (w_count & 0x10)
 
 	mov	edx, DWORD PTR _w_count$[ebp]
 	and	edx, 16					; 00000010H
 	je	$LN4@BitwiseAnd
 
-; 81   :     {
-; 82   :         w[0] = u[0] & v[0];
+; 82   :     {
+; 83   :         w[0] = u[0] & v[0];
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -628,7 +629,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 83   :         w[1] = u[1] & v[1];
+; 84   :         w[1] = u[1] & v[1];
 
 	mov	eax, 4
 	shl	eax, 0
@@ -643,7 +644,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+ecx], eax
 
-; 84   :         w[2] = u[2] & v[2];
+; 85   :         w[2] = u[2] & v[2];
 
 	mov	eax, 4
 	shl	eax, 1
@@ -658,7 +659,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+ecx], eax
 
-; 85   :         w[3] = u[3] & v[3];
+; 86   :         w[3] = u[3] & v[3];
 
 	mov	eax, 4
 	imul	ecx, eax, 3
@@ -673,7 +674,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 86   :         w[4] = u[4] & v[4];
+; 87   :         w[4] = u[4] & v[4];
 
 	mov	eax, 4
 	shl	eax, 2
@@ -688,7 +689,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+ecx], eax
 
-; 87   :         w[5] = u[5] & v[5];
+; 88   :         w[5] = u[5] & v[5];
 
 	mov	eax, 4
 	imul	ecx, eax, 5
@@ -703,7 +704,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 88   :         w[6] = u[6] & v[6];
+; 89   :         w[6] = u[6] & v[6];
 
 	mov	eax, 4
 	imul	ecx, eax, 6
@@ -718,7 +719,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 89   :         w[7] = u[7] & v[7];
+; 90   :         w[7] = u[7] & v[7];
 
 	mov	eax, 4
 	imul	ecx, eax, 7
@@ -733,7 +734,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 90   :         w[8] = u[8] & v[8];
+; 91   :         w[8] = u[8] & v[8];
 
 	mov	eax, 4
 	shl	eax, 3
@@ -748,7 +749,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+ecx], eax
 
-; 91   :         w[9] = u[9] & v[9];
+; 92   :         w[9] = u[9] & v[9];
 
 	mov	eax, 4
 	imul	ecx, eax, 9
@@ -763,7 +764,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 92   :         w[10] = u[10] & v[10];
+; 93   :         w[10] = u[10] & v[10];
 
 	mov	eax, 4
 	imul	ecx, eax, 10
@@ -778,7 +779,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 93   :         w[11] = u[11] & v[11];
+; 94   :         w[11] = u[11] & v[11];
 
 	mov	eax, 4
 	imul	ecx, eax, 11
@@ -793,7 +794,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 94   :         w[12] = u[12] & v[12];
+; 95   :         w[12] = u[12] & v[12];
 
 	mov	eax, 4
 	imul	ecx, eax, 12
@@ -808,7 +809,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 95   :         w[13] = u[13] & v[13];
+; 96   :         w[13] = u[13] & v[13];
 
 	mov	eax, 4
 	imul	ecx, eax, 13
@@ -823,7 +824,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 96   :         w[14] = u[14] & v[14];
+; 97   :         w[14] = u[14] & v[14];
 
 	mov	eax, 4
 	imul	ecx, eax, 14
@@ -838,7 +839,7 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 97   :         w[15] = u[15] & v[15];
+; 98   :         w[15] = u[15] & v[15];
 
 	mov	eax, 4
 	imul	ecx, eax, 15
@@ -853,35 +854,35 @@ $LN3@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 98   :         u += 16;
+; 99   :         u += 16;
 
 	mov	eax, DWORD PTR _u$[ebp]
 	add	eax, 64					; 00000040H
 	mov	DWORD PTR _u$[ebp], eax
 
-; 99   :         v += 16;
+; 100  :         v += 16;
 
 	mov	ecx, DWORD PTR _v$[ebp]
 	add	ecx, 64					; 00000040H
 	mov	DWORD PTR _v$[ebp], ecx
 
-; 100  :         w += 16;
+; 101  :         w += 16;
 
 	mov	edx, DWORD PTR _w$[ebp]
 	add	edx, 64					; 00000040H
 	mov	DWORD PTR _w$[ebp], edx
 $LN4@BitwiseAnd:
 
-; 101  :     }
-; 102  : 
-; 103  :     if (w_count & 0x8)
+; 102  :     }
+; 103  : 
+; 104  :     if (w_count & 0x8)
 
 	mov	eax, DWORD PTR _w_count$[ebp]
 	and	eax, 8
 	je	$LN5@BitwiseAnd
 
-; 104  :     {
-; 105  :         w[0] = u[0] & v[0];
+; 105  :     {
+; 106  :         w[0] = u[0] & v[0];
 
 	mov	ecx, 4
 	imul	edx, ecx, 0
@@ -896,7 +897,7 @@ $LN4@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 106  :         w[1] = u[1] & v[1];
+; 107  :         w[1] = u[1] & v[1];
 
 	mov	ecx, 4
 	shl	ecx, 0
@@ -911,7 +912,7 @@ $LN4@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+edx], ecx
 
-; 107  :         w[2] = u[2] & v[2];
+; 108  :         w[2] = u[2] & v[2];
 
 	mov	ecx, 4
 	shl	ecx, 1
@@ -926,7 +927,7 @@ $LN4@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+edx], ecx
 
-; 108  :         w[3] = u[3] & v[3];
+; 109  :         w[3] = u[3] & v[3];
 
 	mov	ecx, 4
 	imul	edx, ecx, 3
@@ -941,7 +942,7 @@ $LN4@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 109  :         w[4] = u[4] & v[4];
+; 110  :         w[4] = u[4] & v[4];
 
 	mov	ecx, 4
 	shl	ecx, 2
@@ -956,7 +957,7 @@ $LN4@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+edx], ecx
 
-; 110  :         w[5] = u[5] & v[5];
+; 111  :         w[5] = u[5] & v[5];
 
 	mov	ecx, 4
 	imul	edx, ecx, 5
@@ -971,7 +972,7 @@ $LN4@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 111  :         w[6] = u[6] & v[6];
+; 112  :         w[6] = u[6] & v[6];
 
 	mov	ecx, 4
 	imul	edx, ecx, 6
@@ -986,7 +987,7 @@ $LN4@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 112  :         w[7] = u[7] & v[7];
+; 113  :         w[7] = u[7] & v[7];
 
 	mov	ecx, 4
 	imul	edx, ecx, 7
@@ -1001,35 +1002,35 @@ $LN4@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 113  :         u += 8;
+; 114  :         u += 8;
 
 	mov	ecx, DWORD PTR _u$[ebp]
 	add	ecx, 32					; 00000020H
 	mov	DWORD PTR _u$[ebp], ecx
 
-; 114  :         v += 8;
+; 115  :         v += 8;
 
 	mov	edx, DWORD PTR _v$[ebp]
 	add	edx, 32					; 00000020H
 	mov	DWORD PTR _v$[ebp], edx
 
-; 115  :         w += 8;
+; 116  :         w += 8;
 
 	mov	eax, DWORD PTR _w$[ebp]
 	add	eax, 32					; 00000020H
 	mov	DWORD PTR _w$[ebp], eax
 $LN5@BitwiseAnd:
 
-; 116  :     }
-; 117  : 
-; 118  :     if (w_count & 0x4)
+; 117  :     }
+; 118  : 
+; 119  :     if (w_count & 0x4)
 
 	mov	ecx, DWORD PTR _w_count$[ebp]
 	and	ecx, 4
 	je	$LN6@BitwiseAnd
 
-; 119  :     {
-; 120  :         w[0] = u[0] & v[0];
+; 120  :     {
+; 121  :         w[0] = u[0] & v[0];
 
 	mov	edx, 4
 	imul	eax, edx, 0
@@ -1044,7 +1045,7 @@ $LN5@BitwiseAnd:
 	mov	ecx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [ecx+edx], eax
 
-; 121  :         w[1] = u[1] & v[1];
+; 122  :         w[1] = u[1] & v[1];
 
 	mov	edx, 4
 	shl	edx, 0
@@ -1059,7 +1060,7 @@ $LN5@BitwiseAnd:
 	mov	ecx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [ecx+eax], edx
 
-; 122  :         w[2] = u[2] & v[2];
+; 123  :         w[2] = u[2] & v[2];
 
 	mov	edx, 4
 	shl	edx, 1
@@ -1074,7 +1075,7 @@ $LN5@BitwiseAnd:
 	mov	ecx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [ecx+eax], edx
 
-; 123  :         w[3] = u[3] & v[3];
+; 124  :         w[3] = u[3] & v[3];
 
 	mov	edx, 4
 	imul	eax, edx, 3
@@ -1089,35 +1090,35 @@ $LN5@BitwiseAnd:
 	mov	ecx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [ecx+edx], eax
 
-; 124  :         u += 4;
+; 125  :         u += 4;
 
 	mov	edx, DWORD PTR _u$[ebp]
 	add	edx, 16					; 00000010H
 	mov	DWORD PTR _u$[ebp], edx
 
-; 125  :         v += 4;
+; 126  :         v += 4;
 
 	mov	eax, DWORD PTR _v$[ebp]
 	add	eax, 16					; 00000010H
 	mov	DWORD PTR _v$[ebp], eax
 
-; 126  :         w += 4;
+; 127  :         w += 4;
 
 	mov	ecx, DWORD PTR _w$[ebp]
 	add	ecx, 16					; 00000010H
 	mov	DWORD PTR _w$[ebp], ecx
 $LN6@BitwiseAnd:
 
-; 127  :     }
-; 128  : 
-; 129  :     if (w_count & 0x2)
+; 128  :     }
+; 129  : 
+; 130  :     if (w_count & 0x2)
 
 	mov	edx, DWORD PTR _w_count$[ebp]
 	and	edx, 2
 	je	SHORT $LN7@BitwiseAnd
 
-; 130  :     {
-; 131  :         w[0] = u[0] & v[0];
+; 131  :     {
+; 132  :         w[0] = u[0] & v[0];
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -1132,7 +1133,7 @@ $LN6@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+eax], ecx
 
-; 132  :         w[1] = u[1] & v[1];
+; 133  :         w[1] = u[1] & v[1];
 
 	mov	eax, 4
 	shl	eax, 0
@@ -1147,35 +1148,35 @@ $LN6@BitwiseAnd:
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx+ecx], eax
 
-; 133  :         u += 2;
+; 134  :         u += 2;
 
 	mov	eax, DWORD PTR _u$[ebp]
 	add	eax, 8
 	mov	DWORD PTR _u$[ebp], eax
 
-; 134  :         v += 2;
+; 135  :         v += 2;
 
 	mov	ecx, DWORD PTR _v$[ebp]
 	add	ecx, 8
 	mov	DWORD PTR _v$[ebp], ecx
 
-; 135  :         w += 2;
+; 136  :         w += 2;
 
 	mov	edx, DWORD PTR _w$[ebp]
 	add	edx, 8
 	mov	DWORD PTR _w$[ebp], edx
 $LN7@BitwiseAnd:
 
-; 136  :     }
-; 137  : 
-; 138  :     if (w_count & 0x1)
+; 137  :     }
+; 138  : 
+; 139  :     if (w_count & 0x1)
 
 	mov	eax, DWORD PTR _w_count$[ebp]
 	and	eax, 1
 	je	SHORT $LN1@BitwiseAnd
 
-; 139  :     {
-; 140  :         w[0] = u[0] & v[0];
+; 140  :     {
+; 141  :         w[0] = u[0] & v[0];
 
 	mov	ecx, 4
 	imul	edx, ecx, 0
@@ -1190,27 +1191,27 @@ $LN7@BitwiseAnd:
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax+ecx], edx
 
-; 141  :         u += 1;
+; 142  :         u += 1;
 
 	mov	ecx, DWORD PTR _u$[ebp]
 	add	ecx, 4
 	mov	DWORD PTR _u$[ebp], ecx
 
-; 142  :         v += 1;
+; 143  :         v += 1;
 
 	mov	edx, DWORD PTR _v$[ebp]
 	add	edx, 4
 	mov	DWORD PTR _v$[ebp], edx
 
-; 143  :         w += 1;
+; 144  :         w += 1;
 
 	mov	eax, DWORD PTR _w$[ebp]
 	add	eax, 4
 	mov	DWORD PTR _w$[ebp], eax
 $LN1@BitwiseAnd:
 
-; 144  :     }
-; 145  : }
+; 145  :     }
+; 146  : }
 
 	pop	esi
 	add	esp, 4
@@ -1222,23 +1223,23 @@ $LN1@BitwiseAnd:
 _BitwiseAnd_X_X ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 tv65 = -4						; size = 4
 _x$ = 8							; size = 4
 _y$ = 12						; size = 4
 __MINIMUM_UNIT PROC
 
-; 494  : {
+; 208  :     {
 
 	push	ebp
 	mov	ebp, esp
 	push	ecx
 	mov	DWORD PTR [ebp-4], -858993460		; ccccccccH
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 495  :     return (x <= y ? x : y);
+; 209  :         return (x <= y ? x : y);
 
 	mov	eax, DWORD PTR _x$[ebp]
 	cmp	eax, DWORD PTR _y$[ebp]
@@ -1252,7 +1253,7 @@ $LN3@MINIMUM_UN:
 $LN4@MINIMUM_UN:
 	mov	eax, DWORD PTR tv65[ebp]
 
-; 496  : }
+; 210  :     }
 
 	add	esp, 4
 	cmp	ebp, esp
@@ -1263,20 +1264,20 @@ $LN4@MINIMUM_UN:
 __MINIMUM_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _u$ = 8							; size = 4
 _v$ = 12						; size = 4
 __DIVIDE_CEILING_UNIT PROC
 
-; 479  : {
+; 193  :     {
 
 	push	ebp
 	mov	ebp, esp
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 480  :     return ((u + v - 1) / v);
+; 194  :         return ((u + v - 1) / v);
 
 	mov	eax, DWORD PTR _v$[ebp]
 	mov	ecx, DWORD PTR _u$[ebp]
@@ -1284,7 +1285,7 @@ __DIVIDE_CEILING_UNIT PROC
 	xor	edx, edx
 	div	DWORD PTR _v$[ebp]
 
-; 481  : }
+; 195  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1293,20 +1294,20 @@ __DIVIDE_CEILING_UNIT PROC
 __DIVIDE_CEILING_UNIT ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _value$ = 8						; size = 8
 _result_high$ = 16					; size = 4
 __FROMDWORDTOWORD PROC
 
-; 468  : {
+; 182  :     {
 
 	push	ebp
 	mov	ebp, esp
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 469  :     *result_high = (_UINT32_T)(value >> 32);
+; 183  :         *result_high = (_UINT32_T)(value >> 32);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	edx, DWORD PTR _value$[ebp+4]
@@ -1315,11 +1316,11 @@ __FROMDWORDTOWORD PROC
 	mov	ecx, DWORD PTR _result_high$[ebp]
 	mov	DWORD PTR [ecx], eax
 
-; 470  :     return ((_UINT32_T)value);
+; 184  :         return ((_UINT32_T)value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 
-; 471  : }
+; 185  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1328,20 +1329,20 @@ __FROMDWORDTOWORD PROC
 __FROMDWORDTOWORD ENDP
 _TEXT	ENDS
 ; Function compile flags: /Odtp /RTCsu
-; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_internal.h
+; File z:\sources\lunor\repos\rougemeilland\palmtree.math.core.implements\palmtree.math.core.implements\pmc_inline_func.h
 _TEXT	SEGMENT
 _value_high$ = 8					; size = 4
 _value_low$ = 12					; size = 4
 __FROMWORDTODWORD PROC
 
-; 463  : {
+; 177  :     {
 
 	push	ebp
 	mov	ebp, esp
-	mov	ecx, OFFSET __4522B509_pmc_internal@h
+	mov	ecx, OFFSET __6B0481B0_pmc_inline_func@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 464  :     return (((_UINT64_T)value_high << 32) | value_low);
+; 178  :         return (((_UINT64_T)value_high << 32) | value_low);
 
 	xor	edx, edx
 	mov	eax, DWORD PTR _value_high$[ebp]
@@ -1351,7 +1352,7 @@ __FROMWORDTODWORD PROC
 	or	eax, DWORD PTR _value_low$[ebp]
 	or	edx, ecx
 
-; 465  : }
+; 179  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -1376,7 +1377,7 @@ _v$ = 12						; size = 4
 _w$ = 16						; size = 4
 _PMC_BitwiseAnd_X_X@12 PROC
 
-; 316  : {
+; 317  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1389,51 +1390,51 @@ _PMC_BitwiseAnd_X_X@12 PROC
 	mov	ecx, OFFSET __B93DAC51_pmc_bitwiseand@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 317  :     if (u == NULL)
+; 318  :     if (u == NULL)
 
 	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN2@PMC_Bitwis
 
-; 318  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 319  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN2@PMC_Bitwis:
 
-; 319  :     if (v == NULL)
+; 320  :     if (v == NULL)
 
 	cmp	DWORD PTR _v$[ebp], 0
 	jne	SHORT $LN3@PMC_Bitwis
 
-; 320  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 321  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN3@PMC_Bitwis:
 
-; 321  :     if (w == NULL)
+; 322  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Bitwis
 
-; 322  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 323  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN4@PMC_Bitwis:
 
-; 323  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 324  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	eax, DWORD PTR _u$[ebp]
 	mov	DWORD PTR _nu$[ebp], eax
 
-; 324  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 325  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
 
 	mov	ecx, DWORD PTR _v$[ebp]
 	mov	DWORD PTR _nv$[ebp], ecx
 
-; 325  :     PMC_STATUS_CODE result;
-; 326  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 326  :     PMC_STATUS_CODE result;
+; 327  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nu$[ebp]
 	push	edx
@@ -1443,13 +1444,13 @@ $LN4@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Bitwis
 
-; 327  :         return (result);
+; 328  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Bitwis
 $LN5@PMC_Bitwis:
 
-; 328  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+; 329  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nv$[ebp]
 	push	eax
@@ -1459,14 +1460,14 @@ $LN5@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN6@PMC_Bitwis
 
-; 329  :         return (result);
+; 330  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Bitwis
 $LN6@PMC_Bitwis:
 
-; 330  :     NUMBER_HEADER* nw;
-; 331  :     if (nu->IS_ZERO)
+; 331  :     NUMBER_HEADER* nw;
+; 332  :     if (nu->IS_ZERO)
 
 	mov	ecx, DWORD PTR _nu$[ebp]
 	mov	edx, DWORD PTR [ecx+24]
@@ -1474,14 +1475,14 @@ $LN6@PMC_Bitwis:
 	and	edx, 1
 	je	SHORT $LN7@PMC_Bitwis
 
-; 332  :         *w = &number_zero;
+; 333  :         *w = &number_zero;
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax], OFFSET _number_zero
 	jmp	$LN8@PMC_Bitwis
 $LN7@PMC_Bitwis:
 
-; 333  :     else if (nv->IS_ZERO)
+; 334  :     else if (nv->IS_ZERO)
 
 	mov	ecx, DWORD PTR _nv$[ebp]
 	mov	edx, DWORD PTR [ecx+24]
@@ -1489,28 +1490,28 @@ $LN7@PMC_Bitwis:
 	and	edx, 1
 	je	SHORT $LN9@PMC_Bitwis
 
-; 334  :         *w = &number_zero;
+; 335  :         *w = &number_zero;
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax], OFFSET _number_zero
 	jmp	$LN8@PMC_Bitwis
 $LN9@PMC_Bitwis:
 
-; 335  :     else
-; 336  :     {
-; 337  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
+; 336  :     else
+; 337  :     {
+; 338  :         __UNIT_TYPE u_bit_count = nu->UNIT_BIT_COUNT;
 
 	mov	ecx, DWORD PTR _nu$[ebp]
 	mov	edx, DWORD PTR [ecx+12]
 	mov	DWORD PTR _u_bit_count$5[ebp], edx
 
-; 338  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
+; 339  :         __UNIT_TYPE v_bit_count = nv->UNIT_BIT_COUNT;
 
 	mov	eax, DWORD PTR _nv$[ebp]
 	mov	ecx, DWORD PTR [eax+12]
 	mov	DWORD PTR _v_bit_count$4[ebp], ecx
 
-; 339  :         __UNIT_TYPE w_bit_count = _MINIMUM_UNIT(u_bit_count, v_bit_count);
+; 340  :         __UNIT_TYPE w_bit_count = _MINIMUM_UNIT(u_bit_count, v_bit_count);
 
 	mov	edx, DWORD PTR _v_bit_count$4[ebp]
 	push	edx
@@ -1520,8 +1521,8 @@ $LN9@PMC_Bitwis:
 	add	esp, 8
 	mov	DWORD PTR _w_bit_count$3[ebp], eax
 
-; 340  :         __UNIT_TYPE nw_light_check_code;
-; 341  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
+; 341  :         __UNIT_TYPE nw_light_check_code;
+; 342  :         if ((result = AllocateNumber(&nw, w_bit_count, &nw_light_check_code)) != PMC_STATUS_OK)
 
 	lea	ecx, DWORD PTR _nw_light_check_code$2[ebp]
 	push	ecx
@@ -1535,13 +1536,13 @@ $LN9@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN11@PMC_Bitwis
 
-; 342  :             return (result);
+; 343  :             return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Bitwis
 $LN11@PMC_Bitwis:
 
-; 343  :         __UNIT_TYPE w_word_count = _DIVIDE_CEILING_UNIT(w_bit_count, __UNIT_TYPE_BIT_COUNT);
+; 344  :         __UNIT_TYPE w_word_count = _DIVIDE_CEILING_UNIT(w_bit_count, __UNIT_TYPE_BIT_COUNT);
 
 	push	32					; 00000020H
 	mov	ecx, DWORD PTR _w_bit_count$3[ebp]
@@ -1550,7 +1551,7 @@ $LN11@PMC_Bitwis:
 	add	esp, 8
 	mov	DWORD PTR _w_word_count$1[ebp], eax
 
-; 344  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
+; 345  :         BitwiseAnd_X_X(nu->BLOCK, nv->BLOCK, nw->BLOCK, w_word_count);
 
 	mov	edx, DWORD PTR _w_word_count$1[ebp]
 	push	edx
@@ -1566,7 +1567,7 @@ $LN11@PMC_Bitwis:
 	call	_BitwiseAnd_X_X
 	add	esp, 16					; 00000010H
 
-; 345  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
+; 346  :         if ((result = CheckBlockLight(nw->BLOCK, nw_light_check_code)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _nw_light_check_code$2[ebp]
 	push	eax
@@ -1579,20 +1580,20 @@ $LN11@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN12@PMC_Bitwis
 
-; 346  :             return (result);
+; 347  :             return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN12@PMC_Bitwis:
 
-; 347  :         CommitNumber(nw);
+; 348  :         CommitNumber(nw);
 
 	mov	eax, DWORD PTR _nw$[ebp]
 	push	eax
 	call	_CommitNumber
 	add	esp, 4
 
-; 348  :         if (nw->IS_ZERO)
+; 349  :         if (nw->IS_ZERO)
 
 	mov	ecx, DWORD PTR _nw$[ebp]
 	mov	edx, DWORD PTR [ecx+24]
@@ -1600,30 +1601,30 @@ $LN12@PMC_Bitwis:
 	and	edx, 1
 	je	SHORT $LN13@PMC_Bitwis
 
-; 349  :         {
-; 350  :             DeallocateNumber(nw);
+; 350  :         {
+; 351  :             DeallocateNumber(nw);
 
 	mov	eax, DWORD PTR _nw$[ebp]
 	push	eax
 	call	_DeallocateNumber
 	add	esp, 4
 
-; 351  :             nw = &number_zero;
+; 352  :             nw = &number_zero;
 
 	mov	DWORD PTR _nw$[ebp], OFFSET _number_zero
 $LN13@PMC_Bitwis:
 
-; 352  :         }
-; 353  :         *w = nw;
+; 353  :         }
+; 354  :         *w = nw;
 
 	mov	ecx, DWORD PTR _w$[ebp]
 	mov	edx, DWORD PTR _nw$[ebp]
 	mov	DWORD PTR [ecx], edx
 $LN8@PMC_Bitwis:
 
-; 354  :     }
-; 355  : #ifdef _DEBUG
-; 356  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
+; 355  :     }
+; 356  : #ifdef _DEBUG
+; 357  :     if ((result = CheckNumber(*w)) != PMC_STATUS_OK)
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	ecx, DWORD PTR [eax]
@@ -1634,19 +1635,19 @@ $LN8@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN14@PMC_Bitwis
 
-; 357  :         return (result);
+; 358  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN14@PMC_Bitwis:
 
-; 358  : #endif
-; 359  :     return (PMC_STATUS_OK);
+; 359  : #endif
+; 360  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Bitwis:
 
-; 360  : }
+; 361  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -1715,7 +1716,7 @@ _v$ = 12						; size = 8
 _w$ = 20						; size = 4
 _PMC_BitwiseAnd_X_L@16 PROC
 
-; 267  : {
+; 268  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1733,49 +1734,49 @@ _PMC_BitwiseAnd_X_L@16 PROC
 	mov	ecx, OFFSET __B93DAC51_pmc_bitwiseand@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 268  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
+; 269  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(v) * 8)
 
 	xor	eax, eax
 	je	SHORT $LN2@PMC_Bitwis
 
-; 269  :     {
-; 270  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 271  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 270  :     {
+; 271  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 272  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffff00H
 	jmp	$LN1@PMC_Bitwis
 $LN2@PMC_Bitwis:
 
-; 272  :     }
-; 273  :     if (u == NULL)
+; 273  :     }
+; 274  :     if (u == NULL)
 
 	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN3@PMC_Bitwis
 
-; 274  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 275  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN3@PMC_Bitwis:
 
-; 275  :     if (w == NULL)
+; 276  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Bitwis
 
-; 276  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 277  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN4@PMC_Bitwis:
 
-; 277  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 278  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	ecx, DWORD PTR _u$[ebp]
 	mov	DWORD PTR _nu$[ebp], ecx
 
-; 278  :     PMC_STATUS_CODE result;
-; 279  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 279  :     PMC_STATUS_CODE result;
+; 280  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nu$[ebp]
 	push	edx
@@ -1785,13 +1786,13 @@ $LN4@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Bitwis
 
-; 280  :         return (result);
+; 281  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Bitwis
 $LN5@PMC_Bitwis:
 
-; 281  :     if (nu->IS_ZERO)
+; 282  :     if (nu->IS_ZERO)
 
 	mov	eax, DWORD PTR _nu$[ebp]
 	mov	ecx, DWORD PTR [eax+24]
@@ -1799,54 +1800,54 @@ $LN5@PMC_Bitwis:
 	and	ecx, 1
 	je	SHORT $LN6@PMC_Bitwis
 
-; 282  :     {
-; 283  :         // u が 0 である場合
-; 284  :         *w = 0;
+; 283  :     {
+; 284  :         // u が 0 である場合
+; 285  :         *w = 0;
 
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx], 0
 	mov	DWORD PTR [edx+4], 0
 
-; 285  :     }
+; 286  :     }
 
 	jmp	$LN7@PMC_Bitwis
 $LN6@PMC_Bitwis:
 
-; 286  :     else if (v == 0)
+; 287  :     else if (v == 0)
 
 	mov	eax, DWORD PTR _v$[ebp]
 	or	eax, DWORD PTR _v$[ebp+4]
 	jne	SHORT $LN8@PMC_Bitwis
 
-; 287  :     {
-; 288  :         // v が 0 である場合
-; 289  :         *w = 0;
+; 288  :     {
+; 289  :         // v が 0 である場合
+; 290  :         *w = 0;
 
 	mov	ecx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [ecx], 0
 	mov	DWORD PTR [ecx+4], 0
 
-; 290  :     }
+; 291  :     }
 
 	jmp	$LN7@PMC_Bitwis
 $LN8@PMC_Bitwis:
 
-; 291  :     else
-; 292  :     {
-; 293  :         // u と v がともに 0 ではない場合
-; 294  : 
-; 295  :         // x と y の和を計算する
-; 296  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 292  :     else
+; 293  :     {
+; 294  :         // u と v がともに 0 ではない場合
+; 295  : 
+; 296  :         // x と y の和を計算する
+; 297  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
 
 	mov	edx, 1
 	test	edx, edx
 	je	SHORT $LN10@PMC_Bitwis
 
-; 297  :         {
-; 298  :             // _UINT64_T が 1 ワードで表現しきれない場合
-; 299  : 
-; 300  :             _UINT32_T v_hi;
-; 301  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
+; 298  :         {
+; 299  :             // _UINT64_T が 1 ワードで表現しきれない場合
+; 300  : 
+; 301  :             _UINT32_T v_hi;
+; 302  :             _UINT32_T v_lo = _FROMDWORDTOWORD(v, &v_hi);
 
 	lea	eax, DWORD PTR _v_hi$4[ebp]
 	push	eax
@@ -1858,7 +1859,7 @@ $LN8@PMC_Bitwis:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _v_lo$3[ebp], eax
 
-; 302  :             _UINT32_T w_hi = nu->UNIT_WORD_COUNT > 1 ? nu->BLOCK[1] & v_hi : 0;
+; 303  :             _UINT32_T w_hi = nu->UNIT_WORD_COUNT > 1 ? nu->BLOCK[1] & v_hi : 0;
 
 	mov	eax, DWORD PTR _nu$[ebp]
 	cmp	DWORD PTR [eax+8], 1
@@ -1877,7 +1878,7 @@ $LN14@PMC_Bitwis:
 	mov	edx, DWORD PTR tv85[ebp]
 	mov	DWORD PTR _w_hi$2[ebp], edx
 
-; 303  :             _UINT32_T w_lo = nu->BLOCK[0] & v_lo;
+; 304  :             _UINT32_T w_lo = nu->BLOCK[0] & v_lo;
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -1887,7 +1888,7 @@ $LN14@PMC_Bitwis:
 	and	ecx, DWORD PTR _v_lo$3[ebp]
 	mov	DWORD PTR _w_lo$1[ebp], ecx
 
-; 304  :             *w = _FROMWORDTODWORD(w_hi, w_lo);
+; 305  :             *w = _FROMWORDTODWORD(w_hi, w_lo);
 
 	mov	edx, DWORD PTR _w_lo$1[ebp]
 	push	edx
@@ -1899,15 +1900,15 @@ $LN14@PMC_Bitwis:
 	mov	DWORD PTR [ecx], eax
 	mov	DWORD PTR [ecx+4], edx
 
-; 305  :         }
+; 306  :         }
 
 	jmp	SHORT $LN7@PMC_Bitwis
 $LN10@PMC_Bitwis:
 
-; 306  :         else
-; 307  :         {
-; 308  :             // _UINT64_T が 1 ワードで表現できる場合
-; 309  :             *w = nu->BLOCK[0] & v;
+; 307  :         else
+; 308  :         {
+; 309  :             // _UINT64_T が 1 ワードで表現できる場合
+; 310  :             *w = nu->BLOCK[0] & v;
 
 	mov	edx, 4
 	imul	eax, edx, 0
@@ -1922,14 +1923,14 @@ $LN10@PMC_Bitwis:
 	mov	DWORD PTR [edx+4], ecx
 $LN7@PMC_Bitwis:
 
-; 310  :         }
-; 311  :     }
-; 312  :     return (PMC_STATUS_OK);
+; 311  :         }
+; 312  :     }
+; 313  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Bitwis:
 
-; 313  : }
+; 314  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -1969,7 +1970,7 @@ _v$ = 12						; size = 4
 _w$ = 16						; size = 4
 _PMC_BitwiseAnd_X_I@12 PROC
 
-; 183  : {
+; 184  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -1979,49 +1980,49 @@ _PMC_BitwiseAnd_X_I@12 PROC
 	mov	ecx, OFFSET __B93DAC51_pmc_bitwiseand@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 184  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
+; 185  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(v) * 8)
 
 	xor	eax, eax
 	je	SHORT $LN2@PMC_Bitwis
 
-; 185  :     {
-; 186  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 187  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 186  :     {
+; 187  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 188  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffff00H
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN2@PMC_Bitwis:
 
-; 188  :     }
-; 189  :     if (u == NULL)
+; 189  :     }
+; 190  :     if (u == NULL)
 
 	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN3@PMC_Bitwis
 
-; 190  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 191  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN3@PMC_Bitwis:
 
-; 191  :     if (w == NULL)
+; 192  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Bitwis
 
-; 192  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 193  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN4@PMC_Bitwis:
 
-; 193  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
+; 194  :     NUMBER_HEADER* nu = (NUMBER_HEADER*)u;
 
 	mov	ecx, DWORD PTR _u$[ebp]
 	mov	DWORD PTR _nu$[ebp], ecx
 
-; 194  :     PMC_STATUS_CODE result;
-; 195  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
+; 195  :     PMC_STATUS_CODE result;
+; 196  :     if ((result = CheckNumber(nu)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nu$[ebp]
 	push	edx
@@ -2031,13 +2032,13 @@ $LN4@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Bitwis
 
-; 196  :         return (result);
+; 197  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN5@PMC_Bitwis:
 
-; 197  :     if (nu->IS_ZERO)
+; 198  :     if (nu->IS_ZERO)
 
 	mov	eax, DWORD PTR _nu$[ebp]
 	mov	ecx, DWORD PTR [eax+24]
@@ -2045,41 +2046,41 @@ $LN5@PMC_Bitwis:
 	and	ecx, 1
 	je	SHORT $LN6@PMC_Bitwis
 
-; 198  :     {
-; 199  :         // u が 0 である場合
-; 200  :         *w = 0;
+; 199  :     {
+; 200  :         // u が 0 である場合
+; 201  :         *w = 0;
 
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx], 0
 
-; 201  :     }
+; 202  :     }
 
 	jmp	SHORT $LN7@PMC_Bitwis
 $LN6@PMC_Bitwis:
 
-; 202  :     else  if (v == 0)
+; 203  :     else  if (v == 0)
 
 	cmp	DWORD PTR _v$[ebp], 0
 	jne	SHORT $LN8@PMC_Bitwis
 
-; 203  :     {
-; 204  :         // v が 0 である場合
-; 205  :         *w = 0;
+; 204  :     {
+; 205  :         // v が 0 である場合
+; 206  :         *w = 0;
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax], 0
 
-; 206  :     }
+; 207  :     }
 
 	jmp	SHORT $LN7@PMC_Bitwis
 $LN8@PMC_Bitwis:
 
-; 207  :     else
-; 208  :     {
-; 209  :         // u と v がともに 0 ではない場合
-; 210  : 
-; 211  :         // u と v の bit AND を計算する
-; 212  :         *w = nu->BLOCK[0] & v;
+; 208  :     else
+; 209  :     {
+; 210  :         // u と v がともに 0 ではない場合
+; 211  : 
+; 212  :         // u と v の bit AND を計算する
+; 213  :         *w = nu->BLOCK[0] & v;
 
 	mov	ecx, 4
 	imul	edx, ecx, 0
@@ -2091,13 +2092,13 @@ $LN8@PMC_Bitwis:
 	mov	DWORD PTR [eax], edx
 $LN7@PMC_Bitwis:
 
-; 213  :     }
-; 214  :     return (PMC_STATUS_OK);
+; 214  :     }
+; 215  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Bitwis:
 
-; 215  : }
+; 216  : }
 
 	add	esp, 8
 	cmp	ebp, esp
@@ -2122,7 +2123,7 @@ _v$ = 16						; size = 4
 _w$ = 20						; size = 4
 _PMC_BitwiseAnd_L_X@16 PROC
 
-; 218  : {
+; 219  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2140,49 +2141,49 @@ _PMC_BitwiseAnd_L_X@16 PROC
 	mov	ecx, OFFSET __B93DAC51_pmc_bitwiseand@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 219  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
+; 220  :     if (__UNIT_TYPE_BIT_COUNT * 2 < sizeof(u) * 8)
 
 	xor	eax, eax
 	je	SHORT $LN2@PMC_Bitwis
 
-; 220  :     {
-; 221  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
-; 222  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 221  :     {
+; 222  :         // _UINT64_T が 2 ワードで表現しきれない処理系には対応しない
+; 223  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffff00H
 	jmp	$LN1@PMC_Bitwis
 $LN2@PMC_Bitwis:
 
-; 223  :     }
-; 224  :     if (v == NULL)
+; 224  :     }
+; 225  :     if (v == NULL)
 
 	cmp	DWORD PTR _v$[ebp], 0
 	jne	SHORT $LN3@PMC_Bitwis
 
-; 225  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 226  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN3@PMC_Bitwis:
 
-; 226  :     if (w == NULL)
+; 227  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Bitwis
 
-; 227  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 228  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	$LN1@PMC_Bitwis
 $LN4@PMC_Bitwis:
 
-; 228  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 229  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
 
 	mov	ecx, DWORD PTR _v$[ebp]
 	mov	DWORD PTR _nv$[ebp], ecx
 
-; 229  :     PMC_STATUS_CODE result;
-; 230  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+; 230  :     PMC_STATUS_CODE result;
+; 231  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nv$[ebp]
 	push	edx
@@ -2192,13 +2193,13 @@ $LN4@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Bitwis
 
-; 231  :         return (result);
+; 232  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	$LN1@PMC_Bitwis
 $LN5@PMC_Bitwis:
 
-; 232  :     if (nv->IS_ZERO)
+; 233  :     if (nv->IS_ZERO)
 
 	mov	eax, DWORD PTR _nv$[ebp]
 	mov	ecx, DWORD PTR [eax+24]
@@ -2206,54 +2207,54 @@ $LN5@PMC_Bitwis:
 	and	ecx, 1
 	je	SHORT $LN6@PMC_Bitwis
 
-; 233  :     {
-; 234  :         // v が 0 である場合
-; 235  :         *w = 0;
+; 234  :     {
+; 235  :         // v が 0 である場合
+; 236  :         *w = 0;
 
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx], 0
 	mov	DWORD PTR [edx+4], 0
 
-; 236  :     }
+; 237  :     }
 
 	jmp	$LN7@PMC_Bitwis
 $LN6@PMC_Bitwis:
 
-; 237  :     else if (u == 0)
+; 238  :     else if (u == 0)
 
 	mov	eax, DWORD PTR _u$[ebp]
 	or	eax, DWORD PTR _u$[ebp+4]
 	jne	SHORT $LN8@PMC_Bitwis
 
-; 238  :     {
-; 239  :         // u が 0 である場合
-; 240  :         *w = 0;
+; 239  :     {
+; 240  :         // u が 0 である場合
+; 241  :         *w = 0;
 
 	mov	ecx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [ecx], 0
 	mov	DWORD PTR [ecx+4], 0
 
-; 241  :     }
+; 242  :     }
 
 	jmp	$LN7@PMC_Bitwis
 $LN8@PMC_Bitwis:
 
-; 242  :     else
-; 243  :     {
-; 244  :         // u と v がともに 0 ではない場合
-; 245  : 
-; 246  :         // x と y の和を計算する
-; 247  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+; 243  :     else
+; 244  :     {
+; 245  :         // u と v がともに 0 ではない場合
+; 246  : 
+; 247  :         // x と y の和を計算する
+; 248  :         if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
 
 	mov	edx, 1
 	test	edx, edx
 	je	SHORT $LN10@PMC_Bitwis
 
-; 248  :         {
-; 249  :             // _UINT64_T が 1 ワードで表現しきれない場合
-; 250  : 
-; 251  :             _UINT32_T u_hi;
-; 252  :             _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
+; 249  :         {
+; 250  :             // _UINT64_T が 1 ワードで表現しきれない場合
+; 251  : 
+; 252  :             _UINT32_T u_hi;
+; 253  :             _UINT32_T u_lo = _FROMDWORDTOWORD(u, &u_hi);
 
 	lea	eax, DWORD PTR _u_hi$4[ebp]
 	push	eax
@@ -2265,7 +2266,7 @@ $LN8@PMC_Bitwis:
 	add	esp, 12					; 0000000cH
 	mov	DWORD PTR _u_lo$3[ebp], eax
 
-; 253  :             _UINT32_T w_hi = nv->UNIT_WORD_COUNT > 1 ? nv->BLOCK[1] & u_hi : 0;
+; 254  :             _UINT32_T w_hi = nv->UNIT_WORD_COUNT > 1 ? nv->BLOCK[1] & u_hi : 0;
 
 	mov	eax, DWORD PTR _nv$[ebp]
 	cmp	DWORD PTR [eax+8], 1
@@ -2284,7 +2285,7 @@ $LN14@PMC_Bitwis:
 	mov	edx, DWORD PTR tv85[ebp]
 	mov	DWORD PTR _w_hi$2[ebp], edx
 
-; 254  :             _UINT32_T w_lo = nv->BLOCK[0] & u_lo;
+; 255  :             _UINT32_T w_lo = nv->BLOCK[0] & u_lo;
 
 	mov	eax, 4
 	imul	ecx, eax, 0
@@ -2294,7 +2295,7 @@ $LN14@PMC_Bitwis:
 	and	ecx, DWORD PTR _u_lo$3[ebp]
 	mov	DWORD PTR _w_lo$1[ebp], ecx
 
-; 255  :             *w = _FROMWORDTODWORD(w_hi, w_lo);
+; 256  :             *w = _FROMWORDTODWORD(w_hi, w_lo);
 
 	mov	edx, DWORD PTR _w_lo$1[ebp]
 	push	edx
@@ -2306,15 +2307,15 @@ $LN14@PMC_Bitwis:
 	mov	DWORD PTR [ecx], eax
 	mov	DWORD PTR [ecx+4], edx
 
-; 256  :         }
+; 257  :         }
 
 	jmp	SHORT $LN7@PMC_Bitwis
 $LN10@PMC_Bitwis:
 
-; 257  :         else
-; 258  :         {
-; 259  :             // _UINT64_T が 1 ワードで表現できる場合
-; 260  :             *w = nv->BLOCK[0] & u;
+; 258  :         else
+; 259  :         {
+; 260  :             // _UINT64_T が 1 ワードで表現できる場合
+; 261  :             *w = nv->BLOCK[0] & u;
 
 	mov	edx, 4
 	imul	eax, edx, 0
@@ -2329,14 +2330,14 @@ $LN10@PMC_Bitwis:
 	mov	DWORD PTR [edx+4], ecx
 $LN7@PMC_Bitwis:
 
-; 261  :         }
-; 262  :     }
-; 263  :     return (PMC_STATUS_OK);
+; 262  :         }
+; 263  :     }
+; 264  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Bitwis:
 
-; 264  : }
+; 265  : }
 
 	push	edx
 	mov	ecx, ebp
@@ -2376,7 +2377,7 @@ _v$ = 12						; size = 4
 _w$ = 16						; size = 4
 _PMC_BitwiseAnd_I_X@12 PROC
 
-; 148  : {
+; 149  : {
 
 	push	ebp
 	mov	ebp, esp
@@ -2386,49 +2387,49 @@ _PMC_BitwiseAnd_I_X@12 PROC
 	mov	ecx, OFFSET __B93DAC51_pmc_bitwiseand@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 149  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
+; 150  :     if (__UNIT_TYPE_BIT_COUNT < sizeof(u) * 8)
 
 	xor	eax, eax
 	je	SHORT $LN2@PMC_Bitwis
 
-; 150  :     {
-; 151  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
-; 152  :         return (PMC_STATUS_INTERNAL_ERROR);
+; 151  :     {
+; 152  :         // _UINT32_T が 1 ワードで表現しきれない処理系には対応しない
+; 153  :         return (PMC_STATUS_INTERNAL_ERROR);
 
 	mov	eax, -256				; ffffff00H
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN2@PMC_Bitwis:
 
-; 153  :     }
-; 154  :     if (v == NULL)
+; 154  :     }
+; 155  :     if (v == NULL)
 
 	cmp	DWORD PTR _v$[ebp], 0
 	jne	SHORT $LN3@PMC_Bitwis
 
-; 155  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 156  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN3@PMC_Bitwis:
 
-; 156  :     if (w == NULL)
+; 157  :     if (w == NULL)
 
 	cmp	DWORD PTR _w$[ebp], 0
 	jne	SHORT $LN4@PMC_Bitwis
 
-; 157  :         return (PMC_STATUS_ARGUMENT_ERROR);
+; 158  :         return (PMC_STATUS_ARGUMENT_ERROR);
 
 	or	eax, -1
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN4@PMC_Bitwis:
 
-; 158  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
+; 159  :     NUMBER_HEADER* nv = (NUMBER_HEADER*)v;
 
 	mov	ecx, DWORD PTR _v$[ebp]
 	mov	DWORD PTR _nv$[ebp], ecx
 
-; 159  :     PMC_STATUS_CODE result;
-; 160  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
+; 160  :     PMC_STATUS_CODE result;
+; 161  :     if ((result = CheckNumber(nv)) != PMC_STATUS_OK)
 
 	mov	edx, DWORD PTR _nv$[ebp]
 	push	edx
@@ -2438,13 +2439,13 @@ $LN4@PMC_Bitwis:
 	cmp	DWORD PTR _result$[ebp], 0
 	je	SHORT $LN5@PMC_Bitwis
 
-; 161  :         return (result);
+; 162  :         return (result);
 
 	mov	eax, DWORD PTR _result$[ebp]
 	jmp	SHORT $LN1@PMC_Bitwis
 $LN5@PMC_Bitwis:
 
-; 162  :     if (nv->IS_ZERO)
+; 163  :     if (nv->IS_ZERO)
 
 	mov	eax, DWORD PTR _nv$[ebp]
 	mov	ecx, DWORD PTR [eax+24]
@@ -2452,41 +2453,41 @@ $LN5@PMC_Bitwis:
 	and	ecx, 1
 	je	SHORT $LN6@PMC_Bitwis
 
-; 163  :     {
-; 164  :         // v が 0 である場合
-; 165  :         *w = 0;
+; 164  :     {
+; 165  :         // v が 0 である場合
+; 166  :         *w = 0;
 
 	mov	edx, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [edx], 0
 
-; 166  :     }
+; 167  :     }
 
 	jmp	SHORT $LN7@PMC_Bitwis
 $LN6@PMC_Bitwis:
 
-; 167  :     else  if (u == 0)
+; 168  :     else  if (u == 0)
 
 	cmp	DWORD PTR _u$[ebp], 0
 	jne	SHORT $LN8@PMC_Bitwis
 
-; 168  :     {
-; 169  :         // u が 0 である場合
-; 170  :         *w = 0;
+; 169  :     {
+; 170  :         // u が 0 である場合
+; 171  :         *w = 0;
 
 	mov	eax, DWORD PTR _w$[ebp]
 	mov	DWORD PTR [eax], 0
 
-; 171  :     }
+; 172  :     }
 
 	jmp	SHORT $LN7@PMC_Bitwis
 $LN8@PMC_Bitwis:
 
-; 172  :     else
-; 173  :     {
-; 174  :         // u と v がともに 0 ではない場合
-; 175  : 
-; 176  :         // u と v の bit AND を計算する
-; 177  :         *w = nv->BLOCK[0] & u;
+; 173  :     else
+; 174  :     {
+; 175  :         // u と v がともに 0 ではない場合
+; 176  : 
+; 177  :         // u と v の bit AND を計算する
+; 178  :         *w = nv->BLOCK[0] & u;
 
 	mov	ecx, 4
 	imul	edx, ecx, 0
@@ -2498,13 +2499,13 @@ $LN8@PMC_Bitwis:
 	mov	DWORD PTR [eax], edx
 $LN7@PMC_Bitwis:
 
-; 178  :     }
-; 179  :     return (PMC_STATUS_OK);
+; 179  :     }
+; 180  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 $LN1@PMC_Bitwis:
 
-; 180  : }
+; 181  : }
 
 	add	esp, 8
 	cmp	ebp, esp
@@ -2520,18 +2521,18 @@ _TEXT	SEGMENT
 _feature$ = 8						; size = 4
 _Initialize_BitwiseAnd PROC
 
-; 364  : {
+; 365  : {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __B93DAC51_pmc_bitwiseand@c
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 365  :     return (PMC_STATUS_OK);
+; 366  :     return (PMC_STATUS_OK);
 
 	xor	eax, eax
 
-; 366  : }
+; 367  : }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
