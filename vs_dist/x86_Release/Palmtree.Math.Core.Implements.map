@@ -1,6 +1,6 @@
  Palmtree.Math.Core.Implements
 
- Timestamp is 5c5572ec (Sat Feb  2 19:37:32 2019)
+ Timestamp is 5c55c310 (Sun Feb  3 01:19:28 2019)
 
  Preferred load address is 10000000
 
@@ -38,17 +38,17 @@
   Address         Publics by Value              Rva+Base       Lib:Object
 
  0000:00000000       ___guard_fids_count        00000000     <absolute>
- 0000:00000000       ___hybrid_code_map_count   00000000     <absolute>
- 0000:00000000       ___hybrid_code_map         00000000     <absolute>
- 0000:00000000       ___hybrid_auxiliary_iat    00000000     <absolute>
- 0000:00000000       ___volatile_metadata       00000000     <absolute>
  0000:00000000       ___guard_iat_count         00000000     <absolute>
+ 0000:00000000       ___hybrid_code_map         00000000     <absolute>
+ 0000:00000000       ___hybrid_code_map_count   00000000     <absolute>
+ 0000:00000000       ___volatile_metadata       00000000     <absolute>
+ 0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
  0000:00000000       ___guard_fids_table        00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
  0000:00000000       ___guard_longjmp_table     00000000     <absolute>
  0000:00000000       ___guard_iat_table         00000000     <absolute>
- 0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
+ 0000:00000000       ___hybrid_auxiliary_iat    00000000     <absolute>
  0000:00000000       ___enclave_config          00000000     <absolute>
- 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
  0000:00000001       ___safe_se_handler_count   00000001     <absolute>
  0000:00000100       ___guard_flags             00000100     <absolute>
  0000:00000000       ___ImageBase               10000000     <linker-defined>
@@ -107,20 +107,20 @@
  0001:00000e52       __cexit                    10001e52 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
  0001:00000e58       _IsProcessorFeaturePresent@4 10001e58 f   kernel32:KERNEL32.dll
  0001:00000e5e       ___vcrt_thread_detach      10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___acrt_uninitialize_critical 10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___vcrt_uninitialize       10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___scrt_stub_for_acrt_uninitialize 10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___vcrt_initialize         10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___acrt_thread_attach      10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___scrt_stub_for_acrt_thread_detach 10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___scrt_stub_for_acrt_thread_attach 10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___vcrt_thread_attach      10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___vcrt_uninitialize_critical 10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___acrt_initialize         10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___acrt_thread_detach      10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___scrt_stub_for_acrt_uninitialize_critical 10001e5e f   MSVCRT:ucrt_stubs.obj
- 0001:00000e5e       ___acrt_uninitialize       10001e5e f   MSVCRT:ucrt_stubs.obj
  0001:00000e5e       ___scrt_stub_for_acrt_initialize 10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___acrt_uninitialize       10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___acrt_thread_attach      10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___vcrt_thread_attach      10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___vcrt_uninitialize       10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___scrt_stub_for_acrt_thread_attach 10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___scrt_stub_for_acrt_uninitialize_critical 10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___acrt_thread_detach      10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___vcrt_uninitialize_critical 10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___scrt_stub_for_acrt_thread_detach 10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___vcrt_initialize         10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___acrt_initialize         10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___acrt_uninitialize_critical 10001e5e f   MSVCRT:ucrt_stubs.obj
+ 0001:00000e5e       ___scrt_stub_for_acrt_uninitialize 10001e5e f   MSVCRT:ucrt_stubs.obj
  0001:00000e61       __is_c_termination_complete 10001e61 f   MSVCRT:ucrt_stubs.obj
  0001:00000e61       ___scrt_stub_for_is_c_termination_complete 10001e61 f   MSVCRT:ucrt_stubs.obj
  0002:00000000       __imp__HeapCreate@12       10002000     kernel32:KERNEL32.dll
@@ -259,13 +259,13 @@
  0003:00000080       _fp_Add_Imp                10003080     pmc_add.obj
  0003:00000084       _fp_DivRem_X_X             10003084     pmc_divrem.obj
  0003:00000088       _entry_points              10003088     pmc_initialize.obj
- 0003:00000198       _fp_Multiply_X_1W          10003198     pmc_multiply.obj
- 0003:0000019c       _fp_Multiply_X_2W          1000319c     pmc_multiply.obj
- 0003:000001a0       _fp_Multiply_X_X           100031a0     pmc_multiply.obj
- 0003:000001a4       _default_number_format_option 100031a4     pmc_parse.obj
- 0003:000001cc       _fp_MultiplyAndAdd         100031cc     pmc_parse.obj
- 0003:000001d0       _default_number_format_option 100031d0     pmc_tostring.obj
- 0003:000001f8       ?__proc_attached@@3HA      100031f8     MSVCRT:dll_dllmain.obj
+ 0003:0000019c       _fp_Multiply_X_1W          1000319c     pmc_multiply.obj
+ 0003:000001a0       _fp_Multiply_X_2W          100031a0     pmc_multiply.obj
+ 0003:000001a4       _fp_Multiply_X_X           100031a4     pmc_multiply.obj
+ 0003:000001a8       _default_number_format_option 100031a8     pmc_parse.obj
+ 0003:000001d0       _fp_MultiplyAndAdd         100031d0     pmc_parse.obj
+ 0003:000001d4       _default_number_format_option 100031d4     pmc_tostring.obj
+ 0003:000001fc       ?__proc_attached@@3HA      100031fc     MSVCRT:dll_dllmain.obj
  0003:00000200       _GS_ExceptionRecord        10003200     MSVCRT:gs_report.obj
  0003:00000250       _GS_ContextRecord          10003250     MSVCRT:gs_report.obj
  0003:00000540       ?is_initialized_as_dll@@3_NA 10003540     MSVCRT:utility.obj

@@ -87373,6 +87373,9 @@ typedef struct __tag_PMC_UINT_ENTRY_POINTS
     PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_ToByteArray)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
 
+    PMC_STATUS_CODE(__attribute__((__stdcall__)) * PMC_Clone_X)(HANDLE x, HANDLE* o);
+
+
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
     PMC_STATUS_CODE (__attribute__((__stdcall__)) * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
 
@@ -87637,6 +87640,9 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
     extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
 
 
+    extern PMC_STATUS_CODE Initialize_Clone(PROCESSOR_FEATURES *feature);
+
+
     extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
 
@@ -87701,6 +87707,8 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
 
     extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_FromByteArray(unsigned char* buffer, size_t count, HANDLE* o);
     extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ToByteArray(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+
+    extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Clone_X(HANDLE x, HANDLE* o);
 
     extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_I(HANDLE p, _UINT32_T* o);
     extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_To_X_L(HANDLE p, _UINT64_T* o);
@@ -87837,9 +87845,9 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
     {
 
         if (__DEBUG_LOG != 
-# 359 "pmc_uint_internal.h" 3 4
+# 364 "pmc_uint_internal.h" 3 4
                           ((void *)0)
-# 359 "pmc_uint_internal.h"
+# 364 "pmc_uint_internal.h"
                               )
         {
             (*__DEBUG_LOG)(L"%ls\n", label);
@@ -87851,9 +87859,9 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
     {
 
         if (__DEBUG_LOG != 
-# 369 "pmc_uint_internal.h" 3 4
+# 374 "pmc_uint_internal.h" 3 4
                           ((void *)0)
-# 369 "pmc_uint_internal.h"
+# 374 "pmc_uint_internal.h"
                               )
         {
             (*__DEBUG_LOG)(L"  %ls: ", name);
@@ -87867,16 +87875,16 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
     {
 
         if (__DEBUG_LOG != 
-# 381 "pmc_uint_internal.h" 3 4
+# 386 "pmc_uint_internal.h" 3 4
                           ((void *)0)
-# 381 "pmc_uint_internal.h"
+# 386 "pmc_uint_internal.h"
                               )
         {
             (*__DEBUG_LOG)(L"  %ls: ", name);
             if (sizeof(__UNIT_TYPE) == sizeof(unsigned 
-# 384 "pmc_uint_internal.h" 3
+# 389 "pmc_uint_internal.h" 3
                                                       long long
-# 384 "pmc_uint_internal.h"
+# 389 "pmc_uint_internal.h"
                                                              ))
                 (*__DEBUG_LOG)(L"0x%016llx\n", x);
             else
@@ -88015,6 +88023,12 @@ PMC_CONFIGURATION_INFO configuration_info;
                ((void *)0)
 # 88 "pmc_initialize.c"
                    );
+    if (Initialize_Clone(&feature) != (0))
+        return (
+# 90 "pmc_initialize.c" 3 4
+               ((void *)0)
+# 90 "pmc_initialize.c"
+                   );
 
     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
     entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;
@@ -88088,6 +88102,7 @@ PMC_CONFIGURATION_INFO configuration_info;
     entry_points.PMC_Pow_X_I = PMC_Pow_X_I;
     entry_points.PMC_ModPow_X_X_X = PMC_ModPow_X_X_X;
     entry_points.PMC_GetPropertyValue_X_I = PMC_GetPropertyValue_X_I;
+    entry_points.PMC_Clone_X = PMC_Clone_X;
 
     return (&entry_points);
 }

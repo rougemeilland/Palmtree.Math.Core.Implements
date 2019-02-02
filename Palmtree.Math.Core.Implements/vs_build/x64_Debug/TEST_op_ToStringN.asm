@@ -267,7 +267,7 @@ $LN5@TEST_PMC_T:
 	lea	rdx, OFFSET FLAT:?actual_str_buffer@?1??TEST_PMC_ToStringN@@9@9
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+80]
+	call	QWORD PTR [rax+88]
 	mov	DWORD PTR result$[rbp], eax
 	cmp	DWORD PTR result$[rbp], 0
 	jne	SHORT $LN6@TEST_PMC_T

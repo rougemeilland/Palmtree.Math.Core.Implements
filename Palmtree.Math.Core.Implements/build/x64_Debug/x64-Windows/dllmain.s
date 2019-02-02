@@ -4162,7 +4162,7 @@ DllMain:
 	.uleb128 0x17
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1f
-	.word	0x12f
+	.word	0x134
 	.byte	0x2d
 	.long	0x4cf6
 	.uleb128 0x6

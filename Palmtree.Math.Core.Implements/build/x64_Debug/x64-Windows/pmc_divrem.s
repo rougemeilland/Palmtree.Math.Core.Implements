@@ -7,7 +7,7 @@
 IncrementDIV64Counter:
 .LFB4274:
 	.file 1 "pmc_uint_internal.h"
-	.loc 1 317 5
+	.loc 1 322 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -31,7 +31,7 @@ IncrementDIV64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE23:
 .LBE22:
-	.loc 1 319 5
+	.loc 1 324 5
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -45,7 +45,7 @@ IncrementDIV64Counter:
 	.seh_proc	IncrementMULTI64Counter
 IncrementMULTI64Counter:
 .LFB4276:
-	.loc 1 329 5
+	.loc 1 334 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -67,7 +67,7 @@ IncrementMULTI64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE25:
 .LBE24:
-	.loc 1 331 5
+	.loc 1 336 5
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -81,7 +81,7 @@ IncrementMULTI64Counter:
 	.seh_proc	AddToDIV64Counter
 AddToDIV64Counter:
 .LFB4278:
-	.loc 1 340 5
+	.loc 1 345 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -107,7 +107,7 @@ AddToDIV64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE27:
 .LBE26:
-	.loc 1 342 5
+	.loc 1 347 5
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -121,7 +121,7 @@ AddToDIV64Counter:
 	.seh_proc	AddToMULTI64Counter
 AddToMULTI64Counter:
 .LFB4280:
-	.loc 1 352 5
+	.loc 1 357 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -146,7 +146,7 @@ AddToMULTI64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE29:
 .LBE28:
-	.loc 1 354 5
+	.loc 1 359 5
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -11969,7 +11969,7 @@ Initialize_DivRem:
 	.uleb128 0x18
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1
-	.word	0x12f
+	.word	0x134
 	.byte	0x2d
 	.long	0x50e9
 	.uleb128 0x7
@@ -15853,7 +15853,7 @@ Initialize_DivRem:
 	.uleb128 0x40
 	.ascii "AddToMULTI64Counter\0"
 	.byte	0x1
-	.word	0x15f
+	.word	0x164
 	.byte	0x1a
 	.quad	.LFB4280
 	.quad	.LFE4280-.LFB4280
@@ -15863,7 +15863,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x15f
+	.word	0x164
 	.byte	0x37
 	.long	0x4c90
 	.uleb128 0x2
@@ -15874,7 +15874,7 @@ Initialize_DivRem:
 	.quad	.LBB28
 	.quad	.LBE28-.LBB28
 	.byte	0x1
-	.word	0x161
+	.word	0x166
 	.byte	0x9
 	.uleb128 0x37
 	.long	0x7463
@@ -15891,7 +15891,7 @@ Initialize_DivRem:
 	.uleb128 0x40
 	.ascii "AddToDIV64Counter\0"
 	.byte	0x1
-	.word	0x153
+	.word	0x158
 	.byte	0x1a
 	.quad	.LFB4278
 	.quad	.LFE4278-.LFB4278
@@ -15901,7 +15901,7 @@ Initialize_DivRem:
 	.uleb128 0x22
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x153
+	.word	0x158
 	.byte	0x35
 	.long	0x4c90
 	.uleb128 0x2
@@ -15912,7 +15912,7 @@ Initialize_DivRem:
 	.quad	.LBB26
 	.quad	.LBE26-.LBB26
 	.byte	0x1
-	.word	0x155
+	.word	0x15a
 	.byte	0x9
 	.uleb128 0x37
 	.long	0x7463
@@ -15929,7 +15929,7 @@ Initialize_DivRem:
 	.uleb128 0x40
 	.ascii "IncrementMULTI64Counter\0"
 	.byte	0x1
-	.word	0x148
+	.word	0x14d
 	.byte	0x1a
 	.quad	.LFB4276
 	.quad	.LFE4276-.LFB4276
@@ -15941,7 +15941,7 @@ Initialize_DivRem:
 	.quad	.LBB24
 	.quad	.LBE24-.LBB24
 	.byte	0x1
-	.word	0x14a
+	.word	0x14f
 	.byte	0x9
 	.uleb128 0x37
 	.long	0x7416
@@ -15953,7 +15953,7 @@ Initialize_DivRem:
 	.uleb128 0x40
 	.ascii "IncrementDIV64Counter\0"
 	.byte	0x1
-	.word	0x13c
+	.word	0x141
 	.byte	0x1a
 	.quad	.LFB4274
 	.quad	.LFE4274-.LFB4274
@@ -15965,7 +15965,7 @@ Initialize_DivRem:
 	.quad	.LBB22
 	.quad	.LBE22-.LBB22
 	.byte	0x1
-	.word	0x13e
+	.word	0x143
 	.byte	0x9
 	.uleb128 0x37
 	.long	0x7416

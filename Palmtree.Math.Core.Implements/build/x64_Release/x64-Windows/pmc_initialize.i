@@ -101728,6 +101728,9 @@ typedef struct __tag_PMC_UINT_ENTRY_POINTS
     PMC_STATUS_CODE( * PMC_ToByteArray)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
 
+    PMC_STATUS_CODE( * PMC_Clone_X)(HANDLE x, HANDLE* o);
+
+
     PMC_STATUS_CODE ( * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
     PMC_STATUS_CODE ( * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
 
@@ -101994,6 +101997,9 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
     extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
 
 
+    extern PMC_STATUS_CODE Initialize_Clone(PROCESSOR_FEATURES *feature);
+
+
     extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
 
@@ -102058,6 +102064,8 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
 
     extern PMC_STATUS_CODE PMC_FromByteArray(unsigned char* buffer, size_t count, HANDLE* o);
     extern PMC_STATUS_CODE PMC_ToByteArray(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+
+    extern PMC_STATUS_CODE PMC_Clone_X(HANDLE x, HANDLE* o);
 
     extern PMC_STATUS_CODE PMC_To_X_I(HANDLE p, _UINT32_T* o);
     extern PMC_STATUS_CODE PMC_To_X_L(HANDLE p, _UINT64_T* o);
@@ -102202,12 +102210,12 @@ typedef __UNIT_TYPE __UNIT_TYPE_DIV;
 
     __inline static void ReportDump(wchar_t* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
     {
-# 376 "pmc_uint_internal.h"
+# 381 "pmc_uint_internal.h"
     }
 
     __inline static void ReportVar(wchar_t* name, __UNIT_TYPE x)
     {
-# 390 "pmc_uint_internal.h"
+# 395 "pmc_uint_internal.h"
     }
 #pragma endregion
 # 36 "pmc_initialize.c" 2
@@ -102340,6 +102348,12 @@ PMC_CONFIGURATION_INFO configuration_info;
                ((void *)0)
 # 88 "pmc_initialize.c"
                    );
+    if (Initialize_Clone(&feature) != (0))
+        return (
+# 90 "pmc_initialize.c" 3 4
+               ((void *)0)
+# 90 "pmc_initialize.c"
+                   );
 
     entry_points.PROCESSOR_FEATURE_POPCNT = feature.PROCESSOR_FEATURE_POPCNT;
     entry_points.PROCESSOR_FEATURE_ADX = feature.PROCESSOR_FEATURE_ADX;
@@ -102413,6 +102427,7 @@ PMC_CONFIGURATION_INFO configuration_info;
     entry_points.PMC_Pow_X_I = PMC_Pow_X_I;
     entry_points.PMC_ModPow_X_X_X = PMC_ModPow_X_X_X;
     entry_points.PMC_GetPropertyValue_X_I = PMC_GetPropertyValue_X_I;
+    entry_points.PMC_Clone_X = PMC_Clone_X;
 
     return (&entry_points);
 }

@@ -71,7 +71,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$TEST_PMC_Add_X_L DD imagerel $LN13
-	DD	imagerel $LN13+720
+	DD	imagerel $LN13+723
 	DD	imagerel $unwind$TEST_PMC_Add_X_L
 pdata	ENDS
 ;	COMDAT pdata
@@ -777,7 +777,7 @@ $LN9@TEST_PMC_A:
 	mov	rdx, QWORD PTR y$[rbp]
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+128]
+	call	QWORD PTR [rax+136]
 	mov	DWORD PTR z_result$[rbp], eax
 	cmp	DWORD PTR z_result$[rbp], 0
 	jne	SHORT $LN10@TEST_PMC_A
@@ -1000,7 +1000,7 @@ $LN6@TEST_PMC_A:
 	mov	rdx, QWORD PTR y$[rbp]
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+120]
+	call	QWORD PTR [rax+128]
 	mov	DWORD PTR z_result$[rbp], eax
 	cmp	DWORD PTR z_result$[rbp], 0
 	jne	SHORT $LN7@TEST_PMC_A
@@ -1211,7 +1211,7 @@ $LN6@TEST_PMC_A:
 	mov	edx, DWORD PTR y$[rbp]
 	mov	rcx, QWORD PTR x$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+112]
+	call	QWORD PTR [rax+120]
 	mov	DWORD PTR z_result$[rbp], eax
 	cmp	DWORD PTR z_result$[rbp], 0
 	jne	SHORT $LN7@TEST_PMC_A
@@ -1422,7 +1422,7 @@ $LN6@TEST_PMC_A:
 	mov	rdx, QWORD PTR v$[rbp]
 	mov	rcx, QWORD PTR u$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+104]
+	call	QWORD PTR [rax+112]
 	mov	DWORD PTR w_result$[rbp], eax
 	cmp	DWORD PTR w_result$[rbp], 0
 	jne	SHORT $LN7@TEST_PMC_A
@@ -1633,7 +1633,7 @@ $LN6@TEST_PMC_A:
 	mov	rdx, QWORD PTR v$[rbp]
 	mov	ecx, DWORD PTR u$[rbp]
 	mov	rax, QWORD PTR ep$[rbp]
-	call	QWORD PTR [rax+96]
+	call	QWORD PTR [rax+104]
 	mov	DWORD PTR w_result$[rbp], eax
 	cmp	DWORD PTR w_result$[rbp], 0
 	jne	SHORT $LN7@TEST_PMC_A

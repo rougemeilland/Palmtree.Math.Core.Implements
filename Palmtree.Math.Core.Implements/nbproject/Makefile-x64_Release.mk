@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/TEST_op_Add.o \
 	${OBJECTDIR}/TEST_op_BitwiseAnd.o \
 	${OBJECTDIR}/TEST_op_BitwiseOr.o \
+	${OBJECTDIR}/TEST_op_Clone.o \
 	${OBJECTDIR}/TEST_op_Compare.o \
 	${OBJECTDIR}/TEST_op_DivRem.o \
 	${OBJECTDIR}/TEST_op_Equals.o \
@@ -66,6 +67,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/pmc_bitwiseand.o \
 	${OBJECTDIR}/pmc_bitwiseor.o \
 	${OBJECTDIR}/pmc_bytes.o \
+	${OBJECTDIR}/pmc_clone.o \
 	${OBJECTDIR}/pmc_compare.o \
 	${OBJECTDIR}/pmc_divrem.o \
 	${OBJECTDIR}/pmc_equals.o \
@@ -138,6 +140,11 @@ ${OBJECTDIR}/TEST_op_BitwiseOr.o: TEST_op_BitwiseOr.c nbproject/Makefile-${CND_C
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_BitwiseOr.o TEST_op_BitwiseOr.c
+
+${OBJECTDIR}/TEST_op_Clone.o: TEST_op_Clone.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TEST_op_Clone.o TEST_op_Clone.c
 
 ${OBJECTDIR}/TEST_op_Compare.o: TEST_op_Compare.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
@@ -263,6 +270,11 @@ ${OBJECTDIR}/pmc_bytes.o: pmc_bytes.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_bytes.o pmc_bytes.c
+
+${OBJECTDIR}/pmc_clone.o: pmc_clone.c nbproject/Makefile-${CND_CONF}.mk
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Werror -DENABLED_PERFORMANCE_COUNTER -D_M_IX64  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pmc_clone.o pmc_clone.c
 
 ${OBJECTDIR}/pmc_compare.o: pmc_compare.c nbproject/Makefile-${CND_CONF}.mk
 	${MKDIR} -p ${OBJECTDIR}

@@ -7,7 +7,7 @@
 IncrementMULTI64Counter:
 .LFB4276:
 	.file 1 "pmc_uint_internal.h"
-	.loc 1 329 5
+	.loc 1 334 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -30,7 +30,7 @@ IncrementMULTI64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE15:
 .LBE14:
-	.loc 1 331 5
+	.loc 1 336 5
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -44,7 +44,7 @@ IncrementMULTI64Counter:
 	.seh_proc	AddToMULTI64Counter
 AddToMULTI64Counter:
 .LFB4280:
-	.loc 1 352 5
+	.loc 1 357 5
 	.cfi_startproc
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -69,7 +69,7 @@ AddToMULTI64Counter:
 	lock xaddl	%edx, (%rax)
 .LBE17:
 .LBE16:
-	.loc 1 354 5
+	.loc 1 359 5
 	nop
 	addq	$16, %rsp
 	popq	%rbp
@@ -10351,7 +10351,7 @@ Initialize_Parse:
 	.uleb128 0x18
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1
-	.word	0x12f
+	.word	0x134
 	.byte	0x2d
 	.long	0x51c9
 	.uleb128 0x7
@@ -12453,7 +12453,7 @@ Initialize_Parse:
 	.uleb128 0x3d
 	.ascii "AddToMULTI64Counter\0"
 	.byte	0x1
-	.word	0x15f
+	.word	0x164
 	.byte	0x1a
 	.quad	.LFB4280
 	.quad	.LFE4280-.LFB4280
@@ -12463,7 +12463,7 @@ Initialize_Parse:
 	.uleb128 0x22
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x15f
+	.word	0x164
 	.byte	0x37
 	.long	0x4c82
 	.uleb128 0x2
@@ -12474,7 +12474,7 @@ Initialize_Parse:
 	.quad	.LBB16
 	.quad	.LBE16-.LBB16
 	.byte	0x1
-	.word	0x161
+	.word	0x166
 	.byte	0x9
 	.uleb128 0x35
 	.long	0x68a3
@@ -12491,7 +12491,7 @@ Initialize_Parse:
 	.uleb128 0x3d
 	.ascii "IncrementMULTI64Counter\0"
 	.byte	0x1
-	.word	0x148
+	.word	0x14d
 	.byte	0x1a
 	.quad	.LFB4276
 	.quad	.LFE4276-.LFB4276
@@ -12503,7 +12503,7 @@ Initialize_Parse:
 	.quad	.LBB14
 	.quad	.LBE14-.LBB14
 	.byte	0x1
-	.word	0x14a
+	.word	0x14f
 	.byte	0x9
 	.uleb128 0x35
 	.long	0x6856

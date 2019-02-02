@@ -5,7 +5,7 @@ Ltext0:
 _IncrementDIV32Counter:
 LFB71:
 	.file 1 "pmc_uint_internal.h"
-	.loc 1 311 5
+	.loc 1 316 5
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -23,7 +23,7 @@ LBB15:
 	lock xaddl	%edx, (%eax)
 LBE15:
 LBE14:
-	.loc 1 313 5
+	.loc 1 318 5
 	nop
 	leave
 	.cfi_restore 5
@@ -34,7 +34,7 @@ LFE71:
 	.def	_AddToDIV32Counter;	.scl	3;	.type	32;	.endef
 _AddToDIV32Counter:
 LFB75:
-	.loc 1 334 5
+	.loc 1 339 5
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -53,7 +53,7 @@ LBB17:
 	lock xaddl	%edx, (%eax)
 LBE17:
 LBE16:
-	.loc 1 336 5
+	.loc 1 341 5
 	nop
 	leave
 	.cfi_restore 5
@@ -7237,7 +7237,7 @@ Ldebug_info0:
 	.uleb128 0x16
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1
-	.word	0x12f
+	.word	0x134
 	.byte	0x2d
 	.long	0x51b8
 	.uleb128 0x7
@@ -8851,7 +8851,7 @@ Ldebug_info0:
 	.uleb128 0x29
 	.ascii "AddToDIV32Counter\0"
 	.byte	0x1
-	.word	0x14d
+	.word	0x152
 	.byte	0x1a
 	.long	LFB75
 	.long	LFE75-LFB75
@@ -8861,7 +8861,7 @@ Ldebug_info0:
 	.uleb128 0x20
 	.ascii "value\0"
 	.byte	0x1
-	.word	0x14d
+	.word	0x152
 	.byte	0x35
 	.long	0x4c77
 	.uleb128 0x2
@@ -8872,7 +8872,7 @@ Ldebug_info0:
 	.long	LBB16
 	.long	LBE16-LBB16
 	.byte	0x1
-	.word	0x14f
+	.word	0x154
 	.byte	0x9
 	.uleb128 0x33
 	.long	0x6257
@@ -8889,7 +8889,7 @@ Ldebug_info0:
 	.uleb128 0x29
 	.ascii "IncrementDIV32Counter\0"
 	.byte	0x1
-	.word	0x136
+	.word	0x13b
 	.byte	0x1a
 	.long	LFB71
 	.long	LFE71-LFB71
@@ -8901,7 +8901,7 @@ Ldebug_info0:
 	.long	LBB14
 	.long	LBE14-LBB14
 	.byte	0x1
-	.word	0x138
+	.word	0x13d
 	.byte	0x9
 	.uleb128 0x33
 	.long	0x620a

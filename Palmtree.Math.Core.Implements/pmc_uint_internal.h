@@ -156,6 +156,9 @@ extern "C" {
     // コンストラクタの実装の初期化処理を行う。
     extern PMC_STATUS_CODE Initialize_From(PROCESSOR_FEATURES *feature);
 
+    // Clone 関数の実装の初期化処理を行う。
+    extern PMC_STATUS_CODE Initialize_Clone(PROCESSOR_FEATURES *feature);
+
     // Toの実装の初期化処理を行う。
     extern PMC_STATUS_CODE Initialize_To(PROCESSOR_FEATURES *feature);
 
@@ -221,6 +224,8 @@ extern "C" {
 
     extern PMC_STATUS_CODE __PMC_CALL PMC_FromByteArray(unsigned char* buffer, size_t count, HANDLE* o);
     extern PMC_STATUS_CODE __PMC_CALL PMC_ToByteArray(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
+
+    extern PMC_STATUS_CODE __PMC_CALL PMC_Clone_X(HANDLE x, HANDLE* o);
 
     extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_I(HANDLE p, _UINT32_T* o);
     extern PMC_STATUS_CODE __PMC_CALL PMC_To_X_L(HANDLE p, _UINT64_T* o);

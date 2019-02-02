@@ -11011,20 +11011,20 @@ _TEXT	SEGMENT
 _value$ = 8						; size = 4
 _AddToMULTI64Counter PROC
 
-; 352  :     {
+; 357  :     {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __7B8DBFC3_pmc_uint_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 353  :         _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
+; 358  :         _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	ecx, OFFSET _statistics_info
 	lock	 xadd	 DWORD PTR [ecx], eax
 
-; 354  :     }
+; 359  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -11038,20 +11038,20 @@ _TEXT	SEGMENT
 _value$ = 8						; size = 4
 _AddToMULTI32Counter PROC
 
-; 346  :     {
+; 351  :     {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __7B8DBFC3_pmc_uint_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 347  :         _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
+; 352  :         _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI32, value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	ecx, OFFSET _statistics_info+4
 	lock	 xadd	 DWORD PTR [ecx], eax
 
-; 348  :     }
+; 353  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -11065,20 +11065,20 @@ _TEXT	SEGMENT
 _value$ = 8						; size = 4
 _AddToDIV64Counter PROC
 
-; 340  :     {
+; 345  :     {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __7B8DBFC3_pmc_uint_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 341  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
+; 346  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV64, value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	ecx, OFFSET _statistics_info+8
 	lock	 xadd	 DWORD PTR [ecx], eax
 
-; 342  :     }
+; 347  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -11092,20 +11092,20 @@ _TEXT	SEGMENT
 _value$ = 8						; size = 4
 _AddToDIV32Counter PROC
 
-; 334  :     {
+; 339  :     {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __7B8DBFC3_pmc_uint_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 335  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
+; 340  :         _InterlockedExchangeAdd(&statistics_info.COUNT_DIV32, value);
 
 	mov	eax, DWORD PTR _value$[ebp]
 	mov	ecx, OFFSET _statistics_info+12
 	lock	 xadd	 DWORD PTR [ecx], eax
 
-; 336  :     }
+; 341  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -11118,18 +11118,18 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 _IncrementMULTI64Counter PROC
 
-; 329  :     {
+; 334  :     {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __7B8DBFC3_pmc_uint_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 330  :         _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
+; 335  :         _InterlockedIncrement(&statistics_info.COUNT_MULTI64);
 
 	lock	 inc	 (null) PTR _statistics_info
 
-; 331  :     }
+; 336  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -11142,18 +11142,18 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 _IncrementMULTI32Counter PROC
 
-; 323  :     {
+; 328  :     {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __7B8DBFC3_pmc_uint_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 324  :         _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
+; 329  :         _InterlockedIncrement(&statistics_info.COUNT_MULTI32);
 
 	lock	 inc	 (null) PTR _statistics_info+4
 
-; 325  :     }
+; 330  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -11166,18 +11166,18 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 _IncrementDIV64Counter PROC
 
-; 317  :     {
+; 322  :     {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __7B8DBFC3_pmc_uint_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 318  :         _InterlockedIncrement(&statistics_info.COUNT_DIV64);
+; 323  :         _InterlockedIncrement(&statistics_info.COUNT_DIV64);
 
 	lock	 inc	 (null) PTR _statistics_info+8
 
-; 319  :     }
+; 324  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp
@@ -11190,18 +11190,18 @@ _TEXT	ENDS
 _TEXT	SEGMENT
 _IncrementDIV32Counter PROC
 
-; 311  :     {
+; 316  :     {
 
 	push	ebp
 	mov	ebp, esp
 	mov	ecx, OFFSET __7B8DBFC3_pmc_uint_internal@h
 	call	@__CheckForDebuggerJustMyCode@4
 
-; 312  :         _InterlockedIncrement(&statistics_info.COUNT_DIV32);
+; 317  :         _InterlockedIncrement(&statistics_info.COUNT_DIV32);
 
 	lock	 inc	 (null) PTR _statistics_info+12
 
-; 313  :     }
+; 318  :     }
 
 	cmp	ebp, esp
 	call	__RTC_CheckEsp

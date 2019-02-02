@@ -8,6 +8,7 @@
       <itemPath>TEST_op_Add.c</itemPath>
       <itemPath>TEST_op_BitwiseAnd.c</itemPath>
       <itemPath>TEST_op_BitwiseOr.c</itemPath>
+      <itemPath>TEST_op_Clone.c</itemPath>
       <itemPath>TEST_op_Compare.c</itemPath>
       <itemPath>TEST_op_DivRem.c</itemPath>
       <itemPath>TEST_op_Equals.c</itemPath>
@@ -33,6 +34,7 @@
       <itemPath>pmc_bitwiseand.c</itemPath>
       <itemPath>pmc_bitwiseor.c</itemPath>
       <itemPath>pmc_bytes.c</itemPath>
+      <itemPath>pmc_clone.c</itemPath>
       <itemPath>pmc_compare.c</itemPath>
       <itemPath>pmc_divrem.c</itemPath>
       <itemPath>pmc_equals.c</itemPath>
@@ -122,6 +124,8 @@
       </item>
       <item path="TEST_op_BitwiseOr.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_Clone.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_Compare.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
@@ -175,6 +179,8 @@
       <item path="pmc_bitwiseor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_bytes.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_clone.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_compare.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -274,6 +280,8 @@
       </item>
       <item path="TEST_op_BitwiseOr.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_Clone.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_Compare.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
@@ -327,6 +335,8 @@
       <item path="pmc_bitwiseor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_bytes.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_clone.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_compare.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -419,6 +429,8 @@
       </item>
       <item path="TEST_op_BitwiseOr.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_Clone.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_Compare.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
@@ -472,6 +484,8 @@
       <item path="pmc_bitwiseor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_bytes.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_clone.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_compare.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -572,6 +586,8 @@
       </item>
       <item path="TEST_op_BitwiseOr.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="TEST_op_Clone.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="TEST_op_Compare.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="TEST_op_DivRem.c" ex="false" tool="0" flavor2="0">
@@ -625,6 +641,8 @@
       <item path="pmc_bitwiseor.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_bytes.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pmc_clone.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="pmc_compare.c" ex="false" tool="0" flavor2="0">
       </item>

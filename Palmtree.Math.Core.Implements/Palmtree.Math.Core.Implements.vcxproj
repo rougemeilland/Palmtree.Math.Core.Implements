@@ -177,6 +177,7 @@
     <ClCompile Include="pmc_bitwiseand.c" />
     <ClCompile Include="pmc_bitwiseor.c" />
     <ClCompile Include="pmc_bytes.c" />
+    <ClCompile Include="pmc_clone.c" />
     <ClCompile Include="pmc_compare.c" />
     <ClCompile Include="pmc_divrem.c" />
     <ClCompile Include="pmc_equals.c" />
@@ -198,6 +199,7 @@
     <ClCompile Include="TEST_op_Add.c" />
     <ClCompile Include="TEST_op_BitwiseAnd.c" />
     <ClCompile Include="TEST_op_BitwiseOr.c" />
+    <ClCompile Include="TEST_op_Clone.c" />
     <ClCompile Include="TEST_op_Compare.c" />
     <ClCompile Include="TEST_op_DivRem.c" />
     <ClCompile Include="TEST_op_Equals.c" />

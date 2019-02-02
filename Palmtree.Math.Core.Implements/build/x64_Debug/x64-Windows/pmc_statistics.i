@@ -87616,6 +87616,9 @@ typedef struct __tag_PMC_UINT_ENTRY_POINTS
     PMC_STATUS_CODE( * PMC_ToByteArray)(HANDLE p, unsigned char* buffer, size_t buffer_size, size_t *count);
 
 
+    PMC_STATUS_CODE( * PMC_Clone_X)(HANDLE x, HANDLE* o);
+
+
     PMC_STATUS_CODE ( * PMC_To_X_I)(HANDLE p, _UINT32_T* o);
     PMC_STATUS_CODE ( * PMC_To_X_L)(HANDLE p, _UINT64_T* o);
 
