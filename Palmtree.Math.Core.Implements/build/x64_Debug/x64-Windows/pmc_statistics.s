@@ -103,13 +103,11 @@ PMC_GetStatisticsInfo:
 	.byte	0x6
 	.ascii "char\0"
 	.uleb128 0x3
-	.long	0xc5
-	.uleb128 0x4
 	.ascii "size_t\0"
 	.byte	0x2
 	.byte	0x23
 	.byte	0x2a
-	.long	0xe1
+	.long	0xdc
 	.uleb128 0x2
 	.byte	0x8
 	.byte	0x7
@@ -118,17 +116,19 @@ PMC_GetStatisticsInfo:
 	.byte	0x8
 	.byte	0x5
 	.ascii "long long int\0"
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "wchar_t\0"
 	.byte	0x2
 	.byte	0x62
 	.byte	0x18
 	.long	0x11c
+	.uleb128 0x4
+	.long	0x107
 	.uleb128 0x2
 	.byte	0x2
 	.byte	0x7
 	.ascii "short unsigned int\0"
-	.uleb128 0x3
+	.uleb128 0x4
 	.long	0x11c
 	.uleb128 0x2
 	.byte	0x4
@@ -395,7 +395,7 @@ PMC_GetStatisticsInfo:
 	.long	0xc5
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x10c
+	.long	0x107
 	.uleb128 0x6
 	.byte	0x8
 	.long	0x137
@@ -407,7 +407,7 @@ PMC_GetStatisticsInfo:
 	.long	0x47f
 	.long	0x47f
 	.uleb128 0xf
-	.long	0xe1
+	.long	0xdc
 	.byte	0x5
 	.byte	0
 	.uleb128 0x2
@@ -418,14 +418,14 @@ PMC_GetStatisticsInfo:
 	.long	0x3ee
 	.long	0x4a4
 	.uleb128 0xf
-	.long	0xe1
+	.long	0xdc
 	.byte	0x5
 	.byte	0
 	.uleb128 0xe
 	.long	0x3fd
 	.long	0x4b4
 	.uleb128 0xf
-	.long	0xe1
+	.long	0xdc
 	.byte	0x5
 	.byte	0
 	.uleb128 0xb
@@ -446,14 +446,14 @@ PMC_GetStatisticsInfo:
 	.byte	0x1
 	.byte	0x8
 	.ascii "unsigned char\0"
-	.uleb128 0x3
+	.uleb128 0x4
 	.long	0x4d3
 	.uleb128 0xb
 	.ascii "__lc_time_data\0"
 	.uleb128 0x6
 	.byte	0x8
 	.long	0x4e9
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "_PHNDLR\0"
 	.byte	0x3
 	.byte	0x3f
@@ -533,7 +533,7 @@ PMC_GetStatisticsInfo:
 	.long	0x137
 	.uleb128 0x16
 	.byte	0x8
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "DWORD\0"
 	.byte	0x4
 	.byte	0x8d
@@ -572,7 +572,7 @@ PMC_GetStatisticsInfo:
 	.long	0x658
 	.uleb128 0x14
 	.byte	0
-	.uleb128 0x3
+	.uleb128 0x4
 	.long	0x64d
 	.uleb128 0x15
 	.ascii "__newclmap\0"
@@ -676,40 +676,40 @@ PMC_GetStatisticsInfo:
 	.long	0x4d3
 	.long	0x7af
 	.uleb128 0xf
-	.long	0xe1
+	.long	0xdc
 	.byte	0x7
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "GUID\0"
 	.byte	0x6
 	.byte	0x18
 	.byte	0x3
 	.long	0x753
-	.uleb128 0x3
-	.long	0x7af
 	.uleb128 0x4
+	.long	0x7af
+	.uleb128 0x3
 	.ascii "IID\0"
 	.byte	0x6
 	.byte	0x53
 	.byte	0xe
 	.long	0x7af
-	.uleb128 0x3
-	.long	0x7c1
 	.uleb128 0x4
+	.long	0x7c1
+	.uleb128 0x3
 	.ascii "CLSID\0"
 	.byte	0x6
 	.byte	0x5b
 	.byte	0xe
 	.long	0x7af
-	.uleb128 0x3
-	.long	0x7d2
 	.uleb128 0x4
+	.long	0x7d2
+	.uleb128 0x3
 	.ascii "FMTID\0"
 	.byte	0x6
 	.byte	0x62
 	.byte	0xe
 	.long	0x7af
-	.uleb128 0x3
+	.uleb128 0x4
 	.long	0x7e5
 	.uleb128 0x2
 	.byte	0x8
@@ -719,11 +719,14 @@ PMC_GetStatisticsInfo:
 	.byte	0x10
 	.byte	0x4
 	.ascii "long double\0"
+	.uleb128 0x6
+	.byte	0x8
+	.long	0x117
 	.uleb128 0xe
 	.long	0x44d
-	.long	0x821
+	.long	0x827
 	.uleb128 0xf
-	.long	0xe1
+	.long	0xdc
 	.byte	0
 	.byte	0
 	.uleb128 0x15
@@ -731,7 +734,7 @@ PMC_GetStatisticsInfo:
 	.byte	0x7
 	.byte	0xac
 	.byte	0x2b
-	.long	0x811
+	.long	0x817
 	.uleb128 0x15
 	.ascii "_sys_nerr\0"
 	.byte	0x7
@@ -749,10 +752,10 @@ PMC_GetStatisticsInfo:
 	.byte	0x7
 	.word	0x11d
 	.byte	0x13
-	.long	0x874
+	.long	0x87a
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x87a
+	.long	0x880
 	.uleb128 0x6
 	.byte	0x8
 	.long	0x44d
@@ -761,10 +764,10 @@ PMC_GetStatisticsInfo:
 	.byte	0x7
 	.word	0x121
 	.byte	0x16
-	.long	0x897
+	.long	0x89d
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x89d
+	.long	0x8a3
 	.uleb128 0x6
 	.byte	0x8
 	.long	0x453
@@ -773,25 +776,25 @@ PMC_GetStatisticsInfo:
 	.byte	0x7
 	.word	0x127
 	.byte	0x13
-	.long	0x874
+	.long	0x87a
 	.uleb128 0x17
 	.ascii "__imp__wenviron\0"
 	.byte	0x7
 	.word	0x12c
 	.byte	0x16
-	.long	0x897
+	.long	0x89d
 	.uleb128 0x17
 	.ascii "__imp__pgmptr\0"
 	.byte	0x7
 	.word	0x132
 	.byte	0x12
-	.long	0x87a
+	.long	0x880
 	.uleb128 0x17
 	.ascii "__imp__wpgmptr\0"
 	.byte	0x7
 	.word	0x137
 	.byte	0x15
-	.long	0x89d
+	.long	0x8a3
 	.uleb128 0x17
 	.ascii "__imp__osplatform\0"
 	.byte	0x7
@@ -1620,7 +1623,7 @@ PMC_GetStatisticsInfo:
 	.word	0x1629
 	.byte	0x17
 	.long	0x7bc
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "RPC_IF_HANDLE\0"
 	.byte	0xa
 	.byte	0x42
@@ -1634,7 +1637,7 @@ PMC_GetStatisticsInfo:
 	.byte	0x10
 	.byte	0x95
 	.byte	0xe
-	.long	0x1f00
+	.long	0x1f06
 	.uleb128 0x19
 	.ascii "COINITBASE_MULTITHREADED\0"
 	.byte	0
@@ -1644,13 +1647,13 @@ PMC_GetStatisticsInfo:
 	.byte	0xb
 	.byte	0x29
 	.byte	0x16
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x15
 	.ascii "IWinTypesBase_v0_1_s_ifspec\0"
 	.byte	0xb
 	.byte	0x2a
 	.byte	0x16
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x15
 	.ascii "IID_IUnknown\0"
 	.byte	0xc
@@ -2460,13 +2463,13 @@ PMC_GetStatisticsInfo:
 	.byte	0xf
 	.byte	0x28
 	.byte	0x16
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x15
 	.ascii "IWinTypes_v0_1_s_ifspec\0"
 	.byte	0xf
 	.byte	0x29
 	.byte	0x16
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x1a
 	.ascii "VARENUM\0"
 	.byte	0x7
@@ -2475,7 +2478,7 @@ PMC_GetStatisticsInfo:
 	.byte	0xf
 	.word	0x200
 	.byte	0x6
-	.long	0x3116
+	.long	0x311c
 	.uleb128 0x19
 	.ascii "VT_EMPTY\0"
 	.byte	0
@@ -2974,13 +2977,13 @@ PMC_GetStatisticsInfo:
 	.byte	0x12
 	.word	0x6fe
 	.byte	0x16
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x17
 	.ascii "IOLETypes_v0_0_s_ifspec\0"
 	.byte	0x12
 	.word	0x6ff
 	.byte	0x16
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x17
 	.ascii "IID_IOleWindow\0"
 	.byte	0x12
@@ -3082,13 +3085,13 @@ PMC_GetStatisticsInfo:
 	.byte	0x14
 	.byte	0xf1
 	.byte	0x16
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x15
 	.ascii "IOleAutomationTypes_v1_0_s_ifspec\0"
 	.byte	0x14
 	.byte	0xf2
 	.byte	0x16
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x17
 	.ascii "IID_ICreateTypeInfo\0"
 	.byte	0x14
@@ -3214,13 +3217,13 @@ PMC_GetStatisticsInfo:
 	.byte	0x15
 	.byte	0xeb
 	.byte	0x18
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x15
 	.ascii "__MIDL_itf_msxml_0000_v0_0_s_ifspec\0"
 	.byte	0x15
 	.byte	0xec
 	.byte	0x18
-	.long	0x1eb2
+	.long	0x1eb8
 	.uleb128 0x15
 	.ascii "LIBID_MSXML\0"
 	.byte	0x15
@@ -3971,7 +3974,7 @@ PMC_GetStatisticsInfo:
 	.byte	0x1a
 	.byte	0xa1
 	.byte	0x12
-	.long	0x4b83
+	.long	0x4b89
 	.uleb128 0x13
 	.ascii "dwProtocol\0"
 	.byte	0x1a
@@ -3987,32 +3990,32 @@ PMC_GetStatisticsInfo:
 	.long	0x5e7
 	.byte	0x4
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "SCARD_IO_REQUEST\0"
 	.byte	0x1a
 	.byte	0xa4
 	.byte	0x5
-	.long	0x4b3e
-	.uleb128 0x3
-	.long	0x4b83
+	.long	0x4b44
+	.uleb128 0x4
+	.long	0x4b89
 	.uleb128 0x15
 	.ascii "g_rgSCardT0Pci\0"
 	.byte	0x1b
 	.byte	0x25
 	.byte	0x3c
-	.long	0x4b9c
+	.long	0x4ba2
 	.uleb128 0x15
 	.ascii "g_rgSCardT1Pci\0"
 	.byte	0x1b
 	.byte	0x25
 	.byte	0x4b
-	.long	0x4b9c
+	.long	0x4ba2
 	.uleb128 0x15
 	.ascii "g_rgSCardRawPci\0"
 	.byte	0x1b
 	.byte	0x25
 	.byte	0x5a
-	.long	0x4b9c
+	.long	0x4ba2
 	.uleb128 0x15
 	.ascii "IID_IPrintDialogCallback\0"
 	.byte	0x1c
@@ -4025,37 +4028,37 @@ PMC_GetStatisticsInfo:
 	.byte	0xf
 	.byte	0x13
 	.long	0x7bc
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "uint32_t\0"
 	.byte	0x1d
 	.byte	0x28
 	.byte	0x12
 	.long	0x45f
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "uint64_t\0"
 	.byte	0x1d
 	.byte	0x2a
 	.byte	0x2a
-	.long	0xe1
-	.uleb128 0x4
+	.long	0xdc
+	.uleb128 0x3
 	.ascii "_UINT32_T\0"
 	.byte	0x1e
 	.byte	0x5f
 	.byte	0x12
-	.long	0x4c29
-	.uleb128 0x4
+	.long	0x4c2f
+	.uleb128 0x3
 	.ascii "_UINT64_T\0"
 	.byte	0x1e
 	.byte	0x60
 	.byte	0x12
-	.long	0x4c3a
+	.long	0x4c40
 	.uleb128 0x12
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x1e
 	.byte	0x65
 	.byte	0x10
-	.long	0x4cbe
+	.long	0x4cc4
 	.uleb128 0x1c
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x1e
@@ -4067,19 +4070,19 @@ PMC_GetStatisticsInfo:
 	.byte	0x1f
 	.byte	0
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x1e
 	.byte	0x68
 	.byte	0x3
-	.long	0x4c6f
+	.long	0x4c75
 	.uleb128 0x12
 	.ascii "__tag_PMC_STATISTICS_INFO\0"
 	.byte	0x10
 	.byte	0x1e
 	.byte	0x71
 	.byte	0x10
-	.long	0x4d59
+	.long	0x4d5f
 	.uleb128 0x13
 	.ascii "COUNT_MULTI64\0"
 	.byte	0x1e
@@ -4109,69 +4112,69 @@ PMC_GetStatisticsInfo:
 	.long	0x13e
 	.byte	0xc
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "PMC_STATISTICS_INFO\0"
 	.byte	0x1e
 	.byte	0x77
 	.byte	0x3
-	.long	0x4cdd
+	.long	0x4ce3
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4d59
-	.uleb128 0x4
+	.long	0x4d5f
+	.uleb128 0x3
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x1f
 	.byte	0x37
 	.byte	0x13
-	.long	0x4c5d
+	.long	0x4c63
 	.uleb128 0x12
 	.ascii "__tag_NUMBER_HEADER\0"
 	.byte	0x40
 	.byte	0x1f
 	.byte	0x47
 	.byte	0x10
-	.long	0x4ecc
+	.long	0x4ed2
 	.uleb128 0x13
 	.ascii "SIGNATURE1\0"
 	.byte	0x1f
 	.byte	0x49
 	.byte	0xf
-	.long	0x4c4b
+	.long	0x4c51
 	.byte	0
 	.uleb128 0x13
 	.ascii "SIGNATURE2\0"
 	.byte	0x1f
 	.byte	0x4a
 	.byte	0xf
-	.long	0x4c4b
+	.long	0x4c51
 	.byte	0x4
 	.uleb128 0x13
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1f
 	.byte	0x4b
 	.byte	0x11
-	.long	0x4d7b
+	.long	0x4d81
 	.byte	0x8
 	.uleb128 0x13
 	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x1f
 	.byte	0x4c
 	.byte	0x11
-	.long	0x4d7b
+	.long	0x4d81
 	.byte	0x10
 	.uleb128 0x13
 	.ascii "HASH_CODE\0"
 	.byte	0x1f
 	.byte	0x4d
 	.byte	0x11
-	.long	0x4d7b
+	.long	0x4d81
 	.byte	0x18
 	.uleb128 0x13
 	.ascii "TRAILING_ZERO_BITS_COUNT\0"
 	.byte	0x1f
 	.byte	0x4e
 	.byte	0x11
-	.long	0x4d7b
+	.long	0x4d81
 	.byte	0x20
 	.uleb128 0x1c
 	.ascii "IS_STATIC\0"
@@ -4228,59 +4231,56 @@ PMC_GetStatisticsInfo:
 	.byte	0x1f
 	.byte	0x55
 	.byte	0xc
-	.long	0xd2
+	.long	0xcd
 	.byte	0x30
 	.uleb128 0x13
 	.ascii "BLOCK\0"
 	.byte	0x1f
 	.byte	0x59
 	.byte	0x12
-	.long	0x4ecc
+	.long	0x4ed2
 	.byte	0x38
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4d7b
-	.uleb128 0x4
+	.long	0x4d81
+	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x1f
 	.byte	0x5a
 	.byte	0x3
-	.long	0x4d8f
+	.long	0x4d95
 	.uleb128 0x15
 	.ascii "configuration_info\0"
 	.byte	0x1f
 	.byte	0x61
 	.byte	0x1f
-	.long	0x4cbe
+	.long	0x4cc4
 	.uleb128 0x15
 	.ascii "number_zero\0"
 	.byte	0x1f
 	.byte	0x64
 	.byte	0x16
-	.long	0x4ed2
+	.long	0x4ed8
 	.uleb128 0x15
 	.ascii "number_one\0"
 	.byte	0x1f
 	.byte	0x67
 	.byte	0x16
-	.long	0x4ed2
+	.long	0x4ed8
 	.uleb128 0x15
 	.ascii "statistics_info\0"
 	.byte	0x1f
 	.byte	0x6a
 	.byte	0x1c
-	.long	0x4d59
+	.long	0x4d5f
 	.uleb128 0x1d
 	.long	0x137
-	.long	0x4f52
+	.long	0x4f58
 	.uleb128 0x11
-	.long	0x4f52
+	.long	0x811
 	.uleb128 0x1e
 	.byte	0
-	.uleb128 0x6
-	.byte	0x8
-	.long	0xcd
 	.uleb128 0x17
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1f
@@ -4289,9 +4289,9 @@ PMC_GetStatisticsInfo:
 	.long	0x4f6d
 	.uleb128 0x6
 	.byte	0x8
-	.long	0x4f42
+	.long	0x4f48
 	.uleb128 0x1f
-	.long	0x4f2a
+	.long	0x4f30
 	.byte	0x1
 	.byte	0x24
 	.byte	0x15
@@ -4312,7 +4312,7 @@ PMC_GetStatisticsInfo:
 	.byte	0x1
 	.byte	0x27
 	.byte	0x31
-	.long	0x4d75
+	.long	0x4d7b
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -4351,13 +4351,6 @@ PMC_GetStatisticsInfo:
 	.byte	0
 	.byte	0
 	.uleb128 0x3
-	.uleb128 0x26
-	.byte	0
-	.uleb128 0x49
-	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x4
 	.uleb128 0x16
 	.byte	0
 	.uleb128 0x3
@@ -4368,6 +4361,13 @@ PMC_GetStatisticsInfo:
 	.uleb128 0xb
 	.uleb128 0x39
 	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x4
+	.uleb128 0x26
+	.byte	0
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0

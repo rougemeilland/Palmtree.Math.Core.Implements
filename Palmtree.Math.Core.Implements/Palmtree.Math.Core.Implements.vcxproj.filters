@@ -55,9 +55,6 @@
     <ClCompile Include="TEST_op_Subtruct.c">
       <Filter>ソース ファイル\テスト</Filter>
     </ClCompile>
-    <ClCompile Include="CALC_divrem_critical.c">
-      <Filter>ソース ファイル\テスト</Filter>
-    </ClCompile>
     <ClCompile Include="pmc_bitwiseand.c">
       <Filter>ソース ファイル</Filter>
     </ClCompile>

@@ -42,26 +42,26 @@ __inline static void ReportIN(NUMBER_HEADER* v, NUMBER_HEADER* e, NUMBER_HEADER*
 #ifdef _DEBUG
     if (__DEBUG_LOG != NULL)
     {
-        (*__DEBUG_LOG)("--------------------\n");
-        (*__DEBUG_LOG)("IN: ModulePower\n");
-        (*__DEBUG_LOG)("  v: ");
+        (*__DEBUG_LOG)(L"--------------------\n");
+        (*__DEBUG_LOG)(L"IN: ModulePower\n");
+        (*__DEBUG_LOG)(L"  v: ");
         if (v->IS_ZERO)
-            (*__DEBUG_LOG)("0x00");
+            (*__DEBUG_LOG)(L"0x00");
         else
             DumpBinary_UNIT(v->BLOCK, v->UNIT_WORD_COUNT);
-        (*__DEBUG_LOG)("\n");
-        (*__DEBUG_LOG)("  e: ");
+        (*__DEBUG_LOG)(L"\n");
+        (*__DEBUG_LOG)(L"  e: ");
         if (e->IS_ZERO)
-            (*__DEBUG_LOG)("0x00");
+            (*__DEBUG_LOG)(L"0x00");
         else
             DumpBinary_UNIT(e->BLOCK, e->UNIT_WORD_COUNT);
-        (*__DEBUG_LOG)("\n");
-        (*__DEBUG_LOG)("  m: ");
+        (*__DEBUG_LOG)(L"\n");
+        (*__DEBUG_LOG)(L"  m: ");
         if (m->IS_ZERO)
-            (*__DEBUG_LOG)("0x00");
+            (*__DEBUG_LOG)(L"0x00");
         else
             DumpBinary_UNIT(m->BLOCK, m->UNIT_WORD_COUNT);
-        (*__DEBUG_LOG)("\n");
+        (*__DEBUG_LOG)(L"\n");
     }
 #endif // _DEBUG
 }
@@ -71,14 +71,14 @@ __inline static void ReportOUT(NUMBER_HEADER* r)
 #ifdef _DEBUG
     if (__DEBUG_LOG != NULL)
     {
-        (*__DEBUG_LOG)("OUT: ModulePower\n");
-        (*__DEBUG_LOG)("  r: ");
+        (*__DEBUG_LOG)(L"OUT: ModulePower\n");
+        (*__DEBUG_LOG)(L"  r: ");
         if (r->IS_ZERO)
-            (*__DEBUG_LOG)("0x00");
+            (*__DEBUG_LOG)(L"0x00");
         else
             DumpBinary_UNIT(r->BLOCK, r->UNIT_WORD_COUNT);
-        (*__DEBUG_LOG)("\n");
-        (*__DEBUG_LOG)("--------------------\n");
+        (*__DEBUG_LOG)(L"\n");
+        (*__DEBUG_LOG)(L"--------------------\n");
     }
 #endif // _DEBUG
 }

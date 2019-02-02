@@ -49,56 +49,92 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG94533 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94534 DB	'PMC_RightShift_X_I (%d.%d)', 00H
-	ORG $+1
-$SG94535 DB	'PMC_RightShift_X_I', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-	ORG $+3
-$SG94536 DB	'PMC_RightShift_X_I (%d.%d)', 00H
-	ORG $+1
-$SG94537 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
+$SG94533 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94538 DB	'PMC_RightShift_X_I (%d.%d)', 00H
-	ORG $+1
-$SG94539 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94540 DB	'PMC_RightShift_X_I (%d.%d)', 00H
-	ORG $+1
-$SG94584 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94585 DB	'PMC_LeftShift_X_I (%d.%d)', 00H
+$SG94534 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'R', 00H, 'i', 00H
+	DB	'g', 00H, 'h', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f'
+	DB	00H, 't', 00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H
+	DB	'(', 00H, '%', 00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')'
+	DB	00H, 00H, 00H
+	ORG $+6
+$SG94535 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'R', 00H, 'i', 00H
+	DB	'g', 00H, 'h', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f'
+	DB	00H, 't', 00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, 'n0', 0a9H
+	DB	'_0^', 0b3H, '0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH
+	DB	090H, 08aH, '0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H
+	DB	00H
+$SG94536 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'R', 00H, 'i', 00H
+	DB	'g', 00H, 'h', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f'
+	DB	00H, 't', 00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H
+	DB	'(', 00H, '%', 00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')'
+	DB	00H, 00H, 00H
+	ORG $+6
+$SG94537 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A', 00H, 'r', 00H, 'r'
+	DB	00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0'
+	DB	0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH, '0g0o0j0D'
+	DB	'0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94586 DB	'PMC_LeftShift_X_I', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94587 DB	'PMC_LeftShift_X_I (%d.%d)', 00H
+$SG94538 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'R', 00H, 'i', 00H
+	DB	'g', 00H, 'h', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f'
+	DB	00H, 't', 00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H
+	DB	'(', 00H, '%', 00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')'
+	DB	00H, 00H, 00H
 	ORG $+2
-$SG94588 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
+$SG94539 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
 	ORG $+2
-$SG94589 DB	'PMC_LeftShift_X_I (%d.%d)', 00H
+$SG94540 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'R', 00H, 'i', 00H
+	DB	'g', 00H, 'h', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f'
+	DB	00H, 't', 00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H
+	DB	'(', 00H, '%', 00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')'
+	DB	00H, 00H, 00H
+	ORG $+6
+$SG94584 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94590 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94591 DB	'PMC_LeftShift_X_I (%d.%d)', 00H
+$SG94585 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'L', 00H, 'e', 00H
+	DB	'f', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f', 00H, 't'
+	DB	00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H, '(', 00H
+	DB	'%', 00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H
+	DB	00H
+$SG94586 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'L', 00H, 'e', 00H
+	DB	'f', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f', 00H, 't'
+	DB	00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94587 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'L', 00H, 'e', 00H
+	DB	'f', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f', 00H, 't'
+	DB	00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H, '(', 00H
+	DB	'%', 00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H
+	DB	00H
+$SG94588 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A', 00H, 'r', 00H, 'r'
+	DB	00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0'
+	DB	0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH, '0g0o0j0D'
+	DB	'0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94589 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'L', 00H, 'e', 00H
+	DB	'f', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f', 00H, 't'
+	DB	00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H, '(', 00H
+	DB	'%', 00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H
+	DB	00H
+$SG94590 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
+	ORG $+2
+$SG94591 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'L', 00H, 'e', 00H
+	DB	'f', 00H, 't', 00H, 'S', 00H, 'h', 00H, 'i', 00H, 'f', 00H, 't'
+	DB	00H, '_', 00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H, '(', 00H
+	DB	'%', 00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H
+	DB	00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -223,12 +259,12 @@ _TEST_PMC_LeftShift_X_L PROC
 ; 108  :     PMC_STATUS_CODE result;
 ; 109  :     PMC_STATUS_CODE x_result;
 ; 110  :     PMC_STATUS_CODE z_result;
-; 111  :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
-; 112  :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 2), (z_result = ep->PMC_LeftShift_X_L(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_LeftShift_X_Lの復帰コードが期待通りではない(%d)", z_result));
+; 111  :     TEST_Assert(env, FormatTestLabel(L"PMC_LeftShift_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+; 112  :     TEST_Assert(env, FormatTestLabel(L"PMC_LeftShift_X_L (%d.%d)", no, 2), (z_result = ep->PMC_LeftShift_X_L(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_LeftShift_X_Lの復帰コードが期待通りではない(%d)", z_result));
 ; 113  :     if (z_result == PMC_STATUS_OK)
 ; 114  :     {
-; 115  :         TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
-; 116  :         TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 115  :         TEST_Assert(env, FormatTestLabel(L"PMC_LeftShift_X_L (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 116  :         TEST_Assert(env, FormatTestLabel(L"PMC_LeftShift_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, L"データの内容が一致しない");
 ; 117  :     }
 ; 118  :     if (z_result == PMC_STATUS_OK)
 ; 119  :         ep->PMC_Dispose(z);
@@ -292,7 +328,7 @@ _TEST_PMC_LeftShift_X_I PROC
 ; 88   :     PMC_STATUS_CODE result;
 ; 89   :     PMC_STATUS_CODE x_result;
 ; 90   :     PMC_STATUS_CODE z_result;
-; 91   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+; 91   :     TEST_Assert(env, FormatTestLabel(L"PMC_LeftShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -334,7 +370,7 @@ $LN6@TEST_PMC_L:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 92   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_LeftShift_X_I(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_LeftShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
+; 92   :     TEST_Assert(env, FormatTestLabel(L"PMC_LeftShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_LeftShift_X_I(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_LeftShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -376,7 +412,7 @@ $LN8@TEST_PMC_L:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 93   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 93   :     TEST_Assert(env, FormatTestLabel(L"PMC_LeftShift_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _actual_z_buf_size$[ebp]
@@ -419,7 +455,7 @@ $LN10@TEST_PMC_L:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 94   :     TEST_Assert(env, FormatTestLabel("PMC_LeftShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 94   :     TEST_Assert(env, FormatTestLabel(L"PMC_LeftShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, L"データの内容が一致しない");
 
 	mov	eax, DWORD PTR _desired_z_buf_size$[ebp]
 	push	eax
@@ -593,12 +629,12 @@ _TEST_PMC_RightShift_X_L PROC
 ; 65   :     PMC_STATUS_CODE result;
 ; 66   :     PMC_STATUS_CODE x_result;
 ; 67   :     PMC_STATUS_CODE z_result;
-; 68   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
-; 69   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 2), (z_result = ep->PMC_RightShift_X_L(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_RightShift_X_Lの復帰コードが期待通りではない(%d)", z_result));
+; 68   :     TEST_Assert(env, FormatTestLabel(L"PMC_RightShift_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+; 69   :     TEST_Assert(env, FormatTestLabel(L"PMC_RightShift_X_L (%d.%d)", no, 2), (z_result = ep->PMC_RightShift_X_L(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_RightShift_X_Lの復帰コードが期待通りではない(%d)", z_result));
 ; 70   :     if (z_result == PMC_STATUS_OK)
 ; 71   :     {
-; 72   :         TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
-; 73   :         TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 72   :         TEST_Assert(env, FormatTestLabel(L"PMC_RightShift_X_L (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 73   :         TEST_Assert(env, FormatTestLabel(L"PMC_RightShift_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, L"データの内容が一致しない");
 ; 74   :     }
 ; 75   :     if (z_result == PMC_STATUS_OK)
 ; 76   :         ep->PMC_Dispose(z);
@@ -662,7 +698,7 @@ _TEST_PMC_RightShift_X_I PROC
 ; 45   :     PMC_STATUS_CODE result;
 ; 46   :     PMC_STATUS_CODE x_result;
 ; 47   :     PMC_STATUS_CODE z_result;
-; 48   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+; 48   :     TEST_Assert(env, FormatTestLabel(L"PMC_RightShift_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -704,7 +740,7 @@ $LN6@TEST_PMC_R:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 49   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_RightShift_X_I(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_RightShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
+; 49   :     TEST_Assert(env, FormatTestLabel(L"PMC_RightShift_X_I (%d.%d)", no, 2), (z_result = ep->PMC_RightShift_X_I(x, n, &z)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_RightShift_X_Iの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -746,7 +782,7 @@ $LN8@TEST_PMC_R:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 50   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 50   :     TEST_Assert(env, FormatTestLabel(L"PMC_RightShift_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _actual_z_buf_size$[ebp]
@@ -789,7 +825,7 @@ $LN10@TEST_PMC_R:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 51   :     TEST_Assert(env, FormatTestLabel("PMC_RightShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 51   :     TEST_Assert(env, FormatTestLabel(L"PMC_RightShift_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, L"データの内容が一致しない");
 
 	mov	eax, DWORD PTR _desired_z_buf_size$[ebp]
 	push	eax

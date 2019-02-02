@@ -24,9 +24,9 @@ __6BD5A6F4_internaltest_op_multiply@c DB 01H
 msvcjmc	ENDS
 PUBLIC	INTERNALTEST_Multiply_X_X_Imp
 PUBLIC	__JustMyCode_Default
-PUBLIC	??_C@_0CB@MFNNKGE@actual_w_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@ ; `string'
-PUBLIC	??_C@_0BJ@NPGAEKKG@Multiply_X_X_Imp?5?$CI?$CFd?4?$CFd?$CJ@ ; `string'
-PUBLIC	??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ ; `string'
+PUBLIC	??_C@_1CO@CEOOABDI@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAw?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@ ; `string'
+PUBLIC	??_C@_1DC@ENPLNMGP@?$AAM?$AAu?$AAl?$AAt?$AAi?$AAp?$AAl?$AAy?$AA_?$AAX?$AA_?$AAX?$AA_?$AAI?$AAm@ ; `string'
+PUBLIC	??_C@_1BK@CBDJCOBM@?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@ ; `string'
 EXTRN	AllocateBlock:PROC
 EXTRN	DeallocateBlock:PROC
 EXTRN	CheckBlockLight:PROC
@@ -69,24 +69,26 @@ rtc$TMZ	ENDS
 rtc$IMZ	SEGMENT
 _RTC_InitBase.rtc$IMZ DQ FLAT:_RTC_InitBase
 rtc$IMZ	ENDS
-;	COMDAT ??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
+;	COMDAT ??_C@_1BK@CBDJCOBM@?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@
 CONST	SEGMENT
-??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ DB 083H
-	DB	'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H
-	DB	0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H, 082H, 0a2H
-	DB	00H						; `string'
+??_C@_1BK@CBDJCOBM@?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@ DB 0c7H
+	DB	'0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H, 'N', 0f4H
+	DB	081H, 'W0j0D0', 00H, 00H			; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BJ@NPGAEKKG@Multiply_X_X_Imp?5?$CI?$CFd?4?$CFd?$CJ@
+;	COMDAT ??_C@_1DC@ENPLNMGP@?$AAM?$AAu?$AAl?$AAt?$AAi?$AAp?$AAl?$AAy?$AA_?$AAX?$AA_?$AAX?$AA_?$AAI?$AAm@
 CONST	SEGMENT
-??_C@_0BJ@NPGAEKKG@Multiply_X_X_Imp?5?$CI?$CFd?4?$CFd?$CJ@ DB 'Multiply_X'
-	DB	'_X_Imp (%d.%d)', 00H			; `string'
+??_C@_1DC@ENPLNMGP@?$AAM?$AAu?$AAl?$AAt?$AAi?$AAp?$AAl?$AAy?$AA_?$AAX?$AA_?$AAX?$AA_?$AAI?$AAm@ DB 'M'
+	DB	00H, 'u', 00H, 'l', 00H, 't', 00H, 'i', 00H, 'p', 00H, 'l', 00H
+	DB	'y', 00H, '_', 00H, 'X', 00H, '_', 00H, 'X', 00H, '_', 00H, 'I'
+	DB	00H, 'm', 00H, 'p', 00H, ' ', 00H, '(', 00H, '%', 00H, 'd', 00H
+	DB	'.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H ; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0CB@MFNNKGE@actual_w_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@
+;	COMDAT ??_C@_1CO@CEOOABDI@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAw?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@
 CONST	SEGMENT
-??_C@_0CB@MFNNKGE@actual_w_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@ DB 'a'
-	DB	'ctual_w_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 094H
-	DB	'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H, 0e9H
-	DB	00H						; `string'
+??_C@_1CO@CEOOABDI@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAw?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@ DB 'a'
+	DB	00H, 'c', 00H, 't', 00H, 'u', 00H, 'a', 00H, 'l', 00H, '_', 00H
+	DB	'w', 00H, '_', 00H, 'b', 00H, 'u', 00H, 'f', 00H, 'n0', 085H, 'Q'
+	DB	0b9H, '[L04x', 0dH, 'dW0f0D0', 08bH, '0', 00H, 00H ; `string'
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -569,7 +571,7 @@ $LN3@INTERNALTE:
 $LN4@INTERNALTE:
 
 ; 68   : 
-; 69   :     TEST_Assert(env, FormatTestLabel("Multiply_X_X_Imp (%d.%d)", no, 1), CheckBlockLight(actual_w_buf, actual_w_buf_code) == PMC_STATUS_OK, "actual_w_bufの内容が破損している");
+; 69   :     TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 1), CheckBlockLight(actual_w_buf, actual_w_buf_code) == PMC_STATUS_OK, L"actual_w_bufの内容が破損している");
 
 	mov	rdx, QWORD PTR actual_w_buf_code$[rbp]
 	mov	rcx, QWORD PTR actual_w_buf$[rbp]
@@ -583,15 +585,15 @@ $LN6@INTERNALTE:
 $LN7@INTERNALTE:
 	mov	r8d, 1
 	mov	edx, DWORD PTR no$[rbp]
-	lea	rcx, OFFSET FLAT:??_C@_0BJ@NPGAEKKG@Multiply_X_X_Imp?5?$CI?$CFd?4?$CFd?$CJ@
+	lea	rcx, OFFSET FLAT:??_C@_1DC@ENPLNMGP@?$AAM?$AAu?$AAl?$AAt?$AAi?$AAp?$AAl?$AAy?$AA_?$AAX?$AA_?$AAX?$AA_?$AAI?$AAm@
 	call	FormatTestLabel
-	lea	r9, OFFSET FLAT:??_C@_0CB@MFNNKGE@actual_w_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@
+	lea	r9, OFFSET FLAT:??_C@_1CO@CEOOABDI@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAw?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@
 	mov	r8d, DWORD PTR tv151[rbp]
 	mov	rdx, rax
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 70   :     TEST_Assert(env, FormatTestLabel("Multiply_X_X_Imp (%d.%d)", no, 2), _EQUALS_MEMORY(actual_w, actual_w_count, desired_w, desired_w_count) == 0, "データの内容が一致しない");
+; 70   :     TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 2), _EQUALS_MEMORY(actual_w, actual_w_count, desired_w, desired_w_count) == 0, L"データの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_w_count$[rbp]
 	mov	r8, QWORD PTR desired_w$[rbp]
@@ -607,9 +609,9 @@ $LN8@INTERNALTE:
 $LN9@INTERNALTE:
 	mov	r8d, 2
 	mov	edx, DWORD PTR no$[rbp]
-	lea	rcx, OFFSET FLAT:??_C@_0BJ@NPGAEKKG@Multiply_X_X_Imp?5?$CI?$CFd?4?$CFd?$CJ@
+	lea	rcx, OFFSET FLAT:??_C@_1DC@ENPLNMGP@?$AAM?$AAu?$AAl?$AAt?$AAi?$AAp?$AAl?$AAy?$AA_?$AAX?$AA_?$AAX?$AA_?$AAI?$AAm@
 	call	FormatTestLabel
-	lea	r9, OFFSET FLAT:??_C@_0BJ@JGINKGIA@?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
+	lea	r9, OFFSET FLAT:??_C@_1BK@CBDJCOBM@?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@
 	mov	r8d, DWORD PTR tv166[rbp]
 	mov	rdx, rax
 	mov	rcx, QWORD PTR env$[rbp]

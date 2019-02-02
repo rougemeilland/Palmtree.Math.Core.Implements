@@ -48966,7 +48966,7 @@ typedef struct __tag_PMC_ENTRY_POINTS
 #pragma region 型の定義
 typedef struct __tag_PMC_DEBUG_ENVIRONMENT
 {
-    int (__attribute__((__cdecl__)) * log)(const char*, ...);
+    int (__attribute__((__cdecl__)) * log)(const wchar_t*, ...);
     void (__attribute__((__cdecl__)) * pause)(void);
 } PMC_DEBUG_ENVIRONMENT;
 #pragma endregion

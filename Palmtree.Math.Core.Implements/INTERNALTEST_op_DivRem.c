@@ -86,11 +86,11 @@ void INTERNALTEST_DivRem_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, i
     if (actual_r_count == 0)
         actual_r_count = 1;
 
-    TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 1), CheckBlockLight(work_v_buf, work_v_buf_code) == PMC_STATUS_OK, "work_v_bufの内容が破損している");
-    TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 2), CheckBlockLight(actual_q_buf, actual_q_buf_code) == PMC_STATUS_OK, "actual_q_bufの内容が破損している");
-    TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 3), CheckBlockLight(actual_r_buf, actual_r_buf_code) == PMC_STATUS_OK, "actual_r_bufの内容が破損している");
-    TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_q, actual_q_count, desired_q, desired_q_count) == 0, "商のデータの内容が一致しない");
-    TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_r, actual_r_count, desired_r, desired_r_count) == 0, "剰余のデータの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 1), CheckBlockLight(work_v_buf, work_v_buf_code) == PMC_STATUS_OK, L"work_v_bufの内容が破損している");
+    TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 2), CheckBlockLight(actual_q_buf, actual_q_buf_code) == PMC_STATUS_OK, L"actual_q_bufの内容が破損している");
+    TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 3), CheckBlockLight(actual_r_buf, actual_r_buf_code) == PMC_STATUS_OK, L"actual_r_bufの内容が破損している");
+    TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_q, actual_q_count, desired_q, desired_q_count) == 0, L"商のデータの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_r, actual_r_count, desired_r, desired_r_count) == 0, L"剰余のデータの内容が一致しない");
 
     DeallocateBlock(actual_r_buf, actual_r_buf_words);
     DeallocateBlock(actual_q_buf, actual_q_buf_words);

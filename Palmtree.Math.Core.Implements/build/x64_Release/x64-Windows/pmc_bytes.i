@@ -102791,7 +102791,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
 }
 
-__inline static void ReportLabel(char* label)
+__inline static void ReportLabel(wchar_t* label)
 {
 
 
@@ -102801,12 +102801,12 @@ __inline static void ReportLabel(char* label)
 
 }
 
-__inline static void ReportDump(char* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
+__inline static void ReportDump(wchar_t* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
 {
 # 1136 "pmc_internal.h"
 }
 
-__inline static void ReportVar(char* name, __UNIT_TYPE x)
+__inline static void ReportVar(wchar_t* name, __UNIT_TYPE x)
 {
 # 1150 "pmc_internal.h"
 }

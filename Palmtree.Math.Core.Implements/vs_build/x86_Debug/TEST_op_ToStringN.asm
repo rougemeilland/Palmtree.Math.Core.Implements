@@ -54,24 +54,32 @@ rtc$IMZ	ENDS
 _DATA	SEGMENT
 $SG94540 DB	'+', 00H, 00H, 00H
 $SG94541 DB	'-', 00H, 00H, 00H
-$SG94542 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94543 DB	'PMC_ToStringN (%d.%d)', 00H
+$SG94542 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94544 DB	'PMC_ToString', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-	ORG $+1
-$SG94545 DB	'PMC_ToStringN (%d.%d)', 00H
+$SG94543 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'S', 00H, 't', 00H, 'r', 00H, 'i', 00H, 'n', 00H, 'g', 00H, 'N'
+	DB	00H, ' ', 00H, '(', 00H, '%', 00H, 'd', 00H, '.', 00H, '%', 00H
+	DB	'd', 00H, ')', 00H, 00H, 00H
+$SG94544 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'S', 00H, 't', 00H, 'r', 00H, 'i', 00H, 'n', 00H, 'g', 00H, 'n'
+	DB	'0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H
+	DB	'_', 01aH, 090H, 08aH, '0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')'
+	DB	00H, 00H, 00H
+$SG94545 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'S', 00H, 't', 00H, 'r', 00H, 'i', 00H, 'n', 00H, 'g', 00H, 'N'
+	DB	00H, ' ', 00H, '(', 00H, '%', 00H, 'd', 00H, '.', 00H, '%', 00H
+	DB	'd', 00H, ')', 00H, 00H, 00H
+$SG94546 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
 	ORG $+2
-$SG94546 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94547 DB	'PMC_ToStringN (%d.%d)', 00H
+$SG94547 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'S', 00H, 't', 00H, 'r', 00H, 'i', 00H, 'n', 00H, 'g', 00H, 'N'
+	DB	00H, ' ', 00H, '(', 00H, '%', 00H, 'd', 00H, '.', 00H, '%', 00H
+	DB	'd', 00H, ')', 00H, 00H, 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -188,7 +196,7 @@ _TEST_PMC_ToStringN PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 52   :     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+; 52   :     TEST_Assert(env, FormatTestLabel(L"PMC_ToStringN (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -230,7 +238,7 @@ $LN5@TEST_PMC_T:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 53   :     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, width, &opt)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToStringの復帰コードが期待通りではない(%d)", result));
+; 53   :     TEST_Assert(env, FormatTestLabel(L"PMC_ToStringN (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, width, &opt)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToStringの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _opt$[ebp]
@@ -276,7 +284,7 @@ $LN7@TEST_PMC_T:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 54   :     TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, "データの内容が一致しない");
+; 54   :     TEST_Assert(env, FormatTestLabel(L"PMC_ToStringN (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, L"データの内容が一致しない");
 
 	mov	esi, esp
 	mov	ecx, DWORD PTR _desired_str$[ebp]

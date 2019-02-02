@@ -87770,7 +87770,7 @@ extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_Pow_X_I(HANDLE x, _UINT3
 extern PMC_STATUS_CODE __attribute__((__stdcall__)) PMC_ModPow_X_X_X(HANDLE v, HANDLE e, HANDLE m, HANDLE* r);
 
 
-extern int(__attribute__((__cdecl__)) * __DEBUG_LOG)(const char*, ...);
+extern int(__attribute__((__cdecl__)) * __DEBUG_LOG)(const wchar_t*, ...);
 extern void DumpBinary_UNIT(__UNIT_TYPE* buf, __UNIT_TYPE count);
 
 #pragma endregion
@@ -88315,7 +88315,7 @@ __inline static void AddToMULTI64Counter(_INT32_T value)
     _InterlockedExchangeAdd(&statistics_info.COUNT_MULTI64, value);
 }
 
-__inline static void ReportLabel(char* label)
+__inline static void ReportLabel(wchar_t* label)
 {
 
     if (__DEBUG_LOG != 
@@ -88324,12 +88324,12 @@ __inline static void ReportLabel(char* label)
 # 1119 "pmc_internal.h"
                           )
     {
-        (*__DEBUG_LOG)("%s\n", label);
+        (*__DEBUG_LOG)(L"%ls\n", label);
     }
 
 }
 
-__inline static void ReportDump(char* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
+__inline static void ReportDump(wchar_t* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
 {
 
     if (__DEBUG_LOG != 
@@ -88338,14 +88338,14 @@ __inline static void ReportDump(char* name, __UNIT_TYPE* buf, __UNIT_TYPE count)
 # 1129 "pmc_internal.h"
                           )
     {
-        (*__DEBUG_LOG)("  %s: ", name);
+        (*__DEBUG_LOG)(L"  %ls: ", name);
         DumpBinary_UNIT(buf, count);
-        (*__DEBUG_LOG)("\n");
+        (*__DEBUG_LOG)(L"\n");
     }
 
 }
 
-__inline static void ReportVar(char* name, __UNIT_TYPE x)
+__inline static void ReportVar(wchar_t* name, __UNIT_TYPE x)
 {
 
     if (__DEBUG_LOG != 
@@ -88354,15 +88354,15 @@ __inline static void ReportVar(char* name, __UNIT_TYPE x)
 # 1141 "pmc_internal.h"
                           )
     {
-        (*__DEBUG_LOG)("  %s: ", name);
+        (*__DEBUG_LOG)(L"  %ls: ", name);
         if (sizeof(__UNIT_TYPE) == sizeof(unsigned 
 # 1144 "pmc_internal.h" 3
                                                   long long
 # 1144 "pmc_internal.h"
                                                          ))
-            (*__DEBUG_LOG)("0x%016llx\n", x);
+            (*__DEBUG_LOG)(L"0x%016llx\n", x);
         else
-            (*__DEBUG_LOG)("0x%08lx\n", x);
+            (*__DEBUG_LOG)(L"0x%08lx\n", x);
     }
 
 }

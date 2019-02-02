@@ -5992,34 +5992,34 @@ Initialize_Parse:
 	.byte	0x6
 	.ascii "char\0"
 	.uleb128 0x3
-	.long	0xc0
-	.uleb128 0x4
 	.ascii "size_t\0"
 	.byte	0x5
 	.byte	0x23
 	.byte	0x2a
-	.long	0xdc
+	.long	0xd7
 	.uleb128 0x2
 	.byte	0x8
 	.byte	0x7
 	.ascii "long long unsigned int\0"
-	.uleb128 0x3
-	.long	0xdc
+	.uleb128 0x4
+	.long	0xd7
 	.uleb128 0x2
 	.byte	0x8
 	.byte	0x5
 	.ascii "long long int\0"
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "wchar_t\0"
 	.byte	0x5
 	.byte	0x62
 	.byte	0x18
 	.long	0x11c
+	.uleb128 0x4
+	.long	0x107
 	.uleb128 0x2
 	.byte	0x2
 	.byte	0x7
 	.ascii "short unsigned int\0"
-	.uleb128 0x3
+	.uleb128 0x4
 	.long	0x11c
 	.uleb128 0x2
 	.byte	0x4
@@ -6288,7 +6288,7 @@ Initialize_Parse:
 	.long	0xc0
 	.uleb128 0x7
 	.byte	0x8
-	.long	0x10c
+	.long	0x107
 	.uleb128 0x7
 	.byte	0x8
 	.long	0x137
@@ -6300,7 +6300,7 @@ Initialize_Parse:
 	.long	0x484
 	.long	0x484
 	.uleb128 0x10
-	.long	0xdc
+	.long	0xd7
 	.byte	0x5
 	.byte	0
 	.uleb128 0x2
@@ -6311,14 +6311,14 @@ Initialize_Parse:
 	.long	0x3f3
 	.long	0x4a9
 	.uleb128 0x10
-	.long	0xdc
+	.long	0xd7
 	.byte	0x5
 	.byte	0
 	.uleb128 0xf
 	.long	0x402
 	.long	0x4b9
 	.uleb128 0x10
-	.long	0xdc
+	.long	0xd7
 	.byte	0x5
 	.byte	0
 	.uleb128 0xc
@@ -6339,14 +6339,14 @@ Initialize_Parse:
 	.byte	0x1
 	.byte	0x8
 	.ascii "unsigned char\0"
-	.uleb128 0x3
+	.uleb128 0x4
 	.long	0x4d8
 	.uleb128 0xc
 	.ascii "__lc_time_data\0"
 	.uleb128 0x7
 	.byte	0x8
 	.long	0x4ee
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "_PHNDLR\0"
 	.byte	0x6
 	.byte	0x3f
@@ -6426,7 +6426,7 @@ Initialize_Parse:
 	.long	0x137
 	.uleb128 0x17
 	.byte	0x8
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "DWORD\0"
 	.byte	0x7
 	.byte	0x8d
@@ -6465,7 +6465,7 @@ Initialize_Parse:
 	.long	0x65d
 	.uleb128 0x15
 	.byte	0
-	.uleb128 0x3
+	.uleb128 0x4
 	.long	0x652
 	.uleb128 0x16
 	.ascii "__newclmap\0"
@@ -6531,7 +6531,7 @@ Initialize_Parse:
 	.ascii "short int\0"
 	.uleb128 0x7
 	.byte	0x8
-	.long	0xdc
+	.long	0xd7
 	.uleb128 0x6
 	.ascii "HANDLE\0"
 	.byte	0x9
@@ -6581,40 +6581,40 @@ Initialize_Parse:
 	.long	0x4d8
 	.long	0x7d0
 	.uleb128 0x10
-	.long	0xdc
+	.long	0xd7
 	.byte	0x7
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "GUID\0"
 	.byte	0xa
 	.byte	0x18
 	.byte	0x3
 	.long	0x774
-	.uleb128 0x3
-	.long	0x7d0
 	.uleb128 0x4
+	.long	0x7d0
+	.uleb128 0x3
 	.ascii "IID\0"
 	.byte	0xa
 	.byte	0x53
 	.byte	0xe
 	.long	0x7d0
-	.uleb128 0x3
-	.long	0x7e2
 	.uleb128 0x4
+	.long	0x7e2
+	.uleb128 0x3
 	.ascii "CLSID\0"
 	.byte	0xa
 	.byte	0x5b
 	.byte	0xe
 	.long	0x7d0
-	.uleb128 0x3
-	.long	0x7f3
 	.uleb128 0x4
+	.long	0x7f3
+	.uleb128 0x3
 	.ascii "FMTID\0"
 	.byte	0xa
 	.byte	0x62
 	.byte	0xe
 	.long	0x7d0
-	.uleb128 0x3
+	.uleb128 0x4
 	.long	0x806
 	.uleb128 0x2
 	.byte	0x8
@@ -6624,11 +6624,14 @@ Initialize_Parse:
 	.byte	0x10
 	.byte	0x4
 	.ascii "long double\0"
+	.uleb128 0x7
+	.byte	0x8
+	.long	0x117
 	.uleb128 0xf
 	.long	0x452
-	.long	0x842
+	.long	0x848
 	.uleb128 0x10
-	.long	0xdc
+	.long	0xd7
 	.byte	0
 	.byte	0
 	.uleb128 0x16
@@ -6636,7 +6639,7 @@ Initialize_Parse:
 	.byte	0xb
 	.byte	0xac
 	.byte	0x2b
-	.long	0x832
+	.long	0x838
 	.uleb128 0x16
 	.ascii "_sys_nerr\0"
 	.byte	0xb
@@ -6654,10 +6657,10 @@ Initialize_Parse:
 	.byte	0xb
 	.word	0x11d
 	.byte	0x13
-	.long	0x895
+	.long	0x89b
 	.uleb128 0x7
 	.byte	0x8
-	.long	0x89b
+	.long	0x8a1
 	.uleb128 0x7
 	.byte	0x8
 	.long	0x452
@@ -6666,10 +6669,10 @@ Initialize_Parse:
 	.byte	0xb
 	.word	0x121
 	.byte	0x16
-	.long	0x8b8
+	.long	0x8be
 	.uleb128 0x7
 	.byte	0x8
-	.long	0x8be
+	.long	0x8c4
 	.uleb128 0x7
 	.byte	0x8
 	.long	0x458
@@ -6678,25 +6681,25 @@ Initialize_Parse:
 	.byte	0xb
 	.word	0x127
 	.byte	0x13
-	.long	0x895
+	.long	0x89b
 	.uleb128 0x18
 	.ascii "__imp__wenviron\0"
 	.byte	0xb
 	.word	0x12c
 	.byte	0x16
-	.long	0x8b8
+	.long	0x8be
 	.uleb128 0x18
 	.ascii "__imp__pgmptr\0"
 	.byte	0xb
 	.word	0x132
 	.byte	0x12
-	.long	0x89b
+	.long	0x8a1
 	.uleb128 0x18
 	.ascii "__imp__wpgmptr\0"
 	.byte	0xb
 	.word	0x137
 	.byte	0x15
-	.long	0x8be
+	.long	0x8c4
 	.uleb128 0x18
 	.ascii "__imp__osplatform\0"
 	.byte	0xb
@@ -7525,7 +7528,7 @@ Initialize_Parse:
 	.word	0x1629
 	.byte	0x17
 	.long	0x7dd
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "RPC_IF_HANDLE\0"
 	.byte	0xd
 	.byte	0x42
@@ -7539,7 +7542,7 @@ Initialize_Parse:
 	.byte	0x13
 	.byte	0x95
 	.byte	0xe
-	.long	0x1f21
+	.long	0x1f27
 	.uleb128 0x1a
 	.ascii "COINITBASE_MULTITHREADED\0"
 	.byte	0
@@ -7549,13 +7552,13 @@ Initialize_Parse:
 	.byte	0xe
 	.byte	0x29
 	.byte	0x16
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x16
 	.ascii "IWinTypesBase_v0_1_s_ifspec\0"
 	.byte	0xe
 	.byte	0x2a
 	.byte	0x16
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x16
 	.ascii "IID_IUnknown\0"
 	.byte	0xf
@@ -8365,13 +8368,13 @@ Initialize_Parse:
 	.byte	0x12
 	.byte	0x28
 	.byte	0x16
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x16
 	.ascii "IWinTypes_v0_1_s_ifspec\0"
 	.byte	0x12
 	.byte	0x29
 	.byte	0x16
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x1b
 	.ascii "VARENUM\0"
 	.byte	0x7
@@ -8380,7 +8383,7 @@ Initialize_Parse:
 	.byte	0x12
 	.word	0x200
 	.byte	0x6
-	.long	0x3137
+	.long	0x313d
 	.uleb128 0x1a
 	.ascii "VT_EMPTY\0"
 	.byte	0
@@ -8879,13 +8882,13 @@ Initialize_Parse:
 	.byte	0x15
 	.word	0x6fe
 	.byte	0x16
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x18
 	.ascii "IOLETypes_v0_0_s_ifspec\0"
 	.byte	0x15
 	.word	0x6ff
 	.byte	0x16
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x18
 	.ascii "IID_IOleWindow\0"
 	.byte	0x15
@@ -8987,13 +8990,13 @@ Initialize_Parse:
 	.byte	0x17
 	.byte	0xf1
 	.byte	0x16
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x16
 	.ascii "IOleAutomationTypes_v1_0_s_ifspec\0"
 	.byte	0x17
 	.byte	0xf2
 	.byte	0x16
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x18
 	.ascii "IID_ICreateTypeInfo\0"
 	.byte	0x17
@@ -9119,13 +9122,13 @@ Initialize_Parse:
 	.byte	0x18
 	.byte	0xeb
 	.byte	0x18
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x16
 	.ascii "__MIDL_itf_msxml_0000_v0_0_s_ifspec\0"
 	.byte	0x18
 	.byte	0xec
 	.byte	0x18
-	.long	0x1ed3
+	.long	0x1ed9
 	.uleb128 0x16
 	.ascii "LIBID_MSXML\0"
 	.byte	0x18
@@ -9876,7 +9879,7 @@ Initialize_Parse:
 	.byte	0x1d
 	.byte	0xa1
 	.byte	0x12
-	.long	0x4ba4
+	.long	0x4baa
 	.uleb128 0x14
 	.ascii "dwProtocol\0"
 	.byte	0x1d
@@ -9892,32 +9895,32 @@ Initialize_Parse:
 	.long	0x5ec
 	.byte	0x4
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "SCARD_IO_REQUEST\0"
 	.byte	0x1d
 	.byte	0xa4
 	.byte	0x5
-	.long	0x4b5f
-	.uleb128 0x3
-	.long	0x4ba4
+	.long	0x4b65
+	.uleb128 0x4
+	.long	0x4baa
 	.uleb128 0x16
 	.ascii "g_rgSCardT0Pci\0"
 	.byte	0x1e
 	.byte	0x25
 	.byte	0x3c
-	.long	0x4bbd
+	.long	0x4bc3
 	.uleb128 0x16
 	.ascii "g_rgSCardT1Pci\0"
 	.byte	0x1e
 	.byte	0x25
 	.byte	0x4b
-	.long	0x4bbd
+	.long	0x4bc3
 	.uleb128 0x16
 	.ascii "g_rgSCardRawPci\0"
 	.byte	0x1e
 	.byte	0x25
 	.byte	0x5a
-	.long	0x4bbd
+	.long	0x4bc3
 	.uleb128 0x16
 	.ascii "IID_IPrintDialogCallback\0"
 	.byte	0x1f
@@ -9931,55 +9934,55 @@ Initialize_Parse:
 	.byte	0x13
 	.long	0x7dd
 	.uleb128 0xf
-	.long	0xdc
-	.long	0x4c5a
+	.long	0xd7
+	.long	0x4c60
 	.uleb128 0x10
-	.long	0xdc
+	.long	0xd7
 	.byte	0x1
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "int32_t\0"
 	.byte	0x20
 	.byte	0x27
 	.byte	0xd
 	.long	0x137
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "uint32_t\0"
 	.byte	0x20
 	.byte	0x28
 	.byte	0x12
 	.long	0x464
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "uint64_t\0"
 	.byte	0x20
 	.byte	0x2a
 	.byte	0x2a
-	.long	0xdc
-	.uleb128 0x4
+	.long	0xd7
+	.uleb128 0x3
 	.ascii "_INT32_T\0"
 	.byte	0x21
 	.byte	0x5b
 	.byte	0x11
-	.long	0x4c5a
-	.uleb128 0x4
+	.long	0x4c60
+	.uleb128 0x3
 	.ascii "_UINT32_T\0"
 	.byte	0x21
 	.byte	0x5f
 	.byte	0x12
-	.long	0x4c6a
-	.uleb128 0x4
+	.long	0x4c70
+	.uleb128 0x3
 	.ascii "_UINT64_T\0"
 	.byte	0x21
 	.byte	0x60
 	.byte	0x12
-	.long	0x4c7b
+	.long	0x4c81
 	.uleb128 0x13
 	.ascii "__tag_PMC_CONFIGURATION_INFO\0"
 	.byte	0x4
 	.byte	0x21
 	.byte	0x65
 	.byte	0x10
-	.long	0x4d10
+	.long	0x4d16
 	.uleb128 0x1d
 	.ascii "MEMORY_VERIFICATION_ENABLED\0"
 	.byte	0x21
@@ -9991,19 +9994,19 @@ Initialize_Parse:
 	.byte	0x1f
 	.byte	0
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "PMC_CONFIGURATION_INFO\0"
 	.byte	0x21
 	.byte	0x68
 	.byte	0x3
-	.long	0x4cc1
-	.uleb128 0x4
+	.long	0x4cc7
+	.uleb128 0x3
 	.ascii "PMC_STATUS_CODE\0"
 	.byte	0x21
 	.byte	0x6b
 	.byte	0xd
 	.long	0x137
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "PMC_NUMBER_STYLE_CODE\0"
 	.byte	0x21
 	.byte	0x6f
@@ -10015,7 +10018,7 @@ Initialize_Parse:
 	.byte	0x21
 	.byte	0x71
 	.byte	0x10
-	.long	0x4de1
+	.long	0x4de7
 	.uleb128 0x14
 	.ascii "COUNT_MULTI64\0"
 	.byte	0x21
@@ -10045,19 +10048,19 @@ Initialize_Parse:
 	.long	0x13e
 	.byte	0xc
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "PMC_STATISTICS_INFO\0"
 	.byte	0x21
 	.byte	0x77
 	.byte	0x3
-	.long	0x4d65
+	.long	0x4d6b
 	.uleb128 0x13
 	.ascii "__tag_PMC_NUMBER_FORMAT_OPTION\0"
 	.byte	0x28
 	.byte	0x21
 	.byte	0x79
 	.byte	0x10
-	.long	0x4eaf
+	.long	0x4eb5
 	.uleb128 0x14
 	.ascii "DecimalDigits\0"
 	.byte	0x21
@@ -10070,67 +10073,67 @@ Initialize_Parse:
 	.byte	0x21
 	.byte	0x7c
 	.byte	0xd
-	.long	0x4eaf
+	.long	0x4eb5
 	.byte	0x4
 	.uleb128 0x14
 	.ascii "DecimalSeparator\0"
 	.byte	0x21
 	.byte	0x7d
 	.byte	0xd
-	.long	0x4eaf
+	.long	0x4eb5
 	.byte	0xa
 	.uleb128 0x14
 	.ascii "PositiveSign\0"
 	.byte	0x21
 	.byte	0x7e
 	.byte	0xd
-	.long	0x4eaf
+	.long	0x4eb5
 	.byte	0x10
 	.uleb128 0x14
 	.ascii "NegativeSign\0"
 	.byte	0x21
 	.byte	0x7f
 	.byte	0xd
-	.long	0x4eaf
+	.long	0x4eb5
 	.byte	0x16
 	.uleb128 0x14
 	.ascii "GroupSizes\0"
 	.byte	0x21
 	.byte	0x80
 	.byte	0xa
-	.long	0x4ebf
+	.long	0x4ec5
 	.byte	0x1c
 	.byte	0
 	.uleb128 0xf
-	.long	0x10c
-	.long	0x4ebf
+	.long	0x107
+	.long	0x4ec5
 	.uleb128 0x10
-	.long	0xdc
+	.long	0xd7
 	.byte	0x2
 	.byte	0
 	.uleb128 0xf
 	.long	0xc0
-	.long	0x4ecf
+	.long	0x4ed5
 	.uleb128 0x10
-	.long	0xdc
+	.long	0xd7
 	.byte	0xa
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "PMC_NUMBER_FORMAT_OPTION\0"
 	.byte	0x21
 	.byte	0x81
 	.byte	0x3
-	.long	0x4dfd
+	.long	0x4e03
 	.uleb128 0x7
 	.byte	0x8
-	.long	0x4ecf
+	.long	0x4ed5
 	.uleb128 0x13
 	.ascii "_tag_PROCESSOR_FEATURES\0"
 	.byte	0x4
 	.byte	0x22
 	.byte	0x29
 	.byte	0x10
-	.long	0x4fc7
+	.long	0x4fcd
 	.uleb128 0x1d
 	.ascii "PROCESSOR_FEATURE_POPCNT\0"
 	.byte	0x22
@@ -10182,68 +10185,68 @@ Initialize_Parse:
 	.byte	0x1b
 	.byte	0
 	.byte	0
-	.uleb128 0x4
+	.uleb128 0x3
 	.ascii "PROCESSOR_FEATURES\0"
 	.byte	0x22
 	.byte	0x39
 	.byte	0x3
-	.long	0x4ef6
-	.uleb128 0x4
+	.long	0x4efc
+	.uleb128 0x3
 	.ascii "__UNIT_TYPE\0"
 	.byte	0x1
 	.byte	0x37
 	.byte	0x13
-	.long	0x4caf
-	.uleb128 0x3
-	.long	0x4fe2
+	.long	0x4cb5
+	.uleb128 0x4
+	.long	0x4fe8
 	.uleb128 0x13
 	.ascii "__tag_NUMBER_HEADER\0"
 	.byte	0x40
 	.byte	0x1
 	.byte	0x47
 	.byte	0x10
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x14
 	.ascii "SIGNATURE1\0"
 	.byte	0x1
 	.byte	0x49
 	.byte	0xf
-	.long	0x4c9d
+	.long	0x4ca3
 	.byte	0
 	.uleb128 0x14
 	.ascii "SIGNATURE2\0"
 	.byte	0x1
 	.byte	0x4a
 	.byte	0xf
-	.long	0x4c9d
+	.long	0x4ca3
 	.byte	0x4
 	.uleb128 0x14
 	.ascii "UNIT_WORD_COUNT\0"
 	.byte	0x1
 	.byte	0x4b
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.byte	0x8
 	.uleb128 0x14
 	.ascii "UNIT_BIT_COUNT\0"
 	.byte	0x1
 	.byte	0x4c
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.byte	0x10
 	.uleb128 0x14
 	.ascii "HASH_CODE\0"
 	.byte	0x1
 	.byte	0x4d
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.byte	0x18
 	.uleb128 0x14
 	.ascii "TRAILING_ZERO_BITS_COUNT\0"
 	.byte	0x1
 	.byte	0x4e
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.byte	0x20
 	.uleb128 0x1d
 	.ascii "IS_STATIC\0"
@@ -10300,59 +10303,56 @@ Initialize_Parse:
 	.byte	0x1
 	.byte	0x55
 	.byte	0xc
-	.long	0xcd
+	.long	0xc8
 	.byte	0x30
 	.uleb128 0x14
 	.ascii "BLOCK\0"
 	.byte	0x1
 	.byte	0x59
 	.byte	0x12
-	.long	0x5138
+	.long	0x513e
 	.byte	0x38
 	.byte	0
 	.uleb128 0x7
 	.byte	0x8
-	.long	0x4fe2
-	.uleb128 0x4
+	.long	0x4fe8
+	.uleb128 0x3
 	.ascii "NUMBER_HEADER\0"
 	.byte	0x1
 	.byte	0x5a
 	.byte	0x3
-	.long	0x4ffb
+	.long	0x5001
 	.uleb128 0x16
 	.ascii "configuration_info\0"
 	.byte	0x1
 	.byte	0x61
 	.byte	0x1f
-	.long	0x4d10
+	.long	0x4d16
 	.uleb128 0x16
 	.ascii "number_zero\0"
 	.byte	0x1
 	.byte	0x64
 	.byte	0x16
-	.long	0x513e
+	.long	0x5144
 	.uleb128 0x16
 	.ascii "number_one\0"
 	.byte	0x1
 	.byte	0x67
 	.byte	0x16
-	.long	0x513e
+	.long	0x5144
 	.uleb128 0x16
 	.ascii "statistics_info\0"
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x1c
-	.long	0x4de1
+	.long	0x4de7
 	.uleb128 0x1e
 	.long	0x137
-	.long	0x51be
+	.long	0x51c4
 	.uleb128 0x12
-	.long	0x51be
+	.long	0x832
 	.uleb128 0x1f
 	.byte	0
-	.uleb128 0x7
-	.byte	0x8
-	.long	0xc8
 	.uleb128 0x18
 	.ascii "__DEBUG_LOG\0"
 	.byte	0x1
@@ -10361,7 +10361,7 @@ Initialize_Parse:
 	.long	0x51d9
 	.uleb128 0x7
 	.byte	0x8
-	.long	0x51ae
+	.long	0x51b4
 	.uleb128 0x13
 	.ascii "__tag_PARSER_STATE\0"
 	.byte	0x60
@@ -10381,7 +10381,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0x28
 	.byte	0xf
-	.long	0x4c9d
+	.long	0x4ca3
 	.byte	0x8
 	.uleb128 0x14
 	.ascii "SIGN\0"
@@ -10395,7 +10395,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0x2a
 	.byte	0xd
-	.long	0x4eaf
+	.long	0x4eb5
 	.byte	0x10
 	.uleb128 0x14
 	.ascii "POSITIVE_SIGN_LENGTH\0"
@@ -10409,7 +10409,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0x2c
 	.byte	0xd
-	.long	0x4eaf
+	.long	0x4eb5
 	.byte	0x1c
 	.uleb128 0x14
 	.ascii "NEGATIVE_SIGN_LENGTH\0"
@@ -10423,7 +10423,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0x2e
 	.byte	0xd
-	.long	0x4eaf
+	.long	0x4eb5
 	.byte	0x28
 	.uleb128 0x14
 	.ascii "DECIMAL_SEPARATOR_LENGTH\0"
@@ -10437,7 +10437,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0x30
 	.byte	0xd
-	.long	0x4eaf
+	.long	0x4eb5
 	.byte	0x34
 	.uleb128 0x14
 	.ascii "GROUP_SEPARATOR_LENGTH\0"
@@ -10451,7 +10451,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0x32
 	.byte	0xd
-	.long	0x4eaf
+	.long	0x4eb5
 	.byte	0x40
 	.uleb128 0x14
 	.ascii "SECONDARY_GROUP_SEPARATOR_LENGTH\0"
@@ -10480,19 +10480,19 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0x38
 	.byte	0x21
-	.long	0x4ecf
+	.long	0x4ed5
 	.uleb128 0x9
 	.byte	0x3
 	.quad	default_number_format_option
 	.uleb128 0x1e
-	.long	0x5138
+	.long	0x513e
 	.long	0x53d3
 	.uleb128 0x12
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x12
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x12
-	.long	0x4fe2
+	.long	0x4fe8
 	.byte	0
 	.uleb128 0x20
 	.ascii "fp_MultiplyAndAdd\0"
@@ -10511,7 +10511,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x409
 	.byte	0x11
-	.long	0x4d2f
+	.long	0x4d35
 	.quad	.LFB4396
 	.quad	.LFE4396-.LFB4396
 	.uleb128 0x1
@@ -10544,13 +10544,13 @@ Initialize_Parse:
 	.byte	0
 	.uleb128 0x7
 	.byte	0x8
-	.long	0x4fc7
+	.long	0x4fcd
 	.uleb128 0x24
 	.ascii "PMC_TryParse\0"
 	.byte	0x4
 	.word	0x3e6
 	.byte	0x11
-	.long	0x4d2f
+	.long	0x4d35
 	.quad	.LFB4395
 	.quad	.LFE4395-.LFB4395
 	.uleb128 0x1
@@ -10570,7 +10570,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3e6
 	.byte	0x45
-	.long	0x4d47
+	.long	0x4d4d
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -10579,7 +10579,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3e6
 	.byte	0x6e
-	.long	0x4ef0
+	.long	0x4ef6
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -10597,7 +10597,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3e8
 	.byte	0x15
-	.long	0x4d2f
+	.long	0x4d35
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -10618,7 +10618,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3f3
 	.byte	0x13
-	.long	0x4c9d
+	.long	0x4ca3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -20
@@ -10626,13 +10626,13 @@ Initialize_Parse:
 	.byte	0
 	.uleb128 0x7
 	.byte	0x8
-	.long	0x513e
+	.long	0x5144
 	.uleb128 0x29
 	.ascii "TryParseX\0"
 	.byte	0x4
 	.word	0x3c6
 	.byte	0x18
-	.long	0x4d2f
+	.long	0x4d35
 	.quad	.LFB4394
 	.quad	.LFE4394-.LFB4394
 	.uleb128 0x1
@@ -10652,7 +10652,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3c6
 	.byte	0x3d
-	.long	0x4c9d
+	.long	0x4ca3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -10661,7 +10661,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3c6
 	.byte	0x66
-	.long	0x4ef0
+	.long	0x4ef6
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -10679,7 +10679,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3c8
 	.byte	0x15
-	.long	0x4d2f
+	.long	0x4d35
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -10688,7 +10688,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3c9
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -10697,7 +10697,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3ca
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -10706,7 +10706,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3cb
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
@@ -10733,7 +10733,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3d7
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
@@ -10742,7 +10742,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3d8
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -72
@@ -10780,7 +10780,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3b1
 	.byte	0x44
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -10798,7 +10798,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3b4
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -10816,7 +10816,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x3b6
 	.byte	0x12
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -10838,7 +10838,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x390
 	.byte	0x14
-	.long	0x4fe2
+	.long	0x4fe8
 	.quad	.LFB4392
 	.quad	.LFE4392-.LFB4392
 	.uleb128 0x1
@@ -10858,7 +10858,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x392
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -10868,7 +10868,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x382
 	.byte	0x14
-	.long	0x4fe2
+	.long	0x4fe8
 	.quad	.LFB4391
 	.quad	.LFE4391-.LFB4391
 	.uleb128 0x1
@@ -10888,7 +10888,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x382
 	.byte	0x50
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -10897,7 +10897,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x384
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -10907,7 +10907,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x360
 	.byte	0x12
-	.long	0x4c9d
+	.long	0x4ca3
 	.quad	.LFB4390
 	.quad	.LFE4390-.LFB4390
 	.uleb128 0x1
@@ -10918,7 +10918,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x360
 	.byte	0x31
-	.long	0x10c
+	.long	0x107
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -10928,7 +10928,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2d0
 	.byte	0x18
-	.long	0x4d2f
+	.long	0x4d35
 	.quad	.LFB4389
 	.quad	.LFE4389-.LFB4389
 	.uleb128 0x1
@@ -10948,7 +10948,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2d0
 	.byte	0x3e
-	.long	0x4c9d
+	.long	0x4ca3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -10957,7 +10957,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2d0
 	.byte	0x67
-	.long	0x4ef0
+	.long	0x4ef6
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -10975,7 +10975,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2d2
 	.byte	0x15
-	.long	0x4d2f
+	.long	0x4d35
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -96
@@ -10993,7 +10993,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2da
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -72
@@ -11002,7 +11002,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2dc
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -120
@@ -11011,7 +11011,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2dd
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -128
@@ -11029,7 +11029,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2e2
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -136
@@ -11038,7 +11038,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2e3
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -144
@@ -11083,7 +11083,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x337
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -160
@@ -11092,7 +11092,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x338
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -168
@@ -11101,7 +11101,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x339
 	.byte	0x12
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -104
@@ -11110,7 +11110,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x33f
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -176
@@ -11119,7 +11119,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x345
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -112
@@ -11128,7 +11128,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x346
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -184
@@ -11170,7 +11170,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2b4
 	.byte	0x18
-	.long	0x4d2f
+	.long	0x4d35
 	.quad	.LFB4388
 	.quad	.LFE4388-.LFB4388
 	.uleb128 0x1
@@ -11181,7 +11181,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2b4
 	.byte	0x3b
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -11190,7 +11190,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2b4
 	.byte	0x4f
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -11199,7 +11199,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2b4
 	.byte	0x6a
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -11208,7 +11208,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2b6
 	.byte	0x15
-	.long	0x4d2f
+	.long	0x4d35
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -44
@@ -11217,7 +11217,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2b7
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -11226,7 +11226,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2b8
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -64
@@ -11235,7 +11235,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2b9
 	.byte	0x12
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -11244,7 +11244,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2bd
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -11256,7 +11256,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x2c4
 	.byte	0x16
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -11267,7 +11267,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x225
 	.byte	0x15
-	.long	0x5138
+	.long	0x513e
 	.quad	.LFB4387
 	.quad	.LFE4387-.LFB4387
 	.uleb128 0x1
@@ -11278,7 +11278,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x225
 	.byte	0x41
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -11287,7 +11287,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x225
 	.byte	0x54
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -11296,7 +11296,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x225
 	.byte	0x69
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -11305,7 +11305,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x227
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -11314,7 +11314,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x228
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -11324,7 +11324,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x196
 	.byte	0x15
-	.long	0x5138
+	.long	0x513e
 	.quad	.LFB4386
 	.quad	.LFE4386-.LFB4386
 	.uleb128 0x1
@@ -11335,7 +11335,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x196
 	.byte	0x3f
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -11344,7 +11344,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x196
 	.byte	0x52
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -11353,7 +11353,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x196
 	.byte	0x67
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -11362,7 +11362,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x198
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -11371,7 +11371,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x199
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -32
@@ -11381,7 +11381,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x187
 	.byte	0x1d
-	.long	0x4fe2
+	.long	0x4fe8
 	.quad	.LFB4385
 	.quad	.LFE4385-.LFB4385
 	.uleb128 0x1
@@ -11392,7 +11392,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x187
 	.byte	0x4d
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -11401,7 +11401,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x187
 	.byte	0x5c
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -11410,7 +11410,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x187
 	.byte	0x6c
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -11419,7 +11419,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x18c
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -11428,7 +11428,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x190
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -11437,7 +11437,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x191
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
@@ -11447,7 +11447,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x178
 	.byte	0x1d
-	.long	0x4fe2
+	.long	0x4fe8
 	.quad	.LFB4384
 	.quad	.LFE4384-.LFB4384
 	.uleb128 0x1
@@ -11458,7 +11458,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x178
 	.byte	0x4b
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -11467,7 +11467,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x178
 	.byte	0x5a
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -11476,7 +11476,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x178
 	.byte	0x6a
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -11485,7 +11485,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x17d
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -40
@@ -11494,7 +11494,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x181
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -11503,7 +11503,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x182
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
@@ -11532,7 +11532,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x15c
 	.byte	0x48
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -11541,7 +11541,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x15c
 	.byte	0x5e
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -11568,7 +11568,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x166
 	.byte	0x12
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -48
@@ -11577,7 +11577,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x167
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -56
@@ -11599,7 +11599,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x137
 	.byte	0x14
-	.long	0x4fe2
+	.long	0x4fe8
 	.quad	.LFB4382
 	.quad	.LFE4382-.LFB4382
 	.uleb128 0x1
@@ -11619,7 +11619,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x139
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -11629,7 +11629,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x12c
 	.byte	0x14
-	.long	0x4fe2
+	.long	0x4fe8
 	.quad	.LFB4381
 	.quad	.LFE4381-.LFB4381
 	.uleb128 0x1
@@ -11649,7 +11649,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x12c
 	.byte	0x54
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -11658,7 +11658,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x12e
 	.byte	0x11
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -11688,7 +11688,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x11d
 	.byte	0x3e
-	.long	0x4c9d
+	.long	0x4ca3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -11697,7 +11697,7 @@ Initialize_Parse:
 	.byte	0x4
 	.word	0x11d
 	.byte	0x67
-	.long	0x4ef0
+	.long	0x4ef6
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -11745,7 +11745,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0xbc
 	.byte	0x42
-	.long	0x4c9d
+	.long	0x4ca3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -11754,7 +11754,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0xbc
 	.byte	0x6b
-	.long	0x4ef0
+	.long	0x4ef6
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -11911,7 +11911,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0x48
 	.byte	0x60
-	.long	0x4c9d
+	.long	0x4ca3
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -11920,7 +11920,7 @@ Initialize_Parse:
 	.byte	0x4
 	.byte	0x48
 	.byte	0x89
-	.long	0x4ef0
+	.long	0x4ef6
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
@@ -12012,7 +12012,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x457
 	.byte	0x33
-	.long	0x4c8c
+	.long	0x4c92
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -12064,7 +12064,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x26c
 	.byte	0x1d
-	.long	0x4fe2
+	.long	0x4fe8
 	.quad	.LFB4338
 	.quad	.LFE4338-.LFB4338
 	.uleb128 0x1
@@ -12075,7 +12075,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x26c
 	.byte	0x39
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -12084,7 +12084,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x26c
 	.byte	0x48
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -12093,7 +12093,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x26c
 	.byte	0x58
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -12102,7 +12102,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x27c
 	.byte	0xf
-	.long	0x4caf
+	.long	0x4cb5
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 -24
@@ -12112,7 +12112,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x246
 	.byte	0x1d
-	.long	0x4fe2
+	.long	0x4fe8
 	.quad	.LFB4336
 	.quad	.LFE4336-.LFB4336
 	.uleb128 0x1
@@ -12123,7 +12123,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x246
 	.byte	0x38
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -12132,7 +12132,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x246
 	.byte	0x47
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -12141,7 +12141,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x246
 	.byte	0x57
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -12203,7 +12203,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x20e
 	.byte	0x39
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -12212,7 +12212,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x20e
 	.byte	0x48
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -12221,7 +12221,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x20e
 	.byte	0x58
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
@@ -12279,7 +12279,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x1f2
 	.byte	0x38
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -12288,7 +12288,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x1f2
 	.byte	0x47
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -12297,7 +12297,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x1f2
 	.byte	0x57
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 24
@@ -12335,7 +12335,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x1e3
 	.byte	0x18
-	.long	0xcd
+	.long	0xc8
 	.quad	.LFB4327
 	.quad	.LFE4327-.LFB4327
 	.uleb128 0x1
@@ -12346,7 +12346,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x1e3
 	.byte	0x34
-	.long	0xcd
+	.long	0xc8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -12355,7 +12355,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x1e3
 	.byte	0x3e
-	.long	0xcd
+	.long	0xc8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -12365,7 +12365,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x1de
 	.byte	0x1d
-	.long	0x4fe2
+	.long	0x4fe8
 	.quad	.LFB4326
 	.quad	.LFE4326-.LFB4326
 	.uleb128 0x1
@@ -12376,7 +12376,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x1de
 	.byte	0x3e
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -12385,7 +12385,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x1de
 	.byte	0x4d
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
@@ -12405,7 +12405,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x15f
 	.byte	0x35
-	.long	0x5138
+	.long	0x513e
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 0
@@ -12423,7 +12423,7 @@ Initialize_Parse:
 	.byte	0x1
 	.word	0x15f
 	.byte	0x5a
-	.long	0x4fe2
+	.long	0x4fe8
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 16
@@ -12453,13 +12453,13 @@ Initialize_Parse:
 	.byte	0
 	.uleb128 0x7
 	.byte	0x8
-	.long	0x4ff6
+	.long	0x4ffc
 	.uleb128 0x38
 	.ascii "_umul128\0"
 	.byte	0x2
 	.word	0x3c1
 	.byte	0x14
-	.long	0xdc
+	.long	0xd7
 	.byte	0x3
 	.long	0x6799
 	.uleb128 0x39
@@ -12467,13 +12467,13 @@ Initialize_Parse:
 	.byte	0x2
 	.word	0x3c1
 	.byte	0x30
-	.long	0xdc
+	.long	0xd7
 	.uleb128 0x39
 	.ascii "b\0"
 	.byte	0x2
 	.word	0x3c1
 	.byte	0x46
-	.long	0xdc
+	.long	0xd7
 	.uleb128 0x39
 	.ascii "hi\0"
 	.byte	0x2
@@ -12497,7 +12497,7 @@ Initialize_Parse:
 	.byte	0x2
 	.word	0x3c3
 	.byte	0x42
-	.long	0x4c4a
+	.long	0x4c50
 	.byte	0
 	.uleb128 0x3c
 	.ascii "var\0"
@@ -12529,13 +12529,13 @@ Initialize_Parse:
 	.byte	0x3
 	.byte	0x4a
 	.byte	0x38
-	.long	0xdc
+	.long	0xd7
 	.uleb128 0x3e
 	.ascii "__Y\0"
 	.byte	0x3
 	.byte	0x4b
 	.byte	0x16
-	.long	0xdc
+	.long	0xd7
 	.uleb128 0x3e
 	.ascii "__P\0"
 	.byte	0x3
@@ -12562,13 +12562,13 @@ Initialize_Parse:
 	.byte	0x3
 	.byte	0x42
 	.byte	0x37
-	.long	0xdc
+	.long	0xd7
 	.uleb128 0x3e
 	.ascii "__Y\0"
 	.byte	0x3
 	.byte	0x43
 	.byte	0x1c
-	.long	0xdc
+	.long	0xd7
 	.uleb128 0x3e
 	.ascii "__P\0"
 	.byte	0x3
@@ -12639,11 +12639,11 @@ Initialize_Parse:
 	.byte	0x2
 	.word	0x3b8
 	.byte	0x58
-	.long	0xcd
+	.long	0xc8
 	.byte	0
 	.uleb128 0x7
 	.byte	0x8
-	.long	0xf6
+	.long	0xf1
 	.uleb128 0x40
 	.secrel32	.LASF19
 	.secrel32	.LASF19
@@ -12696,13 +12696,6 @@ Initialize_Parse:
 	.byte	0
 	.byte	0
 	.uleb128 0x3
-	.uleb128 0x26
-	.byte	0
-	.uleb128 0x49
-	.uleb128 0x13
-	.byte	0
-	.byte	0
-	.uleb128 0x4
 	.uleb128 0x16
 	.byte	0
 	.uleb128 0x3
@@ -12713,6 +12706,13 @@ Initialize_Parse:
 	.uleb128 0xb
 	.uleb128 0x39
 	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x4
+	.uleb128 0x26
+	.byte	0
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0

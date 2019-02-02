@@ -167,7 +167,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CALC_divrem_critical.c" />
     <ClCompile Include="cpuid.c" />
     <ClCompile Include="debug.c" />
     <ClCompile Include="dllmain.c" />

@@ -42,9 +42,9 @@ void TEST_PMC_Equals_I_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int n
     int actual_w;
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE v_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_I_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_I_X (%d.%d)", no, 2), (result = ep->PMC_Equals_I_X(u, v, &actual_w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Equals_I_Xの復帰コードが期待通りではない(%d)", result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_I_X (%d.%d)", no, 3), actual_w == desired_w, "データの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_I_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_I_X (%d.%d)", no, 2), (result = ep->PMC_Equals_I_X(u, v, &actual_w)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_Equals_I_Xの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_I_X (%d.%d)", no, 3), actual_w == desired_w, L"データの内容が一致しない");
     if (v_result == PMC_STATUS_OK)
         ep->PMC_Dispose(v);
 }
@@ -55,9 +55,9 @@ void TEST_PMC_Equals_L_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int n
     int actual_w;
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE v_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_L_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_L_X (%d.%d)", no, 2), (result = ep->PMC_Equals_L_X(u, v, &actual_w)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Equals_L_Xの復帰コードが期待通りではない(%d)", result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_L_X (%d.%d)", no, 3), actual_w == desired_w, "データの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_L_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_L_X (%d.%d)", no, 2), (result = ep->PMC_Equals_L_X(u, v, &actual_w)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_Equals_L_Xの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_L_X (%d.%d)", no, 3), actual_w == desired_w, L"データの内容が一致しない");
     if (v_result == PMC_STATUS_OK)
         ep->PMC_Dispose(v);
 }
@@ -68,9 +68,9 @@ void TEST_PMC_Equals_X_I(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int n
     int actual_z;
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_I (%d.%d)", no, 2), (result = ep->PMC_Equals_X_I(x, y, &actual_z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Equals_X_Iの復帰コードが期待通りではない(%d)", result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_I (%d.%d)", no, 3), actual_z == desired_z, "データの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_I (%d.%d)", no, 2), (result = ep->PMC_Equals_X_I(x, y, &actual_z)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_Equals_X_Iの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_I (%d.%d)", no, 3), actual_z == desired_z, L"データの内容が一致しない");
     if (x_result == PMC_STATUS_OK)
         ep->PMC_Dispose(x);
 }
@@ -81,9 +81,9 @@ void TEST_PMC_Equals_X_L(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int n
     int actual_z;
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_L (%d.%d)", no, 2), (result = ep->PMC_Equals_X_L(x, y, &actual_z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Equals_X_Lの復帰コードが期待通りではない(%d)", result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_I (%d.%d)", no, 3), actual_z == desired_z, "データの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_L (%d.%d)", no, 2), (result = ep->PMC_Equals_X_L(x, y, &actual_z)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_Equals_X_Lの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_I (%d.%d)", no, 3), actual_z == desired_z, L"データの内容が一致しない");
     if (x_result == PMC_STATUS_OK)
         ep->PMC_Dispose(x);
 }
@@ -96,10 +96,10 @@ void TEST_PMC_Equals_X_X(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int n
     PMC_STATUS_CODE result;
     PMC_STATUS_CODE x_result;
     PMC_STATUS_CODE y_result;
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_X (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_X (%d.%d)", no, 2), (y_result = ep->PMC_FromByteArray(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", y_result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_X (%d.%d)", no, 3), (result = ep->PMC_Equals_X_X(x, y, &actual_z)) == PMC_STATUS_OK, FormatTestMesssage("PMC_Equals_X_Xの復帰コードが期待通りではない(%d)", result));
-    TEST_Assert(env, FormatTestLabel("PMC_Equals_X_I (%d.%d)", no, 4), actual_z == desired_z, "データの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_X (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_X (%d.%d)", no, 2), (y_result = ep->PMC_FromByteArray(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", y_result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_X (%d.%d)", no, 3), (result = ep->PMC_Equals_X_X(x, y, &actual_z)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_Equals_X_Xの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_Equals_X_I (%d.%d)", no, 4), actual_z == desired_z, L"データの内容が一致しない");
     if (y_result == PMC_STATUS_OK)
         ep->PMC_Dispose(y);
     if (x_result == PMC_STATUS_OK)

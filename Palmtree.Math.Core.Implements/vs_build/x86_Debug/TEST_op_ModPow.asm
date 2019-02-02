@@ -46,43 +46,67 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG94545 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94546 DB	'PMC_ModPow_X_X_X (%d.%d)', 00H
-	ORG $+3
-$SG94547 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94548 DB	'PMC_ModPow_X_X_X (%d.%d)', 00H
-	ORG $+3
-$SG94549 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94550 DB	'PMC_ModPow_X_X_X (%d.%d)', 00H
-	ORG $+3
-$SG94551 DB	'PMC_ModPow_X_X_X', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-	ORG $+1
-$SG94552 DB	'PMC_ModPow_X_X_X (%d.%d)', 00H
-	ORG $+3
-$SG94554 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
+$SG94545 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94555 DB	'PMC_ModPow_X_X_X (%d.%d)', 00H
-	ORG $+3
-$SG94556 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94557 DB	'PMC_ModPow_X_X_X (%d.%d)', 00H
+$SG94546 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'M', 00H, 'o', 00H
+	DB	'd', 00H, 'P', 00H, 'o', 00H, 'w', 00H, '_', 00H, 'X', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94547 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94548 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'M', 00H, 'o', 00H
+	DB	'd', 00H, 'P', 00H, 'o', 00H, 'w', 00H, '_', 00H, 'X', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94549 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94550 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'M', 00H, 'o', 00H
+	DB	'd', 00H, 'P', 00H, 'o', 00H, 'w', 00H, '_', 00H, 'X', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94551 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'M', 00H, 'o', 00H
+	DB	'd', 00H, 'P', 00H, 'o', 00H, 'w', 00H, '_', 00H, 'X', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, 'n0', 0a9H, '_0^', 0b3H, '0'
+	DB	0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+$SG94552 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'M', 00H, 'o', 00H
+	DB	'd', 00H, 'P', 00H, 'o', 00H, 'w', 00H, '_', 00H, 'X', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+6
+$SG94554 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A', 00H, 'r', 00H, 'r'
+	DB	00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0'
+	DB	0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH, '0g0o0j0D'
+	DB	'0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94555 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'M', 00H, 'o', 00H
+	DB	'd', 00H, 'P', 00H, 'o', 00H, 'w', 00H, '_', 00H, 'X', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94556 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
+	ORG $+2
+$SG94557 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'M', 00H, 'o', 00H
+	DB	'd', 00H, 'P', 00H, 'o', 00H, 'w', 00H, '_', 00H, 'X', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -242,7 +266,7 @@ _TEST_PMC_ModPow_X_X_X PROC
 ; 49   :     PMC_STATUS_CODE e_result;
 ; 50   :     PMC_STATUS_CODE m_result;
 ; 51   :     PMC_STATUS_CODE r_result;
-; 52   :     TEST_Assert(env, FormatTestLabel("PMC_ModPow_X_X_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
+; 52   :     TEST_Assert(env, FormatTestLabel(L"PMC_ModPow_X_X_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _v$[ebp]
@@ -284,7 +308,7 @@ $LN9@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 53   :     TEST_Assert(env, FormatTestLabel("PMC_ModPow_X_X_X (%d.%d)", no, 2), (e_result = ep->PMC_FromByteArray(e_buf, e_buf_size, &e)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", e_result));
+; 53   :     TEST_Assert(env, FormatTestLabel(L"PMC_ModPow_X_X_X (%d.%d)", no, 2), (e_result = ep->PMC_FromByteArray(e_buf, e_buf_size, &e)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", e_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _e$[ebp]
@@ -326,7 +350,7 @@ $LN11@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 54   :     TEST_Assert(env, FormatTestLabel("PMC_ModPow_X_X_X (%d.%d)", no, 3), (m_result = ep->PMC_FromByteArray(m_buf, m_buf_size, &m)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", m_result));
+; 54   :     TEST_Assert(env, FormatTestLabel(L"PMC_ModPow_X_X_X (%d.%d)", no, 3), (m_result = ep->PMC_FromByteArray(m_buf, m_buf_size, &m)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", m_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _m$[ebp]
@@ -368,7 +392,7 @@ $LN13@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 55   :     TEST_Assert(env, FormatTestLabel("PMC_ModPow_X_X_X (%d.%d)", no, 4), (r_result = ep->PMC_ModPow_X_X_X(v, e, m, &r)) == desired_result_code, FormatTestMesssage("PMC_ModPow_X_X_Xの復帰コードが期待通りではない(%d)", r_result));
+; 55   :     TEST_Assert(env, FormatTestLabel(L"PMC_ModPow_X_X_X (%d.%d)", no, 4), (r_result = ep->PMC_ModPow_X_X_X(v, e, m, &r)) == desired_result_code, FormatTestMesssage(L"PMC_ModPow_X_X_Xの復帰コードが期待通りではない(%d)", r_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _r$[ebp]
@@ -419,7 +443,7 @@ $LN15@TEST_PMC_M:
 	jne	$LN2@TEST_PMC_M
 
 ; 57   :     {
-; 58   :         TEST_Assert(env, FormatTestLabel("PMC_ModPow_X_X_X (%d.%d)", no, 5), (result = ep->PMC_ToByteArray(r, actual_r_buf, sizeof(actual_r_buf), &actual_r_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 58   :         TEST_Assert(env, FormatTestLabel(L"PMC_ModPow_X_X_X (%d.%d)", no, 5), (result = ep->PMC_ToByteArray(r, actual_r_buf, sizeof(actual_r_buf), &actual_r_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	edx, DWORD PTR _actual_r_buf_size$[ebp]
@@ -462,7 +486,7 @@ $LN17@TEST_PMC_M:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 59   :         TEST_Assert(env, FormatTestLabel("PMC_ModPow_X_X_X (%d.%d)", no, 6), _EQUALS_MEMORY(actual_r_buf, actual_r_buf_size, desired_r_buf, desired_r_buf_size) == 0, "データの内容が一致しない");
+; 59   :         TEST_Assert(env, FormatTestLabel(L"PMC_ModPow_X_X_X (%d.%d)", no, 6), _EQUALS_MEMORY(actual_r_buf, actual_r_buf_size, desired_r_buf, desired_r_buf_size) == 0, L"データの内容が一致しない");
 
 	mov	edx, DWORD PTR _desired_r_buf_size$[ebp]
 	push	edx

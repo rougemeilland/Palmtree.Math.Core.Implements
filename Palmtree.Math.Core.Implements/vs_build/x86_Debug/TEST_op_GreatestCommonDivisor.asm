@@ -50,136 +50,268 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG94535 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94536 DB	'PMC_GreatestCommonDivisor_I_X (%d.%d)', 00H
+$SG94535 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+6
-$SG94537 DB	'PMC_GreatestCommonDivisor_I_X', 082H, 0ccH, 095H, 09cH, 08bH
-	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
-	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
-	DB	082H, 0a2H, '(%d)', 00H
-$SG94538 DB	'PMC_GreatestCommonDivisor_I_X (%d.%d)', 00H
-	ORG $+2
-$SG94540 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-	ORG $+2
-$SG94541 DB	'PMC_GreatestCommonDivisor_I_X (%d.%d)', 00H
-	ORG $+2
-$SG94542 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94543 DB	'PMC_GreatestCommonDivisor_I_X (%d.%d)', 00H
-	ORG $+2
-$SG94572 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94573 DB	'PMC_GreatestCommonDivisor_L_X (%d.%d)', 00H
+$SG94536 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'I', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94537 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'I', 00H, '_', 00H, 'X', 00H, 'n0', 0a9H, '_0^', 0b3H, '0'
+	DB	0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+6
-$SG94574 DB	'PMC_GreatestCommonDivisor_L_X', 082H, 0ccH, 095H, 09cH, 08bH
-	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
-	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
-	DB	082H, 0a2H, '(%d)', 00H
-$SG94575 DB	'PMC_GreatestCommonDivisor_L_X (%d.%d)', 00H
+$SG94538 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'I', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94540 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A', 00H, 'r', 00H, 'r'
+	DB	00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0'
+	DB	0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH, '0g0o0j0D'
+	DB	'0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94577 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
+$SG94541 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'I', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+$SG94542 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
 	ORG $+2
-$SG94578 DB	'PMC_GreatestCommonDivisor_L_X (%d.%d)', 00H
-	ORG $+2
-$SG94579 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94580 DB	'PMC_GreatestCommonDivisor_L_X (%d.%d)', 00H
-	ORG $+2
-$SG94609 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94610 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
+$SG94543 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'I', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94572 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+6
-$SG94611 DB	'PMC_GreatestCommonDivisor_X_I', 082H, 0ccH, 095H, 09cH, 08bH
-	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
-	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
-	DB	082H, 0a2H, '(%d)', 00H
-$SG94612 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
-	ORG $+2
-$SG94614 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-	ORG $+2
-$SG94615 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
-	ORG $+2
-$SG94616 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94617 DB	'PMC_GreatestCommonDivisor_X_I (%d.%d)', 00H
-	ORG $+2
-$SG94646 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94647 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+$SG94573 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'L', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94574 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'L', 00H, '_', 00H, 'X', 00H, 'n0', 0a9H, '_0^', 0b3H, '0'
+	DB	0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+6
-$SG94648 DB	'PMC_GreatestCommonDivisor_X_L', 082H, 0ccH, 095H, 09cH, 08bH
-	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
-	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
-	DB	082H, 0a2H, '(%d)', 00H
-$SG94649 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+$SG94575 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'L', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94577 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A', 00H, 'r', 00H, 'r'
+	DB	00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0'
+	DB	0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH, '0g0o0j0D'
+	DB	'0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94651 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
+$SG94578 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'L', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+$SG94579 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
 	ORG $+2
-$SG94652 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+$SG94580 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'L', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94609 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+6
+$SG94610 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94611 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'I', 00H, 'n0', 0a9H, '_0^', 0b3H, '0'
+	DB	0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+6
+$SG94612 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94614 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A', 00H, 'r', 00H, 'r'
+	DB	00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0'
+	DB	0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH, '0g0o0j0D'
+	DB	'0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94653 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94654 DB	'PMC_GreatestCommonDivisor_X_L (%d.%d)', 00H
+$SG94615 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+$SG94616 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
 	ORG $+2
-$SG94687 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94688 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+$SG94617 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'I', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94646 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+6
+$SG94647 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'L', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94648 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'L', 00H, 'n0', 0a9H, '_0^', 0b3H, '0'
+	DB	0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+6
+$SG94649 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'L', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94651 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A', 00H, 'r', 00H, 'r'
+	DB	00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0'
+	DB	0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH, '0g0o0j0D'
+	DB	'0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94689 DB	'PMC_FromByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-$SG94690 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+$SG94652 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'L', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+$SG94653 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
 	ORG $+2
-$SG94691 DB	'PMC_GreatestCommonDivisor_X_X', 082H, 0ccH, 095H, 09cH, 08bH
-	DB	'A', 083H, 'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H
-	DB	0d2H, 092H, 0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H
-	DB	082H, 0a2H, '(%d)', 00H
-$SG94692 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+$SG94654 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'L', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94687 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+6
+$SG94688 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94689 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'F', 00H, 'r', 00H
+	DB	'o', 00H, 'm', 00H, 'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A'
+	DB	00H, 'r', 00H, 'r', 00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H
+	DB	'0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+6
+$SG94690 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94691 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, 'n0', 0a9H, '_0^', 0b3H, '0'
+	DB	0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH
+	DB	'0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+6
+$SG94692 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+4
+$SG94694 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A', 00H, 'r', 00H, 'r'
+	DB	00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0'
+	DB	0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH, '0g0o0j0D'
+	DB	'0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 	ORG $+2
-$SG94694 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
+$SG94695 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+$SG94696 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
 	ORG $+2
-$SG94695 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
-	ORG $+2
-$SG94696 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94697 DB	'PMC_GreatestCommonDivisor_X_X (%d.%d)', 00H
+$SG94697 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'G', 00H, 'r', 00H
+	DB	'e', 00H, 'a', 00H, 't', 00H, 'e', 00H, 's', 00H, 't', 00H, 'C'
+	DB	00H, 'o', 00H, 'm', 00H, 'm', 00H, 'o', 00H, 'n', 00H, 'D', 00H
+	DB	'i', 00H, 'v', 00H, 'i', 00H, 's', 00H, 'o', 00H, 'r', 00H, '_'
+	DB	00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -332,7 +464,7 @@ _TEST_PMC_GreatestCommonDivisor_X_X PROC
 ; 135  :     PMC_STATUS_CODE x_result;
 ; 136  :     PMC_STATUS_CODE y_result;
 ; 137  :     PMC_STATUS_CODE z_result;
-; 138  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+; 138  :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -374,7 +506,7 @@ $LN8@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 139  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 2), (y_result = ep->PMC_FromByteArray(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", y_result));
+; 139  :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 2), (y_result = ep->PMC_FromByteArray(y_buf, y_buf_size, &y)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", y_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _y$[ebp]
@@ -416,7 +548,7 @@ $LN10@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 140  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 3), (z_result = ep->PMC_GreatestCommonDivisor_X_X(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_X_Xの復帰コードが期待通りではない(%d)", z_result));
+; 140  :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 3), (z_result = ep->PMC_GreatestCommonDivisor_X_X(x, y, &z)) == desired_result_code, FormatTestMesssage(L"PMC_GreatestCommonDivisor_X_Xの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -465,7 +597,7 @@ $LN12@TEST_PMC_G:
 	jne	$LN2@TEST_PMC_G
 
 ; 142  :     {
-; 143  :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 4), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 143  :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 4), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -508,7 +640,7 @@ $LN14@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 144  :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 144  :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, L"データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	ecx
@@ -729,7 +861,7 @@ _TEST_PMC_GreatestCommonDivisor_X_L PROC
 ; 111  :     PMC_STATUS_CODE result;
 ; 112  :     PMC_STATUS_CODE x_result;
 ; 113  :     PMC_STATUS_CODE z_result;
-; 114  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+; 114  :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -771,7 +903,7 @@ $LN7@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 115  :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 2), (z_result = ep->PMC_GreatestCommonDivisor_X_L(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_X_Lの復帰コードが期待通りではない(%d)", z_result));
+; 115  :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 2), (z_result = ep->PMC_GreatestCommonDivisor_X_L(x, y, &z)) == desired_result_code, FormatTestMesssage(L"PMC_GreatestCommonDivisor_X_Lの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -822,7 +954,7 @@ $LN9@TEST_PMC_G:
 	jne	$LN2@TEST_PMC_G
 
 ; 117  :     {
-; 118  :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 118  :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	edx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -865,7 +997,7 @@ $LN11@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 119  :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 119  :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_L (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, L"データの内容が一致しない");
 
 	mov	edx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	edx
@@ -1063,7 +1195,7 @@ _TEST_PMC_GreatestCommonDivisor_X_I PROC
 ; 89   :     PMC_STATUS_CODE result;
 ; 90   :     PMC_STATUS_CODE x_result;
 ; 91   :     PMC_STATUS_CODE z_result;
-; 92   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+; 92   :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(x_buf, x_buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _x$[ebp]
@@ -1105,7 +1237,7 @@ $LN7@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 93   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 2), (z_result = ep->PMC_GreatestCommonDivisor_X_I(x, y, &z)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_X_Iの復帰コードが期待通りではない(%d)", z_result));
+; 93   :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 2), (z_result = ep->PMC_GreatestCommonDivisor_X_I(x, y, &z)) == desired_result_code, FormatTestMesssage(L"PMC_GreatestCommonDivisor_X_Iの復帰コードが期待通りではない(%d)", z_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _z$[ebp]
@@ -1154,7 +1286,7 @@ $LN9@TEST_PMC_G:
 	jne	$LN2@TEST_PMC_G
 
 ; 95   :     {
-; 96   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 96   :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(z, actual_z_buf, sizeof(actual_z_buf), &actual_z_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_z_buf_size$[ebp]
@@ -1197,7 +1329,7 @@ $LN11@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 97   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, "データの内容が一致しない");
+; 97   :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_X_I (%d.%d)", no, 4), _EQUALS_MEMORY(actual_z_buf, actual_z_buf_size, desired_z_buf, desired_z_buf_size) == 0, L"データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_z_buf_size$[ebp]
 	push	ecx
@@ -1395,7 +1527,7 @@ _TEST_PMC_GreatestCommonDivisor_L_X PROC
 ; 67   :     PMC_STATUS_CODE result;
 ; 68   :     PMC_STATUS_CODE v_result;
 ; 69   :     PMC_STATUS_CODE w_result;
-; 70   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
+; 70   :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _v$[ebp]
@@ -1437,7 +1569,7 @@ $LN7@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 71   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 2), (w_result = ep->PMC_GreatestCommonDivisor_L_X(u, v, &w)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_L_Xの復帰コードが期待通りではない(%d)", w_result));
+; 71   :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 2), (w_result = ep->PMC_GreatestCommonDivisor_L_X(u, v, &w)) == desired_result_code, FormatTestMesssage(L"PMC_GreatestCommonDivisor_L_Xの復帰コードが期待通りではない(%d)", w_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _w$[ebp]
@@ -1488,7 +1620,7 @@ $LN9@TEST_PMC_G:
 	jne	$LN2@TEST_PMC_G
 
 ; 73   :     {
-; 74   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 74   :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	edx, DWORD PTR _actual_w_buf_size$[ebp]
@@ -1531,7 +1663,7 @@ $LN11@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 75   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
+; 75   :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_L_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, L"データの内容が一致しない");
 
 	mov	edx, DWORD PTR _desired_w_buf_size$[ebp]
 	push	edx
@@ -1729,7 +1861,7 @@ _TEST_PMC_GreatestCommonDivisor_I_X PROC
 ; 45   :     PMC_STATUS_CODE result;
 ; 46   :     PMC_STATUS_CODE v_result;
 ; 47   :     PMC_STATUS_CODE w_result;
-; 48   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
+; 48   :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 1), (v_result = ep->PMC_FromByteArray(v_buf, v_buf_size, &v)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", v_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _v$[ebp]
@@ -1771,7 +1903,7 @@ $LN7@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 49   :     TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 2), (w_result = ep->PMC_GreatestCommonDivisor_I_X(u, v, &w)) == desired_result_code, FormatTestMesssage("PMC_GreatestCommonDivisor_I_Xの復帰コードが期待通りではない(%d)", w_result));
+; 49   :     TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 2), (w_result = ep->PMC_GreatestCommonDivisor_I_X(u, v, &w)) == desired_result_code, FormatTestMesssage(L"PMC_GreatestCommonDivisor_I_Xの復帰コードが期待通りではない(%d)", w_result));
 
 	mov	esi, esp
 	lea	eax, DWORD PTR _w$[ebp]
@@ -1820,7 +1952,7 @@ $LN9@TEST_PMC_G:
 	jne	$LN2@TEST_PMC_G
 
 ; 51   :     {
-; 52   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 52   :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 3), (result = ep->PMC_ToByteArray(w, actual_w_buf, sizeof(actual_w_buf), &actual_w_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	lea	ecx, DWORD PTR _actual_w_buf_size$[ebp]
@@ -1863,7 +1995,7 @@ $LN11@TEST_PMC_G:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 53   :         TEST_Assert(env, FormatTestLabel("PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, "データの内容が一致しない");
+; 53   :         TEST_Assert(env, FormatTestLabel(L"PMC_GreatestCommonDivisor_I_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_w_buf, actual_w_buf_size, desired_w_buf, desired_w_buf_size) == 0, L"データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_w_buf_size$[ebp]
 	push	ecx

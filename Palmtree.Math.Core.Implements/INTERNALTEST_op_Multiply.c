@@ -66,8 +66,8 @@ void INTERNALTEST_Multiply_X_X_Imp(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS*
     if (actual_w_count == 0)
         actual_w_count = 1;
 
-    TEST_Assert(env, FormatTestLabel("Multiply_X_X_Imp (%d.%d)", no, 1), CheckBlockLight(actual_w_buf, actual_w_buf_code) == PMC_STATUS_OK, "actual_w_bufの内容が破損している");
-    TEST_Assert(env, FormatTestLabel("Multiply_X_X_Imp (%d.%d)", no, 2), _EQUALS_MEMORY(actual_w, actual_w_count, desired_w, desired_w_count) == 0, "データの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 1), CheckBlockLight(actual_w_buf, actual_w_buf_code) == PMC_STATUS_OK, L"actual_w_bufの内容が破損している");
+    TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 2), _EQUALS_MEMORY(actual_w, actual_w_count, desired_w, desired_w_count) == 0, L"データの内容が一致しない");
 
     DeallocateBlock(actual_w_buf, actual_w_buf_words);
     DeallocateBlock(desired_w_buf, desired_w_buf_words);

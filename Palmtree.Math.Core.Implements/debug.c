@@ -38,7 +38,7 @@
 #ifdef _DEBUG
 int test_total_count = 0;
 int test_ok_count = 0;
-int(_cdecl * __DEBUG_LOG)(const char*, ...) = NULL;
+int(_cdecl * __DEBUG_LOG)(const wchar_t*, ...) = NULL;
 #endif
 
 #ifdef _DEBUG
@@ -46,12 +46,12 @@ static void TEST_Start(PMC_DEBUG_ENVIRONMENT *env)
 {
     test_total_count = 0;
     test_ok_count = 0;
-    env->log("テスト開始\n");
+    env->log(L"テスト開始\n");
 }
 
 static void TEST_End(PMC_DEBUG_ENVIRONMENT *env)
 {
-    env->log("テスト完了。項目数=%d, OK項目数=%d, NG項目数=%d, OK率=%d%%, NG率=%d%%\n",
+    env->log(L"テスト完了。項目数=%d, OK項目数=%d, NG項目数=%d, OK率=%d%%, NG率=%d%%\n",
              test_total_count,
              test_ok_count,
              test_total_count - test_ok_count,
@@ -77,27 +77,27 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
     if (ep == NULL)
     {
-         env->log("PMC_Initialize failed");
+         env->log(L"PMC_Initialize failed");
          return;
     }
 #ifdef _M_IX86
-    char* platform = "x86";
+    wchar_t* platform = L"x86";
 #elif defined(_M_IX64)
-    char* platform = "x64";
+    wchar_t* platform = L"x64";
 #else
 #error unknown platform
 #endif
 #ifdef _MSC_VER
-    char* compiler = "MSC";
+    wchar_t* compiler = L"MSC";
 #elif defined(__GNUC__)
-    char* compiler = "GNUC";
+    wchar_t* compiler = L"GNUC";
 #else
 #error unknown platform
 #endif
 
-    env->log("PLATFORM: %s\n", platform);
-    env->log("COMPILER: %s\n", compiler);
-    env->log("CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
+    env->log(L"PLATFORM: %s\n", platform);
+    env->log(L"COMPILER: %s\n", compiler);
+    env->log(L"CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
              ep->PROCESSOR_FEATURE_POPCNT,
              ep->PROCESSOR_FEATURE_ADX,
              ep->PROCESSOR_FEATURE_BMI1,
@@ -110,31 +110,31 @@ __declspec(dllexport) void __stdcall DoDebug(PMC_DEBUG_ENVIRONMENT *env)
 }
 
 #ifdef _DEBUG
-void TEST_Assert(PMC_DEBUG_ENVIRONMENT *env, const char* test_name, BOOL condition, const char* reason)
+void TEST_Assert(PMC_DEBUG_ENVIRONMENT *env, const wchar_t* test_name, BOOL condition, const wchar_t* reason)
 {
     if (condition)
     {
-        //env->log("テスト No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
+        //env->log(L"テスト No.%d: %s => %s\n", test_total_count + 1, test_name, "Ok");
         ++test_ok_count;
     }
     else
     {
-        env->log("テスト No.%d: %s => %s (%s)\n", test_total_count + 1, test_name, "***NG***", reason);
+        env->log(L"テスト No.%d: %s => %s (%s)\n", test_total_count + 1, test_name, "***NG***", reason);
     }
     ++test_total_count;
 }
 
-char* FormatTestLabel(const char* format, int n1, int n2)
+wchar_t* FormatTestLabel(const wchar_t* format, int n1, int n2)
 {
-    static char buffer[256];
-    wsprintf(buffer, format, n1, n2);
+    static wchar_t buffer[256];
+    wsprintfW(buffer, format, n1, n2);
     return buffer;
 }
 
-char* FormatTestMesssage(const char* format, PMC_STATUS_CODE return_value)
+wchar_t* FormatTestMesssage(const wchar_t* format, PMC_STATUS_CODE return_value)
 {
-    static char buffer[256];
-    wsprintf(buffer, format, return_value);
+    static wchar_t buffer[256];
+    wsprintfW(buffer, format, return_value);
     return buffer;
 }
 
@@ -152,8 +152,8 @@ void DumpBinary_UNIT(__UNIT_TYPE* buf, __UNIT_TYPE count)
         while (count > 0)
         {
             if (!is_first)
-                (*__DEBUG_LOG)(", ");
-            (*__DEBUG_LOG)("0x%02x", *p);
+                (*__DEBUG_LOG)(L", ");
+            (*__DEBUG_LOG)(L"0x%02x", *p);
             ++p;
             --count;
             is_first = 0;

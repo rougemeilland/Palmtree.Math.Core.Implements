@@ -48,17 +48,22 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95728 DB	'actual_w_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
-	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
-	DB	0e9H, 00H
-	ORG $+3
-$SG95729 DB	'Multiply_X_X_Imp (%d.%d)', 00H
-	ORG $+3
-$SG95730 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG95731 DB	'Multiply_X_X_Imp (%d.%d)', 00H
+$SG95728 DB	'a', 00H, 'c', 00H, 't', 00H, 'u', 00H, 'a', 00H, 'l', 00H
+	DB	'_', 00H, 'w', 00H, '_', 00H, 'b', 00H, 'u', 00H, 'f', 00H, 'n'
+	DB	'0', 085H, 'Q', 0b9H, '[L04x', 0dH, 'dW0f0D0', 08bH, '0', 00H, 00H
+	ORG $+2
+$SG95729 DB	'M', 00H, 'u', 00H, 'l', 00H, 't', 00H, 'i', 00H, 'p', 00H
+	DB	'l', 00H, 'y', 00H, '_', 00H, 'X', 00H, '_', 00H, 'X', 00H, '_'
+	DB	00H, 'I', 00H, 'm', 00H, 'p', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG95730 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
+	ORG $+2
+$SG95731 DB	'M', 00H, 'u', 00H, 'l', 00H, 't', 00H, 'i', 00H, 'p', 00H
+	DB	'l', 00H, 'y', 00H, '_', 00H, 'X', 00H, '_', 00H, 'X', 00H, '_'
+	DB	00H, 'I', 00H, 'm', 00H, 'p', 00H, ' ', 00H, '(', 00H, '%', 00H
+	DB	'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -364,7 +369,7 @@ $LN3@INTERNALTE:
 $LN4@INTERNALTE:
 
 ; 68   : 
-; 69   :     TEST_Assert(env, FormatTestLabel("Multiply_X_X_Imp (%d.%d)", no, 1), CheckBlockLight(actual_w_buf, actual_w_buf_code) == PMC_STATUS_OK, "actual_w_bufの内容が破損している");
+; 69   :     TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 1), CheckBlockLight(actual_w_buf, actual_w_buf_code) == PMC_STATUS_OK, L"actual_w_bufの内容が破損している");
 
 	mov	edx, DWORD PTR _actual_w_buf_code$[ebp]
 	push	edx
@@ -394,7 +399,7 @@ $LN7@INTERNALTE:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 70   :     TEST_Assert(env, FormatTestLabel("Multiply_X_X_Imp (%d.%d)", no, 2), _EQUALS_MEMORY(actual_w, actual_w_count, desired_w, desired_w_count) == 0, "データの内容が一致しない");
+; 70   :     TEST_Assert(env, FormatTestLabel(L"Multiply_X_X_Imp (%d.%d)", no, 2), _EQUALS_MEMORY(actual_w, actual_w_count, desired_w, desired_w_count) == 0, L"データの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_w_count$[ebp]
 	push	ecx

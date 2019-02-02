@@ -19,27 +19,27 @@ DoDebug	PROC						; COMDAT
 ; 77   :     PMC_ENTRY_POINTS* ep = PMC_Initialize(&conf);
 ; 78   :     if (ep == NULL)
 ; 79   :     {
-; 80   :          env->log("PMC_Initialize failed");
+; 80   :          env->log(L"PMC_Initialize failed");
 ; 81   :          return;
 ; 82   :     }
 ; 83   : #ifdef _M_IX86
-; 84   :     char* platform = "x86";
+; 84   :     wchar_t* platform = L"x86";
 ; 85   : #elif defined(_M_IX64)
-; 86   :     char* platform = "x64";
+; 86   :     wchar_t* platform = L"x64";
 ; 87   : #else
 ; 88   : #error unknown platform
 ; 89   : #endif
 ; 90   : #ifdef _MSC_VER
-; 91   :     char* compiler = "MSC";
+; 91   :     wchar_t* compiler = L"MSC";
 ; 92   : #elif defined(__GNUC__)
-; 93   :     char* compiler = "GNUC";
+; 93   :     wchar_t* compiler = L"GNUC";
 ; 94   : #else
 ; 95   : #error unknown platform
 ; 96   : #endif
 ; 97   : 
-; 98   :     env->log("PLATFORM: %s\n", platform);
-; 99   :     env->log("COMPILER: %s\n", compiler);
-; 100  :     env->log("CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
+; 98   :     env->log(L"PLATFORM: %s\n", platform);
+; 99   :     env->log(L"COMPILER: %s\n", compiler);
+; 100  :     env->log(L"CPU-INFO: POPCNT=%d, ADX=%d, BMI1=%d, BMI2=%d, ABM=%d\n",
 ; 101  :              ep->PROCESSOR_FEATURE_POPCNT,
 ; 102  :              ep->PROCESSOR_FEATURE_ADX,
 ; 103  :              ep->PROCESSOR_FEATURE_BMI1,

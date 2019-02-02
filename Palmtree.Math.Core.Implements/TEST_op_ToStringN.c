@@ -49,9 +49,9 @@ void TEST_PMC_ToStringN(PMC_DEBUG_ENVIRONMENT *env, PMC_ENTRY_POINTS* ep, int no
     opt.DecimalDigits = decimal_digits;
     lstrcpyW(opt.PositiveSign, L"+");
     lstrcpyW(opt.NegativeSign, L"-");
-    TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage("PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
-    TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, width, &opt)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToStringの復帰コードが期待通りではない(%d)", result));
-    TEST_Assert(env, FormatTestLabel("PMC_ToStringN (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, "データの内容が一致しない");
+    TEST_Assert(env, FormatTestLabel(L"PMC_ToStringN (%d.%d)", no, 1), (x_result = ep->PMC_FromByteArray(buf, buf_size, &x)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_FromByteArrayの復帰コードが期待通りではない(%d)", x_result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_ToStringN (%d.%d)", no, 2), (result = ep->PMC_ToString(x, actual_str_buffer, sizeof(actual_str_buffer), format_spec, width, &opt)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToStringの復帰コードが期待通りではない(%d)", result));
+    TEST_Assert(env, FormatTestLabel(L"PMC_ToStringN (%d.%d)", no, 3), lstrcmpW(actual_str_buffer, desired_str) == 0, L"データの内容が一致しない");
     if (x_result == PMC_STATUS_OK)
         ep->PMC_Dispose(x);
 }

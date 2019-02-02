@@ -48,35 +48,42 @@ rtc$IMZ	SEGMENT
 __RTC_InitBase.rtc$IMZ DD FLAT:__RTC_InitBase
 rtc$IMZ	ENDS
 _DATA	SEGMENT
-$SG95748 DB	'work_v_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
-	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
-	DB	0e9H, 00H
-	ORG $+1
-$SG95749 DB	'DivRem_X_X (%d.%d)', 00H
-	ORG $+1
-$SG95750 DB	'actual_q_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
-	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
-	DB	0e9H, 00H
-	ORG $+3
-$SG95751 DB	'DivRem_X_X (%d.%d)', 00H
-	ORG $+1
-$SG95752 DB	'actual_r_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH
-	DB	094H, 'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H
-	DB	0e9H, 00H
-	ORG $+3
-$SG95753 DB	'DivRem_X_X (%d.%d)', 00H
-	ORG $+1
-$SG95754 DB	08fH, 0a4H, 082H, 0ccH, 083H, 'f', 081H, '[', 083H, '^', 082H
-	DB	0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H
-	DB	0b5H, 082H, 0c8H, 082H, 0a2H, 00H
-	ORG $+3
-$SG95755 DB	'DivRem_X_X (%d.%d)', 00H
-	ORG $+1
-$SG95756 DB	08fH, 0e8H, 097H, ']', 082H, 0ccH, 083H, 'f', 081H, '[', 083H
-	DB	'^', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 088H, 0eaH
-	DB	092H, 'v', 082H, 0b5H, 082H, 0c8H, 082H, 0a2H, 00H
-	ORG $+1
-$SG95757 DB	'DivRem_X_X (%d.%d)', 00H
+$SG95748 DB	'w', 00H, 'o', 00H, 'r', 00H, 'k', 00H, '_', 00H, 'v', 00H
+	DB	'_', 00H, 'b', 00H, 'u', 00H, 'f', 00H, 'n0', 085H, 'Q', 0b9H, '['
+	DB	'L04x', 0dH, 'dW0f0D0', 08bH, '0', 00H, 00H
+	ORG $+2
+$SG95749 DB	'D', 00H, 'i', 00H, 'v', 00H, 'R', 00H, 'e', 00H, 'm', 00H
+	DB	'_', 00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%'
+	DB	00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG95750 DB	'a', 00H, 'c', 00H, 't', 00H, 'u', 00H, 'a', 00H, 'l', 00H
+	DB	'_', 00H, 'q', 00H, '_', 00H, 'b', 00H, 'u', 00H, 'f', 00H, 'n'
+	DB	'0', 085H, 'Q', 0b9H, '[L04x', 0dH, 'dW0f0D0', 08bH, '0', 00H, 00H
+	ORG $+2
+$SG95751 DB	'D', 00H, 'i', 00H, 'v', 00H, 'R', 00H, 'e', 00H, 'm', 00H
+	DB	'_', 00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%'
+	DB	00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG95752 DB	'a', 00H, 'c', 00H, 't', 00H, 'u', 00H, 'a', 00H, 'l', 00H
+	DB	'_', 00H, 'r', 00H, '_', 00H, 'b', 00H, 'u', 00H, 'f', 00H, 'n'
+	DB	'0', 085H, 'Q', 0b9H, '[L04x', 0dH, 'dW0f0D0', 08bH, '0', 00H, 00H
+	ORG $+2
+$SG95753 DB	'D', 00H, 'i', 00H, 'v', 00H, 'R', 00H, 'e', 00H, 'm', 00H
+	DB	'_', 00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%'
+	DB	00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG95754 DB	'FUn0', 0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H
+	DB	'[L0', 00H, 'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
+	ORG $+2
+$SG95755 DB	'D', 00H, 'i', 00H, 'v', 00H, 'R', 00H, 'e', 00H, 'm', 00H
+	DB	'_', 00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%'
+	DB	00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG95756 DB	'pRYOn0', 0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H
+	DB	'[L0', 00H, 'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
+$SG95757 DB	'D', 00H, 'i', 00H, 'v', 00H, 'R', 00H, 'e', 00H, 'm', 00H
+	DB	'_', 00H, 'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%'
+	DB	00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -501,7 +508,7 @@ $LN5@INTERNALTE:
 $LN7@INTERNALTE:
 
 ; 88   : 
-; 89   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 1), CheckBlockLight(work_v_buf, work_v_buf_code) == PMC_STATUS_OK, "work_v_bufの内容が破損している");
+; 89   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 1), CheckBlockLight(work_v_buf, work_v_buf_code) == PMC_STATUS_OK, L"work_v_bufの内容が破損している");
 
 	mov	eax, DWORD PTR _work_v_buf_code$[ebp]
 	push	eax
@@ -531,7 +538,7 @@ $LN12@INTERNALTE:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 90   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 2), CheckBlockLight(actual_q_buf, actual_q_buf_code) == PMC_STATUS_OK, "actual_q_bufの内容が破損している");
+; 90   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 2), CheckBlockLight(actual_q_buf, actual_q_buf_code) == PMC_STATUS_OK, L"actual_q_bufの内容が破損している");
 
 	mov	edx, DWORD PTR _actual_q_buf_code$[ebp]
 	push	edx
@@ -561,7 +568,7 @@ $LN14@INTERNALTE:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 91   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 3), CheckBlockLight(actual_r_buf, actual_r_buf_code) == PMC_STATUS_OK, "actual_r_bufの内容が破損している");
+; 91   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 3), CheckBlockLight(actual_r_buf, actual_r_buf_code) == PMC_STATUS_OK, L"actual_r_bufの内容が破損している");
 
 	mov	ecx, DWORD PTR _actual_r_buf_code$[ebp]
 	push	ecx
@@ -591,7 +598,7 @@ $LN16@INTERNALTE:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 92   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_q, actual_q_count, desired_q, desired_q_count) == 0, "商のデータの内容が一致しない");
+; 92   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_q, actual_q_count, desired_q, desired_q_count) == 0, L"商のデータの内容が一致しない");
 
 	mov	eax, DWORD PTR _desired_q_count$[ebp]
 	push	eax
@@ -625,7 +632,7 @@ $LN18@INTERNALTE:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 93   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_r, actual_r_count, desired_r, desired_r_count) == 0, "剰余のデータの内容が一致しない");
+; 93   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_r, actual_r_count, desired_r, desired_r_count) == 0, L"剰余のデータの内容が一致しない");
 
 	mov	ecx, DWORD PTR _desired_r_count$[ebp]
 	push	ecx

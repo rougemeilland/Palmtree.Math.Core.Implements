@@ -58,25 +58,31 @@ $SG94535 DB	'3', 00H
 $SG94536 DB	'.', 00H, 00H, 00H
 $SG94537 DB	'+', 00H, 00H, 00H
 $SG94538 DB	'-', 00H, 00H, 00H
-$SG94539 DB	'PMC_TryParse', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H, 'R'
-	DB	081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
-	ORG $+1
-$SG94540 DB	'PMC_ParseX (%d.%d)', 00H
-	ORG $+1
-$SG94542 DB	'PMC_ToByteArray', 082H, 0ccH, 095H, 09cH, 08bH, 'A', 083H
-	DB	'R', 081H, '[', 083H, 'h', 082H, 0aaH, 08aH, 0faH, 091H, 0d2H, 092H
-	DB	0caH, 082H, 0e8H, 082H, 0c5H, 082H, 0cdH, 082H, 0c8H, 082H, 0a2H
-	DB	'(%d)', 00H
+$SG94544 DB	0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L0', 00H
+	DB	'N', 0f4H, 081H, 'W0j0D0', 00H, 00H
 	ORG $+2
-$SG94543 DB	'PMC_ParseX (%d.%d)', 00H
-	ORG $+1
-$SG94544 DB	083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H, 0e0H, 097H
-	DB	'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H, 082H, 0c8H
-	DB	082H, 0a2H, 00H
-	ORG $+3
-$SG94545 DB	'PMC_ParseX (%d.%d)', 00H
+$SG94539 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'r', 00H
+	DB	'y', 00H, 'P', 00H, 'a', 00H, 'r', 00H, 's', 00H, 'e', 00H, 'n'
+	DB	'0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0', 0c9H, '0L0', 01fH, 'g', 085H
+	DB	'_', 01aH, 090H, 08aH, '0g0o0j0D0(', 00H, '%', 00H, 'd', 00H, ')'
+	DB	00H, 00H, 00H
+$SG94540 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'P', 00H, 'a', 00H
+	DB	'r', 00H, 's', 00H, 'e', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%'
+	DB	00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94542 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'T', 00H, 'o', 00H
+	DB	'B', 00H, 'y', 00H, 't', 00H, 'e', 00H, 'A', 00H, 'r', 00H, 'r'
+	DB	00H, 'a', 00H, 'y', 00H, 'n0', 0a9H, '_0^', 0b3H, '0', 0fcH, '0'
+	DB	0c9H, '0L0', 01fH, 'g', 085H, '_', 01aH, 090H, 08aH, '0g0o0j0D'
+	DB	'0(', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94543 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'P', 00H, 'a', 00H
+	DB	'r', 00H, 's', 00H, 'e', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%'
+	DB	00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
+	ORG $+2
+$SG94545 DB	'P', 00H, 'M', 00H, 'C', 00H, '_', 00H, 'P', 00H, 'a', 00H
+	DB	'r', 00H, 's', 00H, 'e', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%'
+	DB	00H, 'd', 00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H
 _DATA	ENDS
 ; Function compile flags: /Odt
 ;	COMDAT __JustMyCode_Default
@@ -271,7 +277,7 @@ _TEST_PMC_ParseX PROC
 	cmp	esi, esp
 	call	__RTC_CheckEsp
 
-; 53   :     TEST_Assert(env, FormatTestLabel("PMC_ParseX (%d.%d)", no, 1), (x_result = ep->PMC_TryParse(str, styles, &opt, &x)) == desired_result_code, FormatTestMesssage("PMC_TryParseの復帰コードが期待通りではない(%d)", x_result));
+; 53   :     TEST_Assert(env, FormatTestLabel(L"PMC_ParseX (%d.%d)", no, 1), (x_result = ep->PMC_TryParse(str, styles, &opt, &x)) == desired_result_code, FormatTestMesssage(L"PMC_TryParseの復帰コードが期待通りではない(%d)", x_result));
 
 	mov	esi, esp
 	lea	edx, DWORD PTR _x$[ebp]
@@ -322,7 +328,7 @@ $LN6@TEST_PMC_P:
 	jne	$LN2@TEST_PMC_P
 
 ; 55   :     {
-; 56   :         TEST_Assert(env, FormatTestLabel("PMC_ParseX (%d.%d)", no, 2), (result = ep->PMC_ToByteArray(x,  actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage("PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
+; 56   :         TEST_Assert(env, FormatTestLabel(L"PMC_ParseX (%d.%d)", no, 2), (result = ep->PMC_ToByteArray(x,  actual_buf, sizeof(actual_buf), &actual_buf_size)) == PMC_STATUS_OK, FormatTestMesssage(L"PMC_ToByteArrayの復帰コードが期待通りではない(%d)", result));
 
 	mov	esi, esp
 	push	OFFSET ?actual_buf_size@?1??TEST_PMC_ParseX@@9@9
@@ -363,7 +369,7 @@ $LN8@TEST_PMC_P:
 	call	_TEST_Assert
 	add	esp, 16					; 00000010H
 
-; 57   :         TEST_Assert(env, FormatTestLabel("PMC_ParseX (%d.%d)", no, 3), _EQUALS_MEMORY(actual_buf, actual_buf_size, desired_buf, desired_buf_size) == 0, "データの内容が一致しない");
+; 57   :         TEST_Assert(env, FormatTestLabel(L"PMC_ParseX (%d.%d)", no, 3), _EQUALS_MEMORY(actual_buf, actual_buf_size, desired_buf, desired_buf_size) == 0, L"データの内容が一致しない");
 
 	mov	edx, DWORD PTR _desired_buf_size$[ebp]
 	push	edx

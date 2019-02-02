@@ -31,7 +31,7 @@
 
 struct __tag_PMC_DEBUG_ENVIRONMENT
 {
-    int(__CDECL * log)(const char*, ...);
+    int(__CDECL * log)(const wchar_t*, ...);
     void(__CDECL * pause)(void);
 };
 
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
         return (1);
     }
     PMC_DEBUG_ENVIRONMENT debug_env;
-    debug_env.log = printf;
+    debug_env.log = wprintf;
     debug_env.pause = pause_console;
     (*proc)(&debug_env);
     printf("***ok\n");

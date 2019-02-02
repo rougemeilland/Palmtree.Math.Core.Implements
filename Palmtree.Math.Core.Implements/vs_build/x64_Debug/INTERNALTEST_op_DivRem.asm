@@ -24,12 +24,12 @@ __0F2941F6_internaltest_op_divrem@c DB 01H
 msvcjmc	ENDS
 PUBLIC	INTERNALTEST_DivRem_X_X
 PUBLIC	__JustMyCode_Default
-PUBLIC	??_C@_0BP@PFJMNPMB@work_v_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC?i@ ; `string'
-PUBLIC	??_C@_0BD@EJLHCECA@DivRem_X_X?5?$CI?$CFd?4?$CFd?$CJ@ ; `string'
-PUBLIC	??_C@_0CB@DDIDAHNF@actual_q_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@ ; `string'
-PUBLIC	??_C@_0CB@MBNEOKCN@actual_r_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@ ; `string'
-PUBLIC	??_C@_0BN@IFNEHHGD@?$IP?$KE?$IC?L?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ ; `string'
-PUBLIC	??_C@_0BP@OILCCJPC@?$IP?h?$JH?$FN?$IC?L?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ ; `string'
+PUBLIC	??_C@_1CK@LKPHOANK@?$AAw?$AAo?$AAr?$AAk?$AA_?$AAv?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA4@ ; `string'
+PUBLIC	??_C@_1CG@DEJBHKJI@?$AAD?$AAi?$AAv?$AAR?$AAe?$AAm?$AA_?$AAX?$AA_?$AAX?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?4@ ; `string'
+PUBLIC	??_C@_1CO@GNKBBGAH@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAq?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@ ; `string'
+PUBLIC	??_C@_1CO@KELOBOLI@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAr?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@ ; `string'
+PUBLIC	??_C@_1BO@GKAMOFHM@?$AAF?$AAn?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@ ; `string'
+PUBLIC	??_C@_1CA@MOIGJDFP@?$AAp?$AAY?$AAn?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@ ; `string'
 EXTRN	AllocateBlock:PROC
 EXTRN	DeallocateBlock:PROC
 EXTRN	CheckBlockLight:PROC
@@ -66,45 +66,45 @@ rtc$TMZ	ENDS
 rtc$IMZ	SEGMENT
 _RTC_InitBase.rtc$IMZ DQ FLAT:_RTC_InitBase
 rtc$IMZ	ENDS
-;	COMDAT ??_C@_0BP@OILCCJPC@?$IP?h?$JH?$FN?$IC?L?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
+;	COMDAT ??_C@_1CA@MOIGJDFP@?$AAp?$AAY?$AAn?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@
 CONST	SEGMENT
-??_C@_0BP@OILCCJPC@?$IP?h?$JH?$FN?$IC?L?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ DB 08fH
-	DB	0e8H, 097H, ']', 082H, 0ccH, 083H, 'f', 081H, '[', 083H, '^', 082H
-	DB	0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H
-	DB	0b5H, 082H, 0c8H, 082H, 0a2H, 00H		; `string'
+??_C@_1CA@MOIGJDFP@?$AAp?$AAY?$AAn?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@ DB 'p'
+	DB	'RYOn0', 0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '['
+	DB	'L0', 00H, 'N', 0f4H, 081H, 'W0j0D0', 00H, 00H ; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BN@IFNEHHGD@?$IP?$KE?$IC?L?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
+;	COMDAT ??_C@_1BO@GKAMOFHM@?$AAF?$AAn?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@
 CONST	SEGMENT
-??_C@_0BN@IFNEHHGD@?$IP?$KE?$IC?L?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@ DB 08fH
-	DB	0a4H, 082H, 0ccH, 083H, 'f', 081H, '[', 083H, '^', 082H, 0ccH, 093H
-	DB	0e0H, 097H, 'e', 082H, 0aaH, 088H, 0eaH, 092H, 'v', 082H, 0b5H
-	DB	082H, 0c8H, 082H, 0a2H, 00H			; `string'
+??_C@_1BO@GKAMOFHM@?$AAF?$AAn?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@ DB 'F'
+	DB	'Un0', 0c7H, '0', 0fcH, '0', 0bfH, '0n0', 085H, 'Q', 0b9H, '[L'
+	DB	'0', 00H, 'N', 0f4H, 081H, 'W0j0D0', 00H, 00H ; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0CB@MBNEOKCN@actual_r_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@
+;	COMDAT ??_C@_1CO@KELOBOLI@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAr?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@
 CONST	SEGMENT
-??_C@_0CB@MBNEOKCN@actual_r_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@ DB 'a'
-	DB	'ctual_r_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 094H
-	DB	'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H, 0e9H
-	DB	00H						; `string'
+??_C@_1CO@KELOBOLI@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAr?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@ DB 'a'
+	DB	00H, 'c', 00H, 't', 00H, 'u', 00H, 'a', 00H, 'l', 00H, '_', 00H
+	DB	'r', 00H, '_', 00H, 'b', 00H, 'u', 00H, 'f', 00H, 'n0', 085H, 'Q'
+	DB	0b9H, '[L04x', 0dH, 'dW0f0D0', 08bH, '0', 00H, 00H ; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0CB@DDIDAHNF@actual_q_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@
+;	COMDAT ??_C@_1CO@GNKBBGAH@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAq?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@
 CONST	SEGMENT
-??_C@_0CB@DDIDAHNF@actual_q_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@ DB 'a'
-	DB	'ctual_q_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 094H
-	DB	'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H, 0e9H
-	DB	00H						; `string'
+??_C@_1CO@GNKBBGAH@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAq?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@ DB 'a'
+	DB	00H, 'c', 00H, 't', 00H, 'u', 00H, 'a', 00H, 'l', 00H, '_', 00H
+	DB	'q', 00H, '_', 00H, 'b', 00H, 'u', 00H, 'f', 00H, 'n0', 085H, 'Q'
+	DB	0b9H, '[L04x', 0dH, 'dW0f0D0', 08bH, '0', 00H, 00H ; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BD@EJLHCECA@DivRem_X_X?5?$CI?$CFd?4?$CFd?$CJ@
+;	COMDAT ??_C@_1CG@DEJBHKJI@?$AAD?$AAi?$AAv?$AAR?$AAe?$AAm?$AA_?$AAX?$AA_?$AAX?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?4@
 CONST	SEGMENT
-??_C@_0BD@EJLHCECA@DivRem_X_X?5?$CI?$CFd?4?$CFd?$CJ@ DB 'DivRem_X_X (%d.%'
-	DB	'd)', 00H					; `string'
+??_C@_1CG@DEJBHKJI@?$AAD?$AAi?$AAv?$AAR?$AAe?$AAm?$AA_?$AAX?$AA_?$AAX?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?4@ DB 'D'
+	DB	00H, 'i', 00H, 'v', 00H, 'R', 00H, 'e', 00H, 'm', 00H, '_', 00H
+	DB	'X', 00H, '_', 00H, 'X', 00H, ' ', 00H, '(', 00H, '%', 00H, 'd'
+	DB	00H, '.', 00H, '%', 00H, 'd', 00H, ')', 00H, 00H, 00H ; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BP@PFJMNPMB@work_v_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC?i@
+;	COMDAT ??_C@_1CK@LKPHOANK@?$AAw?$AAo?$AAr?$AAk?$AA_?$AAv?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA4@
 CONST	SEGMENT
-??_C@_0BP@PFJMNPMB@work_v_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC?i@ DB 'w'
-	DB	'ork_v_buf', 082H, 0ccH, 093H, 0e0H, 097H, 'e', 082H, 0aaH, 094H
-	DB	'j', 091H, 0b9H, 082H, 0b5H, 082H, 0c4H, 082H, 0a2H, 082H, 0e9H
-	DB	00H						; `string'
+??_C@_1CK@LKPHOANK@?$AAw?$AAo?$AAr?$AAk?$AA_?$AAv?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA4@ DB 'w'
+	DB	00H, 'o', 00H, 'r', 00H, 'k', 00H, '_', 00H, 'v', 00H, '_', 00H
+	DB	'b', 00H, 'u', 00H, 'f', 00H, 'n0', 085H, 'Q', 0b9H, '[L04x', 0dH
+	DB	'dW0f0D0', 08bH, '0', 00H, 00H		; `string'
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -823,7 +823,7 @@ $LN5@INTERNALTE:
 $LN7@INTERNALTE:
 
 ; 88   : 
-; 89   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 1), CheckBlockLight(work_v_buf, work_v_buf_code) == PMC_STATUS_OK, "work_v_bufの内容が破損している");
+; 89   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 1), CheckBlockLight(work_v_buf, work_v_buf_code) == PMC_STATUS_OK, L"work_v_bufの内容が破損している");
 
 	mov	rdx, QWORD PTR work_v_buf_code$[rbp]
 	mov	rcx, QWORD PTR work_v_buf$[rbp]
@@ -837,15 +837,15 @@ $LN11@INTERNALTE:
 $LN12@INTERNALTE:
 	mov	r8d, 1
 	mov	edx, DWORD PTR no$[rbp]
-	lea	rcx, OFFSET FLAT:??_C@_0BD@EJLHCECA@DivRem_X_X?5?$CI?$CFd?4?$CFd?$CJ@
+	lea	rcx, OFFSET FLAT:??_C@_1CG@DEJBHKJI@?$AAD?$AAi?$AAv?$AAR?$AAe?$AAm?$AA_?$AAX?$AA_?$AAX?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?4@
 	call	FormatTestLabel
-	lea	r9, OFFSET FLAT:??_C@_0BP@PFJMNPMB@work_v_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC?i@
+	lea	r9, OFFSET FLAT:??_C@_1CK@LKPHOANK@?$AAw?$AAo?$AAr?$AAk?$AA_?$AAv?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA4@
 	mov	r8d, DWORD PTR tv211[rbp]
 	mov	rdx, rax
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 90   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 2), CheckBlockLight(actual_q_buf, actual_q_buf_code) == PMC_STATUS_OK, "actual_q_bufの内容が破損している");
+; 90   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 2), CheckBlockLight(actual_q_buf, actual_q_buf_code) == PMC_STATUS_OK, L"actual_q_bufの内容が破損している");
 
 	mov	rdx, QWORD PTR actual_q_buf_code$[rbp]
 	mov	rcx, QWORD PTR actual_q_buf$[rbp]
@@ -859,15 +859,15 @@ $LN13@INTERNALTE:
 $LN14@INTERNALTE:
 	mov	r8d, 2
 	mov	edx, DWORD PTR no$[rbp]
-	lea	rcx, OFFSET FLAT:??_C@_0BD@EJLHCECA@DivRem_X_X?5?$CI?$CFd?4?$CFd?$CJ@
+	lea	rcx, OFFSET FLAT:??_C@_1CG@DEJBHKJI@?$AAD?$AAi?$AAv?$AAR?$AAe?$AAm?$AA_?$AAX?$AA_?$AAX?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?4@
 	call	FormatTestLabel
-	lea	r9, OFFSET FLAT:??_C@_0CB@DDIDAHNF@actual_q_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@
+	lea	r9, OFFSET FLAT:??_C@_1CO@GNKBBGAH@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAq?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@
 	mov	r8d, DWORD PTR tv224[rbp]
 	mov	rdx, rax
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 91   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 3), CheckBlockLight(actual_r_buf, actual_r_buf_code) == PMC_STATUS_OK, "actual_r_bufの内容が破損している");
+; 91   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 3), CheckBlockLight(actual_r_buf, actual_r_buf_code) == PMC_STATUS_OK, L"actual_r_bufの内容が破損している");
 
 	mov	rdx, QWORD PTR actual_r_buf_code$[rbp]
 	mov	rcx, QWORD PTR actual_r_buf$[rbp]
@@ -881,15 +881,15 @@ $LN15@INTERNALTE:
 $LN16@INTERNALTE:
 	mov	r8d, 3
 	mov	edx, DWORD PTR no$[rbp]
-	lea	rcx, OFFSET FLAT:??_C@_0BD@EJLHCECA@DivRem_X_X?5?$CI?$CFd?4?$CFd?$CJ@
+	lea	rcx, OFFSET FLAT:??_C@_1CG@DEJBHKJI@?$AAD?$AAi?$AAv?$AAR?$AAe?$AAm?$AA_?$AAX?$AA_?$AAX?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?4@
 	call	FormatTestLabel
-	lea	r9, OFFSET FLAT:??_C@_0CB@MBNEOKCN@actual_r_buf?$IC?L?$JD?$OA?$JHe?$IC?$KK?$JEj?$JB?$LJ?$IC?$LF?$IC?D?$IC?$KC?$IC@
+	lea	r9, OFFSET FLAT:??_C@_1CO@KELOBOLI@?$AAa?$AAc?$AAt?$AAu?$AAa?$AAl?$AA_?$AAr?$AA_?$AAb?$AAu?$AAf?$AAn?$PP?$IF?$PP?$LJ@
 	mov	r8d, DWORD PTR tv237[rbp]
 	mov	rdx, rax
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 92   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_q, actual_q_count, desired_q, desired_q_count) == 0, "商のデータの内容が一致しない");
+; 92   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 4), _EQUALS_MEMORY(actual_q, actual_q_count, desired_q, desired_q_count) == 0, L"商のデータの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_q_count$[rbp]
 	mov	r8, QWORD PTR desired_q$[rbp]
@@ -905,15 +905,15 @@ $LN17@INTERNALTE:
 $LN18@INTERNALTE:
 	mov	r8d, 4
 	mov	edx, DWORD PTR no$[rbp]
-	lea	rcx, OFFSET FLAT:??_C@_0BD@EJLHCECA@DivRem_X_X?5?$CI?$CFd?4?$CFd?$CJ@
+	lea	rcx, OFFSET FLAT:??_C@_1CG@DEJBHKJI@?$AAD?$AAi?$AAv?$AAR?$AAe?$AAm?$AA_?$AAX?$AA_?$AAX?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?4@
 	call	FormatTestLabel
-	lea	r9, OFFSET FLAT:??_C@_0BN@IFNEHHGD@?$IP?$KE?$IC?L?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
+	lea	r9, OFFSET FLAT:??_C@_1BO@GKAMOFHM@?$AAF?$AAn?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@
 	mov	r8d, DWORD PTR tv252[rbp]
 	mov	rdx, rax
 	mov	rcx, QWORD PTR env$[rbp]
 	call	TEST_Assert
 
-; 93   :     TEST_Assert(env, FormatTestLabel("DivRem_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_r, actual_r_count, desired_r, desired_r_count) == 0, "剰余のデータの内容が一致しない");
+; 93   :     TEST_Assert(env, FormatTestLabel(L"DivRem_X_X (%d.%d)", no, 5), _EQUALS_MEMORY(actual_r, actual_r_count, desired_r, desired_r_count) == 0, L"剰余のデータの内容が一致しない");
 
 	mov	r9, QWORD PTR desired_r_count$[rbp]
 	mov	r8, QWORD PTR desired_r$[rbp]
@@ -929,9 +929,9 @@ $LN19@INTERNALTE:
 $LN20@INTERNALTE:
 	mov	r8d, 5
 	mov	edx, DWORD PTR no$[rbp]
-	lea	rcx, OFFSET FLAT:??_C@_0BD@EJLHCECA@DivRem_X_X?5?$CI?$CFd?4?$CFd?$CJ@
+	lea	rcx, OFFSET FLAT:??_C@_1CG@DEJBHKJI@?$AAD?$AAi?$AAv?$AAR?$AAe?$AAm?$AA_?$AAX?$AA_?$AAX?$AA?5?$AA?$CI?$AA?$CF?$AAd?$AA?4@
 	call	FormatTestLabel
-	lea	r9, OFFSET FLAT:??_C@_0BP@OILCCJPC@?$IP?h?$JH?$FN?$IC?L?$IDf?$IB?$FL?$ID?$FO?$IC?L?$JD?$OA?$JHe?$IC?$KK?$II?j?$JCv?$IC?$LF?$IC?H?$IC?$KC@
+	lea	r9, OFFSET FLAT:??_C@_1CA@MOIGJDFP@?$AAp?$AAY?$AAn?$PP?G?$PP?$PM?$PP?$LP?$AAn?$PP?$IF?$PP?$LJ?$AAL?$AA?$AA?$PP?t?$AAW?$AAj?$AAD@
 	mov	r8d, DWORD PTR tv267[rbp]
 	mov	rdx, rax
 	mov	rcx, QWORD PTR env$[rbp]
